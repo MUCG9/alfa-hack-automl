@@ -1,5 +1,7 @@
 # Материалы капитану на встречу 22 октября
 
+**Актуальная точка входа после v3:** [CONTINUE_HERE.md](CONTINUE_HERE.md), [AGENTS.md](../AGENTS.md), [промпт нового агента](prompts/next-agent.md), [release/v3](../release/v3/README.md). V3 отправлена 21.10 в23:37 MSK; официальный score ещё неизвестен. Всё ниже — исторический комплект v1/v2 и прежнего распределения ролей; его числа расходов, попыток и статусы не являются текущими.
+
 ## Актуальная передача v2 → три параллельные ветки
 
 Сначала читать `parallel_work.md`, `v3_contract.md` и свой файл в `prompts/`: сейчас **один Pro и два Plus**. `webinar_20261021.md` — разбор записи с таймкодами, `webinar/report.html` — переносимый отчёт, `webinar/transcript-small.srt` — субтитры. `v2_validation.md` и `v2_results.json` содержат результаты именно v2; точный отправленный ZIP — `../release/solution-v2.zip`.

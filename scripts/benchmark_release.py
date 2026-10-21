@@ -19,6 +19,7 @@ def main():
     parser.add_argument('--offline',action='store_true')
     parser.add_argument('--time-budget',type=int,default=9900)
     parser.add_argument('--jobs',type=int,default=1,choices=[1,2])
+    parser.add_argument('--threads',type=int,default=4,choices=range(1,9))
     parser.add_argument('--archive',type=Path)
     parser.add_argument('--watchdog-seconds',type=int)
     args=parser.parse_args(); output=args.output.resolve()
@@ -39,7 +40,7 @@ def main():
             source=Path(value); destination=target/source.relative_to(path.parent)
             destination.parent.mkdir(parents=True,exist_ok=True); shutil.copy2(source,destination)
         for name,data in sources.items(): (target/name).write_bytes(data)
-        env=os.environ.copy(); env['AUTOML_THREADS']='4'
+        env=os.environ.copy(); env['AUTOML_THREADS']=str(args.threads)
         command=[sys.executable,'-u','solution.py','task.md']
         if args.offline: command.append('--offline')
         if args.time_budget!=9900: command.extend(['--time-budget',str(args.time_budget)])
@@ -53,7 +54,7 @@ def main():
                 try: process.wait(timeout=5)
                 except subprocess.TimeoutExpired: os.killpg(process.pid,signal.SIGKILL); process.wait()
                 status='watchdog_timeout'
-        result={'task':str(path),'command':command,'exit_code':status,'elapsed_seconds':round(time.monotonic()-started,3)}
+        result={'task':str(path),'command':command,'threads':args.threads,'exit_code':status,'elapsed_seconds':round(time.monotonic()-started,3)}
         report=target/'automl_runs/run-v2/report.json'
         if report.exists():
             value=json.loads(report.read_text())

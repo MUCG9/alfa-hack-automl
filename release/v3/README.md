@@ -1,5 +1,7 @@
 # V3: frozen candidate and evidence
 
+**Дополнение передачи в23:52 MSK:** extended default classification остановлен нашим внешним локальным watchdog в23:45, не дошёл до full confirmation/refit. Последний best search0.651775764, 10 завершённых experiments. Отдельный no-API run остановлен в23:49 по1200sec, 11 experiments. Это НЕ официальный timeout платформы. Факты: `local_validation_final.json`, `classification_interrupted_progress.json`, `classification_no_api_assessment.json`. Общего full-validation PASS нет. Подробная передача — `../../docs/CONTINUE_HERE.md`.
+
 Дата: 21.10.2026. **Отправлено в 23:37 MSK**, история показала `solution-v3.zip` / «Проверяется», счётчик — 0 оставшихся попыток. Серверных результатов не ждали; официальный score пока неизвестен. Подтверждение: `submission.json`.
 
 Source checkpoint: `6f0fe6bc27cab449ab9c903e701214b5395c7892`, ветка `experiment/modular-augmentation`. Дальнейшие evidence-only commits не меняют конкурсный Python. Main остаётся `5dd6b0f2910af7aa706d400bc28093a277ac2932`.

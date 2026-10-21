@@ -1,0 +1,2912 @@
+{
+  "experiments": [
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Higher-capacity mild-weight model",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 5,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "class_weight_power": 0.5,
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6463289244307688,
+        "weighted_f1": 0.8188425060717702,
+        "accuracy": 0.809871069365848,
+        "per_class_f1": {
+          "Analysis": 0.31210191082802546,
+          "Backdoor": 0.2222222222222222,
+          "DoS": 0.47477913935594185,
+          "Exploits": 0.6951979780960404,
+          "Fuzzers": 0.749757045675413,
+          "Generic": 0.9879550683448369,
+          "Normal": 0.9150487735581021,
+          "Reconnaissance": 0.8205128205128205,
+          "Shellcode": 0.6571428571428571,
+          "Worms": 0.6285714285714286
+        },
+        "log_loss": 0.4601995414519284,
+        "roc_auc": 0.970023692495497
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56743,
+          "effective_weight_sum": 56742.999999999985
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 70529,
+          "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 70529,
+          "effective_weight_sum": 70529.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-00/submission.csv",
+        "rows": 41166,
+        "columns": [
+          "id",
+          "attack_cat"
+        ],
+        "classes": [
+          "Analysis",
+          "Backdoor",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Generic",
+          "Normal",
+          "Reconnaissance",
+          "Shellcode",
+          "Worms"
+        ],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 73,
+        "train_rows": 56743,
+        "validation_rows": 13786,
+        "split_sha256": "fd813101166119c2323133b0690ed5e3de9dc916934e56b00374cebd9735f28a",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 4522,
+          "Generic": 3011,
+          "Exploits": 2630,
+          "Fuzzers": 1454,
+          "DoS": 972,
+          "Reconnaissance": 791,
+          "Analysis": 154,
+          "Backdoor": 149,
+          "Shellcode": 95,
+          "Worms": 8
+        }
+      },
+      "important_features": [
+        [
+          "smean",
+          5895.0
+        ],
+        [
+          "sbytes",
+          5659.0
+        ],
+        [
+          "sload",
+          2486.0
+        ],
+        [
+          "proto",
+          2465.0
+        ],
+        [
+          "dur",
+          2401.0
+        ],
+        [
+          "ct_srv_src",
+          2311.0
+        ],
+        [
+          "stcpb",
+          2198.0
+        ],
+        [
+          "ct_src_ltm",
+          1988.0
+        ],
+        [
+          "dtcpb",
+          1964.0
+        ],
+        [
+          "ackdat",
+          1922.0
+        ],
+        [
+          "synack",
+          1874.0
+        ],
+        [
+          "ct_dst_src_ltm",
+          1818.0
+        ],
+        [
+          "dmean",
+          1768.0
+        ],
+        [
+          "dbytes",
+          1694.0
+        ],
+        [
+          "djit",
+          1638.0
+        ]
+      ],
+      "fit_iterations": 100,
+      "feature_count": 42,
+      "feature_names": [
+        "dur",
+        "proto",
+        "service",
+        "state",
+        "spkts",
+        "dpkts",
+        "sbytes",
+        "dbytes",
+        "rate",
+        "sttl",
+        "dttl",
+        "sload",
+        "dload",
+        "sloss",
+        "dloss",
+        "sinpkt",
+        "dinpkt",
+        "sjit",
+        "djit",
+        "swin",
+        "stcpb",
+        "dtcpb",
+        "dwin",
+        "tcprtt",
+        "synack",
+        "ackdat",
+        "smean",
+        "dmean",
+        "trans_depth",
+        "response_body_len",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "ct_dst_ltm",
+        "ct_src_dport_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "is_ftp_login",
+        "ct_ftp_cmd",
+        "ct_flw_http_mthd",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "is_sm_ips_ports"
+      ],
+      "wall_seconds": 37.486,
+      "peak_rss_mb": 322.5,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-00/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-00/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-00",
+      "observed_process_tree_peak_mb": 323.3,
+      "observed_total_peak_mb": 565.5,
+      "artifact_bytes": 4760905,
+      "experiment_index": 0
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Iteration-matched inner decision calibration",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 5,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "class_weight_power": 0.5,
+          "calibrate": true,
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6502929607048801,
+        "weighted_f1": 0.8145405426848424,
+        "accuracy": 0.8045038212473018,
+        "per_class_f1": {
+          "Analysis": 0.3281733746130031,
+          "Backdoor": 0.22330097087378642,
+          "DoS": 0.49572649572649574,
+          "Exploits": 0.6704966641957005,
+          "Fuzzers": 0.7454976303317535,
+          "Generic": 0.9879550683448369,
+          "Normal": 0.9122439256788947,
+          "Reconnaissance": 0.822868810617662,
+          "Shellcode": 0.65,
+          "Worms": 0.6666666666666666
+        },
+        "log_loss": 0.47283688615761593,
+        "roc_auc": 0.9700966684139347
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56743,
+          "effective_weight_sum": 56742.999999999985
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56743,
+          "effective_weight_sum": 56742.999999999985
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 70529,
+          "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 70529,
+          "effective_weight_sum": 70529.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-01/submission.csv",
+        "rows": 41166,
+        "columns": [
+          "id",
+          "attack_cat"
+        ],
+        "classes": [
+          "Analysis",
+          "Backdoor",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Generic",
+          "Normal",
+          "Reconnaissance",
+          "Shellcode",
+          "Worms"
+        ],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "inner_training_holdout_matching_iterations",
+      "class_factors": {
+        "Analysis": 1.0,
+        "Backdoor": 0.48999999999999994,
+        "DoS": 1.15,
+        "Exploits": 0.7,
+        "Fuzzers": 1.15,
+        "Generic": 1.0,
+        "Normal": 1.0,
+        "Reconnaissance": 1.0,
+        "Shellcode": 1.0,
+        "Worms": 1.0
+      },
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 73,
+        "train_rows": 56743,
+        "validation_rows": 13786,
+        "split_sha256": "fd813101166119c2323133b0690ed5e3de9dc916934e56b00374cebd9735f28a",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 4522,
+          "Generic": 3011,
+          "Exploits": 2630,
+          "Fuzzers": 1454,
+          "DoS": 972,
+          "Reconnaissance": 791,
+          "Analysis": 154,
+          "Backdoor": 149,
+          "Shellcode": 95,
+          "Worms": 8
+        }
+      },
+      "important_features": [
+        [
+          "smean",
+          5895.0
+        ],
+        [
+          "sbytes",
+          5659.0
+        ],
+        [
+          "sload",
+          2486.0
+        ],
+        [
+          "proto",
+          2465.0
+        ],
+        [
+          "dur",
+          2401.0
+        ],
+        [
+          "ct_srv_src",
+          2311.0
+        ],
+        [
+          "stcpb",
+          2198.0
+        ],
+        [
+          "ct_src_ltm",
+          1988.0
+        ],
+        [
+          "dtcpb",
+          1964.0
+        ],
+        [
+          "ackdat",
+          1922.0
+        ],
+        [
+          "synack",
+          1874.0
+        ],
+        [
+          "ct_dst_src_ltm",
+          1818.0
+        ],
+        [
+          "dmean",
+          1768.0
+        ],
+        [
+          "dbytes",
+          1694.0
+        ],
+        [
+          "djit",
+          1638.0
+        ]
+      ],
+      "fit_iterations": 100,
+      "feature_count": 42,
+      "feature_names": [
+        "dur",
+        "proto",
+        "service",
+        "state",
+        "spkts",
+        "dpkts",
+        "sbytes",
+        "dbytes",
+        "rate",
+        "sttl",
+        "dttl",
+        "sload",
+        "dload",
+        "sloss",
+        "dloss",
+        "sinpkt",
+        "dinpkt",
+        "sjit",
+        "djit",
+        "swin",
+        "stcpb",
+        "dtcpb",
+        "dwin",
+        "tcprtt",
+        "synack",
+        "ackdat",
+        "smean",
+        "dmean",
+        "trans_depth",
+        "response_body_len",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "ct_dst_ltm",
+        "ct_src_dport_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "is_ftp_login",
+        "ct_ftp_cmd",
+        "ct_flw_http_mthd",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "is_sm_ips_ports"
+      ],
+      "wall_seconds": 52.667,
+      "peak_rss_mb": 322.8,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-01/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-01/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-01",
+      "observed_process_tree_peak_mb": 322.7,
+      "observed_total_peak_mb": 564.9,
+      "artifact_bytes": 4755424,
+      "experiment_index": 1
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Independent histogram-boosting family",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.5,
+          "min_iterations": 50,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6509041868711996,
+        "weighted_f1": 0.8159009818771576,
+        "accuracy": 0.8071874453065748,
+        "per_class_f1": {
+          "Analysis": 0.34444444444444444,
+          "Backdoor": 0.21052631578947367,
+          "DoS": 0.4533500313087038,
+          "Exploits": 0.6961451247165533,
+          "Fuzzers": 0.7483317445185891,
+          "Generic": 0.9879485443466486,
+          "Normal": 0.9089689536220774,
+          "Reconnaissance": 0.8236503856041131,
+          "Shellcode": 0.6514657980456026,
+          "Worms": 0.6842105263157895
+        },
+        "log_loss": 0.4657118568161064,
+        "roc_auc": 0.9695382602080139
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56743,
+          "effective_weight_sum": 56742.999999999985
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 70529,
+          "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 70529,
+          "effective_weight_sum": 70529.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-02/submission.csv",
+        "rows": 41166,
+        "columns": [
+          "id",
+          "attack_cat"
+        ],
+        "classes": [
+          "Analysis",
+          "Backdoor",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Generic",
+          "Normal",
+          "Reconnaissance",
+          "Shellcode",
+          "Worms"
+        ],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 73,
+        "train_rows": 56743,
+        "validation_rows": 13786,
+        "split_sha256": "fd813101166119c2323133b0690ed5e3de9dc916934e56b00374cebd9735f28a",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 4522,
+          "Generic": 3011,
+          "Exploits": 2630,
+          "Fuzzers": 1454,
+          "DoS": 972,
+          "Reconnaissance": 791,
+          "Analysis": 154,
+          "Backdoor": 149,
+          "Shellcode": 95,
+          "Worms": 8
+        }
+      },
+      "important_features": [
+        [
+          "sttl",
+          0.21910743415355682
+        ],
+        [
+          "ct_dst_sport_ltm",
+          0.17504382133483887
+        ],
+        [
+          "service",
+          0.11619787663221359
+        ],
+        [
+          "is_sm_ips_ports",
+          0.05543476715683937
+        ],
+        [
+          "ct_state_ttl",
+          0.03749636188149452
+        ],
+        [
+          "ct_srv_dst",
+          0.03604988753795624
+        ],
+        [
+          "dmean",
+          0.03420069441199303
+        ],
+        [
+          "sbytes",
+          0.027220260351896286
+        ],
+        [
+          "synack",
+          0.025429464876651764
+        ],
+        [
+          "dttl",
+          0.02430802769958973
+        ],
+        [
+          "dbytes",
+          0.023866720497608185
+        ],
+        [
+          "smean",
+          0.02281162701547146
+        ],
+        [
+          "ct_dst_src_ltm",
+          0.022257955744862556
+        ],
+        [
+          "response_body_len",
+          0.01864512637257576
+        ],
+        [
+          "proto",
+          0.016681401059031487
+        ]
+      ],
+      "fit_iterations": 345,
+      "feature_count": 42,
+      "feature_names": [
+        "dur",
+        "proto",
+        "service",
+        "state",
+        "spkts",
+        "dpkts",
+        "sbytes",
+        "dbytes",
+        "rate",
+        "sttl",
+        "dttl",
+        "sload",
+        "dload",
+        "sloss",
+        "dloss",
+        "sinpkt",
+        "dinpkt",
+        "sjit",
+        "djit",
+        "swin",
+        "stcpb",
+        "dtcpb",
+        "dwin",
+        "tcprtt",
+        "synack",
+        "ackdat",
+        "smean",
+        "dmean",
+        "trans_depth",
+        "response_body_len",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "ct_dst_ltm",
+        "ct_src_dport_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "is_ftp_login",
+        "ct_ftp_cmd",
+        "ct_flw_http_mthd",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "is_sm_ips_ports"
+      ],
+      "wall_seconds": 81.496,
+      "peak_rss_mb": 420.0,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-02/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-02/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-02",
+      "observed_process_tree_peak_mb": 418.2,
+      "observed_total_peak_mb": 660.4,
+      "artifact_bytes": 5187096,
+      "experiment_index": 2
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Bounded native-category pilot",
+        "engine": "catboost",
+        "params": {
+          "iterations": 350,
+          "depth": 6,
+          "learning_rate": 0.07,
+          "class_weight_power": 0.5,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.5718513145882851,
+        "weighted_f1": 0.7918084512353871,
+        "accuracy": 0.7790093926842074,
+        "per_class_f1": {
+          "Analysis": 0.31693989071038253,
+          "Backdoor": 0.14606741573033707,
+          "DoS": 0.4563349043526476,
+          "Exploits": 0.6688479421387981,
+          "Fuzzers": 0.692407809110629,
+          "Generic": 0.9858772406300923,
+          "Normal": 0.8859824281150159,
+          "Reconnaissance": 0.7795753286147624,
+          "Shellcode": 0.47878787878787876,
+          "Worms": 0.3076923076923077
+        },
+        "log_loss": 0.5402294766587097,
+        "roc_auc": 0.9643079483629388
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56743,
+          "effective_weight_sum": 56742.999999999985
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 70529,
+          "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 70529,
+          "effective_weight_sum": 70529.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-03/submission.csv",
+        "rows": 41166,
+        "columns": [
+          "id",
+          "attack_cat"
+        ],
+        "classes": [
+          "Analysis",
+          "Backdoor",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Generic",
+          "Normal",
+          "Reconnaissance",
+          "Shellcode",
+          "Worms"
+        ],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 73,
+        "train_rows": 56743,
+        "validation_rows": 13786,
+        "split_sha256": "fd813101166119c2323133b0690ed5e3de9dc916934e56b00374cebd9735f28a",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 4522,
+          "Generic": 3011,
+          "Exploits": 2630,
+          "Fuzzers": 1454,
+          "DoS": 972,
+          "Reconnaissance": 791,
+          "Analysis": 154,
+          "Backdoor": 149,
+          "Shellcode": 95,
+          "Worms": 8
+        }
+      },
+      "important_features": [
+        [
+          "sttl",
+          20.260075222676946
+        ],
+        [
+          "smean",
+          12.65676350804541
+        ],
+        [
+          "service",
+          11.090588592091878
+        ],
+        [
+          "proto",
+          8.637353679937888
+        ],
+        [
+          "ct_dst_src_ltm",
+          8.623969133323984
+        ],
+        [
+          "sbytes",
+          6.495538967165901
+        ],
+        [
+          "ct_dst_sport_ltm",
+          5.074452643671907
+        ],
+        [
+          "ct_srv_dst",
+          4.124806147497402
+        ],
+        [
+          "dbytes",
+          3.475886173363744
+        ],
+        [
+          "dmean",
+          3.081084596640428
+        ],
+        [
+          "ct_state_ttl",
+          2.349716923436164
+        ],
+        [
+          "ct_srv_src",
+          2.0033512400006526
+        ],
+        [
+          "sjit",
+          1.5331042915030662
+        ],
+        [
+          "sloss",
+          1.4815082226469038
+        ],
+        [
+          "rate",
+          0.7783372220289762
+        ]
+      ],
+      "fit_iterations": 100,
+      "feature_count": 42,
+      "feature_names": [
+        "dur",
+        "proto",
+        "service",
+        "state",
+        "spkts",
+        "dpkts",
+        "sbytes",
+        "dbytes",
+        "rate",
+        "sttl",
+        "dttl",
+        "sload",
+        "dload",
+        "sloss",
+        "dloss",
+        "sinpkt",
+        "dinpkt",
+        "sjit",
+        "djit",
+        "swin",
+        "stcpb",
+        "dtcpb",
+        "dwin",
+        "tcprtt",
+        "synack",
+        "ackdat",
+        "smean",
+        "dmean",
+        "trans_depth",
+        "response_body_len",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "ct_dst_ltm",
+        "ct_src_dport_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "is_ftp_login",
+        "ct_ftp_cmd",
+        "ct_flw_http_mthd",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "is_sm_ips_ports"
+      ],
+      "wall_seconds": 161.273,
+      "peak_rss_mb": 814.5,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-03/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-03/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-03",
+      "observed_process_tree_peak_mb": 800.8,
+      "observed_total_peak_mb": 1043.0,
+      "artifact_bytes": 4171499,
+      "experiment_index": 3
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Increase class_weight_power to 1.0 to directly counter the low F1 of rare classes (Backdoor 0.21, Analysis 0.34, Worms 0.68) observed in the best XGBoost recipe, testing if stronger inverse-frequency weighting improves macro F1 without collapsing majority class performance.",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 1.0,
+          "min_iterations": 50,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6186637775437148,
+        "weighted_f1": 0.8053854916527422,
+        "accuracy": 0.7823347529315676,
+        "per_class_f1": {
+          "Analysis": 0.19938335046248715,
+          "Backdoor": 0.12215568862275449,
+          "DoS": 0.40458579881656803,
+          "Exploits": 0.6703236423477784,
+          "Fuzzers": 0.7467872441694431,
+          "Generic": 0.9872697724810401,
+          "Normal": 0.9107621600919188,
+          "Reconnaissance": 0.8245524296675192,
+          "Shellcode": 0.6737588652482269,
+          "Worms": 0.6470588235294118
+        },
+        "log_loss": 0.517308931871143,
+        "roc_auc": 0.9683387668791523
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56743,
+          "effective_weight_sum": 56743.0
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 70529,
+          "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 70529,
+          "effective_weight_sum": 70529.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-04/submission.csv",
+        "rows": 41166,
+        "columns": [
+          "id",
+          "attack_cat"
+        ],
+        "classes": [
+          "Analysis",
+          "Backdoor",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Generic",
+          "Normal",
+          "Reconnaissance",
+          "Shellcode",
+          "Worms"
+        ],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 73,
+        "train_rows": 56743,
+        "validation_rows": 13786,
+        "split_sha256": "fd813101166119c2323133b0690ed5e3de9dc916934e56b00374cebd9735f28a",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 4522,
+          "Generic": 3011,
+          "Exploits": 2630,
+          "Fuzzers": 1454,
+          "DoS": 972,
+          "Reconnaissance": 791,
+          "Analysis": 154,
+          "Backdoor": 149,
+          "Shellcode": 95,
+          "Worms": 8
+        }
+      },
+      "important_features": [
+        [
+          "sttl",
+          0.2669171094894409
+        ],
+        [
+          "service",
+          0.22863462567329407
+        ],
+        [
+          "dttl",
+          0.054866790771484375
+        ],
+        [
+          "response_body_len",
+          0.045621324330568314
+        ],
+        [
+          "ct_state_ttl",
+          0.03391721472144127
+        ],
+        [
+          "sbytes",
+          0.03121453896164894
+        ],
+        [
+          "swin",
+          0.030424773693084717
+        ],
+        [
+          "dmean",
+          0.028445260599255562
+        ],
+        [
+          "ct_flw_http_mthd",
+          0.0257035531103611
+        ],
+        [
+          "dbytes",
+          0.02184620499610901
+        ],
+        [
+          "sloss",
+          0.020971693098545074
+        ],
+        [
+          "smean",
+          0.020317228510975838
+        ],
+        [
+          "trans_depth",
+          0.01507460419088602
+        ],
+        [
+          "ct_dst_src_ltm",
+          0.014942466281354427
+        ],
+        [
+          "proto",
+          0.012980851344764233
+        ]
+      ],
+      "fit_iterations": 1739,
+      "feature_count": 42,
+      "feature_names": [
+        "dur",
+        "proto",
+        "service",
+        "state",
+        "spkts",
+        "dpkts",
+        "sbytes",
+        "dbytes",
+        "rate",
+        "sttl",
+        "dttl",
+        "sload",
+        "dload",
+        "sloss",
+        "dloss",
+        "sinpkt",
+        "dinpkt",
+        "sjit",
+        "djit",
+        "swin",
+        "stcpb",
+        "dtcpb",
+        "dwin",
+        "tcprtt",
+        "synack",
+        "ackdat",
+        "smean",
+        "dmean",
+        "trans_depth",
+        "response_body_len",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "ct_dst_ltm",
+        "ct_src_dport_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "is_ftp_login",
+        "ct_ftp_cmd",
+        "ct_flw_http_mthd",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "is_sm_ips_ports"
+      ],
+      "wall_seconds": 350.16,
+      "peak_rss_mb": 911.2,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-04/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-04/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-04",
+      "observed_process_tree_peak_mb": 912.3,
+      "observed_total_peak_mb": 1111.7,
+      "artifact_bytes": 5224254,
+      "experiment_index": 4
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Add interaction features between packet counts and byte sizes (spkts*sbytes, dpkts*dbytes) to capture traffic volume patterns that may distinguish rare attack types like Shellcode and Worms, which currently have sub-optimal F1 scores.",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.5,
+          "min_iterations": 50,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": "def transform(df):\n    df = df.copy()\n    df['spkts_sbytes'] = df['spkts'] * df['sbytes']\n    df['dpkts_dbytes'] = df['dpkts'] * df['dbytes']\n    return df"
+      },
+      "metrics": {
+        "macro_f1": 0.6416799844386698,
+        "weighted_f1": 0.8160759987359523,
+        "accuracy": 0.8073624642669622,
+        "per_class_f1": {
+          "Analysis": 0.31197771587743733,
+          "Backdoor": 0.18772563176895307,
+          "DoS": 0.4476854787571338,
+          "Exploits": 0.6971557853910795,
+          "Fuzzers": 0.7510791366906475,
+          "Generic": 0.9882257409663012,
+          "Normal": 0.9102723363592928,
+          "Reconnaissance": 0.826625386996904,
+          "Shellcode": 0.6644736842105263,
+          "Worms": 0.631578947368421
+        },
+        "log_loss": 0.4626631854850232,
+        "roc_auc": 0.9695733109709523
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56743,
+          "effective_weight_sum": 56742.999999999985
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 70529,
+          "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 70529,
+          "effective_weight_sum": 70529.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-05/submission.csv",
+        "rows": 41166,
+        "columns": [
+          "id",
+          "attack_cat"
+        ],
+        "classes": [
+          "Analysis",
+          "Backdoor",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Generic",
+          "Normal",
+          "Reconnaissance",
+          "Shellcode",
+          "Worms"
+        ],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 73,
+        "train_rows": 56743,
+        "validation_rows": 13786,
+        "split_sha256": "fd813101166119c2323133b0690ed5e3de9dc916934e56b00374cebd9735f28a",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 4522,
+          "Generic": 3011,
+          "Exploits": 2630,
+          "Fuzzers": 1454,
+          "DoS": 972,
+          "Reconnaissance": 791,
+          "Analysis": 154,
+          "Backdoor": 149,
+          "Shellcode": 95,
+          "Worms": 8
+        }
+      },
+      "important_features": [
+        [
+          "sttl",
+          0.2266208380460739
+        ],
+        [
+          "ct_dst_sport_ltm",
+          0.18945394456386566
+        ],
+        [
+          "service",
+          0.10313711315393448
+        ],
+        [
+          "ct_state_ttl",
+          0.03978392109274864
+        ],
+        [
+          "dmean",
+          0.03398687019944191
+        ],
+        [
+          "ct_srv_dst",
+          0.03244814649224281
+        ],
+        [
+          "sbytes",
+          0.02797858789563179
+        ],
+        [
+          "dbytes",
+          0.027537371963262558
+        ],
+        [
+          "spkts_sbytes",
+          0.025801882147789
+        ],
+        [
+          "dttl",
+          0.02489960752427578
+        ],
+        [
+          "smean",
+          0.021539006382226944
+        ],
+        [
+          "ct_dst_src_ltm",
+          0.020935650914907455
+        ],
+        [
+          "synack",
+          0.020860787481069565
+        ],
+        [
+          "swin",
+          0.019522642716765404
+        ],
+        [
+          "response_body_len",
+          0.018149487674236298
+        ]
+      ],
+      "fit_iterations": 390,
+      "feature_count": 44,
+      "feature_names": [
+        "dur",
+        "proto",
+        "service",
+        "state",
+        "spkts",
+        "dpkts",
+        "sbytes",
+        "dbytes",
+        "rate",
+        "sttl",
+        "dttl",
+        "sload",
+        "dload",
+        "sloss",
+        "dloss",
+        "sinpkt",
+        "dinpkt",
+        "sjit",
+        "djit",
+        "swin",
+        "stcpb",
+        "dtcpb",
+        "dwin",
+        "tcprtt",
+        "synack",
+        "ackdat",
+        "smean",
+        "dmean",
+        "trans_depth",
+        "response_body_len",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "ct_dst_ltm",
+        "ct_src_dport_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "is_ftp_login",
+        "ct_ftp_cmd",
+        "ct_flw_http_mthd",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "is_sm_ips_ports",
+        "spkts_sbytes",
+        "dpkts_dbytes"
+      ],
+      "wall_seconds": 82.601,
+      "peak_rss_mb": 438.3,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-05/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-05/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-05",
+      "observed_process_tree_peak_mb": 435.3,
+      "observed_total_peak_mb": 634.9,
+      "artifact_bytes": 5203747,
+      "experiment_index": 5
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "The best XGBoost recipe (0.6509) underperforms the calibrated LightGBM (0.6503) and uncalibrated LightGBM (0.6463) only slightly, but LightGBM's native handling of categorical features and different regularization may better capture the distinct patterns of rare classes like Backdoor (0.21 F1) and Analysis (0.34 F1) without the overfitting seen in XGBoost's higher capacity. We test LightGBM with identical hyperparameters to the best XGBoost recipe to isolate the engine effect.",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 3,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "class_weight_power": 0.5,
+          "min_iterations": 50,
+          "subsample_freq": 1,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6348384448159742,
+        "weighted_f1": 0.817837779016458,
+        "accuracy": 0.8088792952569862,
+        "per_class_f1": {
+          "Analysis": 0.3157894736842105,
+          "Backdoor": 0.20444444444444446,
+          "DoS": 0.46760070052539404,
+          "Exploits": 0.6963481740870435,
+          "Fuzzers": 0.7487899322362053,
+          "Generic": 0.9869883437245867,
+          "Normal": 0.9141936095572201,
+          "Reconnaissance": 0.8231611893583725,
+          "Shellcode": 0.6456140350877193,
+          "Worms": 0.5454545454545454
+        },
+        "log_loss": 0.4688678418301469,
+        "roc_auc": 0.96962393803421
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56743,
+          "effective_weight_sum": 56742.999999999985
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 70529,
+          "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 70529,
+          "effective_weight_sum": 70529.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-06/submission.csv",
+        "rows": 41166,
+        "columns": [
+          "id",
+          "attack_cat"
+        ],
+        "classes": [
+          "Analysis",
+          "Backdoor",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Generic",
+          "Normal",
+          "Reconnaissance",
+          "Shellcode",
+          "Worms"
+        ],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 73,
+        "train_rows": 56743,
+        "validation_rows": 13786,
+        "split_sha256": "fd813101166119c2323133b0690ed5e3de9dc916934e56b00374cebd9735f28a",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 4522,
+          "Generic": 3011,
+          "Exploits": 2630,
+          "Fuzzers": 1454,
+          "DoS": 972,
+          "Reconnaissance": 791,
+          "Analysis": 154,
+          "Backdoor": 149,
+          "Shellcode": 95,
+          "Worms": 8
+        }
+      },
+      "important_features": [
+        [
+          "sbytes",
+          5736.0
+        ],
+        [
+          "smean",
+          5622.0
+        ],
+        [
+          "dur",
+          2638.0
+        ],
+        [
+          "proto",
+          2638.0
+        ],
+        [
+          "sload",
+          2576.0
+        ],
+        [
+          "ct_srv_src",
+          2288.0
+        ],
+        [
+          "ct_dst_src_ltm",
+          2028.0
+        ],
+        [
+          "stcpb",
+          2021.0
+        ],
+        [
+          "ct_src_ltm",
+          2019.0
+        ],
+        [
+          "dmean",
+          1953.0
+        ],
+        [
+          "dtcpb",
+          1827.0
+        ],
+        [
+          "synack",
+          1643.0
+        ],
+        [
+          "ackdat",
+          1612.0
+        ],
+        [
+          "djit",
+          1509.0
+        ],
+        [
+          "dbytes",
+          1505.0
+        ]
+      ],
+      "fit_iterations": 98,
+      "feature_count": 42,
+      "feature_names": [
+        "dur",
+        "proto",
+        "service",
+        "state",
+        "spkts",
+        "dpkts",
+        "sbytes",
+        "dbytes",
+        "rate",
+        "sttl",
+        "dttl",
+        "sload",
+        "dload",
+        "sloss",
+        "dloss",
+        "sinpkt",
+        "dinpkt",
+        "sjit",
+        "djit",
+        "swin",
+        "stcpb",
+        "dtcpb",
+        "dwin",
+        "tcprtt",
+        "synack",
+        "ackdat",
+        "smean",
+        "dmean",
+        "trans_depth",
+        "response_body_len",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "ct_dst_ltm",
+        "ct_src_dport_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "is_ftp_login",
+        "ct_ftp_cmd",
+        "ct_flw_http_mthd",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "is_sm_ips_ports"
+      ],
+      "wall_seconds": 39.274,
+      "peak_rss_mb": 329.1,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-06/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-06/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-06",
+      "observed_process_tree_peak_mb": 329.0,
+      "observed_total_peak_mb": 530.2,
+      "artifact_bytes": 4798851,
+      "experiment_index": 6
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "The best XGBoost recipe (0.6509) shows low F1 for Worms (0.68) and Shellcode (0.65), which are rare classes with distinct traffic patterns. We add ratio features (sbytes/dbytes, spkts/dpkts) to capture asymmetric traffic flows that may better distinguish these rare attack types from Normal and Generic traffic, avoiding the overfitting of interaction features that previously reduced performance.",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.5,
+          "min_iterations": 50,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": "def transform(df):\n    df = df.copy()\n    df['sbytes_dbytes_ratio'] = df['sbytes'] / (df['dbytes'] + 1)\n    df['spkts_dpkts_ratio'] = df['spkts'] / (df['dpkts'] + 1)\n    return df"
+      },
+      "metrics": {
+        "macro_f1": 0.6517757640545693,
+        "weighted_f1": 0.8148314379261593,
+        "accuracy": 0.8059039729304008,
+        "per_class_f1": {
+          "Analysis": 0.3379501385041551,
+          "Backdoor": 0.2032520325203252,
+          "DoS": 0.45169307238272755,
+          "Exploits": 0.694204081632653,
+          "Fuzzers": 0.745274102079395,
+          "Generic": 0.9880855672894665,
+          "Normal": 0.9080084501632418,
+          "Reconnaissance": 0.8247950819672131,
+          "Shellcode": 0.6644951140065146,
+          "Worms": 0.7
+        },
+        "log_loss": 0.4672098299080483,
+        "roc_auc": 0.9695471537261294
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56743,
+          "effective_weight_sum": 56742.999999999985
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 70529,
+          "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 70529,
+          "effective_weight_sum": 70529.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-07/submission.csv",
+        "rows": 41166,
+        "columns": [
+          "id",
+          "attack_cat"
+        ],
+        "classes": [
+          "Analysis",
+          "Backdoor",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Generic",
+          "Normal",
+          "Reconnaissance",
+          "Shellcode",
+          "Worms"
+        ],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 73,
+        "train_rows": 56743,
+        "validation_rows": 13786,
+        "split_sha256": "fd813101166119c2323133b0690ed5e3de9dc916934e56b00374cebd9735f28a",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 4522,
+          "Generic": 3011,
+          "Exploits": 2630,
+          "Fuzzers": 1454,
+          "DoS": 972,
+          "Reconnaissance": 791,
+          "Analysis": 154,
+          "Backdoor": 149,
+          "Shellcode": 95,
+          "Worms": 8
+        }
+      },
+      "important_features": [
+        [
+          "sttl",
+          0.2130328267812729
+        ],
+        [
+          "ct_dst_sport_ltm",
+          0.20407284796237946
+        ],
+        [
+          "service",
+          0.10185190290212631
+        ],
+        [
+          "ct_state_ttl",
+          0.04405536502599716
+        ],
+        [
+          "ct_srv_dst",
+          0.036460939794778824
+        ],
+        [
+          "dmean",
+          0.03388867899775505
+        ],
+        [
+          "sbytes",
+          0.03072279691696167
+        ],
+        [
+          "sbytes_dbytes_ratio",
+          0.027200782671570778
+        ],
+        [
+          "dbytes",
+          0.025967342779040337
+        ],
+        [
+          "swin",
+          0.02408694103360176
+        ],
+        [
+          "synack",
+          0.023557137697935104
+        ],
+        [
+          "ct_dst_src_ltm",
+          0.02244013361632824
+        ],
+        [
+          "dttl",
+          0.021463537588715553
+        ],
+        [
+          "response_body_len",
+          0.019849656149744987
+        ],
+        [
+          "smean",
+          0.018423786386847496
+        ]
+      ],
+      "fit_iterations": 313,
+      "feature_count": 44,
+      "feature_names": [
+        "dur",
+        "proto",
+        "service",
+        "state",
+        "spkts",
+        "dpkts",
+        "sbytes",
+        "dbytes",
+        "rate",
+        "sttl",
+        "dttl",
+        "sload",
+        "dload",
+        "sloss",
+        "dloss",
+        "sinpkt",
+        "dinpkt",
+        "sjit",
+        "djit",
+        "swin",
+        "stcpb",
+        "dtcpb",
+        "dwin",
+        "tcprtt",
+        "synack",
+        "ackdat",
+        "smean",
+        "dmean",
+        "trans_depth",
+        "response_body_len",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "ct_dst_ltm",
+        "ct_src_dport_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "is_ftp_login",
+        "ct_ftp_cmd",
+        "ct_flw_http_mthd",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "is_sm_ips_ports",
+        "sbytes_dbytes_ratio",
+        "spkts_dpkts_ratio"
+      ],
+      "wall_seconds": 67.238,
+      "peak_rss_mb": 427.3,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-07/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-07/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-07",
+      "observed_process_tree_peak_mb": 427.0,
+      "observed_total_peak_mb": 628.3,
+      "artifact_bytes": 5190246,
+      "experiment_index": 7
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "The best XGBoost recipe (0.6518) achieves high F1 for common classes but struggles with rare classes like Backdoor (0.20) and Analysis (0.34). Increasing the number of boosting rounds (iterations) from 1800 to 2500 with a slightly lower learning rate (0.03) allows the model to refine decision boundaries for these minority classes without overfitting, as suggested by the consistent performance gains seen in previous iterations.",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 2500,
+          "learning_rate": 0.03,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.5,
+          "min_iterations": 50,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": "def transform(df):\n    df = df.copy()\n    df['sbytes_dbytes_ratio'] = df['sbytes'] / (df['dbytes'] + 1)\n    df['spkts_dpkts_ratio'] = df['spkts'] / (df['dpkts'] + 1)\n    return df"
+      },
+      "metrics": {
+        "macro_f1": 0.6470379651569877,
+        "weighted_f1": 0.8129035202999669,
+        "accuracy": 0.80351204713844,
+        "per_class_f1": {
+          "Analysis": 0.33424657534246577,
+          "Backdoor": 0.2032520325203252,
+          "DoS": 0.45033929673041334,
+          "Exploits": 0.6916898869037863,
+          "Fuzzers": 0.7408450704225352,
+          "Generic": 0.9878147847278635,
+          "Normal": 0.9058313253012048,
+          "Reconnaissance": 0.8259979529170931,
+          "Shellcode": 0.6474358974358975,
+          "Worms": 0.6829268292682927
+        },
+        "log_loss": 0.4700730751637434,
+        "roc_auc": 0.9694392169486894
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56743,
+          "effective_weight_sum": 56742.999999999985
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 70529,
+          "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 70529,
+          "effective_weight_sum": 70529.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-08/submission.csv",
+        "rows": 41166,
+        "columns": [
+          "id",
+          "attack_cat"
+        ],
+        "classes": [
+          "Analysis",
+          "Backdoor",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Generic",
+          "Normal",
+          "Reconnaissance",
+          "Shellcode",
+          "Worms"
+        ],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 73,
+        "train_rows": 56743,
+        "validation_rows": 13786,
+        "split_sha256": "fd813101166119c2323133b0690ed5e3de9dc916934e56b00374cebd9735f28a",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 4522,
+          "Generic": 3011,
+          "Exploits": 2630,
+          "Fuzzers": 1454,
+          "DoS": 972,
+          "Reconnaissance": 791,
+          "Analysis": 154,
+          "Backdoor": 149,
+          "Shellcode": 95,
+          "Worms": 8
+        }
+      },
+      "important_features": [
+        [
+          "sttl",
+          0.2068515419960022
+        ],
+        [
+          "ct_dst_sport_ltm",
+          0.19998440146446228
+        ],
+        [
+          "service",
+          0.10209287703037262
+        ],
+        [
+          "ct_state_ttl",
+          0.043533626943826675
+        ],
+        [
+          "ct_srv_dst",
+          0.037042099982500076
+        ],
+        [
+          "dmean",
+          0.032838374376297
+        ],
+        [
+          "sbytes",
+          0.030089356005191803
+        ],
+        [
+          "sbytes_dbytes_ratio",
+          0.026248136535286903
+        ],
+        [
+          "dbytes",
+          0.025892967358231544
+        ],
+        [
+          "synack",
+          0.025020059198141098
+        ],
+        [
+          "swin",
+          0.02428245358169079
+        ],
+        [
+          "ct_dst_src_ltm",
+          0.02357715368270874
+        ],
+        [
+          "dttl",
+          0.021599801257252693
+        ],
+        [
+          "response_body_len",
+          0.01923690363764763
+        ],
+        [
+          "proto",
+          0.019160673022270203
+        ]
+      ],
+      "fit_iterations": 323,
+      "feature_count": 44,
+      "feature_names": [
+        "dur",
+        "proto",
+        "service",
+        "state",
+        "spkts",
+        "dpkts",
+        "sbytes",
+        "dbytes",
+        "rate",
+        "sttl",
+        "dttl",
+        "sload",
+        "dload",
+        "sloss",
+        "dloss",
+        "sinpkt",
+        "dinpkt",
+        "sjit",
+        "djit",
+        "swin",
+        "stcpb",
+        "dtcpb",
+        "dwin",
+        "tcprtt",
+        "synack",
+        "ackdat",
+        "smean",
+        "dmean",
+        "trans_depth",
+        "response_body_len",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "ct_dst_ltm",
+        "ct_src_dport_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "is_ftp_login",
+        "ct_ftp_cmd",
+        "ct_flw_http_mthd",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "is_sm_ips_ports",
+        "sbytes_dbytes_ratio",
+        "spkts_dpkts_ratio"
+      ],
+      "wall_seconds": 69.879,
+      "peak_rss_mb": 416.2,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-08/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-08/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-08",
+      "observed_process_tree_peak_mb": 416.4,
+      "observed_total_peak_mb": 617.9,
+      "artifact_bytes": 5177813,
+      "experiment_index": 8
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "The best XGBoost recipe (0.6518) shows low F1 for Shellcode (0.66) and Worms (0.70), which are characterized by specific packet size and count patterns. Adding features for average packet size (sbytes/spkts, dbytes/dpkts) and total packet count (spkts+dpkts) provides explicit signals for these traffic volume characteristics, avoiding the redundancy of raw byte/packet counts and potentially improving discrimination for rare attack types.",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.5,
+          "min_iterations": 50,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": "def transform(df):\n    df = df.copy()\n    df['sbytes_dbytes_ratio'] = df['sbytes'] / (df['dbytes'] + 1)\n    df['spkts_dpkts_ratio'] = df['spkts'] / (df['dpkts'] + 1)\n    df['avg_spkt_size'] = df['sbytes'] / (df['spkts'] + 1)\n    df['avg_dpkt_size'] = df['dbytes'] / (df['dpkts'] + 1)\n    df['total_pkts'] = df['spkts'] + df['dpkts']\n    return df"
+      },
+      "metrics": {
+        "macro_f1": 0.6259304671692755,
+        "weighted_f1": 0.7996555290815077,
+        "accuracy": 0.7880520389708885,
+        "per_class_f1": {
+          "Analysis": 0.3282051282051282,
+          "Backdoor": 0.20833333333333334,
+          "DoS": 0.4507288629737609,
+          "Exploits": 0.6719232087761399,
+          "Fuzzers": 0.7129060579455663,
+          "Generic": 0.9864241107792561,
+          "Normal": 0.8902740674779855,
+          "Reconnaissance": 0.8189054726368159,
+          "Shellcode": 0.5552407932011332,
+          "Worms": 0.6363636363636364
+        },
+        "log_loss": 0.7605765752365451,
+        "roc_auc": 0.9660315840669471
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56743,
+          "effective_weight_sum": 56742.999999999985
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 70529,
+          "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 70529,
+          "effective_weight_sum": 70529.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-09/submission.csv",
+        "rows": 41166,
+        "columns": [
+          "id",
+          "attack_cat"
+        ],
+        "classes": [
+          "Analysis",
+          "Backdoor",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Generic",
+          "Normal",
+          "Reconnaissance",
+          "Shellcode",
+          "Worms"
+        ],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 73,
+        "train_rows": 56743,
+        "validation_rows": 13786,
+        "split_sha256": "fd813101166119c2323133b0690ed5e3de9dc916934e56b00374cebd9735f28a",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 4522,
+          "Generic": 3011,
+          "Exploits": 2630,
+          "Fuzzers": 1454,
+          "DoS": 972,
+          "Reconnaissance": 791,
+          "Analysis": 154,
+          "Backdoor": 149,
+          "Shellcode": 95,
+          "Worms": 8
+        }
+      },
+      "important_features": [
+        [
+          "ct_dst_sport_ltm",
+          0.2783885598182678
+        ],
+        [
+          "sttl",
+          0.1511327475309372
+        ],
+        [
+          "ct_state_ttl",
+          0.08700960129499435
+        ],
+        [
+          "service",
+          0.08015434443950653
+        ],
+        [
+          "avg_dpkt_size",
+          0.03961443901062012
+        ],
+        [
+          "synack",
+          0.03891463577747345
+        ],
+        [
+          "ct_srv_dst",
+          0.029604867100715637
+        ],
+        [
+          "ct_dst_src_ltm",
+          0.021434089168906212
+        ],
+        [
+          "avg_spkt_size",
+          0.02124486304819584
+        ],
+        [
+          "sbytes_dbytes_ratio",
+          0.02100449986755848
+        ],
+        [
+          "proto",
+          0.02053663693368435
+        ],
+        [
+          "sbytes",
+          0.01793050393462181
+        ],
+        [
+          "dbytes",
+          0.017788847908377647
+        ],
+        [
+          "swin",
+          0.016433922573924065
+        ],
+        [
+          "dttl",
+          0.016293957829475403
+        ]
+      ],
+      "fit_iterations": 50,
+      "feature_count": 47,
+      "feature_names": [
+        "dur",
+        "proto",
+        "service",
+        "state",
+        "spkts",
+        "dpkts",
+        "sbytes",
+        "dbytes",
+        "rate",
+        "sttl",
+        "dttl",
+        "sload",
+        "dload",
+        "sloss",
+        "dloss",
+        "sinpkt",
+        "dinpkt",
+        "sjit",
+        "djit",
+        "swin",
+        "stcpb",
+        "dtcpb",
+        "dwin",
+        "tcprtt",
+        "synack",
+        "ackdat",
+        "smean",
+        "dmean",
+        "trans_depth",
+        "response_body_len",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "ct_dst_ltm",
+        "ct_src_dport_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "is_ftp_login",
+        "ct_ftp_cmd",
+        "ct_flw_http_mthd",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "is_sm_ips_ports",
+        "sbytes_dbytes_ratio",
+        "spkts_dpkts_ratio",
+        "avg_spkt_size",
+        "avg_dpkt_size",
+        "total_pkts"
+      ],
+      "wall_seconds": 26.164,
+      "peak_rss_mb": 336.2,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-09/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-09/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-09",
+      "observed_process_tree_peak_mb": 333.0,
+      "observed_total_peak_mb": 534.7,
+      "artifact_bytes": 4003035,
+      "experiment_index": 9
+    }
+  ],
+  "calls": [
+    {
+      "status": "ok",
+      "wall_seconds": 5.21,
+      "usage": {
+        "completion_tokens": 516,
+        "prompt_tokens": 5986,
+        "total_tokens": 6502,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0,
+          "cache_creation_tokens": 0
+        },
+        "cost": 0.1665837912492
+      },
+      "finish_reason": "stop",
+      "compatibility_retry": false,
+      "reasoning_requested": false,
+      "attempts": 1,
+      "usage_complete": true
+    },
+    {
+      "status": "ok",
+      "wall_seconds": 17.423,
+      "usage": {
+        "completion_tokens": 556,
+        "prompt_tokens": 7131,
+        "total_tokens": 7687,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0,
+          "cache_creation_tokens": 0
+        },
+        "cost": 0.1805142632748
+      },
+      "finish_reason": "stop",
+      "compatibility_retry": false,
+      "reasoning_requested": false,
+      "attempts": 1,
+      "usage_complete": true
+    },
+    {
+      "status": "ok",
+      "wall_seconds": 6.878,
+      "usage": {
+        "completion_tokens": 775,
+        "prompt_tokens": 8466,
+        "total_tokens": 9241,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0,
+          "cache_creation_tokens": 0
+        },
+        "cost": 0.24680684526419996
+      },
+      "finish_reason": "stop",
+      "compatibility_retry": false,
+      "reasoning_requested": false,
+      "attempts": 1,
+      "usage_complete": true
+    }
+  ],
+  "best": {
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "The best XGBoost recipe (0.6509) shows low F1 for Worms (0.68) and Shellcode (0.65), which are rare classes with distinct traffic patterns. We add ratio features (sbytes/dbytes, spkts/dpkts) to capture asymmetric traffic flows that may better distinguish these rare attack types from Normal and Generic traffic, avoiding the overfitting of interaction features that previously reduced performance.",
+      "engine": "xgboost",
+      "params": {
+        "iterations": 1800,
+        "learning_rate": 0.035,
+        "max_depth": 6,
+        "min_child_weight": 3,
+        "subsample": 0.85,
+        "colsample_bytree": 0.9,
+        "reg_lambda": 8,
+        "reg_alpha": 0.1,
+        "class_weight_power": 0.5,
+        "min_iterations": 50,
+        "early_metric": "primary",
+        "nested_stopping": true
+      },
+      "feature_code": "def transform(df):\n    df = df.copy()\n    df['sbytes_dbytes_ratio'] = df['sbytes'] / (df['dbytes'] + 1)\n    df['spkts_dpkts_ratio'] = df['spkts'] / (df['dpkts'] + 1)\n    return df"
+    },
+    "metrics": {
+      "macro_f1": 0.6517757640545693,
+      "weighted_f1": 0.8148314379261593,
+      "accuracy": 0.8059039729304008,
+      "per_class_f1": {
+        "Analysis": 0.3379501385041551,
+        "Backdoor": 0.2032520325203252,
+        "DoS": 0.45169307238272755,
+        "Exploits": 0.694204081632653,
+        "Fuzzers": 0.745274102079395,
+        "Generic": 0.9880855672894665,
+        "Normal": 0.9080084501632418,
+        "Reconnaissance": 0.8247950819672131,
+        "Shellcode": 0.6644951140065146,
+        "Worms": 0.7
+      },
+      "log_loss": 0.4672098299080483,
+      "roc_auc": 0.9695471537261294
+    },
+    "full_fit": false,
+    "data_policy_runs": [
+      {
+        "policy": {
+          "schema_version": "1.0",
+          "sampling": "identity",
+          "factor": 1.5,
+          "majority_fraction": 0.85,
+          "duplicate_beta": 0.0,
+          "class_weight_cap": null,
+          "augmentation": "noop",
+          "copy_fraction": 0.15,
+          "mask_probability": 0.1,
+          "synthetic_weight": 0.5,
+          "max_added_fraction": 0.25,
+          "seed": 2026
+        },
+        "source_rows": 56743,
+        "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+        "weights_source": "original fitting rows before resampling",
+        "synthetic_rows": 0,
+        "skipped": null,
+        "output_rows": 56743,
+        "effective_weight_sum": 56742.999999999985
+      },
+      {
+        "policy": {
+          "schema_version": "1.0",
+          "sampling": "identity",
+          "factor": 1.5,
+          "majority_fraction": 0.85,
+          "duplicate_beta": 0.0,
+          "class_weight_cap": null,
+          "augmentation": "noop",
+          "copy_fraction": 0.15,
+          "mask_probability": 0.1,
+          "synthetic_weight": 0.5,
+          "max_added_fraction": 0.25,
+          "seed": 2026
+        },
+        "source_rows": 70529,
+        "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+        "weights_source": "original fitting rows before resampling",
+        "synthetic_rows": 0,
+        "skipped": null,
+        "output_rows": 70529,
+        "effective_weight_sum": 70529.0
+      }
+    ],
+    "prediction_bundle": {
+      "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-07/submission.csv",
+      "rows": 41166,
+      "columns": [
+        "id",
+        "attack_cat"
+      ],
+      "classes": [
+        "Analysis",
+        "Backdoor",
+        "DoS",
+        "Exploits",
+        "Fuzzers",
+        "Generic",
+        "Normal",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "split_sha256": "",
+      "schema_version": "1.0"
+    },
+    "calibration_status": "disabled",
+    "class_factors": {},
+    "early_stopping_source": "inner_training_holdout",
+    "inner_split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 73,
+      "train_rows": 56743,
+      "validation_rows": 13786,
+      "split_sha256": "fd813101166119c2323133b0690ed5e3de9dc916934e56b00374cebd9735f28a",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 4522,
+        "Generic": 3011,
+        "Exploits": 2630,
+        "Fuzzers": 1454,
+        "DoS": 972,
+        "Reconnaissance": 791,
+        "Analysis": 154,
+        "Backdoor": 149,
+        "Shellcode": 95,
+        "Worms": 8
+      }
+    },
+    "important_features": [
+      [
+        "sttl",
+        0.2130328267812729
+      ],
+      [
+        "ct_dst_sport_ltm",
+        0.20407284796237946
+      ],
+      [
+        "service",
+        0.10185190290212631
+      ],
+      [
+        "ct_state_ttl",
+        0.04405536502599716
+      ],
+      [
+        "ct_srv_dst",
+        0.036460939794778824
+      ],
+      [
+        "dmean",
+        0.03388867899775505
+      ],
+      [
+        "sbytes",
+        0.03072279691696167
+      ],
+      [
+        "sbytes_dbytes_ratio",
+        0.027200782671570778
+      ],
+      [
+        "dbytes",
+        0.025967342779040337
+      ],
+      [
+        "swin",
+        0.02408694103360176
+      ],
+      [
+        "synack",
+        0.023557137697935104
+      ],
+      [
+        "ct_dst_src_ltm",
+        0.02244013361632824
+      ],
+      [
+        "dttl",
+        0.021463537588715553
+      ],
+      [
+        "response_body_len",
+        0.019849656149744987
+      ],
+      [
+        "smean",
+        0.018423786386847496
+      ]
+    ],
+    "fit_iterations": 313,
+    "feature_count": 44,
+    "feature_names": [
+      "dur",
+      "proto",
+      "service",
+      "state",
+      "spkts",
+      "dpkts",
+      "sbytes",
+      "dbytes",
+      "rate",
+      "sttl",
+      "dttl",
+      "sload",
+      "dload",
+      "sloss",
+      "dloss",
+      "sinpkt",
+      "dinpkt",
+      "sjit",
+      "djit",
+      "swin",
+      "stcpb",
+      "dtcpb",
+      "dwin",
+      "tcprtt",
+      "synack",
+      "ackdat",
+      "smean",
+      "dmean",
+      "trans_depth",
+      "response_body_len",
+      "ct_srv_src",
+      "ct_state_ttl",
+      "ct_dst_ltm",
+      "ct_src_dport_ltm",
+      "ct_dst_sport_ltm",
+      "ct_dst_src_ltm",
+      "is_ftp_login",
+      "ct_ftp_cmd",
+      "ct_flw_http_mthd",
+      "ct_src_ltm",
+      "ct_srv_dst",
+      "is_sm_ips_ports",
+      "sbytes_dbytes_ratio",
+      "spkts_dpkts_ratio"
+    ],
+    "wall_seconds": 67.238,
+    "peak_rss_mb": 427.3,
+    "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-07/validation_predictions.csv",
+    "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-07/submission.csv",
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/classification/automl_runs/run-v2/experiment-07",
+    "observed_process_tree_peak_mb": 427.0,
+    "observed_total_peak_mb": 628.3,
+    "artifact_bytes": 5190246,
+    "experiment_index": 7
+  }
+}

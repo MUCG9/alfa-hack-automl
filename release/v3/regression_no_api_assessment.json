@@ -1,0 +1,117 @@
+{
+  "task": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/evaluation/regression/task.md",
+  "command": [
+    "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/ml-venv/bin/python",
+    "-u",
+    "solution.py",
+    "task.md"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 822.671,
+  "best_validation": {
+    "rmse": 41.86810619046437,
+    "mae": 20.44216528498026,
+    "r2": 0.5084058148874537
+  },
+  "selection": [
+    {
+      "mean": 42.13672798065027,
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 2200,
+          "learning_rate": 0.03,
+          "max_depth": 8,
+          "min_child_weight": 2,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "seed": 52,
+          "min_iterations": 100,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": "",
+        "data_policy": {
+          "schema_version": "1.0",
+          "sampling": "identity",
+          "factor": 1.5,
+          "majority_fraction": 0.85,
+          "duplicate_beta": 0.0,
+          "class_weight_cap": null,
+          "augmentation": "mask",
+          "copy_fraction": 0.25,
+          "mask_probability": 0.15,
+          "synthetic_weight": 0.5,
+          "max_added_fraction": 0.25,
+          "seed": 2026
+        }
+      }
+    },
+    {
+      "mean": 42.164774208954924,
+      "recipe": {
+        "hypothesis": "Paired missingness robustness trial; selection must beat unchanged fitting rows",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 2200,
+          "learning_rate": 0.03,
+          "max_depth": 10,
+          "min_child_weight": 2,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 6,
+          "reg_alpha": 0.1,
+          "seed": 48,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": "",
+        "data_policy": {
+          "schema_version": "1.0",
+          "sampling": "identity",
+          "factor": 1.5,
+          "majority_fraction": 0.85,
+          "duplicate_beta": 0.0,
+          "class_weight_cap": null,
+          "augmentation": "mask",
+          "copy_fraction": 0.25,
+          "mask_probability": 0.15,
+          "synthetic_weight": 0.5,
+          "max_added_fraction": 0.25,
+          "seed": 2026
+        }
+      }
+    },
+    {
+      "mean": 42.716635178735785,
+      "recipe": {
+        "hypothesis": "Higher-leaf capacity with fixed regularization",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 255,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      }
+    }
+  ],
+  "final_fit_status": "ok",
+  "integrity_ok": true,
+  "submission_sha256": "0864fce0cb53faea2a66448a72fef84286e0a25fe4dc297e1f3ca750a8b8ff41",
+  "score_scope": "local search/confirmation folds, not unbiased blind/private/platform score"
+}

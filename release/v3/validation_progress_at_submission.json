@@ -1,0 +1,783 @@
+{
+  "archive_sha256": "cba6a5aa01264c36fe67dad188e949b934557c0502bccf221e488578867032b8",
+  "fixed_recipe_cases": [
+    {
+      "task": "classification",
+      "variant": "modular-noop",
+      "seed": 42,
+      "metric": "macro_f1",
+      "value": 0.6502929607048801,
+      "predictions_match_reference": true,
+      "split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 42,
+        "train_rows": 70529,
+        "validation_rows": 17141,
+        "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 5565,
+          "Generic": 3733,
+          "Exploits": 3286,
+          "Fuzzers": 1839,
+          "DoS": 1195,
+          "Reconnaissance": 1017,
+          "Analysis": 211,
+          "Backdoor": 158,
+          "Shellcode": 118,
+          "Worms": 19
+        }
+      },
+      "seconds": 39.867,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56743,
+          "effective_weight_sum": 56742.999999999985
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56743,
+          "effective_weight_sum": 56742.999999999985
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 70529,
+          "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 70529,
+          "effective_weight_sum": 70529.0
+        }
+      ],
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/certified/modular-noop/classification-s42"
+    },
+    {
+      "task": "classification",
+      "variant": "modular-noop",
+      "seed": 43,
+      "metric": "macro_f1",
+      "value": 0.6527944155063504,
+      "predictions_match_reference": true,
+      "split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 43,
+        "train_rows": 70321,
+        "validation_rows": 17349,
+        "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 5637,
+          "Generic": 3937,
+          "Exploits": 3247,
+          "Fuzzers": 1861,
+          "DoS": 1171,
+          "Reconnaissance": 1016,
+          "Analysis": 192,
+          "Backdoor": 164,
+          "Shellcode": 113,
+          "Worms": 11
+        }
+      },
+      "seconds": 41.606,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56442,
+          "source_parent_sha256": "f552564bf6576fabccb6e9d53e35634cbe9d6c8a04a39fe92e50e6d1a9984787",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56442,
+          "effective_weight_sum": 56441.99999999999
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 56442,
+          "source_parent_sha256": "f552564bf6576fabccb6e9d53e35634cbe9d6c8a04a39fe92e50e6d1a9984787",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 56442,
+          "effective_weight_sum": 56441.99999999999
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 70321,
+          "source_parent_sha256": "98042ca608f0d55d96547ef6a59d21f007cc370e024d9e500e7e735e25dffa7d",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 70321,
+          "effective_weight_sum": 70321.0
+        }
+      ],
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/certified/modular-noop/classification-s43"
+    },
+    {
+      "task": "regression",
+      "variant": "modular-noop",
+      "seed": 42,
+      "metric": "rmse",
+      "value": 41.96837676520955,
+      "predictions_match_reference": true,
+      "split": {
+        "method": "random_holdout_20pct",
+        "seed": 42,
+        "train_rows": 42646,
+        "validation_rows": 10662,
+        "split_sha256": "13cc9c4db238d4f6fe3ad16148cfe5d71a875b52859f680d85f9d95731efbc0d",
+        "shared_feature_hashes": 101,
+        "validation_class_counts": null
+      },
+      "seconds": 53.014,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 34116,
+          "source_parent_sha256": "b6b838aa44aa1a48c0f4736de8d4c35d0c27eeda19f6ce158bcc965c00bd4707",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 34116,
+          "effective_weight_sum": 34116.0
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 42646,
+          "source_parent_sha256": "d7dcabc585fa58d62567075d3e3dc6069ba44f26e809472db393cb1f09659e0f",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 42646,
+          "effective_weight_sum": 42646.0
+        }
+      ],
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/certified/modular-noop/regression-s42"
+    },
+    {
+      "task": "regression",
+      "variant": "modular-noop",
+      "seed": 43,
+      "metric": "rmse",
+      "value": 42.48552379704731,
+      "predictions_match_reference": true,
+      "split": {
+        "method": "random_holdout_20pct",
+        "seed": 43,
+        "train_rows": 42646,
+        "validation_rows": 10662,
+        "split_sha256": "2d3be88009d65c6de3308999e15af32d69b392dd521001c4ecd0307cdb3787c9",
+        "shared_feature_hashes": 89,
+        "validation_class_counts": null
+      },
+      "seconds": 60.286,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 34116,
+          "source_parent_sha256": "645553176023d676493af28fbe66d396040372bd442df963092317ab38098d6d",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 34116,
+          "effective_weight_sum": 34116.0
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 42646,
+          "source_parent_sha256": "b0db1922482bbebfbd3beca94baa05fe35e5c33f0e5dfe31aa24bbbd6ebb1b84",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 42646,
+          "effective_weight_sum": 42646.0
+        }
+      ],
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/certified/modular-noop/regression-s43"
+    },
+    {
+      "task": "regression",
+      "variant": "mask25",
+      "seed": 42,
+      "metric": "rmse",
+      "value": 41.93499704125512,
+      "predictions_match_reference": true,
+      "split": {
+        "method": "random_holdout_20pct",
+        "seed": 42,
+        "train_rows": 42646,
+        "validation_rows": 10662,
+        "split_sha256": "13cc9c4db238d4f6fe3ad16148cfe5d71a875b52859f680d85f9d95731efbc0d",
+        "shared_feature_hashes": 101,
+        "validation_class_counts": null
+      },
+      "seconds": 63.824,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "mask",
+            "copy_fraction": 0.25,
+            "mask_probability": 0.15,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 34116,
+          "source_parent_sha256": "b6b838aa44aa1a48c0f4736de8d4c35d0c27eeda19f6ce158bcc965c00bd4707",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 8529,
+          "skipped": null,
+          "masked_columns": [
+            "year_built",
+            "energy_star_rating",
+            "max_wind_speed",
+            "days_with_fog"
+          ],
+          "output_rows": 42645,
+          "unique_source_groups": 33964,
+          "output_parent_sha256": "5ec3dac0e57fd922566bcead4047092ba0267bf21e23fd2d61cc285da1550c0e",
+          "effective_weight_sum": 42644.99999999999,
+          "class_counts_before": null,
+          "class_counts_after": null,
+          "parent_rows_artifact": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/certified/mask25/regression-s42/fit-parents-1.npz"
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "mask",
+            "copy_fraction": 0.25,
+            "mask_probability": 0.15,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 42646,
+          "source_parent_sha256": "d7dcabc585fa58d62567075d3e3dc6069ba44f26e809472db393cb1f09659e0f",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 10661,
+          "skipped": null,
+          "masked_columns": [
+            "year_built",
+            "energy_star_rating",
+            "max_wind_speed",
+            "days_with_fog"
+          ],
+          "output_rows": 53307,
+          "unique_source_groups": 42435,
+          "output_parent_sha256": "b8c5b2b9630c93c7f3e227dd9ee2c5eee00bd2b89510693cdf1e8a4ac277204e",
+          "effective_weight_sum": 53306.999999999985,
+          "class_counts_before": null,
+          "class_counts_after": null,
+          "parent_rows_artifact": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/certified/mask25/regression-s42/fit-parents-2.npz"
+        }
+      ],
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/certified/mask25/regression-s42"
+    },
+    {
+      "task": "regression",
+      "variant": "mask25",
+      "seed": 43,
+      "metric": "rmse",
+      "value": 42.39455137665472,
+      "predictions_match_reference": true,
+      "split": {
+        "method": "random_holdout_20pct",
+        "seed": 43,
+        "train_rows": 42646,
+        "validation_rows": 10662,
+        "split_sha256": "2d3be88009d65c6de3308999e15af32d69b392dd521001c4ecd0307cdb3787c9",
+        "shared_feature_hashes": 89,
+        "validation_class_counts": null
+      },
+      "seconds": 63.152,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "mask",
+            "copy_fraction": 0.25,
+            "mask_probability": 0.15,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 34116,
+          "source_parent_sha256": "645553176023d676493af28fbe66d396040372bd442df963092317ab38098d6d",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 8529,
+          "skipped": null,
+          "masked_columns": [
+            "year_built",
+            "energy_star_rating",
+            "max_wind_speed",
+            "days_with_fog"
+          ],
+          "output_rows": 42645,
+          "unique_source_groups": 33963,
+          "output_parent_sha256": "d140e2ab731e03e85677945911bb8fd732a76d3ec7bbb4efeec8d128325fe98a",
+          "effective_weight_sum": 42644.99999999999,
+          "class_counts_before": null,
+          "class_counts_after": null,
+          "parent_rows_artifact": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/certified/mask25/regression-s43/fit-parents-1.npz"
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "mask",
+            "copy_fraction": 0.25,
+            "mask_probability": 0.15,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 42646,
+          "source_parent_sha256": "b0db1922482bbebfbd3beca94baa05fe35e5c33f0e5dfe31aa24bbbd6ebb1b84",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 10661,
+          "skipped": null,
+          "masked_columns": [
+            "year_built",
+            "energy_star_rating",
+            "max_wind_speed",
+            "days_with_fog"
+          ],
+          "output_rows": 53307,
+          "unique_source_groups": 42420,
+          "output_parent_sha256": "df6ba73d6fe6ab16b62aecf053a10faefccf8fabc93e62ecd73442b0c7521b3e",
+          "effective_weight_sum": 53306.999999999985,
+          "class_counts_before": null,
+          "class_counts_after": null,
+          "parent_rows_artifact": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/certified/mask25/regression-s43/fit-parents-2.npz"
+        }
+      ],
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/certified/mask25/regression-s43"
+    }
+  ],
+  "full_cli": [
+    {
+      "task": "regression",
+      "exit_code": 0,
+      "command": [
+        "python3",
+        "solution.py",
+        "task.md"
+      ],
+      "cli_parameters": "defaults; AUTOML_THREADS=4",
+      "seconds": 1159.068,
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/full-final/regression",
+      "best_validation": {
+        "rmse": 41.86810619046437,
+        "mae": 20.44216528498026,
+        "r2": 0.5084058148874537
+      },
+      "selection": [
+        {
+          "mean": 42.13672798065027,
+          "recipe": {
+            "hypothesis": "Controlled deterministic alternative",
+            "engine": "xgboost",
+            "params": {
+              "iterations": 2200,
+              "learning_rate": 0.03,
+              "max_depth": 8,
+              "min_child_weight": 2,
+              "subsample": 0.85,
+              "colsample_bytree": 0.9,
+              "reg_lambda": 8,
+              "reg_alpha": 0.1,
+              "seed": 52,
+              "min_iterations": 100,
+              "early_metric": "primary",
+              "nested_stopping": true
+            },
+            "feature_code": "",
+            "data_policy": {
+              "schema_version": "1.0",
+              "sampling": "identity",
+              "factor": 1.5,
+              "majority_fraction": 0.85,
+              "duplicate_beta": 0.0,
+              "class_weight_cap": null,
+              "augmentation": "mask",
+              "copy_fraction": 0.25,
+              "mask_probability": 0.15,
+              "synthetic_weight": 0.5,
+              "max_added_fraction": 0.25,
+              "seed": 2026
+            }
+          }
+        },
+        {
+          "mean": 42.164774208954924,
+          "recipe": {
+            "hypothesis": "Paired missingness robustness trial; selection must beat unchanged fitting rows",
+            "engine": "xgboost",
+            "params": {
+              "iterations": 2200,
+              "learning_rate": 0.03,
+              "max_depth": 10,
+              "min_child_weight": 2,
+              "subsample": 0.85,
+              "colsample_bytree": 0.9,
+              "reg_lambda": 6,
+              "reg_alpha": 0.1,
+              "seed": 48,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": "",
+            "data_policy": {
+              "schema_version": "1.0",
+              "sampling": "identity",
+              "factor": 1.5,
+              "majority_fraction": 0.85,
+              "duplicate_beta": 0.0,
+              "class_weight_cap": null,
+              "augmentation": "mask",
+              "copy_fraction": 0.25,
+              "mask_probability": 0.15,
+              "synthetic_weight": 0.5,
+              "max_added_fraction": 0.25,
+              "seed": 2026
+            }
+          }
+        },
+        {
+          "mean": 42.716635178735785,
+          "recipe": {
+            "hypothesis": "Higher-leaf capacity with fixed regularization",
+            "engine": "lightgbm",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 255,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "subsample_freq": 0,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        }
+      ],
+      "selected_recipe": {
+        "engine": "ensemble",
+        "hypothesis": "Validated cached-prediction blend",
+        "params": {},
+        "components": [
+          {
+            "hypothesis": "Controlled deterministic alternative",
+            "engine": "xgboost",
+            "params": {
+              "iterations": 2200,
+              "learning_rate": 0.03,
+              "max_depth": 8,
+              "min_child_weight": 2,
+              "subsample": 0.85,
+              "colsample_bytree": 0.9,
+              "reg_lambda": 8,
+              "reg_alpha": 0.1,
+              "seed": 52,
+              "min_iterations": 100,
+              "early_metric": "primary",
+              "nested_stopping": true
+            },
+            "feature_code": "",
+            "data_policy": {
+              "schema_version": "1.0",
+              "sampling": "identity",
+              "factor": 1.5,
+              "majority_fraction": 0.85,
+              "duplicate_beta": 0.0,
+              "class_weight_cap": null,
+              "augmentation": "mask",
+              "copy_fraction": 0.25,
+              "mask_probability": 0.15,
+              "synthetic_weight": 0.5,
+              "max_added_fraction": 0.25,
+              "seed": 2026
+            }
+          },
+          {
+            "hypothesis": "Paired missingness robustness trial; selection must beat unchanged fitting rows",
+            "engine": "xgboost",
+            "params": {
+              "iterations": 2200,
+              "learning_rate": 0.03,
+              "max_depth": 10,
+              "min_child_weight": 2,
+              "subsample": 0.85,
+              "colsample_bytree": 0.9,
+              "reg_lambda": 6,
+              "reg_alpha": 0.1,
+              "seed": 48,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": "",
+            "data_policy": {
+              "schema_version": "1.0",
+              "sampling": "identity",
+              "factor": 1.5,
+              "majority_fraction": 0.85,
+              "duplicate_beta": 0.0,
+              "class_weight_cap": null,
+              "augmentation": "mask",
+              "copy_fraction": 0.25,
+              "mask_probability": 0.15,
+              "synthetic_weight": 0.5,
+              "max_added_fraction": 0.25,
+              "seed": 2026
+            }
+          },
+          {
+            "hypothesis": "Higher-leaf capacity with fixed regularization",
+            "engine": "lightgbm",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 255,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "subsample_freq": 0,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        ],
+        "weights": [
+          0.5,
+          0.25,
+          0.25
+        ]
+      },
+      "final_fit_status": "ok",
+      "integrity_ok": true,
+      "submission_sha256": "0864fce0cb53faea2a66448a72fef84286e0a25fe4dc297e1f3ca750a8b8ff41",
+      "score_scope": "local search/confirmation folds, not unbiased blind/private/platform score",
+      "llm_calls": [
+        {
+          "status": "error",
+          "exception_type": "TimeoutError",
+          "wall_seconds": 300.132,
+          "usage": {},
+          "finish_reason": null,
+          "compatibility_retry": false,
+          "attempts": 1,
+          "status_code": null,
+          "error_message": "Gateway deadline"
+        },
+        {
+          "status": "error",
+          "exception_type": "InternalServerError",
+          "wall_seconds": 23.339,
+          "usage": {},
+          "finish_reason": null,
+          "compatibility_retry": false,
+          "attempts": 3,
+          "status_code": 503,
+          "error_message": "Error code: 503 - {'error': {'message': \"litellm.ServiceUnavailableError: ServiceUnavailableError: OpenrouterException - Insufficient credits.\\n\\nLiteLLM: model group 'qwen/qwen3.8-27b' failed with the error above. No fallback was attempted.\", 'type': 'internal_server_error', 'param': None, 'code': '503'}}"
+        },
+        {
+          "status": "error",
+          "exception_type": "InternalServerError",
+          "wall_seconds": 23.491,
+          "usage": {},
+          "finish_reason": null,
+          "compatibility_retry": false,
+          "attempts": 3,
+          "status_code": 503,
+          "error_message": "Error code: 503 - {'error': {'message': \"litellm.ServiceUnavailableError: ServiceUnavailableError: OpenrouterException - Insufficient credits.\\n\\nLiteLLM: model group 'qwen/qwen3.8-27b' failed with the error above. No fallback was attempted.\", 'type': 'internal_server_error', 'param': None, 'code': '503'}}"
+        },
+        {
+          "status": "error",
+          "exception_type": "InternalServerError",
+          "wall_seconds": 23.995,
+          "usage": {},
+          "finish_reason": null,
+          "compatibility_retry": false,
+          "attempts": 3,
+          "status_code": 503,
+          "error_message": "Error code: 503 - {'error': {'message': \"litellm.ServiceUnavailableError: ServiceUnavailableError: OpenrouterException - Insufficient credits.\\n\\nLiteLLM: model group 'qwen/qwen3.8-27b' failed with the error above. No fallback was attempted.\", 'type': 'internal_server_error', 'param': None, 'code': '503'}}"
+        }
+      ]
+    }
+  ]
+}

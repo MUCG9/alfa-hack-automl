@@ -1,0 +1,39 @@
+{
+  "plan": {
+    "hypothesis": "Log-transform the positive skewed site_eui target to reduce the influence of high-EUI outliers and improve RMSE on the original scale.",
+    "engine": "lightgbm",
+    "params": {
+      "iterations": 400,
+      "depth": 6,
+      "learning_rate": 0.07,
+      "class_weights": false,
+      "log_target": true
+    },
+    "feature_code": ""
+  },
+  "call": {
+    "status": "ok",
+    "wall_seconds": 23.408,
+    "usage": {
+      "completion_tokens": 5401,
+      "prompt_tokens": 8163,
+      "total_tokens": 13564,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 5291,
+        "rejected_prediction_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0,
+        "cache_write_tokens": 0,
+        "cache_creation_tokens": 0
+      },
+      "cost": 1.630871651877
+    },
+    "finish_reason": "stop"
+  }
+}

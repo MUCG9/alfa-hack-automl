@@ -1,0 +1,39 @@
+{
+  "plan": {
+    "hypothesis": "Adding robust derived features (log/sqrt floor area, missingness indicators, HDD/CDD ratio and sum, annual temperature range, precipitation/snow ratio, wind/fog missingness) gives LightGBM explicit scale and missingness cues, improving RMSE without changing model hyperparameters.",
+    "engine": "lightgbm",
+    "params": {
+      "iterations": 400,
+      "depth": 6,
+      "learning_rate": 0.07,
+      "class_weights": false,
+      "log_target": false
+    },
+    "feature_code": "def transform(df):\n    out = df.copy()\n    out['floor_area_log'] = np.log1p(df['floor_area'].clip(lower=0))\n    out['floor_area_sqrt'] = np.sqrt(df['floor_area'].clip(lower=0))\n    out['year_built_missing'] = df['year_built'].isna().astype(int)\n    out['energy_star_missing'] = df['energy_star_rating'].isna().astype(int)\n    out['hdd_cdd_ratio'] = df['heating_degree_days_c'] / (df['cooling_degree_days_c'] + 1.0)\n    out['hdd_cdd_sum'] = df['heating_degree_days_c'] + df['cooling_degree_days_c']\n    max_cols = ['january_max_temp_c', 'february_max_temp_c', 'march_max_temp_c', 'april_max_temp_c', 'may_max_temp_c', 'june_max_temp_c', 'july_max_temp_c', 'august_max_temp_c', 'september_max_temp_c', 'october_max_temp_c', 'november_max_temp_c', 'december_max_temp_c']\n    min_cols = ['january_min_temp_c', 'february_min_temp_c', 'march_min_temp_c', 'april_min_temp_c', 'may_min_temp_c', 'june_min_temp_c', 'july_min_temp_c', 'august_min_temp_c', 'september_min_temp_c', 'october_min_temp_c', 'november_min_temp_c', 'december_min_temp_c']\n    out['annual_temp_range'] = df[max_cols].max(axis=1) - df[min_cols].min(axis=1)\n    out['precip_snow_ratio'] = df['precipitation_inches'] / (df['snowfall_inches'] + 1.0)\n    out['wind_missing'] = df['max_wind_speed'].isna().astype(int)\n    out['fog_missing'] = df['days_with_fog'].isna().astype(int)\n    return out"
+  },
+  "call": {
+    "status": "ok",
+    "wall_seconds": 27.647,
+    "usage": {
+      "completion_tokens": 6380,
+      "prompt_tokens": 8330,
+      "total_tokens": 14710,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 5792,
+        "rejected_prediction_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 7936,
+        "video_tokens": 0,
+        "cache_write_tokens": 0,
+        "cache_creation_tokens": 0
+      },
+      "cost": 1.8041340527808
+    },
+    "finish_reason": "stop"
+  }
+}

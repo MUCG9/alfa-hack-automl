@@ -1,25 +1,32 @@
-# Alfa Hack AutoML: v2, контролируемый CPU AutoResearch
+# Alfa Hack AutoML: экспериментальная модульная v3
 
-В экспериментальной ветке подготовлен [план перехода к независимым компонентам и политикам данных](docs/architecture/migration_plan.md). Это план: архитектурный перенос и новые методы sampling/augmentation ещё не реализованы; корневой ML-код по-прежнему соответствует отправленной v2. `main` и frozen ZIP не менялись при подготовке плана.
+В ветке `experiment/modular-augmentation` реализованы сервисные границы и политики данных. [Фактический статус миграции](docs/architecture/implementation.md) отделён от [исходного плана](docs/architecture/migration_plan.md). Это локальные компоненты с общими контрактами, не сетевой кластер микросервисов. `main` и отправленная v2 сохранены без изменений.
 
-Приватный репозиторий команды: [MUCG9/alfa-hack-automl](https://github.com/MUCG9/alfa-hack-automl). Корневой код соответствует отправленной **v2 / release6**. По скриншоту капитана история показывает **1694.145** у v2 против **857.742** у v1 — примерно **1.98×**, статус «Лучшее решение». Это значения карточек, не RMSE/F1 и не прогноз private. Масштабирование относительно ранее увиденного рейтинга 8.5774 не объяснено. Текущий leaderboard и остаток попыток повторно не проверялись.
+Приватный репозиторий команды: [MUCG9/alfa-hack-automl](https://github.com/MUCG9/alfa-hack-automl). По скриншоту капитана **v2 получила 1694.145**, v1 — 857.742. Это значения карточек, не RMSE/F1 и не прогноз private. Официальный результат v3 не известен до проверки платформой.
 
-**Начало параллельной работы: один Pro + два Plus.** Откройте `docs/parallel_work.md`, `docs/v3_contract.md` и свой готовый промпт в `docs/prompts/`. Полный разбор записи организаторов с таймкодами — `docs/webinar_20261021.md`, переносимый отчёт — `docs/webinar/report.html`. Multi-target/ranking и новый TaskSpec — задания v3, не реализованные возможности v2. Старые планы пяти участников и презентация v1 — исторические.
+Текущая реализация сделана одним агентом по поручению капитана. Прежние `docs/parallel_work.md`, `docs/v3_contract.md` и `docs/prompts/` — исторические задания, не инструкция одновременно редактировать старые корневые файлы. Для новой работы используйте границы из `docs/architecture/implementation.md`. Multi-target/ranking не реализованы. Разбор записи организаторов — `docs/webinar_20261021.md`.
 
 ## Структура
 
 ```text
-solution.py                                  точка входа платформы
-agent_core.py                                схема задачи, split, метрики, формат CSV
-agent_policy.py / model_utils.py              универсальный портфель и параметры
-agent_worker.py                              обучение без API-секретов
-agent_runner.py                              ограниченный поиск, Qwen, журнал и refit
+solution.py                                  прежний внешний CLI
+src/automl/contracts/                         версионируемые сообщения и DataPolicy
+src/automl/task_understanding/                инвентаризация и схема задачи
+src/automl/evaluation/                        split, метрики, калибровка
+src/automl/search/                            портфель, Qwen, отбор и refit
+src/automl/execution/                         worker, adapters, sampling, augmentation
+src/automl/publishing/                        валидация и запись ответов
+src/automl/infrastructure/                    API, лимиты, runtime, атомарная запись
+src/automl/compat/                            временная совместимость v2
+agent_*.py / model_utils.py                   dev-адаптеры, не canonical исходники
 requirements.txt                             оригинальные зависимости платформы
 program.md                                   общий протокол исследований для команды
 docs/                                        материалы капитану, prompts, evidence
 tests/                                       offline unit, end-to-end и fault tests
-scripts/benchmark_release.py                 воспроизводимый прогон копии исходников
-scripts/package_solution.py                  минимальный конкурсный ZIP
+scripts/benchmark_release.py                 прогон скомпилированной копии; default sequential
+tools/build_submission.py                    детерминированный flat ZIP и SHA manifest
+tools/verify_release.py                      23 проверки из распакованного ZIP
+scripts/package_solution.py                  совместимый вызов нового сборщика
 release/solution-v1.zip                       неизменённая отправленная версия
 release/solution-v2.zip                       точная вторая отправленная версия
 docs/prompts/                                три задания: Pro, Plus models, Plus runner
@@ -36,21 +43,23 @@ docs/webinar/                                транскрипт, SRT, ауди
 python3 solution.py /absolute/path/to/task.md --max-experiments 3 --time-budget 1200
 python3 tests/test_v2.py
 python3 tests/test_resilience.py
+python3 tests/test_data_policy.py
+python3 tests/test_architecture.py
 python3 tests/smoke.py
 python3 scripts/package_solution.py --output dist/solution.zip
 ```
 
 Smoke tests не обращаются к Qwen, создают маленькие synthetic задачи в `test-runs/`. Для public end-to-end скачайте разрешённые данные организаторов отдельно и передайте путь к `task.md`. Исходные CSV не включены в репозиторий. `submission.csv` и отчёты появятся рядом с условием. Прогнозы уже проверенных public прогонов сохранены в отдельном комплекте капитана `team_handoff.zip`, но исключены из Git. Это примеры, а не замена агенту.
 
-По умолчанию v2: 9900 секунд, до 12 поисковых экспериментов, до 4 обращений-планов Qwen, 4 CPU-потока. Затем — подтверждение до трёх лучших рецептов на seed 43 при наличии времени, условный ensemble и финальное обучение. Весь цикл ограничен общим deadline; рабочий CSV сохраняется до дорогих операций. Параметр `--offline` исключает обращения к Qwen. Для воспроизводимого полного прогона:
+По умолчанию: 9900 секунд, до 12 поисковых экспериментов, до 4 обращений-планов Qwen, 4 CPU-потока. Затем — подтверждение до трёх лучших рецептов на seed 43, условный ensemble и финальное обучение. Рабочий CSV сохраняется до дорогих операций. Политика данных по умолчанию `identity/noop`; регрессионный портфель также сравнивает один bounded masking-кандидат с немодифицированным контролем. При отказе API работает детерминированный поиск; `--offline` исключает обращения к Qwen. Для полного прогона:
 
 ```bash
 python3 scripts/benchmark_release.py --task /data/reg/task.md --task /data/class/task.md --output /work/check-v2
 ```
 
-Каталог результата должен быть новым. Скрипт копирует исходники и объявленные входные файлы, сохраняет SHA и логи; не создаёт платформенный сабмит. `results.tsv` внутри запуска фиксирует принятие/отклонение вариантов, `provenance.json` — контроль неизменности. Search и confirmation участвуют в выборе и не являются независимым private test.
+Каталог результата должен быть новым. Скрипт компилирует flat-модули, копирует объявленные входные файлы, сохраняет SHA и логи; не отправляет сабмит. По умолчанию задачи идут последовательно для экономии RAM, `--jobs 2` разрешает параллельный запуск. `results.tsv` фиксирует решения, `provenance.json` — контроль неизменности. Search и confirmation не являются независимым private test.
 
-На платформе команда запуска строго `python3 solution.py task.md`. Только корневые `.py` и исходный `requirements.txt` попадают в конкурсный ZIP. Документы, tests, weights, данные и подпапки в него не включаются.
+На платформе команда запуска строго `python3 solution.py task.md`. Сборщик преобразует импорты исходников из `src` в уникальные плоские модули. Только корневые `.py` и исходный `requirements.txt` попадают в ZIP; без документов, tests, weights, данных, JSON-конфигов и подпапок. Нельзя вручную архивировать корневые dev-адаптеры: без `src` они не работают.
 
 ## Что изменено и как проверено
 

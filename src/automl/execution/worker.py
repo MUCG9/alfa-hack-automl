@@ -1,0 +1,264 @@
+"""Isolated, bounded training worker. No API credentials enter this process."""
+from __future__ import annotations
+
+import ast
+import json
+from pathlib import Path
+import resource
+import sys
+import time
+
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from threadpoolctl import threadpool_limits
+
+from automl.infrastructure.atomic import atomic_json
+from automl.evaluation.api import evaluate,make_split
+from automl.publishing.api import save_submission
+from automl.execution.model_adapters.registry import make_model,fit_options,selected_iterations,CAPABILITIES
+from automl.execution.weighting.classes import sample_weights
+from automl.evaluation.api import lgbm_metric,tune_class_factors,adjusted_probabilities
+from automl.execution.feature_engineering.transforms import feature_transform,generic_features
+from automl.execution.preprocessing.frames import prepare_frames
+from automl.execution.model_adapters.linear_text import linear_text_fit
+from automl.contracts.messages import DataPolicy,SplitPlan,PredictionBundle
+from dataclasses import asdict
+from automl.execution.sampling.policies import prepare_training
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def run_ensemble(job):
+    start=time.monotonic()
+    recipe=job['recipe']; spec=job['spec']; output=Path(job['output_dir'])
+    components=recipe.get('components',[])
+    if not 2<=len(components)<=3 or any(c.get('engine')=='ensemble' for c in components):
+        raise ValueError('Ensemble must contain two or three non-nested recipes')
+    weights=np.asarray(recipe.get('weights',[1]*len(components)),dtype=float)
+    if len(weights)!=len(components) or not np.isfinite(weights).all() or (weights<=0).any():
+        raise ValueError('Invalid ensemble weights')
+    weights=weights/weights.sum()
+    records=[]
+    for index,component in enumerate(components):
+        directory=output/f'component-{index}'
+        directory.mkdir(parents=True,exist_ok=True)
+        child=dict(job,recipe=component,output_dir=str(directory))
+        if isinstance(job.get('fit_iterations'),list): child['fit_iterations']=job['fit_iterations'][index]
+        else: child.pop('fit_iterations',None)
+        run(child)
+        records.append(json.loads((directory/'result.json').read_text()))
+    train=pd.read_csv(spec['paths']['train']); test=pd.read_csv(spec['paths']['test'])
+    sample=pd.read_csv(spec['paths']['sample_submission']); full=job.get('full_fit',False)
+    va=np.load(job['split_path'])['validation']
+    combined=None; val_combined=None
+    for index,weight in enumerate(weights):
+        directory=output/f'component-{index}'
+        if spec['kind']=='classification':
+            stored=np.load(directory/'test_probabilities.npz')
+            classes=stored['classes'].astype(str)
+            order=[list(classes).index(c) for c in spec['classes']]
+            predictions=stored['probabilities'][:,order]
+            if not full:
+                stored_val=np.load(directory/'validation_probabilities.npz')
+                assert np.array_equal(stored_val['row_position'],va)
+                val_predictions=stored_val['probabilities'][:,order]
+        else:
+            predictions=pd.read_csv(directory/'submission.csv')[spec.get('output_columns',[spec['target']])[0]].to_numpy()
+            if not full: val_predictions=pd.read_csv(directory/'validation_predictions.csv')['y_pred'].to_numpy()
+        combined=weight*predictions if combined is None else combined+weight*predictions
+        if not full: val_combined=weight*val_predictions if val_combined is None else val_combined+weight*val_predictions
+    if spec['kind']=='classification':
+        classes=np.asarray(spec['classes'])
+        np.savez_compressed(output/'test_probabilities.npz',probabilities=combined,classes=classes)
+        if not full: np.savez_compressed(output/'validation_probabilities.npz',probabilities=val_combined,classes=classes,row_position=va)
+        if spec.get('prediction_type')=='probability_matrix':
+            predictions=combined[:,[list(classes).index(str(c)) for c in spec['output_columns']]]
+        elif spec.get('prediction_type')=='probability': predictions=combined[:,1]
+        else: predictions=classes[combined.argmax(axis=1)]
+        val_pred=classes[val_combined.argmax(axis=1)] if not full else None
+    else:
+        predictions=combined; val_pred=val_combined
+    save_submission(spec,sample,test,predictions,output/'submission.csv')
+    metrics=None
+    if not full:
+        truth=train[spec['target']].iloc[va]
+        if spec['kind']=='classification': truth=truth.astype(str)
+        metrics=evaluate(truth,val_pred,spec['kind'],spec['metric'],val_combined if spec['kind']=='classification' else None,spec['classes'])
+        pd.DataFrame({'row_position':va,'y_true':truth.to_numpy(),'y_pred':val_pred}).to_csv(output/'validation_predictions.csv',index=False)
+    atomic_json(output/'result.json',{'status':'ok','recipe':recipe,'metrics':metrics,'full_fit':full,
+        'fit_iterations':[r['fit_iterations'] for r in records],'feature_count':sum(r['feature_count'] for r in records),
+        'wall_seconds':round(time.monotonic()-start,3),'peak_rss_mb':round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,1),
+        'submission':str(output/'submission.csv'),'components':records})
+
+
+def run(job):
+    start=time.monotonic()
+    spec=job['spec']
+    recipe=job['recipe']
+    data_policy=DataPolicy.parse(recipe.get('data_policy'))
+    if recipe['engine']=='ensemble':
+        return run_ensemble(job)
+    train=pd.read_csv(spec['paths']['train'])
+    test=pd.read_csv(spec['paths']['test'])
+    sample=pd.read_csv(spec['paths']['sample_submission'])
+    y=train[spec['target']]
+    if spec['kind']=='classification':
+        y=y.astype(str)
+    train_x,test_x=feature_transform(recipe.get('feature_code',''),train[spec['features']],test[spec['features']],(spec['target'],spec['id']))
+    # Numeric target and IDs are never passed into generated code.
+    if spec['target'] in train_x or spec['id'] in train_x:
+        raise ValueError('Feature code reintroduced target or ID')
+    split=np.load(job['split_path'])
+    tr,va=split['train'],split['validation']
+    SplitPlan(tuple(tr.tolist()),tuple(va.tolist())).validate(len(train))
+    full=job.get('full_fit',False)
+    if CAPABILITIES[recipe['engine']].get('mode')=='text':
+        if not data_policy.is_noop: raise ValueError('Data-policy support for text is not implemented; use explicit noop')
+        predictions,val_pred,metrics,test_proba,val_proba,classes=linear_text_fit(spec,recipe,train_x,test_x,y,tr,va,full,job['threads'])
+        output_dir=Path(job['output_dir'])
+        save_submission(spec,sample,test,predictions,output_dir/'submission.csv')
+        if val_pred is not None:
+            pd.DataFrame({'row_position':va,'y_true':y.iloc[va].to_numpy(),'y_pred':val_pred}).to_csv(output_dir/'validation_predictions.csv',index=False)
+        if test_proba is not None:
+            np.savez_compressed(output_dir/'test_probabilities.npz',probabilities=test_proba,classes=np.asarray(classes,dtype=str))
+            if val_proba is not None: np.savez_compressed(output_dir/'validation_probabilities.npz',probabilities=val_proba,classes=np.asarray(classes,dtype=str),row_position=va)
+        record={'status':'ok','recipe':recipe,'metrics':metrics,'full_fit':full,'fit_iterations':1,
+                'feature_count':len(train_x.columns),'feature_names':list(train_x.columns),
+                'wall_seconds':round(time.monotonic()-start,3),
+                'peak_rss_mb':round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,1),
+                'submission':str(output_dir/'submission.csv')}
+        atomic_json(output_dir/'result.json',record)
+        print(json.dumps({'status':'ok','metrics':metrics,'wall_seconds':record['wall_seconds']}),flush=True)
+        return
+    fit_tr=np.arange(len(train)) if full else tr
+    train_x,test_x=generic_features(train_x,test_x,fit_tr,recipe.get('params',{}).get('generic_features','none'))
+    train_x,test_x,categorical=prepare_frames(train_x,test_x,recipe['engine'],fit_tr)
+    iterations=int(np.clip(job.get('fit_iterations',recipe.get('params',{}).get('iterations',800)),30,3000))
+    model=make_model(dict(recipe,metric=spec['metric']),spec['kind'],job['threads'],iterations)
+    target_log=bool(recipe.get('params',{}).get('log_target',False)) and spec['kind']=='regression' and float(y.iloc[fit_tr].min())>=0
+    fit_y=np.log1p(y) if target_log else y
+    policy_records=[]
+    source_hashes=pd.util.hash_pandas_object(train[spec['features']],index=False).to_numpy(dtype='uint64')
+    def fit_on_rows(estimator,rows,validation_rows=None):
+        kwargs={}
+        weights=None
+        if spec['kind']=='classification':
+            weights=sample_weights(y.iloc[rows],recipe.get('params',{}))
+        fit_x,targets,weights,parents,policy_record=prepare_training(
+            train_x.iloc[rows],fit_y.iloc[rows],y.iloc[rows],weights,source_hashes[rows],rows,
+            recipe.get('data_policy'),spec['kind'],recipe['engine'])
+        policy_records.append(policy_record)
+        if not data_policy.is_noop:
+            provenance_path=Path(job['output_dir'])/f'fit-parents-{len(policy_records)}.npz'
+            np.savez_compressed(provenance_path,parent_rows=parents)
+            policy_record['parent_rows_artifact']=str(provenance_path)
+        if validation_rows is not None and set(parents)&set(validation_rows): raise ValueError('Augmentation parent crosses validation boundary')
+        if weights is not None: kwargs['sample_weight']=weights
+        kwargs.update(fit_options(recipe['engine'],spec,recipe,train_x,fit_y,validation_rows,categorical,target_log))
+        estimator.fit(fit_x,targets,**kwargs)
+        return estimator
+    class_factors={}
+    calibration_status='disabled'
+    nested=bool(recipe.get('params',{}).get('nested_stopping',False)) and not full and CAPABILITIES[recipe['engine']]['nested_stopping']
+    calibrate=spec['kind']=='classification' and spec['metric']=='macro_f1' and CAPABILITIES[recipe['engine']]['macro_f1_calibration'] and recipe.get('params',{}).get('calibrate',False)
+    early_stopping_source='full_refit' if full else 'outer_search_holdout'
+    inner_split=None
+    if nested or calibrate:
+        # Neither stopping nor calibration sees the outer validation labels.
+        inner_train=train.iloc[fit_tr].reset_index(drop=True)
+        inner_hashes=pd.util.hash_pandas_object(inner_train[spec['features']],index=False).to_numpy(dtype='uint64')
+        try:
+            inner_tr,inner_va,inner_split=make_split(spec,inner_train,inner_hashes,seed=73)
+            inner_tr=fit_tr[inner_tr]; inner_va=fit_tr[inner_va]
+            inner_model=make_model(dict(recipe,metric=spec['metric']),spec['kind'],job['threads'],iterations)
+            with threadpool_limits(limits=job['threads']):
+                fit_on_rows(inner_model,inner_tr,inner_va if nested else None)
+            if nested:
+                selected=selected_iterations(recipe['engine'],inner_model)
+                if selected and selected>0:
+                    floor=int(np.clip(recipe.get('params',{}).get('min_iterations',1),1,iterations))
+                    iterations=max(floor,int(selected))
+                model=make_model(dict(recipe,metric=spec['metric']),spec['kind'],job['threads'],iterations)
+                early_stopping_source='inner_training_holdout'
+            if calibrate:
+                with threadpool_limits(limits=job['threads']):
+                    if nested and selected and int(selected)!=iterations:
+                        inner_model=make_model(dict(recipe,metric=spec['metric']),spec['kind'],job['threads'],iterations)
+                        fit_on_rows(inner_model,inner_tr,None)
+                    class_factors=tune_class_factors(y.iloc[inner_va],inner_model.predict_proba(train_x.iloc[inner_va]),inner_model.classes_)
+                    calibration_status='inner_training_holdout_matching_iterations'
+        except ValueError:
+            calibration_status='skipped_rare_classes' if calibrate else 'disabled'
+            if nested: early_stopping_source='fixed_iterations_rare_class_fallback'
+    with threadpool_limits(limits=job['threads']):
+        fit_on_rows(model,fit_tr,None if full or nested else va)
+        pred=np.asarray(model.predict(test_x)).reshape(-1)
+        if target_log:
+            pred=np.expm1(pred)
+        if spec['kind']=='classification':
+            probabilities=adjusted_probabilities(model.predict_proba(test_x),model.classes_,class_factors)
+            pred=np.asarray(model.classes_)[np.argmax(probabilities,axis=1)]
+            if spec.get('prediction_type')=='probability_matrix':
+                indices=[list(map(str,model.classes_)).index(str(c)) for c in spec['output_columns']]
+                pred=probabilities[:,indices]
+            elif spec['metric'] in {'roc_auc','log_loss'} and len(model.classes_)==2:
+                pred=probabilities[:,1]
+        metrics=None
+        if not full:
+            val_pred=np.asarray(model.predict(train_x.iloc[va])).reshape(-1)
+            if target_log:
+                val_pred=np.expm1(val_pred)
+            proba=adjusted_probabilities(model.predict_proba(train_x.iloc[va]),model.classes_,class_factors) if spec['kind']=='classification' else None
+            if proba is not None: val_pred=np.asarray(model.classes_)[np.argmax(proba,axis=1)]
+            metrics=evaluate(y.iloc[va],val_pred,spec['kind'],spec['metric'],proba,getattr(model,'classes_',None))
+    output_dir=Path(job['output_dir'])
+    save_submission(spec,sample,test,pred,output_dir/'submission.csv')
+    validation_path=None
+    if spec['kind']=='classification':
+        np.savez_compressed(output_dir/'test_probabilities.npz',probabilities=probabilities,classes=np.asarray(model.classes_,dtype=str))
+    if not full:
+        validation_path=output_dir/'validation_predictions.csv'
+        validation_frame=pd.DataFrame({'row_position':va,'y_true':y.iloc[va].to_numpy(),'y_pred':val_pred})
+        validation_frame.to_csv(validation_path,index=False)
+        if spec['kind']=='classification':
+            np.savez_compressed(output_dir/'validation_probabilities.npz',probabilities=proba,classes=np.asarray(model.classes_,dtype=str),row_position=va)
+    best_iteration=selected_iterations(recipe['engine'],model)
+    if best_iteration is None or best_iteration<=0:
+        best_iteration=getattr(model,'tree_count_',iterations)
+    else:
+        best_iteration=int(best_iteration)
+    importance=getattr(model,'feature_importances_',None)
+    important_features=sorted(zip(map(str,train_x.columns),map(float,importance)),key=lambda p:p[1],reverse=True)[:15] if importance is not None else []
+    record={'status':'ok','recipe':recipe,'metrics':metrics,'full_fit':full,
+            'data_policy_runs':policy_records,
+            'prediction_bundle':asdict(PredictionBundle(str(output_dir/'submission.csv'),len(test),tuple(sample.columns),tuple(spec.get('classes') or []))),
+            'calibration_status':calibration_status,'class_factors':class_factors,
+            'early_stopping_source':early_stopping_source,'inner_split':inner_split,
+            'important_features':important_features,
+            'fit_iterations':int(best_iteration),'feature_count':len(train_x.columns),
+            'feature_names':list(train_x.columns),'wall_seconds':round(time.monotonic()-start,3),
+            'peak_rss_mb':round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,1),
+            'validation_predictions':str(validation_path) if validation_path else None,
+            'submission':str(output_dir/'submission.csv')}
+    atomic_json(output_dir/'result.json',record)
+    print(json.dumps({k:v for k,v in record.items() if k not in {'recipe','feature_names'}},ensure_ascii=False),flush=True)
+
+
+if __name__=='__main__':
+    job=json.loads(Path(sys.argv[1]).read_text())
+    try:
+        run(job)
+    except Exception as exc:
+        atomic_json(Path(job['output_dir'])/'result.json',{'status':'error','error':f'{type(exc).__name__}: {exc}'})
+        raise

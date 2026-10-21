@@ -6,9 +6,11 @@ No source data or secrets are committed. Output must be a new directory.
 """
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-import argparse,hashlib,json,os,shutil,signal,subprocess,sys,time
+import argparse,hashlib,json,os,shutil,signal,subprocess,sys,time,zipfile
 ROOT=Path(__file__).resolve().parents[1]; sys.path.insert(0,str(ROOT))
 from agent_core import discover,atomic_json
+sys.path.insert(0,str(ROOT/'tools'))
+from build_submission import build_files
 
 def main():
     parser=argparse.ArgumentParser()
@@ -16,10 +18,18 @@ def main():
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--offline',action='store_true')
     parser.add_argument('--time-budget',type=int,default=9900)
+    parser.add_argument('--jobs',type=int,default=1,choices=[1,2])
+    parser.add_argument('--archive',type=Path)
+    parser.add_argument('--watchdog-seconds',type=int)
     args=parser.parse_args(); output=args.output.resolve()
     output.mkdir(parents=True,exist_ok=False)
-    sources=sorted(ROOT.glob('*.py'))+[ROOT/'requirements.txt']
-    manifest={path.name:hashlib.sha256(path.read_bytes()).hexdigest() for path in sources}
+    sources=build_files()
+    if args.archive:
+        with zipfile.ZipFile(args.archive) as archive:
+            packed={name:archive.read(name) for name in archive.namelist()}
+        if packed!=sources: raise ValueError('Archive does not match current compiled sources')
+        sources=packed
+    manifest={name:hashlib.sha256(data).hexdigest() for name,data in sources.items()}
     atomic_json(output/'source_manifest.json',manifest)
     def run(item):
         number,path=item; path=path.resolve(); spec,*_=discover(path)
@@ -28,7 +38,7 @@ def main():
         for value in spec['paths'].values():
             source=Path(value); destination=target/source.relative_to(path.parent)
             destination.parent.mkdir(parents=True,exist_ok=True); shutil.copy2(source,destination)
-        for source in sources: shutil.copy2(source,target/source.name)
+        for name,data in sources.items(): (target/name).write_bytes(data)
         env=os.environ.copy(); env['AUTOML_THREADS']='4'
         command=[sys.executable,'-u','solution.py','task.md']
         if args.offline: command.append('--offline')
@@ -37,7 +47,7 @@ def main():
         with (target/'process.log').open('w',encoding='utf-8') as stream:
             try:
                 process=subprocess.Popen(command,cwd=target,env=env,stdout=stream,stderr=subprocess.STDOUT,start_new_session=True)
-                status=process.wait(timeout=args.time_budget+180)
+                status=process.wait(timeout=args.watchdog_seconds or args.time_budget+180)
             except subprocess.TimeoutExpired:
                 os.killpg(process.pid,signal.SIGTERM)
                 try: process.wait(timeout=5)
@@ -51,7 +61,7 @@ def main():
         atomic_json(target/'assessment.json',result)
         print(json.dumps(result,ensure_ascii=False),flush=True)
         return result
-    with ThreadPoolExecutor(max_workers=2) as pool: values=list(pool.map(run,enumerate(args.task)))
+    with ThreadPoolExecutor(max_workers=args.jobs) as pool: values=list(pool.map(run,enumerate(args.task)))
     atomic_json(output/'assessments.json',values)
 
 if __name__=='__main__': main()

@@ -1,0 +1,1312 @@
+{
+  "zip_sha256": "b429f04a231b5fa7f5fb52d8008aa019dbc6c53cc6e5f81a6ff06999edc1602a",
+  "zip_bytes": 26018,
+  "source_manifest": {
+    "agent_core.py": "d89cc12a948873b5183eb0f900bfb822ac1f6a38d3230d73a7686a538234f7d3",
+    "agent_policy.py": "05a18242c7512f4a6810c72203e574109d6853e0fa5f0a34b5e38e91210fe3af",
+    "agent_runner.py": "c475c39bb8f6840acf2f35b8700178edcd5652ce05f27f86098ebec1c4bf7cfb",
+    "agent_worker.py": "f6f8d23cb3eed071e9d5eaf923dfb5559cb7cabc916ac2175170be87d595439e",
+    "ensemble_cache.py": "7bbac9236edc760485b58d2423635aedef5c158afd7a28b39ac971f39da5f174",
+    "model_utils.py": "a12c1ec760e6df3aee3eff598373cd52a31faacb83a366c9fbdc65d6c24c0016",
+    "solution.py": "41c6e7a08fbad9a0665b2b33795ab720421e1117de299f40ecfd4a185abbe81d",
+    "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.5.2",
+    "lightgbm": "4.6.0",
+    "catboost": "1.2.8",
+    "openai": "1.68.2",
+    "psutil": "6.1.1"
+  },
+  "processes": [
+    {
+      "label": "regression",
+      "peak_process_tree_rss_mb": 766.515625,
+      "task": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v2-research/release6/regression",
+      "command": [
+        "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/ml-venv/bin/python",
+        "-u",
+        "solution.py",
+        "task.md"
+      ],
+      "pid": 3,
+      "elapsed_seconds": 913.349,
+      "exit_code": 0
+    },
+    {
+      "label": "classification",
+      "peak_process_tree_rss_mb": 1047.18359375,
+      "task": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v2-research/release6/classification",
+      "command": [
+        "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/ml-venv/bin/python",
+        "-u",
+        "solution.py",
+        "task.md"
+      ],
+      "pid": 4,
+      "elapsed_seconds": 1970.528,
+      "exit_code": 0
+    }
+  ],
+  "tasks": [
+    {
+      "task": "regression",
+      "versions": [
+        {
+          "version": "v1",
+          "metric": "rmse",
+          "selected_search_value": 43.61587755840295,
+          "elapsed_seconds": 126.937,
+          "final_fit_status": "ok",
+          "test_rows": 22449,
+          "selected_recipe": {
+            "hypothesis": "Adding log floor area, HDD/CDD ratio and sum, annual temperature range, and missingness indicators for year_built and energy_star_rating should improve RMSE by giving LightGBM explicit scale-invariant and missingness signals.",
+            "engine": "lightgbm",
+            "params": {
+              "iterations": 400,
+              "depth": 6,
+              "learning_rate": 0.07,
+              "class_weights": false
+            },
+            "feature_code": "def transform(df):\n    out = df.copy()\n    out['log_floor_area'] = np.log1p(out['floor_area'])\n    out['hdd_cdd_ratio'] = out['heating_degree_days_c'] / (out['cooling_degree_days_c'] + 1.0)\n    out['hdd_cdd_sum'] = out['heating_degree_days_c'] + out['cooling_degree_days_c']\n    out['temp_range_annual'] = out['july_avg_temp_c'] - out['january_avg_temp_c']\n    out['energy_star_missing'] = out['energy_star_rating'].isna().astype('int8')\n    out['year_built_missing'] = out['year_built'].isna().astype('int8')\n    return out"
+          },
+          "fit_iterations": 400,
+          "split": {
+            "method": "random_holdout_20pct",
+            "seed": 42,
+            "train_rows": 42646,
+            "validation_rows": 10662,
+            "split_sha256": "13cc9c4db238d4f6fe3ad16148cfe5d71a875b52859f680d85f9d95731efbc0d",
+            "shared_feature_hashes": 101,
+            "validation_class_counts": null
+          },
+          "llm_calls": [
+            {
+              "status": "ok",
+              "wall_seconds": 19.533,
+              "usage": {
+                "completion_tokens": 4417,
+                "prompt_tokens": 8163,
+                "total_tokens": 12580,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 4120,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cache_creation_tokens": 0
+                },
+                "cost": 1.365796147677
+              },
+              "finish_reason": "stop"
+            },
+            {
+              "status": "ok",
+              "wall_seconds": 41.625,
+              "usage": {
+                "completion_tokens": 6691,
+                "prompt_tokens": 8346,
+                "total_tokens": 15037,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 6194,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 7936,
+                  "video_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cache_creation_tokens": 0
+                },
+                "cost": 1.8882578113698
+              },
+              "finish_reason": "stop"
+            },
+            {
+              "status": "ok",
+              "wall_seconds": 20.238,
+              "usage": {
+                "completion_tokens": 3703,
+                "prompt_tokens": 8538,
+                "total_tokens": 12241,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 3172,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 8192,
+                  "video_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cache_creation_tokens": 0
+                },
+                "cost": 1.0844368181946
+              },
+              "finish_reason": "stop"
+            }
+          ],
+          "final_fit_job_full_fit": true,
+          "report": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v2-research/v1-default/regression/automl_runs/run-v1/report.json"
+        },
+        {
+          "version": "v2",
+          "metric": "rmse",
+          "selected_search_value": 41.98808637059414,
+          "elapsed_seconds": 910.678,
+          "final_fit_status": "ok",
+          "test_rows": 22449,
+          "selected_recipe": {
+            "engine": "ensemble",
+            "hypothesis": "Validated cached-prediction blend",
+            "params": {},
+            "components": [
+              {
+                "hypothesis": "The best XGBoost model (42.54) likely benefits from increased model capacity to capture complex non-linear interactions between weather and building features, as previous attempts with lower capacity or different regularization showed slightly higher RMSE. Increasing max_depth and reducing min_child_weight allows the model to fit more detailed patterns in the heavy-tailed target distribution.",
+                "engine": "xgboost",
+                "params": {
+                  "iterations": 2200,
+                  "learning_rate": 0.03,
+                  "max_depth": 10,
+                  "min_child_weight": 2,
+                  "subsample": 0.85,
+                  "colsample_bytree": 0.9,
+                  "reg_lambda": 6,
+                  "reg_alpha": 0.1,
+                  "early_metric": "primary",
+                  "nested_stopping": true,
+                  "min_iterations": 100,
+                  "num_leaves": 127,
+                  "subsample_freq": 1,
+                  "seed": 48
+                },
+                "feature_code": ""
+              },
+              {
+                "hypothesis": "Controlled deterministic alternative",
+                "engine": "xgboost",
+                "params": {
+                  "iterations": 2200,
+                  "learning_rate": 0.03,
+                  "max_depth": 10,
+                  "min_child_weight": 2,
+                  "subsample": 0.85,
+                  "colsample_bytree": 0.9,
+                  "reg_lambda": 6,
+                  "reg_alpha": 0.1,
+                  "early_metric": "primary",
+                  "nested_stopping": true,
+                  "min_iterations": 100,
+                  "num_leaves": 255,
+                  "subsample_freq": 1,
+                  "seed": 53
+                },
+                "feature_code": ""
+              },
+              {
+                "hypothesis": "Higher-leaf capacity with fixed regularization",
+                "engine": "lightgbm",
+                "params": {
+                  "iterations": 1600,
+                  "learning_rate": 0.035,
+                  "num_leaves": 255,
+                  "max_depth": -1,
+                  "min_child_samples": 25,
+                  "reg_lambda": 8,
+                  "subsample": 1,
+                  "colsample_bytree": 0.9,
+                  "generic_features": "missing",
+                  "subsample_freq": 0,
+                  "early_metric": "primary",
+                  "nested_stopping": true,
+                  "min_iterations": 100
+                },
+                "feature_code": ""
+              }
+            ],
+            "weights": [
+              0.5,
+              0.25,
+              0.25
+            ]
+          },
+          "fit_iterations": [
+            933,
+            887,
+            646
+          ],
+          "split": {
+            "method": "random_holdout_20pct",
+            "seed": 42,
+            "train_rows": 42646,
+            "validation_rows": 10662,
+            "split_sha256": "13cc9c4db238d4f6fe3ad16148cfe5d71a875b52859f680d85f9d95731efbc0d",
+            "shared_feature_hashes": 101,
+            "validation_class_counts": null
+          },
+          "llm_calls": [
+            {
+              "status": "ok",
+              "wall_seconds": 5.918,
+              "usage": {
+                "completion_tokens": 475,
+                "prompt_tokens": 5948,
+                "total_tokens": 6423,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cache_creation_tokens": 0
+                },
+                "cost": 0.0947343215559
+              },
+              "finish_reason": "stop"
+            },
+            {
+              "status": "ok",
+              "wall_seconds": 4.458,
+              "usage": {
+                "completion_tokens": 567,
+                "prompt_tokens": 6630,
+                "total_tokens": 7197,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cache_creation_tokens": 0
+                },
+                "cost": 0.169098775911
+              },
+              "finish_reason": "stop"
+            },
+            {
+              "status": "ok",
+              "wall_seconds": 3.41,
+              "usage": {
+                "completion_tokens": 541,
+                "prompt_tokens": 6911,
+                "total_tokens": 7452,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cache_creation_tokens": 0
+                },
+                "cost": 0.294675602169
+              },
+              "finish_reason": "stop"
+            },
+            {
+              "status": "ok",
+              "wall_seconds": 5.873,
+              "usage": {
+                "completion_tokens": 520,
+                "prompt_tokens": 7687,
+                "total_tokens": 8207,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cache_creation_tokens": 0
+                },
+                "cost": 0.1785725313294
+              },
+              "finish_reason": "stop"
+            }
+          ],
+          "final_fit_job_full_fit": true,
+          "report": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v2-research/release6/regression/automl_runs/run-v2/report.json",
+          "selection": [
+            {
+              "mean": 42.226950281128424,
+              "recipe": {
+                "hypothesis": "The best XGBoost model (42.54) likely benefits from increased model capacity to capture complex non-linear interactions between weather and building features, as previous attempts with lower capacity or different regularization showed slightly higher RMSE. Increasing max_depth and reducing min_child_weight allows the model to fit more detailed patterns in the heavy-tailed target distribution.",
+                "engine": "xgboost",
+                "params": {
+                  "iterations": 2200,
+                  "learning_rate": 0.03,
+                  "max_depth": 10,
+                  "min_child_weight": 2,
+                  "subsample": 0.85,
+                  "colsample_bytree": 0.9,
+                  "reg_lambda": 6,
+                  "reg_alpha": 0.1,
+                  "early_metric": "primary",
+                  "nested_stopping": true,
+                  "min_iterations": 100,
+                  "num_leaves": 127,
+                  "subsample_freq": 1,
+                  "seed": 48
+                },
+                "feature_code": ""
+              }
+            },
+            {
+              "mean": 42.26045796810766,
+              "recipe": {
+                "hypothesis": "Controlled deterministic alternative",
+                "engine": "xgboost",
+                "params": {
+                  "iterations": 2200,
+                  "learning_rate": 0.03,
+                  "max_depth": 10,
+                  "min_child_weight": 2,
+                  "subsample": 0.85,
+                  "colsample_bytree": 0.9,
+                  "reg_lambda": 6,
+                  "reg_alpha": 0.1,
+                  "early_metric": "primary",
+                  "nested_stopping": true,
+                  "min_iterations": 100,
+                  "num_leaves": 255,
+                  "subsample_freq": 1,
+                  "seed": 53
+                },
+                "feature_code": ""
+              }
+            },
+            {
+              "mean": 42.716635178735785,
+              "recipe": {
+                "hypothesis": "Higher-leaf capacity with fixed regularization",
+                "engine": "lightgbm",
+                "params": {
+                  "iterations": 1600,
+                  "learning_rate": 0.035,
+                  "num_leaves": 255,
+                  "max_depth": -1,
+                  "min_child_samples": 25,
+                  "reg_lambda": 8,
+                  "subsample": 1,
+                  "colsample_bytree": 0.9,
+                  "generic_features": "missing",
+                  "subsample_freq": 0,
+                  "early_metric": "primary",
+                  "nested_stopping": true,
+                  "min_iterations": 100
+                },
+                "feature_code": ""
+              }
+            }
+          ],
+          "ensemble_mean": 42.11675934762159,
+          "selected_two_split_mean": 42.11675934762159
+        }
+      ],
+      "scope": "Selected recipe on identical search split; not private/unbiased estimate"
+    },
+    {
+      "task": "classification",
+      "versions": [
+        {
+          "version": "v1",
+          "metric": "macro_f1",
+          "selected_search_value": 0.6156389966332518,
+          "elapsed_seconds": 1264.726,
+          "final_fit_status": "ok",
+          "test_rows": 41166,
+          "selected_recipe": {
+            "hypothesis": "Adding row-wise source/destination asymmetry and TCP timing zero features to the class-weighted LightGBM baseline should improve macro F1 by making rare attack patterns more separable while keeping hyperparameters unchanged.",
+            "engine": "lightgbm",
+            "params": {
+              "iterations": 400,
+              "depth": 6,
+              "learning_rate": 0.07,
+              "class_weights": true
+            },
+            "feature_code": "def transform(df):\n    out = df.copy()\n    n = len(out)\n    zero = np.zeros(n, dtype=float)\n    out['pkt_ratio'] = np.divide(out['spkts'], out['dpkts'], out=zero, where=out['dpkts'] > 0)\n    out['pkt_diff'] = out['spkts'] - out['dpkts']\n    out['byte_ratio'] = np.divide(out['sbytes'], out['dbytes'], out=zero, where=out['dbytes'] > 0)\n    out['byte_diff'] = out['sbytes'] - out['dbytes']\n    out['load_ratio'] = np.divide(out['sload'], out['dload'], out=zero, where=out['dload'] > 0)\n    out['ttl_diff'] = out['sttl'] - out['dttl']\n    out['tcp_timing_zero'] = ((out['tcprtt'] == 0) & (out['synack'] == 0) & (out['ackdat'] == 0)).astype(int)\n    return out"
+          },
+          "fit_iterations": 400,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "llm_calls": [
+            {
+              "status": "ok",
+              "wall_seconds": 7.424,
+              "usage": {
+                "completion_tokens": 1226,
+                "prompt_tokens": 5678,
+                "total_tokens": 6904,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 1128,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cache_creation_tokens": 0
+                },
+                "cost": 0.452632586562
+              },
+              "finish_reason": "stop"
+            },
+            {
+              "status": "error",
+              "wall_seconds": 39.771,
+              "usage": {
+                "completion_tokens": 8192,
+                "prompt_tokens": 6137,
+                "total_tokens": 14329,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 8192,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 4096,
+                  "video_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cache_creation_tokens": 0
+                },
+                "cost": 2.2905152767068
+              },
+              "finish_reason": "length"
+            },
+            {
+              "status": "ok",
+              "wall_seconds": 137.558,
+              "usage": {
+                "completion_tokens": 7984,
+                "prompt_tokens": 6567,
+                "total_tokens": 14551,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cache_creation_tokens": 0
+                },
+                "cost": 1.10298488395251
+              },
+              "finish_reason": "stop"
+            }
+          ],
+          "final_fit_job_full_fit": true,
+          "report": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v2-research/v1-default/classification/automl_runs/run-v1/report.json",
+          "per_class": [
+            {
+              "class": "Analysis",
+              "support": 211,
+              "f1": 0.17464788732394365
+            },
+            {
+              "class": "Backdoor",
+              "support": 158,
+              "f1": 0.12348178137651822
+            },
+            {
+              "class": "DoS",
+              "support": 1195,
+              "f1": 0.3851080864691753
+            },
+            {
+              "class": "Exploits",
+              "support": 3286,
+              "f1": 0.6776255707762557
+            },
+            {
+              "class": "Fuzzers",
+              "support": 1839,
+              "f1": 0.7557803468208093
+            },
+            {
+              "class": "Generic",
+              "support": 3733,
+              "f1": 0.9876743871055127
+            },
+            {
+              "class": "Normal",
+              "support": 5565,
+              "f1": 0.9148834997622444
+            },
+            {
+              "class": "Reconnaissance",
+              "support": 1017,
+              "f1": 0.8195173137460651
+            },
+            {
+              "class": "Shellcode",
+              "support": 118,
+              "f1": 0.7116104868913857
+            },
+            {
+              "class": "Worms",
+              "support": 19,
+              "f1": 0.6060606060606061
+            }
+          ],
+          "largest_confusions": [
+            {
+              "true": "Normal",
+              "pred": "Fuzzers",
+              "count": 660
+            },
+            {
+              "true": "Exploits",
+              "pred": "DoS",
+              "count": 558
+            },
+            {
+              "true": "Exploits",
+              "pred": "Analysis",
+              "count": 347
+            },
+            {
+              "true": "Exploits",
+              "pred": "Backdoor",
+              "count": 347
+            },
+            {
+              "true": "DoS",
+              "pred": "Backdoor",
+              "count": 271
+            },
+            {
+              "true": "DoS",
+              "pred": "Analysis",
+              "count": 261
+            },
+            {
+              "true": "DoS",
+              "pred": "Exploits",
+              "count": 143
+            },
+            {
+              "true": "Fuzzers",
+              "pred": "Normal",
+              "count": 102
+            }
+          ]
+        },
+        {
+          "version": "v2",
+          "metric": "macro_f1",
+          "selected_search_value": 0.6534076778483346,
+          "elapsed_seconds": 1968.158,
+          "final_fit_status": "ok",
+          "test_rows": 41166,
+          "selected_recipe": {
+            "engine": "ensemble",
+            "hypothesis": "Validated cached-prediction blend",
+            "params": {},
+            "components": [
+              {
+                "hypothesis": "Iteration-matched inner decision calibration",
+                "engine": "lightgbm",
+                "params": {
+                  "iterations": 1200,
+                  "learning_rate": 0.04,
+                  "num_leaves": 63,
+                  "max_depth": -1,
+                  "min_child_samples": 25,
+                  "reg_lambda": 5,
+                  "subsample": 1,
+                  "colsample_bytree": 0.9,
+                  "class_weight_power": 0.5,
+                  "calibrate": true,
+                  "subsample_freq": 0,
+                  "early_metric": "primary",
+                  "nested_stopping": true,
+                  "min_iterations": 100
+                },
+                "feature_code": ""
+              },
+              {
+                "hypothesis": "Previous feature engineering attempts using simple ratios (e.g., `sbytes/dbytes`) and jitter interactions failed to improve macro F1, likely because they did not capture the specific 'scanning' or 'reconnaissance' behavior that distinguishes rare attack types from normal noise. This experiment introduces features based on the ratio of packet counts to duration (packet rate) and the difference in TTL values, which are known indicators of network scanning and spoofing in UNSW-NB15.",
+                "engine": "xgboost",
+                "params": {
+                  "iterations": 1800,
+                  "learning_rate": 0.035,
+                  "max_depth": 6,
+                  "min_child_weight": 3,
+                  "subsample": 0.85,
+                  "colsample_bytree": 0.9,
+                  "reg_lambda": 8,
+                  "reg_alpha": 0.1,
+                  "class_weight_power": 0.5,
+                  "min_iterations": 50,
+                  "early_metric": "primary",
+                  "nested_stopping": true
+                },
+                "feature_code": "def transform(df):\n    df = df.copy()\n    # Packet rate: packets per second\n    df['pkt_rate_src'] = df['spkts'] / (df['dur'] + 1e-6)\n    df['pkt_rate_dst'] = df['dpkts'] / (df['dur'] + 1e-6)\n    # TTL difference: often indicates spoofing or different network paths\n    df['ttl_diff'] = df['sttl'] - df['dttl']\n    # Byte rate: bytes per second\n    df['byte_rate_src'] = df['sbytes'] / (df['dur'] + 1e-6)\n    df['byte_rate_dst'] = df['dbytes'] / (df['dur'] + 1e-6)\n    return df"
+              }
+            ],
+            "weights": [
+              0.9,
+              0.09999999999999998
+            ]
+          },
+          "fit_iterations": [
+            100,
+            296
+          ],
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "llm_calls": [
+            {
+              "status": "ok",
+              "wall_seconds": 4.351,
+              "usage": {
+                "completion_tokens": 273,
+                "prompt_tokens": 5755,
+                "total_tokens": 6028,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cache_creation_tokens": 0
+                },
+                "cost": 0.0645178691625
+              },
+              "finish_reason": "stop"
+            },
+            {
+              "status": "ok",
+              "wall_seconds": 5.07,
+              "usage": {
+                "completion_tokens": 542,
+                "prompt_tokens": 6884,
+                "total_tokens": 7426,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cache_creation_tokens": 0
+                },
+                "cost": 0.1085150151462
+              },
+              "finish_reason": "stop"
+            },
+            {
+              "status": "ok",
+              "wall_seconds": 4.305,
+              "usage": {
+                "completion_tokens": 656,
+                "prompt_tokens": 8040,
+                "total_tokens": 8696,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cache_creation_tokens": 0
+                },
+                "cost": 0.34998586896
+              },
+              "finish_reason": "stop"
+            },
+            {
+              "status": "ok",
+              "wall_seconds": 5.933,
+              "usage": {
+                "completion_tokens": 652,
+                "prompt_tokens": 9317,
+                "total_tokens": 9969,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cache_creation_tokens": 0
+                },
+                "cost": 0.22182509530740002
+              },
+              "finish_reason": "stop"
+            }
+          ],
+          "final_fit_job_full_fit": true,
+          "report": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v2-research/release6/classification/automl_runs/run-v2/report.json",
+          "selection": [
+            {
+              "mean": 0.6515436881056152,
+              "recipe": {
+                "hypothesis": "Iteration-matched inner decision calibration",
+                "engine": "lightgbm",
+                "params": {
+                  "iterations": 1200,
+                  "learning_rate": 0.04,
+                  "num_leaves": 63,
+                  "max_depth": -1,
+                  "min_child_samples": 25,
+                  "reg_lambda": 5,
+                  "subsample": 1,
+                  "colsample_bytree": 0.9,
+                  "class_weight_power": 0.5,
+                  "calibrate": true,
+                  "subsample_freq": 0,
+                  "early_metric": "primary",
+                  "nested_stopping": true,
+                  "min_iterations": 100
+                },
+                "feature_code": ""
+              }
+            },
+            {
+              "mean": 0.6452368862500748,
+              "recipe": {
+                "hypothesis": "Independent histogram-boosting family",
+                "engine": "xgboost",
+                "params": {
+                  "iterations": 1800,
+                  "learning_rate": 0.035,
+                  "max_depth": 6,
+                  "min_child_weight": 3,
+                  "subsample": 0.85,
+                  "colsample_bytree": 0.9,
+                  "reg_lambda": 8,
+                  "reg_alpha": 0.1,
+                  "class_weight_power": 0.5,
+                  "min_iterations": 50,
+                  "early_metric": "primary",
+                  "nested_stopping": true
+                },
+                "feature_code": ""
+              }
+            },
+            {
+              "mean": 0.6409691680977609,
+              "recipe": {
+                "hypothesis": "Previous feature engineering attempts using simple ratios (e.g., `sbytes/dbytes`) and jitter interactions failed to improve macro F1, likely because they did not capture the specific 'scanning' or 'reconnaissance' behavior that distinguishes rare attack types from normal noise. This experiment introduces features based on the ratio of packet counts to duration (packet rate) and the difference in TTL values, which are known indicators of network scanning and spoofing in UNSW-NB15.",
+                "engine": "xgboost",
+                "params": {
+                  "iterations": 1800,
+                  "learning_rate": 0.035,
+                  "max_depth": 6,
+                  "min_child_weight": 3,
+                  "subsample": 0.85,
+                  "colsample_bytree": 0.9,
+                  "reg_lambda": 8,
+                  "reg_alpha": 0.1,
+                  "class_weight_power": 0.5,
+                  "min_iterations": 50,
+                  "early_metric": "primary",
+                  "nested_stopping": true
+                },
+                "feature_code": "def transform(df):\n    df = df.copy()\n    # Packet rate: packets per second\n    df['pkt_rate_src'] = df['spkts'] / (df['dur'] + 1e-6)\n    df['pkt_rate_dst'] = df['dpkts'] / (df['dur'] + 1e-6)\n    # TTL difference: often indicates spoofing or different network paths\n    df['ttl_diff'] = df['sttl'] - df['dttl']\n    # Byte rate: bytes per second\n    df['byte_rate_src'] = df['sbytes'] / (df['dur'] + 1e-6)\n    df['byte_rate_dst'] = df['dbytes'] / (df['dur'] + 1e-6)\n    return df"
+              }
+            }
+          ],
+          "ensemble_mean": 0.6527774682892524,
+          "selected_two_split_mean": 0.6527774682892524,
+          "per_class": [
+            {
+              "class": "Analysis",
+              "support": 211,
+              "f1": 0.3261538461538461
+            },
+            {
+              "class": "Backdoor",
+              "support": 158,
+              "f1": 0.22330097087378642
+            },
+            {
+              "class": "DoS",
+              "support": 1195,
+              "f1": 0.4948349710254472
+            },
+            {
+              "class": "Exploits",
+              "support": 3286,
+              "f1": 0.6699944536882972
+            },
+            {
+              "class": "Fuzzers",
+              "support": 1839,
+              "f1": 0.7454416291735733
+            },
+            {
+              "class": "Generic",
+              "support": 3733,
+              "f1": 0.9879550683448369
+            },
+            {
+              "class": "Normal",
+              "support": 5565,
+              "f1": 0.911674933231591
+            },
+            {
+              "class": "Reconnaissance",
+              "support": 1017,
+              "f1": 0.8241308793456033
+            },
+            {
+              "class": "Shellcode",
+              "support": 118,
+              "f1": 0.647887323943662
+            },
+            {
+              "class": "Worms",
+              "support": 19,
+              "f1": 0.7027027027027027
+            }
+          ],
+          "largest_confusions": [
+            {
+              "true": "Exploits",
+              "pred": "DoS",
+              "count": 1203
+            },
+            {
+              "true": "Normal",
+              "pred": "Fuzzers",
+              "count": 685
+            },
+            {
+              "true": "Reconnaissance",
+              "pred": "DoS",
+              "count": 163
+            },
+            {
+              "true": "DoS",
+              "pred": "Exploits",
+              "count": 155
+            },
+            {
+              "true": "Analysis",
+              "pred": "DoS",
+              "count": 130
+            },
+            {
+              "true": "Fuzzers",
+              "pred": "DoS",
+              "count": 125
+            },
+            {
+              "true": "Backdoor",
+              "pred": "DoS",
+              "count": 115
+            },
+            {
+              "true": "Exploits",
+              "pred": "Reconnaissance",
+              "count": 113
+            }
+          ]
+        }
+      ],
+      "scope": "Selected recipe on identical search split; not private/unbiased estimate"
+    }
+  ],
+  "package_verification": {
+    "zip_sha256": "b429f04a231b5fa7f5fb52d8008aa019dbc6c53cc6e5f81a6ff06999edc1602a",
+    "files": {
+      "agent_core.py": "d89cc12a948873b5183eb0f900bfb822ac1f6a38d3230d73a7686a538234f7d3",
+      "agent_policy.py": "05a18242c7512f4a6810c72203e574109d6853e0fa5f0a34b5e38e91210fe3af",
+      "agent_runner.py": "c475c39bb8f6840acf2f35b8700178edcd5652ce05f27f86098ebec1c4bf7cfb",
+      "agent_worker.py": "f6f8d23cb3eed071e9d5eaf923dfb5559cb7cabc916ac2175170be87d595439e",
+      "ensemble_cache.py": "7bbac9236edc760485b58d2423635aedef5c158afd7a28b39ac971f39da5f174",
+      "model_utils.py": "a12c1ec760e6df3aee3eff598373cd52a31faacb83a366c9fbdc65d6c24c0016",
+      "solution.py": "41c6e7a08fbad9a0665b2b33795ab720421e1117de299f40ecfd4a185abbe81d",
+      "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+    },
+    "flat": true,
+    "secrets_scan": "passed",
+    "requirements_unchanged": true,
+    "matches_full_run_snapshot": "release6",
+    "checks": [
+      {
+        "test_file": "test_v2.py",
+        "exit_code": 0,
+        "log": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v2-research/packed-v2-xgboost/test_v2.py.log"
+      },
+      {
+        "test_file": "test_resilience.py",
+        "exit_code": 0,
+        "log": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v2-research/packed-v2-xgboost/test_resilience.py.log"
+      },
+      {
+        "test_file": "smoke.py",
+        "exit_code": 0,
+        "log": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v2-research/packed-v2-xgboost/smoke.py.log"
+      }
+    ]
+  },
+  "robustness44": [
+    {
+      "task": "regression",
+      "split": {
+        "method": "random_holdout_20pct",
+        "seed": 44,
+        "train_rows": 42646,
+        "validation_rows": 10662,
+        "split_sha256": "e3e2305aa4601c5adf3f352950cd7a65f1b53f01fa6f88f90bbcf23329e16898",
+        "shared_feature_hashes": 94,
+        "validation_class_counts": null
+      },
+      "results": [
+        {
+          "version": "v1",
+          "metrics": {
+            "rmse": 45.25982130292707,
+            "mae": 22.677547985853938,
+            "r2": 0.45581720707355167
+          },
+          "elapsed_seconds": 7.348,
+          "recipe": {
+            "hypothesis": "Adding log floor area, HDD/CDD ratio and sum, annual temperature range, and missingness indicators for year_built and energy_star_rating should improve RMSE by giving LightGBM explicit scale-invariant and missingness signals.",
+            "engine": "lightgbm",
+            "params": {
+              "iterations": 400,
+              "depth": 6,
+              "learning_rate": 0.07,
+              "class_weights": false
+            },
+            "feature_code": "def transform(df):\n    out = df.copy()\n    out['log_floor_area'] = np.log1p(out['floor_area'])\n    out['hdd_cdd_ratio'] = out['heating_degree_days_c'] / (out['cooling_degree_days_c'] + 1.0)\n    out['hdd_cdd_sum'] = out['heating_degree_days_c'] + out['cooling_degree_days_c']\n    out['temp_range_annual'] = out['july_avg_temp_c'] - out['january_avg_temp_c']\n    out['energy_star_missing'] = out['energy_star_rating'].isna().astype('int8')\n    out['year_built_missing'] = out['year_built'].isna().astype('int8')\n    return out"
+          },
+          "iterations": 400
+        },
+        {
+          "version": "v2",
+          "metrics": {
+            "rmse": 42.872117748489096,
+            "mae": 21.339362756665533,
+            "r2": 0.5117199177257501
+          },
+          "elapsed_seconds": 108.387,
+          "recipe": {
+            "engine": "ensemble",
+            "hypothesis": "Validated cached-prediction blend",
+            "params": {},
+            "components": [
+              {
+                "hypothesis": "The best XGBoost model (42.54) likely benefits from increased model capacity to capture complex non-linear interactions between weather and building features, as previous attempts with lower capacity or different regularization showed slightly higher RMSE. Increasing max_depth and reducing min_child_weight allows the model to fit more detailed patterns in the heavy-tailed target distribution.",
+                "engine": "xgboost",
+                "params": {
+                  "iterations": 2200,
+                  "learning_rate": 0.03,
+                  "max_depth": 10,
+                  "min_child_weight": 2,
+                  "subsample": 0.85,
+                  "colsample_bytree": 0.9,
+                  "reg_lambda": 6,
+                  "reg_alpha": 0.1,
+                  "early_metric": "primary",
+                  "nested_stopping": true,
+                  "min_iterations": 100,
+                  "num_leaves": 127,
+                  "subsample_freq": 1,
+                  "seed": 48
+                },
+                "feature_code": ""
+              },
+              {
+                "hypothesis": "Controlled deterministic alternative",
+                "engine": "xgboost",
+                "params": {
+                  "iterations": 2200,
+                  "learning_rate": 0.03,
+                  "max_depth": 10,
+                  "min_child_weight": 2,
+                  "subsample": 0.85,
+                  "colsample_bytree": 0.9,
+                  "reg_lambda": 6,
+                  "reg_alpha": 0.1,
+                  "early_metric": "primary",
+                  "nested_stopping": true,
+                  "min_iterations": 100,
+                  "num_leaves": 255,
+                  "subsample_freq": 1,
+                  "seed": 53
+                },
+                "feature_code": ""
+              },
+              {
+                "hypothesis": "Higher-leaf capacity with fixed regularization",
+                "engine": "lightgbm",
+                "params": {
+                  "iterations": 1600,
+                  "learning_rate": 0.035,
+                  "num_leaves": 255,
+                  "max_depth": -1,
+                  "min_child_samples": 25,
+                  "reg_lambda": 8,
+                  "subsample": 1,
+                  "colsample_bytree": 0.9,
+                  "generic_features": "missing",
+                  "subsample_freq": 0,
+                  "early_metric": "primary",
+                  "nested_stopping": true,
+                  "min_iterations": 100
+                },
+                "feature_code": ""
+              }
+            ],
+            "weights": [
+              0.5,
+              0.25,
+              0.25
+            ]
+          },
+          "iterations": [
+            933,
+            887,
+            646
+          ]
+        }
+      ],
+      "scope": "Additional split of already explored public data, frozen recipes, no fresh search; not private score"
+    },
+    {
+      "task": "classification",
+      "split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 44,
+        "train_rows": 70234,
+        "validation_rows": 17436,
+        "split_sha256": "d139dd0c074e25f0b3de0d34a6b08a86b581ff1e2d9d7b7a3a3f86a8c3fd7f63",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 5632,
+          "Generic": 3814,
+          "Exploits": 3365,
+          "Fuzzers": 1796,
+          "DoS": 1192,
+          "Reconnaissance": 1162,
+          "Analysis": 182,
+          "Backdoor": 171,
+          "Shellcode": 111,
+          "Worms": 11
+        }
+      },
+      "results": [
+        {
+          "version": "v1",
+          "metrics": {
+            "macro_f1": 0.6239763908657938,
+            "weighted_f1": 0.8134330949652836,
+            "accuracy": 0.7881394815324616,
+            "per_class_f1": {
+              "Analysis": 0.136310223266745,
+              "Backdoor": 0.11244979919678715,
+              "DoS": 0.417964505613908,
+              "Exploits": 0.6717363751584284,
+              "Fuzzers": 0.7563066372765124,
+              "Generic": 0.9894207881512828,
+              "Normal": 0.9176803394625177,
+              "Reconnaissance": 0.8546931407942239,
+              "Shellcode": 0.7165354330708661,
+              "Worms": 0.6666666666666666
+            }
+          },
+          "elapsed_seconds": 62.26,
+          "recipe": {
+            "hypothesis": "Adding row-wise source/destination asymmetry and TCP timing zero features to the class-weighted LightGBM baseline should improve macro F1 by making rare attack patterns more separable while keeping hyperparameters unchanged.",
+            "engine": "lightgbm",
+            "params": {
+              "iterations": 400,
+              "depth": 6,
+              "learning_rate": 0.07,
+              "class_weights": true
+            },
+            "feature_code": "def transform(df):\n    out = df.copy()\n    n = len(out)\n    zero = np.zeros(n, dtype=float)\n    out['pkt_ratio'] = np.divide(out['spkts'], out['dpkts'], out=zero, where=out['dpkts'] > 0)\n    out['pkt_diff'] = out['spkts'] - out['dpkts']\n    out['byte_ratio'] = np.divide(out['sbytes'], out['dbytes'], out=zero, where=out['dbytes'] > 0)\n    out['byte_diff'] = out['sbytes'] - out['dbytes']\n    out['load_ratio'] = np.divide(out['sload'], out['dload'], out=zero, where=out['dload'] > 0)\n    out['ttl_diff'] = out['sttl'] - out['dttl']\n    out['tcp_timing_zero'] = ((out['tcprtt'] == 0) & (out['synack'] == 0) & (out['ackdat'] == 0)).astype(int)\n    return out"
+          },
+          "iterations": 400
+        },
+        {
+          "version": "v2",
+          "metrics": {
+            "macro_f1": 0.6551849592078962,
+            "weighted_f1": 0.8227163872953912,
+            "accuracy": 0.8116540490938289,
+            "per_class_f1": {
+              "Analysis": 0.26277372262773724,
+              "Backdoor": 0.18691588785046728,
+              "DoS": 0.48744233726294206,
+              "Exploits": 0.6915728420334357,
+              "Fuzzers": 0.7556859867938371,
+              "Generic": 0.9891419491525424,
+              "Normal": 0.9141553379598821,
+              "Reconnaissance": 0.8537368179734067,
+              "Shellcode": 0.7104247104247104,
+              "Worms": 0.7
+            }
+          },
+          "elapsed_seconds": 83.842,
+          "recipe": {
+            "engine": "ensemble",
+            "hypothesis": "Validated cached-prediction blend",
+            "params": {},
+            "components": [
+              {
+                "hypothesis": "Iteration-matched inner decision calibration",
+                "engine": "lightgbm",
+                "params": {
+                  "iterations": 1200,
+                  "learning_rate": 0.04,
+                  "num_leaves": 63,
+                  "max_depth": -1,
+                  "min_child_samples": 25,
+                  "reg_lambda": 5,
+                  "subsample": 1,
+                  "colsample_bytree": 0.9,
+                  "class_weight_power": 0.5,
+                  "calibrate": true,
+                  "subsample_freq": 0,
+                  "early_metric": "primary",
+                  "nested_stopping": true,
+                  "min_iterations": 100
+                },
+                "feature_code": ""
+              },
+              {
+                "hypothesis": "Previous feature engineering attempts using simple ratios (e.g., `sbytes/dbytes`) and jitter interactions failed to improve macro F1, likely because they did not capture the specific 'scanning' or 'reconnaissance' behavior that distinguishes rare attack types from normal noise. This experiment introduces features based on the ratio of packet counts to duration (packet rate) and the difference in TTL values, which are known indicators of network scanning and spoofing in UNSW-NB15.",
+                "engine": "xgboost",
+                "params": {
+                  "iterations": 1800,
+                  "learning_rate": 0.035,
+                  "max_depth": 6,
+                  "min_child_weight": 3,
+                  "subsample": 0.85,
+                  "colsample_bytree": 0.9,
+                  "reg_lambda": 8,
+                  "reg_alpha": 0.1,
+                  "class_weight_power": 0.5,
+                  "min_iterations": 50,
+                  "early_metric": "primary",
+                  "nested_stopping": true
+                },
+                "feature_code": "def transform(df):\n    df = df.copy()\n    # Packet rate: packets per second\n    df['pkt_rate_src'] = df['spkts'] / (df['dur'] + 1e-6)\n    df['pkt_rate_dst'] = df['dpkts'] / (df['dur'] + 1e-6)\n    # TTL difference: often indicates spoofing or different network paths\n    df['ttl_diff'] = df['sttl'] - df['dttl']\n    # Byte rate: bytes per second\n    df['byte_rate_src'] = df['sbytes'] / (df['dur'] + 1e-6)\n    df['byte_rate_dst'] = df['dbytes'] / (df['dur'] + 1e-6)\n    return df"
+              }
+            ],
+            "weights": [
+              0.9,
+              0.09999999999999998
+            ]
+          },
+          "iterations": [
+            100,
+            296
+          ]
+        }
+      ],
+      "scope": "Additional split of already explored public data, frozen recipes, no fresh search; not private score"
+    }
+  ]
+}

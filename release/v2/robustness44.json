@@ -1,0 +1,261 @@
+[
+  {
+    "task": "regression",
+    "split": {
+      "method": "random_holdout_20pct",
+      "seed": 44,
+      "train_rows": 42646,
+      "validation_rows": 10662,
+      "split_sha256": "e3e2305aa4601c5adf3f352950cd7a65f1b53f01fa6f88f90bbcf23329e16898",
+      "shared_feature_hashes": 94,
+      "validation_class_counts": null
+    },
+    "results": [
+      {
+        "version": "v1",
+        "metrics": {
+          "rmse": 45.25982130292707,
+          "mae": 22.677547985853938,
+          "r2": 0.45581720707355167
+        },
+        "elapsed_seconds": 7.348,
+        "recipe": {
+          "hypothesis": "Adding log floor area, HDD/CDD ratio and sum, annual temperature range, and missingness indicators for year_built and energy_star_rating should improve RMSE by giving LightGBM explicit scale-invariant and missingness signals.",
+          "engine": "lightgbm",
+          "params": {
+            "iterations": 400,
+            "depth": 6,
+            "learning_rate": 0.07,
+            "class_weights": false
+          },
+          "feature_code": "def transform(df):\n    out = df.copy()\n    out['log_floor_area'] = np.log1p(out['floor_area'])\n    out['hdd_cdd_ratio'] = out['heating_degree_days_c'] / (out['cooling_degree_days_c'] + 1.0)\n    out['hdd_cdd_sum'] = out['heating_degree_days_c'] + out['cooling_degree_days_c']\n    out['temp_range_annual'] = out['july_avg_temp_c'] - out['january_avg_temp_c']\n    out['energy_star_missing'] = out['energy_star_rating'].isna().astype('int8')\n    out['year_built_missing'] = out['year_built'].isna().astype('int8')\n    return out"
+        },
+        "iterations": 400
+      },
+      {
+        "version": "v2",
+        "metrics": {
+          "rmse": 42.872117748489096,
+          "mae": 21.339362756665533,
+          "r2": 0.5117199177257501
+        },
+        "elapsed_seconds": 108.387,
+        "recipe": {
+          "engine": "ensemble",
+          "hypothesis": "Validated cached-prediction blend",
+          "params": {},
+          "components": [
+            {
+              "hypothesis": "The best XGBoost model (42.54) likely benefits from increased model capacity to capture complex non-linear interactions between weather and building features, as previous attempts with lower capacity or different regularization showed slightly higher RMSE. Increasing max_depth and reducing min_child_weight allows the model to fit more detailed patterns in the heavy-tailed target distribution.",
+              "engine": "xgboost",
+              "params": {
+                "iterations": 2200,
+                "learning_rate": 0.03,
+                "max_depth": 10,
+                "min_child_weight": 2,
+                "subsample": 0.85,
+                "colsample_bytree": 0.9,
+                "reg_lambda": 6,
+                "reg_alpha": 0.1,
+                "early_metric": "primary",
+                "nested_stopping": true,
+                "min_iterations": 100,
+                "num_leaves": 127,
+                "subsample_freq": 1,
+                "seed": 48
+              },
+              "feature_code": ""
+            },
+            {
+              "hypothesis": "Controlled deterministic alternative",
+              "engine": "xgboost",
+              "params": {
+                "iterations": 2200,
+                "learning_rate": 0.03,
+                "max_depth": 10,
+                "min_child_weight": 2,
+                "subsample": 0.85,
+                "colsample_bytree": 0.9,
+                "reg_lambda": 6,
+                "reg_alpha": 0.1,
+                "early_metric": "primary",
+                "nested_stopping": true,
+                "min_iterations": 100,
+                "num_leaves": 255,
+                "subsample_freq": 1,
+                "seed": 53
+              },
+              "feature_code": ""
+            },
+            {
+              "hypothesis": "Higher-leaf capacity with fixed regularization",
+              "engine": "lightgbm",
+              "params": {
+                "iterations": 1600,
+                "learning_rate": 0.035,
+                "num_leaves": 255,
+                "max_depth": -1,
+                "min_child_samples": 25,
+                "reg_lambda": 8,
+                "subsample": 1,
+                "colsample_bytree": 0.9,
+                "generic_features": "missing",
+                "subsample_freq": 0,
+                "early_metric": "primary",
+                "nested_stopping": true,
+                "min_iterations": 100
+              },
+              "feature_code": ""
+            }
+          ],
+          "weights": [
+            0.5,
+            0.25,
+            0.25
+          ]
+        },
+        "iterations": [
+          933,
+          887,
+          646
+        ]
+      }
+    ],
+    "scope": "Additional split of already explored public data, frozen recipes, no fresh search; not private score"
+  },
+  {
+    "task": "classification",
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 44,
+      "train_rows": 70234,
+      "validation_rows": 17436,
+      "split_sha256": "d139dd0c074e25f0b3de0d34a6b08a86b581ff1e2d9d7b7a3a3f86a8c3fd7f63",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5632,
+        "Generic": 3814,
+        "Exploits": 3365,
+        "Fuzzers": 1796,
+        "DoS": 1192,
+        "Reconnaissance": 1162,
+        "Analysis": 182,
+        "Backdoor": 171,
+        "Shellcode": 111,
+        "Worms": 11
+      }
+    },
+    "results": [
+      {
+        "version": "v1",
+        "metrics": {
+          "macro_f1": 0.6239763908657938,
+          "weighted_f1": 0.8134330949652836,
+          "accuracy": 0.7881394815324616,
+          "per_class_f1": {
+            "Analysis": 0.136310223266745,
+            "Backdoor": 0.11244979919678715,
+            "DoS": 0.417964505613908,
+            "Exploits": 0.6717363751584284,
+            "Fuzzers": 0.7563066372765124,
+            "Generic": 0.9894207881512828,
+            "Normal": 0.9176803394625177,
+            "Reconnaissance": 0.8546931407942239,
+            "Shellcode": 0.7165354330708661,
+            "Worms": 0.6666666666666666
+          }
+        },
+        "elapsed_seconds": 62.26,
+        "recipe": {
+          "hypothesis": "Adding row-wise source/destination asymmetry and TCP timing zero features to the class-weighted LightGBM baseline should improve macro F1 by making rare attack patterns more separable while keeping hyperparameters unchanged.",
+          "engine": "lightgbm",
+          "params": {
+            "iterations": 400,
+            "depth": 6,
+            "learning_rate": 0.07,
+            "class_weights": true
+          },
+          "feature_code": "def transform(df):\n    out = df.copy()\n    n = len(out)\n    zero = np.zeros(n, dtype=float)\n    out['pkt_ratio'] = np.divide(out['spkts'], out['dpkts'], out=zero, where=out['dpkts'] > 0)\n    out['pkt_diff'] = out['spkts'] - out['dpkts']\n    out['byte_ratio'] = np.divide(out['sbytes'], out['dbytes'], out=zero, where=out['dbytes'] > 0)\n    out['byte_diff'] = out['sbytes'] - out['dbytes']\n    out['load_ratio'] = np.divide(out['sload'], out['dload'], out=zero, where=out['dload'] > 0)\n    out['ttl_diff'] = out['sttl'] - out['dttl']\n    out['tcp_timing_zero'] = ((out['tcprtt'] == 0) & (out['synack'] == 0) & (out['ackdat'] == 0)).astype(int)\n    return out"
+        },
+        "iterations": 400
+      },
+      {
+        "version": "v2",
+        "metrics": {
+          "macro_f1": 0.6551849592078962,
+          "weighted_f1": 0.8227163872953912,
+          "accuracy": 0.8116540490938289,
+          "per_class_f1": {
+            "Analysis": 0.26277372262773724,
+            "Backdoor": 0.18691588785046728,
+            "DoS": 0.48744233726294206,
+            "Exploits": 0.6915728420334357,
+            "Fuzzers": 0.7556859867938371,
+            "Generic": 0.9891419491525424,
+            "Normal": 0.9141553379598821,
+            "Reconnaissance": 0.8537368179734067,
+            "Shellcode": 0.7104247104247104,
+            "Worms": 0.7
+          }
+        },
+        "elapsed_seconds": 83.842,
+        "recipe": {
+          "engine": "ensemble",
+          "hypothesis": "Validated cached-prediction blend",
+          "params": {},
+          "components": [
+            {
+              "hypothesis": "Iteration-matched inner decision calibration",
+              "engine": "lightgbm",
+              "params": {
+                "iterations": 1200,
+                "learning_rate": 0.04,
+                "num_leaves": 63,
+                "max_depth": -1,
+                "min_child_samples": 25,
+                "reg_lambda": 5,
+                "subsample": 1,
+                "colsample_bytree": 0.9,
+                "class_weight_power": 0.5,
+                "calibrate": true,
+                "subsample_freq": 0,
+                "early_metric": "primary",
+                "nested_stopping": true,
+                "min_iterations": 100
+              },
+              "feature_code": ""
+            },
+            {
+              "hypothesis": "Previous feature engineering attempts using simple ratios (e.g., `sbytes/dbytes`) and jitter interactions failed to improve macro F1, likely because they did not capture the specific 'scanning' or 'reconnaissance' behavior that distinguishes rare attack types from normal noise. This experiment introduces features based on the ratio of packet counts to duration (packet rate) and the difference in TTL values, which are known indicators of network scanning and spoofing in UNSW-NB15.",
+              "engine": "xgboost",
+              "params": {
+                "iterations": 1800,
+                "learning_rate": 0.035,
+                "max_depth": 6,
+                "min_child_weight": 3,
+                "subsample": 0.85,
+                "colsample_bytree": 0.9,
+                "reg_lambda": 8,
+                "reg_alpha": 0.1,
+                "class_weight_power": 0.5,
+                "min_iterations": 50,
+                "early_metric": "primary",
+                "nested_stopping": true
+              },
+              "feature_code": "def transform(df):\n    df = df.copy()\n    # Packet rate: packets per second\n    df['pkt_rate_src'] = df['spkts'] / (df['dur'] + 1e-6)\n    df['pkt_rate_dst'] = df['dpkts'] / (df['dur'] + 1e-6)\n    # TTL difference: often indicates spoofing or different network paths\n    df['ttl_diff'] = df['sttl'] - df['dttl']\n    # Byte rate: bytes per second\n    df['byte_rate_src'] = df['sbytes'] / (df['dur'] + 1e-6)\n    df['byte_rate_dst'] = df['dbytes'] / (df['dur'] + 1e-6)\n    return df"
+            }
+          ],
+          "weights": [
+            0.9,
+            0.09999999999999998
+          ]
+        },
+        "iterations": [
+          100,
+          296
+        ]
+      }
+    ],
+    "scope": "Additional split of already explored public data, frozen recipes, no fresh search; not private score"
+  }
+]

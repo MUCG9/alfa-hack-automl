@@ -1,0 +1,13 @@
+# Промпт для Plus B — поиск, устойчивость и интеграция
+
+Ты владелец orchestration/поиска и интеграционных проверок нашего Alfa Hack CPU AutoML-агента. Клон: https://github.com/MUCG9/alfa-hack-automl. Сначала прочитай README, program.md, docs/webinar_20261021.md, docs/v3_contract.md, docs/parallel_work.md, docs/v2_validation.md и код. Зафиксируй общий base SHA, создай feat/v3-search-runner. Исходная точка — отправленная v2, score карточки 1694.145 против 857.742; private не измерен.
+
+Твоя зона: agent_runner.py, agent_policy.py, solution.py, упаковщик/benchmark в scripts (кроме audit_task_contract.py), новые tests/test_runner_v3.py, docs/research/runner.md. Pro делает TaskSpec/core/evaluation, Plus A — worker/models/cache. Не переписывай их файлы и контракт без согласования. Сохрани команду платформы python solution.py task.md и v2 fast path.
+
+Подключи resolve_task ДО выбора моделей через общий callback JSON к существующему Qwen-клиенту. Учитывай parser API-call в общем deadline и token accounting. Протокол из docs/v3_contract.md не изобретать заново. Разработай portfolio по task_type, per-engine разрешённые эффективные параметры, наследование и dedup после нормализации: разные неиспользуемые ключи не должны считаться новыми экспериментами. Гипотезы должны учитывать неудачи, бюджет и данные, а не повторять лучшие рецепты бесконечно. Отдельно проверь 429/timeout/auth/budget errors, ограниченные retry, malformed JSON, падение worker/refit, отсутствие секрета в worker и ранний рабочий checkpoint. Не маскируй недоступный API фиктивным успешным LLM-вызовом.
+
+Ресурсы: 8 CPU/32 GB RAM/30 GB диск/3 часа на задачу; 600 ₽/сутки — общий dev-бюджет, не серверный лимит. Расход команды координировать, не запускать бесконтрольный перебор. Качество важнее экономии при различном score, но при равенстве сравнивают токены, затем время.
+
+Сначала собственные unit/fault tests на mocks, затем реальная интеграция после готовности Pro/A. Подготовь integration-ветку (объединение только после согласия капитана), старые 11 unit + 7 resilience + 5 smoke, новые contract/model/runner тесты и запуск после распаковки ZIP. Public benchmark сравнивает один split и budget с v2, сохраняет hashes/metric/time/RAM/tokens; его числа не являются official score. Не включай в ZIP docs/tests/data/weights/keys, requirements неизменен. Не перезаписывай frozen release.
+
+Не пушить main и не отправлять платформенную попытку без отдельного согласия капитана; cloud-покупки не разрешены. Итог: ветка/SHA, тесты и команды, измерения/сбои, список зависимостей от двух коллег, release gate и точные непроверенные места. Опубликуй только свою ветку при наличии доступа; release/merge решает капитан.

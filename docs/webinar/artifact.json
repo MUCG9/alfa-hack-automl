@@ -1,0 +1,370 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "После вебинара: обобщаем v2, не теряя достигнутого качества",
+    "generatedAt": "2026-10-21T17:58:44.270415+00:00",
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# После вебинара: обобщаем v2, не теряя достигнутого качества"
+      },
+      {
+        "id": "section-1",
+        "type": "markdown",
+        "body": "## Главный вывод\n\nСледующая версия должна расширять понимание задачи, а не только увеличивать число экспериментов. В v2 Qwen действительно выбирает гипотезы, но вызывается уже после жёсткого определения файлов, одной цели, одного ID и ограниченной метрики. Неизвестный формат может остановить агент раньше его первого содержательного решения. Самая сложная следующая работа — контракт задачи, контекстная валидация и формат ответа; ей выделяется Pro.\n\nНиже разделены ответы организаторов, результаты наших проверок и рекомендации команды. Возможность сценария не означает, что он обязательно будет в private."
+      },
+      {
+        "id": "section-2",
+        "type": "markdown",
+        "body": "## Баллы v2 выросли, но это не оценка private\n\nПо присланному капитаном скриншоту истории решений 21 октября: `solution-v2.zip` — **1694.145**, предыдущий архив — **857.742**. Это значения одного интерфейса, примерно **1.98×**, или **+97.5%**; они не являются RMSE или F1. Разница масштаба с ранее увиденным рейтингом 8.5774 не объяснена. Значение v2 в другом интерфейсе не вычисляем и место в рейтинге не утверждаем.\n\nЗамороженный v2: SHA-256 `b429f04a231b5fa7f5fb52d8008aa019dbc6c53cc6e5f81a6ff06999edc1602a`. В интерфейсе статус «Лучшее решение». Вторая отправка уже состоялась; текущий остаток попыток не проверялся. Новая попытка при передаче проекта не отправлялась.",
+        "sourceId": "score"
+      },
+      {
+        "id": "section-3",
+        "type": "markdown",
+        "body": "## Локальное качество улучшилось на обоих известных наборах\n\nНа одинаковых public-данных и search split seed 42, с реальным Qwen и командой платформы:\n\n- Регрессия: RMSE **43.61588 → 41.98809**, меньше лучше.\n- Классификация: Macro F1 **0.615639 → 0.653408**, больше лучше.\n- Дополнительный split seed 44 с уже зафиксированными рецептами: RMSE **45.25982 → 42.87212**, Macro F1 **0.623976 → 0.655185**.\n\nВ v2 stopping и калибровка вынесены во внутреннее разбиение fitting rows; отдельный confirmation split участвует в выборе. Все строки public уже исследовались, поэтому ни search, ни confirmation, ни seed 44 не являются независимым private test. По двум public нельзя оценить ожидаемые баллы на неизвестных задачах. Подробности — `v2_validation.md`, фактические числа и хеши — `v2_results.json`.",
+        "sourceId": "local"
+      },
+      {
+        "id": "regression-chart",
+        "type": "chart",
+        "chartId": "regression"
+      },
+      {
+        "id": "class-chart-note",
+        "type": "markdown",
+        "sourceId": "local",
+        "body": "Для классификации v2 также выше на обоих разбиениях. Ниже Macro F1 показан отдельно от RMSE: разные шкалы нельзя объединять. Результаты фиксированного рецепта на seed 44 не являются новым независимым private-тестом."
+      },
+      {
+        "id": "classification-chart",
+        "type": "chart",
+        "chartId": "classification"
+      },
+      {
+        "id": "section-4",
+        "type": "markdown",
+        "body": "## Проверка контракта обнаружила десять конкретных пробелов\n\nНа точной отправленной версии выполнены **14 синтетических диагностик** загрузчика/разбиений, без обучения моделей и без Qwen. Это специально подобранные контрпримеры, не случайная выборка задач.\n\n- Четыре сценария удовлетворяют проверяемому контракту: обычные регрессия и классификация, определение бинарной вероятностной задачи, другое имя выходного столбца. Для вероятностей проверялось распознавание, не качество и не весь ML-конвейер.\n- Пять завершаются до LLM: другие имена файлов, отсутствие словаря, ответ без ID, несколько целей, другой порядок ID образца.\n- Пять неверно интерпретируются: ranking становится RMSE-регрессией; MAPE становится RMSE; balanced accuracy становится accuracy; временной split смешивает прошлое и будущее; group split допускает пересечение 16 клиентов.\n\nСледствие: увеличением числа запросов Qwen эти ошибки не устранить — планировщик получает уже неверный или несуществующий контракт. Не интерпретировать «4 из 14» как вероятность успеха на private. Доказательство — `webinar/v2_contract_audit.json`; воспроизводимая диагностика — `scripts/audit_task_contract.py`.",
+        "sourceId": "audit"
+      },
+      {
+        "id": "section-5",
+        "type": "markdown",
+        "body": "## Агентность — реальные решения, а не количество ролей\n\n- **03:28–04:46.** Цель — автоматизировать работу DS от человеческого описания до качественного ML-результата, не просто вызвать AutoML-библиотеку.\n- **04:59–05:14.** LangChain/LangGraph и собственная логика допустимы при соблюдении зависимостей. Это разрешение архитектуры, не обещание установки любого пакета.\n- **05:15–05:34.** Один или много агентов — без отдельного бонуса за число ролей.\n- **05:34–06:17.** LLM не обязана генерировать весь код; подготовленные конвейеры допустимы.\n- **06:17–06:28.** Детерминированный конвейер с декоративным параллельным вызовом LLM не считается агентом.\n- **06:28–07:14.** Осмысленный выбор инструментов и анализ результатов — агентные действия; разбирать цель и метрику должен агент, а не человек перед каждым запуском.\n- **07:14–07:36.** Гибрид стартового baseline и LLM-улучшений допустим.\n- **07:36–08:04; 16:09–16:41.** Дополнительные материалы и логи не дают отдельных баллов; возможна ручная проверка. Универсальность проверяют неизвестными задачами. Логи сохраняем как доказательство, не ради формального бонуса.\n- **14:58–16:09.** Минимального числа циклов нет. HPO с анализом и адаптацией агентом допустим; критерий остановки выбирает агент. Один оправданный цикл лучше бессодержательных повторов.\n- **31:44–33:04.** Организаторы рекомендуют более содержательное понимание текста и свободу решений вместо regex и сравнения двух чисел; часть обсуждения относится к следующему/финальному этапу. Не переносим автоматически все пожелания следующего этапа в формальные требования private.\n\nПрименение: добавить доказуемое LLM-понимание до поиска; сохранять выбранный контракт, основание решения и наблюдаемый результат. Не тратить время на декоративную многоагентность.",
+        "sourceId": "webinar"
+      },
+      {
+        "id": "section-6",
+        "type": "markdown",
+        "body": "## Неизвестная схема важнее тяжёлого NLP\n\n- **11:14–11:56.** Организаторы исключили задачи анализа текстов/NLP, компьютерного зрения и рекомендательных систем. Это не запрет строковых признаков и не гарантия, что любой столбец числовой.\n- **11:56–12:37.** Нет обещания неизменных структуры/формата данных, числа целей или столбцов ответа, включая вероятностные. Контекста в условии должно хватить; нужен агент, а не парсер единственного шаблона Markdown.\n- **12:38–13:16.** Пропущенное пятое поле словаря в public-описании — опечатка; смотреть реальные файлы.\n- **13:16–13:44.** Условие задаёт цель, фактические данные определяют реальную схему; противоречие нужно разрешать, а не механически применять старую схему.\n- **13:44–14:11.** Табличные признаки могут быть разнообразными; сложный NLP вроде анализа тональности исключён.\n- **14:11–14:25.** Временные и групповые ограничения валидации агент должен понимать из контекста задачи.\n- **14:25–14:38.** Возможны редкие классы, дисбаланс и категории, которых не было при обучении.\n- **14:38–14:58.** Наборы данных помещаются в RAM; это не гарантия, что одновременно поместятся все копии, трансформации и модели.\n- **16:41–17:12.** Анализ немеченого test и его прогнозов, а также псевдоразметка допустимы. Это не доступ к истинным test-меткам. Псевдоразметку принимать только по проверяемому протоколу.\n- **17:12–17:35.** Разбиение и число фолдов адаптируются к контексту/данным/времени; оценивают итоговые прогнозы, не отдельно выбранную CV-схему.\n- **29:05–30:17.** Несколько целей и ранжирование явно названы возможными табличными задачами. Это основание поддержать их, а не раскрытие состава private.\n\nПрименение: сначала инвентаризация файлов, TaskSpec, корректная метрика и output mapping; затем time/group split, multi-target и ranking. Сложное NLP не приоритет. Нельзя молча подменять неизвестную метрику RMSE.",
+        "sourceId": "webinar"
+      },
+      {
+        "id": "section-7",
+        "type": "markdown",
+        "body": "## API: 600 рублей относятся к разработке, не к серверной оценке\n\n- **08:09–08:20.** Формального ограничения параллельных запросов не назвали.\n- **08:22–08:45.** Конкретные RPM/TPM и размер контекста перенесены в чат; чисел в ответе нет.\n- **08:46–09:32.** Обсуждаются endpoint бюджета и разные причины ошибок. Единицы полей `spend`/`max_budget` однозначно не установлены; не вычисляем рубли из неизвестной единицы. Отсутствие формального лимита не отменяет временные сбои/429/таймауты.\n- **09:32–10:03.** 600 ₽ в сутки — лимит разработки; для официальной проверки денежного/токенного лимита не заявлено. Временной предел и критерии равенства сохраняются.\n\nПрименение: общий дневной журнал расходов трёх участников; ограниченные повторные запросы, различение budget exceeded/429/timeout/auth, компактная история и проверяемый token accounting. Не увеличивать запросы без гипотезы; на сервере нельзя рассчитывать на бесконечное время.",
+        "sourceId": "webinar"
+      },
+      {
+        "id": "section-8",
+        "type": "markdown",
+        "body": "## Ресурсы и упаковка: CPU, чистый запуск и разрешённые зависимости\n\n- **10:03–10:26; 10:39–10:55.** Новые Python-пакеты и обновление версий требуют согласования; техническая команда добавляет разрешённые зависимости.\n- **10:26–10:39.** Вопрос внешних словарей/токенизаторов без весов перенесён дальше; общего разрешения не дано.\n- **10:59–11:14.** Нельзя вложить исходники отсутствующей сторонней библиотеки, обходя согласование пакета. Это не запрет собственных модулей агента.\n- **17:35–18:02.** На каждую задачу выделены **8 CPU и 32 GB RAM**; при двух задачах это не общий пул 8 CPU. Потоки/процессы разрешены в пределах ресурсов.\n- **18:02–18:20.** GPU нет; torch CPU допустим. Аренда GPU не ускорит серверную табличную часть автоматически.\n- **18:20–18:43.** **30 GB диска**, отдельный лимит скорости I/O не назван; промежуточные модели/файлы внутри запуска допустимы.\n- **18:45–19:17.** Корневые `.py`, конкурсный ZIP до **100 MB**. Не трактовать это как разрешение включать произвольные конфиги, веса или ресурсы.\n- **19:17–19:31.** Официального Docker-образа и инструкции его сборки не предоставляют. Локальный запуск — приближение, не идентичная сертифицированная среда.\n- **20:37–21:02.** Каждый запуск в чистой среде, нельзя рассчитывать на кэш предыдущей задачи/попытки; seeds фиксировать.\n- Предел **3 часа на задачу** ранее подтверждён в чате; временной бюджет повторяется в обсуждении baseline около **21:44**. Планировать запас на refit и сохранение ответа.\n\nПрименение: исходный requirements неизменен, только CPU-модели; watchdog времени/памяти/диска и атомарный checkpoint. Переносимый ZIP запускается после распаковки без локальной среды, данных или состояния разработчика.",
+        "sourceId": "webinar"
+      },
+      {
+        "id": "section-9",
+        "type": "markdown",
+        "body": "## Скоринг: качество в первую очередь, стоимость при равенстве\n\n- **19:39–19:55.** Ручной выбор менее удачной public-версии для private только обсуждается; доступность не обещана.\n- **19:55–20:09.** При равном максимальном public-балле выбирается последняя отправленная версия.\n- **20:09–20:37.** Отзыв плохой версии — индивидуальное обращение; встроенная кнопка не обещана.\n- **21:06–21:59.** Нормирующий baseline — простая модель DS, точные его значения намеренно не раскрываются. Это не гарантированно результат запуска выданного `baseline.py`.\n- **21:59–22:55.** На private возможны другие метрики и свои baseline. Направление оптимизации зависит от метрики; полная численная формула для всех возможных метрик не раскрыта. Не изобретать универсальный коэффициент пересчёта local → score.\n- **22:56–23:34; 24:48–25:07.** Отображение округлено, внутреннее сравнение точнее; при равенстве качества сначала меньше токенов, затем меньше время. Не объявлять видимое равенство точным.\n- **23:37–24:18; 25:21–26:06.** Главный критерий — private-качество при реальной агентности; возможна ручная проверка, отдельного бонуса за «больше автономности» нет.\n- **24:20–24:38.** Один запуск на private-задачу; повтор — при ошибке платформы, не просто при неудаче агента.\n- **25:08–25:20.** Ошибка одной задачи не обнуляет другую; за упавшую задачу — минимум.\n\nПрименение: сначала корректность каждой задачи и качество, затем экономия токенов и времени. Нужен рабочий early checkpoint и восстановление без права на второй запуск. Не продолжать просить скрытые baseline, которые отказались раскрывать.",
+        "sourceId": "webinar"
+      },
+      {
+        "id": "section-10",
+        "type": "markdown",
+        "body": "## Open source разрешён, но autoresearch — принцип, не готовая замена\n\n- **27:03–28:22.** Можно адаптировать open-source агента, в обсуждении назван AIDE; указывать авторство/лицензию и делать собственную адаптацию. Полностью неизменённый форк не подходит; минимальный процент своего кода не назван.\n- **28:26–28:57.** Ответ про MCP разговорный; он не гарантирует наличие SDK, сервера или протокола в окружении. Не добавлять зависимость из одного употребления слова MCP.\n- **31:00–31:21; 33:35–34:14.** Проблемы очереди и компенсации обещают уточнить в Telegram. Конкретные дополнительные попытки/даты из этих ответов не следуют.\n- **35:04–35:17.** «Ещё неделя» — относительная фраза, не подтверждённый календарный deadline.\n\nВ v2 уже адаптирован цикл «гипотеза → ограниченный эксперимент → измерение → keep/discard → журнал». Сам karpathy/autoresearch не устанавливался и не форкался. Обучение LLM на GPU из его исходного сценария не является текущей задачей команды. Обобщаем агент, не переносим CUDA-конвейер.",
+        "sourceId": "webinar"
+      },
+      {
+        "id": "section-11",
+        "type": "markdown",
+        "body": "## Что изменилось относительно прежнего чата\n\nРанее организаторы говорили о текстовых/табличных данных как формате и едином шаблоне `task.md`. Это не тождественно обещанию NLP-задач или неизменной схеме четырёх CSV. Вебинар уточняет отсутствие сложного NLP и отсутствие гарантий структуры/числа целей. Сохраняем простой fallback строковых признаков, но не ставим тяжёлый NLP выше понимания таблиц.\n\nНе считаем метаданные создания MP4 доказательством хронологии всех сообщений: запись предоставлена 21 октября, отдельная дата эфира не установлена. Для реального противоречия правил сохранять обе формулировки/таймкоды и уточнять у организаторов. Старые документы и презентация v1 остаются историческими, а не текущей спецификацией."
+      },
+      {
+        "id": "section-12",
+        "type": "markdown",
+        "body": "## Методика и границы достоверности\n\nОбработана вся запись **35:22.88**, сохранены транскрипт и SRT. Для ключевых фрагментов про формат, скоринг и open source выполнено повторное распознавание другой по размеру моделью; обе модели одной ASR-семьи, это не независимое ручное прослушивание. Термины ML/LLM/RMSE нормализованы по контексту, неоднозначные ответы отмечены выше. Таймкоды приблизительные; вопросы на слайдах не считаются ответами организаторов.\n\nДиагностики контракта исполняют код отправленной v2 на маленьких синтетических таблицах; модельное качество ими не измеряется. Public-сравнения не дают причинного разложения официального прироста и не прогнозируют private. Новые возможности пока не реализованы: этот документ задаёт проверяемую работу v3, а не объявляет её завершённой."
+      },
+      {
+        "id": "section-13",
+        "type": "markdown",
+        "body": "## Следующие изменения — три независимые ветки\n\n1. **Pro: понимание задачи и корректность оценки.** TaskSpec до поиска, неизвестные имена/роли файлов, цели/ID/output mapping, MAPE/balanced accuracy/NDCG, group/time split. Закрыть десять обнаруженных пробелов в своей части без ухудшения старого API.\n2. **Plus A: исполнение моделей.** CPU multi-target/ranking, корректные probabilities/классы, inner stopping, финальный refit, устойчивость моделей и ансамблей. Работать через общий TaskSpec, не разбирать условие повторно.\n3. **Plus B: поисковый цикл и интеграция.** Подключить ранний TaskSpec, валидировать эффективные параметры, устранять бессмысленные повторы, обработать сбои API и бюджеты, собрать regression suite и ZIP. Капитан разрешает merge/release/submit отдельно.\n\nПолное владение файлами, интерфейсы, критерии приёмки и готовые промпты — `parallel_work.md`, `v3_contract.md`, `prompts/`. Первые несколько часов — согласование контракта и тесты, затем измерения. Не объединять три больших непроверенных diff сразу перед сдачей."
+      },
+      {
+        "id": "section-14",
+        "type": "markdown",
+        "body": "## Что ещё спросить и решить\n\n- Точная дата/время дедлайна и freeze; итоговые объявления о компенсации очереди.\n- Появился ли ручной выбор версии для private и как он реально работает.\n- Точные RPM/TPM/context и документированные единицы budget endpoint, если их нет в актуальной инструкции.\n- Как согласовать нужный формат/пакет, если он действительно отсутствует; не запрашивать новые библиотеки заранее без необходимости.\n- Кто имеет право merge, где общая среда public-данных и кто добавляет коллег в приватный репозиторий.\n\nНе отправлялись новые сообщения организаторам, приглашения команде или новая конкурсная попытка в рамках этой передачи."
+      }
+    ],
+    "cards": [],
+    "charts": [
+      {
+        "id": "regression",
+        "title": "RMSE на двух public-разбиениях",
+        "subtitle": "меньше лучше; 42 — search, 44 — фиксированный рецепт; не private",
+        "showDescription": true,
+        "type": "bar",
+        "intent": "comparison",
+        "question": "Согласуется ли улучшение v2 на двух разбиениях?",
+        "dataset": "regression",
+        "sourceId": "local",
+        "valueFormat": "number",
+        "encodings": {
+          "x": {
+            "field": "case",
+            "type": "nominal",
+            "label": "Seed · версия"
+          },
+          "y": {
+            "field": "value",
+            "type": "quantitative",
+            "label": "RMSE"
+          },
+          "tooltip": [
+            {
+              "field": "validation_rows",
+              "type": "quantitative",
+              "label": "Строк в validation"
+            },
+            {
+              "field": "stage",
+              "type": "nominal",
+              "label": "Режим"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classification",
+        "title": "Macro F1 на двух public-разбиениях",
+        "subtitle": "больше лучше; 42 — search, 44 — фиксированный рецепт; не private",
+        "showDescription": true,
+        "type": "bar",
+        "intent": "comparison",
+        "question": "Согласуется ли улучшение v2 на двух разбиениях?",
+        "dataset": "classification",
+        "sourceId": "local",
+        "valueFormat": "number",
+        "encodings": {
+          "x": {
+            "field": "case",
+            "type": "nominal",
+            "label": "Seed · версия"
+          },
+          "y": {
+            "field": "value",
+            "type": "quantitative",
+            "label": "Macro F1"
+          },
+          "tooltip": [
+            {
+              "field": "validation_rows",
+              "type": "quantitative",
+              "label": "Строк в validation"
+            },
+            {
+              "field": "stage",
+              "type": "nominal",
+              "label": "Режим"
+            }
+          ]
+        }
+      }
+    ],
+    "tables": [],
+    "sources": [
+      {
+        "id": "webinar",
+        "label": "Запись организаторов: полная расшифровка с таймкодами",
+        "path": "transcript-small.srt",
+        "query": {
+          "description": "Entire supplied recording; small ASR plus base verification of three critical excerpts. Approximate timecodes; no manual verbatim certification.",
+          "engine": "local_file",
+          "language": "text"
+        }
+      },
+      {
+        "id": "score",
+        "label": "Скриншот капитана: история двух решений",
+        "path": "score-screenshot.png",
+        "query": {
+          "description": "User-provided platform screenshot: upload-card scores, not a separate leaderboard view.",
+          "engine": "local_file",
+          "language": "image"
+        }
+      },
+      {
+        "id": "local",
+        "label": "Фактические сравнения v1/v2 на public",
+        "path": "v2_results.json",
+        "query": {
+          "description": "Recorded JSON measurements, extracted by the executed public_metrics.sql. :evidence binds the complete v2_results.json text; no raw predictions or private labels.",
+          "engine": "sqlite_json1",
+          "language": "sql",
+          "sql": "-- :evidence is the complete JSON text loaded from docs/v2_results.json.\n-- SQLite JSON1: direct extraction of recorded measurements, no fabricated rows.\nWITH search AS (\n    SELECT json_extract(t.value, '$.task') AS task,\n           json_extract(v.value, '$.version') AS version,\n           42 AS seed,\n           json_extract(v.value, '$.selected_search_value') AS value,\n           json_extract(v.value, '$.split.validation_rows') AS validation_rows,\n           'search: recipe selected on this split' AS stage\n    FROM json_each(:evidence, '$.tasks') AS t\n    CROSS JOIN json_each(t.value, '$.versions') AS v\n), extra AS (\n    SELECT json_extract(t.value, '$.task') AS task,\n           json_extract(v.value, '$.version') AS version,\n           44 AS seed,\n           CASE json_extract(t.value, '$.task')\n             WHEN 'regression' THEN json_extract(v.value, '$.metrics.rmse')\n             ELSE json_extract(v.value, '$.metrics.macro_f1') END AS value,\n           json_extract(t.value, '$.split.validation_rows') AS validation_rows,\n           'fixed selected recipe, no new search' AS stage\n    FROM json_each(:evidence, '$.robustness44') AS t\n    CROSS JOIN json_each(t.value, '$.results') AS v\n), combined AS (SELECT * FROM search UNION ALL SELECT * FROM extra)\nSELECT task, version, seed, value, validation_rows, stage,\n       CAST(seed AS TEXT) || ' · ' || version AS \"case\"\nFROM combined\nORDER BY task, seed, version;\n",
+          "tables_used": [
+            "v2_results.json"
+          ]
+        }
+      },
+      {
+        "id": "audit",
+        "label": "Четырнадцать синтетических диагностик контракта v2",
+        "path": "v2_contract_audit.json",
+        "query": {
+          "description": "Loader and validation diagnostics only; no model training and not a representative sample of private tasks.",
+          "engine": "local_file",
+          "language": "json"
+        }
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-10-21T17:58:44.270415+00:00",
+    "status": "ready",
+    "datasets": {
+      "regression": [
+        {
+          "task": "regression",
+          "version": "v1",
+          "seed": 42,
+          "value": 43.61587755840295,
+          "validation_rows": 10662,
+          "stage": "search: recipe selected on this split",
+          "case": "42 · v1",
+          "metric": "rmse"
+        },
+        {
+          "task": "regression",
+          "version": "v2",
+          "seed": 42,
+          "value": 41.98808637059414,
+          "validation_rows": 10662,
+          "stage": "search: recipe selected on this split",
+          "case": "42 · v2",
+          "metric": "rmse"
+        },
+        {
+          "task": "regression",
+          "version": "v1",
+          "seed": 44,
+          "value": 45.25982130292707,
+          "validation_rows": 10662,
+          "stage": "fixed selected recipe, no new search",
+          "case": "44 · v1",
+          "metric": "rmse"
+        },
+        {
+          "task": "regression",
+          "version": "v2",
+          "seed": 44,
+          "value": 42.872117748489096,
+          "validation_rows": 10662,
+          "stage": "fixed selected recipe, no new search",
+          "case": "44 · v2",
+          "metric": "rmse"
+        }
+      ],
+      "classification": [
+        {
+          "task": "classification",
+          "version": "v1",
+          "seed": 42,
+          "value": 0.6156389966332518,
+          "validation_rows": 17141,
+          "stage": "search: recipe selected on this split",
+          "case": "42 · v1",
+          "metric": "macro_f1"
+        },
+        {
+          "task": "classification",
+          "version": "v2",
+          "seed": 42,
+          "value": 0.6534076778483346,
+          "validation_rows": 17141,
+          "stage": "search: recipe selected on this split",
+          "case": "42 · v2",
+          "metric": "macro_f1"
+        },
+        {
+          "task": "classification",
+          "version": "v1",
+          "seed": 44,
+          "value": 0.6239763908657938,
+          "validation_rows": 17436,
+          "stage": "fixed selected recipe, no new search",
+          "case": "44 · v1",
+          "metric": "macro_f1"
+        },
+        {
+          "task": "classification",
+          "version": "v2",
+          "seed": 44,
+          "value": 0.6551849592078962,
+          "validation_rows": 17436,
+          "stage": "fixed selected recipe, no new search",
+          "case": "44 · v2",
+          "metric": "macro_f1"
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "webinar",
+      "label": "Запись организаторов: полная расшифровка с таймкодами",
+      "path": "transcript-small.srt",
+      "query": {
+        "description": "Entire supplied recording; small ASR plus base verification of three critical excerpts. Approximate timecodes; no manual verbatim certification.",
+        "engine": "local_file",
+        "language": "text"
+      }
+    },
+    {
+      "id": "score",
+      "label": "Скриншот капитана: история двух решений",
+      "path": "score-screenshot.png",
+      "query": {
+        "description": "User-provided platform screenshot: upload-card scores, not a separate leaderboard view.",
+        "engine": "local_file",
+        "language": "image"
+      }
+    },
+    {
+      "id": "local",
+      "label": "Фактические сравнения v1/v2 на public",
+      "path": "v2_results.json",
+      "query": {
+        "description": "Recorded JSON measurements, extracted by the executed public_metrics.sql. :evidence binds the complete v2_results.json text; no raw predictions or private labels.",
+        "engine": "sqlite_json1",
+        "language": "sql",
+        "sql": "-- :evidence is the complete JSON text loaded from docs/v2_results.json.\n-- SQLite JSON1: direct extraction of recorded measurements, no fabricated rows.\nWITH search AS (\n    SELECT json_extract(t.value, '$.task') AS task,\n           json_extract(v.value, '$.version') AS version,\n           42 AS seed,\n           json_extract(v.value, '$.selected_search_value') AS value,\n           json_extract(v.value, '$.split.validation_rows') AS validation_rows,\n           'search: recipe selected on this split' AS stage\n    FROM json_each(:evidence, '$.tasks') AS t\n    CROSS JOIN json_each(t.value, '$.versions') AS v\n), extra AS (\n    SELECT json_extract(t.value, '$.task') AS task,\n           json_extract(v.value, '$.version') AS version,\n           44 AS seed,\n           CASE json_extract(t.value, '$.task')\n             WHEN 'regression' THEN json_extract(v.value, '$.metrics.rmse')\n             ELSE json_extract(v.value, '$.metrics.macro_f1') END AS value,\n           json_extract(t.value, '$.split.validation_rows') AS validation_rows,\n           'fixed selected recipe, no new search' AS stage\n    FROM json_each(:evidence, '$.robustness44') AS t\n    CROSS JOIN json_each(t.value, '$.results') AS v\n), combined AS (SELECT * FROM search UNION ALL SELECT * FROM extra)\nSELECT task, version, seed, value, validation_rows, stage,\n       CAST(seed AS TEXT) || ' · ' || version AS \"case\"\nFROM combined\nORDER BY task, seed, version;\n",
+        "tables_used": [
+          "v2_results.json"
+        ]
+      }
+    },
+    {
+      "id": "audit",
+      "label": "Четырнадцать синтетических диагностик контракта v2",
+      "path": "v2_contract_audit.json",
+      "query": {
+        "description": "Loader and validation diagnostics only; no model training and not a representative sample of private tasks.",
+        "engine": "local_file",
+        "language": "json"
+      }
+    }
+  ]
+}

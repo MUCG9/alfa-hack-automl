@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "html": "report.html",
+  "stages": {
+    "validation": "passed",
+    "package": "passed",
+    "verification": "structural_only"
+  },
+  "browserWarning": {
+    "code": "browser_unavailable",
+    "message": "No compatible installed Chromium available; no browser was installed. Exact payload and semantic fallback structure passed; visual and source-dialog interaction QA did not run."
+  },
+  "counts": {"blocks": 18, "charts": 2, "html": 0, "metrics": 0, "tables": 0},
+  "sourceDialog": "not_verified",
+  "sourceInteraction": "not_verified",
+  "viewports": []
+}

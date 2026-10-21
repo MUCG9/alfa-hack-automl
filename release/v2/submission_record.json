@@ -1,0 +1,39 @@
+{
+  "release": "v2 / release6",
+  "file": "solution-v2.zip",
+  "sha256": "b429f04a231b5fa7f5fb52d8008aa019dbc6c53cc6e5f81a6ff06999edc1602a",
+  "bytes": 26018,
+  "destination": "https://changellenge.com/personal/championships/stage/927270/",
+  "date_moscow": "2026-10-21",
+  "acceptance_observed_before_utc": "2026-10-21T14:11:52Z",
+  "status": "evaluated_user_screenshot",
+  "status_text": "Лучшее решение — по последующему скриншоту капитана",
+  "upload_card_display_value": 1694.145,
+  "previous_upload_card_display_value": 857.742,
+  "score_source": "User supplied screenshot, saved as score-screenshot.png; not a fresh leaderboard visit",
+  "leaderboard_score": null,
+  "authorization": "Пользователь: выбери наилучшие параметры и сделай сабмит",
+  "attempts_available_before": 2,
+  "attempts_remaining_after": 1,
+  "official_score": null,
+  "waited_for_server_score": false,
+  "archive_contract": "7 root Python modules + unchanged organizer requirements; no data, model weights, API keys or external configuration",
+  "configuration": "Frozen universal adaptive agent, not hard-coded public-dataset recipes. Qwen may choose different candidates on a new run.",
+  "local_search_metrics": {
+    "regression_rmse_v1": 43.61587755840295,
+    "regression_rmse_v2": 41.98808637059414,
+    "classification_macro_f1_v1": 0.6156389966332518,
+    "classification_macro_f1_v2": 0.6534076778483346
+  },
+  "fixed_recipe_additional_split44": {
+    "regression_rmse_v1": 45.25982130292707,
+    "regression_rmse_v2": 42.872117748489096,
+    "classification_macro_f1_v1": 0.6239763908657938,
+    "classification_macro_f1_v2": 0.6551849592078962,
+    "scope": "Already explored public data, fixed selected recipes, no fresh search; not independent private data."
+  },
+  "best_recipes": "verification.json -> tasks -> versions -> selected_recipe",
+  "verification": "verification.json",
+  "source_hashes": "source_manifest.json",
+  "additional_split_evidence": "robustness44.json"
+}

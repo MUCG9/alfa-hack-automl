@@ -3,6 +3,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 
 import numpy as np
 import pandas as pd
@@ -38,16 +39,18 @@ def run_case(name,kind,text=False,numeric_labels=False):
     dictionary.to_csv(root/'data_dictionary.csv',index=False)
     (root/'task.md').write_text(f'Task: {kind}. Metric: '+('RMSE' if kind=='regression' else 'Macro F1')+'.\nTrain train.csv, test test.csv, data_dictionary.csv, sample_submission.csv. Save submission.csv.',encoding='utf-8')
     env={k:v for k,v in os.environ.items() if not k.startswith('OPENAI_')}
-    result=subprocess.run([sys.executable,str(SOLUTION),str(root/'task.md'),'--offline','--max-experiments','1','--time-budget','300','--run-name','smoke'],env=env,capture_output=True,text=True,timeout=90)
+    run_name='smoke-'+str(time.time_ns())
+    result=subprocess.run([sys.executable,str(SOLUTION),str(root/'task.md'),'--offline','--max-experiments','1','--time-budget','300','--run-name',run_name],env=env,capture_output=True,text=True,timeout=90)
     if result.returncode:
         raise AssertionError(f'{name} failed: {result.stderr[-3000:]}')
-    report=json.loads((root/'automl_runs/smoke/report.json').read_text())
+    report=json.loads((root/'automl_runs'/run_name/'report.json').read_text())
     submission=pd.read_csv(root/'submission.csv')
     assert submission.columns.tolist()==sample.columns.tolist()
     assert submission.record_code.tolist()==test.record_code.tolist()
     assert not submission.isna().any().any()
     assert report['best_validation'] is not None,report
     assert report['final_fit_status']=='ok',report
+    assert report['integrity_ok'],report
     if kind=='classification':
         assert set(submission.outcome_value.astype(str))<=set(train.outcome_value.astype(str))
     if text:

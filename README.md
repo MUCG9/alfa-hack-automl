@@ -25,7 +25,7 @@ python3 tests/smoke.py
 python3 scripts/package_solution.py --output dist/solution.zip
 ```
 
-Smoke tests не обращаются к Qwen, создают маленькие synthetic задачи в `test-runs/`. Для public end-to-end скачайте разрешённые данные организаторов отдельно и передайте путь к `task.md`. CSV не входят в этот handoff. `submission.csv` и отчёты появятся рядом с условием. Выходные прогнозы проверенных public прогонов лежат в `docs/`, это примеры, а не замена агенту.
+Smoke tests не обращаются к Qwen, создают маленькие synthetic задачи в `test-runs/`. Для public end-to-end скачайте разрешённые данные организаторов отдельно и передайте путь к `task.md`. Исходные CSV не включены в репозиторий. `submission.csv` и отчёты появятся рядом с условием. Прогнозы уже проверенных public прогонов сохранены в отдельном комплекте капитана `team_handoff.zip`, но исключены из Git. Это примеры, а не замена агенту.
 
 На платформе команда запуска строго `python3 solution.py task.md`. Только корневые `.py` и исходный `requirements.txt` попадают в конкурсный ZIP. Документы, tests, weights, данные и подпапки в него не включаются.
 

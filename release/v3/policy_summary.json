@@ -1,0 +1,167 @@
+[
+  {
+    "task": "classification",
+    "variant": "cap20",
+    "folds": [
+      {
+        "seed": 42,
+        "value": 0.6471905506942068
+      },
+      {
+        "seed": 43,
+        "value": 0.6548850213130253
+      }
+    ],
+    "mean": 0.6510377860036161
+  },
+  {
+    "task": "classification",
+    "variant": "compressed",
+    "folds": [
+      {
+        "seed": 42,
+        "value": 0.6533092971154885
+      },
+      {
+        "seed": 43,
+        "value": 0.648542707366088
+      }
+    ],
+    "mean": 0.6509260022407882
+  },
+  {
+    "task": "classification",
+    "variant": "duplicate-half",
+    "folds": [
+      {
+        "seed": 42,
+        "value": 0.6325178496865362
+      },
+      {
+        "seed": 43,
+        "value": 0.6440452726776195
+      }
+    ],
+    "mean": 0.6382815611820778
+  },
+  {
+    "task": "classification",
+    "variant": "frozen-v2",
+    "folds": [
+      {
+        "seed": 42,
+        "value": 0.6502929607048801
+      },
+      {
+        "seed": 43,
+        "value": 0.6527944155063504
+      }
+    ],
+    "mean": 0.6515436881056152
+  },
+  {
+    "task": "classification",
+    "variant": "modular-noop",
+    "folds": [
+      {
+        "seed": 42,
+        "value": 0.6502929607048801
+      },
+      {
+        "seed": 43,
+        "value": 0.6527944155063504
+      }
+    ],
+    "mean": 0.6515436881056152
+  },
+  {
+    "task": "classification",
+    "variant": "over150",
+    "folds": [
+      {
+        "seed": 42,
+        "value": 0.6480489493816395
+      },
+      {
+        "seed": 43,
+        "value": 0.6446452592805695
+      }
+    ],
+    "mean": 0.6463471043311044
+  },
+  {
+    "task": "classification",
+    "variant": "under85",
+    "folds": [
+      {
+        "seed": 42,
+        "value": 0.6542991179397615
+      },
+      {
+        "seed": 43,
+        "value": 0.6521090714154998
+      }
+    ],
+    "mean": 0.6532040946776306
+  },
+  {
+    "task": "regression",
+    "variant": "frozen-v2",
+    "folds": [
+      {
+        "seed": 42,
+        "value": 41.96837676520955
+      },
+      {
+        "seed": 43,
+        "value": 42.48552379704731
+      }
+    ],
+    "mean": 42.226950281128424
+  },
+  {
+    "task": "regression",
+    "variant": "mask15",
+    "folds": [
+      {
+        "seed": 42,
+        "value": 41.886899177143675
+      },
+      {
+        "seed": 43,
+        "value": 42.55437187783747
+      }
+    ],
+    "mean": 42.22063552749057
+  },
+  {
+    "task": "regression",
+    "variant": "mask25",
+    "folds": [
+      {
+        "seed": 42,
+        "value": 41.93499704125512
+      },
+      {
+        "seed": 43,
+        "value": 42.39455137665472
+      }
+    ],
+    "mean": 42.164774208954924
+  },
+  {
+    "task": "regression",
+    "variant": "modular-noop",
+    "folds": [
+      {
+        "seed": 42,
+        "value": 41.96837676520955
+      },
+      {
+        "seed": 43,
+        "value": 42.48552379704731
+      }
+    ],
+    "mean": 42.226950281128424
+  }
+]

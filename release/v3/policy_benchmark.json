@@ -1,0 +1,1112 @@
+[
+  {
+    "task": "classification",
+    "seed": 42,
+    "metric": "macro_f1",
+    "value": 0.6502929607048801,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "Iteration-matched inner decision calibration",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100
+      },
+      "feature_code": ""
+    },
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 42,
+      "train_rows": 70529,
+      "validation_rows": 17141,
+      "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5565,
+        "Generic": 3733,
+        "Exploits": 3286,
+        "Fuzzers": 1839,
+        "DoS": 1195,
+        "Reconnaissance": 1017,
+        "Analysis": 211,
+        "Backdoor": 158,
+        "Shellcode": 118,
+        "Worms": 19
+      }
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/frozen-v2/classification-s42",
+    "seconds": 39.43,
+    "error": null,
+    "variant": "frozen-v2"
+  },
+  {
+    "task": "classification",
+    "seed": 43,
+    "metric": "macro_f1",
+    "value": 0.6527944155063504,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "Iteration-matched inner decision calibration",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100
+      },
+      "feature_code": ""
+    },
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 43,
+      "train_rows": 70321,
+      "validation_rows": 17349,
+      "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5637,
+        "Generic": 3937,
+        "Exploits": 3247,
+        "Fuzzers": 1861,
+        "DoS": 1171,
+        "Reconnaissance": 1016,
+        "Analysis": 192,
+        "Backdoor": 164,
+        "Shellcode": 113,
+        "Worms": 11
+      }
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/frozen-v2/classification-s43",
+    "seconds": 42.321,
+    "error": null,
+    "variant": "frozen-v2"
+  },
+  {
+    "task": "classification",
+    "seed": 42,
+    "metric": "macro_f1",
+    "value": 0.6502929607048801,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "Iteration-matched inner decision calibration",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100
+      },
+      "feature_code": ""
+    },
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 42,
+      "train_rows": 70529,
+      "validation_rows": 17141,
+      "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5565,
+        "Generic": 3733,
+        "Exploits": 3286,
+        "Fuzzers": 1839,
+        "DoS": 1195,
+        "Reconnaissance": 1017,
+        "Analysis": 211,
+        "Backdoor": 158,
+        "Shellcode": 118,
+        "Worms": 19
+      }
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/modular-noop/classification-s42",
+    "seconds": 41.731,
+    "error": null,
+    "variant": "modular-noop"
+  },
+  {
+    "task": "classification",
+    "seed": 43,
+    "metric": "macro_f1",
+    "value": 0.6527944155063504,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "Iteration-matched inner decision calibration",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100
+      },
+      "feature_code": ""
+    },
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 43,
+      "train_rows": 70321,
+      "validation_rows": 17349,
+      "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5637,
+        "Generic": 3937,
+        "Exploits": 3247,
+        "Fuzzers": 1861,
+        "DoS": 1171,
+        "Reconnaissance": 1016,
+        "Analysis": 192,
+        "Backdoor": 164,
+        "Shellcode": 113,
+        "Worms": 11
+      }
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/modular-noop/classification-s43",
+    "seconds": 41.211,
+    "error": null,
+    "variant": "modular-noop"
+  },
+  {
+    "task": "classification",
+    "seed": 42,
+    "metric": "macro_f1",
+    "value": 0.6325178496865362,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "Iteration-matched inner decision calibration",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100
+      },
+      "feature_code": "",
+      "data_policy": {
+        "duplicate_beta": 0.5
+      }
+    },
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 42,
+      "train_rows": 70529,
+      "validation_rows": 17141,
+      "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5565,
+        "Generic": 3733,
+        "Exploits": 3286,
+        "Fuzzers": 1839,
+        "DoS": 1195,
+        "Reconnaissance": 1017,
+        "Analysis": 211,
+        "Backdoor": 158,
+        "Shellcode": 118,
+        "Worms": 19
+      }
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/duplicate-half/classification-s42",
+    "seconds": 40.182,
+    "error": null,
+    "variant": "duplicate-half"
+  },
+  {
+    "task": "classification",
+    "seed": 43,
+    "metric": "macro_f1",
+    "value": 0.6440452726776195,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "Iteration-matched inner decision calibration",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100
+      },
+      "feature_code": "",
+      "data_policy": {
+        "duplicate_beta": 0.5
+      }
+    },
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 43,
+      "train_rows": 70321,
+      "validation_rows": 17349,
+      "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5637,
+        "Generic": 3937,
+        "Exploits": 3247,
+        "Fuzzers": 1861,
+        "DoS": 1171,
+        "Reconnaissance": 1016,
+        "Analysis": 192,
+        "Backdoor": 164,
+        "Shellcode": 113,
+        "Worms": 11
+      }
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/duplicate-half/classification-s43",
+    "seconds": 46.398,
+    "error": null,
+    "variant": "duplicate-half"
+  },
+  {
+    "task": "classification",
+    "seed": 42,
+    "metric": "macro_f1",
+    "value": 0.6533092971154885,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "Iteration-matched inner decision calibration",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100
+      },
+      "feature_code": "",
+      "data_policy": {
+        "sampling": "compress"
+      }
+    },
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 42,
+      "train_rows": 70529,
+      "validation_rows": 17141,
+      "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5565,
+        "Generic": 3733,
+        "Exploits": 3286,
+        "Fuzzers": 1839,
+        "DoS": 1195,
+        "Reconnaissance": 1017,
+        "Analysis": 211,
+        "Backdoor": 158,
+        "Shellcode": 118,
+        "Worms": 19
+      }
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/compressed/classification-s42",
+    "seconds": 37.751,
+    "error": null,
+    "variant": "compressed"
+  },
+  {
+    "task": "classification",
+    "seed": 43,
+    "metric": "macro_f1",
+    "value": 0.648542707366088,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "Iteration-matched inner decision calibration",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100
+      },
+      "feature_code": "",
+      "data_policy": {
+        "sampling": "compress"
+      }
+    },
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 43,
+      "train_rows": 70321,
+      "validation_rows": 17349,
+      "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5637,
+        "Generic": 3937,
+        "Exploits": 3247,
+        "Fuzzers": 1861,
+        "DoS": 1171,
+        "Reconnaissance": 1016,
+        "Analysis": 192,
+        "Backdoor": 164,
+        "Shellcode": 113,
+        "Worms": 11
+      }
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/compressed/classification-s43",
+    "seconds": 36.864,
+    "error": null,
+    "variant": "compressed"
+  },
+  {
+    "task": "classification",
+    "seed": 42,
+    "metric": "macro_f1",
+    "value": 0.6542991179397615,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "Iteration-matched inner decision calibration",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100
+      },
+      "feature_code": "",
+      "data_policy": {
+        "sampling": "under",
+        "majority_fraction": 0.85
+      }
+    },
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 42,
+      "train_rows": 70529,
+      "validation_rows": 17141,
+      "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5565,
+        "Generic": 3733,
+        "Exploits": 3286,
+        "Fuzzers": 1839,
+        "DoS": 1195,
+        "Reconnaissance": 1017,
+        "Analysis": 211,
+        "Backdoor": 158,
+        "Shellcode": 118,
+        "Worms": 19
+      }
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/under85/classification-s42",
+    "seconds": 37.03,
+    "error": null,
+    "variant": "under85"
+  },
+  {
+    "task": "classification",
+    "seed": 43,
+    "metric": "macro_f1",
+    "value": 0.6521090714154998,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "Iteration-matched inner decision calibration",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100
+      },
+      "feature_code": "",
+      "data_policy": {
+        "sampling": "under",
+        "majority_fraction": 0.85
+      }
+    },
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 43,
+      "train_rows": 70321,
+      "validation_rows": 17349,
+      "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5637,
+        "Generic": 3937,
+        "Exploits": 3247,
+        "Fuzzers": 1861,
+        "DoS": 1171,
+        "Reconnaissance": 1016,
+        "Analysis": 192,
+        "Backdoor": 164,
+        "Shellcode": 113,
+        "Worms": 11
+      }
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/under85/classification-s43",
+    "seconds": 38.968,
+    "error": null,
+    "variant": "under85"
+  },
+  {
+    "task": "classification",
+    "seed": 42,
+    "metric": "macro_f1",
+    "value": 0.6480489493816395,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "Iteration-matched inner decision calibration",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100
+      },
+      "feature_code": "",
+      "data_policy": {
+        "sampling": "over",
+        "factor": 1.5
+      }
+    },
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 42,
+      "train_rows": 70529,
+      "validation_rows": 17141,
+      "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5565,
+        "Generic": 3733,
+        "Exploits": 3286,
+        "Fuzzers": 1839,
+        "DoS": 1195,
+        "Reconnaissance": 1017,
+        "Analysis": 211,
+        "Backdoor": 158,
+        "Shellcode": 118,
+        "Worms": 19
+      }
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/over150/classification-s42",
+    "seconds": 39.642,
+    "error": null,
+    "variant": "over150"
+  },
+  {
+    "task": "classification",
+    "seed": 43,
+    "metric": "macro_f1",
+    "value": 0.6446452592805695,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "Iteration-matched inner decision calibration",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100
+      },
+      "feature_code": "",
+      "data_policy": {
+        "sampling": "over",
+        "factor": 1.5
+      }
+    },
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 43,
+      "train_rows": 70321,
+      "validation_rows": 17349,
+      "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5637,
+        "Generic": 3937,
+        "Exploits": 3247,
+        "Fuzzers": 1861,
+        "DoS": 1171,
+        "Reconnaissance": 1016,
+        "Analysis": 192,
+        "Backdoor": 164,
+        "Shellcode": 113,
+        "Worms": 11
+      }
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/over150/classification-s43",
+    "seconds": 63.661,
+    "error": null,
+    "variant": "over150"
+  },
+  {
+    "task": "classification",
+    "seed": 42,
+    "metric": "macro_f1",
+    "value": 0.6471905506942068,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "Iteration-matched inner decision calibration",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100
+      },
+      "feature_code": "",
+      "data_policy": {
+        "class_weight_cap": 20
+      }
+    },
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 42,
+      "train_rows": 70529,
+      "validation_rows": 17141,
+      "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5565,
+        "Generic": 3733,
+        "Exploits": 3286,
+        "Fuzzers": 1839,
+        "DoS": 1195,
+        "Reconnaissance": 1017,
+        "Analysis": 211,
+        "Backdoor": 158,
+        "Shellcode": 118,
+        "Worms": 19
+      }
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/cap20/classification-s42",
+    "seconds": 39.446,
+    "error": null,
+    "variant": "cap20"
+  },
+  {
+    "task": "classification",
+    "seed": 43,
+    "metric": "macro_f1",
+    "value": 0.6548850213130253,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "Iteration-matched inner decision calibration",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100
+      },
+      "feature_code": "",
+      "data_policy": {
+        "class_weight_cap": 20
+      }
+    },
+    "split": {
+      "method": "stratified_group_feature_hash_5fold_fold0",
+      "seed": 43,
+      "train_rows": 70321,
+      "validation_rows": 17349,
+      "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "shared_feature_hashes": 0,
+      "validation_class_counts": {
+        "Normal": 5637,
+        "Generic": 3937,
+        "Exploits": 3247,
+        "Fuzzers": 1861,
+        "DoS": 1171,
+        "Reconnaissance": 1016,
+        "Analysis": 192,
+        "Backdoor": 164,
+        "Shellcode": 113,
+        "Worms": 11
+      }
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/cap20/classification-s43",
+    "seconds": 42.756,
+    "error": null,
+    "variant": "cap20"
+  },
+  {
+    "task": "regression",
+    "seed": 42,
+    "metric": "rmse",
+    "value": 41.96837676520955,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "The best XGBoost model (42.54) likely benefits from increased model capacity to capture complex non-linear interactions between weather and building features, as previous attempts with lower capacity or different regularization showed slightly higher RMSE. Increasing max_depth and reducing min_child_weight allows the model to fit more detailed patterns in the heavy-tailed target distribution.",
+      "engine": "xgboost",
+      "params": {
+        "iterations": 2200,
+        "learning_rate": 0.03,
+        "max_depth": 10,
+        "min_child_weight": 2,
+        "subsample": 0.85,
+        "colsample_bytree": 0.9,
+        "reg_lambda": 6,
+        "reg_alpha": 0.1,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100,
+        "num_leaves": 127,
+        "subsample_freq": 1,
+        "seed": 48
+      },
+      "feature_code": ""
+    },
+    "split": {
+      "method": "random_holdout_20pct",
+      "seed": 42,
+      "train_rows": 42646,
+      "validation_rows": 10662,
+      "split_sha256": "13cc9c4db238d4f6fe3ad16148cfe5d71a875b52859f680d85f9d95731efbc0d",
+      "shared_feature_hashes": 101,
+      "validation_class_counts": null
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/frozen-v2/regression-s42",
+    "seconds": 53.964,
+    "error": null,
+    "variant": "frozen-v2"
+  },
+  {
+    "task": "regression",
+    "seed": 43,
+    "metric": "rmse",
+    "value": 42.48552379704731,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "The best XGBoost model (42.54) likely benefits from increased model capacity to capture complex non-linear interactions between weather and building features, as previous attempts with lower capacity or different regularization showed slightly higher RMSE. Increasing max_depth and reducing min_child_weight allows the model to fit more detailed patterns in the heavy-tailed target distribution.",
+      "engine": "xgboost",
+      "params": {
+        "iterations": 2200,
+        "learning_rate": 0.03,
+        "max_depth": 10,
+        "min_child_weight": 2,
+        "subsample": 0.85,
+        "colsample_bytree": 0.9,
+        "reg_lambda": 6,
+        "reg_alpha": 0.1,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100,
+        "num_leaves": 127,
+        "subsample_freq": 1,
+        "seed": 48
+      },
+      "feature_code": ""
+    },
+    "split": {
+      "method": "random_holdout_20pct",
+      "seed": 43,
+      "train_rows": 42646,
+      "validation_rows": 10662,
+      "split_sha256": "2d3be88009d65c6de3308999e15af32d69b392dd521001c4ecd0307cdb3787c9",
+      "shared_feature_hashes": 89,
+      "validation_class_counts": null
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/frozen-v2/regression-s43",
+    "seconds": 60.248,
+    "error": null,
+    "variant": "frozen-v2"
+  },
+  {
+    "task": "regression",
+    "seed": 42,
+    "metric": "rmse",
+    "value": 41.96837676520955,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "The best XGBoost model (42.54) likely benefits from increased model capacity to capture complex non-linear interactions between weather and building features, as previous attempts with lower capacity or different regularization showed slightly higher RMSE. Increasing max_depth and reducing min_child_weight allows the model to fit more detailed patterns in the heavy-tailed target distribution.",
+      "engine": "xgboost",
+      "params": {
+        "iterations": 2200,
+        "learning_rate": 0.03,
+        "max_depth": 10,
+        "min_child_weight": 2,
+        "subsample": 0.85,
+        "colsample_bytree": 0.9,
+        "reg_lambda": 6,
+        "reg_alpha": 0.1,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100,
+        "num_leaves": 127,
+        "subsample_freq": 1,
+        "seed": 48
+      },
+      "feature_code": ""
+    },
+    "split": {
+      "method": "random_holdout_20pct",
+      "seed": 42,
+      "train_rows": 42646,
+      "validation_rows": 10662,
+      "split_sha256": "13cc9c4db238d4f6fe3ad16148cfe5d71a875b52859f680d85f9d95731efbc0d",
+      "shared_feature_hashes": 101,
+      "validation_class_counts": null
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/modular-noop/regression-s42",
+    "seconds": 52.594,
+    "error": null,
+    "variant": "modular-noop"
+  },
+  {
+    "task": "regression",
+    "seed": 43,
+    "metric": "rmse",
+    "value": 42.48552379704731,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "The best XGBoost model (42.54) likely benefits from increased model capacity to capture complex non-linear interactions between weather and building features, as previous attempts with lower capacity or different regularization showed slightly higher RMSE. Increasing max_depth and reducing min_child_weight allows the model to fit more detailed patterns in the heavy-tailed target distribution.",
+      "engine": "xgboost",
+      "params": {
+        "iterations": 2200,
+        "learning_rate": 0.03,
+        "max_depth": 10,
+        "min_child_weight": 2,
+        "subsample": 0.85,
+        "colsample_bytree": 0.9,
+        "reg_lambda": 6,
+        "reg_alpha": 0.1,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100,
+        "num_leaves": 127,
+        "subsample_freq": 1,
+        "seed": 48
+      },
+      "feature_code": ""
+    },
+    "split": {
+      "method": "random_holdout_20pct",
+      "seed": 43,
+      "train_rows": 42646,
+      "validation_rows": 10662,
+      "split_sha256": "2d3be88009d65c6de3308999e15af32d69b392dd521001c4ecd0307cdb3787c9",
+      "shared_feature_hashes": 89,
+      "validation_class_counts": null
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/modular-noop/regression-s43",
+    "seconds": 59.197,
+    "error": null,
+    "variant": "modular-noop"
+  },
+  {
+    "task": "regression",
+    "seed": 42,
+    "metric": "rmse",
+    "value": 41.886899177143675,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "The best XGBoost model (42.54) likely benefits from increased model capacity to capture complex non-linear interactions between weather and building features, as previous attempts with lower capacity or different regularization showed slightly higher RMSE. Increasing max_depth and reducing min_child_weight allows the model to fit more detailed patterns in the heavy-tailed target distribution.",
+      "engine": "xgboost",
+      "params": {
+        "iterations": 2200,
+        "learning_rate": 0.03,
+        "max_depth": 10,
+        "min_child_weight": 2,
+        "subsample": 0.85,
+        "colsample_bytree": 0.9,
+        "reg_lambda": 6,
+        "reg_alpha": 0.1,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100,
+        "num_leaves": 127,
+        "subsample_freq": 1,
+        "seed": 48
+      },
+      "feature_code": "",
+      "data_policy": {
+        "augmentation": "mask",
+        "copy_fraction": 0.15,
+        "mask_probability": 0.1
+      }
+    },
+    "split": {
+      "method": "random_holdout_20pct",
+      "seed": 42,
+      "train_rows": 42646,
+      "validation_rows": 10662,
+      "split_sha256": "13cc9c4db238d4f6fe3ad16148cfe5d71a875b52859f680d85f9d95731efbc0d",
+      "shared_feature_hashes": 101,
+      "validation_class_counts": null
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/mask15/regression-s42",
+    "seconds": 59.219,
+    "error": null,
+    "variant": "mask15"
+  },
+  {
+    "task": "regression",
+    "seed": 43,
+    "metric": "rmse",
+    "value": 42.55437187783747,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "The best XGBoost model (42.54) likely benefits from increased model capacity to capture complex non-linear interactions between weather and building features, as previous attempts with lower capacity or different regularization showed slightly higher RMSE. Increasing max_depth and reducing min_child_weight allows the model to fit more detailed patterns in the heavy-tailed target distribution.",
+      "engine": "xgboost",
+      "params": {
+        "iterations": 2200,
+        "learning_rate": 0.03,
+        "max_depth": 10,
+        "min_child_weight": 2,
+        "subsample": 0.85,
+        "colsample_bytree": 0.9,
+        "reg_lambda": 6,
+        "reg_alpha": 0.1,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100,
+        "num_leaves": 127,
+        "subsample_freq": 1,
+        "seed": 48
+      },
+      "feature_code": "",
+      "data_policy": {
+        "augmentation": "mask",
+        "copy_fraction": 0.15,
+        "mask_probability": 0.1
+      }
+    },
+    "split": {
+      "method": "random_holdout_20pct",
+      "seed": 43,
+      "train_rows": 42646,
+      "validation_rows": 10662,
+      "split_sha256": "2d3be88009d65c6de3308999e15af32d69b392dd521001c4ecd0307cdb3787c9",
+      "shared_feature_hashes": 89,
+      "validation_class_counts": null
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/mask15/regression-s43",
+    "seconds": 65.607,
+    "error": null,
+    "variant": "mask15"
+  },
+  {
+    "task": "regression",
+    "seed": 42,
+    "metric": "rmse",
+    "value": 41.93499704125512,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "The best XGBoost model (42.54) likely benefits from increased model capacity to capture complex non-linear interactions between weather and building features, as previous attempts with lower capacity or different regularization showed slightly higher RMSE. Increasing max_depth and reducing min_child_weight allows the model to fit more detailed patterns in the heavy-tailed target distribution.",
+      "engine": "xgboost",
+      "params": {
+        "iterations": 2200,
+        "learning_rate": 0.03,
+        "max_depth": 10,
+        "min_child_weight": 2,
+        "subsample": 0.85,
+        "colsample_bytree": 0.9,
+        "reg_lambda": 6,
+        "reg_alpha": 0.1,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100,
+        "num_leaves": 127,
+        "subsample_freq": 1,
+        "seed": 48
+      },
+      "feature_code": "",
+      "data_policy": {
+        "augmentation": "mask",
+        "copy_fraction": 0.25,
+        "mask_probability": 0.15
+      }
+    },
+    "split": {
+      "method": "random_holdout_20pct",
+      "seed": 42,
+      "train_rows": 42646,
+      "validation_rows": 10662,
+      "split_sha256": "13cc9c4db238d4f6fe3ad16148cfe5d71a875b52859f680d85f9d95731efbc0d",
+      "shared_feature_hashes": 101,
+      "validation_class_counts": null
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/mask25/regression-s42",
+    "seconds": 66.121,
+    "error": null,
+    "variant": "mask25"
+  },
+  {
+    "task": "regression",
+    "seed": 43,
+    "metric": "rmse",
+    "value": 42.39455137665472,
+    "status": "ok",
+    "recipe": {
+      "hypothesis": "The best XGBoost model (42.54) likely benefits from increased model capacity to capture complex non-linear interactions between weather and building features, as previous attempts with lower capacity or different regularization showed slightly higher RMSE. Increasing max_depth and reducing min_child_weight allows the model to fit more detailed patterns in the heavy-tailed target distribution.",
+      "engine": "xgboost",
+      "params": {
+        "iterations": 2200,
+        "learning_rate": 0.03,
+        "max_depth": 10,
+        "min_child_weight": 2,
+        "subsample": 0.85,
+        "colsample_bytree": 0.9,
+        "reg_lambda": 6,
+        "reg_alpha": 0.1,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100,
+        "num_leaves": 127,
+        "subsample_freq": 1,
+        "seed": 48
+      },
+      "feature_code": "",
+      "data_policy": {
+        "augmentation": "mask",
+        "copy_fraction": 0.25,
+        "mask_probability": 0.15
+      }
+    },
+    "split": {
+      "method": "random_holdout_20pct",
+      "seed": 43,
+      "train_rows": 42646,
+      "validation_rows": 10662,
+      "split_sha256": "2d3be88009d65c6de3308999e15af32d69b392dd521001c4ecd0307cdb3787c9",
+      "shared_feature_hashes": 89,
+      "validation_class_counts": null
+    },
+    "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/v3-migration/policies/mask25/regression-s43",
+    "seconds": 62.542,
+    "error": null,
+    "variant": "mask25"
+  }
+]

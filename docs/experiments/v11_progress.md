@@ -35,6 +35,16 @@ Frozen featureviews1 full class→regression run started sequentially around12:2
 in test-runs/llm-upgrade-20261022/featureviews1-full. Same resource/input controls.
 Do not call the pending public gate passed. No new model default retained yet.
 
+Classification has now COMPLETED, exit0/refit/integrity pass,2691.782s:
+search .6632403174648631,confirmation .6553953692580672,mean .6593178433614652.
+Both improve over full reproduced history4 control .6538467374261537 /
+.6527157430204659,mean .6532812402233098. Final CSV SHA
+af64a22a5e9f5ff26ed817dfaa707e77e5bd9500dc63e52748521b00670efa96.
+Selected equal-thirds global blend contains TWO typed feature-view recipes plus
+XGBoost, nested iteration tree preserved. Portable classification evidence in
+release/v11-featureviews1. Regression parity is still running before retention.
+This is reused public validation, no official-points projection.
+
 ## Environment inventory
 
 Available in the current existing venv: Python3.12.14,numpy1.26.4,scipy1.12,

@@ -8,6 +8,7 @@ ROOT=Path(__file__).resolve().parents[1]; sys.path.insert(0,str(ROOT/'src'))
 from automl.task_understanding.api import discover
 from automl.task_understanding.semantic_inputs import validated_roles
 from automl.task_understanding import semantic_inputs
+from automl.task_understanding import service
 from automl.search import runner
 
 
@@ -125,6 +126,66 @@ class SemanticInputTests(unittest.TestCase):
                   patch.object(semantic_inputs,'request_json',side_effect=first) as call):
                 with self.assertRaisesRegex(ValueError,'context bound'): discover(path,allow_llm=True)
             self.assertEqual(call.call_count,1)
+
+    def test_validated_semantic_tables_are_loaded_once_and_reused(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);path,response=self.fixture(root)
+            with (patch.object(semantic_inputs,'request_json',return_value=self.mock_response(response)),
+                  patch.object(service,'_read_tables',wraps=service._read_tables) as read):
+                spec,*_=discover(path,allow_llm=True)
+            self.assertEqual(spec['target'],'answer');self.assertEqual(read.call_count,1)
+
+    def test_schema_invalid_but_catalog_valid_roles_get_one_feedback_retry(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);path,response=self.fixture(root)
+            wrong={'files':dict(response['files'],train='beta.csv',test='alpha.csv')}
+            with patch.object(semantic_inputs,'request_json',side_effect=[self.mock_response(wrong),self.mock_response(response)]) as call:
+                spec,*_=discover(path,allow_llm=True)
+            self.assertEqual(call.call_count,2)
+            self.assertIn('row counts differ',call.call_args_list[1].args[1]['previous_mapping_error'])
+            trace=json.loads(Path(spec['file_role_resolution']['trace']).read_text())
+            self.assertEqual(trace['attempts'][0]['validation'],'rejected_table_contract');self.assertTrue(trace['validated'])
+
+    def test_identifier_feedback_never_sends_private_row_values(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);path,response=self.fixture(root)
+            sample=pd.read_csv(root/'gamma.csv');sample.to_csv(root/'epsilon.csv',index=False)
+            sample['key']=['private_identifier_value_'+str(i) for i in range(len(sample))];sample.to_csv(root/'gamma.csv',index=False)
+            corrected={'files':dict(response['files'],sample_submission='epsilon.csv')}
+            with patch.object(semantic_inputs,'request_json',side_effect=[self.mock_response(response),self.mock_response(corrected)]) as call:
+                spec,*_=discover(path,allow_llm=True)
+            self.assertEqual(call.call_count,2)
+            for args in call.call_args_list: self.assertNotIn('private_identifier_value_',json.dumps(args.args[1]))
+            self.assertEqual(Path(spec['paths']['sample_submission']).name,'epsilon.csv')
+
+    def test_repeated_structural_failure_never_accepts_a_wrong_contract(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);path,response=self.fixture(root)
+            wrong={'files':dict(response['files'],train='beta.csv',test='alpha.csv')}
+            with patch.object(semantic_inputs,'request_json',return_value=self.mock_response(wrong)) as call:
+                with self.assertRaisesRegex(ValueError,'No valid semantic input mapping'): discover(path,allow_llm=True)
+            self.assertEqual(call.call_count,2)
+            trace=json.loads(next((root/'automl_runs').glob('task-contract-*/file-roles.json')).read_text())
+            self.assertFalse(trace['validated']);self.assertEqual(len(trace['attempts']),2)
+
+    def test_unsupported_objective_is_terminal_not_a_mapping_workaround(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);path,response=self.fixture(root)
+            path.write_text(path.read_text().replace('Metric RMSE','Primary metric Cohen kappa'))
+            with patch.object(semantic_inputs,'request_json',return_value=self.mock_response(response)) as call:
+                with self.assertRaisesRegex(ValueError,'No supported objective'): discover(path,allow_llm=True)
+            self.assertEqual(call.call_count,1)
+
+    def test_table_read_errors_are_terminal_and_not_sent_as_feedback(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);path,response=self.fixture(root)
+            with (patch.object(semantic_inputs,'request_json',return_value=self.mock_response(response)) as call,
+                  patch.object(service,'_read_tables',side_effect=ValueError('private_parser_row_value'))):
+                with self.assertRaises(ValueError): discover(path,allow_llm=True)
+            self.assertEqual(call.call_count,1)
+            trace=json.loads(next((root/'automl_runs').glob('task-contract-*/file-roles.json')).read_text())
+            self.assertEqual(trace['attempts'][0]['validation'],'terminal_table_error')
+            self.assertNotIn('private_parser_row_value',json.dumps(trace))
 
 
 if __name__=='__main__': unittest.main(verbosity=2)

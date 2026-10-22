@@ -45,17 +45,26 @@ class MultipleTargets(ValueError):
         super().__init__('Expected one target, got '+repr(list(targets)))
 
 
-def load_inputs(task_path:Path,allow_llm=False):
-    root = task_path.resolve().parent
-    text = task_path.read_text(encoding='utf-8-sig')
-    resolution={}
-    paths = resolve_inputs(root,text,allow_llm=allow_llm,resolution=resolution)
+def _read_tables(paths):
     train = read_input_table(paths['train'])
     test = read_input_table(paths['test'])
     sample = read_input_table(paths['sample_submission'])
     dictionary = read_input_table(paths['data_dictionary']) if 'data_dictionary' in paths else pd.DataFrame(columns=['feature','role'])
+    return {'train':train,'test':test,'sample':sample,'dictionary':dictionary}
+
+
+def load_inputs(task_path:Path,allow_llm=False):
+    root=task_path.resolve().parent; text=task_path.read_text(encoding='utf-8-sig')
+    resolution={}; accepted={}
+    def validate(paths):
+        from automl.task_understanding.role_validation import validate_role_tables
+        tables=_read_tables(paths)
+        validate_role_tables(tables)
+        accepted.update(tables)
+    paths=resolve_inputs(root,text,allow_llm=allow_llm,resolution=resolution,validate=validate)
+    tables=accepted or _read_tables(paths)
     return {'root':root,'task_path':task_path.resolve(),'text':text,'paths':paths,
-            'train':train,'test':test,'sample':sample,'dictionary':dictionary,'file_role_resolution':resolution}
+            **tables,'file_role_resolution':resolution}
 
 
 def discover(task_path: Path,target_override=None,loaded=None,allow_llm=False):

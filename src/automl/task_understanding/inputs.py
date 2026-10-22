@@ -62,9 +62,9 @@ def _resolve_inputs_deterministic(root,text):
     return paths
 
 
-def resolve_inputs(root,text,allow_llm=False,resolution=None):
+def resolve_inputs(root,text,allow_llm=False,resolution=None,validate=None):
     try: return _resolve_inputs_deterministic(root,text)
     except ValueError as exc:
         if not allow_llm or 'leaves task directory' in str(exc): raise
         from automl.task_understanding.semantic_inputs import infer_file_roles
-        return infer_file_roles(Path(root).resolve(),text,str(exc),resolution)
+        return infer_file_roles(Path(root).resolve(),text,str(exc),resolution,validate=validate)

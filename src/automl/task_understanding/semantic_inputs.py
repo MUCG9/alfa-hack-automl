@@ -5,6 +5,7 @@ from automl.infrastructure.atomic import atomic_json
 from automl.infrastructure.tables import read_input_table
 from automl.infrastructure.llm_gateway import request_json
 from automl.task_understanding.inputs import _catalog
+from automl.task_understanding.role_validation import RoleContractError
 
 MAX_CONTEXT_BYTES=65536
 
@@ -35,7 +36,7 @@ def validated_roles(value,catalog):
     return selected
 
 
-def infer_file_roles(root,text,initial_error,resolution=None):
+def infer_file_roles(root,text,initial_error,resolution=None,validate=None):
     paths=[p for p in _catalog(root) if p.name!='submission.csv']
     if not 3<=len(paths)<=32: raise ValueError('Semantic mapping requires 3..32 local input tables')
     catalog={str(p.relative_to(root)):p for p in paths}; schema=[]
@@ -66,6 +67,17 @@ def infer_file_roles(root,text,initial_error,resolution=None):
             context=dict(context,previous_mapping_error=str(exc)[:300])
             atomic_json(evidence,{'context':context,'attempts':attempts,'validated':False})
             continue
+        if validate is not None:
+            try: validate(selected)
+            except RoleContractError as exc:
+                attempt['validation']='rejected_table_contract';attempt['exception_type']='RoleContractError'
+                context=dict(context,previous_mapping_error=str(exc))
+                atomic_json(evidence,{'context':context,'attempts':attempts,'validated':False})
+                continue
+            except Exception as exc:
+                attempt['validation']='terminal_table_error';attempt['exception_type']=type(exc).__name__
+                atomic_json(evidence,{'context':context,'attempts':attempts,'validated':False})
+                raise
         attempt['validation']='accepted'
         atomic_json(evidence,{'context':context,'attempts':attempts,'validated':True,
                              'selected':{k:str(v.relative_to(root)) for k,v in selected.items()}})

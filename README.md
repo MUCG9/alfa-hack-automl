@@ -1,10 +1,18 @@
-# Alfa Hack AutoML: V10, CPU-поиск и ансамблевые эксперименты
+# Alfa Hack AutoML: V11–V12, независимые проверяемые улучшения
 
-Текущее продолжение — [work/cpu-research-20261022](https://github.com/MUCG9/alfa-hack-automl/tree/work/cpu-research-20261022).
+Текущее продолжение — [work/llm-upgrade-20261022](https://github.com/MUCG9/alfa-hack-automl/tree/work/llm-upgrade-20261022).
 `main` сохранён как v2. Новые исходники и кандидаты не означают автоматически
 новый официальный submit.
 
-Продолжение на этом ПК: `work/cpu-research-20261022`, основа`a95c931`.
+Капитан возобновил работу после передачи коллеги6aefbd9.
+[Разбор советов LLM](docs/experiments/v11_llm_review.md),
+[журнал V11](docs/experiments/v11_progress.md),[пороговый протокол](docs/experiments/v12_threshold_protocol.md).
+V11:230unique source/23repeated unpacked PASS; полный class→regression gate идёт.
+V12: новый оптимизатор пока dormant,244source/23unpacked gates ожидают V11.
+Никакого нового official upload. Последний полностью подтверждённый локальный
+release пока history4. Дальше ниже — история предыдущего этапа, не STOP текущей работы.
+
+Предыдущее продолжение: `work/cpu-research-20261022`, основа`a95c931`.
 Капитан подтвердил результат V9: **2187.849**,1940.2s,«Лучшее решение»
 (его оценка21.87/100); [запись результата](release/v9-roles1/result-20261022.json).
 [Обзор CPU autoresearch и новая очередь экспериментов](docs/experiments/cpu_research_review_20261022.md).

@@ -1,4 +1,28 @@
-# Передача V10: исследования остановлены по просьбе капитана
+# ACTIVE V11–V12 continuation after colleague handoff
+
+Captain renewed implementation after colleague6aefbd9. Branch
+`work/llm-upgrade-20261022`, not main. See v11_llm_review.md/v11_progress.md in
+docs/experiments. New official submit NOT authorized; previous V10 STOP below
+is historical. Main and older artifacts preserved; no extra agents/API-key bypass.
+
+V11 featureviews1 sourcee11409e,SHAfbbd2511652814d7c05334ab0240f18b81e88a7b59dfc979efa617011dc84490:
+230source/23unpacked PASS. Full history4 baseline class reproduced CSV58f52...,mean
+.6532812402233098,exit0/refit/integrity. Frozen V11 full class→regression is ACTIVE
+in test-runs/llm-upgrade-20261022/featureviews1-full (owned execution11039).
+
+V12 threshold2 sourceeafdd6a,SHA12dc0f0ee49eaea085851ee98d309f1b86154e2be4d5a026212aa4d6806bb9a1,
+new method dormant; default old coordinate unchanged.244source checks queued AFTER
+V11 (execution15143). That older queued verifier still names superseded threshold1
+and should refuse current-source mismatch, not a passed archive gate. Correct
+threshold2 unpacked verification separately queued after source results (98344).
+Do not edit runtime/tests during these unchanged-source gates. No threshold public
+fits yet. V13 AutoGluon dev-only extension/synthetic checker prepared, not run;
+V14 independent search-anchor policy is a conditional protocol, not implementation.
+
+Primary26% used observed12:48UTC; cutoff85% used. Heavy jobs sequential2threads,
+fixture suite1thread. No new dependencies, live Qwen or official upload this turn.
+
+## Historical V10 handoff (superseded status)
 
 22октября2026. Branch **work/cpu-research-20261022**,base V9a95c931. Последняя
 команда — остановиться из-за лимитов и передать работу; она заменяет предыдущее

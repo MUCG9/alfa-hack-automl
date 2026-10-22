@@ -132,3 +132,10 @@ union/order/rows/weights/skip PASS. Actual flat worker import и expected reject
 неподходящего task kind проверены до fitting (0 model fits). Этот тест не является
 live ML smoke. FE-02 запускать только после завершения текущей ночной очереди и
 проверки training lock; canonical source до этого остаётся замороженным.
+
+FE-02 уже автоматически запланирован: followup PID49264/create_time1792709589.83,
+receipt `fe02-identity.json`, статус `fe02-20261023/followup.json`. Сейчас он
+waiting_for_overnight, lock по-прежнему принадлежит PID37960. Не запускать
+ручной дубль. Wait+screen21600s, fitcap3600s; canonical source нельзя менять
+также между завершением основной очереди и этим followup. Проверка busy-lock
+и сохранения чужого lock PASS, без task discovery/fits.

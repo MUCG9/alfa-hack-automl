@@ -45,6 +45,9 @@ Pending FE-02 is predeclared in docs/experiments/fe02_protocol_20261023.md:
 union original columns with ordinary CatBoost top32, trusted dev dispatcher only.
 Three no-fit checks and flat import/expected protocol rejection PASS, zero fits.
 Run only after MVP AND existing overnight queue/descendants finish and lock frees.
+FE-02 is NOW already scheduled by followup coordinator PID49264,
+create_time1792709589.83, fe02-identity.json and fe02-20261023/followup.json.
+It waits without owning the training lock. Do not start a manual duplicate.
 Do not change canonical source before all frozen research finishes; HPO sparse
 anchor-default audit is recorded for a subsequent narrow fix.
 Local rollback tags: baseline-before-qwen-optuna-20261022,

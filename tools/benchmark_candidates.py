@@ -18,6 +18,7 @@ def main():
     parser.add_argument('--candidates',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--archive',type=Path)
+    parser.add_argument('--worker-extension',type=Path,help='Trusted developer-only dispatcher under tools/; copied and hashed, never part of contest ZIP')
     parser.add_argument('--seeds',nargs='+',type=int,default=[42,43])
     parser.add_argument('--threads',type=int,default=2)
     parser.add_argument('--timeout',type=int,default=1200)
@@ -34,6 +35,13 @@ def main():
             if any('/' in n or '\\' in n for n in archive.namelist()): raise ValueError('Expected flat archive')
             files={n:archive.read(n) for n in archive.namelist()}
     else: files=build_files()
+    if args.worker_extension:
+        extension=args.worker_extension.resolve()
+        if not extension.is_relative_to((ROOT/'tools').resolve()) or extension.suffix!='.py' or not extension.is_file():
+            raise ValueError('Worker extension must be an existing trusted Python tool')
+        payload=extension.read_bytes(); compile(payload,'research_worker.py','exec')
+        if 'research_worker.py' in files: raise ValueError('Research extension name collision')
+        files=dict(files,**{'research_worker.py':payload})
     for name,data in files.items(): (source/name).write_bytes(data)
     spec,profile,train,_,_,_,hashes=discover(args.task)
     spec=choose_validation(spec,train,'auto' if spec.get('task_family')=='pointwise_ranking' else args.validation_strategy)
@@ -66,7 +74,7 @@ def main():
             for k in ['OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS']: env[k]=str(args.threads)
             started=time.monotonic(); peak=0; stopped=None
             with (directory/'worker.log').open('w') as log:
-                worker='automl_worker.py' if (source/'automl_worker.py').exists() else 'agent_worker.py'
+                worker='research_worker.py' if args.worker_extension else 'automl_worker.py' if (source/'automl_worker.py').exists() else 'agent_worker.py'
                 proc=subprocess.Popen([sys.executable,str(source/worker),str(directory/'job.json')],env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
                 tree=ProcessTree(proc)
                 try:

@@ -21,8 +21,12 @@ def main():
     parser.add_argument('--time-budget',type=int,default=240)
     parser.add_argument('--endpoint',default='https://changellenge.up.railway.app/v1')
     parser.add_argument('--model',default='qwen/qwen3.8-27b')
+    parser.add_argument('--hpo-trials',type=int,default=0)
+    parser.add_argument('--selection-top-k',type=int,default=0)
+    parser.add_argument('--planner-mode',choices=['baseline','staged'],default='baseline')
     args=parser.parse_args()
     if not 180<=args.time_budget<=600: raise ValueError('Use a180..600s fixture budget')
+    if not 0<=args.hpo_trials<=8 or not 0<=args.selection_top_k<=2: raise ValueError('Invalid fixture MVP options')
     endpoint=urlsplit(args.endpoint)
     local_mock=endpoint.hostname in {'127.0.0.1','localhost','::1'}
     if endpoint.username or endpoint.password or endpoint.query or endpoint.fragment:
@@ -62,8 +66,10 @@ def main():
         'predict answers for beta.csv. gamma.csv is the required output format, including row order. '
         'delta.csv describes column roles. All rows are an artificial developer fixture, not public/private competition data.')
     initial={name:hashlib.sha256((out/name).read_bytes()).hexdigest() for name in ['task.md','alpha.csv','beta.csv','gamma.csv','delta.csv']}
-    command=[sys.executable,'-u','solution.py','task.md','--max-experiments','7',
-             '--max-planner-calls','1','--time-budget',str(args.time_budget)]
+    command=[sys.executable,'-u','solution.py','task.md','--max-experiments','10' if args.hpo_trials else '7',
+             '--max-planner-calls','1','--time-budget',str(args.time_budget),
+             '--hpo-trials',str(args.hpo_trials),'--hpo-budget','60',
+             '--feature-selection-top-k',str(args.selection_top_k),'--planner-mode',args.planner_mode]
     started=time.monotonic()
     def interrupted(signum,frame): raise SystemExit(128+signum)
     previous=signal.signal(signal.SIGTERM,interrupted)
@@ -82,6 +88,9 @@ def main():
     planner_calls=report.get('llm_calls',[])
     semantic_ok=any(m.get('validated') and any(a['call']['status']=='ok' for a in m['attempts']) for m in mappings)
     planner_ok=any(c['status']=='ok' for c in planner_calls)
+    hpo=report.get('hpo') or {}
+    selection_active=any(p.get('feature_selection',{}).get('status')=='selected'
+        for r in report.get('experiments',[]) for p in r.get('data_policy_runs',[]))
     output_ok=False
     if (out/'submission.csv').exists():
         prediction=pd.read_csv(out/'submission.csv')
@@ -98,8 +107,11 @@ def main():
              'semantic_live_ok':semantic_ok and not local_mock,'planner_live_ok':planner_ok and not local_mock,'calls':calls,
              'output_contract_ok':bool(output_ok),'inputs_unchanged':unchanged,
              'final_fit_status':report.get('final_fit_status'),'integrity_ok':report.get('integrity_ok'),
+             'hpo_status':hpo.get('status'),'hpo_completed_trials':hpo.get('completed_trials'),
+             'feature_selection_active':selection_active,'planner_mode':args.planner_mode,
              'scope':'Artificial180-row regression fixture; local_mock_http is NOT live Qwen proof. No ML quality or official score claim.',
-             'passed':bool(status==0 and semantic_ok and planner_ok and output_ok and unchanged and report.get('final_fit_status')=='ok' and report.get('integrity_ok'))}
+             'passed':bool(status==0 and semantic_ok and planner_ok and output_ok and unchanged and report.get('final_fit_status')=='ok' and report.get('integrity_ok')
+                           and (not args.hpo_trials or hpo.get('status')=='ok') and (not args.selection_top_k or selection_active))}
     # Do not echo any artifacts if an upstream error unexpectedly included the key.
     credential=env['OPENAI_API_KEY'].encode()
     for path in out.rglob('*'):

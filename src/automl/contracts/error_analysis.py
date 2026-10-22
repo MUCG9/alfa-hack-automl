@@ -167,6 +167,7 @@ class ModelPredictionRef(_Message):
     split: AnalysisArtifactRef
     probabilities: AnalysisArtifactRef | None = None
     probability_kind: str = 'none'
+    recorded_result: AnalysisArtifactRef | None = None
     schema_version: str = ERROR_ANALYSIS_SCHEMA_VERSION
 
     def __post_init__(self):
@@ -193,6 +194,84 @@ class ModelPredictionRef(_Message):
                 raise ValueError('Probability kind requires an artifact')
         elif not isinstance(self.probabilities, AnalysisArtifactRef) or self.probability_kind == 'none' or not bundle.classes:
             raise ValueError('Probability artifact requires kind and class order')
+        if self.recorded_result is not None and not isinstance(self.recorded_result, AnalysisArtifactRef):
+            raise ValueError('Expected recorded-result artifact reference')
+
+
+@dataclass(frozen=True)
+class DiagnosticBlend(_Message):
+    name: str
+    models: tuple[str, ...]
+    weights: tuple[float, ...]
+    schema_version: str = ERROR_ANALYSIS_SCHEMA_VERSION
+
+    def __post_init__(self):
+        self._version()
+        _text(self.name, 'blend name')
+        _strings(self.models, 'blend models')
+        if len(self.models) < 2 or not isinstance(self.weights, tuple) or len(self.weights) != len(self.models):
+            raise ValueError('Blend requires at least two models and matching weights')
+        if any(not _finite_number(w) or w <= 0 for w in self.weights):
+            raise ValueError('Diagnostic blend weights must be finite and positive')
+        total = sum(self.weights)
+        if not math.isfinite(total):
+            raise ValueError('Invalid total blend weight')
+        object.__setattr__(self, 'weights', tuple(float(w / total) for w in self.weights))
+
+
+@dataclass(frozen=True)
+class ErrorAnalysisProtocol(_Message):
+    protocol_id: str
+    numeric_features: tuple[str, ...] = ()
+    categorical_features: tuple[str, ...] = ()
+    context_groups: tuple[tuple[str, ...], ...] = ()
+    period_column: str | None = None
+    require_group_disjoint: bool = True
+    quantile_bins: int = 4
+    max_categories: int = 8
+    min_slice_groups: int = 20
+    rare_max_groups: int = 20
+    high_confidence: float = .9
+    bootstrap_replicates: int = 200
+    bootstrap_seed: int = 2026
+    min_bootstrap_groups: int = 20
+    max_pairs: int = 66
+    blends: tuple[DiagnosticBlend, ...] = ()
+    evidence: tuple[AnalysisArtifactRef, ...] = ()
+    schema_version: str = ERROR_ANALYSIS_SCHEMA_VERSION
+
+    def __post_init__(self):
+        self._version()
+        _text(self.protocol_id, 'protocol_id')
+        for name in ('numeric_features', 'categorical_features'):
+            _strings(getattr(self, name), name, allow_empty=True)
+        if not isinstance(self.context_groups, tuple):
+            raise ValueError('Expected context groups tuple')
+        for group in self.context_groups:
+            _strings(group, 'context group')
+        if len(set(self.context_groups)) != len(self.context_groups):
+            raise ValueError('Duplicate context groups')
+        if self.period_column is not None:
+            _text(self.period_column, 'period_column')
+        if type(self.require_group_disjoint) is not bool:
+            raise ValueError('Group-disjoint flag must be boolean')
+        for name, low, high in (('quantile_bins', 2, 10), ('max_categories', 1, 50),
+                                ('min_slice_groups', 2, 1000000), ('rare_max_groups', 1, 1000000),
+                                ('bootstrap_replicates', 0, 5000), ('bootstrap_seed', 0, 2**31-1),
+                                ('min_bootstrap_groups', 2, 1000000), ('max_pairs', 1, 1000)):
+            value = getattr(self, name)
+            if type(value) is not int or not low <= value <= high:
+                raise ValueError('Invalid protocol parameter: ' + name)
+        if self.bootstrap_replicates != 0 and self.bootstrap_replicates < 100:
+            raise ValueError('Use zero or at least 100 bootstrap replicates')
+        if not _finite_number(self.high_confidence) or not .5 <= self.high_confidence <= 1:
+            raise ValueError('Invalid confidence threshold')
+        if not isinstance(self.blends, tuple) or any(not isinstance(b, DiagnosticBlend) for b in self.blends):
+            raise ValueError('Invalid declared diagnostic blends')
+        if len({b.name for b in self.blends}) != len(self.blends):
+            raise ValueError('Duplicate blend names')
+        if not isinstance(self.evidence, tuple) or any(not isinstance(r, AnalysisArtifactRef) for r in self.evidence):
+            raise ValueError('Invalid protocol evidence')
 
 
 @dataclass(frozen=True)

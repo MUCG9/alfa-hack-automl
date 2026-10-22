@@ -7,6 +7,8 @@ from automl.contracts.error_analysis import (
     AnalysisArtifactRef,
     AnalysisBudget,
     ModelPredictionRef,
+    DiagnosticBlend,
+    ErrorAnalysisProtocol,
     ErrorAnalysisRequest,
     ErrorProfileSection,
     ErrorFinding,

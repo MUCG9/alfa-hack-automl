@@ -1,0 +1,1227 @@
+{
+  "source": {
+    "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+    "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+    "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+    "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+    "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+    "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+    "automl_contracts_messages.py": "dc14ab3c2e257b8ae8dacc3c3888580f01b9a5f5494322273989345d4f429623",
+    "automl_ensembles.py": "ccbb07cef50a1ebfef8a157a86515a3b494e5c3ce8c37b518eca44265e3bd054",
+    "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+    "automl_evaluation_api.py": "03333abcdf2c17ec16a9c439c83a972920fbde76211e2605ab3db9e619547b7b",
+    "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+    "automl_execution_api.py": "57dbadc9767ef1b17ba28a035b3ecf4ce0f8d35ddd202af52151103cad3fd394",
+    "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+    "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+    "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+    "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+    "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+    "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+    "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+    "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+    "automl_infrastructure_llm_gateway.py": "4d85eeac0985f6bb9995a07e6cf372621c2455d614b01959bd3b8fb82704d27d",
+    "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+    "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+    "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+    "automl_infrastructure_run_budget.py": "0d94db9d5647731740e38e11069818ea3578dcc8a09cf217f736cae8fe8bdeb3",
+    "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1",
+    "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+    "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+    "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+    "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+    "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+    "automl_models.py": "0bedf6ca855ac9769c062e4a4fa5144611d6adec8685f43dde3f1d5cf0801f30",
+    "automl_policy.py": "bae976185b657ba687d895f680e127917aec9c566f49933dda529e3dfe05d2eb",
+    "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+    "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+    "automl_runner.py": "ba3513ccb1bbaa3e2f4c2c1b61ccc7f5d02dec61d21fb7c0fe683ec511b06dd1",
+    "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+    "automl_search_multitarget.py": "a855c0966156ccb5343471754d2028e20a8513aac706c33bb2c6dfa8201d4754",
+    "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+    "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+    "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+    "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+    "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+    "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+    "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+    "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+    "automl_worker.py": "5612442baa46c107e4716cca94e5d0a0819f915863140113ab15edfc6a7a9180",
+    "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+    "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+    "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+    "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953"
+  },
+  "harness": {
+    "tools/benchmark_candidates.py": "1f8edf268375d589d6098bfd7c80fd3f670d7ff641a810170d11e8a323656bc8",
+    "src/automl/task_understanding/service.py": "cf8474aad2ada4e2e1003674d7c962cb937dbc7b99e1665b945b4a75e69c4606",
+    "src/automl/evaluation/service.py": "8f43c700882ffb3b873c4405402bd6c9bfda18c1f79e4692ba7d3521366cdf65",
+    "src/automl/infrastructure/processes.py": "fb6f3e0614904f1b6db7f4c4e2718c0518b1ba6ae4c66f7cbf42545a5a25cf90"
+  },
+  "python": "3.12.3 (main, Jan 22 2026, 20:57:42) [GCC 13.3.0]",
+  "inputs": {
+    "train": "171a8915070b7575b729a32f70a45d1ad7b6f43c65b4ce12a0a68af30d5cb4e0",
+    "test": "b825449603931b5f05a8855e3d92b57775221c93ed4730ac6b4c75b9ea608862",
+    "sample_submission": "4d23642fcff01e49b0ef5a9f018b2381c12fad97282fa586285ad49b01e9623e",
+    "data_dictionary": "13d2651c5fe02b7fc30f0e7290af45606aad5de76c2f7b69217abc270dbbcef4"
+  },
+  "task_sha256": "eebb55ebb8deb8257a2c012330ecc015e8d3a0bc3619c40da6c2a6ab200709bf",
+  "spec": {
+    "root": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/public_tasks/classification",
+    "task_path": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/public_tasks/classification/task.md",
+    "paths": {
+      "train": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/public_tasks/classification/train.csv",
+      "test": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/public_tasks/classification/test.csv",
+      "sample_submission": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/public_tasks/classification/sample_submission.csv",
+      "data_dictionary": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/public_tasks/classification/data_dictionary.csv"
+    },
+    "target": "attack_cat",
+    "id": "id",
+    "features": [
+      "dur",
+      "proto",
+      "service",
+      "state",
+      "spkts",
+      "dpkts",
+      "sbytes",
+      "dbytes",
+      "rate",
+      "sttl",
+      "dttl",
+      "sload",
+      "dload",
+      "sloss",
+      "dloss",
+      "sinpkt",
+      "dinpkt",
+      "sjit",
+      "djit",
+      "swin",
+      "stcpb",
+      "dtcpb",
+      "dwin",
+      "tcprtt",
+      "synack",
+      "ackdat",
+      "smean",
+      "dmean",
+      "trans_depth",
+      "response_body_len",
+      "ct_srv_src",
+      "ct_state_ttl",
+      "ct_dst_ltm",
+      "ct_src_dport_ltm",
+      "ct_dst_sport_ltm",
+      "ct_dst_src_ltm",
+      "is_ftp_login",
+      "ct_ftp_cmd",
+      "ct_flw_http_mthd",
+      "ct_src_ltm",
+      "ct_srv_dst",
+      "is_sm_ips_ports"
+    ],
+    "kind": "classification",
+    "metric": "macro_f1",
+    "greater_is_better": true,
+    "n_train": 87670,
+    "n_test": 41166,
+    "n_features": 42,
+    "duplicate_feature_rate": 0.38145317668529716,
+    "text_features": [],
+    "classes": [
+      "Analysis",
+      "Backdoor",
+      "DoS",
+      "Exploits",
+      "Fuzzers",
+      "Generic",
+      "Normal",
+      "Reconnaissance",
+      "Shellcode",
+      "Worms"
+    ],
+    "prediction_type": "value",
+    "output_columns": [
+      "attack_cat"
+    ],
+    "categorical_features": [
+      "proto",
+      "service",
+      "state"
+    ],
+    "time_candidate": null,
+    "static_numeric_features": [],
+    "group_candidate": null,
+    "validation_strategy": "legacy"
+  },
+  "candidates": [
+    {
+      "name": "calibrated-lgbm-control",
+      "recipe": {
+        "engine": "lightgbm",
+        "hypothesis": "Frozen calibrated LightGBM seed42 control",
+        "params": {
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 5,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "class_weight_power": 0.5,
+          "calibrate": true,
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100,
+          "seed": 42
+        },
+        "feature_code": ""
+      }
+    },
+    {
+      "name": "fixed-lgbm-extratrees",
+      "recipe": {
+        "engine": "ensemble",
+        "hypothesis": "Predeclared equal probability average of strong LGBM control and structurally different ExtraTrees branch; no weight search",
+        "params": {},
+        "weights": [
+          1,
+          1
+        ],
+        "components": [
+          {
+            "engine": "lightgbm",
+            "hypothesis": "Frozen calibrated LightGBM seed42 control",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "calibrate": true,
+              "subsample_freq": 0,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "seed": 42
+            },
+            "feature_code": ""
+          },
+          {
+            "engine": "extra_trees",
+            "hypothesis": "Predeclared randomized-tree branch, unchanged fitting distribution; whole existing frequency-encoding adapter path",
+            "params": {
+              "iterations": 300,
+              "max_depth": 24,
+              "min_samples_leaf": 2,
+              "max_features": 0.7,
+              "seed": 42,
+              "class_weight_power": 0.5,
+              "calibrate": true,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        ]
+      }
+    }
+  ],
+  "results": [
+    {
+      "name": "calibrated-lgbm-control",
+      "seed": 42,
+      "status": "ok",
+      "metrics": {
+        "macro_f1": 0.6502929607048801,
+        "weighted_f1": 0.8145405426848424,
+        "accuracy": 0.8045038212473018,
+        "per_class_f1": {
+          "Analysis": 0.3281733746130031,
+          "Backdoor": 0.22330097087378642,
+          "DoS": 0.49572649572649574,
+          "Exploits": 0.6704966641957005,
+          "Fuzzers": 0.7454976303317535,
+          "Generic": 0.9879550683448369,
+          "Normal": 0.9122439256788947,
+          "Reconnaissance": 0.822868810617662,
+          "Shellcode": 0.65,
+          "Worms": 0.6666666666666666
+        },
+        "per_class_diagnostics": {
+          "Analysis": {
+            "precision": 0.4732142857142857,
+            "recall": 0.25118483412322273,
+            "support": 211
+          },
+          "Backdoor": {
+            "precision": 0.4791666666666667,
+            "recall": 0.14556962025316456,
+            "support": 158
+          },
+          "DoS": {
+            "precision": 0.35429392741645704,
+            "recall": 0.8251046025104602,
+            "support": 1195
+          },
+          "Exploits": {
+            "precision": 0.8573459715639811,
+            "recall": 0.5505173463177115,
+            "support": 3286
+          },
+          "Fuzzers": {
+            "precision": 0.6606467870642587,
+            "recall": 0.8553561718325177,
+            "support": 1839
+          },
+          "Generic": {
+            "precision": 0.9983588621444202,
+            "recall": 0.9777658719528529,
+            "support": 3733
+          },
+          "Normal": {
+            "precision": 0.9709939148073022,
+            "recall": 0.8601976639712489,
+            "support": 5565
+          },
+          "Reconnaissance": {
+            "precision": 0.8556263269639066,
+            "recall": 0.7925270403146509,
+            "support": 1017
+          },
+          "Shellcode": {
+            "precision": 0.5617283950617284,
+            "recall": 0.7711864406779662,
+            "support": 118
+          },
+          "Worms": {
+            "precision": 0.7058823529411765,
+            "recall": 0.631578947368421,
+            "support": 19
+          }
+        },
+        "confusion_matrix": {
+          "classes": [
+            "Analysis",
+            "Backdoor",
+            "DoS",
+            "Exploits",
+            "Fuzzers",
+            "Generic",
+            "Normal",
+            "Reconnaissance",
+            "Shellcode",
+            "Worms"
+          ],
+          "counts": [
+            [
+              53,
+              5,
+              130,
+              6,
+              0,
+              0,
+              17,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              23,
+              115,
+              14,
+              1,
+              0,
+              0,
+              1,
+              1,
+              0
+            ],
+            [
+              3,
+              7,
+              986,
+              151,
+              20,
+              0,
+              1,
+              11,
+              16,
+              0
+            ],
+            [
+              6,
+              9,
+              1206,
+              1809,
+              77,
+              6,
+              25,
+              116,
+              28,
+              4
+            ],
+            [
+              2,
+              2,
+              127,
+              21,
+              1573,
+              0,
+              98,
+              2,
+              13,
+              1
+            ],
+            [
+              1,
+              0,
+              43,
+              28,
+              6,
+              3650,
+              1,
+              0,
+              4,
+              0
+            ],
+            [
+              41,
+              0,
+              13,
+              30,
+              681,
+              0,
+              4787,
+              4,
+              9,
+              0
+            ],
+            [
+              3,
+              2,
+              163,
+              40,
+              2,
+              0,
+              1,
+              806,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              7,
+              19,
+              0,
+              0,
+              1,
+              91,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              4,
+              2,
+              0,
+              0,
+              1,
+              0,
+              12
+            ]
+          ]
+        },
+        "log_loss": 0.47283688615761593,
+        "roc_auc": 0.9700966684139347
+      },
+      "seconds": 72.643,
+      "peak_mb": 345.1,
+      "split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 42,
+        "train_rows": 70529,
+        "validation_rows": 17141,
+        "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 5565,
+          "Generic": 3733,
+          "Exploits": 3286,
+          "Fuzzers": 1839,
+          "DoS": 1195,
+          "Reconnaissance": 1017,
+          "Analysis": 211,
+          "Backdoor": 158,
+          "Shellcode": 118,
+          "Worms": 19
+        }
+      },
+      "fit_iterations": 100,
+      "directory": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/test-runs/v10-extratrees-complete/calibrated-lgbm-control/seed-42",
+      "exit_code": 0
+    },
+    {
+      "name": "calibrated-lgbm-control",
+      "seed": 43,
+      "status": "ok",
+      "metrics": {
+        "macro_f1": 0.6527944155063504,
+        "weighted_f1": 0.8224227082510334,
+        "accuracy": 0.8112859530808693,
+        "per_class_f1": {
+          "Analysis": 0.2765957446808511,
+          "Backdoor": 0.21875,
+          "DoS": 0.4871060171919771,
+          "Exploits": 0.6844765342960288,
+          "Fuzzers": 0.75,
+          "Generic": 0.9897619657025851,
+          "Normal": 0.913302448709464,
+          "Reconnaissance": 0.8409931325937665,
+          "Shellcode": 0.746268656716418,
+          "Worms": 0.6206896551724138
+        },
+        "per_class_diagnostics": {
+          "Analysis": {
+            "precision": 0.43333333333333335,
+            "recall": 0.203125,
+            "support": 192
+          },
+          "Backdoor": {
+            "precision": 0.30434782608695654,
+            "recall": 0.17073170731707318,
+            "support": 164
+          },
+          "DoS": {
+            "precision": 0.3504497751124438,
+            "recall": 0.798462852263023,
+            "support": 1171
+          },
+          "Exploits": {
+            "precision": 0.8268643698211949,
+            "recall": 0.5839236218047429,
+            "support": 3247
+          },
+          "Fuzzers": {
+            "precision": 0.6733646857631467,
+            "recall": 0.84631918323482,
+            "support": 1861
+          },
+          "Generic": {
+            "precision": 0.997420686097498,
+            "recall": 0.9822199644399289,
+            "support": 3937
+          },
+          "Normal": {
+            "precision": 0.9777327935222672,
+            "recall": 0.8568387440127727,
+            "support": 5637
+          },
+          "Reconnaissance": {
+            "precision": 0.9076396807297605,
+            "recall": 0.7834645669291339,
+            "support": 1016
+          },
+          "Shellcode": {
+            "precision": 0.6451612903225806,
+            "recall": 0.8849557522123894,
+            "support": 113
+          },
+          "Worms": {
+            "precision": 0.5,
+            "recall": 0.8181818181818182,
+            "support": 11
+          }
+        },
+        "confusion_matrix": {
+          "classes": [
+            "Analysis",
+            "Backdoor",
+            "DoS",
+            "Exploits",
+            "Fuzzers",
+            "Generic",
+            "Normal",
+            "Reconnaissance",
+            "Shellcode",
+            "Worms"
+          ],
+          "counts": [
+            [
+              39,
+              5,
+              134,
+              8,
+              0,
+              0,
+              6,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              28,
+              114,
+              17,
+              1,
+              0,
+              0,
+              2,
+              2,
+              0
+            ],
+            [
+              3,
+              21,
+              935,
+              188,
+              10,
+              0,
+              1,
+              4,
+              8,
+              1
+            ],
+            [
+              2,
+              30,
+              1166,
+              1896,
+              39,
+              8,
+              11,
+              67,
+              20,
+              8
+            ],
+            [
+              2,
+              4,
+              129,
+              36,
+              1575,
+              2,
+              90,
+              4,
+              19,
+              0
+            ],
+            [
+              0,
+              0,
+              25,
+              42,
+              3,
+              3867,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              43,
+              0,
+              15,
+              37,
+              703,
+              0,
+              4830,
+              4,
+              5,
+              0
+            ],
+            [
+              1,
+              4,
+              150,
+              60,
+              3,
+              0,
+              1,
+              796,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              8,
+              4,
+              0,
+              1,
+              0,
+              100,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              9
+            ]
+          ]
+        },
+        "log_loss": 0.45017141136363487,
+        "roc_auc": 0.9708376812918631
+      },
+      "seconds": 75.248,
+      "peak_mb": 376.5,
+      "split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 43,
+        "train_rows": 70321,
+        "validation_rows": 17349,
+        "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 5637,
+          "Generic": 3937,
+          "Exploits": 3247,
+          "Fuzzers": 1861,
+          "DoS": 1171,
+          "Reconnaissance": 1016,
+          "Analysis": 192,
+          "Backdoor": 164,
+          "Shellcode": 113,
+          "Worms": 11
+        }
+      },
+      "fit_iterations": 100,
+      "directory": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/test-runs/v10-extratrees-complete/calibrated-lgbm-control/seed-43",
+      "exit_code": 0
+    },
+    {
+      "name": "fixed-lgbm-extratrees",
+      "seed": 42,
+      "status": "ok",
+      "metrics": {
+        "macro_f1": 0.6444098777389615,
+        "weighted_f1": 0.8185508593252162,
+        "accuracy": 0.8087626159500613,
+        "per_class_f1": {
+          "Analysis": 0.31210191082802546,
+          "Backdoor": 0.2358974358974359,
+          "DoS": 0.49913601579856826,
+          "Exploits": 0.672429648703329,
+          "Fuzzers": 0.7599606492867683,
+          "Generic": 0.9872628726287263,
+          "Normal": 0.9195705405914485,
+          "Reconnaissance": 0.819327731092437,
+          "Shellcode": 0.6501766784452296,
+          "Worms": 0.5882352941176471
+        },
+        "per_class_diagnostics": {
+          "Analysis": {
+            "precision": 0.47572815533980584,
+            "recall": 0.23222748815165878,
+            "support": 211
+          },
+          "Backdoor": {
+            "precision": 0.6216216216216216,
+            "recall": 0.14556962025316456,
+            "support": 158
+          },
+          "DoS": {
+            "precision": 0.3539915966386555,
+            "recall": 0.8460251046025105,
+            "support": 1195
+          },
+          "Exploits": {
+            "precision": 0.8498372849837285,
+            "recall": 0.556299452221546,
+            "support": 3286
+          },
+          "Fuzzers": {
+            "precision": 0.6937584193982936,
+            "recall": 0.8401305057096248,
+            "support": 1839
+          },
+          "Generic": {
+            "precision": 0.99890320811626,
+            "recall": 0.97589070452719,
+            "support": 3733
+          },
+          "Normal": {
+            "precision": 0.9661587175935088,
+            "recall": 0.8772686433063791,
+            "support": 5565
+          },
+          "Reconnaissance": {
+            "precision": 0.8793686583990981,
+            "recall": 0.7669616519174042,
+            "support": 1017
+          },
+          "Shellcode": {
+            "precision": 0.5575757575757576,
+            "recall": 0.7796610169491526,
+            "support": 118
+          },
+          "Worms": {
+            "precision": 0.6666666666666666,
+            "recall": 0.5263157894736842,
+            "support": 19
+          }
+        },
+        "confusion_matrix": {
+          "classes": [
+            "Analysis",
+            "Backdoor",
+            "DoS",
+            "Exploits",
+            "Fuzzers",
+            "Generic",
+            "Normal",
+            "Reconnaissance",
+            "Shellcode",
+            "Worms"
+          ],
+          "counts": [
+            [
+              49,
+              5,
+              132,
+              6,
+              3,
+              0,
+              16,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              23,
+              119,
+              11,
+              1,
+              0,
+              0,
+              1,
+              1,
+              0
+            ],
+            [
+              5,
+              4,
+              1011,
+              138,
+              10,
+              0,
+              1,
+              10,
+              16,
+              0
+            ],
+            [
+              8,
+              4,
+              1240,
+              1828,
+              55,
+              3,
+              22,
+              91,
+              31,
+              4
+            ],
+            [
+              1,
+              0,
+              127,
+              20,
+              1545,
+              1,
+              128,
+              2,
+              14,
+              1
+            ],
+            [
+              1,
+              0,
+              48,
+              33,
+              5,
+              3643,
+              1,
+              0,
+              2,
+              0
+            ],
+            [
+              36,
+              0,
+              13,
+              35,
+              587,
+              0,
+              4882,
+              3,
+              9,
+              0
+            ],
+            [
+              1,
+              1,
+              166,
+              64,
+              2,
+              0,
+              3,
+              780,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              8,
+              18,
+              0,
+              0,
+              0,
+              92,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              8,
+              1,
+              0,
+              0,
+              0,
+              0,
+              10
+            ]
+          ]
+        },
+        "log_loss": 0.4528275193215483,
+        "roc_auc": 0.9711502517546284
+      },
+      "seconds": 172.634,
+      "peak_mb": 1548.6,
+      "split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 42,
+        "train_rows": 70529,
+        "validation_rows": 17141,
+        "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 5565,
+          "Generic": 3733,
+          "Exploits": 3286,
+          "Fuzzers": 1839,
+          "DoS": 1195,
+          "Reconnaissance": 1017,
+          "Analysis": 211,
+          "Backdoor": 158,
+          "Shellcode": 118,
+          "Worms": 19
+        }
+      },
+      "fit_iterations": [
+        100,
+        300
+      ],
+      "directory": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/test-runs/v10-extratrees-complete/fixed-lgbm-extratrees/seed-42",
+      "exit_code": 0
+    },
+    {
+      "name": "fixed-lgbm-extratrees",
+      "seed": 43,
+      "status": "ok",
+      "metrics": {
+        "macro_f1": 0.658312670323663,
+        "weighted_f1": 0.8230826164994958,
+        "accuracy": 0.8123234768574558,
+        "per_class_f1": {
+          "Analysis": 0.2775800711743772,
+          "Backdoor": 0.23423423423423423,
+          "DoS": 0.49140805334701204,
+          "Exploits": 0.6823098075160403,
+          "Fuzzers": 0.7523920653442241,
+          "Generic": 0.9897567221510883,
+          "Normal": 0.9140580535002846,
+          "Reconnaissance": 0.8415584415584415,
+          "Shellcode": 0.7569721115537849,
+          "Worms": 0.6428571428571429
+        },
+        "per_class_diagnostics": {
+          "Analysis": {
+            "precision": 0.43820224719101125,
+            "recall": 0.203125,
+            "support": 192
+          },
+          "Backdoor": {
+            "precision": 0.4482758620689655,
+            "recall": 0.15853658536585366,
+            "support": 164
+          },
+          "DoS": {
+            "precision": 0.35117302052785926,
+            "recall": 0.8181041844577285,
+            "support": 1171
+          },
+          "Exploits": {
+            "precision": 0.8428442028985508,
+            "recall": 0.5731444410224823,
+            "support": 3247
+          },
+          "Fuzzers": {
+            "precision": 0.665016501650165,
+            "recall": 0.8662009672219237,
+            "support": 1861
+          },
+          "Generic": {
+            "precision": 0.9979344177640073,
+            "recall": 0.9817119634239269,
+            "support": 3937
+          },
+          "Normal": {
+            "precision": 0.982262996941896,
+            "recall": 0.854709952102182,
+            "support": 5637
+          },
+          "Reconnaissance": {
+            "precision": 0.8910891089108911,
+            "recall": 0.797244094488189,
+            "support": 1016
+          },
+          "Shellcode": {
+            "precision": 0.6884057971014492,
+            "recall": 0.8407079646017699,
+            "support": 113
+          },
+          "Worms": {
+            "precision": 0.5294117647058824,
+            "recall": 0.8181818181818182,
+            "support": 11
+          }
+        },
+        "confusion_matrix": {
+          "classes": [
+            "Analysis",
+            "Backdoor",
+            "DoS",
+            "Exploits",
+            "Fuzzers",
+            "Generic",
+            "Normal",
+            "Reconnaissance",
+            "Shellcode",
+            "Worms"
+          ],
+          "counts": [
+            [
+              39,
+              3,
+              137,
+              6,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              26,
+              117,
+              14,
+              1,
+              0,
+              0,
+              2,
+              2,
+              0
+            ],
+            [
+              4,
+              10,
+              958,
+              176,
+              13,
+              0,
+              0,
+              4,
+              5,
+              1
+            ],
+            [
+              4,
+              15,
+              1192,
+              1861,
+              52,
+              5,
+              10,
+              84,
+              17,
+              7
+            ],
+            [
+              2,
+              1,
+              133,
+              24,
+              1612,
+              3,
+              67,
+              5,
+              14,
+              0
+            ],
+            [
+              0,
+              0,
+              29,
+              38,
+              5,
+              3865,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              38,
+              0,
+              12,
+              31,
+              730,
+              0,
+              4818,
+              4,
+              4,
+              0
+            ],
+            [
+              0,
+              3,
+              150,
+              47,
+              3,
+              0,
+              2,
+              810,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              10,
+              7,
+              0,
+              1,
+              0,
+              95,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              9
+            ]
+          ]
+        },
+        "log_loss": 0.4369725095293534,
+        "roc_auc": 0.972064173247898
+      },
+      "seconds": 168.985,
+      "peak_mb": 1518.2,
+      "split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 43,
+        "train_rows": 70321,
+        "validation_rows": 17349,
+        "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 5637,
+          "Generic": 3937,
+          "Exploits": 3247,
+          "Fuzzers": 1861,
+          "DoS": 1171,
+          "Reconnaissance": 1016,
+          "Analysis": 192,
+          "Backdoor": 164,
+          "Shellcode": 113,
+          "Worms": 11
+        }
+      },
+      "fit_iterations": [
+        100,
+        300
+      ],
+      "directory": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/test-runs/v10-extratrees-complete/fixed-lgbm-extratrees/seed-43",
+      "exit_code": 0
+    }
+  ],
+  "analysis_lineage": {
+    "control_manifest_sha256": "5a3d2c2c83adc398dd9b5f0093afe5e3ef31055c492e27b1cddc8562cb88325b",
+    "candidate_manifest_sha256": "9902686c5b60d417169920bc303fd3fb8e19ac1610ae1bbe039e57c3dc243f36",
+    "copies_sha_verified": true,
+    "child0_validation_and_submission_parity": true,
+    "scope": "successful controls plus unchanged execution retry; original partials preserved",
+    "copies": [
+      {
+        "candidate": "calibrated-lgbm-control",
+        "seed": 42,
+        "from": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/test-runs/v10-extratrees-paired/calibrated-lgbm-control/seed-42",
+        "to": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/test-runs/v10-extratrees-complete/calibrated-lgbm-control/seed-42"
+      },
+      {
+        "candidate": "calibrated-lgbm-control",
+        "seed": 43,
+        "from": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/test-runs/v10-extratrees-paired/calibrated-lgbm-control/seed-43",
+        "to": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/test-runs/v10-extratrees-complete/calibrated-lgbm-control/seed-43"
+      },
+      {
+        "candidate": "fixed-lgbm-extratrees",
+        "seed": 42,
+        "from": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/test-runs/v10-extratrees-ensemble-retry1/fixed-lgbm-extratrees/seed-42",
+        "to": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/test-runs/v10-extratrees-complete/fixed-lgbm-extratrees/seed-42"
+      },
+      {
+        "candidate": "fixed-lgbm-extratrees",
+        "seed": 43,
+        "from": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/test-runs/v10-extratrees-ensemble-retry1/fixed-lgbm-extratrees/seed-43",
+        "to": "/home/dima/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/ml/alfa-hack-automl/test-runs/v10-extratrees-complete/fixed-lgbm-extratrees/seed-43"
+      }
+    ]
+  }
+}

@@ -129,3 +129,23 @@ candidate ONLY, v10_extratrees_retry_candidates.json, separate output directory;
 completed original controls remain valid with matched frozen source/split/input
 fingerprints. New top-level owned watchdog/status receipt records execution state.
 No parameter/weight tuning or runtime/default/source change.
+
+## ExtraTrees paired screen COMPLETE, classification TE next
+
+Retry1 completed both parents exit0, with full archive/input/harness fingerprints
+matching original controls. Child0 validation AND test CSV byte parity pass both
+folds. Fixed50/50 LGBM+XT MacroF1.644409878/.658312670 vs control
+.650292961/.652794416: mixed, slightly lower mean, no CV/default promotion.
+Peak candidate1548.6/1518.2MiB within1.7GiB guard. The earlier interruption cause
+remains unknown; retry produced valid results, not evidence of a recipe failure.
+Derived analysis directory v10-extratrees-complete copies every artifact with SHA
+preserved and lineage recorded; original partials unchanged.
+
+Next protocol v10_class_te_protocol.md +v10_class_te_candidates.json is frozen:
+schema-order categorical pair class statistics (existing helper), same LGBM,
+primary fixed50/50 blend with immutable strong controls. No new dependencies or
+runtime source/default changes.3new multiclass tests PASS: own hash group/outer
+label exclusion, unseen-context priors/class channels, real calibrated worker
+outer-label invariance. tools/run_checks.py now expects219unique checks; full219
+suite is pending after this feature-view screen, sequentially. Existing history4
+216+23 evidence remains valid for its unchanged runtime source/packaging.

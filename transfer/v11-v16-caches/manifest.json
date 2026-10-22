@@ -3397,6 +3397,22 @@
     {
       "path": "test-runs/llm-upgrade-20261022/final-default-parity/task-01/task.md",
       "sha256": "eebb55ebb8deb8257a2c012330ecc015e8d3a0bc3619c40da6c2a6ab200709bf"
+    },
+    {
+      "path": "test-runs/llm-upgrade-20261022/featureviews1-full/task-00/automl_runs/run-v2/confirmation_split.npz",
+      "sha256": "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a"
+    },
+    {
+      "path": "test-runs/llm-upgrade-20261022/featureviews1-full/task-01/automl_runs/run-v2/confirmation_split.npz",
+      "sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a"
+    },
+    {
+      "path": "test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation_split.npz",
+      "sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a"
+    },
+    {
+      "path": "test-runs/llm-upgrade-20261022/final-default-parity/task-01/automl_runs/run-v2/confirmation_split.npz",
+      "sha256": "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a"
     }
   ],
   "objects": {
@@ -5331,6 +5347,14 @@
     "ec53c2f75b316a5f63e5952d18f91b911889603e809adc5252fcc5965ad268bd": {
       "archive": "objects-004.zip",
       "bytes": 2612
+    },
+    "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a": {
+      "archive": "objects-005.zip",
+      "bytes": 701876
+    },
+    "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a": {
+      "archive": "objects-005.zip",
+      "bytes": 280516
     }
   },
   "archives": {
@@ -5353,6 +5377,10 @@
     "objects-004.zip": {
       "sha256": "eeecb7a26e23f11b374abb4f88252e219ebf05b61949127cfe4e8d5f61e7e405",
       "bytes": 6986543
+    },
+    "objects-005.zip": {
+      "sha256": "cb967516b13d216acb05a93227998e7b15995002fb1e4476d93b29cae69a19d8",
+      "bytes": 187658
     }
   },
   "excluded": [
@@ -5363,5 +5391,6 @@
     "logs",
     "pycache"
   ],
-  "includes": "Public-task derived predictions, probabilities, split positions, metadata and frozen source copies"
+  "includes": "Public-task derived predictions, probabilities, split positions, metadata and frozen source copies",
+  "revision": 2
 }

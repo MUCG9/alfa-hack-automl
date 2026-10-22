@@ -1,0 +1,41 @@
+{
+  "reason": "Original confirmation_split.npz omitted by earlier filename whitelist; no reconstruction or training",
+  "old_file_count": 848,
+  "added_files": [
+    {
+      "path": "test-runs/llm-upgrade-20261022/featureviews1-full/task-00/automl_runs/run-v2/confirmation_split.npz",
+      "sha256": "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a",
+      "bytes": 701876
+    },
+    {
+      "path": "test-runs/llm-upgrade-20261022/featureviews1-full/task-01/automl_runs/run-v2/confirmation_split.npz",
+      "sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
+      "bytes": 280516
+    },
+    {
+      "path": "test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation_split.npz",
+      "sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
+      "bytes": 280516
+    },
+    {
+      "path": "test-runs/llm-upgrade-20261022/final-default-parity/task-01/automl_runs/run-v2/confirmation_split.npz",
+      "sha256": "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a",
+      "bytes": 701876
+    }
+  ],
+  "old_archive_checksums_unchanged": true,
+  "new_file_count": 852,
+  "new_unique_objects": 485,
+  "new_shard": "objects-005.zip",
+  "new_shard_bytes": 187658,
+  "new_total_archive_bytes": 170601521,
+  "verification": {
+    "full_roundtrip_852_files": true,
+    "incremental_restore_into_existing_848": true,
+    "original_four_split_bytes_preserved": true,
+    "old_848_files_mtime_and_content_preserved": true,
+    "old_five_shards_unchanged": true,
+    "incomplete_manifest_rejected_before_writes": true,
+    "missing_source_rejected_before_pack": true
+  }
+}

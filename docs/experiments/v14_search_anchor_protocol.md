@@ -47,3 +47,13 @@ If V11 itself passes both quality cuts, V14 must ALSO not worsen EITHER V11
 selected cut (or its mean). Equal quality plus measured lower cost may justify
 retention; speed is not a reason to discard a better V11 within platform limits.
 This additional comparison is declared before any V14 implementation/measurement.
+
+Before implementation, a FIT-FREE cached replay may reject the proposal early.
+All12ordinary predictions already exist in the exact history4 control; the fixed
+qualified view and its confirmation exist in V11. First reproduce BOTH actual
+control and V11 selection/blend outcomes from their own caches. Then apply the
+unchanged shortlist/blend rule to the hypothetical13-trial control+fixed-view pool.
+Require verified common input/class/row alignment and identical duplicate caches.
+If required confirmation is absent, report needs_fit (no inferred score). If the
+same quality gate fails, reject WITHOUT spending another full pipeline. A replay
+pass only permits implementation/full lifecycle, not a runtime-quality claim.

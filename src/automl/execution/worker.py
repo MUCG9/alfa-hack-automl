@@ -136,6 +136,9 @@ def run(job):
     history_asof=recipe.get('params',{}).get('history_asof',False)
     history_time=spec.get('time_column') or (spec.get('time_candidate') or {}).get('column')
     if not isinstance(history_asof,bool): raise ValueError('history_asof must be a boolean')
+    history_minimum=recipe.get('params',{}).get('history_min_periods',2)
+    if type(history_minimum) is not int or not 2<=history_minimum<=10: raise ValueError('history_min_periods must be an integer from2to10')
+    if 'history_min_periods' in recipe.get('params',{}) and not history_asof: raise ValueError('Minimum history requires history_asof')
     if history_asof and (spec['kind']!='regression' or spec.get('task_family')=='pointwise_ranking' or history_time not in spec['features'] or not recipe.get('params',{}).get('target_encoding') or not (recipe['params'].get('target_encoding_auto_groups') or recipe['params'].get('target_encoding_groups'))):
         raise ValueError('As-of history requires regression, observation periods and context encoding')
     if history_asof and recipe['engine']=='linear_text': raise ValueError('As-of history is not supported for text recipes')
@@ -182,8 +185,16 @@ def run(job):
             prepared_x,prepared_test=target_encode_frames(prepared_x,prepared_test,y,rows,source_hashes,spec.get('classes'),
                 smoothing=number(encoding_params,'target_encoding_smoothing',20,.5,100),groups=encoding_groups,add_counts=encoding_params.get('target_encoding_counts',False),
                 half_life=number(encoding_params,'target_encoding_half_life',0,0,10),time_column=spec.get('time_column') or (spec.get('time_candidate') or {}).get('column'))
+        history_state=None
         if history_asof:
-            prepared_x,prepared_test=add_history_features(prepared_x,prepared_test,y,rows,history_time,encoding_groups or [])
+            periods=pd.to_numeric(raw_train_x[history_time].iloc[rows],errors='raise').to_numpy(dtype=float)
+            if not np.isfinite(periods).all(): raise ValueError('History fitting periods must be finite')
+            period_count=len(np.unique(periods))
+            enabled=period_count>=history_minimum and bool(encoding_groups)
+            history_state={'fitting_periods':period_count,'minimum_periods':history_minimum,
+                           'enabled':enabled,'contexts':len(encoding_groups or []),
+                           'reason':'enabled' if enabled else 'insufficient_periods' if period_count<history_minimum else 'no_supported_contexts'}
+            if enabled: prepared_x,prepared_test=add_history_features(prepared_x,prepared_test,y,rows,history_time,encoding_groups)
         prepared_x,prepared_test,categorical=prepare_frames(prepared_x,prepared_test,recipe['engine'],rows)
         kwargs={}
         weights=None
@@ -193,6 +204,7 @@ def run(job):
             prepared_x.iloc[rows],fit_y.iloc[rows],y.iloc[rows],weights,source_hashes[rows],rows,
             recipe.get('data_policy'),spec['kind'],recipe['engine'])
         policy_records.append(policy_record)
+        if history_state is not None: policy_record['history_asof']=history_state
         if encoding_groups is not None: policy_record['target_encoding_groups']=encoding_groups
         if not data_policy.is_noop:
             provenance_path=Path(job['output_dir'])/f'fit-parents-{len(policy_records)}.npz'

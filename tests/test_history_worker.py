@@ -79,5 +79,34 @@ class HistoryWorkerTests(unittest.TestCase):
                      'output_dir':str(root/'invalid'),'split_path':str(root/'split.npz'),'threads':1}
                 with self.subTest(engine=engine,kind=kind),self.assertRaises(ValueError):worker.run(job)
 
+    def test_minimum_periods_contract_and_disabled_inheritance(self):
+        base=normalize({'engine':'lightgbm','params':{'history_asof':True,'history_min_periods':3,
+            'target_encoding':True,'target_encoding_groups':[['segment','measure']]}})
+        disabled=normalize({'engine':'lightgbm','params':{'history_asof':False}},base)
+        self.assertNotIn('history_min_periods',disabled['params'])
+        for value in [True,1,11,3.0,'3']:
+            with self.subTest(value=value),self.assertRaises(ValueError):
+                normalize({'engine':'lightgbm','params':{'history_min_periods':value}},base)
+        with self.assertRaises(ValueError):normalize({'engine':'lightgbm','params':{'history_min_periods':3}})
+
+    def test_support_gate_uses_only_fitting_periods_and_preserves_control(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);spec,_=fixture(root)
+            np.savez(root/'split.npz',train=np.arange(80),validation=np.arange(80,120))
+            control=normalize({'engine':'lightgbm','params':{'iterations':30,'min_iterations':10,
+                'target_encoding':True,'target_encoding_groups':[['segment','measure']]}})
+            gated=normalize({'engine':'lightgbm','params':{'history_asof':True,'history_min_periods':3}},control)
+            exports=[]
+            for name,recipe in [('control',control),('gated',gated)]:
+                out=root/name;out.mkdir()
+                with contextlib.redirect_stdout(io.StringIO()):
+                    worker.run({'spec':spec,'recipe':recipe,'output_dir':str(out),'split_path':str(root/'split.npz'),'threads':1})
+                exports.append((out/'submission.csv').read_bytes())
+            self.assertEqual(*exports)
+            result=json.loads((root/'gated/result.json').read_text())
+            self.assertFalse(any(n.startswith('__history_') for n in result['feature_names']))
+            states=[r['history_asof'] for r in result['data_policy_runs']]
+            self.assertTrue(all(not s['enabled'] and s['fitting_periods']<3 for s in states))
+
 
 if __name__=='__main__':unittest.main(verbosity=2)

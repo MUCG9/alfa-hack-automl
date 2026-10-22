@@ -29,3 +29,18 @@ Iterations are selected within that outer fitting data, not an independent neste
 hyperparameter assessment of the OOF predictions themselves. The OUTER evaluation
 is the check of this procedure. No claim of perfectly unbiased training OOF or
 private-score uncertainty. No new runtime implementation is required for the study.
+
+## Result: discard from defaults
+
+All four workers passed; same frozen V7 execution bytes and paired split hashes.
+
+| Fold seed | Inner control | Training OOF3 | Delta |
+|---|---:|---:|---:|
+|42|0.652319467|0.651515878|-0.000803590|
+|43|0.645949771|0.646542924|+0.000593153|
+|Mean|0.649134619|0.649029401|-0.000105218|
+
+OOF3 took about159/161s versus82/80s for control. Direction is inconsistent and
+mean is slightly worse, so the predeclared keep criterion fails. No full CV or
+default/portfolio promotion is justified by this study. Negative evidence is
+preserved in `v8_xgb_oof_calibration_results.json`. Local/reused data, not official.

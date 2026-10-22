@@ -63,3 +63,8 @@ hypothesis до завершения полного default benchmark, не до
 
 До старта этой серии добавлены2 адресных Qwen context plans и manual-context-log;
 [описание](v4_context_planner.md). API/normalize успешны; метрики ещё не измерены.
+
+Промежуточный full v3 checkpoint: v4_v3_default_progress.json,11/12 search outcomes,
+без итогового confirmation/refit. Это не full-validation PASS. Основные metrics
+исторической v3 в release/v3 не изменялись. Текущий source branch опубликован
+через96fba7e; новые metric snapshots идут отдельными коммитами.

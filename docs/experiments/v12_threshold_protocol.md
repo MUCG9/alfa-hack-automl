@@ -51,8 +51,8 @@ separate authorization. API budget is unrelated to this local numeric optimizer.
 
 ## Implementation checkpoint before outer scores
 
-Source0973de0 implements this dormant method; V12 archive SHA
-b44feb1094cc2d4063e3e1d6dc629c8b8bc5f227b794a58ea1619025e264585f.
+Sourceeafdd6a is the corrected dormant method; threshold2 archive SHA
+12dc0f0ee49eaea085851ee98d309f1b86154e2be4d5a026212aa4d6806bb9a1.
 Original coordinate callback is unchanged and remains the default direct call.
 No automatic portfolio insertion or promise of improved score. Worker records
 method/status/function-evaluation diagnostics, same inner iteration matching.
@@ -60,4 +60,8 @@ Explicit method rejects non-MacroF1/non-tree/noncalibrated/OOF3/feature-view
 combinations so the screen remains ordinary-learner, one-factor only.
 `v12_threshold_candidates.json` freezes control and treatment before fitting.
 Eleven pure checks passed first; import-failure fallback was subsequently added.
-Full243source/23unpacked gates and actual worker fixture wait for V11 heavy run.
+Full244source/23unpacked gates and actual worker fixture wait for V11 heavy run.
+Threshold1 source0973de0 was superseded BEFORE public fitting: acceptance must
+evaluate the clipped bound-feasible candidate, not its slightly infeasible float
+precursor. Discontinuous argmax/F1 can change at that boundary. Added one meaningful
+regression check. Original threshold1 archive remains immutable and unpromoted.

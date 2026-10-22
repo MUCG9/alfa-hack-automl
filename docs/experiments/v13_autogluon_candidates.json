@@ -1,0 +1,26 @@
+[
+  {
+    "name": "coordinate-control",
+    "recipe": {
+      "engine": "lightgbm",
+      "hypothesis": "Frozen strong mild-weight calibrated LightGBM comparator",
+      "params": {
+        "iterations": 1200, "learning_rate": 0.04, "num_leaves": 63,
+        "max_depth": -1, "min_child_samples": 25, "reg_lambda": 5,
+        "subsample": 1, "subsample_freq": 0, "colsample_bytree": 0.9,
+        "class_weight_power": 0.5, "calibrate": true, "early_metric": "primary",
+        "nested_stopping": true, "min_iterations": 100, "seed": 42
+      },
+      "feature_code": ""
+    }
+  },
+  {
+    "name": "autogluon-inner-refit",
+    "recipe": {
+      "engine": "autogluon",
+      "hypothesis": "Pinned GBM/CAT inner-selected ensemble then full refit with old fitting-only decision factors",
+      "params": {"seed": 42},
+      "feature_code": ""
+    }
+  }
+]

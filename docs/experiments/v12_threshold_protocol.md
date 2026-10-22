@@ -1,8 +1,11 @@
 # Proposed bounded threshold-search experiment (not implemented or run yet)
 
 Declared BEFORE any new optimizer implementation/outer result. This is a later
-isolated stage, not part of V11 feature-view attribution. Run only after the V11
-full-procedure gate has completed and the source/default decision is checkpointed.
+isolated stage, not part of V11 feature-view attribution. Model experiments run
+only after the V11 full-procedure gate and its source/default decision checkpoint.
+Dormant implementation/pure tests may be prepared while the independent frozen
+V11 archive runs; no source edits during unchanged-source suites. V11 artifact,
+captured source hashes and metrics remain immutable and unaffected by preparation.
 
 The supplied unconstrained raw-weight Nelder–Mead is not accepted verbatim.
 Positive weights are essential. A tiny simplex on flat argmax F1 can terminate

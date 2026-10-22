@@ -10,7 +10,12 @@ and group-cross-fitted categorical/pair statistics, schema-driven. Per-view
 iterations preserved through global nested refit. No regression/threshold/data
 policy change. See v10_class_te_agent_protocol.md and v11_llm_review.md.
 
-Nine pure contract tests passed; full unique source suite/exact-unpacked and
-real fixture/public gates still PENDING. Frozen history4 baseline is running.
+All230unique source checks passed unchanged-source (165.749s), including actual
+two-view/outer-label isolation and nested global full refit.23repeated exact-
+unpacked checks passed; all52files match current source. Evidence here.
+History4 full class baseline completed with exact historical CSV parity;
+search .6538467374261537 /confirmation .6527157430204659 /mean .6532812402233098.
+New exact-archive full class→regression parity run started sequentially; public
+gate remains PENDING. No quality gain or promotion claimed yet.
 Do not promote or claim a quality gain until full-agent criteria pass. Official
 upload is not authorized. Historical archives are preserved unchanged.

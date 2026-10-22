@@ -28,8 +28,12 @@ order unchanged; one candidate displaces a fallback under unchanged12trial budge
 Each view retains its own fitted iterations; global ensemble/recursive median
 reject malformed trees instead of silently truncating zip. Conflicting feature,
 encoding/history/augmentation policies fail closed. No threshold/weight/default
-regression changes in this stage. Nine non-fitting contract tests passed; two
-real fixture tests/full suite wait for the heavy baseline to finish (sequential).
+regression changes in this stage. Nine non-fitting contract tests passed first.
+After the heavy baseline finished, all230unique source checks passed unchanged-
+source (165.749s), including real fixtures.23repeated exact-unpacked checks pass.
+Frozen featureviews1 full class→regression run started sequentially around12:29UTC
+in test-runs/llm-upgrade-20261022/featureviews1-full. Same resource/input controls.
+Do not call the pending public gate passed. No new model default retained yet.
 
 ## Environment inventory
 

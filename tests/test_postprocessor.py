@@ -64,6 +64,18 @@ class PostprocessorTests(unittest.TestCase):
         self.assertEqual(fitted.factors_,expected)
         self.assertEqual(fitted.diagnostics_['exception_type'],'ImportError')
 
+    def test_improvement_is_measured_after_floating_point_bound_clipping(self):
+        fitted=MacroF1ThresholdOptimizer(2,'nelder_mead')
+        fitted.diagnostics_={}
+        def discontinuous_objective(weights):
+            if weights[0]<.4:return 10.
+            return 1. if weights[0]>.9 else 0.
+        result=SimpleNamespace(x=np.log([.4-1e-13,1.]),nfev=1,success=True)
+        with patch('scipy.optimize.minimize',return_value=result):
+            fitted._refine(discontinuous_objective)
+        np.testing.assert_array_equal(fitted.weights,[1.,1.])
+        self.assertEqual(fitted.diagnostics_['status'],'preserved_coordinate_warm_start')
+
     def test_probability_label_class_shape_and_range_contracts(self):
         p,y,c=probabilities()
         invalid=[(p[:,:2],y,c),(p[:-1],y,c),(np.zeros_like(p),y,c),

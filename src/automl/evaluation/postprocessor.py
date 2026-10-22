@@ -96,10 +96,12 @@ class MacroF1ThresholdOptimizer:
             candidate=np.exp(np.asarray(result.x,dtype=float))
             valid=(candidate.shape==initial.shape and np.isfinite(candidate).all()
                 and (candidate>=.4-1e-12).all() and (candidate<=2.5+1e-12).all())
+            if valid:
+                candidate=np.clip(candidate,.4,2.5)
             self.diagnostics_['optimizer_nfev']=int(result.nfev)
             self.diagnostics_['optimizer_converged']=bool(result.success)
             if valid and objective(candidate)>best+1e-12:
-                self.weights=np.clip(candidate,.4,2.5)
+                self.weights=candidate
                 self.diagnostics_.update(status='refined' if result.success else 'refined_budget_exhausted',
                     final_objective=objective(self.weights))
             else:

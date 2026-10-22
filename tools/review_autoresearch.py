@@ -17,6 +17,14 @@ from automl.infrastructure.llm_gateway import request_json
 from automl.infrastructure.run_budget import RunBudget
 
 
+def compact_receipt(value):
+    if isinstance(value, dict):
+        return {key: compact_receipt(item) for key, item in value.items() if not key.endswith('sha256')}
+    if isinstance(value, list):
+        return [compact_receipt(item) for item in value]
+    return value
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--mvp', type=Path, required=True, help='Metadata-only independently verified MVP receipt')
@@ -66,12 +74,13 @@ changes to retesting unchanged negative recipes. The response is a review for
 the existing coordinator; you cannot execute actions or change permissions.
 Research skill follows:\n'''+skill_payload.decode('utf-8')
     with RunBudget(210, 1, output):
-        context = {'receipts': documents,
+        context = {'receipts': compact_receipt(documents),
                    'local_resource_contract': {'host_fitting_concurrency': 1, 'benchmark_threads': 2,
                        'component_worker_seconds': 600, 'component_worker_memory_mib': 1536,
                        'additional_agents': False, 'paid_compute': False},
                    'predeclared_probe_ids': ['FE-01', 'HPO-01', 'HAR-01', 'HAR-02', 'FE-02'],
                    'probe_status_rule': 'Use only supplied receipts for status; absent results remain unknown. Do not propose an unchanged preregistered probe as new.'}
+        atomic_json(output/'context_snapshot.json', context)
         content, call = request_json(prompt, context, max_output=4096,
                                      timeout=180, purpose='autoresearch_review')
     atomic_json(output/'call.json', {'call': {key: value for key, value in call.items() if key != 'error_message'},

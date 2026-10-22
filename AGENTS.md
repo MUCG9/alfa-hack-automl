@@ -36,7 +36,8 @@ for MVP before FE-01/HPO-01/HAR-01/HAR-02; see overnight_20261023.md and the
 ignored overnight identity/queue receipts. Do not start duplicate fits. Canonical
 source remains frozen; compiler4 and lifecycle2 are separate development checks.
 Captain requested the autoresearch-ml skill based on karpathy/autoresearch.
-Versioned entry: skills/autoresearch-ml/SKILL.md; installed as a user skill symlink.
+Versioned entry: skills/autoresearch-ml/SKILL.md; installed as an independent user
+skill copy so a repository rollback does not remove it. Installed hashes match.
 Read its alfa-hack profile for subsequent research. It preserves existing budgets,
 frozen evaluators, negative evidence and rollback history; it grants no new actions.
 Skill quick validation PASS; contest source hashes remain unchanged.

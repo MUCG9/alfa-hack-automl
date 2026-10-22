@@ -72,8 +72,9 @@ screen и не доказательство механизма изменени�
 
 По прямому поручению капитана создан `skills/autoresearch-ml/SKILL.md` на основе
 karpathy/autoresearch, изученный commit228791fb499afffb54b46200aca536f79142f117.
-Локальная установка: `~/.codex/skills/autoresearch-ml` ссылается на versioned
-каталог этого репозитория. Entry, upstream attribution, профиль alfa-hack и
+Локальная установка: `~/.codex/skills/autoresearch-ml` содержит независимую копию
+versioned каталога с проверенным совпадением SHA, чтобы rollback проекта не
+удалял навык. Entry, upstream attribution, профиль alfa-hack и
 шаблон `program.md` проверены quick_validate. Новая программа не меняет уже
 запущенную очередь и не является измеренным улучшением runtime Qwen.
 Сохранение истории вместо destructive reset, inner/group/time validation,

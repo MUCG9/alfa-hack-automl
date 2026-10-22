@@ -1,9 +1,10 @@
 # Error Analysis: boundary and message contract
 
-Scope authorized on 22 October 2026: steps 1–2 of the error-passport plan,
-component responsibility and versioned request/profile contracts. Artifact
-reading/verification, statistics, report writing and search integration are later
-steps. No training or changed model-selection policy is part of this stage.
+Scope authorized on 22 October 2026: complete the error-passport implementation
+and prepare BASE-01. The component verifies artifacts, computes descriptive and
+paired statistics, slices and conditional uncertainty, and writes aggregate
+reports. It does not train or change model selection. Steps 1–2 are preserved as
+the historical error_profile_contracts_20261022.md checkpoint.
 
 ## Ownership
 
@@ -15,10 +16,10 @@ It cannot train, tune weights/thresholds, change splits or publish predictions.
 
 Consumers import only `automl.error_analysis.api`. Shared messages live under
 `automl.contracts` and have no pandas, numpy, learner or API-client dependencies.
-The public interface will be a synchronous `analyze(request) -> ErrorProfile`
-operation, transportable across a process boundary using JSON. Its interface is
-declared separately from a concrete implementation: no successful empty profile
-or fake analysis is returned while the backend is absent.
+The public synchronous interface is `analyze(request) -> ErrorProfile`, with a
+concrete local backend and guarded subprocess CLI. `summarize(profile)` supplies
+up to 8 KiB of scalar evidence for a future coordinator. No automatic planner
+integration or use of outer labels for selection is enabled.
 
 Initial deployment is a local component, optionally a subprocess. Independently
 deployed HTTP services are not implemented. Message semantics do not depend on
@@ -31,7 +32,10 @@ protocol artifact, prediction scope, model/fold artifacts, optional groups/time,
 output directory and analysis resource budget. Model references reuse the existing
 `PredictionBundle`; dataset references reuse `DatasetRef`. New references add
 content SHA256 and recipe/source/row-order provenance without changing either
-legacy contract. A split file's content hash and the logical split SHA in a
+legacy contract. Schema 2.0 adds the recorded-result reference needed to verify
+recipe and metric. Version 1.0 is rejected explicitly: adding a field to a strict
+JSON format changes its wire compatibility and canonical request digests. Legacy
+TaskSpec/DatasetRef/PredictionBundle stay at 1.0. A split file's content hash and the logical split SHA in a
 prediction bundle are distinct identifiers and must not be conflated.
 
 Scope distinguishes inner, search, confirmation, OOF and forward diagnostics.
@@ -47,9 +51,9 @@ The profile retains the full request, its canonical digest and the analyzer's
 source SHA256. Five named
 sections describe alignment, individual models, comparisons, slices and
 uncertainty. Each section is complete, unavailable or failed. Complete sections
-reference aggregate artifacts by path and content hash; other sections explain
-their status and cannot carry an apparently successful result. Detailed statistic
-schemas will be introduced with their implementations, rather than guessed here.
+reference aggregate artifacts by path and content hash. Aggregates embed section
+name, schema version and request digest; other sections explain their status and
+cannot carry an apparently successful result.
 
 Overall status is derived from section states: complete only when all sections
 are complete, partial when alignment is complete but a later section is
@@ -65,17 +69,45 @@ schema versions are rejected at JSON boundaries. Defaults are not silently
 applied to incompatible versions. Source/input hashes describe provenance; their
 presence does not prove that artifact bytes have been verified.
 
-## Later implementation
+## Implemented analysis
 
-1. Validate artifact bytes, prediction rows/classes, split membership and recorded
-   metrics; distinguish exactly-once OOF from overlapping holdouts/backtests.
-2. Add per-model statistics, paired diagnostics, predefined slices and uncertainty.
-   Reuse Evaluation through its API and migrate existing analysis tools gradually.
-3. Write aggregate JSON/Markdown under the assigned output directory, preserving
-   frozen inputs. Send only aggregate evidence to a future planner.
-4. Evaluate any policy using these diagnostics as a separate experiment. Outer
-   labels must not become fitting, tuning or routing data. Unchanged training
-   behavior remains the control.
+1. Verified-byte reads and bounded NPZ expansion; rows/classes/splits, original
+   targets and recorded recipes/metrics checked. Full-fit/test predictions cannot
+   be declared diagnostics. Forward fitting periods strictly precede validation.
+   OOF requires complete exactly-once coverage. Inputs and analyzer source are
+   hashed again before the manifest is published.
+2. Regression bias, variance, residual quantiles, error tails and paired
+   covariance/Pearson/Spearman. Classification confusion/precision/recall/F1,
+   fitting-group support, confidence bins, joint errors, Q and classwise changes.
+   Decision-adjusted scores do not establish probability calibration.
+3. Fixed pairwise half blends, protocol-declared ensembles and leave-one-member-out
+   diagnostics with renormalized fixed remaining weights; no optimization/refit.
+4. Fitting-derived numeric bins, missingness, categorical/context support,
+   chronological context-coverage proxies and period slices. Small independent
+   support is flagged. Slice sets can overlap.
+5. Seeded paired cluster bootstrap for Macro F1 and RMSE/MSE/MAE. Forward requests
+   resample period blocks, never rows in place of too few periods. Missing support
+   yields unavailable uncertainty. Intervals condition on fixed predictions and
+   do not cover refit/private uncertainty or multiple-comparison corrections.
+6. Immutable JSON sections, error_profile.json, error_profile.md and a bounded
+   planner_summary.json. Existing output directories are refused. Failed integrity
+   invalidates completed references; insufficient optional evidence produces an
+   explicit partial profile. A CLI watchdog failure returns nonzero; unfinished
+   files are not a successful passport.
+
+`tools/error_passport.py --request PATH` runs an owned, credential-stripped child
+with wall-clock/process-tree RSS guards. Library limits are cooperative, not a
+security sandbox. The budget includes imports and is separate from training.
+
+`tools/prepare_error_baseline.py --output DIRECTORY [--cache-root DIRECTORY]`
+audits frozen V11/V16 reports/archives, local input hashes and environment. Only
+an explicit cache root is relocated; no V10 fallback/refit is allowed. Original
+JSON files are preserved. Run provenance and saved model results must match;
+requests retain the selected ensemble and available two-view components.
+
+Old diversity/OOF tools and their outputs remain unchanged. Policy changes based
+on diagnostics require separate experiments: outer labels must not become fitting,
+tuning or routing data. Network deployment and learned routing remain out of scope.
 
 Each stage gets focused tests and a commit. Historical archives remain immutable;
 this stage does not promote a release or rerun public benchmarks.

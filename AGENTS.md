@@ -1,11 +1,13 @@
 # Development instructions — current checkpoint, 22 October 2026
 
-Latest authorized checkpoint: `work/error-profile-contracts-20261022`, based on
-`300c6db`. Error-passport plan steps 1–2 (boundary/contracts) are implemented and
-tested; read docs/experiments/error_profile_contracts_20261022.md first. This
-explicit user authorization superseded documentation-only scope BELOW for these
-two steps only. No artifact reader/statistics/search integration or training was
-authorized or implemented in this checkpoint. The V11/V16 history below remains.
+Latest authorized work: `work/error-profile-contracts-20261022`, based on
+`300c6db`. Captain expanded scope to the COMPLETE error-passport implementation
+and BASE-01; read docs/experiments/error_passport_20261022.md first. Boundary,
+schema2.0 contracts, artifact verification/statistics/reports and baseline adapters
+are implemented; 95 focused checks PASS. Model fitting/selection-policy changes
+remain unauthorized. Captain provided V11/V16 cache-transfer commit7276ec6; verify
+and restore with its script, preserving original JSON paths through root mapping.
+The initial two-step checkpoint and V11/V16 history below are historical context.
 
 Current branch: `work/llm-upgrade-20261022`, based on colleague6aefbd9.
 Read `docs/handoff/START_HERE.md`, `docs/handoff/EXPERIMENTS.md`,

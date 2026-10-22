@@ -1,0 +1,50 @@
+[
+  {
+    "archive": "solution-v4-research1.zip",
+    "sha256": "8f5de51c12ea85f7e5a4f7dd1be2225eb720c76b912ba2d642606d3c9d0d26bd",
+    "source_manifest_sha256": "09e381568824a1391cad102abfe4cbb1e21031f28855869e7fe3d300bdf5de0d",
+    "bytes": 44123
+  },
+  {
+    "archive": "solution-v4-research2.zip",
+    "sha256": "1a7594130e82ed207859ff7bbbe8601fe81953696c887cd22daa1a82e9d681b5",
+    "source_manifest_sha256": "545a6ac43359906da346e038e4d54ad73453bb1758ea31a1e00fc94955ccf811",
+    "bytes": 45563
+  },
+  {
+    "archive": "solution-v4-research3.zip",
+    "sha256": "7399ecb7fa2263e1f925daf400a3286dba3703d1ff675c460f87d57e57dbb877",
+    "source_manifest_sha256": "21365c72b689b44ccca06fe136f2ee9eca4cac06b5870b28ba76af2248f3809f",
+    "bytes": 46919
+  },
+  {
+    "archive": "solution-v4-research4.zip",
+    "sha256": "8d494ee536229f7e01dae91d413a5c0e810e5904fcd93a0087fbe6ab0d1f54d6",
+    "source_manifest_sha256": "44bc81481012131b5fe038bbd2a7a225d4bebae4b6d8cbeefd73473b0f5719a9",
+    "bytes": 48086
+  },
+  {
+    "archive": "solution-v4-research5.zip",
+    "sha256": "7441a1f960487a1118ba24bf8ccfd433b281c0b34f61901f418869ae69822ea8",
+    "source_manifest_sha256": "bb12cb6cf7503e93930f99e9e705c747343f285dd49a82f8039e72b1732a6bef",
+    "bytes": 48342
+  },
+  {
+    "archive": "solution-v4-research6.zip",
+    "sha256": "1e0b1269bd284e5036b643c15d1edd8fe0687e8ccd987bc836b964ca544e06ab",
+    "source_manifest_sha256": "db5cd9768b1767ae5a92a9f937dcad9acfb184ae6b37e1d96dba42f366c5ef59",
+    "bytes": 50227
+  },
+  {
+    "archive": "solution-v4-research7.zip",
+    "sha256": "cc750e9723dbf26d2a1872406f6a0c2cada34a7f634a900ae53f3d9f278ff856",
+    "source_manifest_sha256": "b47a5496ba21f219bab24f056603a5d3c72427189780eb040378aff0a8180e63",
+    "bytes": 50855
+  },
+  {
+    "archive": "solution-v4-research8.zip",
+    "sha256": "bad03cbdda1f9795d5085bf3f71c7e6a8c8d51f70a64d812dffbbfb4f3322a46",
+    "source_manifest_sha256": "f965e17e8aeb6eeaddb531c3b6727fe15915c9046be09198550921e5689cfac8",
+    "bytes": 50912
+  }
+]

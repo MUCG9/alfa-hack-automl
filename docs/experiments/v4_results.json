@@ -1,0 +1,4788 @@
+{
+  "source_archives": {
+    "09e381568824a1391cad102abfe4cbb1e21031f28855869e7fe3d300bdf5de0d": {
+      "path": "release/v4-candidate/research_sources/solution-v4-research1.zip",
+      "archive_sha256": "8f5de51c12ea85f7e5a4f7dd1be2225eb720c76b912ba2d642606d3c9d0d26bd"
+    },
+    "545a6ac43359906da346e038e4d54ad73453bb1758ea31a1e00fc94955ccf811": {
+      "path": "release/v4-candidate/research_sources/solution-v4-research2.zip",
+      "archive_sha256": "1a7594130e82ed207859ff7bbbe8601fe81953696c887cd22daa1a82e9d681b5"
+    },
+    "21365c72b689b44ccca06fe136f2ee9eca4cac06b5870b28ba76af2248f3809f": {
+      "path": "release/v4-candidate/research_sources/solution-v4-research3.zip",
+      "archive_sha256": "7399ecb7fa2263e1f925daf400a3286dba3703d1ff675c460f87d57e57dbb877"
+    },
+    "44bc81481012131b5fe038bbd2a7a225d4bebae4b6d8cbeefd73473b0f5719a9": {
+      "path": "release/v4-candidate/research_sources/solution-v4-research4.zip",
+      "archive_sha256": "8d494ee536229f7e01dae91d413a5c0e810e5904fcd93a0087fbe6ab0d1f54d6"
+    },
+    "bb12cb6cf7503e93930f99e9e705c747343f285dd49a82f8039e72b1732a6bef": {
+      "path": "release/v4-candidate/research_sources/solution-v4-research5.zip",
+      "archive_sha256": "7441a1f960487a1118ba24bf8ccfd433b281c0b34f61901f418869ae69822ea8"
+    },
+    "db5cd9768b1767ae5a92a9f937dcad9acfb184ae6b37e1d96dba42f366c5ef59": {
+      "path": "release/v4-candidate/research_sources/solution-v4-research6.zip",
+      "archive_sha256": "1e0b1269bd284e5036b643c15d1edd8fe0687e8ccd987bc836b964ca544e06ab"
+    },
+    "b47a5496ba21f219bab24f056603a5d3c72427189780eb040378aff0a8180e63": {
+      "path": "release/v4-candidate/research_sources/solution-v4-research7.zip",
+      "archive_sha256": "cc750e9723dbf26d2a1872406f6a0c2cada34a7f634a900ae53f3d9f278ff856"
+    },
+    "f965e17e8aeb6eeaddb531c3b6727fe15915c9046be09198550921e5689cfac8": {
+      "path": "release/v4-candidate/research_sources/solution-v4-research8.zip",
+      "archive_sha256": "bad03cbdda1f9795d5085bf3f71c7e6a8c8d51f70a64d812dffbbfb4f3322a46"
+    },
+    "af44d71e7819d7fc9294b23379e01477f43c64198b58618f8edff507e668fbbe": {
+      "path": "release/solution-v3.zip",
+      "archive_sha256": "cba6a5aa01264c36fe67dad188e949b934557c0502bccf221e488578867032b8"
+    },
+    "3b7edaa78014ef33ea2aa20958f3a2686dddd051f8b4ae6490f499c521cfa6b9": {
+      "path": "release/solution-v4-candidate.zip",
+      "archive_sha256": "27d29e38e0ae16df5bb436b51e484801cbb57a9f21e2179b6c67d3b6e3a72afb"
+    }
+  },
+  "scope": "Repeatedly reused public validation; not independent platform score",
+  "input_sha256": {
+    "classification": {
+      "train": "171a8915070b7575b729a32f70a45d1ad7b6f43c65b4ce12a0a68af30d5cb4e0",
+      "test": "b825449603931b5f05a8855e3d92b57775221c93ed4730ac6b4c75b9ea608862",
+      "data_dictionary": "13d2651c5fe02b7fc30f0e7290af45606aad5de76c2f7b69217abc270dbbcef4",
+      "sample_submission": "4d23642fcff01e49b0ef5a9f018b2381c12fad97282fa586285ad49b01e9623e"
+    },
+    "regression": {
+      "train": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775",
+      "test": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
+      "data_dictionary": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
+      "sample_submission": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1"
+    }
+  },
+  "source_manifests": {
+    "545a6ac43359906da346e038e4d54ad73453bb1758ea31a1e00fc94955ccf811": {
+      "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+      "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+      "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+      "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+      "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+      "automl_callbacks.py": "8caba17f5cbcea0b52044c1b54f52e908065e3b1c3709f8537052b75cb336e15",
+      "automl_contracts_messages.py": "6aab60a3ed7597d9aeb38fafdd6ffad05f691809d656d56f600d40d40922198b",
+      "automl_ensembles.py": "338b3d1a7246527167c711c3efbcc802dde4bb9b475e917327066c351c98b055",
+      "automl_evaluation.py": "f7a5b75a067c840ff087d3e3e414d52012cc50ea08017c06216f805ca574486d",
+      "automl_evaluation_api.py": "07f734571184f68ea5d47024b4c17a0e1c6bd379f5104964e58fe310fda5f1b0",
+      "automl_execution_api.py": "57dbadc9767ef1b17ba28a035b3ecf4ce0f8d35ddd202af52151103cad3fd394",
+      "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+      "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+      "automl_execution_preprocessing_target_encoding.py": "b71875479036c31c8785f26a8b6c172c0d1994a151ce4262a37475f811be3b04",
+      "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+      "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+      "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+      "automl_infrastructure_llm_gateway.py": "cd10d09c0b5417010ea3eaf40beb2990256a6378c4a8d6e0e79a3321d83bc214",
+      "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+      "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+      "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+      "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+      "automl_model_lightgbm.py": "261ec2dfda40ec8fa848bb56d0ee6bd7b91b0fae428c3e5ad4d57864034937d0",
+      "automl_model_linear_text.py": "916aca3b7131ccf3d8f2fe163a3865ff5f16f5030ec55c0b4663c7959314715c",
+      "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+      "automl_models.py": "cf0746a3201d45633a87b8ec9966b610883d4520b31cebefbb34ea756cc4d90d",
+      "automl_policy.py": "de0c41f2977f9c912fc66ca09df6f5fe316dbc82ec11a4a3cfc310d2ced5e673",
+      "automl_publishing.py": "e4aef80616903e9489de34d03d0b6850b769d0418be30b052ec4a9b54a39fee6",
+      "automl_publishing_api.py": "739b45ba47c8c709292e4415be4569fb8856f6f43e3a43574bcb5d74cbf03f2d",
+      "automl_runner.py": "6d4f39b3ba63489160ba320c357c91d983aa0efebfd34e9e8e4c3e4dc32d170e",
+      "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+      "automl_task.py": "f6004ba036cbdd7e6c29371c0b20552465eeee72ee3e1654bf391822e95d9ed3",
+      "automl_task_understanding_api.py": "a4a7e033cca4dc52cab2c5094a11ed7d2d90cf8b3c765eeae95c4313b5f4703e",
+      "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+      "automl_worker.py": "bf9b9ad91c2ed522e0a2318b9a1069e24151ff2a862d5a18146b46e5a343b583",
+      "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+      "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+      "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+      "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953"
+    },
+    "db5cd9768b1767ae5a92a9f937dcad9acfb184ae6b37e1d96dba42f366c5ef59": {
+      "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+      "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+      "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+      "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+      "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+      "automl_callbacks.py": "8caba17f5cbcea0b52044c1b54f52e908065e3b1c3709f8537052b75cb336e15",
+      "automl_contracts_messages.py": "6aab60a3ed7597d9aeb38fafdd6ffad05f691809d656d56f600d40d40922198b",
+      "automl_ensembles.py": "338b3d1a7246527167c711c3efbcc802dde4bb9b475e917327066c351c98b055",
+      "automl_evaluation.py": "8f75c580d13bf8322560d38317612aecba9cf4733f632c96e528200d92da27f6",
+      "automl_evaluation_api.py": "b22f4db0f8c51634cac8a18aebe4085f93bb4832bd408c19291061f697e59218",
+      "automl_execution_api.py": "57dbadc9767ef1b17ba28a035b3ecf4ce0f8d35ddd202af52151103cad3fd394",
+      "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+      "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+      "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+      "automl_execution_preprocessing_target_encoding.py": "b39c0d777431b21dd09b982dbcb8e5f4a8d941d33433aead3ab93edb262fd7d2",
+      "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+      "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+      "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+      "automl_infrastructure_llm_gateway.py": "cd10d09c0b5417010ea3eaf40beb2990256a6378c4a8d6e0e79a3321d83bc214",
+      "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+      "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+      "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+      "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+      "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+      "automl_model_linear_text.py": "916aca3b7131ccf3d8f2fe163a3865ff5f16f5030ec55c0b4663c7959314715c",
+      "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+      "automl_models.py": "d9e9b05c41e26922f1c3796c22ede4ff4a7137510b4258ff1bb85f94a4338b28",
+      "automl_policy.py": "b310d876e280d397a7b451a1fa890a1715da781f09edcc045a258bd8c9f68561",
+      "automl_publishing.py": "e4aef80616903e9489de34d03d0b6850b769d0418be30b052ec4a9b54a39fee6",
+      "automl_publishing_api.py": "739b45ba47c8c709292e4415be4569fb8856f6f43e3a43574bcb5d74cbf03f2d",
+      "automl_runner.py": "b2ab199b09976c14169634cfdc582ff9072f32bef542dedac6a9a24e2e1ed004",
+      "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+      "automl_task.py": "385e08ddd8250ab670436e70223ac5a0ba1376e1464258efce69de5e97fc2729",
+      "automl_task_understanding_api.py": "a4a7e033cca4dc52cab2c5094a11ed7d2d90cf8b3c765eeae95c4313b5f4703e",
+      "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+      "automl_worker.py": "dc521fc2ee969b9ab88c44e425811b80661062bf584c884b6dec890091df85b1",
+      "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+      "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+      "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+      "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953"
+    },
+    "09e381568824a1391cad102abfe4cbb1e21031f28855869e7fe3d300bdf5de0d": {
+      "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+      "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+      "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+      "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+      "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+      "automl_callbacks.py": "8caba17f5cbcea0b52044c1b54f52e908065e3b1c3709f8537052b75cb336e15",
+      "automl_contracts_messages.py": "6aab60a3ed7597d9aeb38fafdd6ffad05f691809d656d56f600d40d40922198b",
+      "automl_ensembles.py": "338b3d1a7246527167c711c3efbcc802dde4bb9b475e917327066c351c98b055",
+      "automl_evaluation.py": "f7a5b75a067c840ff087d3e3e414d52012cc50ea08017c06216f805ca574486d",
+      "automl_evaluation_api.py": "07f734571184f68ea5d47024b4c17a0e1c6bd379f5104964e58fe310fda5f1b0",
+      "automl_execution_api.py": "57dbadc9767ef1b17ba28a035b3ecf4ce0f8d35ddd202af52151103cad3fd394",
+      "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+      "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+      "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+      "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+      "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+      "automl_infrastructure_llm_gateway.py": "cd10d09c0b5417010ea3eaf40beb2990256a6378c4a8d6e0e79a3321d83bc214",
+      "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+      "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+      "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+      "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+      "automl_model_lightgbm.py": "261ec2dfda40ec8fa848bb56d0ee6bd7b91b0fae428c3e5ad4d57864034937d0",
+      "automl_model_linear_text.py": "916aca3b7131ccf3d8f2fe163a3865ff5f16f5030ec55c0b4663c7959314715c",
+      "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+      "automl_models.py": "f70d003368ddf3ed5098fb0271f4cd5500b700b32453bfda86c42cb698fc06a4",
+      "automl_policy.py": "21ff04d899ce8fc3840e15aa7d041bb3aa33fd928f583eeb3da4b81fd721a933",
+      "automl_publishing.py": "e4aef80616903e9489de34d03d0b6850b769d0418be30b052ec4a9b54a39fee6",
+      "automl_publishing_api.py": "739b45ba47c8c709292e4415be4569fb8856f6f43e3a43574bcb5d74cbf03f2d",
+      "automl_runner.py": "6d4f39b3ba63489160ba320c357c91d983aa0efebfd34e9e8e4c3e4dc32d170e",
+      "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+      "automl_task.py": "f6004ba036cbdd7e6c29371c0b20552465eeee72ee3e1654bf391822e95d9ed3",
+      "automl_task_understanding_api.py": "a4a7e033cca4dc52cab2c5094a11ed7d2d90cf8b3c765eeae95c4313b5f4703e",
+      "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+      "automl_worker.py": "1217ec5e4b6675822e799f0254ba4bc723a93e1d6bbf430cba7c3e8b97eb56d4",
+      "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+      "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+      "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+      "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953"
+    },
+    "af44d71e7819d7fc9294b23379e01477f43c64198b58618f8edff507e668fbbe": {
+      "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+      "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+      "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+      "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+      "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+      "automl_callbacks.py": "8caba17f5cbcea0b52044c1b54f52e908065e3b1c3709f8537052b75cb336e15",
+      "automl_contracts_messages.py": "6aab60a3ed7597d9aeb38fafdd6ffad05f691809d656d56f600d40d40922198b",
+      "automl_ensembles.py": "338b3d1a7246527167c711c3efbcc802dde4bb9b475e917327066c351c98b055",
+      "automl_evaluation.py": "9f54b90e68992e2a053b495e10d23a651511afe213039410df4030dc8edf6f46",
+      "automl_evaluation_api.py": "d82446884e8280937e9db054cdf10a1e32f4ea44582784a42b996001bbfe77d3",
+      "automl_execution_api.py": "57dbadc9767ef1b17ba28a035b3ecf4ce0f8d35ddd202af52151103cad3fd394",
+      "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+      "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+      "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+      "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+      "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+      "automl_infrastructure_llm_gateway.py": "cd10d09c0b5417010ea3eaf40beb2990256a6378c4a8d6e0e79a3321d83bc214",
+      "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+      "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+      "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+      "automl_model_lightgbm.py": "c1c333d8920c31c68de88139292cb182fee5cb59e4e0c748c353413976bf6ff1",
+      "automl_model_linear_text.py": "6ad5fcb8863c75301d388cafc1d70fbe4617fc1eaed79a638379d3867a250003",
+      "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+      "automl_models.py": "d965230fab9e8be0fad7fd67061fd416430004d0ce6cc2074fc1ba1d83a3f68e",
+      "automl_policy.py": "875ba9533b40ade4beeae9a608613e325aabafe05c0f4e1d2a27d81986bf6759",
+      "automl_publishing.py": "e4aef80616903e9489de34d03d0b6850b769d0418be30b052ec4a9b54a39fee6",
+      "automl_publishing_api.py": "739b45ba47c8c709292e4415be4569fb8856f6f43e3a43574bcb5d74cbf03f2d",
+      "automl_runner.py": "adf62f908436d7dfa7851c6795dac96efff008b5c208afe4e2bc63e61278354b",
+      "automl_runtime.py": "4a3e707721e2221c32604c50ae4c7c047b68475871055df81d05cc39532e3c6e",
+      "automl_task.py": "1c5401a0c161c760d141d748ed3e27f06bcbe934d71637bb581768a183697214",
+      "automl_task_understanding_api.py": "a4a7e033cca4dc52cab2c5094a11ed7d2d90cf8b3c765eeae95c4313b5f4703e",
+      "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+      "automl_worker.py": "9e5cc4683112e53fb0679df4bc0ab3b8952685de5cc58191a0475665b484cbe2",
+      "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+      "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+      "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+      "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953"
+    },
+    "21365c72b689b44ccca06fe136f2ee9eca4cac06b5870b28ba76af2248f3809f": {
+      "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+      "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+      "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+      "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+      "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+      "automl_callbacks.py": "8caba17f5cbcea0b52044c1b54f52e908065e3b1c3709f8537052b75cb336e15",
+      "automl_contracts_messages.py": "6aab60a3ed7597d9aeb38fafdd6ffad05f691809d656d56f600d40d40922198b",
+      "automl_ensembles.py": "338b3d1a7246527167c711c3efbcc802dde4bb9b475e917327066c351c98b055",
+      "automl_evaluation.py": "8f75c580d13bf8322560d38317612aecba9cf4733f632c96e528200d92da27f6",
+      "automl_evaluation_api.py": "b22f4db0f8c51634cac8a18aebe4085f93bb4832bd408c19291061f697e59218",
+      "automl_execution_api.py": "57dbadc9767ef1b17ba28a035b3ecf4ce0f8d35ddd202af52151103cad3fd394",
+      "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+      "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+      "automl_execution_preprocessing_target_encoding.py": "d79c6161ad22e056f2d430e615cd442233884ba93eb59ca900311a6871397256",
+      "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+      "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+      "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+      "automl_infrastructure_llm_gateway.py": "cd10d09c0b5417010ea3eaf40beb2990256a6378c4a8d6e0e79a3321d83bc214",
+      "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+      "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+      "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+      "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+      "automl_model_lightgbm.py": "261ec2dfda40ec8fa848bb56d0ee6bd7b91b0fae428c3e5ad4d57864034937d0",
+      "automl_model_linear_text.py": "916aca3b7131ccf3d8f2fe163a3865ff5f16f5030ec55c0b4663c7959314715c",
+      "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+      "automl_models.py": "b71ece4ef535db8c4d65e8c48d1698ba4fcba45ffae1decb9fbb733d6a844a68",
+      "automl_policy.py": "238b499f2573ff6a0ba0cf7ec178b7ac6c38dd36dfcf1a132edcfccaca77e578",
+      "automl_publishing.py": "e4aef80616903e9489de34d03d0b6850b769d0418be30b052ec4a9b54a39fee6",
+      "automl_publishing_api.py": "739b45ba47c8c709292e4415be4569fb8856f6f43e3a43574bcb5d74cbf03f2d",
+      "automl_runner.py": "a60f4c1357fd854b689781aa38795d5ed9ebb8e0171e457c1f99be816c85a53d",
+      "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+      "automl_task.py": "385e08ddd8250ab670436e70223ac5a0ba1376e1464258efce69de5e97fc2729",
+      "automl_task_understanding_api.py": "a4a7e033cca4dc52cab2c5094a11ed7d2d90cf8b3c765eeae95c4313b5f4703e",
+      "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+      "automl_worker.py": "6c393ded5d4720370b01b64bd9927c83abde22ac09d9e792eea39b594737456a",
+      "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+      "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+      "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+      "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953"
+    },
+    "bb12cb6cf7503e93930f99e9e705c747343f285dd49a82f8039e72b1732a6bef": {
+      "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+      "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+      "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+      "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+      "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+      "automl_callbacks.py": "8caba17f5cbcea0b52044c1b54f52e908065e3b1c3709f8537052b75cb336e15",
+      "automl_contracts_messages.py": "6aab60a3ed7597d9aeb38fafdd6ffad05f691809d656d56f600d40d40922198b",
+      "automl_ensembles.py": "338b3d1a7246527167c711c3efbcc802dde4bb9b475e917327066c351c98b055",
+      "automl_evaluation.py": "8f75c580d13bf8322560d38317612aecba9cf4733f632c96e528200d92da27f6",
+      "automl_evaluation_api.py": "b22f4db0f8c51634cac8a18aebe4085f93bb4832bd408c19291061f697e59218",
+      "automl_execution_api.py": "57dbadc9767ef1b17ba28a035b3ecf4ce0f8d35ddd202af52151103cad3fd394",
+      "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+      "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+      "automl_execution_preprocessing_target_encoding.py": "b39c0d777431b21dd09b982dbcb8e5f4a8d941d33433aead3ab93edb262fd7d2",
+      "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+      "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+      "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+      "automl_infrastructure_llm_gateway.py": "cd10d09c0b5417010ea3eaf40beb2990256a6378c4a8d6e0e79a3321d83bc214",
+      "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+      "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+      "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+      "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+      "automl_model_lightgbm.py": "261ec2dfda40ec8fa848bb56d0ee6bd7b91b0fae428c3e5ad4d57864034937d0",
+      "automl_model_linear_text.py": "916aca3b7131ccf3d8f2fe163a3865ff5f16f5030ec55c0b4663c7959314715c",
+      "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+      "automl_models.py": "fd63fa5aa03e81565dd8aeb86a9730363f6e9ee16d308c7b8acae633ff7e3db8",
+      "automl_policy.py": "a57907ddaf10167710a8e5b2e7f39f9910e811502b266a5bd99a44cd3f0cf5e7",
+      "automl_publishing.py": "e4aef80616903e9489de34d03d0b6850b769d0418be30b052ec4a9b54a39fee6",
+      "automl_publishing_api.py": "739b45ba47c8c709292e4415be4569fb8856f6f43e3a43574bcb5d74cbf03f2d",
+      "automl_runner.py": "a1909ccc38c133f591a06b88e50c1dd06dd28a2771e48a1124340507d064a2b1",
+      "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+      "automl_task.py": "385e08ddd8250ab670436e70223ac5a0ba1376e1464258efce69de5e97fc2729",
+      "automl_task_understanding_api.py": "a4a7e033cca4dc52cab2c5094a11ed7d2d90cf8b3c765eeae95c4313b5f4703e",
+      "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+      "automl_worker.py": "fe5822c9fe94522729c724d04b7ab18a1865e19ab129bffd73b09f3927426627",
+      "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+      "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+      "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+      "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953"
+    },
+    "44bc81481012131b5fe038bbd2a7a225d4bebae4b6d8cbeefd73473b0f5719a9": {
+      "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+      "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+      "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+      "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+      "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+      "automl_callbacks.py": "8caba17f5cbcea0b52044c1b54f52e908065e3b1c3709f8537052b75cb336e15",
+      "automl_contracts_messages.py": "6aab60a3ed7597d9aeb38fafdd6ffad05f691809d656d56f600d40d40922198b",
+      "automl_ensembles.py": "338b3d1a7246527167c711c3efbcc802dde4bb9b475e917327066c351c98b055",
+      "automl_evaluation.py": "8f75c580d13bf8322560d38317612aecba9cf4733f632c96e528200d92da27f6",
+      "automl_evaluation_api.py": "b22f4db0f8c51634cac8a18aebe4085f93bb4832bd408c19291061f697e59218",
+      "automl_execution_api.py": "57dbadc9767ef1b17ba28a035b3ecf4ce0f8d35ddd202af52151103cad3fd394",
+      "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+      "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+      "automl_execution_preprocessing_target_encoding.py": "047ca4d6c99c431f0c114384d32982ca42881358b2e21f4f1cedad38cf85811c",
+      "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+      "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+      "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+      "automl_infrastructure_llm_gateway.py": "cd10d09c0b5417010ea3eaf40beb2990256a6378c4a8d6e0e79a3321d83bc214",
+      "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+      "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+      "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+      "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+      "automl_model_lightgbm.py": "261ec2dfda40ec8fa848bb56d0ee6bd7b91b0fae428c3e5ad4d57864034937d0",
+      "automl_model_linear_text.py": "916aca3b7131ccf3d8f2fe163a3865ff5f16f5030ec55c0b4663c7959314715c",
+      "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+      "automl_models.py": "e5af1e4db8aab1ad1bdf59f5d5c4d9ff5aab982f06264cf529f09573ff333d07",
+      "automl_policy.py": "f50c8a0c136db5138373192d1a70bac3c6564445f8c8ad44549930671cc0911d",
+      "automl_publishing.py": "e4aef80616903e9489de34d03d0b6850b769d0418be30b052ec4a9b54a39fee6",
+      "automl_publishing_api.py": "739b45ba47c8c709292e4415be4569fb8856f6f43e3a43574bcb5d74cbf03f2d",
+      "automl_runner.py": "a1909ccc38c133f591a06b88e50c1dd06dd28a2771e48a1124340507d064a2b1",
+      "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+      "automl_task.py": "385e08ddd8250ab670436e70223ac5a0ba1376e1464258efce69de5e97fc2729",
+      "automl_task_understanding_api.py": "a4a7e033cca4dc52cab2c5094a11ed7d2d90cf8b3c765eeae95c4313b5f4703e",
+      "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+      "automl_worker.py": "146156f847fd7d1954c10d70a21dc7c0ff05540392151f002f222a9ba2993981",
+      "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+      "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+      "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+      "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953"
+    },
+    "b47a5496ba21f219bab24f056603a5d3c72427189780eb040378aff0a8180e63": {
+      "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+      "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+      "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+      "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+      "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+      "automl_callbacks.py": "8caba17f5cbcea0b52044c1b54f52e908065e3b1c3709f8537052b75cb336e15",
+      "automl_contracts_messages.py": "6aab60a3ed7597d9aeb38fafdd6ffad05f691809d656d56f600d40d40922198b",
+      "automl_ensembles.py": "338b3d1a7246527167c711c3efbcc802dde4bb9b475e917327066c351c98b055",
+      "automl_evaluation.py": "8f75c580d13bf8322560d38317612aecba9cf4733f632c96e528200d92da27f6",
+      "automl_evaluation_api.py": "b22f4db0f8c51634cac8a18aebe4085f93bb4832bd408c19291061f697e59218",
+      "automl_execution_api.py": "57dbadc9767ef1b17ba28a035b3ecf4ce0f8d35ddd202af52151103cad3fd394",
+      "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+      "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+      "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+      "automl_execution_preprocessing_target_encoding.py": "17da52bccba4d91ec5f94fe86d22fc16f379ffa6161259a38a7de2eb3e949794",
+      "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+      "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+      "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+      "automl_infrastructure_llm_gateway.py": "cd10d09c0b5417010ea3eaf40beb2990256a6378c4a8d6e0e79a3321d83bc214",
+      "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+      "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+      "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+      "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+      "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+      "automl_model_linear_text.py": "916aca3b7131ccf3d8f2fe163a3865ff5f16f5030ec55c0b4663c7959314715c",
+      "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+      "automl_models.py": "3915a571e04c5968afda3873c0f4d130223d245918971754f0bc3d82a3eec773",
+      "automl_policy.py": "4ef0f86808800aedb5bb7c16148335da05841bf0b526cc9a916714561a221952",
+      "automl_publishing.py": "e4aef80616903e9489de34d03d0b6850b769d0418be30b052ec4a9b54a39fee6",
+      "automl_publishing_api.py": "739b45ba47c8c709292e4415be4569fb8856f6f43e3a43574bcb5d74cbf03f2d",
+      "automl_runner.py": "a48fe629aa257ddd28477c7dc583b53e1e15a515dbcbec41d3ce64dc54253030",
+      "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+      "automl_task.py": "dda3793a1f8484e7c99da4c20ec56f4309756b6dae8383c9394d21c7c1a94970",
+      "automl_task_understanding_api.py": "a4a7e033cca4dc52cab2c5094a11ed7d2d90cf8b3c765eeae95c4313b5f4703e",
+      "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+      "automl_worker.py": "2e8418803d72ec96958361776b8d405c2b111c4417dcd452a653c5424ebe98d2",
+      "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+      "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+      "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+      "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953"
+    }
+  },
+  "experiments": [
+    {
+      "name": "alfa-class-advanced",
+      "source_manifest_sha256": "545a6ac43359906da346e038e4d54ad73453bb1758ea31a1e00fc94955ccf811",
+      "kind": "classification",
+      "metric": "macro_f1",
+      "candidates": [
+        {
+          "name": "target-encoding",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "target-encoding",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "target_encoding": true
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "inner-calibration",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "inner-calibration",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "calibrate": true
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "oof-calibration",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "oof-calibration",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "calibrate": true,
+              "calibration_folds": 3
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "iterations-floor-300",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "Test whether noisy inner Macro F1 stops useful learning too early",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 300
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "iterations-floor-600",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "Test whether noisy inner Macro F1 stops useful learning too early",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 600
+            },
+            "feature_code": ""
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "target-encoding",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 62.578,
+          "peak_mb": 467.0,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6468049458764135,
+            "weighted_f1": 0.8197508858600113,
+            "accuracy": 0.8112128813954845,
+            "per_class_f1": {
+              "Analysis": 0.32903225806451614,
+              "Backdoor": 0.20465116279069767,
+              "DoS": 0.47853107344632767,
+              "Exploits": 0.693216334795815,
+              "Fuzzers": 0.7545967148810984,
+              "Generic": 0.9875406283856988,
+              "Normal": 0.9158242796410014,
+              "Reconnaissance": 0.8245067497403946,
+              "Shellcode": 0.6690391459074733,
+              "Worms": 0.6111111111111112
+            },
+            "log_loss": 0.4552009714170246,
+            "roc_auc": 0.9699797507754516
+          }
+        },
+        {
+          "name": "target-encoding",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 118.569,
+          "peak_mb": 499.2,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 236,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6512521516817172,
+            "weighted_f1": 0.8284047328675516,
+            "accuracy": 0.8199319845524238,
+            "per_class_f1": {
+              "Analysis": 0.23220973782771537,
+              "Backdoor": 0.20905923344947736,
+              "DoS": 0.47467438494934877,
+              "Exploits": 0.6991120218579235,
+              "Fuzzers": 0.7596705764911406,
+              "Generic": 0.9897593445980543,
+              "Normal": 0.9238728750923872,
+              "Reconnaissance": 0.8448637316561844,
+              "Shellcode": 0.7392996108949417,
+              "Worms": 0.64
+            },
+            "log_loss": 0.4313438254048824,
+            "roc_auc": 0.9707147324443882
+          }
+        },
+        {
+          "name": "inner-calibration",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 63.4,
+          "peak_mb": 381.6,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6502929607048801,
+            "weighted_f1": 0.8145405426848424,
+            "accuracy": 0.8045038212473018,
+            "per_class_f1": {
+              "Analysis": 0.3281733746130031,
+              "Backdoor": 0.22330097087378642,
+              "DoS": 0.49572649572649574,
+              "Exploits": 0.6704966641957005,
+              "Fuzzers": 0.7454976303317535,
+              "Generic": 0.9879550683448369,
+              "Normal": 0.9122439256788947,
+              "Reconnaissance": 0.822868810617662,
+              "Shellcode": 0.65,
+              "Worms": 0.6666666666666666
+            },
+            "log_loss": 0.47283688615761593,
+            "roc_auc": 0.9700966684139347
+          }
+        },
+        {
+          "name": "inner-calibration",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 70.651,
+          "peak_mb": 382.3,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6527944155063504,
+            "weighted_f1": 0.8224227082510334,
+            "accuracy": 0.8112859530808693,
+            "per_class_f1": {
+              "Analysis": 0.2765957446808511,
+              "Backdoor": 0.21875,
+              "DoS": 0.4871060171919771,
+              "Exploits": 0.6844765342960288,
+              "Fuzzers": 0.75,
+              "Generic": 0.9897619657025851,
+              "Normal": 0.913302448709464,
+              "Reconnaissance": 0.8409931325937665,
+              "Shellcode": 0.746268656716418,
+              "Worms": 0.6206896551724138
+            },
+            "log_loss": 0.45017141136363487,
+            "roc_auc": 0.9708376812918631
+          }
+        },
+        {
+          "name": "oof-calibration",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 121.584,
+          "peak_mb": 428.1,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.633182062097535,
+            "weighted_f1": 0.8175739287053881,
+            "accuracy": 0.80707076599965,
+            "per_class_f1": {
+              "Analysis": 0.34234234234234234,
+              "Backdoor": 0.2048780487804878,
+              "DoS": 0.49025803054239075,
+              "Exploits": 0.6892148403796376,
+              "Fuzzers": 0.7501196744853997,
+              "Generic": 0.9879550683448369,
+              "Normal": 0.9115112047500479,
+              "Reconnaissance": 0.8166755745590594,
+              "Shellcode": 0.6721991701244814,
+              "Worms": 0.4666666666666667
+            },
+            "log_loss": 0.4601250384052506,
+            "roc_auc": 0.9699164173532017
+          }
+        },
+        {
+          "name": "oof-calibration",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 119.162,
+          "peak_mb": 427.5,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6522956652958765,
+            "weighted_f1": 0.826510277895871,
+            "accuracy": 0.8174534555305781,
+            "per_class_f1": {
+              "Analysis": 0.2733812949640288,
+              "Backdoor": 0.24,
+              "DoS": 0.47806774014436426,
+              "Exploits": 0.6960985626283368,
+              "Fuzzers": 0.7515731185502139,
+              "Generic": 0.9900128040973112,
+              "Normal": 0.9199406968124537,
+              "Reconnaissance": 0.8405491024287223,
+              "Shellcode": 0.75,
+              "Worms": 0.5833333333333334
+            },
+            "log_loss": 0.4371308563930311,
+            "roc_auc": 0.970882692293452
+          }
+        },
+        {
+          "name": "iterations-floor-300",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 99.162,
+          "peak_mb": 437.2,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 300,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6220458825115509,
+            "weighted_f1": 0.8206866026001374,
+            "accuracy": 0.8128463916924333,
+            "per_class_f1": {
+              "Analysis": 0.2679738562091503,
+              "Backdoor": 0.16300940438871472,
+              "DoS": 0.461633281972265,
+              "Exploits": 0.7031756318859365,
+              "Fuzzers": 0.7579425113464447,
+              "Generic": 0.9878081820644812,
+              "Normal": 0.9203803841133694,
+              "Reconnaissance": 0.8171701112877583,
+              "Shellcode": 0.6746987951807228,
+              "Worms": 0.4666666666666667
+            },
+            "log_loss": 0.4545318233710169,
+            "roc_auc": 0.9696632979433579
+          }
+        },
+        {
+          "name": "iterations-floor-300",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 100.335,
+          "peak_mb": 428.7,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 300,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6414697590604405,
+            "weighted_f1": 0.8275452856690482,
+            "accuracy": 0.8184909793071646,
+            "per_class_f1": {
+              "Analysis": 0.20938628158844766,
+              "Backdoor": 0.18435754189944134,
+              "DoS": 0.4673231871083259,
+              "Exploits": 0.7021709633649932,
+              "Fuzzers": 0.7573547900427458,
+              "Generic": 0.9902688860435339,
+              "Normal": 0.9235304956697992,
+              "Reconnaissance": 0.84,
+              "Shellcode": 0.7569721115537849,
+              "Worms": 0.5833333333333334
+            },
+            "log_loss": 0.4362257300605178,
+            "roc_auc": 0.9710555628639209
+          }
+        },
+        {
+          "name": "iterations-floor-600",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 184.059,
+          "peak_mb": 475.4,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 600,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6142881744091447,
+            "weighted_f1": 0.8208164791873711,
+            "accuracy": 0.8134297882270579,
+            "per_class_f1": {
+              "Analysis": 0.27129337539432175,
+              "Backdoor": 0.1488095238095238,
+              "DoS": 0.4556400506970849,
+              "Exploits": 0.70464,
+              "Fuzzers": 0.7557840616966581,
+              "Generic": 0.9879452796966003,
+              "Normal": 0.9232902033271719,
+              "Reconnaissance": 0.8122646584185046,
+              "Shellcode": 0.6694214876033058,
+              "Worms": 0.41379310344827586
+            },
+            "log_loss": 0.4640453704064582,
+            "roc_auc": 0.96912715754901
+          }
+        },
+        {
+          "name": "iterations-floor-600",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 187.253,
+          "peak_mb": 494.1,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 600,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.644904370936634,
+            "weighted_f1": 0.8289750465415805,
+            "accuracy": 0.8205660268603377,
+            "per_class_f1": {
+              "Analysis": 0.2158273381294964,
+              "Backdoor": 0.17571059431524547,
+              "DoS": 0.4591293454431569,
+              "Exploits": 0.7081466733034677,
+              "Fuzzers": 0.7582333418432474,
+              "Generic": 0.9898886471265839,
+              "Normal": 0.9255396999634101,
+              "Reconnaissance": 0.8424403183023873,
+              "Shellcode": 0.7654320987654321,
+              "Worms": 0.6086956521739131
+            },
+            "log_loss": 0.443059461184729,
+            "roc_auc": 0.9709399820197436
+          }
+        }
+      ],
+      "oof": null,
+      "harness": null,
+      "python": null
+    },
+    {
+      "name": "alfa-class-combinations",
+      "source_manifest_sha256": "db5cd9768b1767ae5a92a9f937dcad9acfb184ae6b37e1d96dba42f366c5ef59",
+      "kind": "classification",
+      "metric": "macro_f1",
+      "candidates": [
+        {
+          "name": "ova-calibrated",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "ova-calibrated",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "multiclass_strategy": "ova",
+              "calibrate": true
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "ova-target-encoding",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "ova-target-encoding",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "multiclass_strategy": "ova",
+              "target_encoding": true
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "pair-specialists",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "pair-specialists",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "pair_refinement": true
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "min-leaf10",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "min-leaf10",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 10,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "leaves31",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "leaves31",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 31,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "ova-calibrated",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 65.026,
+          "peak_mb": 382.2,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6493779010473992,
+            "weighted_f1": 0.8157537729612565,
+            "accuracy": 0.8060206522373257,
+            "per_class_f1": {
+              "Analysis": 0.3519061583577713,
+              "Backdoor": 0.22330097087378642,
+              "DoS": 0.4724275156338829,
+              "Exploits": 0.6889903602232369,
+              "Fuzzers": 0.7439365671641791,
+              "Generic": 0.9874069058903182,
+              "Normal": 0.9104721607846908,
+              "Reconnaissance": 0.8195527821112845,
+              "Shellcode": 0.6642066420664207,
+              "Worms": 0.631578947368421
+            },
+            "log_loss": 0.47173166425781893,
+            "roc_auc": 0.9701783157558965
+          }
+        },
+        {
+          "name": "ova-calibrated",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 69.423,
+          "peak_mb": 384.2,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 125,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6565236492014459,
+            "weighted_f1": 0.824941585269074,
+            "accuracy": 0.8141103233615771,
+            "per_class_f1": {
+              "Analysis": 0.26198083067092653,
+              "Backdoor": 0.2616822429906542,
+              "DoS": 0.4948865053629334,
+              "Exploits": 0.6786176307521715,
+              "Fuzzers": 0.7549337996502623,
+              "Generic": 0.9896246957858332,
+              "Normal": 0.9209794101279911,
+              "Reconnaissance": 0.8413643746616134,
+              "Shellcode": 0.7183098591549296,
+              "Worms": 0.6428571428571429
+            },
+            "log_loss": 0.45526689397194814,
+            "roc_auc": 0.9704400362716854
+          }
+        },
+        {
+          "name": "ova-target-encoding",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 69.637,
+          "peak_mb": 463.3,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6509430223895587,
+            "weighted_f1": 0.8171738922050539,
+            "accuracy": 0.8075958228808121,
+            "per_class_f1": {
+              "Analysis": 0.3504531722054381,
+              "Backdoor": 0.21359223300970873,
+              "DoS": 0.47095144541117034,
+              "Exploits": 0.6868001357312521,
+              "Fuzzers": 0.7512617159336697,
+              "Generic": 0.9872697724810401,
+              "Normal": 0.9138605361060765,
+              "Reconnaissance": 0.8245067497403946,
+              "Shellcode": 0.6440677966101694,
+              "Worms": 0.6666666666666666
+            },
+            "log_loss": 0.47009364156127204,
+            "roc_auc": 0.9699118273127798
+          }
+        },
+        {
+          "name": "ova-target-encoding",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 194.572,
+          "peak_mb": 507.3,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 323,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6535352067808599,
+            "weighted_f1": 0.8271230163522308,
+            "accuracy": 0.8181451380483025,
+            "per_class_f1": {
+              "Analysis": 0.25622775800711745,
+              "Backdoor": 0.19607843137254902,
+              "DoS": 0.4712103407755582,
+              "Exploits": 0.697849095254353,
+              "Fuzzers": 0.758128078817734,
+              "Generic": 0.9897514732257238,
+              "Normal": 0.9224193997955961,
+              "Reconnaissance": 0.8393782383419689,
+              "Shellcode": 0.7376425855513308,
+              "Worms": 0.6666666666666666
+            },
+            "log_loss": 0.43411827282097476,
+            "roc_auc": 0.9707031553409406
+          }
+        },
+        {
+          "name": "pair-specialists",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 64.831,
+          "peak_mb": 381.9,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6450203195871362,
+            "weighted_f1": 0.816794220475726,
+            "accuracy": 0.8078291814946619,
+            "per_class_f1": {
+              "Analysis": 0.31309904153354634,
+              "Backdoor": 0.228310502283105,
+              "DoS": 0.4649971542401821,
+              "Exploits": 0.6883532782740603,
+              "Fuzzers": 0.7493929091792132,
+              "Generic": 0.9878180833784516,
+              "Normal": 0.9150648612820755,
+              "Reconnaissance": 0.8197916666666667,
+              "Shellcode": 0.6548042704626335,
+              "Worms": 0.6285714285714286
+            },
+            "log_loss": 0.46150431732562297,
+            "roc_auc": 0.9700034453755405
+          }
+        },
+        {
+          "name": "pair-specialists",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 67.849,
+          "peak_mb": 383.1,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6482129858881949,
+            "weighted_f1": 0.8218147136912336,
+            "accuracy": 0.812208196437835,
+            "per_class_f1": {
+              "Analysis": 0.2695035460992908,
+              "Backdoor": 0.21875,
+              "DoS": 0.4658454647256439,
+              "Exploits": 0.6838799720865317,
+              "Fuzzers": 0.7500609607412826,
+              "Generic": 0.9897619657025851,
+              "Normal": 0.9169783096484667,
+              "Reconnaissance": 0.8400412796697626,
+              "Shellcode": 0.7266187050359713,
+              "Worms": 0.6206896551724138
+            },
+            "log_loss": 0.4474236865325332,
+            "roc_auc": 0.9708302884087487
+          }
+        },
+        {
+          "name": "min-leaf10",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 56.407,
+          "peak_mb": 375.6,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6301461270971519,
+            "weighted_f1": 0.8167824558897144,
+            "accuracy": 0.8080625401085118,
+            "per_class_f1": {
+              "Analysis": 0.2736156351791531,
+              "Backdoor": 0.1968503937007874,
+              "DoS": 0.4682926829268293,
+              "Exploits": 0.6890048829769322,
+              "Fuzzers": 0.7547630679042501,
+              "Generic": 0.9876777251184834,
+              "Normal": 0.9147770219198791,
+              "Reconnaissance": 0.8212058212058212,
+              "Shellcode": 0.6498194945848376,
+              "Worms": 0.5454545454545454
+            },
+            "log_loss": 0.4597592429683431,
+            "roc_auc": 0.9702185836390388
+          }
+        },
+        {
+          "name": "min-leaf10",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 54.588,
+          "peak_mb": 381.4,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6375925535391318,
+            "weighted_f1": 0.8234373060218644,
+            "accuracy": 0.8137644821027149,
+            "per_class_f1": {
+              "Analysis": 0.23841059602649006,
+              "Backdoor": 0.20973782771535582,
+              "DoS": 0.47035573122529645,
+              "Exploits": 0.6893913043478261,
+              "Fuzzers": 0.7525042755924749,
+              "Generic": 0.9901421072845986,
+              "Normal": 0.9177020084072863,
+              "Reconnaissance": 0.8410150181253236,
+              "Shellcode": 0.7481481481481481,
+              "Worms": 0.5185185185185185
+            },
+            "log_loss": 0.44538175175039096,
+            "roc_auc": 0.9708527059143897
+          }
+        },
+        {
+          "name": "leaves31",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 54.811,
+          "peak_mb": 365.5,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6399483137414748,
+            "weighted_f1": 0.8162640768446754,
+            "accuracy": 0.8068374073858001,
+            "per_class_f1": {
+              "Analysis": 0.3202416918429003,
+              "Backdoor": 0.22119815668202766,
+              "DoS": 0.47058823529411764,
+              "Exploits": 0.6892941573792638,
+              "Fuzzers": 0.7491590581451225,
+              "Generic": 0.9876810613239475,
+              "Normal": 0.9119893088965254,
+              "Reconnaissance": 0.8210961737331954,
+              "Shellcode": 0.64,
+              "Worms": 0.5882352941176471
+            },
+            "log_loss": 0.46924508958241484,
+            "roc_auc": 0.969467170706759
+          }
+        },
+        {
+          "name": "leaves31",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 65.236,
+          "peak_mb": 373.3,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 127,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6389485411233917,
+            "weighted_f1": 0.8207326391715818,
+            "accuracy": 0.810940111822007,
+            "per_class_f1": {
+              "Analysis": 0.267515923566879,
+              "Backdoor": 0.22950819672131148,
+              "DoS": 0.47529150471960024,
+              "Exploits": 0.6785588131402331,
+              "Fuzzers": 0.7507810622446527,
+              "Generic": 0.9898912348048624,
+              "Normal": 0.9150978915662651,
+              "Reconnaissance": 0.8380855397148677,
+              "Shellcode": 0.7062937062937062,
+              "Worms": 0.5384615384615384
+            },
+            "log_loss": 0.4480030001311629,
+            "roc_auc": 0.9706039617636361
+          }
+        }
+      ],
+      "oof": null,
+      "harness": null,
+      "python": null
+    },
+    {
+      "name": "alfa-class-features",
+      "source_manifest_sha256": "09e381568824a1391cad102abfe4cbb1e21031f28855869e7fe3d300bdf5de0d",
+      "kind": "classification",
+      "metric": "macro_f1",
+      "candidates": [
+        {
+          "name": "qwen-features-1",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "Asymmetric traffic volume and packet counts (source vs destination) are critical for distinguishing attack types like DoS (high source load) from Reconnaissance (low volume, high connection counts). Creating robust ratios and differences between source and destination metrics helps the model capture directional asymmetry.",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": "def transform(df):\n    df = df.copy()\n    \n    # Robust ratios for bytes and packets\n    df['bytes_ratio'] = df['sbytes'] / (df['dbytes'] + 1)\n    df['pkts_ratio'] = df['spkts'] / (df['dpkts'] + 1)\n    \n    # Differences to capture absolute asymmetry\n    df['bytes_diff'] = df['sbytes'] - df['dbytes']\n    df['pkts_diff'] = df['spkts'] - df['dpkts']\n    \n    # Load asymmetry\n    df['load_ratio'] = df['sload'] / (df['dload'] + 1)\n    \n    return df"
+          }
+        },
+        {
+          "name": "qwen-features-2",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "Contextual counters (like ct_dst_ltm, ct_src_ltm) often have heavy-tailed distributions. Applying log transformations to these counters and combining them with categorical features (proto, state) can help the model better distinguish between normal traffic and specific attack patterns that exploit specific protocols or connection states.",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": "def transform(df):\n    df = df.copy()\n    \n    # Log transform for heavy-tailed counters\n    df['log_ct_dst_ltm'] = np.log1p(df['ct_dst_ltm'])\n    df['log_ct_src_ltm'] = np.log1p(df['ct_src_ltm'])\n    df['log_ct_srv_dst'] = np.log1p(df['ct_srv_dst'])\n    \n    # Categorical combinations\n    df['proto_state'] = df['proto'].astype(str) + '_' + df['state'].astype(str)\n    df['proto_service'] = df['proto'].astype(str) + '_' + df['service'].astype(str)\n    \n    return df"
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "qwen-features-1",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 49.95,
+          "peak_mb": 428.8,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6400785687896621,
+            "weighted_f1": 0.8184367168708354,
+            "accuracy": 0.8089376349104487,
+            "per_class_f1": {
+              "Analysis": 0.3,
+              "Backdoor": 0.19858156028368795,
+              "DoS": 0.46906474820143884,
+              "Exploits": 0.6943740496705525,
+              "Fuzzers": 0.752262166788946,
+              "Generic": 0.9878114842903575,
+              "Normal": 0.9151068254868595,
+              "Reconnaissance": 0.8240208877284595,
+              "Shellcode": 0.6713286713286714,
+              "Worms": 0.5882352941176471
+            },
+            "log_loss": 0.45837692742627617,
+            "roc_auc": 0.970086777034345
+          }
+        },
+        {
+          "name": "qwen-features-1",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 50.346,
+          "peak_mb": 427.2,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6417311209784602,
+            "weighted_f1": 0.8224683573184434,
+            "accuracy": 0.8124387572770765,
+            "per_class_f1": {
+              "Analysis": 0.26198083067092653,
+              "Backdoor": 0.2112676056338028,
+              "DoS": 0.47269672360683285,
+              "Exploits": 0.6839597670725251,
+              "Fuzzers": 0.7502448579823702,
+              "Generic": 0.9897593445980543,
+              "Normal": 0.9179348333488937,
+              "Reconnaissance": 0.841726618705036,
+              "Shellcode": 0.7163120567375887,
+              "Worms": 0.5714285714285714
+            },
+            "log_loss": 0.44540700799021093,
+            "roc_auc": 0.9709741849586602
+          }
+        },
+        {
+          "name": "qwen-features-2",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 46.131,
+          "peak_mb": 402.2,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6504095121651232,
+            "weighted_f1": 0.8182266454275909,
+            "accuracy": 0.8087626159500613,
+            "per_class_f1": {
+              "Analysis": 0.3271604938271605,
+              "Backdoor": 0.2248062015503876,
+              "DoS": 0.46756216061731926,
+              "Exploits": 0.688873858640514,
+              "Fuzzers": 0.7551219512195122,
+              "Generic": 0.9872697724810401,
+              "Normal": 0.9159250142018557,
+              "Reconnaissance": 0.8220603537981269,
+              "Shellcode": 0.6666666666666666,
+              "Worms": 0.6486486486486487
+            },
+            "log_loss": 0.4590600801942135,
+            "roc_auc": 0.9699267309247583
+          }
+        },
+        {
+          "name": "qwen-features-2",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 113.959,
+          "peak_mb": 447.9,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 290,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6410758477983731,
+            "weighted_f1": 0.8260650053710467,
+            "accuracy": 0.8172228946913367,
+            "per_class_f1": {
+              "Analysis": 0.21897810218978103,
+              "Backdoor": 0.1781609195402299,
+              "DoS": 0.4636038186157518,
+              "Exploits": 0.6990984861370981,
+              "Fuzzers": 0.7535140562248996,
+              "Generic": 0.9903981564460377,
+              "Normal": 0.922227335480902,
+              "Reconnaissance": 0.8414442700156985,
+              "Shellcode": 0.76,
+              "Worms": 0.5833333333333334
+            },
+            "log_loss": 0.435774630657869,
+            "roc_auc": 0.9708589759474332
+          }
+        }
+      ],
+      "oof": null,
+      "harness": null,
+      "python": null
+    },
+    {
+      "name": "alfa-class-parameters",
+      "source_manifest_sha256": "09e381568824a1391cad102abfe4cbb1e21031f28855869e7fe3d300bdf5de0d",
+      "kind": "classification",
+      "metric": "macro_f1",
+      "candidates": [
+        {
+          "name": "weight025",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "weight025",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.25,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "weight075",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "weight075",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.75,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "ova",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "ova",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "multiclass_strategy": "ova"
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "leaves127",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "leaves127",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 15,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "weight025",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 53.773,
+          "peak_mb": 375.6,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6285890311309358,
+            "weighted_f1": 0.8198359855820523,
+            "accuracy": 0.8218890379791144,
+            "per_class_f1": {
+              "Analysis": 0.2733812949640288,
+              "Backdoor": 0.2146341463414634,
+              "DoS": 0.37571491421029474,
+              "Exploits": 0.7311827956989247,
+              "Fuzzers": 0.7508878741755454,
+              "Generic": 0.9879518072289156,
+              "Normal": 0.9203933939506402,
+              "Reconnaissance": 0.8159574468085107,
+              "Shellcode": 0.6640625,
+              "Worms": 0.5517241379310345
+            },
+            "log_loss": 0.44187411583214886,
+            "roc_auc": 0.9699979175559538
+          }
+        },
+        {
+          "name": "weight025",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 87.679,
+          "peak_mb": 417.9,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 206,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6471111043789246,
+            "weighted_f1": 0.8311782216144412,
+            "accuracy": 0.8301343016888582,
+            "per_class_f1": {
+              "Analysis": 0.22131147540983606,
+              "Backdoor": 0.20817843866171004,
+              "DoS": 0.41146040588937527,
+              "Exploits": 0.7351997666958296,
+              "Fuzzers": 0.7560723514211887,
+              "Generic": 0.9901446307436325,
+              "Normal": 0.925936048100574,
+              "Reconnaissance": 0.8423280423280424,
+              "Shellcode": 0.7717842323651453,
+              "Worms": 0.6086956521739131
+            },
+            "log_loss": 0.4195553205679728,
+            "roc_auc": 0.9713059797656868
+          }
+        },
+        {
+          "name": "weight075",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 58.592,
+          "peak_mb": 383.7,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 108,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6410854752355198,
+            "weighted_f1": 0.813169627216105,
+            "accuracy": 0.7991365731287556,
+            "per_class_f1": {
+              "Analysis": 0.30022075055187636,
+              "Backdoor": 0.1489841986455982,
+              "DoS": 0.47796988287785835,
+              "Exploits": 0.6750318239679942,
+              "Fuzzers": 0.7508305647840532,
+              "Generic": 0.9876777251184834,
+              "Normal": 0.9108188537966785,
+              "Reconnaissance": 0.8217770929635336,
+              "Shellcode": 0.6533333333333333,
+              "Worms": 0.6842105263157895
+            },
+            "log_loss": 0.49118609038508426,
+            "roc_auc": 0.9691263951278593
+          }
+        },
+        {
+          "name": "weight075",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 63.62,
+          "peak_mb": 384.6,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 121,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6298485366929996,
+            "weighted_f1": 0.8181656790842177,
+            "accuracy": 0.8030434030779872,
+            "per_class_f1": {
+              "Analysis": 0.2304147465437788,
+              "Backdoor": 0.1544256120527307,
+              "DoS": 0.4729231641621775,
+              "Exploits": 0.6711635750421585,
+              "Fuzzers": 0.7537402042270245,
+              "Generic": 0.9895060148451498,
+              "Normal": 0.9147506859683981,
+              "Reconnaissance": 0.8388746803069054,
+              "Shellcode": 0.6920415224913494,
+              "Worms": 0.5806451612903226
+            },
+            "log_loss": 0.47481428363894657,
+            "roc_auc": 0.9707706951667217
+          }
+        },
+        {
+          "name": "ova",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 49.153,
+          "peak_mb": 379.0,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6515739981692754,
+            "weighted_f1": 0.8172207445355405,
+            "accuracy": 0.8075374832273496,
+            "per_class_f1": {
+              "Analysis": 0.3519061583577713,
+              "Backdoor": 0.21929824561403508,
+              "DoS": 0.4704201200342955,
+              "Exploits": 0.6894336432797972,
+              "Fuzzers": 0.7481463764649605,
+              "Generic": 0.9874069058903182,
+              "Normal": 0.91401851321691,
+              "Reconnaissance": 0.8199791883454735,
+              "Shellcode": 0.6484641638225256,
+              "Worms": 0.6666666666666666
+            },
+            "log_loss": 0.47419266331393073,
+            "roc_auc": 0.9701114262539245
+          }
+        },
+        {
+          "name": "ova",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 71.061,
+          "peak_mb": 386.0,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 125,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6498832450933911,
+            "weighted_f1": 0.8233725958734643,
+            "accuracy": 0.8133610006340423,
+            "per_class_f1": {
+              "Analysis": 0.2611464968152866,
+              "Backdoor": 0.21052631578947367,
+              "DoS": 0.4742792538157151,
+              "Exploits": 0.6871488764044944,
+              "Fuzzers": 0.7541142303969022,
+              "Generic": 0.9896246957858332,
+              "Normal": 0.9174397900852779,
+              "Reconnaissance": 0.8402670775552131,
+              "Shellcode": 0.7214285714285714,
+              "Worms": 0.6428571428571429
+            },
+            "log_loss": 0.44994749851114135,
+            "roc_auc": 0.970596959991221
+          }
+        },
+        {
+          "name": "leaves127",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 59.405,
+          "peak_mb": 409.7,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6394479206354319,
+            "weighted_f1": 0.8209973275035269,
+            "accuracy": 0.8126130330785836,
+            "per_class_f1": {
+              "Analysis": 0.3042071197411003,
+              "Backdoor": 0.232,
+              "DoS": 0.4728862973760933,
+              "Exploits": 0.7002151961595763,
+              "Fuzzers": 0.7549141577506843,
+              "Generic": 0.9875406283856988,
+              "Normal": 0.9175896376947625,
+              "Reconnaissance": 0.8228450555261766,
+              "Shellcode": 0.6568265682656826,
+              "Worms": 0.5454545454545454
+            },
+            "log_loss": 0.4561869046809937,
+            "roc_auc": 0.9701227610204353
+          }
+        },
+        {
+          "name": "leaves127",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 59.387,
+          "peak_mb": 411.9,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6374056495884464,
+            "weighted_f1": 0.8256967992839159,
+            "accuracy": 0.8162430111245605,
+            "per_class_f1": {
+              "Analysis": 0.24918032786885247,
+              "Backdoor": 0.20625,
+              "DoS": 0.4747239976757699,
+              "Exploits": 0.6933701657458563,
+              "Fuzzers": 0.7550360606814225,
+              "Generic": 0.9901421072845986,
+              "Normal": 0.921394141638858,
+              "Reconnaissance": 0.8375,
+              "Shellcode": 0.7279411764705882,
+              "Worms": 0.5185185185185185
+            },
+            "log_loss": 0.44281128691398663,
+            "roc_auc": 0.9708071690642193
+          }
+        }
+      ],
+      "oof": null,
+      "harness": null,
+      "python": null
+    },
+    {
+      "name": "alfa-p0-new-class",
+      "source_manifest_sha256": "09e381568824a1391cad102abfe4cbb1e21031f28855869e7fe3d300bdf5de0d",
+      "kind": "classification",
+      "metric": "macro_f1",
+      "candidates": [
+        {
+          "name": "control",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "Fixed v3 first recipe control",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "control",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 54.379,
+          "peak_mb": 375.6,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6463289244307688,
+            "weighted_f1": 0.8188425060717702,
+            "accuracy": 0.809871069365848,
+            "per_class_f1": {
+              "Analysis": 0.31210191082802546,
+              "Backdoor": 0.2222222222222222,
+              "DoS": 0.47477913935594185,
+              "Exploits": 0.6951979780960404,
+              "Fuzzers": 0.749757045675413,
+              "Generic": 0.9879550683448369,
+              "Normal": 0.9150487735581021,
+              "Reconnaissance": 0.8205128205128205,
+              "Shellcode": 0.6571428571428571,
+              "Worms": 0.6285714285714286
+            },
+            "log_loss": 0.4601995414519284,
+            "roc_auc": 0.970023692495497
+          }
+        },
+        {
+          "name": "control",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 61.022,
+          "peak_mb": 381.1,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6481131047352855,
+            "weighted_f1": 0.8230944622894829,
+            "accuracy": 0.8132457202144215,
+            "per_class_f1": {
+              "Analysis": 0.26537216828478966,
+              "Backdoor": 0.2109090909090909,
+              "DoS": 0.47168742921857304,
+              "Exploits": 0.6890052356020943,
+              "Fuzzers": 0.7500609607412826,
+              "Generic": 0.9897619657025851,
+              "Normal": 0.9171498036282028,
+              "Reconnaissance": 0.8398760330578512,
+              "Shellcode": 0.7266187050359713,
+              "Worms": 0.6206896551724138
+            },
+            "log_loss": 0.44663526960047734,
+            "roc_auc": 0.9708323719234032
+          }
+        }
+      ],
+      "oof": null,
+      "harness": null,
+      "python": null
+    },
+    {
+      "name": "alfa-p0-new-reg",
+      "source_manifest_sha256": "09e381568824a1391cad102abfe4cbb1e21031f28855869e7fe3d300bdf5de0d",
+      "kind": "regression",
+      "metric": "rmse",
+      "candidates": [
+        {
+          "name": "control",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "Fixed v3 regression baseline",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "control",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 27.898,
+          "peak_mb": 377.1,
+          "split": {
+            "method": "random_holdout_20pct",
+            "seed": 42,
+            "train_rows": 42646,
+            "validation_rows": 10662,
+            "split_sha256": "13cc9c4db238d4f6fe3ad16148cfe5d71a875b52859f680d85f9d95731efbc0d",
+            "shared_feature_hashes": 101,
+            "validation_class_counts": null
+          },
+          "fit_iterations": 835,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 42.91538241954654,
+            "mae": 20.998656449730344,
+            "r2": 0.48350505320211556
+          }
+        },
+        {
+          "name": "control",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 49.403,
+          "peak_mb": 393.7,
+          "split": {
+            "method": "random_holdout_20pct",
+            "seed": 43,
+            "train_rows": 42646,
+            "validation_rows": 10662,
+            "split_sha256": "2d3be88009d65c6de3308999e15af32d69b392dd521001c4ecd0307cdb3787c9",
+            "shared_feature_hashes": 89,
+            "validation_class_counts": null
+          },
+          "fit_iterations": 1342,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 42.61740433864296,
+            "mae": 21.290855734550913,
+            "r2": 0.49780695401004005
+          }
+        }
+      ],
+      "oof": null,
+      "harness": null,
+      "python": null
+    },
+    {
+      "name": "alfa-p0-v3-class",
+      "source_manifest_sha256": "af44d71e7819d7fc9294b23379e01477f43c64198b58618f8edff507e668fbbe",
+      "kind": "classification",
+      "metric": "macro_f1",
+      "candidates": [
+        {
+          "name": "control",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "Fixed v3 first recipe control",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "control",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 58.374,
+          "peak_mb": 316.4,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 42,
+            "train_rows": 70529,
+            "validation_rows": 17141,
+            "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5565,
+              "Generic": 3733,
+              "Exploits": 3286,
+              "Fuzzers": 1839,
+              "DoS": 1195,
+              "Reconnaissance": 1017,
+              "Analysis": 211,
+              "Backdoor": 158,
+              "Shellcode": 118,
+              "Worms": 19
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6463289244307688,
+            "weighted_f1": 0.8188425060717702,
+            "accuracy": 0.809871069365848,
+            "per_class_f1": {
+              "Analysis": 0.31210191082802546,
+              "Backdoor": 0.2222222222222222,
+              "DoS": 0.47477913935594185,
+              "Exploits": 0.6951979780960404,
+              "Fuzzers": 0.749757045675413,
+              "Generic": 0.9879550683448369,
+              "Normal": 0.9150487735581021,
+              "Reconnaissance": 0.8205128205128205,
+              "Shellcode": 0.6571428571428571,
+              "Worms": 0.6285714285714286
+            },
+            "log_loss": 0.4601995414519284,
+            "roc_auc": 0.970023692495497
+          }
+        },
+        {
+          "name": "control",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 67.838,
+          "peak_mb": 317.2,
+          "split": {
+            "method": "stratified_group_feature_hash_5fold_fold0",
+            "seed": 43,
+            "train_rows": 70321,
+            "validation_rows": 17349,
+            "split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "shared_feature_hashes": 0,
+            "validation_class_counts": {
+              "Normal": 5637,
+              "Generic": 3937,
+              "Exploits": 3247,
+              "Fuzzers": 1861,
+              "DoS": 1171,
+              "Reconnaissance": 1016,
+              "Analysis": 192,
+              "Backdoor": 164,
+              "Shellcode": 113,
+              "Worms": 11
+            }
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "macro_f1": 0.6481131047352855,
+            "weighted_f1": 0.8230944622894829,
+            "accuracy": 0.8132457202144215,
+            "per_class_f1": {
+              "Analysis": 0.26537216828478966,
+              "Backdoor": 0.2109090909090909,
+              "DoS": 0.47168742921857304,
+              "Exploits": 0.6890052356020943,
+              "Fuzzers": 0.7500609607412826,
+              "Generic": 0.9897619657025851,
+              "Normal": 0.9171498036282028,
+              "Reconnaissance": 0.8398760330578512,
+              "Shellcode": 0.7266187050359713,
+              "Worms": 0.6206896551724138
+            },
+            "log_loss": 0.44663526960047734,
+            "roc_auc": 0.9708323719234032
+          }
+        }
+      ],
+      "oof": null,
+      "harness": null,
+      "python": null
+    },
+    {
+      "name": "alfa-p0-v3-reg",
+      "source_manifest_sha256": "af44d71e7819d7fc9294b23379e01477f43c64198b58618f8edff507e668fbbe",
+      "kind": "regression",
+      "metric": "rmse",
+      "candidates": [
+        {
+          "name": "control",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "Fixed v3 regression baseline",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "control",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 29.111,
+          "peak_mb": 315.2,
+          "split": {
+            "method": "random_holdout_20pct",
+            "seed": 42,
+            "train_rows": 42646,
+            "validation_rows": 10662,
+            "split_sha256": "13cc9c4db238d4f6fe3ad16148cfe5d71a875b52859f680d85f9d95731efbc0d",
+            "shared_feature_hashes": 101,
+            "validation_class_counts": null
+          },
+          "fit_iterations": 835,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 42.91538241954654,
+            "mae": 20.998656449730344,
+            "r2": 0.48350505320211556
+          }
+        },
+        {
+          "name": "control",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 41.96,
+          "peak_mb": 347.2,
+          "split": {
+            "method": "random_holdout_20pct",
+            "seed": 43,
+            "train_rows": 42646,
+            "validation_rows": 10662,
+            "split_sha256": "2d3be88009d65c6de3308999e15af32d69b392dd521001c4ecd0307cdb3787c9",
+            "shared_feature_hashes": 89,
+            "validation_class_counts": null
+          },
+          "fit_iterations": 1342,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 42.61740433864296,
+            "mae": 21.290855734550913,
+            "r2": 0.49780695401004005
+          }
+        }
+      ],
+      "oof": null,
+      "harness": null,
+      "python": null
+    },
+    {
+      "name": "alfa-reg-advanced-time",
+      "source_manifest_sha256": "21365c72b689b44ccca06fe136f2ee9eca4cac06b5870b28ba76af2248f3809f",
+      "kind": "regression",
+      "metric": "rmse",
+      "candidates": [
+        {
+          "name": "catboost-pilot",
+          "recipe": {
+            "hypothesis": "catboost-pilot",
+            "engine": "catboost",
+            "feature_code": "",
+            "params": {
+              "iterations": 600,
+              "depth": 6,
+              "learning_rate": 0.05,
+              "l2_leaf_reg": 5,
+              "nested_stopping": true,
+              "early_metric": "primary",
+              "min_iterations": 100
+            }
+          }
+        },
+        {
+          "name": "catboost-long",
+          "recipe": {
+            "hypothesis": "catboost-long",
+            "engine": "catboost",
+            "feature_code": "",
+            "params": {
+              "iterations": 1600,
+              "depth": 6,
+              "learning_rate": 0.05,
+              "l2_leaf_reg": 5,
+              "nested_stopping": true,
+              "early_metric": "primary",
+              "min_iterations": 100
+            }
+          }
+        },
+        {
+          "name": "catboost-deep",
+          "recipe": {
+            "hypothesis": "catboost-deep",
+            "engine": "catboost",
+            "feature_code": "",
+            "params": {
+              "iterations": 1600,
+              "depth": 8,
+              "learning_rate": 0.05,
+              "l2_leaf_reg": 5,
+              "nested_stopping": true,
+              "early_metric": "primary",
+              "min_iterations": 100
+            }
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "catboost-pilot",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 18.461,
+          "peak_mb": 476.8,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 562,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 47.27110284585759,
+            "mae": 27.883665667999516,
+            "r2": 0.3008387056061703
+          }
+        },
+        {
+          "name": "catboost-pilot",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 4.415,
+          "peak_mb": 366.2,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 46.642348921425665,
+            "mae": 24.869355968013384,
+            "r2": 0.36282720447449335
+          }
+        },
+        {
+          "name": "catboost-long",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 51.98,
+          "peak_mb": 494.5,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 1597,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 50.00556040288854,
+            "mae": 30.19881103794073,
+            "r2": 0.21761141428417896
+          }
+        },
+        {
+          "name": "catboost-long",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 4.418,
+          "peak_mb": 364.5,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 46.642348921425665,
+            "mae": 24.869355968013384,
+            "r2": 0.36282720447449335
+          }
+        },
+        {
+          "name": "catboost-deep",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 88.908,
+          "peak_mb": 657.4,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 1586,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 50.14015642510802,
+            "mae": 30.214254751391252,
+            "r2": 0.2133939587423923
+          }
+        },
+        {
+          "name": "catboost-deep",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 6.623,
+          "peak_mb": 417.4,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 46.270184964979045,
+            "mae": 24.792137536080485,
+            "r2": 0.3729547688469024
+          }
+        }
+      ],
+      "oof": null,
+      "harness": null,
+      "python": null
+    },
+    {
+      "name": "alfa-reg-combinations",
+      "source_manifest_sha256": "bb12cb6cf7503e93930f99e9e705c747343f285dd49a82f8039e72b1732a6bef",
+      "kind": "regression",
+      "metric": "rmse",
+      "candidates": [
+        {
+          "name": "history-regularized",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "history-regularized",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 31,
+              "max_depth": -1,
+              "min_child_samples": 100,
+              "reg_lambda": 15,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 2
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "history-log",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "history-log",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 2,
+              "log_target": true
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "history-refined",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "history-refined",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 2,
+              "target_encoding_refine_groups": true
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "history-counts",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "history-counts",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 2,
+              "target_encoding_counts": true
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "history-xgboost",
+          "recipe": {
+            "engine": "xgboost",
+            "hypothesis": "Train-only discovery of recurring contexts across observation periods",
+            "params": {
+              "iterations": 1800,
+              "max_depth": 8,
+              "learning_rate": 0.035,
+              "reg_lambda": 8,
+              "min_child_weight": 3,
+              "subsample": 0.85,
+              "colsample_bytree": 0.9,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 2,
+              "nested_stopping": true,
+              "early_metric": "primary",
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "history-regularized",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 6.421,
+          "peak_mb": 375.8,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 109,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 43.524384682582514,
+            "mae": 24.6328494948344,
+            "r2": 0.4072778069358185
+          }
+        },
+        {
+          "name": "history-regularized",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 6.224,
+          "peak_mb": 361.2,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 131,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 37.137998684037534,
+            "mae": 19.487922262025123,
+            "r2": 0.5960446251092029
+          }
+        },
+        {
+          "name": "history-log",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 9.836,
+          "peak_mb": 384.9,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 196,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 41.00254113726053,
+            "mae": 22.757225534095046,
+            "r2": 0.4739737046319621
+          }
+        },
+        {
+          "name": "history-log",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 6.825,
+          "peak_mb": 367.5,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 148,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 38.06273580986809,
+            "mae": 18.36167501649308,
+            "r2": 0.5756771696947818
+          }
+        },
+        {
+          "name": "history-refined",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 7.626,
+          "peak_mb": 383.6,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 43.1485967421813,
+            "mae": 24.374993649574105,
+            "r2": 0.41746870560365756
+          }
+        },
+        {
+          "name": "history-refined",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 6.024,
+          "peak_mb": 367.0,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 37.74947286326056,
+            "mae": 20.18196535006054,
+            "r2": 0.5826329294912028
+          }
+        },
+        {
+          "name": "history-counts",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 8.029,
+          "peak_mb": 386.9,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 44.57847344160061,
+            "mae": 24.50493654934148,
+            "r2": 0.37822065207690203
+          }
+        },
+        {
+          "name": "history-counts",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 6.023,
+          "peak_mb": 369.9,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 36.33845581338735,
+            "mae": 19.041066685301008,
+            "r2": 0.6132508797183428
+          }
+        },
+        {
+          "name": "history-xgboost",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 12.441,
+          "peak_mb": 377.3,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 148,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 80.39081067308145,
+            "mae": 35.94232518853673,
+            "r2": -1.0220818212845915
+          }
+        },
+        {
+          "name": "history-xgboost",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 6.421,
+          "peak_mb": 351.9,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 38.208191082579845,
+            "mae": 18.982163921495196,
+            "r2": 0.5724279064998402
+          }
+        }
+      ],
+      "oof": null,
+      "harness": null,
+      "python": null
+    },
+    {
+      "name": "alfa-reg-features",
+      "source_manifest_sha256": "09e381568824a1391cad102abfe4cbb1e21031f28855869e7fe3d300bdf5de0d",
+      "kind": "regression",
+      "metric": "rmse",
+      "candidates": [
+        {
+          "name": "qwen-features-1",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "The interaction between building age (year_built) and heating demand (heating_degree_days_c) is critical because older buildings typically have less insulation, making their energy consumption more sensitive to cold weather. Capturing this multiplicative relationship helps distinguish between a new building in a cold climate and an old building in a mild one.",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": "def transform(df):\n    df = df.copy()\n    \n    # 1. Building Age (handling missing/zero year_built)\n    # We create a robust age proxy. Since we don't have a current year, we use a large constant or just the raw year_built.\n    # However, 'age' is usually (CurrentYear - YearBuilt). Without current year, we can use -year_built as a proxy for 'older' (lower value = older).\n    # Let's use a safe transformation: if year_built is 0 or NaN, treat as 'unknown' (0).\n    # We'll create a feature 'building_age_proxy' which is negative of year_built (so older buildings have higher values if we invert, or just use raw).\n    # Actually, let's just use the raw year_built but handle NaNs.\n    # A better proxy for 'age' in a regression without a reference year is difficult. \n    # Let's stick to the interaction of the raw features provided.\n    \n    # Feature 1: Interaction of Heating Degree Days and Building Class (Commercial vs Residential)\n    # Commercial buildings often have different HVAC efficiencies.\n    # We create a binary flag for Commercial.\n    df['is_commercial'] = (df['building_class'] == 'Commercial').astype(int)\n    \n    # Feature 2: Interaction of Heating Degree Days and Commercial Flag\n    # This captures if commercial buildings are more/less sensitive to heating needs.\n    df['hdd_commercial_interact'] = df['heating_degree_days_c'] * df['is_commercial']\n    \n    # Feature 3: Interaction of Cooling Degree Days and Commercial Flag\n    df['cdd_commercial_interact'] = df['cooling_degree_days_c'] * df['is_commercial']\n    \n    # Feature 4: Ratio of Heating to Cooling Degree Days (Climate Balance)\n    # This indicates if a location is predominantly heating-driven or cooling-driven.\n    # Protect against division by zero.\n    denom = df['cooling_degree_days_c'].abs() + 1e-6\n    df['hdd_cdd_ratio'] = df['heating_degree_days_c'] / denom\n    \n    # Feature 5: Interaction of Floor Area and Elevation\n    # Larger buildings at higher elevations might have different heat loss characteristics.\n    # Use log of floor area to reduce skew.\n    df['log_floor_area'] = np.log1p(df['floor_area'].clip(lower=0))\n    df['area_elev_interact'] = df['log_floor_area'] * df['ELEVATION']\n    \n    # Feature 6: Temperature Range (Max - Min) for Winter (Jan) and Summer (Jul)\n    # Diurnal temperature range can affect HVAC load.\n    df['jan_temp_range'] = df['january_max_temp_c'] - df['january_min_temp_c']\n    df['jul_temp_range'] = df['july_max_temp_c'] - df['july_min_temp_c']\n    \n    # Feature 7: Interaction of Snowfall and Heating Degree Days\n    # Snowfall can insulate buildings, potentially reducing heating needs, or indicate severe cold.\n    df['snow_hdd_interact'] = df['snowfall_inches'] * df['heating_degree_days_c']\n    \n    # Feature 8: Wind Chill Proxy (Max Wind Speed * HDD)\n    # Wind increases heat loss. Interaction with HDD captures the impact of wind on heating loads.\n    df['wind_hdd_interact'] = df['max_wind_speed'] * df['heating_degree_days_c']\n    \n    # Feature 9: Energy Star Rating Interaction with Floor Area\n    # Efficiency ratings might have different impacts on large vs small buildings.\n    # Fill NaNs in energy_star_rating with 0 for interaction purposes.\n    df['es_rating'] = df['energy_star_rating'].fillna(0)\n    df['es_area_interact'] = df['es_rating'] * df['log_floor_area']\n    \n    # Feature 10: Precipitation Interaction with Cooling Degree Days\n    # Humidity/precipitation can affect cooling efficiency.\n    df['precip_cdd_interact'] = df['precipitation_inches'] * df['cooling_degree_days_c']\n    \n    return df"
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "qwen-features-1",
+          "seed": 42,
+          "status": "ok",
+          "seconds": 32.513,
+          "peak_mb": 438.1,
+          "split": {
+            "method": "random_holdout_20pct",
+            "seed": 42,
+            "train_rows": 42646,
+            "validation_rows": 10662,
+            "split_sha256": "13cc9c4db238d4f6fe3ad16148cfe5d71a875b52859f680d85f9d95731efbc0d",
+            "shared_feature_hashes": 101,
+            "validation_class_counts": null
+          },
+          "fit_iterations": 985,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 42.70731912090065,
+            "mae": 21.0347800688438,
+            "r2": 0.48850107712296953
+          }
+        },
+        {
+          "name": "qwen-features-1",
+          "seed": 43,
+          "status": "ok",
+          "seconds": 37.519,
+          "peak_mb": 437.5,
+          "split": {
+            "method": "random_holdout_20pct",
+            "seed": 43,
+            "train_rows": 42646,
+            "validation_rows": 10662,
+            "split_sha256": "2d3be88009d65c6de3308999e15af32d69b392dd521001c4ecd0307cdb3787c9",
+            "shared_feature_hashes": 89,
+            "validation_class_counts": null
+          },
+          "fit_iterations": 1222,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 42.77715989382455,
+            "mae": 21.3977656327559,
+            "r2": 0.4940348565932321
+          }
+        }
+      ],
+      "oof": null,
+      "harness": null,
+      "python": null
+    },
+    {
+      "name": "alfa-reg-history-auto",
+      "source_manifest_sha256": "44bc81481012131b5fe038bbd2a7a225d4bebae4b6d8cbeefd73473b0f5719a9",
+      "kind": "regression",
+      "metric": "rmse",
+      "candidates": [
+        {
+          "name": "auto-history-s2",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "Train-only discovery of recurring contexts across observation periods",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 2
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "auto-history-s10",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "Train-only discovery of recurring contexts across observation periods",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 10
+            },
+            "feature_code": ""
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "auto-history-s2",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 7.222,
+          "peak_mb": 380.6,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 43.1485967421813,
+            "mae": 24.374993649574105,
+            "r2": 0.41746870560365756
+          }
+        },
+        {
+          "name": "auto-history-s2",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 5.417,
+          "peak_mb": 367.6,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 37.74947286326056,
+            "mae": 20.18196535006054,
+            "r2": 0.5826329294912028
+          }
+        },
+        {
+          "name": "auto-history-s10",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 7.227,
+          "peak_mb": 378.7,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 44.74942384472626,
+            "mae": 25.75484124819044,
+            "r2": 0.3734426850437238
+          }
+        },
+        {
+          "name": "auto-history-s10",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 5.42,
+          "peak_mb": 367.2,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 38.132915657816355,
+            "mae": 20.46057312335533,
+            "r2": 0.5741109993095714
+          }
+        }
+      ],
+      "oof": null,
+      "harness": null,
+      "python": null
+    },
+    {
+      "name": "alfa-reg-recency",
+      "source_manifest_sha256": "b47a5496ba21f219bab24f056603a5d3c72427189780eb040378aff0a8180e63",
+      "kind": "regression",
+      "metric": "rmse",
+      "candidates": [
+        {
+          "name": "history-recent-1",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "Recent training periods may reduce bias under a future-period shift",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 2,
+              "target_encoding_half_life": 1
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "history-recent-2",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "Recent training periods may reduce bias under a future-period shift",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 2,
+              "target_encoding_half_life": 2
+            },
+            "feature_code": ""
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "history-recent-1",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 7.824,
+          "peak_mb": 384.8,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 43.798255879393054,
+            "mae": 24.88296811824434,
+            "r2": 0.3997950932476283
+          }
+        },
+        {
+          "name": "history-recent-1",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 5.822,
+          "peak_mb": 368.1,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 37.4124031281974,
+            "mae": 20.061660345713804,
+            "r2": 0.5900530980172045
+          }
+        },
+        {
+          "name": "history-recent-2",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 8.025,
+          "peak_mb": 383.4,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 43.36633571510574,
+            "mae": 24.434183939036632,
+            "r2": 0.41157466461684244
+          }
+        },
+        {
+          "name": "history-recent-2",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 5.821,
+          "peak_mb": 368.2,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 37.54360941485636,
+            "mae": 20.05300241931391,
+            "r2": 0.5871726667421451
+          }
+        }
+      ],
+      "oof": null,
+      "harness": {
+        "tools/benchmark_candidates.py": "3023ba0460063d5f497fd6f82d05247babff519b79edf8b16806eb4c9879765a",
+        "src/automl/task_understanding/service.py": "38ecdf3b1d2a8747a34fdd9ff31d0ec630e3ce9969fcfd4f5be2125bcd80f8b2",
+        "src/automl/evaluation/service.py": "2410862c98399d3ac89fa90d5ca8cdbd8507bb2036763645130511393764bfd3",
+        "src/automl/infrastructure/processes.py": "fb6f3e0614904f1b6db7f4c4e2718c0518b1ba6ae4c66f7cbf42545a5a25cf90"
+      },
+      "python": "3.12.3 (main, Jan 22 2026, 20:57:42) [GCC 13.3.0]"
+    },
+    {
+      "name": "alfa-reg-time",
+      "source_manifest_sha256": "21365c72b689b44ccca06fe136f2ee9eca4cac06b5870b28ba76af2248f3809f",
+      "kind": "regression",
+      "metric": "rmse",
+      "candidates": [
+        {
+          "name": "control",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "Fixed v3 regression baseline",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "regularized",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "regularized",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 31,
+              "max_depth": -1,
+              "min_child_samples": 100,
+              "reg_lambda": 15,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "target-encoding",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "target-encoding",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "target_encoding": true
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "history-groups",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "history-groups",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_smoothing": 2,
+              "target_encoding_groups": [
+                [
+                  "State_Factor",
+                  "facility_type",
+                  "floor_area"
+                ],
+                [
+                  "State_Factor",
+                  "facility_type",
+                  "floor_area",
+                  "year_built"
+                ]
+              ]
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "ridge",
+          "recipe": {
+            "engine": "linear_text",
+            "hypothesis": "ridge",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "log-target",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "log-target",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100,
+              "log_target": true
+            },
+            "feature_code": ""
+          }
+        },
+        {
+          "name": "qwen-features-1",
+          "recipe": {
+            "engine": "lightgbm",
+            "hypothesis": "The interaction between building age (year_built) and heating demand (heating_degree_days_c) is critical because older buildings typically have less insulation, making their energy consumption more sensitive to cold weather. Capturing this multiplicative relationship helps distinguish between a new building in a cold climate and an old building in a mild one.",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": "def transform(df):\n    df = df.copy()\n    \n    # 1. Building Age (handling missing/zero year_built)\n    # We create a robust age proxy. Since we don't have a current year, we use a large constant or just the raw year_built.\n    # However, 'age' is usually (CurrentYear - YearBuilt). Without current year, we can use -year_built as a proxy for 'older' (lower value = older).\n    # Let's use a safe transformation: if year_built is 0 or NaN, treat as 'unknown' (0).\n    # We'll create a feature 'building_age_proxy' which is negative of year_built (so older buildings have higher values if we invert, or just use raw).\n    # Actually, let's just use the raw year_built but handle NaNs.\n    # A better proxy for 'age' in a regression without a reference year is difficult. \n    # Let's stick to the interaction of the raw features provided.\n    \n    # Feature 1: Interaction of Heating Degree Days and Building Class (Commercial vs Residential)\n    # Commercial buildings often have different HVAC efficiencies.\n    # We create a binary flag for Commercial.\n    df['is_commercial'] = (df['building_class'] == 'Commercial').astype(int)\n    \n    # Feature 2: Interaction of Heating Degree Days and Commercial Flag\n    # This captures if commercial buildings are more/less sensitive to heating needs.\n    df['hdd_commercial_interact'] = df['heating_degree_days_c'] * df['is_commercial']\n    \n    # Feature 3: Interaction of Cooling Degree Days and Commercial Flag\n    df['cdd_commercial_interact'] = df['cooling_degree_days_c'] * df['is_commercial']\n    \n    # Feature 4: Ratio of Heating to Cooling Degree Days (Climate Balance)\n    # This indicates if a location is predominantly heating-driven or cooling-driven.\n    # Protect against division by zero.\n    denom = df['cooling_degree_days_c'].abs() + 1e-6\n    df['hdd_cdd_ratio'] = df['heating_degree_days_c'] / denom\n    \n    # Feature 5: Interaction of Floor Area and Elevation\n    # Larger buildings at higher elevations might have different heat loss characteristics.\n    # Use log of floor area to reduce skew.\n    df['log_floor_area'] = np.log1p(df['floor_area'].clip(lower=0))\n    df['area_elev_interact'] = df['log_floor_area'] * df['ELEVATION']\n    \n    # Feature 6: Temperature Range (Max - Min) for Winter (Jan) and Summer (Jul)\n    # Diurnal temperature range can affect HVAC load.\n    df['jan_temp_range'] = df['january_max_temp_c'] - df['january_min_temp_c']\n    df['jul_temp_range'] = df['july_max_temp_c'] - df['july_min_temp_c']\n    \n    # Feature 7: Interaction of Snowfall and Heating Degree Days\n    # Snowfall can insulate buildings, potentially reducing heating needs, or indicate severe cold.\n    df['snow_hdd_interact'] = df['snowfall_inches'] * df['heating_degree_days_c']\n    \n    # Feature 8: Wind Chill Proxy (Max Wind Speed * HDD)\n    # Wind increases heat loss. Interaction with HDD captures the impact of wind on heating loads.\n    df['wind_hdd_interact'] = df['max_wind_speed'] * df['heating_degree_days_c']\n    \n    # Feature 9: Energy Star Rating Interaction with Floor Area\n    # Efficiency ratings might have different impacts on large vs small buildings.\n    # Fill NaNs in energy_star_rating with 0 for interaction purposes.\n    df['es_rating'] = df['energy_star_rating'].fillna(0)\n    df['es_area_interact'] = df['es_rating'] * df['log_floor_area']\n    \n    # Feature 10: Precipitation Interaction with Cooling Degree Days\n    # Humidity/precipitation can affect cooling efficiency.\n    df['precip_cdd_interact'] = df['precipitation_inches'] * df['cooling_degree_days_c']\n    \n    return df"
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "control",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 6.018,
+          "peak_mb": 363.4,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 115,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 52.9129183052862,
+            "mae": 30.04511250353414,
+            "r2": 0.1239894466738588
+          }
+        },
+        {
+          "name": "control",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 4.215,
+          "peak_mb": 347.5,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 44.56433328448344,
+            "mae": 24.274990590849487,
+            "r2": 0.4183372862586472
+          }
+        },
+        {
+          "name": "regularized",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 4.415,
+          "peak_mb": 351.7,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 47.08688131869273,
+            "mae": 26.938105613120566,
+            "r2": 0.3062775287994983
+          }
+        },
+        {
+          "name": "regularized",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 3.611,
+          "peak_mb": 348.7,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 45.4819211199732,
+            "mae": 24.445353898070586,
+            "r2": 0.3941376020902191
+          }
+        },
+        {
+          "name": "target-encoding",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 28.289,
+          "peak_mb": 380.1,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 1102,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 53.89350905877702,
+            "mae": 31.206120792235918,
+            "r2": 0.09121985042182901
+          }
+        },
+        {
+          "name": "target-encoding",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 4.617,
+          "peak_mb": 353.1,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 44.334384680466044,
+            "mae": 24.212585859642328,
+            "r2": 0.42432447119836547
+          }
+        },
+        {
+          "name": "history-groups",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 6.622,
+          "peak_mb": 373.5,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 43.11549057854734,
+            "mae": 24.171878392817803,
+            "r2": 0.4183622678220009
+          }
+        },
+        {
+          "name": "history-groups",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 5.218,
+          "peak_mb": 360.0,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 34.373064657119826,
+            "mae": 18.391602363676167,
+            "r2": 0.6539547374165751
+          }
+        },
+        {
+          "name": "ridge",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 3.011,
+          "peak_mb": 334.0,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 1,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 51.76502547114867,
+            "mae": 34.47678401710382,
+            "r2": 0.16158551552913092
+          }
+        },
+        {
+          "name": "ridge",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 2.61,
+          "peak_mb": 282.6,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 1,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 53.34337746901733,
+            "mae": 36.08273169580539,
+            "r2": 0.1665924744061119
+          }
+        },
+        {
+          "name": "log-target",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 36.321,
+          "peak_mb": 399.6,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 1576,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 45.14188770798084,
+            "mae": 25.387842727648152,
+            "r2": 0.36240435691042494
+          }
+        },
+        {
+          "name": "log-target",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 5.418,
+          "peak_mb": 350.3,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 128,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 44.97235116017628,
+            "mae": 22.22556418652954,
+            "r2": 0.4076374631761903
+          }
+        },
+        {
+          "name": "qwen-features-1",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 14.25,
+          "peak_mb": 418.9,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": 403,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 49.39175421011992,
+            "mae": 28.505888228605475,
+            "r2": 0.2367007943880195
+          }
+        },
+        {
+          "name": "qwen-features-1",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 4.817,
+          "peak_mb": 363.8,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": 100,
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 45.046450364697876,
+            "mae": 24.830403929358546,
+            "r2": 0.4056838293313161
+          }
+        }
+      ],
+      "oof": null,
+      "harness": null,
+      "python": null
+    },
+    {
+      "name": "alfa-v3-selected-time",
+      "source_manifest_sha256": "af44d71e7819d7fc9294b23379e01477f43c64198b58618f8edff507e668fbbe",
+      "kind": "regression",
+      "metric": "rmse",
+      "candidates": [
+        {
+          "name": "v3-selected-agent-recipe",
+          "recipe": {
+            "engine": "ensemble",
+            "hypothesis": "Validated cached-prediction blend",
+            "params": {},
+            "components": [
+              {
+                "hypothesis": "Controlled deterministic alternative",
+                "engine": "xgboost",
+                "params": {
+                  "iterations": 2200,
+                  "learning_rate": 0.03,
+                  "max_depth": 8,
+                  "min_child_weight": 2,
+                  "subsample": 0.85,
+                  "colsample_bytree": 0.9,
+                  "reg_lambda": 8,
+                  "reg_alpha": 0.1,
+                  "seed": 52,
+                  "min_iterations": 100,
+                  "early_metric": "primary",
+                  "nested_stopping": true
+                },
+                "feature_code": "",
+                "data_policy": {
+                  "schema_version": "1.0",
+                  "sampling": "identity",
+                  "factor": 1.5,
+                  "majority_fraction": 0.85,
+                  "duplicate_beta": 0.0,
+                  "class_weight_cap": null,
+                  "augmentation": "mask",
+                  "copy_fraction": 0.25,
+                  "mask_probability": 0.15,
+                  "synthetic_weight": 0.5,
+                  "max_added_fraction": 0.25,
+                  "seed": 2026
+                }
+              },
+              {
+                "hypothesis": "Paired missingness robustness trial; selection must beat unchanged fitting rows",
+                "engine": "xgboost",
+                "params": {
+                  "iterations": 2200,
+                  "learning_rate": 0.03,
+                  "max_depth": 10,
+                  "min_child_weight": 2,
+                  "subsample": 0.85,
+                  "colsample_bytree": 0.9,
+                  "reg_lambda": 6,
+                  "reg_alpha": 0.1,
+                  "seed": 48,
+                  "early_metric": "primary",
+                  "nested_stopping": true,
+                  "min_iterations": 100
+                },
+                "feature_code": "",
+                "data_policy": {
+                  "schema_version": "1.0",
+                  "sampling": "identity",
+                  "factor": 1.5,
+                  "majority_fraction": 0.85,
+                  "duplicate_beta": 0.0,
+                  "class_weight_cap": null,
+                  "augmentation": "mask",
+                  "copy_fraction": 0.25,
+                  "mask_probability": 0.15,
+                  "synthetic_weight": 0.5,
+                  "max_added_fraction": 0.25,
+                  "seed": 2026
+                }
+              },
+              {
+                "hypothesis": "Higher-leaf capacity with fixed regularization",
+                "engine": "lightgbm",
+                "params": {
+                  "iterations": 1600,
+                  "learning_rate": 0.035,
+                  "num_leaves": 255,
+                  "max_depth": -1,
+                  "min_child_samples": 25,
+                  "reg_lambda": 8,
+                  "subsample": 1,
+                  "colsample_bytree": 0.9,
+                  "generic_features": "missing",
+                  "subsample_freq": 0,
+                  "early_metric": "primary",
+                  "nested_stopping": true,
+                  "min_iterations": 100
+                },
+                "feature_code": ""
+              }
+            ],
+            "weights": [
+              0.5,
+              0.25,
+              0.25
+            ]
+          }
+        }
+      ],
+      "results": [
+        {
+          "name": "v3-selected-agent-recipe",
+          "seed": 0,
+          "status": "ok",
+          "seconds": 174.991,
+          "peak_mb": 534.5,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 5.0,
+            "offset": 0,
+            "train_rows": 35000,
+            "validation_rows": 18308,
+            "excluded_future_rows": 0,
+            "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+          },
+          "fit_iterations": [
+            1639,
+            831,
+            1178
+          ],
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 79.47539497257685,
+            "mae": 39.705286721340265,
+            "r2": -0.9762928451448214
+          }
+        },
+        {
+          "name": "v3-selected-agent-recipe",
+          "seed": 1,
+          "status": "ok",
+          "seconds": 57.592,
+          "peak_mb": 393.0,
+          "split": {
+            "method": "forward_observation_period",
+            "time_column": "Year_Factor",
+            "cut": 4.0,
+            "offset": 1,
+            "train_rows": 22054,
+            "validation_rows": 12946,
+            "excluded_future_rows": 18308,
+            "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+          },
+          "fit_iterations": [
+            731,
+            565,
+            230
+          ],
+          "exit_code": 0,
+          "metrics": {
+            "rmse": 41.26269040803192,
+            "mae": 22.829998379831608,
+            "r2": 0.5013320219579701
+          }
+        }
+      ],
+      "oof": null,
+      "harness": null,
+      "python": null
+    }
+  ],
+  "full_lifecycle": [
+    {
+      "name": "alfa-full-v4-bounded",
+      "task": "task-00",
+      "command": [
+        "/home/dima/Документы/ml/alfa-hack-automl/test-runs/venv-core/bin/python",
+        "-u",
+        "solution.py",
+        "task.md",
+        "--offline",
+        "--time-budget",
+        "600",
+        "--max-experiments",
+        "1"
+      ],
+      "threads": 2,
+      "exit_code": 0,
+      "elapsed_seconds": 14.814,
+      "best_validation": {
+        "rmse": 43.1485967421813,
+        "mae": 24.374993649574105,
+        "r2": 0.41746870560365756
+      },
+      "selection": [],
+      "final_fit_status": "ok",
+      "integrity_ok": true,
+      "submission_sha256": "daf55de4f58ee28e9f135c08dee058617a437a9deb853197570e3dab5c53f1c6",
+      "score_scope": "local search/confirmation folds, not unbiased blind/private/platform score",
+      "version": "v4-quality-research",
+      "split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 5.0,
+        "offset": 0,
+        "train_rows": 35000,
+        "validation_rows": 18308,
+        "excluded_future_rows": 0,
+        "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+      },
+      "selected_recipe": {
+        "hypothesis": "Recurring training contexts transfer to the next observation period; verify forward backtests",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "final_fit_iterations": 100,
+      "llm_calls": [],
+      "ensemble": null
+    },
+    {
+      "name": "alfa-full-v4-bounded",
+      "task": "task-01",
+      "command": [
+        "/home/dima/Документы/ml/alfa-hack-automl/test-runs/venv-core/bin/python",
+        "-u",
+        "solution.py",
+        "task.md",
+        "--offline",
+        "--time-budget",
+        "600",
+        "--max-experiments",
+        "1"
+      ],
+      "threads": 2,
+      "exit_code": 0,
+      "elapsed_seconds": 90.994,
+      "best_validation": {
+        "macro_f1": 0.6463289244307688,
+        "weighted_f1": 0.8188425060717702,
+        "accuracy": 0.809871069365848,
+        "per_class_f1": {
+          "Analysis": 0.31210191082802546,
+          "Backdoor": 0.2222222222222222,
+          "DoS": 0.47477913935594185,
+          "Exploits": 0.6951979780960404,
+          "Fuzzers": 0.749757045675413,
+          "Generic": 0.9879550683448369,
+          "Normal": 0.9150487735581021,
+          "Reconnaissance": 0.8205128205128205,
+          "Shellcode": 0.6571428571428571,
+          "Worms": 0.6285714285714286
+        },
+        "per_class_diagnostics": {
+          "Analysis": {
+            "precision": 0.47572815533980584,
+            "recall": 0.23222748815165878,
+            "support": 211
+          },
+          "Backdoor": {
+            "precision": 0.34210526315789475,
+            "recall": 0.16455696202531644,
+            "support": 158
+          },
+          "DoS": {
+            "precision": 0.3599827139152982,
+            "recall": 0.6970711297071129,
+            "support": 1195
+          },
+          "Exploits": {
+            "precision": 0.7787844469611174,
+            "recall": 0.6278149726110773,
+            "support": 3286
+          },
+          "Fuzzers": {
+            "precision": 0.6776460254721124,
+            "recall": 0.8390429581294182,
+            "support": 1839
+          },
+          "Generic": {
+            "precision": 0.9983588621444202,
+            "recall": 0.9777658719528529,
+            "support": 3733
+          },
+          "Normal": {
+            "precision": 0.9673608329995995,
+            "recall": 0.8681042228212039,
+            "support": 5565
+          },
+          "Reconnaissance": {
+            "precision": 0.8769574944071589,
+            "recall": 0.7708947885939036,
+            "support": 1017
+          },
+          "Shellcode": {
+            "precision": 0.5679012345679012,
+            "recall": 0.7796610169491526,
+            "support": 118
+          },
+          "Worms": {
+            "precision": 0.6875,
+            "recall": 0.5789473684210527,
+            "support": 19
+          }
+        },
+        "confusion_matrix": {
+          "classes": [
+            "Analysis",
+            "Backdoor",
+            "DoS",
+            "Exploits",
+            "Fuzzers",
+            "Generic",
+            "Normal",
+            "Reconnaissance",
+            "Shellcode",
+            "Worms"
+          ],
+          "counts": [
+            [
+              49,
+              5,
+              111,
+              29,
+              0,
+              0,
+              17,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              26,
+              92,
+              35,
+              1,
+              0,
+              0,
+              1,
+              1,
+              0
+            ],
+            [
+              3,
+              17,
+              833,
+              294,
+              19,
+              0,
+              1,
+              13,
+              15,
+              0
+            ],
+            [
+              4,
+              20,
+              993,
+              2063,
+              63,
+              6,
+              18,
+              89,
+              26,
+              4
+            ],
+            [
+              2,
+              4,
+              104,
+              43,
+              1543,
+              0,
+              125,
+              2,
+              15,
+              1
+            ],
+            [
+              1,
+              0,
+              37,
+              36,
+              4,
+              3650,
+              1,
+              0,
+              4,
+              0
+            ],
+            [
+              39,
+              0,
+              7,
+              47,
+              628,
+              0,
+              4831,
+              4,
+              9,
+              0
+            ],
+            [
+              3,
+              4,
+              137,
+              86,
+              2,
+              0,
+              1,
+              784,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              9,
+              16,
+              0,
+              0,
+              1,
+              92,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              7,
+              1,
+              0,
+              0,
+              0,
+              0,
+              11
+            ]
+          ]
+        },
+        "log_loss": 0.4601995414519284,
+        "roc_auc": 0.970023692495497
+      },
+      "selection": [],
+      "final_fit_status": "ok",
+      "integrity_ok": true,
+      "submission_sha256": "02e2efa767e17c29dab85ee0429174b47eb1af7e17c5cf0b70b74392d76fa693",
+      "score_scope": "local search/confirmation folds, not unbiased blind/private/platform score",
+      "version": "v4-quality-research",
+      "split": {
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "seed": 42,
+        "train_rows": 70529,
+        "validation_rows": 17141,
+        "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Normal": 5565,
+          "Generic": 3733,
+          "Exploits": 3286,
+          "Fuzzers": 1839,
+          "DoS": 1195,
+          "Reconnaissance": 1017,
+          "Analysis": 211,
+          "Backdoor": 158,
+          "Shellcode": 118,
+          "Worms": 19
+        }
+      },
+      "selected_recipe": {
+        "hypothesis": "Higher-capacity mild-weight model",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 5,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "class_weight_power": 0.5,
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "final_fit_iterations": 100,
+      "llm_calls": [],
+      "ensemble": null
+    }
+  ]
+}

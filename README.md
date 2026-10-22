@@ -1,4 +1,21 @@
-# Alfa Hack AutoML: экспериментальная модульная v3
+# Alfa Hack AutoML: исследовательская v4
+
+В рабочей ветке v4 добавлены исправления исполнения, полная CV/OOF как отдельный
+режим измерений и новые методы обучения. Главный измеренный результат — перенос
+регрессионной проверки на будущий период и train-only исторические признаки:
+автоматический вариант снизил RMSE с 52.9129/44.5643 до 43.1486/37.7495 на двух
+forward backtests. Это public validation, не официальный score. Подробности,
+контроли и ограничения — [журнал исследования](docs/experiments/v4_research.md).
+
+[Кандидат v4 и evidence](release/v4-candidate/README.md): 57 repo проверок,
+23 проверки распакованного ZIP, два успешных полноразмерных bounded lifecycle
+с refit/export. Полный default поиск и CV финалистов переданы следующему этапу.
+
+По умолчанию `--validation-strategy auto`: только при однозначном документированном
+числовом периоде и полностью будущем диапазоне test применяется forward validation;
+остальные задачи сохраняют прежний split. `--validation-strategy legacy` позволяет
+явно воспроизвести старую стратегию. Для временной регрессии в портфеле есть
+cross-fitted история автоматически обнаруженных повторяющихся контекстов.
 
 **Продолжение с другого агента/компьютера:** начать с [AGENTS.md](AGENTS.md) и [CONTINUE_HERE](docs/CONTINUE_HERE.md). Готовый [промпт передачи](docs/prompts/next-agent.md), локальный CPU setup и ограничения проверок включены в репозиторий. Данные и API-key передаются капитаном отдельно.
 
@@ -28,6 +45,7 @@ program.md                                   общий протокол исс�
 docs/                                        материалы капитану, prompts, evidence
 tests/                                       offline unit, end-to-end и fault tests
 scripts/benchmark_release.py                 прогон скомпилированной копии; default sequential
+tools/benchmark_candidates.py                paired recipes, full OOF или forward backtests
 tools/build_submission.py                    детерминированный flat ZIP и SHA manifest
 tools/verify_release.py                      23 проверки из распакованного ZIP
 scripts/package_solution.py                  совместимый вызов нового сборщика

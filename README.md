@@ -10,7 +10,9 @@ forward backtests. Это public validation, не официальный score. 
 [Кандидат v4 и evidence](release/v4-candidate/README.md): 57 repo проверок,
 23 проверки распакованного ZIP, два успешных полноразмерных bounded lifecycle
 с refit/export. [Полная CV финалистов завершена](docs/experiments/v4_cv.md): OVA+calibration
-не подтвердила выигрыш и не включена в default. Полный default поиск продолжается.
+не подтвердила выигрыш и не включена в default. Полный default поиск продолжается. [Следующая сборка search2](release/v4-search2/README.md)
+исследует capacity XGBoost при сохранённых весах, прошла58repo и23unpacked
+проверки; прирост её метрики ещё не измерен.
 
 По умолчанию `--validation-strategy auto`: только при однозначном документированном
 числовом периоде и полностью будущем диапазоне test применяется forward validation;

@@ -1,0 +1,12 @@
+test_actual_cli_binary_and_multiclass_probabilities (__main__.ResilienceTests.test_actual_cli_binary_and_multiclass_probabilities) ... ok
+test_api_timeout_is_recoverable (__main__.ResilienceTests.test_api_timeout_is_recoverable) ... ok
+test_ensemble_matches_unsorted_sample_columns (__main__.ResilienceTests.test_ensemble_matches_unsorted_sample_columns) ... ok
+test_failed_refit_preserves_working_checkpoint (__main__.ResilienceTests.test_failed_refit_preserves_working_checkpoint) ... ok
+test_outer_labels_do_not_choose_regression_log_transform (__main__.ResilienceTests.test_outer_labels_do_not_choose_regression_log_transform) ... ok
+test_production_recipes_enforce_inner_stopping (__main__.ResilienceTests.test_production_recipes_enforce_inner_stopping) ... ok
+test_xgboost_worker_probability_contract (__main__.ResilienceTests.test_xgboost_worker_probability_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 24.593s
+
+OK

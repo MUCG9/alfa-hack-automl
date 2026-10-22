@@ -25,11 +25,16 @@ OVA+calibration .630416015, фиксированная смесь .636753388. OV
 Локальные outputs: `/tmp/alfa-next-class-cv/results.json`, OOF в подкаталогах
 рецептов; лог `test-runs/stages/next-class-cv.log`. Процесс был запущен через
 exec session22569. Очередь session87405 / `run-default-v3.sh` запустила полный default offline v3 classification с
-watchdog10100s. Очередь session21271 / `run-default-v4-phase2.sh` ждёт окончания v3, затем
-проверит2 реальных Qwen plans +контроль на2 forward cuts (6workers), потом
-выполнит полный default offline v4 regression +classification. Прежняя idle
-очередь46282 остановлена до запуска ML. Логи — default-v3.log и
-default-v4-phase2.log в test-runs/stages. Не запускайте конкурирующие тяжёлые jobs. Состояние нужно проверить
+watchdog10100s. Очередь session66167 / `run-default-v4-phase4.sh` ждёт окончания v3,
+проверяет2 Qwen plans +контроль на2forward cuts (6workers, source1), затем
+выполняет полный default offline v4 regression иclassification из нового
+`release/solution-v4-search2.zip`. Эти полные outputs разделены:
+`/tmp/alfa-full-v4-reg-default` и `/tmp/alfa-full-v4-class-default`.
+Лог очереди — `test-runs/stages/default-v4-phase4.log`.
+Classifier запускается только при наличии `test-runs/stages/allow-default-v4-class`.
+Если подходит10% token reserve, убери флаг до запуска нового этапа и сохрани handoff.
+Прежние idle очереди остановлены без прерывания ML. Не дублируйте тяжёлые jobs.
+Состояние нужно проверить
 по существующим reports и процессам: session ID относится только к этой сессии.
 
 GitHub credentials предоставлены пользователем и использованы через приватный
@@ -48,3 +53,9 @@ OOF; сравнить её с обоими отдельными рецептам
 
 Production planner проверен реальным API вызовом: [v4_live_planner.md](v4_live_planner.md),
 2 plans, первая попыткаok,12.163s. Их обучение/метрики ещё ожидаются в очереди.
+
+Новая search2 политика (sourcee8458fe) прошла58repo +23unpacked checks:
+`release/v4-search2/README.md`. Веса incumbent XGBoost сохраняются, fallback
+исследует depth/min_child_weight/reg_lambda плюсseed. Это unmeasured search
+hypothesis до завершения полного default benchmark, не доказанный прирост качества.
+Предыдущая v4-candidate/source1 остаётся точным источником CV иQwen абляций.

@@ -1,3 +1,22 @@
+# Active Windows continuation — 23 October 2026
+
+Current branch work/night-research-20261023 continues7202aba. The current human
+request explicitly authorizes autonomous overnight fits, Qwen experiments, code
+pushes to the named repository and submission conditional on verified improvement.
+Read docs/experiments/night_native_20261023.md. Historical documentation-only,
+no-fits and no-extra-agent snapshots below do not replace this current scope.
+Main/force pushes and new paid resources are not part of this continuation.
+
+The actual executing MVP is frozen in ../frozen-mvp, not this development tree.
+Do not edit its source/archive during the public campaign. No old Linux jobs or
+ignored datasets were transferred: current Windows PID checks found old33136
+and37960 absent; the ten public files were downloaded and SHA-verified anew.
+Heavy fits remain sequential. Raw data, predictions, venvs and credentials stay
+outside commits. New default promotion requires full measured/release gates.
+
+Browser origin approval explicitly rejected changellenge.com. Do not retry via
+another browser/transport or claim upload. Continue authorized local work and
+prepare a reviewable archive; this access blocker is separate from ML progress.
 # Development instructions — current checkpoint, 23 October 2026
 
 NEW captain authorization supersedes the historical no-fitting/documentation-only

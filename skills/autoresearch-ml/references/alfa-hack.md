@@ -14,8 +14,11 @@ state. Исторические STOP/PID/статусы не заменяют п
 
 Canonical code — `src/automl`, root-файлы — compatibility shims. Contest ZIP
 собирает `tools/build_submission.py` с побайтно исходным `requirements.txt`.
-Dev tools/skills в flat ZIP не входят. Canonical source не менять во время
-frozen-source campaign.
+Dev tools/skills в flat ZIP не входят. Во время кампании не менять её конкретные
+frozen execution paths/source hashes. Разработку следующей версии можно вести
+в отдельном дереве, которое исполняющийся worker не импортирует. После переноса
+между компьютерами перепроверять доступность процессов и артефактов на новом host;
+старый PID или running receipt не доказывает наличие локальной job.
 
 Qualified complete control — сохранённый V11/V16. Component controls сильные
 SINGLE recipes: categorical two-view LightGBM для classification, asof/history
@@ -45,8 +48,8 @@ core checks1thread. Читать identity receipts, PID+create_time, descendants
 .venv/bin/python tools/summarize_research.py --help
 ```
 
-`overnight_research.py` уже ведёт последовательную очередь; сначала проверить
-существующий `queue.json`, а не запускать дубль. Manifests содержат actual
+`overnight_research.py` умеет вести последовательную очередь; сначала проверить
+существующий `queue.json` и host/process identity, а не запускать дубль. Manifests содержат actual
 source/input/split hashes. Перед promotion выполнить действующий source gate и
 exact-unpacked verification; repeated checks не складывать с unique checks.
 

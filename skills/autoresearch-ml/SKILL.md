@@ -11,6 +11,9 @@ description: Вести автономные серии ML-эксперимен�
 Метод основан на [karpathy/autoresearch](references/karpathy.md). Правила
 табличного ML, сохранения истории и квалификации ниже — наша адаптация.
 
+Для проверки thinking/reasoning прочитать [Qwen](references/qwen.md): приём
+параметра, фактические reasoning tokens и выигрыш ML-процедуры — разные утверждения.
+
 ## Восстановить состояние
 
 Прочитать инструкции проекта, текущий research program, Git status и последние
@@ -41,6 +44,8 @@ source/input/split fingerprints, явно указав отсутствие но
 - Условия продвижения и предел исправлений одного неработающего опыта.
 
 Контроль и кандидат проходят одинаковый evaluator на одних сохранённых строках.
+Оценивать весь заранее объявленный набор задач: timeout, OOM и отсутствие CSV
+учитывать как отказы процедуры, не исключать из агрегата успешных запусков.
 При изменении harness отделять экспериментальную логику от защищённого evaluator.
 Не менять метрику, validation или лимиты ради улучшения результата.
 
@@ -69,7 +74,8 @@ source/input/split fingerprints, явно указав отсутствие но
    возвращаться к qualified control новым commit/revert либо отдельной веткой
    от нужного SHA, без удаления истории и изменений пользователя.
 
-Журнал JSON/TSV содержит experiment_id, parent/control SHA, candidate SHA,
+Журнал JSON/TSV дополнять новыми записями (append-only); ранее измеренные
+исходы не переписывать. Журнал содержит experiment_id, parent/control SHA, candidate SHA,
 hypothesis, source/input/split hashes, metric+direction, scores по cuts,
 elapsed_seconds, peak_memory, completed_trials, status, decision, artifact paths.
 Агрегаты и технические отчёты хранить в Git; данные, прогнозы, веса, окружения

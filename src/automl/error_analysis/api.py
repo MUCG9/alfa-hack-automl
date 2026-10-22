@@ -46,3 +46,9 @@ def audit_baseline(*args, **kwargs) -> dict:
     """Audit portable V11/V16 evidence and inventory missing original artifacts."""
     from automl.error_analysis.preparation import audit_baseline as implementation
     return implementation(*args, **kwargs)
+
+
+def finalize_baseline(*args, **kwargs) -> dict:
+    """Verify completed passports and actual frozen final CSVs before closing BASE-01."""
+    from automl.error_analysis.preparation import finalize_baseline as implementation
+    return implementation(*args, **kwargs)

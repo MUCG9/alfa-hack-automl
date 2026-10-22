@@ -31,7 +31,15 @@ def artifact(path):
     return AnalysisArtifactRef(str(path), sha(path))
 
 
-def prepare_report_request(report_path, run_dir, dataset_path, source_manifest_path, workspace, scope='search'):
+def relocate_path(path, mapping):
+    path = Path(path)
+    for old, new in sorted(mapping.items(), key=lambda item: len(item[0]), reverse=True):
+        if path.is_relative_to(Path(old)):
+            return (Path(new) / path.relative_to(Path(old))).resolve()
+    raise ValueError('No explicit root mapping for frozen artifact path')
+
+
+def prepare_report_request(report_path, run_dir, dataset_path, source_manifest_path, workspace, scope='search', root_mapping=None):
     """Resolve only an explicitly supplied run directory, never old absolute paths."""
     if scope not in ('search', 'confirmation'):
         raise ValueError('Report preparation supports search or confirmation')
@@ -70,6 +78,9 @@ def prepare_report_request(report_path, run_dir, dataset_path, source_manifest_p
     ensemble = (report.get('ensemble') or {}).get('primary' if scope == 'search' else 'confirmation')
     if ensemble:
         records.append(ensemble)
+    if not records:
+        raise ValueError('No completed model records in requested scope')
+    mapping = root_mapping or {str(Path(records[0]['output_dir']).parent): str(run_dir)}
     predictions = []
     recipe_models = {}
     seen = {}
@@ -79,9 +90,10 @@ def prepare_report_request(report_path, run_dir, dataset_path, source_manifest_p
         return bool(recipe.get('params', {}).get('calibrate')) or any(adjusted(child) for child in recipe.get('components', []))
 
     def add(record, directory):
-        directory = directory.resolve(strict=True)
+        directory = directory.resolve()
         if not directory.is_relative_to(run_dir):
             raise ValueError('Relocated artifact escapes the supplied run directory')
+        directory = directory.resolve(strict=True)
         local = json.loads((directory / 'result.json').read_text())
         if local.get('recipe') != record['recipe'] or local.get('metrics') != record['metrics']:
             raise ValueError('Local result differs from the frozen portable report')
@@ -119,10 +131,7 @@ def prepare_report_request(report_path, run_dir, dataset_path, source_manifest_p
         return model
 
     for record in records:
-        basename = Path(record.get('output_dir') or Path(record['submission']).parent).name
-        if basename in ('', '.', '..'):
-            raise ValueError('Invalid frozen record directory')
-        add(record, run_dir / basename)
+        add(record, relocate_path(record['output_dir'], mapping))
     selected_hash = canonical_hash(report['selected_recipe'])
     if selected_hash not in recipe_models:
         raise ValueError('Selected model is not represented in the requested split caches')
@@ -146,6 +155,11 @@ def prepare_report_request(report_path, run_dir, dataset_path, source_manifest_p
         context_groups=tuple(context_groups), period_column=period, blends=tuple(blends),
         evidence=(artifact(report_path), sources, artifact(provenance_path)), require_group_disjoint=spec.get('validation_strategy') != 'time')
     workspace.mkdir(parents=True, exist_ok=False)
+    relocation_path = workspace / 'relocation.json'
+    write_json(relocation_path, {'root_mapping': mapping,
+        'dataset_mapping': {str(spec.get('paths', {}).get('train', dataset_path)): str(dataset_path)},
+        'run_dir': str(run_dir), 'original_evidence_rewritten': False})
+    protocol = replace(protocol, evidence=protocol.evidence + (artifact(relocation_path),))
     protocol_path = workspace / 'protocol.json'
     write_json(protocol_path, protocol.to_dict())
     request = ErrorAnalysisRequest(workspace.name, task, DatasetRef(str(dataset_path), sha(dataset_path), len(frame)),
@@ -156,7 +170,7 @@ def prepare_report_request(report_path, run_dir, dataset_path, source_manifest_p
     return request
 
 
-def audit_baseline(repo_root, data_root, output_dir, cache_root=None):
+def audit_baseline(repo_root, data_root, output_dir, cache_root=None, root_mapping=None):
     """Verify portable evidence; missing remote caches remain explicitly blocked."""
     root, data_root, output = Path(repo_root).resolve(), Path(data_root).resolve(), Path(output_dir).resolve()
     if output.exists():
@@ -230,23 +244,104 @@ def audit_baseline(repo_root, data_root, output_dir, cache_root=None):
         run_dir = Path(cache_root).resolve() / run / ('task-' + str(task).zfill(2)) / 'automl_runs/run-v2' if cache_root else None
         ready = run_dir is not None and (run_dir / 'report.json').is_file()
         cache.append({'version': version, 'kind': kind, 'relative_run_directory': run + '/task-' + str(task).zfill(2) + '/automl_runs/run-v2',
+                      'run_dir': str(run_dir) if run_dir else None,
                       'status': 'available_unverified' if ready else 'blocked_missing_cache',
                       'reason': None if ready else 'Original prediction/split caches are on another laptop; no fallback or model refit.',
-                      'requests': []})
+                      'requests': [], 'blocked_scopes': []})
         if ready:
             for scope in ('search', 'confirmation'):
+                split_path = run_dir / ('split.npz' if scope == 'search' else 'confirmation_split.npz')
+                if not split_path.is_file():
+                    cache[-1]['blocked_scopes'].append({'scope': scope, 'missing_path': str(split_path),
+                        'reason': 'Original split artifact is missing; no partition reconstruction or substitute.'})
+                    continue
                 request = prepare_report_request(run_dir / 'report.json', run_dir, data_root / kind / 'train.csv',
-                    root / 'release' / version / 'public-source-manifest.json', output / (version + '-' + kind + '-' + scope), scope)
+                    root / 'release' / version / 'public-source-manifest.json', output / (version + '-' + kind + '-' + scope), scope, root_mapping)
                 cache[-1]['requests'].append({'scope': scope, 'request_sha256': request.sha256,
                     'path': str(Path(request.output_dir).parent / 'request.json')})
-            cache[-1]['status'] = 'requests_prepared_not_analyzed'
+            cache[-1]['status'] = 'partially_prepared_missing_split' if cache[-1]['blocked_scopes'] else 'requests_prepared_not_analyzed'
     receipt = {'schema_version': '1.0', 'scope': 'BASE-01 no training; portable evidence is not a new quality measurement',
+        'repo_root': str(root), 'data_root': str(data_root),
         'inputs': inputs, 'portable_parity': parity, 'archives': archives, 'classification_12_trial_trace_and_iteration_parity': True,
         'evidence_sha256': {str(p.relative_to(root)): sha(p) for p in evidence_paths}, 'environment': environment,
         'cache_inventory': cache, 'independent_checks_complete': all(v['status'] == 'verified' for kind in inputs.values() for v in kind.values()),
-        'raw_prediction_analysis': 'blocked' if any(c['status'] == 'blocked_missing_cache' for c in cache) else 'prepared_not_run',
+        'raw_prediction_analysis': 'blocked' if any(c['status'] == 'blocked_missing_cache' or c['blocked_scopes'] for c in cache) else 'prepared_not_run',
         'baseline_complete': all(v['status'] == 'verified' for kind in inputs.values() for v in kind.values()) and all(c['status'] == 'verified' for c in cache),
         'new_model_fits': 0, 'v10_used_as_v11': False}
     write_json(output / 'baseline_inventory.json', receipt)
     write_json(output / 'environment.json', environment)
     return receipt
+
+
+def finalize_baseline(inventory_path):
+    """Close BASE-01 only after actual passports and original final CSV verification."""
+    from automl.contracts.error_analysis import ErrorProfile
+    from automl.error_analysis.reporting import read_section
+    inventory_path = Path(inventory_path).resolve()
+    inventory = json.loads(inventory_path.read_text())
+    root = Path(inventory['repo_root'])
+    if not inventory['independent_checks_complete']:
+        raise ValueError('Independent baseline checks have not passed')
+    for name, expected in inventory['evidence_sha256'].items():
+        if sha(root / name) != expected:
+            raise ValueError('Portable baseline evidence changed')
+    for kind, files in inventory['inputs'].items():
+        for name, item in files.items():
+            if sha(Path(inventory['data_root']) / kind / name) != item['expected_sha256']:
+                raise ValueError('Baseline input changed')
+    verified = []
+    expected_runs = {(version, kind) for version in ('v11-featureviews1', 'v16-mean1') for kind in ('classification', 'regression')}
+    if len(inventory['cache_inventory']) != 4 or {(r['version'], r['kind']) for r in inventory['cache_inventory']} != expected_runs:
+        raise ValueError('All four original V11/V16 runs are required')
+    for entry in inventory['cache_inventory']:
+        if len(entry['requests']) != 2 or {r['scope'] for r in entry['requests']} != {'search', 'confirmation'}:
+            raise ValueError('Original caches/request pair missing; baseline remains blocked')
+        run_dir = Path(entry['run_dir'])
+        report = json.loads((run_dir / 'report.json').read_text())
+        scopes = []
+        for descriptor in entry['requests']:
+            request_path = Path(descriptor['path'])
+            request = ErrorAnalysisRequest.from_json(request_path.read_text())
+            protocol = ErrorAnalysisProtocol.from_json(Path(request.protocol.path).read_text())
+            artifacts = [request.protocol, request.dataset] + list(protocol.evidence)
+            for prediction in request.predictions:
+                artifacts.extend([AnalysisArtifactRef(prediction.predictions.path, prediction.predictions_sha256), prediction.split])
+                artifacts.extend(r for r in (prediction.probabilities, prediction.recorded_result) if r is not None)
+            for reference in artifacts:
+                if sha(reference.path) != reference.sha256:
+                    raise ValueError('Original passport artifact changed before baseline closure')
+            profile_path = Path(request.output_dir) / 'error_profile.json'
+            profile = ErrorProfile.from_json(profile_path.read_text())
+            if request.sha256 != descriptor['request_sha256'] or profile.request_sha256 != request.sha256:
+                raise ValueError('Baseline passport request mismatch')
+            required = {'alignment', 'models', 'comparisons', 'slices'}
+            if any(s.status == 'failed' or (s.name in required and s.status != 'complete') for s in profile.sections):
+                raise ValueError('Baseline passport has failed/incomplete required sections')
+            for section in profile.sections:
+                if section.status == 'complete':
+                    read_section(profile, section.name)
+            value = read_section(profile, 'models')['models'][request.control_model_id]['fold_mean'][request.task.metric]
+            role = 'primary' if descriptor['scope'] == 'search' else 'confirmation'
+            selected = (report.get('ensemble') or {}).get(role)
+            if selected is None:
+                records = report['experiments' if descriptor['scope'] == 'search' else 'confirmations']
+                selected = next(r for r in records if canonical_hash(r['recipe']) == canonical_hash(report['selected_recipe']))
+            if not np.isclose(value, selected['metrics'][request.task.metric], rtol=1e-8, atol=1e-10):
+                raise ValueError('Selected-model passport score differs from original report')
+            relocation = json.loads((request_path.parent / 'relocation.json').read_text())
+            scopes.append({'scope': descriptor['scope'], 'metric': request.task.metric, 'value': value,
+                           'profile_status': profile.status, 'profile_sha256': sha(profile_path),
+                           'request_sha256': request.sha256, 'path': str(profile_path)})
+        output = relocate_path(report['submission_path'], relocation['root_mapping'])
+        actual = sha(output)
+        expected = inventory['portable_parity'][entry['kind']]['declared_csv_sha256']
+        if actual != expected or actual != report['submission_sha256']:
+            raise ValueError('Actual final CSV differs from V11/V16 portable baseline')
+        verified.append({'version': entry['version'], 'kind': entry['kind'], 'scopes': scopes,
+                         'mean': float(np.mean([s['value'] for s in scopes])),
+                         'actual_final_csv_sha256': actual, 'actual_csv_bytes_verified': True})
+    result = {'schema_version': '1.0', 'inventory_sha256': sha(inventory_path), 'baseline_complete': True,
+              'original_runs': verified, 'new_model_fits': 0, 'v10_used_as_v11': False,
+              'scope': 'Recomputed diagnostics from original frozen predictions; not new independent model-quality evaluation.'}
+    write_json(inventory_path.parent / 'baseline_verified.json', result)
+    return result

@@ -23,20 +23,21 @@ class ErrorPreparationTests(unittest.TestCase):
         self.addCleanup(self.directory.cleanup)
         self.root = Path(self.directory.name)
 
-    def report_fixture(self):
-        fixture = PassportFixture(self.root)
+    def report_fixture(self, kind='classification'):
+        fixture = PassportFixture(self.root, kind=kind)
         shutil.copyfile(self.root / 'control-0/split.npz', self.root / 'split.npz')
         shutil.copyfile(self.root / 'control-0/split.npz', self.root / 'confirmation_split.npz')
         records = []
         for p in fixture.request.predictions:
             directory = Path(p.recorded_result.path).parent
             shutil.copyfile(directory / 'predictions.csv', directory / 'validation_predictions.csv')
-            shutil.copyfile(directory / 'probabilities.npz', directory / 'validation_probabilities.npz')
+            if fixture.classes:
+                shutil.copyfile(directory / 'probabilities.npz', directory / 'validation_probabilities.npz')
             record = json.loads(Path(p.recorded_result.path).read_text())
             record['output_dir'] = '/unavailable-old-laptop/' + Path(p.recorded_result.path).parent.name
             records.append(record)
         spec = {'kind': fixture.kind, 'target': 'answer', 'id': None, 'features': list(fixture.task.features),
-                'metric': 'macro_f1', 'greater_is_better': True, 'n_train': 24, 'classes': list(fixture.classes),
+                'metric': fixture.task.metric, 'greater_is_better': fixture.task.greater_is_better, 'n_train': 24, 'classes': list(fixture.classes),
                 'categorical_features': ['category'], 'validation_strategy': 'legacy'}
         report = {'spec': spec, 'integrity_ok': True, 'final_fit_status': 'ok', 'experiments': records,
                   'confirmations': records, 'selected_recipe': records[0]['recipe'], 'ensemble': None}
@@ -61,6 +62,30 @@ class ErrorPreparationTests(unittest.TestCase):
             prepare_report_request(report, self.root, fixture.dataset, sources, self.root / 'prepared')
         self.assertFalse((self.root / 'prepared').exists())
 
+    def test_missing_confirmation_preserves_available_search_without_reconstructing_split(self):
+        fixture, report, sources = self.report_fixture()
+        (self.root / 'confirmation_split.npz').unlink()
+        request = prepare_report_request(report, self.root, fixture.dataset, sources, self.root / 'search')
+        self.assertEqual(analyze(request).status, 'partial')  # 12 groups < default bootstrap minimum 20.
+        with self.assertRaises(FileNotFoundError):
+            prepare_report_request(report, self.root, fixture.dataset, sources, self.root / 'confirmation', 'confirmation')
+        self.assertFalse((self.root / 'confirmation_split.npz').exists())
+        self.assertFalse((self.root / 'confirmation').exists())
+
+    def test_partial_transfer_is_inventoried_instead_of_reported_complete(self):
+        if not (ROOT / 'public_tasks/classification/train.csv').is_file():
+            self.skipTest('Public inputs are external to Git')
+        for name in ('featureviews1-full', 'final-default-parity'):
+            for index in range(2):
+                run = self.root / 'caches' / name / ('task-' + str(index).zfill(2)) / 'automl_runs/run-v2'
+                run.mkdir(parents=True)
+                (run / 'report.json').write_text('{}')
+        result = audit_baseline(ROOT, ROOT / 'public_tasks', self.root / 'audit', self.root / 'caches')
+        self.assertEqual(result['raw_prediction_analysis'], 'blocked')
+        self.assertFalse(result['baseline_complete'])
+        self.assertEqual(sum(len(c['blocked_scopes']) for c in result['cache_inventory']), 8)
+        self.assertTrue(all(not c['requests'] for c in result['cache_inventory']))
+
     def test_selected_ensemble_is_control_and_its_fixed_components_are_retained(self):
         fixture, path, sources = self.report_fixture()
         report = json.loads(path.read_text())
@@ -77,7 +102,7 @@ class ErrorPreparationTests(unittest.TestCase):
                   'metrics': {'macro_f1': float(f1_score(fixture.truth[rows], predicted, labels=classes, average='macro'))}}
         (directory / 'result.json').write_text(json.dumps(result))
         report['selected_recipe'] = recipe
-        report['ensemble'] = {'primary': dict(result, output_dir='/old/ensemble-primary')}
+        report['ensemble'] = {'primary': dict(result, output_dir='/unavailable-old-laptop/ensemble-primary')}
         path.write_text(json.dumps(report))
         request = prepare_report_request(path, self.root, fixture.dataset, sources, self.root / 'prepared')
         self.assertEqual(len(request.predictions), 3)
@@ -108,6 +133,21 @@ class ErrorPreparationTests(unittest.TestCase):
         sources.write_text(json.dumps({'fixture.py': 'b' * 64}))
         with self.assertRaisesRegex(ValueError, 'source provenance'):
             prepare_report_request(report, self.root, fixture.dataset, sources, self.root / 'prepared')
+
+    def test_explicit_root_mapping_is_recorded_without_rewriting_evidence(self):
+        fixture, path, sources = self.report_fixture()
+        before = path.read_bytes()
+        mapping = {'/unavailable-old-laptop': str(self.root)}
+        request = prepare_report_request(path, self.root, fixture.dataset, sources, self.root / 'prepared', root_mapping=mapping)
+        relocation = json.loads((self.root / 'prepared/relocation.json').read_text())
+        self.assertEqual(relocation['root_mapping'], mapping)
+        self.assertFalse(relocation['original_evidence_rewritten'])
+        self.assertEqual(path.read_bytes(), before)
+
+    def test_mapping_cannot_escape_the_supplied_run_directory(self):
+        fixture, path, sources = self.report_fixture()
+        with self.assertRaisesRegex(ValueError, 'escapes'):
+            prepare_report_request(path, self.root, fixture.dataset, sources, self.root / 'prepared', root_mapping={'/unavailable-old-laptop': str(self.root.parent)})
 
     def test_request_workspace_is_immutable(self):
         fixture, report, sources = self.report_fixture()
@@ -147,12 +187,57 @@ class ErrorPreparationTests(unittest.TestCase):
         self.assertEqual(len(result['cache_inventory']), 4)
         self.assertTrue(all(c['status'] == 'blocked_missing_cache' for c in result['cache_inventory']))
         self.assertTrue(all(not p['actual_csv_bytes_verified'] for p in result['portable_parity'].values()))
+        from automl.error_analysis.api import finalize_baseline
+        with self.assertRaisesRegex(ValueError, 'missing'):
+            finalize_baseline(self.root / 'audit/baseline_inventory.json')
 
     def test_portable_audit_refuses_to_overwrite(self):
         output = self.root / 'audit'
         output.mkdir()
         with self.assertRaises(FileExistsError):
             audit_baseline(ROOT, ROOT / 'public_tasks', output)
+
+    def test_baseline_closure_requires_all_passports_and_actual_final_csv_bytes(self):
+        from automl.error_analysis.api import finalize_baseline
+        original_root = self.root
+        inventory = {'repo_root': str(original_root), 'data_root': str(original_root),
+                     'independent_checks_complete': True, 'evidence_sha256': {}, 'inputs': {},
+                     'portable_parity': {}, 'cache_inventory': []}
+        for version in ('v11-featureviews1', 'v16-mean1'):
+            for kind in ('classification', 'regression'):
+                self.root = original_root / version / kind
+                self.root.mkdir(parents=True)
+                fixture, report_path, sources = self.report_fixture(kind)
+                output = self.root / 'final.csv'
+                output.write_text('target\n001\n' if kind == 'classification' else 'target\n1.25\n')
+                report = json.loads(report_path.read_text())
+                report.update(submission_path='/unavailable-old-laptop/final.csv', submission_sha256=sha(output))
+                report_path.write_text(json.dumps(report))
+                inventory['portable_parity'][kind] = {'declared_csv_sha256': sha(output)}
+                entry = {'version': version, 'kind': kind, 'run_dir': str(self.root), 'requests': []}
+                for scope in ('search', 'confirmation'):
+                    workspace = self.root / ('prepared-' + scope)
+                    request = prepare_report_request(report_path, self.root, fixture.dataset, sources, workspace, scope)
+                    self.assertEqual(analyze(request).status, 'partial')
+                    entry['requests'].append({'scope': scope, 'path': str(workspace / 'request.json'),
+                                              'request_sha256': request.sha256})
+                inventory['cache_inventory'].append(entry)
+        self.root = original_root
+        inventory_path = self.root / 'baseline_inventory.json'
+        inventory_path.write_text(json.dumps(inventory))
+        # A matching report/manifest declaration cannot certify altered CSV bytes.
+        original_bytes = output.read_bytes()
+        output.write_text('changed\n')
+        with self.assertRaisesRegex(ValueError, 'Actual final CSV'):
+            finalize_baseline(inventory_path)
+        self.assertFalse((self.root / 'baseline_verified.json').exists())
+        output.write_bytes(original_bytes)
+        result = finalize_baseline(inventory_path)
+        self.assertTrue(result['baseline_complete'])
+        self.assertEqual(len(result['original_runs']), 4)
+        self.assertTrue(all(run['actual_csv_bytes_verified'] for run in result['original_runs']))
+        with self.assertRaises(FileExistsError):
+            finalize_baseline(inventory_path)
 
 
 if __name__ == '__main__':

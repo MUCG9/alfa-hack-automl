@@ -4,6 +4,13 @@ Source commit `16987fb`. ZIP `../solution-v4-history3.zip`,
 SHA **8639e810d92633ca5127bc4c0aef15c75f4a0f48ebcdec2aa6c427b4840bd40f**, 51694bytes. Предыдущие ZIP сохранены.
 Оригинальный requirements не менялся. Публичные feature names в код не зашиты.
 
+Для загрузки: [точный ZIP и инструкция](SUBMIT.md),
+[финальная техническая проверка](submission_readiness.json).
+Упаковка повторно сверена с source; полный regression и дополнительный bounded
+classification этого ZIP успешно экспортировали CSV. Новый classification check:
+1search experiment,97.954s,Macro F1 .646328924,fullrefitok,integrity=true.
+Это проверка запуска, не полный default search или оценка private качества.
+
 ## Изменение
 
 Task Understanding распознаёт описанные в словаре числовые свойства строительства.

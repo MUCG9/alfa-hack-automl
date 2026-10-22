@@ -11,6 +11,8 @@ export,integrity=true. Это повторно исследуемая public val
 
 [Точный кандидат и проверки](release/v4-history3/README.md):
 `release/solution-v4-history3.zip`,59repo +23повторных unpacked checks passed.
+[Файл для загрузки и финальная техническая проверка](release/v4-history3/SUBMIT.md):
+полный regression и bounded classification экспортировали корректные CSV.
 [Итог и ограничения](docs/experiments/v4_summary.md),
 [промпт передачи](docs/prompts/next-agent.md).
 

@@ -34,6 +34,15 @@ SHA `8639e810d92633ca5127bc4c0aef15c75f4a0f48ebcdec2aa6c427b4840bd40f`,51694byte
 Архивы v1/v2/v3, v4-candidate/source1 и v4-search2/source2 сохранены отдельно.
 Не перезаписывай их. Для следующих изменений делай новый архив/manifest/evidence.
 
+Финальная готовность к ручной загрузке записана в release/v4-history3/SUBMIT.md
+и submission_readiness.json. Exact ZIP повторно сверен с source:39root `.py` +
+original requirements. Дополнительный bounded offline history3 classification
+прошёл на полном public объёме:1search experiment,97.954s,Macro F1 .646328924,
+fullrefit/exportok,integrity=true. Его evidence — classification_lifecycle.json.
+CSV обеих задач проверены по sample columns,числу строк,порядку ID,пропускам и
+допустимости значений. Это НЕ full default search; первая следующая задача ниже
+остаётся прежней. Официальной отправки/score history3 нет.
+
 ## Данные, среда и авторизация
 
 На текущем ПК cwd `/home/dima/Документы/ml/alfa-hack-automl`.
@@ -125,7 +134,8 @@ OOF blend .5/.5 также не победил сильный контроль. 
 Qwen generic feature/schedule hypotheses дали разнонаправленные результаты;
 адресные Qwen context keys оказались хуже. Manual-context+log помог, затем его
 механизм обобщён в автоматический history3. Суммарно107 fixed candidate-fold jobs
-(82+9CV+12Qwen/context+4history3), отдельно3full default и2bounded lifecycle.
+(82+9CV+12Qwen/context+4history3), отдельно3full default,2bounded source1 lifecycle
+и1финальный bounded history3 class.
 Не суммируй23unpacked с59 как82 различных теста:23 — повтор в иной упаковке.
 
 В source2/3 отдельно изменён XGBoost class fallback: сохраняет веса incumbent,
@@ -192,6 +202,8 @@ SHA override нужен только для точного старого archiv
 - v4_history3_results.json —4paired workers и fitting group metadata.
 - v4_v3_default_full.json, v4_search2_reg_full.json, v4_history3_reg_full.json —3default runs.
 - release/v4-history3/ — exact manifest,59+23tests,full regression evidence.
+- release/v4-history3/submission_readiness.json и classification_lifecycle.json —
+  финальная упаковка, bounded class export и проверка CSV обеих задач.
 
 Официальная обратная связь пользователя/скриншот: первое857.742 (~8%),
 второе1694.145 (~16%, ранее округлял17%). RMSE43.62→41.99, Macro F1 .6156→.6534

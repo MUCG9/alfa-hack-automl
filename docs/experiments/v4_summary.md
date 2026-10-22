@@ -5,6 +5,16 @@
 Кандидат: [solution-v4-history3.zip](../../release/solution-v4-history3.zip),
 SHA `8639e810d92633ca5127bc4c0aef15c75f4a0f48ebcdec2aa6c427b4840bd40f`.
 
+Финальная техническая проверка готовности к загрузке:
+[инструкция](../../release/v4-history3/SUBMIT.md),
+[receipt](../../release/v4-history3/submission_readiness.json).
+Exact ZIP побайтно совпадает с source:39root `.py` +original requirements.
+Дополнительный bounded classification этого ZIP завершил1search experiment,
+fullrefit/export за97.954s, integrity=true, Macro F1 .646328924.
+CSV обеих задач проверены по sample schema/ID/порядку/числу строк/допустимым
+значениям (22449regression,41166classification). Техническая готовность
+не заменяет ещё не выполненный полный default classification quality benchmark.
+
 ## Главный результат
 
 Автоматические coarse/fine контексты повторяющихся объектов теперь определяются
@@ -53,7 +63,8 @@ CV и bootstrap — `v4_cv.md`; новые методы не объявляют�
 
 - 107 fixed candidate-fold jobs:82первого этапа +9CV +12Qwen/context +4history3.
 - 3 полноценных default runs: frozen v3 class,search2 reg,history3 reg.
-- 2 bounded полноразмерных lifecycle source1 отдельно, не называются default search.
+- 2 bounded полноразмерных lifecycle source1 и1финальный bounded history3 class
+  отдельно, не называются default search.
 - 59repo tests (включая18quality) +23повторных unpacked checks exact history3 ZIP.
 - Реальный production Qwen planner и targeted prompt проверены; неудачные гипотезы
   также сохранены. Qwen context-группы проиграли; итоговый алгоритм использует

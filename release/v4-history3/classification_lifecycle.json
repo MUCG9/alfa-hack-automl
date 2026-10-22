@@ -1,0 +1,320 @@
+{
+  "archive": "release/solution-v4-history3.zip",
+  "archive_sha256": "8639e810d92633ca5127bc4c0aef15c75f4a0f48ebcdec2aa6c427b4840bd40f",
+  "scope": "bounded full-size offline lifecycle, one search experiment; not full default classification quality comparison",
+  "assessment": {
+    "task": "/home/dima/Документы/ml/alfa-hack-automl/public_tasks/classification/task.md",
+    "command": [
+      "/home/dima/Документы/ml/alfa-hack-automl/test-runs/venv-core/bin/python",
+      "-u",
+      "solution.py",
+      "task.md",
+      "--offline",
+      "--time-budget",
+      "600",
+      "--max-experiments",
+      "1"
+    ],
+    "threads": 2,
+    "exit_code": 0,
+    "elapsed_seconds": 97.954
+  },
+  "source_manifest": {
+    "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+    "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+    "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+    "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+    "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+    "automl_callbacks.py": "8caba17f5cbcea0b52044c1b54f52e908065e3b1c3709f8537052b75cb336e15",
+    "automl_contracts_messages.py": "6aab60a3ed7597d9aeb38fafdd6ffad05f691809d656d56f600d40d40922198b",
+    "automl_ensembles.py": "338b3d1a7246527167c711c3efbcc802dde4bb9b475e917327066c351c98b055",
+    "automl_evaluation.py": "e4485d5554433f86be970d440e3c6dd7288169daf0b875fee8fce583206d3f0b",
+    "automl_evaluation_api.py": "b22f4db0f8c51634cac8a18aebe4085f93bb4832bd408c19291061f697e59218",
+    "automl_execution_api.py": "57dbadc9767ef1b17ba28a035b3ecf4ce0f8d35ddd202af52151103cad3fd394",
+    "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+    "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+    "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+    "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+    "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+    "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+    "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+    "automl_infrastructure_llm_gateway.py": "cd10d09c0b5417010ea3eaf40beb2990256a6378c4a8d6e0e79a3321d83bc214",
+    "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+    "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+    "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+    "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+    "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+    "automl_model_linear_text.py": "916aca3b7131ccf3d8f2fe163a3865ff5f16f5030ec55c0b4663c7959314715c",
+    "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+    "automl_models.py": "518309de8a1e05d565f1cefc6f3b5e82223565dfa27df4bfb0be99112c99d65f",
+    "automl_policy.py": "460304cba76cb892f09028bd1ac55d980721813d7aeac01d772a408b20c09244",
+    "automl_publishing.py": "e4aef80616903e9489de34d03d0b6850b769d0418be30b052ec4a9b54a39fee6",
+    "automl_publishing_api.py": "739b45ba47c8c709292e4415be4569fb8856f6f43e3a43574bcb5d74cbf03f2d",
+    "automl_runner.py": "2acd21a1a4e089b2c417385ca48b075aeb32a6d5e7d409103ea3d4b6bb1aeec8",
+    "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+    "automl_task.py": "6a79a3b3a73852a1a7fc23f748a66c0592cb3eadcfc0c4d84e2011089e158e2c",
+    "automl_task_understanding_api.py": "a4a7e033cca4dc52cab2c5094a11ed7d2d90cf8b3c765eeae95c4313b5f4703e",
+    "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+    "automl_worker.py": "ae4b7453beaffd14ab6f21b00eac5d0ceb913fd7a0161788287f4786b427e9a2",
+    "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+    "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+    "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+    "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953"
+  },
+  "version": "v4-quality-research",
+  "split": {
+    "method": "stratified_group_feature_hash_5fold_fold0",
+    "seed": 42,
+    "train_rows": 70529,
+    "validation_rows": 17141,
+    "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+    "shared_feature_hashes": 0,
+    "validation_class_counts": {
+      "Normal": 5565,
+      "Generic": 3733,
+      "Exploits": 3286,
+      "Fuzzers": 1839,
+      "DoS": 1195,
+      "Reconnaissance": 1017,
+      "Analysis": 211,
+      "Backdoor": 158,
+      "Shellcode": 118,
+      "Worms": 19
+    }
+  },
+  "best_validation": {
+    "macro_f1": 0.6463289244307688,
+    "weighted_f1": 0.8188425060717702,
+    "accuracy": 0.809871069365848,
+    "per_class_f1": {
+      "Analysis": 0.31210191082802546,
+      "Backdoor": 0.2222222222222222,
+      "DoS": 0.47477913935594185,
+      "Exploits": 0.6951979780960404,
+      "Fuzzers": 0.749757045675413,
+      "Generic": 0.9879550683448369,
+      "Normal": 0.9150487735581021,
+      "Reconnaissance": 0.8205128205128205,
+      "Shellcode": 0.6571428571428571,
+      "Worms": 0.6285714285714286
+    },
+    "per_class_diagnostics": {
+      "Analysis": {
+        "precision": 0.47572815533980584,
+        "recall": 0.23222748815165878,
+        "support": 211
+      },
+      "Backdoor": {
+        "precision": 0.34210526315789475,
+        "recall": 0.16455696202531644,
+        "support": 158
+      },
+      "DoS": {
+        "precision": 0.3599827139152982,
+        "recall": 0.6970711297071129,
+        "support": 1195
+      },
+      "Exploits": {
+        "precision": 0.7787844469611174,
+        "recall": 0.6278149726110773,
+        "support": 3286
+      },
+      "Fuzzers": {
+        "precision": 0.6776460254721124,
+        "recall": 0.8390429581294182,
+        "support": 1839
+      },
+      "Generic": {
+        "precision": 0.9983588621444202,
+        "recall": 0.9777658719528529,
+        "support": 3733
+      },
+      "Normal": {
+        "precision": 0.9673608329995995,
+        "recall": 0.8681042228212039,
+        "support": 5565
+      },
+      "Reconnaissance": {
+        "precision": 0.8769574944071589,
+        "recall": 0.7708947885939036,
+        "support": 1017
+      },
+      "Shellcode": {
+        "precision": 0.5679012345679012,
+        "recall": 0.7796610169491526,
+        "support": 118
+      },
+      "Worms": {
+        "precision": 0.6875,
+        "recall": 0.5789473684210527,
+        "support": 19
+      }
+    },
+    "confusion_matrix": {
+      "classes": [
+        "Analysis",
+        "Backdoor",
+        "DoS",
+        "Exploits",
+        "Fuzzers",
+        "Generic",
+        "Normal",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "counts": [
+        [
+          49,
+          5,
+          111,
+          29,
+          0,
+          0,
+          17,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          26,
+          92,
+          35,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          17,
+          833,
+          294,
+          19,
+          0,
+          1,
+          13,
+          15,
+          0
+        ],
+        [
+          4,
+          20,
+          993,
+          2063,
+          63,
+          6,
+          18,
+          89,
+          26,
+          4
+        ],
+        [
+          2,
+          4,
+          104,
+          43,
+          1543,
+          0,
+          125,
+          2,
+          15,
+          1
+        ],
+        [
+          1,
+          0,
+          37,
+          36,
+          4,
+          3650,
+          1,
+          0,
+          4,
+          0
+        ],
+        [
+          39,
+          0,
+          7,
+          47,
+          628,
+          0,
+          4831,
+          4,
+          9,
+          0
+        ],
+        [
+          3,
+          4,
+          137,
+          86,
+          2,
+          0,
+          1,
+          784,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          9,
+          16,
+          0,
+          0,
+          1,
+          92,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          7,
+          1,
+          0,
+          0,
+          0,
+          0,
+          11
+        ]
+      ]
+    },
+    "log_loss": 0.4601995414519284,
+    "roc_auc": 0.970023692495497
+  },
+  "selection": [],
+  "selected_recipe": {
+    "hypothesis": "Higher-capacity mild-weight model",
+    "engine": "lightgbm",
+    "params": {
+      "iterations": 1200,
+      "learning_rate": 0.04,
+      "num_leaves": 63,
+      "max_depth": -1,
+      "min_child_samples": 25,
+      "reg_lambda": 5,
+      "subsample": 1,
+      "colsample_bytree": 0.9,
+      "class_weight_power": 0.5,
+      "subsample_freq": 0,
+      "early_metric": "primary",
+      "nested_stopping": true,
+      "min_iterations": 100
+    },
+    "feature_code": ""
+  },
+  "ensemble": null,
+  "final_fit_iterations": 100,
+  "final_fit_status": "ok",
+  "elapsed_seconds": 97.04,
+  "integrity_ok": true,
+  "submission_sha256": "02e2efa767e17c29dab85ee0429174b47eb1af7e17c5cf0b70b74392d76fa693",
+  "score_scope": "local search/confirmation folds, not unbiased blind/private/platform score"
+}

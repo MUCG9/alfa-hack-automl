@@ -3,6 +3,9 @@
 Актуальная передача22.10.2026: [самодостаточный промпт](prompts/next-agent.md),
 [итог этапа](experiments/v4_summary.md), [history3 кандидат](../release/v4-history3/README.md).
 Ветка work/pipeline-review-instructions. Все наши ML jobs/очереди завершены.
+Архив для загрузки: [solution-v4-history3.zip](../release/solution-v4-history3.zip),
+[техническая готовность](../release/v4-history3/SUBMIT.md) подтверждена, включая
+финальный bounded class refit/export. Это не полный новый classification search.
 Полный history3 regression: RMSE39.321110/34.229380,mean36.775245,refit/exportok,
 integrity=true;59repo +23unpacked checks. Frozen v3 classification baseline тоже
 полностью завершён, meanMacroF1 .653714716. Новая classification search2/3 ещё

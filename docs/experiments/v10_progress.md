@@ -116,3 +116,16 @@ f25b4bc. Prior ownership/payload and usage-limit review failures are historical,
 resolved after scoped payload audit and restored limits. Receipt:
 docs/experiments/v10_push_checkpoint.json. New ExtraTrees paired study is ACTIVE
 in test-runs/v10-extratrees-paired, session6727; no runtime source change.
+
+## ExtraTrees screen interrupted before candidate result
+
+Session6727 no longer exists; read-only scoped host audit found no remaining
+owned benchmark/worker. Both standalone controls completed exactly prior scores;
+candidate child0 control also completed and validation CSV byte parity holds.
+No complete XT/ensemble quality result exists. Cause not established (possible
+session/external interruption/resource event), not a failed quality comparison.
+Original partials preserved. See v10_extratrees_interruption.json. Retry unchanged
+candidate ONLY, v10_extratrees_retry_candidates.json, separate output directory;
+completed original controls remain valid with matched frozen source/split/input
+fingerprints. New top-level owned watchdog/status receipt records execution state.
+No parameter/weight tuning or runtime/default/source change.

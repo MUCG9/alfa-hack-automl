@@ -110,7 +110,21 @@ def fallback(spec,number,best):
     candidate['params']=dict(candidate['params'])
     candidate['hypothesis']='Controlled deterministic alternative'
     if spec['kind']=='classification':
-        if number%3==0 and candidate['engine']=='lightgbm': candidate['params']['calibrate']=True
+        if candidate['engine']=='xgboost':
+            params=candidate['params']; axis=number%4
+            depth=max(3,min(12,int(float(params.get('max_depth',6)))))
+            if axis==0:
+                params['max_depth']=max(3,depth-2) if depth>3 else 5
+            elif axis==1:
+                params['max_depth']=min(12,depth+2) if depth<12 else 10
+            elif axis==2:
+                current=max(1,min(50,float(params.get('min_child_weight',3))))
+                params['min_child_weight']=min(50,current*2) if current<50 else 25
+            else:
+                current=max(0,min(100,float(params.get('reg_lambda',8))))
+                params['reg_lambda']=min(100,max(1,current*2)) if current<100 else 50
+            candidate['hypothesis']='Explore XGBoost capacity at incumbent class weights; vary model seed independently'
+        elif number%3==0 and candidate['engine']=='lightgbm': candidate['params']['calibrate']=True
         else: candidate['params']['class_weight_power']=[.35,.65,1.][number%3]
     elif candidate['engine']=='xgboost':
         candidate['params']['max_depth']=[6,8,10][number%3]

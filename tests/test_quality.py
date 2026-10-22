@@ -16,6 +16,27 @@ from automl.execution.preprocessing.frames import prepare_frames
 
 
 class QualityTests(unittest.TestCase):
+    def test_xgboost_class_search_changes_effective_capacity_without_weight_drift(self):
+        from agent_policy import fallback,normalize,signature
+        from automl.execution.model_adapters.xgboost import create_model
+        best=normalize({'engine':'xgboost','params':{'max_depth':6,'min_child_weight':3,'reg_lambda':8,'class_weight_power':.5}})
+        before=signature(best); effective=[]
+        for number in range(4,8):
+            recipe=fallback({'kind':'classification'},number,best)
+            self.assertEqual(recipe['params']['class_weight_power'],.5)
+            model=create_model(recipe,'classification',1,30)
+            effective.append(tuple(model.params[k] for k in ['max_depth','min_child_weight','reg_lambda']))
+        self.assertEqual(len(set(effective)),4)
+        self.assertNotIn((6,3,8),effective)
+        self.assertEqual(signature(best),before)
+        for depth in [3,12]:
+            boundary=normalize({'engine':'xgboost','params':{'max_depth':depth,'min_child_weight':50,'reg_lambda':100}})
+            for number in range(4,8):
+                model=create_model(fallback({'kind':'classification'},number,boundary),'classification',1,30)
+                self.assertTrue(3<=model.params['max_depth']<=12)
+                self.assertTrue(1<=model.params['min_child_weight']<=50)
+                self.assertTrue(0<=model.params['reg_lambda']<=100)
+
     def test_future_class_absent_from_history_keeps_a_working_fallback(self):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder); n=240

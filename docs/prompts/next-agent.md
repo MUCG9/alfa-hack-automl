@@ -12,6 +12,8 @@ final-default-parity/task-00, task-01 внутри automl_runs/run-v2). Они �
 редактирования исходных JSON. Не подменять V10, не реконструировать splits и не
 переобучать. Модельная политика, обучение и submit не разрешены. Текущих jobs нет.
 Результаты Search-анализа не являются полной CV или новым private score.
+Коммиты b2a5ad4 и 139c76a локальны; push заблокирован отсутствием GitHub Git auth
+(could not read Username, terminal prompts disabled). Не заявлять синхронизацию.
 Исторические пункты 1–2: docs/experiments/error_profile_contracts_20261022.md.
 Ниже — исходный контекст; ограничения documentation-only заменены разрешением
 на ERR-01/BASE-01, остальные ограничения сохраняются.

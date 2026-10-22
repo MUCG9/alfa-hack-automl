@@ -30,6 +30,16 @@ confirmation-прогнозы присутствуют, но они не зам�
 fitting/validation-разбиения. Разбиения не реконструировались, V10 не использован.
 BASE-01 остаётся незавершённым до анализа confirmation.
 
+Коммиты реализации и результатов: `b2a5ad4`, `139c76a`, локальная рабочая ветка.
+Финальная попытка push завершилась exit128:
+
+```
+fatal: could not read Username for 'https://github.com': terminal prompts disabled
+```
+
+На GitHub эти коммиты не подтверждены: требуется доступ Git для push.
+Ключи и учётные данные из истории или посторонних файлов не извлекались.
+
 ## Завершённая проверка
 
 Код этапа: `b2a5ad4`. [100 focused checks PASS](error_passport_verification_restored_20261022.json):

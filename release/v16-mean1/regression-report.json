@@ -1,0 +1,4817 @@
+{
+  "version": "v4-quality-research",
+  "spec": {
+    "root": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00",
+    "task_path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/task.md",
+    "paths": {
+      "train": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/regression/participants/train.csv",
+      "test": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/regression/participants/test.csv",
+      "sample_submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/regression/participants/sample_submission.csv",
+      "data_dictionary": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/regression/participants/data_dictionary.csv"
+    },
+    "target": "site_eui",
+    "id": "id",
+    "features": [
+      "Year_Factor",
+      "State_Factor",
+      "building_class",
+      "facility_type",
+      "floor_area",
+      "year_built",
+      "energy_star_rating",
+      "ELEVATION",
+      "january_min_temp_c",
+      "january_avg_temp_c",
+      "january_max_temp_c",
+      "february_min_temp_c",
+      "february_avg_temp_c",
+      "february_max_temp_c",
+      "march_min_temp_c",
+      "march_avg_temp_c",
+      "march_max_temp_c",
+      "april_min_temp_c",
+      "april_avg_temp_c",
+      "april_max_temp_c",
+      "may_min_temp_c",
+      "may_avg_temp_c",
+      "may_max_temp_c",
+      "june_min_temp_c",
+      "june_avg_temp_c",
+      "june_max_temp_c",
+      "july_min_temp_c",
+      "july_avg_temp_c",
+      "july_max_temp_c",
+      "august_min_temp_c",
+      "august_avg_temp_c",
+      "august_max_temp_c",
+      "september_min_temp_c",
+      "september_avg_temp_c",
+      "september_max_temp_c",
+      "october_min_temp_c",
+      "october_avg_temp_c",
+      "october_max_temp_c",
+      "november_min_temp_c",
+      "november_avg_temp_c",
+      "november_max_temp_c",
+      "december_min_temp_c",
+      "december_avg_temp_c",
+      "december_max_temp_c",
+      "cooling_degree_days_c",
+      "heating_degree_days_c",
+      "precipitation_inches",
+      "snowfall_inches",
+      "snowdepth_inches",
+      "avg_temp_c",
+      "days_below_minus1C",
+      "days_below_minus7C",
+      "days_below_minus12C",
+      "days_below_minus18C",
+      "days_above_27C",
+      "days_above_32C",
+      "days_above_38C",
+      "days_above_43C",
+      "direction_max_wind_speed",
+      "direction_peak_wind_speed",
+      "max_wind_speed",
+      "days_with_fog"
+    ],
+    "kind": "regression",
+    "metric": "rmse",
+    "greater_is_better": false,
+    "n_train": 53308,
+    "n_test": 22449,
+    "n_features": 62,
+    "duplicate_feature_rate": 0.006134163727770691,
+    "text_features": [],
+    "classes": null,
+    "prediction_type": "value",
+    "output_columns": [
+      "site_eui"
+    ],
+    "categorical_features": [
+      "State_Factor",
+      "building_class",
+      "facility_type"
+    ],
+    "time_candidate": {
+      "column": "Year_Factor",
+      "reason": "Documented observation period; entire test range follows training range",
+      "representation": "numeric",
+      "split_mode": "period",
+      "train_min": 1.0,
+      "train_max": 5.0,
+      "test_min": 6.0,
+      "test_max": 6.0
+    },
+    "static_numeric_features": [
+      "year_built"
+    ],
+    "group_candidate": null,
+    "validation_strategy": "time",
+    "time_column": "Year_Factor"
+  },
+  "split": {
+    "method": "forward_observation_period",
+    "time_column": "Year_Factor",
+    "cut": 5.0,
+    "offset": 0,
+    "train_rows": 35000,
+    "validation_rows": 18308,
+    "excluded_future_rows": 0,
+    "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+  },
+  "dummy_baseline": {
+    "rmse": 56.79943183188593,
+    "mae": 35.18212217079977,
+    "r2": -0.009424616263527419
+  },
+  "experiments": [
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Recurring training contexts transfer to the next observation period; verify forward backtests",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 43.1485967421813,
+        "mae": 24.374993649574105,
+        "r2": 0.41746870560365756
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 22054,
+          "effective_weight_sum": 22054.0,
+          "target_encoding_groups": [
+            [
+              "building_class",
+              "floor_area"
+            ],
+            [
+              "facility_type",
+              "floor_area"
+            ]
+          ]
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 35000,
+          "source_parent_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 35000,
+          "effective_weight_sum": 35000.0,
+          "target_encoding_groups": [
+            [
+              "facility_type",
+              "floor_area"
+            ],
+            [
+              "building_class",
+              "floor_area"
+            ]
+          ]
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-00/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 0,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 0,
+        "split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "year_built",
+          2030.0
+        ],
+        [
+          "floor_area",
+          1938.0
+        ],
+        [
+          "__te_3_0",
+          1673.0
+        ],
+        [
+          "energy_star_rating",
+          1656.0
+        ],
+        [
+          "__te_2_0",
+          866.0
+        ],
+        [
+          "__te_4_0",
+          754.0
+        ],
+        [
+          "facility_type",
+          726.0
+        ],
+        [
+          "ELEVATION",
+          355.0
+        ],
+        [
+          "days_with_fog",
+          256.0
+        ],
+        [
+          "__te_0_0",
+          186.0
+        ],
+        [
+          "__te_1_0",
+          154.0
+        ],
+        [
+          "direction_max_wind_speed",
+          147.0
+        ],
+        [
+          "november_max_temp_c",
+          129.0
+        ],
+        [
+          "building_class",
+          105.0
+        ],
+        [
+          "august_avg_temp_c",
+          87.0
+        ]
+      ],
+      "fit_iterations": 100,
+      "feature_count": 73,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog",
+        "__missing_days_with_fog",
+        "__missing_energy_star_rating",
+        "__missing_direction_peak_wind_speed",
+        "__missing_direction_max_wind_speed",
+        "__missing_max_wind_speed",
+        "__missing_year_built",
+        "__te_0_0",
+        "__te_1_0",
+        "__te_2_0",
+        "__te_3_0",
+        "__te_4_0"
+      ],
+      "wall_seconds": 4.833,
+      "peak_rss_mb": 387.5,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-00/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-00/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-00",
+      "observed_process_tree_peak_mb": 388.3,
+      "observed_total_peak_mb": 626.0,
+      "artifact_bytes": 1216939,
+      "experiment_index": 0
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Log-target history model is a separate candidate; compare both forward backtests",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 41.00254113726053,
+        "mae": 22.757225534095046,
+        "r2": 0.4739737046319621
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 22054,
+          "effective_weight_sum": 22054.0,
+          "target_encoding_groups": [
+            [
+              "building_class",
+              "floor_area"
+            ],
+            [
+              "facility_type",
+              "floor_area"
+            ]
+          ]
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 35000,
+          "source_parent_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 35000,
+          "effective_weight_sum": 35000.0,
+          "target_encoding_groups": [
+            [
+              "facility_type",
+              "floor_area"
+            ],
+            [
+              "building_class",
+              "floor_area"
+            ]
+          ]
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-01/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 0,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 0,
+        "split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "year_built",
+          3966.0
+        ],
+        [
+          "floor_area",
+          3929.0
+        ],
+        [
+          "__te_3_0",
+          2949.0
+        ],
+        [
+          "energy_star_rating",
+          2651.0
+        ],
+        [
+          "__te_4_0",
+          2209.0
+        ],
+        [
+          "__te_2_0",
+          1543.0
+        ],
+        [
+          "facility_type",
+          1381.0
+        ],
+        [
+          "ELEVATION",
+          839.0
+        ],
+        [
+          "days_with_fog",
+          551.0
+        ],
+        [
+          "__te_0_0",
+          489.0
+        ],
+        [
+          "__te_1_0",
+          311.0
+        ],
+        [
+          "november_max_temp_c",
+          195.0
+        ],
+        [
+          "april_max_temp_c",
+          158.0
+        ],
+        [
+          "days_above_27C",
+          130.0
+        ],
+        [
+          "direction_max_wind_speed",
+          129.0
+        ]
+      ],
+      "fit_iterations": 196,
+      "feature_count": 73,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog",
+        "__missing_days_with_fog",
+        "__missing_energy_star_rating",
+        "__missing_direction_peak_wind_speed",
+        "__missing_direction_max_wind_speed",
+        "__missing_max_wind_speed",
+        "__missing_year_built",
+        "__te_0_0",
+        "__te_1_0",
+        "__te_2_0",
+        "__te_3_0",
+        "__te_4_0"
+      ],
+      "wall_seconds": 5.952,
+      "peak_rss_mb": 397.9,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-01/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-01/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-01",
+      "observed_process_tree_peak_mb": 388.7,
+      "observed_total_peak_mb": 626.4,
+      "artifact_bytes": 1216251,
+      "experiment_index": 1
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Refine recurring contexts with categorical attributes and schema-described static properties",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "target_encoding_hierarchical": true,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 40.96097309727642,
+        "mae": 22.66369929219871,
+        "r2": 0.475039726285567
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 22054,
+          "effective_weight_sum": 22054.0,
+          "target_encoding_groups": [
+            [
+              "building_class",
+              "floor_area",
+              "State_Factor",
+              "facility_type"
+            ],
+            [
+              "building_class",
+              "floor_area",
+              "State_Factor",
+              "facility_type",
+              "year_built"
+            ]
+          ]
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 35000,
+          "source_parent_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 35000,
+          "effective_weight_sum": 35000.0,
+          "target_encoding_groups": [
+            [
+              "facility_type",
+              "floor_area",
+              "State_Factor",
+              "building_class"
+            ],
+            [
+              "facility_type",
+              "floor_area",
+              "State_Factor",
+              "building_class",
+              "year_built"
+            ]
+          ]
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-02/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 0,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 0,
+        "split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "floor_area",
+          4609.0
+        ],
+        [
+          "year_built",
+          4530.0
+        ],
+        [
+          "__te_4_0",
+          2981.0
+        ],
+        [
+          "energy_star_rating",
+          2790.0
+        ],
+        [
+          "__te_3_0",
+          2506.0
+        ],
+        [
+          "__te_2_0",
+          1819.0
+        ],
+        [
+          "facility_type",
+          1382.0
+        ],
+        [
+          "ELEVATION",
+          1055.0
+        ],
+        [
+          "__te_0_0",
+          630.0
+        ],
+        [
+          "days_with_fog",
+          590.0
+        ],
+        [
+          "__te_1_0",
+          398.0
+        ],
+        [
+          "november_max_temp_c",
+          191.0
+        ],
+        [
+          "direction_max_wind_speed",
+          173.0
+        ],
+        [
+          "january_max_temp_c",
+          165.0
+        ],
+        [
+          "april_max_temp_c",
+          163.0
+        ]
+      ],
+      "fit_iterations": 222,
+      "feature_count": 73,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog",
+        "__missing_days_with_fog",
+        "__missing_energy_star_rating",
+        "__missing_direction_peak_wind_speed",
+        "__missing_direction_max_wind_speed",
+        "__missing_max_wind_speed",
+        "__missing_year_built",
+        "__te_0_0",
+        "__te_1_0",
+        "__te_2_0",
+        "__te_3_0",
+        "__te_4_0"
+      ],
+      "wall_seconds": 6.484,
+      "peak_rss_mb": 396.8,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-02/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-02/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-02",
+      "observed_process_tree_peak_mb": 388.4,
+      "observed_total_peak_mb": 626.1,
+      "artifact_bytes": 1217032,
+      "experiment_index": 2
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "target_encoding_hierarchical": true,
+          "history_asof": true,
+          "history_min_periods": 3,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 39.05167816956453,
+        "mae": 20.503949732433032,
+        "r2": 0.5228385917574554
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 22054,
+          "effective_weight_sum": 22054.0,
+          "history_asof": {
+            "fitting_periods": 3,
+            "minimum_periods": 3,
+            "enabled": true,
+            "contexts": 2,
+            "reason": "enabled"
+          },
+          "target_encoding_groups": [
+            [
+              "building_class",
+              "floor_area",
+              "State_Factor",
+              "facility_type"
+            ],
+            [
+              "building_class",
+              "floor_area",
+              "State_Factor",
+              "facility_type",
+              "year_built"
+            ]
+          ]
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 35000,
+          "source_parent_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 35000,
+          "effective_weight_sum": 35000.0,
+          "history_asof": {
+            "fitting_periods": 4,
+            "minimum_periods": 3,
+            "enabled": true,
+            "contexts": 2,
+            "reason": "enabled"
+          },
+          "target_encoding_groups": [
+            [
+              "facility_type",
+              "floor_area",
+              "State_Factor",
+              "building_class"
+            ],
+            [
+              "facility_type",
+              "floor_area",
+              "State_Factor",
+              "building_class",
+              "year_built"
+            ]
+          ]
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-03/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 0,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 0,
+        "split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "floor_area",
+          2535.0
+        ],
+        [
+          "year_built",
+          2447.0
+        ],
+        [
+          "energy_star_rating",
+          2258.0
+        ],
+        [
+          "__history_last_1",
+          2012.0
+        ],
+        [
+          "__te_4_0",
+          1845.0
+        ],
+        [
+          "__te_3_0",
+          1318.0
+        ],
+        [
+          "__te_2_0",
+          1241.0
+        ],
+        [
+          "__history_last_0",
+          1135.0
+        ],
+        [
+          "facility_type",
+          1022.0
+        ],
+        [
+          "ELEVATION",
+          718.0
+        ],
+        [
+          "days_with_fog",
+          416.0
+        ],
+        [
+          "__te_0_0",
+          356.0
+        ],
+        [
+          "__te_1_0",
+          261.0
+        ],
+        [
+          "__history_trend_0",
+          228.0
+        ],
+        [
+          "january_max_temp_c",
+          148.0
+        ]
+      ],
+      "fit_iterations": 173,
+      "feature_count": 77,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog",
+        "__missing_days_with_fog",
+        "__missing_energy_star_rating",
+        "__missing_direction_peak_wind_speed",
+        "__missing_direction_max_wind_speed",
+        "__missing_max_wind_speed",
+        "__missing_year_built",
+        "__te_0_0",
+        "__te_1_0",
+        "__te_2_0",
+        "__te_3_0",
+        "__te_4_0",
+        "__history_last_0",
+        "__history_trend_0",
+        "__history_last_1",
+        "__history_trend_1"
+      ],
+      "wall_seconds": 6.837,
+      "peak_rss_mb": 414.8,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-03/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-03/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-03",
+      "observed_process_tree_peak_mb": 415.1,
+      "observed_total_peak_mb": 652.8,
+      "artifact_bytes": 1216800,
+      "experiment_index": 3
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Reduce capacity under a documented future-period shift",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 31,
+          "max_depth": -1,
+          "min_child_samples": 100,
+          "reg_lambda": 15,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 47.08688131869273,
+        "mae": 26.938105613120566,
+        "r2": 0.3062775287994983
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 22054,
+          "effective_weight_sum": 22054.0
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 35000,
+          "source_parent_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 35000,
+          "effective_weight_sum": 35000.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-04/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 0,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 0,
+        "split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "facility_type",
+          831.0
+        ],
+        [
+          "energy_star_rating",
+          570.0
+        ],
+        [
+          "year_built",
+          515.0
+        ],
+        [
+          "floor_area",
+          473.0
+        ],
+        [
+          "november_max_temp_c",
+          100.0
+        ],
+        [
+          "ELEVATION",
+          71.0
+        ],
+        [
+          "State_Factor",
+          49.0
+        ],
+        [
+          "august_avg_temp_c",
+          27.0
+        ],
+        [
+          "days_with_fog",
+          27.0
+        ],
+        [
+          "direction_max_wind_speed",
+          26.0
+        ],
+        [
+          "april_max_temp_c",
+          24.0
+        ],
+        [
+          "july_min_temp_c",
+          20.0
+        ],
+        [
+          "building_class",
+          19.0
+        ],
+        [
+          "january_max_temp_c",
+          19.0
+        ],
+        [
+          "february_max_temp_c",
+          18.0
+        ]
+      ],
+      "fit_iterations": 100,
+      "feature_count": 68,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog",
+        "__missing_days_with_fog",
+        "__missing_energy_star_rating",
+        "__missing_direction_peak_wind_speed",
+        "__missing_direction_max_wind_speed",
+        "__missing_max_wind_speed",
+        "__missing_year_built"
+      ],
+      "wall_seconds": 2.44,
+      "peak_rss_mb": 357.6,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-04/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-04/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-04",
+      "observed_process_tree_peak_mb": 356.0,
+      "observed_total_peak_mb": 593.7,
+      "artifact_bytes": 1212848,
+      "experiment_index": 4
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Stronger regularized CPU baseline",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 52.9129183052862,
+        "mae": 30.04511250353414,
+        "r2": 0.1239894466738588
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 22054,
+          "effective_weight_sum": 22054.0
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 35000,
+          "source_parent_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 35000,
+          "effective_weight_sum": 35000.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-05/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 0,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 0,
+        "split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "floor_area",
+          3882.0
+        ],
+        [
+          "year_built",
+          3830.0
+        ],
+        [
+          "energy_star_rating",
+          1796.0
+        ],
+        [
+          "facility_type",
+          1287.0
+        ],
+        [
+          "ELEVATION",
+          701.0
+        ],
+        [
+          "days_with_fog",
+          409.0
+        ],
+        [
+          "november_max_temp_c",
+          198.0
+        ],
+        [
+          "direction_max_wind_speed",
+          182.0
+        ],
+        [
+          "building_class",
+          156.0
+        ],
+        [
+          "january_max_temp_c",
+          116.0
+        ],
+        [
+          "february_max_temp_c",
+          97.0
+        ],
+        [
+          "january_min_temp_c",
+          86.0
+        ],
+        [
+          "february_avg_temp_c",
+          82.0
+        ],
+        [
+          "june_avg_temp_c",
+          76.0
+        ],
+        [
+          "days_above_27C",
+          73.0
+        ]
+      ],
+      "fit_iterations": 115,
+      "feature_count": 68,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog",
+        "__missing_days_with_fog",
+        "__missing_energy_star_rating",
+        "__missing_direction_peak_wind_speed",
+        "__missing_direction_max_wind_speed",
+        "__missing_max_wind_speed",
+        "__missing_year_built"
+      ],
+      "wall_seconds": 3.525,
+      "peak_rss_mb": 369.0,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-05/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-05/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-05",
+      "observed_process_tree_peak_mb": 366.9,
+      "observed_total_peak_mb": 604.6,
+      "artifact_bytes": 1213529,
+      "experiment_index": 5
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Higher-leaf capacity with fixed regularization",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 255,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 52.95134260419704,
+        "mae": 30.194904478745514,
+        "r2": 0.12271670216950015
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 22054,
+          "effective_weight_sum": 22054.0
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 35000,
+          "source_parent_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 35000,
+          "effective_weight_sum": 35000.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-06/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 0,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 0,
+        "split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "floor_area",
+          7853.0
+        ],
+        [
+          "year_built",
+          7221.0
+        ],
+        [
+          "energy_star_rating",
+          2895.0
+        ],
+        [
+          "facility_type",
+          1313.0
+        ],
+        [
+          "ELEVATION",
+          1283.0
+        ],
+        [
+          "days_with_fog",
+          906.0
+        ],
+        [
+          "direction_max_wind_speed",
+          304.0
+        ],
+        [
+          "november_max_temp_c",
+          256.0
+        ],
+        [
+          "building_class",
+          235.0
+        ],
+        [
+          "january_min_temp_c",
+          174.0
+        ],
+        [
+          "february_max_temp_c",
+          160.0
+        ],
+        [
+          "january_max_temp_c",
+          144.0
+        ],
+        [
+          "february_avg_temp_c",
+          143.0
+        ],
+        [
+          "april_max_temp_c",
+          129.0
+        ],
+        [
+          "Year_Factor",
+          122.0
+        ]
+      ],
+      "fit_iterations": 100,
+      "feature_count": 68,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog",
+        "__missing_days_with_fog",
+        "__missing_energy_star_rating",
+        "__missing_direction_peak_wind_speed",
+        "__missing_direction_max_wind_speed",
+        "__missing_max_wind_speed",
+        "__missing_year_built"
+      ],
+      "wall_seconds": 4.389,
+      "peak_rss_mb": 373.1,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-06/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-06/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-06",
+      "observed_process_tree_peak_mb": 371.2,
+      "observed_total_peak_mb": 608.9,
+      "artifact_bytes": 1213114,
+      "experiment_index": 6
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Independent histogram-boosting family",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 8,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 87.53759638700772,
+        "mae": 40.499843908966135,
+        "r2": -1.3975912424153192
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 22054,
+          "effective_weight_sum": 22054.0
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 35000,
+          "source_parent_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 35000,
+          "effective_weight_sum": 35000.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-07/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 0,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 0,
+        "split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "facility_type",
+          0.06628808379173279
+        ],
+        [
+          "days_below_minus7C",
+          0.0552871897816658
+        ],
+        [
+          "energy_star_rating",
+          0.05313573777675629
+        ],
+        [
+          "november_max_temp_c",
+          0.04994463548064232
+        ],
+        [
+          "State_Factor",
+          0.035888008773326874
+        ],
+        [
+          "snowdepth_inches",
+          0.029921991750597954
+        ],
+        [
+          "days_below_minus12C",
+          0.02812388353049755
+        ],
+        [
+          "july_min_temp_c",
+          0.026805618777871132
+        ],
+        [
+          "august_min_temp_c",
+          0.023673130199313164
+        ],
+        [
+          "august_avg_temp_c",
+          0.022781528532505035
+        ],
+        [
+          "june_avg_temp_c",
+          0.022579872980713844
+        ],
+        [
+          "february_max_temp_c",
+          0.021999511867761612
+        ],
+        [
+          "heating_degree_days_c",
+          0.01917237788438797
+        ],
+        [
+          "august_max_temp_c",
+          0.01708591915667057
+        ],
+        [
+          "days_below_minus1C",
+          0.017056845128536224
+        ]
+      ],
+      "fit_iterations": 396,
+      "feature_count": 62,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog"
+      ],
+      "wall_seconds": 14.469,
+      "peak_rss_mb": 347.7,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-07/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-07/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-07",
+      "observed_process_tree_peak_mb": 345.6,
+      "observed_total_peak_mb": 583.3,
+      "artifact_bytes": 859232,
+      "experiment_index": 7
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Bounded native-category pilot",
+        "engine": "catboost",
+        "params": {
+          "iterations": 600,
+          "depth": 6,
+          "learning_rate": 0.07,
+          "l2_leaf_reg": 5,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 51.974479167825464,
+        "mae": 32.08480055333102,
+        "r2": 0.1547869371611712
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 22054,
+          "effective_weight_sum": 22054.0
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 35000,
+          "source_parent_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 35000,
+          "effective_weight_sum": 35000.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-08/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 0,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 0,
+        "split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "energy_star_rating",
+          35.23112463192742
+        ],
+        [
+          "facility_type",
+          25.95370593561222
+        ],
+        [
+          "floor_area",
+          10.629491916202712
+        ],
+        [
+          "year_built",
+          8.308901848373111
+        ],
+        [
+          "State_Factor",
+          6.82698145438968
+        ],
+        [
+          "building_class",
+          2.8414707478493293
+        ],
+        [
+          "ELEVATION",
+          1.7091960368654306
+        ],
+        [
+          "november_max_temp_c",
+          0.687151846972827
+        ],
+        [
+          "snowdepth_inches",
+          0.571677645434625
+        ],
+        [
+          "max_wind_speed",
+          0.5076900841291276
+        ],
+        [
+          "precipitation_inches",
+          0.4657567462069608
+        ],
+        [
+          "january_min_temp_c",
+          0.4457765400138112
+        ],
+        [
+          "february_max_temp_c",
+          0.385963460278797
+        ],
+        [
+          "january_avg_temp_c",
+          0.30979889607511113
+        ],
+        [
+          "november_min_temp_c",
+          0.3077915837188034
+        ]
+      ],
+      "fit_iterations": 600,
+      "feature_count": 62,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog"
+      ],
+      "wall_seconds": 16.403,
+      "peak_rss_mb": 484.2,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-08/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-08/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-08",
+      "observed_process_tree_peak_mb": 484.7,
+      "observed_total_peak_mb": 722.5,
+      "artifact_bytes": 1215349,
+      "experiment_index": 8
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deeper histogram capacity; no data augmentation",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 2200,
+          "learning_rate": 0.03,
+          "max_depth": 10,
+          "min_child_weight": 2,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 6,
+          "reg_alpha": 0.1,
+          "seed": 48,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 90.40903868982387,
+        "mae": 42.410598600500734,
+        "r2": -1.5574644847236199
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 22054,
+          "effective_weight_sum": 22054.0
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 35000,
+          "source_parent_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 35000,
+          "effective_weight_sum": 35000.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-09/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 0,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 0,
+        "split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "november_max_temp_c",
+          0.07645828276872635
+        ],
+        [
+          "facility_type",
+          0.05780695751309395
+        ],
+        [
+          "snowfall_inches",
+          0.0348968505859375
+        ],
+        [
+          "energy_star_rating",
+          0.03173593431711197
+        ],
+        [
+          "snowdepth_inches",
+          0.030224168673157692
+        ],
+        [
+          "november_avg_temp_c",
+          0.027642810717225075
+        ],
+        [
+          "july_min_temp_c",
+          0.027610549703240395
+        ],
+        [
+          "State_Factor",
+          0.02699330821633339
+        ],
+        [
+          "february_max_temp_c",
+          0.024733060970902443
+        ],
+        [
+          "june_avg_temp_c",
+          0.023875446990132332
+        ],
+        [
+          "august_avg_temp_c",
+          0.023764099925756454
+        ],
+        [
+          "max_wind_speed",
+          0.023600494489073753
+        ],
+        [
+          "september_min_temp_c",
+          0.02341696247458458
+        ],
+        [
+          "days_below_minus1C",
+          0.021808888763189316
+        ],
+        [
+          "days_above_27C",
+          0.020285045728087425
+        ]
+      ],
+      "fit_iterations": 1192,
+      "feature_count": 62,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog"
+      ],
+      "wall_seconds": 58.228,
+      "peak_rss_mb": 621.4,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-09/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-09/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-09",
+      "observed_process_tree_peak_mb": 530.8,
+      "observed_total_peak_mb": 768.5,
+      "artifact_bytes": 859848,
+      "experiment_index": 9
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Paired missingness robustness trial; selection must beat unchanged fitting rows",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 2200,
+          "learning_rate": 0.03,
+          "max_depth": 10,
+          "min_child_weight": 2,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 6,
+          "reg_alpha": 0.1,
+          "seed": 48,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": "",
+        "data_policy": {
+          "schema_version": "1.0",
+          "sampling": "identity",
+          "factor": 1.5,
+          "majority_fraction": 0.85,
+          "duplicate_beta": 0.0,
+          "class_weight_cap": null,
+          "augmentation": "mask",
+          "copy_fraction": 0.25,
+          "mask_probability": 0.15,
+          "synthetic_weight": 0.5,
+          "max_added_fraction": 0.25,
+          "seed": 2026
+        }
+      },
+      "metrics": {
+        "rmse": 83.19110664685522,
+        "mae": 40.27914704810583,
+        "r2": -1.1654078734587388
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "mask",
+            "copy_fraction": 0.25,
+            "mask_probability": 0.15,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 5513,
+          "skipped": null,
+          "masked_columns": [
+            "year_built",
+            "energy_star_rating",
+            "max_wind_speed",
+            "days_with_fog"
+          ],
+          "output_rows": 27567,
+          "unique_source_groups": 21775,
+          "output_parent_sha256": "36ff1e67378b39e41d4673483980d7190cea37d3f910dbbb18f06b4f592496aa",
+          "effective_weight_sum": 27567.000000000004,
+          "class_counts_before": null,
+          "class_counts_after": null,
+          "parent_rows_artifact": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-10/fit-parents-1.npz"
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "mask",
+            "copy_fraction": 0.25,
+            "mask_probability": 0.15,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 35000,
+          "source_parent_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 8750,
+          "skipped": null,
+          "masked_columns": [
+            "year_built",
+            "energy_star_rating",
+            "max_wind_speed",
+            "days_with_fog"
+          ],
+          "output_rows": 43750,
+          "unique_source_groups": 34695,
+          "output_parent_sha256": "ad20b50612e7198546e72a2170f3649af45e33a2b5fdeeaae7a0727abf8f66a1",
+          "effective_weight_sum": 43749.99999999999,
+          "class_counts_before": null,
+          "class_counts_after": null,
+          "parent_rows_artifact": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-10/fit-parents-2.npz"
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-10/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 0,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 0,
+        "split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "november_max_temp_c",
+          0.07017692178487778
+        ],
+        [
+          "facility_type",
+          0.06060144677758217
+        ],
+        [
+          "snowdepth_inches",
+          0.03941073641180992
+        ],
+        [
+          "energy_star_rating",
+          0.036153584718704224
+        ],
+        [
+          "snowfall_inches",
+          0.031425654888153076
+        ],
+        [
+          "State_Factor",
+          0.029774144291877747
+        ],
+        [
+          "september_min_temp_c",
+          0.028426043689250946
+        ],
+        [
+          "july_min_temp_c",
+          0.02815072424709797
+        ],
+        [
+          "august_avg_temp_c",
+          0.02569407783448696
+        ],
+        [
+          "days_below_minus1C",
+          0.025599272921681404
+        ],
+        [
+          "february_max_temp_c",
+          0.024994922801852226
+        ],
+        [
+          "august_min_temp_c",
+          0.024548014625906944
+        ],
+        [
+          "june_avg_temp_c",
+          0.023997774347662926
+        ],
+        [
+          "november_avg_temp_c",
+          0.022867705672979355
+        ],
+        [
+          "days_above_27C",
+          0.0204972792416811
+        ]
+      ],
+      "fit_iterations": 695,
+      "feature_count": 62,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog"
+      ],
+      "wall_seconds": 40.861,
+      "peak_rss_mb": 514.6,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-10/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-10/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-10",
+      "observed_process_tree_peak_mb": 470.2,
+      "observed_total_peak_mb": 707.9,
+      "artifact_bytes": 989477,
+      "experiment_index": 10
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 255,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 1,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "target_encoding_hierarchical": true,
+          "history_asof": true,
+          "history_min_periods": 3,
+          "seed": 53,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 39.715395320789305,
+        "mae": 20.789485224795747,
+        "r2": 0.5064812149201263
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 22054,
+          "effective_weight_sum": 22054.0,
+          "history_asof": {
+            "fitting_periods": 3,
+            "minimum_periods": 3,
+            "enabled": true,
+            "contexts": 2,
+            "reason": "enabled"
+          },
+          "target_encoding_groups": [
+            [
+              "building_class",
+              "floor_area",
+              "State_Factor",
+              "facility_type"
+            ],
+            [
+              "building_class",
+              "floor_area",
+              "State_Factor",
+              "facility_type",
+              "year_built"
+            ]
+          ]
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 35000,
+          "source_parent_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 35000,
+          "effective_weight_sum": 35000.0,
+          "history_asof": {
+            "fitting_periods": 4,
+            "minimum_periods": 3,
+            "enabled": true,
+            "contexts": 2,
+            "reason": "enabled"
+          },
+          "target_encoding_groups": [
+            [
+              "facility_type",
+              "floor_area",
+              "State_Factor",
+              "building_class"
+            ],
+            [
+              "facility_type",
+              "floor_area",
+              "State_Factor",
+              "building_class",
+              "year_built"
+            ]
+          ]
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-11/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 0,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 0,
+        "split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "floor_area",
+          8086.0
+        ],
+        [
+          "year_built",
+          7901.0
+        ],
+        [
+          "energy_star_rating",
+          4680.0
+        ],
+        [
+          "__te_3_0",
+          4115.0
+        ],
+        [
+          "__te_4_0",
+          4098.0
+        ],
+        [
+          "__history_last_1",
+          3685.0
+        ],
+        [
+          "__history_last_0",
+          2902.0
+        ],
+        [
+          "__te_2_0",
+          2546.0
+        ],
+        [
+          "ELEVATION",
+          1959.0
+        ],
+        [
+          "days_with_fog",
+          1368.0
+        ],
+        [
+          "facility_type",
+          1359.0
+        ],
+        [
+          "__te_1_0",
+          1000.0
+        ],
+        [
+          "__te_0_0",
+          908.0
+        ],
+        [
+          "__history_trend_0",
+          617.0
+        ],
+        [
+          "__history_trend_1",
+          490.0
+        ]
+      ],
+      "fit_iterations": 212,
+      "feature_count": 77,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog",
+        "__missing_days_with_fog",
+        "__missing_energy_star_rating",
+        "__missing_direction_peak_wind_speed",
+        "__missing_direction_max_wind_speed",
+        "__missing_max_wind_speed",
+        "__missing_year_built",
+        "__te_0_0",
+        "__te_1_0",
+        "__te_2_0",
+        "__te_3_0",
+        "__te_4_0",
+        "__history_last_0",
+        "__history_trend_0",
+        "__history_last_1",
+        "__history_trend_1"
+      ],
+      "wall_seconds": 9.991,
+      "peak_rss_mb": 436.1,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-11/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-11/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/experiment-11",
+      "observed_process_tree_peak_mb": 436.9,
+      "observed_total_peak_mb": 674.6,
+      "artifact_bytes": 1216406,
+      "experiment_index": 11
+    }
+  ],
+  "llm_calls": [],
+  "confirmations": [
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "target_encoding_hierarchical": true,
+          "history_asof": true,
+          "history_min_periods": 3,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 31.846185166957753,
+        "mae": 15.19853941413082,
+        "r2": 0.7029625349149247
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 11175,
+          "source_parent_sha256": "ad949bed13579ababe82c8ffdbb14423df1552c82f32a27eff4d805a7e251fbe",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 11175,
+          "effective_weight_sum": 11175.0,
+          "history_asof": {
+            "fitting_periods": 2,
+            "minimum_periods": 3,
+            "enabled": false,
+            "contexts": 1,
+            "reason": "insufficient_periods"
+          },
+          "target_encoding_groups": [
+            [
+              "State_Factor",
+              "floor_area"
+            ]
+          ]
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 22054,
+          "effective_weight_sum": 22054.0,
+          "history_asof": {
+            "fitting_periods": 3,
+            "minimum_periods": 3,
+            "enabled": true,
+            "contexts": 2,
+            "reason": "enabled"
+          },
+          "target_encoding_groups": [
+            [
+              "building_class",
+              "floor_area",
+              "State_Factor",
+              "facility_type"
+            ],
+            [
+              "building_class",
+              "floor_area",
+              "State_Factor",
+              "facility_type",
+              "year_built"
+            ]
+          ]
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation-0/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 3.0,
+        "offset": 0,
+        "train_rows": 11175,
+        "validation_rows": 10879,
+        "excluded_future_rows": 0,
+        "split_sha256": "8d32e0829f0e8ef74b485c66e4a57a3a882c5e922d22ce6df1676ee29be3e1c4"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "year_built",
+          2994.0
+        ],
+        [
+          "floor_area",
+          2889.0
+        ],
+        [
+          "energy_star_rating",
+          1798.0
+        ],
+        [
+          "__history_last_1",
+          1384.0
+        ],
+        [
+          "__te_4_0",
+          1365.0
+        ],
+        [
+          "__te_2_0",
+          1289.0
+        ],
+        [
+          "__te_3_0",
+          1110.0
+        ],
+        [
+          "ELEVATION",
+          798.0
+        ],
+        [
+          "__history_last_0",
+          762.0
+        ],
+        [
+          "facility_type",
+          689.0
+        ],
+        [
+          "days_with_fog",
+          515.0
+        ],
+        [
+          "__te_0_0",
+          302.0
+        ],
+        [
+          "__te_1_0",
+          264.0
+        ],
+        [
+          "direction_max_wind_speed",
+          186.0
+        ],
+        [
+          "january_min_temp_c",
+          136.0
+        ]
+      ],
+      "fit_iterations": 148,
+      "feature_count": 77,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog",
+        "__missing_energy_star_rating",
+        "__missing_direction_peak_wind_speed",
+        "__missing_direction_max_wind_speed",
+        "__missing_max_wind_speed",
+        "__missing_days_with_fog",
+        "__missing_year_built",
+        "__te_0_0",
+        "__te_1_0",
+        "__te_2_0",
+        "__te_3_0",
+        "__te_4_0",
+        "__history_last_0",
+        "__history_trend_0",
+        "__history_last_1",
+        "__history_trend_1"
+      ],
+      "wall_seconds": 4.298,
+      "peak_rss_mb": 423.2,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation-0/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation-0/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation-0",
+      "observed_process_tree_peak_mb": 382.3,
+      "observed_total_peak_mb": 620.0,
+      "artifact_bytes": 1022369
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 255,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 1,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "target_encoding_hierarchical": true,
+          "history_asof": true,
+          "history_min_periods": 3,
+          "seed": 53,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 32.195536261173785,
+        "mae": 15.392912661233165,
+        "r2": 0.6964098165400046
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 11175,
+          "source_parent_sha256": "ad949bed13579ababe82c8ffdbb14423df1552c82f32a27eff4d805a7e251fbe",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 11175,
+          "effective_weight_sum": 11175.0,
+          "history_asof": {
+            "fitting_periods": 2,
+            "minimum_periods": 3,
+            "enabled": false,
+            "contexts": 1,
+            "reason": "insufficient_periods"
+          },
+          "target_encoding_groups": [
+            [
+              "State_Factor",
+              "floor_area"
+            ]
+          ]
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 22054,
+          "effective_weight_sum": 22054.0,
+          "history_asof": {
+            "fitting_periods": 3,
+            "minimum_periods": 3,
+            "enabled": true,
+            "contexts": 2,
+            "reason": "enabled"
+          },
+          "target_encoding_groups": [
+            [
+              "building_class",
+              "floor_area",
+              "State_Factor",
+              "facility_type"
+            ],
+            [
+              "building_class",
+              "floor_area",
+              "State_Factor",
+              "facility_type",
+              "year_built"
+            ]
+          ]
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation-1/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 3.0,
+        "offset": 0,
+        "train_rows": 11175,
+        "validation_rows": 10879,
+        "excluded_future_rows": 0,
+        "split_sha256": "8d32e0829f0e8ef74b485c66e4a57a3a882c5e922d22ce6df1676ee29be3e1c4"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "floor_area",
+          9235.0
+        ],
+        [
+          "year_built",
+          7661.0
+        ],
+        [
+          "__te_3_0",
+          3306.0
+        ],
+        [
+          "energy_star_rating",
+          3273.0
+        ],
+        [
+          "__te_4_0",
+          2893.0
+        ],
+        [
+          "__history_last_1",
+          2418.0
+        ],
+        [
+          "__te_2_0",
+          2167.0
+        ],
+        [
+          "__history_last_0",
+          2039.0
+        ],
+        [
+          "ELEVATION",
+          1765.0
+        ],
+        [
+          "days_with_fog",
+          1341.0
+        ],
+        [
+          "facility_type",
+          786.0
+        ],
+        [
+          "__te_1_0",
+          765.0
+        ],
+        [
+          "__te_0_0",
+          759.0
+        ],
+        [
+          "direction_max_wind_speed",
+          399.0
+        ],
+        [
+          "january_min_temp_c",
+          340.0
+        ]
+      ],
+      "fit_iterations": 168,
+      "feature_count": 77,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog",
+        "__missing_energy_star_rating",
+        "__missing_direction_peak_wind_speed",
+        "__missing_direction_max_wind_speed",
+        "__missing_max_wind_speed",
+        "__missing_days_with_fog",
+        "__missing_year_built",
+        "__te_0_0",
+        "__te_1_0",
+        "__te_2_0",
+        "__te_3_0",
+        "__te_4_0",
+        "__history_last_0",
+        "__history_trend_0",
+        "__history_last_1",
+        "__history_trend_1"
+      ],
+      "wall_seconds": 5.932,
+      "peak_rss_mb": 424.9,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation-1/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation-1/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation-1",
+      "observed_process_tree_peak_mb": 387.4,
+      "observed_total_peak_mb": 625.1,
+      "artifact_bytes": 1022546
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Bounded native-category pilot",
+        "engine": "catboost",
+        "params": {
+          "iterations": 600,
+          "depth": 6,
+          "learning_rate": 0.07,
+          "l2_leaf_reg": 5,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 46.287858247297166,
+        "mae": 24.51688047898852,
+        "r2": 0.3724756670743109
+      },
+      "full_fit": false,
+      "data_policy_runs": [
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 11175,
+          "source_parent_sha256": "ad949bed13579ababe82c8ffdbb14423df1552c82f32a27eff4d805a7e251fbe",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 11175,
+          "effective_weight_sum": 11175.0
+        },
+        {
+          "policy": {
+            "schema_version": "1.0",
+            "sampling": "identity",
+            "factor": 1.5,
+            "majority_fraction": 0.85,
+            "duplicate_beta": 0.0,
+            "class_weight_cap": null,
+            "augmentation": "noop",
+            "copy_fraction": 0.15,
+            "mask_probability": 0.1,
+            "synthetic_weight": 0.5,
+            "max_added_fraction": 0.25,
+            "seed": 2026
+          },
+          "source_rows": 22054,
+          "source_parent_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "weights_source": "original fitting rows before resampling",
+          "synthetic_rows": 0,
+          "skipped": null,
+          "output_rows": 22054,
+          "effective_weight_sum": 22054.0
+        }
+      ],
+      "prediction_bundle": {
+        "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation-2/submission.csv",
+        "rows": 22449,
+        "columns": [
+          "id",
+          "site_eui"
+        ],
+        "classes": [],
+        "split_sha256": "",
+        "schema_version": "1.0"
+      },
+      "calibration_status": "disabled",
+      "class_factors": {},
+      "decision_optimizer": null,
+      "target_smearing": {
+        "requested": false,
+        "factor": 1.0,
+        "status": "disabled",
+        "method": null
+      },
+      "calibration_folds": [],
+      "specialist_pairs": [],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 3.0,
+        "offset": 0,
+        "train_rows": 11175,
+        "validation_rows": 10879,
+        "excluded_future_rows": 0,
+        "split_sha256": "8d32e0829f0e8ef74b485c66e4a57a3a882c5e922d22ce6df1676ee29be3e1c4"
+      },
+      "inner_split_error": null,
+      "important_features": [
+        [
+          "energy_star_rating",
+          33.48560201074188
+        ],
+        [
+          "facility_type",
+          31.173200517818245
+        ],
+        [
+          "floor_area",
+          10.462592993578792
+        ],
+        [
+          "year_built",
+          3.9438163901585215
+        ],
+        [
+          "building_class",
+          3.7532600884093354
+        ],
+        [
+          "State_Factor",
+          2.5090902596267735
+        ],
+        [
+          "january_avg_temp_c",
+          1.3912291780067911
+        ],
+        [
+          "ELEVATION",
+          1.3372125394474976
+        ],
+        [
+          "july_min_temp_c",
+          1.1687387566045815
+        ],
+        [
+          "august_avg_temp_c",
+          0.9569876991199705
+        ],
+        [
+          "january_min_temp_c",
+          0.7679084181451569
+        ],
+        [
+          "january_max_temp_c",
+          0.6957618296275858
+        ],
+        [
+          "february_avg_temp_c",
+          0.6857662371674228
+        ],
+        [
+          "heating_degree_days_c",
+          0.6550455383006627
+        ],
+        [
+          "august_min_temp_c",
+          0.6040560149948826
+        ]
+      ],
+      "fit_iterations": 100,
+      "feature_count": 62,
+      "feature_names": [
+        "Year_Factor",
+        "State_Factor",
+        "building_class",
+        "facility_type",
+        "floor_area",
+        "year_built",
+        "energy_star_rating",
+        "ELEVATION",
+        "january_min_temp_c",
+        "january_avg_temp_c",
+        "january_max_temp_c",
+        "february_min_temp_c",
+        "february_avg_temp_c",
+        "february_max_temp_c",
+        "march_min_temp_c",
+        "march_avg_temp_c",
+        "march_max_temp_c",
+        "april_min_temp_c",
+        "april_avg_temp_c",
+        "april_max_temp_c",
+        "may_min_temp_c",
+        "may_avg_temp_c",
+        "may_max_temp_c",
+        "june_min_temp_c",
+        "june_avg_temp_c",
+        "june_max_temp_c",
+        "july_min_temp_c",
+        "july_avg_temp_c",
+        "july_max_temp_c",
+        "august_min_temp_c",
+        "august_avg_temp_c",
+        "august_max_temp_c",
+        "september_min_temp_c",
+        "september_avg_temp_c",
+        "september_max_temp_c",
+        "october_min_temp_c",
+        "october_avg_temp_c",
+        "october_max_temp_c",
+        "november_min_temp_c",
+        "november_avg_temp_c",
+        "november_max_temp_c",
+        "december_min_temp_c",
+        "december_avg_temp_c",
+        "december_max_temp_c",
+        "cooling_degree_days_c",
+        "heating_degree_days_c",
+        "precipitation_inches",
+        "snowfall_inches",
+        "snowdepth_inches",
+        "avg_temp_c",
+        "days_below_minus1C",
+        "days_below_minus7C",
+        "days_below_minus12C",
+        "days_below_minus18C",
+        "days_above_27C",
+        "days_above_32C",
+        "days_above_38C",
+        "days_above_43C",
+        "direction_max_wind_speed",
+        "direction_peak_wind_speed",
+        "max_wind_speed",
+        "days_with_fog"
+      ],
+      "wall_seconds": 2.505,
+      "peak_rss_mb": 384.6,
+      "validation_predictions": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation-2/validation_predictions.csv",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation-2/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation-2",
+      "observed_process_tree_peak_mb": 377.5,
+      "observed_total_peak_mb": 615.2,
+      "artifact_bytes": 1019244
+    }
+  ],
+  "selection": [
+    {
+      "mean": 35.44893166826114,
+      "recipe": {
+        "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "target_encoding_hierarchical": true,
+          "history_asof": true,
+          "history_min_periods": 3,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      }
+    },
+    {
+      "mean": 35.95546579098155,
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 255,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 1,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "target_encoding_hierarchical": true,
+          "history_asof": true,
+          "history_min_periods": 3,
+          "seed": 53,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      }
+    },
+    {
+      "mean": 49.131168707561315,
+      "recipe": {
+        "hypothesis": "Bounded native-category pilot",
+        "engine": "catboost",
+        "params": {
+          "iterations": 600,
+          "depth": 6,
+          "learning_rate": 0.07,
+          "l2_leaf_reg": 5,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      }
+    }
+  ],
+  "ensemble": {
+    "primary": {
+      "status": "ok",
+      "recipe": {
+        "engine": "ensemble",
+        "hypothesis": "Validated cached-prediction blend",
+        "params": {},
+        "components": [
+          {
+            "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
+            "engine": "lightgbm",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "subsample_freq": 0,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 2,
+              "log_target": true,
+              "target_encoding_hierarchical": true,
+              "history_asof": true,
+              "history_min_periods": 3,
+              "early_metric": "primary",
+              "nested_stopping": true
+            },
+            "feature_code": ""
+          },
+          {
+            "hypothesis": "Bounded native-category pilot",
+            "engine": "catboost",
+            "params": {
+              "iterations": 600,
+              "depth": 6,
+              "learning_rate": 0.07,
+              "l2_leaf_reg": 5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        ],
+        "weights": [
+          0.9,
+          0.09999999999999998
+        ]
+      },
+      "metrics": {
+        "rmse": 38.902803731334785,
+        "mae": 20.520273690563542,
+        "r2": 0.5264697663727902
+      },
+      "fit_iterations": [
+        173,
+        600
+      ],
+      "feature_count": 139,
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/ensemble-primary/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/ensemble-primary",
+      "full_fit": false,
+      "training_reused": true,
+      "wall_seconds": 0.067
+    },
+    "confirmation": {
+      "status": "ok",
+      "recipe": {
+        "engine": "ensemble",
+        "hypothesis": "Validated cached-prediction blend",
+        "params": {},
+        "components": [
+          {
+            "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
+            "engine": "lightgbm",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "subsample_freq": 0,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 2,
+              "log_target": true,
+              "target_encoding_hierarchical": true,
+              "history_asof": true,
+              "history_min_periods": 3,
+              "early_metric": "primary",
+              "nested_stopping": true
+            },
+            "feature_code": ""
+          },
+          {
+            "hypothesis": "Bounded native-category pilot",
+            "engine": "catboost",
+            "params": {
+              "iterations": 600,
+              "depth": 6,
+              "learning_rate": 0.07,
+              "l2_leaf_reg": 5,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "min_iterations": 100
+            },
+            "feature_code": ""
+          }
+        ],
+        "weights": [
+          0.9,
+          0.09999999999999998
+        ]
+      },
+      "metrics": {
+        "rmse": 31.991659384340597,
+        "mae": 15.223235899711074,
+        "r2": 0.7002425866571007
+      },
+      "fit_iterations": [
+        148,
+        100
+      ],
+      "feature_count": 139,
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/ensemble-confirmation/submission.csv",
+      "output_dir": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/ensemble-confirmation",
+      "full_fit": false,
+      "training_reused": true,
+      "wall_seconds": 0.056
+    },
+    "mean": 35.44723155783769
+  },
+  "blend_trials": [
+    {
+      "indices": [
+        0,
+        1
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ],
+      "search": 39.282144791820585,
+      "confirmation": 31.92369731733764,
+      "mean": 35.60292105457911
+    },
+    {
+      "indices": [
+        0,
+        1
+      ],
+      "weights": [
+        0.25,
+        0.75
+      ],
+      "search": 39.473766138528354,
+      "confirmation": 32.03555223926897,
+      "mean": 35.754659188898664
+    },
+    {
+      "indices": [
+        0,
+        1
+      ],
+      "weights": [
+        0.75,
+        0.25
+      ],
+      "search": 39.14126574787231,
+      "confirmation": 31.860478410512503,
+      "mean": 35.500872079192405
+    },
+    {
+      "indices": [
+        0,
+        1
+      ],
+      "weights": [
+        0.1,
+        0.9
+      ],
+      "search": 39.61279703229746,
+      "confirmation": 32.125808333429745,
+      "mean": 35.869302682863605
+    },
+    {
+      "indices": [
+        0,
+        1
+      ],
+      "weights": [
+        0.9,
+        0.09999999999999998
+      ],
+      "search": 39.081331126512694,
+      "confirmation": 31.846022117544717,
+      "mean": 35.46367662202871
+    },
+    {
+      "indices": [
+        0,
+        2
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ],
+      "search": 41.88316050108388,
+      "confirmation": 35.926711235743625,
+      "mean": 38.90493586841375
+    },
+    {
+      "indices": [
+        0,
+        2
+      ],
+      "weights": [
+        0.25,
+        0.75
+      ],
+      "search": 46.23878335309851,
+      "confirmation": 40.555347111966185,
+      "mean": 43.39706523253235
+    },
+    {
+      "indices": [
+        0,
+        2
+      ],
+      "weights": [
+        0.75,
+        0.25
+      ],
+      "search": 39.36837090255374,
+      "confirmation": 32.871614253869645,
+      "mean": 36.11999257821169
+    },
+    {
+      "indices": [
+        0,
+        2
+      ],
+      "weights": [
+        0.1,
+        0.9
+      ],
+      "search": 49.542693423801055,
+      "confirmation": 43.888213899754916,
+      "mean": 46.715453661777985
+    },
+    {
+      "indices": [
+        0,
+        2
+      ],
+      "weights": [
+        0.9,
+        0.09999999999999998
+      ],
+      "search": 38.902803731334785,
+      "confirmation": 31.991659384340597,
+      "mean": 35.44723155783769
+    },
+    {
+      "indices": [
+        1,
+        2
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ],
+      "search": 42.347450678591265,
+      "confirmation": 36.12930777165907,
+      "mean": 39.23837922512517
+    },
+    {
+      "indices": [
+        1,
+        2
+      ],
+      "weights": [
+        0.25,
+        0.75
+      ],
+      "search": 46.48462958692357,
+      "confirmation": 40.65572866856628,
+      "mean": 43.57017912774492
+    },
+    {
+      "indices": [
+        1,
+        2
+      ],
+      "weights": [
+        0.75,
+        0.25
+      ],
+      "search": 39.98504543192885,
+      "confirmation": 33.16446352021124,
+      "mean": 36.57475447607005
+    },
+    {
+      "indices": [
+        1,
+        2
+      ],
+      "weights": [
+        0.1,
+        0.9
+      ],
+      "search": 49.642469997214825,
+      "confirmation": 43.92767764880727,
+      "mean": 46.78507382301105
+    },
+    {
+      "indices": [
+        1,
+        2
+      ],
+      "weights": [
+        0.9,
+        0.09999999999999998
+      ],
+      "search": 39.56194813201511,
+      "confirmation": 32.32383409862861,
+      "mean": 35.942891115321856
+    },
+    {
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "search": 40.2197819898655,
+      "confirmation": 33.776082525269686,
+      "mean": 36.9979322575676
+    },
+    {
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "weights": [
+        0.5,
+        0.25,
+        0.25
+      ],
+      "search": 39.52388230506744,
+      "confirmation": 32.92214206722067,
+      "mean": 36.223012186144054
+    },
+    {
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "weights": [
+        0.25,
+        0.5,
+        0.25
+      ],
+      "search": 39.729699420235754,
+      "confirmation": 33.019897697252176,
+      "mean": 36.37479855874396
+    },
+    {
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "weights": [
+        0.25,
+        0.25,
+        0.5
+      ],
+      "search": 42.09193874081828,
+      "confirmation": 36.00648323060784,
+      "mean": 39.04921098571306
+    }
+  ],
+  "best_validation": {
+    "rmse": 38.902803731334785,
+    "mae": 20.520273690563542,
+    "r2": 0.5264697663727902
+  },
+  "selected_recipe": {
+    "engine": "ensemble",
+    "hypothesis": "Validated cached-prediction blend",
+    "params": {},
+    "components": [
+      {
+        "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "target_encoding_hierarchical": true,
+          "history_asof": true,
+          "history_min_periods": 3,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      {
+        "hypothesis": "Bounded native-category pilot",
+        "engine": "catboost",
+        "params": {
+          "iterations": 600,
+          "depth": 6,
+          "learning_rate": 0.07,
+          "l2_leaf_reg": 5,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      }
+    ],
+    "weights": [
+      0.9,
+      0.09999999999999998
+    ]
+  },
+  "final_fit_iterations": [
+    160,
+    350
+  ],
+  "final_fit_status": "ok",
+  "elapsed_seconds": 219.461,
+  "submission_path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/submission.csv",
+  "submission_sha256": "05ccd9eabcbf29f4b858e9cd89f6dfe568ce1bdddb32a397c71b98ef1c0c1673",
+  "integrity_ok": true,
+  "provenance_path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/provenance.json",
+  "journal_path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/results.tsv",
+  "score_scope": "local search/confirmation folds, not unbiased blind/private/platform score",
+  "run_budget_trace": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-budget-1792680095137777205/report.json",
+  "run_budget": {
+    "schema_version": "1.0",
+    "status": "running",
+    "wall_limit_seconds": 9900,
+    "elapsed_seconds": 220.088,
+    "remaining_seconds": 9679.912,
+    "gateway_call_limit": 6,
+    "gateway_calls_started": 0,
+    "http_attempts_reported": 0,
+    "prompt_tokens_reported": 0,
+    "completion_tokens_reported": 0,
+    "usage_complete": true,
+    "events": [],
+    "exception_type": null,
+    "scope": "One shared ledger; child snapshots are cumulative, not additive. Reported tokens exclude unknown retry usage; no currency/balance estimate."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "scope": "Static final-source audit; full-public parity completion recorded separately",
+  "archive": "solution-v16-mean1.zip",
+  "archive_sha256": "68e1eb0c933807720178ef4708df2c0dbf55fe9940b0dfb849d7704dbe3b2566",
+  "bytes": 79054,
+  "flat_files": 54,
+  "canonical_byte_parity": true,
+  "source_receipt_byte_parity": true,
+  "unique_source_checks": 258,
+  "source_tests_passed": true,
+  "unpacked_repeated_checks": 23,
+  "unpacked_tests_passed": true,
+  "requirements_sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+  "all_10_original_inputs_unchanged": {
+    "classification": {
+      "task.md": true,
+      "train.csv": true,
+      "test.csv": true,
+      "data_dictionary.csv": true,
+      "sample_submission.csv": true
+    },
+    "regression": {
+      "task.md": true,
+      "train.csv": true,
+      "test.csv": true,
+      "data_dictionary.csv": true,
+      "sample_submission.csv": true
+    }
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "runtime_checkpoint": "f72c6df",
+  "official_upload_this_continuation": false
+}

@@ -1,6 +1,6 @@
-# Alfa Hack AutoML: v6 проверена, v7 semantic inputs
+# Alfa Hack AutoML: v9 input contracts и общий бюджет агента
 
-Текущее продолжение — [work/semantic-inputs-20261022](https://github.com/MUCG9/alfa-hack-automl/tree/work/semantic-inputs-20261022).
+Текущее продолжение — [work/agent-budget-20261022](https://github.com/MUCG9/alfa-hack-automl/tree/work/agent-budget-20261022).
 `main` сохранён как v2. Новые исходники и кандидаты не означают автоматически
 новый официальный submit.
 
@@ -14,10 +14,14 @@
   **36.775244985**, Macro F1 **0.653281240**, refit/integrity pass. Новые контракты,
   независимые targets, limited query-NDCG, positive-label probability и optional
   XGB calibration. Это локальная public validation, не официальный балл.
-- **Эксперимент v7**: `release/solution-v7-semantic1.zip`, 145 уникальных checks и23
-  repeated unpacked. Bounded online выбор file roles после deterministic failure,
-  mock coverage, не live Qwen proof. Full public gate запущен; актуальный итог в
-  [передаче](docs/handoff/current.md) и [release evidence](release/v7-semantic1/README.md).
+- **V7 полностью проверена**:145unique /23repeated checks, обе public задачи
+  byte-identical V6; live Qwen не проверен.
+- **V9**: `release/solution-v9-roles1.zip`,169unique /23repeated checks; общий
+  deadline/API ledger от discovery до export,64KiB metadata bound, безопасный
+  структурный feedback и переиспользование frames. Модельные defaults не менялись.
+  Full public gate запущен; итог в [передаче](docs/handoff/current.md) и
+  [release evidence](release/v9-roles1/README.md). SDK/HTTP tests используют local
+  mock, а не Qwen. Две новые модельные гипотезы отвергнуты по измерениям.
 - V5 contract1/multitarget1 тоже завершили обе public задачи с CSV parity v4.
   [Свежий промпт следующему агенту](docs/prompts/next-agent.md),
   [следующий план](docs/handoff/next_research_plan.md). Не начинать с main/v2.

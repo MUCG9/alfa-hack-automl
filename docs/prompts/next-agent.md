@@ -9,8 +9,8 @@ https://github.com/MUCG9/alfa-hack-automl . Прочитай `AGENTS.md`,
 
 ## Ветка и авторизация
 
-Последняя работа — **`work/semantic-inputs-20261022`**, основана на
-`work/autonomous-score-20261022` / `work/pipeline-review-instructions`.
+Последняя работа — **`work/agent-budget-20261022`**, основана на `b11debf` из
+`work/semantic-inputs-20261022`, ещё раньше `work/autonomous-score-20261022`.
 Создай свою рабочую ветку от актуального HEAD этой ветки. `main` сохраняет v2;
 не начинай с него, не делай force push и merge main без поручения капитана.
 
@@ -36,9 +36,14 @@ https://github.com/MUCG9/alfa-hack-automl . Прочитай `AGENTS.md`,
 - V6 полностью завершила обе public задачи: regression mean RMSE **36.775244985**;
   classification mean Macro F1 **0.653281240**. Refit/integrity pass. Это reused
   public validation, не official score; v3 classification немного выше.
-- V7: bounded online file-role mapping; **145 уникальных repo +23 повторных exact
-  unpacked checks** pass. Live Qwen не проверен. Full public gate запущен; реальный
-  статус смотри в current.md / release evidence, не переноси автоматически V6 на V7.
+- V7 завершила обе public задачи с byte-identical V6 CSV. Старый interrupted run
+  не засчитан; новый classification-only gate успешно завершён.
+- V9: shared startup/API budget,64KiB metadata cap, bounded structural mapping
+  feedback и cached frames; **169unique repo /23repeated exact-unpacked** pass.
+  Full public gate запущен, итог читать в current.md /release evidence. Live Qwen
+  не проверен: real SDK +LOCAL MOCK HTTP тесты не являются organizer API proof.
+- Две гипотезы (XGB OOF3 calibration и fixed LGBM seed blend) проиграли парному
+  контролю и не продвинуты в defaults. Evidence сохранён, не повторять как новое.
 
 ## Порядок действий
 

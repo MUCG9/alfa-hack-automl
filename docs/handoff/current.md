@@ -1,115 +1,104 @@
-# Checkpoint 22.10.2026: v6 full gate и v7 semantic experiment
+# Актуальное продолжение:22октября, v9
 
-## Версии и факты
+Последняя ветка **`work/agent-budget-20261022`**; основа `b11debf` из
+`work/semantic-inputs-20261022`. Main по-прежнему v2 (`5dd6b0f`), не менялся.
+Промпт `docs/prompts/next-agent.md`; журнал `docs/experiments/resume_20261022.md`.
+Не клонировать main как актуальное решение; новая работа — от HEAD рабочей ветки.
 
-Последняя ветка **`work/semantic-inputs-20261022`**, опубликована в GitHub.
-V7 source `b4f8db7`, freeze `12f8d20`; V6 evidence `d5b550e`.
-Основа `work/autonomous-score-20261022` (v6 freeze `e783aa3`), ещё раньше
-`work/pipeline-review-instructions` (`d950cb9`). Main не менялся, PR/merge не делали.
+## Что проверено
 
-| Кандидат | Уникальные repo / повторные unpacked | Полный public цикл | Официальная отправка |
+|Версия|Уникальные repo /повторные unpacked|Полный public цикл|Отправлена|
 |---|---:|---|---|
-| v4 history3 Python3.12.14 | 59 /23 на исходном этапе | обе задачи завершены | загружен один раз |
-| v5 contract1 | 85 /23 | обе задачи, CSV parity v4 | нет |
-| v5 multitarget1 | 111 /23 | обе задачи, CSV parity v4 | нет |
-| v5 ranking1 | 124 /23 | отдельный full gate не запускался | нет |
-| v6 universal1 | 137 /23 | обе задачи, refit/integrity pass | нет |
-| v7 semantic1 | 145 /23 | regression pass, classification выполняется | нет |
+|V4 history3 Python3.12.14|59 /23 на том этапе|обе задачи|да, один раз|
+|V6 universal1|137 /23|обе задачи, refit/integrity pass|нет|
+|V7 semantic1|145 /23|обе задачи, CSV parity V6|нет|
+|V8 budget1|163 /23|отдельно не запускался|нет|
+|V9 roles1|169 /23|запущен, финальный результат пока не подтверждён|нет|
 
-Архивы:
+V7 сначала прервалась: owned execution вернул143, прогресс остановился на4trials.
+Частичный прогон НЕ засчитан. Новый classification-only завершён за1358.099s:
+mean Macro F1 **0.6532812402233098**, итоговый CSV
+`58f52dfbfecb1416a456ed715a43cf944876a7f69eed73d7bf1e10170631b326`, идентичен V6.
+Регрессия V7 тоже byte-identical V6/V4: mean RMSE **36.775244984792195**, CSV
+`c1556d566cd24de3dc4bed107fbfe7f517dea14dd2c53c583545af08ed43f4e0`.
+Evidence `release/v7-semantic1/public-full.json`. Это reused public validation,
+не official/private score. V3 classification0.653714716 немного выше V6/V7.
 
-- Загружен `release/solution-v4-history3-py31214.zip`, SHA
-  `734ec4da69c7513f1896a9b528c35ae5489206df2af360c7650246d4bc0155f1`.
-- V6 `release/solution-v6-universal1.zip`, SHA
-  `b3b46b6a6bee7b7540fda0db22bf663a7afa090baff6e1b9ee72a3a221e3afb5`.
-- V7 `release/solution-v7-semantic1.zip`, SHA
-  `a31d1fc7c9bee3403f992f70467e95a446c19dbffdb4cdfea9abf2d035f79b27`.
+## Точный последний архив
 
-Полный V6: regression mean RMSE **36.775244985**, тот же CSV, что v4; classification
-mean Macro F1 **0.653281240** (0.653846737 /0.652715743), blend90% calibrated LGBM /
-10% calibrated XGB. V4 mean0.652742609, v3 0.653714716. Лучший отдельный search trial
-V6 0.658219218 — не финальный score pipeline. Прирост против v4 небольшой, против
-v3 classification улучшения нет. Никакого перевода в баллы.
+`release/solution-v9-roles1.zip`,69,565bytes,50flat root files, source `41cae86`.
+SHA **`297647239badde608d349d053a89f9d7f98e8fffceb4a09633f675f99ebd7291`**.
+169checks source-unchanged прошли за167.251s, плюс23повторных unpacked.
+Оригинальный requirements SHA
+`9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6`.
+Python3.12.14. Старые ZIP/manifests/evidence не перезаписаны.
 
-Компонентная XGB calibration separately: paired42/43 +полная group-CV3, pooled OOF
-0.611757099 →0.617987602. Условный group bootstrap положителен, не private interval.
-Evidence `docs/experiments/v5_xgb_*`; итоговые gates — `release/v6-universal1`.
+V8 SHA `2522f6ef47194d92410ceffff22835610c1820ea4c330a2d6ad8c7b0b0ebaa07`;
+V7 SHA `a31d1fc7c9bee3403f992f70467e95a446c19dbffdb4cdfea9abf2d035f79b27`.
+V8 имеет отдельные unit/unpacked gates, не свой полный public run.
 
-## Реализация и ограничения
+## Изменения после V7
 
-V5/V6: CSV/TSV, deterministic роли/пути, optional dictionary/ID, sample row order;
-MAPE/MSE/RMSLE/balanced accuracy, explicit positive label; declared group/future-date
-validation; независимые2..16targets; limited pointwise query NDCG. Не joint
-multi-output/native ranker/произвольный natural-language task interpreter.
+- Один deadline от начала CLI, включая discovery, и общий API ledger для semantic
+  mapping/planner/всех targets. `--max-llm-calls`0..16, default planner limit+2;
+  HTTP retries и неизвестный usage учитываются отдельно. Это не дневной RUB cap.
+  Детали: `docs/experiments/v8_run_budget.md`.
+- Метаданные semantic mapping≤65,536UTF-8bytes, включая feedback. Ключи, сырые
+  строки и error messages не попадают в общий ledger; неполный usage не называется
+  нулевой ценой. Deadline перепроверяется после client setup и перед retries.
+- Структурно неверные file roles дают один безопасный feedback retry в рамках
+  прежних2attempts. Проверки row counts,targets/features,ID/dictionary; валидные
+  frames переиспользуются. Parse/runtime/unsupported-metric ошибки terminal,
+  никакого подбора «удобной» новой задачи. `v9_role_feedback.md` описывает scope.
+- Модельные defaults/weighting/augmentation/outer splits НЕ менялись.
 
-Runtime search/confirmation не полная K-fold OOF; development CV mode отдельный.
-Joint group+time не реализован. AST-фильтр feature code — не security sandbox.
-Generated feature functions могут быть трансдуктивными: жёсткой изоляции для них
-не обещать. Default data policy identity/noop, прежние sampling/augmentation
-эксперименты не дали основания включать увеличение данных повсеместно.
+## Модельные исследования: не продвигать отвергнутое
 
-V7: bounded Qwen file-role mapping после deterministic failure, online CLI only;
-3..32 CSV/TSV,≤100columns, dtype probe16rows, excerpt8k, без raw values, distinct
-exact task-local paths. До2semantic calls deadline45s/output2,048tokens каждый;
-gateway может повторять HTTP внутри своего deadline. Mock tests8, один с реальным
-refit после подставного mapping. **Live Qwen не проверен.** Retry feedback пока
-структурный/paths, не все ошибки дальнейшего TaskSpec. Время/calls этапа отдельно
-от старого planner-only report.llm_calls; общий trace не считать заново по targets.
+|Гипотеза|Контроль mean Macro F1|Кандидат|Решение|
+|---|---:|---:|---|
+|XGB training OOF3 calibration вместо одного inner holdout|0.649134619|0.649029401|discard, mixed folds, медленнее|
+|LGBM fixed50/50 seeds42/47|0.651543688|0.643384454|discard, хуже на обоих folds|
 
-## Jobs на данном ПК
+Парные данные/ошибки/recipes/source/input/split hashes сохранены в
+`docs/experiments/v8_xgb_oof_calibration*` и `v9_lgbm_seed_blend*`.
+Оба исследования использовали frozen V7 workers и завершились; CV/default
+promotion не делали, так как predeclared keep criteria не выполнены.
 
-V6 completed. Сейчас один V7 full benchmark:
-`test-runs/continuation-20261022/v7-public-full/`, log рядом `v7-public-full.log`.
-task-00 regression уже pass, итоговый CSV byte-identical V6; task-01 classification
-ещё выполняется. Default
-search12/budget9900s, offline,2threads, tree guard1.7GiB, watchdog10100s/task.
-Strict current-source comparison прошёл на запуске; потом менялись только docs.
-Aggregate `assessments.json` означает завершение обеих задач. Проверить каждый
-assessment/report на exit0, refit/integrity и SHA CSV; не дублировать job и не
-объявлять full success без completion. Финальное наблюдение в04:30:56UTC:
-4search experiments завершены, идёт CatBoost pilot experiment-04; полного
-report/aggregate нет. После порога85% новые ML jobs не запускаются.
+## Текущий выполняющийся gate
 
-Защищённый ввод credential в диагностический terminal был отклонён policy, ключ
-туда не поступил. Idle terminal может ещё ждать stdin; не утверждать, что все
-credential-процессы закрыты. Не обходить отказ вводом через argv/иной канал.
-Platform-provided API environment — отдельный runtime путь.
+Единственный тяжёлый job: `test-runs/resume-20261022/v9-public-full`, log рядом
+`v9-public-full.log`; started около10:35MSK. Сначала regression task-00, затем
+classification task-01. Offline, default12trials,2threads,1.7GiB tree guard,
+10100s/task outer watchdog. Strict exact-archive/current-source gate пройден на
+старте. Последующие правки пока docs only. До завершения не дублировать job.
+Проверять aggregate `assessments.json` и report каждого task: exit0, refit,
+integrity, CSV SHA. Не называть running/partial успешным и не завершать turn,
+обещая, что незаконченный процесс обязательно переживёт передачу.
 
-## Платформа и разрешения
+## API и разрешения
 
-Receipt `release/v4-history3/submission-20261022.json`. Read-only reload в04:25UTC:
-карточка exact v4 имени, время05:21, **2184.173**, осталось2попытки. Screenshot и
-accessibility state показаны в разговоре. Ранее UI смешивал имя со старым1723.691
-v3; это не новый балл v4. Новый raw score не переводим в100 или hidden-final score.
-Пользователь ранее сообщил v3≈16/100; формула/hidden breakdown неизвестны. Отправка
-разрешена и выполнена один раз; следующие — по новой команде, даже после reset.
+Live Qwen **не проверен**. Переменных organizer API в среде нет. Попытка hidden
+stdin была policy-denied до ввода ключа; waiting terminal без ключа может ещё
+существовать. Не обходить отказ или помещать ключ в argv/Git/prompts/logs.
+`tools/live_smoke.py` принимает private environment/hidden input; loopback только
+с fixed dummy key. Проверки real SDK→LOCAL FAKE HTTP→CLI→refit→CSV проходят,
+но явно `local_mock_http`, не live Qwen. Расход/баланс реального API не установлен.
 
-Разрешены автономные измерения/исправления/обычные коммиты/push рабочих веток/Qwen.
-Не разрешены автоматически main merge, force push, paid GPU, новые official submits
-и дополнительные AI-агенты. Managed policy выше широкого «полного доступа».
+V4 загружен один раз; карточка показала raw **2184.173**,2попытки оставались.
+Наблюдение: **07:25MSK (04:25UTC)**, upload time05:21MSK.
+Receipt `release/v4-history3/submission-20261022.json` хранит точное наблюдение.
+Не переводить в /100/hidden-final score. Новых submits не было; следующая загрузка
+требует новой команды капитана. Нельзя main merge/force push/paid GPU/extra agents.
 
-## Среда и воспроизведение
+## Среда /лимит
 
-Repo на этом ПК:
-`/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project`.
-От repo Python `../../work/ml-venv/bin/python`; tasks
-`../../work/evaluation/regression/task.md`, `../../work/evaluation/multiclass/task.md`.
-10 SHA сверены с `docs/handoff/public_inputs.json`. На другом ПК получить public
-inputs у капитана; raw CSV/predictions/venv/secrets не в Git.
+Repo `/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project`.
+Python `../../work/ml-venv/bin/python`; public tasks в
+`../../work/evaluation/{regression,multiclass}/task.md`,10SHA сверены с
+`docs/handoff/public_inputs.json`. Raw CSV/predictions/venv/secrets не в Git.
+numpy1.26.4/scipy1.12/pandas2.2.3/sklearn1.5.2/LGBM4.6/XGB-cpu2.1.4/CatBoost1.2.8.
+Новые зависимости не ставили. Low-memory: heavy jobs последовательно,2threads;
+TMPDIR/MPLCONFIGDIR внутри ignored `test-runs/resume-20261022/{tmp,mpl}`.
 
-Python3.12.14,numpy1.26.4,scipy1.12.0,pandas2.2.3,sklearn1.5.2,LGBM4.6.0,
-xgboost-cpu2.1.4,CatBoost1.2.8,openai1.68.2,psutil6.1.1. Новые пакеты не ставили.
-Original requirements SHA в next-agent.md. Python patch влияет на ast.unparse:
-3.12.3 ZIP отличается одной f-string quote style, AST совпадает. Byte-exact gate
-не ослаблять; новый ZIP — новое имя, старые не перезаписывать.
-
-15.3GiB RAM total, мало available, swap8GiB заполнен. Тяжёлые jobs последовательно,
-2threads. TMPDIR/MPLCONFIGDIR — ignored `test-runs/continuation-20261022/{tmp,mpl}`:
-стандартный /tmp read-only. BLAS/OMP1–2. `tools/run_checks.py --output NEWDIR` —145
-проверок, source hashes до/после, owned-process guards. Exact-unpacked23 повторяют
-часть145, не суммировать как168unique.
-
-Последний записанный quota usedPercent **85% в04:30:56UTC**,15% оставалось: начаты
-checkpoint/передача, новые долгие этапы не запускаются. Это не live остаток при
-чтении. Reset credits не использовались. Машиночитаемый снимок:
-`checkpoint-20261022.json`. Актуальное чтение quota обязательно.
+На07:37UTC primary used75%, осталось25%; при85% начать финализацию, не начинать
+новые долгие этапы. Reset credits не тратили. Это историческое чтение, проверять live.

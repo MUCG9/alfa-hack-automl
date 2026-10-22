@@ -54,6 +54,13 @@ def run(job):
     y=fitting[spec['target']].astype(str)
     labeled=x.copy();labeled[spec['target']]=y
     from autogluon.tabular import TabularPredictor
+    from autogluon.features.generators import AutoMLPipelineFeatureGenerator
+    # Pinned default learner concatenates train+tuning before feature generation.
+    # An already-fitted generator takes its transform-only path instead.
+    generator=AutoMLPipelineFeatureGenerator(enable_text_special_features=False,
+        enable_text_ngram_features=False,enable_raw_text_features=False,enable_vision_features=False)
+    generator.fit_transform(x.iloc[inner_tr].copy())
+    if not generator.is_fit():raise ValueError('Feature generator did not complete fitting')
     predictor=TabularPredictor(label=spec['target'],
         problem_type='multiclass' if len(spec['classes'])>2 else 'binary',
         eval_metric='f1_macro',path=str(out/'ag-models'),verbosity=0,
@@ -63,7 +70,8 @@ def run(job):
             'min_data_in_leaf':25,'lambda_l2':5,'feature_fraction':.9,'seed':42},
         'CAT':{'iterations':600,'depth':6,'learning_rate':.07,'l2_leaf_reg':5,'random_seed':42}}
     predictor.fit(labeled.iloc[inner_tr],tuning_data=labeled.iloc[inner_va],
-        hyperparameters=hyperparameters,time_limit=450,num_bag_folds=0,num_stack_levels=0,
+        hyperparameters=hyperparameters,feature_generator=generator,
+        time_limit=450,num_bag_folds=0,num_stack_levels=0,
         fit_weighted_ensemble=True,dynamic_stacking=False,fit_strategy='sequential',
         num_cpus=threads,num_gpus=0,calibrate=False,calibrate_decision_threshold=False,
         raise_on_model_failure=True,refit_full=False)
@@ -104,7 +112,8 @@ def run(job):
         'inner_fit_rows_sha256':hashlib.sha256(np.asarray(rows[inner_tr],dtype='<i8').tobytes()).hexdigest(),
         'inner_calibration_rows_sha256':hashlib.sha256(np.asarray(rows[inner_va],dtype='<i8').tobytes()).hexdigest(),
         'calibration_status':'inner_holdout_before_full_refit_not_oof',
-        'full_refit_map':mapping,'native_fit_model_count':len(models),
+        'full_refit_map':mapping,'trained_model_artifact_count':len(models),
+        'feature_generator_fit_scope':'inner_train_only_prefit_transform_elsewhere',
         'submission':str(out/'submission.csv'),'wall_seconds':round(time.monotonic()-start,3),
         'peak_rss_mb':round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,1),
         'scope':'Dev-only complete alternative procedure, not runtime-integrated or unbiased private score'}

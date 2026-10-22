@@ -56,3 +56,11 @@ No official upload/paid resources/additional agents. References:
 [constructor/groups](https://auto.gluon.ai/1.3.1/api/autogluon.tabular.TabularPredictor.html),
 [OOF API](https://auto.gluon.ai/1.3.1/api/autogluon.tabular.TabularPredictor.predict_proba_oof.html).
 Local pinned source signature/kwargs inspection supplements these primary docs.
+
+Before any fit, code inspection found DefaultLearner concatenates train+tuning
+X (and passes concatenated y) to fit_transform_features by default. The study now
+explicitly prefits AutoMLPipelineFeatureGenerator on inner-train X ONLY, then
+passes that already-fitted object to predictor.fit. Pinned learner.is_fit branch
+uses transform-only; no learned preprocessing sees inner held-out rows. Text/
+vision generators are disabled. This is contract hardening before outcomes, not
+a posthoc quality knob. Trained-model artifact count is not native fit count.

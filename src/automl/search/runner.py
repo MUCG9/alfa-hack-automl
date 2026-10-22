@@ -11,6 +11,7 @@ import numpy as np
 import psutil
 from automl.infrastructure.atomic import atomic_json
 from automl.infrastructure.llm_gateway import request_json
+from automl.infrastructure.run_budget import RunBudget,constrain_deadline,budget_metadata
 from automl.infrastructure.resources import ResourceBudget
 from automl.infrastructure.processes import ProcessTree
 from automl.contracts.messages import TaskSpec,ExperimentRequest
@@ -180,20 +181,23 @@ def _main():
     parser.add_argument('--time-budget',type=int,default=9900)
     parser.add_argument('--max-experiments',type=int,default=12)
     parser.add_argument('--max-planner-calls',type=int,default=4)
+    parser.add_argument('--max-llm-calls',type=int,default=None,help='Total gateway calls including file roles and every target; default planner limit+2')
     parser.add_argument('--offline',action='store_true')
     parser.add_argument('--validation-strategy',choices=['legacy','auto'],default='auto')
     parser.add_argument('--run-name',default='run-v2')
     args=parser.parse_args()
-    loaded=load_inputs(args.task,allow_llm=not args.offline)
-    try: task_data=discover(args.task,loaded=loaded)
-    except MultipleTargets as exc:
-        from automl.search.multitarget import solve_many
-        return solve_many(args,exc.targets,solve_single,loaded=loaded)
-    return solve_single(args,task_data)
+    total_calls=max(0,min(8,args.max_planner_calls))+2 if args.max_llm_calls is None else args.max_llm_calls
+    with RunBudget(args.time_budget,total_calls,args.task.resolve().parent):
+        loaded=load_inputs(args.task,allow_llm=not args.offline)
+        try: task_data=discover(args.task,loaded=loaded)
+        except MultipleTargets as exc:
+            from automl.search.multitarget import solve_many
+            return solve_many(args,exc.targets,solve_single,loaded=loaded)
+        return solve_single(args,task_data)
 
 
 def solve_single(args,task_data=None,output_root=None):
-    started=time.monotonic(); deadline=started+args.time_budget
+    started=time.monotonic(); deadline=constrain_deadline(started+args.time_budget)
     spec,profile,train,test,sample,text,hashes=discover(args.task) if task_data is None else task_data
     spec=choose_validation(spec,train,args.validation_strategy)
     TaskSpec.from_legacy(spec)
@@ -310,7 +314,7 @@ def solve_single(args,task_data=None,output_root=None):
         'final_fit_iterations':fit_iterations,'final_fit_status':final_status,'elapsed_seconds':round(time.monotonic()-started,3),
         'submission_path':str(output),'submission_sha256':hashlib.sha256(output.read_bytes()).hexdigest(),
         'integrity_ok':integrity_ok,'provenance_path':str(runs/'provenance.json'),'journal_path':str(runs/'results.tsv'),
-        'score_scope':'local search/confirmation folds, not unbiased blind/private/platform score'}
+        'score_scope':'local search/confirmation folds, not unbiased blind/private/platform score',**budget_metadata()}
     atomic_json(runs/'report.json',report)
     if not integrity_ok: raise RuntimeError('Protected inputs or evaluator/source changed during the run; do not trust its metrics')
     print(json.dumps({k:v for k,v in report.items() if k in {'version','best_validation','final_fit_status','elapsed_seconds','submission_sha256'}},ensure_ascii=False,indent=2),flush=True)

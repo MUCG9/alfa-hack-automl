@@ -5,6 +5,7 @@ from automl.task_understanding.api import discover,load_inputs
 from automl.publishing.api import save_submission,dummy_predictions,publish_targets,checkpoint
 from automl.infrastructure.atomic import atomic_json
 from automl.infrastructure.runtime import source_files
+from automl.infrastructure.run_budget import constrain_deadline,budget_metadata
 
 
 def fingerprints(paths):
@@ -18,7 +19,7 @@ def fingerprints(paths):
 
 
 def solve_many(args,targets,solve_single,loaded=None):
-    started=time.monotonic(); deadline=started+args.time_budget
+    started=time.monotonic(); deadline=constrain_deadline(started+args.time_budget)
     if not 2<=len(targets)<=16 or len(set(targets))!=len(targets):
         raise ValueError('Independent multi-target mode supports 2..16 distinct targets')
     loaded=load_inputs(args.task) if loaded is None else loaded
@@ -73,7 +74,7 @@ def solve_many(args,targets,solve_single,loaded=None):
             'elapsed_seconds':round(time.monotonic()-started,3),'wall_budget_seconds':args.time_budget,
             'integrity_ok':integrity,'submission':str(output),
             'submission_sha256':hashlib.sha256(output.read_bytes()).hexdigest(),
-            'score_scope':'Independent per-target models; no joint model, shared-target features, or aggregate private estimate'}
+            'score_scope':'Independent per-target models; no joint model, shared-target features, or aggregate private estimate',**budget_metadata()}
     atomic_json(runs/'report.json',report)
     if not integrity: raise RuntimeError('Multi-target input/source files changed during execution')
     return report

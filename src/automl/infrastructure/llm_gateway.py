@@ -1,7 +1,23 @@
 """Only the coordinator's gateway receives credentials; domain code gets JSON."""
 import json,os,time
+from automl.infrastructure.run_budget import current_budget
 
-def request_json(system_prompt,context,max_output=16384,timeout=300):
+def request_json(system_prompt,context,max_output=16384,timeout=300,purpose='planner'):
+    budget=current_budget()
+    configured=all(os.environ.get(k) for k in ['OPENAI_API_KEY','OPENAI_BASE_URL'])
+    reserved=False
+    if budget is not None and configured:
+        timeout,denied=budget.authorize(timeout,purpose)
+        if denied is not None:
+            budget.record(denied,purpose)
+            return None,denied
+        reserved=True
+    content,call=_request_json(system_prompt,context,max_output,timeout)
+    if budget is not None: budget.record(call,purpose,reserved=reserved)
+    return content,call
+
+
+def _request_json(system_prompt,context,max_output=16384,timeout=300):
     if not all(os.environ.get(k) for k in ['OPENAI_API_KEY','OPENAI_BASE_URL']): return None,{'status':'unconfigured'}
     from openai import OpenAI,BadRequestError,APIStatusError,APITimeoutError,APIConnectionError
     start=time.monotonic(); usage={}; finish=None; compatibility=False; attempts=0

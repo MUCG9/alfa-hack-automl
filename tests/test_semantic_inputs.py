@@ -7,6 +7,7 @@ import pandas as pd
 ROOT=Path(__file__).resolve().parents[1]; sys.path.insert(0,str(ROOT/'src'))
 from automl.task_understanding.api import discover
 from automl.task_understanding.semantic_inputs import validated_roles
+from automl.task_understanding import semantic_inputs
 from automl.search import runner
 
 
@@ -103,6 +104,27 @@ class SemanticInputTests(unittest.TestCase):
                 report=runner._main()
             self.assertEqual(report['final_fit_status'],'ok'); self.assertTrue(report['integrity_ok'])
             self.assertEqual(pd.read_csv(root/'submission.csv').columns.tolist(),['key','answer'])
+
+    def test_serialized_metadata_limit_rejects_long_headers_before_network(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);path,_=self.fixture(root)
+            pd.DataFrame({('column'+str(i)+'x'*1000):[i] for i in range(100)}).to_csv(root/'extra.csv',index=False)
+            with patch.object(semantic_inputs,'request_json',side_effect=AssertionError('oversize context must not reach gateway')) as call:
+                with self.assertRaisesRegex(ValueError,'context bound'): discover(path,allow_llm=True)
+            self.assertEqual(call.call_count,0)
+            trace=list((root/'automl_runs').glob('task-contract-*/file-roles.json'))[0]
+            self.assertEqual(json.loads(trace.read_text())['status'],'metadata_too_large')
+
+    def test_retry_feedback_is_checked_against_the_same_byte_limit(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);path,response=self.fixture(root)
+            def first(system,context,**kwargs):
+                semantic_inputs.MAX_CONTEXT_BYTES=len(json.dumps(context,ensure_ascii=False,default=str).encode())+1
+                return self.mock_response({'files':dict(response['files'],test='alpha.csv')})
+            with (patch.object(semantic_inputs,'MAX_CONTEXT_BYTES',65536),
+                  patch.object(semantic_inputs,'request_json',side_effect=first) as call):
+                with self.assertRaisesRegex(ValueError,'context bound'): discover(path,allow_llm=True)
+            self.assertEqual(call.call_count,1)
 
 
 if __name__=='__main__': unittest.main(verbosity=2)

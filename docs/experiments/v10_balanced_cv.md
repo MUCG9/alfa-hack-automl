@@ -34,3 +34,9 @@ still require complete agent selection/refit/runtime validation and a new releas
 
 Evidence: v10_balanced_results.json and v10_balanced_diversity.json. Public folds
 are reused; no official/private-score or uncertainty guarantee is claimed.
+
+Diagnostics: under data changes the predictions more than the3-seed full-data
+average. Relative to strong single, under fixes6.42%/4.89% of its errors, versus
+1.97%/2.05% for the full-data average. It also introduces errors: seed43 fixes160
+and breaks222 decisions. About92.7% of matched-control mean Macro F1 gain is the
+Worms F1 contribution (supports19/11), so the initial direction needs complete CV.

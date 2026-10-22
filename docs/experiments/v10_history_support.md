@@ -37,3 +37,16 @@ Keep: both recent cuts improve and the oldest remains byte-identical control,
 all workers/gates pass; then full-agent comparison before portfolio promotion.
 This follow-up was motivated by observed reused public outcomes and does not
 create an unbiased holdout. No silent replacement of first negative evidence.
+
+## Contract hardening before the follow-up metric run
+
+Review found a delayed-error risk: an invalid context containing the observation
+period could pass when history was gated off and fail only on full refit. Static
+context validation now runs independently of support. History also refuses a
+feature transform that rewrites the original period. Two real worker checks cover
+these failures. Original TE remains cross-fitted over fitting rows; adding as-of
+features does not make the whole existing recipe temporally ordered.
+
+As-of3 is the corrected immutable snapshot for the pending follow-up. As-of2 was
+not measured; no result is silently replaced. Frozen recipes have empty feature
+code and valid non-time groups, so these guards do not change their algorithm.

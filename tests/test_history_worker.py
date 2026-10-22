@@ -108,5 +108,25 @@ class HistoryWorkerTests(unittest.TestCase):
             states=[r['history_asof'] for r in result['data_policy_runs']]
             self.assertTrue(all(not s['enabled'] and s['fitting_periods']<3 for s in states))
 
+    def test_invalid_context_is_rejected_even_below_history_gate(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);spec,_=fixture(root)
+            np.savez(root/'split.npz',train=np.arange(80),validation=np.arange(80,120))
+            recipe=normalize({'engine':'lightgbm','params':{'iterations':30,'history_asof':True,
+                'history_min_periods':3,'target_encoding':True,'target_encoding_groups':[['period','measure']]}})
+            with self.assertRaises(ValueError):
+                worker.run({'spec':spec,'recipe':recipe,'output_dir':str(root/'bad'),
+                            'split_path':str(root/'split.npz'),'threads':1})
+
+    def test_feature_code_cannot_reverse_observation_period(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);spec,_=fixture(root)
+            recipe=normalize({'engine':'lightgbm','params':{'iterations':30,'history_asof':True,
+                'history_min_periods':3,'target_encoding':True,'target_encoding_groups':[['segment','measure']]},
+                'feature_code':"def transform(df):\n    df['period'] = -df['period']\n    return df"})
+            with self.assertRaisesRegex(ValueError,'unmodified observation period'):
+                worker.run({'spec':spec,'recipe':recipe,'output_dir':str(root/'bad'),
+                            'split_path':str(root/'split.npz'),'threads':1})
+
 
 if __name__=='__main__':unittest.main(verbosity=2)

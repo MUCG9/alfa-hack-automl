@@ -3,20 +3,8 @@ import numpy as np
 import pandas as pd
 
 
-def add_history_features(train_x,test_x,y,fit_rows,time_column,groups):
-    """Append last context mean and its slope, using only fitting-period labels.
-
-    ``fit_rows`` contains unique positional indices into ``train_x`` and ``y``.
-    A Series target must have exactly the training frame's index; array-like
-    targets are positional. Context selection belongs to the caller. Missing
-    context values match other missing values, without a string sentinel. Query
-    periods that cannot be represented as finite numbers have no history.
-
-    A period mean is available only to queries with a strictly larger period.
-    The trend at that period uses the two latest *distinct* fitting periods,
-    divided by their actual period distance. Unrepresentable slopes remain NaN.
-    No global prior fills absent data.
-    """
+def validate_history_groups(train_x,test_x,time_column,groups):
+    """Validate static feature contracts even when fitting support disables history."""
     if not isinstance(train_x,pd.DataFrame) or not isinstance(test_x,pd.DataFrame):
         raise ValueError('History features require training and test DataFrames')
     if not train_x.columns.is_unique or not test_x.columns.is_unique:
@@ -38,6 +26,23 @@ def add_history_features(train_x,test_x,y,fit_rows,time_column,groups):
     names=[f'__history_{stat}_{number}' for number in range(len(groups)) for stat in ['last','trend']]
     if any(name in train_x or name in test_x for name in names):
         raise ValueError('History feature collision')
+
+
+def add_history_features(train_x,test_x,y,fit_rows,time_column,groups):
+    """Append last context mean and its slope, using only fitting-period labels.
+
+    ``fit_rows`` contains unique positional indices into ``train_x`` and ``y``.
+    A Series target must have exactly the training frame's index; array-like
+    targets are positional. Context selection belongs to the caller. Missing
+    context values match other missing values, without a string sentinel. Query
+    periods that cannot be represented as finite numbers have no history.
+
+    A period mean is available only to queries with a strictly larger period.
+    The trend at that period uses the two latest *distinct* fitting periods,
+    divided by their actual period distance. Unrepresentable slopes remain NaN.
+    No global prior fills absent data.
+    """
+    validate_history_groups(train_x,test_x,time_column,groups)
     rows=np.asarray(fit_rows)
     if (rows.ndim!=1 or not len(rows) or not np.issubdtype(rows.dtype,np.integer)
             or np.any(rows<0) or np.any(rows>=len(train_x)) or len(np.unique(rows))!=len(rows)):

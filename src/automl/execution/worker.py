@@ -23,7 +23,7 @@ from automl.evaluation.api import lgbm_metric,tune_class_factors,adjusted_probab
 from automl.execution.feature_engineering.transforms import feature_transform,generic_features
 from automl.execution.preprocessing.frames import prepare_frames
 from automl.execution.preprocessing.target_encoding import target_encode_frames,infer_history_groups
-from automl.execution.preprocessing.history import add_history_features
+from automl.execution.preprocessing.history import add_history_features,validate_history_groups
 from automl.execution.model_adapters.linear_text import linear_text_fit
 from automl.contracts.messages import DataPolicy,SplitPlan,PredictionBundle
 from dataclasses import asdict
@@ -141,6 +141,12 @@ def run(job):
     if 'history_min_periods' in recipe.get('params',{}) and not history_asof: raise ValueError('Minimum history requires history_asof')
     if history_asof and (spec['kind']!='regression' or spec.get('task_family')=='pointwise_ranking' or history_time not in spec['features'] or not recipe.get('params',{}).get('target_encoding') or not (recipe['params'].get('target_encoding_auto_groups') or recipe['params'].get('target_encoding_groups'))):
         raise ValueError('As-of history requires regression, observation periods and context encoding')
+    if history_asof:
+        for transformed,original in [(train_x,train),(test_x,test)]:
+            if history_time not in transformed: raise ValueError('As-of history requires an unmodified observation period')
+            before=pd.to_numeric(original[history_time],errors='raise').to_numpy(dtype=float)
+            after=pd.to_numeric(transformed[history_time],errors='raise').to_numpy(dtype=float)
+            if not np.array_equal(before,after,equal_nan=True): raise ValueError('As-of history requires an unmodified observation period')
     if history_asof and recipe['engine']=='linear_text': raise ValueError('As-of history is not supported for text recipes')
     if CAPABILITIES[recipe['engine']].get('mode')=='text':
         if spec.get('task_family')=='pointwise_ranking': raise ValueError('Text ranking adapter is not implemented')
@@ -187,6 +193,7 @@ def run(job):
                 half_life=number(encoding_params,'target_encoding_half_life',0,0,10),time_column=spec.get('time_column') or (spec.get('time_candidate') or {}).get('column'))
         history_state=None
         if history_asof:
+            validate_history_groups(prepared_x,prepared_test,history_time,encoding_groups or [])
             periods=pd.to_numeric(raw_train_x[history_time].iloc[rows],errors='raise').to_numpy(dtype=float)
             if not np.isfinite(periods).all(): raise ValueError('History fitting periods must be finite')
             period_count=len(np.unique(periods))

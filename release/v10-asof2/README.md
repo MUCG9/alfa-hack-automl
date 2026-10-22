@@ -13,3 +13,7 @@ Complete210-source and23-unpacked gates are pending, as are paired metrics.
 
 Read docs/experiments/v10_history_support.md and v10_progress.md. Do not reuse this
 candidate's name for later source changes or claim upload readiness/private gain.
+
+Before any metric run, static-context and observation-period guards were hardened.
+The follow-up uses a NEW asof3 archive. This snapshot remains an unmeasured
+historical checkpoint; do not treat its pending gate as a running job.

@@ -13,7 +13,7 @@ CHECKS={'test_v2.py':11,'test_resilience.py':7,'smoke.py':5,
         'test_output_contract.py':6,'test_contract_lifecycle.py':6,'test_validation_contract.py':12,
         'test_multitarget.py':12,'test_ranking.py':13,'test_search_choices.py':4,'test_binary_probability.py':9,
         'test_semantic_inputs.py':16,'test_run_budget.py':14,'test_gateway_http.py':2,
-        'test_history.py':13,'test_history_worker.py':6,'test_diversity.py':19,'test_release_verifier.py':3}
+        'test_history.py':13,'test_history_worker.py':8,'test_diversity.py':19,'test_release_verifier.py':3}
 
 
 def source_hashes():

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "xgb-calibration-inner-control",
+    "recipe": {
+      "engine": "xgboost",
+      "hypothesis": "Control: frozen XGBoost recipe with one-inner-holdout decision calibration",
+      "params": {
+        "iterations": 1800, "learning_rate": 0.035, "max_depth": 6,
+        "min_child_weight": 3, "subsample": 0.85, "colsample_bytree": 0.9,
+        "reg_lambda": 8, "reg_alpha": 0.1, "class_weight_power": 0.5,
+        "min_iterations": 50, "early_metric": "primary", "nested_stopping": true,
+        "calibrate": true, "calibration_folds": 1
+      },
+      "feature_code": ""
+    }
+  },
+  {
+    "name": "xgb-calibration-oof3",
+    "recipe": {
+      "engine": "xgboost",
+      "hypothesis": "One changed factor: fit decision factors from three training OOF folds instead of one inner holdout",
+      "params": {
+        "iterations": 1800, "learning_rate": 0.035, "max_depth": 6,
+        "min_child_weight": 3, "subsample": 0.85, "colsample_bytree": 0.9,
+        "reg_lambda": 8, "reg_alpha": 0.1, "class_weight_power": 0.5,
+        "min_iterations": 50, "early_metric": "primary", "nested_stopping": true,
+        "calibrate": true, "calibration_folds": 3
+      },
+      "feature_code": ""
+    }
+  }
+]

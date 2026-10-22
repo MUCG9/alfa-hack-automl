@@ -166,7 +166,8 @@ def run(job):
             if encoding_params.get('target_encoding_auto_groups',False):
                 if encoding_groups: raise ValueError('Choose explicit groups or automatic history groups, not both')
                 encoding_groups=infer_history_groups(prepared_x[spec['features']],rows,spec.get('time_column') or (spec.get('time_candidate') or {}).get('column'),
-                                                     spec.get('categorical_features',[]),refine=encoding_params.get('target_encoding_refine_groups',False))
+                                                     spec.get('categorical_features',[]),refine=encoding_params.get('target_encoding_refine_groups',False),
+                                                     static_numeric=spec.get('static_numeric_features',[]) if encoding_params.get('target_encoding_hierarchical',False) else None)
             prepared_x,prepared_test=target_encode_frames(prepared_x,prepared_test,y,rows,source_hashes,spec.get('classes'),
                 smoothing=number(encoding_params,'target_encoding_smoothing',20,.5,100),groups=encoding_groups,add_counts=encoding_params.get('target_encoding_counts',False),
                 half_life=number(encoding_params,'target_encoding_half_life',0,0,10),time_column=spec.get('time_column') or (spec.get('time_candidate') or {}).get('column'))

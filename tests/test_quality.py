@@ -16,6 +16,31 @@ from automl.execution.preprocessing.frames import prepare_frames
 
 
 class QualityTests(unittest.TestCase):
+    def test_metadata_contexts_use_schema_and_fitting_rows_only(self):
+        from automl.task_understanding.service import infer_static_numeric
+        from automl.execution.preprocessing.target_encoding import infer_history_groups
+        from agent_policy import normalize
+        x=pd.DataFrame({'window':np.repeat([1,2,3],60),'segment':['a','b']*90,
+                        'region':np.tile(['west','east','north'],60),'size':np.tile(np.arange(60),3),
+                        'static_trait':np.tile(np.arange(60)%5,3)})
+        dictionary=pd.DataFrame({'feature':['window','static_trait'],'description_ru':['Период наблюдения','Год постройки']})
+        static=infer_static_numeric(dictionary,x,list(x));self.assertEqual(static,['static_trait'])
+        rows=np.arange(120);cats=['segment','region']
+        groups=infer_history_groups(x,rows,'window',cats,static_numeric=static)
+        self.assertEqual(len(groups),2)
+        self.assertEqual(set(groups[0]),{'segment','region','size'})
+        self.assertEqual(set(groups[1]),set(groups[0])|{'static_trait'})
+        changed=x.copy();changed.loc[120:,'static_trait']=999;changed.loc[120:,'region']='unseen'
+        self.assertEqual(groups,infer_history_groups(changed,rows,'window',cats,static_numeric=static))
+        renamed=x.rename(columns={'static_trait':'property_code'})
+        renamed_dict=dictionary.replace({'static_trait':'property_code'})
+        result=infer_history_groups(renamed,rows,'window',cats,static_numeric=infer_static_numeric(renamed_dict,renamed,list(renamed)))
+        self.assertEqual(result,[[('property_code' if c=='static_trait' else c) for c in g] for g in groups])
+        recipe=normalize({'engine':'lightgbm','params':{'target_encoding_hierarchical':True}})
+        self.assertTrue(recipe['params']['target_encoding_auto_groups']);self.assertTrue(recipe['params']['target_encoding'])
+        manual=normalize({'engine':'lightgbm','params':{'target_encoding_groups':[['segment','size']]}},recipe)
+        self.assertFalse(manual['params']['target_encoding_hierarchical'])
+
     def test_xgboost_class_search_changes_effective_capacity_without_weight_drift(self):
         from agent_policy import fallback,normalize,signature
         from automl.execution.model_adapters.xgboost import create_model

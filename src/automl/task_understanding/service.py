@@ -4,6 +4,17 @@ import numpy as np
 import pandas as pd
 
 
+def infer_static_numeric(dictionary,train,features):
+    """Schema-described construction attributes can refine recurring contexts."""
+    result=[]
+    for row in dictionary.to_dict(orient='records'):
+        column=row.get('feature')
+        description=' '.join(str(row.get(k,'')) for k in ['feature','description','description_ru']).lower()
+        if column in features and pd.api.types.is_numeric_dtype(train[column]) and re.search(r'built|construction|построй',description):
+            result.append(column)
+    return result
+
+
 def infer_time_candidate(dictionary,train,test,features):
     """Conservative observation-period detection, without dataset-specific names."""
     candidates=[]
@@ -133,6 +144,7 @@ def discover(task_path: Path):
         'categorical_features': [str(row['feature']) for row in dictionary.to_dict(orient='records')
                                  if str(row.get('dtype','')).lower() in {'category','categorical'} and row['feature'] in features],
         'time_candidate':infer_time_candidate(dictionary,train,test,features),
+        'static_numeric_features':infer_static_numeric(dictionary,train,features),
     }
     profile = {
         'kind': kind, 'metric': metric, 'rows': len(train), 'test_rows': len(test),

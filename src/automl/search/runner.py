@@ -44,6 +44,8 @@ Alternatively target_encoding_auto_groups=true discovers recurring contexts acro
 training periods without using test rows or target labels; it needs a detected time hint.
 target_encoding_counts=true adds cross-fitted context support counts;
 target_encoding_half_life 0..10 (0=disabled) can weight recent observed periods more.
+target_encoding_hierarchical=true refines automatic recurring contexts with
+categorical attributes and schema-described construction properties on fitting rows.
 Linear text options: text_classifier sgd/logistic, text_C .01..100,
 text_alpha 1e-7..1e-2, text_svd_components 0/32/64/128, text_char_features boolean.
 To transform the regression target set params.log_target=true; the engine handles the inverse.

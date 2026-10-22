@@ -12,7 +12,7 @@ def context_key(frame,columns):
     return pd.util.hash_pandas_object(canonical,index=False).astype(str)
 
 
-def infer_history_groups(train_x,rows,time_column,categorical,refine=False):
+def infer_history_groups(train_x,rows,time_column,categorical,refine=False,static_numeric=None):
     """Find recurring contexts across *training* periods, without y or test X."""
     if time_column not in train_x: raise ValueError('Automatic history encoding requires an observation period')
     fit=train_x.iloc[rows]
@@ -41,6 +41,17 @@ def infer_history_groups(train_x,rows,time_column,categorical,refine=False):
         if any(set(columns)<=set(old) or set(old)<=set(columns) for old in chosen): continue
         chosen.append(columns)
         if len(chosen)==2: break
+    if chosen and static_numeric:
+        base=chosen[0].copy()
+        for column in categories:
+            if column not in base and len(base)<5: base.append(column)
+        def coverage(columns):
+            return float(context_key(recent,columns).isin(set(context_key(older,columns))).mean())
+        if coverage(base)>=.25:
+            for column in static_numeric:
+                if column in fit and column not in base and column!=time_column and fit[column].nunique()>=2:
+                    finer=base+[column]
+                    if coverage(finer)>=.25: return [base,finer]
     if refine and chosen:
         base=chosen[0]; base_count=context_key(older,base).nunique()
         base_coverage=context_key(recent,base).isin(set(context_key(older,base))).mean()

@@ -14,22 +14,30 @@
     {
       "path": "test-runs/llm-upgrade-20261022/featureviews1-full/task-00/automl_runs/run-v2/confirmation_split.npz",
       "sha256": "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a",
-      "bytes": 701876
+      "bytes": 701876,
+      "logical_split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "matches_original_split_metadata": true
     },
     {
       "path": "test-runs/llm-upgrade-20261022/featureviews1-full/task-01/automl_runs/run-v2/confirmation_split.npz",
       "sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
-      "bytes": 280516
+      "bytes": 280516,
+      "logical_split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+      "matches_original_split_metadata": true
     },
     {
       "path": "test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation_split.npz",
       "sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
-      "bytes": 280516
+      "bytes": 280516,
+      "logical_split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+      "matches_original_split_metadata": true
     },
     {
       "path": "test-runs/llm-upgrade-20261022/final-default-parity/task-01/automl_runs/run-v2/confirmation_split.npz",
       "sha256": "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a",
-      "bytes": 701876
+      "bytes": 701876,
+      "logical_split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "matches_original_split_metadata": true
     }
   ],
   "original_json_rewritten": false,

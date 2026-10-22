@@ -12,7 +12,7 @@ PROPOSAL=обучений/результатов метода нет. Отказ
 |ID|Состояние|Доказательство|
 |---|---|---|
 |ERR-01|DONE: отдельный компонент, строгие контракты, проверка артефактов, ошибки/срезы/парные сравнения/интервалы/отчёты; 100 focused checks PASS|[реализация](../experiments/error_passport_20261022.md), [проверки](../experiments/error_passport_verification_restored_20261022.json)|
-|BASE-01|PARTIAL: 848 файлов восстановлены, четыре search-паспорта и четыре итоговых CSV проверены. BLOCKED для confirmation: четыре confirmation_split.npz не вошли в комплект|[checkpoint](../experiments/base01_restored_20261022.md), [search receipt](../experiments/error_passport_search_20261022.json)|
+|BASE-01|DONE: transfer97f0cf4, 852 файла, восемь search/confirmation-паспортов и фактические CSV проверены. Mean F1 .6593178433614652, RMSE35.44723155783769 совпали V11/V16; без fits|[checkpoint](../experiments/base01_complete_20261022.md), [закрывающий receipt](../experiments/base01_verified_20261022.json)|
 
 Ни один из этих этапов не меняет обучение/отбор и не является новым приростом метрик.
 

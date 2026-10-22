@@ -2,15 +2,18 @@
 
 Latest authorized work: `work/error-profile-contracts-20261022`, based on
 `300c6db`. Captain expanded scope to the COMPLETE error-passport implementation
-and BASE-01; read docs/experiments/base01_restored_20261022.md first. Boundary,
+and BASE-01; read docs/experiments/base01_complete_20261022.md first. Boundary,
 schema2.0 contracts, artifact verification/statistics/reports and baseline adapters
 are implemented; 100 focused checks PASS (code checkpoint b2a5ad4). Transfer
-commit7276ec6 was restored:848 files verified, all four final CSVs match V11/V16.
-Four search passports finished; BASE-01 remains BLOCKED for confirmation because
-all four confirmation_split.npz files were omitted from the bundle. Captain has
-been asked to supply them. No partition reconstruction, V10 fallback or refits.
-Use root_mapping; original JSON bytes were preserved. Model fitting and selection
-policy changes remain unauthorized. No owned diagnostic/ML jobs remain.
+commit97f0cf4 completed the missing splits:852 files verified, old848 bytes/mtime
+preserved. ERR-01 and BASE-01 are COMPLETE:all eight search/confirmation passports
+and actual final CSVs verified; V11/V16 mean F1 .6593178433614652 and
+RMSE35.44723155783769 reproduced. Four regression profiles are partial ONLY for
+unavailable temporal uncertainty (one validation period per cut); required sections
+complete, no failed sections. No partition reconstruction, V10 fallback or refits.
+Use root_mapping; original JSON bytes were preserved. Canonical compiled source
+and test scripts still match the 100-check gate; no suite rerun/release promotion.
+Model fitting and selection policy changes remain unauthorized. No owned jobs.
 The initial two-step checkpoint and V11/V16 history below are historical context.
 
 Current branch: `work/llm-upgrade-20261022`, based on colleague6aefbd9.

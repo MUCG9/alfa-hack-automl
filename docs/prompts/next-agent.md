@@ -1,17 +1,21 @@
 # Готовый промпт для нового чата
 
 Актуальное поручение: полный паспорт ERR-01, затем BASE-01.
-Ветка `work/error-profile-contracts-20261022`, основа `300c6db`, код `b2a5ad4`.
-ERR-01 реализован, 100 focused checks PASS. Читать
-docs/experiments/base01_restored_20261022.md первым. Transfer7276ec6 восстановлен:
-848 файлов проверены, четыре фактических итоговых CSV совпали V11/V16, четыре
-search-паспорта готовы. BASE-01 ещё не завершён: в комплект не включены четыре
-confirmation_split.npz (featureviews1-full/task-00, task-01 и
-final-default-parity/task-00, task-01 внутри automl_runs/run-v2). Они запрошены у
-капитана. Продолжать confirmation после получения, применяя root_mapping без
-редактирования исходных JSON. Не подменять V10, не реконструировать splits и не
-переобучать. Модельная политика, обучение и submit не разрешены. Текущих jobs нет.
-Результаты Search-анализа не являются полной CV или новым private score.
+Ветка `work/error-profile-contracts-20261022`, основа `300c6db`, код диагностики
+`b2a5ad4`, перенос `813af42`. ERR-01 и BASE-01 ЗАВЕРШЕНЫ. Читать
+docs/experiments/base01_complete_20261022.md первым. Transfer97f0cf4 восстановлен:
+852 файла проверены, прежние 848 bytes/mtime сохранены. Все восемь паспортов
+search+confirmation и фактические итоговые CSV проверены, V11/V16 совпали:
+mean F1 .6593178433614652, RMSE35.44723155783769. Это прежний baseline, не gain.
+Четыре regression-паспорта partial только из-за uncertainty unavailable (один
+временной validation-блок на cut); обязательные разделы complete, failed нет.
+Текущие canonical compiled source и test scripts совпадают с ранее пройденным
+100-check gate. После добавления split выполнены только недостающие confirmation
+паспорта, search не пересчитывался. Применять root_mapping без правки исходных
+JSON. Не подменять V10, не реконструировать splits и не переобучать.
+Модельная политика, обучение и submit не разрешены. Текущих jobs нет.
+Следующий этап — отдельный протокол SEL-01; не повторять закрытый V14.
+Результаты анализа reused public не являются полной CV или новым private score.
 Коммиты b2a5ad4 и 139c76a локальны; push заблокирован отсутствием GitHub Git auth
 (could not read Username, terminal prompts disabled). Не заявлять синхронизацию.
 Исторические пункты 1–2: docs/experiments/error_profile_contracts_20261022.md.

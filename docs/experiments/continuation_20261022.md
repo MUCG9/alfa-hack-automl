@@ -40,4 +40,18 @@ metrics must not be presented as predicted official points.
   files. Local heavy runs are sequential with two threads and a whole-tree
   memory watchdog because this machine has little available RAM.
 
-No official submission has been made during this continuation yet.
+## Fourth submission
+
+The captain subsequently requested immediate upload because server checking takes
+a long time. Uploaded `release/solution-v4-history3-py31214.zip`, SHA-256
+`734ec4da69c7513f1896a9b528c35ae5489206df2af360c7650246d4bc0155f1` (51,695 bytes).
+The exact archive passed the 23 unpacked compatibility/fault/lifecycle checks.
+At upload, the full offline classification had completed 12 search experiments;
+confirmation and full refit were still running. Unfinished v5 changes are NOT in it.
+
+The platform shows the named archive and «Решение находится на проверке».
+However, the history currently associates the new filename with the old v3 record,
+old 21 October 23:37 time and old 1723.691 score; the displayed attempt count stays
+3. This inconsistent UI does not establish a new score or exact attempt debit.
+Do not resubmit automatically. See `release/v4-history3/submission-20261022.json`.
+Server results are not being waited for, as requested.

@@ -11,11 +11,28 @@
         0.0
       ],
       "positive_delta_fraction": 0.0
+    },
+    {
+      "candidate": "identity-blend",
+      "macro_f1": 0.6364018555585785,
+      "delta": 0.0,
+      "paired_group_bootstrap_95pct": [
+        0.0,
+        0.0
+      ],
+      "positive_delta_fraction": 0.0
     }
   ],
   "replicates": 100,
   "seed": 2026,
   "feature_groups": 54228,
-  "results_sha256": "72086a7bbf6619a428205564a035e4ee0977d6313ef7ed261f3bc2d7134520b4",
+  "results_sha256": "3be56dbfc76848d305d5d7750280e663dd480b3978e6fe251f0b0a663b0b9eb9",
+  "fixed_blend": {
+    "name": "identity-blend",
+    "components": {
+      "control": 1.0
+    }
+  },
+  "derived_predictions_only": true,
   "scope": "Fixed OOF predictions; conditional paired group bootstrap. Reused public data and fitted models; not a private-score interval or refit uncertainty."
 }

@@ -13,7 +13,8 @@ def main():
     parser.add_argument('--task',type=Path,required=True)
     parser.add_argument('--results',type=Path,required=True)
     parser.add_argument('--control',required=True)
-    parser.add_argument('--candidate',action='append',required=True)
+    parser.add_argument('--candidate',action='append',default=[])
+    parser.add_argument('--blend-candidate',type=Path,help='Predeclared JSON {name, components: {recipe: weight}}')
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--replicates',type=int,default=500)
     args=parser.parse_args()
@@ -25,10 +26,20 @@ def main():
     results=json.loads(args.results.read_text())
     actual={n:hashlib.sha256(Path(p).read_bytes()).hexdigest() for n,p in spec['paths'].items()}
     if actual!=results['inputs']: raise ValueError('Input fingerprints differ')
-    names=[args.control]+args.candidate
+    blend=json.loads(args.blend_candidate.read_text()) if args.blend_candidate else None
+    if not args.candidate and blend is None: raise ValueError('Provide candidates or a fixed blend')
+    if blend is not None:
+        weights=blend.get('components',{})
+        if not isinstance(weights,dict) or not 1<=len(weights)<=3 or not isinstance(blend.get('name'),str):
+            raise ValueError('A blend requires a name and 1..3 components')
+        values=np.asarray(list(weights.values()),dtype=float)
+        if not np.isfinite(values).all() or np.any(values<=0): raise ValueError('Invalid blend weights')
+        blend['components']={k:float(v/values.sum()) for k,v in weights.items()}
+        if blend['name'] in results.get('oof',{}): raise ValueError('Blend name collides with a fitted recipe')
+    names=list(dict.fromkeys([args.control]+args.candidate+list(blend['components'] if blend else [])))
     classes=spec['classes']; count=len(classes)
     truth=np.asarray([classes.index(v) for v in train[spec['target']].astype(str)])
-    predictions=[]; reference=None
+    loaded={}; reference=None
     for name in names:
         summary=results.get('oof',{}).get(name,{})
         if summary.get('coverage')!='exactly_once': raise ValueError('Incomplete OOF coverage')
@@ -41,15 +52,21 @@ def main():
             probabilities=data['predictions'][:,order]
             if not np.isfinite(probabilities).all() or np.any(probabilities<0) or np.any(probabilities.sum(axis=1)<=0):
                 raise ValueError('Invalid probabilities')
-            predictions.append(probabilities.argmax(axis=1))
+            loaded[name]=probabilities/probabilities.sum(axis=1,keepdims=True)
     _,groups=np.unique(hashes,return_inverse=True); group_count=int(groups.max())+1
     def score(predicted,weights=None):
         matrix=np.bincount(truth*count+predicted,weights=weights,minlength=count*count).reshape(count,count)
         denominator=matrix.sum(axis=0)+matrix.sum(axis=1)
         return float(np.divide(2*np.diag(matrix),denominator,out=np.zeros(count),where=denominator>0).mean())
-    points=np.asarray([score(p) for p in predictions])
-    for name,point in zip(names,points):
+    for name in names:
+        point=score(loaded[name].argmax(axis=1))
         if not np.isclose(point,results['oof'][name]['pooled_oof']['macro_f1']): raise ValueError('Stored OOF score differs')
+    comparisons_names=args.candidate.copy()
+    if blend:
+        loaded[blend['name']]=sum(weight*loaded[name] for name,weight in blend['components'].items())
+        comparisons_names.append(blend['name'])
+    predictions=[loaded[name].argmax(axis=1) for name in [args.control]+comparisons_names]
+    points=np.asarray([score(p) for p in predictions])
     random=np.random.default_rng(2026); deltas=[]
     for _ in range(args.replicates):
         drawn=random.multinomial(group_count,np.full(group_count,1/group_count))
@@ -58,10 +75,11 @@ def main():
     deltas=np.asarray(deltas)
     comparisons=[{'candidate':name,'macro_f1':float(points[i+1]),'delta':float(points[i+1]-points[0]),
                   'paired_group_bootstrap_95pct':np.percentile(deltas[:,i],[2.5,97.5]).tolist(),
-                  'positive_delta_fraction':float((deltas[:,i]>0).mean())} for i,name in enumerate(args.candidate)]
+                  'positive_delta_fraction':float((deltas[:,i]>0).mean())} for i,name in enumerate(comparisons_names)]
     report={'control':args.control,'control_macro_f1':float(points[0]),'comparisons':comparisons,
             'replicates':args.replicates,'seed':2026,'feature_groups':group_count,
             'results_sha256':hashlib.sha256(args.results.read_bytes()).hexdigest(),
+            'fixed_blend':blend,'derived_predictions_only':bool(blend),
             'scope':'Fixed OOF predictions; conditional paired group bootstrap. Reused public data and fitted models; not a private-score interval or refit uncertainty.'}
     atomic_json(args.output,report);print(json.dumps(report,ensure_ascii=False),flush=True)
 

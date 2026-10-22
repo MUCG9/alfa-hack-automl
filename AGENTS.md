@@ -1,5 +1,13 @@
 # Instructions for development agents
 
+Resumed work: **`work/agent-budget-20261022`**, based on `b11debf`; read
+`docs/experiments/resume_20261022.md` and `docs/experiments/v8_run_budget.md` before
+the older continuation text below. The earlier V7 classification was terminated
+(exit143), not completed; a new exact frozen-V7 classification run is in
+`test-runs/resume-20261022/v7-class-full`. Check its actual final state. V8 freezes
+shared startup/API accounting with163unique checks; public gates are separate.
+No new official submission, extra agents, main merge or reset credits authorized.
+
 Read `docs/CONTINUE_HERE.md` first, then `docs/architecture/implementation.md` and `release/v3/README.md`. They supersede historical v1/v2 task assignments in `docs/prompts/plus-*`, `parallel_work.md`, `v3_contract.md` and old captain slides. The reusable continuation prompt is `docs/prompts/next-agent.md`.
 
 Latest continuation: `work/semantic-inputs-20261022`, based on `work/autonomous-score-20261022` and earlier `work/pipeline-review-instructions`. Read `docs/handoff/current.md`, `docs/handoff/next_research_plan.md`, stage notes and release READMEs. V4 was uploaded once. V6 has completed both full public tasks: mean RMSE36.775244985 / Macro F1 .653281240, successful refit/integrity; 137 unique repo /23 repeated unpacked checks. V7 adds bounded online semantic file roles, 145 unique /23 repeated unpacked checks, mock not live Qwen coverage; full exact public gate was started, check actual completion before promotion. Runtime search/confirmation is NOT full K-fold OOF; full CV remains a development benchmark mode.

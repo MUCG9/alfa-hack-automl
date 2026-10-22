@@ -29,8 +29,10 @@ two further edge cases: slow API-client setup could add time to an authorized
 timeout, and a response without usage could look like complete zero token cost.
 The gateway now rechecks the global deadline before each HTTP attempt/backoff,
 and missing token fields remain incomplete. Two new tests cover these cases;
-the final163-unique suite must pass before freezing this updated snapshot.
-Exact ZIP/full public gates are separate and still needed.
+the final163-unique suite passed unchanged-source in167.662s. Frozen candidate:
+`release/solution-v8-budget1.zip`, source `f7bb907`, SHA
+`2522f6ef47194d92410ceffff22835610c1820ea4c330a2d6ad8c7b0b0ebaa07`.
+Exact ZIP/full public gates are separate; see the release directory for status.
 
 ## HTTP fixture versus live provider
 

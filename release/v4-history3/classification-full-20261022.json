@@ -1,0 +1,295 @@
+{
+  "task": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/evaluation/multiclass/task.md",
+  "command": [
+    "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/../../work/ml-venv/bin/python",
+    "-u",
+    "solution.py",
+    "task.md",
+    "--offline"
+  ],
+  "threads": 2,
+  "exit_code": 0,
+  "elapsed_seconds": 1423.986,
+  "best_validation": {
+    "macro_f1": 0.6577202738150578,
+    "weighted_f1": 0.8150082909429963,
+    "accuracy": 0.804912198821539,
+    "per_class_f1": {
+      "Analysis": 0.336231884057971,
+      "Backdoor": 0.21395348837209302,
+      "DoS": 0.47829603666756537,
+      "Exploits": 0.6785525154457194,
+      "Fuzzers": 0.7478632478632479,
+      "Generic": 0.9880887926367081,
+      "Normal": 0.9110197840007646,
+      "Reconnaissance": 0.8241927216811892,
+      "Shellcode": 0.6621621621621622,
+      "Worms": 0.7368421052631579
+    },
+    "per_class_diagnostics": {
+      "Analysis": {
+        "precision": 0.43283582089552236,
+        "recall": 0.27488151658767773,
+        "support": 211
+      },
+      "Backdoor": {
+        "precision": 0.40350877192982454,
+        "recall": 0.14556962025316456,
+        "support": 158
+      },
+      "DoS": {
+        "precision": 0.352824184566428,
+        "recall": 0.7422594142259414,
+        "support": 1195
+      },
+      "Exploits": {
+        "precision": 0.8079024800336275,
+        "recall": 0.5849056603773585,
+        "support": 3286
+      },
+      "Fuzzers": {
+        "precision": 0.6637168141592921,
+        "recall": 0.8564437194127243,
+        "support": 1839
+      },
+      "Generic": {
+        "precision": 0.9986320109439124,
+        "recall": 0.9777658719528529,
+        "support": 3733
+      },
+      "Normal": {
+        "precision": 0.9730502245814618,
+        "recall": 0.8564240790655885,
+        "support": 5565
+      },
+      "Reconnaissance": {
+        "precision": 0.860813704496788,
+        "recall": 0.7905604719764012,
+        "support": 1017
+      },
+      "Shellcode": {
+        "precision": 0.550561797752809,
+        "recall": 0.8305084745762712,
+        "support": 118
+      },
+      "Worms": {
+        "precision": 0.7368421052631579,
+        "recall": 0.7368421052631579,
+        "support": 19
+      }
+    },
+    "confusion_matrix": {
+      "classes": [
+        "Analysis",
+        "Backdoor",
+        "DoS",
+        "Exploits",
+        "Fuzzers",
+        "Generic",
+        "Normal",
+        "Reconnaissance",
+        "Shellcode",
+        "Worms"
+      ],
+      "counts": [
+        [
+          58,
+          5,
+          121,
+          15,
+          0,
+          0,
+          12,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          23,
+          104,
+          26,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0
+        ],
+        [
+          6,
+          9,
+          887,
+          241,
+          19,
+          0,
+          3,
+          12,
+          18,
+          0
+        ],
+        [
+          13,
+          14,
+          1092,
+          1922,
+          72,
+          5,
+          21,
+          111,
+          31,
+          5
+        ],
+        [
+          2,
+          3,
+          114,
+          35,
+          1575,
+          0,
+          91,
+          2,
+          17,
+          0
+        ],
+        [
+          1,
+          0,
+          39,
+          34,
+          3,
+          3650,
+          2,
+          0,
+          4,
+          0
+        ],
+        [
+          50,
+          0,
+          9,
+          40,
+          687,
+          0,
+          4766,
+          4,
+          9,
+          0
+        ],
+        [
+          2,
+          3,
+          148,
+          55,
+          2,
+          0,
+          3,
+          804,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          6,
+          14,
+          0,
+          0,
+          0,
+          98,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          14
+        ]
+      ]
+    },
+    "log_loss": 0.46327800567453736,
+    "roc_auc": 0.9701263703825946
+  },
+  "selection": [
+    {
+      "mean": 0.6515436881056152,
+      "recipe": {
+        "hypothesis": "Iteration-matched inner decision calibration",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 5,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "class_weight_power": 0.5,
+          "calibrate": true,
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      }
+    },
+    {
+      "mean": 0.6452368862500748,
+      "recipe": {
+        "hypothesis": "Independent histogram-boosting family",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.5,
+          "min_iterations": 50,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      }
+    },
+    {
+      "mean": 0.6437587122515519,
+      "recipe": {
+        "hypothesis": "Explore XGBoost capacity at incumbent class weights; vary model seed independently",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 6.0,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.5,
+          "min_iterations": 50,
+          "seed": 48,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      }
+    }
+  ],
+  "final_fit_status": "ok",
+  "integrity_ok": true,
+  "submission_sha256": "2753a7af287633fda9be4172c103a85641cfccffbef14d4a7e2f2b2fa072b707",
+  "score_scope": "local search/confirmation folds, not unbiased blind/private/platform score"
+}

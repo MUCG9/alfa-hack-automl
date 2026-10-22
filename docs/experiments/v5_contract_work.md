@@ -56,3 +56,17 @@ References: [pinned MAPE semantics](https://scikit-learn.org/1.5/modules/generat
   mappings and cached regression blends. Composite IDs are not implemented.
 - `TaskSpec.identifier` permits `None` for row-order output; old string-ID payloads
   remain valid. No other message format or DataPolicy version was changed.
+
+## Contract1 checkpoint
+
+`release/solution-v5-contract1.zip` freezes only the changes above. All **85 unique
+repository checks** passed sequentially in 69.6 seconds with unchanged compiled
+source. The additional 23 unpacked checks repeat part of the same suite and must
+not be added as 23 new unique tests. Four of the new tests run the standalone
+compiled CLI through full refit/export on small fixtures.
+
+Full default public regression and classification checks have been started
+sequentially from this exact archive, offline, two threads, 1.7 GiB local
+whole-tree guard, 10,100-second outer watchdog per task. Until they finish, do not
+claim public prediction parity or full-size validation of this candidate.
+It has NOT been uploaded. Only the fourth v4 archive was authorized/uploaded.

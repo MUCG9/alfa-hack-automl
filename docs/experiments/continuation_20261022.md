@@ -55,3 +55,22 @@ old 21 October 23:37 time and old 1723.691 score; the displayed attempt count st
 3. This inconsistent UI does not establish a new score or exact attempt debit.
 Do not resubmit automatically. See `release/v4-history3/submission-20261022.json`.
 Server results are not being waited for, as requested.
+
+## Completed full history3 classification
+
+The exact uploaded archive completed the offline default classification lifecycle
+after upload: 12 search experiments, confirmation, selected three-component blend,
+full refit and export, integrity true, 1,422.972 seconds inside the agent
+(1,423.986 seconds including the local harness).
+
+- Search blend Macro F1: **0.657720274**.
+- Confirmation blend Macro F1: **0.647764944**.
+- Mean: **0.652742609**, versus completed frozen-v3 **0.653714716**.
+- The decrease of about 0.00097 means classification is NOT an established
+  improvement over v3. Regression's previously measured improvement is separate.
+- Selected equal weights: calibrated LightGBM and two XGBoost variants. Final
+  prediction SHA-256: `2753a7af287633fda9be4172c103a85641cfccffbef14d4a7e2f2b2fa072b707`.
+
+Evidence: `docs/experiments/v4_history3_class_full_20261022.json` and
+`release/v4-history3/classification-full-20261022.json`. All these reused public
+fold scores are local development evidence, not an official/private estimate.

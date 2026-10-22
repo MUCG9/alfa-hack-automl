@@ -58,6 +58,21 @@ Expected both final CSVs and scores match qualified V11 exactly.
 No source/test edits during current integrity stages; docs/evidence only.
 If interrupted, retain V11, honestly mark latest-source full gate incomplete.
 
+Finishing checkpoint15:10UTC: regression has COMPLETED exit0/refit/integrity,
+221.052s, same search38.902803731334785 /confirmation31.991659384340597,
+mean35.44723155783769, exact expected final CSV. Portable assessment/report and
+source manifest in release/v16-mean1/. Static final-source audit there verifies
+archive↔canonical↔258-test-receipt equality, original requirements and ALL10inputs.
+Classification11/12search experiments complete, ALL metrics and recipes exactly
+match qualified V11 trace; experiment11 is the long final search learner.
+This partial trace is NOT confirmation/refit/full-default PASS. The bounded
+controller remains active at handoff; it may finish locally after this snapshot.
+Do not assume it completed or is still running without checking actual files.
+Execution15685 identifies this session, not a process ID to kill from another chat.
+Local artifacts are ignored, so another computer cannot recover their later
+results from Git unless a continuing agent first commits portable evidence.
+No new experiments are to be started in this finishing checkpoint.
+
 ## Rejected studies — do not silently enable or rerun
 
 |Study|Observed result|Decision|
@@ -99,10 +114,12 @@ exposed historical chat key or bypass denied private credential input.
 LightAutoML/Optuna/FLAML/torch/imbalancedlearn not installed locally; no runtimepip.
 AutoGluon was already installed and actually fitted, no install claim.
 
-Actual quota readings:12:01UTC primary0%used,14:32UTC71%,14:40:58UTC76%used
-(24%remaining), weekly91%used. Stop NEW long work at85%used/15%remaining.
+Actual quota readings:12:01UTC primary0%used,14:32UTC71%,14:40:58UTC76%used;
+15:10:02UTC84%used/16%remaining, weekly92%used. Handoff is being finalized BEFORE
+the85%used cutoff; no new long stage after final parity was started.
 Current final parity is the only long stage; checkpoint even if latest gate fails.
-No reset credits consumed or other agents spawned.
+No reset credits consumed or other agents spawned. Latest confirmed push before
+finishing receipts:8375b67 on this branch; final handoff commits follow it.
 
 ## Reproduction and next stage
 

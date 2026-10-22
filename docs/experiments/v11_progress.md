@@ -91,3 +91,13 @@ started around14:42UTC in final-default-parity, execution15685, same2threads/
 One async permission question for exactV11 is pending; no human answer/upload.
 Usage14:46:51UTC primary78%used/22%remaining,weekly91%used. No new research after
 final parity, preparing current.md/next-agent.md and Git for85%used cutoff.
+
+Finishing15:10UTC: latestV16 default regression completed221.052s,exit0/refit/
+integrity, exactV11/history4 CSV, same meanRMSE35.44723155783769. Its portable
+report/assessment/source manifest and final-source/input audit committed8375b67.
+Class11/12search results exactly match V11 metrics+recipes; final search still
+running, NOT fullclassPASS. Controller15685 remains bounded10100s/task and local
+artifacts are ignored. Continuing agent must inspect actual completion and commit
+portable final evidence; never infer later results from this partial snapshot.
+Usage15:10:02UTC84%used/16%remaining,weekly92%used. Wrapping BEFORE cutoff, no new
+research/fits/API requests. Qualified V11 remains independent of this repeat.

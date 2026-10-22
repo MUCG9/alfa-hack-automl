@@ -18,6 +18,10 @@
    final-default-parity, execution15685. На другом ПК ignored artifacts не будут
    доступны: пользуйся committed assessments, не выдумывай результат.
    Не повторяй завершённые исследования по старым ACTIVE/STOP сообщениям.
+   На15:10UTC V16regression completed221.052s/exactCSVparity; class11/12search
+   done/exactV11traceparity, final search still running. Это НЕ fullclassPASS.
+   Если local controller завершился, первым делом сохрани его assessments/report/
+   finalCSVhash и сравни full selection/refit с V11; только затем новые fits.
 4. Проверь реальный app usage. Все текущие действия согласуй с новой командой
    капитана; этот файл даёт контекст, не отдельное разрешение на submit/ресурсы.
 

@@ -1,96 +1,24 @@
-# Продолжение v4 после первого checkpoint
+# Статус передачи22.10.2026
 
-Первый проверенный checkpoint: `3bbbb38` (код), `ba63e30` (82 эксперимента,
-кандидат, handoff). Затем `17cacdc` добавил парное OOF сравнение с bootstrap групп;
-проверка одинаковых predictions на87670 строках дала точную разность0 и интервал[0,0].
-Эти коммиты опубликованы в GitHub, ветка `work/pipeline-review-instructions`.
+Этап завершён, новые долгие jobs не запускаются. Все наши ML workers/очереди и
+Qwen private processes завершены. Git credential helper закроется после последнего
+push; постоянного credential в Git/config/файле нет.
 
-Пользователь пополнил лимит и разрешил продолжить. Просьба: коммитить после
-завершённых этапов, при приближении к10% остатка лимита сохранять передачу и
-приостанавливать дальнейшие эксперименты. Официальный submit не разрешался.
+Полный итог — [v4_summary.md](v4_summary.md), актуальный самостоятельный промпт —
+[../prompts/next-agent.md](../prompts/next-agent.md). Source commit16987fb,
+release/solution-v4-history3.zip, SHA8639e810d92633ca5127bc4c0aef15c75f4a0f48ebcdec2aa6c427b4840bd40f.
 
-## Текущий этап
+- 107fixed workers,3default runs,2bounded lifecycle отдельно.
+- Полный v3 classification: meanMacroF1 .653714716,refit/exportok.
+- Полный search2 regression: RMSE40.426939/37.723019,mean39.074979.
+- Полный history3 regression: RMSE39.321110/34.229380,mean36.775245,
+  refit/exportok,integrity=true,312.386s.
+- 59repo +23unpacked exact ZIP passed.
+- Новая classification search2/3 **не запускалась полностью**. Следующая задача —
+  этот benchmark; старый frozen v3 и обе регрессии без причины не повторять.
+- API реально проверен, gateway/normalizerok, неудачные гипотезы сохранены.
+- Официального submit/merge не было. Score v4 неизвестен.
 
-Полная3-fold CV на exact `release/solution-v4-candidate.zip`, два потока,
-локальный guard1.7GiB, watchdog1200s на candidate-fold. Рецепты:
-`v4_class_cv_candidates.json`. Это первый контроль, сильная старая inner calibration
-и OVA+calibration. У всех одни group-disjoint folds. Входные SHA совпадают.
-
-Полная CV всех трёх рецептов завершена:9/9workersok, exactly-once OOF.
-Pooled Macro F1: контроль .636401856, прежняя calibration .637928932,
-OVA+calibration .630416015, фиксированная смесь .636753388. OVA проиграла
-на всех3 folds, default classification portfolio сохранён.
-[Полный разбор](v4_cv.md), source/input/split hashes и интервалы сохранены.
-
-Локальные outputs: `/tmp/alfa-next-class-cv/results.json`, OOF в подкаталогах
-рецептов; лог `test-runs/stages/next-class-cv.log`. Процесс был запущен через
-exec session22569. Очередь session87405 / `run-default-v3.sh` запустила полный default offline v3 classification с
-watchdog10100s. Очередь session66167 / `run-default-v4-phase4.sh` ждёт окончания v3,
-проверяет6 рецептов: контроль,2 generic Qwen,2 context Qwen,manual-context-log
-на2forward cuts (12workers, source1), затем
-выполняет полный default offline v4 regression иclassification из нового
-`release/solution-v4-search2.zip`. Эти полные outputs разделены:
-`/tmp/alfa-full-v4-reg-default` и `/tmp/alfa-full-v4-class-default`.
-Лог очереди — `test-runs/stages/default-v4-phase4.log`.
-Classifier запускается только при наличии `test-runs/stages/allow-default-v4-class`.
-Если подходит10% token reserve, убери флаг до запуска нового этапа и сохрани handoff.
-Прежние idle очереди остановлены без прерывания ML. Не дублируйте тяжёлые jobs.
-Состояние нужно проверить
-по существующим reports и процессам: session ID относится только к этой сессии.
-
-GitHub credentials предоставлены пользователем и использованы через приватный
-процесс, без записи в Git/config/URL/файл. Не рассчитывайте на сохранённую
-авторизацию после завершения процесса. Ключи и токены в handoff не копировать.
-
-Текущая задача — закончить полный default offline v3 classification и matched
-v4 на обеих задачах. Затем commit/push результатов, полный online Qwen lifecycle
-и следующие train-only гипотезы. Полную CV повторять только после новых кандидатов.
-
-Дополнительная заранее фиксированная гипотеза для этих же OOF: смесь вероятностей
-первого контроля и OVA+calibration с весами .5/.5. Веса не подбираются по итоговым
-OOF; сравнить её с обоими отдельными рецептами. Это новая исследуемая комбинация,
-не независимая private-оценка. Сохранить отдельную метку derived OOF, не считать
-расчёт смеси новым обучением или дополнительными worker fits.
-
-Production planner проверен реальным API вызовом: [v4_live_planner.md](v4_live_planner.md),
-2 plans, первая попыткаok,12.163s. Их обучение/метрики ещё ожидаются в очереди.
-
-Новая search2 политика (sourcee8458fe) прошла58repo +23unpacked checks:
-`release/v4-search2/README.md`. Веса incumbent XGBoost сохраняются, fallback
-исследует depth/min_child_weight/reg_lambda плюсseed. Это unmeasured search
-hypothesis до завершения полного default benchmark, не доказанный прирост качества.
-Предыдущая v4-candidate/source1 остаётся точным источником CV иQwen абляций.
-
-До старта этой серии добавлены2 адресных Qwen context plans и manual-context-log;
-[описание](v4_context_planner.md). API/normalize успешны; метрики ещё не измерены.
-
-Промежуточный full v3 checkpoint: v4_v3_default_progress.json,12/12 search outcomes,
-без итогового confirmation/refit. Это не full-validation PASS. Основные metrics
-исторической v3 в release/v3 не изменялись. Текущий source branch опубликован
-через96fba7e; новые metric snapshots идут отдельными коммитами.
-
-Все12search экспериментов frozen v3 завершены, best .650904187; confirmation
-и full refit ещё продолжаются. Прогон целиком ещё не объявляется успешным.
-
-Full frozen v3 classification успешно завершён: v4_v3_default_full.json,
-12search+3confirmation+ensemble+fullrefit, integrity=true,2628.518s. Search
-ансамбля .654372724, mean двух splits .653714716. Официальный score не измерялся.
-Очередь66167 перешла к12 fixed-recipe regression workers; далееfull search2.
-
-Полная search2 regression закончилась: v4_search2_reg_full.json,
-12search+confirmation+ensemble+fullrefit, integrity=true,292.920s;
-RMSE40.426939/37.723019, mean39.074979. Qwen ablations12/12workersok:
-v4_qwen_ablations.json. Лучший manual-context-log40.960973/34.302243.
-
-Новый source16987fb/history3 обобщает контексты по схеме без хардкода и прошёл
-59repo +23unpacked. Fixed4workers: контроль41.002541/38.062736, автоматическая
-иерархия40.960973/33.984412. Details v4_history3_results.json. Full history3
-regression идёт через session98469, script run-history3.sh, log history3-full.log,
-output /tmp/alfa-full-v4-history3-reg. Исходный контроль воспроизведён точно.
-
-Флаг allow-default-v4-class удалён: новая классификация ещё НЕ запускалась,
-старые очереди87405 и66167 завершены. Не повторять уже успешный full frozen v3.
-После history3 regression сохранить отчёт/CSV SHA/метрики, commit/push и актуальный
-handoff. Если близок10% reserve — не начинать40-минутный full class, передать его
-следующему агенту с точными командами. Qwen private processes закрыты; Git push
-broker текущей сессии12930 ещё живёт, credential в памяти, в файлах его нет.
+Подробные локальные outputs в /tmp/alfa-* и test-runs/stages/ ignored; они не
+гарантируются после reboot. Рецепты,source snapshots,агрегированные metrics и
+проверки сохранены в Git. Старые session IDs и run-*.sh — история завершённых runs.

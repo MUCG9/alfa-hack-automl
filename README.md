@@ -1,28 +1,27 @@
-# Alfa Hack AutoML: исследовательская v4
+# Alfa Hack AutoML: исследовательская v4 history3
 
-Свежая [history3 сборка](release/v4-history3/README.md): автоматические контексты
-по схеме,59repo +23unpacked checks. Fixed forward RMSE40.960973/33.984412;
-полный regression run проверяется. [Статус](docs/experiments/v4_progress.md).
+Агент автоматически строит контексты повторяющихся объектов по схеме и fitting
+rows, проверяет будущий период и выбирает модель/ансамбль по метрике. Public column
+names в код не внесены; pretrained модели и новые зависимости не добавлялись.
 
-В рабочей ветке v4 добавлены исправления исполнения, полная CV/OOF как отдельный
-режим измерений и новые методы обучения. Главный измеренный результат — перенос
-регрессионной проверки на будущий период и train-only исторические признаки:
-автоматический вариант снизил RMSE с 52.9129/44.5643 до 43.1486/37.7495 на двух
-forward backtests. Это public validation, не официальный score. Подробности,
-контроли и ограничения — [журнал исследования](docs/experiments/v4_research.md).
+На одинаковых двух forward backtests полный regression pipeline улучшился:
+средний RMSE **39.074979 →36.775245** (−5.89% относительно предыдущей v4 search2).
+History3:39.321110/34.229380,12search experiments,confirmation,ensemble,fullrefit,
+export,integrity=true. Это повторно исследуемая public validation, не official score.
 
-[Кандидат v4 и evidence](release/v4-candidate/README.md): 57 repo проверок,
-23 проверки распакованного ZIP, два успешных полноразмерных bounded lifecycle
-с refit/export. [Полная CV финалистов завершена](docs/experiments/v4_cv.md): OVA+calibration
-не подтвердила выигрыш и не включена в default. Полный default поиск продолжается. [Следующая сборка search2](release/v4-search2/README.md)
-исследует capacity XGBoost при сохранённых весах, прошла58repo и23unpacked
-проверки; прирост её метрики ещё не измерен.
+[Точный кандидат и проверки](release/v4-history3/README.md):
+`release/solution-v4-history3.zip`,59repo +23повторных unpacked checks passed.
+[Итог и ограничения](docs/experiments/v4_summary.md),
+[промпт передачи](docs/prompts/next-agent.md).
 
-По умолчанию `--validation-strategy auto`: только при однозначном документированном
-числовом периоде и полностью будущем диапазоне test применяется forward validation;
-остальные задачи сохраняют прежний split. `--validation-strategy legacy` позволяет
-явно воспроизвести старую стратегию. Для временной регрессии в портфеле есть
-cross-fitted история автоматически обнаруженных повторяющихся контекстов.
+Полный frozen v3 classification baseline завершён (meanMacroF1 .653714716).
+Полная CV отсеяла OVA+calibration. В source2/3 отдельно расширен XGBoost capacity
+search; **полный новый classification benchmark ещё нужен**. Это первая задача
+продолжения. Официальной отправки history3 не было.
+
+По умолчанию --validation-strategy auto: консервативное определение числового
+observation period по схеме и будущему test; иначе прежний split. Явный legacy
+режим сохранён. Все наши ML jobs и очереди на текущем checkpoint завершены.
 
 **Продолжение с другого агента/компьютера:** начать с [AGENTS.md](AGENTS.md) и [CONTINUE_HERE](docs/CONTINUE_HERE.md). Готовый [промпт передачи](docs/prompts/next-agent.md), локальный CPU setup и ограничения проверок включены в репозиторий. Данные и API-key передаются капитаном отдельно.
 

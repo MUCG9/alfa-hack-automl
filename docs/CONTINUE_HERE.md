@@ -1,13 +1,14 @@
 # Передача разработки следующему агенту
 
-Актуальная передача 22.10.2026: рабочая ветка `work/pipeline-review-instructions`.
-[Кандидат v4](../release/v4-candidate/README.md) прошёл57 repo и23 unpacked проверки,
-два bounded public lifecycle/refit/export; проведены82 fixed-recipe evaluations.
-[Самодостаточный промпт](prompts/next-agent.md) содержит конкретный следующий план.
-[Журнал исследования](experiments/v4_research.md) и [метрики](experiments/v4_results.json)
-сохраняют keep/discard и ограничения. Полная CV финалистов завершена, её результаты — experiments/v4_cv.md.
-Текущий статус полного default поиска — experiments/v4_progress.md. Ниже сохранён исторический handoff v3; его незавершённые задачи следует
-сверять с текущим evidence.
+Актуальная передача22.10.2026: [самодостаточный промпт](prompts/next-agent.md),
+[итог этапа](experiments/v4_summary.md), [history3 кандидат](../release/v4-history3/README.md).
+Ветка work/pipeline-review-instructions. Все наши ML jobs/очереди завершены.
+Полный history3 regression: RMSE39.321110/34.229380,mean36.775245,refit/exportok,
+integrity=true;59repo +23unpacked checks. Frozen v3 classification baseline тоже
+полностью завершён, meanMacroF1 .653714716. Новая classification search2/3 ещё
+требует полного сравнения, это первая следующая задача.107fixed workers и3default
+runs сохранены с source/input/split hashes. Ниже — исторический handoff v3;
+его незавершённые задачи нужно сверять с текущим итогом, не повторять автоматически.
 
 Дополнение от 22.10.2026: после чтения исторического снимка ниже открыть
 [`architecture/quality_plan.md`](architecture/quality_plan.md). Там уточнены

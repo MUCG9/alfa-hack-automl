@@ -43,8 +43,9 @@ Unit tests проверяют независимость от held-out X, пер
 
 ## Полный поиск
 
-Полный default regression search/confirmation/refit этого exact ZIP сейчас
-проверяется отдельно. Старый full search2 regression уже завершён успешно:
+Полный default regression этого exact ZIP успешно завершён:12search,
+confirmation,ensemble,fullrefit/export, integrity=true,312.386s.
+RMSE39.321110/34.229380,mean36.775245; regression_full.json рядом. Старый full search2 regression уже завершён успешно:
 RMSE40.426939/37.723019, mean39.074979, fullrefitok/integritytrue.
 Full frozen v3 classification также завершён: ensemble mean F1 .653714716.
 В history3 сохраняется class capacity search из search2; **полный новый

@@ -11,7 +11,8 @@ same fitting-only support, [.8,1.25] bounds and exact-identity path. Method omit
 still means dormant V15 estimator, default correction remains OFF. No portfolio
 or classification policy change yet; no quality gain claimed.
 
-258unique source/23repeated exact-unpacked gates running; includes original-scale
+258unique source checks PASS unchanged-source (169.114s), plus23repeated exact-
+unpacked PASS; includes original-scale
 optimum, numerical scale stability, method/signature/disable and actual outer-label
-isolation tests. Public screen has not begun. Protocol/candidates in docs/experiments.
+isolation tests. Public three-cut screen now running sequentially. Protocol/candidates in docs/experiments.
 V11 is still the fully qualified score-improving archive. No upload authorized.

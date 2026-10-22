@@ -93,3 +93,20 @@ adapter31/3; XGBoost max_depth6/reg_lambda5 против adapter8/8, допол�
 этот случай не используют. Не менять frozen canonical source до завершения
 owned campaigns. После них исправить engine-specific defaults и проверить
 семантическое равенство anchor/control через model construction без fitting.
+
+Classification HPO завершён:900.6s,2 successful из8 maximum trials, ещё один
+timeout34.465s. Два successful trials заняли412.532s и425.991s. Startup3 не
+пройден: guided TPE attempts0. Inner MacroF1 .6293967027246721→.6296331435097767;
+это другие строки, не сравнивать с outer F1. Selected recipe сейчас проходит
+outer evaluation. `mvp_cost_diagnostic_20261023.json` сохраняет агрегаты и
+observational timing comparison со старым control; это не isolated causal
+замер стоимости selector. Архитектурная гипотеза на следующий цикл: условное
+включение FE после gate и распределение бюджета по измеренной стоимости вместо
+обязательных дорогих стадий. Она пока не проверена как новая полная процедура.
+
+До первых HAR-01 вызовов/fit уточнён dev harness `compare_planners.py`: явный
+cap двух distinct proposals после dedup, reject незаявленного selector с receipt
+вместо молчаливого изменения рецепта. Общий runtime parser поддерживает3, поэтому
+одной инструкции в prompt недостаточно для declared limit2. Две отдельные
+проверки cap/factor boundary PASS, без API/fits. Это выполнение исходного
+протокола, не смена условий после scores; новый harness SHA будет записан очередью.

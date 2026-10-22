@@ -266,8 +266,14 @@ def main():
     queue = json.loads(args.queue.read_text())
     report = {'scope': 'Independently recomputed reused-public development screens; positive gates require further qualification, not a release',
               'queue_status': queue['status'], 'queue_source_unchanged': queue['source_unchanged'],
-              'screens': {}, 'errors': {}, 'official_submission': False}
+              'screens': {}, 'planner_generation': {}, 'errors': {}, 'official_submission': False}
     for directory in args.queue.parent.iterdir():
+        proposals = directory/'proposals.json'
+        if directory.is_dir() and proposals.is_file():
+            document = json.loads(proposals.read_text())
+            report['planner_generation'][directory.name] = {mode: {key: value.get(key) for key in
+                ['call', 'distinct_candidates', 'raw_supported_proposals', 'candidate_limit', 'rejected']}
+                for mode, value in document['modes'].items()}
         path = directory/'results.json'
         if not directory.is_dir() or not path.is_file():
             continue

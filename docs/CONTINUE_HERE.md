@@ -22,7 +22,9 @@ V15/V16 target corrections и V17 smaller leaves проверены и НЕ пр
 Заключительный полный прогон defaults актуального V16 запущен последовательно
 regression→classification в test-runs/llm-upgrade-20261022/final-default-parity.
 Проверить current.md и assessments перед любым новым запуском. Pending не PASS.
-Нового official submit нет; отдельный вопрос об одной V11 попытке ждёт ответа.
+Капитан разрешил и выполнена ОДНА отправкаV11: принята в очередь, счётчик1→0.
+[Receipt](../release/v11-featureviews1/submission-20261022.json), score pending;
+новые отправки не разрешены. Не путать прежние2187.849(V9) с результатомV11.
 
 Частые commits, без новых зависимостей/ключей/CSV в Git. При85%USED завершить
 текущий этап и передачу; никаких дополнительных агентов или покупок ресурсов.

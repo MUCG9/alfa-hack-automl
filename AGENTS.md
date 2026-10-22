@@ -47,7 +47,8 @@ for actual completion. Never describe a pending/interrupted gate as passed.
   in a command, prompt, Git or logs. AST filtering is not a complete sandbox.
 - No extra agents, other-chat messages, paid GPU/resources, usage-reset credits,
   main merge or official upload without separate human authorization.
-  ONE V11 upload question is pending; do not treat silence as permission.
+  Captain approved ONE V11 upload: completed, queue accepted, counter1→0.
+  See release/v11-featureviews1/submission-20261022.json. No second upload authorized.
 - Heavy fits and fixture suites are strictly sequential on this host. Use explicit
   time/memory guards, two threads for public benchmarks and one for core checks.
   Never broad-kill unrelated processes; a local watchdog is not platform timeout.

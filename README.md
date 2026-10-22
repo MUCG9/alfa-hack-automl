@@ -20,7 +20,9 @@ source checks +23repeated exact-unpacked PASS. Добавлен типизиро
 [промпт следующему агенту](docs/prompts/next-agent.md),
 [разбор советов LLM](docs/experiments/v11_llm_review.md),
 [журнал и результаты](docs/experiments/v11_progress.md).
-Нового official upload нет; один вопрос о разрешении попыткиV11 ждёт ответа.
+Капитан разрешил одну попыткуV11: архив принят в очередь22октября, счётчик1→0.
+[Подтверждение отправки](release/v11-featureviews1/submission-20261022.json).
+Результат сервера не ожидался; нового официального балла пока нет.
 
 ## История предыдущих этапов
 

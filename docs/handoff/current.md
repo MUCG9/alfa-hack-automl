@@ -98,11 +98,13 @@ Do not claim these fitting optima guarantee outer RMSE.
 
 ## Authorization / API / quota
 
-No official upload THIS continuation. ONE async question asks permission for
-**exact V11 archive**; no answer received yet. Silence is not approval.
-If captain answers yes: freshly inspect login/counter, upload exact V11 ONCE,
-save receipt/counter/queue proof and do not wait server results. Do not substitute
-V16 without approval. Historical1remaining afterV9 is NOT a current counter.
+Captain answered «отправляй» after recommendation of exactV11. ONE V11 upload
+completed22October: filename solution-v11-featureviews1.zip, queue status
+«Решение находится на проверке», fresh counter1→0. Archive SHA rechecked before
+upload, original requirements/flat structure/Python compilation verified.
+Recorded15:26:26UTC; exact platform upload timestamp not observed. Server result
+NOT waited for, no new score claimed. Receipt release/v11-featureviews1/
+submission-20261022.json. No retry or further upload authorized. V16 not sent.
 Last captain-reported official V9 raw2187.849,1940.2s,his21.87/100; latest request
 says23/100 without per-task breakdown. No new authenticated official score.
 

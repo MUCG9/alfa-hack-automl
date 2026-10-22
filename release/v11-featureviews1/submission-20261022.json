@@ -1,0 +1,41 @@
+{
+  "version": "v11-featureviews1",
+  "archive": "release/solution-v11-featureviews1.zip",
+  "archive_sha256": "fbbd2511652814d7c05334ab0240f18b81e88a7b59dfc979efa617011dc84490",
+  "archive_bytes": 74443,
+  "flat_files": 52,
+  "recorded_at_utc": "2026-10-22 15:26:26 UTC",
+  "submission_started_after_utc": "2026-10-22 15:21:13 UTC",
+  "accepted_queue_status_observed_before_utc": "2026-10-22 15:26:26 UTC",
+  "exact_platform_upload_timestamp_not_observed": true,
+  "user_authorization": {
+    "text": "отправляй",
+    "scope": "ONE exact V11 upload after explicit recommendation, not V16"
+  },
+  "platform_url": "https://changellenge.com/personal/championships/stage/927270/",
+  "observed_filename": "solution-v11-featureviews1.zip",
+  "observed_status": "Решение находится на проверке",
+  "observed_processing_text": "Решение обрабатывается…",
+  "remaining_attempts_before": 1,
+  "remaining_attempts_after": 0,
+  "before_counter_verified_after_page_reload": true,
+  "after_counter_verified_in_screenshot_and_accessibility_state": true,
+  "upload_actions_performed": 1,
+  "new_upload_performed": true,
+  "server_result_waited_for": false,
+  "official_score": null,
+  "last_old_score_on_page": 2187.849,
+  "last_old_score_belongs_to": "solution-v9-roles1.zip, NOT V11",
+  "pre_upload_checks": {
+    "exact_authorized_archive_sha": true,
+    "original_requirements_byte_equal": true,
+    "flat_archive": true,
+    "all_python_files_compile": true
+  },
+  "screenshot_evidence": "Captured and displayed inline by browser tool; no persistent screenshot file saved",
+  "limitations": [
+    "Queue acceptance is not a successful evaluation or new score.",
+    "No second upload or automatic retry was performed.",
+    "No new official upload is authorized by this receipt."
+  ]
+}

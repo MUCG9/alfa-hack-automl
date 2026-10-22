@@ -101,3 +101,12 @@ artifacts are ignored. Continuing agent must inspect actual completion and commi
 portable final evidence; never infer later results from this partial snapshot.
 Usage15:10:02UTC84%used/16%remaining,weekly92%used. Wrapping BEFORE cutoff, no new
 research/fits/API requests. Qualified V11 remains independent of this repeat.
+
+## Authorized V11 submission after quota handoff
+
+Captain subsequently asked whether to use the last slot, then explicitly replied
+«отправляй». Exact qualified V11 uploaded ONCE. Before: fresh page reload showed
+1remaining and oldV9score2187.849. After: exactV11 filename and queue acceptance
+«Решение находится на проверке», screenshot/AX show0remaining. No retry, no V16
+substitution, no server-result wait, no new score claim. Receipt recorded15:26:26UTC
+in release/v11-featureviews1/submission-20261022.json. No research resumed.

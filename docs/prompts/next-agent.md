@@ -103,9 +103,10 @@ fitting rows на каждом inner/outer/fullfit. Не считать df.eval 
 Local RAM ограничена: heavyfits и fixturechecks sequential,2threads/1suite,
 явный watchdog/memoryguard, собственные процессы только.
 
-Новый official submit отдельно НЕ разрешён. В текущем чате ждёт ответа ОДИН
-вопрос о точномV11. При humanYES — свежие login/counter, одна попыткаV11, receipt,
-не ждать server score. Не подменять архивV16 и не использовать старый счетчик.
+Капитан подтвердил «отправляй»: ОДНА попытка точногоV11 УЖЕ отправлена22октября,
+принята в очередь, свежий счётчик1→0. Receipt в release/v11-featureviews1/
+submission-20261022.json. Серверных баллов не ждали, новый score неизвестен.
+НЕ отправляй повторно и не подменяй V16; дальнейшие uploads не разрешены.
 Последний known score — со слов капитанаV9raw2187.849,1940.2s/21.87из100;
 новое сообщение говорит23/100 без breakdown. Не выдавать их за scoreV11.
 No extra agents/mainmerge/paid resources/reset credits. При85%USED — checkpoint.

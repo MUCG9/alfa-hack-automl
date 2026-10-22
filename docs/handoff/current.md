@@ -1,95 +1,122 @@
-# ACTIVE V11–V12 continuation after colleague handoff
+# Текущая передача — V11–V17, 22 октября 2026
 
-Captain renewed implementation after colleague6aefbd9. Branch
-`work/llm-upgrade-20261022`, not main. See v11_llm_review.md/v11_progress.md in
-docs/experiments. New official submit NOT authorized; previous V10 STOP below
-is historical. Main and older artifacts preserved; no extra agents/API-key bypass.
+Ветка **work/llm-upgrade-20261022**, основана на коллеги6aefbd9.
+Main неизменён:5dd6b0f2910af7aa706d400bc28093a277ac2932 (V2).
+Работа одним агентом; никаких новых зависимостей/платных ресурсов/reset credits.
+Фактический HEAD и origin проверять в Git: handoff commits идут после65ce8db.
 
-V11 featureviews1 sourcee11409e,SHAfbbd2511652814d7c05334ab0240f18b81e88a7b59dfc979efa617011dc84490:
-230source/23unpacked PASS. Full history4 baseline class reproduced CSV58f52...,mean
-.6532812402233098,exit0/refit/integrity. Frozen V11 full class→regression is ACTIVE
-in test-runs/llm-upgrade-20261022/featureviews1-full (owned execution11039).
+## Лучший квалифицированный результат
 
-V12 threshold2 sourceeafdd6a,SHA12dc0f0ee49eaea085851ee98d309f1b86154e2be4d5a026212aa4d6806bb9a1,
-new method dormant; default old coordinate unchanged.244source checks queued AFTER
-V11 (execution15143). That older queued verifier still names superseded threshold1
-and should refuse current-source mismatch, not a passed archive gate. Correct
-threshold2 unpacked verification separately queued after source results (98344).
-Do not edit runtime/tests during these unchanged-source gates. No threshold public
-fits yet. V13 AutoGluon dev-only extension/synthetic checker prepared, not run;
-V14 independent search-anchor policy is a conditional protocol, not implementation.
-
-Primary26% used observed12:48UTC; cutoff85% used. Heavy jobs sequential2threads,
-fixture suite1thread. No new dependencies, live Qwen or official upload this turn.
-
-## Historical V10 handoff (superseded status)
-
-22октября2026. Branch **work/cpu-research-20261022**,base V9a95c931. Последняя
-команда — остановиться из-за лимитов и передать работу; она заменяет предыдущее
-возобновление. [Самодостаточный промпт](../prompts/next-agent.md).
-Main не менялся,официального V10 submit нет.
-
-## Jobs и новый CV результат
-
-Grouped classification CV73 завершилась:session46586exit0,все6workers успешны.
-Scoped host-аудит не нашёл owned CV процессов. Анализ готовых прогнозов завершён.
-Новые обучения/integration после STOP не запускались. Старые ACTIVE/partial4/6
-сообщения superseded. Незавершённых ML jobs этой передачи нет.
-
-Primary fixed50/50calibrated LGBM/LGBM+cross-fitted categorical statistics,
-schema-order pairs,smoothing20. Существующий encoder,не новый runtime метод.
-Paired screen42/43 улучшил оба folds. Full3foldCV73:
-
-|MacroF1|Control|Fixed blend|
+|Полный default pipeline|Повторённый history4 контроль|V11 featureviews1|
 |---|---:|---:|
-|Fold0|.641237770212|.648007875526|
-|Fold1|.633295603768|.638038833502|
-|Fold2|.647188887692|.649725432942|
-|Fold mean|.640574087224|.645257380657|
-|Pooled OOF|.640209809443|.645099303706|
+|Classification search MacroF1|0.6538467374261537|0.6632403174648631|
+|Classification confirmation MacroF1|0.6527157430204659|0.6553953692580672|
+|Classification mean MacroF1|0.6532812402233098|0.6593178433614652|
+|Regression mean RMSE|35.44723155783769|35.44723155783769|
 
-87670rows exactly_once; все predeclared gates PASS,включая supported-class
-F1drop≤.01 и gain без редчайшего класса+.004943201374.
-[Итог/методика](../experiments/v10_class_te_cv_results.md),JSON results/diversity/
-gate рядом. StandaloneTE сильнее blend на этом CV,но не primary endpoint:
-не менять promotion path после результата. Public reused,не private estimate.
+Оба class cuts лучше. Regression final CSV побайтово совпал с history4.
+Это full search/confirmation/selection/refit/export, но НЕ full K-fold OOF и НЕ
+оценка private/официальных баллов. Предыдущая CV коллеги — отдельный3fold gate:
+pooled .640209809443→.645099303706, exactly_once, все predeclared gates PASS.
 
-Следующий этап:[замороженный full-agent protocol](../experiments/v10_class_te_agent_protocol.md).
-Один кандидат с корректными per-view iterations/nestedrefit,tests/newarchive,
-полный baselineclass→candidateclass→regressionparity sequential. Интеграция не
-начата,нового full-agent class score нет. Исторический mean .653281240 — ожидание
-baseline,не результат TE-агента. Under70/ExtraTrees mixed,defaults не изменили.
-Support-awareXTblend — резервный proposal без fits/метрик/реализации.
+Квалифицированный архив: **release/solution-v11-featureviews1.zip**,
+runtime e11409e,74443bytes,52flatfiles,
+SHA fbbd2511652814d7c05334ab0240f18b81e88a7b59dfc979efa617011dc84490.
+230unique unchanged-source +23repeated exact-unpacked checks PASS.
+Full class2691.782s (harness2693.394), regression harness225.692s на2CPUthreads.
+Полные отчёты/assessments/проверки: release/v11-featureviews1/.
 
-## Проверенный release
+CSV fingerprints:
+- Class af64a22a5e9f5ff26ed817dfaa707e77e5bd9500dc63e52748521b00670efa96.
+- Regression 05ccd9eabcbf29f4b858e9cd89f6dfe568ce1bdddb32a397c71b98ef1c0c1673.
+- History4 class control 58f52dfbfecb1416a456ed715a43cf944876a7f69eed73d7bf1e10170631b326.
 
-[solution-v10-history4.zip](../../release/solution-v10-history4.zip),source8f6b73e,
-SHA `a42fcb1557ec0cf2455abb3add9d6968a8388aedcfcf8d554b26ed73a45788f8`,72537bytes,
-51flatfiles. **219unique source+23repeated exact-unpacked checks PASS**.
-Full default regression refit/export/integrity и bounded full-size class lifecycle
-PASS. При handoff заново проверены byteparity всех51compiledfiles,original
-requirements,ZIPstructure/Pythoncompile. [Receipt](v10-stop-checkpoint-20261022.json),
-[полные gates](../../release/v10-history4/README.md).
+V11 adds ONE typed LightGBM feature_views=categorical_te_pair candidate, schema-
+declared first3categoricals, existing group-cross-fitted statistics/pairs,
+smoothing20, fixed internal50/50. Original categories remain. Per-view iteration
+trees survive global blend/confirmation/recursive median/full refit.
+Selected global equal-thirds blend: TWO typed-view recipes +calibrated XGBoost.
+No public column names in runtime, no forced class weights/log target/augmentation.
+Default12trials/9900s/old relative portfolio order retained; fallback inheritance
+makes the whole procedure slower than control. Source src/automl is canonical.
 
-RMSE39.321110258/34.229379712→38.902803731/31.991659384;
-mean36.775244985→35.447231558,−3.611%,оба cuts лучше. Final90/10asof-LGBM/CatBoost.
-History strictly-earlier fittinglabels,minimum3periods,отдельные inner/outer/full
-transforms. Старый contextTE не стал causal. Classdefaults сохранены,bounded
-lifecycle — не новая full-default qualityevaluation. Нового TE-ансамбля в ZIP нет.
+## Latest code and finishing job
 
-Официальный лучший со слов капитана:V9raw2187.849,1940.2s,его21.87/100.
-Новыйupload требует отдельного разрешения; техническая готовность его не заменяет.
+Canonical runtime **f72c6df**, frozen **release/solution-v16-mean1.zip**:
+SHA 68e1eb0c933807720178ef4708df2c0dbf55fe9940b0dfb849d7704dbe3b2566,
+79054bytes,54flatfiles, Python3.12.14.
+**258unique unchanged-source checks169.114s +23repeated exact-unpacked PASS.**
+V12–V16 add dormant typed postprocessors and guards, NOT new enabled model defaults.
 
-## Git, среда, ограничения
+Final full-default parity started around14:42UTC, execution session15685:
+test-runs/llm-upgrade-20261022/final-default-parity.
+Offline,2threads,1.7GiB tree guard,10100s watchdog/task, jobs1,
+FULL default12trials (no max-experiments override), regression FIRST then class.
+At this checkpoint it is RUNNING. Read task-00/assessment.json and task-01/
+assessment.json / assessments.json for completion; do not duplicate this job.
+Expected both final CSVs and scores match qualified V11 exactly.
+No source/test edits during current integrity stages; docs/evidence only.
+If interrupted, retain V11, honestly mark latest-source full gate incomplete.
 
-Последний подтверждённый push до финального handoff —10e4ee5,эта же ветка origin.
-Финальный commit добавляет эту передачу/CVагрегаты; HEAD сверять в Git. Старые
-отказы push устранены успешными отправками. Credentials/rawCSV/predictions/NPZ/
-venv в Git не сохранять.
+## Rejected studies — do not silently enable or rerun
 
-Использовать test-runs/venv-core/bin/python,Python3.12.3,sklearn1.5.2,LGBM4.6,
-XGB-cpu2.1.4,CatBoost1.2.8. Original requirements неизменны. На8GiBRAM тяжёлые ML
-и fixturechecks строго sequential,2threads benchmark/1suite,watchdog.
-Ignored data/venv/predictions на другом ПК отсутствуют;10inputSHA в public_inputs.json.
-No liveQwen/newdependencies/officialsubmit/extraagents/mainmerge. Частые commits;
-соблюдать новые указания капитана об остатке лимита,не выдумывать appreading.
+|Study|Observed result|Decision|
+|---|---|---|
+|V12 bounded log-weight Nelder–Mead|paired mean F1 .651543688→.650925929, both cuts worse|OFF; no CV/default promotion|
+|V13 pinned AutoGluon1.3.1 GBM+CAT|paired mean F1 .651543688→.627271597, both worse|Dev-only extension, no runtime integration|
+|V14 thirteen-trial cached proposal|hypothetical mean .660102396 but search below V11|reject_without_fits,0new fits; not implemented|
+|V15 log-residual moment correction|latest forward RMSE39.051678→40.160774; older cuts exact parity|OFF|
+|V16 original-scale LS correction|latest forward RMSE39.051678→39.354053; older cuts exact parity|OFF|
+|V17 min_child_samples10 in both views|F1 .655863466/.653724308→.645102660/.647068331|reject; keep25, no CV|
+
+All protocols/candidate configs/results/gates are in docs/experiments/v12…v17_*.
+Raw rows/predictions/models remain ignored in test-runs, never Git.
+V12 optimizer has positive bounded [.4,2.5] factors, old coordinate warmstart,
+regularized log-space objective and numeric acceptance safeguards; max400fev.
+No arbitrary unbounded/negative supplied-Nelder–Mead snippet copied.
+AutoGluon synthetic poison/isolation/full-refit checks PASS; feature generator
+explicitly prefitted on inner train only because framework default concatenates
+train+tuning data. The negative result is THIS procedure, not all AutoGluon.
+V15/V16 use inner calibration only, matching iteration and history-support guards,
+bound [.8,1.25], exact identity when ineligible. Neither transfers forward.
+Do not claim these fitting optima guarantee outer RMSE.
+
+## Authorization / API / quota
+
+No official upload THIS continuation. ONE async question asks permission for
+**exact V11 archive**; no answer received yet. Silence is not approval.
+If captain answers yes: freshly inspect login/counter, upload exact V11 ONCE,
+save receipt/counter/queue proof and do not wait server results. Do not substitute
+V16 without approval. Historical1remaining afterV9 is NOT a current counter.
+Last captain-reported official V9 raw2187.849,1940.2s,his21.87/100; latest request
+says23/100 without per-task breakdown. No new authenticated official score.
+
+No live Qwen calls or dependency installs in this continuation. Existing local
+openai SDK/mocked gateway tests are not live verification. Private process env
+checks found OPENAI_API_KEY/BASE_URL/MODEL and QWEN_API_KEY absent; do not reuse
+exposed historical chat key or bypass denied private credential input.
+600RUB is a shared organizer API budget, not a verified current balance.
+LightAutoML/Optuna/FLAML/torch/imbalancedlearn not installed locally; no runtimepip.
+AutoGluon was already installed and actually fitted, no install claim.
+
+Actual quota readings:12:01UTC primary0%used,14:32UTC71%,14:40:58UTC76%used
+(24%remaining), weekly91%used. Stop NEW long work at85%used/15%remaining.
+Current final parity is the only long stage; checkpoint even if latest gate fails.
+No reset credits consumed or other agents spawned.
+
+## Reproduction and next stage
+
+Current local Python: ../../work/ml-venv/bin/python from repo, Python3.12.14,
+numpy1.26.4/scipy1.12/pandas2.2.3/sklearn1.5.2/LGBM4.6/XGB-cpu2.1.4/CB1.2.8.
+Local host15.3GiB with low free RAM and used swap: fits sequential2threads, suite1.
+Platform remains Python3.12/8CPU/32GB/noGPU/3h per dataset; measured2threads is not
+proof about every hidden task. All10public task/CSV SHA matched public_inputs.json.
+
+Original requirements SHA:
+9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6.
+
+On another computer, clone this branch, obtain original organizer data and private
+API env separately; do not expect ignored local rows/venv/predictions in Git.
+Check actual default parity completion first, then read next-agent.md.
+Historical current/STOP/prompts preserved in history-current-before-v11.md,
+agent-instructions-before-v17.md and ../prompts/history/next-agent-before-v11.md.

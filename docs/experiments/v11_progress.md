@@ -66,3 +66,28 @@ swap partly full; heavy fits and full fixture checks strictly sequential.
 
 Frequent logical commits pushed to the new branch. No extra agents, main merge,
 paid resources, keys in commands or official submit. Live Qwen remains unverified.
+
+## Completed follow-up research, 14:47UTC checkpoint
+
+V11 is the qualified improving full-agent release, not a pending integration.
+V12 threshold2 passed244unique source/23repeated unpacked checks, but bounded
+log-weight numerical optimization worsened BOTH paired cuts; default old
+coordinate callback remains unchanged. V13 pinned AutoGluon GBM/CAT successfully
+fit/refit/exported all4workers with inner-only prefitted feature generation, but
+both cuts worsened. V14 cached selection proposal reproduced actual controls,
+then failed its predeclared V11 noninferiority gate;0newfits/no runtime change.
+V15 moment retransformation and V16 original-scale LS factors both worsened the
+latest supported forward cut; older cuts correctly skipped with exact CSV parity.
+V17 leaf10 in both fixed views worsened BOTH cuts (.654793887→.646085495 mean).
+All negative protocols/results/gates are preserved; no rescue CV or defaults.
+
+Latest canonical runtime f72c6df, frozen solution-v16-mean1.zip,
+SHA68e1eb0c933807720178ef4708df2c0dbf55fe9940b0dfb849d7704dbe3b2566.
+258unique unchanged-source checks169.114s+23repeated exact-unpacked PASS.
+All new postprocessors remain OFF. Final full-default regression→class parity
+started around14:42UTC in final-default-parity, execution15685, same2threads/
+1.7GiB/10100s controls. At this checkpoint pending, not a passed public gate.
+
+One async permission question for exactV11 is pending; no human answer/upload.
+Usage14:46:51UTC primary78%used/22%remaining,weekly91%used. No new research after
+final parity, preparing current.md/next-agent.md and Git for85%used cutoff.

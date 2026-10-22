@@ -1,16 +1,31 @@
-# Alfa Hack AutoML: V11–V12, независимые проверяемые улучшения
+# Alfa Hack AutoML: проверенный V11 и исследования V12–V17
 
 Текущее продолжение — [work/llm-upgrade-20261022](https://github.com/MUCG9/alfa-hack-automl/tree/work/llm-upgrade-20261022).
 `main` сохранён как v2. Новые исходники и кандидаты не означают автоматически
 новый официальный submit.
 
-Капитан возобновил работу после передачи коллеги6aefbd9.
-[Разбор советов LLM](docs/experiments/v11_llm_review.md),
-[журнал V11](docs/experiments/v11_progress.md),[пороговый протокол](docs/experiments/v12_threshold_protocol.md).
-V11:230unique source/23repeated unpacked PASS; полный class→regression gate идёт.
-V12: новый оптимизатор пока dormant,244source/23unpacked gates ожидают V11.
-Никакого нового official upload. Последний полностью подтверждённый локальный
-release пока history4. Дальше ниже — история предыдущего этапа, не STOP текущей работы.
+Полный default pipeline **V11** улучшил оба classification cuts: средний
+**Macro F1 0,653281 → 0,659318**. Регрессия сохранена: **RMSE 35,447232**,
+итоговый CSV побайтово совпал с history4. Обе задачи прошли refit/export/integrity.
+Это локальная reused-public validation, не официальный score или обещание75–85/100.
+
+[Квалифицированный ZIP V11](release/solution-v11-featureviews1.zip):230unique
+source checks +23repeated exact-unpacked PASS. Добавлен типизированный ансамбль
+двух представлений категорий с fitting-only cross-fitted статистиками.
+Последний код V16:258unique+23repeated PASS; финальный full-default parity
+пока идёт. Пороговая оптимизация, AutoGluon, две target corrections и leaf10
+не дали устойчивого выигрыша и НЕ включены по умолчанию. Requirements неизменны.
+
+[Точное актуальное состояние](docs/handoff/current.md),
+[промпт следующему агенту](docs/prompts/next-agent.md),
+[разбор советов LLM](docs/experiments/v11_llm_review.md),
+[журнал и результаты](docs/experiments/v11_progress.md).
+Нового official upload нет; один вопрос о разрешении попыткиV11 ждёт ответа.
+
+## История предыдущих этапов
+
+Ниже сохранены исторические снимки, а не актуальные STOP/ACTIVE поручения.
+Статусы «integration не начата» для feature views заменены завершённым V11 выше.
 
 Предыдущее продолжение: `work/cpu-research-20261022`, основа`a95c931`.
 Капитан подтвердил результат V9: **2187.849**,1940.2s,«Лучшее решение»

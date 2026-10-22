@@ -1,35 +1,29 @@
-# Актуальное продолжение V11–V12 — 22 октября 2026
+# Начать здесь — актуальный этап V11–V17
 
-Новая команда капитана возобновила работу после V10 STOP. Текущая ветка
-`work/llm-upgrade-20261022`,base6aefbd9. Читать `experiments/v11_llm_review.md`,
-`experiments/v11_progress.md`,`handoff/current.md`. V11 source/unpacked PASS,
-full class→regression идёт; V12 threshold2 — dormant corrected snapshot, full
-source/unpacked ждут завершения V11. Не запускать параллельные тяжёлые jobs.
-Официальная отправка не разрешена. Следующие исследования предобъявлены отдельно.
-Ниже неизменённый исторический V10 checkpoint; его STOP не отменяет новую команду.
+Ветка **work/llm-upgrade-20261022**, основа коллеги6aefbd9; main сохранён как V2.
 
-## История: передача V10
+1. [Точное состояние, результаты и текущий job](handoff/current.md).
+2. [Самодостаточный промпт следующему агенту](prompts/next-agent.md).
+3. [Разбор советов LLM](experiments/v11_llm_review.md).
+4. [Проверенный улучшающий V11](../release/v11-featureviews1/README.md).
+5. [Последний код и 258 проверок V16](../release/v16-mean1/README.md).
+6. [Архитектура и границы](architecture/implementation.md).
 
-Ветка **work/cpu-research-20261022**,main сохраняет V2. Капитан попросил остановиться
-из-за лимитов и подготовить передачу. Новая команда STOP заменяет предыдущее
-возобновление. Все ML jobs текущего checkpoint завершены.
+V11 внедряет уже прошедший CV фиксированный ансамбль двух представлений категорий.
+Полный default pipeline улучшил оба classification cuts: mean Macro F1
+**0,653281 → 0,659318**. Регрессия RMSE **35,447232** и итоговый CSV сохранены.
+Это reused-public validation, не официальный балл и не обещание75–85/100.
 
-1. [Готовый промпт следующему агенту](prompts/next-agent.md).
-2. [Точное состояние](handoff/current.md),[технический receipt](handoff/v10-stop-checkpoint-20261022.json).
-3. [Завершённая feature-view CV](experiments/v10_class_te_cv_results.md).
-4. [Проверенный history4 release](../release/v10-history4/README.md).
-5. [Следующий full-agent protocol](experiments/v10_class_te_agent_protocol.md).
-6. [Исторический журнал V10](experiments/v10_progress.md).
+V12 numeric thresholds, V13 AutoGluon, V14 cached search proposal,
+V15/V16 target corrections и V17 smaller leaves проверены и НЕ продвинуты.
+Подробности/протоколы/отрицательные результаты сохранены в experiments/.
+Поздние возможности выключены по умолчанию; V11 остаётся квалифицированным ZIP.
 
-History4:оба полных RMSEcuts лучше V9,mean36.775245→35.447232;219unique source/
-23repeated unpacked checks,refit/integrity,boundedclasslifecycle PASS. ZIP технически
-проверен для платформы; официально V10 не отправлялся.
+Заключительный полный прогон defaults актуального V16 запущен последовательно
+regression→classification в test-runs/llm-upgrade-20261022/final-default-parity.
+Проверить current.md и assessments перед любым новым запуском. Pending не PASS.
+Нового official submit нет; отдельный вопрос об одной V11 попытке ждёт ответа.
 
-Fixed50/50feature-view ensemble прошёл полный3foldgroupedCV73:pooledMacroF1
-.640209809→.645099304,все folds/дополнительные gates PASS. Он **не включён в runtime**.
-Дальше одна интеграция и полный baseline/candidateagent comparison по записанному
-протоколу. Не повторять CV по историческим ACTIVE/partial сообщениям.
-
-Официальный лучший — captain-reportedV9raw2187.849,1940.2s,его21.87/100.
-Новыйupload/mainmerge/дополнительныеагенты не разрешены. Public метрики — повторно
-используемая validation,не private или официальный прирост.
+Частые commits, без новых зависимостей/ключей/CSV в Git. При85%USED завершить
+текущий этап и передачу; никаких дополнительных агентов или покупок ресурсов.
+Исторические V10 STOP/ACTIVE статусы сохранены отдельно, не текущее поручение.

@@ -13,7 +13,8 @@ No default portfolio insertion yet; classification/numeric optimizer defaults
 unchanged. All254unique checks PASS unchanged-source (171.007s), plus23repeated
 exact-unpacked. Includes actual matching-floor, fullrefit, outer-label isolation
 and insufficient-history CSV parity checks. Evidence here. Public3cut screen now
-running sequentially after the negative framework study. See v15 protocol.
+completed: active latest cut RMSE39.051678→40.160774 (worse), older cuts exact
+control CSV parity. Gate FAIL, no default/portfolio promotion. See v15 results.
 
 V11 remains the qualified score-improving release. This archive is NOT yet a
 better ML model; no official upload authorized. Earlier artifacts immutable.

@@ -1,5 +1,18 @@
 # Реестр исследований: что уже известно
 
+## Новый разрешённый этап23октября2026
+
+|ID|Состояние|Доказательство|
+|---|---|---|
+|MVP-01|RUNNING: полный четырёхэтапный Qwen pipeline, две задачи последовательно; итоговых новых метрик ещё нет|[протокол](../experiments/hpo01_protocol_20261022.md), ignored public-mvp-attempt2/campaign.json|
+|LIVE-01|DONE: настоящий organizer API roles→planner, Optuna4, active CatBoost selector, refit/CSV/integrity|[343 source/23 unpacked и live receipt](../experiments/mvp_verification_20261023.json)|
+|FE-01/HPO-01|IMPLEMENTED optional/OFF default; отдельные paired screens ещё не выполнялись|[протокол](../experiments/hpo01_protocol_20261022.md)|
+|HAR-01|IMPLEMENTED baseline/staged prompt comparison tool; matched quality experiment ещё не выполнялся|tools/compare_planners.py|
+
+Основной контроль V11/V16 сохраняется. RUNNING не является KEEP или новым gain.
+Капитан разрешил local fits и публичный push рабочей ветки; новых official submit
+и дополнительных Codex agents нет. Исторические разделы ниже сохранены.
+
 Статусы: KEEP=метод прошёл свой заявленный gate; REJECT=конкретный рецепт не
 прошёл; MIXED=направления расходятся; DONE=инженерная возможность проверена;
 PROPOSAL=обучений/результатов метода нет. Отказ относится к точной процедуре,

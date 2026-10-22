@@ -1,0 +1,130 @@
+{
+  "scope": "Exploratory complete procedure on reused public cuts, not OOF/private/official score; multiple factors changed",
+  "campaign_status": "running",
+  "archive_sha256": "5dc7c9a26cde0982fc50b2241d3866ef3febc5948ca44c17453091dc8dc333e3",
+  "qualified_control": "V11/V16 saved full-default procedure; no new control refit",
+  "tasks": {
+    "regression": {
+      "metric": "rmse",
+      "search": {
+        "value": 39.755603137589205,
+        "rows": 18308,
+        "prediction_sha256": "2a05b3cd4aff4a0cd5172934489839c80534561044bd65a62e39d08791f16a4f",
+        "split_sha256": "cb5cc91326bbe0c4144db3b7bd47bdbb0122cde4aeb32e2597f820c2834549e6",
+        "row_order_verified": true
+      },
+      "confirmation": {
+        "value": 32.2937819823469,
+        "rows": 12946,
+        "prediction_sha256": "8d638e883ac55a44c97255b85c5ad0e5e103fb839e7a474ff964550eae76189c",
+        "split_sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
+        "row_order_verified": true
+      },
+      "mean": 36.02469255996805,
+      "control_search": 38.902803731334785,
+      "control_confirmation": 31.991659384340597,
+      "control_mean": 35.44723155783769,
+      "mean_delta": 0.577461002130363,
+      "search_experiments": 14,
+      "failed_experiments": 1,
+      "hpo_status": "ok",
+      "hpo_completed_trials": 8,
+      "planner_calls": [
+        {
+          "status": "ok",
+          "wall_seconds": 9.377,
+          "usage": {
+            "completion_tokens": 1300,
+            "prompt_tokens": 11754,
+            "total_tokens": 13054,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0,
+              "cache_creation_tokens": 0
+            },
+            "cost": 0.5906780105200001
+          },
+          "finish_reason": "stop",
+          "compatibility_retry": false,
+          "reasoning_requested": false,
+          "attempts": 1,
+          "usage_complete": true
+        }
+      ],
+      "selector_fit_count_in_search": 26,
+      "selector_selected_count_in_search": 26,
+      "seconds": 496.168,
+      "selected_recipe": {
+        "engine": "ensemble",
+        "hypothesis": "Validated cached-prediction blend",
+        "params": {},
+        "components": [
+          {
+            "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
+            "engine": "lightgbm",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "subsample_freq": 0,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 2,
+              "log_target": true,
+              "target_encoding_hierarchical": true,
+              "history_asof": true,
+              "history_min_periods": 3,
+              "feature_selection_top_k": 32,
+              "early_metric": "primary",
+              "nested_stopping": true
+            },
+            "feature_code": ""
+          },
+          {
+            "hypothesis": "Bounded native-category pilot",
+            "engine": "catboost",
+            "params": {
+              "iterations": 600,
+              "depth": 6,
+              "learning_rate": 0.07,
+              "l2_leaf_reg": 5,
+              "min_iterations": 100,
+              "feature_selection_top_k": 32,
+              "early_metric": "primary",
+              "nested_stopping": true
+            },
+            "feature_code": ""
+          }
+        ],
+        "weights": [
+          0.9,
+          0.09999999999999998
+        ]
+      },
+      "final_fit_iterations": [
+        139,
+        349
+      ],
+      "submission_sha256": "edc21d00eba2f3ff17f313d8c92756c4bbb2e70de91b80ce730e0032bf6098a2",
+      "final_csv_verified": true,
+      "integrity_ok": true
+    }
+  },
+  "official_submission": false
+}

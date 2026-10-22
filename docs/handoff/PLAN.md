@@ -1,5 +1,20 @@
 # План работы в новом чате
 
+Текущий разрешённый этап23октября: четырёхэтапный Qwen MVP и последующие
+измеренные итерации. Ветка `work/qwen-optuna-mvp-20261022`.
+343 source /23 exact-unpacked и реальный live-smoke PASS. Один owned coordinator
+`public-mvp-attempt2` выполняет regression→classification; исходный общий deadline
+сохранён. Читать START_HERE и новый hpo01_protocol_20261022.md. Не запускать
+параллельные fits; escalated процессы проверять вне sandbox.
+
+После завершения: проверить обе пары search/confirmation, CSV/refit/integrity,
+сравнить с V11/V16. Затем отдельные FE-01/HPO-01/HAR-01 по заранее записанным
+gates, с сохранением отрицательных результатов. Optuna/selector пока OFF default.
+Публичная публикация рабочей ветки явно разрешена; official submit не разрешён.
+Ниже — исторический план предыдущего checkpoint, не запрет нового поручения.
+
+---
+
 Текущий разрешённый этап завершён: ERR-01 реализован (100 focused checks PASS),
 BASE-01 закрыт после transfer97f0cf4. Проверены восемь search/confirmation-паспортов
 и фактические CSV V11/V16. [Результаты](../experiments/base01_complete_20261022.md).

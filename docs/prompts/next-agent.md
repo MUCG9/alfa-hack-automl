@@ -1,3 +1,20 @@
+# Актуальное дополнение23октября2026
+Продолжить разрешённые реализацию и local fits Qwen MVP, затем анализ/итерации.
+Ветка work/qwen-optuna-mvp-20261022, исходный checkpoint f3c8aba. Прочитать
+AGENTS.md, docs/handoff/START_HERE.md и docs/experiments/hpo01_protocol_20261022.md.
+343 source checks,23 exact-unpacked и полный настоящий Qwen live-smoke PASS.
+Сначала проверить owned campaign public-mvp-attempt2 (identity receipt рядом),
+не запускать параллельное обучение. Процессы вне sandbox не видны из sandbox;
+проверять их в escalated context. Старый public-mvp прерван без завершённых fits,
+его JSON сохранён. Трёхчасовой общий deadline перенесён без обнуления.
+Ключи в private env/временном auth-файле, не выводить и не коммитить.
+Public push рабочей ветки с кодом/отчётами явно разрешён, remote4886ecd проверен;
+main/submit/extra agents/paid resources не разрешены. Отрицательные результаты
+сохранять, selector/Optuna не включать default без заявленных gates.
+Старый текст ниже — предыдущий checkpoint, а не текущий запрет fits.
+
+---
+
 # Готовый промпт для нового чата
 
 Актуальное поручение: полный паспорт ERR-01, затем BASE-01.

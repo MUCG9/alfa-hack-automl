@@ -15,6 +15,17 @@ path and public MVP status must be read from receipts, not assumed.
 One owned sequential coordinator was started: unpacked gate -> live-four-stage
 smoke -> public-mvp campaign, artifacts in test-runs/qwen-optuna-20261022/.
 Inspect processes/receipts before starting any fits; do not run concurrently.
+Update23Oct: full organizer live-four-stage smoke PASSED (roles/planner, four
+Optuna trials, active CatBoost selection, refit/CSV/integrity). Initial public
+attempt stopped before a completed experiment; original receipt preserved.
+Active campaign is public-mvp-attempt2, detached coordinator PID33136,
+create_time1792703529.8; identity receipt detached-mvp-attempt2.json. Original
+common deadline1792713780.3726451 retained. Escalated processes are NOT visible
+to psutil inside the sandbox: inspect their identities outside sandbox before
+starting/restarting any fits. Do not treat an empty sandbox process list as proof
+that an outside job stopped. User explicitly approved PUBLIC publication of code
+and technical reports to MUCG9/alfa-hack-automl; branch4886ecd push+remote SHA
+verified. Git credentials are temporary/private; never expose or commit them.
 Historical V11/V16 remain the qualified control. No new official submit, extra
 Codex agents, paid GPU/resources, main merge or force push is authorized.
 Local rollback tags: baseline-before-qwen-optuna-20261022,

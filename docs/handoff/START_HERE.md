@@ -13,6 +13,14 @@
 Запущен один последовательный координатор: live-smoke полного пути, затем две
 публичные задачи. Проверить `test-runs/qwen-optuna-20261022/live-four-stage/`
 и `public-mvp/campaign.json`, а также owned processes, прежде чем запускать fits.
+Live-smoke уже PASS: roles/planner HTTP, Optuna4 и активный selector, refit/CSV.
+Первый public attempt прерван без завершённых экспериментов. Текущий —
+`public-mvp-attempt2`, PID33136/create_time1792703529.8; receipt
+`detached-mvp-attempt2.json`. Сохранён первоначальный общий трёхчасовой deadline.
+**Sandbox не видит процессы, запущенные вне него:** проверять owned PIDs также
+в escalated context, не начинать второй fit по пустому sandbox process list.
+Капитан отдельно разрешил публичную публикацию ветки; push4886ecd и remote SHA
+подтверждены. Main и official submit не менялись.
 Нового gain полного агента пока не заявлено. Сильный контроль V11/V16 сохранён.
 Новых submit/extra agents/paid resources/main merge не разрешено. Исторические
 запреты fits ниже относятся к предыдущему checkpoint и заменены этим поручением.

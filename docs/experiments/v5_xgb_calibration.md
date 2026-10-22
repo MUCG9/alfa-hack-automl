@@ -22,4 +22,18 @@ not a claim of calibrated probabilities for log loss.
 - Fold/CV data are already researched public rows, not a blind private estimate.
   A negative/inconsistent result is recorded and discarded, not hidden.
 
-This document predeclares the experiment; results have not been obtained yet.
+## Paired result
+
+All four workers passed. Control/candidate Macro F1:
+
+| Seed | Control | Inner decision calibration | Difference |
+|---|---:|---:|---:|
+| 42 | 0.650904187 | 0.652319467 | +0.001415280 |
+| 43 | 0.639569586 | 0.645949771 | +0.006380185 |
+| Mean | 0.645236886 | 0.649134619 | +0.003897733 |
+
+The exact source archive SHA is
+`1defe433da3fe65813b5c1cc3682991e508780dd89defefdb08b7589e17ccb5a`.
+The next predeclared gate, full 3-fold group CV for both recipes, has been started
+sequentially. Calibration is NOT in the default portfolio at this checkpoint;
+do not describe paired reuse of public folds as independent private evidence.

@@ -76,3 +76,16 @@ protected-input rejection is not bypassed. Local mock HTTP is explicitly mock.
 Credentials never belong in repo, prompts, logs or argv. Preserve historical ZIPs.
 Commit completed stages frequently. Stop at an actual10–15percent usage-window
 reading if exposed; no account counter is exposed here, so never invent one.
+
+## Full-agent experimental stage started
+
+As-of3 sequential queue completed exit0, with212unique and23unpacked checks.
+Checkpoint ea9cdc8. CV diagnostics committed c7f8174; no sampling promotion.
+Source8f6b73e adds ONE eligible minimum3 history candidate, preserving prior
+recipes and relative order, class/text policies and default search budgets.
+New snapshot solution-v10-history4.zip (see manifest/README) has216checks expected,
+not yet run. Frozen V9 default regression is ACTIVE in test-runs/v10-v9-default-reg,
+session21276. After that completes, validate baseline integrity/CSV parity, run
+8search-choice checks and frozen class/text portfolio parity, then new exact
+archive default regression. Complete source/unpacked/bounded class gates remain.
+Do not start another heavy fit while the baseline is running.

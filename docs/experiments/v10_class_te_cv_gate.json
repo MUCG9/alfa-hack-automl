@@ -1,0 +1,111 @@
+{
+  "checked_at_utc": "2026-10-22T11:48:35.804155+00:00",
+  "scope": "Frozen fixed 50/50 feature-view blend; grouped CV seed73; reused public data",
+  "protocol": "docs/experiments/v10_class_te_protocol.md",
+  "results_sha256": "e9b0d239109938f070eccd30edf3f3ec7f36f03af6281f297e74072cc0547abc",
+  "diversity_sha256": "b5b5f70e0734221eee27f85129edf0a4bbe2600a16ffb64903f77281b3f4f36d",
+  "counts_definition": "Distinct original full-feature hashes with the class among fitting rows, never resampled counts",
+  "fitting_support_by_fold": [
+    {
+      "fold": 0,
+      "split_sha256": "9b2793b53e9798f12d0166d91b80ae25294d93bf4e3bbbe800ab8e0dc22d893f",
+      "fitting_independent_feature_groups_per_class": {
+        "Analysis": 595,
+        "Backdoor": 549,
+        "DoS": 1728,
+        "Exploits": 7354,
+        "Fuzzers": 5625,
+        "Generic": 2412,
+        "Normal": 17589,
+        "Reconnaissance": 2692,
+        "Shellcode": 381,
+        "Worms": 41
+      }
+    },
+    {
+      "fold": 1,
+      "split_sha256": "b919b01eb1cb6bab686a957d787a64eb3dfe9995a5b8a6a2eaef9261189260d6",
+      "fitting_independent_feature_groups_per_class": {
+        "Analysis": 578,
+        "Backdoor": 541,
+        "DoS": 1672,
+        "Exploits": 7384,
+        "Fuzzers": 5610,
+        "Generic": 2364,
+        "Normal": 17601,
+        "Reconnaissance": 2679,
+        "Shellcode": 365,
+        "Worms": 43
+      }
+    },
+    {
+      "fold": 2,
+      "split_sha256": "22ca9627dcf820ac9acbb2b2b2de3670ef1659510d8b3c73ce4affc393894c5c",
+      "fitting_independent_feature_groups_per_class": {
+        "Analysis": 579,
+        "Backdoor": 540,
+        "DoS": 1690,
+        "Exploits": 7318,
+        "Fuzzers": 5711,
+        "Generic": 2288,
+        "Normal": 17690,
+        "Reconnaissance": 2621,
+        "Shellcode": 370,
+        "Worms": 46
+      }
+    }
+  ],
+  "minimum_fitting_group_support": {
+    "Analysis": 578,
+    "Backdoor": 540,
+    "DoS": 1672,
+    "Exploits": 7318,
+    "Fuzzers": 5610,
+    "Generic": 2288,
+    "Normal": 17589,
+    "Reconnaissance": 2621,
+    "Shellcode": 365,
+    "Worms": 41
+  },
+  "sufficient_support_threshold": 100,
+  "sufficiently_supported_classes": [
+    "Analysis",
+    "Backdoor",
+    "DoS",
+    "Exploits",
+    "Fuzzers",
+    "Generic",
+    "Normal",
+    "Reconnaissance",
+    "Shellcode"
+  ],
+  "minimum_support_class": "Worms",
+  "ties": "first stored manifest class",
+  "pooled_fixed_blend_per_class_f1_delta": {
+    "Analysis": 0.010448731650562981,
+    "Backdoor": 0.026337448559670767,
+    "DoS": -0.0027768285878044807,
+    "Exploits": 0.0037671940075084676,
+    "Fuzzers": 0.00416817373168199,
+    "Generic": 0.00022988791700118139,
+    "Normal": -0.0008419944638689003,
+    "Reconnaissance": 0.0007385815036621279,
+    "Shellcode": 0.0024176180441377593,
+    "Worms": 0.004406130268199138
+  },
+  "rarest_excluded_gain_definition": "Mean of pooled class F1 deltas over all classes except minimum fitting-support class; predictions and all rows unchanged",
+  "rarest_excluded_pooled_macro_gain": 0.004943201373616877,
+  "checks": {
+    "six_successful_workers": true,
+    "exactly_once_oof": true,
+    "all_fold_blend_deltas_positive": true,
+    "fold_mean_blend_delta_positive": true,
+    "pooled_blend_delta_positive": true,
+    "supported_class_f1_drop_at_most_0_01": true,
+    "positive_pooled_macro_gain_excluding_min_fitting_group_support_class": true
+  },
+  "gate_passed": true,
+  "full_agent_feature_view_integration_started": false,
+  "official_submission_performed": false,
+  "stop_requested_by_captain": true
+}

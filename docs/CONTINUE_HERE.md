@@ -1,20 +1,25 @@
-# Актуальная передача: V10, 22 октября 2026
+# Передача V10 — 22 октября 2026
 
-Рабочая ветка **work/cpu-research-20261022**. Main сохраняет V2.
-Капитан восстановил лимиты и поручил продолжить работу. Предыдущая передача
-на8% сохранена как checkpoint; пауза отменена.
+Ветка **work/cpu-research-20261022**,main сохраняет V2. Капитан попросил остановиться
+из-за лимитов и подготовить передачу. Новая команда STOP заменяет предыдущее
+возобновление. Все ML jobs текущего checkpoint завершены.
 
-1. [Самодостаточный промпт следующему агенту](prompts/next-agent.md).
-2. [Точное текущее состояние](handoff/current.md).
-3. [Журнал и результаты V10](experiments/v10_progress.md).
-4. [Архив экспериментального полного пайплайна](../release/v10-history4/README.md).
-5. [Следующая предложенная, ещё не запущенная гипотеза](experiments/v10_next_stage.md).
+1. [Готовый промпт следующему агенту](prompts/next-agent.md).
+2. [Точное состояние](handoff/current.md),[технический receipt](handoff/v10-stop-checkpoint-20261022.json).
+3. [Завершённая feature-view CV](experiments/v10_class_te_cv_results.md).
+4. [Проверенный history4 release](../release/v10-history4/README.md).
+5. [Следующий full-agent protocol](experiments/v10_class_te_agent_protocol.md).
+6. [Исторический журнал V10](experiments/v10_progress.md).
 
-V9 остаётся официальным лучшим: captain-reported2187.849,1940.2s,его21.87/100.
-V10 на платформу не отправлялся. Новая отправка требует отдельного разрешения.
-Новый агент сначала сверяет завершение jobs/gates и Git; pending не означает pass.
-Исторические V6–V9 handoffs и прежние queued статусы не заменяют новые evidence.
+History4:оба полных RMSEcuts лучше V9,mean36.775245→35.447232;219unique source/
+23repeated unpacked checks,refit/integrity,boundedclasslifecycle PASS. ZIP технически
+проверен для платформы; официально V10 не отправлялся.
 
-History4 полностью завершил local gate: оба RMSE cuts лучше V9,mean36.775→35.447,
-216unique/23unpacked pass, bounded class lifecycle pass. Следующий активный протокол:
-experiments/v10_extratrees_protocol.md (fixed LGBM+ExtraTrees vs strong single).
+Fixed50/50feature-view ensemble прошёл полный3foldgroupedCV73:pooledMacroF1
+.640209809→.645099304,все folds/дополнительные gates PASS. Он **не включён в runtime**.
+Дальше одна интеграция и полный baseline/candidateagent comparison по записанному
+протоколу. Не повторять CV по историческим ACTIVE/partial сообщениям.
+
+Официальный лучший — captain-reportedV9raw2187.849,1940.2s,его21.87/100.
+Новыйupload/mainmerge/дополнительныеагенты не разрешены. Public метрики — повторно
+используемая validation,не private или официальный прирост.

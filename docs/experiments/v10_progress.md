@@ -1,5 +1,12 @@
 # V10 research checkpoint, 22 October 2026
 
+**LATEST: captain requested STOP and handoff again.** All 6 feature-view CV workers
+completed, controller46586 exit0, no owned CV processes remain. Fixed 50/50 blend
+passed all predeclared CV73 gates: pooled Macro F1 .640209809→.645099304, every
+fold improves. Full-agent integration NOT started. History4 is still the validated
+archive, 219 unique source / 23 repeated unpacked checks. Read current handoff and
+v10_class_te_cv_results.md; historical ACTIVE/partial statuses below are superseded.
+
 Current branch `work/cpu-research-20261022`, based on V9 `a95c931`.
 Official best remains captain-reported V9 raw2187.849 (his21.87/100).
 Read this before historical V6–V9 handoffs. New work is authorized offline
@@ -173,3 +180,26 @@ another heavy fit. Support-shrinkage remains unexecuted. Conditional full-agent
 integration protocol v10_class_te_agent_protocol.md was recorded BEFORE any new
 runtime source or full-agent measurement, and runs only if every existing CV gate
 passes. History4 remains the validated current archive and runtime unchanged.
+
+## Captain-requested final handoff; complete feature-view CV gate
+
+The captain requested STOP because usage limits are ending. Scoped host audit
+found no owned CV processes; original controller session46586 returned exit0.
+All6workers completed, no interruption and no missing folds. The earlier4/6
+checkpoint is superseded, not a reason to start a duplicate study.
+
+Analysis reused already completed predictions, no new fitting after STOP.
+Fixed50/50blend CV73 MacroF1 .648007876/.638038834/.649725433 vs control
+.641237770/.633295604/.647188888. All3folds improve;mean .640574087→.645257381,
+pooled .640209809→.645099304,87670rows exactly_once. Supported-class drop<=.01
+passes,rarest-fitting-support excluded gain+.004943201374 passes. Every frozen
+CV gate PASS; full-agent integration NOT STARTED. Portable manifests/diagnostics/
+gate in v10_class_te_cv_{results,diversity,gate}.json,interpretation in matching MD.
+StandaloneTE is diagnostic,not a new post-hoc primary endpoint.
+
+History4 release reverified byte-exact against current51compiledfiles,flat ZIP,
+original requirements and Python compile; prior219source/23unpacked gates remain
+valid. No new source/release/official upload. Next agent receives complete prompt
+in docs/prompts/next-agent.md and already predeclared full-agent TE protocol.
+Last successful push before this handoff was10e4ee5; final checkpoint commit
+contains this journal and portable evidence. Main unchanged. No ML jobs remain.

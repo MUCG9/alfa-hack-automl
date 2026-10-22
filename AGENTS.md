@@ -1,11 +1,14 @@
 # Instructions for development agents
 
-V10 work is ACTIVE again: captain restored limits and asked this agent to continue.
-Read docs/experiments/v10_progress.md before historical checkpoints. History4 full
-regression improves both cuts,216source/23unpacked checks and bounded class lifecycle
-pass. No official upload. Next predeclared study is v10_extratrees_protocol.md;
-check current results/jobs before starting a duplicate. The earlier8% handoff stop
-has been revoked by the captain, but checkpoint frequently and honor future limits.
+V10 is CHECKPOINTED for handoff: captain again requested STOP because limits are
+ending. This latest stop supersedes the earlier restored-limit continuation.
+Read docs/prompts/next-agent.md and docs/handoff/current.md first. History4 full
+regression improves both cuts, 219 source / 23 unpacked checks and bounded class
+lifecycle pass. No official upload. Fixed categorical-TE feature-view blend
+completed all 6 workers of grouped CV73 and PASSED every predeclared gate; no ML
+jobs remain from that run. Integration is NOT implemented. Next stage, for the
+continuing agent: v10_class_te_agent_protocol.md, full-procedure evaluation.
+Historical ACTIVE/partial jobs and ExtraTrees-next messages below are superseded.
 
 Current local continuation: `work/cpu-research-20261022`, based on `a95c931`.
 Read `docs/experiments/cpu_research_review_20261022.md` for the new proposed CPU
@@ -32,7 +35,7 @@ Latest continuation: `work/semantic-inputs-20261022`, based on `work/autonomous-
 
 For the next quality iteration, read `docs/architecture/quality_plan.md` (review 2026-10-22). Quality of the target metric takes priority over speed within the platform limits. It is a proposed backlog, not implemented capabilities or authorization to run every experiment. Establish a complete baseline and isolate inner preprocessing before adding OOF selection, new ensembles or augmentation. Keep historical evaluation immutable; add evaluation strategies explicitly and report fold-mean and pooled OOF scores separately.
 
-- Current continuation branch: `work/agent-budget-20261022`. `work/semantic-inputs-20261022` freezes V7; `work/autonomous-score-20261022` freezes V6. Earlier branches are historical checkpoints. Main is preserved V2. Create new work from the latest continuation, not main; no force push/main merge without captain approval. Latest V9 has169unique checks and bounded structural feedback; both full public gates passed. The rejected model studies did not change defaults.
+- Current continuation branch: `work/cpu-research-20261022`. `work/agent-budget-20261022` freezes V9; `work/semantic-inputs-20261022` freezes V7; `work/autonomous-score-20261022` freezes V6. Earlier branches are historical checkpoints. Main is preserved V2. Create new work from the latest continuation, not main; no force push/main merge without captain approval. Latest validated local release is V10 history4; V9 remains official best. Rejected classification studies did not change defaults; positive TE CV is not yet runtime integration.
 - V4 upload is recorded in `release/v4-history3/submission-20261022.json`. Fresh reload at04:25UTC shows the exact v4 filename, upload time05:21, raw score2184.173 and2remaining attempts. No /100 or hidden-final conversion is known. Initial history mixed the filename with v3's1723.691; do not confuse that with v4 or duplicate the upload. Further submissions need captain authorization, not merely a daily reset.
 - Preserve `release/solution-v1.zip`, `release/solution-v2.zip`, `release/solution-v3.zip` and their manifests. New candidates get new archive names; never replace historical evidence.
 - Canonical code is `src/automl`. Root `agent_*.py`, `model_utils.py`, `ensemble_cache.py` are development compatibility shims, not a standalone submission.

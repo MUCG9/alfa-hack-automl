@@ -19,8 +19,11 @@ class lifecycle прошли. Последующие тесты не меняю�
 Нового официального submit нет; прежний Macro F1 не выдаётся за новый полный run.
 
 Классификационные исследования: under70 и fixed LGBM+ExtraTrees дали mixed
-результаты и не меняют defaults. Активно проверяется отдельная ветка cross-fitted
-категориальных статистик. [Актуальный журнал](docs/experiments/v10_progress.md)
+результаты и не меняют defaults. Fixed 50/50 ансамбль с cross-fitted категориальными
+статистиками прошёл полный 3-fold CV: pooled Macro F1 .640210→.645099, все заранее
+заданные gates PASS; runtime integration ещё не начат. Капитан попросил остановиться
+из-за лимитов: [передача следующему агенту](docs/prompts/next-agent.md).
+[Итог CV](docs/experiments/v10_class_te_cv_results.md), [журнал](docs/experiments/v10_progress.md)
 и [протоколы/метрики](docs/experiments/v10_extratrees_results.md) сохраняют также
 отрицательные результаты; public scores не гарантируют private-прирост.
 

@@ -2,16 +2,36 @@
 from copy import deepcopy
 from pathlib import Path
 import sys
+import json
+import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from compare_planners import bounded_candidates, measured_support
+from compare_planners import bounded_candidates, measured_support, plan_with_receipt, proposal_diagnostics, runner
 
 
 class PlannerComparisonTests(unittest.TestCase):
+    def test_raw_receipt_exposes_rejected_feature_proposal_without_changing_plans(self):
+        control = {'engine': 'lightgbm', 'params': {'feature_views': 'categorical_te_pair', 'calibrate': True}, 'feature_code': ''}
+        content = json.dumps({'candidates': [
+            {'engine': 'lightgbm', 'params': {'num_leaves': 31}},
+            {'engine': 'lightgbm', 'feature_code': 'def transform(df):\n    return df.copy()'}]})
+        def gateway(*args, **kwargs):
+            return content, {'status': 'ok'}
+        with tempfile.TemporaryDirectory() as temporary, patch.object(runner, 'request_json', gateway):
+            output = Path(temporary)
+            plans, call, diagnostics = plan_with_receipt({'best_recipe': control}, output, 'staged')
+            self.assertEqual(len(plans), 1)
+            self.assertEqual(call['status'], 'ok')
+            self.assertEqual(diagnostics['raw_candidates'], 2)
+            self.assertEqual([r['status'] for r in diagnostics['candidates']], ['supported', 'rejected'])
+            self.assertIs(runner.request_json, gateway)
+            self.assertEqual(json.loads((output/'staged-raw.json').read_text())['content'], content)
+
     def test_support_counts_fitting_groups_instead_of_duplicate_rows(self):
         train = pd.DataFrame({'target': ['A', 'A', 'B', 'A', 'B']})
         result = measured_support({'kind': 'classification', 'target': 'target', 'classes': ['A', 'B']},

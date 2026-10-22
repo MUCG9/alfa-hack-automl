@@ -117,3 +117,18 @@ outer split и actual HPO work. Group overlap отклоняется до API ca
 проверки PASS, включая duplicate rows vs independent groups. Это одинаковый
 обогащённый контекст для двух промптов; эффект самого support tool отдельно не
 изолирован. Не выдавать такое сравнение за исходный полный baseline агента.
+
+HAR-01 также сохраняет raw terminal JSON в ignored artifacts до нормализации,
+отдельно считает raw/supported/rejected proposals и причины contract rejection.
+Это observer вокруг того же `llm_plan`, без изменения prompt/parser/API cap;
+source MVP остаётся прежним. Четыре dev проверки PASS, включая отклонённый
+feature_code при унаследованном feature_views и восстановление gateway callback.
+Raw ответы не коммитить. У двух текущих MVP вызовов осталось по одному supported
+recipe; сырой ответ тогда не сохранялся, причину отсутствия второго не выдумывать.
+
+Подготовлен отдельный FE-02 протокол и trusted dispatcher сохранения исходных
+features: `fe02_protocol_20261023.md`. Пока новых fits нет. Три dev-проверки
+union/order/rows/weights/skip PASS. Actual flat worker import и expected rejection
+неподходящего task kind проверены до fitting (0 model fits). Этот тест не является
+live ML smoke. FE-02 запускать только после завершения текущей ночной очереди и
+проверки training lock; canonical source до этого остаётся замороженным.

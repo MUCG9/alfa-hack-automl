@@ -272,7 +272,7 @@ def main():
         if directory.is_dir() and proposals.is_file():
             document = json.loads(proposals.read_text())
             report['planner_generation'][directory.name] = {mode: {key: value.get(key) for key in
-                ['call', 'distinct_candidates', 'raw_supported_proposals', 'candidate_limit', 'rejected']}
+                ['call', 'distinct_candidates', 'raw_supported_proposals', 'candidate_limit', 'rejected', 'diagnostics']}
                 for mode, value in document['modes'].items()}
         path = directory/'results.json'
         if not directory.is_dir() or not path.is_file():

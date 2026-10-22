@@ -20,10 +20,59 @@ from automl.evaluation.api import choose_validation
 from automl.contracts.messages import SplitPlan
 from automl.infrastructure.atomic import atomic_json
 from automl.infrastructure.run_budget import RunBudget
-from automl.search.policy import signature
-from automl.search.runner import llm_plan, ordered, planner_context
+from automl.search.policy import signature, normalize
+from automl.search.runner import ordered, planner_context
+import automl.search.runner as runner
 from automl.task_understanding.api import discover
 from benchmark_hpo import digest
+
+
+def proposal_diagnostics(content, best):
+    if content is None:
+        return {'status': 'no_response', 'raw_candidates': None, 'candidates': []}
+    document = None
+    decoder = json.JSONDecoder()
+    for index, char in enumerate(content):
+        if char not in '{[':
+            continue
+        try:
+            document, _ = decoder.raw_decode(content[index:])
+            break
+        except json.JSONDecodeError:
+            continue
+    proposals = document.get('candidates', [document]) if isinstance(document, dict) else document
+    if not isinstance(proposals, list):
+        return {'status': 'invalid_envelope', 'raw_candidates': None, 'candidates': []}
+    outcomes = []
+    for index, candidate in enumerate(proposals):
+        outcome = {'proposal': index+1}
+        if index >= 3:
+            outcome.update(status='outside_runtime_parser_limit')
+        else:
+            try:
+                normalize(candidate, best)
+                outcome.update(status='supported')
+            except (ValueError, TypeError) as exc:
+                outcome.update(status='rejected', reason=str(exc)[:180])
+        outcomes.append(outcome)
+    return {'status': 'decoded', 'raw_candidates': len(proposals), 'candidates': outcomes}
+
+
+def plan_with_receipt(context, output, mode):
+    """Observe the existing planner without changing its prompt/parser/call cap."""
+    original = runner.request_json
+    captured = {}
+    def observe(*args, **kwargs):
+        content, call = original(*args, **kwargs)
+        captured['content'] = content
+        atomic_json(output/f'{mode}-raw.json', {'content': content})
+        return content, call
+    runner.request_json = observe
+    try:
+        plans, call = runner.llm_plan(context, output, max_output=5000, timeout=120, prompt_mode=mode)
+    finally:
+        runner.request_json = original
+    return plans, call, proposal_diagnostics(captured.get('content'), context.get('best_recipe'))
 
 
 def measured_support(spec, train, hashes, fitting, validation):
@@ -94,13 +143,13 @@ def main():
                'input_sha256': screen['input_sha256'], 'context': context, 'modes': {}}
     with RunBudget(300, 2, output):
         for mode in ['baseline', 'staged']:
-            candidates, call = llm_plan(context, output, max_output=5000, timeout=120, prompt_mode=mode)
+            candidates, call, diagnostics = plan_with_receipt(context, output, mode)
             selected, rejected = bounded_candidates(screen['control_recipe'], candidates, mode)
             receipt = {k: v for k, v in call.items() if k != 'error_message'}
             atomic_json(output/f'{mode}-candidates.json', selected)
             summary['modes'][mode] = {'call': receipt, 'distinct_candidates': len(selected)-1,
                                      'raw_supported_proposals': len(candidates), 'candidate_limit': 2,
-                                     'rejected': rejected, 'candidates': selected}
+                                     'rejected': rejected, 'diagnostics': diagnostics, 'candidates': selected}
             atomic_json(output/'proposals.json', summary)
             print(json.dumps({'mode': mode, 'call': receipt, 'distinct_candidates': len(selected)-1}), flush=True)
     if any(r['call'].get('status') != 'ok' for r in summary['modes'].values()):

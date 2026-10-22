@@ -41,6 +41,12 @@ skill copy so a repository rollback does not remove it. Installed hashes match.
 Read its alfa-hack profile for subsequent research. It preserves existing budgets,
 frozen evaluators, negative evidence and rollback history; it grants no new actions.
 Skill quick validation PASS; contest source hashes remain unchanged.
+Pending FE-02 is predeclared in docs/experiments/fe02_protocol_20261023.md:
+union original columns with ordinary CatBoost top32, trusted dev dispatcher only.
+Three no-fit checks and flat import/expected protocol rejection PASS, zero fits.
+Run only after MVP AND existing overnight queue/descendants finish and lock frees.
+Do not change canonical source before all frozen research finishes; HPO sparse
+anchor-default audit is recorded for a subsequent narrow fix.
 Local rollback tags: baseline-before-qwen-optuna-20261022,
 qwen-optuna-core-20261022, qwen-mvp-cli-tested-20261023.
 

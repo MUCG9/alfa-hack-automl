@@ -14,6 +14,7 @@ import numpy as np
 import pandas as pd
 from automl.execution import worker
 from automl.search.policy import normalize, signature
+from automl.search.runner import coordinator_selection
 from test_feature_views import fixture
 
 
@@ -30,6 +31,16 @@ class SelectionTests(unittest.TestCase):
         second = normalize({'engine': 'lightgbm', 'params': {'feature_selection_top_k': 2}})
         self.assertNotEqual(signature(first), signature(second))
         self.assertNotIn('feature_selection_top_k', first['params'])
+
+    def test_explicit_coordinator_choice_overrides_planner_and_leaves_default_untouched(self):
+        recipe=normalize({'engine':'catboost','params':{'feature_selection_top_k':50}})
+        plain=normalize({'engine':'catboost','params':{}})
+        self.assertIs(coordinator_selection(plain,0),plain)
+        self.assertNotIn('feature_selection_top_k',coordinator_selection(recipe,0)['params'])
+        selected=coordinator_selection(recipe,32)
+        self.assertEqual(selected['params']['feature_selection_top_k'],32)
+        self.assertEqual(recipe['params']['feature_selection_top_k'],50)
+        with self.assertRaises(ValueError): coordinator_selection(normalize({'engine':'linear_text'}),32)
 
     def test_real_nested_and_full_refit_with_outer_label_poisoning(self):
         with tempfile.TemporaryDirectory() as directory:

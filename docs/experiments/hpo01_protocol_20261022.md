@@ -23,6 +23,16 @@ historical evidence. Original requirements remain byte-identical.
 
 ## Predeclared experiment and gates
 
+First run the explicitly requested four-stage MVP as an exploratory complete
+procedure: EDA/role discovery, bounded features plus CatBoost top32 selection,
+the existing multi-family portfolio, inner Optuna8, staged Qwen feedback,
+confirmation, full refit/export. At most14 search experiments, two planner
+calls per task and a common10800s campaign deadline; two public tasks sequential.
+This combines several factors to establish the requested MVP and cannot
+attribute a gain to one component. Its control is the preserved V11/V16 complete
+procedure. Keep the best qualified baseline even if this exploratory MVP loses.
+The independent component gates below govern any subsequent promotion.
+
 HPO screen uses the strongest qualified SINGLE recipe (not a weak uncalibrated
 model) from current portfolio: categorical two-view LightGBM for classification,
 schema/history LightGBM for temporal regression. These component controls are
@@ -60,6 +70,13 @@ forward cuts. A skip when <=32 columns is not evidence of selection benefit.
 No official score claim from these reused public data. The PDF specifies RMSE
 and Macro F1; official normalized points need hidden-test baseline metrics and
 cannot be inferred from local validation. Publish measurements and limitations.
+
+After the initial MVP and live smoke, HAR-01 compares baseline/staged prompts
+using identical measured feedback, at most two candidates per prompt and two
+API calls per task. Score proposals on the same declared outer cuts, with the
+unchanged component control. Same positive paired/support gates as above;
+contract acceptance, distinct proposals, runtime and token usage are separate
+from ML quality. No prompt changes after observing a mode's results.
 
 ## Access at start
 

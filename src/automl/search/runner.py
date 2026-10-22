@@ -18,7 +18,7 @@ from automl.contracts.messages import TaskSpec,ExperimentRequest
 from automl.task_understanding.api import discover,MultipleTargets,load_inputs
 from automl.evaluation.api import evaluate,make_split,make_time_split,choose_validation,metric_context
 from automl.publishing.api import dummy_predictions,save_submission,checkpoint
-from automl.search.policy import parse_plans,portfolio,fallback,signature
+from automl.search.policy import parse_plans,portfolio,fallback,signature,normalize
 from automl.execution.api import read_cache,combine,materialize
 
 SYSTEM_PROMPT='''You plan falsifiable experiments inside a universal CPU AutoML agent.
@@ -194,6 +194,15 @@ def journal(runs,phase,record,metric,decision):
         if not exists: writer.writeheader()
         writer.writerow(row)
 
+def coordinator_selection(recipe,top_k=0):
+    """Only an explicit coordinator option enables the separate FE experiment."""
+    if not top_k and 'feature_selection_top_k' not in recipe.get('params',{}): return recipe
+    if not top_k:
+        params=dict(recipe.get('params',{})); params.pop('feature_selection_top_k',None)
+        return normalize(dict(recipe,params=params))
+    if recipe['engine']=='linear_text': raise ValueError('CatBoost feature selection does not support text recipes')
+    return normalize(dict(recipe,params=dict(recipe.get('params',{}),feature_selection_top_k=top_k)))
+
 def _main():
     parser=argparse.ArgumentParser()
     parser.add_argument('task',type=Path,nargs='?',default=Path('task.md'))
@@ -206,10 +215,12 @@ def _main():
     parser.add_argument('--hpo-budget',type=int,default=900,help='Maximum total seconds for the inner study')
     parser.add_argument('--hpo-sampler',choices=['tpe','random'],default='tpe')
     parser.add_argument('--planner-mode',choices=['baseline','staged'],default='baseline')
+    parser.add_argument('--feature-selection-top-k',type=int,default=0,help='Explicit experimental CatBoost selector; 0 disables')
     parser.add_argument('--validation-strategy',choices=['legacy','auto'],default='auto')
     parser.add_argument('--run-name',default='run-v2')
     args=parser.parse_args()
     if not 0<=args.hpo_trials<=32 or args.hpo_budget<5: parser.error('Invalid HPO limits')
+    if not 0<=args.feature_selection_top_k<=512: parser.error('Invalid feature selection size')
     total_calls=max(0,min(8,args.max_planner_calls))+2 if args.max_llm_calls is None else args.max_llm_calls
     with RunBudget(args.time_budget,total_calls,args.task.resolve().parent):
         loaded=load_inputs(args.task,allow_llm=not args.offline)
@@ -247,7 +258,8 @@ def solve_single(args,task_data=None,output_root=None):
         probabilities=np.tile([1-prior,prior],(len(va),1))
         baseline=evaluate(train[spec['target']].iloc[va].astype(str),np.repeat(spec['classes'][int(prior>=.5)],len(va)),spec['kind'],spec['metric'],probabilities,spec['classes'],**metric_context(spec,train,va))
     else: baseline=evaluate(train[spec['target']].iloc[va],dummy,spec['kind'],spec['metric'],classes=spec['classes'],**metric_context(spec,train,va))
-    records=[]; calls=[]; queue=portfolio(spec); seen=set(); best=None
+    selection_size=getattr(args,'feature_selection_top_k',0)
+    records=[]; calls=[]; queue=[coordinator_selection(r,selection_size) for r in portfolio(spec)]; seen=set(); best=None
     hpo_report=None; hpo_attempted=False
     reserve=min(1200,max(60,args.time_budget*.2)); limit=max(1,min(args.max_experiments,14))
     for iteration in range(limit):
@@ -267,8 +279,9 @@ def solve_single(args,task_data=None,output_root=None):
             context=planner_context(spec,profile,text,split_info,records,best,remaining,len(calls)+1)
             plans,usage=llm_plan(context,runs,timeout=max(5,min(300,remaining-reserve-30)),prompt_mode=getattr(args,'planner_mode','baseline'))
             calls.append(usage); atomic_json(runs/f'planner-{len(calls)}.json',{'plans':plans,'call':usage,'context':context})
+            plans=[coordinator_selection(p,selection_size) for p in plans]
             queue.extend(p for p in plans if signature(p) not in seen)
-        if not queue: queue.append(fallback(spec,iteration,best['recipe'] if best else None))
+        if not queue: queue.append(coordinator_selection(fallback(spec,iteration,best['recipe'] if best else None),selection_size))
         while queue and signature(queue[0]) in seen: queue.pop(0)
         if not queue: continue
         recipe=queue.pop(0); seen.add(signature(recipe))
@@ -352,6 +365,7 @@ def solve_single(args,task_data=None,output_root=None):
         'score_scope':'local search/confirmation folds, not unbiased blind/private/platform score',**budget_metadata()}
     if getattr(args,'hpo_trials',0): report['hpo']=hpo_report or {'status':'not_reached_within_search_budget'}
     if getattr(args,'planner_mode','baseline')!='baseline': report['planner_mode']=args.planner_mode
+    if selection_size: report['feature_selection_top_k']=selection_size
     atomic_json(runs/'report.json',report)
     if not integrity_ok: raise RuntimeError('Protected inputs or evaluator/source changed during the run; do not trust its metrics')
     print(json.dumps({k:v for k,v in report.items() if k in {'version','best_validation','final_fit_status','elapsed_seconds','submission_sha256'}},ensure_ascii=False,indent=2),flush=True)

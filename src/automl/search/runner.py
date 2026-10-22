@@ -150,7 +150,10 @@ def ordered(records,spec):
 
 
 def median_iterations(first,second):
-    if isinstance(first,list) and isinstance(second,list): return [median_iterations(a,b) for a,b in zip(first,second)]
+    if isinstance(first,list) or isinstance(second,list):
+        if not isinstance(first,list) or not isinstance(second,list) or len(first)!=len(second):
+            raise ValueError('Mismatched fit iteration trees')
+        return [median_iterations(a,b) for a,b in zip(first,second)]
     return max(30,int(np.median([first,second])))
 
 def file_fingerprints(paths):

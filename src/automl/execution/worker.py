@@ -28,6 +28,7 @@ from automl.execution.model_adapters.linear_text import linear_text_fit
 from automl.contracts.messages import DataPolicy,SplitPlan,PredictionBundle
 from dataclasses import asdict
 from automl.execution.sampling.policies import prepare_training
+from automl.execution.feature_views import validate_feature_view,feature_view_components,validate_fit_iterations
 
 
 
@@ -105,10 +106,28 @@ def run_ensemble(job):
         'submission':str(output/'submission.csv'),'components':records})
 
 
+def run_feature_views(job):
+    recipe=job['recipe']
+    components=feature_view_components(recipe,job['spec'])
+    internal=dict(recipe,engine='ensemble',params={},components=components,weights=[.5,.5])
+    run_ensemble(dict(job,recipe=internal))
+    path=Path(job['output_dir'])/'result.json'
+    record=json.loads(path.read_text())
+    record['recipe']=recipe
+    record['feature_views']={'method':'categorical_te_pair','weights':[.5,.5],
+        'groups':components[1]['params']['target_encoding_groups'],
+        'iteration_tree':record['fit_iterations']}
+    atomic_json(path,record)
+
+
 def run(job):
     start=time.monotonic()
     spec=job['spec']
     recipe=job['recipe']
+    validate_fit_iterations(recipe,job.get('fit_iterations'))
+    if 'feature_views' in recipe.get('params',{}):
+        validate_feature_view(recipe,spec)
+        return run_feature_views(job)
     data_policy=DataPolicy.parse(recipe.get('data_policy'))
     if recipe['engine']=='ensemble':
         return run_ensemble(job)

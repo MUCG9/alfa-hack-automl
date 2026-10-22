@@ -4,7 +4,7 @@ from automl.execution.weighting.classes import number
 from automl.evaluation.api import lgbm_metric
 COMMON_PARAMETERS={'iterations','learning_rate','seed','class_weight_power','class_weights','generic_features','log_target','early_metric','nested_stopping','min_iterations','categorical_from_dictionary','calibrate','calibration_folds','target_encoding','target_encoding_groups','target_encoding_smoothing','target_encoding_auto_groups','target_encoding_refine_groups','target_encoding_counts','target_encoding_half_life','target_encoding_hierarchical','history_asof','history_min_periods'}
 MODEL_PARAMETERS={
- 'lightgbm':{'max_depth','depth','num_leaves','min_child_samples','reg_lambda','reg_alpha','subsample','subsample_freq','colsample_bytree','calibrate','multiclass_strategy','pair_refinement'},
+ 'lightgbm':{'max_depth','depth','num_leaves','min_child_samples','reg_lambda','reg_alpha','subsample','subsample_freq','colsample_bytree','calibrate','multiclass_strategy','pair_refinement','feature_views'},
  'xgboost':{'depth','max_depth','min_child_weight','subsample','colsample_bytree','reg_lambda','reg_alpha','gamma','max_bin'},
  'catboost':{'depth','l2_leaf_reg','random_strength'},
  'extra_trees':{'max_depth','min_samples_leaf','max_features'},

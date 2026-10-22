@@ -2,11 +2,11 @@
 from __future__ import annotations
 import hashlib,json
 from automl.contracts.messages import DataPolicy
-from automl.execution.api import effective_parameters,CAPABILITIES
+from automl.execution.api import effective_parameters,CAPABILITIES,validate_feature_view
 
 ENGINES=set(CAPABILITIES)
 PARAMETERS={'iterations','depth','max_depth','learning_rate','num_leaves','min_child_samples',
- 'reg_lambda','reg_alpha','l2_leaf_reg','random_strength','class_weights','class_weight_power',
+ 'reg_lambda','reg_alpha','l2_leaf_reg','random_strength','class_weights','class_weight_power','feature_views',
  'subsample','subsample_freq','colsample_bytree','seed','log_target','generic_features','calibrate',
  'min_samples_leaf','max_features','text_alpha','text_char_features','text_svd_components','text_classifier','text_C','min_iterations','min_child_weight','gamma','max_bin','categorical_from_dictionary','multiclass_strategy','target_encoding','calibration_folds','target_encoding_groups','target_encoding_smoothing','target_encoding_auto_groups','target_encoding_refine_groups','target_encoding_counts','target_encoding_half_life','target_encoding_hierarchical','pair_refinement','history_asof','history_min_periods'}
 
@@ -23,6 +23,8 @@ def normalize(candidate,best=None):
         raise ValueError('Unsupported planner recipe')
     params=candidate.get('params',{})
     if not isinstance(params,dict): raise ValueError('params must be an object')
+    if 'feature_views' in params and candidate['engine']!='lightgbm':
+        raise ValueError('Unsupported feature-view learner')
     if 'history_asof' in params and not isinstance(params['history_asof'],bool):
         raise ValueError('history_asof must be a boolean')
     if params.get('target_encoding_hierarchical'):
@@ -73,6 +75,7 @@ def normalize(candidate,best=None):
     result={'hypothesis':str(candidate.get('hypothesis','Planner hypothesis'))[:1000],
             'engine':candidate['engine'],'params':inherited,'feature_code':code}
     if not policy.is_noop: result['data_policy']=policy.to_dict()
+    validate_feature_view(result)
     return result
 
 def parse_plans(content,best=None):
@@ -132,6 +135,10 @@ def portfolio(spec):
     if spec.get('metric')=='macro_f1':
         recipes.insert(3,normalize(dict(recipes[2],params=dict(recipes[2]['params'],calibrate=True),
             hypothesis='Optional training-only XGBoost decision calibration; retain the uncalibrated control')))
+        declared=set(spec.get('categorical_features') or [])
+        if spec.get('task_family')!='pointwise_ranking' and len([c for c in spec.get('features',[]) if c in declared])>=2:
+            recipes.insert(2,normalize(dict(recipes[1],params=dict(recipes[1]['params'],feature_views='categorical_te_pair'),
+                hypothesis='Fixed equal-weight original and cross-fitted categorical feature views; compare full procedure')))
     return recipes
 
 def fallback(spec,number,best):

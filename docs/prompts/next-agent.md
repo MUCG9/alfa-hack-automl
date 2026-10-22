@@ -1,5 +1,12 @@
 # Продолжение Alfa Hack AutoML — актуальный промпт
 
+V10 work has now STARTED on work/cpu-research-20261022. Read
+docs/experiments/v10_progress.md FIRST: completed paired classification/history
+screens, active frozen-V9 class CV, and pending support-gated asof2 study/checks.
+Do not mistake the earlier proposed/unstarted state below for current status.
+Source05b2fdb adds opt-in history support; no model defaults promoted yet.
+Check actual results before duplicating any job. Official best remains V9.
+
 Продолжай разработку универсального CPU AutoML-агента в репозитории
 https://github.com/MUCG9/alfa-hack-automl . Прочитай `AGENTS.md`,
 `docs/CONTINUE_HERE.md`, `docs/handoff/current.md`, затем stage notes.

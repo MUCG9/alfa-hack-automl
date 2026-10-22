@@ -1,5 +1,10 @@
 # Instructions for development agents
 
+V10 implementation/research is active; read docs/experiments/v10_progress.md and
+v10_diversity_protocol.md before the historical checkpoints below. Paired screens
+are done, frozen-V9 class CV is active, asof2 support-gated screen and complete
+new checks pending. No default promotion or official upload in V10 yet.
+
 Current local continuation: `work/cpu-research-20261022`, based on `a95c931`.
 Read `docs/experiments/cpu_research_review_20261022.md` for the new proposed CPU
 research queue and local environment verification. Captain reports V9 score

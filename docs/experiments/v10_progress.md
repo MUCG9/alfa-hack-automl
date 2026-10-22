@@ -23,3 +23,20 @@ History implementation a9cedc0; error-complementarity tools9591c71.
 - No official submit, live API call or original requirements change in this stage.
 
 This is an intermediate status; read newer evidence before repeating jobs.
+
+## Newer checkpoint: paired screens complete, CV active
+
+Classification4/4workers finished: under70 mean.652199459 vs matched3-model
+.646828432, but only+.000655771 vs strong single component and loses seed43 to it.
+Full3fold CV is ACTIVE in test-runs/v10-balanced-cv3, frozen V9 workers. Read its
+results.json before touching processes or starting another heavy fit.
+
+History1 all6workers finished: RMSE40.960973/33.984412/50.924670 control vs
+39.051678/32.518745/51.096680 candidate. Failed all-three-cuts keep gate.
+Follow-up history_min_periods=3 declared in v10_history_support.md and implemented
+in05b2fdb;6worker tests pass, including insufficient-history exact control parity.
+New archive release/solution-v10-asof2.zip,
+SHA167663dee6fa3cfe62819859ba976976e2a9e6e333b89185dcece2dbe3639ca9.
+Its support-gated metric screen is NOT STARTED; run after active class CV.
+Full210source checks and exact unpacked gate are also still pending; run sequentially.
+No method promoted/default portfolio change, no official upload.

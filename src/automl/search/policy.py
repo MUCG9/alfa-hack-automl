@@ -116,7 +116,14 @@ def portfolio(spec):
             semantic=dict(history_log,params=dict(history_log['params'],target_encoding_hierarchical=True),
                           hypothesis='Refine recurring contexts with categorical attributes and schema-described static properties')
             numeric_history=(spec.get('time_candidate') or {}).get('representation','numeric')=='numeric' and (spec.get('time_candidate') or {}).get('split_mode','period')=='period'
-            recipes=([normalize(history),normalize(history_log)]+([normalize(semantic)] if spec.get('static_numeric_features') else []) if numeric_history else [])+[normalize(conservative)]+recipes
+            history_recipes=[normalize(history),normalize(history_log)] if numeric_history else []
+            if numeric_history and spec.get('static_numeric_features'):
+                history_recipes.append(normalize(semantic))
+                if spec.get('task_family')!='pointwise_ranking':
+                    asof=dict(semantic,params=dict(semantic['params'],history_asof=True,history_min_periods=3),
+                              hypothesis='Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control')
+                    history_recipes.append(normalize(asof))
+            recipes=history_recipes+[normalize(conservative)]+recipes
         return recipes
     recipes=[normalize({'engine':'lightgbm','hypothesis':'Higher-capacity mild-weight model','params':dict(common,class_weight_power=.5)}),
             normalize({'engine':'lightgbm','hypothesis':'Iteration-matched inner decision calibration','params':dict(common,class_weight_power=.5,calibrate=True)}),

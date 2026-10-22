@@ -38,7 +38,13 @@ def infer_time_candidate(dictionary,train,test,features):
                                'representation':representation,'split_mode':'chronological_block' if representation=='datetime' or a.nunique()>100 else 'period',
                                'train_min':float(a.min()),'train_max':float(a.max()),'test_min':float(b.min()),'test_max':float(b.max())})
     return candidates[0] if len(candidates)==1 else None
-def discover(task_path: Path):
+class MultipleTargets(ValueError):
+    def __init__(self,targets):
+        self.targets=tuple(targets)
+        super().__init__('Expected one target, got '+repr(list(targets)))
+
+
+def load_inputs(task_path:Path):
     root = task_path.resolve().parent
     text = task_path.read_text(encoding='utf-8-sig')
     paths = resolve_inputs(root,text)
@@ -46,22 +52,34 @@ def discover(task_path: Path):
     test = read_input_table(paths['test'])
     sample = read_input_table(paths['sample_submission'])
     dictionary = read_input_table(paths['data_dictionary']) if 'data_dictionary' in paths else pd.DataFrame(columns=['feature','role'])
+    return {'root':root,'task_path':task_path.resolve(),'text':text,'paths':paths,
+            'train':train,'test':test,'sample':sample,'dictionary':dictionary}
+
+
+def discover(task_path: Path,target_override=None,loaded=None):
+    loaded=load_inputs(task_path) if loaded is None else loaded
+    if loaded['task_path']!=task_path.resolve(): raise ValueError('Cached inputs belong to a different task')
+    root,text,paths=(loaded[k] for k in ['root','text','paths'])
+    train,test,sample,dictionary=(loaded[k] for k in ['train','test','sample','dictionary'])
     if train.columns.duplicated().any() or test.columns.duplicated().any():
         raise ValueError('Duplicate column names are unsupported')
     roles = dictionary['role'].astype(str).str.lower() if 'role' in dictionary else pd.Series(dtype=str)
     groups=dictionary.loc[roles.isin(['group','group_id','validation_group']), 'feature'].tolist() if len(roles) else []
     groups=[c for c in groups if c in train and c in test]
     targets = dictionary.loc[roles.eq('target'), 'feature'].tolist() if len(roles) else []
-    if len(targets) != 1:
+    if not targets or any(c not in train for c in targets):
         targets = [c for c in train if c not in test]
-    if len(targets) != 1:
-        raise ValueError(f'Expected one target, got {targets}')
-    target = targets[0]
+    if len(targets)>1 and target_override is None: raise MultipleTargets(targets)
+    if target_override is not None:
+        if target_override not in targets: raise ValueError('Requested target is not declared in training data')
+        target=target_override
+    elif len(targets)==1: target=targets[0]
+    else: raise ValueError(f'Expected one target, got {targets}')
     all_ids = dictionary.loc[roles.eq('id'), 'feature'].tolist() if len(roles) else []
     ids = list(all_ids)
-    ids = [c for c in ids if c in sample and c in test and c != target]
+    ids = [c for c in ids if c in sample and c in test and c not in targets]
     if not ids:
-        ids = [c for c in sample if c in test and c != target]
+        ids = [c for c in sample if c in test and c not in targets]
     if len(ids) > 1:
         raise ValueError('Ambiguous sample ID columns')
     identifier = ids[0] if ids else None
@@ -77,7 +95,10 @@ def discover(task_path: Path):
         positions=pd.Index(test[identifier]).get_indexer(sample[identifier])
         if (positions<0).any(): raise ValueError('Sample/test ID values differ')
         if not np.array_equal(positions,np.arange(len(test))): sample_positions=positions.tolist()
-    features = [c for c in test if c not in set(all_ids+[identifier,target]) and c in train]
+    if len(targets)>1:
+        if target not in sample: raise ValueError('Multi-target output columns must match declared target names')
+        sample=sample[[c for c in sample if c==identifier or c==target]].copy()
+    features = [c for c in test if c not in set(all_ids+[identifier]+targets) and c in train]
     if not features:
         raise ValueError('No common features')
     classification = bool(re.search(r'классификац|classification', text.lower()))
@@ -124,6 +145,8 @@ def discover(task_path: Path):
         'group_candidate':{'column':groups[0],'reason':'Explicit group role in the data dictionary'} if len(groups)==1 else None,
     }
     if sample_positions is not None: spec['sample_test_positions']=sample_positions
+    if len(targets)>1:
+        spec['sample_columns']=list(sample.columns); spec['all_targets']=list(targets)
     profile = {
         'kind': kind, 'metric': metric, 'rows': len(train), 'test_rows': len(test),
         'feature_count':len(features), 'features': [

@@ -10,7 +10,8 @@ from build_submission import build_files
 CHECKS={'test_v2.py':11,'test_resilience.py':7,'smoke.py':5,
         'test_data_policy.py':11,'test_architecture.py':7,'test_quality.py':18,
         'test_task_metrics.py':8,'test_task_inputs.py':8,
-        'test_output_contract.py':6,'test_contract_lifecycle.py':6,'test_validation_contract.py':12}
+        'test_output_contract.py':6,'test_contract_lifecycle.py':6,'test_validation_contract.py':12,
+        'test_multitarget.py':12}
 
 
 def source_hashes():

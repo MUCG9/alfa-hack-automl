@@ -14,7 +14,7 @@ from automl.infrastructure.llm_gateway import request_json
 from automl.infrastructure.resources import ResourceBudget
 from automl.infrastructure.processes import ProcessTree
 from automl.contracts.messages import TaskSpec,ExperimentRequest
-from automl.task_understanding.api import discover
+from automl.task_understanding.api import discover,MultipleTargets
 from automl.evaluation.api import evaluate,make_split,make_time_split,choose_validation
 from automl.publishing.api import dummy_predictions,save_submission,checkpoint
 from automl.search.policy import parse_plans,portfolio,fallback,signature
@@ -84,7 +84,7 @@ def planner_context(spec,profile,text,split_info,records,best,remaining,round_nu
             'feedback_read_first':ledger,
             'instruction':'These are REAL completed outcomes. Do not propose tried configurations again, including previously failed target transformations/features. Propose TWO distinct UNTRIED experiments: one parameter-only and one feature-only. A hypothesis is at most two sentences and must name the measured failure it avoids. Domain priors do not overrule observed metrics. Search metrics are not blind/test scores.',
             'best_recipe':best['recipe'] if best else None,
-            'allowed_feature_columns':spec['features'],'forbidden_feature_columns':[spec['target'],spec['id']],
+            'allowed_feature_columns':spec['features'],'forbidden_feature_columns':list(spec.get('all_targets',[spec['target']]))+[spec['id']],
             'data_summary':{k:v for k,v in profile.items() if k not in {'dictionary','features'}},
             'features':profile['features'],
             'column_descriptions':[{'feature':r.get('feature'),'dtype':r.get('dtype'),'unit':r.get('unit'),
@@ -183,11 +183,21 @@ def _main():
     parser.add_argument('--offline',action='store_true')
     parser.add_argument('--validation-strategy',choices=['legacy','auto'],default='auto')
     parser.add_argument('--run-name',default='run-v2')
-    args=parser.parse_args(); started=time.monotonic(); deadline=started+args.time_budget
-    spec,profile,train,test,sample,text,hashes=discover(args.task)
+    args=parser.parse_args()
+    try: task_data=discover(args.task)
+    except MultipleTargets as exc:
+        from automl.search.multitarget import solve_many
+        return solve_many(args,exc.targets,solve_single)
+    return solve_single(args,task_data)
+
+
+def solve_single(args,task_data=None,output_root=None):
+    started=time.monotonic(); deadline=started+args.time_budget
+    spec,profile,train,test,sample,text,hashes=discover(args.task) if task_data is None else task_data
     spec=choose_validation(spec,train,args.validation_strategy)
     TaskSpec.from_legacy(spec)
-    root=Path(spec['root']); runs=root/'automl_runs'/args.run_name
+    root=Path(spec['root']) if output_root is None else Path(output_root)
+    runs=root/'automl_runs'/args.run_name
     if runs.exists() and any(runs.iterdir()):
         runs=runs.with_name(runs.name+'-'+str(time.time_ns()))
     runs.mkdir(parents=True,exist_ok=True); output=root/'submission.csv'
@@ -303,6 +313,7 @@ def _main():
     atomic_json(runs/'report.json',report)
     if not integrity_ok: raise RuntimeError('Protected inputs or evaluator/source changed during the run; do not trust its metrics')
     print(json.dumps({k:v for k,v in report.items() if k in {'version','best_validation','final_fit_status','elapsed_seconds','submission_sha256'}},ensure_ascii=False,indent=2),flush=True)
+    return report
 
 def main():
     def interrupted(signum,frame):

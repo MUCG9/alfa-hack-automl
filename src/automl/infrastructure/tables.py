@@ -23,3 +23,13 @@ def read_input_table(path):
     header=next(csv.reader(sample.splitlines(),delimiter=delimiter))
     if len(header)!=len(set(header)): raise ValueError('Duplicate input column names: '+path.name)
     return pd.read_csv(path,sep=delimiter,encoding='utf-8-sig')
+
+
+def read_task_sample(spec):
+    sample=read_input_table(spec['paths']['sample_submission'])
+    columns=spec.get('sample_columns')
+    if columns is not None:
+        if not columns or len(set(columns))!=len(columns) or set(columns)-set(sample):
+            raise ValueError('Invalid sample projection')
+        sample=sample[columns].copy()
+    return sample

@@ -14,7 +14,7 @@ from sklearn.model_selection import train_test_split
 from threadpoolctl import threadpool_limits
 
 from automl.infrastructure.atomic import atomic_json
-from automl.infrastructure.tables import read_input_table
+from automl.infrastructure.tables import read_input_table,read_task_sample
 from automl.evaluation.api import evaluate,make_split,make_folds
 from automl.publishing.api import save_submission,read_submission_values
 from automl.execution.model_adapters.registry import make_model,fit_options,selected_iterations,CAPABILITIES
@@ -61,7 +61,7 @@ def run_ensemble(job):
         run(child)
         records.append(json.loads((directory/'result.json').read_text()))
     train=read_input_table(spec['paths']['train']); test=read_input_table(spec['paths']['test'])
-    sample=read_input_table(spec['paths']['sample_submission']); full=job.get('full_fit',False)
+    sample=read_task_sample(spec); full=job.get('full_fit',False)
     va=np.load(job['split_path'])['validation']
     combined=None; val_combined=None
     for index,weight in enumerate(weights):
@@ -113,7 +113,7 @@ def run(job):
         return run_ensemble(job)
     train=read_input_table(spec['paths']['train'])
     test=read_input_table(spec['paths']['test'])
-    sample=read_input_table(spec['paths']['sample_submission'])
+    sample=read_task_sample(spec)
     y=train[spec['target']]
     if spec['kind']=='classification':
         y=y.astype(str)
@@ -122,9 +122,10 @@ def run(job):
         for column in spec.get('categorical_features',[]):
             for frame in [train_x,test_x]:
                 frame[column]=frame[column].fillna('__MISSING__').astype(str)
-    train_x,test_x=feature_transform(recipe.get('feature_code',''),train_x,test_x,(spec['target'],spec['id']))
+    forbidden=tuple(spec.get('all_targets',[spec['target']]))+(spec['id'],)
+    train_x,test_x=feature_transform(recipe.get('feature_code',''),train_x,test_x,forbidden)
     # Numeric target and IDs are never passed into generated code.
-    if spec['target'] in train_x or spec['id'] in train_x:
+    if any(column in train_x for column in forbidden):
         raise ValueError('Feature code reintroduced target or ID')
     split=np.load(job['split_path'])
     tr,va=split['train'],split['validation']

@@ -9,6 +9,7 @@ from pathlib import Path
 import argparse,hashlib,json,os,shutil,signal,subprocess,sys,time,zipfile
 ROOT=Path(__file__).resolve().parents[1]; sys.path.insert(0,str(ROOT))
 from agent_core import discover,atomic_json
+from automl.task_understanding.api import load_inputs
 sys.path.insert(0,str(ROOT/'tools'))
 from build_submission import build_files
 from automl.infrastructure.processes import wait_owned
@@ -41,12 +42,13 @@ def main():
     manifest={name:hashlib.sha256(data).hexdigest() for name,data in sources.items()}
     atomic_json(output/'source_manifest.json',manifest)
     def run(item):
-        number,path=item; path=path.resolve(); spec,*_=discover(path)
+        number,path=item; path=path.resolve(); inputs=load_inputs(path)
         target=output/f'task-{number:02d}'; target.mkdir()
         shutil.copy2(path,target/'task.md')
-        for value in spec['paths'].values():
+        for value in inputs['paths'].values():
             source=Path(value); destination=target/source.relative_to(path.parent)
             destination.parent.mkdir(parents=True,exist_ok=True); shutil.copy2(source,destination)
+        del inputs
         for name,data in sources.items(): (target/name).write_bytes(data)
         env=os.environ.copy(); env['AUTOML_THREADS']=str(args.threads)
         command=[sys.executable,'-u','solution.py','task.md']
@@ -65,9 +67,15 @@ def main():
                 status='local_memory_limit'
         result={'task':str(path),'command':command,'threads':args.threads,'exit_code':status,'elapsed_seconds':round(time.monotonic()-started,3)}
         report=target/'automl_runs/run-v2/report.json'
+        if not report.exists():
+            multi=list((target/'automl_runs').glob('multi-target-*/report.json'))
+            if len(multi)==1: report=multi[0]
         if report.exists():
             value=json.loads(report.read_text())
-            result.update({k:value[k] for k in ['best_validation','selection','final_fit_status','integrity_ok','submission_sha256','score_scope']})
+            result.update({k:value[k] for k in ['best_validation','selection','final_fit_status','integrity_ok','submission_sha256','score_scope'] if k in value})
+            if value.get('version')=='independent-multi-target-v1':
+                result['targets']=value['targets']
+                result['children']=[{k:c[k] for k in ['target','status','trained','final_fit_status','best_validation','budget_seconds'] if k in c} for c in value['children']]
         atomic_json(target/'assessment.json',result)
         print(json.dumps(result,ensure_ascii=False),flush=True)
         return result

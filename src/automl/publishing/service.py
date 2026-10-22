@@ -74,3 +74,29 @@ def dummy_predictions(spec, train, n):
 def checkpoint(record,output):
     temporary=output.with_suffix('.csv.tmp')
     shutil.copyfile(record['submission'],temporary); temporary.replace(output)
+
+
+def publish_targets(parts,sample,path):
+    """Combine already sample-ordered, validated single-target publications."""
+    result=sample.copy(); seen=set()
+    for spec,source in parts:
+        target=spec['target']; columns=spec['output_columns']; frame=pd.read_csv(source)
+        if target in seen or columns!=[target] or target not in sample:
+            raise ValueError('Unsupported or duplicate multi-target output mapping')
+        seen.add(target)
+        if len(frame)!=len(sample) or list(frame.columns)!=spec['sample_columns']:
+            raise ValueError('Child publication schema mismatch')
+        identifier=spec.get('id')
+        if identifier is not None and frame[identifier].tolist()!=sample[identifier].tolist():
+            raise ValueError('Child publication ID order mismatch')
+        values=frame[target]
+        if values.isna().any(): raise ValueError('Missing child predictions')
+        if spec['kind']=='regression':
+            if not np.isfinite(pd.to_numeric(values,errors='coerce')).all(): raise ValueError('Non-finite child predictions')
+        elif spec['prediction_type']=='probability':
+            numbers=pd.to_numeric(values,errors='coerce')
+            if not np.isfinite(numbers).all() or ((numbers<0)|(numbers>1)).any(): raise ValueError('Invalid child probabilities')
+        elif set(values.astype(str))-set(spec['classes']): raise ValueError('Unknown child class labels')
+        result[target]=values.to_numpy()
+    if result.isna().any().any(): raise ValueError('Null multi-target publication values')
+    temporary=path.with_suffix('.csv.tmp'); result.to_csv(temporary,index=False,encoding='utf-8'); temporary.replace(path)

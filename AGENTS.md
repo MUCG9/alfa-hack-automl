@@ -1,8 +1,9 @@
 # Development instructions — current checkpoint, 22 October 2026
 
 Current branch: `work/llm-upgrade-20261022`, based on colleague6aefbd9.
-Read `docs/CONTINUE_HERE.md`, `docs/handoff/current.md` and
-`docs/prompts/next-agent.md`. These replace the historical STOP/ACTIVE/V10
+Read `docs/handoff/START_HERE.md`, `docs/handoff/EXPERIMENTS.md`,
+`docs/handoff/PLAN.md` and `docs/prompts/next-agent.md`. Read linked evidence only
+when needed; this compact handoff replaces the historical STOP/ACTIVE/V10
 integration-pending statuses in older documents. Historical instructions were
 preserved in docs/handoff/agent-instructions-before-v17.md.
 
@@ -11,8 +12,10 @@ mean MacroF1 .6532812402233098 → .6593178433614652, both cuts improve;
 regression RMSE35.44723155783769 and CSV match history4.
 Latest canonical runtime f72c6df / frozen V16 adds only dormant postprocessors.
 258 unique source checks +23 repeated exact-unpacked checks PASS.
-Final full-default V16 parity is running; consult current.md and saved assessments
-for actual completion. Never describe a pending/interrupted gate as passed.
+Final full-default V16 parity COMPLETED exit0: both CSVs/metrics match V11,
+full refit/integrity pass. Evidence release/v16-mean1/full-default-parity.json.
+No remaining owned ML jobs from that run. Do not restart from old11/12snapshots.
+Current human request is DOCUMENTATION/PLAN ONLY: do not modify runtime or train.
 
 - Canonical code is src/automl, not root compatibility shims. Neighbor components
   import through api.py or shared contracts/infrastructure. Contracts stay free

@@ -1,5 +1,11 @@
 # V16 metric-matched inverse correction — dormant, NOT submitted
 
+FINAL UPDATE: existing full-default repeat COMPLETED, controllerexit0, both tasks
+refit/integrity pass. Regression221.052s/classification2703.680s; actual CSVs,
+class search recipes/metrics/selected recipe/final iteration tree match V11.
+See full-default-parity.json and public-full.json. Old pending11/12below is a
+historical checkpoint, not current state. V11 was submitted once, V16 was not.
+
 Runtime sourcef72c6df,Python3.12.14,branch work/llm-upgrade-20261022.
 Archive `../solution-v16-mean1.zip`,79054bytes,54flat root files.
 SHA `68e1eb0c933807720178ef4708df2c0dbf55fe9940b0dfb849d7704dbe3b2566`.

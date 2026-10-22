@@ -1,5 +1,9 @@
 # Alfa Hack AutoML: проверенный V11 и исследования V12–V17
 
+**Для нового чата:** [единая точка входа](docs/handoff/START_HERE.md),
+[реестр экспериментов](docs/handoff/EXPERIMENTS.md),
+[план](docs/handoff/PLAN.md), [готовый промпт](docs/prompts/next-agent.md).
+
 Текущее продолжение — [work/llm-upgrade-20261022](https://github.com/MUCG9/alfa-hack-automl/tree/work/llm-upgrade-20261022).
 `main` сохранён как v2. Новые исходники и кандидаты не означают автоматически
 новый официальный submit.
@@ -12,8 +16,8 @@
 [Квалифицированный ZIP V11](release/solution-v11-featureviews1.zip):230unique
 source checks +23repeated exact-unpacked PASS. Добавлен типизированный ансамбль
 двух представлений категорий с fitting-only cross-fitted статистиками.
-Последний код V16:258unique+23repeated PASS; финальный full-default parity
-пока идёт. Пороговая оптимизация, AutoGluon, две target corrections и leaf10
+Последний код V16:258unique+23repeated PASS; full-default parity ЗАВЕРШЕНА,
+обе итоговые CSV совпали с V11. Пороговая оптимизация, AutoGluon, две target corrections и leaf10
 не дали устойчивого выигрыша и НЕ включены по умолчанию. Requirements неизменны.
 
 [Точное актуальное состояние](docs/handoff/current.md),

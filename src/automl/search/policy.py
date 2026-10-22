@@ -86,7 +86,7 @@ def parse_plans(content,best=None):
 def portfolio(spec):
     common={'iterations':1200,'learning_rate':.04,'num_leaves':63,'max_depth':-1,
             'min_child_samples':25,'reg_lambda':5,'subsample':1,'colsample_bytree':.9}
-    if spec['text_features']:
+    if spec['text_features'] and spec.get('task_family')!='pointwise_ranking':
         return [normalize({'engine':'linear_text','hypothesis':'Bounded TF-IDF baseline','params':{'class_weight_power':.5,'text_alpha':1e-5}}),
                 normalize({'engine':'linear_text','hypothesis':'Character n-gram robustness','params':{'class_weight_power':.5,'text_char_features':True,'text_alpha':3e-5}})]
     if spec['kind']=='regression':

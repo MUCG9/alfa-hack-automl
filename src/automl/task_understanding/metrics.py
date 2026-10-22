@@ -2,6 +2,7 @@
 import re
 
 REGRESSION = {
+    'ndcg': r'\bndcg\b|normalized[\s_-]*discounted[\s_-]*cumulative[\s_-]*gain',
     'rmsle': r'\brmsle\b|root\s+mean\s+squared\s+logarithmic',
     'rmse': r'\brmse\b|root[\s_-]*mean[\s_-]*squared?|среднеквадрат',
     'mape': r'\bmape\b|mean[\s_-]*absolute[\s_-]*percentage',

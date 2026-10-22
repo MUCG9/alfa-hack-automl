@@ -5,12 +5,20 @@ import pandas as pd
 from sklearn.metrics import accuracy_score,balanced_accuracy_score,f1_score,log_loss,mean_absolute_error,mean_absolute_percentage_error,mean_squared_error,mean_squared_log_error,r2_score,roc_auc_score,precision_recall_fscore_support,confusion_matrix
 from sklearn.model_selection import StratifiedGroupKFold,StratifiedKFold,GroupKFold,GroupShuffleSplit,KFold,train_test_split
 from automl.infrastructure.observation_time import observation_values
+from automl.evaluation.ranking import NDCGByQuery
 
 
 def choose_validation(spec,train,mode='auto'):
+    if mode=='legacy' and spec.get('task_family')=='pointwise_ranking':
+        raise ValueError('Ranking requires held-out queries; legacy row validation is unsupported')
     if mode=='legacy': return dict(spec,validation_strategy='legacy')
     if mode!='auto': raise ValueError('Unknown validation selection mode')
     result=dict(spec)
+    if spec.get('task_family')=='pointwise_ranking':
+        result.update(validation_strategy='group')
+        semantic_group_hashes(result,train)
+        if spec.get('time_candidate'): result['validation_warning']='Ranking uses held-out queries; joint query/time validation is not implemented'
+        return result
     if spec.get('time_candidate'):
         temporal=dict(result,validation_strategy='time',time_column=spec['time_candidate']['column'])
         try: make_time_split(temporal,train)
@@ -142,11 +150,12 @@ def make_split(spec, train, hashes, seed=42):
     }
 
 
-def evaluate(y, pred, kind, metric, proba=None, classes=None):
+def evaluate(y, pred, kind, metric, proba=None, classes=None,groups=None,top_k=None,gain='linear'):
     if kind=='regression':
         values={'rmse':float(mean_squared_error(y,pred)**.5),
                 'mae':float(mean_absolute_error(y,pred)), 'r2':float(r2_score(y,pred))}
         if metric=='mse': values['mse']=float(mean_squared_error(y,pred))
+        if metric=='ndcg': values['ndcg']=NDCGByQuery(groups,top_k,gain)(y,pred)
         if metric=='mape': values['mape']=float(mean_absolute_percentage_error(y,pred))
         if metric=='rmsle':
             if (np.asarray(y)<0).any(): raise ValueError('RMSLE requires non-negative targets')

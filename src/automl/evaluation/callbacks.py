@@ -1,12 +1,18 @@
 import numpy as np
 from sklearn.metrics import accuracy_score,balanced_accuracy_score,f1_score,r2_score,mean_absolute_percentage_error,mean_squared_log_error
-def lgbm_metric(spec,log_target=False):
+from automl.evaluation.ranking import NDCGByQuery
+def lgbm_metric(spec,log_target=False,groups=None,top_k=None,gain='linear'):
     """sklearn wrapper supplies encoded class labels; do not confuse loss and F1."""
     metric=spec['metric']
+    ranker=NDCGByQuery(groups,top_k,gain) if metric=='ndcg' and groups is not None else None
     def evaluate(y_true,pred):
         y_true=np.asarray(y_true)
         pred=np.asarray(pred)
-        if spec['kind']=='regression':
+        if metric=='ndcg':
+            if ranker is None: raise ValueError('NDCG callback requires query groups')
+            if log_target: y_true=np.expm1(y_true); pred=np.expm1(pred)
+            value=ranker(y_true,pred)
+        elif spec['kind']=='regression':
             if log_target:
                 y_true=np.expm1(y_true); pred=np.expm1(pred)
             if metric=='mae': value=np.abs(y_true-pred).mean()

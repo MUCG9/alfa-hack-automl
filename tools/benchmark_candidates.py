@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from agent_core import discover,make_split,atomic_json
 from automl.infrastructure.processes import ProcessTree
-from automl.evaluation.api import make_folds,make_time_split,evaluate
+from automl.evaluation.api import make_folds,make_time_split,evaluate,choose_validation,metric_context
 from build_submission import build_files
 import numpy as np
 import psutil
@@ -25,6 +25,7 @@ def main():
     parser.add_argument('--full-fit',action='store_true')
     parser.add_argument('--folds',type=int,default=0)
     parser.add_argument('--time-backtests',nargs='+',type=int)
+    parser.add_argument('--validation-strategy',choices=['legacy','auto'],default='legacy',help='Legacy preserves historical fixed-recipe benchmarks; ranking always uses query groups')
     args=parser.parse_args()
     out=args.output.resolve(); out.mkdir(parents=True,exist_ok=False)
     source=out/'sources'; source.mkdir()
@@ -35,6 +36,7 @@ def main():
     else: files=build_files()
     for name,data in files.items(): (source/name).write_bytes(data)
     spec,profile,train,_,_,_,hashes=discover(args.task)
+    spec=choose_validation(spec,train,'auto' if spec.get('task_family')=='pointwise_ranking' else args.validation_strategy)
     if args.time_backtests is not None:
         if not spec.get('time_candidate'): raise ValueError('No unambiguous documented future-period column')
         if args.folds: raise ValueError('Use either forward backtests or full OOF')
@@ -105,7 +107,7 @@ def main():
             if spec['kind']=='classification':
                 y=y.astype(str); predictions=np.asarray(spec['classes'])[oof.argmax(axis=1)]
             else: predictions=oof
-            metrics=evaluate(y,predictions,spec['kind'],spec['metric'],oof if spec['kind']=='classification' else None,spec['classes'])
+            metrics=evaluate(y,predictions,spec['kind'],spec['metric'],oof if spec['kind']=='classification' else None,spec['classes'],**metric_context(spec,train,np.arange(len(train))))
             np.savez_compressed(out/candidate['name']/'oof.npz',predictions=oof,row_position=np.arange(len(train)),classes=np.asarray(spec['classes'] or []))
             summary={'fold_mean':float(np.mean(scores)),'fold_std':float(np.std(scores)),'pooled_oof':metrics,'coverage':'exactly_once','scope':'fixed recipe full CV; no post-OOF tuning'}
             manifest.setdefault('oof',{})[candidate['name']]=summary

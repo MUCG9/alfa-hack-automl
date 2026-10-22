@@ -4,7 +4,7 @@ import time
 import numpy as np
 import pandas as pd
 from automl.infrastructure.atomic import atomic_json
-from automl.evaluation.api import evaluate
+from automl.evaluation.api import evaluate,metric_context
 from automl.publishing.api import save_submission,read_submission_values
 
 def read_cache(spec,record,train):
@@ -23,7 +23,7 @@ def read_cache(spec,record,train):
     else:
         val=validation['y_pred'].to_numpy(dtype=float)
         test=np.asarray(read_submission_values(spec,record['submission']),dtype=float)
-    return {'record':record,'rows':rows,'truth':truth,'validation':val,'test':test}
+    return {'record':record,'rows':rows,'truth':truth,'validation':val,'test':test,'metric_context':metric_context(spec,train,rows)}
 
 def combine(spec,caches,weights):
     weights=np.asarray(weights,dtype=float)
@@ -34,7 +34,7 @@ def combine(spec,caches,weights):
     val=sum(weight*cache['validation'] for weight,cache in zip(weights,caches))
     test=sum(weight*cache['test'] for weight,cache in zip(weights,caches))
     pred=np.asarray(spec['classes'])[val.argmax(axis=1)] if spec['kind']=='classification' else val
-    metrics=evaluate(caches[0]['truth'],pred,spec['kind'],spec['metric'],val if spec['kind']=='classification' else None,spec['classes'])
+    metrics=evaluate(caches[0]['truth'],pred,spec['kind'],spec['metric'],val if spec['kind']=='classification' else None,spec['classes'],**caches[0].get('metric_context',{}))
     return metrics,val,test,pred
 
 def materialize(spec,caches,weights,output,sample,test_frame):

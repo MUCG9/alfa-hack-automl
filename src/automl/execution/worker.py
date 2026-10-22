@@ -15,7 +15,7 @@ from threadpoolctl import threadpool_limits
 
 from automl.infrastructure.atomic import atomic_json
 from automl.infrastructure.tables import read_input_table,read_task_sample
-from automl.evaluation.api import evaluate,make_split,make_folds
+from automl.evaluation.api import evaluate,make_split,make_folds,metric_context
 from automl.publishing.api import save_submission,read_submission_values
 from automl.execution.model_adapters.registry import make_model,fit_options,selected_iterations,CAPABILITIES
 from automl.execution.weighting.classes import sample_weights,number
@@ -96,7 +96,7 @@ def run_ensemble(job):
     if not full:
         truth=train[spec['target']].iloc[va]
         if spec['kind']=='classification': truth=truth.astype(str)
-        metrics=evaluate(truth,val_pred,spec['kind'],spec['metric'],val_combined if spec['kind']=='classification' else None,spec['classes'])
+        metrics=evaluate(truth,val_pred,spec['kind'],spec['metric'],val_combined if spec['kind']=='classification' else None,spec['classes'],**metric_context(spec,train,va))
         pd.DataFrame({'row_position':va,'y_true':truth.to_numpy(),'y_pred':val_pred}).to_csv(output/'validation_predictions.csv',index=False)
     atomic_json(output/'result.json',{'status':'ok','recipe':recipe,'metrics':metrics,'full_fit':full,
         'fit_iterations':[r['fit_iterations'] for r in records],'feature_count':sum(r['feature_count'] for r in records),
@@ -123,6 +123,7 @@ def run(job):
             for frame in [train_x,test_x]:
                 frame[column]=frame[column].fillna('__MISSING__').astype(str)
     forbidden=tuple(spec.get('all_targets',[spec['target']]))+(spec['id'],)
+    if spec.get('task_family')=='pointwise_ranking': forbidden+=(spec['group_column'],)
     train_x,test_x=feature_transform(recipe.get('feature_code',''),train_x,test_x,forbidden)
     # Numeric target and IDs are never passed into generated code.
     if any(column in train_x for column in forbidden):
@@ -132,6 +133,7 @@ def run(job):
     SplitPlan(tuple(tr.tolist()),tuple(va.tolist())).validate(len(train))
     full=job.get('full_fit',False)
     if CAPABILITIES[recipe['engine']].get('mode')=='text':
+        if spec.get('task_family')=='pointwise_ranking': raise ValueError('Text ranking adapter is not implemented')
         if not data_policy.is_noop: raise ValueError('Data-policy support for text is not implemented; use explicit noop')
         predictions,val_pred,metrics,test_proba,val_proba,classes=linear_text_fit(spec,recipe,train_x,test_x,y,tr,va,full,job['threads'])
         output_dir=Path(job['output_dir'])
@@ -190,6 +192,12 @@ def run(job):
         if validation_rows is not None and set(parents)&set(validation_rows): raise ValueError('Augmentation parent crosses validation boundary')
         if weights is not None: kwargs['sample_weight']=weights
         kwargs.update(fit_options(recipe['engine'],spec,recipe,prepared_x,fit_y,validation_rows,categorical,target_log))
+        if spec.get('task_family')=='pointwise_ranking' and validation_rows is not None and recipe['engine'] in {'lightgbm','xgboost'}:
+            evaluator=lgbm_metric(spec,target_log,**metric_context(spec,train,validation_rows))
+            if recipe['engine']=='lightgbm': kwargs['eval_metric']=evaluator
+            else:
+                def ranking_loss(truth,predictions): return 1-evaluator(truth,predictions)[1]
+                kwargs['eval_metric']=ranking_loss
         estimator.fit(fit_x,targets,**kwargs)
         return prepared_x,prepared_test
     class_factors={}
@@ -267,7 +275,7 @@ def run(job):
                 val_pred=np.expm1(val_pred)
             proba=adjusted_probabilities(model.predict_proba(train_x.iloc[va]),model.classes_,class_factors) if spec['kind']=='classification' else None
             if proba is not None: val_pred=np.asarray(model.classes_)[np.argmax(proba,axis=1)]
-            metrics=evaluate(y.iloc[va],val_pred,spec['kind'],spec['metric'],proba,getattr(model,'classes_',None))
+            metrics=evaluate(y.iloc[va],val_pred,spec['kind'],spec['metric'],proba,getattr(model,'classes_',None),**metric_context(spec,train,va))
     output_dir=Path(job['output_dir'])
     save_submission(spec,sample,test,pred,output_dir/'submission.csv')
     validation_path=None

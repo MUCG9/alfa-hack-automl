@@ -64,7 +64,7 @@ def discover(task_path: Path,target_override=None,loaded=None):
     if train.columns.duplicated().any() or test.columns.duplicated().any():
         raise ValueError('Duplicate column names are unsupported')
     roles = dictionary['role'].astype(str).str.lower() if 'role' in dictionary else pd.Series(dtype=str)
-    groups=dictionary.loc[roles.isin(['group','group_id','validation_group']), 'feature'].tolist() if len(roles) else []
+    groups=dictionary.loc[roles.isin(['group','group_id','validation_group','query','query_id']), 'feature'].tolist() if len(roles) else []
     groups=[c for c in groups if c in train and c in test]
     targets = dictionary.loc[roles.eq('target'), 'feature'].tolist() if len(roles) else []
     if not targets or any(c not in train for c in targets):
@@ -101,9 +101,12 @@ def discover(task_path: Path,target_override=None,loaded=None):
     features = [c for c in test if c not in set(all_ids+[identifier]+targets) and c in train]
     if not features:
         raise ValueError('No common features')
+    ranking=bool(re.search(r'\bndcg\b|learning.to.rank|\branking\b|ранжирован',text.lower()))
     classification = bool(re.search(r'классификац|classification', text.lower()))
     regression = bool(re.search(r'регресси|regression', text.lower()))
-    if regression and not classification:
+    if ranking:
+        kind='regression'
+    elif regression and not classification:
         kind = 'regression'
     elif classification and not regression:
         kind = 'classification'
@@ -112,6 +115,21 @@ def discover(task_path: Path,target_override=None,loaded=None):
     else:
         kind = 'classification' if train[target].nunique() <= min(20, max(2, len(train)//100)) else 'regression'
     metric = metric_from_text(text, kind)
+    ranking_parameters={}
+    if ranking:
+        if metric!='ndcg': raise ValueError('Only NDCG score-output ranking is implemented')
+        if len(targets)>1: raise ValueError('Multi-target ranking is not implemented')
+        if len(groups)!=1: raise ValueError('Ranking requires one explicit query/group role in the dictionary')
+        if not pd.api.types.is_numeric_dtype(train[target]) or (train[target]<0).any():
+            raise ValueError('Ranking relevance must be numeric and non-negative')
+        match=re.search(r'ndcg\s*@\s*(\d+)',text,re.I); cutoff=int(match.group(1)) if match else None
+        if cutoff is not None and cutoff<1: raise ValueError('NDCG top-k must be positive')
+        gain='exponential' if re.search(r'2\s*(?:\*\*|\^)\s*(?:relevance|label|rel|y)|exponential\s+gain|экспоненциальн',text,re.I) else 'linear'
+        features=[c for c in features if c!=groups[0]]
+        if not features: raise ValueError('Ranking has no non-query input features')
+        ranking_parameters={'task_family':'pointwise_ranking','group_column':groups[0],
+            'ranking_k':cutoff,'ranking_gain':gain,'ranking_metric_definition':'mean_query_ndcg_ties_averaged_'+gain,
+            'ranking_training_objective':'pointwise regression surrogate, not LambdaRank'}
     classes=sorted(train[target].astype(str).unique().tolist()) if kind=='classification' else None
     output_columns=[c for c in sample if c!=identifier]
     if len(output_columns)>1:
@@ -145,6 +163,7 @@ def discover(task_path: Path,target_override=None,loaded=None):
         'group_candidate':{'column':groups[0],'reason':'Explicit group role in the data dictionary'} if len(groups)==1 else None,
     }
     if sample_positions is not None: spec['sample_test_positions']=sample_positions
+    spec.update(ranking_parameters)
     if len(targets)>1:
         spec['sample_columns']=list(sample.columns); spec['all_targets']=list(targets)
     profile = {

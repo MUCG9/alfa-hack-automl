@@ -15,7 +15,7 @@ from automl.infrastructure.resources import ResourceBudget
 from automl.infrastructure.processes import ProcessTree
 from automl.contracts.messages import TaskSpec,ExperimentRequest
 from automl.task_understanding.api import discover,MultipleTargets
-from automl.evaluation.api import evaluate,make_split,make_time_split,choose_validation
+from automl.evaluation.api import evaluate,make_split,make_time_split,choose_validation,metric_context
 from automl.publishing.api import dummy_predictions,save_submission,checkpoint
 from automl.search.policy import parse_plans,portfolio,fallback,signature
 from automl.execution.api import read_cache,combine,materialize
@@ -212,12 +212,12 @@ def solve_single(args,task_data=None,output_root=None):
     atomic_json(runs/'task_spec.json',spec); atomic_json(runs/'profile.json',profile); atomic_json(runs/'split.json',split_info)
     dummy=dummy_predictions(spec,train.iloc[tr],len(va))
     if spec.get('prediction_type')=='probability_matrix':
-        baseline=evaluate(train[spec['target']].iloc[va].astype(str),np.asarray(spec['output_columns'])[dummy.argmax(axis=1)],spec['kind'],spec['metric'],dummy,spec['output_columns'])
+        baseline=evaluate(train[spec['target']].iloc[va].astype(str),np.asarray(spec['output_columns'])[dummy.argmax(axis=1)],spec['kind'],spec['metric'],dummy,spec['output_columns'],**metric_context(spec,train,va))
     elif spec.get('prediction_type')=='probability':
         prior=float((train[spec['target']].iloc[tr].astype(str)==spec['classes'][1]).mean())
         probabilities=np.tile([1-prior,prior],(len(va),1))
-        baseline=evaluate(train[spec['target']].iloc[va].astype(str),np.repeat(spec['classes'][int(prior>=.5)],len(va)),spec['kind'],spec['metric'],probabilities,spec['classes'])
-    else: baseline=evaluate(train[spec['target']].iloc[va],dummy,spec['kind'],spec['metric'],classes=spec['classes'])
+        baseline=evaluate(train[spec['target']].iloc[va].astype(str),np.repeat(spec['classes'][int(prior>=.5)],len(va)),spec['kind'],spec['metric'],probabilities,spec['classes'],**metric_context(spec,train,va))
+    else: baseline=evaluate(train[spec['target']].iloc[va],dummy,spec['kind'],spec['metric'],classes=spec['classes'],**metric_context(spec,train,va))
     records=[]; calls=[]; queue=portfolio(spec); seen=set(); best=None
     reserve=min(1200,max(60,args.time_budget*.2)); limit=max(1,min(args.max_experiments,14))
     for iteration in range(limit):

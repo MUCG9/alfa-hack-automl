@@ -84,6 +84,45 @@ class TargetSmearingTests(unittest.TestCase):
                       'validation_strategy':'time','time_column':'period','static_numeric_features':['built']}]:
             self.assertFalse(any(r['params'].get('target_smearing') for r in portfolio(spec)))
 
+    def test_least_squares_scalar_is_original_scale_optimum(self):
+        z=np.linspace(10.,100.,40);truth=1.08*z-1+np.sin(z)*2
+        state=fit_smearing(truth,np.log(z),'least_squares')
+        expected=float(np.dot(z,truth+1)/np.dot(z,z))
+        self.assertAlmostEqual(state['factor'],expected,places=14)
+        def error(factor):return float(np.square(inverse_log_predictions(np.log(z),factor)-truth).mean())
+        self.assertLess(error(state['factor']),error(state['factor']-.01))
+        self.assertLess(error(state['factor']),error(state['factor']+.01))
+
+    def test_least_squares_scaling_avoids_large_dot_product_overflow(self):
+        z=np.linspace(1.,10.,30)*1e150;truth=1.1*z-1
+        state=fit_smearing(truth,np.log(z),'least_squares')
+        self.assertTrue(np.isfinite(state['raw_factor']))
+        self.assertAlmostEqual(state['factor'],1.1,places=12)
+
+    def test_method_contract_disable_and_default_signature(self):
+        base=recipe()
+        explicit=normalize({'engine':'lightgbm','params':{'target_smearing_method':'duan'}},base)
+        self.assertEqual(signature(base),signature(explicit))
+        changed=normalize({'engine':'lightgbm','params':{'target_smearing_method':'least_squares'}},base)
+        self.assertNotEqual(signature(base),signature(changed))
+        disabled=normalize({'engine':'lightgbm','params':{'target_smearing':False}},changed)
+        self.assertNotIn('target_smearing_method',disabled['params'])
+        for params in [{'target_smearing_method':'least_squares'},
+                       {'target_smearing':True,'log_target':True,'target_smearing_method':'bad'},
+                       {'target_smearing':False,'target_smearing_method':'least_squares'}]:
+            with self.subTest(params=params),self.assertRaises(ValueError):normalize({'engine':'lightgbm','params':params})
+
+    def test_real_least_squares_outer_label_isolation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);spec,train=fixture(root);exports=[];states=[]
+            selected=recipe();selected['params']['target_smearing_method']='least_squares'
+            for number in range(2):
+                output,record=run(root,spec,selected,str(number))
+                states.append(record['target_smearing']);exports.append((output/'submission.csv').read_bytes())
+                train.loc[200:,'target']=1000000.;train.to_csv(spec['paths']['train'],index=False)
+            self.assertEqual(states[0]['method'],'least_squares')
+            self.assertEqual(states[0],states[1]);self.assertEqual(exports[0],exports[1])
+
     def test_real_worker_outer_labels_do_not_enter_factor_or_predictions(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);spec,train=fixture(root);exports=[];states=[]

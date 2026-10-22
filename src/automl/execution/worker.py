@@ -254,7 +254,8 @@ def run(job):
         return prepared_x,prepared_test
     class_factors={}
     decision_diagnostics=None
-    smearing={'requested':target_smearing,'factor':1.,'status':'pending' if target_smearing else 'disabled'}
+    smearing={'requested':target_smearing,'factor':1.,'status':'pending' if target_smearing else 'disabled',
+        'method':recipe.get('params',{}).get('target_smearing_method','duan') if target_smearing else None}
     calibration_status='disabled'
     nested=bool(recipe.get('params',{}).get('nested_stopping',False)) and not full and CAPABILITIES[recipe['engine']]['nested_stopping']
     calibrate=spec['kind']=='classification' and spec['metric']=='macro_f1' and CAPABILITIES[recipe['engine']]['macro_f1_calibration'] and recipe.get('params',{}).get('calibrate',False)
@@ -301,7 +302,8 @@ def run(job):
                         class_factors,decision_diagnostics=calibrate_class_factors(y.iloc[inner_va],inner_model.predict_proba(inner_x.iloc[inner_va]),inner_model.classes_,decision_optimizer)
                         calibration_status='inner_training_holdout_matching_iterations'
                     if smearing_ready:
-                        smearing.update(fit_smearing(y.iloc[inner_va],np.asarray(inner_model.predict(inner_x.iloc[inner_va])).reshape(-1)),
+                        smearing.update(fit_smearing(y.iloc[inner_va],np.asarray(inner_model.predict(inner_x.iloc[inner_va])).reshape(-1),
+                            recipe.get('params',{}).get('target_smearing_method','duan')),
                             matching_iterations=iterations,source='inner_training_holdout_matching_iterations')
     if calibrate and int(recipe.get('params',{}).get('calibration_folds',1))>1:
         fit_frame=train.iloc[fit_tr].reset_index(drop=True)

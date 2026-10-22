@@ -7,7 +7,7 @@ from automl.evaluation.api import validate_decision_optimizer
 
 ENGINES=set(CAPABILITIES)
 PARAMETERS={'iterations','depth','max_depth','learning_rate','num_leaves','min_child_samples',
- 'reg_lambda','reg_alpha','l2_leaf_reg','random_strength','class_weights','class_weight_power','feature_views','decision_optimizer','target_smearing',
+ 'reg_lambda','reg_alpha','l2_leaf_reg','random_strength','class_weights','class_weight_power','feature_views','decision_optimizer','target_smearing','target_smearing_method',
  'subsample','subsample_freq','colsample_bytree','seed','log_target','generic_features','calibrate',
  'min_samples_leaf','max_features','text_alpha','text_char_features','text_svd_components','text_classifier','text_C','min_iterations','min_child_weight','gamma','max_bin','categorical_from_dictionary','multiclass_strategy','target_encoding','calibration_folds','target_encoding_groups','target_encoding_smoothing','target_encoding_auto_groups','target_encoding_refine_groups','target_encoding_counts','target_encoding_half_life','target_encoding_hierarchical','pair_refinement','history_asof','history_min_periods'}
 
@@ -37,7 +37,9 @@ def normalize(candidate,best=None):
     if 'feature_views' in params and params['feature_views'] is None:
         inherited.pop('feature_views',None)
     if 'target_smearing' in params and params['target_smearing'] is False:
+        if 'target_smearing_method' in params:raise ValueError('Disable correction without a method override')
         inherited.pop('target_smearing',None)
+        inherited.pop('target_smearing_method',None)
     if params.get('target_encoding_groups') or params.get('target_encoding_auto_groups'):
         if params.get('target_encoding') is False: raise ValueError('Encoding groups require target_encoding')
         inherited['target_encoding']=True

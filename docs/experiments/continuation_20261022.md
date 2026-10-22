@@ -56,6 +56,12 @@ old 21 October 23:37 time and old 1723.691 score; the displayed attempt count st
 Do not resubmit automatically. See `release/v4-history3/submission-20261022.json`.
 Server results are not being waited for, as requested.
 
+Later read-only observation at about 04:25 UTC: the exact v4 filename card now
+shows upload time 05:21 and **2184.173**, with two attempts remaining. This is the
+platform's displayed raw score, not a conversion to /100, per-task diagnosis or
+hidden-final result. The native screenshot was shown in the conversation. The old
+1723.691 history caveat above describes the INITIAL UI only. No duplicate upload.
+
 Later confirmation: a fresh page reload at about 03:25 UTC shows **2 attempts
 remaining**, the named v4 file and the checking message. One attempt consumption
 is now confirmed. A native screenshot was shown in the conversation. No repeat

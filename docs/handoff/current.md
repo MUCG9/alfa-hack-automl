@@ -74,10 +74,11 @@ Platform-provided API environment — отдельный runtime путь.
 
 ## Платформа и разрешения
 
-Receipt `release/v4-history3/submission-20261022.json`. Свежий reload около03:25UTC:
-2remaining и «Решение находится на проверке». Первоначальный UI смешивал имя с
-старой записью/баллом v3 1723.691. Официальный v4 score не установлен; пользователь
-ранее сообщил v3≈16/100, формула/hidden breakdown неизвестны. Четвёртая отправка
+Receipt `release/v4-history3/submission-20261022.json`. Read-only reload в04:25UTC:
+карточка exact v4 имени, время05:21, **2184.173**, осталось2попытки. Screenshot и
+accessibility state показаны в разговоре. Ранее UI смешивал имя со старым1723.691
+v3; это не новый балл v4. Новый raw score не переводим в100 или hidden-final score.
+Пользователь ранее сообщил v3≈16/100; формула/hidden breakdown неизвестны. Отправка
 разрешена и выполнена один раз; следующие — по новой команде, даже после reset.
 
 Разрешены автономные измерения/исправления/обычные коммиты/push рабочих веток/Qwen.
@@ -105,6 +106,6 @@ Original requirements SHA в next-agent.md. Python patch влияет на ast.u
 проверок, source hashes до/после, owned-process guards. Exact-unpacked23 повторяют
 часть145, не суммировать как168unique.
 
-Последний записанный quota usedPercent **76% в04:15UTC** — не live остаток при
+Последний записанный quota usedPercent **82% в04:25UTC** — не live остаток при
 чтении. При85% used начать завершение/передачу, не начинать новые долгие этапы;
 reset credits не использовать. Актуальное чтение обязательно.

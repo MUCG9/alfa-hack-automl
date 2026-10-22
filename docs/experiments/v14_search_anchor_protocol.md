@@ -42,3 +42,8 @@ it and actual fits. Keep only if BOTH selected search/confirmation MacroF1 impro
 refit/export/integrity pass. Otherwise discard/mixed, no change of criteria.
 Regression full history4 CSV parity remains required. Reused public folds, not
 unbiased/private or75–85point guarantee. Official upload needs new authorization.
+
+If V11 itself passes both quality cuts, V14 must ALSO not worsen EITHER V11
+selected cut (or its mean). Equal quality plus measured lower cost may justify
+retention; speed is not a reason to discard a better V11 within platform limits.
+This additional comparison is declared before any V14 implementation/measurement.

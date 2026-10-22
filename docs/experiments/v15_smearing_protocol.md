@@ -51,10 +51,18 @@ partition-local. No runtime dependency added (NumPy already allowed).
 3. Only if positive, append ONE qualified smear candidate immediately after asof
    in the existing time/numeric/static regression portfolio, preserving old recipes
    and relative order/default12trials. Then exact full-agent regression compare
-   against frozen V11/history4. Keep only BOTH search/confirmation RMSE improve,
-   refit/integrity/export pass; classification policy and full CSV parity required.
+   against frozen V11/history4. Require search RMSE STRICTLY improve and
+   confirmation RMSE NOT worsen, with strictly better mean and all refit/integrity/
+   export checks; classification policy and full CSV parity required.
    A component gain alone is not a full-procedure gain. If mixed, retain evidence
    and off-by-default method, not a posthoc rescue.
 
 V11 remains the qualified release. No official upload/newdependencies/paidresources/
 extraagents. Public validation reused, no private or official-points prediction.
+
+Full-procedure gate clarified BEFORE ANY public smearing fits: the train-only
+support rule deliberately disables correction on the confirmation cut, so demanding
+a strict improvement there would reject an exactly invariant safe path by design.
+Noninferiority is NOT permission for a better mean with any worse cut. Component
+CSV parity where disabled remains mandatory. No quality outcome has been observed
+for this method at this clarification; six pure math/contract checks passed only.

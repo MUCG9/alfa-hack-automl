@@ -34,7 +34,7 @@ in later work, must remain entirely inside the current outer fitting partition.
 2. Paired group-holdouts42/43,2threads,1.7GiB guard,1200s worker watchdog. Keep
    for grouped CV73 only if BOTH outer MacroF1 improve, all fits/refits succeed,
    and no supported class (>=100independent fitting feature groups on each cut)
-   loses more than.01 pooled class F1. Overlapping holdouts are not pooled OOF.
+   loses more than.01 class F1 on either cut. Overlapping holdouts are not pooled OOF.
 3. If positive, full3fold grouped CV73 exactly_once, all folds/mean/pooled improve;
    supported-class noninferiority checked separately on true pooled OOF. Gain
    excluding the least-supported class must remain positive (unchanged rows).

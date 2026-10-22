@@ -14,7 +14,7 @@ V7 source `b4f8db7`, freeze `12f8d20`; V6 evidence `d5b550e`.
 | v5 multitarget1 | 111 /23 | обе задачи, CSV parity v4 | нет |
 | v5 ranking1 | 124 /23 | отдельный full gate не запускался | нет |
 | v6 universal1 | 137 /23 | обе задачи, refit/integrity pass | нет |
-| v7 semantic1 | 145 /23 | запущен, проверить completion | нет |
+| v7 semantic1 | 145 /23 | regression pass, classification выполняется | нет |
 
 Архивы:
 
@@ -60,7 +60,8 @@ refit после подставного mapping. **Live Qwen не провере
 
 V6 completed. Сейчас один V7 full benchmark:
 `test-runs/continuation-20261022/v7-public-full/`, log рядом `v7-public-full.log`.
-task-00 regression, затем task-01 classification, строго последовательно. Default
+task-00 regression уже pass, итоговый CSV byte-identical V6; task-01 classification
+ещё выполняется. Default
 search12/budget9900s, offline,2threads, tree guard1.7GiB, watchdog10100s/task.
 Strict current-source comparison прошёл на запуске; потом менялись только docs.
 Aggregate `assessments.json` означает завершение обеих задач. Проверить каждый

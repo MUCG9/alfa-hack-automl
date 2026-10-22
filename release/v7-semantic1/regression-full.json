@@ -1,0 +1,99 @@
+{
+  "task": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/evaluation/regression/task.md",
+  "command": [
+    "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/../../work/ml-venv/bin/python",
+    "-u",
+    "solution.py",
+    "task.md",
+    "--offline"
+  ],
+  "threads": 2,
+  "exit_code": 0,
+  "elapsed_seconds": 215.622,
+  "best_validation": {
+    "rmse": 39.32111025790986,
+    "mae": 21.65020781135716,
+    "r2": 0.5162316492963133
+  },
+  "selection": [
+    {
+      "mean": 36.90708150287655,
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 1,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "target_encoding_hierarchical": true,
+          "seed": 52,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      }
+    },
+    {
+      "mean": 37.23561115443436,
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 255,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 1,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "target_encoding_hierarchical": true,
+          "seed": 53,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      }
+    },
+    {
+      "mean": 49.131168707561315,
+      "recipe": {
+        "hypothesis": "Bounded native-category pilot",
+        "engine": "catboost",
+        "params": {
+          "iterations": 600,
+          "depth": 6,
+          "learning_rate": 0.07,
+          "l2_leaf_reg": 5,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      }
+    }
+  ],
+  "final_fit_status": "ok",
+  "integrity_ok": true,
+  "submission_sha256": "c1556d566cd24de3dc4bed107fbfe7f517dea14dd2c53c583545af08ed43f4e0",
+  "score_scope": "local search/confirmation folds, not unbiased blind/private/platform score"
+}

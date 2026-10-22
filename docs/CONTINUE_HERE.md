@@ -12,8 +12,7 @@
 **Четвёртый submit отправлен один раз.** Read-only reload в04:25UTC показал
 **2184.173** на карточке точного v4 имени и времени05:21, осталось2попытки.
 Это raw score платформы, не перевод в100/hidden-final score. Старые1723.691 — v3.
-Следующая отправка требует
-нового разрешения капитана. Main merge/force push не делать.
+Следующая отправка требует нового разрешения капитана. Main merge/force push не делать.
 
 V6: обе полные public задачи, refit/integrity pass, mean RMSE36.775244985 и Macro F1
 0.653281240. Это reused public validation, не private/official score. V7:145 unique

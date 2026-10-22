@@ -21,7 +21,11 @@ The eight semantic tests use a mock gateway; one continues into real model
 training/refit/export. **No live Qwen session was established in this continuation.**
 Do not interpret mock usage as HTTP success or assume a live API balance/spend.
 
-Full default public regression/classification for this exact v7 archive have NOT
-yet been completed. V6's independent frozen run does not satisfy this gate.
+Full default public regression for this exact v7 archive completed: exit0,
+refit/integrity pass, final CSV SHA
+`c1556d566cd24de3dc4bed107fbfe7f517dea14dd2c53c583545af08ed43f4e0`,
+byte-identical to v6/v4, harness215.622s. See `regression-full.json`.
+Classification is still running, so the BOTH-task full gate has NOT yet passed.
+V6's independent frozen run does not satisfy the missing v7 classification gate.
 The v6 ZIP and historical releases remain immutable. Do not describe v7 as the
 best measured model or automatically submit it. Only v4 was authorized/uploaded.

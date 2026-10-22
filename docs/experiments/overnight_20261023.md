@@ -1,0 +1,53 @@
+# Ночная очередь исследований
+
+Капитан23октября разрешил продолжать автономно ночью без вопросов. Это
+продолжение прежнего поручения: MVP, затем анализ и несколько измеренных
+итераций. Работа на своей ветке; публичный push кода/технических отчётов разрешён
+отдельно. Main, official submit, платные ресурсы и дополнительные Codex agents
+не задействуются.
+
+Текущий полный MVP выполняется отдельным owned coordinator PID33136. Ночной
+координатор PID37960/create_time1792705065.83 **ждёт** его и известных дочерних
+процессов. Прежде чем начать новый fit, проверить обе identity receipts и
+`queue.json`; не дублировать запуски. Теперь filesystem/network sandbox выключен,
+обычный process inspection видит owned jobs; при возвращении sandbox учитывать
+ранее обнаруженную разницу видимости PID.
+
+Последовательность после завершения MVP:
+
+1. Независимая проверка финальных CSV/двух validation артефактов.
+2. FE-01 regression: qualified asof control против selector32, три forward cuts.
+3. HPO-01 regression: control/random/TPE, восемь inner trials на каждый sampler
+   и cut, три forward cuts; startup3.
+4. HAR-02 regression: ровно пять уже сгенерированных декларативных признаков
+   против qualified asof control, selector OFF в обеих ветвях.
+5. HAR-01 regression: одинаковая measured feedback, baseline/staged промпты,
+   затем отдельные forward benchmarks их кандидатов.
+6. FE-01 и HPO-01 classification на paired group cuts42/43.
+7. HAR-01 classification: matched prompts и paired benchmarks.
+
+Все fits строго последовательны: два потока,1536MiB/600s per benchmark worker,
+максимум1800s на inner study, максимум10800s на HPO matrix. Общий ночной
+координатор ограничен21600s вместе с ожиданием; каждый subprocess имеет watchdog
+и memory guard. Это локальные guards, не platform timeout. Source/input/split
+fingerprints и отдельные immutable directories сохраняются. Межпроцессная
+блокировка отклоняет второй coordinator; две проверки lifecycle PASS.
+
+Ночной runner не делает Git writes, uploads или default promotion. Каждый этап
+пишет JSON и log. Ошибки не подменяются нулевым objective, пропуски не считаются
+успешными экспериментами. Canonical source заморожен на исходном343+23 gate;
+новые dev tools и документы не меняют исполняемый контестный код.
+
+Четыре отдельных проверки DSL-компилятора PASS; один настоящий Qwen-план дал
+пять признаков. Ошибка trusted template с неподдерживаемым np.inf исправлена
+до ML fits, исходные JSON сохранены; использовать candidates-checked.json.
+Это подтверждение валидности генерации, не качества модели.
+
+Первый измеренный итог MVP regression:39.755603137589205/32.2937819823469,
+mean36.02469255996805 против35.44723155783769. Оба cuts хуже; baseline V11/V16
+сохранён. Classification ещё выполняется. Positive component screen не равен
+готовому улучшенному релизу: нужны заявленные CV/full-agent gates.
+
+Артефакты: `test-runs/qwen-optuna-20261022/overnight-20261023/queue.json`.
+Реальный процент остатка app quota доступными tools не предоставляется;
+проценты не выдумываются, reset credits не используются.

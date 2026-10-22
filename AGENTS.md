@@ -28,6 +28,13 @@ and technical reports to MUCG9/alfa-hack-automl; branch4886ecd push+remote SHA
 verified. Git credentials are temporary/private; never expose or commit them.
 Historical V11/V16 remain the qualified control. No new official submit, extra
 Codex agents, paid GPU/resources, main merge or force push is authorized.
+Night continuation authorized23Oct: no questions, autonomous work. Full access
+is enabled, but keep sequential/resource/provenance rules. MVP regression is
+verified negative: mean36.02469255996805 vs35.44723155783769, both cuts worse.
+Classification is still running. Queue PID37960/create_time1792705065.83 waits
+for MVP before FE-01/HPO-01/HAR-01/HAR-02; see overnight_20261023.md and the
+ignored overnight identity/queue receipts. Do not start duplicate fits. Canonical
+source remains frozen; compiler4 and lifecycle2 are separate development checks.
 Local rollback tags: baseline-before-qwen-optuna-20261022,
 qwen-optuna-core-20261022, qwen-mvp-cli-tested-20261023.
 

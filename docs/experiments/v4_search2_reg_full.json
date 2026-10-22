@@ -1,0 +1,754 @@
+{
+  "version": "v4-quality-research",
+  "split": {
+    "method": "forward_observation_period",
+    "time_column": "Year_Factor",
+    "cut": 5.0,
+    "offset": 0,
+    "train_rows": 35000,
+    "validation_rows": 18308,
+    "excluded_future_rows": 0,
+    "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+  },
+  "best_validation": {
+    "rmse": 40.426939060803434,
+    "mae": 22.544960355331433,
+    "r2": 0.48863896989925626
+  },
+  "selected_recipe": {
+    "engine": "ensemble",
+    "hypothesis": "Validated cached-prediction blend",
+    "params": {},
+    "components": [
+      {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 1,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "seed": 52,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 1,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "seed": 51,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      }
+    ],
+    "weights": [
+      0.75,
+      0.25
+    ]
+  },
+  "selection": [
+    {
+      "mean": 39.116193621275265,
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 1,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "seed": 52,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      }
+    },
+    {
+      "mean": 39.22770153273444,
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 1,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "seed": 51,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      }
+    },
+    {
+      "mean": 49.131168707561315,
+      "recipe": {
+        "hypothesis": "Bounded native-category pilot",
+        "engine": "catboost",
+        "params": {
+          "iterations": 600,
+          "depth": 6,
+          "learning_rate": 0.07,
+          "l2_leaf_reg": 5,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      }
+    }
+  ],
+  "final_fit_iterations": [
+    192,
+    202
+  ],
+  "final_fit_status": "ok",
+  "elapsed_seconds": 292.92,
+  "submission_sha256": "4e99d2e0b760b2f5a34fa95e5b8c0522b4784ba01a0982e39a50530205fc35fa",
+  "integrity_ok": true,
+  "score_scope": "local search/confirmation folds, not unbiased blind/private/platform score",
+  "archive": "release/solution-v4-search2.zip",
+  "source_manifest": {
+    "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+    "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+    "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+    "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+    "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+    "automl_callbacks.py": "8caba17f5cbcea0b52044c1b54f52e908065e3b1c3709f8537052b75cb336e15",
+    "automl_contracts_messages.py": "6aab60a3ed7597d9aeb38fafdd6ffad05f691809d656d56f600d40d40922198b",
+    "automl_ensembles.py": "338b3d1a7246527167c711c3efbcc802dde4bb9b475e917327066c351c98b055",
+    "automl_evaluation.py": "e4485d5554433f86be970d440e3c6dd7288169daf0b875fee8fce583206d3f0b",
+    "automl_evaluation_api.py": "b22f4db0f8c51634cac8a18aebe4085f93bb4832bd408c19291061f697e59218",
+    "automl_execution_api.py": "57dbadc9767ef1b17ba28a035b3ecf4ce0f8d35ddd202af52151103cad3fd394",
+    "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+    "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+    "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+    "automl_execution_preprocessing_target_encoding.py": "17da52bccba4d91ec5f94fe86d22fc16f379ffa6161259a38a7de2eb3e949794",
+    "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+    "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+    "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+    "automl_infrastructure_llm_gateway.py": "cd10d09c0b5417010ea3eaf40beb2990256a6378c4a8d6e0e79a3321d83bc214",
+    "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+    "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+    "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+    "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+    "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+    "automl_model_linear_text.py": "916aca3b7131ccf3d8f2fe163a3865ff5f16f5030ec55c0b4663c7959314715c",
+    "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+    "automl_models.py": "3915a571e04c5968afda3873c0f4d130223d245918971754f0bc3d82a3eec773",
+    "automl_policy.py": "15b6e3e0a72c36741cf2fbd6ffa9da350215584d8e48e5cc5ff91bf222ca9d6d",
+    "automl_publishing.py": "e4aef80616903e9489de34d03d0b6850b769d0418be30b052ec4a9b54a39fee6",
+    "automl_publishing_api.py": "739b45ba47c8c709292e4415be4569fb8856f6f43e3a43574bcb5d74cbf03f2d",
+    "automl_runner.py": "a48fe629aa257ddd28477c7dc583b53e1e15a515dbcbec41d3ce64dc54253030",
+    "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+    "automl_task.py": "dda3793a1f8484e7c99da4c20ec56f4309756b6dae8383c9394d21c7c1a94970",
+    "automl_task_understanding_api.py": "a4a7e033cca4dc52cab2c5094a11ed7d2d90cf8b3c765eeae95c4313b5f4703e",
+    "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+    "automl_worker.py": "2e8418803d72ec96958361776b8d405c2b111c4417dcd452a653c5424ebe98d2",
+    "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+    "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+    "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+    "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953"
+  },
+  "command": [
+    "/home/dima/Документы/ml/alfa-hack-automl/test-runs/venv-core/bin/python",
+    "-u",
+    "solution.py",
+    "task.md",
+    "--offline"
+  ],
+  "threads": 2,
+  "scope": "Complete default offline search2 regression, forward search/confirmation; reused public data, not independent score",
+  "experiments": [
+    {
+      "experiment_index": 0,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Recurring training contexts transfer to the next observation period; verify forward backtests",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 43.1485967421813,
+        "mae": 24.374993649574105,
+        "r2": 0.41746870560365756
+      },
+      "wall_seconds": 6.783,
+      "fit_iterations": 100,
+      "peak_rss_mb": 381.5,
+      "observed_process_tree_peak_mb": 372.3
+    },
+    {
+      "experiment_index": 1,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Log-target history model is a separate candidate; compare both forward backtests",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 41.00254113726053,
+        "mae": 22.757225534095046,
+        "r2": 0.4739737046319621
+      },
+      "wall_seconds": 10.937,
+      "fit_iterations": 196,
+      "peak_rss_mb": 382.5,
+      "observed_process_tree_peak_mb": 373.9
+    },
+    {
+      "experiment_index": 2,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Reduce capacity under a documented future-period shift",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 31,
+          "max_depth": -1,
+          "min_child_samples": 100,
+          "reg_lambda": 15,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 47.08688131869273,
+        "mae": 26.938105613120566,
+        "r2": 0.3062775287994983
+      },
+      "wall_seconds": 3.622,
+      "fit_iterations": 100,
+      "peak_rss_mb": 351.0,
+      "observed_process_tree_peak_mb": 349.5
+    },
+    {
+      "experiment_index": 3,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Stronger regularized CPU baseline",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 52.9129183052862,
+        "mae": 30.04511250353414,
+        "r2": 0.1239894466738588
+      },
+      "wall_seconds": 5.435,
+      "fit_iterations": 115,
+      "peak_rss_mb": 354.8,
+      "observed_process_tree_peak_mb": 353.0
+    },
+    {
+      "experiment_index": 4,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Higher-leaf capacity with fixed regularization",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 255,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 52.95134260419704,
+        "mae": 30.194904478745514,
+        "r2": 0.12271670216950015
+      },
+      "wall_seconds": 6.671,
+      "fit_iterations": 100,
+      "peak_rss_mb": 366.3,
+      "observed_process_tree_peak_mb": 364.4
+    },
+    {
+      "experiment_index": 5,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Independent histogram-boosting family",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 8,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 87.53759638700772,
+        "mae": 40.499843908966135,
+        "r2": -1.3975912424153192
+      },
+      "wall_seconds": 20.402,
+      "fit_iterations": 396,
+      "peak_rss_mb": 346.4,
+      "observed_process_tree_peak_mb": 344.4
+    },
+    {
+      "experiment_index": 6,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Bounded native-category pilot",
+        "engine": "catboost",
+        "params": {
+          "iterations": 600,
+          "depth": 6,
+          "learning_rate": 0.07,
+          "l2_leaf_reg": 5,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 51.974479167825464,
+        "mae": 32.08480055333102,
+        "r2": 0.1547869371611712
+      },
+      "wall_seconds": 21.039,
+      "fit_iterations": 600,
+      "peak_rss_mb": 459.7,
+      "observed_process_tree_peak_mb": 458.3
+    },
+    {
+      "experiment_index": 7,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deeper histogram capacity; no data augmentation",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 2200,
+          "learning_rate": 0.03,
+          "max_depth": 10,
+          "min_child_weight": 2,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 6,
+          "reg_alpha": 0.1,
+          "seed": 48,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 90.40903868982387,
+        "mae": 42.410598600500734,
+        "r2": -1.5574644847236199
+      },
+      "wall_seconds": 83.638,
+      "fit_iterations": 1192,
+      "peak_rss_mb": 615.9,
+      "observed_process_tree_peak_mb": 514.0
+    },
+    {
+      "experiment_index": 8,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Paired missingness robustness trial; selection must beat unchanged fitting rows",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 2200,
+          "learning_rate": 0.03,
+          "max_depth": 10,
+          "min_child_weight": 2,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 6,
+          "reg_alpha": 0.1,
+          "seed": 48,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": "",
+        "data_policy": {
+          "schema_version": "1.0",
+          "sampling": "identity",
+          "factor": 1.5,
+          "majority_fraction": 0.85,
+          "duplicate_beta": 0.0,
+          "class_weight_cap": null,
+          "augmentation": "mask",
+          "copy_fraction": 0.25,
+          "mask_probability": 0.15,
+          "synthetic_weight": 0.5,
+          "max_added_fraction": 0.25,
+          "seed": 2026
+        }
+      },
+      "metrics": {
+        "rmse": 83.19110664685522,
+        "mae": 40.27914704810583,
+        "r2": -1.1654078734587388
+      },
+      "wall_seconds": 54.704,
+      "fit_iterations": 695,
+      "peak_rss_mb": 502.0,
+      "observed_process_tree_peak_mb": 502.1
+    },
+    {
+      "experiment_index": 9,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 1,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "seed": 51,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 40.86791520645795,
+        "mae": 23.031763578383202,
+        "r2": 0.4774222968088315
+      },
+      "wall_seconds": 7.735,
+      "fit_iterations": 214,
+      "peak_rss_mb": 379.8,
+      "observed_process_tree_peak_mb": 368.5
+    },
+    {
+      "experiment_index": 10,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 1,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "seed": 52,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 40.38233039459663,
+        "mae": 22.479986517664578,
+        "r2": 0.48976685881115545
+      },
+      "wall_seconds": 10.092,
+      "fit_iterations": 226,
+      "peak_rss_mb": 385.0,
+      "observed_process_tree_peak_mb": 371.7
+    },
+    {
+      "experiment_index": 11,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 255,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 1,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "seed": 53,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 40.871859022326845,
+        "mae": 22.658132716476924,
+        "r2": 0.4773214328586849
+      },
+      "wall_seconds": 11.59,
+      "fit_iterations": 181,
+      "peak_rss_mb": 387.4,
+      "observed_process_tree_peak_mb": 388.0
+    }
+  ],
+  "confirmations": [
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 1,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "seed": 52,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 37.8500568479539,
+        "mae": 18.31477588917933,
+        "r2": 0.5804058058481785
+      },
+      "wall_seconds": 6.132,
+      "fit_iterations": 158,
+      "peak_rss_mb": 365.8,
+      "observed_process_tree_peak_mb": 366.4
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "subsample_freq": 1,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "seed": 51,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 37.587487859010935,
+        "mae": 18.49384289926598,
+        "r2": 0.5862071332352915
+      },
+      "wall_seconds": 5.444,
+      "fit_iterations": 190,
+      "peak_rss_mb": 364.9,
+      "observed_process_tree_peak_mb": 362.0
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Bounded native-category pilot",
+        "engine": "catboost",
+        "params": {
+          "iterations": 600,
+          "depth": 6,
+          "learning_rate": 0.07,
+          "l2_leaf_reg": 5,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "rmse": 46.287858247297166,
+        "mae": 24.51688047898852,
+        "r2": 0.3724756670743109
+      },
+      "wall_seconds": 3.817,
+      "fit_iterations": 100,
+      "peak_rss_mb": 363.1,
+      "observed_process_tree_peak_mb": 359.0
+    }
+  ],
+  "ensemble": {
+    "primary": {
+      "rmse": 40.426939060803434,
+      "mae": 22.544960355331433,
+      "r2": 0.48863896989925626
+    },
+    "confirmation": {
+      "rmse": 37.7230189599553,
+      "mae": 18.29782642932855,
+      "r2": 0.5832176857096213
+    },
+    "mean": 39.074979010379366
+  }
+}

@@ -76,3 +76,21 @@ Full frozen v3 classification успешно завершён: v4_v3_default_ful
 12search+3confirmation+ensemble+fullrefit, integrity=true,2628.518s. Search
 ансамбля .654372724, mean двух splits .653714716. Официальный score не измерялся.
 Очередь66167 перешла к12 fixed-recipe regression workers; далееfull search2.
+
+Полная search2 regression закончилась: v4_search2_reg_full.json,
+12search+confirmation+ensemble+fullrefit, integrity=true,292.920s;
+RMSE40.426939/37.723019, mean39.074979. Qwen ablations12/12workersok:
+v4_qwen_ablations.json. Лучший manual-context-log40.960973/34.302243.
+
+Новый source16987fb/history3 обобщает контексты по схеме без хардкода и прошёл
+59repo +23unpacked. Fixed4workers: контроль41.002541/38.062736, автоматическая
+иерархия40.960973/33.984412. Details v4_history3_results.json. Full history3
+regression идёт через session98469, script run-history3.sh, log history3-full.log,
+output /tmp/alfa-full-v4-history3-reg. Исходный контроль воспроизведён точно.
+
+Флаг allow-default-v4-class удалён: новая классификация ещё НЕ запускалась,
+старые очереди87405 и66167 завершены. Не повторять уже успешный full frozen v3.
+После history3 regression сохранить отчёт/CSV SHA/метрики, commit/push и актуальный
+handoff. Если близок10% reserve — не начинать40-минутный full class, передать его
+следующему агенту с точными командами. Qwen private processes закрыты; Git push
+broker текущей сессии12930 ещё живёт, credential в памяти, в файлах его нет.

@@ -1,0 +1,154 @@
+[
+  {
+    "case": "renamed_regression",
+    "status": "passed",
+    "metrics": {
+      "rmse": 0.8417913648478905,
+      "mae": 0.27962553629552267,
+      "r2": 0.8738812066873175
+    },
+    "text_features": [],
+    "elapsed_seconds": 3.076
+  },
+  {
+    "case": "numeric_binary_labels",
+    "status": "passed",
+    "metrics": {
+      "macro_f1": 1.0,
+      "weighted_f1": 1.0,
+      "accuracy": 1.0,
+      "per_class_f1": {
+        "0": 1.0,
+        "1": 1.0
+      },
+      "per_class_diagnostics": {
+        "0": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 20
+        },
+        "1": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 16
+        }
+      },
+      "confusion_matrix": {
+        "classes": [
+          "0",
+          "1"
+        ],
+        "counts": [
+          [
+            20,
+            0
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      },
+      "log_loss": 0.045797185165112435,
+      "roc_auc": 1.0
+    },
+    "text_features": [],
+    "elapsed_seconds": 3.075
+  },
+  {
+    "case": "unseen_categories",
+    "status": "passed",
+    "metrics": {
+      "macro_f1": 1.0,
+      "weighted_f1": 1.0,
+      "accuracy": 1.0,
+      "per_class_f1": {
+        "no": 1.0,
+        "yes": 1.0
+      },
+      "per_class_diagnostics": {
+        "no": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 18
+        },
+        "yes": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 18
+        }
+      },
+      "confusion_matrix": {
+        "classes": [
+          "no",
+          "yes"
+        ],
+        "counts": [
+          [
+            18,
+            0
+          ],
+          [
+            0,
+            18
+          ]
+        ]
+      },
+      "log_loss": 0.04599161855730643,
+      "roc_auc": 1.0
+    },
+    "text_features": [],
+    "elapsed_seconds": 3.075
+  },
+  {
+    "case": "text_classification",
+    "status": "passed",
+    "metrics": {
+      "macro_f1": 1.0,
+      "weighted_f1": 1.0,
+      "accuracy": 1.0,
+      "per_class_f1": {
+        "no": 1.0,
+        "yes": 1.0
+      },
+      "per_class_diagnostics": {
+        "no": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 17
+        },
+        "yes": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 19
+        }
+      },
+      "confusion_matrix": {
+        "classes": [
+          "no",
+          "yes"
+        ],
+        "counts": [
+          [
+            17,
+            0
+          ],
+          [
+            0,
+            19
+          ]
+        ]
+      },
+      "log_loss": 0.00034805667420511146,
+      "roc_auc": 1.0
+    },
+    "text_features": [
+      "review_text"
+    ],
+    "elapsed_seconds": 2.574
+  },
+  {
+    "case": "generated_code_import_rejected",
+    "status": "passed"
+  }
+]

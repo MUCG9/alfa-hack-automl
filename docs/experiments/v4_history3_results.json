@@ -1,0 +1,459 @@
+{
+  "source": {
+    "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+    "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+    "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+    "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+    "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+    "automl_callbacks.py": "8caba17f5cbcea0b52044c1b54f52e908065e3b1c3709f8537052b75cb336e15",
+    "automl_contracts_messages.py": "6aab60a3ed7597d9aeb38fafdd6ffad05f691809d656d56f600d40d40922198b",
+    "automl_ensembles.py": "338b3d1a7246527167c711c3efbcc802dde4bb9b475e917327066c351c98b055",
+    "automl_evaluation.py": "e4485d5554433f86be970d440e3c6dd7288169daf0b875fee8fce583206d3f0b",
+    "automl_evaluation_api.py": "b22f4db0f8c51634cac8a18aebe4085f93bb4832bd408c19291061f697e59218",
+    "automl_execution_api.py": "57dbadc9767ef1b17ba28a035b3ecf4ce0f8d35ddd202af52151103cad3fd394",
+    "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+    "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+    "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+    "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+    "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+    "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+    "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+    "automl_infrastructure_llm_gateway.py": "cd10d09c0b5417010ea3eaf40beb2990256a6378c4a8d6e0e79a3321d83bc214",
+    "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+    "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+    "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+    "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+    "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+    "automl_model_linear_text.py": "916aca3b7131ccf3d8f2fe163a3865ff5f16f5030ec55c0b4663c7959314715c",
+    "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+    "automl_models.py": "518309de8a1e05d565f1cefc6f3b5e82223565dfa27df4bfb0be99112c99d65f",
+    "automl_policy.py": "460304cba76cb892f09028bd1ac55d980721813d7aeac01d772a408b20c09244",
+    "automl_publishing.py": "e4aef80616903e9489de34d03d0b6850b769d0418be30b052ec4a9b54a39fee6",
+    "automl_publishing_api.py": "739b45ba47c8c709292e4415be4569fb8856f6f43e3a43574bcb5d74cbf03f2d",
+    "automl_runner.py": "2acd21a1a4e089b2c417385ca48b075aeb32a6d5e7d409103ea3d4b6bb1aeec8",
+    "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+    "automl_task.py": "6a79a3b3a73852a1a7fc23f748a66c0592cb3eadcfc0c4d84e2011089e158e2c",
+    "automl_task_understanding_api.py": "a4a7e033cca4dc52cab2c5094a11ed7d2d90cf8b3c765eeae95c4313b5f4703e",
+    "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+    "automl_worker.py": "ae4b7453beaffd14ab6f21b00eac5d0ceb913fd7a0161788287f4786b427e9a2",
+    "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+    "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+    "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+    "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953"
+  },
+  "harness": {
+    "tools/benchmark_candidates.py": "3023ba0460063d5f497fd6f82d05247babff519b79edf8b16806eb4c9879765a",
+    "src/automl/task_understanding/service.py": "7b2f8f464fba2d9e9d7f353a8496c41ccbb16244b5685a57a33231c7db60b9f1",
+    "src/automl/evaluation/service.py": "2410862c98399d3ac89fa90d5ca8cdbd8507bb2036763645130511393764bfd3",
+    "src/automl/infrastructure/processes.py": "fb6f3e0614904f1b6db7f4c4e2718c0518b1ba6ae4c66f7cbf42545a5a25cf90"
+  },
+  "python": "3.12.3 (main, Jan 22 2026, 20:57:42) [GCC 13.3.0]",
+  "inputs": {
+    "train": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775",
+    "test": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
+    "data_dictionary": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
+    "sample_submission": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1"
+  },
+  "task_sha256": "33f743ead4840336856cb9db8e25867f44512231beebff927326e8580e14d9d0",
+  "spec": {
+    "root": "/home/dima/Документы/ml/alfa-hack-automl/public_tasks/regression",
+    "task_path": "/home/dima/Документы/ml/alfa-hack-automl/public_tasks/regression/task.md",
+    "paths": {
+      "train": "/home/dima/Документы/ml/alfa-hack-automl/public_tasks/regression/train.csv",
+      "test": "/home/dima/Документы/ml/alfa-hack-automl/public_tasks/regression/test.csv",
+      "data_dictionary": "/home/dima/Документы/ml/alfa-hack-automl/public_tasks/regression/data_dictionary.csv",
+      "sample_submission": "/home/dima/Документы/ml/alfa-hack-automl/public_tasks/regression/sample_submission.csv"
+    },
+    "target": "site_eui",
+    "id": "id",
+    "features": [
+      "Year_Factor",
+      "State_Factor",
+      "building_class",
+      "facility_type",
+      "floor_area",
+      "year_built",
+      "energy_star_rating",
+      "ELEVATION",
+      "january_min_temp_c",
+      "january_avg_temp_c",
+      "january_max_temp_c",
+      "february_min_temp_c",
+      "february_avg_temp_c",
+      "february_max_temp_c",
+      "march_min_temp_c",
+      "march_avg_temp_c",
+      "march_max_temp_c",
+      "april_min_temp_c",
+      "april_avg_temp_c",
+      "april_max_temp_c",
+      "may_min_temp_c",
+      "may_avg_temp_c",
+      "may_max_temp_c",
+      "june_min_temp_c",
+      "june_avg_temp_c",
+      "june_max_temp_c",
+      "july_min_temp_c",
+      "july_avg_temp_c",
+      "july_max_temp_c",
+      "august_min_temp_c",
+      "august_avg_temp_c",
+      "august_max_temp_c",
+      "september_min_temp_c",
+      "september_avg_temp_c",
+      "september_max_temp_c",
+      "october_min_temp_c",
+      "october_avg_temp_c",
+      "october_max_temp_c",
+      "november_min_temp_c",
+      "november_avg_temp_c",
+      "november_max_temp_c",
+      "december_min_temp_c",
+      "december_avg_temp_c",
+      "december_max_temp_c",
+      "cooling_degree_days_c",
+      "heating_degree_days_c",
+      "precipitation_inches",
+      "snowfall_inches",
+      "snowdepth_inches",
+      "avg_temp_c",
+      "days_below_minus1C",
+      "days_below_minus7C",
+      "days_below_minus12C",
+      "days_below_minus18C",
+      "days_above_27C",
+      "days_above_32C",
+      "days_above_38C",
+      "days_above_43C",
+      "direction_max_wind_speed",
+      "direction_peak_wind_speed",
+      "max_wind_speed",
+      "days_with_fog"
+    ],
+    "kind": "regression",
+    "metric": "rmse",
+    "greater_is_better": false,
+    "n_train": 53308,
+    "n_test": 22449,
+    "n_features": 62,
+    "duplicate_feature_rate": 0.006134163727770691,
+    "text_features": [],
+    "classes": null,
+    "prediction_type": "value",
+    "output_columns": [
+      "site_eui"
+    ],
+    "categorical_features": [
+      "State_Factor",
+      "building_class",
+      "facility_type"
+    ],
+    "time_candidate": {
+      "column": "Year_Factor",
+      "reason": "Documented observation period; entire test range follows training range",
+      "train_min": 1.0,
+      "train_max": 5.0,
+      "test_min": 6.0,
+      "test_max": 6.0
+    },
+    "static_numeric_features": [
+      "year_built"
+    ],
+    "validation_strategy": "time",
+    "time_column": "Year_Factor"
+  },
+  "candidates": [
+    {
+      "name": "control-history-log",
+      "recipe": {
+        "engine": "lightgbm",
+        "hypothesis": "history-log",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true
+        },
+        "feature_code": ""
+      }
+    },
+    {
+      "name": "automatic-metadata-history-log",
+      "recipe": {
+        "engine": "lightgbm",
+        "hypothesis": "Use fitting-only recurring contexts refined by categorical and schema-described static attributes",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "missing",
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "target_encoding_hierarchical": true
+        },
+        "feature_code": ""
+      }
+    }
+  ],
+  "results": [
+    {
+      "name": "control-history-log",
+      "seed": 0,
+      "status": "ok",
+      "metrics": {
+        "rmse": 41.00254113726053,
+        "mae": 22.757225534095046,
+        "r2": 0.4739737046319621
+      },
+      "seconds": 11.639,
+      "peak_mb": 384.6,
+      "split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 5.0,
+        "offset": 0,
+        "train_rows": 35000,
+        "validation_rows": 18308,
+        "excluded_future_rows": 0,
+        "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+      },
+      "fit_iterations": 196,
+      "directory": "/tmp/alfa-history3-time/control-history-log/seed-0",
+      "exit_code": 0,
+      "fitting_context_groups": [
+        [
+          [
+            "building_class",
+            "floor_area"
+          ],
+          [
+            "facility_type",
+            "floor_area"
+          ]
+        ],
+        [
+          [
+            "facility_type",
+            "floor_area"
+          ],
+          [
+            "building_class",
+            "floor_area"
+          ]
+        ]
+      ],
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 0,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 0,
+        "split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e"
+      }
+    },
+    {
+      "name": "control-history-log",
+      "seed": 1,
+      "status": "ok",
+      "metrics": {
+        "rmse": 38.06273580986809,
+        "mae": 18.36167501649308,
+        "r2": 0.5756771696947818
+      },
+      "seconds": 7.024,
+      "peak_mb": 366.8,
+      "split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 1,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 18308,
+        "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+      },
+      "fit_iterations": 148,
+      "directory": "/tmp/alfa-history3-time/control-history-log/seed-1",
+      "exit_code": 0,
+      "fitting_context_groups": [
+        [
+          [
+            "State_Factor",
+            "floor_area"
+          ]
+        ],
+        [
+          [
+            "building_class",
+            "floor_area"
+          ],
+          [
+            "facility_type",
+            "floor_area"
+          ]
+        ]
+      ],
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 3.0,
+        "offset": 0,
+        "train_rows": 11175,
+        "validation_rows": 10879,
+        "excluded_future_rows": 0,
+        "split_sha256": "8d32e0829f0e8ef74b485c66e4a57a3a882c5e922d22ce6df1676ee29be3e1c4"
+      }
+    },
+    {
+      "name": "automatic-metadata-history-log",
+      "seed": 0,
+      "status": "ok",
+      "metrics": {
+        "rmse": 40.96097309727642,
+        "mae": 22.66369929219871,
+        "r2": 0.475039726285567
+      },
+      "seconds": 11.239,
+      "peak_mb": 383.7,
+      "split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 5.0,
+        "offset": 0,
+        "train_rows": 35000,
+        "validation_rows": 18308,
+        "excluded_future_rows": 0,
+        "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+      },
+      "fit_iterations": 222,
+      "directory": "/tmp/alfa-history3-time/automatic-metadata-history-log/seed-0",
+      "exit_code": 0,
+      "fitting_context_groups": [
+        [
+          [
+            "building_class",
+            "floor_area",
+            "State_Factor",
+            "facility_type"
+          ],
+          [
+            "building_class",
+            "floor_area",
+            "State_Factor",
+            "facility_type",
+            "year_built"
+          ]
+        ],
+        [
+          [
+            "facility_type",
+            "floor_area",
+            "State_Factor",
+            "building_class"
+          ],
+          [
+            "facility_type",
+            "floor_area",
+            "State_Factor",
+            "building_class",
+            "year_built"
+          ]
+        ]
+      ],
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 0,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 0,
+        "split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e"
+      }
+    },
+    {
+      "name": "automatic-metadata-history-log",
+      "seed": 1,
+      "status": "ok",
+      "metrics": {
+        "rmse": 33.98441205488139,
+        "mae": 16.89865155605535,
+        "r2": 0.6617358912454008
+      },
+      "seconds": 7.224,
+      "peak_mb": 365.9,
+      "split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 4.0,
+        "offset": 1,
+        "train_rows": 22054,
+        "validation_rows": 12946,
+        "excluded_future_rows": 18308,
+        "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97"
+      },
+      "fit_iterations": 148,
+      "directory": "/tmp/alfa-history3-time/automatic-metadata-history-log/seed-1",
+      "exit_code": 0,
+      "fitting_context_groups": [
+        [
+          [
+            "State_Factor",
+            "floor_area"
+          ]
+        ],
+        [
+          [
+            "building_class",
+            "floor_area",
+            "State_Factor",
+            "facility_type"
+          ],
+          [
+            "building_class",
+            "floor_area",
+            "State_Factor",
+            "facility_type",
+            "year_built"
+          ]
+        ]
+      ],
+      "inner_split": {
+        "method": "forward_observation_period",
+        "time_column": "Year_Factor",
+        "cut": 3.0,
+        "offset": 0,
+        "train_rows": 11175,
+        "validation_rows": 10879,
+        "excluded_future_rows": 0,
+        "split_sha256": "8d32e0829f0e8ef74b485c66e4a57a3a882c5e922d22ce6df1676ee29be3e1c4"
+      }
+    }
+  ],
+  "source_archive": "release/solution-v4-history3.zip",
+  "evaluation_scope": "Fixed automatic metadata history recipe vs unchanged log control on two forward backtests; no private score"
+}

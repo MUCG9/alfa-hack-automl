@@ -15,8 +15,12 @@
 Свежий статус продолжения и уже запущенных jobs:
 `docs/experiments/v4_progress.md`. Прочитай его до запуска новых тяжёлых опытов;
 основной текст ниже описывает первый завершённый checkpoint.
-Свежая поисковая сборка — release/solution-v4-search2.zip (e8458fe),
-58repo +23unpacked passed; полный metric benchmark ещё идёт. Не путай её с
+Свежая сборка — release/solution-v4-history3.zip (16987fb),
+59repo +23unpacked прошли; full regression run сейчас считается.
+Предыдущая поисковая сборка — release/solution-v4-search2.zip (e8458fe),
+58repo +23unpacked passed; её full regression уже закончилась успешно.
+Full frozen v3 classification также закончен, см.v4_v3_default_full.json.
+Новую полную классификацию ещё нужно проверить; source2/3 меняют XGB fallback. Не путай её с
 source1 release/solution-v4-candidate.zip, из которого сделана полная CV.
 
 ## Репозиторий и обязательное чтение

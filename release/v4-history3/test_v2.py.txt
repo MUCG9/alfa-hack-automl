@@ -1,0 +1,16 @@
+test_binary_and_multiclass_probability_contracts (__main__.V2Tests.test_binary_and_multiclass_probability_contracts) ... ok
+test_effective_depth_and_bagging (__main__.V2Tests.test_effective_depth_and_bagging) ... ok
+test_feedback_context_is_first_and_keeps_incumbent_code (__main__.V2Tests.test_feedback_context_is_first_and_keeps_incumbent_code) ... ok
+test_generated_statistics_rejected (__main__.V2Tests.test_generated_statistics_rejected) ... ok
+test_inheritance_does_not_hide_requested_changes (__main__.V2Tests.test_inheritance_does_not_hide_requested_changes) ... ok
+test_metric_alignment (__main__.V2Tests.test_metric_alignment) ... ok
+test_planner_json_fences_and_invalid_engine (__main__.V2Tests.test_planner_json_fences_and_invalid_engine) ... ok
+test_provenance_journal_and_stale_results (__main__.V2Tests.test_provenance_journal_and_stale_results) ... ok
+test_unknown_categories_not_fit_on_validation (__main__.V2Tests.test_unknown_categories_not_fit_on_validation) ... ok
+test_weights_normalized (__main__.V2Tests.test_weights_normalized) ... ok
+test_xgboost_preserves_string_labels_and_categories (__main__.V2Tests.test_xgboost_preserves_string_labels_and_categories) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.232s
+
+OK

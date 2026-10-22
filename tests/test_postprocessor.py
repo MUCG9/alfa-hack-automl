@@ -2,6 +2,7 @@
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
+import builtins
 import sys,tempfile,unittest
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT));sys.path.insert(0,str(ROOT/'src'));sys.path.insert(0,str(ROOT/'tests'))
@@ -51,6 +52,17 @@ class PostprocessorTests(unittest.TestCase):
             with self.subTest(values=values),patch('scipy.optimize.minimize',return_value=SimpleNamespace(x=np.array(values),nfev=10,success=False)):
                 fitted=MacroF1ThresholdOptimizer(3,'nelder_mead').fit(p,y,c)
                 self.assertEqual(fitted.factors_,expected)
+
+    def test_unavailable_optional_optimizer_preserves_legacy_factors(self):
+        p,y,c=probabilities();expected=tune_class_factors(y,p,c)
+        original=builtins.__import__
+        def guarded(name,*args,**kwargs):
+            if name=='scipy.optimize':raise ImportError('fixture unavailable')
+            return original(name,*args,**kwargs)
+        with patch('builtins.__import__',side_effect=guarded):
+            fitted=MacroF1ThresholdOptimizer(3,'nelder_mead').fit(p,y,c)
+        self.assertEqual(fitted.factors_,expected)
+        self.assertEqual(fitted.diagnostics_['exception_type'],'ImportError')
 
     def test_probability_label_class_shape_and_range_contracts(self):
         p,y,c=probabilities()

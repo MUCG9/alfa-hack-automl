@@ -82,7 +82,6 @@ class MacroF1ThresholdOptimizer:
         return self
 
     def _refine(self,objective):
-        from scipy.optimize import minimize
         low,high=np.log(.4),np.log(2.5)
         initial=self.weights.copy();best=objective(initial)
         logs=np.log(initial)
@@ -90,6 +89,7 @@ class MacroF1ThresholdOptimizer:
         for i in range(self.n_classes):
             simplex[i+1,i]+= .15 if logs[i]+.15<=high else -.15
         try:
+            from scipy.optimize import minimize
             result=minimize(lambda x:-objective(np.exp(x)),logs,method='Nelder-Mead',
                 bounds=[(low,high)]*self.n_classes,
                 options={'initial_simplex':simplex,'maxiter':400,'maxfev':400,'adaptive':True})

@@ -10,8 +10,10 @@ bounded[.8,1.25],minimum20calibration rows,matching selected iterations. History
 recipes require actually enabled history in the calibration model. Ineligible/
 invalid moments retain factor1; the identity inverse preserves exact dtype/values.
 No default portfolio insertion yet; classification/numeric optimizer defaults
-unchanged. Six pure checks passed; full254unique/23unpacked gates running after
-the finished framework study. Public3cut screen not started. See v15 protocol.
+unchanged. All254unique checks PASS unchanged-source (171.007s), plus23repeated
+exact-unpacked. Includes actual matching-floor, fullrefit, outer-label isolation
+and insufficient-history CSV parity checks. Evidence here. Public3cut screen now
+running sequentially after the negative framework study. See v15 protocol.
 
 V11 remains the qualified score-improving release. This archive is NOT yet a
 better ML model; no official upload authorized. Earlier artifacts immutable.

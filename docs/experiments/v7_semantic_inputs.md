@@ -55,6 +55,8 @@ The benchmark wrapper's read-only preflight stays deterministic; unknown-name
 online tasks should be exercised through the CLI on a writable private task copy.
 Full repository gate: **145 unique checks passed**, source unchanged, 156.158
 seconds (`test-runs/continuation-20261022/v7-checks/results.json`). The eight
-semantic tests are included in 145, not additional checks. Exact-unpacked and
-current-snapshot public gates are still needed before treating this branch as the
-best tested submission candidate.
+semantic tests are included in 145, not additional checks. The exact-unpacked
+gate subsequently passed23 repeated checks, and a source-hash audit matches the
+frozen ZIP to all145 checks. Full public regression passes with byte-identical
+V6 CSV; classification remains pending at the85%-usage handoff. See
+`release/v7-semantic1`. Do not promote an unfinished full gate as passed.

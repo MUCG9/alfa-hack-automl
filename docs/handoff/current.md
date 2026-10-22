@@ -66,7 +66,9 @@ search12/budget9900s, offline,2threads, tree guard1.7GiB, watchdog10100s/task.
 Strict current-source comparison прошёл на запуске; потом менялись только docs.
 Aggregate `assessments.json` означает завершение обеих задач. Проверить каждый
 assessment/report на exit0, refit/integrity и SHA CSV; не дублировать job и не
-объявлять full success без completion. Раздел обновляется при финальном checkpoint.
+объявлять full success без completion. Финальное наблюдение в04:30:56UTC:
+4search experiments завершены, идёт CatBoost pilot experiment-04; полного
+report/aggregate нет. После порога85% новые ML jobs не запускаются.
 
 Защищённый ввод credential в диагностический terminal был отклонён policy, ключ
 туда не поступил. Idle terminal может ещё ждать stdin; не утверждать, что все
@@ -107,6 +109,7 @@ Original requirements SHA в next-agent.md. Python patch влияет на ast.u
 проверок, source hashes до/после, owned-process guards. Exact-unpacked23 повторяют
 часть145, не суммировать как168unique.
 
-Последний записанный quota usedPercent **82% в04:25UTC** — не live остаток при
-чтении. При85% used начать завершение/передачу, не начинать новые долгие этапы;
-reset credits не использовать. Актуальное чтение обязательно.
+Последний записанный quota usedPercent **85% в04:30:56UTC**,15% оставалось: начаты
+checkpoint/передача, новые долгие этапы не запускаются. Это не live остаток при
+чтении. Reset credits не использовались. Машиночитаемый снимок:
+`checkpoint-20261022.json`. Актуальное чтение quota обязательно.

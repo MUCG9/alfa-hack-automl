@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 import pandas as pd
@@ -13,6 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 from automl.error_analysis.artifacts import load, Guard, AnalysisLimit
 from error_analysis_fixture import PassportFixture, ref, sha
+from automl.error_analysis.api import analyze, summarize, ErrorProfile
+from automl.error_analysis.reporting import read_section
 
 
 class ErrorAnalysisTests(unittest.TestCase):
@@ -174,6 +177,190 @@ class ErrorAnalysisTests(unittest.TestCase):
         fixture.request = replace(fixture.request, protocol=ref(fixture.protocol_path))
         with self.assertRaisesRegex(ValueError, 'unknown fields'):
             self.loaded(fixture)
+
+    def test_complete_classification_passport_and_bounded_summary(self):
+        fixture = PassportFixture(self.root, oof=True)
+        profile = analyze(fixture.request)
+        self.assertEqual(profile.status, 'complete', [(s.name, s.reason) for s in profile.sections])
+        self.assertEqual(ErrorProfile.from_json((self.root / 'reports/error_profile.json').read_text()), profile)
+        self.assertTrue((self.root / 'reports/error_profile.md').is_file())
+        summary = summarize(profile)
+        self.assertLess(len(json.dumps(summary).encode()), 8192)
+        self.assertNotIn('row_position', json.dumps(summary))
+        self.assertNotIn('y_true', json.dumps(summary))
+
+    def test_regression_bias_variance_and_tail_statistics(self):
+        fixture = PassportFixture(self.root, kind='regression')
+        profile = analyze(fixture.request)
+        result = read_section(profile, 'models')['models']['control']['folds']['0']
+        self.assertAlmostEqual(result['mse'], result['bias_squared'] + result['residual_variance'])
+        self.assertAlmostEqual(result['metrics']['rmse'], np.sqrt(8 / 3))
+        self.assertGreaterEqual(result['largest_error_concentration']['0.05']['squared_error_share'],
+                                result['largest_error_concentration']['0.01']['squared_error_share'])
+
+    def test_regression_pairwise_mse_identity_and_fixed_blend(self):
+        fixture = PassportFixture(self.root, kind='regression')
+        profile = analyze(fixture.request)
+        pair = read_section(profile, 'comparisons')['pairs'][0]['folds']['0']
+        expected = .25 * pair['control']**2 + .25 * pair['candidate']**2 + .5 * pair['residuals']['mean_product']
+        self.assertAlmostEqual(pair['fixed_half_blend']**2, expected)
+        self.assertAlmostEqual(pair['residuals']['pearson'], 1)
+
+    def test_declared_blend_ablation_renormalizes_without_refit(self):
+        fixture = PassportFixture(self.root, kind='regression')
+        profile = analyze(fixture.request)
+        comparisons = read_section(profile, 'comparisons')
+        blend = comparisons['declared_blends'][0]
+        self.assertFalse(blend['weights_fitted'])
+        pair = comparisons['pairs'][0]['folds']['0']
+        without_control = next(v for v in blend['folds']['0']['ablations'] if v['removed'] == 'control')
+        self.assertAlmostEqual(without_control['metrics']['rmse'], pair['candidate'])
+
+    def test_fitting_quantile_boundaries_ignore_validation_feature_values(self):
+        fixture = PassportFixture(self.root, kind='regression')
+        loaded = self.loaded(fixture)
+        from automl.error_analysis.slices import profiles
+        first = profiles(loaded, Guard(fixture.request.budget))
+        loaded.dataset.loc[12:, 'signal'] = 1e9
+        second = profiles(loaded, Guard(fixture.request.budget))
+        boundaries = lambda report: [s['definition'] for m in report['models'] for s in m['slices'] if s['dimension'] == 'numeric:signal']
+        self.assertEqual(boundaries(first), boundaries(second))
+
+    def test_too_few_groups_produces_partial_profile_with_reason(self):
+        fixture = PassportFixture(self.root)
+        fixture.set_protocol(min_bootstrap_groups=100)
+        profile = analyze(fixture.request)
+        self.assertEqual(profile.status, 'partial')
+        uncertainty = next(s for s in profile.sections if s.name == 'uncertainty')
+        self.assertEqual(uncertainty.status, 'unavailable')
+        self.assertIn('enough independent', uncertainty.reason)
+
+    def test_bootstrap_seed_is_reproducible_and_identical_predictions_have_zero_delta(self):
+        fixture = PassportFixture(self.root)
+        data = self.loaded(fixture)
+        from automl.error_analysis.uncertainty import paired_bootstrap
+        value = data.predictions[('control', '0')]
+        a = paired_bootstrap(data.request.task, value, value, data.groups[value.rows], data.protocol, Guard(fixture.request.budget))
+        b = paired_bootstrap(data.request.task, value, value, data.groups[value.rows], data.protocol, Guard(fixture.request.budget))
+        self.assertEqual(a, b)
+        self.assertEqual(a['paired_percentile_95'], [0, 0])
+
+    def test_bootstrap_uses_declared_groups_instead_of_row_count(self):
+        fixture = PassportFixture(self.root)
+        path = self.root / 'groups.csv'
+        pd.DataFrame({'row_position': np.arange(24), 'value': np.repeat(np.arange(4), 6)}).to_csv(path, index=False)
+        from automl.contracts.messages import DatasetRef
+        fixture.request = replace(fixture.request, groups=DatasetRef(str(path), sha(path), 24))
+        profile = analyze(fixture.request)
+        result = read_section(profile, 'uncertainty')
+        self.assertEqual(result['unit'], 'declared_group')
+        self.assertEqual(result['comparisons'][0]['units'], 2)
+
+    def test_forward_single_period_never_gets_row_bootstrap_interval(self):
+        fixture = PassportFixture(self.root, kind='regression')
+        fixture.frame['period'] = np.repeat([1, 2], 12)
+        fixture.frame.to_csv(fixture.dataset, index=False)
+        fixture.request = replace(fixture.request, dataset=replace(fixture.request.dataset, sha256=sha(fixture.dataset)), prediction_scope='forward')
+        profile = analyze(fixture.request)
+        self.assertEqual(profile.status, 'partial')
+        self.assertIsNone(read_section(profile, 'uncertainty'))
+        self.assertEqual(read_section(profile, 'alignment')['oof_coverage'], 'not_oof')
+
+    def test_invalid_input_returns_failed_manifest_without_completed_sections(self):
+        fixture = PassportFixture(self.root)
+        fixture.dataset.write_text(fixture.dataset.read_text() + '\n')
+        profile = analyze(fixture.request)
+        self.assertEqual(profile.status, 'failed')
+        self.assertFalse(any(s.status == 'complete' for s in profile.sections))
+        self.assertEqual(summarize(profile)['models'], [])
+
+    def test_mutated_input_during_analysis_invalidates_all_downstream_sections(self):
+        fixture = PassportFixture(self.root)
+        from automl.error_analysis import service
+        original = service.model_profiles
+        def mutate(data, guard):
+            result = original(data, guard)
+            fixture.dataset.write_text(fixture.dataset.read_text() + '\n')
+            return result
+        with patch.object(service, 'model_profiles', side_effect=mutate):
+            profile = analyze(fixture.request)
+        self.assertEqual(profile.status, 'failed')
+        self.assertFalse(any(s.status == 'complete' for s in profile.sections))
+
+    def test_existing_output_and_input_directory_are_never_overwritten(self):
+        fixture = PassportFixture(self.root)
+        original = fixture.dataset.read_bytes()
+        with self.assertRaises(FileExistsError):
+            analyze(replace(fixture.request, output_dir=str(self.root.parent)))
+        analyze(fixture.request)
+        with self.assertRaises(FileExistsError):
+            analyze(fixture.request)
+        self.assertEqual(fixture.dataset.read_bytes(), original)
+
+    def test_tampered_aggregate_is_rejected_by_summary(self):
+        fixture = PassportFixture(self.root)
+        profile = analyze(fixture.request)
+        path = self.root / 'reports/models.json'
+        path.write_text(path.read_text() + '\n')
+        with self.assertRaisesRegex(ValueError, 'SHA256'):
+            summarize(profile)
+
+    def test_constant_residual_correlation_is_explicitly_undefined(self):
+        from automl.error_analysis.comparisons import correlation
+        self.assertIsNone(correlation(np.ones(10), np.arange(10)))
+        self.assertIsNone(correlation(np.arange(10), np.ones(10)))
+
+    def test_bootstrap_scorer_matches_weighted_multiclass_f1_with_absent_classes(self):
+        from types import SimpleNamespace
+        from sklearn.metrics import f1_score
+        from automl.error_analysis.uncertainty import _scorer
+        value = SimpleNamespace(classes=('a', 'b', 'c'), truth=np.array(['a', 'b', 'a', 'c']),
+                                predicted=np.array(['b', 'b', 'a', 'a']))
+        task = PassportFixture(self.root).task
+        weights = np.array([2., 3., 1., 0.])
+        self.assertAlmostEqual(_scorer(task, value)(weights),
+            f1_score(value.truth, value.predicted, labels=value.classes, average='macro', sample_weight=weights, zero_division=0))
+
+    def test_section_request_identity_is_checked_even_with_updated_content_hash(self):
+        fixture = PassportFixture(self.root)
+        profile = analyze(fixture.request)
+        path = self.root / 'reports/models.json'
+        payload = json.loads(path.read_text())
+        payload['request_sha256'] = '0' * 64
+        path.write_text(json.dumps(payload))
+        profile = replace(profile, sections=tuple(replace(s, result=ref(path)) if s.name == 'models' else s for s in profile.sections))
+        with self.assertRaisesRegex(ValueError, 'identity'):
+            summarize(profile)
+
+    def test_probability_columns_are_aligned_across_models(self):
+        fixture = PassportFixture(self.root)
+        first, candidate = fixture.request.predictions
+        with np.load(candidate.probabilities.path) as stored:
+            content = dict(stored)
+        expected = content['probabilities'].copy()
+        content['classes'] = content['classes'][::-1]
+        content['probabilities'] = content['probabilities'][:, ::-1]
+        np.savez(candidate.probabilities.path, **content)
+        candidate = replace(candidate, probabilities=ref(candidate.probabilities.path),
+                            predictions=replace(candidate.predictions, classes=candidate.predictions.classes[::-1]))
+        fixture.request = replace(fixture.request, predictions=(first, candidate))
+        data = self.loaded(fixture)
+        self.assertTrue(np.array_equal(data.predictions[('candidate', '0')].probabilities, expected))
+
+    def test_compiled_backend_analyzes_without_checkout_imports(self):
+        import subprocess
+        sys.path.insert(0, str(ROOT / 'tools'))
+        from build_submission import build_files
+        fixture = PassportFixture(self.root)
+        compiled = self.root / 'compiled'
+        compiled.mkdir()
+        for name, content in build_files().items():
+            (compiled / name).write_bytes(content)
+        script = "import sys;sys.path.insert(0,sys.argv[1]);from automl_error_analysis_api import ErrorAnalysisRequest,analyze; p=analyze(ErrorAnalysisRequest.from_json(sys.stdin.read()));print(p.status)"
+        result = subprocess.run([sys.executable, '-I', '-B', '-c', script, str(compiled)], input=fixture.request.to_json(),
+                                capture_output=True, text=True, timeout=30, cwd=compiled)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout.strip(), 'complete', result.stderr)
 
 
 if __name__ == '__main__':

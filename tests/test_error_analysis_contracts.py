@@ -84,6 +84,10 @@ class ErrorAnalysisContractTests(unittest.TestCase):
                     ErrorAnalysisRequest.from_dict(value)
 
     def test_unknown_versions_are_rejected_including_legacy_references(self):
+        old = request().to_dict()
+        old['schema_version'] = '1.0'
+        with self.assertRaisesRegex(ValueError, 'schema version'):
+            ErrorAnalysisRequest.from_dict(old)
         for path in ((), ('task',), ('dataset',), ('budget',), ('protocol',), ('predictions', 0),
                      ('predictions', 0, 'predictions'), ('predictions', 0, 'split')):
             with self.subTest(path=path):

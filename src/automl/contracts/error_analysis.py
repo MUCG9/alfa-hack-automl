@@ -9,7 +9,7 @@ from typing import get_args, get_origin, get_type_hints
 
 from automl.contracts.messages import DatasetRef, PredictionBundle, TaskSpec, canonical_hash
 
-ERROR_ANALYSIS_SCHEMA_VERSION = '1.0'
+ERROR_ANALYSIS_SCHEMA_VERSION = '2.0'
 PROFILE_SECTIONS = ('alignment', 'models', 'comparisons', 'slices', 'uncertainty')
 
 

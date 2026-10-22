@@ -22,3 +22,27 @@ class ErrorAnalyzer(Protocol):
     def analyze(self, request: ErrorAnalysisRequest) -> ErrorProfile:
         """Read frozen artifacts and return diagnostic evidence, never selections."""
         ...
+
+
+def analyze(request: ErrorAnalysisRequest) -> ErrorProfile:
+    """Run local diagnostics; heavy dependencies are loaded only on invocation."""
+    from automl.error_analysis.service import analyze as implementation
+    return implementation(request)
+
+
+def summarize(profile: ErrorProfile) -> dict:
+    """Return bounded aggregate evidence for a coordinator, without changing policy."""
+    from automl.error_analysis.reporting import summary
+    return summary(profile)
+
+
+def prepare_report_request(*args, **kwargs) -> ErrorAnalysisRequest:
+    """Prepare a request from explicitly relocated full-run caches, without fits."""
+    from automl.error_analysis.preparation import prepare_report_request as implementation
+    return implementation(*args, **kwargs)
+
+
+def audit_baseline(*args, **kwargs) -> dict:
+    """Audit portable V11/V16 evidence and inventory missing original artifacts."""
+    from automl.error_analysis.preparation import audit_baseline as implementation
+    return implementation(*args, **kwargs)

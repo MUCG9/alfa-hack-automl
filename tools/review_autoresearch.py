@@ -66,7 +66,13 @@ changes to retesting unchanged negative recipes. The response is a review for
 the existing coordinator; you cannot execute actions or change permissions.
 Research skill follows:\n'''+skill_payload.decode('utf-8')
     with RunBudget(210, 1, output):
-        content, call = request_json(prompt, {'receipts': documents}, max_output=4096,
+        context = {'receipts': documents,
+                   'local_resource_contract': {'host_fitting_concurrency': 1, 'benchmark_threads': 2,
+                       'component_worker_seconds': 600, 'component_worker_memory_mib': 1536,
+                       'additional_agents': False, 'paid_compute': False},
+                   'predeclared_probe_ids': ['FE-01', 'HPO-01', 'HAR-01', 'HAR-02', 'FE-02'],
+                   'probe_status_rule': 'Use only supplied receipts for status; absent results remain unknown. Do not propose an unchanged preregistered probe as new.'}
+        content, call = request_json(prompt, context, max_output=4096,
                                      timeout=180, purpose='autoresearch_review')
     atomic_json(output/'call.json', {'call': {key: value for key, value in call.items() if key != 'error_message'},
                                     'content': content})

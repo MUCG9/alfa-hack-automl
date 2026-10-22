@@ -96,7 +96,10 @@ fold scores are local development evidence, not an official/private estimate.
   [+0.003868363,+0.009158243]. Add one OPTIONAL Macro F1 trial, retain its control.
 - Combined `release/solution-v6-universal1.zip`: SHA
   `b3b46b6a6bee7b7540fda0db22bf663a7afa090baff6e1b9ee72a3a221e3afb5`,
-  137 unique checks + repeated 23 unpacked checks pass. Its full public run is active.
+  137 unique checks + repeated 23 unpacked checks pass. Its full public run has
+  completed: regression mean RMSE 36.775244985 (same final CSV as v4), classification
+  blend mean Macro F1 0.653281240, full refit/integrity pass for both. Classification
+  is slightly above v4 but still below v3; no private-score claim.
 
 Live development Qwen calls remain unverified in this continuation: protected stdin
 entry was denied by the managed tool policy, and the key was not entered into the
@@ -106,8 +109,11 @@ An idle diagnostic terminal may still be waiting for input; do not claim all
 credential-related processes have been closed. Platform-provided API environment
 is a separate runtime path; no development spend/balance is inferred.
 
-Next isolated robustness priority while the frozen candidate trains: arbitrary
-input filenames currently fail before Qwen. Design a bounded, validated catalog
-mapping stage, keep offline/library discovery network-free, never let model output
-choose paths outside the task directory or execute code, and report mock-vs-live
-coverage honestly. Keep the already checked v6 archive immutable.
+The next isolated robustness stage is now implemented on
+`work/semantic-inputs-20261022`: bounded file-role mapping after deterministic
+failure, online CLI only, validated task-local catalog, no raw rows or generated
+loading code, shared multi-target cache. V7 source checkpoint `b4f8db7`; 145 unique
+checks and 23 repeated exact-unpacked checks pass. Archive SHA
+`a31d1fc7c9bee3403f992f70467e95a446c19dbffdb4cdfea9abf2d035f79b27`.
+This feature has mock gateway coverage, not live Qwen proof. Its independent full
+public parity run has started; inspect actual reports before claiming completion.

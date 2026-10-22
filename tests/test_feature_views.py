@@ -34,7 +34,8 @@ def fixture(root):
     test=train.iloc[:12].drop(columns='answer').copy();test['record']+=1000
     train.to_csv(root/'train.csv',index=False);test.to_csv(root/'test.csv',index=False)
     pd.DataFrame({'record':test.record,'answer':'A'}).to_csv(root/'sample_submission.csv',index=False)
-    pd.DataFrame({'feature':train.columns,'role':['id','feature','feature','feature','target']}).to_csv(root/'data_dictionary.csv',index=False)
+    pd.DataFrame({'feature':train.columns,'role':['id','feature','feature','feature','target'],
+        'dtype':['int','float','category','category','category']}).to_csv(root/'data_dictionary.csv',index=False)
     path=root/'task.md'
     path.write_text('Classification. Target: answer. Metric: Macro F1. train.csv test.csv data_dictionary.csv sample_submission.csv')
     spec,*_=discover(path)

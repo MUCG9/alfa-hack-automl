@@ -1,4 +1,26 @@
-# Development instructions — current checkpoint, 22 October 2026
+# Development instructions — current checkpoint, 23 October 2026
+
+NEW captain authorization supersedes the historical no-fitting/documentation-only
+stops below: implement and locally run a four-stage Qwen MVP, then investigate
+autoresearch improvements. Current branch `work/qwen-optuna-mvp-20261022`, based
+on `f3c8aba`. Read docs/experiments/hpo01_protocol_20261022.md and
+docs/experiments/qwen_mvp_history_20261022.md first. Code checkpoints c3a63f5,
+b486a4f, bc51d88; CLI source343 checks +23 exact-unpacked repeated checks PASS.
+Optuna and CatBoost selection are OPTIONAL, OFF by default. The exploratory MVP
+explicitly enables them; no component gain or release promotion claimed yet.
+Private .env creation/use was separately authorized; it is mode600 and ignored.
+Never print/commit its contents. Organizer connectivity succeeded; complete live
+path and public MVP status must be read from receipts, not assumed.
+
+One owned sequential coordinator was started: unpacked gate -> live-four-stage
+smoke -> public-mvp campaign, artifacts in test-runs/qwen-optuna-20261022/.
+Inspect processes/receipts before starting any fits; do not run concurrently.
+Historical V11/V16 remain the qualified control. No new official submit, extra
+Codex agents, paid GPU/resources, main merge or force push is authorized.
+Local rollback tags: baseline-before-qwen-optuna-20261022,
+qwen-optuna-core-20261022, qwen-mvp-cli-tested-20261023.
+
+The paragraphs below describe the preceding completed checkpoint.
 
 Latest authorized work: `work/error-profile-contracts-20261022`, based on
 `300c6db`. Captain expanded scope to the COMPLETE error-passport implementation

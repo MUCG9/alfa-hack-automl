@@ -1,5 +1,24 @@
 # Единственная точка входа нового чата
 
+**Текущий этап: Qwen MVP, 23октября2026.** Капитан новым прямым запросом разрешил
+реализацию и локальные fits четырёх этапов, затем анализ и итерации autoresearch.
+Ветка `work/qwen-optuna-mvp-20261022` от `f3c8aba`. Сначала
+[новый протокол](../experiments/hpo01_protocol_20261022.md) и
+[локальная история/откат](../experiments/qwen_mvp_history_20261022.md).
+Код bc51d88: **343source+23repeated exact-unpacked PASS**;
+[receipt](../experiments/mvp_verification_20261023.json). Optuna/selector OFF
+по умолчанию, включаются явно для экспериментального MVP. Ключ в приватном
+игнорируемом env, его создание капитан отдельно разрешил; не выводить содержимое.
+
+Запущен один последовательный координатор: live-smoke полного пути, затем две
+публичные задачи. Проверить `test-runs/qwen-optuna-20261022/live-four-stage/`
+и `public-mvp/campaign.json`, а также owned processes, прежде чем запускать fits.
+Нового gain полного агента пока не заявлено. Сильный контроль V11/V16 сохранён.
+Новых submit/extra agents/paid resources/main merge не разрешено. Исторические
+запреты fits ниже относятся к предыдущему checkpoint и заменены этим поручением.
+
+---
+
 Текущая ветка `work/error-profile-contracts-20261022`, основа `300c6db`.
 Полный ERR-01 реализован; **100 focused checks PASS**, коммит `b2a5ad4`.
 Сначала читать [завершённый BASE-01](../experiments/base01_complete_20261022.md),

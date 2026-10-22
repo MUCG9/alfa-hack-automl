@@ -1,7 +1,7 @@
 {
   "date_moscow": "2026-10-23",
   "code_checkpoint": "bc51d88",
-  "scope": "Engineering validation only; no full public quality result yet",
+  "scope": "Engineering gates and genuine organizer live fixture; public quality evaluation still running",
   "archive_sha256": "5dc7c9a26cde0982fc50b2241d3866ef3febc5948ca44c17453091dc8dc333e3",
   "compiled_files": 67,
   "source_unchanged": true,
@@ -393,8 +393,85 @@
     },
     "json_valid": true
   },
-  "full_live_mvp_smoke": "pending",
-  "public_mvp": "pending",
+  "full_live_mvp_smoke": {
+    "archive_sha256": "5dc7c9a26cde0982fc50b2241d3866ef3febc5948ca44c17453091dc8dc333e3",
+    "exit_code": 0,
+    "elapsed_seconds": 68.441,
+    "provider_scope": "organizer_api",
+    "semantic_http_ok": true,
+    "planner_http_ok": true,
+    "semantic_live_ok": true,
+    "planner_live_ok": true,
+    "calls": [
+      {
+        "status": "ok",
+        "wall_seconds": 1.596,
+        "usage": {
+          "completion_tokens": 87,
+          "prompt_tokens": 492,
+          "total_tokens": 579,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0,
+            "cache_write_tokens": 0,
+            "cache_creation_tokens": 0
+          },
+          "cost": 0.033315809084999995
+        },
+        "finish_reason": "stop",
+        "compatibility_retry": false,
+        "attempts": 1,
+        "usage_complete": true
+      },
+      {
+        "status": "ok",
+        "wall_seconds": 15.438,
+        "usage": {
+          "completion_tokens": 516,
+          "prompt_tokens": 3811,
+          "total_tokens": 4327,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0,
+            "cache_write_tokens": 0,
+            "cache_creation_tokens": 0
+          },
+          "cost": 0.30958444024625
+        },
+        "finish_reason": "stop",
+        "compatibility_retry": false,
+        "attempts": 1,
+        "usage_complete": true
+      }
+    ],
+    "output_contract_ok": true,
+    "inputs_unchanged": true,
+    "final_fit_status": "ok",
+    "integrity_ok": true,
+    "hpo_status": "ok",
+    "hpo_completed_trials": 4,
+    "feature_selection_active": true,
+    "planner_mode": "staged",
+    "scope": "Artificial180-row regression fixture; local_mock_http is NOT live Qwen proof. No ML quality or official score claim.",
+    "passed": true
+  },
+  "public_mvp": "running_regression_then_classification_sequentially",
   "requirements_sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
   "official_submission": false
 }

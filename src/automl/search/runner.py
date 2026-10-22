@@ -15,7 +15,7 @@ from automl.infrastructure.resources import ResourceBudget
 from automl.infrastructure.processes import ProcessTree
 from automl.contracts.messages import TaskSpec,ExperimentRequest
 from automl.task_understanding.api import discover
-from automl.evaluation.api import evaluate,make_split,make_time_split
+from automl.evaluation.api import evaluate,make_split,make_time_split,choose_validation
 from automl.publishing.api import dummy_predictions,save_submission,checkpoint
 from automl.search.policy import parse_plans,portfolio,fallback,signature
 from automl.execution.api import read_cache,combine,materialize
@@ -185,14 +185,7 @@ def _main():
     parser.add_argument('--run-name',default='run-v2')
     args=parser.parse_args(); started=time.monotonic(); deadline=started+args.time_budget
     spec,profile,train,test,sample,text,hashes=discover(args.task)
-    if args.validation_strategy=='auto' and spec.get('time_candidate'):
-        temporal=dict(spec,validation_strategy='time',time_column=spec['time_candidate']['column'])
-        try:
-            make_time_split(temporal,train)
-        except ValueError as exc:
-            spec['validation_warning']='Forward split unavailable: '+str(exc)[:250]
-        else:
-            spec=temporal
+    spec=choose_validation(spec,train,args.validation_strategy)
     TaskSpec.from_legacy(spec)
     root=Path(spec['root']); runs=root/'automl_runs'/args.run_name
     if runs.exists() and any(runs.iterdir()):

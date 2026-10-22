@@ -5,6 +5,7 @@ import pandas as pd
 from automl.task_understanding.metrics import metric_from_text,LOWER_IS_BETTER
 from automl.task_understanding.inputs import find_input,resolve_inputs
 from automl.infrastructure.tables import read_input_table
+from automl.infrastructure.observation_time import observation_values
 
 
 def infer_static_numeric(dictionary,train,features):
@@ -26,12 +27,15 @@ def infer_time_candidate(dictionary,train,test,features):
         if column not in features: continue
         description=' '.join(str(row.get(k,'')) for k in ['feature','role','dtype','description_ru','description']).lower()
         if not re.search(r'year|period|timestamp|date|период|год.*наблюд|времен',description): continue
-        if re.search(r'built|construction|построй|возраст|duration|длитель',description): continue
-        a=pd.to_numeric(train[column],errors='coerce'); b=pd.to_numeric(test[column],errors='coerce')
-        if a.isna().any() or b.isna().any() or not len(b): continue
-        if not np.isfinite(a.to_numpy(dtype=float)).all() or not np.isfinite(b.to_numpy(dtype=float)).all(): continue
-        if 3<=a.nunique()<=100 and b.min()>a.max():
+        if re.search(r'built|construction|построй|возраст|\bage\b|birth|duration|длитель',description): continue
+        if not len(test): continue
+        try:
+            a,representation=observation_values(train[column]); b,test_representation=observation_values(test[column])
+        except ValueError: continue
+        if representation!=test_representation: continue
+        if a.nunique()>=3 and b.min()>a.max():
             candidates.append({'column':column,'reason':'Documented observation period; entire test range follows training range',
+                               'representation':representation,'split_mode':'chronological_block' if representation=='datetime' or a.nunique()>100 else 'period',
                                'train_min':float(a.min()),'train_max':float(a.max()),'test_min':float(b.min()),'test_max':float(b.max())})
     return candidates[0] if len(candidates)==1 else None
 def discover(task_path: Path):
@@ -45,6 +49,8 @@ def discover(task_path: Path):
     if train.columns.duplicated().any() or test.columns.duplicated().any():
         raise ValueError('Duplicate column names are unsupported')
     roles = dictionary['role'].astype(str).str.lower() if 'role' in dictionary else pd.Series(dtype=str)
+    groups=dictionary.loc[roles.isin(['group','group_id','validation_group']), 'feature'].tolist() if len(roles) else []
+    groups=[c for c in groups if c in train and c in test]
     targets = dictionary.loc[roles.eq('target'), 'feature'].tolist() if len(roles) else []
     if len(targets) != 1:
         targets = [c for c in train if c not in test]
@@ -115,6 +121,7 @@ def discover(task_path: Path):
                                  if str(row.get('dtype','')).lower() in {'category','categorical'} and row['feature'] in features],
         'time_candidate':infer_time_candidate(dictionary,train,test,features),
         'static_numeric_features':infer_static_numeric(dictionary,train,features),
+        'group_candidate':{'column':groups[0],'reason':'Explicit group role in the data dictionary'} if len(groups)==1 else None,
     }
     if sample_positions is not None: spec['sample_test_positions']=sample_positions
     profile = {

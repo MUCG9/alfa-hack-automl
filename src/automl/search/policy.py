@@ -105,7 +105,8 @@ def portfolio(spec):
                               hypothesis='Reduce capacity under a documented future-period shift')
             semantic=dict(history_log,params=dict(history_log['params'],target_encoding_hierarchical=True),
                           hypothesis='Refine recurring contexts with categorical attributes and schema-described static properties')
-            recipes=[normalize(history),normalize(history_log)]+([normalize(semantic)] if spec.get('static_numeric_features') else [])+[normalize(conservative)]+recipes
+            numeric_history=(spec.get('time_candidate') or {}).get('representation','numeric')=='numeric' and (spec.get('time_candidate') or {}).get('split_mode','period')=='period'
+            recipes=([normalize(history),normalize(history_log)]+([normalize(semantic)] if spec.get('static_numeric_features') else []) if numeric_history else [])+[normalize(conservative)]+recipes
         return recipes
     return [normalize({'engine':'lightgbm','hypothesis':'Higher-capacity mild-weight model','params':dict(common,class_weight_power=.5)}),
             normalize({'engine':'lightgbm','hypothesis':'Iteration-matched inner decision calibration','params':dict(common,class_weight_power=.5,calibrate=True)}),

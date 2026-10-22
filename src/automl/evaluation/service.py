@@ -1,9 +1,59 @@
 from pathlib import Path
-import re,json,hashlib
+import re,json,hashlib,itertools
 import numpy as np
 import pandas as pd
 from sklearn.metrics import accuracy_score,balanced_accuracy_score,f1_score,log_loss,mean_absolute_error,mean_absolute_percentage_error,mean_squared_error,mean_squared_log_error,r2_score,roc_auc_score,precision_recall_fscore_support,confusion_matrix
-from sklearn.model_selection import StratifiedGroupKFold,StratifiedKFold,GroupKFold,KFold,train_test_split
+from sklearn.model_selection import StratifiedGroupKFold,StratifiedKFold,GroupKFold,GroupShuffleSplit,KFold,train_test_split
+from automl.infrastructure.observation_time import observation_values
+
+
+def choose_validation(spec,train,mode='auto'):
+    if mode=='legacy': return dict(spec,validation_strategy='legacy')
+    if mode!='auto': raise ValueError('Unknown validation selection mode')
+    result=dict(spec)
+    if spec.get('time_candidate'):
+        temporal=dict(result,validation_strategy='time',time_column=spec['time_candidate']['column'])
+        try: make_time_split(temporal,train)
+        except ValueError as exc: result['validation_warning']='Forward split unavailable: '+str(exc)[:250]
+        else:
+            if spec.get('group_candidate'):
+                temporal['validation_warning']='Both future-period and group hints exist; forward validation selected, joint unseen-group/forward validation is not implemented'
+            return temporal
+    if spec.get('group_candidate'):
+        result.update(validation_strategy='group',group_column=spec['group_candidate']['column'])
+        semantic_group_hashes(result,train)
+    return result
+
+
+def semantic_group_hashes(spec,train):
+    column=spec.get('group_column')
+    if column not in train or column==spec['target'] or train[column].isna().any():
+        raise ValueError('Validation group must be a complete non-target input column')
+    values=pd.util.hash_pandas_object(train[[column]],index=False).to_numpy(dtype='uint64')
+    if len(np.unique(values))<2: raise ValueError('At least two independent groups are required')
+    return values
+
+
+def semantic_group_split(spec,train,feature_hashes,seed):
+    groups=semantic_group_hashes(spec,train); y=train[spec['target']]; positions=np.arange(len(train))
+    stratified=iter(())
+    if spec['kind']=='classification':
+        independent=pd.DataFrame({'y':y.to_numpy(),'g':groups}).groupby('y')['g'].nunique()
+        folds=min(5,int(independent.min()))
+        if folds>=2:
+            stratified=StratifiedGroupKFold(n_splits=folds,shuffle=True,random_state=seed).split(positions,y,groups)
+    options=itertools.chain(stratified,GroupShuffleSplit(n_splits=20,test_size=.2,random_state=seed).split(positions,y,groups))
+    for tr,va in options:
+        if spec['kind']=='classification' and set(y.iloc[tr])!=set(y): continue
+        if spec['kind']=='classification' and spec['metric']=='roc_auc' and set(y.iloc[va])!=set(y): continue
+        overlap=len(set(groups[tr])&set(groups[va]))
+        if overlap: raise ValueError('Semantic validation group overlap')
+        return tr,va,{'method':'explicit_semantic_group_holdout','group_column':spec['group_column'],
+            'seed':seed,'train_rows':len(tr),'validation_rows':len(va),'shared_semantic_groups':overlap,
+            'shared_feature_hashes':len(set(feature_hashes[tr])&set(feature_hashes[va])),
+            'split_sha256':hashlib.sha256(np.asarray(tr,dtype='<i8').tobytes()+np.asarray(va,dtype='<i8').tobytes()).hexdigest(),
+            'validation_class_counts':y.iloc[va].value_counts().to_dict() if spec['kind']=='classification' else None}
+    raise ValueError('No group-safe split retains the required classes; row-wise fallback is forbidden')
 
 
 def make_folds(spec,train,hashes,n_splits=5,seed=42):
@@ -11,7 +61,8 @@ def make_folds(spec,train,hashes,n_splits=5,seed=42):
     if spec.get('validation_strategy')=='time': raise ValueError('Time tasks require forward backtests, not exact-coverage random OOF')
     if not 2<=n_splits<=5: raise ValueError('CV requires 2..5 folds')
     y=train[spec['target']]; positions=np.arange(len(train))
-    grouped=pd.Series(hashes).duplicated().any()
+    if spec.get('validation_strategy')=='group': hashes=semantic_group_hashes(spec,train)
+    grouped=spec.get('validation_strategy')=='group' or pd.Series(hashes).duplicated().any()
     if spec['kind']=='classification':
         counts=pd.DataFrame({'y':y.to_numpy(),'h':hashes}).groupby('y')['h'].nunique() if grouped else y.value_counts()
         n_splits=min(n_splits,int(counts.min()))
@@ -39,22 +90,27 @@ def make_folds(spec,train,hashes,n_splits=5,seed=42):
 def make_time_split(spec,train,offset=0):
     column=spec.get('time_column') or (spec.get('time_candidate') or {}).get('column')
     if column not in spec['features']: raise ValueError('Time column must be an input feature')
-    values=pd.to_numeric(train[column],errors='coerce')
-    if values.isna().any() or not np.isfinite(values.to_numpy(dtype=float)).all():
-        raise ValueError('Time split requires complete finite numeric observation periods')
+    values,representation=observation_values(train[column])
     periods=np.sort(values.unique())
     if not 0<=offset<len(periods)-1: raise ValueError('Insufficient history for requested backtest')
-    cut=periods[-1-offset]
-    tr=np.flatnonzero((values<cut).to_numpy()); va=np.flatnonzero((values==cut).to_numpy())
-    if spec['kind']=='classification' and set(train[spec['target']].iloc[va])-set(train[spec['target']].iloc[tr]):
+    blocked=representation=='datetime' or (spec.get('time_candidate') or {}).get('split_mode')=='chronological_block'
+    if blocked:
+        width=max(1,len(periods)//5); end=len(periods)-offset*width; begin=max(1,end-width)
+        if not 1<=begin<end<=len(periods): raise ValueError('Insufficient history for requested forward block')
+        cut=periods[begin]; upper=periods[end-1]
+    else: cut=upper=periods[-1-offset]
+    tr=np.flatnonzero((values<cut).to_numpy()); va=np.flatnonzero(((values>=cut)&(values<=upper)).to_numpy())
+    if not len(tr) or not len(va): raise ValueError('Empty chronological partition')
+    if spec['kind']=='classification' and set(train[spec['target']])-set(train[spec['target']].iloc[tr]):
         raise ValueError('Time validation contains a class absent from history')
     signature=hashlib.sha256(np.asarray(tr,dtype='<i8').tobytes()+np.asarray(va,dtype='<i8').tobytes()).hexdigest()
-    return tr,va,{'method':'forward_observation_period','time_column':column,'cut':float(cut),'offset':offset,
-                 'train_rows':len(tr),'validation_rows':len(va),'excluded_future_rows':int((values>cut).sum()),'split_sha256':signature}
+    return tr,va,{'method':'forward_chronological_block' if blocked else 'forward_observation_period','time_column':column,'cut':float(cut),'offset':offset,
+                 'train_rows':len(tr),'validation_rows':len(va),'excluded_future_rows':int((values>upper).sum()),'split_sha256':signature}
 
 
 def make_split(spec, train, hashes, seed=42):
     if spec.get('validation_strategy')=='time': return make_time_split(spec,train)
+    if spec.get('validation_strategy')=='group': return semantic_group_split(spec,train,hashes,seed)
     positions = np.arange(len(train))
     kind = spec['kind']
     y = train[spec['target']]

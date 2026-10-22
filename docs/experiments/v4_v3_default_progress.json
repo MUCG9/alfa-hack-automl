@@ -40,7 +40,7 @@
     "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
     "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953"
   },
-  "search_completed": 11,
+  "search_completed": 12,
   "confirmation_completed": 0,
   "final_report_available": false,
   "experiments": [
@@ -565,6 +565,54 @@
       "observed_process_tree_peak_mb": 504.3,
       "observed_total_peak_mb": 683.5,
       "fit_iterations": 564
+    },
+    {
+      "experiment_index": 11,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 1.0,
+          "min_iterations": 50,
+          "seed": 53,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6192260171602167,
+        "weighted_f1": 0.8043665342938586,
+        "accuracy": 0.7804095443673065,
+        "per_class_f1": {
+          "Analysis": 0.20478468899521532,
+          "Backdoor": 0.12529550827423167,
+          "DoS": 0.404628592758492,
+          "Exploits": 0.6671600370027753,
+          "Fuzzers": 0.7472268114231768,
+          "Generic": 0.9872697724810401,
+          "Normal": 0.9090909090909091,
+          "Reconnaissance": 0.8240693523712391,
+          "Shellcode": 0.6756756756756757,
+          "Worms": 0.6470588235294118
+        },
+        "log_loss": 0.5191937096917352,
+        "roc_auc": 0.9685871996711727
+      },
+      "wall_seconds": 377.659,
+      "peak_rss_mb": 750.8,
+      "observed_process_tree_peak_mb": 751.5,
+      "observed_total_peak_mb": 930.7,
+      "fit_iterations": 1346
     }
   ]
 }

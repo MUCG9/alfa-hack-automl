@@ -56,6 +56,11 @@ old 21 October 23:37 time and old 1723.691 score; the displayed attempt count st
 Do not resubmit automatically. See `release/v4-history3/submission-20261022.json`.
 Server results are not being waited for, as requested.
 
+Later confirmation: a fresh page reload at about 03:25 UTC shows **2 attempts
+remaining**, the named v4 file and the checking message. One attempt consumption
+is now confirmed. A native screenshot was shown in the conversation. No repeat
+upload was made; no new official score is inferred from the old history card.
+
 ## Completed full history3 classification
 
 The exact uploaded archive completed the offline default classification lifecycle
@@ -74,3 +79,35 @@ full refit and export, integrity true, 1,422.972 seconds inside the agent
 Evidence: `docs/experiments/v4_history3_class_full_20261022.json` and
 `release/v4-history3/classification-full-20261022.json`. All these reused public
 fold scores are local development evidence, not an official/private estimate.
+
+## Subsequent completed stages
+
+- Contract1 and the later multi-target snapshot both completed the two full public
+  lifecycles, with byte-identical v4 output CSVs and successful refit/integrity.
+- Independent 2..16 targets: shared wall/planner budget, projected samples, no
+  cross-target features, baseline/failure isolation. Twelve targeted checks.
+- Limited pointwise ranking: explicit query roles, mean-query NDCG with correct
+  ties/top-k/gain, query-safe inner/outer evaluation, score output. Thirteen checks.
+- Requested positive-class probability: nine tests, including numeric label 0,
+  text/tree outputs and blend projection. Literal inference, not arbitrary semantic
+  label understanding.
+- XGBoost decision calibration: both original folds and all three group-CV folds
+  improve. Pooled OOF 0.611757099 → 0.617987602; conditional bootstrap delta interval
+  [+0.003868363,+0.009158243]. Add one OPTIONAL Macro F1 trial, retain its control.
+- Combined `release/solution-v6-universal1.zip`: SHA
+  `b3b46b6a6bee7b7540fda0db22bf663a7afa090baff6e1b9ee72a3a221e3afb5`,
+  137 unique checks + repeated 23 unpacked checks pass. Its full public run is active.
+
+Live development Qwen calls remain unverified in this continuation: protected stdin
+entry was denied by the managed tool policy, and the key was not entered into the
+diagnostic session. Do not bypass that denial or put a key in command arguments,
+Git or shared prompts. Offline runs and mock gateway tests are not live API proof.
+An idle diagnostic terminal may still be waiting for input; do not claim all
+credential-related processes have been closed. Platform-provided API environment
+is a separate runtime path; no development spend/balance is inferred.
+
+Next isolated robustness priority while the frozen candidate trains: arbitrary
+input filenames currently fail before Qwen. Design a bounded, validated catalog
+mapping stage, keep offline/library discovery network-free, never let model output
+choose paths outside the task directory or execute code, and report mock-vs-live
+coverage honestly. Keep the already checked v6 archive immutable.

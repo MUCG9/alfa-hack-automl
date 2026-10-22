@@ -14,9 +14,11 @@ Source checkpoint: `997f3d0`; Python builder 3.12.14.
   and independent regression/classification targets. No claim of large-data
   multi-target quality or a live Qwen multi-target session.
 
-Full default public gates for this exact snapshot still need to run. Contract1
-passed both public tasks with byte-exact v4 predictions, but that older snapshot
-does not include the new solver dispatch and group/date logic.
+Both full default public gates for this exact snapshot pass: full refit/export,
+integrity true, output CSVs byte-identical to v4/contract1. Regression harness
+231.257 seconds; classification agent 1556.932 seconds. Classification mean
+0.652742609; regression mean 36.775244985. See `public-full.json`. This confirms
+single-target parity after solver extraction, not large-data multi-target quality.
 
 This candidate is NOT uploaded. The captain authorized/uploaded v4 only.
 Keep all previous archives immutable; never overwrite a release to reuse its name.

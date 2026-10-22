@@ -41,6 +41,14 @@ and absence of artifact I/O.
 [Machine-readable focused receipt](error_profile_contracts_verification_20261022.json).
 Local detailed logs remain ignored in `test-runs/error-profile-contracts-20261022`.
 
+## Git delivery
+
+Implementation is committed locally (`d3559e9`, `8f57be5`). A push of the new
+branch was attempted but HTTPS authentication failed before delivery:
+`could not read Username for 'https://github.com': No such device or address`.
+Remote publication is pending working GitHub authentication. No credentials were
+read from unrelated locations or copied into commands; no remote update is claimed.
+
 ## Next checkpoint, not implemented
 
 Step 3: a concrete read-only artifact adapter and alignment verifier. Verify actual

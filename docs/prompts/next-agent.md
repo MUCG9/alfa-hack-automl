@@ -5,9 +5,9 @@
 Прочитай AGENTS.md, docs/experiments/v10_progress.md, затем этот файл и
 release/v10-history4/README.md. Последние gates/JSON важнее старых handoff V6–V9.
 
-Капитан сообщил **8% остатка пятичасового лимита** и попросил закончить этап,
-сделать коммиты и передачу. Новый агент начинает дальнейшую работу только после
-проверки чекпоинта. Официальный лучший результат пока V9:
+Капитан ранее запросил передачу на8%, затем восстановил лимиты и поручил
+текущему агенту продолжить работу. Пауза отменена; этот prompt остаётся checkpoint.
+Проверяй новый статус current.md/v10_progress.md перед работой. Официальный лучший результат пока V9:
 solution-v9-roles1.zip, raw2187.849,1940.2s,«Лучшее решение», его оценка21.87/100.
 Новых официальных результатов V10 нет, прирост баллов не гарантирован.
 
@@ -126,3 +126,15 @@ c46170f; аудит всех18outgoing blobs до ebd9242 и ZIP не нашёл
    лимита завершить ближайший checkpoint и подготовить такую же передачу.
 
 Reused public scores — не unbiased/private/official score. Нового submit не было.
+
+## Новейшее дополнение после восстановления лимитов
+
+Все ранее pending gates history4 завершены:216unique/source_unchanged,
+23exact-unpacked,14portfolio-parity cases,full regression refit/integrity/export,
+bounded full-size class lifecycle PASS. Full-agent RMSE39.321110258/34.229379712→
+38.902803731/31.991659384,mean36.775244985→35.447231558. Both-cuts keep gate passed.
+Queue29369 завершена, не повторять. Read release/v10-history4/README.md/evidence.
+ExtraTrees protocol/candidates уже заморожены до fits в docs/experiments/v10_extratrees_*.
+Сначала проверь results.json активного paired run; запуска CV только при both-fold
+improvement. Новая official upload не разрешена. Последний push не был выполнен
+из-за usage-limit failure у auto-review; user восстановил лимиты, отказ не обходить.

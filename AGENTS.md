@@ -1,12 +1,11 @@
 # Instructions for development agents
 
-V10 implementation/research reached a captain-requested handoff at8% remaining.
-Read docs/experiments/v10_progress.md and docs/prompts/next-agent.md FIRST.
-Paired screens and full grouped class CV are completed; under70 not promoted.
-Support-gated asof3 passed6workers/212source/23unpacked; experimental history4
-adds one eligible portfolio entry and is in full-agent/release validation.
-Check the latest evidence/queue before repeating jobs or calling a ZIP ready.
-No new research should start until the handoff checkpoint is completed.
+V10 work is ACTIVE again: captain restored limits and asked this agent to continue.
+Read docs/experiments/v10_progress.md before historical checkpoints. History4 full
+regression improves both cuts,216source/23unpacked checks and bounded class lifecycle
+pass. No official upload. Next predeclared study is v10_extratrees_protocol.md;
+check current results/jobs before starting a duplicate. The earlier8% handoff stop
+has been revoked by the captain, but checkpoint frequently and honor future limits.
 
 Current local continuation: `work/cpu-research-20261022`, based on `a95c931`.
 Read `docs/experiments/cpu_research_review_20261022.md` for the new proposed CPU

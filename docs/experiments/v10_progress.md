@@ -89,3 +89,24 @@ session21276. After that completes, validate baseline integrity/CSV parity, run
 8search-choice checks and frozen class/text portfolio parity, then new exact
 archive default regression. Complete source/unpacked/bounded class gates remain.
 Do not start another heavy fit while the baseline is running.
+
+## History4 full-agent stage COMPLETE; captain resumed work
+
+Captain restored limits and revoked the8% handoff pause. No new official submit.
+Exact full regression control V9:39.321110258/34.229379712,mean36.775244985,
+CSV parity. History4:38.902803731/31.991659384,mean35.447231558 (-3.611%).
+Both cuts improve: keep gate PASSED. Selected90/10asof3-LGBM/CatBoost blend.
+Final refit/export/integrity pass,CSV05ccd9eabcbf29f4b858e9cd89f6dfe568ce1bdddb32a397c71b98ef1c0c1673.
+216unique source checks/source_unchanged and23exact-unpacked passed.14historical
+portfolio-parity cases and8search-choice checks passed. Full-size class1trial/600s
+lifecycle passed; not a new full-default classification quality measurement.
+Queue29369 completed exit0; no heavy work remains from it. Portable complete
+evidence and technically validated archive are in release/v10-history4.
+
+Next study is predeclared v10_extratrees_protocol.md +v10_extratrees_candidates.json:
+strong calibrated LGBM vs fixed50/50 LGBM+existing ExtraTrees, unchanged fitting
+rows, no new dependency/runtime change. First paired holdouts42/43; CV seed73 only
+if both improve. Do not retune weights/forest size after observing these outcomes.
+GitHub push first hit ownership/payload review rejection, then review could not
+complete because of account usage limit. User reports limits restored; no action
+was executed on either failed attempt. Keep checkpoints local until push succeeds.

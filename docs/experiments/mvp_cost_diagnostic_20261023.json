@@ -30,7 +30,37 @@
         "value": null,
         "seconds": 34.465
       }
-    ]
+    ],
+    "independent_inner_verification": {
+      "status": "verified",
+      "completed_trials": 2,
+      "successful_trials_after_startup": 0,
+      "sampler": "tpe",
+      "seconds": 900.6,
+      "best_inner_value": 0.6296331435097767,
+      "split_sha256": "647fc402812f8bd9006ca699cb763c3cbc830f12258a243724ec6ff1b44ada30",
+      "inside_outer_fitting_rows_verified": true,
+      "inputs_match_start_provenance": true
+    },
+    "conditional_outer_comparison": {
+      "scope": "Same outer cut, selector32 active in both; not the independent selector-off HPO screen",
+      "control_macro_f1": 0.6502622584145485,
+      "candidate_macro_f1": 0.649018518959051,
+      "delta": -0.0012437394554974945,
+      "candidate_seconds": 453.328,
+      "independent_verification": {
+        "control": {
+          "value": 0.6502622584145485,
+          "prediction_sha256": "cb6920303dc4ab1577f7e015619906886debb81bcfd1700ecd95f499f6fce518",
+          "row_order_verified": true
+        },
+        "candidate": {
+          "value": 0.649018518959051,
+          "prediction_sha256": "41a9f00a57182318163887ddc87d5bb822de4347fd3e62cbe3c49b5caf8cfb4e",
+          "row_order_verified": true
+        }
+      }
+    }
   },
   "historical_component_timing_comparison": [
     {

@@ -11,16 +11,33 @@ import json
 import sys
 import time
 
+import numpy as np
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'src'))
 sys.path.insert(0, str(ROOT/'tools'))
 from automl.evaluation.api import choose_validation
+from automl.contracts.messages import SplitPlan
 from automl.infrastructure.atomic import atomic_json
 from automl.infrastructure.run_budget import RunBudget
 from automl.search.policy import signature
 from automl.search.runner import llm_plan, ordered, planner_context
 from automl.task_understanding.api import discover
 from benchmark_hpo import digest
+
+
+def measured_support(spec, train, hashes, fitting, validation):
+    SplitPlan(tuple(fitting.tolist()), tuple(validation.tolist())).validate(len(train))
+    if spec['kind'] != 'classification':
+        return {'fitting_rows': len(fitting), 'validation_rows': len(validation)}
+    if np.intersect1d(hashes[fitting], hashes[validation]).size:
+        raise ValueError('Planner support requires disjoint fitting/validation feature groups')
+    labels = train[spec['target']].astype(str).to_numpy()
+    groups = {c: len(np.unique(hashes[fitting][labels[fitting] == c])) for c in spec['classes']}
+    return {'independent_fitting_feature_groups_per_class': groups,
+            'validation_rows_per_class': {c: int(np.sum(labels[validation] == c)) for c in spec['classes']},
+            'rarest_fitting_class': min(spec['classes'], key=lambda c: groups[c]),
+            'scope': 'Fitting-group support and outer search validation counts; not independent private evidence'}
 
 
 def bounded_candidates(control, proposals, mode):
@@ -53,7 +70,7 @@ def main():
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     screen = json.loads(args.screen.read_text())
-    spec, profile, train, _, _, text, _ = discover(args.task)
+    spec, profile, train, _, _, text, hashes = discover(args.task)
     spec = choose_validation(spec, train, 'auto')
     if screen['input_sha256'] != {n: digest(p) for n, p in spec['paths'].items()}:
         raise ValueError('Planner feedback comes from different inputs')
@@ -63,9 +80,15 @@ def main():
         raise ValueError('Measured control feedback is required')
     context = planner_context(spec, profile, text, screen['cuts'][0]['split'],
                               records, ranked[0], 1800, 1)
+    cut = screen['cuts'][0]['cut']
+    with np.load(args.screen.parent/f'cut-{cut}/outer-split.npz', allow_pickle=False) as partition:
+        context['measured_support'] = measured_support(spec, train, hashes, partition['train'], partition['validation'])
+    context['study_work'] = {name: {key: screen['cuts'][0].get(name, {}).get(key) for key in
+        ['completed_trials', 'maximum_trials', 'startup_trials', 'seconds', 'status']} for name in ['random', 'tpe']}
     context['comparison_rule'] = ('Propose at most two small experiments. Keep all preprocessing, '
         'data policies and calibration fixed unless the hypothesis explicitly changes ONE of them. '
         'Do not enable feature selection: its independent experiment has not passed a gate. '
+        'Check independent fitting-group support before treating rare-class F1 changes as reliable. '
         'No fixed calendar year or hardcoded task-specific model switch.')
     summary = {'scope': 'Matched live prompt proposals; ML quality requires separate paired workers',
                'input_sha256': screen['input_sha256'], 'context': context, 'modes': {}}

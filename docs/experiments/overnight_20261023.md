@@ -110,3 +110,10 @@ cap двух distinct proposals после dedup, reject незаявленно�
 одной инструкции в prompt недостаточно для declared limit2. Две отдельные
 проверки cap/factor boundary PASS, без API/fits. Это выполнение исходного
 протокола, не смена условий после scores; новый harness SHA будет записан очередью.
+
+До HAR-01 генерации общий feedback обоих prompt modes также дополнен числами
+independent fitting feature groups/validation rows по классам из сохранённого
+outer split и actual HPO work. Group overlap отклоняется до API call. Три dev
+проверки PASS, включая duplicate rows vs independent groups. Это одинаковый
+обогащённый контекст для двух промптов; эффект самого support tool отдельно не
+изолирован. Не выдавать такое сравнение за исходный полный baseline агента.

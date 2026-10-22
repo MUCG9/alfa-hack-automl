@@ -1,4 +1,4 @@
-# V11 categorical feature-view candidate — gates pending, NOT submitted
+# V11 categorical feature-view release — qualified locally, NOT submitted
 
 Runtime sourcee11409e, branch work/llm-upgrade-20261022, Python3.12.14.
 Archive `../solution-v11-featureviews1.zip`,74443bytes,52flat root files.
@@ -15,7 +15,13 @@ two-view/outer-label isolation and nested global full refit.23repeated exact-
 unpacked checks passed; all52files match current source. Evidence here.
 History4 full class baseline completed with exact historical CSV parity;
 search .6538467374261537 /confirmation .6527157430204659 /mean .6532812402233098.
-New exact-archive full class→regression parity run started sequentially; public
-gate remains PENDING. No quality gain or promotion claimed yet.
-Do not promote or claim a quality gain until full-agent criteria pass. Official
-upload is not authorized. Historical archives are preserved unchanged.
+Both exact-archive full public tasks now PASS exit0/refit/export/integrity.
+Classification search .6632403174648631 /confirmation .6553953692580672,
+mean .6593178433614652 vs control .6532812402233098; BOTH cuts improve.
+Final class CSVaf64a22a5e9f5ff26ed817dfaa707e77e5bd9500dc63e52748521b00670efa96.
+Class pipeline2691.782s, harness2693.394s on2local threads (more costly than control).
+Regression mean RMSE35.44723155783769; final CSV05ccd9eabcbf29f4b858e9cd89f6dfe568ce1bdddb32a397c71b98ef1c0c1673,
+byte-identical history4. Regression harness225.692s. Full evidence and frozen
+source manifest here. Predeclared full-procedure gate PASSES; keep this local
+release. Reused public validation, not private/official gain. Official upload is
+NOT authorized. Historical archives preserved; V12 is a separate dormant study.

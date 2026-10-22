@@ -42,7 +42,12 @@ Both improve over full reproduced history4 control .6538467374261537 /
 af64a22a5e9f5ff26ed817dfaa707e77e5bd9500dc63e52748521b00670efa96.
 Selected equal-thirds global blend contains TWO typed feature-view recipes plus
 XGBoost, nested iteration tree preserved. Portable classification evidence in
-release/v11-featureviews1. Regression parity is still running before retention.
+release/v11-featureviews1. Regression parity also COMPLETED: exit0/refit/integrity,
+mean RMSE35.44723155783769,CSV05ccd9eabcbf29f4b858e9cd89f6dfe568ce1bdddb32a397c71b98ef1c0c1673
+byte-identical history4,harness225.692s. Both exact public lifecycles and the
+predeclared full-procedure quality gate PASS. KEEP V11 as the qualified local
+release; official upload still not authorized. V12 threshold optimizer remains
+a separate dormant method pending its source/unpacked/screen gates.
 This is reused public validation, no official-points projection.
 
 ## Environment inventory

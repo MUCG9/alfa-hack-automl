@@ -25,3 +25,19 @@ score improvement.
 
 References: [pinned MAPE semantics](https://scikit-learn.org/1.5/modules/generated/sklearn.metrics.mean_absolute_percentage_error.html),
 [balanced accuracy](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html).
+
+## Input roles and table I/O
+
+- Preserve exact canonical filenames and explicitly quoted local paths first.
+  Add bounded aliases for training/test/sample/schema tables; reject ambiguous
+  roles instead of picking the first file. Arbitrary unnamed roles are not yet
+  inferred by an early LLM contract stage.
+- The dictionary is optional if target and ID are unambiguous from table schemas.
+- CSV, semicolon-delimited CSV and TSV share the same input reader in discovery
+  and execution. Other formats are explicitly unsupported, not silently parsed.
+- Input paths must resolve inside the task directory, including symlinks.
+  Generated run directories and hidden paths are excluded from the role catalog.
+- Duplicate headers are rejected before pandas can rename them invisibly.
+- Seven small input tests and the seven architecture tests pass. Full lifecycle
+  and public parity remain separate required gates; these tests are not model
+  quality evidence.

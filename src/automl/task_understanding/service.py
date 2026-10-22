@@ -3,6 +3,8 @@ import re,json,hashlib
 import numpy as np
 import pandas as pd
 from automl.task_understanding.metrics import metric_from_text,LOWER_IS_BETTER
+from automl.task_understanding.inputs import find_input,resolve_inputs
+from automl.infrastructure.tables import read_input_table
 
 
 def infer_static_numeric(dictionary,train,features):
@@ -32,30 +34,14 @@ def infer_time_candidate(dictionary,train,test,features):
             candidates.append({'column':column,'reason':'Documented observation period; entire test range follows training range',
                                'train_min':float(a.min()),'train_max':float(a.max()),'test_min':float(b.min()),'test_max':float(b.max())})
     return candidates[0] if len(candidates)==1 else None
-def find_input(root: Path, name: str, text: str) -> Path:
-    matches = re.findall(r'`([^`\n]*' + re.escape(name) + r')`', text)
-    for match in matches:
-        candidate = (root / match).resolve()
-        if candidate.is_relative_to(root) and candidate.is_file():
-            return candidate
-    direct = root / name
-    if direct.is_file():
-        return direct
-    candidates = sorted(root.rglob(name))
-    if len(candidates) != 1:
-        raise ValueError(f'Expected one {name} under task directory, found {len(candidates)}')
-    return candidates[0]
-
-
 def discover(task_path: Path):
     root = task_path.resolve().parent
     text = task_path.read_text(encoding='utf-8-sig')
-    paths = {name: find_input(root, name + '.csv', text) for name in
-             ['train', 'test', 'data_dictionary', 'sample_submission']}
-    train = pd.read_csv(paths['train'])
-    test = pd.read_csv(paths['test'])
-    sample = pd.read_csv(paths['sample_submission'])
-    dictionary = pd.read_csv(paths['data_dictionary'])
+    paths = resolve_inputs(root,text)
+    train = read_input_table(paths['train'])
+    test = read_input_table(paths['test'])
+    sample = read_input_table(paths['sample_submission'])
+    dictionary = read_input_table(paths['data_dictionary']) if 'data_dictionary' in paths else pd.DataFrame(columns=['feature','role'])
     if train.columns.duplicated().any() or test.columns.duplicated().any():
         raise ValueError('Duplicate column names are unsupported')
     roles = dictionary['role'].astype(str).str.lower() if 'role' in dictionary else pd.Series(dtype=str)

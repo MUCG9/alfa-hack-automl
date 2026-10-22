@@ -14,6 +14,7 @@ from sklearn.model_selection import train_test_split
 from threadpoolctl import threadpool_limits
 
 from automl.infrastructure.atomic import atomic_json
+from automl.infrastructure.tables import read_input_table
 from automl.evaluation.api import evaluate,make_split,make_folds
 from automl.publishing.api import save_submission
 from automl.execution.model_adapters.registry import make_model,fit_options,selected_iterations,CAPABILITIES
@@ -59,8 +60,8 @@ def run_ensemble(job):
         else: child.pop('fit_iterations',None)
         run(child)
         records.append(json.loads((directory/'result.json').read_text()))
-    train=pd.read_csv(spec['paths']['train']); test=pd.read_csv(spec['paths']['test'])
-    sample=pd.read_csv(spec['paths']['sample_submission']); full=job.get('full_fit',False)
+    train=read_input_table(spec['paths']['train']); test=read_input_table(spec['paths']['test'])
+    sample=read_input_table(spec['paths']['sample_submission']); full=job.get('full_fit',False)
     va=np.load(job['split_path'])['validation']
     combined=None; val_combined=None
     for index,weight in enumerate(weights):
@@ -110,9 +111,9 @@ def run(job):
     data_policy=DataPolicy.parse(recipe.get('data_policy'))
     if recipe['engine']=='ensemble':
         return run_ensemble(job)
-    train=pd.read_csv(spec['paths']['train'])
-    test=pd.read_csv(spec['paths']['test'])
-    sample=pd.read_csv(spec['paths']['sample_submission'])
+    train=read_input_table(spec['paths']['train'])
+    test=read_input_table(spec['paths']['test'])
+    sample=read_input_table(spec['paths']['sample_submission'])
     y=train[spec['target']]
     if spec['kind']=='classification':
         y=y.astype(str)

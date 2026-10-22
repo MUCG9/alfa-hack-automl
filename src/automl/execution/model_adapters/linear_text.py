@@ -3,6 +3,7 @@ import pandas as pd
 from threadpoolctl import threadpool_limits
 from automl.execution.weighting.classes import sample_weights
 from automl.evaluation.api import evaluate
+from automl.publishing.api import positive_class_index
 from sklearn.base import BaseEstimator,TransformerMixin
 
 
@@ -79,6 +80,5 @@ def linear_text_fit(spec,recipe,train_x,test_x,y,tr,va,full,threads):
         indices=[list(map(str,model.classes_)).index(str(c)) for c in spec['output_columns']]
         predictions=model.predict_proba(test_x)[:,indices]
     elif spec.get('prediction_type')=='probability':
-        predictions=model.predict_proba(test_x)[:,1]
+        predictions=model.predict_proba(test_x)[:,positive_class_index(spec,model.classes_)]
     return predictions,val_pred,metrics,model.predict_proba(test_x) if spec['kind']=='classification' else None,proba,getattr(model,'classes_',None)
-

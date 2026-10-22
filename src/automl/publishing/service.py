@@ -5,6 +5,16 @@ import numpy as np
 import pandas as pd
 
 
+def positive_class_index(spec,classes):
+    labels=list(map(str,classes))
+    if len(labels)!=2: raise ValueError('Scalar probabilities require two model classes')
+    declared=spec.get('classes')
+    fallback=labels[-1] if declared is None or len(declared)==0 else str(declared[-1])
+    positive=str(spec.get('positive_class',fallback))
+    if positive not in labels: raise ValueError('Requested positive class is absent from model output')
+    return labels.index(positive)
+
+
 def prediction_row_order(spec,n):
     """Positions of test-order predictions in sample order; validate as a bijection."""
     values=np.asarray(spec.get('sample_test_positions',np.arange(n)))
@@ -63,7 +73,8 @@ def save_submission(spec, sample, test, predictions, path):
 def dummy_predictions(spec, train, n):
     y=train[spec['target']]
     if spec.get('prediction_type')=='probability':
-        return np.repeat(float((y.astype(str)==spec['classes'][1]).mean()),n)
+        positive=spec['classes'][positive_class_index(spec,spec['classes'])]
+        return np.repeat(float((y.astype(str)==positive).mean()),n)
     if spec.get('prediction_type')=='probability_matrix':
         frequencies=y.astype(str).value_counts(normalize=True)
         return np.tile([frequencies.get(str(c),0) for c in spec['output_columns']],(n,1))

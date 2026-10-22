@@ -6,6 +6,7 @@ from automl.task_understanding.metrics import metric_from_text,LOWER_IS_BETTER
 from automl.task_understanding.inputs import find_input,resolve_inputs
 from automl.infrastructure.tables import read_input_table
 from automl.infrastructure.observation_time import observation_values
+from automl.task_understanding.probabilities import infer_positive_class
 
 
 def infer_static_numeric(dictionary,train,features):
@@ -63,7 +64,7 @@ def discover(task_path: Path,target_override=None,loaded=None):
     train,test,sample,dictionary=(loaded[k] for k in ['train','test','sample','dictionary'])
     if train.columns.duplicated().any() or test.columns.duplicated().any():
         raise ValueError('Duplicate column names are unsupported')
-    roles = dictionary['role'].astype(str).str.lower() if 'role' in dictionary else pd.Series(dtype=str)
+    roles = dictionary['role'].astype(str).str.strip().str.lower() if 'role' in dictionary else pd.Series(dtype=str)
     groups=dictionary.loc[roles.isin(['group','group_id','validation_group','query','query_id']), 'feature'].tolist() if len(roles) else []
     groups=[c for c in groups if c in train and c in test]
     targets = dictionary.loc[roles.eq('target'), 'feature'].tolist() if len(roles) else []
@@ -164,6 +165,8 @@ def discover(task_path: Path,target_override=None,loaded=None):
     }
     if sample_positions is not None: spec['sample_test_positions']=sample_positions
     spec.update(ranking_parameters)
+    if prediction_type=='probability':
+        spec['positive_class'],spec['positive_class_source']=infer_positive_class(text,classes,pd.api.types.is_numeric_dtype(train[target]))
     if len(targets)>1:
         spec['sample_columns']=list(sample.columns); spec['all_targets']=list(targets)
     profile = {

@@ -16,7 +16,7 @@ from threadpoolctl import threadpool_limits
 from automl.infrastructure.atomic import atomic_json
 from automl.infrastructure.tables import read_input_table,read_task_sample
 from automl.evaluation.api import evaluate,make_split,make_folds,metric_context
-from automl.publishing.api import save_submission,read_submission_values
+from automl.publishing.api import save_submission,read_submission_values,positive_class_index
 from automl.execution.model_adapters.registry import make_model,fit_options,selected_iterations,CAPABILITIES
 from automl.execution.weighting.classes import sample_weights,number
 from automl.evaluation.api import lgbm_metric,tune_class_factors,adjusted_probabilities
@@ -86,7 +86,7 @@ def run_ensemble(job):
         if not full: np.savez_compressed(output/'validation_probabilities.npz',probabilities=val_combined,classes=classes,row_position=va)
         if spec.get('prediction_type')=='probability_matrix':
             predictions=combined[:,[list(classes).index(str(c)) for c in spec['output_columns']]]
-        elif spec.get('prediction_type')=='probability': predictions=combined[:,1]
+        elif spec.get('prediction_type')=='probability': predictions=combined[:,positive_class_index(spec,classes)]
         else: predictions=classes[combined.argmax(axis=1)]
         val_pred=classes[val_combined.argmax(axis=1)] if not full else None
     else:
@@ -266,8 +266,8 @@ def run(job):
             if spec.get('prediction_type')=='probability_matrix':
                 indices=[list(map(str,model.classes_)).index(str(c)) for c in spec['output_columns']]
                 pred=probabilities[:,indices]
-            elif spec['metric'] in {'roc_auc','log_loss'} and len(model.classes_)==2:
-                pred=probabilities[:,1]
+            elif spec.get('prediction_type')=='probability':
+                pred=probabilities[:,positive_class_index(spec,model.classes_)]
         metrics=None
         if not full:
             val_pred=np.asarray(model.predict(train_x.iloc[va])).reshape(-1)

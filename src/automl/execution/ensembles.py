@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from automl.infrastructure.atomic import atomic_json
 from automl.evaluation.api import evaluate,metric_context
-from automl.publishing.api import save_submission,read_submission_values
+from automl.publishing.api import save_submission,read_submission_values,positive_class_index
 
 def read_cache(spec,record,train):
     root=Path(record['submission']).parent
@@ -48,7 +48,7 @@ def materialize(spec,caches,weights,output,sample,test_frame):
         np.savez_compressed(output/'validation_probabilities.npz',probabilities=val,classes=classes,row_position=caches[0]['rows'])
         np.savez_compressed(output/'test_probabilities.npz',probabilities=test,classes=classes)
         if spec['prediction_type']=='probability_matrix': values=test[:,[list(classes).index(c) for c in spec['output_columns']]]
-        elif spec['prediction_type']=='probability': values=test[:,1]
+        elif spec['prediction_type']=='probability': values=test[:,positive_class_index(spec,classes)]
         else: values=classes[test.argmax(axis=1)]
     else: values=test
     save_submission(spec,sample,test_frame,values,output/'submission.csv')

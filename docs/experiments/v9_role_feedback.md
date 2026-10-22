@@ -33,5 +33,10 @@ behavior was correct; assertions were corrected and the whole targeted suite rer
 
 These are mock/local fixture checks, NOT live Qwen or real-data quality evidence.
 Full169-check source audit, exact ZIP and full public gates are required separately.
+The169-unique suite subsequently passed unchanged-source in167.251s, and the
+exact-unpacked23 repeated checks pass. Frozen source `41cae86`, archive
+`release/solution-v9-roles1.zip`, SHA
+`297647239badde608d349d053a89f9d7f98e8fffceb4a09633f675f99ebd7291`.
+Its full public gate is still separate from the completed V7 gate.
 The ongoing calibration study executes immutable V7 workers, isolated from this
 canonical-source change; its already loaded harness/provenance are not rewritten.

@@ -23,6 +23,7 @@ from automl.evaluation.api import lgbm_metric,tune_class_factors,adjusted_probab
 from automl.execution.feature_engineering.transforms import feature_transform,generic_features
 from automl.execution.preprocessing.frames import prepare_frames
 from automl.execution.preprocessing.target_encoding import target_encode_frames,infer_history_groups
+from automl.execution.preprocessing.history import add_history_features
 from automl.execution.model_adapters.linear_text import linear_text_fit
 from automl.contracts.messages import DataPolicy,SplitPlan,PredictionBundle
 from dataclasses import asdict
@@ -132,6 +133,12 @@ def run(job):
     tr,va=split['train'],split['validation']
     SplitPlan(tuple(tr.tolist()),tuple(va.tolist())).validate(len(train))
     full=job.get('full_fit',False)
+    history_asof=recipe.get('params',{}).get('history_asof',False)
+    history_time=spec.get('time_column') or (spec.get('time_candidate') or {}).get('column')
+    if not isinstance(history_asof,bool): raise ValueError('history_asof must be a boolean')
+    if history_asof and (spec['kind']!='regression' or spec.get('task_family')=='pointwise_ranking' or history_time not in spec['features'] or not recipe.get('params',{}).get('target_encoding') or not (recipe['params'].get('target_encoding_auto_groups') or recipe['params'].get('target_encoding_groups'))):
+        raise ValueError('As-of history requires regression, observation periods and context encoding')
+    if history_asof and recipe['engine']=='linear_text': raise ValueError('As-of history is not supported for text recipes')
     if CAPABILITIES[recipe['engine']].get('mode')=='text':
         if spec.get('task_family')=='pointwise_ranking': raise ValueError('Text ranking adapter is not implemented')
         if not data_policy.is_noop: raise ValueError('Data-policy support for text is not implemented; use explicit noop')
@@ -175,6 +182,8 @@ def run(job):
             prepared_x,prepared_test=target_encode_frames(prepared_x,prepared_test,y,rows,source_hashes,spec.get('classes'),
                 smoothing=number(encoding_params,'target_encoding_smoothing',20,.5,100),groups=encoding_groups,add_counts=encoding_params.get('target_encoding_counts',False),
                 half_life=number(encoding_params,'target_encoding_half_life',0,0,10),time_column=spec.get('time_column') or (spec.get('time_candidate') or {}).get('column'))
+        if history_asof:
+            prepared_x,prepared_test=add_history_features(prepared_x,prepared_test,y,rows,history_time,encoding_groups or [])
         prepared_x,prepared_test,categorical=prepare_frames(prepared_x,prepared_test,recipe['engine'],rows)
         kwargs={}
         weights=None

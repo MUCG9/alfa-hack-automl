@@ -70,3 +70,12 @@ work, checkpoint and hand off; do not fabricate a live usage counter.
 
 Public folds have been repeatedly inspected; none of these scores is an unbiased
 private/platform estimate. No official submit or main merge in this protocol.
+
+## Implementation checkpoint
+
+Opt-in history_asof helper and worker/recipe registration implemented. No default
+portfolio change.17new checks (13pure-history +4worker/normalization/export) pass,
+including strict past/same-period exclusion, held-out target invariance, unseen
+contexts, nonuniform periods, overflow and full refit. Existing18quality +7architecture
+checks also pass in the pinned Python3.12.3 CPU environment. First classification
+full-data control fold completed; no sampling result or history quality decision yet.

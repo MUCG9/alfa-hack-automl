@@ -4,7 +4,12 @@
 V6; тяжёлых jobs нет. Общий startup/API ledger,64KiB metadata cap и bounded
 структурный feedback уже реализованы в V8/V9 — НЕ делать их заново. XGB OOF3
 calibration и fixed LGBM seed42/47 blend проверены и отвергнуты; не повторять без
-новой гипотезы. V9 отправлена одной разрешённой попыткой, результат неизвестен.
+новой гипотезы. V9 отправлена одной разрешённой попыткой; позже капитан сообщил
+2187.849,1940.2s,«Лучшее решение», оценка21.87/100.
+Новая предложенная очередь1→selection shortlist,2→adaptive CPU HPO,
+3→strictly-as-of history находится в
+[`cpu_research_review_20261022.md`](../experiments/cpu_research_review_20261022.md).
+Она ещё не запущена. Предыдущие исследования и доказательства сохранены.
 
 Следующий приоритет: bounded LIVE Qwen end-to-end только через разрешённую
 private environment (SDK/local fake HTTP уже проверены, это не live). Затем одна

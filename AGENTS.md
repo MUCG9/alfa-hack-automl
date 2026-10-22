@@ -1,5 +1,11 @@
 # Instructions for development agents
 
+Current local continuation: `work/cpu-research-20261022`, based on `a95c931`.
+Read `docs/experiments/cpu_research_review_20261022.md` for the new proposed CPU
+research queue and local environment verification. Captain reports V9 score
+2187.849,1940.2s,best solution (his21.87/100); see result-20261022.json in V9 release.
+The historical pending-upload state below is superseded by that later report.
+
 Resumed work: **`work/agent-budget-20261022`**, based on `b11debf`; read
 `docs/experiments/resume_20261022.md` and `docs/experiments/v8_run_budget.md` before
 the older continuation text below. The earlier V7 classification was terminated

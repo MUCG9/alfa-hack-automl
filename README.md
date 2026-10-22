@@ -4,6 +4,11 @@
 `main` сохранён как v2. Новые исходники и кандидаты не означают автоматически
 новый официальный submit.
 
+Продолжение на этом ПК: `work/cpu-research-20261022`, основа`a95c931`.
+Капитан подтвердил результат V9: **2187.849**,1940.2s,«Лучшее решение»
+(его оценка21.87/100); [запись результата](release/v9-roles1/result-20261022.json).
+[Обзор CPU autoresearch и новая очередь экспериментов](docs/experiments/cpu_research_review_20261022.md).
+
 - **Загружен v4**: [запись отправки](release/v4-history3/submission-20261022.json).
   Свежий reload в04:25UTC показал **2184.173** у точного имени v4 и времени05:21,
   осталось2попытки. Это raw score платформы, не перевод в100 и не hidden breakdown.
@@ -21,7 +26,9 @@
   структурный feedback и переиспользование frames. Модельные defaults не менялись.
   Full public gate завершён: обе задачи exit0/refit/integrity pass, CSV parity V7/V6.
   **V9 отправлена одной попыткой22октября около11:03MSK**, принята в очередь,
-  осталось1попытка; нового балла ещё нет, результата не ждали. [Receipt](release/v9-roles1/submission-20261022.json).
+  осталось1попытка на момент отправки. Позже капитан сообщил2187.849;
+  [receipt приёма](release/v9-roles1/submission-20261022.json),
+  [результат со слов капитана](release/v9-roles1/result-20261022.json).
   Итог в [передаче](docs/handoff/current.md) и
   [release evidence](release/v9-roles1/README.md). SDK/HTTP tests используют local
   mock, а не Qwen. Две новые модельные гипотезы отвергнуты по измерениям.

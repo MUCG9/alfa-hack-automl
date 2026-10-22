@@ -204,14 +204,15 @@ def summarize_hpo(path):
     report['complete_verified_screen'] = complete
     report['mean'] = {name: float(np.mean([c['outcomes'][name]['value'] for c in report['cuts']]))
                       for name in ['control', *arms] if report['cuts'] and all(c['outcomes'][name]['status'] == 'verified' for c in report['cuts'])}
-    report['paired_gate_passed'] = {name: complete and verifier.source_matches_current and all(c['gates'].get(name, {}).get('passed', False) for c in report['cuts']) for name in arms}
+    report['paired_gate_passed'] = {name: complete and all(c['gates'].get(name, {}).get('passed', False) for c in report['cuts']) for name in arms}
     if mode == 'hpo':
         report['tpe_mean_beats_random'] = (complete and (report['mean']['tpe'] > report['mean']['random']
             if verifier.spec['greater_is_better'] else report['mean']['tpe'] < report['mean']['random']))
-        report['advance_gate_passed'] = (report['paired_gate_passed']['tpe'] and report['tpe_mean_beats_random']
+        report['measured_screen_gate_passed'] = (report['paired_gate_passed']['tpe'] and report['tpe_mean_beats_random']
             and all(c['studies'].get('tpe', {}).get('status') == 'verified' for c in report['cuts']))
     else:
-        report['advance_gate_passed'] = report['paired_gate_passed']['selection']
+        report['measured_screen_gate_passed'] = report['paired_gate_passed']['selection']
+    report['advance_gate_passed'] = report['measured_screen_gate_passed'] and verifier.source_matches_current
     return report
 
 
@@ -248,7 +249,8 @@ def summarize_candidates(path):
                 row['gate'] = paired_gate(control, treatment, verifier.spec, verifier.support(partitions[cut][0]))
             entry['cuts'].append(row)
         entry['complete_verified_screen'] = all(c['control']['status'] == c['candidate']['status'] == 'verified' for c in entry['cuts'])
-        entry['advance_gate_passed'] = entry['complete_verified_screen'] and verifier.source_matches_current and all(c['gate']['passed'] for c in entry['cuts'])
+        entry['measured_screen_gate_passed'] = entry['complete_verified_screen'] and all(c['gate']['passed'] for c in entry['cuts'])
+        entry['advance_gate_passed'] = entry['measured_screen_gate_passed'] and verifier.source_matches_current
         if entry['complete_verified_screen']:
             entry['control_mean'] = float(np.mean([c['control']['value'] for c in entry['cuts']]))
             entry['candidate_mean'] = float(np.mean([c['candidate']['value'] for c in entry['cuts']]))

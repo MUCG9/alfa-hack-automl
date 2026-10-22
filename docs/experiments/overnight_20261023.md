@@ -84,3 +84,12 @@ Skill/source fingerprints не входят в contest ZIP; canonical hashes н�
 Classification experiment05 (CatBoost + selector32) завершился watchdog timeout
 900.497s, метрики нет; другой owned worker продолжил очередь. Это отказ по
 стоимости/лимиту, не числовая оценка качества CatBoost на полном fit.
+
+Source inspection: отложен узкий дефект HPO anchor для sparse recipes без явно
+заданных параметров. `hpo.py` defaults: LightGBM leaves63/reg_lambda5 против
+adapter31/3; XGBoost max_depth6/reg_lambda5 против adapter8/8, дополнительно
+учесть legacy depth alias. Поэтому bare recipe anchor может менять контроль.
+У текущих qualified controls эти параметры заданы явно: measured MVP/screens
+этот случай не используют. Не менять frozen canonical source до завершения
+owned campaigns. После них исправить engine-specific defaults и проверить
+семантическое равенство anchor/control через model construction без fitting.

@@ -65,8 +65,19 @@ source. The additional 23 unpacked checks repeat part of the same suite and must
 not be added as 23 new unique tests. Four of the new tests run the standalone
 compiled CLI through full refit/export on small fixtures.
 
-Full default public regression and classification checks have been started
-sequentially from this exact archive, offline, two threads, 1.7 GiB local
-whole-tree guard, 10,100-second outer watchdog per task. Until they finish, do not
-claim public prediction parity or full-size validation of this candidate.
+Full default public regression and classification completed sequentially from
+this exact archive: offline, two threads, 1.7 GiB local whole-tree guard,
+10,100-second outer watchdog per task. Both full refits/exports and integrity
+checks passed. The output CSV hashes exactly match v4, not merely rounded scores:
+
+- Regression: search/confirmation RMSE 39.321110258 / 34.229379712,
+  mean 36.775244985, full agent 221.655 seconds (harness 222.684).
+  CSV SHA `c1556d566cd24de3dc4bed107fbfe7f517dea14dd2c53c583545af08ed43f4e0`.
+- Classification: search/confirmation Macro F1 0.657720274 / 0.647764944,
+  mean 0.652742609, harness 1539.828 seconds.
+  CSV SHA `2753a7af287633fda9be4172c103a85641cfccffbef14d4a7e2f2b2fa072b707`.
+
+Evidence: `release/v5-contract1/public-full.json`. These are reused public folds,
+not a private/official estimate. This release does NOT include later group/date
+and multi-target changes; its parity cannot stand in for their full-size gate.
 It has NOT been uploaded. Only the fourth v4 archive was authorized/uploaded.

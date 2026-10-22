@@ -1,0 +1,87 @@
+{
+  "scope": "One actual Qwen schema-only proposal; compilation/preflight verified, no ML quality claim",
+  "compiler_checks": 4,
+  "call": {
+    "status": "ok",
+    "wall_seconds": 9.251,
+    "usage": {
+      "completion_tokens": 358,
+      "prompt_tokens": 6456,
+      "total_tokens": 6814,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0,
+        "cache_write_tokens": 0,
+        "cache_creation_tokens": 0
+      },
+      "cost": 0.227952270936
+    },
+    "finish_reason": "stop",
+    "compatibility_retry": false,
+    "reasoning_requested": false,
+    "attempts": 1,
+    "usage_complete": true
+  },
+  "compiled": {
+    "compiler_version": 2,
+    "original_artifacts_preserved": true,
+    "original_template_error": "np.inf was unsupported by canonical feature policy; fixed trusted template before any model fits",
+    "qwen_calls": 1,
+    "features_unchanged": [
+      {
+        "op": "signed_log",
+        "columns": [
+          "floor_area"
+        ],
+        "reason": "Compresses the heavy right-tail distribution of building area (ft²) to mitigate scale dominance and improve model stability for large commercial buildings."
+      },
+      {
+        "op": "signed_log",
+        "columns": [
+          "cooling_degree_days_c"
+        ],
+        "reason": "Reduces the skew in annual cooling load (°C·days), which is highly right-skewed, to better capture non-linear energy response in hot climates."
+      },
+      {
+        "op": "signed_log",
+        "columns": [
+          "heating_degree_days_c"
+        ],
+        "reason": "Reduces the skew in annual heating load (°C·days), which is highly right-skewed, to better capture non-linear energy response in cold climates."
+      },
+      {
+        "op": "angle_delta",
+        "columns": [
+          "direction_max_wind_speed",
+          "direction_peak_wind_speed"
+        ],
+        "reason": "Computes the wrapped angular difference (radians) between wind directions to capture directional consistency or variability, which may correlate with local microclimate effects on energy use."
+      },
+      {
+        "op": "missing",
+        "columns": [
+          "energy_star_rating"
+        ],
+        "reason": "Flags missing ENERGY STAR ratings, as missingness may indicate older or non-certified buildings with potentially different energy efficiency profiles."
+      }
+    ],
+    "feature_code_sha256": "fab4df7c4b616ed1108314dbad3dbcaf0e62571061fd675115b64abf8339a6b9",
+    "preflight": {
+      "canonical_feature_policy_passed": true,
+      "fitting_rows_checked": 32,
+      "added_features": 5,
+      "split_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859"
+    },
+    "ml_fits": 0
+  },
+  "runtime_integration": false,
+  "paired_quality_benchmark": "pending"
+}

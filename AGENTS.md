@@ -1,5 +1,11 @@
 # Instructions for development agents
 
+Current captain request RESUMES implementation after colleague6aefbd9 STOP.
+Current branch `work/llm-upgrade-20261022`; see docs/experiments/v11_llm_review.md
+and v11_progress.md. V11 feature-view full-procedure evaluation is the active
+stage; historical V10 STOP is context, not a continuing prohibition after the new
+human request. No official upload or extra agents authorized. Keep85%-used cutoff.
+
 V10 is CHECKPOINTED for handoff: captain again requested STOP because limits are
 ending. This latest stop supersedes the earlier restored-limit continuation.
 Read docs/prompts/next-agent.md and docs/handoff/current.md first. History4 full

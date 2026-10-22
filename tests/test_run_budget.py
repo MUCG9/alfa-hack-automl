@@ -2,6 +2,7 @@
 from pathlib import Path
 import json,os,sys,tempfile,unittest
 from unittest.mock import patch
+from types import SimpleNamespace
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src'));sys.path.insert(0,str(ROOT/'tests'))
 from automl.infrastructure.run_budget import RunBudget,current_budget,constrain_deadline,budget_metadata
@@ -135,6 +136,29 @@ class RunBudgetTests(unittest.TestCase):
             ledger=json.loads(Path(result['run_budget_trace']).read_text())
             self.assertEqual(ledger['gateway_calls_started'],2);self.assertEqual(ledger['prompt_tokens_reported'],4)
             self.assertEqual(ledger['status'],'completed');self.assertTrue(result['integrity_ok'])
+
+    def test_client_setup_cannot_extend_the_global_transport_deadline(self):
+        with tempfile.TemporaryDirectory() as directory:
+            ticks=[0.]
+            with (RunBudget(5,1,directory,clock=lambda:ticks[0]),patch.dict(os.environ,ENV),
+                  patch('openai.OpenAI') as factory,
+                  patch('automl.infrastructure.llm_gateway.time.monotonic',side_effect=lambda:ticks[0])):
+                client=factory.return_value
+                def setup(*args,**kwargs): ticks[0]=6;return client
+                factory.side_effect=setup
+                content,call=gateway.request_json('fixture',{},timeout=300)
+                self.assertIsNone(content);self.assertEqual(call['attempts'],0)
+                self.assertEqual(call['exception_type'],'TimeoutError')
+                client.with_options.return_value.chat.completions.create.assert_not_called()
+
+    def test_missing_usage_is_not_reported_as_known_zero_cost(self):
+        with tempfile.TemporaryDirectory() as directory:
+            response=SimpleNamespace(usage=None,choices=[SimpleNamespace(finish_reason='stop',message=SimpleNamespace(content='{}'))])
+            with RunBudget(100,1,directory) as budget,patch.dict(os.environ,ENV),patch('openai.OpenAI') as factory:
+                factory.return_value.with_options.return_value.chat.completions.create.return_value=response
+                content,call=gateway.request_json('fixture',{})
+                self.assertEqual(content,'{}');self.assertEqual(call['status'],'ok')
+                self.assertFalse(call['usage_complete']);self.assertFalse(budget.snapshot()['usage_complete'])
 
 
 if __name__=='__main__': unittest.main(verbosity=2)

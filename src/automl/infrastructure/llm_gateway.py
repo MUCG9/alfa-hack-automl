@@ -28,6 +28,8 @@ def _request_json(system_prompt,context,max_output=16384,timeout=300):
                  'temperature':.4,'max_tokens':max_output,'response_format':{'type':'json_object'}}
         for retry in range(3):
             remaining=timeout-(time.monotonic()-start)
+            budget=current_budget()
+            if budget is not None: remaining=min(remaining,budget.remaining())
             if remaining<5: raise TimeoutError('Gateway deadline')
             attempts+=1
             try:
@@ -41,12 +43,14 @@ def _request_json(system_prompt,context,max_output=16384,timeout=300):
                 status=getattr(exc,'status_code',None)
                 if status is not None and status!=429 and status<500: raise
                 if retry==2: raise
-                pause=min(2**retry,max(0,timeout-(time.monotonic()-start)-5))
+                pause_left=timeout-(time.monotonic()-start)
+                if budget is not None: pause_left=min(pause_left,budget.remaining())
+                pause=min(2**retry,max(0,pause_left-5))
                 if pause: time.sleep(pause)
         usage=response.usage.model_dump() if response.usage else {}; finish=response.choices[0].finish_reason
         return response.choices[0].message.content or '',{'status':'ok','wall_seconds':round(time.monotonic()-start,3),
             'usage':usage,'finish_reason':finish,'compatibility_retry':compatibility,'reasoning_requested':False,
-            'attempts':attempts,'usage_complete':attempts==1}
+            'attempts':attempts,'usage_complete':attempts==1 and all(type(usage.get(k)) is int and usage[k]>=0 for k in ['prompt_tokens','completion_tokens'])}
     except Exception as exc:
         message=str(exc).replace(os.environ.get('OPENAI_API_KEY','credential-unset'),'[REDACTED]')[:500]
         return None,{'status':'error','exception_type':type(exc).__name__,'wall_seconds':round(time.monotonic()-start,3),

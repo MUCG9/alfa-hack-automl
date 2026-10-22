@@ -24,9 +24,13 @@ change is intended. It is not evidence of improved ML metrics.
   path truncation. Count/row bounds and no-raw-row behavior remain in place.
 - Library/offline defaults and canonical-name no-call behavior are unchanged.
 
-12 budget tests pass (mock transport/clock),10 semantic tests pass (including2new
-metadata bounds),7architecture and7resilience checks pass. Full161-unique suite is
-running with source hashes before/after. Exact ZIP/full public gates still needed.
+The first161-unique suite passed unchanged-source in168.888s. Review then found
+two further edge cases: slow API-client setup could add time to an authorized
+timeout, and a response without usage could look like complete zero token cost.
+The gateway now rechecks the global deadline before each HTTP attempt/backoff,
+and missing token fields remain incomplete. Two new tests cover these cases;
+the final163-unique suite must pass before freezing this updated snapshot.
+Exact ZIP/full public gates are separate and still needed.
 
 ## HTTP fixture versus live provider
 

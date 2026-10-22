@@ -16,6 +16,8 @@ def save_submission(spec, sample, test, predictions, path):
         result[output_columns]=values
     else:
         result[output_columns[0]]=np.asarray(predictions).reshape(-1)
+        if spec['kind']=='regression' and spec.get('metric')=='rmsle':
+            result[output_columns[0]]=np.maximum(result[output_columns[0]],0)
     if result.isna().any().any():
         raise ValueError('Null submission values')
     if spec['kind']=='regression' and not np.isfinite(pd.to_numeric(result[output_columns[0]],errors='coerce')).all():

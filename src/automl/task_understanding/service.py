@@ -2,6 +2,7 @@ from pathlib import Path
 import re,json,hashlib
 import numpy as np
 import pandas as pd
+from automl.task_understanding.metrics import metric_from_text,LOWER_IS_BETTER
 
 
 def infer_static_numeric(dictionary,train,features):
@@ -44,29 +45,6 @@ def find_input(root: Path, name: str, text: str) -> Path:
     if len(candidates) != 1:
         raise ValueError(f'Expected one {name} under task directory, found {len(candidates)}')
     return candidates[0]
-
-
-def metric_from_text(text: str, kind: str) -> str:
-    text = text.lower()
-    if kind == 'regression':
-        if re.search(r'\brmse\b|root.mean.square|среднеквадрат', text):
-            return 'rmse'
-        if re.search(r'\bmae\b|mean.absolute.error', text):
-            return 'mae'
-        if re.search(r'\br2\b|r\^2|r²', text):
-            return 'r2'
-        return 'rmse'
-    if re.search(r'macro[\s_-]*f1|f1[^\n]{0,30}macro', text):
-        return 'macro_f1'
-    if 'roc' in text and 'auc' in text:
-        return 'roc_auc'
-    if 'logloss' in text or 'log loss' in text or 'log_loss' in text:
-        return 'log_loss'
-    if re.search(r'weighted[\s_-]*f1', text):
-        return 'weighted_f1'
-    if 'accuracy' in text:
-        return 'accuracy'
-    return 'macro_f1'
 
 
 def discover(task_path: Path):
@@ -136,7 +114,7 @@ def discover(task_path: Path):
         'root': str(root), 'task_path': str(task_path.resolve()),
         'paths': {k: str(v) for k, v in paths.items()},
         'target': target, 'id': identifier, 'features': features,
-        'kind': kind, 'metric': metric, 'greater_is_better': metric not in {'rmse','mae','log_loss'},
+        'kind': kind, 'metric': metric, 'greater_is_better': metric not in LOWER_IS_BETTER,
         'n_train': len(train), 'n_test': len(test), 'n_features': len(features),
         'duplicate_feature_rate': dup_rate,
         'text_features': text_features,
@@ -159,4 +137,3 @@ def discover(task_path: Path):
         'dictionary': dictionary.to_dict(orient='records'),
     }
     return spec, profile, train, test, sample, text, hashes
-

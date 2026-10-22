@@ -2,7 +2,7 @@ from pathlib import Path
 import re,json,hashlib
 import numpy as np
 import pandas as pd
-from sklearn.metrics import accuracy_score,f1_score,log_loss,mean_absolute_error,mean_squared_error,r2_score,roc_auc_score,precision_recall_fscore_support,confusion_matrix
+from sklearn.metrics import accuracy_score,balanced_accuracy_score,f1_score,log_loss,mean_absolute_error,mean_absolute_percentage_error,mean_squared_error,mean_squared_log_error,r2_score,roc_auc_score,precision_recall_fscore_support,confusion_matrix
 from sklearn.model_selection import StratifiedGroupKFold,StratifiedKFold,GroupKFold,KFold,train_test_split
 
 
@@ -90,6 +90,11 @@ def evaluate(y, pred, kind, metric, proba=None, classes=None):
     if kind=='regression':
         values={'rmse':float(mean_squared_error(y,pred)**.5),
                 'mae':float(mean_absolute_error(y,pred)), 'r2':float(r2_score(y,pred))}
+        if metric=='mse': values['mse']=float(mean_squared_error(y,pred))
+        if metric=='mape': values['mape']=float(mean_absolute_percentage_error(y,pred))
+        if metric=='rmsle':
+            if (np.asarray(y)<0).any(): raise ValueError('RMSLE requires non-negative targets')
+            values['rmsle']=float(mean_squared_log_error(y,np.maximum(pred,0))**.5)
     else:
         labels=np.asarray(classes) if classes is not None else np.unique(np.concatenate([np.asarray(y),np.asarray(pred)]))
         values={'macro_f1':float(f1_score(y,pred,labels=labels,average='macro',zero_division=0)),
@@ -97,6 +102,7 @@ def evaluate(y, pred, kind, metric, proba=None, classes=None):
                 'accuracy':float(accuracy_score(y,pred)),
                 'per_class_f1':{str(c):float(v) for c,v in zip(
                     labels,f1_score(y,pred,labels=labels,average=None,zero_division=0))}}
+        if metric=='balanced_accuracy': values['balanced_accuracy']=float(balanced_accuracy_score(y,pred))
         precision,recall,_,support=precision_recall_fscore_support(y,pred,labels=labels,zero_division=0)
         values['per_class_diagnostics']={str(c):{'precision':float(p),'recall':float(r),'support':int(n)} for c,p,r,n in zip(labels,precision,recall,support)}
         values['confusion_matrix']={'classes':list(map(str,labels)),'counts':confusion_matrix(y,pred,labels=labels).tolist()}
@@ -112,4 +118,3 @@ def evaluate(y, pred, kind, metric, proba=None, classes=None):
     if metric not in values:
         raise ValueError(f'Cannot evaluate requested metric {metric}')
     return values
-

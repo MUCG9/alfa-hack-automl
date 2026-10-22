@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.metrics import accuracy_score,f1_score,r2_score
+from sklearn.metrics import accuracy_score,balanced_accuracy_score,f1_score,r2_score,mean_absolute_percentage_error,mean_squared_log_error
 def lgbm_metric(spec,log_target=False):
     """sklearn wrapper supplies encoded class labels; do not confuse loss and F1."""
     metric=spec['metric']
@@ -11,10 +11,14 @@ def lgbm_metric(spec,log_target=False):
                 y_true=np.expm1(y_true); pred=np.expm1(pred)
             if metric=='mae': value=np.abs(y_true-pred).mean()
             elif metric=='r2': value=r2_score(y_true,pred)
+            elif metric=='mse': value=np.square(y_true-pred).mean()
+            elif metric=='mape': value=mean_absolute_percentage_error(y_true,pred)
+            elif metric=='rmsle': value=mean_squared_log_error(y_true,np.maximum(pred,0))**.5
             else: value=np.sqrt(np.square(y_true-pred).mean())
-        elif metric in {'macro_f1','weighted_f1','accuracy'}:
+        elif metric in {'macro_f1','weighted_f1','accuracy','balanced_accuracy'}:
             labels=pred.argmax(axis=1) if pred.ndim==2 else (pred>=.5).astype(int)
             if metric=='accuracy': value=accuracy_score(y_true,labels)
+            elif metric=='balanced_accuracy': value=balanced_accuracy_score(y_true,labels)
             else:
                 classes=np.arange(pred.shape[1]) if pred.ndim==2 else np.array([0,1])
                 value=f1_score(y_true,labels,labels=classes,average='macro' if metric=='macro_f1' else 'weighted',zero_division=0)
@@ -55,4 +59,3 @@ def tune_class_factors(y,probabilities,classes):
 def adjusted_probabilities(probabilities,classes,factors):
     values=np.asarray(probabilities,dtype=float)*np.asarray([factors.get(str(c),1.) for c in classes])
     return values/np.maximum(values.sum(axis=1,keepdims=True),1e-15)
-

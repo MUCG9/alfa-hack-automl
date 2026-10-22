@@ -4,7 +4,7 @@ import csv
 import pandas as pd
 
 
-def read_input_table(path):
+def read_input_table(path,nrows=None):
     path=Path(path)
     if path.suffix.lower() not in {'.csv','.tsv','.tab'}:
         raise ValueError('Unsupported input table format: '+path.suffix)
@@ -22,7 +22,7 @@ def read_input_table(path):
             except csv.Error: delimiter=','
     header=next(csv.reader(sample.splitlines(),delimiter=delimiter))
     if len(header)!=len(set(header)): raise ValueError('Duplicate input column names: '+path.name)
-    return pd.read_csv(path,sep=delimiter,encoding='utf-8-sig')
+    return pd.read_csv(path,sep=delimiter,encoding='utf-8-sig',nrows=nrows)
 
 
 def read_task_sample(spec):

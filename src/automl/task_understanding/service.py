@@ -45,20 +45,21 @@ class MultipleTargets(ValueError):
         super().__init__('Expected one target, got '+repr(list(targets)))
 
 
-def load_inputs(task_path:Path):
+def load_inputs(task_path:Path,allow_llm=False):
     root = task_path.resolve().parent
     text = task_path.read_text(encoding='utf-8-sig')
-    paths = resolve_inputs(root,text)
+    resolution={}
+    paths = resolve_inputs(root,text,allow_llm=allow_llm,resolution=resolution)
     train = read_input_table(paths['train'])
     test = read_input_table(paths['test'])
     sample = read_input_table(paths['sample_submission'])
     dictionary = read_input_table(paths['data_dictionary']) if 'data_dictionary' in paths else pd.DataFrame(columns=['feature','role'])
     return {'root':root,'task_path':task_path.resolve(),'text':text,'paths':paths,
-            'train':train,'test':test,'sample':sample,'dictionary':dictionary}
+            'train':train,'test':test,'sample':sample,'dictionary':dictionary,'file_role_resolution':resolution}
 
 
-def discover(task_path: Path,target_override=None,loaded=None):
-    loaded=load_inputs(task_path) if loaded is None else loaded
+def discover(task_path: Path,target_override=None,loaded=None,allow_llm=False):
+    loaded=load_inputs(task_path,allow_llm=allow_llm) if loaded is None else loaded
     if loaded['task_path']!=task_path.resolve(): raise ValueError('Cached inputs belong to a different task')
     root,text,paths=(loaded[k] for k in ['root','text','paths'])
     train,test,sample,dictionary=(loaded[k] for k in ['train','test','sample','dictionary'])
@@ -165,6 +166,7 @@ def discover(task_path: Path,target_override=None,loaded=None):
     }
     if sample_positions is not None: spec['sample_test_positions']=sample_positions
     spec.update(ranking_parameters)
+    if loaded.get('file_role_resolution'): spec['file_role_resolution']=dict(loaded['file_role_resolution'])
     if prediction_type=='probability':
         spec['positive_class'],spec['positive_class_source']=infer_positive_class(text,classes,pd.api.types.is_numeric_dtype(train[target]))
     if len(targets)>1:

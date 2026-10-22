@@ -17,11 +17,13 @@ def fingerprints(paths):
     return values
 
 
-def solve_many(args,targets,solve_single):
+def solve_many(args,targets,solve_single,loaded=None):
     started=time.monotonic(); deadline=started+args.time_budget
     if not 2<=len(targets)<=16 or len(set(targets))!=len(targets):
         raise ValueError('Independent multi-target mode supports 2..16 distinct targets')
-    loaded=load_inputs(args.task); root=Path(loaded['root'])
+    loaded=load_inputs(args.task) if loaded is None else loaded
+    if loaded['task_path']!=args.task.resolve(): raise ValueError('Cached multi-target inputs belong to another task')
+    root=Path(loaded['root'])
     runs=root/'automl_runs'/('multi-target-'+str(time.time_ns())); runs.mkdir(parents=True)
     output=root/'submission.csv'; sample=loaded['sample']; tasks=[]; parts=[]
     paths={'task':args.task.resolve(),**loaded['paths'],**{'source:'+str(p):p for p in source_files()}}

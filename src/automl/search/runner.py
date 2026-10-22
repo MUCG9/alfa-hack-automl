@@ -14,7 +14,7 @@ from automl.infrastructure.llm_gateway import request_json
 from automl.infrastructure.resources import ResourceBudget
 from automl.infrastructure.processes import ProcessTree
 from automl.contracts.messages import TaskSpec,ExperimentRequest
-from automl.task_understanding.api import discover,MultipleTargets
+from automl.task_understanding.api import discover,MultipleTargets,load_inputs
 from automl.evaluation.api import evaluate,make_split,make_time_split,choose_validation,metric_context
 from automl.publishing.api import dummy_predictions,save_submission,checkpoint
 from automl.search.policy import parse_plans,portfolio,fallback,signature
@@ -184,10 +184,11 @@ def _main():
     parser.add_argument('--validation-strategy',choices=['legacy','auto'],default='auto')
     parser.add_argument('--run-name',default='run-v2')
     args=parser.parse_args()
-    try: task_data=discover(args.task)
+    loaded=load_inputs(args.task,allow_llm=not args.offline)
+    try: task_data=discover(args.task,loaded=loaded)
     except MultipleTargets as exc:
         from automl.search.multitarget import solve_many
-        return solve_many(args,exc.targets,solve_single)
+        return solve_many(args,exc.targets,solve_single,loaded=loaded)
     return solve_single(args,task_data)
 
 

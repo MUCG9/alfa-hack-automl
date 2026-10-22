@@ -43,7 +43,7 @@ def find_input(root:Path,name:str,text:str)->Path:
     return candidates[0]
 
 
-def resolve_inputs(root,text):
+def _resolve_inputs_deterministic(root,text):
     root=Path(root).resolve(); tables=None; paths={}
     for role,aliases in ALIASES.items():
         try:
@@ -60,3 +60,11 @@ def resolve_inputs(root,text):
         if path in paths.values(): raise ValueError('One input table cannot serve two roles')
         paths[role]=path
     return paths
+
+
+def resolve_inputs(root,text,allow_llm=False,resolution=None):
+    try: return _resolve_inputs_deterministic(root,text)
+    except ValueError as exc:
+        if not allow_llm or 'leaves task directory' in str(exc): raise
+        from automl.task_understanding.semantic_inputs import infer_file_roles
+        return infer_file_roles(Path(root).resolve(),text,str(exc),resolution)

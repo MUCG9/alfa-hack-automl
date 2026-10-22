@@ -21,6 +21,7 @@ from automl.execution.model_adapters.registry import make_model,fit_options,sele
 from automl.execution.weighting.classes import sample_weights,number
 from automl.evaluation.api import lgbm_metric,tune_class_factors,adjusted_probabilities
 from automl.execution.feature_engineering.transforms import feature_transform,generic_features
+from automl.execution.feature_engineering.selection import select_features,validate_selection
 from automl.execution.preprocessing.frames import prepare_frames
 from automl.execution.preprocessing.target_encoding import target_encode_frames,infer_history_groups
 from automl.execution.preprocessing.history import add_history_features,validate_history_groups
@@ -110,6 +111,7 @@ def run_ensemble(job):
 
 def run_feature_views(job):
     recipe=job['recipe']
+    validate_selection(recipe.get('params',{}))
     components=feature_view_components(recipe,job['spec'])
     internal=dict(recipe,engine='ensemble',params={},components=components,weights=[.5,.5])
     run_ensemble(dict(job,recipe=internal))
@@ -126,6 +128,9 @@ def run(job):
     start=time.monotonic()
     spec=job['spec']
     recipe=job['recipe']
+    selection_size=validate_selection(recipe.get('params',{}))
+    if selection_size and recipe['engine']=='linear_text':
+        raise ValueError('Feature selection is unsupported for text recipes')
     validate_fit_iterations(recipe,job.get('fit_iterations'))
     decision_optimizer=validate_decision_optimizer(recipe,spec)
     target_smearing=validate_target_smearing(recipe,spec)
@@ -226,6 +231,11 @@ def run(job):
                            'enabled':enabled,'contexts':len(encoding_groups or []),
                            'reason':'enabled' if enabled else 'insufficient_periods' if period_count<history_minimum else 'no_supported_contexts'}
             if enabled: prepared_x,prepared_test=add_history_features(prepared_x,prepared_test,y,rows,history_time,encoding_groups)
+        selector_weights=sample_weights(y.iloc[rows],recipe.get('params',{})) if spec['kind']=='classification' else None
+        selection_record=None
+        if recipe.get('params',{}).get('feature_selection_top_k',0):
+            prepared_x,prepared_test,selection_record=select_features(prepared_x,prepared_test,fit_y,rows,
+                spec['kind'],job['threads'],recipe.get('params',{}),selector_weights)
         prepared_x,prepared_test,categorical=prepare_frames(prepared_x,prepared_test,recipe['engine'],rows)
         kwargs={}
         weights=None
@@ -235,6 +245,7 @@ def run(job):
             prepared_x.iloc[rows],fit_y.iloc[rows],y.iloc[rows],weights,source_hashes[rows],rows,
             recipe.get('data_policy'),spec['kind'],recipe['engine'])
         policy_records.append(policy_record)
+        if selection_record is not None: policy_record['feature_selection']=selection_record
         if history_state is not None: policy_record['history_asof']=history_state
         if encoding_groups is not None: policy_record['target_encoding_groups']=encoding_groups
         if not data_policy.is_noop:

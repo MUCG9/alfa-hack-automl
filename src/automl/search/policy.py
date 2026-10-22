@@ -9,7 +9,7 @@ ENGINES=set(CAPABILITIES)
 PARAMETERS={'iterations','depth','max_depth','learning_rate','num_leaves','min_child_samples',
  'reg_lambda','reg_alpha','l2_leaf_reg','random_strength','class_weights','class_weight_power','feature_views','decision_optimizer','target_smearing','target_smearing_method',
  'subsample','subsample_freq','colsample_bytree','seed','log_target','generic_features','calibrate',
- 'min_samples_leaf','max_features','text_alpha','text_char_features','text_svd_components','text_classifier','text_C','min_iterations','min_child_weight','gamma','max_bin','categorical_from_dictionary','multiclass_strategy','target_encoding','calibration_folds','target_encoding_groups','target_encoding_smoothing','target_encoding_auto_groups','target_encoding_refine_groups','target_encoding_counts','target_encoding_half_life','target_encoding_hierarchical','pair_refinement','history_asof','history_min_periods'}
+ 'min_samples_leaf','max_features','text_alpha','text_char_features','text_svd_components','text_classifier','text_C','min_iterations','min_child_weight','gamma','max_bin','categorical_from_dictionary','multiclass_strategy','target_encoding','calibration_folds','target_encoding_groups','target_encoding_smoothing','target_encoding_auto_groups','target_encoding_refine_groups','target_encoding_counts','target_encoding_half_life','target_encoding_hierarchical','pair_refinement','history_asof','history_min_periods','feature_selection_top_k'}
 
 def signature(recipe):
     actual={k:recipe.get(k) for k in ['engine','params','feature_code','components','weights','data_policy'] if k in recipe}
@@ -68,6 +68,11 @@ def normalize(candidate,best=None):
     code=candidate.get('feature_code',best.get('feature_code','') if best else '')
     if not isinstance(code,str) or len(code)>12000: raise ValueError('Invalid feature code')
     inherited=effective_parameters(candidate['engine'],inherited)
+    selection=inherited.get('feature_selection_top_k',0)
+    if type(selection) is not int or not 0<=selection<=512:
+        raise ValueError('Invalid feature selection size')
+    if selection and candidate['engine']=='linear_text':
+        raise ValueError('Feature selection is unsupported for text recipes')
     if inherited.get('history_asof') and (candidate['engine']=='linear_text' or not inherited.get('target_encoding') or not (inherited.get('target_encoding_groups') or inherited.get('target_encoding_auto_groups'))):
         raise ValueError('As-of history requires regression context encoding')
     if 'history_min_periods' in inherited:

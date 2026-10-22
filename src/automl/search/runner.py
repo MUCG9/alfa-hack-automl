@@ -96,8 +96,22 @@ def planner_context(spec,profile,text,split_info,records,best,remaining,round_nu
             'validation_hint':spec.get('time_candidate'),
             'split':split_info,'remaining_seconds':int(remaining),'task_excerpt':text[:4500]}
 
-def llm_plan(context,root,max_output=16384,timeout=300):
-    content,call=request_json(SYSTEM_PROMPT,context,max_output,timeout)
+STAGED_PROMPT='''\nUse a staged research decision. Return data_assessment (supported facts only),
+failure_diagnosis (cite measured outcomes and support), and candidates in the
+existing schema. First check data roles, metric, fitting-only validation and
+remaining CPU time. Then propose ONE bounded feature-only ablation and ONE
+model-parameter-only ablation, each with expected mechanism and discard rule.
+Keep feature code to at most20 new columns. More features is not the objective.
+Do not recommend rejected recipes simply because a generic prior favors them.
+Feature selection is available ONLY when explicitly enabled by the coordinator;
+do not set feature_selection_top_k yourself. Optuna receives only inner metrics.
+Prioritize a completed refit/valid CSV within the deadline over another trial.
+'''
+
+def llm_plan(context,root,max_output=16384,timeout=300,prompt_mode='baseline'):
+    if prompt_mode not in {'baseline','staged'}: raise ValueError('Unknown planner mode')
+    prompt=SYSTEM_PROMPT+(STAGED_PROMPT if prompt_mode=='staged' else '')
+    content,call=request_json(prompt,context,max_output,timeout)
     if content is None: return [],call
     try: return parse_plans(content,context.get('best_recipe')),call
     except (ValueError,TypeError) as exc:
@@ -188,9 +202,14 @@ def _main():
     parser.add_argument('--max-planner-calls',type=int,default=4)
     parser.add_argument('--max-llm-calls',type=int,default=None,help='Total gateway calls including file roles and every target; default planner limit+2')
     parser.add_argument('--offline',action='store_true')
+    parser.add_argument('--hpo-trials',type=int,default=0,help='Optional nested Optuna trials, 0 disables')
+    parser.add_argument('--hpo-budget',type=int,default=900,help='Maximum total seconds for the inner study')
+    parser.add_argument('--hpo-sampler',choices=['tpe','random'],default='tpe')
+    parser.add_argument('--planner-mode',choices=['baseline','staged'],default='baseline')
     parser.add_argument('--validation-strategy',choices=['legacy','auto'],default='auto')
     parser.add_argument('--run-name',default='run-v2')
     args=parser.parse_args()
+    if not 0<=args.hpo_trials<=32 or args.hpo_budget<5: parser.error('Invalid HPO limits')
     total_calls=max(0,min(8,args.max_planner_calls))+2 if args.max_llm_calls is None else args.max_llm_calls
     with RunBudget(args.time_budget,total_calls,args.task.resolve().parent):
         loaded=load_inputs(args.task,allow_llm=not args.offline)
@@ -229,13 +248,24 @@ def solve_single(args,task_data=None,output_root=None):
         baseline=evaluate(train[spec['target']].iloc[va].astype(str),np.repeat(spec['classes'][int(prior>=.5)],len(va)),spec['kind'],spec['metric'],probabilities,spec['classes'],**metric_context(spec,train,va))
     else: baseline=evaluate(train[spec['target']].iloc[va],dummy,spec['kind'],spec['metric'],classes=spec['classes'],**metric_context(spec,train,va))
     records=[]; calls=[]; queue=portfolio(spec); seen=set(); best=None
+    hpo_report=None; hpo_attempted=False
     reserve=min(1200,max(60,args.time_budget*.2)); limit=max(1,min(args.max_experiments,14))
     for iteration in range(limit):
         remaining=deadline-time.monotonic()
         if remaining<reserve+30: break
+        if not queue and getattr(args,'hpo_trials',0) and not hpo_attempted and best:
+            from automl.search.hpo import optimize_recipe
+            hpo_attempted=True
+            if best['recipe']['engine'] in {'lightgbm','catboost','xgboost'}:
+                tuned,hpo_report=optimize_recipe(spec,train,hashes,tr,best['recipe'],runs/'inner-hpo',run_worker,
+                    min(deadline-reserve-30,time.monotonic()+getattr(args,'hpo_budget',900)),
+                    trials=args.hpo_trials,sampler=getattr(args,'hpo_sampler','tpe'))
+                if signature(tuned) not in seen: queue.append(tuned)
+            remaining=deadline-time.monotonic()
+            if remaining<reserve+30: break
         if not queue and not args.offline and len(calls)<max(0,min(args.max_planner_calls,8)) and remaining>reserve+90:
             context=planner_context(spec,profile,text,split_info,records,best,remaining,len(calls)+1)
-            plans,usage=llm_plan(context,runs,timeout=max(5,min(300,remaining-reserve-30)))
+            plans,usage=llm_plan(context,runs,timeout=max(5,min(300,remaining-reserve-30)),prompt_mode=getattr(args,'planner_mode','baseline'))
             calls.append(usage); atomic_json(runs/f'planner-{len(calls)}.json',{'plans':plans,'call':usage,'context':context})
             queue.extend(p for p in plans if signature(p) not in seen)
         if not queue: queue.append(fallback(spec,iteration,best['recipe'] if best else None))
@@ -320,6 +350,8 @@ def solve_single(args,task_data=None,output_root=None):
         'submission_path':str(output),'submission_sha256':hashlib.sha256(output.read_bytes()).hexdigest(),
         'integrity_ok':integrity_ok,'provenance_path':str(runs/'provenance.json'),'journal_path':str(runs/'results.tsv'),
         'score_scope':'local search/confirmation folds, not unbiased blind/private/platform score',**budget_metadata()}
+    if getattr(args,'hpo_trials',0): report['hpo']=hpo_report or {'status':'not_reached_within_search_budget'}
+    if getattr(args,'planner_mode','baseline')!='baseline': report['planner_mode']=args.planner_mode
     atomic_json(runs/'report.json',report)
     if not integrity_ok: raise RuntimeError('Protected inputs or evaluator/source changed during the run; do not trust its metrics')
     print(json.dumps({k:v for k,v in report.items() if k in {'version','best_validation','final_fit_status','elapsed_seconds','submission_sha256'}},ensure_ascii=False,indent=2),flush=True)

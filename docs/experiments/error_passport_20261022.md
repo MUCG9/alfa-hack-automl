@@ -1,5 +1,10 @@
 # ERR-01 / BASE-01 implementation checkpoint
 
+Latest continuation: [restored-cache checkpoint](base01_restored_20261022.md).
+100 focused checks PASS; four actual search passports and four final CSVs verified.
+BASE-01 remains incomplete: the transfer omitted all four confirmation_split.npz.
+The 95-check receipt below is the preserved earlier implementation gate.
+
 22 October 2026. Working branch `work/error-profile-contracts-20261022`, based on
 `300c6db`; scope expanded by the captain from contract steps 1–2 to the complete
 passport implementation and BASE-01 preparation. No model training, optimizer,
@@ -85,10 +90,10 @@ It did not certify unavailable final CSV bytes. No V10 evidence was relabelled.
 
 Captain subsequently supplied transfer commit `7276ec6` on
 `work/llm-upgrade-20261022`: `transfer/v11-v16-caches`, manifest plus five ZIP parts,
-848 original files, restored by tools/transfer_caches.py. Raw artifacts remain
-outside the diagnostic aggregate reports. Recovery and actual baseline analysis
-must be recorded separately after transfer verification; never overwrite the
-independent receipt or historical evidence.
+848 original files, now restored and verified by tools/transfer_caches.py.
+Raw artifacts remain outside the diagnostic aggregate reports. The linked latest
+checkpoint records actual search diagnostics and missing confirmation splits.
+The independent receipt and historical evidence were preserved.
 
 ## Remaining work beyond this scope
 

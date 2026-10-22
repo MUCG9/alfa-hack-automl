@@ -104,6 +104,15 @@ audits frozen V11/V16 reports/archives, local input hashes and environment. Only
 an explicit cache root is relocated; no V10 fallback/refit is allowed. Original
 JSON files are preserved. Run provenance and saved model results must match;
 requests retain the selected ensemble and available two-view components.
+An explicit `--root-mapping-file` preserves original absolute paths across hosts.
+With `--analyze`, the CLI runs available passports sequentially; missing split
+artifacts are recorded per scope, never reconstructed or replaced. Exit2 means
+baseline incomplete even when all available passports succeeded.
+`finalize_baseline` closes the baseline only after all four original runs have
+search and confirmation passports with complete required sections, verified
+artifact/section bytes, reproduced selected scores and matching actual final CSVs.
+Unavailable temporal uncertainty is allowed explicitly; failed sections are not.
+It writes a separate immutable receipt, preserving the initial inventory.
 
 Old diversity/OOF tools and their outputs remain unchanged. Policy changes based
 on diagnostics require separate experiments: outer labels must not become fitting,

@@ -8,8 +8,10 @@ Same min-period support algorithm as asof2, with static context validation even
 below the gate and immutable observation-period semantics under feature code.
 21history checks pass (13helper +8worker). No default/portfolio promotion.
 
-Follow-up metrics and complete212repo/23unpacked gates are queued sequentially
-AFTER the frozen-V9 balanced-subset CV in test-runs/v10-balanced-cv3. Queue state:
-test-runs/v10-followups-queue.json. Do not call pending gates passed or start a
-second heavy run. Read docs/experiments/v10_progress.md for the latest status.
-No official upload or private score for this candidate.
+Support-gated fixed-recipe screen passed: recent-cut RMSE39.051678170/31.846185167
+against40.960973097/33.984412055 control; oldest50.924669513 and both prediction CSV
+byte-identical to control. All6workers exited0. Evidence paired-support.json.
+212unique repository checks passed with source_unchanged=true;23repeated exact
+unpacked checks passed. Evidence repo-tests.json and unpacked-tests.json.
+This opt-in archive does NOT change default portfolio; full-agent evaluation is
+next under docs/experiments/v10_agent_history_protocol.md. No official upload.

@@ -1,56 +1,78 @@
-# V10 work checkpoint,22October2026
+# V10 research checkpoint, 22 October 2026
 
-Branch work/cpu-research-20261022. Predeclared protocol e838209.
-History implementation a9cedc0; error-complementarity tools9591c71.
+Current branch `work/cpu-research-20261022`, based on V9 `a95c931`.
+Official best remains captain-reported V9 raw2187.849 (his21.87/100).
+Read this before historical V6–V9 handoffs. New work is authorized offline
+research/implementation; no further official upload or main merge.
 
-- Opt-in history_asof implemented,17new checks pass;18existing quality and7architecture
-  checks pass. No default portfolio promotion. Candidate release/solution-v10-asof1.zip
-  SHA8f4ae2d350729a7e318ac0d21e903801424eaa6246963d9dd025161e809a89c8.
-- tools/analyze_diversity.py supports same-row/split/class validation, per-class
-  joint errors, conditional corrections, residual correlation, fixed0.5 blends
-  and component expansion.19synthetic tests pass in the pinned core environment.
-- Active classification paired run: test-runs/v10-balanced-paired, frozen V9
-  workers,2threads,local1.5GiB guard. Three-seed full control42/43:
-  MacroF1 .645027031/.648629834. Under70 candidate42=.655688478;
-  candidate43 still pending at this checkpoint. Not a complete comparison yet.
-- Remaining sequence: finish paired class; regression3forward cuts from exact
-  new archive; if class direction supports keep, full3fold CV; then complete
-  source/unpacked gates sequentially. No overlapping memory-heavy checks.
-- First unpacked verification timed out locally after300s in resilience while
-  host available RAM≈313MiB/swap free0. This is not a passed gate. Incident saved
-  in v10_verification_timeout.json; audit found no leftover owned processes.
-  Strengthen verifier ownership/failure receipts and rerun sequentially.
-- No official submit, live API call or original requirements change in this stage.
+## Completed experiments
 
-This is an intermediate status; read newer evidence before repeating jobs.
+1. Matched three-model classification ensembles, two feature-group holdouts:
+   full-data mean Macro F1 .646828432; under70 mean .652199459. Strong single
+   component mean .651543688. Under70 loses the second fold to that component;
+   about93% of matched-control gain comes from Worms, support19/11.
+2. Full three-fold StratifiedGroupKFold confirmation, frozen V9: all six jobs
+   successful and every row receives exactly one OOF prediction. Full3 mean
+   .638363183 / pooled .638309026; under70 mean .640222558 / pooled .640476085.
+   Two folds worsen, so mixed result: no default promotion. Component/error and
+   conditional bootstrap diagnostics can reuse predictions without new fitting.
+3. As-of1 history fixed-recipe screen: controls RMSE40.960973/33.984412/50.924670
+   versus39.051678/32.518745/51.096680. Initial all-three-cuts gate failed.
+4. Support-gated asof3, minimum THREE fitting periods: same controls versus
+   39.051678/31.846185/50.924670. Both recent cuts improve. Oldest validation AND
+   test prediction CSV are byte-identical to control. Six workers successful.
+   Full-agent comparison is still required before portfolio promotion.
 
-## Newer checkpoint: paired screens complete, CV active
+Results/recipes/protocols live in this directory under v10_balanced*,
+v10_history* and v10_agent_history_protocol.md. All metrics reuse public data;
+they are not a private-score estimate or a conversion into official points.
 
-Classification4/4workers finished: under70 mean.652199459 vs matched3-model
-.646828432, but only+.000655771 vs strong single component and loses seed43 to it.
-Full3fold CV is ACTIVE in test-runs/v10-balanced-cv3, frozen V9 workers. Read its
-results.json before touching processes or starting another heavy fit.
+## Implementation / immutable snapshots
 
-History1 all6workers finished: RMSE40.960973/33.984412/50.924670 control vs
-39.051678/32.518745/51.096680 candidate. Failed all-three-cuts keep gate.
-Follow-up history_min_periods=3 declared in v10_history_support.md and implemented
-in05b2fdb;6worker tests pass, including insufficient-history exact control parity.
-New archive release/solution-v10-asof2.zip,
-SHA167663dee6fa3cfe62819859ba976976e2a9e6e333b89185dcece2dbe3639ca9.
-Its support-gated metric screen is NOT STARTED; run after active class CV.
-Full210source checks and exact unpacked gate are also still pending; run sequentially.
-No method promoted/default portfolio change, no official upload.
+- History helper a9cedc0, worker/normalization support gate05b2fdb and static
+  contract guards0933a66. Only fitting labels, strictly earlier periods, preserved
+  time semantics;21history checks. Original context TE remains cross-fitted,
+  so adding as-of features does not make the whole recipe causal.
+- Error-complementarity tool9591c71: aligned rows/classes/splits/fingerprints,
+  conditional corrections, residual correlation, fixed blends and components;
+  19tests. No raw predictions are committed.
+- Release verifier c094414: owned process timeout/memory cleanup and honest
+  partial-log failure receipt;3tests. First resource-contention timeout remains
+  in v10_verification_timeout.json, not relabeled successful.
+- asof1 SHA8f4ae2d350729a7e318ac0d21e903801424eaa6246963d9dd025161e809a89c8:
+  measured original history, failed keep gate.
+- asof2 SHA167663dee6fa3cfe62819859ba976976e2a9e6e333b89185dcece2dbe3639ca9:
+  historical unmeasured intermediate. Do not use instead of corrected asof3.
+- Current asof3 SHA32120f240f0703f0f80de4a020a9be9c3c737070774b217dcb28954bef3acf2a,
+  source0933a66;51flat files,72437bytes,Python3.12.3. Defaults still unchanged.
 
-## Latest immutable source / automatic follow-up queue
+## Active sequential gate and next stage
 
-Source0933a66 hardens context validation and keeps the original observation period
-unchanged by feature code.21history checks pass. Support experiment will now use
-release/solution-v10-asof3.zip,
-SHA32120f240f0703f0f80de4a020a9be9c3c737070774b217dcb28954bef3acf2a.
-As-of2 remains an unmeasured historical archive. No original result overwritten.
+212unique repository checks PASSED, source_unchanged=true. Exact23unpacked checks
+PASSED; automatic queue session95787 completed exit0. State test-runs/v10-followups-queue.json;
+logs test-runs/v10-*.queue.log. Do not edit source or start another heavy job until
+that queue completes. Check actual JSON before repeating jobs.
 
-Live sequential queue test-runs/run-v10-followups.py waits for all6class CV worker
-results, then runs asof3 support3cuts, full212repo checks and exact23unpacked checks.
-State test-runs/v10-followups-queue.json; logs test-runs/v10-*.queue.log. Those jobs
-are queued, not yet successful. Do not launch duplicate heavy fits or edit src
-while the source audit runs. No real API calls/official upload in this queue.
+Exact gates and paired support evidence saved in release/v10-asof3; checkpoint commit.
+Then follow predeclared v10_agent_history_protocol.md: add ONE history minimum3
+candidate only where the old numeric-period metadata-history candidate is eligible;
+new archive, unchanged default12trials/9900s/budget/confirmation/blend. Repeat exact
+V9 default regression and new default regression sequentially, same pinned inputs
+and2threads/1.7GiB guard. Keep only if BOTH search and confirmation cuts improve,
+refit/export/integrity pass. Class portfolio must retain V9 parity and receive a
+bounded full-size packaging lifecycle, not a claimed full quality benchmark.
+
+## Environment / authorization
+
+Use test-runs/venv-core/bin/python: Python3.12.3,numpy1.26.4,pandas2.2.3,
+scipy1.12,sklearn1.5.2,LGBM4.6,XGB-cpu2.1.4,CatBoost1.2.8,openai1.68.2.
+Organizer requirements SHA9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6
+unchanged. All10public input SHA rechecked. Local8GiB RAM and full swap require
+strictly sequential heavy fits AND complete fixture checks. No foreign processes
+are killed. Thread envs must match benchmark arguments; no new dependencies.
+
+No live Qwen calls in V10; no private API environment available. Historical
+protected-input rejection is not bypassed. Local mock HTTP is explicitly mock.
+Credentials never belong in repo, prompts, logs or argv. Preserve historical ZIPs.
+Commit completed stages frequently. Stop at an actual10–15percent usage-window
+reading if exposed; no account counter is exposed here, so never invent one.

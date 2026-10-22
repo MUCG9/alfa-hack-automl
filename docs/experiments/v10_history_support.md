@@ -50,3 +50,25 @@ features does not make the whole existing recipe temporally ordered.
 As-of3 is the corrected immutable snapshot for the pending follow-up. As-of2 was
 not measured; no result is silently replaced. Frozen recipes have empty feature
 code and valid non-time groups, so these guards do not change their algorithm.
+
+## Support-gated asof3 screen completed
+
+All six workers exited0 with original source/input/split hashes preserved.
+
+|Forecast period|Metadata control RMSE|As-of minimum3 RMSE|
+|---|---:|---:|
+|5|40.960973097|39.051678170|
+|4|33.984412055|31.846185167|
+|3|50.924669513|50.924669513|
+
+The two recent cuts improve. On the oldest cut, BOTH validation_predictions.csv
+and submission.csv are byte-identical to the control. SHA respectively
+60336096ceb8be0682d296391d493d06464ebb3a57b4b28d7b18445a3396ec73 and
+a4da03ce7b9aae72f961404681318ebfd96d031fe5e0606f102921c713699d4f.
+The gate omits history at one/two fitting periods; this is measured control parity,
+not merely equal rounded metrics. Portable evidence: v10_history_support_results.json.
+
+Fixed-recipe quality gate passes. Complete source/unpacked checks are still running
+at this checkpoint; no default promotion yet. Once they pass, follow the already
+predeclared v10_agent_history_protocol.md rather than treating this component gain
+as the complete agent's improvement. No official upload/API use.

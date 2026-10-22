@@ -40,3 +40,17 @@ SHA167663dee6fa3cfe62819859ba976976e2a9e6e333b89185dcece2dbe3639ca9.
 Its support-gated metric screen is NOT STARTED; run after active class CV.
 Full210source checks and exact unpacked gate are also still pending; run sequentially.
 No method promoted/default portfolio change, no official upload.
+
+## Latest immutable source / automatic follow-up queue
+
+Source0933a66 hardens context validation and keeps the original observation period
+unchanged by feature code.21history checks pass. Support experiment will now use
+release/solution-v10-asof3.zip,
+SHA32120f240f0703f0f80de4a020a9be9c3c737070774b217dcb28954bef3acf2a.
+As-of2 remains an unmeasured historical archive. No original result overwritten.
+
+Live sequential queue test-runs/run-v10-followups.py waits for all6class CV worker
+results, then runs asof3 support3cuts, full212repo checks and exact23unpacked checks.
+State test-runs/v10-followups-queue.json; logs test-runs/v10-*.queue.log. Those jobs
+are queued, not yet successful. Do not launch duplicate heavy fits or edit src
+while the source audit runs. No real API calls/official upload in this queue.

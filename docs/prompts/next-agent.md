@@ -53,7 +53,8 @@ https://github.com/MUCG9/alfa-hack-automl . Прочитай `AGENTS.md`,
 1. Проверь branch/HEAD/dirty tree, актуальный лимит и собственные active jobs.
    Не запускай второй тяжёлый benchmark поверх первого.
 2. Сверь current.md с реальными assessment/report/source manifest и SHA ZIP.
-   Заверши pending gate. Interrupted run — failure/checkpoint, не full success.
+   V9 gate уже завершён; не перезапускай его как pending. Interrupted run —
+   failure/checkpoint, не full success. Серверный результат V9 пока неизвестен.
 3. Если доступно безопасное private API-окружение, проведи bounded live fixture:
    mapping/planner → worker → refit → CSV с usage trace. Ключи не помещать в
    prompts/Git/argv/logs. Не обходить отказ защищённого ввода другим каналом.

@@ -69,3 +69,17 @@ Analysis .3375796178343949→.3258785942492013; supported-class gate уже на
 на этом cut. Это descriptive comparison сохранённых runs, не новый independent
 screen и не доказательство механизма изменения. FE-01 остаётся отдельной парной
 проверкой. Не подбирать top_k задним числом по этому validation.
+
+По прямому поручению капитана создан `skills/autoresearch-ml/SKILL.md` на основе
+karpathy/autoresearch, изученный commit228791fb499afffb54b46200aca536f79142f117.
+Локальная установка: `~/.codex/skills/autoresearch-ml` ссылается на versioned
+каталог этого репозитория. Entry, upstream attribution, профиль alfa-hack и
+шаблон `program.md` проверены quick_validate. Новая программа не меняет уже
+запущенную очередь и не является измеренным улучшением runtime Qwen.
+Сохранение истории вместо destructive reset, inner/group/time validation,
+paired gates и отсутствие objective при ошибке — явные адаптации для ML.
+Skill/source fingerprints не входят в contest ZIP; canonical hashes неизменны.
+
+Classification experiment05 (CatBoost + selector32) завершился watchdog timeout
+900.497s, метрики нет; другой owned worker продолжил очередь. Это отказ по
+стоимости/лимиту, не числовая оценка качества CatBoost на полном fit.

@@ -33,6 +33,8 @@ max_depth -1 or 4..12, min_child_samples 10..120, reg_lambda 0..30, reg_alpha 0.
 subsample .7..1, colsample_bytree .7..1, class_weight_power 0..1 (0=none,.5=mild,1=inverse frequency),
 calibrate true/false (Macro F1 decision rule only), min_iterations 1..200,
 generic_features none/missing/skew/both, log_target true/false (non-negative regression only).
+If best_recipe has an internal feature_views method, omit it to inherit; set
+params.feature_views=null to return to ordinary LightGBM before proposing feature_code.
 Optional parameters: multiclass_strategy softmax/ova for LightGBM multiclass;
 calibration_folds 1 or 3 (training-only OOF decision tuning, costs extra fits);
 categorical_from_dictionary true/false; target_encoding true/false for tree models.

@@ -29,6 +29,7 @@ from automl.contracts.messages import DataPolicy,SplitPlan,PredictionBundle
 from dataclasses import asdict
 from automl.execution.sampling.policies import prepare_training
 from automl.execution.feature_views import validate_feature_view,feature_view_components,validate_fit_iterations
+from automl.evaluation.api import calibrate_class_factors,validate_decision_optimizer
 
 
 
@@ -125,6 +126,7 @@ def run(job):
     spec=job['spec']
     recipe=job['recipe']
     validate_fit_iterations(recipe,job.get('fit_iterations'))
+    decision_optimizer=validate_decision_optimizer(recipe,spec)
     if 'feature_views' in recipe.get('params',{}):
         validate_feature_view(recipe,spec)
         return run_feature_views(job)
@@ -248,6 +250,7 @@ def run(job):
         estimator.fit(fit_x,targets,**kwargs)
         return prepared_x,prepared_test
     class_factors={}
+    decision_diagnostics=None
     calibration_status='disabled'
     nested=bool(recipe.get('params',{}).get('nested_stopping',False)) and not full and CAPABILITIES[recipe['engine']]['nested_stopping']
     calibrate=spec['kind']=='classification' and spec['metric']=='macro_f1' and CAPABILITIES[recipe['engine']]['macro_f1_calibration'] and recipe.get('params',{}).get('calibrate',False)
@@ -283,7 +286,7 @@ def run(job):
                     if nested and selected and int(selected)!=iterations:
                         inner_model=make_model(model_recipe,spec['kind'],job['threads'],iterations)
                         inner_x,_=fit_on_rows(inner_model,inner_tr,None)
-                    class_factors=tune_class_factors(y.iloc[inner_va],inner_model.predict_proba(inner_x.iloc[inner_va]),inner_model.classes_)
+                    class_factors,decision_diagnostics=calibrate_class_factors(y.iloc[inner_va],inner_model.predict_proba(inner_x.iloc[inner_va]),inner_model.classes_,decision_optimizer)
                     calibration_status='inner_training_holdout_matching_iterations'
     if calibrate and int(recipe.get('params',{}).get('calibration_folds',1))>1:
         fit_frame=train.iloc[fit_tr].reset_index(drop=True)
@@ -300,7 +303,7 @@ def run(job):
                     order=[list(map(str,local_model.classes_)).index(c) for c in spec['classes']]
                     probabilities[local_va]=local_model.predict_proba(local_x.iloc[fit_tr[local_va]])[:,order]
                 calibration_folds.append(info)
-            class_factors=tune_class_factors(y.iloc[fit_tr],probabilities,spec['classes'])
+            class_factors,decision_diagnostics=calibrate_class_factors(y.iloc[fit_tr],probabilities,spec['classes'],decision_optimizer)
             calibration_status='training_oof_matching_iterations'
     with threadpool_limits(limits=job['threads']):
         train_x,test_x=fit_on_rows(model,fit_tr,None if full or nested else va)
@@ -345,6 +348,7 @@ def run(job):
             'data_policy_runs':policy_records,
             'prediction_bundle':asdict(PredictionBundle(str(output_dir/'submission.csv'),len(test),tuple(sample.columns),tuple(spec.get('classes') or []))),
             'calibration_status':calibration_status,'class_factors':class_factors,
+            'decision_optimizer':decision_diagnostics,
             'calibration_folds':calibration_folds,
             'specialist_pairs':getattr(model,'specialist_pairs_',[]),
             'early_stopping_source':early_stopping_source,'inner_split':inner_split,'inner_split_error':inner_split_error,

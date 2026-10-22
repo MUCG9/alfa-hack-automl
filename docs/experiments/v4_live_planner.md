@@ -27,3 +27,6 @@ next reset2026-10-23T00:00:00Z. С первым budget-period этот delta н�
 classification очередь выполнит6 candidate-fold workers: контроль +2 plans на
 forward cuts5 и4. Используется тот же exact v4 ZIP и те же input/split hashes.
 Затем продолжится полный default offline v4 на обеих задачах.
+
+Дополнение до старта worker: набор расширен адресными context-группами и
+manual-context-log; теперь6 рецептов и12 workers, см.v4_context_planner.md.

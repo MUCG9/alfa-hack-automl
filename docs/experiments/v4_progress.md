@@ -26,7 +26,8 @@ OVA+calibration .630416015, фиксированная смесь .636753388. OV
 рецептов; лог `test-runs/stages/next-class-cv.log`. Процесс был запущен через
 exec session22569. Очередь session87405 / `run-default-v3.sh` запустила полный default offline v3 classification с
 watchdog10100s. Очередь session66167 / `run-default-v4-phase4.sh` ждёт окончания v3,
-проверяет2 Qwen plans +контроль на2forward cuts (6workers, source1), затем
+проверяет6 рецептов: контроль,2 generic Qwen,2 context Qwen,manual-context-log
+на2forward cuts (12workers, source1), затем
 выполняет полный default offline v4 regression иclassification из нового
 `release/solution-v4-search2.zip`. Эти полные outputs разделены:
 `/tmp/alfa-full-v4-reg-default` и `/tmp/alfa-full-v4-class-default`.
@@ -59,3 +60,6 @@ Production planner проверен реальным API вызовом: [v4_liv
 исследует depth/min_child_weight/reg_lambda плюсseed. Это unmeasured search
 hypothesis до завершения полного default benchmark, не доказанный прирост качества.
 Предыдущая v4-candidate/source1 остаётся точным источником CV иQwen абляций.
+
+До старта этой серии добавлены2 адресных Qwen context plans и manual-context-log;
+[описание](v4_context_planner.md). API/normalize успешны; метрики ещё не измерены.

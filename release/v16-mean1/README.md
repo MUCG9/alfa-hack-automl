@@ -14,5 +14,8 @@ or classification policy change yet; no quality gain claimed.
 258unique source checks PASS unchanged-source (169.114s), plus23repeated exact-
 unpacked PASS; includes original-scale
 optimum, numerical scale stability, method/signature/disable and actual outer-label
-isolation tests. Public three-cut screen now running sequentially. Protocol/candidates in docs/experiments.
+isolation tests. Public screen completed: eligible period5 RMSE39.051678→39.354053
+(worse), older cuts exact control CSV parity. No default/portfolio promotion.
+Protocol/results in docs/experiments; this remains dormant infrastructure, not a
+new better model or a new full-default public evaluation of this source snapshot.
 V11 is still the fully qualified score-improving archive. No upload authorized.

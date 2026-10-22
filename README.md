@@ -1,6 +1,6 @@
-# Alfa Hack AutoML: v5 contracts и независимые цели
+# Alfa Hack AutoML: v6 проверена, v7 semantic inputs
 
-Текущее продолжение — [work/autonomous-score-20261022](https://github.com/MUCG9/alfa-hack-automl/tree/work/autonomous-score-20261022).
+Текущее продолжение — [work/semantic-inputs-20261022](https://github.com/MUCG9/alfa-hack-automl/tree/work/semantic-inputs-20261022).
 `main` сохранён как v2. Новые исходники и кандидаты не означают автоматически
 новый официальный submit.
 
@@ -8,11 +8,18 @@
   Платформа показывает проверку; история смешивает новое имя со старым временем и
   баллом v3. Не считать 1723.691 результатом v4. Позже счётчик подтвердил расход
   одной попытки: **осталось 2 из 3**, файл всё ещё проверяется.
-- **Кандидат v5**: `release/solution-v5-multitarget1.zip`, 111 отдельных repo checks
-  проходят. Он добавляет входные CSV/TSV и роли файлов, необязательный словарь/ID,
-  порядок ответа, MAPE/MSE/RMSLE/balanced accuracy, группы/даты и независимые модели
-  для нескольких целей в общем бюджете. Он пока не отправлен; полные public gates
-  этого snapshot ещё требуются.
+- **Проверена v6**: `release/solution-v6-universal1.zip`, 137 уникальных repo checks
+  и23 повторных exact-unpacked. Полный public цикл обеих задач пройден: mean RMSE
+  **36.775244985**, Macro F1 **0.653281240**, refit/integrity pass. Новые контракты,
+  независимые targets, limited query-NDCG, positive-label probability и optional
+  XGB calibration. Это локальная public validation, не официальный балл.
+- **Эксперимент v7**: `release/solution-v7-semantic1.zip`, 145 уникальных checks и23
+  repeated unpacked. Bounded online выбор file roles после deterministic failure,
+  mock coverage, не live Qwen proof. Full public gate запущен; актуальный итог в
+  [передаче](docs/handoff/current.md) и [release evidence](release/v7-semantic1/README.md).
+- V5 contract1/multitarget1 тоже завершили обе public задачи с CSV parity v4.
+  [Свежий промпт следующему агенту](docs/prompts/next-agent.md),
+  [следующий план](docs/handoff/next_research_plan.md). Не начинать с main/v2.
 - [Текущий журнал и ограничения](docs/experiments/continuation_20261022.md),
   [контракты](docs/experiments/v5_contract_work.md),
   [валидация](docs/experiments/v5_validation_work.md),

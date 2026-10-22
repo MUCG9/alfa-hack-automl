@@ -1,5 +1,10 @@
 # Реализация модульной архитектуры, 21.10.2026
 
+Ниже scope первоначальной миграции, не перечень возможностей v7. Позднее добавлены
+CSV/TSV/file contracts, multiple targets, declared groups/dates, limited NDCG и
+semantic input-role experiment. Актуальные реализованные ограничения и gates:
+[current](../handoff/current.md); этот исторический текст их не отменяет.
+
 Работа выполнена одним агентом в `experiment/modular-augmentation`. Main не менялся, другие агенты не привлекались. Исходный migration_plan — исторический документ; этот файл описывает реализованный scope.
 
 ## Поток исполнения и границы

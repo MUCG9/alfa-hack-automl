@@ -1,5 +1,11 @@
 # План следующей итерации: качество модели
 
+Актуальный backlog и статус на этапе v7: [next_research_plan](../handoff/next_research_plan.md)
+и [current](../handoff/current.md). Этот документ — исторический план. Nested
+preprocessing, fit-error isolation, owned-process watchdog и полная development CV
+уже реализованы. Runtime full OOF selection по-прежнему не реализован. Не повторять
+исправления, не сверив код, тесты и stage evidence.
+
 Дата review: 22.10.2026, Europe/Moscow. Основа: integration commit `a9af568`.
 Это исходный план экспериментов. Фактически реализованное и измеренное описано
 в [v4_research.md](../experiments/v4_research.md); пункты backlog не являются

@@ -1,0 +1,63 @@
+# Следующий план: общий score, а не только public F1
+
+Это backlog гипотез, не реализация и не разрешение нового submit. Сначала exact
+V7 full gate: завершить/проверить parity или честно записать failure.
+
+## 1. Проверка реально работающего AI-агента
+
+Гипотеза: unknown schemas/имена/описания проваливаются до обучения, хотя две public
+задачи проходят. V7 закрывает только file roles.
+
+- Bounded live end-to-end fixture в private API environment: нестандартные имена,
+  mapping/planner→worker→refit→CSV, gateway status/retries/usage, без secrets/raw rows.
+- Schema/metric/positive-label ambiguity — отдельные fixtures и контракты; LLM не
+  может менять path/security ограничения или придумывать unsupported objective.
+- Общий deadline/API accounting должен охватывать pre-discovery+planner+targets;
+  сейчас file-role trace отдельный от planner report.
+- Следующая отдельная итерация: bounded downstream schema-validation feedback,
+  не бесконечный поиск «удобной» трактовки после структурно верного JSON.
+- Добавить serialized metadata cap: count bounds не ограничивают длину имён.
+  Не усекать silently точные paths так, чтобы ответ больше нельзя было валидировать.
+
+Keep: корректные TaskSpec/CSV и bounded traces на заранее новых fixtures, offline
+regression сохранён. Один public F1 не проверяет эту гипотезу.
+
+## 2. Валидация, не меняя исторический контроль
+
+Nested preprocessing/fit-error isolation/owned-process watchdog уже реализованы;
+старый quality_plan описывал их до исправления. Сверить код/tests/test_quality.py,
+не делать заново то же «исправление». Runtime search+confirmation не полная OOF.
+
+Для финалистов сравнить отдельную bounded CV стратегию с legacy control. Всё
+preprocessing/augmentation/weights/stopping/calibration внутри fitting folds.
+Проверять exactly-once OOF/classes/positions/groups/time. Joint unseen-group+future
+пока не реализован. Нельзя выбирать split по более высокому score.
+
+## 3. Классификация: одна гипотеза за раз
+
+Компонентный CV3 прирост calibration дал полному V6 лишь+0.00054 к v4, а v3
+classification выше. Гипотеза: отбор/смешивание ограничивают перенос улучшения.
+
+- Зафиксировать контроль V6 и небольшую predeclared альтернативу: например,
+  OOF-calibration2/3fold ИЛИ иной weight power, не оба одновременно. Fit price
+  должен укладываться в платформенные3часа/task.
+- Paired folds/полная CV, per-class/group analysis, fold mean/pooled OOF отдельно.
+  Настройку weights на OOF оценивать снаружи, не на тех же fitted OOF.
+- ROS/SMOTENC не default без нового устойчивого результата; прежние
+  compression/oversampling/underweight эксперименты были неоднозначны.
+- Нельзя обещать прирост по одному seed; exact ZIP full-agent refit обязателен.
+
+## 4. Регрессия/универсальность
+
+Сохранить V6 forward RMSE36.775244985. Context encoding выводит группы из schema/
+fitting rows, без public column names. Отдельные гипотезы — универсальные dates/
+categorical или history для новых observation contracts; сначала leakage checks.
+Ranking pointwise baseline ≠native ranker; улучшать только отдельным экспериментом.
+
+## Протокол
+
+До: hypothesis/control/one factor/selection/keep-discard, source/input/split hashes,
+ресурсы/deadline. После: ошибки, честные scores, full lifecycle, unchanged-source
+tests, новый ZIP/manifest, commit/push/handoff. Official test labels недоступны.
+Это применимый autoresearch-цикл CPU AutoML, не исходный GPU LLM проект и не повод
+покупать GPU. Следующая официальная отправка — только по новой команде капитана.

@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from automl.infrastructure.atomic import atomic_json
 from automl.evaluation.api import evaluate
-from automl.publishing.api import save_submission
+from automl.publishing.api import save_submission,read_submission_values
 
 def read_cache(spec,record,train):
     root=Path(record['submission']).parent
@@ -22,7 +22,7 @@ def read_cache(spec,record,train):
         val,test=aligned
     else:
         val=validation['y_pred'].to_numpy(dtype=float)
-        test=pd.read_csv(record['submission'])[spec['output_columns'][0]].to_numpy(dtype=float)
+        test=np.asarray(read_submission_values(spec,record['submission']),dtype=float)
     return {'record':record,'rows':rows,'truth':truth,'validation':val,'test':test}
 
 def combine(spec,caches,weights):

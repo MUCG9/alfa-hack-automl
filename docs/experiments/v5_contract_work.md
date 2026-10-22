@@ -38,6 +38,21 @@ References: [pinned MAPE semantics](https://scikit-learn.org/1.5/modules/generat
 - Input paths must resolve inside the task directory, including symlinks.
   Generated run directories and hidden paths are excluded from the role catalog.
 - Duplicate headers are rejected before pandas can rename them invisibly.
-- Seven small input tests and the seven architecture tests pass. Full lifecycle
+- Eight small input tests and the seven architecture tests pass. Full lifecycle
   and public parity remain separate required gates; these tests are not model
   quality evidence.
+
+## Output contract
+
+- A sample without an identifier is now a supported row-order output contract;
+  no invented ID column is inserted. Documented training IDs remain excluded
+  from features even when they are not part of the output.
+- Sample IDs may be in a different order from test IDs. Store a checked bijection,
+  publish in sample order and invert the mapping when reading regression caches.
+  Classification probability caches remain in test order. This also prevents a
+  cached ensemble from accidentally applying the same permutation twice.
+- Missing/duplicate/unmatched IDs and invalid row mappings fail explicitly.
+- Six output tests cover label/probability shape, missing ID, reorder, invalid
+  mappings and cached regression blends. Composite IDs are not implemented.
+- `TaskSpec.identifier` permits `None` for row-order output; old string-ID payloads
+  remain valid. No other message format or DataPolicy version was changed.

@@ -3,10 +3,31 @@ import shutil
 import re,json,hashlib
 import numpy as np
 import pandas as pd
+
+
+def prediction_row_order(spec,n):
+    """Positions of test-order predictions in sample order; validate as a bijection."""
+    values=np.asarray(spec.get('sample_test_positions',np.arange(n)))
+    if values.shape!=(n,) or values.dtype.kind not in {'i','u'} or not np.array_equal(np.sort(values),np.arange(n)):
+        raise ValueError('Invalid sample/test row mapping')
+    return values
+
+
+def read_submission_values(spec,path):
+    """Convert a published prediction column back to test order for cached blends."""
+    frame=pd.read_csv(path)
+    columns=spec.get('output_columns',[spec['target']])
+    values=frame[columns].to_numpy()
+    values=values[np.argsort(prediction_row_order(spec,len(frame)))]
+    return values if spec.get('prediction_type')=='probability_matrix' else values[:,0]
+
+
 def save_submission(spec, sample, test, predictions, path):
     result=sample.copy()
-    if len(predictions)!=len(test):
+    if len(predictions)!=len(test) or len(sample)!=len(test):
         raise ValueError('Wrong prediction length')
+    order=prediction_row_order(spec,len(test))
+    predictions=np.asarray(predictions)[order]
     prediction_type=spec.get('prediction_type','value')
     output_columns=spec.get('output_columns',[spec['target']])
     if prediction_type=='probability_matrix':
@@ -29,8 +50,11 @@ def save_submission(spec, sample, test, predictions, path):
                 raise ValueError('Invalid probability predictions')
         elif prediction_type=='value' and spec.get('classes') and set(result[output_columns[0]].astype(str))-set(spec['classes']):
             raise ValueError('Unknown predicted classification labels')
-    if list(result.columns)!=list(sample.columns) or result[spec['id']].tolist()!=test[spec['id']].tolist():
+    if list(result.columns)!=list(sample.columns):
         raise ValueError('Submission contract violation')
+    identifier=spec.get('id')
+    if identifier is not None and (result[identifier].tolist()!=sample[identifier].tolist() or result[identifier].tolist()!=test[identifier].iloc[order].tolist()):
+        raise ValueError('Submission ID contract violation')
     temp=path.with_suffix('.csv.tmp')
     result.to_csv(temp,index=False,encoding='utf-8')
     temp.replace(path)

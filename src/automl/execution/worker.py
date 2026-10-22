@@ -16,7 +16,7 @@ from threadpoolctl import threadpool_limits
 from automl.infrastructure.atomic import atomic_json
 from automl.infrastructure.tables import read_input_table
 from automl.evaluation.api import evaluate,make_split,make_folds
-from automl.publishing.api import save_submission
+from automl.publishing.api import save_submission,read_submission_values
 from automl.execution.model_adapters.registry import make_model,fit_options,selected_iterations,CAPABILITIES
 from automl.execution.weighting.classes import sample_weights,number
 from automl.evaluation.api import lgbm_metric,tune_class_factors,adjusted_probabilities
@@ -76,7 +76,7 @@ def run_ensemble(job):
                 assert np.array_equal(stored_val['row_position'],va)
                 val_predictions=stored_val['probabilities'][:,order]
         else:
-            predictions=pd.read_csv(directory/'submission.csv')[spec.get('output_columns',[spec['target']])[0]].to_numpy()
+            predictions=read_submission_values(spec,directory/'submission.csv')
             if not full: val_predictions=pd.read_csv(directory/'validation_predictions.csv')['y_pred'].to_numpy()
         combined=weight*predictions if combined is None else combined+weight*predictions
         if not full: val_combined=weight*val_predictions if val_combined is None else val_combined+weight*val_predictions

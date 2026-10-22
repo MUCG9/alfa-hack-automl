@@ -54,7 +54,7 @@ class DatasetRef:
 class TaskSpec:
     kind:str
     target:str
-    identifier:str
+    identifier:str|None
     features:tuple[str,...]
     metric:str
     greater_is_better:bool

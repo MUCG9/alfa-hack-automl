@@ -53,18 +53,24 @@ def discover(task_path: Path):
     target = targets[0]
     all_ids = dictionary.loc[roles.eq('id'), 'feature'].tolist() if len(roles) else []
     ids = list(all_ids)
-    ids = [c for c in ids if c in sample and c != target]
+    ids = [c for c in ids if c in sample and c in test and c != target]
     if not ids:
         ids = [c for c in sample if c in test and c != target]
-    if len(ids) != 1:
-        raise ValueError('Expected one sample ID column')
-    identifier = ids[0]
+    if len(ids) > 1:
+        raise ValueError('Ambiguous sample ID columns')
+    identifier = ids[0] if ids else None
     if train[target].isna().any():
         raise ValueError('Training target contains missing values')
-    if test[identifier].isna().any() or test[identifier].duplicated().any():
-        raise ValueError('Test IDs are missing or duplicated')
-    if sample[identifier].tolist() != test[identifier].tolist():
-        raise ValueError('Sample/test ID values or order differ')
+    if len(sample)!=len(test): raise ValueError('Sample/test row counts differ')
+    sample_positions=None
+    if identifier is not None:
+        if test[identifier].isna().any() or test[identifier].duplicated().any():
+            raise ValueError('Test IDs are missing or duplicated')
+        if sample[identifier].isna().any() or sample[identifier].duplicated().any():
+            raise ValueError('Sample IDs are missing or duplicated')
+        positions=pd.Index(test[identifier]).get_indexer(sample[identifier])
+        if (positions<0).any(): raise ValueError('Sample/test ID values differ')
+        if not np.array_equal(positions,np.arange(len(test))): sample_positions=positions.tolist()
     features = [c for c in test if c not in set(all_ids+[identifier,target]) and c in train]
     if not features:
         raise ValueError('No common features')
@@ -110,6 +116,7 @@ def discover(task_path: Path):
         'time_candidate':infer_time_candidate(dictionary,train,test,features),
         'static_numeric_features':infer_static_numeric(dictionary,train,features),
     }
+    if sample_positions is not None: spec['sample_test_positions']=sample_positions
     profile = {
         'kind': kind, 'metric': metric, 'rows': len(train), 'test_rows': len(test),
         'feature_count':len(features), 'features': [

@@ -73,5 +73,12 @@ class TaskInputTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'Duplicate input column'):
                 read_input_table(path)
 
+    def test_partial_probe_does_not_change_semicolon_separator(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'train.csv'
+            expected=pd.DataFrame({'first':range(1000),'second':['long variable cell '+str(i)*5 for i in range(1000)]})
+            expected.to_csv(path,index=False,sep=';')
+            pd.testing.assert_frame_equal(read_input_table(path),expected)
+
 
 if __name__=='__main__': unittest.main(verbosity=2)

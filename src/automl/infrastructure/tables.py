@@ -15,7 +15,11 @@ def read_input_table(path):
         delimiter='\t'
     else:
         try: delimiter=csv.Sniffer().sniff(sample,delimiters=',;\t|').delimiter
-        except csv.Error: delimiter=','
+        except csv.Error:
+            # The bounded probe can end midway through a row. A complete header
+            # still identifies a semicolon CSV without reading the whole input.
+            try: delimiter=csv.Sniffer().sniff(sample.splitlines()[0],delimiters=',;\t|').delimiter
+            except csv.Error: delimiter=','
     header=next(csv.reader(sample.splitlines(),delimiter=delimiter))
     if len(header)!=len(set(header)): raise ValueError('Duplicate input column names: '+path.name)
     return pd.read_csv(path,sep=delimiter,encoding='utf-8-sig')

@@ -34,6 +34,26 @@ All four workers passed. Control/candidate Macro F1:
 
 The exact source archive SHA is
 `1defe433da3fe65813b5c1cc3682991e508780dd89defefdb08b7589e17ccb5a`.
-The next predeclared gate, full 3-fold group CV for both recipes, has been started
-sequentially. Calibration is NOT in the default portfolio at this checkpoint;
-do not describe paired reuse of public folds as independent private evidence.
+## Full 3-fold group CV
+
+All six fixed workers completed with exact once-per-row OOF coverage and no
+feature-group overlap. Control/candidate fold Macro F1:
+
+| Fold | Control | Calibration |
+|---|---:|---:|
+| 0 | 0.611680839 | 0.618160438 |
+| 1 | 0.616880313 | 0.618221358 |
+| 2 | 0.604496346 | 0.615360714 |
+| Fold mean | 0.611019166 | 0.617247503 |
+| Pooled OOF | 0.611757099 | 0.617987602 |
+
+The pooled gain is **+0.006230503**. A paired feature-group bootstrap of these
+fixed OOF predictions (1,000 replicates, seed 2026, 54,228 groups) gives a
+conditional 95% delta interval **[+0.003868363, +0.009158243]**. This is NOT a
+private-score interval or training/refit uncertainty. All data are reused public.
+
+Eight of ten pooled class F1 scores improved, including Shellcode/Worms/Backdoor;
+Analysis and Exploits decreased. This supports adding one optional calibrated
+XGBoost candidate for Macro F1, while retaining an uncalibrated control and actual
+per-task selection. It does not support forcing calibration for every metric.
+The portfolio change is not yet implemented at this evidence checkpoint.

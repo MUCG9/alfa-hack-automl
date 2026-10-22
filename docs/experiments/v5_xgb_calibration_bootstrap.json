@@ -1,0 +1,23 @@
+{
+  "control": "xgb-control",
+  "control_macro_f1": 0.6117570994337044,
+  "comparisons": [
+    {
+      "candidate": "xgb-inner-calibration",
+      "macro_f1": 0.6179876022439721,
+      "delta": 0.006230502810267713,
+      "paired_group_bootstrap_95pct": [
+        0.0038683629451310626,
+        0.0091582431731064
+      ],
+      "positive_delta_fraction": 1.0
+    }
+  ],
+  "replicates": 1000,
+  "seed": 2026,
+  "feature_groups": 54228,
+  "results_sha256": "df0802edb2cc32e99b9cf396901809fd84ed597ac4b55dcf41930eaf00a9c7de",
+  "fixed_blend": null,
+  "derived_predictions_only": false,
+  "scope": "Fixed OOF predictions; conditional paired group bootstrap. Reused public data and fitted models; not a private-score interval or refit uncertainty."
+}

@@ -51,3 +51,21 @@ mean36.02469255996805 против35.44723155783769. Оба cuts хуже; basel
 Артефакты: `test-runs/qwen-optuna-20261022/overnight-20261023/queue.json`.
 Реальный процент остатка app quota доступными tools не предоставляется;
 проценты не выдумываются, reset credits не используются.
+
+Независимый `tools/summarize_research.py` пересчитывает primary/per-class metrics
+по фактическим source labels и immutable split arrays. Проверяет row order,
+disjoint fitting/validation feature groups или forward chronology, nesting HPO
+внутри outer fitting rows, совпадение random/TPE inner partitions, выбранный
+inner recipe и его outer refit, исходные input/frozen-source SHA. Применяет
+заявленные paired/support/rarest-class gates; неполный screen не проходит gate.
+Четыре отдельных проверки artifact corruption/gates PASS, без обучения моделей.
+Это дополнение к dev tools, не новый canonical source gate.
+
+Промежуточная диагностика classification сохранена в
+`selector32_class_diagnostic_20261023.json`: фактические старый/новый search
+split arrays совпадают. У single two-view control MacroF1 .6558634659956402,
+у selector32 .6502622584145485. F1 Worms .6842105263157895→.5625,
+Analysis .3375796178343949→.3258785942492013; supported-class gate уже нарушен
+на этом cut. Это descriptive comparison сохранённых runs, не новый independent
+screen и не доказательство механизма изменения. FE-01 остаётся отдельной парной
+проверкой. Не подбирать top_k задним числом по этому validation.

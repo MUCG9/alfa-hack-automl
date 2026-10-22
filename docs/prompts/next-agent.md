@@ -15,7 +15,9 @@ https://github.com/MUCG9/alfa-hack-automl . Прочитай `AGENTS.md`,
 не начинай с него, не делай force push и merge main без поручения капитана.
 
 Капитан разрешил автономное обучение, исправления, Qwen API и push рабочих веток.
-**Четвёртый submit уже загружен один раз.** Дополнительная официальная отправка
+**V9 отдельно разрешена и загружена один раз22октября около08:03UTC**:
+принята в очередь, счётчик2→1, нового балла пока нет; receipt в release/v9-roles1.
+Ранее V4 также загружена один раз. Дополнительная официальная отправка
 не разрешена автоматически. Не загружай ещё ZIP из-за старого балла или сброса
 дневного счётчика. Не запускай дополнительных агентов и не заказывай платный GPU.
 
@@ -40,7 +42,8 @@ https://github.com/MUCG9/alfa-hack-automl . Прочитай `AGENTS.md`,
   не засчитан; новый classification-only gate успешно завершён.
 - V9: shared startup/API budget,64KiB metadata cap, bounded structural mapping
   feedback и cached frames; **169unique repo /23repeated exact-unpacked** pass.
-  Full public gate запущен, итог читать в current.md /release evidence. Live Qwen
+  Full public gate завершён: обе задачи exit0/refit/integrity pass, mean RMSE
+  36.775244985 /Macro F1 .653281240, CSV parity V7/V6. Тяжёлых jobs нет. Live Qwen
   не проверен: real SDK +LOCAL MOCK HTTP тесты не являются organizer API proof.
 - Две гипотезы (XGB OOF3 calibration и fixed LGBM seed blend) проиграли парному
   контролю и не продвинуты в defaults. Evidence сохранён, не повторять как новое.

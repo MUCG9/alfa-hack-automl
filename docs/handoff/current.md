@@ -13,7 +13,7 @@
 |V6 universal1|137 /23|обе задачи, refit/integrity pass|нет|
 |V7 semantic1|145 /23|обе задачи, CSV parity V6|нет|
 |V8 budget1|163 /23|отдельно не запускался|нет|
-|V9 roles1|169 /23|запущен, финальный результат пока не подтверждён|нет|
+|V9 roles1|169 /23|обе задачи, refit/integrity pass, CSV parity V7/V6|да, одна попытка 22октября|
 
 V7 сначала прервалась: owned execution вернул143, прогресс остановился на4trials.
 Частичный прогон НЕ засчитан. Новый classification-only завершён за1358.099s:
@@ -64,16 +64,16 @@ V8 имеет отдельные unit/unpacked gates, не свой полный
 Оба исследования использовали frozen V7 workers и завершились; CV/default
 promotion не делали, так как predeclared keep criteria не выполнены.
 
-## Текущий выполняющийся gate
+## Завершённый V9 gate
 
-Единственный тяжёлый job: `test-runs/resume-20261022/v9-public-full`, log рядом
-`v9-public-full.log`; started около10:35MSK. Сначала regression task-00, затем
-classification task-01. Offline, default12trials,2threads,1.7GiB tree guard,
-10100s/task outer watchdog. Strict exact-archive/current-source gate пройден на
-старте. Последующие правки пока docs only. До завершения не дублировать job.
-Проверять aggregate `assessments.json` и report каждого task: exit0, refit,
-integrity, CSV SHA. Не называть running/partial успешным и не завершать turn,
-обещая, что незаконченный процесс обязательно переживёт передачу.
+`test-runs/resume-20261022/v9-public-full` полностью завершён. Обе задачи exit0,
+final_fit_status=ok, integrity=true; exact archive/current-source проверен.
+Offline, default12trials,2threads,1.7GiB tree guard,10100s/task outer watchdog.
+Regression mean RMSE36.775244984792195, budget elapsed215.101s;
+classification mean Macro F1 .6532812402233098, budget elapsed1250.171s.
+Оба итоговых CSV byte-identical V7/V6 (SHA выше). Подтверждённого прироста
+ML-метрик нет. Evidence: `release/v9-roles1/public-full.json` и summaries.
+Тяжёлых jobs больше нет; не перезапускать завершённый gate.
 
 ## API и разрешения
 
@@ -87,8 +87,12 @@ stdin была policy-denied до ввода ключа; waiting terminal без
 V4 загружен один раз; карточка показала raw **2184.173**,2попытки оставались.
 Наблюдение: **07:25MSK (04:25UTC)**, upload time05:21MSK.
 Receipt `release/v4-history3/submission-20261022.json` хранит точное наблюдение.
-Не переводить в /100/hidden-final score. Новых submits не было; следующая загрузка
-требует новой команды капитана. Нельзя main merge/force push/paid GPU/extra agents.
+Не переводить в /100/hidden-final score. После отдельного подтверждения капитана
+V9 отправлена РОВНО ОДИН РАЗ около08:03UTC /11:03MSK. Статус «Решение находится
+на проверке», свежий счётчик2→1. Нового официального балла пока нет, результата
+не ждали. Receipt `release/v9-roles1/submission-20261022.json`.
+Любая следующая загрузка требует новой команды капитана.
+Нельзя main merge/force push/paid GPU/extra agents.
 
 ## Среда /лимит
 
@@ -100,5 +104,7 @@ numpy1.26.4/scipy1.12/pandas2.2.3/sklearn1.5.2/LGBM4.6/XGB-cpu2.1.4/CatBoost1.2.
 Новые зависимости не ставили. Low-memory: heavy jobs последовательно,2threads;
 TMPDIR/MPLCONFIGDIR внутри ignored `test-runs/resume-20261022/{tmp,mpl}`.
 
-На07:37UTC primary used75%, осталось25%; при85% начать финализацию, не начинать
-новые долгие этапы. Reset credits не тратили. Это историческое чтение, проверять live.
+Финализация началась при85% used, ранее запущенный full gate доведён до конца.
+На08:03:24UTC primary used96%, осталось4%, weekly78%. После позднего разрешения
+капитана выполнена только одна отправка и эта передача; новые исследования не
+начинать. Reset credits не тратили. Чтение историческое, проверять live.

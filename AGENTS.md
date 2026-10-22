@@ -7,7 +7,11 @@ the older continuation text below. The earlier V7 classification was terminated
 `test-runs/resume-20261022/v7-class-full` completed with full parity/refit/integrity.
 Both V7 public gates now pass; see `release/v7-semantic1/public-full.json`. V8 freezes
 shared startup/API accounting with163unique checks; public gates are separate.
-No new official submission, extra agents, main merge or reset credits authorized.
+V9 completed both full public lifecycles with V7/V6 CSV parity,169unique checks
+and23repeated unpacked checks. Captain separately approved ONE V9 upload:
+accepted22October about08:03UTC, fresh counter2→1, result pending, not waited for.
+See `release/v9-roles1/submission-20261022.json`. No further official submission,
+extra agents, main merge or reset credits authorized. No heavy ML jobs remain.
 
 Read `docs/CONTINUE_HERE.md` first, then `docs/architecture/implementation.md` and `release/v3/README.md`. They supersede historical v1/v2 task assignments in `docs/prompts/plus-*`, `parallel_work.md`, `v3_contract.md` and old captain slides. The reusable continuation prompt is `docs/prompts/next-agent.md`.
 
@@ -15,7 +19,7 @@ Latest continuation: `work/semantic-inputs-20261022`, based on `work/autonomous-
 
 For the next quality iteration, read `docs/architecture/quality_plan.md` (review 2026-10-22). Quality of the target metric takes priority over speed within the platform limits. It is a proposed backlog, not implemented capabilities or authorization to run every experiment. Establish a complete baseline and isolate inner preprocessing before adding OOF selection, new ensembles or augmentation. Keep historical evaluation immutable; add evaluation strategies explicitly and report fold-mean and pooled OOF scores separately.
 
-- Current continuation branch: `work/agent-budget-20261022`. `work/semantic-inputs-20261022` freezes V7; `work/autonomous-score-20261022` freezes V6. Earlier branches are historical checkpoints. Main is preserved V2. Create new work from the latest continuation, not main; no force push/main merge without captain approval. Latest V9 has169unique checks and bounded structural feedback; inspect its actual full public gate before promotion. The rejected model studies did not change defaults.
+- Current continuation branch: `work/agent-budget-20261022`. `work/semantic-inputs-20261022` freezes V7; `work/autonomous-score-20261022` freezes V6. Earlier branches are historical checkpoints. Main is preserved V2. Create new work from the latest continuation, not main; no force push/main merge without captain approval. Latest V9 has169unique checks and bounded structural feedback; both full public gates passed. The rejected model studies did not change defaults.
 - V4 upload is recorded in `release/v4-history3/submission-20261022.json`. Fresh reload at04:25UTC shows the exact v4 filename, upload time05:21, raw score2184.173 and2remaining attempts. No /100 or hidden-final conversion is known. Initial history mixed the filename with v3's1723.691; do not confuse that with v4 or duplicate the upload. Further submissions need captain authorization, not merely a daily reset.
 - Preserve `release/solution-v1.zip`, `release/solution-v2.zip`, `release/solution-v3.zip` and their manifests. New candidates get new archive names; never replace historical evidence.
 - Canonical code is `src/automl`. Root `agent_*.py`, `model_utils.py`, `ensemble_cache.py` are development compatibility shims, not a standalone submission.

@@ -19,7 +19,10 @@
 - **V9**: `release/solution-v9-roles1.zip`,169unique /23repeated checks; общий
   deadline/API ledger от discovery до export,64KiB metadata bound, безопасный
   структурный feedback и переиспользование frames. Модельные defaults не менялись.
-  Full public gate запущен; итог в [передаче](docs/handoff/current.md) и
+  Full public gate завершён: обе задачи exit0/refit/integrity pass, CSV parity V7/V6.
+  **V9 отправлена одной попыткой22октября около11:03MSK**, принята в очередь,
+  осталось1попытка; нового балла ещё нет, результата не ждали. [Receipt](release/v9-roles1/submission-20261022.json).
+  Итог в [передаче](docs/handoff/current.md) и
   [release evidence](release/v9-roles1/README.md). SDK/HTTP tests используют local
   mock, а не Qwen. Две новые модельные гипотезы отвергнуты по измерениям.
 - V5 contract1/multitarget1 тоже завершили обе public задачи с CSV parity v4.

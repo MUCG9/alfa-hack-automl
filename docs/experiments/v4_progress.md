@@ -71,3 +71,8 @@ hypothesis до завершения полного default benchmark, не до
 
 Все12search экспериментов frozen v3 завершены, best .650904187; confirmation
 и full refit ещё продолжаются. Прогон целиком ещё не объявляется успешным.
+
+Full frozen v3 classification успешно завершён: v4_v3_default_full.json,
+12search+3confirmation+ensemble+fullrefit, integrity=true,2628.518s. Search
+ансамбля .654372724, mean двух splits .653714716. Официальный score не измерялся.
+Очередь66167 перешла к12 fixed-recipe regression workers; далееfull search2.

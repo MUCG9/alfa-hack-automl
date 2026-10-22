@@ -1,0 +1,980 @@
+{
+  "version": "v3-modular-augmentation",
+  "split": {
+    "method": "stratified_group_feature_hash_5fold_fold0",
+    "seed": 42,
+    "train_rows": 70529,
+    "validation_rows": 17141,
+    "split_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+    "shared_feature_hashes": 0,
+    "validation_class_counts": {
+      "Normal": 5565,
+      "Generic": 3733,
+      "Exploits": 3286,
+      "Fuzzers": 1839,
+      "DoS": 1195,
+      "Reconnaissance": 1017,
+      "Analysis": 211,
+      "Backdoor": 158,
+      "Shellcode": 118,
+      "Worms": 19
+    }
+  },
+  "best_validation": {
+    "macro_f1": 0.6543727235049199,
+    "weighted_f1": 0.8144792789614855,
+    "accuracy": 0.8043871419403769,
+    "per_class_f1": {
+      "Analysis": 0.3281733746130031,
+      "Backdoor": 0.22330097087378642,
+      "DoS": 0.4944500504540868,
+      "Exploits": 0.6708487084870849,
+      "Fuzzers": 0.7454976303317535,
+      "Generic": 0.9879550683448369,
+      "Normal": 0.9116216989226809,
+      "Reconnaissance": 0.8243727598566308,
+      "Shellcode": 0.6548042704626335,
+      "Worms": 0.7027027027027027
+    },
+    "log_loss": 0.4690394737151744,
+    "roc_auc": 0.970172479206948
+  },
+  "selected_recipe": {
+    "engine": "ensemble",
+    "hypothesis": "Validated cached-prediction blend",
+    "params": {},
+    "components": [
+      {
+        "hypothesis": "Iteration-matched inner decision calibration",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 5,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "class_weight_power": 0.5,
+          "calibrate": true,
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.35,
+          "min_iterations": 50,
+          "seed": 48,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      }
+    ],
+    "weights": [
+      0.9,
+      0.09999999999999998
+    ]
+  },
+  "selection": [
+    {
+      "mean": 0.6515436881056152,
+      "recipe": {
+        "hypothesis": "Iteration-matched inner decision calibration",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 5,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "class_weight_power": 0.5,
+          "calibrate": true,
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      }
+    },
+    {
+      "mean": 0.647157632786119,
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.35,
+          "min_iterations": 50,
+          "seed": 48,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      }
+    },
+    {
+      "mean": 0.6452368862500748,
+      "recipe": {
+        "hypothesis": "Independent histogram-boosting family",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.5,
+          "min_iterations": 50,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      }
+    }
+  ],
+  "final_fit_iterations": [
+    100,
+    280
+  ],
+  "final_fit_status": "ok",
+  "elapsed_seconds": 2628.518,
+  "submission_sha256": "872f576833e722d37ea092b7d6470e853eac3d091bc42fd6b377b19935183825",
+  "integrity_ok": true,
+  "score_scope": "local search/confirmation folds, not unbiased blind/private/platform score",
+  "archive": "release/solution-v3.zip",
+  "archive_sha256": "cba6a5aa01264c36fe67dad188e949b934557c0502bccf221e488578867032b8",
+  "command": [
+    "/home/dima/Документы/ml/alfa-hack-automl/test-runs/venv-core/bin/python",
+    "-u",
+    "solution.py",
+    "task.md",
+    "--offline"
+  ],
+  "threads": 2,
+  "source_manifest": {
+    "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+    "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+    "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+    "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+    "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+    "automl_callbacks.py": "8caba17f5cbcea0b52044c1b54f52e908065e3b1c3709f8537052b75cb336e15",
+    "automl_contracts_messages.py": "6aab60a3ed7597d9aeb38fafdd6ffad05f691809d656d56f600d40d40922198b",
+    "automl_ensembles.py": "338b3d1a7246527167c711c3efbcc802dde4bb9b475e917327066c351c98b055",
+    "automl_evaluation.py": "9f54b90e68992e2a053b495e10d23a651511afe213039410df4030dc8edf6f46",
+    "automl_evaluation_api.py": "d82446884e8280937e9db054cdf10a1e32f4ea44582784a42b996001bbfe77d3",
+    "automl_execution_api.py": "57dbadc9767ef1b17ba28a035b3ecf4ce0f8d35ddd202af52151103cad3fd394",
+    "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+    "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+    "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+    "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+    "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+    "automl_infrastructure_llm_gateway.py": "cd10d09c0b5417010ea3eaf40beb2990256a6378c4a8d6e0e79a3321d83bc214",
+    "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+    "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+    "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+    "automl_model_lightgbm.py": "c1c333d8920c31c68de88139292cb182fee5cb59e4e0c748c353413976bf6ff1",
+    "automl_model_linear_text.py": "6ad5fcb8863c75301d388cafc1d70fbe4617fc1eaed79a638379d3867a250003",
+    "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+    "automl_models.py": "d965230fab9e8be0fad7fd67061fd416430004d0ce6cc2074fc1ba1d83a3f68e",
+    "automl_policy.py": "875ba9533b40ade4beeae9a608613e325aabafe05c0f4e1d2a27d81986bf6759",
+    "automl_publishing.py": "e4aef80616903e9489de34d03d0b6850b769d0418be30b052ec4a9b54a39fee6",
+    "automl_publishing_api.py": "739b45ba47c8c709292e4415be4569fb8856f6f43e3a43574bcb5d74cbf03f2d",
+    "automl_runner.py": "adf62f908436d7dfa7851c6795dac96efff008b5c208afe4e2bc63e61278354b",
+    "automl_runtime.py": "4a3e707721e2221c32604c50ae4c7c047b68475871055df81d05cc39532e3c6e",
+    "automl_task.py": "1c5401a0c161c760d141d748ed3e27f06bcbe934d71637bb581768a183697214",
+    "automl_task_understanding_api.py": "a4a7e033cca4dc52cab2c5094a11ed7d2d90cf8b3c765eeae95c4313b5f4703e",
+    "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+    "automl_worker.py": "9e5cc4683112e53fb0679df4bc0ab3b8952685de5cc58191a0475665b484cbe2",
+    "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+    "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+    "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+    "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953"
+  },
+  "scope": "Complete default offline v3 classification on repeatedly reused public search/confirmation; not platform/private score. Historical release evidence preserved.",
+  "experiments": [
+    {
+      "experiment_index": 0,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Higher-capacity mild-weight model",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 5,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "class_weight_power": 0.5,
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6463289244307688,
+        "weighted_f1": 0.8188425060717702,
+        "accuracy": 0.809871069365848,
+        "per_class_f1": {
+          "Analysis": 0.31210191082802546,
+          "Backdoor": 0.2222222222222222,
+          "DoS": 0.47477913935594185,
+          "Exploits": 0.6951979780960404,
+          "Fuzzers": 0.749757045675413,
+          "Generic": 0.9879550683448369,
+          "Normal": 0.9150487735581021,
+          "Reconnaissance": 0.8205128205128205,
+          "Shellcode": 0.6571428571428571,
+          "Worms": 0.6285714285714286
+        },
+        "log_loss": 0.4601995414519284,
+        "roc_auc": 0.970023692495497
+      },
+      "wall_seconds": 52.659,
+      "peak_rss_mb": 312.9,
+      "observed_process_tree_peak_mb": 312.0,
+      "observed_total_peak_mb": 531.1,
+      "fit_iterations": 100
+    },
+    {
+      "experiment_index": 1,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Iteration-matched inner decision calibration",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 5,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "class_weight_power": 0.5,
+          "calibrate": true,
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6502929607048801,
+        "weighted_f1": 0.8145405426848424,
+        "accuracy": 0.8045038212473018,
+        "per_class_f1": {
+          "Analysis": 0.3281733746130031,
+          "Backdoor": 0.22330097087378642,
+          "DoS": 0.49572649572649574,
+          "Exploits": 0.6704966641957005,
+          "Fuzzers": 0.7454976303317535,
+          "Generic": 0.9879550683448369,
+          "Normal": 0.9122439256788947,
+          "Reconnaissance": 0.822868810617662,
+          "Shellcode": 0.65,
+          "Worms": 0.6666666666666666
+        },
+        "log_loss": 0.47283688615761593,
+        "roc_auc": 0.9700966684139347
+      },
+      "wall_seconds": 64.126,
+      "peak_rss_mb": 314.7,
+      "observed_process_tree_peak_mb": 314.0,
+      "observed_total_peak_mb": 533.0,
+      "fit_iterations": 100
+    },
+    {
+      "experiment_index": 2,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Independent histogram-boosting family",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.5,
+          "min_iterations": 50,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6509041868711996,
+        "weighted_f1": 0.8159009818771576,
+        "accuracy": 0.8071874453065748,
+        "per_class_f1": {
+          "Analysis": 0.34444444444444444,
+          "Backdoor": 0.21052631578947367,
+          "DoS": 0.4533500313087038,
+          "Exploits": 0.6961451247165533,
+          "Fuzzers": 0.7483317445185891,
+          "Generic": 0.9879485443466486,
+          "Normal": 0.9089689536220774,
+          "Reconnaissance": 0.8236503856041131,
+          "Shellcode": 0.6514657980456026,
+          "Worms": 0.6842105263157895
+        },
+        "log_loss": 0.4657118568161064,
+        "roc_auc": 0.9695382602080139
+      },
+      "wall_seconds": 114.118,
+      "peak_rss_mb": 404.5,
+      "observed_process_tree_peak_mb": 405.3,
+      "observed_total_peak_mb": 624.3,
+      "fit_iterations": 345
+    },
+    {
+      "experiment_index": 3,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Bounded native-category pilot",
+        "engine": "catboost",
+        "params": {
+          "iterations": 350,
+          "depth": 6,
+          "learning_rate": 0.07,
+          "class_weight_power": 0.5,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.5718513145882851,
+        "weighted_f1": 0.7918084512353871,
+        "accuracy": 0.7790093926842074,
+        "per_class_f1": {
+          "Analysis": 0.31693989071038253,
+          "Backdoor": 0.14606741573033707,
+          "DoS": 0.4563349043526476,
+          "Exploits": 0.6688479421387981,
+          "Fuzzers": 0.692407809110629,
+          "Generic": 0.9858772406300923,
+          "Normal": 0.8859824281150159,
+          "Reconnaissance": 0.7795753286147624,
+          "Shellcode": 0.47878787878787876,
+          "Worms": 0.3076923076923077
+        },
+        "log_loss": 0.5402294766587097,
+        "roc_auc": 0.9643079483629388
+      },
+      "wall_seconds": 303.241,
+      "peak_rss_mb": 767.1,
+      "observed_process_tree_peak_mb": 765.2,
+      "observed_total_peak_mb": 982.5,
+      "fit_iterations": 100
+    },
+    {
+      "experiment_index": 4,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.65,
+          "min_iterations": 50,
+          "seed": 46,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6361043838118801,
+        "weighted_f1": 0.8137586579457325,
+        "accuracy": 0.8017618575345662,
+        "per_class_f1": {
+          "Analysis": 0.3168831168831169,
+          "Backdoor": 0.16336633663366337,
+          "DoS": 0.4641799881586738,
+          "Exploits": 0.683094950887472,
+          "Fuzzers": 0.7481569560047563,
+          "Generic": 0.9875406283856988,
+          "Normal": 0.9102760736196319,
+          "Reconnaissance": 0.8256410256410256,
+          "Shellcode": 0.6558441558441559,
+          "Worms": 0.6060606060606061
+        },
+        "log_loss": 0.4742041250349107,
+        "roc_auc": 0.9692951594609406
+      },
+      "wall_seconds": 182.983,
+      "peak_rss_mb": 516.5,
+      "observed_process_tree_peak_mb": 514.0,
+      "observed_total_peak_mb": 715.7,
+      "fit_iterations": 601
+    },
+    {
+      "experiment_index": 5,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 1.0,
+          "min_iterations": 50,
+          "seed": 47,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6140522214746443,
+        "weighted_f1": 0.8006631796171829,
+        "accuracy": 0.7746922583279855,
+        "per_class_f1": {
+          "Analysis": 0.19730941704035873,
+          "Backdoor": 0.12618296529968454,
+          "DoS": 0.38919342208300706,
+          "Exploits": 0.6624251497005988,
+          "Fuzzers": 0.7433751743375174,
+          "Generic": 0.987403494514425,
+          "Normal": 0.9050019387359441,
+          "Reconnaissance": 0.8257345491388045,
+          "Shellcode": 0.6753246753246753,
+          "Worms": 0.6285714285714286
+        },
+        "log_loss": 0.5243433680896233,
+        "roc_auc": 0.9684687280027834
+      },
+      "wall_seconds": 282.394,
+      "peak_rss_mb": 609.5,
+      "observed_process_tree_peak_mb": 529.5,
+      "observed_total_peak_mb": 731.2,
+      "fit_iterations": 975
+    },
+    {
+      "experiment_index": 6,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.35,
+          "min_iterations": 50,
+          "seed": 48,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6489587017714086,
+        "weighted_f1": 0.8155068475717657,
+        "accuracy": 0.8129047313458958,
+        "per_class_f1": {
+          "Analysis": 0.3333333333333333,
+          "Backdoor": 0.1890547263681592,
+          "DoS": 0.40204966495861255,
+          "Exploits": 0.7192246492116302,
+          "Fuzzers": 0.7410071942446043,
+          "Generic": 0.9875372527770252,
+          "Normal": 0.909575480677708,
+          "Reconnaissance": 0.8209109730848861,
+          "Shellcode": 0.6301369863013698,
+          "Worms": 0.7567567567567568
+        },
+        "log_loss": 0.4591634148263105,
+        "roc_auc": 0.9693144555529235
+      },
+      "wall_seconds": 110.904,
+      "peak_rss_mb": 373.1,
+      "observed_process_tree_peak_mb": 372.5,
+      "observed_total_peak_mb": 574.2,
+      "fit_iterations": 256
+    },
+    {
+      "experiment_index": 7,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.65,
+          "min_iterations": 50,
+          "seed": 49,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6393506137545268,
+        "weighted_f1": 0.8125653283315466,
+        "accuracy": 0.8001283472376174,
+        "per_class_f1": {
+          "Analysis": 0.32061068702290074,
+          "Backdoor": 0.15647921760391198,
+          "DoS": 0.4647058823529412,
+          "Exploits": 0.6819364914107235,
+          "Fuzzers": 0.7459229496572914,
+          "Generic": 0.9876777251184834,
+          "Normal": 0.907795957651588,
+          "Reconnaissance": 0.8252674477840041,
+          "Shellcode": 0.6560509554140127,
+          "Worms": 0.6470588235294118
+        },
+        "log_loss": 0.4780448299765051,
+        "roc_auc": 0.9694255286465652
+      },
+      "wall_seconds": 153.876,
+      "peak_rss_mb": 450.3,
+      "observed_process_tree_peak_mb": 448.0,
+      "observed_total_peak_mb": 649.8,
+      "fit_iterations": 478
+    },
+    {
+      "experiment_index": 8,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 1.0,
+          "min_iterations": 50,
+          "seed": 50,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6119496879151086,
+        "weighted_f1": 0.7997019319367507,
+        "accuracy": 0.7742255411002859,
+        "per_class_f1": {
+          "Analysis": 0.20147874306839186,
+          "Backdoor": 0.12527472527472527,
+          "DoS": 0.39155035835533764,
+          "Exploits": 0.6590139254798645,
+          "Fuzzers": 0.7422201579191825,
+          "Generic": 0.9872697724810401,
+          "Normal": 0.9042584149772044,
+          "Reconnaissance": 0.8243037974683545,
+          "Shellcode": 0.6730158730158731,
+          "Worms": 0.6111111111111112
+        },
+        "log_loss": 0.5249637502030778,
+        "roc_auc": 0.9684461689293041
+      },
+      "wall_seconds": 273.236,
+      "peak_rss_mb": 564.4,
+      "observed_process_tree_peak_mb": 516.6,
+      "observed_total_peak_mb": 695.9,
+      "fit_iterations": 909
+    },
+    {
+      "experiment_index": 9,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.35,
+          "min_iterations": 50,
+          "seed": 51,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6215937656007224,
+        "weighted_f1": 0.8026029356540187,
+        "accuracy": 0.795111137039846,
+        "per_class_f1": {
+          "Analysis": 0.34782608695652173,
+          "Backdoor": 0.15873015873015872,
+          "DoS": 0.4130663856691254,
+          "Exploits": 0.7004283965728274,
+          "Fuzzers": 0.7148879520745507,
+          "Generic": 0.9866992399565689,
+          "Normal": 0.8927833021561484,
+          "Reconnaissance": 0.8088754412506304,
+          "Shellcode": 0.525974025974026,
+          "Worms": 0.6666666666666666
+        },
+        "log_loss": 0.7505767133847323,
+        "roc_auc": 0.966047077528936
+      },
+      "wall_seconds": 43.639,
+      "peak_rss_mb": 317.3,
+      "observed_process_tree_peak_mb": 317.7,
+      "observed_total_peak_mb": 496.9,
+      "fit_iterations": 50
+    },
+    {
+      "experiment_index": 10,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.65,
+          "min_iterations": 50,
+          "seed": 52,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6377608101471243,
+        "weighted_f1": 0.8140135340481517,
+        "accuracy": 0.8017035178811038,
+        "per_class_f1": {
+          "Analysis": 0.31876606683804626,
+          "Backdoor": 0.1686746987951807,
+          "DoS": 0.4683470105509965,
+          "Exploits": 0.6825369244135534,
+          "Fuzzers": 0.7503552818569399,
+          "Generic": 0.9878147847278635,
+          "Normal": 0.909283105900442,
+          "Reconnaissance": 0.8255754475703325,
+          "Shellcode": 0.6601941747572816,
+          "Worms": 0.6060606060606061
+        },
+        "log_loss": 0.4748712772910724,
+        "roc_auc": 0.969605028414198
+      },
+      "wall_seconds": 184.072,
+      "peak_rss_mb": 504.0,
+      "observed_process_tree_peak_mb": 504.3,
+      "observed_total_peak_mb": 683.5,
+      "fit_iterations": 564
+    },
+    {
+      "experiment_index": 11,
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 1.0,
+          "min_iterations": 50,
+          "seed": 53,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6192260171602167,
+        "weighted_f1": 0.8043665342938586,
+        "accuracy": 0.7804095443673065,
+        "per_class_f1": {
+          "Analysis": 0.20478468899521532,
+          "Backdoor": 0.12529550827423167,
+          "DoS": 0.404628592758492,
+          "Exploits": 0.6671600370027753,
+          "Fuzzers": 0.7472268114231768,
+          "Generic": 0.9872697724810401,
+          "Normal": 0.9090909090909091,
+          "Reconnaissance": 0.8240693523712391,
+          "Shellcode": 0.6756756756756757,
+          "Worms": 0.6470588235294118
+        },
+        "log_loss": 0.5191937096917352,
+        "roc_auc": 0.9685871996711727
+      },
+      "wall_seconds": 377.659,
+      "peak_rss_mb": 750.8,
+      "observed_process_tree_peak_mb": 751.5,
+      "observed_total_peak_mb": 930.7,
+      "fit_iterations": 1346
+    }
+  ],
+  "confirmations": [
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Independent histogram-boosting family",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.5,
+          "min_iterations": 50,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6395695856289502,
+        "weighted_f1": 0.8176251973679876,
+        "accuracy": 0.8075393394431956,
+        "per_class_f1": {
+          "Analysis": 0.27710843373493976,
+          "Backdoor": 0.21176470588235294,
+          "DoS": 0.46881230418684133,
+          "Exploits": 0.6759031918625044,
+          "Fuzzers": 0.7421115065243179,
+          "Generic": 0.9901421072845986,
+          "Normal": 0.9112918479288822,
+          "Reconnaissance": 0.8396946564885496,
+          "Shellcode": 0.6862745098039216,
+          "Worms": 0.5925925925925926
+        },
+        "log_loss": 0.45229609773938,
+        "roc_auc": 0.9701463213995692
+      },
+      "wall_seconds": 126.369,
+      "peak_rss_mb": 373.9,
+      "observed_process_tree_peak_mb": 373.4,
+      "observed_total_peak_mb": 554.4,
+      "fit_iterations": 333
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Iteration-matched inner decision calibration",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 5,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "class_weight_power": 0.5,
+          "calibrate": true,
+          "subsample_freq": 0,
+          "early_metric": "primary",
+          "nested_stopping": true,
+          "min_iterations": 100
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6527944155063504,
+        "weighted_f1": 0.8224227082510334,
+        "accuracy": 0.8112859530808693,
+        "per_class_f1": {
+          "Analysis": 0.2765957446808511,
+          "Backdoor": 0.21875,
+          "DoS": 0.4871060171919771,
+          "Exploits": 0.6844765342960288,
+          "Fuzzers": 0.75,
+          "Generic": 0.9897619657025851,
+          "Normal": 0.913302448709464,
+          "Reconnaissance": 0.8409931325937665,
+          "Shellcode": 0.746268656716418,
+          "Worms": 0.6206896551724138
+        },
+        "log_loss": 0.45017141136363487,
+        "roc_auc": 0.9708376812918631
+      },
+      "wall_seconds": 68.711,
+      "peak_rss_mb": 314.5,
+      "observed_process_tree_peak_mb": 314.9,
+      "observed_total_peak_mb": 496.0,
+      "fit_iterations": 100
+    },
+    {
+      "status": "ok",
+      "recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "xgboost",
+        "params": {
+          "iterations": 1800,
+          "learning_rate": 0.035,
+          "max_depth": 6,
+          "min_child_weight": 3,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 8,
+          "reg_alpha": 0.1,
+          "class_weight_power": 0.35,
+          "min_iterations": 50,
+          "seed": 48,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.6453565638008295,
+        "weighted_f1": 0.8238555925018721,
+        "accuracy": 0.819009741195458,
+        "per_class_f1": {
+          "Analysis": 0.2727272727272727,
+          "Backdoor": 0.2145922746781116,
+          "DoS": 0.4279036317871269,
+          "Exploits": 0.7128834355828221,
+          "Fuzzers": 0.7438339438339439,
+          "Generic": 0.9900128040973112,
+          "Normal": 0.9163711032294195,
+          "Reconnaissance": 0.84346035015448,
+          "Shellcode": 0.6917808219178082,
+          "Worms": 0.64
+        },
+        "log_loss": 0.43986748883919374,
+        "roc_auc": 0.9702910628303408
+      },
+      "wall_seconds": 110.906,
+      "peak_rss_mb": 388.8,
+      "observed_process_tree_peak_mb": 387.9,
+      "observed_total_peak_mb": 569.0,
+      "fit_iterations": 305
+    }
+  ],
+  "ensemble": {
+    "primary": {
+      "macro_f1": 0.6543727235049199,
+      "weighted_f1": 0.8144792789614855,
+      "accuracy": 0.8043871419403769,
+      "per_class_f1": {
+        "Analysis": 0.3281733746130031,
+        "Backdoor": 0.22330097087378642,
+        "DoS": 0.4944500504540868,
+        "Exploits": 0.6708487084870849,
+        "Fuzzers": 0.7454976303317535,
+        "Generic": 0.9879550683448369,
+        "Normal": 0.9116216989226809,
+        "Reconnaissance": 0.8243727598566308,
+        "Shellcode": 0.6548042704626335,
+        "Worms": 0.7027027027027027
+      },
+      "log_loss": 0.4690394737151744,
+      "roc_auc": 0.970172479206948
+    },
+    "confirmation": {
+      "macro_f1": 0.6530567094637455,
+      "weighted_f1": 0.8227538493812372,
+      "accuracy": 0.8117470747593521,
+      "per_class_f1": {
+        "Analysis": 0.2756183745583039,
+        "Backdoor": 0.21875,
+        "DoS": 0.4866001050972149,
+        "Exploits": 0.6853347693412314,
+        "Fuzzers": 0.7494636471990465,
+        "Generic": 0.9900153609831029,
+        "Normal": 0.9133352235138456,
+        "Reconnaissance": 0.8444913020558777,
+        "Shellcode": 0.746268656716418,
+        "Worms": 0.6206896551724138
+      },
+      "log_loss": 0.4476153949405536,
+      "roc_auc": 0.9709349051568129
+    },
+    "mean": 0.6537147164843327
+  }
+}

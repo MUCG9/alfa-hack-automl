@@ -2,12 +2,12 @@
 from __future__ import annotations
 import hashlib,json
 from automl.contracts.messages import DataPolicy
-from automl.execution.api import effective_parameters,CAPABILITIES,validate_feature_view
+from automl.execution.api import effective_parameters,CAPABILITIES,validate_feature_view,validate_target_smearing
 from automl.evaluation.api import validate_decision_optimizer
 
 ENGINES=set(CAPABILITIES)
 PARAMETERS={'iterations','depth','max_depth','learning_rate','num_leaves','min_child_samples',
- 'reg_lambda','reg_alpha','l2_leaf_reg','random_strength','class_weights','class_weight_power','feature_views','decision_optimizer',
+ 'reg_lambda','reg_alpha','l2_leaf_reg','random_strength','class_weights','class_weight_power','feature_views','decision_optimizer','target_smearing',
  'subsample','subsample_freq','colsample_bytree','seed','log_target','generic_features','calibrate',
  'min_samples_leaf','max_features','text_alpha','text_char_features','text_svd_components','text_classifier','text_C','min_iterations','min_child_weight','gamma','max_bin','categorical_from_dictionary','multiclass_strategy','target_encoding','calibration_folds','target_encoding_groups','target_encoding_smoothing','target_encoding_auto_groups','target_encoding_refine_groups','target_encoding_counts','target_encoding_half_life','target_encoding_hierarchical','pair_refinement','history_asof','history_min_periods'}
 
@@ -36,6 +36,8 @@ def normalize(candidate,best=None):
     inherited.update({k:v for k,v in params.items() if k in PARAMETERS})
     if 'feature_views' in params and params['feature_views'] is None:
         inherited.pop('feature_views',None)
+    if 'target_smearing' in params and params['target_smearing'] is False:
+        inherited.pop('target_smearing',None)
     if params.get('target_encoding_groups') or params.get('target_encoding_auto_groups'):
         if params.get('target_encoding') is False: raise ValueError('Encoding groups require target_encoding')
         inherited['target_encoding']=True
@@ -80,6 +82,7 @@ def normalize(candidate,best=None):
     if not policy.is_noop: result['data_policy']=policy.to_dict()
     validate_feature_view(result)
     validate_decision_optimizer(result)
+    validate_target_smearing(result)
     return result
 
 def parse_plans(content,best=None):

@@ -30,6 +30,7 @@ from dataclasses import asdict
 from automl.execution.sampling.policies import prepare_training
 from automl.execution.feature_views import validate_feature_view,feature_view_components,validate_fit_iterations
 from automl.evaluation.api import calibrate_class_factors,validate_decision_optimizer
+from automl.execution.postprocessing.targets import validate_target_smearing,fit_smearing,inverse_log_predictions
 
 
 
@@ -127,6 +128,7 @@ def run(job):
     recipe=job['recipe']
     validate_fit_iterations(recipe,job.get('fit_iterations'))
     decision_optimizer=validate_decision_optimizer(recipe,spec)
+    target_smearing=validate_target_smearing(recipe,spec)
     if 'feature_views' in recipe.get('params',{}):
         validate_feature_view(recipe,spec)
         return run_feature_views(job)
@@ -194,6 +196,7 @@ def run(job):
     model_recipe=dict(recipe,metric=spec['metric'],n_classes=len(spec.get('classes') or []))
     model=make_model(model_recipe,spec['kind'],job['threads'],iterations)
     target_log=bool(recipe.get('params',{}).get('log_target',False)) and spec['kind']=='regression' and float(y.iloc[fit_tr].min())>=0
+    if target_smearing and not target_log:raise ValueError('Smearing requires nonnegative fitting targets')
     fit_y=np.log1p(y) if target_log else y
     policy_records=[]
     source_hashes=pd.util.hash_pandas_object(train[spec['features']],index=False).to_numpy(dtype='uint64')
@@ -251,6 +254,7 @@ def run(job):
         return prepared_x,prepared_test
     class_factors={}
     decision_diagnostics=None
+    smearing={'requested':target_smearing,'factor':1.,'status':'pending' if target_smearing else 'disabled'}
     calibration_status='disabled'
     nested=bool(recipe.get('params',{}).get('nested_stopping',False)) and not full and CAPABILITIES[recipe['engine']]['nested_stopping']
     calibrate=spec['kind']=='classification' and spec['metric']=='macro_f1' and CAPABILITIES[recipe['engine']]['macro_f1_calibration'] and recipe.get('params',{}).get('calibrate',False)
@@ -258,7 +262,7 @@ def run(job):
     inner_split=None
     inner_split_error=None
     calibration_folds=[]
-    if nested or calibrate:
+    if nested or calibrate or target_smearing:
         # Neither stopping nor calibration sees the outer validation labels.
         inner_train=train.iloc[fit_tr].reset_index(drop=True)
         inner_hashes=pd.util.hash_pandas_object(inner_train[spec['features']],index=False).to_numpy(dtype='uint64')
@@ -268,6 +272,7 @@ def run(job):
             # Only a split failure can trigger this fallback; fit errors propagate.
             inner_split_error=str(exc)[:300]
             calibration_status='skipped_unavailable_inner_split' if calibrate else 'disabled'
+            if target_smearing:smearing['status']='skipped_unavailable_inner_split'
             if nested: early_stopping_source='fixed_iterations_split_fallback'
         else:
             inner_tr=fit_tr[inner_tr]; inner_va=fit_tr[inner_va]
@@ -281,13 +286,23 @@ def run(job):
                     iterations=max(floor,int(selected))
                 model=make_model(model_recipe,spec['kind'],job['threads'],iterations)
                 early_stopping_source='inner_training_holdout'
-            if calibrate:
+            smearing_ready=False
+            if target_smearing:
+                history_state=policy_records[-1].get('history_asof')
+                smearing_ready=(not history_asof or bool(history_state and history_state['enabled'])) and len(inner_va)>=20
+                smearing.update(status='pending' if smearing_ready else 'skipped_history_support' if history_asof and not (history_state and history_state['enabled']) else 'skipped_insufficient_calibration_rows',
+                    calibration_rows=len(inner_va),history_support=history_state)
+            if calibrate or smearing_ready:
                 with threadpool_limits(limits=job['threads']):
                     if nested and selected and int(selected)!=iterations:
                         inner_model=make_model(model_recipe,spec['kind'],job['threads'],iterations)
                         inner_x,_=fit_on_rows(inner_model,inner_tr,None)
-                    class_factors,decision_diagnostics=calibrate_class_factors(y.iloc[inner_va],inner_model.predict_proba(inner_x.iloc[inner_va]),inner_model.classes_,decision_optimizer)
-                    calibration_status='inner_training_holdout_matching_iterations'
+                    if calibrate:
+                        class_factors,decision_diagnostics=calibrate_class_factors(y.iloc[inner_va],inner_model.predict_proba(inner_x.iloc[inner_va]),inner_model.classes_,decision_optimizer)
+                        calibration_status='inner_training_holdout_matching_iterations'
+                    if smearing_ready:
+                        smearing.update(fit_smearing(y.iloc[inner_va],np.asarray(inner_model.predict(inner_x.iloc[inner_va])).reshape(-1)),
+                            matching_iterations=iterations,source='inner_training_holdout_matching_iterations')
     if calibrate and int(recipe.get('params',{}).get('calibration_folds',1))>1:
         fit_frame=train.iloc[fit_tr].reset_index(drop=True)
         try:
@@ -309,7 +324,7 @@ def run(job):
         train_x,test_x=fit_on_rows(model,fit_tr,None if full or nested else va)
         pred=np.asarray(model.predict(test_x)).reshape(-1)
         if target_log:
-            pred=np.expm1(pred)
+            pred=inverse_log_predictions(pred,smearing['factor']) if target_smearing else np.expm1(pred)
         if spec['kind']=='classification':
             probabilities=adjusted_probabilities(model.predict_proba(test_x),model.classes_,class_factors)
             pred=np.asarray(model.classes_)[np.argmax(probabilities,axis=1)]
@@ -322,7 +337,7 @@ def run(job):
         if not full:
             val_pred=np.asarray(model.predict(train_x.iloc[va])).reshape(-1)
             if target_log:
-                val_pred=np.expm1(val_pred)
+                val_pred=inverse_log_predictions(val_pred,smearing['factor']) if target_smearing else np.expm1(val_pred)
             proba=adjusted_probabilities(model.predict_proba(train_x.iloc[va]),model.classes_,class_factors) if spec['kind']=='classification' else None
             if proba is not None: val_pred=np.asarray(model.classes_)[np.argmax(proba,axis=1)]
             metrics=evaluate(y.iloc[va],val_pred,spec['kind'],spec['metric'],proba,getattr(model,'classes_',None),**metric_context(spec,train,va))
@@ -349,6 +364,7 @@ def run(job):
             'prediction_bundle':asdict(PredictionBundle(str(output_dir/'submission.csv'),len(test),tuple(sample.columns),tuple(spec.get('classes') or []))),
             'calibration_status':calibration_status,'class_factors':class_factors,
             'decision_optimizer':decision_diagnostics,
+            'target_smearing':smearing,
             'calibration_folds':calibration_folds,
             'specialist_pairs':getattr(model,'specialist_pairs_',[]),
             'early_stopping_source':early_stopping_source,'inner_split':inner_split,'inner_split_error':inner_split_error,

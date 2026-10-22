@@ -72,8 +72,14 @@ Public имена не хардкодить, df.eval/AST не считать п�
 Локально Python ../../work/ml-venv/bin/python (3.12.14),2threads/1.7GiB guard;
 fixture suite1thread, все heavyfits строго sequential. Данные:
 ../../work/evaluation/{regression,multiclass}/task.md.10inputSHA:
-[public_inputs.json](public_inputs.json). Data/venv/models/predictions ignored,
-на другом ПК из Git не появятся; не коммитить их.
+[public_inputs.json](public_inputs.json). Data/venv/models остаются ignored и
+передаются отдельно. Капитан разрешил перенос derived public кэшей V11/V16:
+[комплект и восстановление](../../transfer/README.md). После получения файлов
+из актуальной ветки выполнить python tools/transfer_caches.py verify, затем
+python tools/transfer_caches.py restore. BASE-01 больше не блокируется отсутствием
+этих кэшей после восстановления.848 файлов/483 объекта, проверен полный roundtrip
+и отказ перезаписи отличающегося файла. В исходных JSON абсолютные пути сохранены;
+использовать печатаемый root_mapping, не переписывать исторические fingerprint.
 
 Live Qwen текущего пути НЕ проверен, privateenv здесь отсутствовала. Старые V4
 livecalls и новые mocks не доказывают новый liveend-to-end. Ключ из переписки не

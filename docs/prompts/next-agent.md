@@ -13,6 +13,11 @@ https://github.com/MUCG9/alfa-hack-automl,
 4. docs/handoff/PLAN.md.
 Доказательства отдельных экспериментов открывай только по необходимости.
 
+Кэши V11/V16 теперь доступны в transfer/v11-v16-caches/; инструкция transfer/README.md.
+Запусти verify/restore через tools/transfer_caches.py, без повторного обучения.
+Если уже работаешь в новой ветке с собственными изменениями, перенеси только
+tools/transfer_caches.py и transfer/ из актуальной ветки, не откатывая свой проект.
+
 Отправлена V11 featureviews1: очередь принята, последний счётчик 1→0,
 официальный score ещё не проверен. Не повторять upload.
 Текущий код V16 mean1: 258 unique +23 repeated checks. ОБЕ full-default задачи

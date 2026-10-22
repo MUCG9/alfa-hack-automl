@@ -64,3 +64,10 @@ passes that already-fitted object to predictor.fit. Pinned learner.is_fit branch
 uses transform-only; no learned preprocessing sees inner held-out rows. Text/
 vision generators are disabled. This is contract hardening before outcomes, not
 a posthoc quality knob. Trained-model artifact count is not native fit count.
+
+Synthetic check now PASSED: two actual fit/refit/export lifecycles, poisoned outer
+labels leave predictions/factors unchanged, probability/class/ID contracts pass,
+source and frozen extension unchanged. Evidence v13_autogluon_synthetic.json;
+these optional checks are not added to the244core unique-check count. V11 gate
+passed and V12 numeric refinement was rejected; public paired framework screen
+now starts sequentially. Still no production backend, score or promotion claim.

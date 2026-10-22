@@ -1,0 +1,289 @@
+{
+  "passed": true,
+  "checks": {
+    "both_fit_refit_export_pass": true,
+    "outer_label_poisoning_invariant": true,
+    "probability_id_contract": true,
+    "source_unchanged": true,
+    "frozen_extension_unchanged": true
+  },
+  "records": [
+    {
+      "exit_code": 0,
+      "status": "ok",
+      "recipe": {
+        "engine": "autogluon",
+        "params": {
+          "seed": 42
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "accuracy": 1.0,
+        "per_class_f1": {
+          "A": 1.0,
+          "M": 1.0,
+          "Z": 1.0
+        },
+        "per_class_diagnostics": {
+          "A": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 24
+          },
+          "M": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 24
+          },
+          "Z": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 24
+          }
+        },
+        "confusion_matrix": {
+          "classes": [
+            "A",
+            "M",
+            "Z"
+          ],
+          "counts": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              24,
+              0
+            ],
+            [
+              0,
+              0,
+              24
+            ]
+          ]
+        },
+        "log_loss": 1.02902159443269,
+        "roc_auc": 1.0
+      },
+      "full_fit": false,
+      "fit_iterations": {
+        "selected": "WeightedEnsemble_L2",
+        "refit": "WeightedEnsemble_L2_FULL",
+        "models": [
+          "LightGBM",
+          "CatBoost",
+          "WeightedEnsemble_L2",
+          "LightGBM_FULL",
+          "WeightedEnsemble_L2_FULL"
+        ]
+      },
+      "feature_count": 3,
+      "class_factors": {
+        "A": 1.0,
+        "M": 1.0,
+        "Z": 1.0
+      },
+      "inner_split": {
+        "method": "stratified_holdout_20pct",
+        "seed": 73,
+        "train_rows": 230,
+        "validation_rows": 58,
+        "split_sha256": "029d0fc9f52e70a37e959b109407bb350e0af8d7f018d7a89ab240ba76be6052",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Z": 20,
+          "A": 19,
+          "M": 19
+        }
+      },
+      "inner_fit_rows_sha256": "d2060057e6a98a349d64b7eb75513b739a211485dedfbe6f36c817e61b16ef86",
+      "inner_calibration_rows_sha256": "9194e8f015b2db58eb7200e829d66a9f79c4925dd29af62e09d893bb10860ac1",
+      "calibration_status": "inner_holdout_before_full_refit_not_oof",
+      "full_refit_map": {
+        "LightGBM": "LightGBM_FULL",
+        "WeightedEnsemble_L2": "WeightedEnsemble_L2_FULL"
+      },
+      "trained_model_artifact_count": 5,
+      "feature_generator_fit_scope": "inner_train_only_prefit_transform_elsewhere",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/ag-synthetic-1/worker-0/submission.csv",
+      "wall_seconds": 1.973,
+      "peak_rss_mb": 228.2,
+      "scope": "Dev-only complete alternative procedure, not runtime-integrated or unbiased private score"
+    },
+    {
+      "exit_code": 0,
+      "status": "ok",
+      "recipe": {
+        "engine": "autogluon",
+        "params": {
+          "seed": 42
+        },
+        "feature_code": ""
+      },
+      "metrics": {
+        "macro_f1": 0.0,
+        "weighted_f1": 0.0,
+        "accuracy": 0.0,
+        "per_class_f1": {
+          "A": 0.0,
+          "M": 0.0,
+          "Z": 0.0
+        },
+        "per_class_diagnostics": {
+          "A": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 24
+          },
+          "M": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 24
+          },
+          "Z": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 24
+          }
+        },
+        "confusion_matrix": {
+          "classes": [
+            "A",
+            "M",
+            "Z"
+          ],
+          "counts": [
+            [
+              0,
+              24,
+              0
+            ],
+            [
+              0,
+              0,
+              24
+            ],
+            [
+              24,
+              0,
+              0
+            ]
+          ]
+        },
+        "log_loss": 1.1353122110817875,
+        "roc_auc": 0.25
+      },
+      "full_fit": false,
+      "fit_iterations": {
+        "selected": "WeightedEnsemble_L2",
+        "refit": "WeightedEnsemble_L2_FULL",
+        "models": [
+          "LightGBM",
+          "CatBoost",
+          "WeightedEnsemble_L2",
+          "LightGBM_FULL",
+          "WeightedEnsemble_L2_FULL"
+        ]
+      },
+      "feature_count": 3,
+      "class_factors": {
+        "A": 1.0,
+        "M": 1.0,
+        "Z": 1.0
+      },
+      "inner_split": {
+        "method": "stratified_holdout_20pct",
+        "seed": 73,
+        "train_rows": 230,
+        "validation_rows": 58,
+        "split_sha256": "029d0fc9f52e70a37e959b109407bb350e0af8d7f018d7a89ab240ba76be6052",
+        "shared_feature_hashes": 0,
+        "validation_class_counts": {
+          "Z": 20,
+          "A": 19,
+          "M": 19
+        }
+      },
+      "inner_fit_rows_sha256": "d2060057e6a98a349d64b7eb75513b739a211485dedfbe6f36c817e61b16ef86",
+      "inner_calibration_rows_sha256": "9194e8f015b2db58eb7200e829d66a9f79c4925dd29af62e09d893bb10860ac1",
+      "calibration_status": "inner_holdout_before_full_refit_not_oof",
+      "full_refit_map": {
+        "LightGBM": "LightGBM_FULL",
+        "WeightedEnsemble_L2": "WeightedEnsemble_L2_FULL"
+      },
+      "trained_model_artifact_count": 5,
+      "feature_generator_fit_scope": "inner_train_only_prefit_transform_elsewhere",
+      "submission": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/llm-upgrade-20261022/ag-synthetic-1/worker-1/submission.csv",
+      "wall_seconds": 1.882,
+      "peak_rss_mb": 228.8,
+      "scope": "Dev-only complete alternative procedure, not runtime-integrated or unbiased private score"
+    }
+  ],
+  "source_sha256": {
+    "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+    "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+    "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+    "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+    "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+    "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+    "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+    "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+    "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+    "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+    "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+    "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+    "automl_models.py": "0e8338db592b071f0a8654cab66319ea235a591ab0c9eb2c5f49744c37bba086",
+    "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+    "automl_ensembles.py": "ccbb07cef50a1ebfef8a157a86515a3b494e5c3ce8c37b518eca44265e3bd054",
+    "automl_worker.py": "74db11ef40cb7af7a9af68bfcba124190951a7df2a90e13b1f391869114f5570",
+    "automl_policy.py": "a69633506820ad359776f177bfd1aa3321b125a1c201b86d96cfa5cde4998e66",
+    "automl_runner.py": "50f6e916e4eb089b9d17f549a1948452421d74298b1c26362a77144b99115378",
+    "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+    "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+    "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+    "automl_infrastructure_llm_gateway.py": "4d85eeac0985f6bb9995a07e6cf372621c2455d614b01959bd3b8fb82704d27d",
+    "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+    "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+    "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1",
+    "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+    "automl_infrastructure_run_budget.py": "0d94db9d5647731740e38e11069818ea3578dcc8a09cf217f736cae8fe8bdeb3",
+    "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+    "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+    "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+    "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+    "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+    "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+    "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+    "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+    "automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
+    "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+    "automl_execution_api.py": "80deb7805d21bf156c1cbfb434379a30812cc96159c26d29bf77081413311f4b",
+    "automl_execution_feature_views.py": "af53acb2ce53c2bb3bccd713d7d4be94f11a853ba3e4e1097590dead07bb86c4",
+    "automl_search_multitarget.py": "a855c0966156ccb5343471754d2028e20a8513aac706c33bb2c6dfa8201d4754",
+    "automl_contracts_messages.py": "dc14ab3c2e257b8ae8dacc3c3888580f01b9a5f5494322273989345d4f429623",
+    "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+    "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+    "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+    "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+    "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+    "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+    "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+    "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+    "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+    "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+    "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953",
+    "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+  },
+  "extension_sha256": "88984f9e7446d20ca6e6e4fe8b33bda6d323b5157ccb47397f193b053a02a0f0",
+  "fixture_train_sha256": [
+    "43e94224b1117e2ff5ce7913ca1afce37f8f7a3a7c7f26358474681450f396ce",
+    "69f0b4caac8fbebcac7ecccf1df837902069aa9a4bafda88afc33e2bb56c91b5"
+  ],
+  "scope": "Optional synthetic lifecycle/isolation, not public quality or core unique-check count"
+}

@@ -1,6 +1,6 @@
 {
   "scope": "Finishing handoff; qualified V11 is complete, latest-source classification repeat is still running",
-  "observed_at_utc": "2026-10-22 15:12:17 UTC",
+  "observed_at_utc": "2026-10-22 15:14:20 UTC",
   "branch": "work/llm-upgrade-20261022",
   "base_colleague_checkpoint": "6aefbd9",
   "last_confirmed_push_before_this_receipt": "8375b67",
@@ -77,11 +77,12 @@
     }
   ],
   "quota": {
-    "primary_used_percent": 84,
-    "primary_remaining_percent": 16,
+    "primary_used_percent": 85,
+    "primary_remaining_percent": 15,
     "weekly_used_percent": 92,
     "threshold_used_percent": 85,
     "already_finishing_before_cutoff": true,
+    "threshold_reached_stop_new_work": true,
     "new_research_after_final_parity": false,
     "reset_credits_consumed": 0
   },

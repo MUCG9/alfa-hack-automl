@@ -25,6 +25,11 @@
 4. Проверь реальный app usage. Все текущие действия согласуй с новой командой
    капитана; этот файл даёт контекст, не отдельное разрешение на submit/ресурсы.
 
+Предыдущий агент завершает этап по реальному порогу:15:14:20UTC85%USED,
+15%REMAINING. На этом чтении class всё ещё11/12, без fullreport/assessment.
+Подтверждённый push6c27a65, затем quota-note commit; фактический HEAD сверяй вGit.
+Единственный оставшийся bounded ML job — final-default-parity, не новая research.
+
 ## Что уже улучшено
 
 Полный offline pipeline V11 featureviews1 улучшил MacroF1 mean

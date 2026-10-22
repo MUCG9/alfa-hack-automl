@@ -121,6 +121,12 @@ Current final parity is the only long stage; checkpoint even if latest gate fail
 No reset credits consumed or other agents spawned. Latest confirmed push before
 finishing receipts:8375b67 on this branch; final handoff commits follow it.
 
+FINAL quota observation15:14:20UTC:85%USED/15%REMAINING,weekly92%used. Threshold
+reached; finish this handoff and STOP NEW WORK. Confirmed HEAD=origin6c27a65 before
+this quota-note commit, clean tree, main unchanged. Class still11/12exact-trace,
+no fullreport/assessment; bounded controller is the only remaining owned ML job.
+Do not silently promote V16 or restart research after this quota-triggered stop.
+
 ## Reproduction and next stage
 
 Current local Python: ../../work/ml-venv/bin/python from repo, Python3.12.14,

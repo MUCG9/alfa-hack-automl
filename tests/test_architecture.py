@@ -13,13 +13,15 @@ class ArchitectureTests(unittest.TestCase):
             for node in ast.walk(ast.parse(path.read_text())):
                 if not isinstance(node,ast.ImportFrom) or not node.module or not node.module.startswith('automl.'): continue
                 parts=node.module.split('.')
-                if parts[1] in {'task_understanding','evaluation','search','execution','publishing'} and parts[1]!=own:
+                if parts[1] in {'task_understanding','evaluation','search','execution','publishing','error_analysis'} and parts[1]!=own:
                     self.assertEqual(parts[-1],'api',f'{path}: private import {node.module}')
     def test_contracts_have_no_model_data_or_client_dependencies(self):
-        path=ROOT/'src/automl/contracts/messages.py'
-        for node in ast.walk(ast.parse(path.read_text())):
-            if isinstance(node,ast.Import):
-                self.assertTrue(all(n.name.split('.')[0] not in {'numpy','pandas','openai','lightgbm','xgboost','catboost','automl'} for n in node.names))
+        for path in (ROOT/'src/automl/contracts').rglob('*.py'):
+            for node in ast.walk(ast.parse(path.read_text())):
+                modules=[n.name for n in node.names] if isinstance(node,ast.Import) else [node.module] if isinstance(node,ast.ImportFrom) else []
+                for module in modules:
+                    self.assertTrue(module and (module.split('.')[0] in sys.stdlib_module_names or module.startswith('automl.contracts.')),
+                                    f'{path}: non-contract dependency {module}')
     def test_split_rejects_overlap_duplicates_and_bounds(self):
         SplitPlan((0,1),(2,3)).validate(4)
         for plan in [SplitPlan((0,1),(1,2)),SplitPlan((0,0),(1,)),SplitPlan((0,),(4,))]:

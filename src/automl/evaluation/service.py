@@ -2,9 +2,59 @@ from pathlib import Path
 import re,json,hashlib
 import numpy as np
 import pandas as pd
-from sklearn.metrics import accuracy_score,f1_score,log_loss,mean_absolute_error,mean_squared_error,r2_score,roc_auc_score
-from sklearn.model_selection import StratifiedGroupKFold,train_test_split
+from sklearn.metrics import accuracy_score,f1_score,log_loss,mean_absolute_error,mean_squared_error,r2_score,roc_auc_score,precision_recall_fscore_support,confusion_matrix
+from sklearn.model_selection import StratifiedGroupKFold,StratifiedKFold,GroupKFold,KFold,train_test_split
+
+
+def make_folds(spec,train,hashes,n_splits=5,seed=42):
+    """Explicit full-CV mode; legacy make_split and its hashes remain unchanged."""
+    if spec.get('validation_strategy')=='time': raise ValueError('Time tasks require forward backtests, not exact-coverage random OOF')
+    if not 2<=n_splits<=5: raise ValueError('CV requires 2..5 folds')
+    y=train[spec['target']]; positions=np.arange(len(train))
+    grouped=pd.Series(hashes).duplicated().any()
+    if spec['kind']=='classification':
+        counts=pd.DataFrame({'y':y.to_numpy(),'h':hashes}).groupby('y')['h'].nunique() if grouped else y.value_counts()
+        n_splits=min(n_splits,int(counts.min()))
+        if n_splits<2: raise ValueError('Too few independent groups per class for full CV')
+        splitter=StratifiedGroupKFold(n_splits=n_splits,shuffle=True,random_state=seed) if grouped else StratifiedKFold(n_splits=n_splits,shuffle=True,random_state=seed)
+    else:
+        n_splits=min(n_splits,len(np.unique(hashes)))
+        if n_splits<2: raise ValueError('Too few groups for full CV')
+        splitter=GroupKFold(n_splits=n_splits) if grouped else KFold(n_splits=n_splits,shuffle=True,random_state=seed)
+    folds=[]; coverage=np.zeros(len(train),dtype=int)
+    for fold,(tr,va) in enumerate(splitter.split(positions,y,groups=hashes if grouped else None)):
+        if grouped and set(hashes[tr])&set(hashes[va]): raise ValueError('CV group overlap')
+        if spec['kind']=='classification' and set(y.iloc[tr])!=set(y): raise ValueError('CV training fold missing classes')
+        coverage[va]+=1
+        info={'method':type(splitter).__name__,'fold':fold,'n_splits':n_splits,'seed':seed,
+              'train_rows':len(tr),'validation_rows':len(va),'shared_feature_hashes':len(set(hashes[tr])&set(hashes[va])),
+              'split_sha256':hashlib.sha256(np.asarray(tr,dtype='<i8').tobytes()+np.asarray(va,dtype='<i8').tobytes()).hexdigest(),
+              'validation_class_counts':y.iloc[va].value_counts().to_dict() if spec['kind']=='classification' else None}
+        if spec['kind']=='classification':
+            info['validation_missing_classes']=sorted(map(str,set(y)-set(y.iloc[va])))
+        folds.append((tr,va,info))
+    if not np.all(coverage==1): raise ValueError('OOF coverage must be exactly once')
+    return folds
+
+def make_time_split(spec,train,offset=0):
+    column=spec.get('time_column') or (spec.get('time_candidate') or {}).get('column')
+    if column not in spec['features']: raise ValueError('Time column must be an input feature')
+    values=pd.to_numeric(train[column],errors='coerce')
+    if values.isna().any() or not np.isfinite(values.to_numpy(dtype=float)).all():
+        raise ValueError('Time split requires complete finite numeric observation periods')
+    periods=np.sort(values.unique())
+    if not 0<=offset<len(periods)-1: raise ValueError('Insufficient history for requested backtest')
+    cut=periods[-1-offset]
+    tr=np.flatnonzero((values<cut).to_numpy()); va=np.flatnonzero((values==cut).to_numpy())
+    if spec['kind']=='classification' and set(train[spec['target']].iloc[va])-set(train[spec['target']].iloc[tr]):
+        raise ValueError('Time validation contains a class absent from history')
+    signature=hashlib.sha256(np.asarray(tr,dtype='<i8').tobytes()+np.asarray(va,dtype='<i8').tobytes()).hexdigest()
+    return tr,va,{'method':'forward_observation_period','time_column':column,'cut':float(cut),'offset':offset,
+                 'train_rows':len(tr),'validation_rows':len(va),'excluded_future_rows':int((values>cut).sum()),'split_sha256':signature}
+
+
 def make_split(spec, train, hashes, seed=42):
+    if spec.get('validation_strategy')=='time': return make_time_split(spec,train)
     positions = np.arange(len(train))
     kind = spec['kind']
     y = train[spec['target']]
@@ -47,6 +97,9 @@ def evaluate(y, pred, kind, metric, proba=None, classes=None):
                 'accuracy':float(accuracy_score(y,pred)),
                 'per_class_f1':{str(c):float(v) for c,v in zip(
                     labels,f1_score(y,pred,labels=labels,average=None,zero_division=0))}}
+        precision,recall,_,support=precision_recall_fscore_support(y,pred,labels=labels,zero_division=0)
+        values['per_class_diagnostics']={str(c):{'precision':float(p),'recall':float(r),'support':int(n)} for c,p,r,n in zip(labels,precision,recall,support)}
+        values['confusion_matrix']={'classes':list(map(str,labels)),'counts':confusion_matrix(y,pred,labels=labels).tolist()}
         if proba is not None:
             try:
                 values['log_loss']=float(log_loss(y,proba,labels=classes))

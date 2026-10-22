@@ -2,6 +2,24 @@ from pathlib import Path
 import re,json,hashlib
 import numpy as np
 import pandas as pd
+
+
+def infer_time_candidate(dictionary,train,test,features):
+    """Conservative observation-period detection, without dataset-specific names."""
+    candidates=[]
+    for row in dictionary.to_dict(orient='records'):
+        column=row.get('feature')
+        if column not in features: continue
+        description=' '.join(str(row.get(k,'')) for k in ['feature','role','dtype','description_ru','description']).lower()
+        if not re.search(r'year|period|timestamp|date|период|год.*наблюд|времен',description): continue
+        if re.search(r'built|construction|построй|возраст|duration|длитель',description): continue
+        a=pd.to_numeric(train[column],errors='coerce'); b=pd.to_numeric(test[column],errors='coerce')
+        if a.isna().any() or b.isna().any() or not len(b): continue
+        if not np.isfinite(a.to_numpy(dtype=float)).all() or not np.isfinite(b.to_numpy(dtype=float)).all(): continue
+        if 3<=a.nunique()<=100 and b.min()>a.max():
+            candidates.append({'column':column,'reason':'Documented observation period; entire test range follows training range',
+                               'train_min':float(a.min()),'train_max':float(a.max()),'test_min':float(b.min()),'test_max':float(b.max())})
+    return candidates[0] if len(candidates)==1 else None
 def find_input(root: Path, name: str, text: str) -> Path:
     matches = re.findall(r'`([^`\n]*' + re.escape(name) + r')`', text)
     for match in matches:
@@ -112,6 +130,9 @@ def discover(task_path: Path):
         'duplicate_feature_rate': dup_rate,
         'text_features': text_features,
         'classes': classes, 'prediction_type':prediction_type,'output_columns':output_columns,
+        'categorical_features': [str(row['feature']) for row in dictionary.to_dict(orient='records')
+                                 if str(row.get('dtype','')).lower() in {'category','categorical'} and row['feature'] in features],
+        'time_candidate':infer_time_candidate(dictionary,train,test,features),
     }
     profile = {
         'kind': kind, 'metric': metric, 'rows': len(train), 'test_rows': len(test),

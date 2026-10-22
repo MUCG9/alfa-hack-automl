@@ -12,9 +12,10 @@ import psutil
 from automl.infrastructure.atomic import atomic_json
 from automl.infrastructure.llm_gateway import request_json
 from automl.infrastructure.resources import ResourceBudget
+from automl.infrastructure.processes import ProcessTree
 from automl.contracts.messages import TaskSpec,ExperimentRequest
 from automl.task_understanding.api import discover
-from automl.evaluation.api import evaluate,make_split
+from automl.evaluation.api import evaluate,make_split,make_time_split
 from automl.publishing.api import dummy_predictions,save_submission,checkpoint
 from automl.search.policy import parse_plans,portfolio,fallback,signature
 from automl.execution.api import read_cache,combine,materialize
@@ -31,6 +32,20 @@ max_depth -1 or 4..12, min_child_samples 10..120, reg_lambda 0..30, reg_alpha 0.
 subsample .7..1, colsample_bytree .7..1, class_weight_power 0..1 (0=none,.5=mild,1=inverse frequency),
 calibrate true/false (Macro F1 decision rule only), min_iterations 1..200,
 generic_features none/missing/skew/both, log_target true/false (non-negative regression only).
+Optional parameters: multiclass_strategy softmax/ova for LightGBM multiclass;
+calibration_folds 1 or 3 (training-only OOF decision tuning, costs extra fits);
+categorical_from_dictionary true/false; target_encoding true/false for tree models.
+Target encoding is group-cross-fitted within fitting rows, unlike feature_code statistics.
+When enabled, target_encoding_smoothing .5..100 and target_encoding_groups (at most
+three lists of 2..6 supplied feature names) can add smoothed historical/context means.
+For future-period tasks consider semantically stable entity/context attributes;
+never use target/ID columns or an assumed entity ID. Keep these groups small and test them.
+Alternatively target_encoding_auto_groups=true discovers recurring contexts across
+training periods without using test rows or target labels; it needs a detected time hint.
+target_encoding_counts=true adds cross-fitted context support counts;
+target_encoding_half_life 0..10 (0=disabled) can weight recent observed periods more.
+Linear text options: text_classifier sgd/logistic, text_C .01..100,
+text_alpha 1e-7..1e-2, text_svd_components 0/32/64/128, text_char_features boolean.
 To transform the regression target set params.log_target=true; the engine handles the inverse.
 NEVER reference the target or ID inside feature_code, even guarded by `if column in df`.
 CatBoost depth 4..8,l2_leaf_reg 1..30.
@@ -70,7 +85,10 @@ def planner_context(spec,profile,text,split_info,records,best,remaining,round_nu
             'allowed_feature_columns':spec['features'],'forbidden_feature_columns':[spec['target'],spec['id']],
             'data_summary':{k:v for k,v in profile.items() if k not in {'dictionary','features'}},
             'features':profile['features'],
-            'column_descriptions':[{'feature':r.get('feature'),'description':str(r.get('description',''))[:180]} for r in profile.get('dictionary',[]) if r.get('description')],
+            'column_descriptions':[{'feature':r.get('feature'),'dtype':r.get('dtype'),'unit':r.get('unit'),
+                'description':str(r.get('description') or r.get('description_ru') or '')[:180]}
+                for r in profile.get('dictionary',[]) if r.get('description') or r.get('description_ru')],
+            'validation_hint':spec.get('time_candidate'),
             'split':split_info,'remaining_seconds':int(remaining),'task_excerpt':text[:4500]}
 
 def llm_plan(context,root,max_output=16384,timeout=300):
@@ -90,11 +108,13 @@ def run_worker(spec,recipe,run_dir,split_path,timeout,full_fit=False,fit_iterati
     job_path=run_dir/'job.json'; atomic_json(job_path,job)
     env={k:v for k,v in os.environ.items() if not any(s in k.upper() for s in ['KEY','TOKEN','SECRET','PROXY','PASSWORD','PASSWD','AUTH'])}
     env.update(PYTHONIOENCODING='utf-8',MPLCONFIGDIR=str(run_dir/'mpl-cache'))
-    started=time.monotonic(); killed=None; peak=0; peak_total=0; budget=ResourceBudget()
+    started=time.monotonic(); killed=None; peak=0; peak_total=0; budget=ResourceBudget(); tree=None
     try:
         with (run_dir/'worker.log').open('w',encoding='utf-8') as log:
             process=subprocess.Popen([sys.executable,'-u',str(worker_entrypoint()),str(job_path)],cwd=spec['root'],env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+            tree=ProcessTree(process)
             while process.poll() is None:
+                tree.refresh()
                 if time.monotonic()-started>max(1,timeout): killed='timeout'
                 try:
                     limit,rss,total=budget.inspect(process.pid,run_dir)
@@ -103,20 +123,22 @@ def run_worker(spec,recipe,run_dir,split_path,timeout,full_fit=False,fit_iterati
                     if limit: killed=limit
                 except (psutil.NoSuchProcess,psutil.AccessDenied): pass
                 if killed:
-                    os.killpg(process.pid,signal.SIGTERM)
-                    try: process.wait(timeout=5)
-                    except subprocess.TimeoutExpired:
-                        os.killpg(process.pid,signal.SIGKILL); process.wait()
+                    tree.terminate()
                     break
                 time.sleep(.5)
         if killed: result={'status':killed,'wall_seconds':round(time.monotonic()-started,3)}
-        elif (run_dir/'result.json').exists(): result=json.loads((run_dir/'result.json').read_text())
+        elif process.returncode==0 and (run_dir/'result.json').exists(): result=json.loads((run_dir/'result.json').read_text())
+        elif (run_dir/'result.json').exists():
+            result=json.loads((run_dir/'result.json').read_text())
+            result.update(status='error',exit_code=process.returncode)
         else: result={'status':'error','exit_code':process.returncode}
         result.update(recipe=recipe,output_dir=str(run_dir),observed_process_tree_peak_mb=round(peak/2**20,1),
                       observed_total_peak_mb=round(peak_total/2**20,1),artifact_bytes=budget.inspect_artifacts(run_dir))
         return result
     except Exception as exc:
         return {'status':'error','exception_type':type(exc).__name__,'recipe':recipe,'output_dir':str(run_dir)}
+    finally:
+        if tree is not None: tree.terminate()
 
 def ordered(records,spec):
     valid=[r for r in records if r['status']=='ok' and r.get('metrics') and np.isfinite(r['metrics'].get(spec['metric'],np.nan))]
@@ -150,16 +172,25 @@ def journal(runs,phase,record,metric,decision):
         if not exists: writer.writeheader()
         writer.writerow(row)
 
-def main():
+def _main():
     parser=argparse.ArgumentParser()
     parser.add_argument('task',type=Path,nargs='?',default=Path('task.md'))
     parser.add_argument('--time-budget',type=int,default=9900)
     parser.add_argument('--max-experiments',type=int,default=12)
     parser.add_argument('--max-planner-calls',type=int,default=4)
     parser.add_argument('--offline',action='store_true')
+    parser.add_argument('--validation-strategy',choices=['legacy','auto'],default='auto')
     parser.add_argument('--run-name',default='run-v2')
     args=parser.parse_args(); started=time.monotonic(); deadline=started+args.time_budget
     spec,profile,train,test,sample,text,hashes=discover(args.task)
+    if args.validation_strategy=='auto' and spec.get('time_candidate'):
+        temporal=dict(spec,validation_strategy='time',time_column=spec['time_candidate']['column'])
+        try:
+            make_time_split(temporal,train)
+        except ValueError as exc:
+            spec['validation_warning']='Forward split unavailable: '+str(exc)[:250]
+        else:
+            spec=temporal
     TaskSpec.from_legacy(spec)
     root=Path(spec['root']); runs=root/'automl_runs'/args.run_name
     if runs.exists() and any(runs.iterdir()):
@@ -209,15 +240,19 @@ def main():
     confirmations=[]; selection=[]; chosen=best; fit_iterations=best.get('fit_iterations') if best else None
     ranked=ordered(records,spec); confirmation_split=None
     if len(ranked)>1 and deadline-time.monotonic()>reserve+90:
-        tr2,va2,info=make_split(spec,train,hashes,seed=43)
-        confirmation_split=runs/'confirmation_split.npz'; np.savez(confirmation_split,train=tr2,validation=va2)
-        atomic_json(runs/'confirmation_split.json',info)
+        try:
+            tr2,va2,info=make_time_split(spec,train,offset=1) if spec.get('validation_strategy')=='time' else make_split(spec,train,hashes,seed=43)
+        except ValueError as exc:
+            atomic_json(runs/'confirmation_unavailable.json',{'reason':str(exc)[:300]})
+        else:
+            confirmation_split=runs/'confirmation_split.npz'; np.savez(confirmation_split,train=tr2,validation=va2)
+            atomic_json(runs/'confirmation_split.json',info)
         confirm_candidates=ranked[:2]
         if len(ranked)>2:
             families={r['recipe']['engine'] for r in confirm_candidates}
             extra=next((r for r in ranked[2:] if r['recipe']['engine'] not in families),ranked[2]) if len(families)==1 else ranked[2]
             confirm_candidates.append(extra)
-        for index,candidate in enumerate(confirm_candidates):
+        for index,candidate in enumerate(confirm_candidates if confirmation_split is not None else []):
             if deadline-time.monotonic()<reserve+30: break
             result=run_worker(spec,candidate['recipe'],runs/f'confirmation-{index}',confirmation_split,min(900,max(5,deadline-time.monotonic()-reserve)))
             confirmations.append(result)
@@ -263,7 +298,7 @@ def main():
         journal(runs,'full_refit',final,spec['metric'],'export' if final_status=='ok' else 'preserve_checkpoint')
         if final_status=='ok': checkpoint(final,output)
     integrity_ok=file_fingerprints(protected_paths)==fingerprints
-    report={'version':'v3-modular-augmentation','spec':spec,'split':split_info,'dummy_baseline':baseline,'experiments':records,'llm_calls':calls,
+    report={'version':'v4-quality-research','spec':spec,'split':split_info,'dummy_baseline':baseline,'experiments':records,'llm_calls':calls,
         'confirmations':confirmations,'selection':[{'mean':s['mean'],'recipe':s['candidate']['recipe']} for s in selection],
         'ensemble':ensemble_result,'blend_trials':blend_trials,'best_validation':chosen['metrics'] if chosen else None,'selected_recipe':chosen['recipe'] if chosen else None,
         'final_fit_iterations':fit_iterations,'final_fit_status':final_status,'elapsed_seconds':round(time.monotonic()-started,3),
@@ -273,5 +308,14 @@ def main():
     atomic_json(runs/'report.json',report)
     if not integrity_ok: raise RuntimeError('Protected inputs or evaluator/source changed during the run; do not trust its metrics')
     print(json.dumps({k:v for k,v in report.items() if k in {'version','best_validation','final_fit_status','elapsed_seconds','submission_sha256'}},ensure_ascii=False,indent=2),flush=True)
+
+def main():
+    def interrupted(signum,frame):
+        raise SystemExit(128+signum)
+    previous=signal.signal(signal.SIGTERM,interrupted)
+    try:
+        return _main()
+    finally:
+        signal.signal(signal.SIGTERM,previous)
 
 if __name__=='__main__': main()

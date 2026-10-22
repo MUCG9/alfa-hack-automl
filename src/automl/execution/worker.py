@@ -14,13 +14,14 @@ from sklearn.model_selection import train_test_split
 from threadpoolctl import threadpool_limits
 
 from automl.infrastructure.atomic import atomic_json
-from automl.evaluation.api import evaluate,make_split
+from automl.evaluation.api import evaluate,make_split,make_folds
 from automl.publishing.api import save_submission
 from automl.execution.model_adapters.registry import make_model,fit_options,selected_iterations,CAPABILITIES
-from automl.execution.weighting.classes import sample_weights
+from automl.execution.weighting.classes import sample_weights,number
 from automl.evaluation.api import lgbm_metric,tune_class_factors,adjusted_probabilities
 from automl.execution.feature_engineering.transforms import feature_transform,generic_features
 from automl.execution.preprocessing.frames import prepare_frames
+from automl.execution.preprocessing.target_encoding import target_encode_frames,infer_history_groups
 from automl.execution.model_adapters.linear_text import linear_text_fit
 from automl.contracts.messages import DataPolicy,SplitPlan,PredictionBundle
 from dataclasses import asdict
@@ -115,7 +116,12 @@ def run(job):
     y=train[spec['target']]
     if spec['kind']=='classification':
         y=y.astype(str)
-    train_x,test_x=feature_transform(recipe.get('feature_code',''),train[spec['features']],test[spec['features']],(spec['target'],spec['id']))
+    train_x,test_x=train[spec['features']].copy(),test[spec['features']].copy()
+    if recipe.get('params',{}).get('categorical_from_dictionary',False):
+        for column in spec.get('categorical_features',[]):
+            for frame in [train_x,test_x]:
+                frame[column]=frame[column].fillna('__MISSING__').astype(str)
+    train_x,test_x=feature_transform(recipe.get('feature_code',''),train_x,test_x,(spec['target'],spec['id']))
     # Numeric target and IDs are never passed into generated code.
     if spec['target'] in train_x or spec['id'] in train_x:
         raise ValueError('Feature code reintroduced target or ID')
@@ -142,67 +148,104 @@ def run(job):
         print(json.dumps({'status':'ok','metrics':metrics,'wall_seconds':record['wall_seconds']}),flush=True)
         return
     fit_tr=np.arange(len(train)) if full else tr
-    train_x,test_x=generic_features(train_x,test_x,fit_tr,recipe.get('params',{}).get('generic_features','none'))
-    train_x,test_x,categorical=prepare_frames(train_x,test_x,recipe['engine'],fit_tr)
+    raw_train_x,raw_test_x=train_x,test_x
     iterations=int(np.clip(job.get('fit_iterations',recipe.get('params',{}).get('iterations',800)),30,3000))
-    model=make_model(dict(recipe,metric=spec['metric']),spec['kind'],job['threads'],iterations)
+    model_recipe=dict(recipe,metric=spec['metric'],n_classes=len(spec.get('classes') or []))
+    model=make_model(model_recipe,spec['kind'],job['threads'],iterations)
     target_log=bool(recipe.get('params',{}).get('log_target',False)) and spec['kind']=='regression' and float(y.iloc[fit_tr].min())>=0
     fit_y=np.log1p(y) if target_log else y
     policy_records=[]
     source_hashes=pd.util.hash_pandas_object(train[spec['features']],index=False).to_numpy(dtype='uint64')
     def fit_on_rows(estimator,rows,validation_rows=None):
+        # Refit all learned preprocessing for this partition, including inner fits.
+        prepared_x,prepared_test=generic_features(raw_train_x,raw_test_x,rows,recipe.get('params',{}).get('generic_features','none'))
+        encoding_groups=None
+        if recipe.get('params',{}).get('target_encoding',False):
+            encoding_params=recipe.get('params',{})
+            encoding_groups=encoding_params.get('target_encoding_groups')
+            if encoding_params.get('target_encoding_auto_groups',False):
+                if encoding_groups: raise ValueError('Choose explicit groups or automatic history groups, not both')
+                encoding_groups=infer_history_groups(prepared_x[spec['features']],rows,spec.get('time_column') or (spec.get('time_candidate') or {}).get('column'),
+                                                     spec.get('categorical_features',[]),refine=encoding_params.get('target_encoding_refine_groups',False))
+            prepared_x,prepared_test=target_encode_frames(prepared_x,prepared_test,y,rows,source_hashes,spec.get('classes'),
+                smoothing=number(encoding_params,'target_encoding_smoothing',20,.5,100),groups=encoding_groups,add_counts=encoding_params.get('target_encoding_counts',False),
+                half_life=number(encoding_params,'target_encoding_half_life',0,0,10),time_column=spec.get('time_column') or (spec.get('time_candidate') or {}).get('column'))
+        prepared_x,prepared_test,categorical=prepare_frames(prepared_x,prepared_test,recipe['engine'],rows)
         kwargs={}
         weights=None
         if spec['kind']=='classification':
             weights=sample_weights(y.iloc[rows],recipe.get('params',{}))
         fit_x,targets,weights,parents,policy_record=prepare_training(
-            train_x.iloc[rows],fit_y.iloc[rows],y.iloc[rows],weights,source_hashes[rows],rows,
+            prepared_x.iloc[rows],fit_y.iloc[rows],y.iloc[rows],weights,source_hashes[rows],rows,
             recipe.get('data_policy'),spec['kind'],recipe['engine'])
         policy_records.append(policy_record)
+        if encoding_groups is not None: policy_record['target_encoding_groups']=encoding_groups
         if not data_policy.is_noop:
             provenance_path=Path(job['output_dir'])/f'fit-parents-{len(policy_records)}.npz'
             np.savez_compressed(provenance_path,parent_rows=parents)
             policy_record['parent_rows_artifact']=str(provenance_path)
         if validation_rows is not None and set(parents)&set(validation_rows): raise ValueError('Augmentation parent crosses validation boundary')
         if weights is not None: kwargs['sample_weight']=weights
-        kwargs.update(fit_options(recipe['engine'],spec,recipe,train_x,fit_y,validation_rows,categorical,target_log))
+        kwargs.update(fit_options(recipe['engine'],spec,recipe,prepared_x,fit_y,validation_rows,categorical,target_log))
         estimator.fit(fit_x,targets,**kwargs)
-        return estimator
+        return prepared_x,prepared_test
     class_factors={}
     calibration_status='disabled'
     nested=bool(recipe.get('params',{}).get('nested_stopping',False)) and not full and CAPABILITIES[recipe['engine']]['nested_stopping']
     calibrate=spec['kind']=='classification' and spec['metric']=='macro_f1' and CAPABILITIES[recipe['engine']]['macro_f1_calibration'] and recipe.get('params',{}).get('calibrate',False)
     early_stopping_source='full_refit' if full else 'outer_search_holdout'
     inner_split=None
+    inner_split_error=None
+    calibration_folds=[]
     if nested or calibrate:
         # Neither stopping nor calibration sees the outer validation labels.
         inner_train=train.iloc[fit_tr].reset_index(drop=True)
         inner_hashes=pd.util.hash_pandas_object(inner_train[spec['features']],index=False).to_numpy(dtype='uint64')
         try:
             inner_tr,inner_va,inner_split=make_split(spec,inner_train,inner_hashes,seed=73)
+        except ValueError as exc:
+            # Only a split failure can trigger this fallback; fit errors propagate.
+            inner_split_error=str(exc)[:300]
+            calibration_status='skipped_unavailable_inner_split' if calibrate else 'disabled'
+            if nested: early_stopping_source='fixed_iterations_split_fallback'
+        else:
             inner_tr=fit_tr[inner_tr]; inner_va=fit_tr[inner_va]
-            inner_model=make_model(dict(recipe,metric=spec['metric']),spec['kind'],job['threads'],iterations)
+            inner_model=make_model(model_recipe,spec['kind'],job['threads'],iterations)
             with threadpool_limits(limits=job['threads']):
-                fit_on_rows(inner_model,inner_tr,inner_va if nested else None)
+                inner_x,_=fit_on_rows(inner_model,inner_tr,inner_va if nested else None)
             if nested:
                 selected=selected_iterations(recipe['engine'],inner_model)
                 if selected and selected>0:
                     floor=int(np.clip(recipe.get('params',{}).get('min_iterations',1),1,iterations))
                     iterations=max(floor,int(selected))
-                model=make_model(dict(recipe,metric=spec['metric']),spec['kind'],job['threads'],iterations)
+                model=make_model(model_recipe,spec['kind'],job['threads'],iterations)
                 early_stopping_source='inner_training_holdout'
             if calibrate:
                 with threadpool_limits(limits=job['threads']):
                     if nested and selected and int(selected)!=iterations:
-                        inner_model=make_model(dict(recipe,metric=spec['metric']),spec['kind'],job['threads'],iterations)
-                        fit_on_rows(inner_model,inner_tr,None)
-                    class_factors=tune_class_factors(y.iloc[inner_va],inner_model.predict_proba(train_x.iloc[inner_va]),inner_model.classes_)
+                        inner_model=make_model(model_recipe,spec['kind'],job['threads'],iterations)
+                        inner_x,_=fit_on_rows(inner_model,inner_tr,None)
+                    class_factors=tune_class_factors(y.iloc[inner_va],inner_model.predict_proba(inner_x.iloc[inner_va]),inner_model.classes_)
                     calibration_status='inner_training_holdout_matching_iterations'
+    if calibrate and int(recipe.get('params',{}).get('calibration_folds',1))>1:
+        fit_frame=train.iloc[fit_tr].reset_index(drop=True)
+        try:
+            folds=make_folds(spec,fit_frame,source_hashes[fit_tr],int(np.clip(recipe['params']['calibration_folds'],2,3)),73)
         except ValueError:
-            calibration_status='skipped_rare_classes' if calibrate else 'disabled'
-            if nested: early_stopping_source='fixed_iterations_rare_class_fallback'
+            folds=[]
+        if folds:
+            probabilities=np.zeros((len(fit_tr),len(spec['classes'])))
+            for local_tr,local_va,info in folds:
+                local_model=make_model(model_recipe,spec['kind'],job['threads'],iterations)
+                with threadpool_limits(limits=job['threads']):
+                    local_x,_=fit_on_rows(local_model,fit_tr[local_tr],None)
+                    order=[list(map(str,local_model.classes_)).index(c) for c in spec['classes']]
+                    probabilities[local_va]=local_model.predict_proba(local_x.iloc[fit_tr[local_va]])[:,order]
+                calibration_folds.append(info)
+            class_factors=tune_class_factors(y.iloc[fit_tr],probabilities,spec['classes'])
+            calibration_status='training_oof_matching_iterations'
     with threadpool_limits(limits=job['threads']):
-        fit_on_rows(model,fit_tr,None if full or nested else va)
+        train_x,test_x=fit_on_rows(model,fit_tr,None if full or nested else va)
         pred=np.asarray(model.predict(test_x)).reshape(-1)
         if target_log:
             pred=np.expm1(pred)
@@ -244,7 +287,9 @@ def run(job):
             'data_policy_runs':policy_records,
             'prediction_bundle':asdict(PredictionBundle(str(output_dir/'submission.csv'),len(test),tuple(sample.columns),tuple(spec.get('classes') or []))),
             'calibration_status':calibration_status,'class_factors':class_factors,
-            'early_stopping_source':early_stopping_source,'inner_split':inner_split,
+            'calibration_folds':calibration_folds,
+            'specialist_pairs':getattr(model,'specialist_pairs_',[]),
+            'early_stopping_source':early_stopping_source,'inner_split':inner_split,'inner_split_error':inner_split_error,
             'important_features':important_features,
             'fit_iterations':int(best_iteration),'feature_count':len(train_x.columns),
             'feature_names':list(train_x.columns),'wall_seconds':round(time.monotonic()-start,3),

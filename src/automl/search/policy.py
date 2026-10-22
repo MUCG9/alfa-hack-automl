@@ -8,7 +8,7 @@ ENGINES=set(CAPABILITIES)
 PARAMETERS={'iterations','depth','max_depth','learning_rate','num_leaves','min_child_samples',
  'reg_lambda','reg_alpha','l2_leaf_reg','random_strength','class_weights','class_weight_power',
  'subsample','subsample_freq','colsample_bytree','seed','log_target','generic_features','calibrate',
- 'min_samples_leaf','max_features','text_alpha','text_char_features','min_iterations','min_child_weight','gamma','max_bin'}
+ 'min_samples_leaf','max_features','text_alpha','text_char_features','text_svd_components','text_classifier','text_C','min_iterations','min_child_weight','gamma','max_bin','categorical_from_dictionary','multiclass_strategy','target_encoding','calibration_folds','target_encoding_groups','target_encoding_smoothing','target_encoding_auto_groups','target_encoding_refine_groups','target_encoding_counts','target_encoding_half_life','pair_refinement'}
 
 def signature(recipe):
     actual={k:recipe.get(k) for k in ['engine','params','feature_code','components','weights','data_policy'] if k in recipe}
@@ -25,10 +25,24 @@ def normalize(candidate,best=None):
     if not isinstance(params,dict): raise ValueError('params must be an object')
     inherited=best.get('params',{}).copy() if best and best['engine']==candidate['engine'] else {}
     inherited.update({k:v for k,v in params.items() if k in PARAMETERS})
+    if params.get('target_encoding_groups') or params.get('target_encoding_auto_groups'):
+        if params.get('target_encoding') is False: raise ValueError('Encoding groups require target_encoding')
+        inherited['target_encoding']=True
+    if params.get('target_encoding_groups') and 'target_encoding_auto_groups' not in params:
+        inherited['target_encoding_auto_groups']=False
+    if params.get('target_encoding_auto_groups') and 'target_encoding_groups' not in params:
+        inherited.pop('target_encoding_groups',None)
+    if inherited.get('target_encoding_groups') and inherited.get('target_encoding_auto_groups'):
+        raise ValueError('Choose explicit or automatic encoding groups')
+    if 'target_encoding_groups' in inherited:
+        groups=inherited['target_encoding_groups']
+        if not isinstance(groups,list) or len(groups)>3 or any(not isinstance(g,list) or not 2<=len(g)<=6 or any(not isinstance(c,str) for c in g) for g in groups):
+            raise ValueError('Invalid target encoding feature groups')
     if 'class_weights' in params and 'class_weight_power' not in params:
         inherited['class_weight_power']=1. if params['class_weights'] else 0.
         inherited.pop('class_weights',None)
     if candidate['engine']=='lightgbm':
+        if inherited.get('multiclass_strategy','softmax') not in {'softmax','ova'}: raise ValueError('Unsupported multiclass strategy')
         if 'depth' in params and 'max_depth' not in params: inherited['max_depth']=params['depth']
         inherited.pop('depth',None)
         if 'subsample' in params and 'subsample_freq' not in params:
@@ -40,6 +54,7 @@ def normalize(candidate,best=None):
     inherited=effective_parameters(candidate['engine'],inherited)
     policy=DataPolicy.parse(candidate.get('data_policy',best.get('data_policy') if best and best['engine']==candidate['engine'] else None))
     if candidate['engine']=='linear_text' and not policy.is_noop: raise ValueError('Text recipes require noop data policy')
+    if candidate['engine']=='linear_text' and inherited.get('target_encoding'): raise ValueError('Target encoding for text recipes is not supported')
     result={'hypothesis':str(candidate.get('hypothesis','Planner hypothesis'))[:1000],
             'engine':candidate['engine'],'params':inherited,'feature_code':code}
     if not policy.is_noop: result['data_policy']=policy.to_dict()
@@ -70,12 +85,21 @@ def portfolio(spec):
         return [normalize({'engine':'linear_text','hypothesis':'Bounded TF-IDF baseline','params':{'class_weight_power':.5,'text_alpha':1e-5}}),
                 normalize({'engine':'linear_text','hypothesis':'Character n-gram robustness','params':{'class_weight_power':.5,'text_char_features':True,'text_alpha':3e-5}})]
     if spec['kind']=='regression':
-        return [normalize({'engine':'lightgbm','hypothesis':'Stronger regularized CPU baseline','params':dict(common,iterations=1600,learning_rate=.035,num_leaves=127,reg_lambda=8,generic_features='missing')}),
+        recipes=[normalize({'engine':'lightgbm','hypothesis':'Stronger regularized CPU baseline','params':dict(common,iterations=1600,learning_rate=.035,num_leaves=127,reg_lambda=8,generic_features='missing')}),
                 normalize({'engine':'lightgbm','hypothesis':'Higher-leaf capacity with fixed regularization','params':dict(common,iterations=1600,learning_rate=.035,num_leaves=255,reg_lambda=8,generic_features='missing')}),
                 normalize({'engine':'xgboost','hypothesis':'Independent histogram-boosting family','params':{'iterations':1800,'learning_rate':.035,'max_depth':8,'min_child_weight':3,'subsample':.85,'colsample_bytree':.9,'reg_lambda':8,'reg_alpha':.1}}),
                 normalize({'engine':'catboost','hypothesis':'Bounded native-category pilot','params':{'iterations':600,'depth':6,'learning_rate':.07,'l2_leaf_reg':5}}),
                 normalize({'engine':'xgboost','hypothesis':'Controlled deeper histogram capacity; no data augmentation','params':{'iterations':2200,'learning_rate':.03,'max_depth':10,'min_child_weight':2,'subsample':.85,'colsample_bytree':.9,'reg_lambda':6,'reg_alpha':.1,'seed':48}}),
                 normalize({'engine':'xgboost','hypothesis':'Paired missingness robustness trial; selection must beat unchanged fitting rows','params':{'iterations':2200,'learning_rate':.03,'max_depth':10,'min_child_weight':2,'subsample':.85,'colsample_bytree':.9,'reg_lambda':6,'reg_alpha':.1,'seed':48},'data_policy':{'augmentation':'mask','copy_fraction':.25,'mask_probability':.15,'synthetic_weight':.5}})]
+        if spec.get('validation_strategy')=='time':
+            history=dict(recipes[0],params=dict(recipes[0]['params'],target_encoding=True,target_encoding_auto_groups=True,target_encoding_smoothing=2),
+                         hypothesis='Recurring training contexts transfer to the next observation period; verify forward backtests')
+            history_log=dict(history,params=dict(history['params'],log_target=True),
+                             hypothesis='Log-target history model is a separate candidate; compare both forward backtests')
+            conservative=dict(recipes[0],params=dict(recipes[0]['params'],num_leaves=31,min_child_samples=100,reg_lambda=15),
+                              hypothesis='Reduce capacity under a documented future-period shift')
+            recipes=[normalize(history),normalize(history_log),normalize(conservative)]+recipes
+        return recipes
     return [normalize({'engine':'lightgbm','hypothesis':'Higher-capacity mild-weight model','params':dict(common,class_weight_power=.5)}),
             normalize({'engine':'lightgbm','hypothesis':'Iteration-matched inner decision calibration','params':dict(common,class_weight_power=.5,calibrate=True)}),
             normalize({'engine':'xgboost','hypothesis':'Independent histogram-boosting family','params':{'iterations':1800,'learning_rate':.035,'max_depth':6,'min_child_weight':3,'subsample':.85,'colsample_bytree':.9,'reg_lambda':8,'reg_alpha':.1,'class_weight_power':.5,'min_iterations':50}}),

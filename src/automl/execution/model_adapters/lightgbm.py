@@ -28,4 +28,12 @@ def create_model(recipe,kind,threads,iterations):
                 min_child_samples=number(params,'min_child_samples',30,5,150,True))
     if params.get('early_metric','primary')=='primary':
         common['metric']='None'
-    return LGBMRegressor(**common) if kind=='regression' else LGBMClassifier(class_weight='balanced' if weighted else None,**common)
+    if kind=='regression': return LGBMRegressor(**common)
+    strategy=params.get('multiclass_strategy','softmax')
+    if strategy not in {'softmax','ova'}: raise ValueError('Unsupported multiclass strategy')
+    if strategy=='ova' and recipe.get('n_classes',3)>2: common['objective']='multiclassova'
+    model=LGBMClassifier(class_weight='balanced' if weighted else None,**common)
+    if params.get('pair_refinement',False):
+        from automl.execution.model_adapters.specialists import PairSpecialists
+        model=PairSpecialists(model)
+    return model

@@ -3,11 +3,28 @@ import pandas as pd
 from threadpoolctl import threadpool_limits
 from automl.execution.weighting.classes import sample_weights
 from automl.evaluation.api import evaluate
+from sklearn.base import BaseEstimator,TransformerMixin
+
+
+class BoundedSVD(TransformerMixin,BaseEstimator):
+    """LSA fitted inside the text pipeline; tiny vocabularies remain supported."""
+    def __init__(self,n_components=64): self.n_components=n_components
+    def fit(self,x,y=None):
+        from sklearn.decomposition import TruncatedSVD
+        self.reducer_=None
+        if x.shape[1]>1:
+            count=max(1,min(int(self.n_components),x.shape[1]-1,max(1,x.shape[0]-1)))
+            self.reducer_=TruncatedSVD(n_components=count,random_state=42).fit(x)
+        return self
+    def transform(self,x):
+        return self.reducer_.transform(x) if self.reducer_ is not None else x.toarray()
+
+
 def linear_text_fit(spec,recipe,train_x,test_x,y,tr,va,full,threads):
     from sklearn.compose import ColumnTransformer
     from sklearn.feature_extraction.text import TfidfVectorizer
     from sklearn.impute import SimpleImputer
-    from sklearn.linear_model import Ridge,SGDClassifier
+    from sklearn.linear_model import Ridge,SGDClassifier,LogisticRegression
     from sklearn.pipeline import make_pipeline
     from sklearn.preprocessing import OneHotEncoder,StandardScaler
     text_columns=[c for c in spec.get('text_features',[]) if c in train_x]
@@ -19,19 +36,29 @@ def linear_text_fit(spec,recipe,train_x,test_x,y,tr,va,full,threads):
         for column in numeric:
             frame[column]=pd.to_numeric(frame[column],errors='coerce').replace([np.inf,-np.inf],np.nan)
     transforms=[]
+    params=recipe.get('params',{})
+    components=int(np.clip(params.get('text_svd_components',0),0,256))
+    def vectorizer(**kwargs):
+        tfidf=TfidfVectorizer(**kwargs)
+        return make_pipeline(tfidf,BoundedSVD(components)) if components else tfidf
     if numeric:
         transforms.append(('numeric',make_pipeline(SimpleImputer(strategy='median',keep_empty_features=True),StandardScaler(with_mean=False)),numeric))
     if categorical:
         transforms.append(('category',OneHotEncoder(handle_unknown='ignore',min_frequency=3,sparse_output=True),categorical))
     for index,column in enumerate(text_columns):
-        transforms.append((f'text{index}',TfidfVectorizer(max_features=30000,ngram_range=(1,2),min_df=1,sublinear_tf=True),column))
+        transforms.append((f'text{index}',vectorizer(max_features=30000,ngram_range=(1,2),min_df=1,sublinear_tf=True),column))
         if recipe.get('params',{}).get('text_char_features',False):
-            transforms.append((f'char{index}',TfidfVectorizer(analyzer='char_wb',max_features=15000,ngram_range=(3,5),min_df=2,sublinear_tf=True),column))
+            transforms.append((f'char{index}',vectorizer(analyzer='char_wb',max_features=15000,ngram_range=(3,5),min_df=2,sublinear_tf=True),column))
     processor=ColumnTransformer(transforms,sparse_threshold=1.0)
-    params=recipe.get('params',{})
     if spec['kind']=='classification':
-        estimator=SGDClassifier(loss='log_loss',alpha=float(np.clip(params.get('text_alpha',1e-5),1e-7,1e-2)),max_iter=1000,tol=1e-4,
-                                random_state=42,class_weight='balanced' if params.get('class_weights') else None,n_jobs=threads)
+        classifier=params.get('text_classifier','sgd')
+        if classifier=='logistic':
+            estimator=LogisticRegression(C=float(np.clip(params.get('text_C',1),.01,100)),max_iter=1000,random_state=42,
+                                         class_weight='balanced' if params.get('class_weights') else None)
+        elif classifier=='sgd':
+            estimator=SGDClassifier(loss='log_loss',alpha=float(np.clip(params.get('text_alpha',1e-5),1e-7,1e-2)),max_iter=1000,tol=1e-4,
+                                    random_state=42,class_weight='balanced' if params.get('class_weights') else None,n_jobs=threads)
+        else: raise ValueError('Unsupported text classifier')
     else:
         estimator=Ridge(alpha=10,solver='lsqr')
     model=make_pipeline(processor,estimator)

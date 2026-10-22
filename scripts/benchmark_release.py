@@ -11,6 +11,7 @@ ROOT=Path(__file__).resolve().parents[1]; sys.path.insert(0,str(ROOT))
 from agent_core import discover,atomic_json
 sys.path.insert(0,str(ROOT/'tools'))
 from build_submission import build_files
+from automl.infrastructure.processes import wait_owned
 
 def main():
     parser=argparse.ArgumentParser()
@@ -18,17 +19,24 @@ def main():
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--offline',action='store_true')
     parser.add_argument('--time-budget',type=int,default=9900)
+    parser.add_argument('--max-experiments',type=int,help='Explicit bounded lifecycle check; omit for default search')
     parser.add_argument('--jobs',type=int,default=1,choices=[1,2])
     parser.add_argument('--threads',type=int,default=4,choices=range(1,9))
     parser.add_argument('--archive',type=Path)
+    parser.add_argument('--expected-archive-sha256',help='Explicit SHA for a trusted historical baseline; otherwise require current sources')
+    parser.add_argument('--memory-gb',type=float,default=2,help='Local whole-process-tree limit, not a platform limit')
     parser.add_argument('--watchdog-seconds',type=int)
+    parser.add_argument('--validation-strategy',choices=['legacy','auto'])
     args=parser.parse_args(); output=args.output.resolve()
     output.mkdir(parents=True,exist_ok=False)
     sources=build_files()
     if args.archive:
         with zipfile.ZipFile(args.archive) as archive:
+            if any('/' in n or '\\' in n for n in archive.namelist()): raise ValueError('Archive must be flat')
             packed={name:archive.read(name) for name in archive.namelist()}
-        if packed!=sources: raise ValueError('Archive does not match current compiled sources')
+        if args.expected_archive_sha256:
+            if hashlib.sha256(args.archive.read_bytes()).hexdigest()!=args.expected_archive_sha256: raise ValueError('Historical archive SHA mismatch')
+        elif packed!=sources: raise ValueError('Archive does not match current compiled sources')
         sources=packed
     manifest={name:hashlib.sha256(data).hexdigest() for name,data in sources.items()}
     atomic_json(output/'source_manifest.json',manifest)
@@ -43,17 +51,18 @@ def main():
         env=os.environ.copy(); env['AUTOML_THREADS']=str(args.threads)
         command=[sys.executable,'-u','solution.py','task.md']
         if args.offline: command.append('--offline')
+        if args.validation_strategy is not None: command.extend(['--validation-strategy',args.validation_strategy])
         if args.time_budget!=9900: command.extend(['--time-budget',str(args.time_budget)])
+        if args.max_experiments is not None: command.extend(['--max-experiments',str(args.max_experiments)])
         started=time.monotonic()
         with (target/'process.log').open('w',encoding='utf-8') as stream:
             try:
                 process=subprocess.Popen(command,cwd=target,env=env,stdout=stream,stderr=subprocess.STDOUT,start_new_session=True)
-                status=process.wait(timeout=args.watchdog_seconds or args.time_budget+180)
+                status=wait_owned(process,timeout=args.watchdog_seconds or args.time_budget+180,memory_bytes=int(args.memory_gb*2**30))
             except subprocess.TimeoutExpired:
-                os.killpg(process.pid,signal.SIGTERM)
-                try: process.wait(timeout=5)
-                except subprocess.TimeoutExpired: os.killpg(process.pid,signal.SIGKILL); process.wait()
                 status='watchdog_timeout'
+            except MemoryError:
+                status='local_memory_limit'
         result={'task':str(path),'command':command,'threads':args.threads,'exit_code':status,'elapsed_seconds':round(time.monotonic()-started,3)}
         report=target/'automl_runs/run-v2/report.json'
         if report.exists():

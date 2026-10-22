@@ -1,6 +1,6 @@
 """Compile explicitly mapped project modules into a standalone flat ZIP."""
 from pathlib import Path
-import argparse,ast,hashlib,json,re,zipfile
+import argparse,ast,hashlib,json,re,zipfile,sys
 ROOT=Path(__file__).resolve().parents[1]
 REQUIREMENTS_SHA='9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6'
 
@@ -47,7 +47,7 @@ def main():
             entry=zipfile.ZipInfo(name,date_time=(2026,1,1,0,0,0)); entry.compress_type=zipfile.ZIP_DEFLATED
             archive.writestr(entry,data)
     if args.output.stat().st_size>100_000_000: raise ValueError('Archive too large')
-    manifest={'sha256':hashlib.sha256(args.output.read_bytes()).hexdigest(),'bytes':args.output.stat().st_size,
+    manifest={'sha256':hashlib.sha256(args.output.read_bytes()).hexdigest(),'bytes':args.output.stat().st_size,'build_python':sys.version,
               'files':{n:hashlib.sha256(v).hexdigest() for n,v in files.items()}}
     args.output.with_suffix('.manifest.json').write_text(json.dumps(manifest,indent=2))
     print(json.dumps(manifest,indent=2))

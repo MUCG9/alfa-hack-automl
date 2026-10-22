@@ -12,7 +12,12 @@ Frozen history4 full-default classification launched at about12:03UTC in
 a42fcb1557ec0cf2455abb3add9d6968a8388aedcfcf8d554b26ed73a45788f8 explicitly
 verified. Python3.12.14, offline2threads,1.7GiB tree guard,10100s watchdog.
 Its source is an independent unpacked copy, not changed by current edits.
-Do not call it completed until aggregate/refit/integrity are confirmed.
+Completed about12:24UTC: exit0,1245.970s,refit/integrity pass. SearchF1
+.6538467374261537,confirmation .6527157430204659,mean .6532812402233098.
+Final CSV58f52dfbfecb1416a456ed715a43cf944876a7f69eed73d7bf1e10170631b326,
+byte-identical historical V9/V7/V6. All10original input SHA verified after resolving
+the declared nested CSV paths (a first root-path-only diagnostic used wrong paths,
+not missing input data). Portable baseline reports copied to release/v11-featureviews1.
 
 Sourcee11409e implements the colleague's already-positive categorical two-view
 candidate under the existing protocol. The typed flag is `feature_views` with
@@ -30,7 +35,10 @@ real fixture tests/full suite wait for the heavy baseline to finish (sequential)
 
 Available in the current existing venv: Python3.12.14,numpy1.26.4,scipy1.12,
 pandas2.2.3,sklearn1.5.2,LGBM4.6,XGB-cpu2.1.4,CatBoost1.2.8,openai1.68.2.
-AutoGluon.tabular1.3.1 has distribution metadata; no successful import/fit claim.
+AutoGluon.tabular1.3.1 distribution and actual TabularPredictor import verified;
+no fit claim. Its custom groups are constructor input, not fit keyword, and
+internally use LeaveOneGroupOut. Default inner feature generation/splitting must
+be audited before integration; do not assume a framework import solves contracts.
 Optuna/FLAML/LightAutoML/torch/imbalanced-learn/category-encoders/feature-engine
 not installed here. All are allowed pins where present in requirements, but
 availability is not a reason to replace split/metric/resource contracts.

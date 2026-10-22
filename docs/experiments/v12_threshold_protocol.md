@@ -1,4 +1,4 @@
-# Proposed bounded threshold-search experiment (not implemented or run yet)
+# Bounded threshold-search experiment (implemented dormant; model screen pending)
 
 Declared BEFORE any new optimizer implementation/outer result. This is a later
 isolated stage, not part of V11 feature-view attribution. Model experiments run
@@ -48,3 +48,16 @@ in later work, must remain entirely inside the current outer fitting partition.
 
 No new dependencies; scipy1.12 already allowed/installed. Official upload needs
 separate authorization. API budget is unrelated to this local numeric optimizer.
+
+## Implementation checkpoint before outer scores
+
+Source0973de0 implements this dormant method; V12 archive SHA
+b44feb1094cc2d4063e3e1d6dc629c8b8bc5f227b794a58ea1619025e264585f.
+Original coordinate callback is unchanged and remains the default direct call.
+No automatic portfolio insertion or promise of improved score. Worker records
+method/status/function-evaluation diagnostics, same inner iteration matching.
+Explicit method rejects non-MacroF1/non-tree/noncalibrated/OOF3/feature-view
+combinations so the screen remains ordinary-learner, one-factor only.
+`v12_threshold_candidates.json` freezes control and treatment before fitting.
+Eleven pure checks passed first; import-failure fallback was subsequently added.
+Full243source/23unpacked gates and actual worker fixture wait for V11 heavy run.

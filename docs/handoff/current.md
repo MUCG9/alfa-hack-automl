@@ -95,3 +95,9 @@ fixed50/50 LGBM+existing XT; paired42/43, CV73 только при обоих у
 Следующий push также был не выполнен: auto-review исчерпал usage limit (review
 failure, не новый unsafe verdict). Пользователь сообщает лимиты восстановлены;
 повтор возможен после проверки нового конкретного исходящего payload, не обходом.
+
+Latest Git checkpoint: push SUCCESS exit0, origin/work/cpu-research-20261022 now
+f25b4bc. Prior ownership/payload and usage-limit review failures are historical,
+resolved after scoped payload audit and restored limits. Receipt:
+docs/experiments/v10_push_checkpoint.json. New ExtraTrees paired study is ACTIVE
+in test-runs/v10-extratrees-paired, session6727; no runtime source change.

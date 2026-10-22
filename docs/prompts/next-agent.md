@@ -138,3 +138,9 @@ ExtraTrees protocol/candidates уже заморожены до fits в docs/exp
 Сначала проверь results.json активного paired run; запуска CV только при both-fold
 improvement. Новая official upload не разрешена. Последний push не был выполнен
 из-за usage-limit failure у auto-review; user восстановил лимиты, отказ не обходить.
+
+Latest Git checkpoint: push SUCCESS exit0, origin/work/cpu-research-20261022 now
+f25b4bc. Prior ownership/payload and usage-limit review failures are historical,
+resolved after scoped payload audit and restored limits. Receipt:
+docs/experiments/v10_push_checkpoint.json. New ExtraTrees paired study is ACTIVE
+in test-runs/v10-extratrees-paired, session6727; no runtime source change.

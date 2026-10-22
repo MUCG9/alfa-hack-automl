@@ -110,3 +110,9 @@ if both improve. Do not retune weights/forest size after observing these outcome
 GitHub push first hit ownership/payload review rejection, then review could not
 complete because of account usage limit. User reports limits restored; no action
 was executed on either failed attempt. Keep checkpoints local until push succeeds.
+
+Latest Git checkpoint: push SUCCESS exit0, origin/work/cpu-research-20261022 now
+f25b4bc. Prior ownership/payload and usage-limit review failures are historical,
+resolved after scoped payload audit and restored limits. Receipt:
+docs/experiments/v10_push_checkpoint.json. New ExtraTrees paired study is ACTIVE
+in test-runs/v10-extratrees-paired, session6727; no runtime source change.

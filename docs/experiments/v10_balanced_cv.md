@@ -60,3 +60,19 @@ gate. Preserve as research evidence, not a failed-job claim or a guaranteed
 private improvement. Additional same-OOF diagnostics/conditional bootstrap and
 strong single component comparisons require no new fits and are reported separately.
 Portable results: v10_balanced_cv_results.json.
+
+## Completed diagnostics on frozen CV predictions
+
+Strong single component has fold mean .637347993. Full3 .638363183 and under70
+.640222558 exceed it in mean, but this does not erase the mixed-fold confirmation.
+The predeclared equal blend with that single and under70 scores .642515470 in
+fold mean; it is a diagnostic on reused public folds, not a selected runtime policy.
+Matched parent under-minus-full pooled delta is +.002167059. Conditional paired
+feature-group bootstrap (500 replicates, seed2026,54228groups) has percentile95%
+interval[-.001844234,+.006447588], positive fraction .854. It includes zero;
+this fixed-prediction calculation is not refit uncertainty or a private interval.
+
+Portable aggregate evidence: v10_balanced_cv_diversity.json and
+v10_balanced_cv_bootstrap.json. These describe frozen V9 CV source (50files),
+not a certification of current history-enabled source (51files). No new fits,
+threshold tuning or weight optimization. Negative/mixed promotion decision retained.

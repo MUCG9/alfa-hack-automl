@@ -40,3 +40,23 @@ average. Relative to strong single, under fixes6.42%/4.89% of its errors, versus
 1.97%/2.05% for the full-data average. It also introduces errors: seed43 fixes160
 and breaks222 decisions. About92.7% of matched-control mean Macro F1 gain is the
 Worms F1 contribution (supports19/11), so the initial direction needs complete CV.
+
+## Full grouped CV completed
+
+All6ensemble jobs exited0; every source row received exactly one validation
+prediction. Same frozen V9 source and original inputs;3group-disjoint folds.
+
+|Fold|Full3|Under70|
+|---|---:|---:|
+|0|.642012892|.641260889|
+|1|.637434101|.637278152|
+|2|.635642557|.642128632|
+|Fold mean|.638363183|.640222558|
+|Pooled OOF|.638309026|.640476085|
+
+Mean and pooled improve but two folds worsen; gains concentrate in one fold.
+The mixed-fold outcome does not justify default promotion under the predeclared
+gate. Preserve as research evidence, not a failed-job claim or a guaranteed
+private improvement. Additional same-OOF diagnostics/conditional bootstrap and
+strong single component comparisons require no new fits and are reported separately.
+Portable results: v10_balanced_cv_results.json.

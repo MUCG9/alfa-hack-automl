@@ -139,3 +139,14 @@ waiting_for_overnight, lock по-прежнему принадлежит PID3796
 ручной дубль. Wait+screen21600s, fitcap3600s; canonical source нельзя менять
 также между завершением основной очереди и этим followup. Проверка busy-lock
 и сохранения чужого lock PASS, без task discovery/fits.
+
+`summarize_mvp.py` теперь независимо пересчитывает также per-class F1, проверяет
+group disjointness/forward chronology и сохраняет fitting/validation group
+support. Проверен на реальных regression artifacts (прежняя mean неизменна)
+и текущем class search leader: F1 .6577309532263398, Analysis .29333333333333333,
+Worms fitting46/validation19 independent groups. Это search result, не final mean.
+
+Подготовлен `tools/review_autoresearch.py`: один organizer Qwen call с созданным
+skill и snapshots metadata-only receipts, максимум4096 output tokens/180s.
+CLI/help проверен, реальный review ещё не запущен. Ответ — untrusted analysis/
+гипотезы, без автоматического применения, новых прав или ML-quality claim.

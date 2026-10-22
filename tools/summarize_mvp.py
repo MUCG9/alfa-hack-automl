@@ -8,6 +8,7 @@ import math
 import numpy as np
 import pandas as pd
 from sklearn.metrics import f1_score
+from summarize_research import partition
 
 
 def digest(path):
@@ -30,15 +31,31 @@ def verify_validation(record, spec, train, split):
     directory = Path(record['output_dir'])
     path = directory/'validation_predictions.csv'
     frame = pd.read_csv(path)
-    with np.load(split) as stored:
-        rows = stored['validation']
+    hashes = (pd.util.hash_pandas_object(train[spec['features']], index=False).to_numpy(dtype='uint64')
+              if spec['kind'] == 'classification' else None)
+    periods = (train[spec['time_column']].to_numpy() if spec.get('validation_strategy') == 'time' else None)
+    fitting, rows = partition(split, len(train), hashes, periods)
     if not np.array_equal(rows, frame.row_position.to_numpy()) or len(np.unique(rows)) != len(rows):
         raise ValueError('Prediction row order/coverage does not match immutable split')
     truth = train[spec['target']].iloc[rows]
+    diagnostics = {}
     if spec['kind'] == 'classification':
         if not np.array_equal(truth.astype(str), frame.y_true.astype(str)):
             raise ValueError('Classification truth does not match source rows')
+        if frame.y_pred.isna().any() or not set(frame.y_pred.astype(str)) <= set(spec['classes']):
+            raise ValueError('Invalid validation class prediction')
         value = float(f1_score(truth.astype(str), frame.y_pred.astype(str), average='macro', zero_division=0))
+        values = f1_score(truth.astype(str), frame.y_pred.astype(str), labels=spec['classes'], average=None, zero_division=0)
+        per_class = dict(zip(spec['classes'], map(float, values)))
+        declared = record['metrics'].get('per_class_f1')
+        if declared and any(not math.isclose(per_class[c], declared[c], abs_tol=1e-10, rel_tol=1e-10) for c in spec['classes']):
+            raise ValueError('Recomputed per-class F1 disagrees with worker')
+        labels = train[spec['target']].astype(str).to_numpy()
+        diagnostics = {'per_class_f1': per_class,
+            'independent_fitting_groups': {c: len(np.unique(hashes[fitting][labels[fitting] == c])) for c in spec['classes']},
+            'validation_class_rows': {c: int(np.sum(labels[rows] == c)) for c in spec['classes']},
+            'independent_validation_groups': {c: len(np.unique(hashes[rows][labels[rows] == c])) for c in spec['classes']},
+            'feature_groups_disjoint_verified': True}
     else:
         if not np.allclose(truth, frame.y_true, rtol=1e-12, atol=1e-12):
             raise ValueError('Regression truth does not match source rows')
@@ -46,7 +63,7 @@ def verify_validation(record, spec, train, split):
     if not math.isfinite(value) or not math.isclose(value, record['metrics'][spec['metric']], rel_tol=1e-10, abs_tol=1e-10):
         raise ValueError('Independently computed metric disagrees with worker')
     return {'value': value, 'rows': len(rows), 'prediction_sha256': digest(path),
-            'split_sha256': digest(split), 'row_order_verified': True}
+            'split_sha256': digest(split), 'row_order_verified': True, **diagnostics}
 
 
 def selectors(record):

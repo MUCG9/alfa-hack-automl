@@ -1,9 +1,12 @@
 # Instructions for development agents
 
-V10 implementation/research is active; read docs/experiments/v10_progress.md and
-v10_diversity_protocol.md before the historical checkpoints below. Paired screens
-are done, frozen-V9 class CV is active, asof2 support-gated screen and complete
-new checks pending. No default promotion or official upload in V10 yet.
+V10 implementation/research reached a captain-requested handoff at8% remaining.
+Read docs/experiments/v10_progress.md and docs/prompts/next-agent.md FIRST.
+Paired screens and full grouped class CV are completed; under70 not promoted.
+Support-gated asof3 passed6workers/212source/23unpacked; experimental history4
+adds one eligible portfolio entry and is in full-agent/release validation.
+Check the latest evidence/queue before repeating jobs or calling a ZIP ready.
+No new research should start until the handoff checkpoint is completed.
 
 Current local continuation: `work/cpu-research-20261022`, based on `a95c931`.
 Read `docs/experiments/cpu_research_review_20261022.md` for the new proposed CPU

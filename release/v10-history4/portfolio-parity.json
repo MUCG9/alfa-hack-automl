@@ -1,0 +1,159 @@
+{
+  "passed": true,
+  "scope": "Frozen V9 portfolio function evaluated with current unchanged normalization of prior parameters; exact recipe dict and ordering comparison, not model quality.",
+  "v9_archive_sha256": "297647239badde608d349d053a89f9d7f98e8fffceb4a09633f675f99ebd7291",
+  "checks": [
+    {
+      "kind": "classification",
+      "metric": "macro_f1",
+      "text": false,
+      "time_candidate": null,
+      "ranking": false,
+      "old_recipes": 5,
+      "new_recipes": 5,
+      "retained_exact": true
+    },
+    {
+      "kind": "classification",
+      "metric": "macro_f1",
+      "text": true,
+      "time_candidate": null,
+      "ranking": false,
+      "old_recipes": 2,
+      "new_recipes": 2,
+      "retained_exact": true
+    },
+    {
+      "kind": "classification",
+      "metric": "roc_auc",
+      "text": false,
+      "time_candidate": null,
+      "ranking": false,
+      "old_recipes": 4,
+      "new_recipes": 4,
+      "retained_exact": true
+    },
+    {
+      "kind": "classification",
+      "metric": "roc_auc",
+      "text": true,
+      "time_candidate": null,
+      "ranking": false,
+      "old_recipes": 2,
+      "new_recipes": 2,
+      "retained_exact": true
+    },
+    {
+      "kind": "classification",
+      "metric": "log_loss",
+      "text": false,
+      "time_candidate": null,
+      "ranking": false,
+      "old_recipes": 4,
+      "new_recipes": 4,
+      "retained_exact": true
+    },
+    {
+      "kind": "classification",
+      "metric": "log_loss",
+      "text": true,
+      "time_candidate": null,
+      "ranking": false,
+      "old_recipes": 2,
+      "new_recipes": 2,
+      "retained_exact": true
+    },
+    {
+      "kind": "classification",
+      "metric": "accuracy",
+      "text": false,
+      "time_candidate": null,
+      "ranking": false,
+      "old_recipes": 4,
+      "new_recipes": 4,
+      "retained_exact": true
+    },
+    {
+      "kind": "classification",
+      "metric": "accuracy",
+      "text": true,
+      "time_candidate": null,
+      "ranking": false,
+      "old_recipes": 2,
+      "new_recipes": 2,
+      "retained_exact": true
+    },
+    {
+      "kind": "regression",
+      "metric": "rmse",
+      "text": false,
+      "time_candidate": null,
+      "ranking": false,
+      "old_recipes": 6,
+      "new_recipes": 6,
+      "retained_exact": true
+    },
+    {
+      "kind": "regression",
+      "metric": "rmse",
+      "text": true,
+      "time_candidate": null,
+      "ranking": false,
+      "old_recipes": 2,
+      "new_recipes": 2,
+      "retained_exact": true
+    },
+    {
+      "kind": "regression",
+      "metric": "rmse",
+      "text": false,
+      "time_candidate": {
+        "representation": "numeric",
+        "split_mode": "period"
+      },
+      "ranking": false,
+      "old_recipes": 10,
+      "new_recipes": 11,
+      "retained_exact": true
+    },
+    {
+      "kind": "regression",
+      "metric": "rmse",
+      "text": false,
+      "time_candidate": {
+        "representation": "numeric",
+        "split_mode": "period"
+      },
+      "ranking": true,
+      "old_recipes": 10,
+      "new_recipes": 10,
+      "retained_exact": true
+    },
+    {
+      "kind": "regression",
+      "metric": "rmse",
+      "text": false,
+      "time_candidate": {
+        "representation": "numeric",
+        "split_mode": "period"
+      },
+      "ranking": false,
+      "old_recipes": 9,
+      "new_recipes": 9,
+      "retained_exact": true
+    },
+    {
+      "kind": "regression",
+      "metric": "rmse",
+      "text": false,
+      "time_candidate": {
+        "representation": "datetime",
+        "split_mode": "period"
+      },
+      "ranking": false,
+      "old_recipes": 7,
+      "new_recipes": 7,
+      "retained_exact": true
+    }
+  ]
+}

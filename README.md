@@ -9,7 +9,8 @@ forward backtests. Это public validation, не официальный score. 
 
 [Кандидат v4 и evidence](release/v4-candidate/README.md): 57 repo проверок,
 23 проверки распакованного ZIP, два успешных полноразмерных bounded lifecycle
-с refit/export. Полный default поиск и CV финалистов переданы следующему этапу.
+с refit/export. [Полная CV финалистов завершена](docs/experiments/v4_cv.md): OVA+calibration
+не подтвердила выигрыш и не включена в default. Полный default поиск продолжается.
 
 По умолчанию `--validation-strategy auto`: только при однозначном документированном
 числовом периоде и полностью будущем диапазоне test применяется forward validation;

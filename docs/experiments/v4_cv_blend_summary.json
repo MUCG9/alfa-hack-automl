@@ -1,0 +1,30 @@
+{
+  "name": "fixed-base-ova-half",
+  "weights": {
+    "control": 0.5,
+    "finalist-1": 0.5
+  },
+  "weights_predeclared_commit": "8aad5d8",
+  "folds": [
+    {
+      "fold": 0,
+      "macro_f1": 0.6386439199776184,
+      "split_sha256": "3ed65968f05667798f82d35a8af91439639fd769f85c9fce0d8b4c57b1a7901f"
+    },
+    {
+      "fold": 1,
+      "macro_f1": 0.6392488489012498,
+      "split_sha256": "6d46d04571f0cc69d5e099bfa84cf99f9d3041f0bd9ecac8b1d7c4ba4b62df98"
+    },
+    {
+      "fold": 2,
+      "macro_f1": 0.6332275259674798,
+      "split_sha256": "470c035387ecb5c6d8ed50e200873a19bf491476f23d763fb4de2510f0cc88f4"
+    }
+  ],
+  "fold_mean": 0.6370400982821159,
+  "fold_std": 0.002707183713924773,
+  "pooled_oof_macro_f1": 0.6367533876863061,
+  "new_worker_fits": 0,
+  "scope": "Derived from matched OOF probabilities; fixed .5/.5 weights. Reused public data, not independent private score."
+}

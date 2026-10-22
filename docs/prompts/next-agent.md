@@ -136,8 +136,10 @@ input/split hashes, primary/per-class F1, время/RSS/статусы. В
   OVA+target encoding .650943/.653535. Улучшения небольшие.
 - Сильнее class weights, больше листьев, minimum300/600trees, Qwen features,
   OOF decision factors и парные специалисты не дали устойчивого выигрыша.
-- Полная CV финалистов и полный default classification search ещё НЕ выполнены
-  в этом этапе. Bounded lifecycle не считать полным поиском.
+- Follow-up CV уже завершена: OVA+calibration проиграла на всех3folds.
+  Первый контроль .636401856, прежняя calibration .637928932, OVA .630416015
+  pooled Macro F1. Полный default search ещё продолжается, см.v4_progress.md.
+  Bounded lifecycle не считать полным поиском.
 - В train есть1458 одинаковых feature-групп с разными labels,14829/87670строк.
   В них70.9% Analysis и72.6% Backdoor; см. v4_class_ambiguity.json. Это описательная
   диагностика, не оценка обобщения и не повод удалять конфликтные validation rows.
@@ -146,7 +148,10 @@ input/split hashes, primary/per-class F1, время/RSS/статусы. В
 
 1. Проверь git/status, manifest и итоговые tests/lifecycle в release/v4-candidate.
    Сначала завершай нижеуказанные проверки качества; не добавляй новый стек сразу.
-2. Полная 3-fold CV классификации: первый контроль, сильный v3 inner-calibration,
+2. Полная3-fold CV этого набора уже завершена; см. docs/experiments/v4_cv.md.
+   OVA+calibration проиграла на всех folds, default не менялся. Не повторяй те же
+   fits без причины. Следующая команда сохранена как шаблон для НОВЫХ финалистов.
+   Проверены: первый контроль, сильный v3 inner-calibration,
    лучший устойчивый новый рецепт. Готовый набор `docs/experiments/v4_class_cv_candidates.json`.
    Команда (новый output):
 

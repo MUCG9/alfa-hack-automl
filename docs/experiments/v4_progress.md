@@ -16,30 +16,27 @@
 `v4_class_cv_candidates.json`. Это первый контроль, сильная старая inner calibration
 и OVA+calibration. У всех одни group-disjoint folds. Входные SHA совпадают.
 
-Первый контроль завершён: folds Macro F1 .638590/.639134/.632555,
-fold mean .636759491, pooled OOF .636401856; выбранные деревья408/110/100.
-Числа на новых3-fold splits нельзя напрямую сравнивать с прежними20% holdouts.
-Прежняя inner calibration также завершена: mean .637347993, pooled .637928932.
-Разность pooled против первого контроля +.001527076; условный парный bootstrap
-по feature-группам,500replicates:95% интервал[-.001696065,+.004529148]. Уверенного
-выигрыша нет. Сохранены v4_cv_results.json и v4_cv_calibration_bootstrap.json.
-OVA+calibration продолжается; итогового сравнения всех трёх рецептов пока нет.
+Полная CV всех трёх рецептов завершена:9/9workersok, exactly-once OOF.
+Pooled Macro F1: контроль .636401856, прежняя calibration .637928932,
+OVA+calibration .630416015, фиксированная смесь .636753388. OVA проиграла
+на всех3 folds, default classification portfolio сохранён.
+[Полный разбор](v4_cv.md), source/input/split hashes и интервалы сохранены.
 
 Локальные outputs: `/tmp/alfa-next-class-cv/results.json`, OOF в подкаталогах
 рецептов; лог `test-runs/stages/next-class-cv.log`. Процесс был запущен через
-exec session22569. Отдельная очередь session87405 / `run-default-v3.sh` ждёт
-завершения CV и затем запустит полный default offline v3 classification с
-watchdog10100s. Не запускайте конкурирующие тяжёлые jobs. Состояние нужно проверить
+exec session22569. Очередь session87405 / `run-default-v3.sh` запустила полный default offline v3 classification с
+watchdog10100s. Очередь session46282 / `run-default-v4.sh` ждёт окончания v3 и затем выполнит
+полный default offline v4 regression + classification. Логи — default-v3.log и
+default-v4.log в test-runs/stages. Не запускайте конкурирующие тяжёлые jobs. Состояние нужно проверить
 по существующим reports и процессам: session ID относится только к этой сессии.
 
 GitHub credentials предоставлены пользователем и использованы через приватный
 процесс, без записи в Git/config/URL/файл. Не рассчитывайте на сохранённую
 авторизацию после завершения процесса. Ключи и токены в handoff не копировать.
 
-После завершения: сохранить все9 outcomes и pooled OOF, сравнить finalist-1 с
-`v3-inner-calibration` с помощью `tools/compare_oof.py` (500 парных bootstrap по
-feature-hash группам), затем commit/push. Новый метод продвигать только по
-сравнению с сильным контролем. Дальше — полный matched default benchmark и Qwen.
+Текущая задача — закончить полный default offline v3 classification и matched
+v4 на обеих задачах. Затем commit/push результатов, полный online Qwen lifecycle
+и следующие train-only гипотезы. Полную CV повторять только после новых кандидатов.
 
 Дополнительная заранее фиксированная гипотеза для этих же OOF: смесь вероятностей
 первого контроля и OVA+calibration с весами .5/.5. Веса не подбираются по итоговым

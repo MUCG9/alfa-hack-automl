@@ -198,3 +198,8 @@ CV классификации с сильным контролем → полн�
 → полный Qwen lifecycle → отдельные следующие гипотезы. Новые опыты следует
 сравнивать на той же валидной стратегии и проверять full refit/export.
 
+
+Дополнение после checkpoint: [полная CV финалистов завершена](v4_cv.md),
+ещё9workers (всего91 fixed-recipe worker evaluation). OVA+calibration проиграла
+на всех folds; default classification portfolio сохранён. Последующий статус
+полного поиска — [v4_progress.md](v4_progress.md).

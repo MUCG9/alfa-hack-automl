@@ -5,8 +5,8 @@
 два bounded public lifecycle/refit/export; проведены82 fixed-recipe evaluations.
 [Самодостаточный промпт](prompts/next-agent.md) содержит конкретный следующий план.
 [Журнал исследования](experiments/v4_research.md) и [метрики](experiments/v4_results.json)
-сохраняют keep/discard и ограничения. Полная CV финалистов и полный default поиск
-ещё нужны. Ниже сохранён исторический handoff v3; его незавершённые задачи следует
+сохраняют keep/discard и ограничения. Полная CV финалистов завершена, её результаты — experiments/v4_cv.md.
+Текущий статус полного default поиска — experiments/v4_progress.md. Ниже сохранён исторический handoff v3; его незавершённые задачи следует
 сверять с текущим evidence.
 
 Дополнение от 22.10.2026: после чтения исторического снимка ниже открыть

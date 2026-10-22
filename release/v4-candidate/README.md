@@ -1,5 +1,9 @@
 # V4: проверенный кандидат исследования, 22.10.2026
 
+Дополнение: [полная CV финалистов после этого checkpoint](../../docs/experiments/v4_cv.md)
+завершена; OVA+calibration не продвигается. Runtime source/ZIP не менялись.
+Текущие default benchmark — [статус](../../docs/experiments/v4_progress.md).
+
 Рабочая ветка `work/pipeline-review-instructions`, база `a9af568`.
 Текущий этап закончен по просьбе пользователя для передачи следующему агенту.
 Официальной отправки и merge интеграции/main не было.

@@ -1,6 +1,6 @@
-# Alfa Hack AutoML: v9 input contracts и общий бюджет агента
+# Alfa Hack AutoML: V10, CPU-поиск и ансамблевые эксперименты
 
-Текущее продолжение — [work/agent-budget-20261022](https://github.com/MUCG9/alfa-hack-automl/tree/work/agent-budget-20261022).
+Текущее продолжение — [work/cpu-research-20261022](https://github.com/MUCG9/alfa-hack-automl/tree/work/cpu-research-20261022).
 `main` сохранён как v2. Новые исходники и кандидаты не означают автоматически
 новый официальный submit.
 
@@ -8,6 +8,21 @@
 Капитан подтвердил результат V9: **2187.849**,1940.2s,«Лучшее решение»
 (его оценка21.87/100); [запись результата](release/v9-roles1/result-20261022.json).
 [Обзор CPU autoresearch и новая очередь экспериментов](docs/experiments/cpu_research_review_20261022.md).
+
+**Новый проверенный локальный кандидат:** [solution-v10-history4.zip](release/solution-v10-history4.zip)
+([проверки и ограничения](release/v10-history4/README.md)). Признаки последнего
+доступного контекста и тренда включаются при достаточной fitting-истории.
+Полный regression pipeline улучшил оба reused-public cuts: RMSE
+39.321110/34.229380 →38.902804/31.991659; mean36.775245→35.447232 (−3.611%).
+219unique source +23exact-unpacked checks, final refit/integrity и bounded full-size
+class lifecycle прошли. Последующие тесты не меняют его runtime source.
+Нового официального submit нет; прежний Macro F1 не выдаётся за новый полный run.
+
+Классификационные исследования: under70 и fixed LGBM+ExtraTrees дали mixed
+результаты и не меняют defaults. Активно проверяется отдельная ветка cross-fitted
+категориальных статистик. [Актуальный журнал](docs/experiments/v10_progress.md)
+и [протоколы/метрики](docs/experiments/v10_extratrees_results.md) сохраняют также
+отрицательные результаты; public scores не гарантируют private-прирост.
 
 - **Загружен v4**: [запись отправки](release/v4-history3/submission-20261022.json).
   Свежий reload в04:25UTC показал **2184.173** у точного имени v4 и времени05:21,

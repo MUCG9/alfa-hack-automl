@@ -12,7 +12,9 @@ preserved. Existing fallback may inherit history from a winning incumbent.
 
 ## Complete local gates
 
-- 216unique repository checks passed, source_unchanged=true (repo-tests.json).
+- 216unique original repository checks passed (repo-tests.json). Later full219
+  checks including multiclass TE isolation passed, source_unchanged=true, all51
+  source hashes equal this manifest (additional-repo219-tests.json).
 - 23repeated exact-unpacked checks passed, matches_current_source=true.
 - 14frozen-V9 portfolio-parity cases and8search-choice checks passed.
 - Both default full regression runs exit0,final refit=ok,integrity=true.

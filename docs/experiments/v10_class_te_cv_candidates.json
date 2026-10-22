@@ -1,0 +1,68 @@
+[
+  {
+    "name": "calibrated-lgbm-control",
+    "recipe": {
+      "engine": "lightgbm",
+      "hypothesis": "Frozen calibrated LightGBM seed42 control",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100,
+        "seed": 42
+      },
+      "feature_code": ""
+    }
+  },
+  {
+    "name": "categorical-pair-te",
+    "recipe": {
+      "engine": "lightgbm",
+      "hypothesis": "Fixed feature-view branch: cross-fitted categorical and schema-order pair class statistics, unchanged rows and learner",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "early_metric": "primary",
+        "nested_stopping": true,
+        "min_iterations": 100,
+        "seed": 42,
+        "target_encoding": true,
+        "target_encoding_groups": [
+          [
+            "proto",
+            "service"
+          ],
+          [
+            "proto",
+            "state"
+          ],
+          [
+            "service",
+            "state"
+          ]
+        ],
+        "target_encoding_smoothing": 20
+      },
+      "feature_code": ""
+    }
+  }
+]

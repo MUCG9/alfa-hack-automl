@@ -149,3 +149,18 @@ label exclusion, unseen-context priors/class channels, real calibrated worker
 outer-label invariance. tools/run_checks.py now expects219unique checks; full219
 suite is pending after this feature-view screen, sequentially. Existing history4
 216+23 evidence remains valid for its unchanged runtime source/packaging.
+
+## Feature-view primary screen PASSED; full219gate COMPLETE
+
+TE leaf scores.650249495/.648823665 are diagnostic. Predeclared FIXED0.5blend
+scores.655863466/.653724308 vs strong controls.650292961/.652794416,mean
+.654793887 vs.651543688 (+.003250199), BOTH folds improve. No weight tuning.
+Conditional complete3fold grouped CV seed73 is next with SAME two frozen leaf
+recipes v10_class_te_cv_candidates.json. Default class policy remains unchanged.
+
+Queue61578 completed exit0:2leaf workers and full219checks/source_unchanged pass,
+all51source SHA equal history4 manifest. New receipt
+release/v10-history4/additional-repo219-tests.json preserves original216 proof.
+219is unique count; unpacked23repeated proof remains valid unchanged runtime.
+Support-shrinkage ensemble remains PROPOSED, no scoring or fits; prioritize the
+positive feature-view CV rather than launching that alternative concurrently.

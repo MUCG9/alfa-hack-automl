@@ -16,17 +16,25 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def required_paths():
+    return {f"{run}/{task}/automl_runs/run-v2/confirmation_split.npz"
+            for run in RUNS for task in ("task-00", "task-01")}
+
+
 def allowed(path):
     if "__pycache__" in path.parts or "mpl-cache" in path.parts:
         return False
     return (path.suffix in {".json", ".py", ".tsv"}
             or path.name in {"task.md", "requirements.txt", "submission.csv",
                              "validation_predictions.csv", "fallback_submission.csv",
-                             "split.npz", "validation_probabilities.npz",
+                             "split.npz", "confirmation_split.npz", "validation_probabilities.npz",
                              "test_probabilities.npz"})
 
 
 def pack(bundle):
+    missing = sorted(p for p in required_paths() if not (ROOT / p).is_file())
+    if missing:
+        raise ValueError("Missing required source confirmation splits: " + str(missing))
     bundle.mkdir(parents=True, exist_ok=False)
     files, objects, archives = [], {}, []
     archive = None
@@ -112,6 +120,9 @@ def verify(bundle, destination=None):
                 raise ValueError("Restore escapes destination")
             if target.exists() and (not target.is_file() or digest(target.read_bytes()) != item["sha256"]):
                 raise ValueError("Refusing to overwrite a different existing artifact: " + str(target))
+    missing = sorted(required_paths() - paths)
+    if missing:
+        raise ValueError("Missing required confirmation splits in bundle: " + str(missing))
     if destination is not None:
         handles = {}
         try:

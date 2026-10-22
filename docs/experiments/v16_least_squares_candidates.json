@@ -1,0 +1,31 @@
+[
+  {
+    "name": "asof-min3-control",
+    "recipe": {
+      "engine":"lightgbm","hypothesis":"Exact asof-min3 log/history4 comparator",
+      "params":{
+        "iterations":1600,"learning_rate":0.035,"num_leaves":127,"max_depth":-1,
+        "min_child_samples":25,"reg_lambda":8,"subsample":1,"colsample_bytree":0.9,
+        "generic_features":"missing","early_metric":"primary","nested_stopping":true,
+        "min_iterations":100,"target_encoding":true,"target_encoding_auto_groups":true,
+        "target_encoding_smoothing":2,"log_target":true,"target_encoding_hierarchical":true,
+        "history_asof":true,"history_min_periods":3
+      },"feature_code":""
+    }
+  },
+  {
+    "name": "asof-min3-least-squares",
+    "recipe": {
+      "engine":"lightgbm","hypothesis":"Fitting-only original-scale least-squares inverse factor, same support/bounds",
+      "params":{
+        "iterations":1600,"learning_rate":0.035,"num_leaves":127,"max_depth":-1,
+        "min_child_samples":25,"reg_lambda":8,"subsample":1,"colsample_bytree":0.9,
+        "generic_features":"missing","early_metric":"primary","nested_stopping":true,
+        "min_iterations":100,"target_encoding":true,"target_encoding_auto_groups":true,
+        "target_encoding_smoothing":2,"log_target":true,"target_encoding_hierarchical":true,
+        "history_asof":true,"history_min_periods":3,"target_smearing":true,
+        "target_smearing_method":"least_squares"
+      },"feature_code":""
+    }
+  }
+]

@@ -1,5 +1,24 @@
 # Передача разработки следующему агенту
 
+## Текущее продолжение 22.10.2026
+
+Ветка **`work/autonomous-score-20261022`**; основа — `work/pipeline-review-instructions`.
+[Журнал продолжения](experiments/continuation_20261022.md) имеет приоритет над
+историческим снимком ниже. V4 загружен по явному поручению капитана; сообщение
+платформы — «Решение находится на проверке», но история/счётчик пока противоречивы.
+Не приписывать ему старые 1723.691 и не отправлять повторно автоматически.
+
+Полный v4 classification завершён: mean Macro F1 **0.652742609**, full refit/export
+и integrity проходят. Это чуть ниже v3 0.653714716, не обещание улучшения всех задач.
+V5 contract1 повторила regression до байта итогового CSV; её classification ещё
+проверяется. Более новый `release/solution-v5-multitarget1.zip` имеет **111 проверок**,
+но требует собственных полных public gates после извлечения single-target solver.
+Он не отправлен. Этапы: [контракты](experiments/v5_contract_work.md),
+[валидация](experiments/v5_validation_work.md),
+[несколько целей](experiments/v5_multitarget_work.md).
+
+Ниже — предыдущая передача другого компьютера, не текущий статус jobs.
+
 Актуальная передача22.10.2026: [самодостаточный промпт](prompts/next-agent.md),
 [итог этапа](experiments/v4_summary.md), [history3 кандидат](../release/v4-history3/README.md).
 Ветка work/pipeline-review-instructions. Все наши ML jobs/очереди завершены.

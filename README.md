@@ -1,4 +1,23 @@
-# Alfa Hack AutoML: исследовательская v4 history3
+# Alfa Hack AutoML: v5 contracts и независимые цели
+
+Текущее продолжение — [work/autonomous-score-20261022](https://github.com/MUCG9/alfa-hack-automl/tree/work/autonomous-score-20261022).
+`main` сохранён как v2. Новые исходники и кандидаты не означают автоматически
+новый официальный submit.
+
+- **Загружен v4**: [запись отправки](release/v4-history3/submission-20261022.json).
+  Платформа показывает проверку; история смешивает новое имя со старым временем и
+  баллом v3. Не считать 1723.691 результатом v4, расход попытки не подтверждён.
+- **Кандидат v5**: `release/solution-v5-multitarget1.zip`, 111 отдельных repo checks
+  проходят. Он добавляет входные CSV/TSV и роли файлов, необязательный словарь/ID,
+  порядок ответа, MAPE/MSE/RMSLE/balanced accuracy, группы/даты и независимые модели
+  для нескольких целей в общем бюджете. Он пока не отправлен; полные public gates
+  этого snapshot ещё требуются.
+- [Текущий журнал и ограничения](docs/experiments/continuation_20261022.md),
+  [контракты](docs/experiments/v5_contract_work.md),
+  [валидация](docs/experiments/v5_validation_work.md),
+  [несколько целей](docs/experiments/v5_multitarget_work.md).
+
+## Сохранённая модельная основа v4 history3
 
 Агент автоматически строит контексты повторяющихся объектов по схеме и fitting
 rows, проверяет будущий период и выбирает модель/ансамбль по метрике. Public column
@@ -16,14 +35,15 @@ export,integrity=true. Это повторно исследуемая public val
 [Итог и ограничения](docs/experiments/v4_summary.md),
 [промпт передачи](docs/prompts/next-agent.md).
 
-Полный frozen v3 classification baseline завершён (meanMacroF1 .653714716).
-Полная CV отсеяла OVA+calibration. В source2/3 отдельно расширен XGBoost capacity
-search; **полный новый classification benchmark ещё нужен**. Это первая задача
-продолжения. Официальной отправки history3 не было.
+Полный frozen v3 classification baseline: mean Macro F1 **0.653714716**.
+Полный v4 history3: **0.652742609**, full refit/export и integrity проходят.
+Регрессия улучшилась, классификация — немного хуже; по public нельзя обещать
+общий private-прирост. Полная CV ранее отсеяла OVA+calibration.
 
 По умолчанию --validation-strategy auto: консервативное определение числового
-observation period по схеме и будущему test; иначе прежний split. Явный legacy
-режим сохранён. Все наши ML jobs и очереди на текущем checkpoint завершены.
+observation period по схеме и будущему test; v5 расширяет это на даты и явные
+семантические группы. Явный legacy режим сохранён. Фактический статус текущих
+jobs указан в журнале продолжения, старые снимки других компьютеров не актуальны.
 
 **Продолжение с другого агента/компьютера:** начать с [AGENTS.md](AGENTS.md) и [CONTINUE_HERE](docs/CONTINUE_HERE.md). Готовый [промпт передачи](docs/prompts/next-agent.md), локальный CPU setup и ограничения проверок включены в репозиторий. Данные и API-key передаются капитаном отдельно.
 
@@ -31,9 +51,9 @@ observation period по схеме и будущему test; иначе преж
 
 Замороженный [выпуск v3 и доказательства проверок](release/v3/README.md), включая exact ZIP и paired ablations, сохраняются отдельно от исходников. V3 отправлена 21.10.2026 в23:37 MSK, принятие в очередь подтверждено в `release/v3/submission.json`; это не официальный score.
 
-Приватный репозиторий команды: [MUCG9/alfa-hack-automl](https://github.com/MUCG9/alfa-hack-automl). По скриншоту капитана **v2 получила 1694.145**, v1 — 857.742. Это значения карточек, не RMSE/F1 и не прогноз private. Официальный результат v3 не известен до проверки платформой.
+Приватный репозиторий команды: [MUCG9/alfa-hack-automl](https://github.com/MUCG9/alfa-hack-automl). Карточки v1/v2 показывали 857.742/1694.145, v3 перед четвёртой загрузкой — 1723.691. Капитан также сообщает 16/100 для v3; связь шкал не раскрыта. Не переводить эти значения в RMSE/F1 или прогноз private.
 
-Текущая реализация сделана одним агентом по поручению капитана. Прежние `docs/parallel_work.md`, `docs/v3_contract.md` и `docs/prompts/` — исторические задания, не инструкция одновременно редактировать старые корневые файлы. Для новой работы используйте границы из `docs/architecture/implementation.md`. Multi-target/ranking не реализованы. Разбор записи организаторов — `docs/webinar_20261021.md`.
+Текущее продолжение выполняется одним агентом по поручению капитана. Прежние `docs/parallel_work.md`, `docs/v3_contract.md` и ролевые `docs/prompts/plus-*` — исторические задания, не инструкция одновременно редактировать старые корневые файлы. Используйте границы из `docs/architecture/implementation.md` и новые stage notes. Независимые multi-target модели реализованы ограниченным контрактом; ranking, совместные модели целей и SMOTENC не реализованы. Разбор записи организаторов — `docs/webinar_20261021.md`.
 
 ## Структура
 

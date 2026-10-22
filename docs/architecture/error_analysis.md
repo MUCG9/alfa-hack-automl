@@ -43,7 +43,8 @@ does not resolve them, access files or establish a filesystem sandbox.
 
 ## Profile
 
-The profile retains the full request and its canonical digest. Five named
+The profile retains the full request, its canonical digest and the analyzer's
+source SHA256. Five named
 sections describe alignment, individual models, comparisons, slices and
 uncertainty. Each section is complete, unavailable or failed. Complete sections
 reference aggregate artifacts by path and content hash; other sections explain

@@ -1,5 +1,13 @@
 # Готовый промпт для нового чата
 
+Последний checkpoint: `work/error-profile-contracts-20261022`, основа `300c6db`.
+По отдельной команде капитана реализованы только пункты 1–2 паспорта ошибок:
+граница Error Analysis, JSON-контракты и интерфейс backend; 20 новых +7 architecture
+checks PASS. Читать docs/experiments/error_profile_contracts_20261022.md первым.
+Чтение артефактов/статистики/интеграция с поиском не реализованы. Контекст V11/V16
+и ограничения ниже сохраняются; старый documentation-only scope заменён только
+для завершённых пунктов 1–2. Новых обучений, релизов или submit не было.
+
 Ты продолжаешь Alfa Hack AutoML:
 https://github.com/MUCG9/alfa-hack-automl,
 ветка work/llm-upgrade-20261022. Main и ambient-ветка agent-budget — не основа.

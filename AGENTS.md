@@ -1,5 +1,12 @@
 # Development instructions — current checkpoint, 22 October 2026
 
+Latest authorized checkpoint: `work/error-profile-contracts-20261022`, based on
+`300c6db`. Error-passport plan steps 1–2 (boundary/contracts) are implemented and
+tested; read docs/experiments/error_profile_contracts_20261022.md first. This
+explicit user authorization superseded documentation-only scope BELOW for these
+two steps only. No artifact reader/statistics/search integration or training was
+authorized or implemented in this checkpoint. The V11/V16 history below remains.
+
 Current branch: `work/llm-upgrade-20261022`, based on colleague6aefbd9.
 Read `docs/handoff/START_HERE.md`, `docs/handoff/EXPERIMENTS.md`,
 `docs/handoff/PLAN.md` and `docs/prompts/next-agent.md`. Read linked evidence only

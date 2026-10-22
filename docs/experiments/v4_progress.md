@@ -25,9 +25,11 @@ OVA+calibration .630416015, фиксированная смесь .636753388. OV
 Локальные outputs: `/tmp/alfa-next-class-cv/results.json`, OOF в подкаталогах
 рецептов; лог `test-runs/stages/next-class-cv.log`. Процесс был запущен через
 exec session22569. Очередь session87405 / `run-default-v3.sh` запустила полный default offline v3 classification с
-watchdog10100s. Очередь session46282 / `run-default-v4.sh` ждёт окончания v3 и затем выполнит
-полный default offline v4 regression + classification. Логи — default-v3.log и
-default-v4.log в test-runs/stages. Не запускайте конкурирующие тяжёлые jobs. Состояние нужно проверить
+watchdog10100s. Очередь session21271 / `run-default-v4-phase2.sh` ждёт окончания v3, затем
+проверит2 реальных Qwen plans +контроль на2 forward cuts (6workers), потом
+выполнит полный default offline v4 regression +classification. Прежняя idle
+очередь46282 остановлена до запуска ML. Логи — default-v3.log и
+default-v4-phase2.log в test-runs/stages. Не запускайте конкурирующие тяжёлые jobs. Состояние нужно проверить
 по существующим reports и процессам: session ID относится только к этой сессии.
 
 GitHub credentials предоставлены пользователем и использованы через приватный
@@ -43,3 +45,6 @@ v4 на обеих задачах. Затем commit/push результатов
 OOF; сравнить её с обоими отдельными рецептами. Это новая исследуемая комбинация,
 не независимая private-оценка. Сохранить отдельную метку derived OOF, не считать
 расчёт смеси новым обучением или дополнительными worker fits.
+
+Production planner проверен реальным API вызовом: [v4_live_planner.md](v4_live_planner.md),
+2 plans, первая попыткаok,12.163s. Их обучение/метрики ещё ожидаются в очереди.

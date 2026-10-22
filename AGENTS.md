@@ -22,3 +22,5 @@ For the next quality iteration, read `docs/architecture/quality_plan.md` (review
 - Long benchmarks must be sequential on low-memory hardware and have explicit watchdogs. A 20-minute LOCAL watchdog is not the platform's 3-hour limit. Never call an interrupted run a full successful validation.
 
 These are project instructions, not permission to exceed the user's current request.
+
+The captain requests frequent commits after completed logical stages. Near the last10% of the available token/context reserve, stop starting long experiments, save an accurate continuation prompt and checkpoint, and hand off. Do not claim an exact reserve measurement when no counter is exposed.

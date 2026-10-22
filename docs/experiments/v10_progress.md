@@ -164,3 +164,12 @@ release/v10-history4/additional-repo219-tests.json preserves original216 proof.
 219is unique count; unpacked23repeated proof remains valid unchanged runtime.
 Support-shrinkage ensemble remains PROPOSED, no scoring or fits; prioritize the
 positive feature-view CV rather than launching that alternative concurrently.
+
+## Active feature-view CV checkpoint
+
+Complete3fold grouped CV seed73 is ACTIVE, test-runs/v10-class-te-cv3,
+session46586. Two frozen leaf recipes and fixed0.5blend, no retuning. Do not launch
+another heavy fit. Support-shrinkage remains unexecuted. Conditional full-agent
+integration protocol v10_class_te_agent_protocol.md was recorded BEFORE any new
+runtime source or full-agent measurement, and runs only if every existing CV gate
+passes. History4 remains the validated current archive and runtime unchanged.

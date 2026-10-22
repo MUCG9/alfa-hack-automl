@@ -108,10 +108,14 @@ def portfolio(spec):
             numeric_history=(spec.get('time_candidate') or {}).get('representation','numeric')=='numeric' and (spec.get('time_candidate') or {}).get('split_mode','period')=='period'
             recipes=([normalize(history),normalize(history_log)]+([normalize(semantic)] if spec.get('static_numeric_features') else []) if numeric_history else [])+[normalize(conservative)]+recipes
         return recipes
-    return [normalize({'engine':'lightgbm','hypothesis':'Higher-capacity mild-weight model','params':dict(common,class_weight_power=.5)}),
+    recipes=[normalize({'engine':'lightgbm','hypothesis':'Higher-capacity mild-weight model','params':dict(common,class_weight_power=.5)}),
             normalize({'engine':'lightgbm','hypothesis':'Iteration-matched inner decision calibration','params':dict(common,class_weight_power=.5,calibrate=True)}),
             normalize({'engine':'xgboost','hypothesis':'Independent histogram-boosting family','params':{'iterations':1800,'learning_rate':.035,'max_depth':6,'min_child_weight':3,'subsample':.85,'colsample_bytree':.9,'reg_lambda':8,'reg_alpha':.1,'class_weight_power':.5,'min_iterations':50}}),
             normalize({'engine':'catboost','hypothesis':'Bounded native-category pilot','params':{'iterations':350,'depth':6,'learning_rate':.07,'class_weight_power':.5}})]
+    if spec.get('metric')=='macro_f1':
+        recipes.insert(3,normalize(dict(recipes[2],params=dict(recipes[2]['params'],calibrate=True),
+            hypothesis='Optional training-only XGBoost decision calibration; retain the uncalibrated control')))
+    return recipes
 
 def fallback(spec,number,best):
     candidate=dict(best or portfolio(spec)[0])

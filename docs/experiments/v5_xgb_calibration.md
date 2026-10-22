@@ -56,4 +56,9 @@ Eight of ten pooled class F1 scores improved, including Shellcode/Worms/Backdoor
 Analysis and Exploits decreased. This supports adding one optional calibrated
 XGBoost candidate for Macro F1, while retaining an uncalibrated control and actual
 per-task selection. It does not support forcing calibration for every metric.
-The portfolio change is not yet implemented at this evidence checkpoint.
+Following these gates, the portfolio adds ONE calibrated XGBoost candidate only
+for Macro F1, alongside the exact uncalibrated control. It does not force either
+candidate to win. Other metrics and the regression portfolio are unchanged.
+Four targeted search-policy tests verify scope, identical control parameters,
+distinct signatures and independent parameter dictionaries. A full updated-agent
+run remains required; component gains alone are not a final-ensemble result.

@@ -25,7 +25,13 @@ Full default public regression for this exact v7 archive completed: exit0,
 refit/integrity pass, final CSV SHA
 `c1556d566cd24de3dc4bed107fbfe7f517dea14dd2c53c583545af08ed43f4e0`,
 byte-identical to v6/v4, harness215.622s. See `regression-full.json`.
-Classification is still running, so the BOTH-task full gate has NOT yet passed.
-V6's independent frozen run does not satisfy the missing v7 classification gate.
+The earlier classification was interrupted (exit143); its partial evidence is
+preserved in `interrupted-classification.json`, not counted as full success.
+The NEW classification-only run completed on22October about10:19MSK: exit0,
+full refit/integrity pass, mean Macro F1 **0.6532812402233098**, final CSV SHA
+`58f52dfbfecb1416a456ed715a43cf944876a7f69eed73d7bf1e10170631b326`.
+Harness1358.099s; output is byte-identical to V6. See `classification-full.json`.
+**Both V7 public full lifecycles now pass**; combined evidence in `public-full.json`.
+This establishes offline parity/correctness, not live Qwen or a new official score.
 The v6 ZIP and historical releases remain immutable. Do not describe v7 as the
 best measured model or automatically submit it. Only v4 was authorized/uploaded.

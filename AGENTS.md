@@ -3,8 +3,9 @@
 Resumed work: **`work/agent-budget-20261022`**, based on `b11debf`; read
 `docs/experiments/resume_20261022.md` and `docs/experiments/v8_run_budget.md` before
 the older continuation text below. The earlier V7 classification was terminated
-(exit143), not completed; a new exact frozen-V7 classification run is in
-`test-runs/resume-20261022/v7-class-full`. Check its actual final state. V8 freezes
+(exit143), not completed; the NEW exact frozen-V7 classification run in
+`test-runs/resume-20261022/v7-class-full` completed with full parity/refit/integrity.
+Both V7 public gates now pass; see `release/v7-semantic1/public-full.json`. V8 freezes
 shared startup/API accounting with163unique checks; public gates are separate.
 No new official submission, extra agents, main merge or reset credits authorized.
 

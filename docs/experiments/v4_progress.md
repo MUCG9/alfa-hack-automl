@@ -1,0 +1,38 @@
+# Продолжение v4 после первого checkpoint
+
+Первый проверенный checkpoint: `3bbbb38` (код), `ba63e30` (82 эксперимента,
+кандидат, handoff). Затем `17cacdc` добавил парное OOF сравнение с bootstrap групп;
+проверка одинаковых predictions на87670 строках дала точную разность0 и интервал[0,0].
+Эти коммиты опубликованы в GitHub, ветка `work/pipeline-review-instructions`.
+
+Пользователь пополнил лимит и разрешил продолжить. Просьба: коммитить после
+завершённых этапов, при приближении к10% остатка лимита сохранять передачу и
+приостанавливать дальнейшие эксперименты. Официальный submit не разрешался.
+
+## Текущий этап
+
+Полная3-fold CV на exact `release/solution-v4-candidate.zip`, два потока,
+локальный guard1.7GiB, watchdog1200s на candidate-fold. Рецепты:
+`v4_class_cv_candidates.json`. Это первый контроль, сильная старая inner calibration
+и OVA+calibration. У всех одни group-disjoint folds. Входные SHA совпадают.
+
+Первый контроль завершён: folds Macro F1 .638590/.639134/.632555,
+fold mean .636759491, pooled OOF .636401856; выбранные деревья408/110/100.
+Числа на новых3-fold splits нельзя напрямую сравнивать с прежними20% holdouts.
+Остальные два рецепта продолжаются; итогового сравнения CV пока нет.
+
+Локальные outputs: `/tmp/alfa-next-class-cv/results.json`, OOF в подкаталогах
+рецептов; лог `test-runs/stages/next-class-cv.log`. Процесс был запущен через
+exec session22569. Отдельная очередь session87405 / `run-default-v3.sh` ждёт
+завершения CV и затем запустит полный default offline v3 classification с
+watchdog10100s. Не запускайте конкурирующие тяжёлые jobs. Состояние нужно проверить
+по существующим reports и процессам: session ID относится только к этой сессии.
+
+GitHub credentials предоставлены пользователем и использованы через приватный
+процесс, без записи в Git/config/URL/файл. Не рассчитывайте на сохранённую
+авторизацию после завершения процесса. Ключи и токены в handoff не копировать.
+
+После завершения: сохранить все9 outcomes и pooled OOF, сравнить finalist-1 с
+`v3-inner-calibration` с помощью `tools/compare_oof.py` (500 парных bootstrap по
+feature-hash группам), затем commit/push. Новый метод продвигать только по
+сравнению с сильным контролем. Дальше — полный matched default benchmark и Qwen.

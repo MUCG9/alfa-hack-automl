@@ -1,0 +1,12 @@
+{
+  "skill_sha256": "7c33320f7ad51edc5498f82123505d051243d98faa4f3e0b1071eecb7fbdd149",
+  "personal_and_repo_identical": true,
+  "validator_actual_tool": "a0810d",
+  "validator_exit_code": 0,
+  "independent_semantic_review": "audit_contract source-only review no wording blocker",
+  "new_scripts": 0,
+  "Qwen_runtime_integration_ready": false,
+  "new_API_calls": 0,
+  "ML_metric": null,
+  "source": "User colleague proposal; code catalog first regression L2/L1/Huber only, official LightGBM4.6.0 docs verified and installed metadata4.6.0"
+}

@@ -113,3 +113,5 @@ research/outer-validation-next-r3/** -text whitespace=cr-at-eol,-blank-at-eof,-b
 research/champion-stage0-next/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 research/method-expansion-next/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 research/champion-pair-next/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+research/loss-selection-next/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+skills/loss-selection/** -text

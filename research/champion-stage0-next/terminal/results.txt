@@ -1,3 +1,0 @@
-Champion Stage0: technical_stage0_verified; actual exec79591 exit0.
-Source471/0skips; exact23 repeated +1pinned ON: True. Исходный общий лимит900с, elapsed328.625с.
-Это техническая проверка, без нового публичного ML-результата. Следующий полный A/B требует своего frozen protocol и clock.

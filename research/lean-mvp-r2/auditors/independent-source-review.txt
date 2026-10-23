@@ -1,9 +1,0 @@
-T7 auditor source review: новых критичных проблем в адаптации не найдено.
-
-R3 close_lean_mvp_r3.py SHA183988d89ba455d992f5d0f42902b032a2eaa532b567499a245234a9860117d7 исправляет известный пропуск closure_preparer_identities дополнительных audit receipts. Независимо проверено: прочая AST полностью равна сохранённому неисполненному R2.
-
-Качество требует обоих task kinds и gates каждого среза/класса относительно свежего matched control И исторического v16-mean1. Улучшение среднего относительно ослабленного свежего контроля не считается прохождением. Technical PASS отдельно от качества; promotion/submit остаются false. Новые T7 paths/state не перезаписывают T6.
-
-Partial guard7d30cf21 — только исходная адаптация шаблона ad65 к m4/t7/733; actual exit0 и свежую closure сообщил root. Здесь это не переисполнялось. Terminal R3 ещё должен получить реальный exec65008 terminal, root attestation и свежую проверку всех tracked/preparer identities.
-
-Проверка только source/AST/schema. Тестов/imports/ML/API/новых процессов 0; активные T7 outcomes/data не читались, clock/source/STATE/Git не менялись.

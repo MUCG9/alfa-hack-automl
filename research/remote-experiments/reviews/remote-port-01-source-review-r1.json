@@ -1,0 +1,165 @@
+{
+  "schema": "remote-port-01-independent-source-review-v1",
+  "status": "source_only_bootstrap_no_concrete_infeasible_blocker_explicit_split_metadata_recommended_before_publication",
+  "job_path": "remote-orchestration-artifacts-dev/remote-port-01.json",
+  "job_sha256": "97629a93b2ce5bcfe95d79a681cdbc4be679b51c6502859b0dd0b2d66e13aa7d",
+  "job_not_changed_by_reviewer": true,
+  "source_refs": [
+    {
+      "path": "research/remote-experiments/sources/source-manifest.json",
+      "sha256": "0ed0e74706b6620ffc1b29216a8f2c00ab40771ef7ebaecb0cc61092f78c4bae",
+      "reviewed_actual_bytes_match": true
+    },
+    {
+      "path": "research/remote-experiments/sources/approved-input-manifest.json",
+      "sha256": "247ecf4d3ce8670be0573ed0808b0cfce9352babb78ca7cc02c9103ca3bee4c7",
+      "reviewed_actual_bytes_match": true
+    },
+    {
+      "path": "research/remote-experiments/sources/fixed-cut-manifest.json",
+      "sha256": "8f0c4788a230465f9dfc205b2766cfd3f15f75ac63e9b6e5fff7fb17863fee7a",
+      "reviewed_actual_bytes_match": true
+    },
+    {
+      "path": "research/remote-experiments/sources/protected-single-controls.json",
+      "sha256": "118ba895201bef8149fdd6bb88464bb2e02b23985a34629a47d52df5e5536f46",
+      "reviewed_actual_bytes_match": true
+    },
+    {
+      "path": "research/remote-experiments/sources/remote-port-01-objective.txt",
+      "sha256": "9bf1ff38bbd79fb98f844683bb218ae9dee96783fb1f3aa69d04eacf9cfcee93",
+      "reviewed_actual_bytes_match": true
+    }
+  ],
+  "objective": {
+    "same_text_after_CRLF_to_LF": true,
+    "raw_byte_equal": false,
+    "difference_only_CRLF_pairs": 13,
+    "job_UTF8_bytes": 3527,
+    "pinned_file_bytes": 3540,
+    "raw_pinned_text_sha256": "9bf1ff38bbd79fb98f844683bb218ae9dee96783fb1f3aa69d04eacf9cfcee93",
+    "note": "Separate exact source_ref raw file pin remains valid; JSON objective is same LF-normalized content. remote-experiments -text attribute preserves raw Git bytes; no job bytes changed."
+  },
+  "job_schema_and_caps": {
+    "schema": 1,
+    "kind": "source_only",
+    "readiness": "ready",
+    "caps": {
+      "wall_seconds": 5400,
+      "cpu_threads": 2,
+      "worker_memory_mib": 1536,
+      "whole_memory_mib": 2048,
+      "max_fits": 0,
+      "max_api_calls": 0
+    },
+    "dependencies": [],
+    "expected_outputs": [
+      "portable_harness.py",
+      "changes.patch",
+      "protocol.json",
+      "capabilities.json",
+      "pure-checks.json",
+      "summary.txt",
+      "next-hypotheses.json"
+    ],
+    "private_data_or_model_artifact_requested": false,
+    "independent_remote_execution_observed": false
+  },
+  "source_archive": {
+    "path": "research/remote-experiments/sources/kernel-source.zip",
+    "sha256": "ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c",
+    "member_count": 70,
+    "Python_members": 69,
+    "requirements_members": 1,
+    "all_members_exact_manifest": true,
+    "flat_regular_code_only_names": true,
+    "zip_symlink_modes_absent": true,
+    "requirements_sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+    "archive_not_executed": true
+  },
+  "approved_inputs": {
+    "metadata_sha256": "247ecf4d3ce8670be0573ed0808b0cfce9352babb78ca7cc02c9103ca3bee4c7",
+    "count": 10,
+    "only_five_named_public_files_per_task": true,
+    "public_download_ids_present": true,
+    "raw_input_bytes_read_by_reviewer": false,
+    "remote_actual_availability_or_SHA_not_tested": true
+  },
+  "protected_controls": {
+    "metadata_sha256": "118ba895201bef8149fdd6bb88464bb2e02b23985a34629a47d52df5e5536f46",
+    "exact_parsed_recipe_equal_to_protected_first_SINGLE": {
+      "regression": true,
+      "classification": true
+    },
+    "semantics": "Original rich LGBM package retained for strong arm; bounded identity/RBF comparison is a separate complete representation recipe, not a pure family claim against strong."
+  },
+  "split_reconstruction": {
+    "manifest_sha256": "8f0c4788a230465f9dfc205b2766cfd3f15f75ac63e9b6e5fff7fb17863fee7a",
+    "five_declared_SHA_and_offsets_seeds_match_KERN01_source": true,
+    "existing_flat_entrypoints": {
+      "automl_evaluation.py": {
+        "flat_sha256": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+        "original_source": "kern00/src/automl/evaluation/service.py",
+        "original_source_sha256": "4aac3ca3cdd3714e3d61598020bb9597faa68a460f0dc4a356dc9591a9a27b9e",
+        "function_AST_equal": [
+          "choose_validation",
+          "make_time_split",
+          "make_split"
+        ]
+      },
+      "automl_task.py": {
+        "flat_sha256": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+        "original_source": "kern00/src/automl/task_understanding/service.py",
+        "original_source_sha256": "8d5ee8225e7be13f9bd99c257eeeb6d98094d16476b1f69a1e3221ea340a9e44",
+        "function_AST_equal": [
+          "discover"
+        ]
+      }
+    },
+    "minimum_additional_Python_files_needed": [],
+    "helper_members_already_in_same_archive": {
+      "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+      "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+      "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1"
+    },
+    "original_preparer_reference": {
+      "path": "kern00/tools/benchmark_candidates.py",
+      "sha256": "389e84fc0f81731e6704d9286e92ea13ac24b17c2664549c5936adf045970a26",
+      "relevant_source_lines": "discover(task), choose_validation(...legacy default); regression force time/time_column then make_time_split offsets; class make_split seeds; np.savez(split,train=tr,validation=va). Wrapper launcher itself need not be published or executed."
+    },
+    "exact_callchain_recommended_for_metadata": [
+      "Use pinned flat automl_task.discover(task_path, allow_llm=False) on exact approved raw bytes and original feature column order; keep returned hashes (pd.util.hash_pandas_object(train[features],index=False).uint64). No target/ID hashes or changed rows.",
+      "Use pinned automl_evaluation.choose_validation(spec,train,mode=legacy). For regression explicitly set validation_strategy=time and time_column=spec.time_candidate.column, then make_time_split(spec,train,offset=0/1/2).",
+      "For classification call pinned make_split(spec,train,hashes,seed=42/43). On this frozen task no time/group candidate exists, so legacy/None strategies take the same duplicate-feature-hash StratifiedGroupKFold branch; do not substitute semantic entities or different seed.",
+      "Serialize exactly np.savez(split_path,train=tr,validation=va), keeping original ordered integer arrays and keyword/member order; verify all five complete NPZ SHA before fits. Do not sort/resplit/reseed or upload arrays.",
+      "Pin installed NumPy1.26.4/pandas2.2.3/scikit-learn1.5.2 from original requirements and relevant parser/hash/serialization dependencies. Metadata/source reasoning does not prove cross-host binary reproduction; mismatch is an explicit blocker for later fitting."
+    ],
+    "finding": "Prose currently names benchmark_candidates wrapper but not the existing flat entrypoints/call setup. This is narrow metadata ambiguity, not missing splitter implementation. Add explicit method/module/seed/key-order/library metadata before publishing to avoid an unnecessary source-only blocked result.",
+    "actual_splitter_calls": 0,
+    "NPZ_or_index_arrays_read_or_regenerated": 0,
+    "actual_byte_reproduction_verified": false
+  },
+  "other_readiness_boundaries": [
+    "This job prepares source and no-fit checks only. Real model fits, API calls, predictions and scores remain forbidden; capability/version failures must be reported, not repaired by installing unapproved packages.",
+    "A pure joblib/loky subprocess/temp-path probe can diagnose process-local Unicode behavior without fitting any estimator; a model-fit reproduction would exceed this job max_fits0.",
+    "The source archive contains fixed representation profile IDs/catalog. Future bounded job should pin exact identity/RBF recipe JSON, splitter/auditor and package versions after source review; this first job is not a15-job execution authorization.",
+    "Returned expected files are bounded source/text/JSON only, no raw data/indices/NPZ/predictions/weights/binaries/private paths. Filters are not semantic sanitization proof; primary manual review and independent metrics remain required."
+  ],
+  "reviewer_actions": {
+    "source_and_public_metadata_hash_reads": true,
+    "stdlib_ZIP_member_and_AST_inspection_only": true,
+    "candidate_imports": 0,
+    "tests": 0,
+    "Git_commands": 0,
+    "fits": 0,
+    "API_network_calls": 0,
+    "process_scans": 0,
+    "data_or_predictions_read": 0,
+    "NPZ_read": 0,
+    "source_or_job_edits": 0,
+    "STATE_Git_edits": 0,
+    "clocks_assigned": 0
+  },
+  "promotion": false,
+  "official_score": null
+}

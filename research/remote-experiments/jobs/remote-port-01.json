@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "id": "remote-port-01",
+  "kind": "source_only",
+  "readiness": "ready",
+  "objective": "REMOTE-PORT-01: prepare a portable, reviewed kernel experiment for this second computer.\n\nThis first assignment is source preparation and pure contract checks, not permission for public model fits. Preserve local source/code and use an isolated directory. Use the pinned kernel-source.zip (70 root .py+original requirements; SHA ca8a0898...) unchanged as the algorithm baseline. Its original host passed483source/exact23/flat12; that is historical source evidence, not proof of this host environment.\n\n1. Report OS, Python and installed allowed-library versions, declared resources and a random public worker ID. Do not report hostname, private home paths, account identifiers, credentials or environment values. Do not install packages or acquire paid resources.\n2. Read approved-input-manifest.json, fixed-cut-manifest-r2.json, protected-single-controls.json. Design a portable source-only harness: three existing forward regression cuts and two existing group classification cuts, exact strong/matched-linear/RBF128 recipes. Pin source, recipes, inputs, splitter and auditor before fitting. Prepare deterministic split-byte checks; if existing NPZ bytes cannot be reproduced exactly, report blocked with a narrow reason. Do not substitute new rows.\n3. Diagnose Windows joblib/loky Unicode temp-folder failure at n_jobs2. Propose only a process-local, owned ASCII temporary directory strategy or an equally narrow verified solution; no global environment/security changes. The existing failed KERN01 is immutable. Distinguish an environment correction from a change to the model/seed/weights/preparation.\n4. Prepare meaningful pure tests and portable worker guards: one worker on this computer, CPU<=2, worker<=1536MiB, whole owned tree<=2048MiB, APIcalls0; worker parent480s/child450s. Strip credentials. Preserve actual PID/create_time, first and later errors, real wall/monotonic/common deadlines, null missing metrics, source/input/sealed-output hashes. Later proposed fifteen-job screen common10800 includes setup900+workers7200+audit900+cleanup300+spare1500; no resetting/reinvestment. This assignment itself has caps from its queue JSON and max_fits0.\n5. Return a small source patch/scripts, pure-check receipts (without model fits), a prospective run protocol and capability report. Keep raw data, indices files, predictions, weights, binaries, credentials and absolute private paths out of public Git. Metrics must be null with reason until a separately reviewed READY bounded_experiment is issued. Retain prospective private local prediction paths/hashes for the later experiment; scalar remote metrics alone will not auto-promote a release.\n\nNo model, API, dataset fit, submission or default promotion is authorized by this first job. The primary agent reviews this packet and publishes the next bounded experiment automatically. Future qualified comparisons use each declared cut, class supported/ex-rarest gates, separate raw package-vs-control and RBF-vs-matched-linear contrasts. The whole-agent references34.8662/.659318 are different evaluation scopes and must not be treated as matched component controls.\n\n6. In next-hypotheses.json propose two or three next experiments from the actual source/contracts and known failures: one changed factor, strongest matched control, target metric/direction, declared cuts, budget and rejection condition. Distinguish facts from untested hypotheses. No new fits until a separately issued READY job. Do not replay negative fixed regression recipes without a new mechanism.\n",
+  "caps": {
+    "wall_seconds": 5400,
+    "cpu_threads": 2,
+    "worker_memory_mib": 1536,
+    "whole_memory_mib": 2048,
+    "max_fits": 0,
+    "max_api_calls": 0
+  },
+  "source_refs": [
+    {
+      "path": "research/remote-experiments/sources/source-manifest.json",
+      "sha256": "0ed0e74706b6620ffc1b29216a8f2c00ab40771ef7ebaecb0cc61092f78c4bae"
+    },
+    {
+      "path": "research/remote-experiments/sources/approved-input-manifest.json",
+      "sha256": "247ecf4d3ce8670be0573ed0808b0cfce9352babb78ca7cc02c9103ca3bee4c7"
+    },
+    {
+      "path": "research/remote-experiments/sources/fixed-cut-manifest-r2.json",
+      "sha256": "a56b9c3d5909ea4eb4854d3f3b6bd908360dd2cb84b7b19fa86323e3297a6d12"
+    },
+    {
+      "path": "research/remote-experiments/sources/protected-single-controls.json",
+      "sha256": "118ba895201bef8149fdd6bb88464bb2e02b23985a34629a47d52df5e5536f46"
+    },
+    {
+      "path": "research/remote-experiments/sources/remote-port-01-objective-r2.txt",
+      "sha256": "8bbe2d2b3d9e210a18afe142c9a8951ef49d1c07e23e63b7b04a0582712c34b4"
+    }
+  ],
+  "dependencies": [],
+  "expected_outputs": [
+    "portable_harness.py",
+    "changes.patch",
+    "protocol.json",
+    "capabilities.json",
+    "pure-checks.json",
+    "summary.txt",
+    "next-hypotheses.json"
+  ]
+}

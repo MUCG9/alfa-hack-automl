@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "recorded_unix": 1792789235.3572123,
+  "user_requested_parallel_hosts": true,
+  "human_reports_remote_agent_started": true,
+  "validated_remote_claim_observed": false,
+  "attachment_sha256": {
+    "промпт.txt": "f248c9746f1d52a51b93a79e5e36ca42372c1633acd7b707f7a85ef7dff2e974",
+    "промпт2.txt": "e20a166d740f4970ae63d9f5d8f28924d36a8fe5a8c66f805d988e58a12d6ec0",
+    "промпт3.txt": "2f4c7c52130b2dbd4d81c2336dbee274577a7e743e5eda6c1f4523cb1bc5c364"
+  },
+  "transport_branch": "research/remote-dispatch",
+  "roles": {
+    "primary": "Own dispatch, independent review, local L1 whole-agent A/B and release qualification.",
+    "remote": "Source/capability handshake, portable class worker, then assigned bounded classification experiments. No API credentials transfer."
+  },
+  "first_priority": "Close reviewed13 offline transport checks, publish READY source-only remote-port-01, observe actual claim.",
+  "local_sequence": [
+    {
+      "id": "LS-STAGE0",
+      "status": "source_prepared_unexecuted",
+      "scope": "499source/23default/28flat, original900s assigned only at actual launch."
+    },
+    {
+      "id": "L1-WHOLE-AB",
+      "status": "source_reviewed_unexecuted",
+      "scope": "Same CP1 strong seed in both regression arms, only B admits L1 in optional slot. Both class arms unchanged. Four tasks, shared10800s, refit/CSV/R4."
+    },
+    {
+      "id": "RELEASE-INTEGRATION",
+      "status": "conditional_future",
+      "scope": "Only after whole-agent improvement, generic standard python3 solution.py task.md integration and both tasks full release gates; external JSON/flags are not default ready."
+    }
+  ],
+  "remote_sequence": [
+    {
+      "id": "remote-port-01",
+      "status": "not_published_until_transport_checks_pass",
+      "scope": "5400s source-only maxfits0/API0; environment/Unicode correction/pure contracts and prospective worker protocol."
+    },
+    {
+      "id": "REMOTE-CLASS-KERNEL",
+      "status": "requires_completed_same_worker_source_result_and_primary_approval",
+      "scope": "Fresh protected SINGLE/matched linear/RBF128 on same two group cuts. New class mechanism is environment correction; no replay of three negative regression cuts."
+    },
+    {
+      "id": "REMOTE-CLASS-CONTROL",
+      "status": "future_source_review_required",
+      "scope": "Explain historical-vs-fresh class control drift using exact source/input/split/seed fingerprints; distinguish demonstrated cause from speculation."
+    },
+    {
+      "id": "CLASS-ET-BLEND-WHOLE",
+      "status": "future_independent_gates_required",
+      "scope": "Promising fixed90/10 SINGLE+ET component requires separate full-agent equal-budget experiment; no promotion from screen."
+    }
+  ],
+  "proposals": {
+    "loss": {
+      "implemented": "Supported L2/L1/Huber profile backend and isolated loss-selection skill. LOSS01 all3 L1cuts improved; Huber rejected.",
+      "pending": "Full L1 agent; then fitting-only diagnostic context and A=current/B=fixed profiles/C=Qwen skill under equal budget. Skill contribution not measured."
+    },
+    "kernels": {
+      "implemented": "Bounded linear/RBF128 backend and isolated skill; KERN00 technical checks passed.",
+      "pending": "Four class kernel workers failed Unicode resource_tracker; remote portability correction before class results. ExactSVC/SVR/Nystroem/poly2 only separate cost-gated hypotheses."
+    },
+    "conveyor": {
+      "implemented": "Immutable Git job claim/result protocol under13 offline checks; existing local pure atomic queue helper.",
+      "boundary": "Filesystem rename is not cross-computer locking. New per-job refs claimed by normal sibling push; primary reviews sealed results. Native heartbeat, no OS service/extra CLI agent."
+    }
+  },
+  "continuous_loop": "Check claims/results before and after local phases; independently review new packet, record decision, publish next immutable READY jobs. After result immediately check next job; every5min while idle.",
+  "evidence_rules": [
+    "One heavy experiment per host; parallel fits only on separate hosts.",
+    "Preserve all original clocks, failures and frozen inputs.",
+    "Remote scalar/resources remain reported until independently checked; no automatic promotion.",
+    "No rawdata/predictions/weights/credentials in Git.",
+    "Never repeat a negative fixed recipe without a new mechanism.",
+    "Browser origin denial still binding despite an open tab; no alternate transport or asserted upload."
+  ],
+  "strong_references": {
+    "whole_regression_rmse": 34.86622087872278,
+    "historical_whole_class_macro_f1": 0.6593178433614652,
+    "fresh_class_whole_control": 0.6530048968876206,
+    "component_L2_regression_mean": 40.60751094989404,
+    "component_L1_regression_mean": 39.73922765536067
+  },
+  "component_not_matched_to_whole": true,
+  "remote_connected_claim_requires_actual_git_proof": true
+}

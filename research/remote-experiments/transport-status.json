@@ -1,10 +1,18 @@
 {
   "schema": 1,
-  "status": "preparing",
-  "offline_tests_passed": false,
+  "status": "ready",
+  "offline_tests_passed": true,
+  "offline_checks": 13,
+  "source_validation_pending": false,
   "actual_remote_worker_connected": false,
-  "source_validation_pending": true,
-  "instructions": "Wait for ready, then use only the pinned transport/source/job. No models or jobs are launched by this status file.",
+  "connection_state": "waiting_for_first_validated_claim",
+  "dispatch_branch": "research/remote-dispatch",
   "primary_thread": "01a165c5-040a-7870-b720-cf441d61bc8c",
-  "dispatch_branch": "research/remote-dispatch"
+  "tool": "research/remote-experiments/queue/remote_queue.py",
+  "tool_sha256": "d42cb979db953eeffabfa65ee2a40d8763dfd835f91ce35149327f3d181e4c49",
+  "first_job": "remote-port-01",
+  "first_job_sha256": "407315514f9f3fa75b3d2d584bb8da9e2acf83ade1761b7548d88c11ead32aad",
+  "qualification": "research/remote-experiments/queue/technical-checks-r1.json",
+  "qualification_sha256": "f7939e908b356439c5e6e00d282a190b642a5cbd86cf1975883757e2842392f2",
+  "instructions": "Use only the declared immutable READY job, one claim per worker. Poll before work. A ready transport is not proof of remote connection, ML quality or release promotion."
 }

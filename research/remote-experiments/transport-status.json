@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "status": "preparing",
+  "offline_tests_passed": false,
+  "actual_remote_worker_connected": false,
+  "source_validation_pending": true,
+  "instructions": "Wait for ready, then use only the pinned transport/source/job. No models or jobs are launched by this status file.",
+  "primary_thread": "01a165c5-040a-7870-b720-cf441d61bc8c",
+  "dispatch_branch": "research/remote-dispatch"
+}

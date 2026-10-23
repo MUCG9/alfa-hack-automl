@@ -1,0 +1,77 @@
+{
+  "scope": "Only the ten organizer-provided public files. Download on worker to private local evaluation directory; do not commit raw files. Verify byte SHA before any experiment.",
+  "files": [
+    {
+      "task": "multiclass",
+      "name": "data_dictionary.csv",
+      "bytes": 3532,
+      "sha256": "13d2651c5fe02b7fc30f0e7290af45606aad5de76c2f7b69217abc270dbbcef4",
+      "organizer_public_drive_id": "1jQEwly8fLipVk6f8iM0poVwPD1lAo1X8"
+    },
+    {
+      "task": "multiclass",
+      "name": "sample_submission.csv",
+      "bytes": 565229,
+      "sha256": "4d23642fcff01e49b0ef5a9f018b2381c12fad97282fa586285ad49b01e9623e",
+      "organizer_public_drive_id": "1lwWumLZdv7XDkxxCk6tqhu4VtFbmqB4l"
+    },
+    {
+      "task": "multiclass",
+      "name": "task.md",
+      "bytes": 4699,
+      "sha256": "eebb55ebb8deb8257a2c012330ecc015e8d3a0bc3619c40da6c2a6ab200709bf",
+      "organizer_public_drive_id": "1GNzZXQ3rGezpy_vAItzTml82GhIbEKrZ"
+    },
+    {
+      "task": "multiclass",
+      "name": "test.csv",
+      "bytes": 7556373,
+      "sha256": "b825449603931b5f05a8855e3d92b57775221c93ed4730ac6b4c75b9ea608862",
+      "organizer_public_drive_id": "1MagJAodMc1IrCOP_cqS2kHDaJh-br7Hz"
+    },
+    {
+      "task": "multiclass",
+      "name": "train.csv",
+      "bytes": 16567584,
+      "sha256": "171a8915070b7575b729a32f70a45d1ad7b6f43c65b4ce12a0a68af30d5cb4e0",
+      "organizer_public_drive_id": "1rzceF6sa83Bqoe3HSfL90s1LYjRSWoUv"
+    },
+    {
+      "task": "regression",
+      "name": "data_dictionary.csv",
+      "bytes": 7408,
+      "sha256": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
+      "organizer_public_drive_id": "11KgxLjtTzDBInClx_2bTGs1dLGMo1VXS"
+    },
+    {
+      "task": "regression",
+      "name": "sample_submission.csv",
+      "bytes": 222554,
+      "sha256": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1",
+      "organizer_public_drive_id": "1EnK_wuXAbhznCZn61DFrA0mXQVbQaXOp"
+    },
+    {
+      "task": "regression",
+      "name": "task.md",
+      "bytes": 11089,
+      "sha256": "33f743ead4840336856cb9db8e25867f44512231beebff927326e8580e14d9d0",
+      "organizer_public_drive_id": "1KHIW5Toc6D4Si8XXAo16PMBNJdLtbacA"
+    },
+    {
+      "task": "regression",
+      "name": "test.csv",
+      "bytes": 18346633,
+      "sha256": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
+      "organizer_public_drive_id": "1QJrnlKHpTuMuGLozrP_HNb3a8PQcfo3A"
+    },
+    {
+      "task": "regression",
+      "name": "train.csv",
+      "bytes": 43416931,
+      "sha256": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775",
+      "organizer_public_drive_id": "13FFSUKNgi-5Y9wxjknjAeSN6CwW4Hezg"
+    }
+  ],
+  "requirements_sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+  "raw_files_in_git": false
+}

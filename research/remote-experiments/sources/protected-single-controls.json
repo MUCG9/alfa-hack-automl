@@ -1,0 +1,51 @@
+{
+  "regression": {
+    "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
+    "engine": "lightgbm",
+    "params": {
+      "iterations": 1600,
+      "learning_rate": 0.035,
+      "num_leaves": 127,
+      "max_depth": -1,
+      "min_child_samples": 25,
+      "reg_lambda": 8,
+      "subsample": 1,
+      "colsample_bytree": 0.9,
+      "generic_features": "missing",
+      "subsample_freq": 0,
+      "min_iterations": 100,
+      "target_encoding": true,
+      "target_encoding_auto_groups": true,
+      "target_encoding_smoothing": 2,
+      "log_target": true,
+      "target_encoding_hierarchical": true,
+      "history_asof": true,
+      "history_min_periods": 3,
+      "early_metric": "primary",
+      "nested_stopping": true
+    },
+    "feature_code": ""
+  },
+  "classification": {
+    "hypothesis": "Fixed equal-weight original and cross-fitted categorical feature views; compare full procedure",
+    "engine": "lightgbm",
+    "params": {
+      "iterations": 1200,
+      "learning_rate": 0.04,
+      "num_leaves": 63,
+      "max_depth": -1,
+      "min_child_samples": 25,
+      "reg_lambda": 5,
+      "subsample": 1,
+      "colsample_bytree": 0.9,
+      "class_weight_power": 0.5,
+      "calibrate": true,
+      "subsample_freq": 0,
+      "min_iterations": 100,
+      "feature_views": "categorical_te_pair",
+      "early_metric": "primary",
+      "nested_stopping": true
+    },
+    "feature_code": ""
+  }
+}

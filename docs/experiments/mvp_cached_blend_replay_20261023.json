@@ -1,0 +1,92 @@
+{
+  "scope": "Posthoc replay of the SAME five canonical cached two-parent blend configurations; reused public validation, not a new complete agent or official score",
+  "model_fits": 0,
+  "original_mvp_ensemble": null,
+  "original_mvp_blend_trials": 0,
+  "original_mvp_single_mean": 0.6544845346080569,
+  "successful_confirmation_candidates": 2,
+  "configurations": [
+    {
+      "indices": [
+        0,
+        1
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ],
+      "search": 0.6549062447589538,
+      "confirmation": 0.6596329528715145,
+      "mean": 0.6572695988152342
+    },
+    {
+      "indices": [
+        0,
+        1
+      ],
+      "weights": [
+        0.25,
+        0.75
+      ],
+      "search": 0.6484602593939136,
+      "confirmation": 0.6582966313227308,
+      "mean": 0.6533784453583222
+    },
+    {
+      "indices": [
+        0,
+        1
+      ],
+      "weights": [
+        0.75,
+        0.25
+      ],
+      "search": 0.6533168782047623,
+      "confirmation": 0.6573749311540236,
+      "mean": 0.6553459046793929
+    },
+    {
+      "indices": [
+        0,
+        1
+      ],
+      "weights": [
+        0.1,
+        0.9
+      ],
+      "search": 0.6493859506661732,
+      "confirmation": 0.6586593297457026,
+      "mean": 0.6540226402059379
+    },
+    {
+      "indices": [
+        0,
+        1
+      ],
+      "weights": [
+        0.9,
+        0.09999999999999998
+      ],
+      "search": 0.6573047278688904,
+      "confirmation": 0.6515071679759126,
+      "mean": 0.6544059479224015
+    }
+  ],
+  "best_cached_blend": {
+    "indices": [
+      0,
+      1
+    ],
+    "weights": [
+      0.5,
+      0.5
+    ],
+    "search": 0.6549062447589538,
+    "confirmation": 0.6596329528715145,
+    "mean": 0.6572695988152342
+  },
+  "complete_control_mean": 0.6593178433614652,
+  "full_refit_of_replayed_blend": false,
+  "changes_original_mvp_result": false,
+  "report_sha256": "e74c4e018782940fe418e66350bff5f1bd41637f132bc7c51f3733c3c73c110e"
+}

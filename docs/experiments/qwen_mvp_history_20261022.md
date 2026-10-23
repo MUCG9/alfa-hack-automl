@@ -34,3 +34,12 @@ git switch work/qwen-optuna-mvp-20261022
 Публичная публикация рабочей ветки разрешена капитаном отдельно. Push `ad7e472`
 проверен через remote SHA; main не менялся. Это история кода и технических
 отчётов, а не резервная копия игнорируемых данных/моделей/прогнозов/секретов.
+
+
+Продолжение23Oct: c396932 — Karpathy-based skill;804d407 — независимая installed
+копия;7202aba — FE-02 trusted prototype;070b8cd — sequential followup;
+a1b1b39 — frozen FE-02 identity;6d85647/0b37c89/86b5dd0 — read-only Qwen review
+и агрегированный контекст. Последний проверенный remote SHA перед очередным
+push:a1b1b39. Полный MVP завершён и отрицателен; V11/V16 остаётся qualified.
+Обновлённый installed skill совпадает с versioned copy, включая наблюдение
+о разной history availability внутри/снаружи HPO.

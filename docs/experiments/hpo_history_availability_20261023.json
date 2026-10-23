@@ -1,0 +1,123 @@
+{
+  "scope": "Observed fitting-scope history availability in saved HPO anchor/control artifacts; no proof of causal performance impact",
+  "cuts": [
+    {
+      "cut": 0,
+      "inner_anchor": {
+        "feature_count": 77,
+        "fitting_scopes": [
+          {
+            "fitting_periods": 2,
+            "minimum_periods": 3,
+            "enabled": false,
+            "contexts": 1,
+            "reason": "insufficient_periods"
+          },
+          {
+            "fitting_periods": 3,
+            "minimum_periods": 3,
+            "enabled": true,
+            "contexts": 2,
+            "reason": "enabled"
+          }
+        ]
+      },
+      "outer_control": {
+        "feature_count": 77,
+        "fitting_scopes": [
+          {
+            "fitting_periods": 3,
+            "minimum_periods": 3,
+            "enabled": true,
+            "contexts": 2,
+            "reason": "enabled"
+          },
+          {
+            "fitting_periods": 4,
+            "minimum_periods": 3,
+            "enabled": true,
+            "contexts": 2,
+            "reason": "enabled"
+          }
+        ]
+      }
+    },
+    {
+      "cut": 1,
+      "inner_anchor": {
+        "feature_count": 72,
+        "fitting_scopes": [
+          {
+            "fitting_periods": 1,
+            "minimum_periods": 3,
+            "enabled": false,
+            "contexts": 0,
+            "reason": "insufficient_periods"
+          },
+          {
+            "fitting_periods": 2,
+            "minimum_periods": 3,
+            "enabled": false,
+            "contexts": 1,
+            "reason": "insufficient_periods"
+          }
+        ]
+      },
+      "outer_control": {
+        "feature_count": 77,
+        "fitting_scopes": [
+          {
+            "fitting_periods": 2,
+            "minimum_periods": 3,
+            "enabled": false,
+            "contexts": 1,
+            "reason": "insufficient_periods"
+          },
+          {
+            "fitting_periods": 3,
+            "minimum_periods": 3,
+            "enabled": true,
+            "contexts": 2,
+            "reason": "enabled"
+          }
+        ]
+      }
+    },
+    {
+      "cut": 2,
+      "inner_anchor": {
+        "feature_count": 71,
+        "fitting_scopes": [
+          {
+            "fitting_periods": 1,
+            "minimum_periods": 3,
+            "enabled": false,
+            "contexts": 0,
+            "reason": "insufficient_periods"
+          }
+        ]
+      },
+      "outer_control": {
+        "feature_count": 72,
+        "fitting_scopes": [
+          {
+            "fitting_periods": 1,
+            "minimum_periods": 3,
+            "enabled": false,
+            "contexts": 0,
+            "reason": "insufficient_periods"
+          },
+          {
+            "fitting_periods": 2,
+            "minimum_periods": 3,
+            "enabled": false,
+            "contexts": 1,
+            "reason": "insufficient_periods"
+          }
+        ]
+      }
+    }
+  ],
+  "original_HPO01_gate_unchanged": true,
+  "source_modified": false
+}

@@ -6,12 +6,15 @@
 отдельно. Main, official submit, платные ресурсы и дополнительные Codex agents
 не задействуются.
 
-Текущий полный MVP выполняется отдельным owned coordinator PID33136. Ночной
-координатор PID37960/create_time1792705065.83 **ждёт** его и известных дочерних
-процессов. Прежде чем начать новый fit, проверить обе identity receipts и
-`queue.json`; не дублировать запуски. Теперь filesystem/network sandbox выключен,
-обычный process inspection видит owned jobs; при возвращении sandbox учитывать
-ранее обнаруженную разницу видимости PID.
+Актуально03:40МСК: полный MVP завершён на обоих tasks; PID33136 exited.
+meanF1 .6544845346080569 и RMSE36.02469255996805 хуже V11/V16. Итоговые
+CSV/refits/integrity и все четыре actual partitions независимо проверены:
+`mvp01_complete_20261023.json`, `mvp_comparison_partitions_20261023.json`.
+Posthoc cached blend без fits даёт .6572695988152342, тоже ниже control;
+это не новый полный refit и не изменение первоначального результата.
+Ночная очередь PID37960/create_time1792705065.83 проходит classification HPO;
+FE-02 followup PID49264 ждёт. До завершения ОБОИХ source заморожен.
+Process identity/receipt/lock проверять перед любым новым fitting.
 
 Последовательность после завершения MVP:
 
@@ -150,3 +153,13 @@ Worms fitting46/validation19 independent groups. Это search result, не fina
 skill и snapshots metadata-only receipts, максимум4096 output tokens/180s.
 CLI/help проверен, реальный review ещё не запущен. Ответ — untrusted analysis/
 гипотезы, без автоматического применения, новых прав или ML-quality claim.
+
+
+REVIEW-01 live завершён:16481tokens,6.712s. Числовой supported-class contract
+не был явно включён (ссылка на локальный файл не загружает его в API), Qwen
+ошибочно назвал Worms причиной gate. Реальная violation — Analysis695groups;
+Worms46groups исключён из >=100 gate. Аудит:review01_audit_20261023.json.
+REVIEW-02 preregistered: те же frozen facts/skill, явные contracts и evidence IDs,
+код вычисляет gates; ответы только гипотезы, не automatic actions. Три no-fit
+проверки ID/control/gate/resource bounds PASS. Это interface iteration, не
+изолированный A/B или ML gain.

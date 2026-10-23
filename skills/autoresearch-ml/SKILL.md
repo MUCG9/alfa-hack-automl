@@ -84,6 +84,12 @@ partitions; outer labels не передавать в objective. Сравнив�
 anchor и random search при одинаковых ограничениях; сообщать, прошёл ли TPE
 startup. При отсутствии успешных trials сохранять контроль.
 
+Сопоставлять активные семейства признаков и fallback-статусы в inner/outer/full
+fits. Например, короткий временной префикс может выключать history-признаки,
+которые появятся при последующем refit: тогда objective оценивает другую ветвь
+процедуры. Отмечать это как риск переносимости и проверять отдельной гипотезой.
+Не выравнивать inner-признаки с помощью outer validation statistics.
+
 Выбирать group/time validation по происхождению данных. Проверять непересечение
 entity/feature hashes либо forward chronology. Для Macro F1 смотреть per-class
 scores и независимую поддержку. Для full CV проверять exactly-once OOF coverage,

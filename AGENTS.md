@@ -18,12 +18,11 @@ Inspect processes/receipts before starting any fits; do not run concurrently.
 Update23Oct: full organizer live-four-stage smoke PASSED (roles/planner, four
 Optuna trials, active CatBoost selection, refit/CSV/integrity). Initial public
 attempt stopped before a completed experiment; original receipt preserved.
-Active campaign is public-mvp-attempt2, detached coordinator PID33136,
-create_time1792703529.8; identity receipt detached-mvp-attempt2.json. Original
-common deadline1792713780.3726451 retained. Escalated processes are NOT visible
-to psutil inside the sandbox: inspect their identities outside sandbox before
-starting/restarting any fits. Do not treat an empty sandbox process list as proof
-that an outside job stopped. User explicitly approved PUBLIC publication of code
+MVP public-mvp-attempt2 is COMPLETE, PID33136 exited; immutable launch identity
+is detached-mvp-attempt2.json. Original common deadline1792713780.3726451 was
+retained. Inspect actual process identity/create_time and receipts before fits;
+an empty restricted process view alone is not proof an outside job stopped.
+User explicitly approved PUBLIC publication of code
 and technical reports to MUCG9/alfa-hack-automl; branch4886ecd push+remote SHA
 verified. Git credentials are temporary/private; never expose or commit them.
 Historical V11/V16 remain the qualified control. No new official submit, extra
@@ -31,8 +30,11 @@ Codex agents, paid GPU/resources, main merge or force push is authorized.
 Night continuation authorized23Oct: no questions, autonomous work. Full access
 is enabled, but keep sequential/resource/provenance rules. MVP regression is
 verified negative: mean36.02469255996805 vs35.44723155783769, both cuts worse.
-Classification is still running. Queue PID37960/create_time1792705065.83 waits
-for MVP before FE-01/HPO-01/HAR-01/HAR-02; see overnight_20261023.md and the
+Classification MVP is also negative: meanF1 .6544845346080569 vs .6593178433614652.
+Both final CSVs/refits/integrity and actual matching control partitions verified;
+see mvp01_complete_20261023.json. Queue PID37960/create_time1792705065.83 now
+runs classification HPO after completed regression screens and class FE-01;
+read current receipts for status. See overnight_20261023.md and the
 ignored overnight identity/queue receipts. Do not start duplicate fits. Canonical
 source remains frozen; compiler4 and lifecycle2 are separate development checks.
 Captain requested the autoresearch-ml skill based on karpathy/autoresearch.

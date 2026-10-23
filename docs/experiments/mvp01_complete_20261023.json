@@ -1,0 +1,348 @@
+{
+  "scope": "Exploratory complete procedure on reused public cuts, not OOF/private/official score; multiple factors changed",
+  "campaign_status": "completed",
+  "archive_sha256": "5dc7c9a26cde0982fc50b2241d3866ef3febc5948ca44c17453091dc8dc333e3",
+  "qualified_control": "V11/V16 saved full-default procedure; no new control refit",
+  "tasks": {
+    "regression": {
+      "metric": "rmse",
+      "search": {
+        "value": 39.755603137589205,
+        "rows": 18308,
+        "prediction_sha256": "2a05b3cd4aff4a0cd5172934489839c80534561044bd65a62e39d08791f16a4f",
+        "split_sha256": "cb5cc91326bbe0c4144db3b7bd47bdbb0122cde4aeb32e2597f820c2834549e6",
+        "row_order_verified": true
+      },
+      "confirmation": {
+        "value": 32.2937819823469,
+        "rows": 12946,
+        "prediction_sha256": "8d638e883ac55a44c97255b85c5ad0e5e103fb839e7a474ff964550eae76189c",
+        "split_sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
+        "row_order_verified": true
+      },
+      "mean": 36.02469255996805,
+      "control_search": 38.902803731334785,
+      "control_confirmation": 31.991659384340597,
+      "control_mean": 35.44723155783769,
+      "mean_delta": 0.577461002130363,
+      "search_experiments": 14,
+      "failed_experiments": 1,
+      "hpo_status": "ok",
+      "hpo_completed_trials": 8,
+      "planner_calls": [
+        {
+          "status": "ok",
+          "wall_seconds": 9.377,
+          "usage": {
+            "completion_tokens": 1300,
+            "prompt_tokens": 11754,
+            "total_tokens": 13054,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0,
+              "cache_creation_tokens": 0
+            },
+            "cost": 0.5906780105200001
+          },
+          "finish_reason": "stop",
+          "compatibility_retry": false,
+          "reasoning_requested": false,
+          "attempts": 1,
+          "usage_complete": true
+        }
+      ],
+      "selector_fit_count_in_search": 26,
+      "selector_selected_count_in_search": 26,
+      "seconds": 496.168,
+      "selected_recipe": {
+        "engine": "ensemble",
+        "hypothesis": "Validated cached-prediction blend",
+        "params": {},
+        "components": [
+          {
+            "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
+            "engine": "lightgbm",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "subsample_freq": 0,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 2,
+              "log_target": true,
+              "target_encoding_hierarchical": true,
+              "history_asof": true,
+              "history_min_periods": 3,
+              "feature_selection_top_k": 32,
+              "early_metric": "primary",
+              "nested_stopping": true
+            },
+            "feature_code": ""
+          },
+          {
+            "hypothesis": "Bounded native-category pilot",
+            "engine": "catboost",
+            "params": {
+              "iterations": 600,
+              "depth": 6,
+              "learning_rate": 0.07,
+              "l2_leaf_reg": 5,
+              "min_iterations": 100,
+              "feature_selection_top_k": 32,
+              "early_metric": "primary",
+              "nested_stopping": true
+            },
+            "feature_code": ""
+          }
+        ],
+        "weights": [
+          0.9,
+          0.09999999999999998
+        ]
+      },
+      "final_fit_iterations": [
+        139,
+        349
+      ],
+      "submission_sha256": "edc21d00eba2f3ff17f313d8c92756c4bbb2e70de91b80ce730e0032bf6098a2",
+      "final_csv_verified": true,
+      "integrity_ok": true
+    },
+    "classification": {
+      "metric": "macro_f1",
+      "search": {
+        "value": 0.6577309532263398,
+        "rows": 17141,
+        "prediction_sha256": "8e80b26a89a8b4d000d034e82c310759acbbf7d45bc172d3ed52148981f366ed",
+        "split_sha256": "0daf20f2020a795fa0503deab309959953d814821be7792d53f26e1e467829f7",
+        "row_order_verified": true,
+        "per_class_f1": {
+          "Analysis": 0.29333333333333333,
+          "Backdoor": 0.22608695652173913,
+          "DoS": 0.5013256206314775,
+          "Exploits": 0.6763446863949376,
+          "Fuzzers": 0.7617639812761764,
+          "Generic": 0.9876677056511722,
+          "Normal": 0.9175824175824175,
+          "Reconnaissance": 0.8239583333333333,
+          "Shellcode": 0.7050359712230215,
+          "Worms": 0.6842105263157895
+        },
+        "independent_fitting_groups": {
+          "Analysis": 695,
+          "Backdoor": 666,
+          "DoS": 2032,
+          "Exploits": 8833,
+          "Fuzzers": 6767,
+          "Generic": 2829,
+          "Normal": 21177,
+          "Reconnaissance": 3202,
+          "Shellcode": 440,
+          "Worms": 46
+        },
+        "validation_class_rows": {
+          "Analysis": 211,
+          "Backdoor": 158,
+          "DoS": 1195,
+          "Exploits": 3286,
+          "Fuzzers": 1839,
+          "Generic": 3733,
+          "Normal": 5565,
+          "Reconnaissance": 1017,
+          "Shellcode": 118,
+          "Worms": 19
+        },
+        "independent_validation_groups": {
+          "Analysis": 181,
+          "Backdoor": 149,
+          "DoS": 513,
+          "Exploits": 2195,
+          "Fuzzers": 1706,
+          "Generic": 703,
+          "Normal": 5263,
+          "Reconnaissance": 794,
+          "Shellcode": 118,
+          "Worms": 19
+        },
+        "feature_groups_disjoint_verified": true
+      },
+      "confirmation": {
+        "value": 0.651238115989774,
+        "rows": 17349,
+        "prediction_sha256": "5e8294b845b87a44379e2e0dbf59dbf6ad2d132337a237d01e7dd8a152b58c4c",
+        "split_sha256": "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a",
+        "row_order_verified": true,
+        "per_class_f1": {
+          "Analysis": 0.24150943396226415,
+          "Backdoor": 0.2510460251046025,
+          "DoS": 0.49743964886613024,
+          "Exploits": 0.6735343697321596,
+          "Fuzzers": 0.7565069326198005,
+          "Generic": 0.9896140530837286,
+          "Normal": 0.9174725377898789,
+          "Reconnaissance": 0.8436018957345972,
+          "Shellcode": 0.7490636704119851,
+          "Worms": 0.5925925925925926
+        },
+        "independent_fitting_groups": {
+          "Analysis": 705,
+          "Backdoor": 664,
+          "DoS": 2061,
+          "Exploits": 8882,
+          "Fuzzers": 6765,
+          "Generic": 2828,
+          "Normal": 21095,
+          "Reconnaissance": 3206,
+          "Shellcode": 446,
+          "Worms": 54
+        },
+        "validation_class_rows": {
+          "Analysis": 192,
+          "Backdoor": 164,
+          "DoS": 1171,
+          "Exploits": 3247,
+          "Fuzzers": 1861,
+          "Generic": 3937,
+          "Normal": 5637,
+          "Reconnaissance": 1016,
+          "Shellcode": 113,
+          "Worms": 11
+        },
+        "independent_validation_groups": {
+          "Analysis": 171,
+          "Backdoor": 151,
+          "DoS": 484,
+          "Exploits": 2146,
+          "Fuzzers": 1708,
+          "Generic": 704,
+          "Normal": 5345,
+          "Reconnaissance": 790,
+          "Shellcode": 112,
+          "Worms": 11
+        },
+        "feature_groups_disjoint_verified": true
+      },
+      "mean": 0.6544845346080569,
+      "control_search": 0.6632403174648631,
+      "control_confirmation": 0.6553953692580672,
+      "control_mean": 0.6593178433614652,
+      "mean_delta": -0.004833308753408261,
+      "search_experiments": 14,
+      "failed_experiments": 1,
+      "hpo_status": "ok",
+      "hpo_completed_trials": 2,
+      "planner_calls": [
+        {
+          "status": "ok",
+          "wall_seconds": 6.808,
+          "usage": {
+            "completion_tokens": 635,
+            "prompt_tokens": 9403,
+            "total_tokens": 10038,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0,
+              "cache_creation_tokens": 0
+            },
+            "cost": 0.193695730553
+          },
+          "finish_reason": "stop",
+          "compatibility_retry": false,
+          "reasoning_requested": false,
+          "attempts": 1,
+          "usage_complete": true
+        },
+        {
+          "status": "ok",
+          "wall_seconds": 24.254,
+          "usage": {
+            "completion_tokens": 1066,
+            "prompt_tokens": 9979,
+            "total_tokens": 11045,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0,
+              "cache_creation_tokens": 0
+            },
+            "cost": 0.4999122051040001
+          },
+          "finish_reason": "stop",
+          "compatibility_retry": false,
+          "reasoning_requested": false,
+          "attempts": 1,
+          "usage_complete": true
+        }
+      ],
+      "selector_fit_count_in_search": 51,
+      "selector_selected_count_in_search": 51,
+      "seconds": 9133.645,
+      "selected_recipe": {
+        "hypothesis": "Controlled deterministic alternative",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 5,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "class_weight_power": 1.0,
+          "calibrate": true,
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "feature_views": "categorical_te_pair",
+          "feature_selection_top_k": 32,
+          "seed": 53,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "final_fit_iterations": [
+        284,
+        625
+      ],
+      "submission_sha256": "34c96faa91e341cb853ea869450d0d5935bb963be2aa58abc510c608d77494e9",
+      "final_csv_verified": true,
+      "integrity_ok": true
+    }
+  },
+  "official_submission": false
+}

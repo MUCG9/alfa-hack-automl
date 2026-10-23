@@ -1,0 +1,56 @@
+{
+  "scope": "Manual factual/methodological audit of one Qwen review, not an ML improvement or population reliability estimate",
+  "call_status": "ok",
+  "wall_seconds": 6.712,
+  "reported_tokens": 16481,
+  "usage_complete": true,
+  "measured_claims_supported_after_manual_namespace_resolution": [
+    1,
+    2,
+    3,
+    5
+  ],
+  "history_mechanism_remains_hypothesis": true,
+  "claim4_correction": {
+    "rarest_class": "Worms",
+    "independent_fitting_groups": 46,
+    "supported_gate_minimum_groups": 100,
+    "Worms_triggers_supported_gate": false,
+    "actual_supported_class_violations": {
+      "Analysis": -0.011701023585193593
+    },
+    "note": "The raw review did not receive an explicit numeric gate contract; its attribution to Worms is unsupported. Point estimates alone do not establish statistical significance."
+  },
+  "reference_format": {
+    "references": 18,
+    "unresolved_from_input_snapshot_root": 18,
+    "invalid_keys": [
+      "screens.classification-feature-selection.screen_status",
+      "screens.classification-feature-selection.complete_verified_screen",
+      "screens.classification-feature-selection.cuts[0].outcomes.selection.status",
+      "screens.regression-hpo.paired_gate_passed.tpe",
+      "screens.regression-hpo.advance_gate_passed",
+      "screens.regression-hpo.mean",
+      "screens.regression-feature-selection.cuts[0].gates.selection.passed",
+      "screens.regression-feature-selection.cuts[1].gates.selection.passed",
+      "screens.regression-feature-selection.cuts[2].gates.selection.passed",
+      "screens.regression-feature-selection.mean",
+      "selector_diagnostic.per_class.Worms.delta",
+      "selector_diagnostic.supported_class_drop_gate_passed",
+      "cached_blend_replay.best_cached_blend.mean",
+      "cached_blend_replay.complete_control_mean",
+      "history_availability.cuts[0].inner_anchor.feature_count",
+      "history_availability.cuts[0].outer_control.feature_count",
+      "history_availability.cuts[1].inner_anchor.feature_count",
+      "history_availability.cuts[1].outer_control.feature_count"
+    ],
+    "limitation": "The first prompt did not constrain namespace grammar precisely; this measures machine usability, not intrinsic citation ability."
+  },
+  "proposal_notes": [
+    "Completing FE-01 is already scheduled; do not launch a duplicate.",
+    "Selector32 alone is an insufficient advancement comparator; retain the strongest qualified control.",
+    "Equal feature counts do not create unavailable history or establish quality gains; preserve fitting-only semantics."
+  ],
+  "automatic_actions_applied": false,
+  "model_fits": 0
+}

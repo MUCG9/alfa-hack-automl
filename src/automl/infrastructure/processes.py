@@ -223,11 +223,16 @@ class ProcessTree:
 def wait_owned(process, timeout, memory_bytes=None, *, strict_observation=False):
     """Optionally require strict observation and an on-time, cleaned terminal.
 
-    Strict timeout includes final owned cleanup. It is a cooperative guard,
-    not an OS resource sandbox; other callers' RSS gates remain separate.
+    Strict timeout includes initial discovery and final owned cleanup. It is
+    a cooperative guard, not an OS resource sandbox; other callers' RSS gates
+    remain separate.
     """
+    # Strict callers charge discovery to this same deadline; compatibility
+    # callers keep their historical post-constructor timeout boundary.
+    deadline = time.monotonic() + timeout if strict_observation else None
     tree = ProcessTree(process, strict_observation=strict_observation)
-    deadline = time.monotonic() + timeout
+    if not strict_observation:
+        deadline = time.monotonic() + timeout
     primary = None
     try:
         while process.poll() is None:

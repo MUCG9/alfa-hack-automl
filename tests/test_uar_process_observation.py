@@ -104,6 +104,19 @@ class StrictObservationTests(unittest.TestCase):
             result = processes.wait_owned(self.popen, timeout=1, strict_observation=True)
         return result, tree
 
+    def test_slow_initial_discovery_cannot_reset_strict_timeout(self):
+        now = [0.]
+        tree = Mock(members={})
+        def slow_constructor(*args, **kwargs):
+            now[0] = 1.01
+            return tree
+        self.popen.poll.return_value = 0
+        with patch.object(processes, 'ProcessTree', side_effect=slow_constructor), \
+                patch.object(processes.time, 'monotonic', side_effect=lambda: now[0]):
+            with self.assertRaises(subprocess.TimeoutExpired):
+                processes.wait_owned(self.popen, timeout=1, strict_observation=True)
+        tree.terminate.assert_called_once()
+
     def test_terminal_observed_before_deadline_returns_only_after_cleanup(self):
         result, tree = self.terminal_wait([0., .99, .99])
         self.assertEqual(result, 0)

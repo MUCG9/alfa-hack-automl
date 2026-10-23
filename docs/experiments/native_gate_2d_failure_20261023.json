@@ -1,0 +1,35 @@
+{
+  "scope": "Actual2d source failure and focused2e fix validation; no public component screen or API calls",
+  "archive_sha256": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0",
+  "source_unchanged": true,
+  "cleanup_confirmed": true,
+  "source_gate": {
+    "declared": 451,
+    "observed": 451,
+    "script_level_passed": 438,
+    "skipped": 0,
+    "failed_scripts": [
+      "test_multitarget.py"
+    ],
+    "seconds": 233.937
+  },
+  "cause": "Original2d fixture relocation still yields a260character validation_predictions.csv; workers start but file export fails",
+  "repair": "Only fixture_parent in tools/run_checks.py moved from ROOT/test-runs/t to ROOT.parent/t (workspace work/t)",
+  "focused_validation": {
+    "script": "test_multitarget.py",
+    "original_assertions_retained": true,
+    "checks_passed": 13,
+    "skipped": 0,
+    "seconds": 27.468,
+    "source_unchanged": true,
+    "owned_fixture_cleanup_confirmed": true,
+    "receipt_sha256": "219d1b3a323ef007eedf93cfd76d6c719c15361354f16cac462512b1dec1cb51",
+    "real_cli_model_fits": true,
+    "scope": "Focused artificial fixture checks; not full451 or public ML quality"
+  },
+  "compiled_runtime_68_entries_bitwise_equal_to2d": true,
+  "full451_unpacked_live_component_gates": "pending",
+  "common_deadline_unix_unchanged": 1792734357.105974,
+  "default_promotion": false,
+  "official_submission": false
+}

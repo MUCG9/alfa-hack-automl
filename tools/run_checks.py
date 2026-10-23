@@ -73,7 +73,7 @@ def main():
     # A gate's output path can already be long. Multi-target/reporting fixtures
     # add nested directories, exceeding Windows MAX_PATH before any fit. Keep
     # temporary fixtures local and unique, independently of log/output nesting.
-    fixture_parent=ROOT/'test-runs'/'t'; fixture_parent.mkdir(parents=True,exist_ok=True)
+    fixture_parent=ROOT.parent/'t'; fixture_parent.mkdir(parents=True,exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='ck-',dir=fixture_parent) as fixture:
         result=run_checks(root,Path(fixture))
     result['fixture_cleanup_confirmed']=True

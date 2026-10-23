@@ -14,9 +14,11 @@ is worse than qualified35.44723155783769; mean classification MacroF1
 See docs/experiments/native_mvp_results_20261023.json. Do not rerun that campaign.
 The next sequential queue uses an immutable execution manifest and the original
 absolute deadline; read actual receipts and fresh PID/create_time before fits.
-Source2b and2c technical gate failures are retained; no component screen started
-in those attempts. The2d harness revision uses shallow owned fixture directories
-to avoid Windows path limits, retaining all451 checks and rejecting skips.
+Source2b/2c/2d technical gate failures are retained; no component screen started
+in those attempts. The2e harness revision moves owned fixture directories to the
+workspace work/t parent:2d still reached260characters for a worker CSV. All13
+original multitarget checks pass at the shorter location; full451/release/live
+gates must still pass before component fits. No checks or assertions are skipped.
 Do not edit source/tools/tests/inputs guarded by a running queue; use an isolated
 development tree. Do not edit frozen MVP archives or historical evidence.
 No old Linux jobs or

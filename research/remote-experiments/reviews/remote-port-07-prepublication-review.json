@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "job_id": "remote-port-07-native-reference-binding",
+  "job_sha256": "db7921c078aa68b244d5af4c368d74453c30a6435be7d643b54bf509b9d61fb5",
+  "source_review_sha256": "97b5c906e7725b47e8d8be072b4be2e3c62a989a281f67b606fe2f9ec13febc4",
+  "source_manifest_sha256": "3c92638b9facd6aafdc8623688b6532afbb2ba42b2e33ceee9eadea89a64e19c",
+  "transport": "Existing validate_job/safe_text/source hashes PASS; queue depth8 unchanged.",
+  "dependency": "Completed05 is actual claim prerequisite. Blocked06 is pinned historical evidence; not relabelled.",
+  "no_fit_caps": true,
+  "max_api_calls": 0,
+  "bounded_approval": false,
+  "preparation_note": "An unpublished draft incorrectly depended on blocked06; corrected to completed05 before any Git publication or claim. All original drafts retained locally."
+}

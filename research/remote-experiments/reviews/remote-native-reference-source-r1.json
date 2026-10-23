@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "status": "source_reviewed_no_blocker_in_declared_scope",
+  "full_local_receipt_sha256": "97b5c906e7725b47e8d8be072b4be2e3c62a989a281f67b606fe2f9ec13febc4",
+  "public_projection": true,
+  "source_sha256": "8b14a7c9db4a37623fac0555e7989a79f94971f2768aebaf5752488f2b540342",
+  "test_sha256": "da4b26949570082337c91196ac6978e097dcc2584b428d5009f46db9b13242d4",
+  "test_methods_prepared": 4,
+  "actual_tests": 0,
+  "fits": 0,
+  "API": 0,
+  "finding": "Explicit pinned native references expand to the same full authority object. Unchanged legacy path, guard/depth/transport limits, six-job driver and R4. Historical26e6 roundtrip is not the new future authority.",
+  "allowed_next": "Source-only07 actual four tests and fresh private authority/binding; no model approval."
+}

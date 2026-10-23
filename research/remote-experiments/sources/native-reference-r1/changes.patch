@@ -1,0 +1,54 @@
+--- remote05/portable_harness.py
++++ native-reference/portable_harness.py
+@@ -236,6 +236,36 @@
+         Path(receipt).write_text(json.dumps(result,sort_keys=True))
+     return result
+ 
++def expand_native_references(binding, native):
++    """Typed references to immutable metadata; transport depth remains unchanged.
++
++    The caller must verify the native document against the job's exact source pin
++    before calling this function. No opaque JSON strings or arbitrary lookups.
++    """
++    need(binding.get('binding_schema')=='native-cut-references-v1','native_binding_schema')
++    need(set(binding)=={'binding_schema','native_contract_ref','components','entrypoint','execution_sha256',
++        'job_id','manifest_canonical_sha256','prepared_authority_sha256','spec_canonical_sha256','worker_id'},
++        'native_binding_fields')
++    need(binding['native_contract_ref']==dict(path='research/remote-experiments/sources/native-cut-contract-v3-r2.json',
++        sha256='f5ad8c55aec198b689abf4bd8cf4ed0caf967fcd9f0d9f6db12f70513e1a60e5'),'native_contract_reference')
++    rows=binding['components'];need(type(rows) is list and len(rows)==6,'native_six_components')
++    expected=[(cut,arm) for cut in (42,43) for arm in ('strong','linear','rbf')]
++    fields={'arm','cut','full_fit','job_relative','key','native_cut_canonical_sha256','output_relative',
++            'private_job_sha256','recipe','spec_canonical_sha256','split_relative','threads'}
++    expanded=[]
++    for row,(cut,arm) in zip(rows,expected):
++        need(type(row) is dict and set(row)==fields,'compact_component_fields')
++        need(row['cut']==cut and row['arm']==arm and row['key']==f'classification{cut}-{arm}',
++             'compact_component_order')
++        matches=[v for v in native['cuts'] if canonical(v)==row['native_cut_canonical_sha256']]
++        need(len(matches)==1 and matches[0]['kind']=='classification' and matches[0]['cut']==cut,
++             'exact_native_cut_reference')
++        item=dict(row);item.pop('native_cut_canonical_sha256');item['native_cut']=matches[0]
++        expanded.append(item)
++    result=dict(binding);result.pop('binding_schema');result.pop('native_contract_ref')
++    result['components']=expanded
++    return result
++
+ def queue_admission(repo, queue_file, queue_sha, job_id, worker, claim_sha):
+     """Verify actual immutable Git packets + pinned primary approval, not a bool."""
+     import importlib.util
+@@ -252,6 +282,14 @@
+     raw=g.blob(claim['dispatch_sha'],binding_path);need(q.digest(raw)==refs[binding_path],'execution_binding_pin')
+     binding=q.decode(raw)
+     need(binding['job_id']==job_id and binding['worker_id']==worker,'execution_binding_identity')
++    if 'binding_schema' in binding or 'native_contract_ref' in binding:
++        reference=binding.get('native_contract_ref')
++        need(type(reference) is dict and set(reference)=={'path','sha256'},'typed_native_source_reference')
++        need(reference['path'] in refs and refs[reference['path']]==reference['sha256'],
++             'native_reference_must_be_job_source')
++        native_raw=g.blob(claim['dispatch_sha'],reference['path'])
++        need(q.digest(native_raw)==reference['sha256'],'native_reference_source_changed')
++        binding=expand_native_references(binding,q.decode(native_raw))
+     return claim,job,binding
+ 
+ def driver_finalize(raw, clock, parent_end, receipt, errors):

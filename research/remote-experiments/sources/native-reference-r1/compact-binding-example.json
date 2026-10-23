@@ -1,0 +1,171 @@
+{
+  "components": [
+    {
+      "arm": "strong",
+      "cut": 42,
+      "full_fit": false,
+      "job_relative": "jobs/classification42-strong.json",
+      "key": "classification42-strong",
+      "native_cut_canonical_sha256": "3bd3bdee47d731fade345afc4edf914045c3e60a3ab84d7f99022edd4a778fe7",
+      "output_relative": "cores/classification42-strong",
+      "private_job_sha256": "283823a9585dab9f5506a5e4ad79badea3581f19fe27071780aa84d434727142",
+      "recipe": {
+        "engine": "lightgbm",
+        "feature_code": "",
+        "hypothesis": "Fixed equal-weight original and cross-fitted categorical feature views; compare full procedure",
+        "params": {
+          "calibrate": true,
+          "class_weight_power": 0.5,
+          "colsample_bytree": 0.9,
+          "early_metric": "primary",
+          "feature_views": "categorical_te_pair",
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "min_iterations": 100,
+          "nested_stopping": true,
+          "num_leaves": 63,
+          "reg_lambda": 5,
+          "subsample": 1,
+          "subsample_freq": 0
+        }
+      },
+      "spec_canonical_sha256": "1c587ab5f49104270b43248941cebe45b51509ed19a6cef1ba1577009fb3519d",
+      "split_relative": "splits/classification-42.npz",
+      "threads": 2
+    },
+    {
+      "arm": "linear",
+      "cut": 42,
+      "full_fit": false,
+      "job_relative": "jobs/classification42-linear.json",
+      "key": "classification42-linear",
+      "native_cut_canonical_sha256": "3bd3bdee47d731fade345afc4edf914045c3e60a3ab84d7f99022edd4a778fe7",
+      "output_relative": "cores/classification42-linear",
+      "private_job_sha256": "a2bbe46bd51b356096cc8b4a081cbe4ef86cf67287e1abdc5a5058d86a12c243",
+      "recipe": {
+        "engine": "linear_text",
+        "feature_code": "",
+        "params": {
+          "representation_profile": "tabular_linear_bounded_v1"
+        }
+      },
+      "spec_canonical_sha256": "1c587ab5f49104270b43248941cebe45b51509ed19a6cef1ba1577009fb3519d",
+      "split_relative": "splits/classification-42.npz",
+      "threads": 2
+    },
+    {
+      "arm": "rbf",
+      "cut": 42,
+      "full_fit": false,
+      "job_relative": "jobs/classification42-rbf.json",
+      "key": "classification42-rbf",
+      "native_cut_canonical_sha256": "3bd3bdee47d731fade345afc4edf914045c3e60a3ab84d7f99022edd4a778fe7",
+      "output_relative": "cores/classification42-rbf",
+      "private_job_sha256": "dd9d82d5d171ced846edc2a3ec27273c16b9f5c60f880e6b79d0f9f5d5d0b25d",
+      "recipe": {
+        "engine": "linear_text",
+        "feature_code": "",
+        "params": {
+          "representation_profile": "tabular_rbf128_invdim_v1"
+        }
+      },
+      "spec_canonical_sha256": "1c587ab5f49104270b43248941cebe45b51509ed19a6cef1ba1577009fb3519d",
+      "split_relative": "splits/classification-42.npz",
+      "threads": 2
+    },
+    {
+      "arm": "strong",
+      "cut": 43,
+      "full_fit": false,
+      "job_relative": "jobs/classification43-strong.json",
+      "key": "classification43-strong",
+      "native_cut_canonical_sha256": "277ab0046bf645ff85560b6726304ad81ee200e459682ae670173a054975f9f4",
+      "output_relative": "cores/classification43-strong",
+      "private_job_sha256": "a717539186e8feb5df54b0f168abe28ed8b685afc5381e1117ad5f6439b60422",
+      "recipe": {
+        "engine": "lightgbm",
+        "feature_code": "",
+        "hypothesis": "Fixed equal-weight original and cross-fitted categorical feature views; compare full procedure",
+        "params": {
+          "calibrate": true,
+          "class_weight_power": 0.5,
+          "colsample_bytree": 0.9,
+          "early_metric": "primary",
+          "feature_views": "categorical_te_pair",
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "min_iterations": 100,
+          "nested_stopping": true,
+          "num_leaves": 63,
+          "reg_lambda": 5,
+          "subsample": 1,
+          "subsample_freq": 0
+        }
+      },
+      "spec_canonical_sha256": "1c587ab5f49104270b43248941cebe45b51509ed19a6cef1ba1577009fb3519d",
+      "split_relative": "splits/classification-43.npz",
+      "threads": 2
+    },
+    {
+      "arm": "linear",
+      "cut": 43,
+      "full_fit": false,
+      "job_relative": "jobs/classification43-linear.json",
+      "key": "classification43-linear",
+      "native_cut_canonical_sha256": "277ab0046bf645ff85560b6726304ad81ee200e459682ae670173a054975f9f4",
+      "output_relative": "cores/classification43-linear",
+      "private_job_sha256": "f4b65d4d9678b10c9c03eb9a00b3e60a1c7ffbc7950da9c652815fa8dfa7ca40",
+      "recipe": {
+        "engine": "linear_text",
+        "feature_code": "",
+        "params": {
+          "representation_profile": "tabular_linear_bounded_v1"
+        }
+      },
+      "spec_canonical_sha256": "1c587ab5f49104270b43248941cebe45b51509ed19a6cef1ba1577009fb3519d",
+      "split_relative": "splits/classification-43.npz",
+      "threads": 2
+    },
+    {
+      "arm": "rbf",
+      "cut": 43,
+      "full_fit": false,
+      "job_relative": "jobs/classification43-rbf.json",
+      "key": "classification43-rbf",
+      "native_cut_canonical_sha256": "277ab0046bf645ff85560b6726304ad81ee200e459682ae670173a054975f9f4",
+      "output_relative": "cores/classification43-rbf",
+      "private_job_sha256": "fbbf65a9a97d687b96d7c2673251c09d184dba3b2bccd0157dcb49b04aeadd51",
+      "recipe": {
+        "engine": "linear_text",
+        "feature_code": "",
+        "params": {
+          "representation_profile": "tabular_rbf128_invdim_v1"
+        }
+      },
+      "spec_canonical_sha256": "1c587ab5f49104270b43248941cebe45b51509ed19a6cef1ba1577009fb3519d",
+      "split_relative": "splits/classification-43.npz",
+      "threads": 2
+    }
+  ],
+  "entrypoint": "automl_worker.py",
+  "execution_sha256": {
+    "component_audit.py": "befcca2f8e630b9fb8e1bca81ce46b4d08f6f17773c65a38f133a56c277d2ffd",
+    "experiment_driver.py": "ea80bf0d35692a278c490ca953596ac2c0490481560bbf5522158ac8f0586a0d",
+    "portable_harness.py": "0fe8a4ad629e9ce9a39277a9ddc05cdf780c159e32fe396b6254689e2d9173a5",
+    "pure_contracts.py": "783830691e558748b4437a734d27cd4cb332c6731f683c3058cd21ea18597286"
+  },
+  "job_id": "remote-port-07-class-kernel-components",
+  "manifest_canonical_sha256": "35f714dd94158519730ecff4f020ab8215060c1ba07e2a6fd7be836ac456c8d7",
+  "prepared_authority_sha256": "527fda98eca8031a5f18f4780e005d8c09be38a69cf34a75aa092a4b7960b6e1",
+  "spec_canonical_sha256": "1c587ab5f49104270b43248941cebe45b51509ed19a6cef1ba1577009fb3519d",
+  "worker_id": "remote-worker-f7dd39e0",
+  "binding_schema": "native-cut-references-v1",
+  "native_contract_ref": {
+    "path": "research/remote-experiments/sources/native-cut-contract-v3-r2.json",
+    "sha256": "f5ad8c55aec198b689abf4bd8cf4ed0caf967fcd9f0d9f6db12f70513e1a60e5"
+  }
+}

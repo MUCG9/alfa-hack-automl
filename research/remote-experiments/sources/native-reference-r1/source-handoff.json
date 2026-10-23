@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "status": "source_prepared_no_model_or_test_execution",
+  "source_sha256": {
+    "portable_harness.py": "8b14a7c9db4a37623fac0555e7989a79f94971f2768aebaf5752488f2b540342",
+    "test_native_references.py": "da4b26949570082337c91196ac6978e097dcc2584b428d5009f46db9b13242d4",
+    "changes.patch": "4e107cbf9940f5b6721d4c60a6c2297eb89b378b0132a66e41c0585fe4ec6308",
+    "reconstruction-proof.json": "463cecdd2e696f1dfdf051a2251fc6c2d6998042fb5ef69c9d67da87659ca93d",
+    "compact-binding-example.json": "b1d88efe3659ad7a9a1918b55ef0ae077ac26e26a783b7494b2f295f0a941f15"
+  },
+  "change_scope": "One new pure expansion helper and optional typed-reference queue_admission branch; all existing supervision/driver/R4 code remains byte-exact. Legacy binding path unchanged.",
+  "actual_prior_result06": "b3ee76ea4c19b19305556c6e19fdc90ea05ac2d8",
+  "prior_status": "BLOCKED_preserved",
+  "queue_guard_changed": false,
+  "depth_limit_changed": false,
+  "reconstruction": "Historical exact26e6f08... proof only; new execution inventory requires fresh authority and future08 binding.",
+  "prepared_test_methods": 4,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API_calls": 0
+}

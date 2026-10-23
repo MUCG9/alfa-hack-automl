@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "result06": "b3ee76ea4c19b19305556c6e19fdc90ea05ac2d8",
+  "source": "Independent primary read-only reconstruction from pinned native contract and reported compact component projection",
+  "exact_full_binding_canonical_sha256": "26e6f08f8662bd70a6f6f4df0231785ee1156a56a3a9de33eafdbc10427a5b23",
+  "matches_reported_private_canonical": true,
+  "six_job_hashes": [
+    "283823a9585dab9f5506a5e4ad79badea3581f19fe27071780aa84d434727142",
+    "a2bbe46bd51b356096cc8b4a081cbe4ef86cf67287e1abdc5a5058d86a12c243",
+    "dd9d82d5d171ced846edc2a3ec27273c16b9f5c60f880e6b79d0f9f5d5d0b25d",
+    "a717539186e8feb5df54b0f168abe28ed8b685afc5381e1117ad5f6439b60422",
+    "f4b65d4d9678b10c9c03eb9a00b3e60a1c7ffbc7950da9c652815fa8dfa7ca40",
+    "fbbf65a9a97d687b96d7c2673251c09d184dba3b2bccd0157dcb49b04aeadd51"
+  ],
+  "queue_guard_change": false,
+  "fit": 0,
+  "API": 0
+}

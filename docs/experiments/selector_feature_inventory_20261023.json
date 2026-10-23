@@ -1,0 +1,216 @@
+{
+  "scope": "Descriptive inventory of saved feature schemas, not a causal attribution or new model fit",
+  "raw_feature_count": 42,
+  "cuts": [
+    {
+      "cut": 42,
+      "result_sha256": "27e1af83d1a8e97632d776861eba135f63d7f7e49c2edfa0153edc267055ccfc",
+      "views": [
+        {
+          "index": 0,
+          "selected_feature_count": 32,
+          "raw_retained": 32,
+          "raw_dropped": [
+            "ct_dst_ltm",
+            "ct_flw_http_mthd",
+            "ct_ftp_cmd",
+            "dinpkt",
+            "djit",
+            "dtcpb",
+            "dwin",
+            "is_ftp_login",
+            "is_sm_ips_ports",
+            "stcpb"
+          ],
+          "derived_retained": 0,
+          "target_encoded_features_per_class": {},
+          "fitting_scopes": [
+            {
+              "rows": 56743,
+              "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+              "input_columns": 42,
+              "selected_columns": 32
+            },
+            {
+              "rows": 56743,
+              "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+              "input_columns": 42,
+              "selected_columns": 32
+            },
+            {
+              "rows": 70529,
+              "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+              "input_columns": 42,
+              "selected_columns": 32
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "selected_feature_count": 32,
+          "raw_retained": 13,
+          "raw_dropped": [
+            "ackdat",
+            "ct_dst_ltm",
+            "ct_dst_sport_ltm",
+            "ct_flw_http_mthd",
+            "ct_ftp_cmd",
+            "ct_src_dport_ltm",
+            "ct_src_ltm",
+            "dinpkt",
+            "djit",
+            "dload",
+            "dpkts",
+            "dtcpb",
+            "dttl",
+            "dur",
+            "dwin",
+            "is_ftp_login",
+            "is_sm_ips_ports",
+            "proto",
+            "rate",
+            "response_body_len",
+            "service",
+            "sinpkt",
+            "sload",
+            "state",
+            "stcpb",
+            "swin",
+            "synack",
+            "tcprtt",
+            "trans_depth"
+          ],
+          "derived_retained": 19,
+          "target_encoded_features_per_class": {
+            "Analysis": 1,
+            "Backdoor": 3,
+            "Exploits": 3,
+            "Fuzzers": 1,
+            "Normal": 2,
+            "Reconnaissance": 1,
+            "Shellcode": 3,
+            "Worms": 2,
+            "DoS": 2,
+            "Generic": 1
+          },
+          "fitting_scopes": [
+            {
+              "rows": 56743,
+              "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+              "input_columns": 102,
+              "selected_columns": 32
+            },
+            {
+              "rows": 70529,
+              "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+              "input_columns": 102,
+              "selected_columns": 32
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cut": 43,
+      "result_sha256": "15f34bf4be4473f7dd3c391db5072f65237846ddb326bd574237bca50610c113",
+      "views": [
+        {
+          "index": 0,
+          "selected_feature_count": 32,
+          "raw_retained": 32,
+          "raw_dropped": [
+            "ackdat",
+            "ct_dst_ltm",
+            "ct_ftp_cmd",
+            "djit",
+            "dtcpb",
+            "dwin",
+            "is_ftp_login",
+            "is_sm_ips_ports",
+            "response_body_len",
+            "swin"
+          ],
+          "derived_retained": 0,
+          "target_encoded_features_per_class": {},
+          "fitting_scopes": [
+            {
+              "rows": 56442,
+              "source_parent_sha256": "f552564bf6576fabccb6e9d53e35634cbe9d6c8a04a39fe92e50e6d1a9984787",
+              "input_columns": 42,
+              "selected_columns": 32
+            },
+            {
+              "rows": 70321,
+              "source_parent_sha256": "98042ca608f0d55d96547ef6a59d21f007cc370e024d9e500e7e735e25dffa7d",
+              "input_columns": 42,
+              "selected_columns": 32
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "selected_feature_count": 32,
+          "raw_retained": 13,
+          "raw_dropped": [
+            "ackdat",
+            "ct_dst_ltm",
+            "ct_dst_sport_ltm",
+            "ct_flw_http_mthd",
+            "ct_ftp_cmd",
+            "ct_src_ltm",
+            "dinpkt",
+            "djit",
+            "dload",
+            "dpkts",
+            "dtcpb",
+            "dttl",
+            "dur",
+            "dwin",
+            "is_ftp_login",
+            "is_sm_ips_ports",
+            "proto",
+            "rate",
+            "response_body_len",
+            "sjit",
+            "sload",
+            "sloss",
+            "spkts",
+            "state",
+            "stcpb",
+            "swin",
+            "synack",
+            "tcprtt",
+            "trans_depth"
+          ],
+          "derived_retained": 19,
+          "target_encoded_features_per_class": {
+            "Backdoor": 4,
+            "Shellcode": 3,
+            "Analysis": 2,
+            "Exploits": 2,
+            "Fuzzers": 1,
+            "Generic": 2,
+            "Normal": 2,
+            "Reconnaissance": 1,
+            "DoS": 2
+          },
+          "fitting_scopes": [
+            {
+              "rows": 56442,
+              "source_parent_sha256": "f552564bf6576fabccb6e9d53e35634cbe9d6c8a04a39fe92e50e6d1a9984787",
+              "input_columns": 102,
+              "selected_columns": 32
+            },
+            {
+              "rows": 70321,
+              "source_parent_sha256": "98042ca608f0d55d96547ef6a59d21f007cc370e024d9e500e7e735e25dffa7d",
+              "input_columns": 102,
+              "selected_columns": 32
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "model_fits": 0
+}

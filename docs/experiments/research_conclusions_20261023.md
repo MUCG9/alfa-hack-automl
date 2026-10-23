@@ -1,0 +1,127 @@
+# Qwen MVP и autoresearch: проверенные результаты и следующие решения
+
+Статус на промежуточном checkpoint23Oct: полный MVP завершён; независимые
+regression screens и classification FE-01 завершены. Classification HPO/HAR-01
+и отдельный FE-02 followup ещё выполняются/ожидают; их результатов здесь пока нет.
+Лучший qualified полный агент остаётся V11/V16. Official uploads не делались.
+
+## Полный MVP
+
+Эксперимент явно включает staged Qwen, CatBoost top32 и inner Optuna8 при
+неизменной общей границе10800s на два публичных tasks. Это одновременная смена
+нескольких факторов; нельзя приписывать весь результат одному компоненту.
+Независимо проверены фактические сохранённые partitions, исходные labels,
+метрики по predictions, оба полных refits, итоговые CSV и integrity.
+
+|Полная процедура|Macro F1, mean двух cuts ↑|RMSE, mean двух cuts ↓|
+|---|---:|---:|
+|Qualified V11/V16|.6593178433614652|35.44723155783769|
+|Четырёхэтапный MVP|.6544845346080569|36.02469255996805|
+|MVP минус control|−.004833308753408261|+.577461002130363|
+
+Receipt: [mvp01_complete_20261023.json](mvp01_complete_20261023.json).
+Фактическое совпадение четырёх partitions:
+[mvp_comparison_partitions_20261023.json](mvp_comparison_partitions_20261023.json).
+Это reused-public development, не OOF, private performance или официальные
+нормализованные points. Для points отсутствуют hidden baseline/test metrics.
+
+## Почему обязательные стадии оказались дорогими
+
+MVP classification занял9133.645s. В search записан51 selector fit; эти записи
+относятся к разным фактическим fitting scopes, их нельзя заменить одним
+selector, обученным на всём outer train. В 900.6s HPO поместились только два
+successful trials (412.532s и425.991s), третий завершился timeout. Startup3
+не пройден, guided TPE attempts0. Название TPESampler не доказывает, что была
+измерена работа его guided phase. Inner gain .00023644 не перенёсся на outer:
+conditional selector-on comparison .6502622584→.6490185190.
+
+В конце хватило резерва на full refit, но защита бюджета пропустила весь cached
+blend scoring. Posthoc replay тех же пяти canonical mixing configurations
+на двух уже сохранённых successful candidates потребовал0 fits: лучший mean
+.6572695988152342. Это всё ещё ниже qualified .6593178433614652. Полного refit
+этого replayed blend нет; первоначальный результат MVP от replay не меняется.
+Receipt: [mvp_cached_blend_replay_20261023.json](mvp_cached_blend_replay_20261023.json).
+
+Практическая гипотеза: отдельно резервировать дешёвую обработку готовых
+predictions и дорогие model fits; включать FE/HPO только после component gate,
+планировать число trials по измеренной стоимости. Это ещё не проверенная новая
+полная процедура. Нельзя сокращать protected confirmation/refit reserve ради
+дополнительного поиска. Historical timing comparison с selector — observational,
+а не изолированный causal overhead estimate.
+
+## Component screens
+
+Здесь controls — сильные ОДИНОЧНЫЕ рецепты. Их means нельзя подменять means
+полного V11 ансамбля. Regression uses offsets0/1/2, classification cuts42/43;
+одинаковое слово mean не означает одинаковые строки или число cuts.
+
+|Изолированная проверка|Control mean|Candidate mean|Исходный gate|
+|---|---:|---:|---|
+|Regression CatBoost top32|40.60751094989404|41.37522600161565|FAIL: все3cuts хуже|
+|Regression Random8|40.60751094989404|40.76984099011162|Comparator для TPE|
+|Regression TPE8|40.60751094989404|40.502667267123364|FAIL: один cut хуже, хотя mean лучше random|
+|Regression typed feature DSL|40.60751094989404|41.03555398191205|FAIL: все3cuts хуже|
+|Classification CatBoost top32|.6547938868310776|.654200887190105|FAIL: cut42 хуже, cut43 лучше|
+
+HAR-01 regression: baseline и staged получили одинаковый measured feedback,
+по два distinct valid предложения. Ни один из четырёх рецептов не улучшил все
+три cuts. Это сравнение двух proposal prompts на фиксированном feedback, а не
+полных исходных agents. В контексте был первый cut; перенос улучшений на более
+старые периоды оказался слабым. Причинный эффект этой неполноты не доказан.
+Следующий prompt/tool experiment может одинаково предоставить всем вариантам
+полную матрицу periods, сохранив cap и evaluator.
+
+Inventory [selector_feature_inventory_20261023.json](selector_feature_inventory_20261023.json)
+показывает, что top32 в encoded view оставляет только13 исходных columns из42
+и19 derived columns. В raw view удаляет10 исходных. Это обосновывает FE-02
+как проверку другой семантики отбора: raw protected union ordinary top32.
+Это не доказывает причину loss или будущий gain. Например, в cut43 selector
+не сохранил отдельные Worms TE columns, но итоговый Worms F1 не изменился.
+
+В cut42 supported-class violation — Analysis (695 independent fitting groups,
+delta−.011701); Worms46groups не входит в заранее заданный >=100 gate.
+Улучшение среднего без Worms недостаточно при loss supported class и overall
+loss. FE-02 не должен ослаблять этот gate, даже если средняя метрика вырастет.
+
+В regression HPO обнаружена различная history availability на actual fitting
+scopes: часть коротких inner prefixes ещё не имеет трёх периодов, при которых
+worker включает историю. [hpo_history_availability_20261023.json](hpo_history_availability_20261023.json).
+Это проверенный факт о режиме preprocessing, не установленная причина score.
+Availability-aware objective — гипотеза; внешние периоды нельзя давать inner
+preprocessing, чтобы искусственно выровнять feature count.
+
+## Изменения исследовательского агента
+
+1. HAR-01 ограничивает число distinct proposals кодом, сохраняет raw generation
+   и contract rejection отдельно от ML score. Prompt сам по себе не обеспечивает
+   cap и не показывает, сколько идей потеряно при normalizing.
+2. HAR-02 использует typed numeric DSL и trusted compiler вместо свободного Python.
+   Реальный Qwen выдал пять исполнимых признаков; ML screen отрицателен.
+   Успешное исполнение — отдельная характеристика tool, а не качество признаков.
+3. FE-02 реализован отдельным trusted worker extension, без смены frozen core.
+   Запуск последовательный после общей очереди; критерии записаны до fits.
+4. Установлен [autoresearch-ml](../../skills/autoresearch-ml/SKILL.md) на основе
+   pinned [Karpathy autoresearch](https://github.com/karpathy/autoresearch/commit/228791fb499afffb54b46200aca536f79142f117).
+   Цикл: гипотеза/коммит → ограниченный запуск → независимая оценка → решение →
+   журнал. Адаптация использует CPU tabular metrics, fitting-only transforms,
+   group/time validation, inner HPO и историю отрицательных commits.
+5. Два live Qwen meta-reviews сохранили ограничения самой схемы анализа.
+   REVIEW-01 принял envelope, но ошибся в supported gate; critical numeric rule
+   не был явно загружен, локальная ссылка не является tool load. REVIEW-02 на
+   тех же фактах и skill с явным contract вернул `{}` и был отклонён.
+   Усиление валидации защищает coordinator, но улучшения usable model review
+   эти два вызова не установили. Не делать общий reliability/A-B вывод по N=1.
+
+## Направления после текущих screens
+
+Приоритет имеют cost-aware scheduling, полный period/class feedback и
+conditional feature/HPO activation. Scope-aware кеширование teacher fits можно
+изучить только с проверкой полного fingerprint: rows, transformed fitting X,
+y, weights, recipe/seed и версии. Равные source row hashes сами по себе не
+доказывают одинаковый transformed fit. Нельзя кешировать outer selector для
+inner scopes или строить выбор features по validation.
+
+Positive screen потребует предусмотренных grouped CV всей selection procedure
+либо forward qualification, затем полного агента на обоих tasks и final CSV.
+До этого ни прототип, ни средний выигрыш одного cut не становится release.
+Новые learned rules должны иметь receipts; рекомендации Qwen остаются hypotheses.

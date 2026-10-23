@@ -27,3 +27,9 @@ validation, не independent/private score. Даже положительный 
 отдельной проверки всей фиксированной ensemble procedure и полного refit;
 никакого нового qualified complete agent из replay не возникает. Отрицательный
 исход останавливает эту конфигурацию без новых весов.
+
+Первый replay остановился ДО новых scores: перенесённые historical artifacts
+не содержат копию raw train по старому spec path. Использовать существующий
+MVP train только при точном совпадении с original control provenance input:train
+SHA. Original reports/splits не изменять. Исправлена только resolution исходных
+данных; сохраняются та же конфигурация/gates и receipt первого отказа.

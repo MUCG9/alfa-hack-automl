@@ -61,8 +61,10 @@ def main():
     spec = controls['spec']
     if spec['kind'] != 'classification' or spec['metric'] != 'macro_f1':
         raise ValueError('BLEND-01 requires classification Macro F1')
-    train_path = resolve(spec['paths']['train'])
-    if digest(train_path) != digest(resolve(mvp['spec']['paths']['train'])):
+    provenance_path = resolve(controls['provenance_path'])
+    expected_train = json.loads(provenance_path.read_text())['sha256']['input:train']
+    train_path = resolve(mvp['spec']['paths']['train'])
+    if digest(train_path) != expected_train:
         raise ValueError('Candidate and control source rows differ')
     train = pd.read_csv(train_path)
     hashes = pd.util.hash_pandas_object(train[spec['features']], index=False).to_numpy(dtype='uint64')
@@ -71,7 +73,8 @@ def main():
     report = {'scope': 'BLEND-01 posthoc fixed .9qualified-control+.1MVP, reused-public, not a refit or official score',
               'weights': [.9, .1], 'configurations': 1, 'model_fits': 0,
               'control_report_sha256': digest(args.control_report), 'mvp_report_sha256': digest(args.mvp_report),
-              'train_sha256': digest(train_path), 'harness_sha256': digest(__file__), 'cuts': []}
+              'train_sha256': digest(train_path), 'control_provenance_sha256': digest(provenance_path),
+              'harness_sha256': digest(__file__), 'cuts': []}
     for index, split_name in enumerate(['split.npz', 'confirmation_split.npz']):
         control, candidate = selected_records(controls)[index], selected_records(mvp)[index]
         paths = [args.control_report.parent/split_name, args.mvp_report.parent/split_name]

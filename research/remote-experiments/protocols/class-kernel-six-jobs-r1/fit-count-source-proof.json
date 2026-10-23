@@ -1,0 +1,57 @@
+{
+  "status": "source_only_static_upper_bound_not_observed_execution",
+  "archive_sha256": "ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c",
+  "source_members_sha256": {
+    "automl_worker.py": "f99b1e888ecfcdc6211c13867de9a0216199c26f37c09aaea1440c72e85b8839",
+    "automl_execution_feature_views.py": "3188c6a64aee09a012fdb4bf49eeec1b780046ad0a4390ad69a7f9d2e7c598ea",
+    "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+    "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+    "automl_execution_model_adapters_kernel_tabular.py": "f6c84eda447088da1189776fc9a1c8c8858ee4091a18977ecf543f964fd77a33",
+    "automl_contracts_representations.py": "efbb581cf22130d728258b6105402c71b3d05fa03fb16bab0161cac851dfc5c5"
+  },
+  "count_unit": "Actual classifier/regressor fitting invocations, including attempts that fail after entry. Do not count tree iterations, predictions, constructors, calibration multiplier search, dispatch wrappers or preprocessing fit calls as additional learners.",
+  "per_successful_job": {
+    "strong": {
+      "logical_jobs": 1,
+      "sequential_feature_view_leaves": 2,
+      "per_leaf": {
+        "inner_early_stopping_fit": 1,
+        "optional_matching_iteration_calibration_refit": 1,
+        "outer_fitting_fit": 1,
+        "upper_bound": 3
+      },
+      "learner_fit_upper_bound": 6,
+      "expected_without_floor_refit": 4
+    },
+    "linear": {
+      "LogisticRegression_fit": 1,
+      "learner_fit_upper_bound": 1
+    },
+    "rbf": {
+      "LogisticRegression_fit": 1,
+      "learner_fit_upper_bound": 1
+    }
+  },
+  "matrix": {
+    "cuts": 2,
+    "jobs_per_cut": 3,
+    "logical_jobs": 6,
+    "learner_fits_upper_bound": 16,
+    "formula": "2 * (2 views * (1 inner + at most1 calibration refit +1 outer) +1 linear head +1 RBF head) =16"
+  },
+  "source_evidence": [
+    "automl_worker.py108-117 dispatches two fixed views via sequential ensemble components; no learner for the mixture.",
+    "automl_worker.py280-320: nested inner fit; selected iterations floored by min_iterations100; a second inner fit occurs only if calibrated predictions must match the floored iteration count.",
+    "automl_worker.py326-341 extra calibration-fold fits are unreachable for this exact recipe: validate_feature_view20-21 requires calibration_folds default/equal1. No specialists/pair_refinement.",
+    "automl_worker.py343-344 fits the final outer-fitting learner once per leaf; component job full_fitFalse, no full-dataset refit or wholeagent search.",
+    "automl_execution_model_adapters_kernel_tabular.py97-161/210-237 fits preprocessing/optional mapper then one LogisticRegression head per job. BoundedTabularModel.fit is a wrapper around that head, not a second learner."
+  ],
+  "separate_preprocessing_accounting": {
+    "strong": "Fitting-scope frame preparation/target encoding executes for each actual inner/outer fit. The encoded view uses cross-fitted target encoding of fixed categorical pairs, smoothing20. No new model learners are fitted by those statistics. Report actual preprocessing operations separately.",
+    "linear": "One ColumnTransformer.fit_transform per job; if numeric columns exist: SimpleImputer median keep_empty_featuresTrue then StandardScaler with_meanFalse; if categorical columns exist: OneHotEncoder min_frequency3/max_categories64/unknownignore. These are preprocessing, not learner fits.",
+    "rbf": "Same processor operations plus one RBFSampler.fit_transform per job. Prediction batches call transforms only; no extra learner fit."
+  },
+  "failure_and_telemetry": "Do not assert16 actual fits or fabricate zero. Successful strong leaf data_policy_runs reveals fit_on_rows calls; kernel success has one head fit by fixed source. Interrupted/failed leaves can have an unknown attempted count: retain available exact count/lower+upper/unknown, charge static job upper bound against cap before admission. No retries/additional jobs; total static bound stays16. Any actual counter>bound is technical failure.",
+  "fits_actually_run": 0,
+  "API_calls": 0
+}

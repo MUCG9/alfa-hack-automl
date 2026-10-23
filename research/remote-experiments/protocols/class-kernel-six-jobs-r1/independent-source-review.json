@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "status": "source_only_preregistration_review_no_concrete_protocol_blocker_not_execution_ready",
+  "input_files_sha256": {
+    "source-handoff.json": "399fc0346323d64d65114a33f096d7cfa7905d4bee8612c7df140f10649dcd39",
+    "protocol.json": "81cd9df5566f5453600117a5cb902f8ca7d37dbee3c9ee2347ff5100a9baff46",
+    "fit-count-source-proof.json": "7c0a3b1c3888573ab254989bee767a3d49fe4a3c84d1a57a17e647a99c083613",
+    "README.txt": "1eeea2e55ce88124f84743a3887ec5e1a73e154078923bf4ae5bc65aedc348ea"
+  },
+  "published_source_refs_verified": {
+    "algorithm_archive": {
+      "path": "research/remote-experiments/sources/kernel-source.zip",
+      "sha256": "ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c",
+      "matches_pin": true
+    },
+    "algorithm_source_manifest": {
+      "path": "research/remote-experiments/sources/source-manifest.json",
+      "sha256": "0ed0e74706b6620ffc1b29216a8f2c00ab40771ef7ebaecb0cc61092f78c4bae",
+      "matches_pin": true
+    },
+    "approved_input_manifest": {
+      "path": "research/remote-experiments/sources/approved-input-manifest.json",
+      "sha256": "247ecf4d3ce8670be0573ed0808b0cfce9352babb78ca7cc02c9103ca3bee4c7",
+      "matches_pin": true
+    },
+    "protected_SINGLE_controls": {
+      "path": "research/remote-experiments/sources/protected-single-controls.json",
+      "sha256": "118ba895201bef8149fdd6bb88464bb2e02b23985a34629a47d52df5e5536f46",
+      "matches_pin": true
+    },
+    "native_partition_contract": {
+      "path": "research/remote-experiments/sources/native-cut-contract-v3-r2.json",
+      "sha256": "f5ad8c55aec198b689abf4bd8cf4ed0caf967fcd9f0d9f6db12f70513e1a60e5",
+      "matches_pin": true
+    },
+    "manual_metric_library": {
+      "path": "research/lean-mvp-r2/evaluator.py",
+      "sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+      "matches_pin": true
+    },
+    "representation_library": {
+      "path": "research/kernel-methods-next/components/audit_components.py",
+      "sha256": "a7528e969cd2f58ef4562c34ab344852acdfde535f223d9fedcf3877fa9cdcdb",
+      "matches_pin": true
+    }
+  },
+  "archive_source_members_pinned": {
+    "automl_worker.py": "f99b1e888ecfcdc6211c13867de9a0216199c26f37c09aaea1440c72e85b8839",
+    "automl_execution_feature_views.py": "3188c6a64aee09a012fdb4bf49eeec1b780046ad0a4390ad69a7f9d2e7c598ea",
+    "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+    "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+    "automl_execution_model_adapters_kernel_tabular.py": "f6c84eda447088da1189776fc9a1c8c8858ee4091a18977ecf543f964fd77a33",
+    "automl_contracts_representations.py": "efbb581cf22130d728258b6105402c71b3d05fa03fb16bab0161cac851dfc5c5"
+  },
+  "blockers": [],
+  "checks": {
+    "common_budget": "600 setup+6*480 parents+600 audit+300 cleanup/root+1020 locked spare=5400;450 children inside480 parents. All original claim wall/mono, source/IO/native generation/materialization/audit/publication charged; reserved spare not newwork.",
+    "fixed_matrix": "Exactly class42 and43 cut-major strong/linear/rbf. Six full_fitFalse jobs, no regressionfit/wholeagent/HPO/newseed/weightsearch.",
+    "strong_recipe": "Raw classification control JSON equal to pinned protected_SINGLE_controls.classification; it is one protected SINGLE with two internal views, not wholeV16 ensemble. All three canonical recipe SHA values independently matched.",
+    "fit_upper_bound": "Two feature views per strong. Each leaf oneinner +atmostone floor-matching calibrationrefit +oneouter <=3. calibration_folds forced1 by feature-view validation, no specialist fits. Each typedkernel oneLogisticRegression.fit; constructors/preprocessing/mapper not extra learners. Per2cuts:2*(6+1+1)=16. Failedattempt actualcounter mayremainunknown, not assumed16 or0; staticupper charged beforeadmission.",
+    "source_and_receipts": "All7 referenced source/archive/manifests/libraries matched pins, archive70 and6 proofmember hashes checked by reading purecode ZIP only. Native Linux contract remains fixed, no cast/reorder/rawheader repair to force parity. Future wrapper must enforce native row/class/source/lineage and sticky resource/ownership/cleanup guards, not assertion booleans alone.",
+    "pristine_audit": "Protocol seals all6 cores or explains terminal notattempted before auditor label parsing. Frozen c08 TaskVerifier/diagnostics/matched_control_comparison and a752 representation_receipt reused only as libraries; originalscale canonicalclass/rows/groups/pristineinput/probability/CSV and pre/post hashes. No auditorfits or wholeagentmain.",
+    "quality": "Separate rbf-vsstrong,linear-vsstrong,rbf-vslinear; bothcut primarygain, support>=100 groups loss tolerance.01+1e-12 andexrarest>0 match frozenR4. No misleading globalAND or fullrefit/default/officialscore claim.",
+    "remote_admission": "Reported remote04 shortclaim only; result/source/wrapper/auditor/contracts/primaryapproval/jobID/all4actualclockfields null. Sameworker completed dependency plus primary approval exacthash/caps remains mandatory before issuing bounded05; no currentML readiness.",
+    "privacy": "Only declared boundedsource/aggregate metadata/hashes public; NPZ/rows/labels/preds/probas/models/privatepaths/keys remainprivate. Remote R4 metric/clock/RSS assertions remain remote-reported; primaryindependent/local confirmation required. Old KERN01 FAIL and negative regression results preserved, not substituted or replayed."
+  },
+  "execution_prerequisites_not_satisfied": [
+    "Actual remote04 completed result and exact reviewed source hashes.",
+    "Reviewed operational wrapper,componentauditor,purecontracts with actual enforceable source/claim/cap/cleanup checks.",
+    "Pinned primary approval for sameworker and new bounded job with unchanged caps/sources/matrix.",
+    "One future actual claim original wall+monotonic clock and admitted single heavy slot; actual postexecution rootclosure remains future."
+  ],
+  "limitations": [
+    "This is protocol/source review, not operationalwrapper qualification or runtime evidence.",
+    "No root access to remote private predictions/labels or measured hostresources established by digest matching.",
+    "Within480 parent, future wrapper must check full450child fits the actual remaining parent and cleanup reserve after preparation/hashes; no clipping or clockreset."
+  ],
+  "performed": {
+    "static_source_JSON_hash_arithmetic": true,
+    "purecode_archive_source_reads": true,
+    "candidate_runtime_imports": 0,
+    "tests": 0,
+    "model_fits": 0,
+    "API_calls": 0,
+    "process_scans": 0,
+    "active_LA2_reads": 0,
+    "labels_predictions_reads": 0,
+    "data_materialization": 0,
+    "clock_assignment": 0,
+    "protocol_edits": 0,
+    "STATE_Git_mutations": 0
+  }
+}

@@ -52,6 +52,12 @@ create_time1792709589.83, fe02-identity.json and fe02-20261023/followup.json.
 It waits without owning the training lock. Do not start a manual duplicate.
 Do not change canonical source before all frozen research finishes; HPO sparse
 anchor-default audit is recorded for a subsequent narrow fix.
+BLEND-01 one fixed no-fit .9complete-control+.1MVP replay PASSED both cuts:
+meanF1 .6600536197705544 vs .6593178433614652. Not qualified/release/private.
+Preregistered grouped CV: docs/experiments/blend01_cv_protocol_20261023.md and
+blend01_candidates_20261023.json. Run ONLY after queue+FE-02/descendants/lock;
+it is prepared, NOT yet launched. Keep source frozen through this CV as well.
+No new weight grid or automatic default promotion. Current qualified is V11/V16.
 Local rollback tags: baseline-before-qwen-optuna-20261022,
 qwen-optuna-core-20261022, qwen-mvp-cli-tested-20261023.
 

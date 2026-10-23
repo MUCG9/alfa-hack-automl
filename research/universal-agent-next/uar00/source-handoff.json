@@ -1,0 +1,27 @@
+{
+  "schema": "uar00-source-handoff-v1",
+  "status": "FROZEN_SOURCE_REVIEW_REQUIRED_NOT_LAUNCHED",
+  "public_files_sha256": {
+    "run_checks.py": "a75adab8cbcf2bafb22cee633f28f697eb5dc4005db90bd0003dffc8e6097d56",
+    "close_checks.py": "0b4ec103368590573735660ca65db7892e6ac4c12938b00cca0888311be5324b",
+    "protocol.json": "a74c2976fbd24a22279d51049d9bdb4135e9d418f6500a128ed0065eadfe69b1",
+    "static-proof.json": "ac03511154451b2df729b50e84420bfacf5094fb5226170bddb1ce273ebae528",
+    "source-pins-public.json": "ba3124db7a9e1547e87d6f61e85df490856a072a16caa953e7bdde59b6e55367",
+    "README.md": "2cff8337a0f3a2ca9041a099ee0eadd544c34c35e7e3784426cad65a29232775"
+  },
+  "private_files_do_not_publish": {
+    "private-manifest.json": "e83537fbbb5c9ace2464f2d0ba71a04b4ce1b04c3511a54813d9396b38a50835"
+  },
+  "expected_tests": 48,
+  "actual_tests": 0,
+  "actual_imports": 0,
+  "actual_fits": 0,
+  "actual_API_calls": 0,
+  "actual_process_scans": 0,
+  "actual_clocks": null,
+  "guard_original_process_sha256": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d",
+  "E01_R3_under_test_sha256": "f621ea725c7b4ae54dfc65cba6b0d75ddf3bc2b1b69ea8e6ecd495d68960a29c",
+  "ready_to_launch": false,
+  "remaining": "Root source review/publication; complete postfailure audit actual exit/root closure/fresh preparer absence; set its private path, recompute private-manifest SHA; then ONE serial lease and actual launch. No source/test pin changes without new pretest freeze. Root must separately observe actual queue/closer exec and fresh preparers.",
+  "source_only_command_template": "python -B -X utf8 run_checks.py --launch --private-manifest PRIVATE_FILE --private-manifest-sha256 ACTUAL_PRIVATE_SHA --self-sha256 RUNNER_SHA --la2-closure-sha256 3ae50a32e3931f214e59343eee99654c37b77bf66b1b8ec233d416586d6cfd8b --la2-actual-exit-code 1 --la2-actual-tool-evidence ACTUAL_ROOT_TOOL [--la2-actual-exec-session ACTUAL_SESSION] --extra-closure postfailure_audit=ACTUAL_AUDIT_ROOT_SHA"
+}

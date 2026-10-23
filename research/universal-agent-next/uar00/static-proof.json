@@ -1,0 +1,75 @@
+{
+  "schema": "uar00-static-proof-v1",
+  "status": "SOURCE_AST_ONLY_NOT_RUNTIME_PASS",
+  "AST_compile": [
+    "run_checks.py",
+    "close_checks.py"
+  ],
+  "test_methods": {
+    "contracts": [
+      "test_metric_aware_regression_fallback_mean_and_median",
+      "test_label_majority_and_probability_priors_keep_declared_order",
+      "test_submission_keeps_ID_and_sample_order",
+      "test_probability_columns_and_no_ID_row_order",
+      "test_validation_failure_never_replaces_last_good",
+      "test_write_flush_fsync_and_replace_errors_preserve_last_good",
+      "test_unique_sibling_is_fsynced_and_closed_before_replace",
+      "test_expected_version_refuses_stale_or_midwrite_changed_output",
+      "test_legacy_checkpoint_receipt_does_not_claim_validation",
+      "test_validated_checkpoint_avoids_double_permutation_and_retains_labels",
+      "test_validated_checkpoint_rejects_bad_contract_without_overwrite",
+      "test_multitarget_uses_same_atomic_writer_and_preserves_bad_candidate"
+    ],
+    "models": [
+      "test_renaming_schema_cannot_change_routing_or_inject_dataset_rules",
+      "test_sparse_preference_retains_strong_anchor_and_bounds_family_count",
+      "test_missing_libraries_fall_back_only_to_available_verified_adapters",
+      "test_allowed_installed_implemented_and_verified_are_independent_requirements",
+      "test_high_cardinality_prefers_native_categories_without_unbounded_onehot",
+      "test_small_numeric_data_has_a_bounded_diversity_challenger",
+      "test_memory_failure_never_claims_a_feasible_model_or_measured_cost",
+      "test_text_routes_existing_sparse_tool_without_claiming_dense_text_support",
+      "test_budget_exhaustion_and_one_probe_are_honest_partial_results",
+      "test_capability_order_does_not_change_results_and_inputs_are_not_mutated",
+      "test_unsupported_kind_missing_capability_and_duplicate_records_reject_or_exclude",
+      "test_invalid_typed_counts_and_nonfinite_or_bool_budgets_reject"
+    ],
+    "evaluation": [
+      "test_traversal_denial_is_sticky_and_owned_root_cleanup_is_attempted",
+      "test_unknown_child_birth_is_never_signalled",
+      "test_default_keeps_legacy_traversal_behavior_explicit",
+      "test_reused_child_pid_is_not_adopted_or_signalled",
+      "test_strict_final_survivor_cannot_be_confirmed_clean",
+      "test_resource_read_denial_cannot_be_a_successful_wait",
+      "test_slow_initial_discovery_cannot_reset_strict_timeout",
+      "test_terminal_observed_before_deadline_returns_only_after_cleanup",
+      "test_terminal_at_or_after_deadline_is_not_success",
+      "test_cleanup_crossing_original_deadline_does_not_return_zero",
+      "test_terminal_cleanup_failure_stays_fatal",
+      "test_timeout_and_cleanup_failure_are_both_retained"
+    ],
+    "metrics": [
+      "test_no_missing_metric_default",
+      "test_primary_overrides_diagnostics",
+      "test_conflicting_primary_objectives",
+      "test_explicit_unknown_does_not_use_diagnostic",
+      "test_diagnostics_alone_are_not_a_primary",
+      "test_metric_direction_and_metric_input",
+      "test_binary_vs_multiclass_probability_inputs",
+      "test_ambiguous_named_metrics",
+      "test_unresolved_cannot_smuggle_a_default",
+      "test_resolved_direction_cannot_be_changed",
+      "test_task_kind_does_not_come_from_target_name",
+      "test_json_metadata_keeps_unknown_unknown"
+    ]
+  },
+  "expected_total": 48,
+  "immutable_refs_sha256_checked": 322,
+  "private_manifest_sha256": "e83537fbbb5c9ace2464f2d0ba71a04b4ce1b04c3511a54813d9396b38a50835",
+  "runtime_imports": 0,
+  "actual_tests": 0,
+  "fits": 0,
+  "API": 0,
+  "actual_clocks": null,
+  "source_pins_public_sha256": "ba3124db7a9e1547e87d6f61e85df490856a072a16caa953e7bdde59b6e55367"
+}

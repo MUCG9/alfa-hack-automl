@@ -43,3 +43,19 @@ a1b1b39 — frozen FE-02 identity;6d85647/0b37c89/86b5dd0 — read-only Qwen rev
 push:a1b1b39. Полный MVP завершён и отрицателен; V11/V16 остаётся qualified.
 Обновлённый installed skill совпадает с versioned copy, включая наблюдение
 о разной history availability внутри/снаружи HPO.
+
+
+Позднее ночное продолжение23Oct:
+
+|Checkpoint|Состояние|
+|---|---|
+|`b886593`|Последний подтверждённый public push до full-profile stage|
+|`4f43e68` / `qwen-mvp-frozen-research-20261023`|Frozen research source до narrow HPO/profile integration; все отрицательные screens сохранены|
+|`a708b1c`|Исправлены sparse HPO anchor defaults; реальные adapter constructors,0fits,3checks PASS|
+|`2ddaf10`|Opt-in incumbent profile; class blend отвергнут по grouped CV, reg blend forward qualified|
+|`984ec2e` / `qwen-incumbent-mix-tested-20261023`|352unique source/23repeated exact-unpacked/30dev harness checks PASS; exact68file ZIP до full campaign|
+
+PIPE-02 campaign ACTIVE PID100146/create_time1792730294.41; immutable identity
+`test-runs/qwen-optuna-20261022/detached-pipe02.json`. Пока нет independent full
+verification receipt, tested tag не означает verified full model/refit. Во время
+frozen fitting не переключать checkout; пользоваться историей после завершения.

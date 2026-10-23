@@ -48,8 +48,12 @@ PIPE-02 opt-in full procedure now being integrated after freeze ended:
 pipe02_protocol_20261023.md and pipe02_implementation_20261023.md. Class branch
 uses qualified complete control only, regression uses qualified nested-TPE
 augmentation. Sparse HPO anchor defaults corrected in a708b1c;3no-fit adapter
-checks PASS; explicit measured controls unchanged. New source/archive/full-fit
-gates must complete before claiming profile qualification. Default HPO/selector
+checks PASS; explicit measured controls unchanged. New source352 and exact-unpacked23 gates PASS; separately30research checks PASS.
+PIPE-02 full campaign ACTIVE PID100146/create_time1792730294.41,
+detached-pipe02.json and pipe02-20261023/campaign.json. Source/archive/harness
+FROZEN during this one sequential10800s campaign; no other owned fits. Class
+control only, reg nested-TPE; full refits/CSV/integrity still must finish before
+claiming profile qualification. Default HPO/selector
 remain OFF. No official submit, main merge, force push, extra agents or paid work.
 
 The paragraphs below describe the preceding completed checkpoint.

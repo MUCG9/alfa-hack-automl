@@ -52,7 +52,7 @@ def aggregate(values,operator):
     raise ValueError('Unknown objective operator')
 
 
-def run(output,plan_path):
+def run(output,plan_path,protocol_path=None):
     start=time.monotonic();deadline=start+5400;plan=json.loads(plan_path.read_text())
     if not json.loads((plan_path.parent/'scientific-audit.json').read_text()).get('accepted'):raise ValueError('Plan audit missing')
     operator=plan['objective_id'];aggregate([1.],operator)
@@ -68,7 +68,8 @@ def run(output,plan_path):
     m={'status':'running','spec':old['spec'],'source_sha256':hashes_source,'input_sha256':old['input_sha256'],
         'harness_sha256':{n:digest(ROOT/'tools'/n) for n in harness},'objective_id':operator,
         'comparison_control':'PIPE02_COMPLETE','component_control':'V16_COMPLETE','worker_dependency_parity':closure,
-        'protocol_sha256':digest(ROOT/'docs/experiments/round04_protocol_20261023.md'),'plan_path':str(plan_path),'plan_sha256':digest(plan_path),
+        'protocol_path':str(protocol_path or ROOT/'docs/experiments/round04_protocol_20261023.md'),
+        'protocol_sha256':digest(protocol_path or ROOT/'docs/experiments/round04_protocol_20261023.md'),'plan_path':str(plan_path),'plan_sha256':digest(plan_path),
         'reference_manifest_sha256':digest(FORWARD),'old_hpo_manifest_sha256':digest(HPO),
         'identity':{'pid':os.getpid(),'create_time':psutil.Process().create_time()},
         'limits':{'total_seconds':5400,'study_seconds':1800,'worker_seconds':600,'threads':2,'memory_mib_worker_and_parent':1536,'trials':8,'seed':137,'startup':3},
@@ -169,15 +170,18 @@ def run(output,plan_path):
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,required=True);p.add_argument('--plan',type=Path,required=True);args=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,required=True);p.add_argument('--plan',type=Path,required=True)
+    p.add_argument('--protocol',type=Path);args=p.parse_args()
     output=args.output.resolve();plan=args.plan.resolve()
     if not all(p.is_relative_to((ROOT/'test-runs').resolve()) for p in [output,plan]):raise ValueError('Keep raw artifacts ignored')
+    protocol=args.protocol.resolve() if args.protocol else None
+    if protocol is not None and not protocol.is_relative_to(ROOT/'docs/experiments'):raise ValueError('Protocol must be a versioned experiment document')
     def interrupted(signum,frame):raise SystemExit(128+signum)
     signal.signal(signal.SIGTERM,interrupted)
     with (ROOT/'test-runs/.owned-research.lock').open('a+') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);output.mkdir(parents=True,exist_ok=False)
         lock.seek(0);lock.truncate();json.dump({'pid':os.getpid(),'create_time':psutil.Process().create_time()},lock);lock.flush()
-        run(output,plan)
+        run(output,plan,protocol)
 
 
 if __name__=='__main__':main()

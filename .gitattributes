@@ -19,3 +19,10 @@ research/support-context/candidates.json -text
 docs/experiments/native_screen_summary_20261023.txt -text
 docs/experiments/native_screen_log_20261023.jsonl -text
 docs/experiments/native_screen_publication_20261023.json -text
+
+research/hpo-admission/run_hpo_campaign.py -text
+research/hpo-admission/execution-manifest-r2.json -text
+research/hpo-admission/README.md -text
+research/hpo-admission/preparation-receipt-r2.json -text
+research/hpo-admission/independent-review-r2.json -text
+research/support-context/independent-review.json -text

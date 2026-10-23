@@ -1,0 +1,77 @@
+[
+  {
+    "name": "control_historical",
+    "recipe": {
+      "hypothesis": "Fixed equal-weight original and cross-fitted categorical feature views; compare full procedure",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "min_iterations": 100,
+        "feature_views": "categorical_te_pair",
+        "early_metric": "primary",
+        "nested_stopping": true
+      },
+      "feature_code": ""
+    }
+  },
+  {
+    "name": "old-proposal",
+    "recipe": {
+      "hypothesis": "Increasing class_weight_power to 0.8 will improve macro F1 by boosting the decision threshold for rare classes (Worms, Backdoor, Analysis) that currently have F1 < 0.4, without the excessive misclassification of majority classes seen at power 1.0.",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.8,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "min_iterations": 100,
+        "feature_views": "categorical_te_pair",
+        "early_metric": "primary",
+        "nested_stopping": true
+      },
+      "feature_code": ""
+    }
+  },
+  {
+    "name": "support-proposal",
+    "recipe": {
+      "hypothesis": "Increasing LightGBM capacity from num_leaves=63 to num_leaves=98 will improve rare-class F1 (specifically Analysis and Backdoor) by allowing the model to capture more complex decision boundaries, while maintaining regularization to prevent overfitting on majority classes. This targets the measured low F1 for Analysis (0.326) and Backdoor (0.226) in the best recipe.",
+      "engine": "lightgbm",
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "num_leaves": 98,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "colsample_bytree": 0.9,
+        "class_weight_power": 0.5,
+        "calibrate": true,
+        "subsample_freq": 0,
+        "min_iterations": 100,
+        "feature_views": "categorical_te_pair",
+        "early_metric": "primary",
+        "nested_stopping": true
+      },
+      "feature_code": ""
+    }
+  }
+]

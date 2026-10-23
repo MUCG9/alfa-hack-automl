@@ -1,0 +1,35 @@
+{
+  "native_fe_classification_2e_20261023.json": {
+    "private_original_sha256": "e62b852bf220ebc272d80346accf755aaefb86e7671e41946b600b6452559977",
+    "published_sha256": "820f97d86072c9c6bc95c4740cbd014e5e5b1f54abbc147c7039843d721c9293",
+    "redaction": "Local absolute path prefixes replaced by placeholders; metric evidence unchanged"
+  },
+  "native_reasoning_regression_2e_20261023.json": {
+    "private_original_sha256": "3157598e72c7ccb8b7c1675f228ea4c9b4d3b78914d0bd062feebe98135d2ace",
+    "published_sha256": "3e4034ed68603f8893a7efe3106b8e269c3a49140005edd0a6ee82ed70cafd48",
+    "redaction": "Local absolute path prefixes replaced by placeholders; metric evidence unchanged"
+  },
+  "native_repair_regression_2e_20261023.json": {
+    "private_original_sha256": "79545e2190f57c6244ada5070c1e705b9a71072592a291aef190b924dc32d7ae",
+    "published_sha256": "aa2f40919311330cca3ca342662a9bfd1e283598dff9bec4eb34b5707c5d16cb",
+    "redaction": "Local absolute path prefixes replaced by placeholders; metric evidence unchanged"
+  },
+  "native_reasoning_classification_2e_20261023.json": {
+    "private_original_sha256": "074acfc4dacf23af3655ca0380d4de3f56f86fdbfa32b19e4d1f9f257698af16",
+    "published_sha256": "904cd6c19734ddd66fbc6ee19b23a6a4d4cb845b46daebbfd980f6c159ba64d3",
+    "redaction": "Local absolute path prefixes replaced by placeholders; metric evidence unchanged"
+  },
+  "support_component": {
+    "coordinator_sha256": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "launcher_sha256": "25b85e047647075546c497cb01d555eecc154ac6389c4f0090b0c2c60d5416a0",
+    "cleanup_checks_sha256": "593f739872ec9aca74cd95197a91662cc5c822b83ad84346b535aad232a250d2",
+    "private_launch_manifest_sha256": "97233bd7e32b72c7d19ed0e8c1d2e100708ff30f5c06a8b84bba6d38e849bb86",
+    "private_protocol_sha256": "539ab85769b2ea5a2bc12a12b95152ef0e3521a84578915f47284e9a1dd6bcbf",
+    "status_at_publication": "prepared_not_launched",
+    "fits": 0,
+    "api_calls": 0,
+    "launch_requires_absolute_deadline_and_fresh_exclusive_resource_guards": true,
+    "candidate_control_gate": "both group42/43 positive MacroF1 and ex-Worms delta, supported-class loss no more than0.01",
+    "full_agent_promotion": false
+  }
+}

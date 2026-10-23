@@ -1,0 +1,41 @@
+{
+  "status": "launch_ready_declared_scope",
+  "launch_performed": false,
+  "source": "work/support_component_coordinator.py",
+  "source_sha256": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+  "manifest_sha256": "97233bd7e32b72c7d19ed0e8c1d2e100708ff30f5c06a8b84bba6d38e849bb86",
+  "readme_sha256": "23b6308c6896e044b6c53473474e3da713363766371eee51442188bce365385b",
+  "preparation_evidence_sha256": "6d3bd170ee37a8c7e66c2b201ed066c56c652a525778114b8ea1ad7af2dcbbdd",
+  "mock_checks_source_sha256": "593f739872ec9aca74cd95197a91662cc5c822b83ad84346b535aad232a250d2",
+  "original_protocol_sha256": "539ab85769b2ea5a2bc12a12b95152ef0e3521a84578915f47284e9a1dd6bcbf",
+  "preserved_r3_source": "work/support-component-launch-r3-preserved/coordinator-r3.py",
+  "preserved_r3_manifest_sha256": "9cf3f3e58f91d492cc592d952a53db5f9fdfaf87dadb9ec75cf87887f3627e07",
+  "independent_peer_review": {
+    "reviewer": "audit_contract",
+    "scope": "Read-only exact source/manifest,263 immutable files,strict observer,final identity union/denials,receipt persistence,deadline/lock/runtime reuse",
+    "conclusion": "Both reported P2 cleanup contracts resolved; no new blocker in declared scope",
+    "mock_checks": "Six checks executed by author; reported evidence read by peer, not rerun by peer",
+    "peer_executed_helper_tests_fits_or_api": false
+  },
+  "root_review": "Parent read StrictOwnedObserver/cleanup_owned/monitor; no blocker reported before peer closing",
+  "launch_requirements": [
+    "Root publishes byte-identical helper, portable mock checks, skill and reviews before experiment",
+    "Explicit --work-root and pinned manifest SHA",
+    "Absolute deadline assigned only at actual reviewed launch after predecessor resource release",
+    "Fresh exact PID/create_time predecessor and descendant proof",
+    "ResearchLock",
+    "All frozen input/source/packet bytes unchanged",
+    "Saved-array equality before any Popen"
+  ],
+  "new_Popen_calls": 0,
+  "new_model_fits": 0,
+  "new_api_calls": 0,
+  "deadline_assigned": false,
+  "output_sc1_exists": false,
+  "canonical_src_tools_tests_edits": 0,
+  "promotion": false,
+  "limitations": [
+    "Read-only/preparation approval in the stated scope; not a completed experiment or quality claim.",
+    "Independent observation certifies observed and tracker-declared identities; arbitrary unobserved historical ancestry is not reconstructed."
+  ]
+}

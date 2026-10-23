@@ -4,3 +4,18 @@ docs/experiments/hpo-admission-r2-packet/* -text
 docs/experiments/native_technical_gates_2e_20261023.json -text
 docs/experiments/native_fe_regression_2e_20261023.json -text
 docs/experiments/hpo_qualifier_review_final_packet_20261023.json -text
+
+docs/experiments/native_fe_classification_2e_20261023.json -text
+docs/experiments/native_reasoning_regression_2e_20261023.json -text
+docs/experiments/native_repair_regression_2e_20261023.json -text
+docs/experiments/native_reasoning_classification_2e_20261023.json -text
+research/support-context/run_support_component.py -text
+research/support-context/launch_in_task.py -text
+research/support-context/cleanup_checks.py -text
+research/support-context/README.md -text
+research/support-context/preparation-review.json -text
+research/support-context/protocol.json -text
+research/support-context/candidates.json -text
+docs/experiments/native_screen_summary_20261023.txt -text
+docs/experiments/native_screen_log_20261023.jsonl -text
+docs/experiments/native_screen_publication_20261023.json -text

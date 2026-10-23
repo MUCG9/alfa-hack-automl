@@ -1,0 +1,1054 @@
+{
+  "status": "component_artifacts_verified_pending_parent_terminal",
+  "rows": [
+    {
+      "key": "regression0-lgbm_l2_v1",
+      "kind": "regression",
+      "cut": 0,
+      "arm": "lgbm_l2_v1",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 39.05167816956453,
+      "diagnostics": {
+        "phase": "regression0-lgbm_l2_v1",
+        "metric": "rmse",
+        "value": 39.05167816956453,
+        "fitting_rows": 35000,
+        "validation_rows": 18308,
+        "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+        "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+        "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+        "prediction_sha256": "e78d320cdb7b77f66900713642ea745ec537d4292a004aced3133eb6e6deb0e7",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          5.0
+        ]
+      },
+      "integrity_passed": true,
+      "failed_metric_zero_imputed": false,
+      "artifact_hashes": {
+        "loss01/r/regression0-lgbm_l2_v1/job.json": "a6463935337ca16a7bb7dd38c13aaf94ce0ec9f608ac9a6ec9a41c01a0f8bd02",
+        "loss01/r/regression0-lgbm_l2_v1/result.json": "48d8640b15576212f2e09a8b0171213b30716b8166e23cd6fc8df8e7841849c6",
+        "loss01/r/regression0-lgbm_l2_v1/submission.csv": "874067716804031fa18f47bd4e98280d0efa174d81e0807319052c4f4c63b3ca",
+        "loss01/r/regression0-lgbm_l2_v1/validation_predictions.csv": "e78d320cdb7b77f66900713642ea745ec537d4292a004aced3133eb6e6deb0e7"
+      },
+      "loss_telemetry": {
+        "verified": true,
+        "profile_id": "lgbm_l2_v1",
+        "actual_postfit_receipts": [
+          {
+            "loss_profile_id": "lgbm_l2_v1",
+            "requested_objective": "regression",
+            "requested_alpha": null,
+            "effective_objective": "regression",
+            "effective_alpha": null,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 1,
+            "model_scope": "inner_fitting",
+            "validation_used_for_stopping": true,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          },
+          {
+            "loss_profile_id": "lgbm_l2_v1",
+            "requested_objective": "regression",
+            "requested_alpha": null,
+            "effective_objective": "regression",
+            "effective_alpha": null,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 2,
+            "model_scope": "outer_fitting",
+            "validation_used_for_stopping": false,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          }
+        ],
+        "inner_partition_independently_recomputed": true,
+        "outer_fitting_rows": 35000,
+        "validation_rows": 18308,
+        "original_scale_primary_metric": "rmse",
+        "target_scale": "log1p"
+      },
+      "measurement_status": "independent_component_metric"
+    },
+    {
+      "key": "regression0-lgbm_l1_v1",
+      "kind": "regression",
+      "cut": 0,
+      "arm": "lgbm_l1_v1",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 37.15886773239877,
+      "diagnostics": {
+        "phase": "regression0-lgbm_l1_v1",
+        "metric": "rmse",
+        "value": 37.15886773239877,
+        "fitting_rows": 35000,
+        "validation_rows": 18308,
+        "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+        "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+        "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+        "prediction_sha256": "3a85e203d2b948dec3403783b07197511bf0ddc08da41409645b03fed213cf72",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          5.0
+        ]
+      },
+      "integrity_passed": true,
+      "failed_metric_zero_imputed": false,
+      "artifact_hashes": {
+        "loss01/r/regression0-lgbm_l1_v1/job.json": "9f2e3a52602de58b1d931d4c8d360b79054246e6d4ae970f6e9c21c391072ec1",
+        "loss01/r/regression0-lgbm_l1_v1/result.json": "955de2c35525fcd557c8abe0d373f3cc088a38a162aebbbdd6e5530300b0ccc6",
+        "loss01/r/regression0-lgbm_l1_v1/submission.csv": "6b8eb492a5befc9557f83c00c338bff8ba3280f61f7e3f6935203d1da0a998ab",
+        "loss01/r/regression0-lgbm_l1_v1/validation_predictions.csv": "3a85e203d2b948dec3403783b07197511bf0ddc08da41409645b03fed213cf72"
+      },
+      "loss_telemetry": {
+        "verified": true,
+        "profile_id": "lgbm_l1_v1",
+        "actual_postfit_receipts": [
+          {
+            "loss_profile_id": "lgbm_l1_v1",
+            "requested_objective": "regression_l1",
+            "requested_alpha": null,
+            "effective_objective": "regression_l1",
+            "effective_alpha": null,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 1,
+            "model_scope": "inner_fitting",
+            "validation_used_for_stopping": true,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          },
+          {
+            "loss_profile_id": "lgbm_l1_v1",
+            "requested_objective": "regression_l1",
+            "requested_alpha": null,
+            "effective_objective": "regression_l1",
+            "effective_alpha": null,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 2,
+            "model_scope": "outer_fitting",
+            "validation_used_for_stopping": false,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          }
+        ],
+        "inner_partition_independently_recomputed": true,
+        "outer_fitting_rows": 35000,
+        "validation_rows": 18308,
+        "original_scale_primary_metric": "rmse",
+        "target_scale": "log1p"
+      },
+      "measurement_status": "independent_component_metric"
+    },
+    {
+      "key": "regression0-lgbm_huber_a09_v1",
+      "kind": "regression",
+      "cut": 0,
+      "arm": "lgbm_huber_a09_v1",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 38.809591295366644,
+      "diagnostics": {
+        "phase": "regression0-lgbm_huber_a09_v1",
+        "metric": "rmse",
+        "value": 38.809591295366644,
+        "fitting_rows": 35000,
+        "validation_rows": 18308,
+        "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+        "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+        "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+        "prediction_sha256": "21c0b9821b7b813164cf6566eed2a82b954523af05c88a1e340989a70562a959",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          5.0
+        ]
+      },
+      "integrity_passed": true,
+      "failed_metric_zero_imputed": false,
+      "artifact_hashes": {
+        "loss01/r/regression0-lgbm_huber_a09_v1/job.json": "03ed7b8ac45d29eef7a51c63dcb7151d63cffedbea4b207effa8d59efc63b001",
+        "loss01/r/regression0-lgbm_huber_a09_v1/result.json": "5708acf6432e2888ddb999f6da9c6575c973b555461c5fb9dac91d3ec6a1ac5b",
+        "loss01/r/regression0-lgbm_huber_a09_v1/submission.csv": "777e73ac7da9b94ea9f95768ec4c0eccdecd44248c2e54759d27654561283aa8",
+        "loss01/r/regression0-lgbm_huber_a09_v1/validation_predictions.csv": "21c0b9821b7b813164cf6566eed2a82b954523af05c88a1e340989a70562a959"
+      },
+      "loss_telemetry": {
+        "verified": true,
+        "profile_id": "lgbm_huber_a09_v1",
+        "actual_postfit_receipts": [
+          {
+            "loss_profile_id": "lgbm_huber_a09_v1",
+            "requested_objective": "huber",
+            "requested_alpha": 0.9,
+            "effective_objective": "huber",
+            "effective_alpha": 0.9,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 1,
+            "model_scope": "inner_fitting",
+            "validation_used_for_stopping": true,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          },
+          {
+            "loss_profile_id": "lgbm_huber_a09_v1",
+            "requested_objective": "huber",
+            "requested_alpha": 0.9,
+            "effective_objective": "huber",
+            "effective_alpha": 0.9,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 2,
+            "model_scope": "outer_fitting",
+            "validation_used_for_stopping": false,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          }
+        ],
+        "inner_partition_independently_recomputed": true,
+        "outer_fitting_rows": 35000,
+        "validation_rows": 18308,
+        "original_scale_primary_metric": "rmse",
+        "target_scale": "log1p"
+      },
+      "measurement_status": "independent_component_metric"
+    },
+    {
+      "key": "regression1-lgbm_l2_v1",
+      "kind": "regression",
+      "cut": 1,
+      "arm": "lgbm_l2_v1",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 31.846185166957753,
+      "diagnostics": {
+        "phase": "regression1-lgbm_l2_v1",
+        "metric": "rmse",
+        "value": 31.846185166957753,
+        "fitting_rows": 22054,
+        "validation_rows": 12946,
+        "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+        "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+        "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+        "prediction_sha256": "e58ca631611681fd6219d64696d7c455c968aadbe27303df131cba2313095ecd",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          4.0
+        ]
+      },
+      "integrity_passed": true,
+      "failed_metric_zero_imputed": false,
+      "artifact_hashes": {
+        "loss01/r/regression1-lgbm_l2_v1/job.json": "d76a9d2e2de29f41b970edfb9ef28c5317d2686fa2953aa3e223343f6d4da825",
+        "loss01/r/regression1-lgbm_l2_v1/result.json": "05c30a3eb38b7926e7f39f3e43f8d15943fc81ddcd7a4810d4f0403aae9f448e",
+        "loss01/r/regression1-lgbm_l2_v1/submission.csv": "58c06a83a4e16237a3053b06383713ef2b6965f4ec393f5641a2dc8e7d6abf78",
+        "loss01/r/regression1-lgbm_l2_v1/validation_predictions.csv": "e58ca631611681fd6219d64696d7c455c968aadbe27303df131cba2313095ecd"
+      },
+      "loss_telemetry": {
+        "verified": true,
+        "profile_id": "lgbm_l2_v1",
+        "actual_postfit_receipts": [
+          {
+            "loss_profile_id": "lgbm_l2_v1",
+            "requested_objective": "regression",
+            "requested_alpha": null,
+            "effective_objective": "regression",
+            "effective_alpha": null,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 1,
+            "model_scope": "inner_fitting",
+            "validation_used_for_stopping": true,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          },
+          {
+            "loss_profile_id": "lgbm_l2_v1",
+            "requested_objective": "regression",
+            "requested_alpha": null,
+            "effective_objective": "regression",
+            "effective_alpha": null,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 2,
+            "model_scope": "outer_fitting",
+            "validation_used_for_stopping": false,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          }
+        ],
+        "inner_partition_independently_recomputed": true,
+        "outer_fitting_rows": 22054,
+        "validation_rows": 12946,
+        "original_scale_primary_metric": "rmse",
+        "target_scale": "log1p"
+      },
+      "measurement_status": "independent_component_metric"
+    },
+    {
+      "key": "regression1-lgbm_l1_v1",
+      "kind": "regression",
+      "cut": 1,
+      "arm": "lgbm_l1_v1",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 31.295925139709283,
+      "diagnostics": {
+        "phase": "regression1-lgbm_l1_v1",
+        "metric": "rmse",
+        "value": 31.295925139709283,
+        "fitting_rows": 22054,
+        "validation_rows": 12946,
+        "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+        "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+        "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+        "prediction_sha256": "bf2c9bea8a0fcae252116f0c9722c7fd8c7065b33ab27c33f79c770b195d1949",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          4.0
+        ]
+      },
+      "integrity_passed": true,
+      "failed_metric_zero_imputed": false,
+      "artifact_hashes": {
+        "loss01/r/regression1-lgbm_l1_v1/job.json": "50789e5c5fe15bbfff32a354ec6afdeabdb2281d6507c45c27dea64db6a39f72",
+        "loss01/r/regression1-lgbm_l1_v1/result.json": "4d33b98e9cd65625e6ef174e181d334dd9a069746c5a8fff9ebdff9f0a13cffc",
+        "loss01/r/regression1-lgbm_l1_v1/submission.csv": "13ea127dfe56d83547ca16cf8763bcd194af7578d764666461e9bb2cb041e5ec",
+        "loss01/r/regression1-lgbm_l1_v1/validation_predictions.csv": "bf2c9bea8a0fcae252116f0c9722c7fd8c7065b33ab27c33f79c770b195d1949"
+      },
+      "loss_telemetry": {
+        "verified": true,
+        "profile_id": "lgbm_l1_v1",
+        "actual_postfit_receipts": [
+          {
+            "loss_profile_id": "lgbm_l1_v1",
+            "requested_objective": "regression_l1",
+            "requested_alpha": null,
+            "effective_objective": "regression_l1",
+            "effective_alpha": null,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 1,
+            "model_scope": "inner_fitting",
+            "validation_used_for_stopping": true,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          },
+          {
+            "loss_profile_id": "lgbm_l1_v1",
+            "requested_objective": "regression_l1",
+            "requested_alpha": null,
+            "effective_objective": "regression_l1",
+            "effective_alpha": null,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 2,
+            "model_scope": "outer_fitting",
+            "validation_used_for_stopping": false,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          }
+        ],
+        "inner_partition_independently_recomputed": true,
+        "outer_fitting_rows": 22054,
+        "validation_rows": 12946,
+        "original_scale_primary_metric": "rmse",
+        "target_scale": "log1p"
+      },
+      "measurement_status": "independent_component_metric"
+    },
+    {
+      "key": "regression1-lgbm_huber_a09_v1",
+      "kind": "regression",
+      "cut": 1,
+      "arm": "lgbm_huber_a09_v1",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 32.922983762057285,
+      "diagnostics": {
+        "phase": "regression1-lgbm_huber_a09_v1",
+        "metric": "rmse",
+        "value": 32.922983762057285,
+        "fitting_rows": 22054,
+        "validation_rows": 12946,
+        "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+        "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+        "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+        "prediction_sha256": "8ebcf277b205c98bc243459960f18ef327ef530b8bfd732a3018f594dbb790fd",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          4.0
+        ]
+      },
+      "integrity_passed": true,
+      "failed_metric_zero_imputed": false,
+      "artifact_hashes": {
+        "loss01/r/regression1-lgbm_huber_a09_v1/job.json": "4c7740e2e12039963fda13867578434ec1f333f8dcc9e798f9e10b8138da4f34",
+        "loss01/r/regression1-lgbm_huber_a09_v1/result.json": "d6b2a4225c95239f689e7ad8e9895d3734427f44ae71427bee1e1bbf0cb9aed8",
+        "loss01/r/regression1-lgbm_huber_a09_v1/submission.csv": "008784d322852fe051d354a31450530c0461d1bad92b7b6935434dbe752e35ae",
+        "loss01/r/regression1-lgbm_huber_a09_v1/validation_predictions.csv": "8ebcf277b205c98bc243459960f18ef327ef530b8bfd732a3018f594dbb790fd"
+      },
+      "loss_telemetry": {
+        "verified": true,
+        "profile_id": "lgbm_huber_a09_v1",
+        "actual_postfit_receipts": [
+          {
+            "loss_profile_id": "lgbm_huber_a09_v1",
+            "requested_objective": "huber",
+            "requested_alpha": 0.9,
+            "effective_objective": "huber",
+            "effective_alpha": 0.9,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 1,
+            "model_scope": "inner_fitting",
+            "validation_used_for_stopping": true,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          },
+          {
+            "loss_profile_id": "lgbm_huber_a09_v1",
+            "requested_objective": "huber",
+            "requested_alpha": 0.9,
+            "effective_objective": "huber",
+            "effective_alpha": 0.9,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 2,
+            "model_scope": "outer_fitting",
+            "validation_used_for_stopping": false,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          }
+        ],
+        "inner_partition_independently_recomputed": true,
+        "outer_fitting_rows": 22054,
+        "validation_rows": 12946,
+        "original_scale_primary_metric": "rmse",
+        "target_scale": "log1p"
+      },
+      "measurement_status": "independent_component_metric"
+    },
+    {
+      "key": "regression2-lgbm_l2_v1",
+      "kind": "regression",
+      "cut": 2,
+      "arm": "lgbm_l2_v1",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 50.92466951315985,
+      "diagnostics": {
+        "phase": "regression2-lgbm_l2_v1",
+        "metric": "rmse",
+        "value": 50.92466951315985,
+        "fitting_rows": 11175,
+        "validation_rows": 10879,
+        "positions_sha256": "c30d5cffda6b60f0e70cb67c12d1bb6ae776ee764c3c39480a255ecb715eed89",
+        "training_rows_canonical_sha256": "ad949bed13579ababe82c8ffdbb14423df1552c82f32a27eff4d805a7e251fbe",
+        "split_file_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+        "prediction_sha256": "e69e4863b219d0c07a0b5ec5dfa4b38dce831da288169550a842f83ae24aaa96",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          3.0
+        ]
+      },
+      "integrity_passed": true,
+      "failed_metric_zero_imputed": false,
+      "artifact_hashes": {
+        "loss01/r/regression2-lgbm_l2_v1/job.json": "ec766a318ad67792b418bfc008862456d5d4b8e72967677e71ec5dd2ca09231c",
+        "loss01/r/regression2-lgbm_l2_v1/result.json": "2191ed64e0eb80bdca8d392574f3b59cab6cdf998fcea07b73834cb131be36d0",
+        "loss01/r/regression2-lgbm_l2_v1/submission.csv": "ca8b3c6be1263360f423c46bede6232944ac301d8b5c945ec8d1cc17d647ebaa",
+        "loss01/r/regression2-lgbm_l2_v1/validation_predictions.csv": "e69e4863b219d0c07a0b5ec5dfa4b38dce831da288169550a842f83ae24aaa96"
+      },
+      "loss_telemetry": {
+        "verified": true,
+        "profile_id": "lgbm_l2_v1",
+        "actual_postfit_receipts": [
+          {
+            "loss_profile_id": "lgbm_l2_v1",
+            "requested_objective": "regression",
+            "requested_alpha": null,
+            "effective_objective": "regression",
+            "effective_alpha": null,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 1,
+            "model_scope": "inner_fitting",
+            "validation_used_for_stopping": true,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          },
+          {
+            "loss_profile_id": "lgbm_l2_v1",
+            "requested_objective": "regression",
+            "requested_alpha": null,
+            "effective_objective": "regression",
+            "effective_alpha": null,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 2,
+            "model_scope": "outer_fitting",
+            "validation_used_for_stopping": false,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          }
+        ],
+        "inner_partition_independently_recomputed": true,
+        "outer_fitting_rows": 11175,
+        "validation_rows": 10879,
+        "original_scale_primary_metric": "rmse",
+        "target_scale": "log1p"
+      },
+      "measurement_status": "independent_component_metric"
+    },
+    {
+      "key": "regression2-lgbm_l1_v1",
+      "kind": "regression",
+      "cut": 2,
+      "arm": "lgbm_l1_v1",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 50.76289009397395,
+      "diagnostics": {
+        "phase": "regression2-lgbm_l1_v1",
+        "metric": "rmse",
+        "value": 50.76289009397395,
+        "fitting_rows": 11175,
+        "validation_rows": 10879,
+        "positions_sha256": "c30d5cffda6b60f0e70cb67c12d1bb6ae776ee764c3c39480a255ecb715eed89",
+        "training_rows_canonical_sha256": "ad949bed13579ababe82c8ffdbb14423df1552c82f32a27eff4d805a7e251fbe",
+        "split_file_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+        "prediction_sha256": "9aa79ffe75d87312e0f61154973eebbaa18c68ad7c66f7b569a99f23ec7452de",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          3.0
+        ]
+      },
+      "integrity_passed": true,
+      "failed_metric_zero_imputed": false,
+      "artifact_hashes": {
+        "loss01/r/regression2-lgbm_l1_v1/job.json": "750f671f23d5553ba54a4bf20d0a1bb5ea8ce5c17524b4a0133805fbf56ca7ae",
+        "loss01/r/regression2-lgbm_l1_v1/result.json": "f6b2eebaee83e0b822ed6ebbc3b92e8f2ccbf2da26abeb6a45cb90c704a85446",
+        "loss01/r/regression2-lgbm_l1_v1/submission.csv": "81f9ff926bfb2fd143c085509891dda8cff9be32fd334f94e9eff74d1c37697a",
+        "loss01/r/regression2-lgbm_l1_v1/validation_predictions.csv": "9aa79ffe75d87312e0f61154973eebbaa18c68ad7c66f7b569a99f23ec7452de"
+      },
+      "loss_telemetry": {
+        "verified": true,
+        "profile_id": "lgbm_l1_v1",
+        "actual_postfit_receipts": [
+          {
+            "loss_profile_id": "lgbm_l1_v1",
+            "requested_objective": "regression_l1",
+            "requested_alpha": null,
+            "effective_objective": "regression_l1",
+            "effective_alpha": null,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 1,
+            "model_scope": "inner_fitting",
+            "validation_used_for_stopping": true,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          },
+          {
+            "loss_profile_id": "lgbm_l1_v1",
+            "requested_objective": "regression_l1",
+            "requested_alpha": null,
+            "effective_objective": "regression_l1",
+            "effective_alpha": null,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 2,
+            "model_scope": "outer_fitting",
+            "validation_used_for_stopping": false,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          }
+        ],
+        "inner_partition_independently_recomputed": true,
+        "outer_fitting_rows": 11175,
+        "validation_rows": 10879,
+        "original_scale_primary_metric": "rmse",
+        "target_scale": "log1p"
+      },
+      "measurement_status": "independent_component_metric"
+    },
+    {
+      "key": "regression2-lgbm_huber_a09_v1",
+      "kind": "regression",
+      "cut": 2,
+      "arm": "lgbm_huber_a09_v1",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 51.21372082163735,
+      "diagnostics": {
+        "phase": "regression2-lgbm_huber_a09_v1",
+        "metric": "rmse",
+        "value": 51.21372082163735,
+        "fitting_rows": 11175,
+        "validation_rows": 10879,
+        "positions_sha256": "c30d5cffda6b60f0e70cb67c12d1bb6ae776ee764c3c39480a255ecb715eed89",
+        "training_rows_canonical_sha256": "ad949bed13579ababe82c8ffdbb14423df1552c82f32a27eff4d805a7e251fbe",
+        "split_file_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+        "prediction_sha256": "b24df0f2223ae26abdd944b4c73a714646e73e36e65491d316af8f12349d3630",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          3.0
+        ]
+      },
+      "integrity_passed": true,
+      "failed_metric_zero_imputed": false,
+      "artifact_hashes": {
+        "loss01/r/regression2-lgbm_huber_a09_v1/job.json": "e44ddd61994f145b45a176ad5cc687cba642508ba761f46756ad96bea36a290d",
+        "loss01/r/regression2-lgbm_huber_a09_v1/result.json": "4ac2d7717bbc02c7eae36c70a4833abf8b40001e4a32ab5714bcbecc40f979dd",
+        "loss01/r/regression2-lgbm_huber_a09_v1/submission.csv": "3432e48496ae53d218c770e48e419c06ac117dce9a3eae199fbbd9cc78a3dbb5",
+        "loss01/r/regression2-lgbm_huber_a09_v1/validation_predictions.csv": "b24df0f2223ae26abdd944b4c73a714646e73e36e65491d316af8f12349d3630"
+      },
+      "loss_telemetry": {
+        "verified": true,
+        "profile_id": "lgbm_huber_a09_v1",
+        "actual_postfit_receipts": [
+          {
+            "loss_profile_id": "lgbm_huber_a09_v1",
+            "requested_objective": "huber",
+            "requested_alpha": 0.9,
+            "effective_objective": "huber",
+            "effective_alpha": 0.9,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 1,
+            "model_scope": "inner_fitting",
+            "validation_used_for_stopping": true,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          },
+          {
+            "loss_profile_id": "lgbm_huber_a09_v1",
+            "requested_objective": "huber",
+            "requested_alpha": 0.9,
+            "effective_objective": "huber",
+            "effective_alpha": 0.9,
+            "requested_metric": "None",
+            "effective_metric": [
+              "None"
+            ],
+            "evidence_source": "fitted_booster.params",
+            "verified": true,
+            "library": "lightgbm",
+            "library_version": "4.6.0",
+            "fit_index": 2,
+            "model_scope": "outer_fitting",
+            "validation_used_for_stopping": false,
+            "primary_metric": "rmse",
+            "target_scale": "log1p"
+          }
+        ],
+        "inner_partition_independently_recomputed": true,
+        "outer_fitting_rows": 11175,
+        "validation_rows": 10879,
+        "original_scale_primary_metric": "rmse",
+        "target_scale": "log1p"
+      },
+      "measurement_status": "independent_component_metric"
+    }
+  ],
+  "comparisons": [
+    {
+      "profile": "lgbm_l2_v1",
+      "cut": 0,
+      "control_fresh_L2": 39.05167816956453,
+      "candidate": 39.05167816956453,
+      "complete": true,
+      "delta_candidate_minus_L2": 0.0,
+      "strict_RMSE_improvement": false
+    },
+    {
+      "profile": "lgbm_l2_v1",
+      "cut": 1,
+      "control_fresh_L2": 31.846185166957753,
+      "candidate": 31.846185166957753,
+      "complete": true,
+      "delta_candidate_minus_L2": 0.0,
+      "strict_RMSE_improvement": false
+    },
+    {
+      "profile": "lgbm_l2_v1",
+      "cut": 2,
+      "control_fresh_L2": 50.92466951315985,
+      "candidate": 50.92466951315985,
+      "complete": true,
+      "delta_candidate_minus_L2": 0.0,
+      "strict_RMSE_improvement": false
+    },
+    {
+      "profile": "lgbm_l1_v1",
+      "cut": 0,
+      "control_fresh_L2": 39.05167816956453,
+      "candidate": 37.15886773239877,
+      "complete": true,
+      "delta_candidate_minus_L2": -1.892810437165764,
+      "strict_RMSE_improvement": true
+    },
+    {
+      "profile": "lgbm_l1_v1",
+      "cut": 1,
+      "control_fresh_L2": 31.846185166957753,
+      "candidate": 31.295925139709283,
+      "complete": true,
+      "delta_candidate_minus_L2": -0.5502600272484699,
+      "strict_RMSE_improvement": true
+    },
+    {
+      "profile": "lgbm_l1_v1",
+      "cut": 2,
+      "control_fresh_L2": 50.92466951315985,
+      "candidate": 50.76289009397395,
+      "complete": true,
+      "delta_candidate_minus_L2": -0.16177941918589767,
+      "strict_RMSE_improvement": true
+    },
+    {
+      "profile": "lgbm_huber_a09_v1",
+      "cut": 0,
+      "control_fresh_L2": 39.05167816956453,
+      "candidate": 38.809591295366644,
+      "complete": true,
+      "delta_candidate_minus_L2": -0.24208687419788788,
+      "strict_RMSE_improvement": true
+    },
+    {
+      "profile": "lgbm_huber_a09_v1",
+      "cut": 1,
+      "control_fresh_L2": 31.846185166957753,
+      "candidate": 32.922983762057285,
+      "complete": true,
+      "delta_candidate_minus_L2": 1.0767985950995325,
+      "strict_RMSE_improvement": false
+    },
+    {
+      "profile": "lgbm_huber_a09_v1",
+      "cut": 2,
+      "control_fresh_L2": 50.92466951315985,
+      "candidate": 51.21372082163735,
+      "complete": true,
+      "delta_candidate_minus_L2": 0.2890513084775037,
+      "strict_RMSE_improvement": false
+    }
+  ],
+  "quality_metric": {
+    "lgbm_l2_v1": {
+      "metric": "rmse",
+      "required_cuts": 3,
+      "complete": true,
+      "fresh_L2_mean": 40.60751094989404,
+      "candidate_mean": 40.60751094989404
+    },
+    "lgbm_l1_v1": {
+      "metric": "rmse",
+      "required_cuts": 3,
+      "complete": true,
+      "fresh_L2_mean": 40.60751094989404,
+      "candidate_mean": 39.73922765536067
+    },
+    "lgbm_huber_a09_v1": {
+      "metric": "rmse",
+      "required_cuts": 3,
+      "complete": true,
+      "fresh_L2_mean": 40.60751094989404,
+      "candidate_mean": 40.98209862635376
+    }
+  },
+  "all_workers_succeeded": true,
+  "component_quality_gates_passed": true,
+  "registered_component_decisions": {
+    "profiles": {
+      "lgbm_l2_v1": {
+        "cuts": [
+          {
+            "cut": 0,
+            "control_fresh_L2": 39.05167816956453,
+            "candidate": 39.05167816956453,
+            "complete": true,
+            "delta_candidate_minus_L2": 0.0,
+            "strict_RMSE_improvement": false
+          },
+          {
+            "cut": 1,
+            "control_fresh_L2": 31.846185166957753,
+            "candidate": 31.846185166957753,
+            "complete": true,
+            "delta_candidate_minus_L2": 0.0,
+            "strict_RMSE_improvement": false
+          },
+          {
+            "cut": 2,
+            "control_fresh_L2": 50.92466951315985,
+            "candidate": 50.92466951315985,
+            "complete": true,
+            "delta_candidate_minus_L2": 0.0,
+            "strict_RMSE_improvement": false
+          }
+        ],
+        "all_three_strict_RMSE_improvement": false,
+        "scope": "Fresh same-cut explicitL2 only"
+      },
+      "lgbm_l1_v1": {
+        "cuts": [
+          {
+            "cut": 0,
+            "control_fresh_L2": 39.05167816956453,
+            "candidate": 37.15886773239877,
+            "complete": true,
+            "delta_candidate_minus_L2": -1.892810437165764,
+            "strict_RMSE_improvement": true
+          },
+          {
+            "cut": 1,
+            "control_fresh_L2": 31.846185166957753,
+            "candidate": 31.295925139709283,
+            "complete": true,
+            "delta_candidate_minus_L2": -0.5502600272484699,
+            "strict_RMSE_improvement": true
+          },
+          {
+            "cut": 2,
+            "control_fresh_L2": 50.92466951315985,
+            "candidate": 50.76289009397395,
+            "complete": true,
+            "delta_candidate_minus_L2": -0.16177941918589767,
+            "strict_RMSE_improvement": true
+          }
+        ],
+        "all_three_strict_RMSE_improvement": true,
+        "scope": "Fresh same-cut explicitL2 only"
+      },
+      "lgbm_huber_a09_v1": {
+        "cuts": [
+          {
+            "cut": 0,
+            "control_fresh_L2": 39.05167816956453,
+            "candidate": 38.809591295366644,
+            "complete": true,
+            "delta_candidate_minus_L2": -0.24208687419788788,
+            "strict_RMSE_improvement": true
+          },
+          {
+            "cut": 1,
+            "control_fresh_L2": 31.846185166957753,
+            "candidate": 32.922983762057285,
+            "complete": true,
+            "delta_candidate_minus_L2": 1.0767985950995325,
+            "strict_RMSE_improvement": false
+          },
+          {
+            "cut": 2,
+            "control_fresh_L2": 50.92466951315985,
+            "candidate": 51.21372082163735,
+            "complete": true,
+            "delta_candidate_minus_L2": 0.2890513084775037,
+            "strict_RMSE_improvement": false
+          }
+        ],
+        "all_three_strict_RMSE_improvement": false,
+        "scope": "Fresh same-cut explicitL2 only"
+      }
+    },
+    "component_quality_gates_passed": true,
+    "all_nine_workers_required_for_quality": true,
+    "legacy_SINGLE_parity": [
+      {
+        "cut": 0,
+        "legacy_SINGLE_RMSE": 39.05167816956453,
+        "fresh_L2_RMSE": 39.05167816956453,
+        "prediction_parity": true,
+        "numeric_metric_parity": true,
+        "role": "Additional legacy parity diagnostic; never fresh quality control"
+      },
+      {
+        "cut": 1,
+        "legacy_SINGLE_RMSE": 31.846185166957753,
+        "fresh_L2_RMSE": 31.846185166957753,
+        "prediction_parity": true,
+        "numeric_metric_parity": true,
+        "role": "Additional legacy parity diagnostic; never fresh quality control"
+      },
+      {
+        "cut": 2,
+        "legacy_SINGLE_RMSE": 50.92466951315985,
+        "fresh_L2_RMSE": 50.92466951315985,
+        "prediction_parity": true,
+        "numeric_metric_parity": true,
+        "role": "Additional legacy parity diagnostic; never fresh quality control"
+      }
+    ],
+    "full_refit_or_promotion": false,
+    "scope": "Fixed loss-only SINGLE component cuts, not wholeagent/refit/official score"
+  },
+  "artifact_integrity_checks_passed": true,
+  "audit_within_original_common_clock": true,
+  "campaign_terminal_confirmed": false,
+  "parent_exec_terminal_qualification_required": true,
+  "actual_common_deadline_satisfied": null,
+  "manifest_sha256": "7ce38fa77a94e35748b147fc7a4d6766e05cadb2817e73786c132f4d2e6ca8cc",
+  "verification_plan_sha256": "76118566f64b380b756d21418941b8d52264111fe33bcfa840ab29c69e2a900c",
+  "campaign_sha256": "028abfd39a8ba90c03ea0dd9f09598363286823242606becae777badc36750d9",
+  "manual_metric_source_sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+  "source_and_core_rechecked": true,
+  "legacy_parity_reference_sha256": {
+    "meth01/terminal-root-closure.json": "2c67361da8f95875b35d124ac6c19d6cccba28c899f1e20dada88f3bec4ea283",
+    "meth01/independent-audit.json": "3004f8b5fef76006a856162ac2224b7875df6dd02540bd68c1b8160d7f9ba646",
+    "meth01/manifest.json": "2f24df6cc0eeeb9a4cbb5593dcae8de457dae235239890e766bdd70ac69077bc",
+    "meth01/verification-plan.json": "ccb35c054e49040e8040999f1033f73172eaea452ff1cccd74619e79f94b6dda",
+    "meth01/r/task.md": "33f743ead4840336856cb9db8e25867f44512231beebff927326e8580e14d9d0",
+    "meth01/r/train.csv": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775",
+    "meth01/r/test.csv": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
+    "meth01/r/data_dictionary.csv": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
+    "meth01/r/sample_submission.csv": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1",
+    "meth01/r/task_spec.json": "cb0b935f74e393ed2ae7a21889abed7fcb3d38e23db2a79a9d03b909b2f217dd",
+    "meth01/r/regression0-control/job.json": "6926af84fe5a65627d739c6ea8975204e4f4add991851279c16b387cb3e280b7",
+    "meth01/r/split-0.npz": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+    "meth01/supervisors/regression0-control.json": "c9f69f2dcb251a28b645381fe284d54ebf6fd254dbcb99ba8aea8fbe50690646",
+    "meth01/supervisors/regression0-control-seal.json": "213e02e3a24c815e21fee5d27d9ff462864d16d8aa315c9a6ad41fabce4ae4f9",
+    "meth01/r/regression0-control/result.json": "5b9b9d1471f0520471b1f57ed9bddd4a6dd98e2c7c0e994679b98b634690bafe",
+    "meth01/r/regression0-control/submission.csv": "874067716804031fa18f47bd4e98280d0efa174d81e0807319052c4f4c63b3ca",
+    "meth01/r/regression0-control/validation_predictions.csv": "e78d320cdb7b77f66900713642ea745ec537d4292a004aced3133eb6e6deb0e7",
+    "meth01/r/regression1-control/job.json": "cf8b69bae39a5d10bdca54dae1105245165b65b12002c0a54e1522dad77e8de4",
+    "meth01/r/split-1.npz": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+    "meth01/supervisors/regression1-control.json": "c392d1f5f1a18d4edd44037554bc621bfdefc5842c6046592d37fe6f7edc449d",
+    "meth01/supervisors/regression1-control-seal.json": "70c40eb000e83a56495bc41be51860aafadcfec80e568d532172a2944052f3d3",
+    "meth01/r/regression1-control/result.json": "debf437987b9b1b559c36196d59179a5663a0f8d7c0890a6c23dbb7551bc8cff",
+    "meth01/r/regression1-control/submission.csv": "58c06a83a4e16237a3053b06383713ef2b6965f4ec393f5641a2dc8e7d6abf78",
+    "meth01/r/regression1-control/validation_predictions.csv": "e58ca631611681fd6219d64696d7c455c968aadbe27303df131cba2313095ecd",
+    "meth01/r/regression2-control/job.json": "46a5131508d410c255bb6d400458c9b8310d95311fd2afdb56cbc5f3b4e01a57",
+    "meth01/r/split-2.npz": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+    "meth01/supervisors/regression2-control.json": "4df28fb967740ab3a4d070a57f405c8229788ca5eabada23b412a41669060596",
+    "meth01/supervisors/regression2-control-seal.json": "57e77601b5babf0a7932114345bd0f5d74185bd67ac297b210b77f8a8153d8a8",
+    "meth01/r/regression2-control/result.json": "c475d45f9f611c421fd5b30514e55d9c7b594ab996fafc59a6428c623cfe717b",
+    "meth01/r/regression2-control/submission.csv": "ca8b3c6be1263360f423c46bede6232944ac301d8b5c945ec8d1cc17d647ebaa",
+    "meth01/r/regression2-control/validation_predictions.csv": "e69e4863b219d0c07a0b5ec5dfa4b38dce831da288169550a842f83ae24aaa96"
+  },
+  "failed_metrics_zero_imputed": false,
+  "new_model_fits": 0,
+  "API_calls": 0,
+  "tests_run": 0,
+  "full_refit": false,
+  "promotion": false,
+  "submit": false,
+  "official_score": null,
+  "scope": "Fixed loss-only component screen on three reused public forward cuts. Fresh explicitL2 is control, legacySINGLE parity is additional only. No whole-agent or blind/private gain."
+}

@@ -1,5 +1,10 @@
 # Development instructions — current checkpoint, 22 October 2026
 
+23Oct captain explicitly authorizes LONG-01 implementation and local3h/task runs
+on experiment/v11-long-budget-20261023. This supersedes documentation/transfer-only
+instructions below. Read docs/experiments/LONG-01_protocol.md. No official upload,
+extra agents or dependency changes. Legacy defaults and submitted V11 preserved.
+
 Current branch: `work/llm-upgrade-20261022`, based on colleague6aefbd9.
 Read `docs/handoff/START_HERE.md`, `docs/handoff/EXPERIMENTS.md`,
 `docs/handoff/PLAN.md` and `docs/prompts/next-agent.md`. Read linked evidence only

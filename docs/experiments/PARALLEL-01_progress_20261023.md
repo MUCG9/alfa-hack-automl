@@ -1,5 +1,10 @@
 # Parallel engineering progress — 23 October2026
 
+LAMA-01 now COMPLETE/DISCARD:4cases exit0,source/freshrefit/exportPASS,neitherfixed
+mix passesbothcutgate. Evidence LAMA-01_progress/results_20261023. NoactiveMLfits.
+LastfiniteAGENT-01 apphelpers protocol91b61f3; currentprivateprocessenvunconfigured,
+offlinecontracts only,defaultOFF. Bestcheckedrelease remainsLONG,alreadyuploaded.
+
 EMB-01 now COMPLETE/DISCARD:all4cases exit0/source/refit/exportPASS,none of fixed
 .1/.25mix improves bothcuts of anytask. See EMB-01_progress/results_20261023.
 NoactiveownedMLfit,backendOFF,nextconditionalLAMA-01 admission. PriorACTIVEbelow

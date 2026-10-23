@@ -1,5 +1,10 @@
 # Development instructions — current checkpoint, 22 October 2026
 
+LAMA-01 completed/DISCARDED:controller30382 exit0,4casesfullrefit/export/sourcePASS,
+fixedmixes failbothcutgate;defaultOFF,noCV/repeat. Latest LAMA-01_progress/results.
+Noactiveownedfits. Last finite stepAGENT-01 offline apphelper contracts;live
+comparison blocked untilsafe currentprocesscredentials,never historicalkeys.
+
 LatestLAMA-01:read LAMA-01_progress_20261023.md. Pinnedseparateenv,6fixture+7arch
 PASS;ONE4casepublicscreencontroller30382 from1d550b9. No canonicaledits or other
 heavyfits/suites until ends. Next finalappAGENT-01 protocol91b61f3,offlinecontracts

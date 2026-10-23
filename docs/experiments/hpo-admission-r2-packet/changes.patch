@@ -1,0 +1,2243 @@
+diff --git a/docs/experiments/hpo_admission_b_protocol_20261023-r2.json b/docs/experiments/hpo_admission_b_protocol_20261023-r2.json
+new file mode 100644
+index 0000000..e6d1202
+--- /dev/null
++++ b/docs/experiments/hpo_admission_b_protocol_20261023-r2.json
+@@ -0,0 +1,647 @@
++{
++  "plan_id": "hpo-admission-b-20261023",
++  "revision": 2,
++  "status": "prepared_not_executed",
++  "base_commit": "70700ac03c5e177ebd527918d01d7b424754c8f7",
++  "source_scope": "isolated tracked archive tree; unpromoted component prototype",
++  "hypothesis": "A 1.5x median of past successful callback durations avoids poorly budgeted next-worker attempts without a startup reservation; quality remains an independent empirical gate.",
++  "admission": {
++    "default": "legacy",
++    "opt_in": "measured",
++    "factor": 1.5,
++    "after_anchor_only": true,
++    "history": "past successful finite-objective worker callbacks with finite positive monotonic elapsed time only",
++    "no_valid_history": "require full configured worker timeout for the next worker",
++    "pre_sampling_check": true,
++    "pre_worker_recheck": true,
++    "future_timings_or_objective_magnitudes_used": false,
++    "startup_or_guided_reservation": false,
++    "first_refusal": "stop; no skip-ahead"
++  },
++  "limits": {
++    "study_seconds": 900,
++    "maximum_trials_including_anchor": 8,
++    "sampler_seed": 137,
++    "tpe_startup_trials": 3,
++    "worker_seconds": 600,
++    "worker_memory_mib": 1536,
++    "worker_threads": 2,
++    "invocation_seconds": 4000,
++    "common_campaign_deadline": "Must be supplied by the enclosing coordinator before execution; never reset between jobs",
++    "maximum_study_and_outer_worker_caps_sum_seconds": 36000
++  },
++  "arms": [
++    "legacy_random",
++    "measured_random",
++    "legacy_tpe",
++    "measured_tpe"
++  ],
++  "controls": {
++    "regression": {
++      "source": "release/v16-mean1/public-full.json",
++      "json_pointer": "/0/selection/0/recipe",
++      "source_sha256": "c559648cc94ebfa2ddbdde2e9fac1c6744ac85e223ae67843f727362a82243ce",
++      "recipe": {
++        "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
++        "engine": "lightgbm",
++        "params": {
++          "iterations": 1600,
++          "learning_rate": 0.035,
++          "num_leaves": 127,
++          "max_depth": -1,
++          "min_child_samples": 25,
++          "reg_lambda": 8,
++          "subsample": 1,
++          "colsample_bytree": 0.9,
++          "generic_features": "missing",
++          "subsample_freq": 0,
++          "min_iterations": 100,
++          "target_encoding": true,
++          "target_encoding_auto_groups": true,
++          "target_encoding_smoothing": 2,
++          "log_target": true,
++          "target_encoding_hierarchical": true,
++          "history_asof": true,
++          "history_min_periods": 3,
++          "early_metric": "primary",
++          "nested_stopping": true
++        },
++        "feature_code": ""
++      },
++      "recipe_sha256_canonical_json": "049136473c313a8ac90215ea8cde094bca87564a33fa6a26d92b3d88327a3531",
++      "task_path_from_dev": "../evaluation/regression/task.md",
++      "input_sha256": {
++        "data_dictionary.csv": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
++        "sample_submission.csv": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1",
++        "task.md": "33f743ead4840336856cb9db8e25867f44512231beebff927326e8580e14d9d0",
++        "test.csv": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
++        "train.csv": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775"
++      }
++    },
++    "classification": {
++      "source": "release/v16-mean1/public-full.json",
++      "json_pointer": "/1/selection/0/recipe",
++      "source_sha256": "c559648cc94ebfa2ddbdde2e9fac1c6744ac85e223ae67843f727362a82243ce",
++      "recipe": {
++        "hypothesis": "Fixed equal-weight original and cross-fitted categorical feature views; compare full procedure",
++        "engine": "lightgbm",
++        "params": {
++          "iterations": 1200,
++          "learning_rate": 0.04,
++          "num_leaves": 63,
++          "max_depth": -1,
++          "min_child_samples": 25,
++          "reg_lambda": 5,
++          "subsample": 1,
++          "colsample_bytree": 0.9,
++          "class_weight_power": 0.5,
++          "calibrate": true,
++          "subsample_freq": 0,
++          "min_iterations": 100,
++          "feature_views": "categorical_te_pair",
++          "early_metric": "primary",
++          "nested_stopping": true
++        },
++        "feature_code": ""
++      },
++      "recipe_sha256_canonical_json": "3c75300f6a6196e0039733c9bd3df169dc641ca97099bf1803040bd38e86e6a6",
++      "task_path_from_dev": "../evaluation/multiclass/task.md",
++      "input_sha256": {
++        "data_dictionary.csv": "13d2651c5fe02b7fc30f0e7290af45606aad5de76c2f7b69217abc270dbbcef4",
++        "sample_submission.csv": "4d23642fcff01e49b0ef5a9f018b2381c12fad97282fa586285ad49b01e9623e",
++        "task.md": "eebb55ebb8deb8257a2c012330ecc015e8d3a0bc3619c40da6c2a6ab200709bf",
++        "test.csv": "b825449603931b5f05a8855e3d92b57775221c93ed4730ac6b4c75b9ea608862",
++        "train.csv": "171a8915070b7575b729a32f70a45d1ad7b6f43c65b4ce12a0a68af30d5cb4e0"
++      }
++    }
++  },
++  "pairs": [
++    {
++      "task": "regression",
++      "cut": 0,
++      "policy_order": [
++        "legacy",
++        "measured"
++      ],
++      "sampler_order_within_each_policy": [
++        "random",
++        "tpe"
++      ],
++      "comparison_unit": "complete four-arm paired outer cut; no conclusion from an unequal/truncated pair",
++      "invocations": [
++        {
++          "admission": "legacy",
++          "output": "test-runs/hpo-admission-b/regression-cut0-legacy",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/regression/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/regression-cut0-legacy",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "0",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "legacy"
++          ]
++        },
++        {
++          "admission": "measured",
++          "output": "test-runs/hpo-admission-b/regression-cut0-measured",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/regression/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/regression-cut0-measured",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "0",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "measured"
++          ]
++        }
++      ]
++    },
++    {
++      "task": "regression",
++      "cut": 1,
++      "policy_order": [
++        "measured",
++        "legacy"
++      ],
++      "sampler_order_within_each_policy": [
++        "random",
++        "tpe"
++      ],
++      "comparison_unit": "complete four-arm paired outer cut; no conclusion from an unequal/truncated pair",
++      "invocations": [
++        {
++          "admission": "measured",
++          "output": "test-runs/hpo-admission-b/regression-cut1-measured",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/regression/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/regression-cut1-measured",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "1",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "measured"
++          ]
++        },
++        {
++          "admission": "legacy",
++          "output": "test-runs/hpo-admission-b/regression-cut1-legacy",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/regression/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/regression-cut1-legacy",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "1",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "legacy"
++          ]
++        }
++      ]
++    },
++    {
++      "task": "regression",
++      "cut": 2,
++      "policy_order": [
++        "legacy",
++        "measured"
++      ],
++      "sampler_order_within_each_policy": [
++        "random",
++        "tpe"
++      ],
++      "comparison_unit": "complete four-arm paired outer cut; no conclusion from an unequal/truncated pair",
++      "invocations": [
++        {
++          "admission": "legacy",
++          "output": "test-runs/hpo-admission-b/regression-cut2-legacy",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/regression/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/regression-cut2-legacy",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "2",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "legacy"
++          ]
++        },
++        {
++          "admission": "measured",
++          "output": "test-runs/hpo-admission-b/regression-cut2-measured",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/regression/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/regression-cut2-measured",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "2",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "measured"
++          ]
++        }
++      ]
++    },
++    {
++      "task": "classification",
++      "cut": 42,
++      "policy_order": [
++        "legacy",
++        "measured"
++      ],
++      "sampler_order_within_each_policy": [
++        "random",
++        "tpe"
++      ],
++      "comparison_unit": "complete four-arm paired outer cut; no conclusion from an unequal/truncated pair",
++      "invocations": [
++        {
++          "admission": "legacy",
++          "output": "test-runs/hpo-admission-b/classification-cut42-legacy",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/multiclass/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/classification-cut42-legacy",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "42",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "legacy"
++          ]
++        },
++        {
++          "admission": "measured",
++          "output": "test-runs/hpo-admission-b/classification-cut42-measured",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/multiclass/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/classification-cut42-measured",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "42",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "measured"
++          ]
++        }
++      ]
++    },
++    {
++      "task": "classification",
++      "cut": 43,
++      "policy_order": [
++        "measured",
++        "legacy"
++      ],
++      "sampler_order_within_each_policy": [
++        "random",
++        "tpe"
++      ],
++      "comparison_unit": "complete four-arm paired outer cut; no conclusion from an unequal/truncated pair",
++      "invocations": [
++        {
++          "admission": "measured",
++          "output": "test-runs/hpo-admission-b/classification-cut43-measured",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/multiclass/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/classification-cut43-measured",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "43",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "measured"
++          ]
++        },
++        {
++          "admission": "legacy",
++          "output": "test-runs/hpo-admission-b/classification-cut43-legacy",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/multiclass/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/classification-cut43-legacy",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "43",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "legacy"
++          ]
++        }
++      ]
++    }
++  ],
++  "fixed_factors": [
++    "model family",
++    "control recipe except the original searched parameters",
++    "features",
++    "class weights",
++    "calibration",
++    "target and history policy",
++    "sampler seed and startup count",
++    "search space",
++    "nested splits",
++    "objective",
++    "per-worker limits"
++  ],
++  "runtime_statistics": [
++    "actual elapsed study and worker seconds",
++    "attempted/completed/failed/duplicate/unattempted trials",
++    "phase counts and successful guided trials",
++    "admission decisions and skipped reasons",
++    "unspent allowance"
++  ],
++  "quality_statistics": [
++    "outer RMSE on every regression cut and task mean",
++    "outer Macro F1 on every classification cut and task mean",
++    "per-class F1 and independent fitting group support",
++    "gain excluding rarest class",
++    "differences versus unchanged SINGLE control and equal-budget random"
++  ],
++  "validity": [
++    "same saved split indices and hashes in all arms per cut",
++    "sequential owned workers",
++    "freeze source/tools/tests/inputs before execution",
++    "no outer labels in inner selection/admission",
++    "no numeric failed metric",
++    "incomplete pairs remain partial",
++    "unspent time not reinvested into extra trials"
++  ],
++  "promotion": {
++    "allowed_now": false,
++    "quality_gate": "Every declared outer cut improves over paired legacy and unchanged SINGLE control; TPE claims additionally beat equal-budget random task mean",
++    "class_support_gate": "No per-class F1 drop greater than .01 for classes with at least 100 independent fitting feature groups; report excluding-rarest-class gain",
++    "following_gates": [
++      "classification grouped CV of entire inner selection with exactly-once coverage and pooled/fold metrics",
++      "complete candidate agent against strongest preserved complete procedure on both tasks",
++      "refit/export/input/source integrity",
++      "full source suite and new admission tests",
++      "exact unpacked release checks"
++    ],
++    "operational_improvement_alone": "Can be reported separately; no ML gain or automatic default promotion"
++  },
++  "prior_replay": {
++    "path_from_workspace": "work/hpo_admission_replay.json",
++    "sha256": "7e16c1d335c8e8a7d0634ea1b2686309ed39721afab144640dff7097213cde97",
++    "scope": "offline optimistic chronological illustration only; not new execution or measured savings",
++    "A": "rejected startup/guided reservation drops observed startup winner",
++    "B": "motivates this independent prospective component test only"
++  },
++  "api_calls": 0,
++  "model_fits": 0,
++  "release_archive_created": false,
++  "original_base_commit": "bc0603bb17c0680a221d1ba5a9ff3421a9c28ed2",
++  "additional_harness_commit": "d2a329a00082cdf08ea30bbf49dc0be4baf3a126",
++  "previous_protocol": {
++    "path": "docs/experiments/hpo_admission_b_protocol_20261023.json",
++    "sha256": "04270eea2cdf956bc75ee26075a49c94ced8cbad3f5af9d0faaa5d86b3cd6bc5"
++  },
++  "portability_scope": "Exact2c tracked changes; only2d run_checks shallow TMPDIR/cleanup delta; original admission implementation remains unchanged",
++  "qualification": {
++    "tool": "tools/qualify_hpo.py",
++    "kind": "saved-artifact and equal-budget validity gate, not ML quality/release promotion",
++    "expected_source_sha256": {
++      "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
++      "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
++      "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
++      "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
++      "automl_features.py": "1c505e20611ad9e96affeeee0e7e8ac88b3a9b8a3167761e5a252dcd283511a8",
++      "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
++      "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
++      "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
++      "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
++      "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
++      "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
++      "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
++      "automl_models.py": "b92c50f675e14a9f94febd7deceabdda5284bbe32ecb5c811343fda8c5336374",
++      "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
++      "automl_ensembles.py": "f52deb156e74e6e8e46b67fa6045bbaf942a2b9dac32e6ec11b16d1782328185",
++      "automl_worker.py": "8dc5a05d22df2c7b9c4d39e88b89fcb1648cf0b2d3b0fc6b2c1fcd3597f65dad",
++      "automl_policy.py": "4ec5da176fd362a2570b5921186e13116ac2baa19585dd790392b92a2751a6c4",
++      "automl_runner.py": "ea22276a14f43c6071ea474d5e39119773d32abb3ed8f84edee648f17acde433",
++      "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
++      "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
++      "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
++      "automl_contracts_error_analysis.py": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a",
++      "automl_contracts_messages.py": "dc14ab3c2e257b8ae8dacc3c3888580f01b9a5f5494322273989345d4f429623",
++      "automl_error_analysis_api.py": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad",
++      "automl_error_analysis_artifacts.py": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454",
++      "automl_error_analysis_classification.py": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073",
++      "automl_error_analysis_comparisons.py": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418",
++      "automl_error_analysis_preparation.py": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52",
++      "automl_error_analysis_regression.py": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719",
++      "automl_error_analysis_reporting.py": "5d1e37b3360c8096277576eb174737eb1a209ae9f656a42d71ff3d6bedb0b051",
++      "automl_error_analysis_service.py": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630",
++      "automl_error_analysis_slices.py": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f",
++      "automl_error_analysis_uncertainty.py": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591",
++      "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
++      "automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
++      "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
++      "automl_execution_api.py": "37e92f85f4e8de65b9cf2fdf1dbee27549938c5d035aa0ece766f796076fc1aa",
++      "automl_execution_feature_views.py": "3188c6a64aee09a012fdb4bf49eeec1b780046ad0a4390ad69a7f9d2e7c598ea",
++      "automl_infrastructure_llm_gateway.py": "580261a8cbc720fef77f8e33819faa6c401153b4c6c2006536ec2bfaa0435551",
++      "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
++      "automl_infrastructure_processes.py": "45698b33f2f2a0fee2b193c3ab8a03a3395b3df6404116daa08ce7942da289c8",
++      "automl_infrastructure_resources.py": "0053175adce33660c72cfda4dbbe3dc7db24bcdd114a2f40f0906f856332bec2",
++      "automl_infrastructure_run_budget.py": "baa9f7469ba9e8344005ca50a77d48e3c856f1a97010f27dee8fc40bdc42a9f0",
++      "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1",
++      "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
++      "automl_search_hpo.py": "5289bb0326f6e27ee3a565c9f4140a4c7447b0c2a78f555ec7125cfb5bbd00ef",
++      "automl_search_multitarget.py": "f56063373e7af57472069a5043de7e6b65d5d644d52ece3884a875e93d075fbf",
++      "automl_search_stages.py": "adb77f4500cbcd467d8920ab11aa422f8fbb46842adb732622640463a401f936",
++      "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
++      "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
++      "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
++      "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
++      "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
++      "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
++      "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
++      "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
++      "automl_execution_feature_engineering_selection.py": "9b5f5104425a9416f005acc11af7239fec2e10f59a7c8c15dc4e99878bef38fa",
++      "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
++      "automl_execution_postprocessing_targets.py": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218",
++      "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
++      "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
++      "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
++      "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
++      "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
++      "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
++      "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
++      "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953",
++      "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
++    },
++    "expected_harness_sha256": {
++      "tools/benchmark_hpo.py": "6ec7be7e9f09f0cbaedff086df82f3e188eeacdeb12f858c95554f7b096ace23",
++      "src/automl/search/hpo.py": "838a2aec8f469cfda9f6261615ed0afa05782e201746e969cbc229e58810ea95",
++      "tools/qualify_hpo.py": "eb53561bb34cedbf2e3dc8c66a8ebaed3537dceef1794d5792c4715cbc8578cc"
++    },
++    "required_outcomes": "Every declared cut, both admission policies and both samplers; outer statusok and finite primary metrics; failed inner objectives nonnumeric",
++    "budget_rule": "Each study initially allocated900seconds; measured admission may stop early, externally clipped allocations cannot qualify",
++    "partition_rule": "Verify persisted NPZ index hashes and inner containment; identical outer and inner partitions across four arms",
++    "command": [
++      "<same-sys.executable>",
++      "tools/qualify_hpo.py",
++      "--plan",
++      "docs/experiments/hpo_admission_b_protocol_20261023-r2.json",
++      "--task",
++      "<regression-or-classification>",
++      "--reports",
++      "<all-policy-cut-results.json-files>",
++      "--output",
++      "<new-validity-receipt.json>"
++    ],
++    "full_source_gate_expected_checks": 472,
++    "full_source_gate_expected_scripts": 48,
++    "ml_quality_gate_evaluated": false,
++    "promotion": false,
++    "narrative": "docs/experiments/hpo_admission_b_protocol_20261023-r2.md",
++    "narrative_sha256": "824568b845bc8f515d71b5ff2ee71eab2b6f937ff76c3ec13a24666a50e9b18e",
++    "harness_path_resolution": "Repository-relative names, verified against the known source root; absolute or escaping names rejected",
++    "admission_trace_boundary": "This saved-artifact gate does not replay monotonic decisions or certify early-stop reasons; core admission chronology has separate focused tests"
++  },
++  "additional_harness_2e_delta": "tools/run_checks.py fixture_parent ROOT.parent/t, preserving472/48 registration; no runtime change beyond2c",
++  "patch_apply_base_commit": "3060dc243b2d903ec879fb38953798ea05e65774",
++  "additional_harness_2e_commit": "3060dc243b2d903ec879fb38953798ea05e65774",
++  "patch_line_endings": "Preserve canonical CRLF in existing modified files; new files LF; runtime compilation unchanged"
++}
+diff --git a/docs/experiments/hpo_admission_b_protocol_20261023-r2.md b/docs/experiments/hpo_admission_b_protocol_20261023-r2.md
+new file mode 100644
+index 0000000..63cb7b5
+--- /dev/null
++++ b/docs/experiments/hpo_admission_b_protocol_20261023-r2.md
+@@ -0,0 +1,71 @@
++# HPO admission B, revision2: portability base and independent validity gate
++
++This revision remains prepared and unpromoted. It preserves the original
++protocol and its hashes as historical revision1. The factorial arms, strongest
++SINGLE controls, search space, seed137, startup3, eight trials including the
++anchor,900-second study allocation,600-second/two-thread/1536MiB workers,
++classification grouped42/43 and regression forward0/1/2 cuts are unchanged.
++Operational cost and outer ML quality remain separate. No model fit or API
++call was made to prepare this revision.
++
++The isolated source now includes the exact tracked Windows portability changes
++from `70700ac03c5e177ebd527918d01d7b424754c8f7` (native2c). The runner also retains
++the original opt-in admission flag. The only subsequent base change is
++`tools/run_checks.py` from `d2a329a00082cdf08ea30bbf49dc0be4baf3a126`: shallow
++temporary fixtures and cleanup telemetry, followed by the explicitly authorized
++native2e one-line move of the fixture parent to `ROOT.parent/'t'` (workspace
++`work/t`). The new tests remain registered. No runtime fix was added beyond2c.
++`hpo.py` after LF normalization is
++identical to the reviewed revision1 admission implementation. Existing modified
++files preserve canonical CRLF endings for a minimal patch; new files use LF. Compilation
++differs from native2c in only `automl_runner.py` and `automl_search_hpo.py`;
++the other66 flat files, including model adapters and requirements, match.
++These are source facts, not a claim of measured prediction or metric parity.
++
++The previous benchmark's `completed` lifecycle and exit0 could coexist with
++an outer timeout/error or a study clipped by the enclosing deadline. The
++benchmark now records initial requested/allocated study seconds and clipping,
++saved outer partition byte hashes, worker thread count, and final task/harness
++integrity. It explicitly labels lifecycle completion as insufficient for
++qualification. Worker JSON is read as UTF-8 and child UTF-8 configuration is
++explicit. These reporting changes do not choose a model or alter its objective.
++
++`tools/qualify_hpo.py` is a separate read-only, no-fit validity gate. Pass all
++policy/cut result files for one task and the revision2 JSON plan. It requires
++every predeclared cut and both policies/samplers, the unchanged strong control,
++matching frozen compiled source and harness files, verified task/input bytes,
++successful finite outer primary metrics, and nonnumeric failed inner values.
++It checks saved outer and inner NPZ indices, their hashes, inner containment,
++group-overlap declarations, and identical partitions across the four arms.
++It also checks the selected inner winner matches the outer refit recipe.
++An unchanged control with drifting outer metric invalidates its paired cut.
++
++Each study must have received the full900-second initial allocation. An early
++measured admission stop remains valid; external deadline clipping is not
++equal-budget evidence. Missing or repeated cuts, failed outer workers,
++nonfinite/boolean metrics, altered source/inputs/controls or leaking inner
++rows fail qualification. A valid negative-quality screen remains evidence.
++The tool reports per-cut differences and per-task outer means, including
++equal-budget TPE-versus-random differences and successful guided counts.
++It never substitutes zero for a failed metric.
++
++This gate validates saved artifacts and protocol metadata. It does not
++recompute outer metrics from predictions, certify class-support gates, run
++whole-selection CV, establish a full-agent win, or promote a release. Its
++`promotion` and `ml_quality_promotion_gate_evaluated` fields are always false.
++It does not replay the monotonic admission trace or independently certify an
++early-stop reason; those rely on the frozen core implementation and its
++separate focused tests. Harness fingerprints use repository-relative names
++resolved against the known source root, without machine-specific path literals.
++All original quality/support/CV/full-agent/refit/export/release requirements
++remain in force after this validity gate.
++
++Focused preparation verification passed42 no-fit checks:13 admission,7 original
++HPO,14 anchor/constructor and8 new synthetic-artifact qualification checks.
++The qualifier checks both regression/minimize and classification/maximize.
++Full source/release gates and real paired ML screens have not run for this
++source. The new registry declares472 checks over48 scripts (451 base checks,
++13 admission and8 qualification). Before a future full no-skips source gate,
++provide the ten byte-verified pristine `public_tasks/classification` and
++`public_tasks/regression` inputs; ignored inputs are absent from `git archive`.
++The enclosing common deadline still has to be declared before any execution.
+diff --git a/docs/experiments/hpo_admission_b_protocol_20261023.json b/docs/experiments/hpo_admission_b_protocol_20261023.json
+new file mode 100644
+index 0000000..4d5fb01
+--- /dev/null
++++ b/docs/experiments/hpo_admission_b_protocol_20261023.json
+@@ -0,0 +1,534 @@
++{
++  "plan_id": "hpo-admission-b-20261023",
++  "revision": 1,
++  "status": "prepared_not_executed",
++  "base_commit": "bc0603bb17c0680a221d1ba5a9ff3421a9c28ed2",
++  "source_scope": "isolated tracked archive tree; unpromoted component prototype",
++  "hypothesis": "A 1.5x median of past successful callback durations avoids poorly budgeted next-worker attempts without a startup reservation; quality remains an independent empirical gate.",
++  "admission": {
++    "default": "legacy",
++    "opt_in": "measured",
++    "factor": 1.5,
++    "after_anchor_only": true,
++    "history": "past successful finite-objective worker callbacks with finite positive monotonic elapsed time only",
++    "no_valid_history": "require full configured worker timeout for the next worker",
++    "pre_sampling_check": true,
++    "pre_worker_recheck": true,
++    "future_timings_or_objective_magnitudes_used": false,
++    "startup_or_guided_reservation": false,
++    "first_refusal": "stop; no skip-ahead"
++  },
++  "limits": {
++    "study_seconds": 900,
++    "maximum_trials_including_anchor": 8,
++    "sampler_seed": 137,
++    "tpe_startup_trials": 3,
++    "worker_seconds": 600,
++    "worker_memory_mib": 1536,
++    "worker_threads": 2,
++    "invocation_seconds": 4000,
++    "common_campaign_deadline": "Must be supplied by the enclosing coordinator before execution; never reset between jobs",
++    "maximum_study_and_outer_worker_caps_sum_seconds": 36000
++  },
++  "arms": [
++    "legacy_random",
++    "measured_random",
++    "legacy_tpe",
++    "measured_tpe"
++  ],
++  "controls": {
++    "regression": {
++      "source": "release/v16-mean1/public-full.json",
++      "json_pointer": "/0/selection/0/recipe",
++      "source_sha256": "c559648cc94ebfa2ddbdde2e9fac1c6744ac85e223ae67843f727362a82243ce",
++      "recipe": {
++        "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
++        "engine": "lightgbm",
++        "params": {
++          "iterations": 1600,
++          "learning_rate": 0.035,
++          "num_leaves": 127,
++          "max_depth": -1,
++          "min_child_samples": 25,
++          "reg_lambda": 8,
++          "subsample": 1,
++          "colsample_bytree": 0.9,
++          "generic_features": "missing",
++          "subsample_freq": 0,
++          "min_iterations": 100,
++          "target_encoding": true,
++          "target_encoding_auto_groups": true,
++          "target_encoding_smoothing": 2,
++          "log_target": true,
++          "target_encoding_hierarchical": true,
++          "history_asof": true,
++          "history_min_periods": 3,
++          "early_metric": "primary",
++          "nested_stopping": true
++        },
++        "feature_code": ""
++      },
++      "recipe_sha256_canonical_json": "049136473c313a8ac90215ea8cde094bca87564a33fa6a26d92b3d88327a3531",
++      "task_path_from_dev": "../evaluation/regression/task.md",
++      "input_sha256": {
++        "data_dictionary.csv": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
++        "sample_submission.csv": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1",
++        "task.md": "33f743ead4840336856cb9db8e25867f44512231beebff927326e8580e14d9d0",
++        "test.csv": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
++        "train.csv": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775"
++      }
++    },
++    "classification": {
++      "source": "release/v16-mean1/public-full.json",
++      "json_pointer": "/1/selection/0/recipe",
++      "source_sha256": "c559648cc94ebfa2ddbdde2e9fac1c6744ac85e223ae67843f727362a82243ce",
++      "recipe": {
++        "hypothesis": "Fixed equal-weight original and cross-fitted categorical feature views; compare full procedure",
++        "engine": "lightgbm",
++        "params": {
++          "iterations": 1200,
++          "learning_rate": 0.04,
++          "num_leaves": 63,
++          "max_depth": -1,
++          "min_child_samples": 25,
++          "reg_lambda": 5,
++          "subsample": 1,
++          "colsample_bytree": 0.9,
++          "class_weight_power": 0.5,
++          "calibrate": true,
++          "subsample_freq": 0,
++          "min_iterations": 100,
++          "feature_views": "categorical_te_pair",
++          "early_metric": "primary",
++          "nested_stopping": true
++        },
++        "feature_code": ""
++      },
++      "recipe_sha256_canonical_json": "3c75300f6a6196e0039733c9bd3df169dc641ca97099bf1803040bd38e86e6a6",
++      "task_path_from_dev": "../evaluation/multiclass/task.md",
++      "input_sha256": {
++        "data_dictionary.csv": "13d2651c5fe02b7fc30f0e7290af45606aad5de76c2f7b69217abc270dbbcef4",
++        "sample_submission.csv": "4d23642fcff01e49b0ef5a9f018b2381c12fad97282fa586285ad49b01e9623e",
++        "task.md": "eebb55ebb8deb8257a2c012330ecc015e8d3a0bc3619c40da6c2a6ab200709bf",
++        "test.csv": "b825449603931b5f05a8855e3d92b57775221c93ed4730ac6b4c75b9ea608862",
++        "train.csv": "171a8915070b7575b729a32f70a45d1ad7b6f43c65b4ce12a0a68af30d5cb4e0"
++      }
++    }
++  },
++  "pairs": [
++    {
++      "task": "regression",
++      "cut": 0,
++      "policy_order": [
++        "legacy",
++        "measured"
++      ],
++      "sampler_order_within_each_policy": [
++        "random",
++        "tpe"
++      ],
++      "comparison_unit": "complete four-arm paired outer cut; no conclusion from an unequal/truncated pair",
++      "invocations": [
++        {
++          "admission": "legacy",
++          "output": "test-runs/hpo-admission-b/regression-cut0-legacy",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/regression/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/regression-cut0-legacy",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "0",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "legacy"
++          ]
++        },
++        {
++          "admission": "measured",
++          "output": "test-runs/hpo-admission-b/regression-cut0-measured",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/regression/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/regression-cut0-measured",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "0",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "measured"
++          ]
++        }
++      ]
++    },
++    {
++      "task": "regression",
++      "cut": 1,
++      "policy_order": [
++        "measured",
++        "legacy"
++      ],
++      "sampler_order_within_each_policy": [
++        "random",
++        "tpe"
++      ],
++      "comparison_unit": "complete four-arm paired outer cut; no conclusion from an unequal/truncated pair",
++      "invocations": [
++        {
++          "admission": "measured",
++          "output": "test-runs/hpo-admission-b/regression-cut1-measured",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/regression/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/regression-cut1-measured",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "1",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "measured"
++          ]
++        },
++        {
++          "admission": "legacy",
++          "output": "test-runs/hpo-admission-b/regression-cut1-legacy",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/regression/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/regression-cut1-legacy",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "1",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "legacy"
++          ]
++        }
++      ]
++    },
++    {
++      "task": "regression",
++      "cut": 2,
++      "policy_order": [
++        "legacy",
++        "measured"
++      ],
++      "sampler_order_within_each_policy": [
++        "random",
++        "tpe"
++      ],
++      "comparison_unit": "complete four-arm paired outer cut; no conclusion from an unequal/truncated pair",
++      "invocations": [
++        {
++          "admission": "legacy",
++          "output": "test-runs/hpo-admission-b/regression-cut2-legacy",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/regression/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/regression-cut2-legacy",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "2",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "legacy"
++          ]
++        },
++        {
++          "admission": "measured",
++          "output": "test-runs/hpo-admission-b/regression-cut2-measured",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/regression/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/regression-cut2-measured",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "2",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "measured"
++          ]
++        }
++      ]
++    },
++    {
++      "task": "classification",
++      "cut": 42,
++      "policy_order": [
++        "legacy",
++        "measured"
++      ],
++      "sampler_order_within_each_policy": [
++        "random",
++        "tpe"
++      ],
++      "comparison_unit": "complete four-arm paired outer cut; no conclusion from an unequal/truncated pair",
++      "invocations": [
++        {
++          "admission": "legacy",
++          "output": "test-runs/hpo-admission-b/classification-cut42-legacy",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/multiclass/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/classification-cut42-legacy",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "42",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "legacy"
++          ]
++        },
++        {
++          "admission": "measured",
++          "output": "test-runs/hpo-admission-b/classification-cut42-measured",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/multiclass/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/classification-cut42-measured",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "42",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "measured"
++          ]
++        }
++      ]
++    },
++    {
++      "task": "classification",
++      "cut": 43,
++      "policy_order": [
++        "measured",
++        "legacy"
++      ],
++      "sampler_order_within_each_policy": [
++        "random",
++        "tpe"
++      ],
++      "comparison_unit": "complete four-arm paired outer cut; no conclusion from an unequal/truncated pair",
++      "invocations": [
++        {
++          "admission": "measured",
++          "output": "test-runs/hpo-admission-b/classification-cut43-measured",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/multiclass/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/classification-cut43-measured",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "43",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "measured"
++          ]
++        },
++        {
++          "admission": "legacy",
++          "output": "test-runs/hpo-admission-b/classification-cut43-legacy",
++          "argv": [
++            "<same-sys.executable>",
++            "tools/benchmark_hpo.py",
++            "--task",
++            "../evaluation/multiclass/task.md",
++            "--output",
++            "test-runs/hpo-admission-b/classification-cut43-legacy",
++            "--mode",
++            "hpo",
++            "--cuts",
++            "43",
++            "--trials",
++            "8",
++            "--study-seconds",
++            "900",
++            "--worker-seconds",
++            "600",
++            "--memory-mb",
++            "1536",
++            "--time-budget",
++            "4000",
++            "--admission",
++            "legacy"
++          ]
++        }
++      ]
++    }
++  ],
++  "fixed_factors": [
++    "model family",
++    "control recipe except the original searched parameters",
++    "features",
++    "class weights",
++    "calibration",
++    "target and history policy",
++    "sampler seed and startup count",
++    "search space",
++    "nested splits",
++    "objective",
++    "per-worker limits"
++  ],
++  "runtime_statistics": [
++    "actual elapsed study and worker seconds",
++    "attempted/completed/failed/duplicate/unattempted trials",
++    "phase counts and successful guided trials",
++    "admission decisions and skipped reasons",
++    "unspent allowance"
++  ],
++  "quality_statistics": [
++    "outer RMSE on every regression cut and task mean",
++    "outer Macro F1 on every classification cut and task mean",
++    "per-class F1 and independent fitting group support",
++    "gain excluding rarest class",
++    "differences versus unchanged SINGLE control and equal-budget random"
++  ],
++  "validity": [
++    "same saved split indices and hashes in all arms per cut",
++    "sequential owned workers",
++    "freeze source/tools/tests/inputs before execution",
++    "no outer labels in inner selection/admission",
++    "no numeric failed metric",
++    "incomplete pairs remain partial",
++    "unspent time not reinvested into extra trials"
++  ],
++  "promotion": {
++    "allowed_now": false,
++    "quality_gate": "Every declared outer cut improves over paired legacy and unchanged SINGLE control; TPE claims additionally beat equal-budget random task mean",
++    "class_support_gate": "No per-class F1 drop greater than .01 for classes with at least 100 independent fitting feature groups; report excluding-rarest-class gain",
++    "following_gates": [
++      "classification grouped CV of entire inner selection with exactly-once coverage and pooled/fold metrics",
++      "complete candidate agent against strongest preserved complete procedure on both tasks",
++      "refit/export/input/source integrity",
++      "full source suite and new admission tests",
++      "exact unpacked release checks"
++    ],
++    "operational_improvement_alone": "Can be reported separately; no ML gain or automatic default promotion"
++  },
++  "prior_replay": {
++    "path_from_workspace": "work/hpo_admission_replay.json",
++    "sha256": "7e16c1d335c8e8a7d0634ea1b2686309ed39721afab144640dff7097213cde97",
++    "scope": "offline optimistic chronological illustration only; not new execution or measured savings",
++    "A": "rejected startup/guided reservation drops observed startup winner",
++    "B": "motivates this independent prospective component test only"
++  },
++  "api_calls": 0,
++  "model_fits": 0,
++  "release_archive_created": false
++}
+diff --git a/docs/experiments/hpo_admission_b_protocol_20261023.md b/docs/experiments/hpo_admission_b_protocol_20261023.md
+new file mode 100644
+index 0000000..75b3748
+--- /dev/null
++++ b/docs/experiments/hpo_admission_b_protocol_20261023.md
+@@ -0,0 +1,138 @@
++# HPO admission B: predeclared isolated development experiment
++
++Status: prepared on 23 October 2026; no model fit, API call, outer score or
++promotion has been performed for this source. Base is tracked commit
++`bc0603bb17c0680a221d1ba5a9ff3421a9c28ed2`, extracted with `git archive` into
++`work/iteration3-dev`. Canonical source, the active research queue, previous
++archives, measurements and `work/SESSION_STATE.json` are outside this change.
++The companion JSON contains exact controls, hashes, cut order and command
++arguments. A release archive must be made only after review of this source.
++
++## One factor
++
++`optimize_recipe(..., admission='legacy')` retains the default search. Explicit
++`admission='measured'`, runner `--hpo-admission measured`, and development
++benchmark `--admission measured` enable factor B. After the unchanged anchor,
++estimate the next worker cost as `1.5 * median(past successful worker seconds)`.
++Launch the next worker only if the current study budget covers that estimate
++and the existing five-second minimum. A successful observation requires the
++existing finite valid inner objective and a finite positive elapsed duration.
++Measure duration with the coordinator's monotonic clock around the worker
++callback; never trust worker-reported timing for admission. Failed workers
++consume real time but supply no median observation. With no valid positive
++duration, require the full configured worker timeout for subsequent workers.
++Zero, negative and nonfinite durations are excluded and counted.
++
++The anchor is exempt from the median rule. Preserve its existing recipe,
++search-space validation and deadline floor. Check admission before sampling;
++recheck immediately before a unique worker launch so checkpoint/sampler
++overhead cannot spend the admitted allowance. A recheck rejection records the
++sampled recipe as not started and stops; it is not a worker failure or numeric
++objective. Duplicates retain the existing failure handling and are not timing
++observations. Stop at the first refusal; never inspect a future trial's timing
++or score. Keep a successful incumbent even if a later worker is refused. If
++all attempts fail, return the original control and nonnumeric failed values.
++
++No startup or guided-trial reservation is permitted. The prior offline replay
++in `work/hpo_admission_replay.json` found rule A would drop the observed useful
++startup winner; it is rejected. Rule B retained that observed prefix winner,
++but this replay is not a new execution, measured saving, whole-agent identity
++or evidence of TPE superiority. Its clock omitted undistributed nonworker
++overhead. Do not transfer its projected savings into the new benchmark.
++
++Sampler, seed137, startup3, eight trials including anchor, search space, model
++parameters outside the original three searched parameters, features,
++calibration, target/history policy, nested split, objective and worker guards
++remain unchanged. Admission sees elapsed time and success/failure only, never
++objective magnitude or outer labels. The report records the policy, each
++decision, remaining time, estimate, valid history size, post-setup remaining,
++skipped work and reason. Reporting changes do not prove ML improvement.
++
++## Paired screen
++
++Use the strongest historical SINGLE recipes from
++`release/v16-mean1/public-full.json`: regression `/0/selection/0/recipe`
++(as-of history LightGBM with existing `generic_features=missing`) and
++classification `/1/selection/0/recipe` (calibrated
++`feature_views=categorical_te_pair`). They are the benchmark's existing
++portfolio controls. Verify the recipe hashes before fitting. They are not
++the complete V11/V16 ensembles; complete historical scores are not component
++scores. Change neither control features nor its normalization between arms.
++
++Factorial arms are legacy/random, measured/random, legacy/TPE and measured/TPE,
++with an unchanged control refit for comparison. Every inner study gets the
++same 900-second cap, maximum eight trials including anchor, seed137 and
++600-second maximum worker cap. Every worker gets two threads and 1536MiB.
++Use the identical outer cut and saved inner split positions across all four
++arms; any split/hash discrepancy invalidates the pair. Keep failures and
++duplicates in the ledger, without numeric substitutes. Do not prune from
++incomparable intermediate metrics.
++
++Predeclare classification grouped/hash cuts42 and43, and regression forward
++offsets0,1,2. Each study uses only the outer fitting rows and constructs its
++inner holdout there. Refit the selected recipe on that outer fitting
++partition, using the existing further nested stopping/calibration, then
++evaluate the outer holdout. Never use outer scores to continue, admit, sample
++or choose an inner trial. Reuse of public development data remains explicit.
++
++Run one cut per benchmark invocation. Policy order is legacy/measured on
++regression0, measured/legacy on regression1, legacy/measured on regression2,
++legacy/measured on classification42 and measured/legacy on classification43.
++Within each invocation preserve the existing random-then-TPE order. This is
++fixed before outcomes, rather than changed to favour an arm. The companion
++JSON supplies commands with the explicit 900-second study budget. There are
++20 studies across the five cuts. All fits are sequential; freeze sources,
++used tools/tests, task inputs, exact controls and split hashes before starting.
++Use an enclosing owned-process guard and a common coordinator deadline.
++Do not create fresh campaign time for a later arm. If insufficient common
++time remains for a complete pair with full equal study caps and its outer
++refits, leave it pending/partial; a truncated study cannot establish a paired
++win. Admission savings remain unspent, with no reinvestment into more trials,
++seeds, cuts or models in this experiment.
++
++## Outcomes and promotion gates
++
++Report operational outcomes separately: actual elapsed study/worker seconds,
++timeout and other failure counts, complete/startup/guided trials, admitted or
++skipped work and unused allowance. Report outer RMSE for each regression cut
++and Macro F1 for each classification cut, plus per-task means. Do not average
++RMSE and F1 into an invented score or treat failed metrics as zero. An
++operational saving with equal or worse ML quality is not an ML quality gain.
++Equal caps do not imply equal completed work or the same chosen model.
++
++Primary factor comparison is measured versus legacy within each sampler.
++Also compare TPE with random at equal 900-second budgets under the same
++admission policy. A label of TPE with no successful guided trial is not
++evidence of adaptive search. Keep the unchanged SINGLE control in all tables.
++The screen must report every declared cut and all arms, including negative or
++partial results. Do not pool only favourable cuts.
++
++For ML-quality advancement require improved RMSE on every declared forward
++cut or improved Macro F1 on both classification cuts relative to the paired
++legacy arm and unchanged SINGLE control. Report differences against equal
++budget random search; claiming TPE improvement also requires beating its
++mean. In classification, allow no supported class F1 drop greater than0.01
++for classes with at least100 independent fitting feature groups, and report
++gain excluding the rarest class. A timing-only result may be documented as
++operational evidence, without passing this quality gate or changing defaults.
++
++A positive classification screen still needs grouped CV of the entire inner
++selection procedure with exactly-once coverage and separate pooled/fold
++scores. Forward regression is not exactly-once OOF. Before any default or
++release promotion, test the complete candidate agent on both tasks against
++the preserved strongest complete procedure, including refit/export/integrity,
++the full unchanged-source suite plus the new admission tests, and an exact
++unpacked release gate. Source3 remains an unpromoted development prototype.
++Official hidden-test normalized competition points cannot be inferred here.
++
++## Preparation verification
++
++Chronological fake workers with a mocked monotonic clock and real seeded
++Optuna samplers cover fit/unfit budgets, exact boundaries, checkpoint overhead,
++legacy parity, sufficient-budget trace identity, sampler-independent
++admission, successful-winner and all-failed fallbacks, invalid caps and zero
++durations, and poisoning of unused outer labels. No model is fitted by these
++tests. The targeted run passed13 new admission tests,7 original HPO tests and
++14 anchor/constructor tests. The new test is registered in the isolated full
++suite (461 checks over47 scripts); the full suite and release/ML screens
++have not run for this source. Full pass counts must come from later receipts.
+diff --git a/src/automl/search/hpo.py b/src/automl/search/hpo.py
+index 8b02aff..0f4d1d1 100644
+--- a/src/automl/search/hpo.py
++++ b/src/automl/search/hpo.py
+@@ -3,6 +3,7 @@ from copy import deepcopy
+ from pathlib import Path
+ import hashlib
+ import math
++from statistics import median
+ import time
+ 
+ import numpy as np
+@@ -98,16 +99,23 @@ def _update_trial_counts(report):
+ 
+ 
+ def optimize_recipe(spec, train, hashes, fitting_rows, recipe, output, worker,
+-                    deadline, trials=8, seed=137, sampler='tpe', worker_timeout=600):
++                    deadline, trials=8, seed=137, sampler='tpe', worker_timeout=600,
++                    *, admission='legacy'):
+     """Return a recipe chosen by inner values, never outer labels or predictions.
+ 
+     worker has run_worker's signature. It must implement time/memory guards and
+     receive no credentials. A timeout is a failed trial, not a numeric objective.
++    Measured admission uses only past successful monotonic worker durations;
++    without a finite positive observation it requires a full worker timeout.
+     """
+     if type(trials) is not int or not 1 <= trials <= 32:
+         raise ValueError('HPO requires 1..32 trials')
+     if sampler not in {'tpe', 'random'}:
+         raise ValueError('Unknown HPO sampler')
++    if admission not in {'legacy', 'measured'}:
++        raise ValueError('Unknown HPO admission policy')
++    if admission=='measured' and (isinstance(worker_timeout,bool) or not math.isfinite(worker_timeout)):
++        raise ValueError('Measured admission requires a finite positive worker timeout')
+     if not math.isfinite(deadline) or worker_timeout <= 0:
+         raise ValueError('Invalid HPO deadline')
+     space = search_space(recipe['engine'])
+@@ -116,6 +124,8 @@ def optimize_recipe(spec, train, hashes, fitting_rows, recipe, output, worker,
+     report = {'status': 'pending', 'sampler': sampler, 'seed': seed,
+               'maximum_trials': trials, 'startup_trials': min(3, trials),
+               'search_space': space, 'trials': [], 'control_recipe': deepcopy(recipe),
++              'admission_policy': admission, 'admission_decisions': [],
++              'successful_worker_durations': [], 'invalid_successful_duration_count': 0,
+               'scope': 'inner fitting holdout; not outer/private/official score'}
+     path = output/'hpo.json'
+     start = time.monotonic()
+@@ -155,8 +165,28 @@ def optimize_recipe(spec, train, hashes, fitting_rows, recipe, output, worker,
+     selected, best_value, seen = deepcopy(recipe), None, set()
+     for number in range(trials):
+         remaining = deadline-time.monotonic()
+-        if remaining < 5:
++        if not math.isfinite(remaining) or remaining < 5:
++            report['admission_decisions'].append({'next_trial':number,'admitted':False,
++                'remaining_seconds':remaining if math.isfinite(remaining) else None,
++                'estimated_seconds':None,'reason':'legacy_minimum_remaining' if math.isfinite(remaining) else 'nonfinite_remaining'})
+             break
++        durations=report['successful_worker_durations']
++        estimate=(1.5*median(durations) if durations else float(worker_timeout)) if admission=='measured' and number else None
++        decision={'next_trial':number,'remaining_seconds':remaining,'estimated_seconds':estimate,
++                  'past_successful_duration_count':len(durations),'admitted':True,
++                  'reason':'anchor_exempt' if number==0 else 'legacy_policy' if admission=='legacy'
++                           else 'past_successful_median' if durations else 'worker_cap_no_valid_history'}
++        if estimate is not None and remaining<estimate:
++            decision.update(admitted=False,reason='insufficient_remaining_for_estimate',
++                            skipped_trials=trials-number)
++        if estimate is not None and not math.isfinite(estimate):
++            decision.update(admitted=False,estimated_seconds=None,reason='nonfinite_estimate',skipped_trials=trials-number)
++        report['admission_decisions'].append(decision)
++        if not decision['admitted']:
++            report['admission_stop_reason']=decision['reason']
++            break
++        if admission=='measured':
++            atomic_json(path,report)
+         completed_before = sum(t.state == optuna.trial.TrialState.COMPLETE for t in study.trials)
+         phase = ('anchor' if number == 0 else 'random' if sampler == 'random'
+                  else 'startup' if completed_before < report['startup_trials'] else 'guided')
+@@ -175,8 +205,22 @@ def optimize_recipe(spec, train, hashes, fitting_rows, recipe, output, worker,
+             study.tell(trial, state=optuna.trial.TrialState.FAIL)
+         else:
+             seen.add(fingerprint)
++            worker_started=time.monotonic() if admission=='measured' else None
++            if admission=='measured':
++                launch_remaining=deadline-worker_started
++                decision['pre_worker_remaining_seconds']=launch_remaining if math.isfinite(launch_remaining) else None
++                if (not math.isfinite(launch_remaining) or launch_remaining<5 or
++                        (estimate is not None and launch_remaining<estimate)):
++                    decision.update(admitted=False,sampled_but_not_started=True,
++                        sampled_recipe_sha256=fingerprint,skipped_trials=trials-number,
++                        reason='insufficient_remaining_before_worker' if math.isfinite(launch_remaining)
++                               else 'nonfinite_remaining_before_worker')
++                    report['admission_stop_reason']=decision['reason']
++                    study.tell(trial,state=optuna.trial.TrialState.FAIL)
++                    break
+             result = worker(spec, candidate, output/f'trial-{number:02d}', split,
+                             min(worker_timeout, max(1, deadline-time.monotonic())))
++            elapsed=time.monotonic()-worker_started if admission=='measured' else None
+             value = (result.get('metrics') or {}).get(spec['metric'])
+             valid = result.get('status') == 'ok' and isinstance(value, (int, float)) and math.isfinite(value)
+             entry.update(status=result.get('status', 'error'), value=value if valid else None,
+@@ -184,6 +228,13 @@ def optimize_recipe(spec, train, hashes, fitting_rows, recipe, output, worker,
+                          seconds=result.get('wall_seconds'),
+                          fit_iterations=result.get('fit_iterations'))
+             if valid:
++                if admission=='measured':
++                    duration_valid=math.isfinite(elapsed) and elapsed>0
++                    entry['admission_observed_worker_seconds']=elapsed if duration_valid else None
++                    if duration_valid:
++                        durations.append(elapsed)
++                    else:
++                        report['invalid_successful_duration_count']+=1
+                 study.tell(trial, float(value))
+                 if best_value is None or (value > best_value if spec['greater_is_better'] else value < best_value):
+                     selected, best_value = candidate, float(value)
+diff --git a/src/automl/search/runner.py b/src/automl/search/runner.py
+index b0a8925..89c5e26 100644
+--- a/src/automl/search/runner.py
++++ b/src/automl/search/runner.py
+@@ -228,6 +228,7 @@ def _main():
+     parser.add_argument('--hpo-trials',type=int,default=0,help='Optional nested Optuna trials, 0 disables')
+     parser.add_argument('--hpo-budget',type=int,default=900,help='Maximum total seconds for the inner study')
+     parser.add_argument('--hpo-sampler',choices=['tpe','random'],default='tpe')
++    parser.add_argument('--hpo-admission',choices=['legacy','measured'],default='legacy',help='Experimental past-duration admission; legacy preserves the existing search')
+     parser.add_argument('--planner-mode',choices=['baseline','staged'],default='baseline')
+     parser.add_argument('--feature-selection-top-k',type=int,default=0,help='Explicit experimental CatBoost selector; 0 disables')
+     parser.add_argument('--protect-original-features',action='store_true',help='Experimental union of original columns and CatBoost top-k')
+@@ -322,7 +323,8 @@ def solve_single(args,task_data=None,output_root=None):
+             if hpo_anchor and hpo_anchor['recipe']['engine'] in {'lightgbm','catboost','xgboost'}:
+                 tuned,hpo_report=optimize_recipe(spec,train,hashes,tr,hpo_anchor['recipe'],runs/'inner-hpo',run_worker,
+                     min(deadline-reserve-30,time.monotonic()+getattr(args,'hpo_budget',900)),
+-                    trials=args.hpo_trials,sampler=getattr(args,'hpo_sampler','tpe'))
++                    trials=args.hpo_trials,sampler=getattr(args,'hpo_sampler','tpe'),
++                    admission=getattr(args,'hpo_admission','legacy'))
+                 if signature(tuned) not in seen: queue.append(tuned)
+             remaining=deadline-time.monotonic()
+             if remaining<reserve+30: break
+diff --git a/tests/test_hpo_admission.py b/tests/test_hpo_admission.py
+new file mode 100644
+index 0000000..d237fb4
+--- /dev/null
++++ b/tests/test_hpo_admission.py
+@@ -0,0 +1,160 @@
++"""Chronological fake workers and real samplers; no model fits or API calls."""
++from copy import deepcopy
++from pathlib import Path
++import json
++import sys
++import tempfile
++import unittest
++from unittest.mock import patch
++
++ROOT=Path(__file__).resolve().parents[1]
++sys.path.insert(0,str(ROOT/'src'))
++sys.path.insert(0,str(ROOT/'tests'))
++import numpy as np
++from automl.search import hpo
++from test_hpo import fixture
++
++
++class Clock:
++    def __init__(self): self.now=0.
++    def __call__(self): return self.now
++
++
++class HPOAdmissionTests(unittest.TestCase):
++    def study(self,durations,*,budget=100.,values=None,statuses=None,sampler='tpe',
++              admission='measured',trials=8,worker_timeout=600,poison=False,checkpoint_seconds=0.):
++        spec,train,hashes,rows,recipe=fixture()
++        original=deepcopy(recipe)
++        if poison: train.loc[140:,'answer']=1e30
++        clock=Clock();calls=[]
++        with tempfile.TemporaryDirectory() as directory:
++            def worker(task,candidate,out,split,timeout):
++                number=len(calls)
++                # A forbidden future trial would fail, rather than expose its timing.
++                self.assertLess(number,len(durations))
++                with np.load(split) as stored:
++                    self.assertTrue(set(stored['train'])|set(stored['validation'])<=set(rows))
++                    inner_value=float(abs(train.answer.iloc[stored['validation']].mean()))
++                calls.append({'params':candidate['params'],'timeout':timeout,'started':clock.now})
++                clock.now+=durations[number]
++                return {'status':statuses[number] if statuses else 'ok',
++                    'metrics':{'rmse':values[number] if values is not None else inner_value+10-number},
++                    # Admission must use observed elapsed time, not this mismatched report.
++                    'wall_seconds':999.}
++            kwargs={} if admission is None else {'admission':admission}
++            real_atomic_json=hpo.atomic_json
++            def checkpoint(path,record):
++                real_atomic_json(path,record)
++                clock.now+=checkpoint_seconds
++            with patch.object(hpo.time,'monotonic',clock),patch.object(hpo,'atomic_json',checkpoint):
++                selected,report=hpo.optimize_recipe(spec,train,hashes,rows,recipe,
++                    Path(directory)/'study',worker,budget,trials=trials,sampler=sampler,
++                    worker_timeout=worker_timeout,**kwargs)
++            stored=json.loads((Path(directory)/'study/hpo.json').read_text())
++            self.assertEqual(stored,json.loads(json.dumps(report)))
++        self.assertEqual(recipe,original)
++        return selected,report,calls,recipe
++
++    def test_history_is_chronological_and_uses_past_median(self):
++        _,report,calls,_=self.study([20.,10.,5.],trials=3)
++        self.assertEqual(len(calls),3)
++        decisions=report['admission_decisions']
++        self.assertEqual([d['estimated_seconds'] for d in decisions],[None,30.,22.5])
++        self.assertEqual([d['remaining_seconds'] for d in decisions],[100.,80.,70.])
++        self.assertEqual(report['successful_worker_durations'],[20.,10.,5.])
++
++    def test_unfit_next_worker_is_not_sampled_or_started_and_anchor_survives(self):
++        selected,report,calls,_=self.study([20.],budget=40.)
++        self.assertEqual(len(calls),1)
++        self.assertEqual(selected,report['trials'][0]['recipe'])
++        decision=report['admission_decisions'][-1]
++        self.assertFalse(decision['admitted'])
++        self.assertEqual((decision['remaining_seconds'],decision['estimated_seconds']),(20.,30.))
++        self.assertEqual(decision['skipped_trials'],7)
++        self.assertEqual(report['unattempted_trials'],7)
++
++    def test_exact_boundary_is_admitted(self):
++        _,report,calls,_=self.study([20.,20.],budget=50.,trials=2)
++        self.assertEqual(len(calls),2)
++        self.assertTrue(report['admission_decisions'][1]['admitted'])
++        self.assertEqual(report['admission_decisions'][1]['remaining_seconds'],30.)
++
++    def test_checkpoint_overhead_is_rechecked_before_unique_worker_launch(self):
++        _,report,calls,_=self.study([20.],budget=52.,trials=2,checkpoint_seconds=1.)
++        self.assertEqual(len(calls),1)
++        decision=report['admission_decisions'][-1]
++        self.assertEqual(decision['remaining_seconds'],30.)
++        self.assertEqual(decision['pre_worker_remaining_seconds'],29.)
++        self.assertFalse(decision['admitted'])
++        self.assertTrue(decision['sampled_but_not_started'])
++        self.assertEqual(decision['reason'],'insufficient_remaining_before_worker')
++        self.assertEqual(report['attempted_trials'],1)
++
++    def test_no_startup_reservation_can_discard_an_admitted_startup_winner(self):
++        selected,report,calls,_=self.study([20.,50.],budget=95.,values=[10.,1.])
++        self.assertEqual(len(calls),2)
++        self.assertEqual([row['sampling_phase'] for row in report['trials']],['anchor','startup'])
++        self.assertEqual(report['best_inner_value'],1.)
++        self.assertEqual(selected,report['trials'][1]['recipe'])
++        self.assertEqual(report['guided_attempts'],0)
++
++    def test_default_and_explicit_legacy_preserve_full_search_trace(self):
++        implicit=self.study([20.,20.],budget=40.,admission=None)
++        explicit=self.study([20.,20.],budget=40.,admission='legacy')
++        self.assertEqual(implicit,explicit)
++        self.assertEqual(len(implicit[2]),2)
++        self.assertTrue(all(d['estimated_seconds'] is None for d in implicit[1]['admission_decisions']))
++
++    def test_sufficient_budget_preserves_sampler_trace_for_both_policies(self):
++        for sampler in ['random','tpe']:
++            legacy=self.study([10.]*8,budget=900.,sampler=sampler,admission='legacy')
++            measured=self.study([10.]*8,budget=900.,sampler=sampler)
++            self.assertEqual(legacy[0],measured[0])
++            self.assertEqual(legacy[2],measured[2])
++            self.assertEqual(legacy[1]['trials'][0]['params'],measured[1]['trials'][0]['params'])
++
++    def test_random_and_tpe_apply_identical_admission_to_fixed_durations(self):
++        random=self.study([20.,30.],budget=80.,sampler='random')
++        tpe=self.study([20.,30.],budget=80.,sampler='tpe')
++        self.assertEqual(random[1]['admission_decisions'],tpe[1]['admission_decisions'])
++        self.assertEqual(len(random[2]),2)
++
++    def test_failed_worker_does_not_reduce_estimate_or_become_numeric_objective(self):
++        _,report,calls,_=self.study([20.,5.,10.],statuses=['ok','timeout','ok'],trials=3)
++        self.assertEqual(len(calls),3)
++        self.assertEqual(report['successful_worker_durations'],[20.,10.])
++        self.assertEqual(report['admission_decisions'][2]['estimated_seconds'],30.)
++        self.assertIsNone(report['trials'][1]['value'])
++
++    def test_all_failed_trials_preserve_original_control(self):
++        selected,report,calls,recipe=self.study([10.]*8,statuses=['timeout']*8,
++            budget=100.,worker_timeout=40)
++        self.assertEqual(selected,recipe)
++        self.assertEqual(report['status'],'no_successful_trials')
++        self.assertEqual(report['successful_worker_durations'],[])
++        self.assertEqual(report['completed_trials'],0)
++        self.assertEqual(len(calls),7)
++        self.assertTrue(all(row['value'] is None for row in report['trials']))
++
++    def test_zero_duration_success_uses_worker_cap_instead_of_zero_estimate(self):
++        selected,report,calls,_=self.study([0.],budget=50.,worker_timeout=60)
++        self.assertEqual(len(calls),1)
++        self.assertEqual(selected,report['trials'][0]['recipe'])
++        self.assertEqual(report['invalid_successful_duration_count'],1)
++        self.assertEqual(report['admission_decisions'][-1]['estimated_seconds'],60.)
++        self.assertEqual(report['successful_worker_durations'],[])
++
++    def test_invalid_policy_or_worker_cap_is_rejected_before_worker(self):
++        for admission,cap in [('unknown',600),('measured',float('nan')),
++                              ('measured',float('inf')),('measured',0),('measured',-1),('measured',True)]:
++            with self.subTest(admission=admission,cap=cap),self.assertRaises(ValueError):
++                self.study([],admission=admission,worker_timeout=cap)
++
++    def test_poisoned_outer_labels_do_not_change_decisions_or_inner_winner(self):
++        for sampler in ['random','tpe']:
++            clean=self.study([10.]*6,budget=900.,trials=6,sampler=sampler)
++            poisoned=self.study([10.]*6,budget=900.,trials=6,sampler=sampler,poison=True)
++            self.assertEqual(clean,poisoned)
++
++
++if __name__=='__main__': unittest.main(verbosity=2)
+diff --git a/tests/test_hpo_qualification.py b/tests/test_hpo_qualification.py
+new file mode 100644
+index 0000000..3f65233
+--- /dev/null
++++ b/tests/test_hpo_qualification.py
+@@ -0,0 +1,189 @@
++"""Synthetic frozen reports/NPZ partitions only; no learner, fit or API."""
++from copy import deepcopy
++import hashlib
++import json
++from pathlib import Path
++import sys
++import tempfile
++import unittest
++
++import numpy as np
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(ROOT/'tools'))
++from qualify_hpo import canonical, digest, qualify_reports as _qualify_reports
++
++
++def qualify_reports(plan, task, paths):
++    return _qualify_reports(plan, task, paths, harness_root=paths[0].parent.parent)
++
++
++def split_hash(tr, va):
++    return hashlib.sha256(np.asarray(tr, dtype='<i8').tobytes() + np.asarray(va, dtype='<i8').tobytes()).hexdigest()
++
++
++class HPOQualificationTests(unittest.TestCase):
++    def setUp(self):
++        self.directory = tempfile.TemporaryDirectory()
++        self.addCleanup(self.directory.cleanup)
++        self.root = Path(self.directory.name).resolve()
++        self.case_number = 0
++
++    def fixture(self, kind='regression'):
++        metric = 'rmse' if kind == 'regression' else 'macro_f1'
++        cut_number = 0 if kind == 'regression' else 42
++        root = self.root/str(self.case_number)
++        self.case_number += 1
++        root.mkdir()
++        task, train, harness = [root/name for name in ['task.md', 'train.csv', 'harness.py']]
++        for path in [task, train, harness]:
++            path.write_bytes(b'fixture\n')
++        control = {'engine': 'lightgbm', 'params': {'num_leaves': 63}, 'feature_code': ''}
++        plan = {'pairs': [{'task': kind, 'cut': cut_number}], 'controls': {kind: {
++            'recipe_sha256_canonical_json': canonical(control),
++            'input_sha256': {'task.md': digest(task), 'train.csv': digest(train)}}},
++            'limits': {'study_seconds': 900, 'maximum_trials_including_anchor': 8, 'sampler_seed': 137,
++                       'tpe_startup_trials': 3, 'worker_seconds': 600, 'worker_memory_mib': 1536, 'worker_threads': 2},
++            'qualification': {'expected_source_sha256': {'worker.py': hashlib.sha256(b'pass\n').hexdigest()},
++                              'expected_harness_sha256': {'harness.py': digest(harness)}}}
++        paths = []
++        for policy in ['legacy', 'measured']:
++            output = root/policy
++            output.mkdir()
++            (output/'sources').mkdir()
++            (output/'sources/worker.py').write_bytes(b'pass\n')
++            cut = output/('cut-' + str(cut_number))
++            cut.mkdir()
++            np.savez(cut/'outer-split.npz', train=np.arange(6), validation=np.arange(6, 9))
++            row = {'cut': cut_number, 'split': {'split_sha256': split_hash(range(6), range(6, 9)), 'shared_feature_hashes': 0},
++                   'outer_split_sha256': digest(cut/'outer-split.npz'), 'outcomes': {
++                       'control': {'status': 'ok', 'metrics': {metric: 10. if kind == 'regression' else .6}, 'recipe': deepcopy(control)}},
++                   'study_allocations': {}}
++            for sampler, score in [('random', 9.8), ('tpe', 9.9)]:
++                inner = cut/sampler
++                inner.mkdir()
++                np.savez(inner/'split.npz', train=np.arange(4), validation=np.arange(4, 6))
++                candidate = deepcopy(control)
++                candidate['params']['num_leaves'] = 64 if sampler == 'random' else 80
++                row[sampler] = {'sampler': sampler, 'seed': 137, 'maximum_trials': 8, 'startup_trials': 3,
++                    'admission_policy': policy, 'control_recipe': deepcopy(control),
++                    'split': {'split_sha256': split_hash(range(4), range(4, 6)), 'scope': 'inside_outer_fitting_rows_only', 'shared_feature_hashes': 0},
++                    'trials': [{'objective_valid': True, 'status': 'ok', 'value': 10. if kind == 'regression' else .6, 'recipe': deepcopy(control)},
++                               {'objective_valid': True, 'status': 'ok', 'value': 9. if kind == 'regression' else .65, 'recipe': deepcopy(candidate)}],
++                    'attempted_trials': 2, 'completed_trials': 2, 'unattempted_trials': 6,
++                    'status': 'ok', 'best_inner_value': 9. if kind == 'regression' else .65, 'selected_recipe': candidate,
++                    'guided_successful_trials': 0, 'seconds': 150. if policy == 'measured' else 850.}
++                row['study_allocations'][sampler] = {'requested_seconds': 900, 'allocated_seconds': 900.,
++                                                    'clipped_by_common_deadline': False}
++                row['outcomes'][sampler] = {'status': 'ok', 'metrics': {metric: score if kind == 'regression' else .64 if sampler == 'random' else .65}, 'recipe': deepcopy(candidate)}
++            report = {'limits': {'admission': policy, 'trials': 8, 'study_seconds': 900, 'worker_seconds': 600,
++                                'memory_mb': 1536, 'worker_threads': 2, 'task': str(task)},
++                'spec': {'kind': kind, 'metric': metric, 'greater_is_better': kind == 'classification', 'n_train': 9,
++                         'paths': {'train': str(train)}}, 'mode': 'hpo', 'status': 'completed',
++                'source_unchanged': True, 'inputs_unchanged': True, 'task_unchanged': True, 'harness_unchanged': True,
++                'control_recipe': deepcopy(control), 'source_sha256': plan['qualification']['expected_source_sha256'],
++                'harness_sha256': plan['qualification']['expected_harness_sha256'],
++                'input_sha256': {'train': digest(train)}, 'task_sha256': digest(task), 'cuts': [row]}
++            path = output/'results.json'
++            self.write(path, report)
++            paths.append(path)
++        return plan, paths
++
++    @staticmethod
++    def write(path, report):
++        path.write_text(json.dumps(report), encoding='utf-8')
++
++    def change(self, path, action):
++        report = json.loads(path.read_text(encoding='utf-8'))
++        action(report)
++        self.write(path, report)
++
++    def test_full_allocations_allow_early_measured_stop_without_claiming_promotion(self):
++        for kind in ['regression', 'classification']:
++            plan, paths = self.fixture(kind)
++            result = qualify_reports(plan, kind, paths)
++            self.assertTrue(result['valid_equal_budget_screen'], result['errors'])
++            self.assertFalse(result['promotion'])
++            self.assertFalse(result['ml_quality_promotion_gate_evaluated'])
++            self.assertAlmostEqual(result['comparisons'][0]['tpe_minus_random']['legacy'], .1 if kind == 'regression' else .01)
++            self.assertEqual(result['comparisons'][0]['successful_guided_trials'], {'legacy': 0, 'measured': 0})
++
++    def test_completed_lifecycle_with_failed_outer_worker_is_rejected(self):
++        plan, paths = self.fixture()
++        self.change(paths[1], lambda report: report['cuts'][0]['outcomes']['tpe'].update(status='timeout'))
++        result = qualify_reports(plan, 'regression', paths)
++        self.assertFalse(result['valid_equal_budget_screen'])
++        self.assertIsNone(result['outer_metric_means'])
++        self.assertIn('unsuccessful', result['errors'][0]['reason'])
++
++    def test_missing_nonfinite_boolean_or_wrong_primary_metric_is_rejected(self):
++        for metrics in [{'rmse': None}, {'rmse': float('nan')}, {'rmse': float('inf')}, {'rmse': True}, {'mae': 1.}]:
++            with self.subTest(metrics=metrics):
++                plan, paths = self.fixture()
++                self.change(paths[1], lambda report: report['cuts'][0]['outcomes']['random'].update(metrics=metrics))
++                self.assertFalse(qualify_reports(plan, 'regression', paths)['valid_equal_budget_screen'])
++
++    def test_clipped_initial_allocation_is_not_equivalent_to_admission_early_stop(self):
++        for allocated, clipped in [(800., True), (900., True), (899., False)]:
++            with self.subTest(allocated=allocated, clipped=clipped):
++                plan, paths = self.fixture()
++                self.change(paths[1], lambda report: report['cuts'][0]['study_allocations']['tpe'].update(
++                    allocated_seconds=allocated, clipped_by_common_deadline=clipped))
++                result = qualify_reports(plan, 'regression', paths)
++                self.assertFalse(result['valid_equal_budget_screen'])
++                self.assertIn('externally clipped', result['errors'][0]['reason'])
++
++    def test_missing_duplicate_or_undeclared_cut_cannot_qualify(self):
++        plan, paths = self.fixture()
++        self.assertFalse(qualify_reports(plan, 'regression', paths[:1])['valid_equal_budget_screen'])
++        self.assertFalse(qualify_reports(plan, 'regression', paths + paths[:1])['valid_equal_budget_screen'])
++        self.change(paths[1], lambda report: report['cuts'][0].update(cut=99))
++        self.assertFalse(qualify_reports(plan, 'regression', paths)['valid_equal_budget_screen'])
++
++    def test_control_source_inputs_or_integrity_flag_drift_is_rejected(self):
++        changes = [lambda r: r['control_recipe']['params'].update(num_leaves=31),
++                   lambda r: r['source_sha256'].update({'worker.py': '0'*64}),
++                   lambda r: r['input_sha256'].update(train='0'*64),
++                   lambda r: r.update(task_sha256='0'*64), lambda r: r.update(harness_unchanged=False),
++                   lambda r: r['cuts'][0]['outcomes']['control']['metrics'].update(rmse=11.)]
++        for action in changes:
++            plan, paths = self.fixture()
++            self.change(paths[1], action)
++            self.assertFalse(qualify_reports(plan, 'regression', paths)['valid_equal_budget_screen'])
++
++    def test_partition_tamper_inner_outer_leakage_and_policy_split_drift_are_rejected(self):
++        plan, paths = self.fixture()
++        outer = paths[1].parent/'cut-0/outer-split.npz'
++        outer.write_bytes(outer.read_bytes() + b'!')
++        self.assertFalse(qualify_reports(plan, 'regression', paths)['valid_equal_budget_screen'])
++        plan, paths = self.fixture()
++        np.savez(paths[1].parent/'cut-0/random/split.npz', train=np.array([0, 6]), validation=np.array([4, 5]))
++        self.change(paths[1], lambda r: r['cuts'][0]['random']['split'].update(split_sha256=split_hash([0, 6], [4, 5])))
++        result = qualify_reports(plan, 'regression', paths)
++        self.assertIn('escape outer fitting', result['errors'][0]['reason'])
++        plan, paths = self.fixture()
++        for sampler in ['random', 'tpe']:
++            np.savez(paths[1].parent/('cut-0/'+sampler+'/split.npz'), train=np.array([0, 1, 4, 5]), validation=np.array([2, 3]))
++            self.change(paths[1], lambda r, s=sampler: r['cuts'][0][s]['split'].update(split_sha256=split_hash([0, 1, 4, 5], [2, 3])))
++        result = qualify_reports(plan, 'regression', paths)
++        self.assertIn('policy partitions differ', result['errors'][0]['reason'])
++
++    def test_negative_quality_remains_valid_but_numeric_failed_inner_objective_is_invalid(self):
++        plan, paths = self.fixture()
++        self.change(paths[1], lambda r: r['cuts'][0]['outcomes']['tpe']['metrics'].update(rmse=11.))
++        result = qualify_reports(plan, 'regression', paths)
++        self.assertTrue(result['valid_equal_budget_screen'])
++        self.assertGreater(result['comparisons'][0]['measured_minus_legacy']['tpe'], 0)
++        self.assertFalse(result['promotion'])
++        def failed(report):
++            study = report['cuts'][0]['tpe']
++            study['trials'].append({'status': 'timeout', 'objective_valid': False, 'value': 0.})
++            study.update(attempted_trials=3, unattempted_trials=5)
++        self.change(paths[1], failed)
++        result = qualify_reports(plan, 'regression', paths)
++        self.assertFalse(result['valid_equal_budget_screen'])
++        self.assertIn('numeric failed', result['errors'][0]['reason'])
++
++
++if __name__ == '__main__':
++    unittest.main(verbosity=2)
+diff --git a/tools/benchmark_hpo.py b/tools/benchmark_hpo.py
+index e530f42..69e3e7b 100644
+--- a/tools/benchmark_hpo.py
++++ b/tools/benchmark_hpo.py
+@@ -39,6 +39,7 @@ def main():
+     parser.add_argument('--mode', choices=['hpo', 'selection'], default='hpo')
+     parser.add_argument('--trials', type=int, default=8)
+     parser.add_argument('--study-seconds', type=int, default=1800)
++    parser.add_argument('--admission', choices=['legacy','measured'], default='legacy',help='Optional admission factor; all samplers use the same policy')
+     parser.add_argument('--time-budget', type=int, default=10800)
+     parser.add_argument('--worker-seconds', type=int, default=600)
+     parser.add_argument('--memory-mb', type=int, default=1536)
+@@ -65,18 +66,19 @@ def main():
+         control = next(r for r in recipes if r['params'].get('history_asof'))
+     start = time.monotonic()
+     deadline = start+args.time_budget
++    harness = [Path(__file__).relative_to(ROOT).as_posix(), 'src/automl/search/hpo.py', 'tools/qualify_hpo.py']
+     report = {'scope': 'Nested component screen on reused public fitting data; not full-agent/private/official score',
+               'mode': args.mode, 'control_recipe': control, 'spec': spec,
+-              'limits': vars(args) | {'task': str(args.task), 'output': str(output)},
++              'limits': vars(args) | {'task': str(args.task.resolve()), 'output': str(output), 'worker_threads': 2},
+               'source_sha256': {n: hashlib.sha256(b).hexdigest() for n, b in files.items()},
+-              'harness_sha256': {str(p): digest(p) for p in [Path(__file__), ROOT/'src/automl/search/hpo.py']},
++              'harness_sha256': {name: digest(ROOT/name) for name in harness},
+               'input_sha256': {n: digest(p) for n, p in spec['paths'].items()},
+               'task_sha256': digest(args.task), 'cuts': [], 'status': 'running'}
+     path = output/'results.json'
+     atomic_json(path, report)
+     env = {k: v for k, v in os.environ.items()
+            if not any(s in k.upper() for s in ['KEY', 'TOKEN', 'SECRET', 'PROXY', 'PASSWORD', 'AUTH'])}
+-    env.update(AUTOML_THREADS='2', OMP_NUM_THREADS='2', OPENBLAS_NUM_THREADS='2',
++    env.update(PYTHONUTF8='1', PYTHONIOENCODING='utf-8', AUTOML_THREADS='2', OMP_NUM_THREADS='2', OPENBLAS_NUM_THREADS='2',
+                MKL_NUM_THREADS='2', NUMEXPR_NUM_THREADS='2')
+ 
+     def worker(task_spec, recipe, directory, split, timeout):
+@@ -100,7 +102,7 @@ def main():
+             except MemoryError:
+                 status = 'memory_limit'
+         result = directory/'result.json'
+-        record = json.loads(result.read_text()) if status == 0 and result.exists() else {'status': status or 'missing_result'}
++        record = json.loads(result.read_text(encoding='utf-8')) if status == 0 and result.exists() else {'status': status or 'missing_result'}
+         record.update(wall_seconds=round(time.monotonic()-tick, 3), directory=str(directory))
+         return record
+ 
+@@ -118,14 +120,22 @@ def main():
+             directory.mkdir()
+             split = directory/'outer-split.npz'
+             np.savez(split, train=tr, validation=va)
+-            row = {'cut': cut, 'split': info, 'outcomes': {}}
++            row = {'cut': cut, 'split': info, 'outer_split_sha256': digest(split), 'outcomes': {}}
+             report['cuts'].append(row)
+             selected = [('control', control)]
+             if args.mode == 'hpo':
+                 for sampler in ['random', 'tpe']:
++                    study_start = time.monotonic()
++                    requested_deadline = study_start+args.study_seconds
++                    study_deadline = min(deadline, requested_deadline)
++                    row.setdefault('study_allocations', {})[sampler] = {
++                        'requested_seconds': args.study_seconds,
++                        'allocated_seconds': max(0., study_deadline-study_start),
++                        'clipped_by_common_deadline': study_deadline < requested_deadline}
+                     tuned, study = optimize_recipe(spec, train, hashes, tr, control,
+-                        directory/sampler, worker, min(deadline, time.monotonic()+args.study_seconds),
+-                        trials=args.trials, seed=137, sampler=sampler, worker_timeout=args.worker_seconds)
++                        directory/sampler, worker, study_deadline,
++                        trials=args.trials, seed=137, sampler=sampler, worker_timeout=args.worker_seconds,
++                        admission=args.admission)
+                     row[sampler] = study
+                     selected.append((sampler, tuned))
+                     atomic_json(path, report)
+@@ -145,6 +155,9 @@ def main():
+             all(len(c['outcomes']) == (3 if args.mode == 'hpo' else 2) for c in report['cuts']) else 'budget_exhausted',
+             seconds=round(time.monotonic()-start, 3),
+             inputs_unchanged=report['input_sha256'] == {n: digest(p) for n, p in spec['paths'].items()},
++            task_unchanged=report['task_sha256'] == digest(args.task),
++            harness_unchanged=report['harness_sha256'] == {name: digest(ROOT/name) for name in harness},
++            qualification_status='Requires independent predeclared paired validation; lifecycle completion is insufficient',
+             source_unchanged=report['source_sha256'] == {n: hashlib.sha256(b).hexdigest() for n, b in build_files().items()})
+         atomic_json(path, report)
+     finally:
+diff --git a/tools/qualify_hpo.py b/tools/qualify_hpo.py
+new file mode 100644
+index 0000000..b6d370e
+--- /dev/null
++++ b/tools/qualify_hpo.py
+@@ -0,0 +1,234 @@
++"""Read-only validity gate for the predeclared HPO admission component screen.
++
++Lifecycle completion is not qualification. This tool never fits a model,
++selects a recipe, calls an API, or promotes a release.
++"""
++from pathlib import Path
++import argparse
++import hashlib
++import json
++import math
++import zipfile
++
++import numpy as np
++
++ROOT = Path(__file__).resolve().parents[1]
++
++
++def digest(path):
++    value = hashlib.sha256()
++    with Path(path).open('rb') as stream:
++        for block in iter(lambda: stream.read(2**20), b''):
++            value.update(block)
++    return value.hexdigest()
++
++
++def canonical(value):
++    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(',', ':'),
++                                   ensure_ascii=False, allow_nan=False).encode('utf-8')).hexdigest()
++
++
++def finite(value):
++    return not isinstance(value, bool) and isinstance(value, (int, float)) and math.isfinite(value)
++
++
++def partition(path, expected, n_rows):
++    if Path(path).stat().st_size > 32 * 2**20:
++        raise ValueError('partition byte bound')
++    with zipfile.ZipFile(path) as archive:
++        entries = archive.infolist()
++        if (len(entries) != 2 or {entry.filename for entry in entries} != {'train.npy', 'validation.npy'}
++                or sum(entry.file_size for entry in entries) > 32 * 2**20):
++            raise ValueError('partition expanded byte bound or inventory')
++    with np.load(path, allow_pickle=False) as stored:
++        if set(stored.files) != {'train', 'validation'}:
++            raise ValueError('partition arrays')
++        tr, va = stored['train'], stored['validation']
++    for rows in [tr, va]:
++        if (rows.ndim != 1 or not len(rows) or not np.issubdtype(rows.dtype, np.integer)
++                or len(np.unique(rows)) != len(rows) or rows.min() < 0 or rows.max() >= n_rows):
++            raise ValueError('partition row positions')
++    if np.intersect1d(tr, va).size:
++        raise ValueError('partition overlap')
++    actual = hashlib.sha256(tr.astype('<i8').tobytes() + va.astype('<i8').tobytes()).hexdigest()
++    if actual != expected:
++        raise ValueError('partition index fingerprint')
++    return tr, va
++
++
++def qualify_reports(plan, task, paths, *, harness_root=None):
++    """Validate all declared cuts/policies, then expose descriptive comparisons."""
++    errors, arms, spec_fingerprint = [], {}, None
++    harness_root = ROOT if harness_root is None else Path(harness_root).resolve()
++    metric = 'rmse' if task == 'regression' else 'macro_f1'
++    greater = task == 'classification'
++    control = plan['controls'][task]
++    expected_cuts = {pair['cut'] for pair in plan['pairs'] if pair['task'] == task}
++    expected_arms = {(policy, cut) for policy in ['legacy', 'measured'] for cut in expected_cuts}
++    expected_source = plan['qualification']['expected_source_sha256']
++    expected_harness = plan['qualification']['expected_harness_sha256']
++    if any(plan['limits'].get(key) != value for key, value in {
++            'study_seconds': 900, 'maximum_trials_including_anchor': 8, 'sampler_seed': 137,
++            'tpe_startup_trials': 3, 'worker_seconds': 600, 'worker_memory_mib': 1536, 'worker_threads': 2}.items()):
++        raise ValueError('Predeclared qualification resource protocol changed')
++    if not expected_source or not expected_harness or not expected_cuts:
++        raise ValueError('Frozen qualification manifest is required')
++    for path in map(Path, paths):
++        try:
++            report = json.loads(path.read_text(encoding='utf-8'))
++            limits, spec = report['limits'], report['spec']
++            policy = limits['admission']
++            if policy not in {'legacy', 'measured'} or report['mode'] != 'hpo':
++                raise ValueError('admission or mode')
++            if report['status'] != 'completed' or not all(report.get(key) is True for key in
++                    ['source_unchanged', 'inputs_unchanged', 'task_unchanged', 'harness_unchanged']):
++                raise ValueError('lifecycle or integrity not complete')
++            for key, expected in [('trials', 8), ('study_seconds', 900), ('worker_seconds', 600),
++                                  ('memory_mb', 1536), ('worker_threads', 2)]:
++                if limits.get(key) != expected or isinstance(limits.get(key), bool):
++                    raise ValueError('unequal declared resource: ' + key)
++            if spec['kind'] != task or spec['metric'] != metric or spec['greater_is_better'] is not greater:
++                raise ValueError('task metric or direction')
++            if spec_fingerprint is None:
++                spec_fingerprint = canonical(spec)
++            elif canonical(spec) != spec_fingerprint:
++                raise ValueError('policy task specifications differ')
++            if canonical(report['control_recipe']) != control['recipe_sha256_canonical_json']:
++                raise ValueError('changed SINGLE control')
++            if report['source_sha256'] != expected_source or report['harness_sha256'] != expected_harness:
++                raise ValueError('changed frozen source or harness')
++            sources = path.parent / 'sources'
++            if {p.name for p in sources.iterdir() if p.is_file()} != set(expected_source):
++                raise ValueError('source artifact inventory')
++            for name, expected in expected_source.items():
++                if Path(name).name != name or digest(sources / name) != expected:
++                    raise ValueError('source artifact fingerprint')
++            for name, expected in expected_harness.items():
++                path_in_root = (harness_root/name).resolve()
++                if Path(name).is_absolute() or not path_in_root.is_relative_to(harness_root) or digest(path_in_root) != expected:
++                    raise ValueError('current harness fingerprint')
++            expected_inputs = control['input_sha256']
++            if report['task_sha256'] != expected_inputs['task.md'] or digest(limits['task']) != report['task_sha256']:
++                raise ValueError('task fingerprint')
++            if set(report['input_sha256']) != set(spec['paths']):
++                raise ValueError('input inventory')
++            if {Path(p).name for p in spec['paths'].values()} != set(expected_inputs) - {'task.md'}:
++                raise ValueError('input filename inventory')
++            for role, name in spec['paths'].items():
++                expected = expected_inputs[Path(name).name]
++                if report['input_sha256'][role] != expected or digest(name) != expected:
++                    raise ValueError('input fingerprint')
++            cuts = report['cuts']
++            if not cuts or len({row['cut'] for row in cuts}) != len(cuts):
++                raise ValueError('empty or duplicate cuts')
++            for row in cuts:
++                key = policy, row['cut']
++                if key not in expected_arms or key in arms:
++                    raise ValueError('unexpected or repeated policy/cut')
++                directory = path.parent / ('cut-' + str(row['cut']))
++                outer_path = directory / 'outer-split.npz'
++                if digest(outer_path) != row['outer_split_sha256']:
++                    raise ValueError('outer partition artifact fingerprint')
++                outer_tr, _ = partition(outer_path, row['split']['split_sha256'], spec['n_train'])
++                if greater and row['split'].get('shared_feature_hashes') != 0:
++                    raise ValueError('outer fitting groups overlap')
++                values, inner_hashes, guided = {}, [], {}
++                if set(row['outcomes']) != {'control', 'random', 'tpe'}:
++                    raise ValueError('outer outcome inventory')
++                for name, result in row['outcomes'].items():
++                    value = (result.get('metrics') or {}).get(metric)
++                    if result.get('status') != 'ok' or not finite(value) or value < 0 or (greater and value > 1):
++                        raise ValueError('unsuccessful or nonnumeric outer outcome: ' + name)
++                    values[name] = float(value)
++                if canonical(row['outcomes']['control']['recipe']) != canonical(report['control_recipe']):
++                    raise ValueError('outer control recipe')
++                for sampler in ['random', 'tpe']:
++                    allocation = row['study_allocations'][sampler]
++                    if (allocation['requested_seconds'] != 900 or not finite(allocation['allocated_seconds'])
++                            or not math.isclose(allocation['allocated_seconds'], 900., rel_tol=0, abs_tol=1e-6)
++                            or allocation['clipped_by_common_deadline'] is not False):
++                        raise ValueError('externally clipped study allocation')
++                    study = row[sampler]
++                    if (study['sampler'] != sampler or study['seed'] != 137 or study['maximum_trials'] != 8
++                            or study['startup_trials'] != 3 or study['admission_policy'] != policy
++                            or canonical(study['control_recipe']) != canonical(report['control_recipe'])):
++                        raise ValueError('changed inner study protocol')
++                    if not finite(study['seconds']) or study['seconds'] < 0:
++                        raise ValueError('invalid elapsed study time')
++                    split = study['split']
++                    inner_tr, inner_va = partition(directory / sampler / 'split.npz', split['split_sha256'], spec['n_train'])
++                    if split['scope'] != 'inside_outer_fitting_rows_only' or not (set(inner_tr) | set(inner_va)) <= set(outer_tr):
++                        raise ValueError('inner rows escape outer fitting partition')
++                    if greater and split.get('shared_feature_hashes') != 0:
++                        raise ValueError('inner fitting groups overlap')
++                    inner_hashes.append(split['split_sha256'])
++                    valid = [trial for trial in study['trials'] if trial.get('objective_valid')]
++                    if (study['attempted_trials'] != len(study['trials']) or study['completed_trials'] != len(valid)
++                            or study['unattempted_trials'] != 8 - len(study['trials']) or len(study['trials']) > 8):
++                        raise ValueError('inner work accounting')
++                    for trial in study['trials']:
++                        if trial.get('objective_valid'):
++                            if trial.get('status') != 'ok' or not finite(trial.get('value')):
++                                raise ValueError('invalid successful inner objective')
++                        elif trial.get('value') is not None:
++                            raise ValueError('numeric failed inner objective')
++                    if valid:
++                        best = (max if greater else min)(trial['value'] for trial in valid)
++                        if study['status'] != 'ok' or study['best_inner_value'] != best:
++                            raise ValueError('inner winner objective')
++                        if not any(trial['value'] == best and trial['recipe'] == study['selected_recipe'] for trial in valid):
++                            raise ValueError('inner winner recipe')
++                    elif study['status'] != 'no_successful_trials' or study.get('best_inner_value') is not None or study['selected_recipe'] != report['control_recipe']:
++                        raise ValueError('all-failed fallback')
++                    if row['outcomes'][sampler]['recipe'] != study['selected_recipe']:
++                        raise ValueError('outer refit differs from selected recipe')
++                    guided[sampler] = study['guided_successful_trials']
++                if len(set(inner_hashes)) != 1:
++                    raise ValueError('random/TPE inner partitions differ')
++                arms[key] = {'values': values, 'outer_split': row['split']['split_sha256'],
++                             'inner_split': inner_hashes[0], 'successful_guided_trials': guided}
++        except (KeyError, TypeError, ValueError, OSError, EOFError, zipfile.BadZipFile) as exc:
++            errors.append({'report': str(path), 'reason': str(exc)[:300]})
++    if set(arms) != expected_arms:
++        errors.append({'reason': 'missing complete predeclared policy/cut pairs'})
++    for cut in expected_cuts:
++        pair = [arms.get((policy, cut)) for policy in ['legacy', 'measured']]
++        if all(pair) and any(pair[0][key] != pair[1][key] for key in ['outer_split', 'inner_split']):
++            errors.append({'cut': cut, 'reason': 'policy partitions differ'})
++        if all(pair) and pair[0]['values']['control'] != pair[1]['values']['control']:
++            errors.append({'cut': cut, 'reason': 'unchanged control outer metric drift'})
++    comparisons = []
++    if not errors:
++        for cut in sorted(expected_cuts):
++            legacy, measured = [arms[(policy, cut)] for policy in ['legacy', 'measured']]
++            comparisons.append({'cut': cut,
++                'measured_minus_legacy': {name: measured['values'][name] - legacy['values'][name] for name in ['control', 'random', 'tpe']},
++                'tpe_minus_random': {policy: arms[(policy, cut)]['values']['tpe'] - arms[(policy, cut)]['values']['random'] for policy in ['legacy', 'measured']},
++                'successful_guided_trials': {policy: arms[(policy, cut)]['successful_guided_trials']['tpe'] for policy in ['legacy', 'measured']}})
++    means = ({policy: {name: float(np.mean([arms[(policy, cut)]['values'][name] for cut in expected_cuts]))
++                      for name in ['control', 'random', 'tpe']} for policy in ['legacy', 'measured']} if not errors else None)
++    return {'valid_equal_budget_screen': not errors, 'task': task, 'metric': metric, 'errors': errors,
++            'comparisons': comparisons, 'outer_metric_means': means, 'failed_metric_substitution': False,
++            'ml_quality_promotion_gate_evaluated': False, 'promotion': False,
++            'limitations': ['Validity of saved artifacts/status/protocol only; outer metrics are not recomputed from predictions.',
++                'Measured early admission stopping is valid with a full initial allocation; externally clipped caps are not equal-budget evidence.',
++                'Admission chronology and stop reasons are not replayed by this gate; they rely on the frozen HPO implementation and its separate focused tests.',
++                'A valid negative screen remains evidence. Per-class support, entire-selection CV and full-agent/release gates remain required.']}
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--plan', type=Path, required=True)
++    parser.add_argument('--task', choices=['regression', 'classification'], required=True)
++    parser.add_argument('--reports', type=Path, nargs='+', required=True)
++    parser.add_argument('--output', type=Path, required=True)
++    args = parser.parse_args()
++    result = qualify_reports(json.loads(args.plan.read_text(encoding='utf-8')), args.task, args.reports)
++    with args.output.open('xb') as stream:
++        stream.write((json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + '\n').encode('utf-8'))
++    if not result['valid_equal_budget_screen']:
++        raise SystemExit(1)
++
++
++if __name__ == '__main__':
++    main()
+diff --git a/tools/run_checks.py b/tools/run_checks.py
+index a7763d4..674cae5 100644
+--- a/tools/run_checks.py
++++ b/tools/run_checks.py
+@@ -16,7 +16,7 @@ CHECKS={'test_v2.py':11,'test_resilience.py':7,'smoke.py':5,
+         'test_history.py':13,'test_history_worker.py':8,'test_diversity.py':19,'test_release_verifier.py':3,'test_class_te.py':3,
+         'test_feature_views.py':11,'test_postprocessor.py':14,'test_target_smearing.py':14,
+         'test_error_analysis_contracts.py':20,'test_error_analysis.py':39,'test_error_preparation.py':16,
+-        'test_hpo.py':7,'test_feature_selection.py':5,
++        'test_hpo.py':7,'test_hpo_admission.py':13,'test_hpo_qualification.py':8,'test_feature_selection.py':5,
+         'test_resource_portability.py':3,'test_reasoning_settings.py':3,
+         'test_planner_isolation.py':1,'test_broad_features.py':8,
+         'test_hpo_anchor.py':14,'test_protected_selector_runtime.py':12,

@@ -1,1 +1,6 @@
 requirements.txt -text
+
+docs/experiments/hpo-admission-r2-packet/* -text
+docs/experiments/native_technical_gates_2e_20261023.json -text
+docs/experiments/native_fe_regression_2e_20261023.json -text
+docs/experiments/hpo_qualifier_review_final_packet_20261023.json -text

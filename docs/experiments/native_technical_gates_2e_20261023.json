@@ -1,0 +1,80 @@
+{
+  "scope": "Native2e technical qualification only; not ML quality/default promotion",
+  "archive_sha256": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0",
+  "requirements_sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+  "source": {
+    "passed": true,
+    "unique_checks": 451,
+    "scripts": 46,
+    "skipped": 0,
+    "source_unchanged": true,
+    "fixture_cleanup_confirmed": true,
+    "seconds": 246.125,
+    "receipt_sha256": "7579a71988aac5af8efee7ccb2abbf54f217f13b773ef7634ca153d624de99a1"
+  },
+  "exact_unpacked": {
+    "passed": true,
+    "matches_current_source": true,
+    "repeated_checks": 23,
+    "scripts": [
+      {
+        "name": "test_v2.py",
+        "exit_code": 0
+      },
+      {
+        "name": "test_resilience.py",
+        "exit_code": 0
+      },
+      {
+        "name": "smoke.py",
+        "exit_code": 0
+      }
+    ],
+    "receipt_sha256": "cd04eb23fb443a197e9b0221da5f316d20c83e3aafc1554ae721084d743bb806",
+    "count_note": "Repeated11+7+5 checks; not added to451 unique source checks"
+  },
+  "live_four_stage": {
+    "passed": true,
+    "provider_scope": "organizer_api",
+    "semantic_live_ok": true,
+    "planner_live_ok": true,
+    "feature_selection_active": true,
+    "hpo_completed_trials": 4,
+    "final_fit_status": "ok",
+    "integrity_ok": true,
+    "elapsed_seconds": 46.219,
+    "four_stage_pipeline": {
+      "mode": "four_stage",
+      "initial_data_assessment_before_fitting": true,
+      "initial_data_assessment": {
+        "status": "ok",
+        "attempted": true,
+        "call_status": "ok",
+        "assessment_valid": true,
+        "error": null
+      },
+      "trusted_feature_family": "broad",
+      "maximum_added_broad_features": 128,
+      "initial_queue_receipts": [],
+      "catboost_top_k": 1,
+      "protected_originals": false,
+      "inner_hpo_status": "ok"
+    }
+  },
+  "live_budget": {
+    "status": "completed",
+    "wall_limit_seconds": 300,
+    "elapsed_seconds": 44.781,
+    "gateway_call_limit": 3,
+    "gateway_calls_started": 2,
+    "http_attempts_reported": 2,
+    "usage_complete": true
+  },
+  "live_receipt_sha256": "ba2c1ecd5247ed30b88419453d8248959ad4aa2cc6f530d3c36c3c42a8af46b3",
+  "live_ledger_sha256": "26b6d0d0b2d33e345b96c0d2532ec7356a26774f24ddda71e04892e316800c56",
+  "interpretation": "Artificial180row regression fixture verifies real gateway/EDA-before-fit/broadFE/activeCatBoost/Optuna/refit/CSV/integrity; its scores are not public-task gains",
+  "next": "Original sequential component screens on both public tasks; independently recompute saved predictions against pristine labels",
+  "common_deadline_unix": 1792734357.105974,
+  "promotion": false,
+  "official_submission": false
+}

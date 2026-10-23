@@ -1,0 +1,36 @@
+{
+  "observed_epoch": 1792781170.587968,
+  "identities": [
+    {
+      "pid": 4848,
+      "create_time": 1792781050.9187553
+    },
+    {
+      "pid": 12884,
+      "create_time": 1792781050.9039793
+    },
+    {
+      "pid": 17288,
+      "create_time": 1792781056.5574267
+    },
+    {
+      "pid": 25648,
+      "create_time": 1792781056.5717225
+    },
+    {
+      "pid": 16748,
+      "create_time": 1792781101.5812447
+    },
+    {
+      "pid": 25532,
+      "create_time": 1792781101.5657516
+    }
+  ],
+  "all_same_identities_absent": true,
+  "actual_session": 63424,
+  "actual_exit_code": 0,
+  "actual_terminal_tool": "383f65",
+  "root_helper_actual_exit_code": 0,
+  "root_helper_tool": "89832c",
+  "fresh_preparer_observation_tool": "7ca935"
+}

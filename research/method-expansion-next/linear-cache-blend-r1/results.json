@@ -1,0 +1,213 @@
+{
+  "experiment_id": "METH-03-LINEAR",
+  "status": "completed_negative_fixed_linear_blend",
+  "source_commit": "e441a9aa533ed73f7ccea0f60b0cfeabeaa245f9",
+  "actual_exec_session": 63424,
+  "actual_exit_code": 0,
+  "technical_procedure_passed": true,
+  "component_quality_gates_passed": false,
+  "metrics": {
+    "regression": {
+      "required_cuts": 3,
+      "complete": true,
+      "control_mean": 40.60751094989404,
+      "fixed_90_10_blend_mean": 41.0908044240176
+    },
+    "classification": {
+      "required_cuts": 2,
+      "complete": true,
+      "control_mean": 0.6547938868310776,
+      "fixed_90_10_blend_mean": 0.6543999491951769
+    }
+  },
+  "rows": [
+    {
+      "kind": "regression",
+      "cut": 0,
+      "status": "independently_recomputed_fixed_validation_blend",
+      "control_metric": 39.05167816956453,
+      "blend_metric": 38.57615846087031,
+      "delta_blend_minus_control": -0.4755197086942218,
+      "registered_gate_passed": true
+    },
+    {
+      "kind": "regression",
+      "cut": 1,
+      "status": "independently_recomputed_fixed_validation_blend",
+      "control_metric": 31.846185166957753,
+      "blend_metric": 31.917672644263924,
+      "delta_blend_minus_control": 0.07148747730617089,
+      "registered_gate_passed": false
+    },
+    {
+      "kind": "regression",
+      "cut": 2,
+      "status": "independently_recomputed_fixed_validation_blend",
+      "control_metric": 50.92466951315985,
+      "blend_metric": 52.778582166918575,
+      "delta_blend_minus_control": 1.8539126537587265,
+      "registered_gate_passed": false
+    },
+    {
+      "kind": "classification",
+      "cut": 42,
+      "status": "independently_recomputed_fixed_validation_blend",
+      "control_metric": 0.6558634659956402,
+      "blend_metric": 0.6547281707782309,
+      "delta_blend_minus_control": -0.0011352952174092934,
+      "registered_gate_passed": false
+    },
+    {
+      "kind": "classification",
+      "cut": 43,
+      "status": "independently_recomputed_fixed_validation_blend",
+      "control_metric": 0.653724307666515,
+      "blend_metric": 0.654071727612123,
+      "delta_blend_minus_control": 0.00034741994560794076,
+      "registered_gate_passed": true
+    }
+  ],
+  "candidate_gates": {
+    "regression_all_three_strict_RMSE_improvement": false,
+    "regression_cuts": [
+      {
+        "cut": 0,
+        "strict_RMSE_improvement": true
+      },
+      {
+        "cut": 1,
+        "strict_RMSE_improvement": false
+      },
+      {
+        "cut": 2,
+        "strict_RMSE_improvement": false
+      }
+    ],
+    "classification": {
+      "cuts": [
+        {
+          "phase": "primary",
+          "current": 0.6547281707782309,
+          "protected_control": 0.6558634659956402,
+          "delta_current_minus_control": -0.0011352952174092934,
+          "primary_improves": false,
+          "per_class_f1_delta": {
+            "Analysis": -0.0010716813264583513,
+            "Backdoor": 0.0,
+            "DoS": -0.004756128090625478,
+            "Exploits": -0.0026769474875907306,
+            "Fuzzers": -0.0009993863417200322,
+            "Generic": -0.00013705960938015238,
+            "Normal": -0.0007973657548125956,
+            "Reconnaissance": -0.0009143835635067044,
+            "Shellcode": 0.0,
+            "Worms": 0.0
+          },
+          "supported_class_losses_over_001": {},
+          "ex_rarest_macro_f1_delta": -0.001261439130454894,
+          "all_class_gates_passed": false,
+          "cut": 42,
+          "cut_alias": "group_seed_42"
+        },
+        {
+          "phase": "confirmation",
+          "current": 0.654071727612123,
+          "protected_control": 0.653724307666515,
+          "delta_current_minus_control": 0.00034741994560794076,
+          "primary_improves": true,
+          "per_class_f1_delta": {
+            "Analysis": -0.0019527235354573902,
+            "Backdoor": 0.01115914037830712,
+            "DoS": -0.001268175696007623,
+            "Exploits": -0.0011336296255208822,
+            "Fuzzers": -0.001851388649842467,
+            "Generic": 0.00012668142399874238,
+            "Normal": -0.0011683695154410811,
+            "Reconnaissance": 0.0023996685659559702,
+            "Shellcode": -0.0028370038899125927,
+            "Worms": 0.0
+          },
+          "supported_class_losses_over_001": {},
+          "ex_rarest_macro_f1_delta": 0.000386022161786644,
+          "all_class_gates_passed": true,
+          "cut": 43,
+          "cut_alias": "group_seed_43"
+        }
+      ],
+      "each_cut_MacroF1_improves": false,
+      "each_cut_supported_class_and_ex_rarest_gates_passed": false
+    }
+  },
+  "original_failed_METH02_history": {
+    "reference": {
+      "path": "meth02/terminal-root-closure.json",
+      "sha256": "220e7c93f56eaa4a9c2e09ce70aa3ba406d864686cc68520bf69eace4ed75361",
+      "campaign_path": "meth02/campaign.json",
+      "campaign_sha256": "fbc2844806b1ebda4912aa038f5b407931eff8c8a38c7fcf5f8722e11930e2f3",
+      "actual_exec_session": null,
+      "actual_exec_exit_code_observed_by_root": 1,
+      "original_status": "FAILED_preserved",
+      "only_ONE_recovery": true
+    },
+    "original_status": "technical_failure",
+    "first_failure": {
+      "code": "child_nonzero_exit",
+      "phase": "child_exit",
+      "unix": 1792779694.0334735,
+      "monotonic": 38699.078,
+      "exception_type": null,
+      "errno": null,
+      "winerror": null,
+      "child_kind": "linear-contracts"
+    },
+    "error_history": [
+      {
+        "code": "child_nonzero_exit",
+        "phase": "child_exit",
+        "unix": 1792779694.0334735,
+        "monotonic": 38699.078,
+        "exception_type": null,
+        "errno": null,
+        "winerror": null,
+        "child_kind": "linear-contracts"
+      },
+      {
+        "code": "linear_contract_process_failed",
+        "phase": "component_procedure",
+        "exception_type": "TechnicalFailure",
+        "unix": 1792779694.8283832,
+        "monotonic": 38699.875,
+        "errno": null,
+        "winerror": null
+      }
+    ],
+    "original_actual_exec_session": null,
+    "original_actual_exit_code": 1
+  },
+  "elapsed_seconds": 13.077999999994063,
+  "original_common_seconds": 720,
+  "original_start_unix": 1792781050.9878063,
+  "original_deadline_unix": 1792781770.9878063,
+  "weights": {
+    "strong_control": 0.9,
+    "new_component": 0.1
+  },
+  "model_fits": 0,
+  "API_calls": 0,
+  "full_refit": false,
+  "promotion": false,
+  "submit": false,
+  "official_score": null,
+  "root_closure_sha256": "e02fd31162f1db27342895901ebb52764b140d59f9cd7651c9be447283bd3b9d",
+  "independent_audit_sha256": "c9391260e5e7cfdbd2951b3202fe7ec331b0ae7faf619cb5e44acbd4fc7b7b1a",
+  "post_root_fresh_absence_sha256": "8fb1fe44122ae06691ec71b21751f10bdb3381a634afafa42bd73c1d0958c42c",
+  "first_failure": null,
+  "error_history": [],
+  "decision": "Reject fixed linear mixture: regression mean worse with two cuts worse; classification mean worse and one cut worse. Do not add these recipes or mixture to mandatory portfolio. Retain all negative evidence, original first METH02 FAIL and strongest controls.",
+  "scope": "Predeclared before METH02 launch/outcomes: .9 same protected SINGLE+.1 exact fixed no-text linear recipe on five reused public cuts. No sweep, new fits, test mixture, whole-agent promotion or official score.",
+  "strong_whole_agent_reference": {
+    "best_verified_regression_RMSE": 34.86622087872278,
+    "historical_class_MacroF1": 0.6593178433614652,
+    "unchanged": true
+  }
+}

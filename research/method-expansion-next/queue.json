@@ -203,7 +203,7 @@
       "linear_child": {
         "id": "METH-03-LINEAR",
         "parent_experiment": "METH-03",
-        "status": "preregistered_before_METH02_launch_and_outcomes",
+        "status": "completed_negative_fixed_linear_blend",
         "registered_epoch": 1792779586.0364401,
         "hypothesis": "Existing no-text linear predictions may complement the same protected SINGLE control, even if standalone is weak.",
         "control_unit": "Same METH02 protected first SINGLE per cut, no whole V16 mixing",
@@ -231,7 +231,26 @@
         "full_refit": false,
         "promotion": false,
         "official_score": null,
-        "scope": "Child evaluation of originally registered METH03 weak-family blend hypothesis; distinct linear caches, no duplicated ET run or adaptive weight choice."
+        "scope": "Child evaluation of originally registered METH03 weak-family blend hypothesis; distinct linear caches, no duplicated ET run or adaptive weight choice.",
+        "actual_metric": {
+          "regression": {
+            "required_cuts": 3,
+            "complete": true,
+            "control_mean": 40.60751094989404,
+            "fixed_90_10_blend_mean": 41.0908044240176
+          },
+          "classification": {
+            "required_cuts": 2,
+            "complete": true,
+            "control_mean": 0.6547938868310776,
+            "fixed_90_10_blend_mean": 0.6543999491951769
+          }
+        },
+        "actual_exec_session": 63424,
+        "actual_exit_code": 0,
+        "root_closure_sha256": "e02fd31162f1db27342895901ebb52764b140d59f9cd7651c9be447283bd3b9d",
+        "source_packet": "research/method-expansion-next/linear-cache-blend-r1",
+        "decision": "Reject fixed linear mixture: regression mean worse with two cuts worse; classification mean worse and one cut worse. Do not add these recipes or mixture to mandatory portfolio. Retain all negative evidence, original first METH02 FAIL and strongest controls."
       }
     },
     {
@@ -295,7 +314,7 @@
       "clock_start": null
     }
   ],
-  "next_action": "METH02 recovery closed negative. Next pre-outcome fixed90/10 linear cache blend METH03-LINEAR, then separate class ET-blend candidate whole-agent qualification and fitting-only method-skills OFF/ON.",
+  "next_action": "All fixed standalone+90/10 screens closed. Advance only class ExtraTrees blend candidate to separate whole-agent qualification; review class seed optin packet and execute meaningful pure/source/exact gates before fits. METH04 fitting-only skills-context plan next; linear recipes/mixtures rejected.",
   "new_experiments_started": 3,
   "promotion": false,
   "official_score": null

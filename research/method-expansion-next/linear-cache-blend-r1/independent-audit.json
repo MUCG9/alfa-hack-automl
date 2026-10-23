@@ -1,0 +1,539 @@
+{
+  "status": "fixed_component_blend_artifacts_verified_pending_parent_terminal",
+  "rows": [
+    {
+      "kind": "regression",
+      "cut": 0,
+      "status": "independently_recomputed_fixed_validation_blend",
+      "control_metric": 39.05167816956453,
+      "blend_metric": 38.57615846087031,
+      "delta_blend_minus_control": -0.4755197086942218,
+      "control_diagnostics": {
+        "phase": "regression0-control",
+        "metric": "rmse",
+        "value": 39.05167816956453,
+        "fitting_rows": 35000,
+        "validation_rows": 18308,
+        "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+        "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+        "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+        "prediction_sha256": "e78d320cdb7b77f66900713642ea745ec537d4292a004aced3133eb6e6deb0e7",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          5.0
+        ]
+      },
+      "blend_diagnostics": {
+        "phase": "regression0-fixed_blend",
+        "metric": "rmse",
+        "value": 38.57615846087031,
+        "fitting_rows": 35000,
+        "validation_rows": 18308,
+        "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+        "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+        "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+        "prediction_sha256": "f41569b113da7bd889b66e11d235f90592c26262acd73aa21947b69d44565a4e",
+        "mixture_children": 2,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          5.0
+        ]
+      },
+      "registered_gate_passed": true,
+      "failed_metric_zero_imputed": false,
+      "validation_only": true,
+      "input_parent_keys": [
+        "regression0-control",
+        "regression0-candidate"
+      ],
+      "weights": {
+        "strong_control": 0.9,
+        "new_component": 0.1
+      },
+      "artifacts_sha256": {
+        "meth03l/regression0/validation_predictions.csv": "f41569b113da7bd889b66e11d235f90592c26262acd73aa21947b69d44565a4e"
+      }
+    },
+    {
+      "kind": "regression",
+      "cut": 1,
+      "status": "independently_recomputed_fixed_validation_blend",
+      "control_metric": 31.846185166957753,
+      "blend_metric": 31.917672644263924,
+      "delta_blend_minus_control": 0.07148747730617089,
+      "control_diagnostics": {
+        "phase": "regression1-control",
+        "metric": "rmse",
+        "value": 31.846185166957753,
+        "fitting_rows": 22054,
+        "validation_rows": 12946,
+        "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+        "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+        "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+        "prediction_sha256": "e58ca631611681fd6219d64696d7c455c968aadbe27303df131cba2313095ecd",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          4.0
+        ]
+      },
+      "blend_diagnostics": {
+        "phase": "regression1-fixed_blend",
+        "metric": "rmse",
+        "value": 31.917672644263924,
+        "fitting_rows": 22054,
+        "validation_rows": 12946,
+        "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+        "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+        "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+        "prediction_sha256": "a0afcfc6658705a889277b17249110d474f0675e7aa06d90c4eb7deee9156691",
+        "mixture_children": 2,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          4.0
+        ]
+      },
+      "registered_gate_passed": false,
+      "failed_metric_zero_imputed": false,
+      "validation_only": true,
+      "input_parent_keys": [
+        "regression1-control",
+        "regression1-candidate"
+      ],
+      "weights": {
+        "strong_control": 0.9,
+        "new_component": 0.1
+      },
+      "artifacts_sha256": {
+        "meth03l/regression1/validation_predictions.csv": "a0afcfc6658705a889277b17249110d474f0675e7aa06d90c4eb7deee9156691"
+      }
+    },
+    {
+      "kind": "regression",
+      "cut": 2,
+      "status": "independently_recomputed_fixed_validation_blend",
+      "control_metric": 50.92466951315985,
+      "blend_metric": 52.778582166918575,
+      "delta_blend_minus_control": 1.8539126537587265,
+      "control_diagnostics": {
+        "phase": "regression2-control",
+        "metric": "rmse",
+        "value": 50.92466951315985,
+        "fitting_rows": 11175,
+        "validation_rows": 10879,
+        "positions_sha256": "c30d5cffda6b60f0e70cb67c12d1bb6ae776ee764c3c39480a255ecb715eed89",
+        "training_rows_canonical_sha256": "ad949bed13579ababe82c8ffdbb14423df1552c82f32a27eff4d805a7e251fbe",
+        "split_file_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+        "prediction_sha256": "e69e4863b219d0c07a0b5ec5dfa4b38dce831da288169550a842f83ae24aaa96",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          3.0
+        ]
+      },
+      "blend_diagnostics": {
+        "phase": "regression2-fixed_blend",
+        "metric": "rmse",
+        "value": 52.778582166918575,
+        "fitting_rows": 11175,
+        "validation_rows": 10879,
+        "positions_sha256": "c30d5cffda6b60f0e70cb67c12d1bb6ae776ee764c3c39480a255ecb715eed89",
+        "training_rows_canonical_sha256": "ad949bed13579ababe82c8ffdbb14423df1552c82f32a27eff4d805a7e251fbe",
+        "split_file_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+        "prediction_sha256": "634104b100ffec7bd8797bb73c6fabe3f153a3f6310a13c4000f681670a89933",
+        "mixture_children": 2,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          3.0
+        ]
+      },
+      "registered_gate_passed": false,
+      "failed_metric_zero_imputed": false,
+      "validation_only": true,
+      "input_parent_keys": [
+        "regression2-control",
+        "regression2-candidate"
+      ],
+      "weights": {
+        "strong_control": 0.9,
+        "new_component": 0.1
+      },
+      "artifacts_sha256": {
+        "meth03l/regression2/validation_predictions.csv": "634104b100ffec7bd8797bb73c6fabe3f153a3f6310a13c4000f681670a89933"
+      }
+    },
+    {
+      "kind": "classification",
+      "cut": 42,
+      "status": "independently_recomputed_fixed_validation_blend",
+      "control_metric": 0.6558634659956402,
+      "blend_metric": 0.6547281707782309,
+      "delta_blend_minus_control": -0.0011352952174092934,
+      "control_diagnostics": {
+        "phase": "classification42-control",
+        "metric": "macro_f1",
+        "value": 0.6558634659956402,
+        "fitting_rows": 70529,
+        "validation_rows": 17141,
+        "positions_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+        "training_rows_canonical_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+        "split_file_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+        "prediction_sha256": "f3803745a6e1a2e2a00e046f61854cdf350949a63d315712353e4af2fa653f20",
+        "mixture_children": 2,
+        "per_class_f1": {
+          "Analysis": 0.3375796178343949,
+          "Backdoor": 0.2146341463414634,
+          "DoS": 0.4978365996436752,
+          "Exploits": 0.6790680874119559,
+          "Fuzzers": 0.7555448408871746,
+          "Generic": 0.9878147847278635,
+          "Normal": 0.915273556231003,
+          "Reconnaissance": 0.8223615464994776,
+          "Shellcode": 0.6643109540636042,
+          "Worms": 0.6842105263157895
+        },
+        "independent_fitting_groups": {
+          "Analysis": 695,
+          "Backdoor": 666,
+          "DoS": 2032,
+          "Exploits": 8833,
+          "Fuzzers": 6767,
+          "Generic": 2829,
+          "Normal": 21177,
+          "Reconnaissance": 3202,
+          "Shellcode": 440,
+          "Worms": 46
+        },
+        "rarest_fitting_class": "Worms",
+        "ex_rarest_macro_f1": 0.6527137926267348,
+        "feature_groups_disjoint": true
+      },
+      "blend_diagnostics": {
+        "phase": "classification42-fixed_blend",
+        "metric": "macro_f1",
+        "value": 0.6547281707782309,
+        "fitting_rows": 70529,
+        "validation_rows": 17141,
+        "positions_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+        "training_rows_canonical_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+        "split_file_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+        "prediction_sha256": "7868bac0f42f7f5029a49aca9fcce7031dd4e817d92d5f5b1abc551f59603495",
+        "mixture_children": 2,
+        "per_class_f1": {
+          "Analysis": 0.33650793650793653,
+          "Backdoor": 0.2146341463414634,
+          "DoS": 0.49308047155304974,
+          "Exploits": 0.6763911399243652,
+          "Fuzzers": 0.7545454545454545,
+          "Generic": 0.9876777251184834,
+          "Normal": 0.9144761904761904,
+          "Reconnaissance": 0.8214471629359709,
+          "Shellcode": 0.6643109540636042,
+          "Worms": 0.6842105263157895
+        },
+        "independent_fitting_groups": {
+          "Analysis": 695,
+          "Backdoor": 666,
+          "DoS": 2032,
+          "Exploits": 8833,
+          "Fuzzers": 6767,
+          "Generic": 2829,
+          "Normal": 21177,
+          "Reconnaissance": 3202,
+          "Shellcode": 440,
+          "Worms": 46
+        },
+        "rarest_fitting_class": "Worms",
+        "ex_rarest_macro_f1": 0.6514523534962798,
+        "feature_groups_disjoint": true
+      },
+      "registered_gate_passed": false,
+      "failed_metric_zero_imputed": false,
+      "validation_only": true,
+      "input_parent_keys": [
+        "classification42-control",
+        "classification42-candidate"
+      ],
+      "weights": {
+        "strong_control": 0.9,
+        "new_component": 0.1
+      },
+      "artifacts_sha256": {
+        "meth03l/classification42/validation_predictions.csv": "7868bac0f42f7f5029a49aca9fcce7031dd4e817d92d5f5b1abc551f59603495",
+        "meth03l/classification42/validation_probabilities.npz": "db3153887dc54f022127aaaea444a54e1f02abe000b9b963988d139b671522d4"
+      }
+    },
+    {
+      "kind": "classification",
+      "cut": 43,
+      "status": "independently_recomputed_fixed_validation_blend",
+      "control_metric": 0.653724307666515,
+      "blend_metric": 0.654071727612123,
+      "delta_blend_minus_control": 0.00034741994560794076,
+      "control_diagnostics": {
+        "phase": "classification43-control",
+        "metric": "macro_f1",
+        "value": 0.653724307666515,
+        "fitting_rows": 70321,
+        "validation_rows": 17349,
+        "positions_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+        "training_rows_canonical_sha256": "98042ca608f0d55d96547ef6a59d21f007cc370e024d9e500e7e735e25dffa7d",
+        "split_file_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+        "prediction_sha256": "212d2c1c68fa3c68ba0acb4e6cfeb7f8e6cb17d66a048546345bd53136f665eb",
+        "mixture_children": 2,
+        "per_class_f1": {
+          "Analysis": 0.2733812949640288,
+          "Backdoor": 0.21374045801526717,
+          "DoS": 0.4831251660908849,
+          "Exploits": 0.6828217555196554,
+          "Fuzzers": 0.7510184519530314,
+          "Generic": 0.9897619657025851,
+          "Normal": 0.9150819054791941,
+          "Reconnaissance": 0.842159916926272,
+          "Shellcode": 0.7432950191570882,
+          "Worms": 0.6428571428571429
+        },
+        "independent_fitting_groups": {
+          "Analysis": 705,
+          "Backdoor": 664,
+          "DoS": 2061,
+          "Exploits": 8882,
+          "Fuzzers": 6765,
+          "Generic": 2828,
+          "Normal": 21095,
+          "Reconnaissance": 3206,
+          "Shellcode": 446,
+          "Worms": 54
+        },
+        "rarest_fitting_class": "Worms",
+        "ex_rarest_macro_f1": 0.6549317704231119,
+        "feature_groups_disjoint": true
+      },
+      "blend_diagnostics": {
+        "phase": "classification43-fixed_blend",
+        "metric": "macro_f1",
+        "value": 0.654071727612123,
+        "fitting_rows": 70321,
+        "validation_rows": 17349,
+        "positions_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+        "training_rows_canonical_sha256": "98042ca608f0d55d96547ef6a59d21f007cc370e024d9e500e7e735e25dffa7d",
+        "split_file_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+        "prediction_sha256": "02e6317de09b8c74873fcbe158e9f698167ba1708c0cf40317eaf506d50a0d51",
+        "mixture_children": 2,
+        "per_class_f1": {
+          "Analysis": 0.2714285714285714,
+          "Backdoor": 0.2248995983935743,
+          "DoS": 0.4818569903948773,
+          "Exploits": 0.6816881258941345,
+          "Fuzzers": 0.7491670633031889,
+          "Generic": 0.9898886471265839,
+          "Normal": 0.913913535963753,
+          "Reconnaissance": 0.844559585492228,
+          "Shellcode": 0.7404580152671756,
+          "Worms": 0.6428571428571429
+        },
+        "independent_fitting_groups": {
+          "Analysis": 705,
+          "Backdoor": 664,
+          "DoS": 2061,
+          "Exploits": 8882,
+          "Fuzzers": 6765,
+          "Generic": 2828,
+          "Normal": 21095,
+          "Reconnaissance": 3206,
+          "Shellcode": 446,
+          "Worms": 54
+        },
+        "rarest_fitting_class": "Worms",
+        "ex_rarest_macro_f1": 0.6553177925848985,
+        "feature_groups_disjoint": true
+      },
+      "registered_gate_passed": true,
+      "failed_metric_zero_imputed": false,
+      "validation_only": true,
+      "input_parent_keys": [
+        "classification43-control",
+        "classification43-candidate"
+      ],
+      "weights": {
+        "strong_control": 0.9,
+        "new_component": 0.1
+      },
+      "artifacts_sha256": {
+        "meth03l/classification43/validation_predictions.csv": "02e6317de09b8c74873fcbe158e9f698167ba1708c0cf40317eaf506d50a0d51",
+        "meth03l/classification43/validation_probabilities.npz": "cd758df142fa43f7016cacfed09375959ee50e7638476385663f495374440f75"
+      }
+    }
+  ],
+  "quality_metric": {
+    "regression": {
+      "required_cuts": 3,
+      "complete": true,
+      "control_mean": 40.60751094989404,
+      "fixed_90_10_blend_mean": 41.0908044240176
+    },
+    "classification": {
+      "required_cuts": 2,
+      "complete": true,
+      "control_mean": 0.6547938868310776,
+      "fixed_90_10_blend_mean": 0.6543999491951769
+    }
+  },
+  "all_five_cuts_complete": true,
+  "component_quality_gates_passed": false,
+  "candidate_gates": {
+    "regression_all_three_strict_RMSE_improvement": false,
+    "regression_cuts": [
+      {
+        "cut": 0,
+        "strict_RMSE_improvement": true
+      },
+      {
+        "cut": 1,
+        "strict_RMSE_improvement": false
+      },
+      {
+        "cut": 2,
+        "strict_RMSE_improvement": false
+      }
+    ],
+    "classification": {
+      "cuts": [
+        {
+          "phase": "primary",
+          "current": 0.6547281707782309,
+          "protected_control": 0.6558634659956402,
+          "delta_current_minus_control": -0.0011352952174092934,
+          "primary_improves": false,
+          "per_class_f1_delta": {
+            "Analysis": -0.0010716813264583513,
+            "Backdoor": 0.0,
+            "DoS": -0.004756128090625478,
+            "Exploits": -0.0026769474875907306,
+            "Fuzzers": -0.0009993863417200322,
+            "Generic": -0.00013705960938015238,
+            "Normal": -0.0007973657548125956,
+            "Reconnaissance": -0.0009143835635067044,
+            "Shellcode": 0.0,
+            "Worms": 0.0
+          },
+          "supported_class_losses_over_001": {},
+          "ex_rarest_macro_f1_delta": -0.001261439130454894,
+          "all_class_gates_passed": false,
+          "cut": 42,
+          "cut_alias": "group_seed_42"
+        },
+        {
+          "phase": "confirmation",
+          "current": 0.654071727612123,
+          "protected_control": 0.653724307666515,
+          "delta_current_minus_control": 0.00034741994560794076,
+          "primary_improves": true,
+          "per_class_f1_delta": {
+            "Analysis": -0.0019527235354573902,
+            "Backdoor": 0.01115914037830712,
+            "DoS": -0.001268175696007623,
+            "Exploits": -0.0011336296255208822,
+            "Fuzzers": -0.001851388649842467,
+            "Generic": 0.00012668142399874238,
+            "Normal": -0.0011683695154410811,
+            "Reconnaissance": 0.0023996685659559702,
+            "Shellcode": -0.0028370038899125927,
+            "Worms": 0.0
+          },
+          "supported_class_losses_over_001": {},
+          "ex_rarest_macro_f1_delta": 0.000386022161786644,
+          "all_class_gates_passed": true,
+          "cut": 43,
+          "cut_alias": "group_seed_43"
+        }
+      ],
+      "each_cut_MacroF1_improves": false,
+      "each_cut_supported_class_and_ex_rarest_gates_passed": false
+    }
+  },
+  "artifact_integrity_checks_passed": true,
+  "audit_within_original_common_clock": true,
+  "generated_validation_artifacts_sha256": {
+    "meth03l/regression0/validation_predictions.csv": "f41569b113da7bd889b66e11d235f90592c26262acd73aa21947b69d44565a4e",
+    "meth03l/regression1/validation_predictions.csv": "a0afcfc6658705a889277b17249110d474f0675e7aa06d90c4eb7deee9156691",
+    "meth03l/regression2/validation_predictions.csv": "634104b100ffec7bd8797bb73c6fabe3f153a3f6310a13c4000f681670a89933",
+    "meth03l/classification42/validation_predictions.csv": "7868bac0f42f7f5029a49aca9fcce7031dd4e817d92d5f5b1abc551f59603495",
+    "meth03l/classification42/validation_probabilities.npz": "db3153887dc54f022127aaaea444a54e1f02abe000b9b963988d139b671522d4",
+    "meth03l/classification43/validation_predictions.csv": "02e6317de09b8c74873fcbe158e9f698167ba1708c0cf40317eaf506d50a0d51",
+    "meth03l/classification43/validation_probabilities.npz": "cd758df142fa43f7016cacfed09375959ee50e7638476385663f495374440f75"
+  },
+  "manifest_sha256": "243c01677fffaf01fdfa65acfffb26360caa41dab1d9458cb08132ac9d8f04bb",
+  "parent_exec_terminal_qualification_required": true,
+  "actual_common_deadline_satisfied": null,
+  "parent_METH02b_actual_exec": {
+    "session": 38041,
+    "exit_code": 0,
+    "root_closure": "meth02b/terminal-root-closure.json",
+    "root_closure_sha256": "fe00067cb099fdd4fdcd036861f5c3d55cd1c9ee0ee75bcddf488cfc035fe7f7"
+  },
+  "original_failed_METH02_history": {
+    "reference": {
+      "path": "meth02/terminal-root-closure.json",
+      "sha256": "220e7c93f56eaa4a9c2e09ce70aa3ba406d864686cc68520bf69eace4ed75361",
+      "campaign_path": "meth02/campaign.json",
+      "campaign_sha256": "fbc2844806b1ebda4912aa038f5b407931eff8c8a38c7fcf5f8722e11930e2f3",
+      "actual_exec_session": null,
+      "actual_exec_exit_code_observed_by_root": 1,
+      "original_status": "FAILED_preserved",
+      "only_ONE_recovery": true
+    },
+    "original_status": "technical_failure",
+    "first_failure": {
+      "code": "child_nonzero_exit",
+      "phase": "child_exit",
+      "unix": 1792779694.0334735,
+      "monotonic": 38699.078,
+      "exception_type": null,
+      "errno": null,
+      "winerror": null,
+      "child_kind": "linear-contracts"
+    },
+    "error_history": [
+      {
+        "code": "child_nonzero_exit",
+        "phase": "child_exit",
+        "unix": 1792779694.0334735,
+        "monotonic": 38699.078,
+        "exception_type": null,
+        "errno": null,
+        "winerror": null,
+        "child_kind": "linear-contracts"
+      },
+      {
+        "code": "linear_contract_process_failed",
+        "phase": "component_procedure",
+        "exception_type": "TechnicalFailure",
+        "unix": 1792779694.8283832,
+        "monotonic": 38699.875,
+        "errno": null,
+        "winerror": null
+      }
+    ],
+    "original_actual_exec_session": null,
+    "original_actual_exit_code": 1
+  },
+  "original_failed_METH02_preserved": true,
+  "weights": {
+    "strong_control": 0.9,
+    "new_component": 0.1
+  },
+  "blend_unit": "same_METH02b_protected_SINGLE_component_plus_fixed_linear_text",
+  "validation_only": true,
+  "full_refit": false,
+  "test_submission_generated": false,
+  "model_fits": 0,
+  "API_calls": 0,
+  "tests_run": 0,
+  "failed_metrics_zero_imputed": false,
+  "promotion": false,
+  "submit": false,
+  "official_score": null,
+  "scope": "One preregistered validation-cache mixture on five reused public cuts; no weight search, whole V16 ensemble, new full refit or official claim"
+}

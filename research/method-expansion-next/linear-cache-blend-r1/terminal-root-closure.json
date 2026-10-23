@@ -1,0 +1,150 @@
+{
+  "status": "fixed_component_blend_verified",
+  "actual_exec_session": 63424,
+  "actual_exec_exit_code_observed_by_root": 0,
+  "actual_tool_evidence": "Actual write_stdin63424 tool383f65 exit0; fixed linear blend 13.078seconds no fits/API; actual parent METH02b38041 closed",
+  "technical_procedure_passed": true,
+  "original_common_seconds": 720,
+  "original_start_unix": 1792781050.9878063,
+  "original_deadline_unix": 1792781770.9878063,
+  "raw_parent_elapsed_seconds": 13.077999999994063,
+  "cleanup_confirmed": true,
+  "source_unchanged": true,
+  "changed_or_conflicting_pins": [],
+  "immutable_and_generated_refs_rehashed": 948,
+  "owned_identities": [
+    {
+      "pid": 4848,
+      "create_time": 1792781050.9187553
+    },
+    {
+      "pid": 12884,
+      "create_time": 1792781050.9039793
+    },
+    {
+      "pid": 17288,
+      "create_time": 1792781056.5574267
+    },
+    {
+      "pid": 25648,
+      "create_time": 1792781056.5717225
+    }
+  ],
+  "closure_preparer_identities": [
+    {
+      "pid": 16748,
+      "create_time": 1792781101.5812447
+    },
+    {
+      "pid": 25532,
+      "create_time": 1792781101.5657516
+    }
+  ],
+  "active_owned_processes": [],
+  "uncertain_owned": [],
+  "independent_artifact_integrity": true,
+  "independent_audit": {
+    "path": "meth03l/independent-audit.json",
+    "sha256": "c9391260e5e7cfdbd2951b3202fe7ec331b0ae7faf619cb5e44acbd4fc7b7b1a"
+  },
+  "first_failure": null,
+  "error_history": [],
+  "qualified_ML_metrics": {
+    "regression": {
+      "required_cuts": 3,
+      "complete": true,
+      "control_mean": 40.60751094989404,
+      "fixed_90_10_blend_mean": 41.0908044240176
+    },
+    "classification": {
+      "required_cuts": 2,
+      "complete": true,
+      "control_mean": 0.6547938868310776,
+      "fixed_90_10_blend_mean": 0.6543999491951769
+    }
+  },
+  "candidate_gates": {
+    "regression_all_three_strict_RMSE_improvement": false,
+    "regression_cuts": [
+      {
+        "cut": 0,
+        "strict_RMSE_improvement": true
+      },
+      {
+        "cut": 1,
+        "strict_RMSE_improvement": false
+      },
+      {
+        "cut": 2,
+        "strict_RMSE_improvement": false
+      }
+    ],
+    "classification": {
+      "cuts": [
+        {
+          "phase": "primary",
+          "current": 0.6547281707782309,
+          "protected_control": 0.6558634659956402,
+          "delta_current_minus_control": -0.0011352952174092934,
+          "primary_improves": false,
+          "per_class_f1_delta": {
+            "Analysis": -0.0010716813264583513,
+            "Backdoor": 0.0,
+            "DoS": -0.004756128090625478,
+            "Exploits": -0.0026769474875907306,
+            "Fuzzers": -0.0009993863417200322,
+            "Generic": -0.00013705960938015238,
+            "Normal": -0.0007973657548125956,
+            "Reconnaissance": -0.0009143835635067044,
+            "Shellcode": 0.0,
+            "Worms": 0.0
+          },
+          "supported_class_losses_over_001": {},
+          "ex_rarest_macro_f1_delta": -0.001261439130454894,
+          "all_class_gates_passed": false,
+          "cut": 42,
+          "cut_alias": "group_seed_42"
+        },
+        {
+          "phase": "confirmation",
+          "current": 0.654071727612123,
+          "protected_control": 0.653724307666515,
+          "delta_current_minus_control": 0.00034741994560794076,
+          "primary_improves": true,
+          "per_class_f1_delta": {
+            "Analysis": -0.0019527235354573902,
+            "Backdoor": 0.01115914037830712,
+            "DoS": -0.001268175696007623,
+            "Exploits": -0.0011336296255208822,
+            "Fuzzers": -0.001851388649842467,
+            "Generic": 0.00012668142399874238,
+            "Normal": -0.0011683695154410811,
+            "Reconnaissance": 0.0023996685659559702,
+            "Shellcode": -0.0028370038899125927,
+            "Worms": 0.0
+          },
+          "supported_class_losses_over_001": {},
+          "ex_rarest_macro_f1_delta": 0.000386022161786644,
+          "all_class_gates_passed": true,
+          "cut": 43,
+          "cut_alias": "group_seed_43"
+        }
+      ],
+      "each_cut_MacroF1_improves": false,
+      "each_cut_supported_class_and_ex_rarest_gates_passed": false
+    }
+  },
+  "component_quality_gates_passed": false,
+  "weights": {
+    "strong_control": 0.9,
+    "new_component": 0.1
+  },
+  "model_fits": 0,
+  "API_calls": 0,
+  "full_refit": false,
+  "promotion": false,
+  "submit": false,
+  "official_score": null,
+  "own_actual_exec_exit_and_fresh_preparer_absence_required": true,
+  "scope": "Predeclared validation-only blend of same METH02b protected SINGLE and fixed linear_text on five reused public cuts; no weight search, whole-agent promotion or new full refit."
+}

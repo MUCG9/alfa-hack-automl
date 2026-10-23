@@ -46,3 +46,8 @@ research/true-four-stage/independent-review-r1.json -text
 
 docs/experiments/fixed-half-sc1-blend-r1/protocol.json -text
 docs/experiments/fixed-half-sc1-blend-r1/README.md -text
+docs/experiments/fixed-half-sc1-blend-r1/decision.json -text
+docs/experiments/fixed-half-sc1-blend-r1/independent-root-verification.json -text
+docs/experiments/fixed-half-sc1-blend-r1/result-summary.txt -text
+docs/experiments/fixed-half-sc1-blend-r1/results.json -text
+docs/experiments/fixed-half-sc1-blend-r1/verification-attempt1.json -text

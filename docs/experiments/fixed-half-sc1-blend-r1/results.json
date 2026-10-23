@@ -1,0 +1,302 @@
+{
+  "status": "verified_fixed_half_component_screen",
+  "metrics": {
+    "fixed_half_mean_macro_f1": 0.6570719835846492,
+    "control_mean_macro_f1": 0.6547938868310776,
+    "support_mean_macro_f1": 0.6562610108771596
+  },
+  "cuts": [
+    {
+      "cut": 42,
+      "status": "verified_ok",
+      "fitting_rows": 70529,
+      "validation_rows": 17141,
+      "fitting_independent_groups": {
+        "Analysis": 695,
+        "Backdoor": 666,
+        "DoS": 2032,
+        "Exploits": 8833,
+        "Fuzzers": 6767,
+        "Generic": 2829,
+        "Normal": 21177,
+        "Reconnaissance": 3202,
+        "Shellcode": 440,
+        "Worms": 46
+      },
+      "excluded_class": "Worms",
+      "parents": {
+        "control_historical": {
+          "macro_f1": 0.6558634659956402,
+          "per_class_f1": {
+            "Analysis": 0.3375796178343949,
+            "Backdoor": 0.2146341463414634,
+            "DoS": 0.4978365996436752,
+            "Exploits": 0.6790680874119559,
+            "Fuzzers": 0.7555448408871746,
+            "Generic": 0.9878147847278635,
+            "Normal": 0.915273556231003,
+            "Reconnaissance": 0.8223615464994776,
+            "Shellcode": 0.6643109540636042,
+            "Worms": 0.6842105263157895
+          },
+          "ex_rarest_macro_f1": 0.6527137926267348
+        },
+        "support-proposal": {
+          "macro_f1": 0.6573408337327423,
+          "per_class_f1": {
+            "Analysis": 0.33650793650793653,
+            "Backdoor": 0.21568627450980393,
+            "DoS": 0.492827868852459,
+            "Exploits": 0.6787055247630968,
+            "Fuzzers": 0.7560321715817694,
+            "Generic": 0.9876777251184834,
+            "Normal": 0.9170685579196217,
+            "Reconnaissance": 0.8195329087048833,
+            "Shellcode": 0.6666666666666666,
+            "Worms": 0.7027027027027027
+          },
+          "ex_rarest_macro_f1": 0.6523006260694134
+        }
+      },
+      "fixed_half_blend": {
+        "macro_f1": 0.6580243777951491,
+        "per_class_f1": {
+          "Analysis": 0.33650793650793653,
+          "Backdoor": 0.22330097087378642,
+          "DoS": 0.49326214085939485,
+          "Exploits": 0.6775877587758776,
+          "Fuzzers": 0.7557603686635944,
+          "Generic": 0.9878147847278635,
+          "Normal": 0.9165876777251185,
+          "Reconnaissance": 0.8200527704485489,
+          "Shellcode": 0.6666666666666666,
+          "Worms": 0.7027027027027027
+        },
+        "ex_rarest_macro_f1": 0.6530601194720876
+      },
+      "primary_comparison_to_SINGLE": {
+        "macro_f1_delta": 0.0021609117995089466,
+        "ex_rarest_macro_f1_delta": 0.0003463268453528512,
+        "per_class_f1_delta": {
+          "Analysis": -0.0010716813264583513,
+          "Backdoor": 0.008666824532323009,
+          "DoS": -0.004574458784280366,
+          "Exploits": -0.0014803286360782764,
+          "Fuzzers": 0.00021552777641986598,
+          "Generic": 0.0,
+          "Normal": 0.0013141214941154722,
+          "Reconnaissance": -0.002308776050928718,
+          "Shellcode": 0.002355712603062443,
+          "Worms": 0.01849217638691325
+        },
+        "supported_class_losses_beyond_001": {}
+      },
+      "secondary_descriptive_comparison_to_support": {
+        "macro_f1_delta": 0.0006835440624067823,
+        "ex_rarest_macro_f1_delta": 0.0007594934026742273,
+        "per_class_f1_delta": {
+          "Analysis": 0.0,
+          "Backdoor": 0.007614696363982487,
+          "DoS": 0.0004342720069358541,
+          "Exploits": -0.0011177659872191326,
+          "Fuzzers": -0.00027180291817496816,
+          "Generic": 0.00013705960938015238,
+          "Normal": -0.0004808801945032082,
+          "Reconnaissance": 0.0005198617436655839,
+          "Shellcode": 0.0,
+          "Worms": 0.0
+        },
+        "supported_class_losses_beyond_001": {}
+      },
+      "predeclared_cut_gate_passed": true,
+      "test_probability_schema_id_order_and_class_contract": true,
+      "test_predictions_exported": false,
+      "split_positions_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f"
+    },
+    {
+      "cut": 43,
+      "status": "verified_ok",
+      "fitting_rows": 70321,
+      "validation_rows": 17349,
+      "fitting_independent_groups": {
+        "Analysis": 705,
+        "Backdoor": 664,
+        "DoS": 2061,
+        "Exploits": 8882,
+        "Fuzzers": 6765,
+        "Generic": 2828,
+        "Normal": 21095,
+        "Reconnaissance": 3206,
+        "Shellcode": 446,
+        "Worms": 54
+      },
+      "excluded_class": "Worms",
+      "parents": {
+        "control_historical": {
+          "macro_f1": 0.653724307666515,
+          "per_class_f1": {
+            "Analysis": 0.2733812949640288,
+            "Backdoor": 0.21374045801526717,
+            "DoS": 0.4831251660908849,
+            "Exploits": 0.6828217555196554,
+            "Fuzzers": 0.7510184519530314,
+            "Generic": 0.9897619657025851,
+            "Normal": 0.9150819054791941,
+            "Reconnaissance": 0.842159916926272,
+            "Shellcode": 0.7432950191570882,
+            "Worms": 0.6428571428571429
+          },
+          "ex_rarest_macro_f1": 0.6549317704231119
+        },
+        "support-proposal": {
+          "macro_f1": 0.6551811880215769,
+          "per_class_f1": {
+            "Analysis": 0.2727272727272727,
+            "Backdoor": 0.21774193548387097,
+            "DoS": 0.4720068906115418,
+            "Exploits": 0.7001680672268907,
+            "Fuzzers": 0.7588565844124114,
+            "Generic": 0.990395697272378,
+            "Normal": 0.9209519365375641,
+            "Reconnaissance": 0.8453276047261009,
+            "Shellcode": 0.7649402390438247,
+            "Worms": 0.6086956521739131
+          },
+          "ex_rarest_macro_f1": 0.6603462475602062
+        }
+      },
+      "fixed_half_blend": {
+        "macro_f1": 0.6561195893741495,
+        "per_class_f1": {
+          "Analysis": 0.2730627306273063,
+          "Backdoor": 0.21374045801526717,
+          "DoS": 0.4774972557628979,
+          "Exploits": 0.6911687859257969,
+          "Fuzzers": 0.7567829457364341,
+          "Generic": 0.9902688860435339,
+          "Normal": 0.9186809068765224,
+          "Reconnaissance": 0.8422729686670207,
+          "Shellcode": 0.754863813229572,
+          "Worms": 0.6428571428571429
+        },
+        "ex_rarest_macro_f1": 0.6575931945427057
+      },
+      "primary_comparison_to_SINGLE": {
+        "macro_f1_delta": 0.002395281707634478,
+        "ex_rarest_macro_f1_delta": 0.0026614241195938027,
+        "per_class_f1_delta": {
+          "Analysis": -0.0003185643367225044,
+          "Backdoor": 0.0,
+          "DoS": -0.005627910327986985,
+          "Exploits": 0.008347030406141487,
+          "Fuzzers": 0.005764493783402713,
+          "Generic": 0.000506920340948791,
+          "Normal": 0.003599001397328272,
+          "Reconnaissance": 0.00011305174074871527,
+          "Shellcode": 0.01156879407248379,
+          "Worms": 0.0
+        },
+        "supported_class_losses_beyond_001": {}
+      },
+      "secondary_descriptive_comparison_to_support": {
+        "macro_f1_delta": 0.0009384013525726154,
+        "ex_rarest_macro_f1_delta": -0.0027530530175005063,
+        "per_class_f1_delta": {
+          "Analysis": 0.00033545790003358666,
+          "Backdoor": -0.004001477468603798,
+          "DoS": 0.005490365151356147,
+          "Exploits": -0.008999281301093842,
+          "Fuzzers": -0.0020736386759773184,
+          "Generic": -0.00012681122884405926,
+          "Normal": -0.002271029661041757,
+          "Reconnaissance": -0.0030546360590801847,
+          "Shellcode": -0.01007642581425272,
+          "Worms": 0.03416149068322982
+        },
+        "supported_class_losses_beyond_001": {
+          "Shellcode": -0.01007642581425272
+        }
+      },
+      "predeclared_cut_gate_passed": true,
+      "test_probability_schema_id_order_and_class_contract": true,
+      "test_predictions_exported": false,
+      "split_positions_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c"
+    }
+  ],
+  "root_publication_commit_before_scoring": "5db6216fa7a35b4f8232d2633894752e88263e01",
+  "protocol_sha256": "c3c879fd9a5fb0a6cd55cc38ff84555a6347943c61c727fd02fdabad0df3d227",
+  "analysis_source_sha256": "8005fb6c75d22092474e36c76bb1f59de22edcebe36d06b5f621e8850d1930c0",
+  "fixed_alpha": 0.5,
+  "alpha_candidates": 1,
+  "model_fits": 0,
+  "api_calls": 0,
+  "promotion": false,
+  "official_or_private_score_claim": false,
+  "failed_metrics_zero_imputed": false,
+  "scope": "One adaptive reused-public fixed-alpha complementarity component; full-agent qualification remains separate",
+  "frozen_files_verified_before": 50,
+  "frozen_files_sha256": {
+    "support-context-component-plan/splits/group-42.npz": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-42/split.npz": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-42/validation_probabilities.npz": "6c9e2457e8f0c077e623b4738c5a0c23259091f2d2313e6c9d998b67f49677e0",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-42/test_probabilities.npz": "beb1f3a07ac6900fa6fd47eb6aac3620141e70aab1004ebecf6a90e17ca48a9b",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-42/component-0/validation_probabilities.npz": "05a13382368d44b1a85712356d0c54d4390875e2f461a749d8147b7c9c5b0635",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-42/component-0/test_probabilities.npz": "daa7684b04a4bf0863618fffbc100f0fbb14fb9246a7e71a553addb94eaa0339",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-42/component-1/validation_probabilities.npz": "56c93d2e83392f2d8ee0a27859fe8b49fb8387dd516c605a15490146cf54f912",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-42/component-1/test_probabilities.npz": "086a60ab27caaea71bb8c2e0a9d6fc1ab4ef096c4d3680d19e800ec48a747950",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-42/job.json": "2028ea5f2df246fefd660c3d2f8f38d338b71ffae835f5258250bd6ef72aa8f3",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-42/result.json": "c32d2443ed84e68e82a0d61ef48d64acb3c2d6b060337668d969dc13c3bfdb58",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-42/split.npz": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-42/validation_probabilities.npz": "99a38184ba6cf3a19302e807ffb86eb84d64d15ac524df5141fef1cfc7b2cc7b",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-42/test_probabilities.npz": "03fda9380e79c13c5a73f7b9192b8358a6f1cf4999c3f2e5b912d0658c690c3e",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-42/component-0/validation_probabilities.npz": "19a7db0818c98e791e190e22449e1189538c1b786ae32647e5768b88f9c26163",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-42/component-0/test_probabilities.npz": "84271d76f4ce39b8d5a714ffc07a17e6d7799787ba6828cd63eb5da38d81cc32",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-42/component-1/validation_probabilities.npz": "3517406b55a04978f41e45da53fe246e16f6e668dbec32cfcffa7add291ee74b",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-42/component-1/test_probabilities.npz": "7ced76d2d14a830d286d657f262db253fdd864fe63e04951f6f229ac02bd1d99",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-42/job.json": "08718bce0e20bed9ada288a6dc68171874c3657958b2aa075f8db7d56ee55955",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-42/result.json": "dbe1ccbfd34016492aa029bdd090b00615f6c93a20b17830145b66733f04d67f",
+    "support-context-component-plan/splits/group-43.npz": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-43/split.npz": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-43/validation_probabilities.npz": "eb204fbd6462e5513a65d05dda70cdbd63e42749cc758aaf4070b969e7d1f33b",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-43/test_probabilities.npz": "97d583b51e3177ed2c742e511396e02ff5e5da5c3aef8d5be3bf666f64c6b20a",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-43/component-0/validation_probabilities.npz": "62fb6b7122e876b6337d52d0b1d95a112b4c12a77d52e6b64ad44a66fa5f85d8",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-43/component-0/test_probabilities.npz": "2347df1a0549d4f69368e27960f2a8d26af00c60b9cbcf887e1631ed8b27b6f4",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-43/component-1/validation_probabilities.npz": "242908faa87f66aa3eeffd34d58148926f912a3e963c7064628df1974f183bf7",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-43/component-1/test_probabilities.npz": "a6325784983655bf43b9966a0a845299df45e2f5b357b5c61163c7dcaf33a3fd",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-43/job.json": "f9db01b42d2e3341862bdeb7a759b43a80e58d9cd6eadbb0e6bfffe7ea51c6d5",
+    "alfa-hack-automl/test-runs/sc1/b/control_historical/seed-43/result.json": "fbf77a7bb86f774c5241001c9723bd0e3f27d777c71eba5c054a27a7e484098b",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-43/split.npz": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-43/validation_probabilities.npz": "0fd63fa2f3385f4857738fd116ab9c09ef0eb4d8eb3442ec105c099d4a46ee38",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-43/test_probabilities.npz": "2224eb09cafa0ef2372bb286b25e6da5425feed8472e1a5d6c12739ee26b582c",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-43/component-0/validation_probabilities.npz": "bd6366c97f12d980bca2868d85efdaefaf408d055638a578ee353ea02341c42e",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-43/component-0/test_probabilities.npz": "245370a5ac7965c9a9c363d6614cdf85ad17277467d911a76053fff2b40d67a1",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-43/component-1/validation_probabilities.npz": "f0657e9f0ebd046864edb24185219a347e3feea4024c471dd0119d3983124e35",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-43/component-1/test_probabilities.npz": "a8468c9381199cccd68507ac24ed77a876370765efbcf5f2aea6486c933e4d67",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-43/job.json": "0dfb755d9188af0cadf7509bcb8a024bf564befcc70a59800a5e977da3305f90",
+    "alfa-hack-automl/test-runs/sc1/b/support-proposal/seed-43/result.json": "db4c216e9b0de3190bcd9ba6454876fbd6c7dbb09dfd14ca7cf4abf4c19205fb",
+    "support-context-component-plan/protocol.json": "539ab85769b2ea5a2bc12a12b95152ef0e3521a84578915f47284e9a1dd6bcbf",
+    "support-context-component-plan/candidates.json": "1c49307823c99856567743d3a3a78afe69c0b9d41297f51c4e332b88ce9d5ad7",
+    "support-context-component-plan/evaluator-source.zip": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0",
+    "support-component-launch/manifest.json": "97233bd7e32b72c7d19ed0e8c1d2e100708ff30f5c06a8b84bba6d38e849bb86",
+    "support-component-independent-sc1.json": "e306f99b60f8365846e7ced27738ec938eed9dcef75c243b1fbe9476ec39ac17",
+    "alfa-hack-automl/test-runs/sc1/coordinator.json": "b62de645df1819b3b14934a84dc9e4dc76d2bd55ab029c24215aaa920d4fa60e",
+    "alfa-hack-automl/test-runs/sc1/b/results.json": "24fd9dab57aaddf8903810b6444b323ec130fc1614a3a6bd6a22393290653d04",
+    "alfa-hack-automl/release/v16-mean1/public-full.json": "c559648cc94ebfa2ddbdde2e9fac1c6744ac85e223ae67843f727362a82243ce",
+    "evaluation/multiclass/train.csv": "171a8915070b7575b729a32f70a45d1ad7b6f43c65b4ce12a0a68af30d5cb4e0",
+    "evaluation/multiclass/test.csv": "b825449603931b5f05a8855e3d92b57775221c93ed4730ac6b4c75b9ea608862",
+    "evaluation/multiclass/sample_submission.csv": "4d23642fcff01e49b0ef5a9f018b2381c12fad97282fa586285ad49b01e9623e",
+    "evaluation/multiclass/data_dictionary.csv": "13d2651c5fe02b7fc30f0e7290af45606aad5de76c2f7b69217abc270dbbcef4"
+  },
+  "frozen_submission_schema": [
+    "id",
+    "attack_cat"
+  ],
+  "frozen_files_verified_after": 50,
+  "fixed_alpha_candidates_evaluated": 1,
+  "blend_arrays_computed": 4,
+  "all_parent_source_input_probability_bytes_unchanged": true,
+  "both_cut_component_gate_passed": true,
+  "source_archive_sha256": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0",
+  "full_agent_requirement": "Any later operational four-model probability mixture requires a separately frozen recipe, Windows path/resource audit, full-agent selection/confirmation/refit/export and exact release verification; this saved-probability screen cannot promote it.",
+  "elapsed_seconds": 1.0470000002533197
+}

@@ -1,0 +1,17 @@
+Fixed 50/50 probability blend: component result, 23 October 2026
+Protocol committed before blend metrics: 5db6216fa7a35b4f8232d2633894752e88263e01
+Exactly one alpha evaluated (.5); no new model fits or Qwen calls.
+Each parent is a fixed two-view LightGBM recipe. Parent num_leaves=63 vs98; effective four leaf weights=.25 each.
+Control mean MacroF1=.6547938868310776; blend=.6570719835846492.
+Cut42 control=.6558634659956402, blend=.6580243777951491; delta=+.0021609117995089466.
+Cut43 control=.653724307666515, blend=.6561195893741495; delta=+.002395281707634478.
+Ex-Worms gain cut42=+.0003463268453528512; cut43=+.0026614241195938027; all validation rows retained.
+Worst supported class delta: DoS -.004574458784280366 /-.005627910327986985, within the predeclared -.01 bound.
+Both predeclared component gates PASS.50 frozen hashes and24 probability artifacts checked independently twice.
+Validation row_position/class order, pristine labels, disjoint fitting/validation feature groups, probability mixtures and parent CSVs verified.
+Test NPZ has no row_position; test order evidence is frozen worker source plus parent CSV IDs and NPZ argmax parity.
+One root verifier attempt assumed test row_position and failed before completing audit; schema-specific correction passed, candidate bytes unchanged.
+This is adaptive exploration on reused-public component cuts. A single Qwen context pair does not establish support-context superiority.
+The stronger FULL-AGENT V11/V16 mean=.6593178433614652 is a different comparator. No complete-agent improvement, default promotion or official score is claimed.
+Next required: grouped selection CV, complete-agent comparison on both tasks with final refit/CSV/integrity, source and exact-unpacked gates.
+Active true-four-stage public MVP continues sequentially. No extra training was launched during it.

@@ -1,0 +1,35 @@
+{
+  "status": "independent_root_nofit_recomputation_pass",
+  "protocol_sha256": "c3c879fd9a5fb0a6cd55cc38ff84555a6347943c61c727fd02fdabad0df3d227",
+  "agent_receipt_sha256": "e4502fbf02228f78409749b38bda07ccfdf930f705f586324009719042b2767d",
+  "source_sha256": "3f3e77fa263bc0ae5c913b3e084bdb436e618d6374b0f670efc0ea7e3fb4d9d9",
+  "frozen_hashes_before_and_after": 50,
+  "probability_artifacts_checked": 24,
+  "fixed_alpha": 0.5,
+  "cuts": [
+    {
+      "cut": 42,
+      "control_macro_f1": 0.6558634659956402,
+      "blend_macro_f1": 0.6580243777951491,
+      "delta": 0.002160911799508833,
+      "ex_rarest_delta": 0.0003463268453528512,
+      "worst_supported_delta": -0.004574458784280366,
+      "gate_passed": true
+    },
+    {
+      "cut": 43,
+      "control_macro_f1": 0.653724307666515,
+      "blend_macro_f1": 0.6561195893741495,
+      "delta": 0.002395281707634428,
+      "ex_rarest_delta": 0.0026614241195938027,
+      "worst_supported_delta": -0.005627910327986985,
+      "gate_passed": true
+    }
+  ],
+  "fits": 0,
+  "api_calls": 0,
+  "elapsed_seconds": 0.9380000000819564,
+  "promotion": false,
+  "test_order_evidence": "Test NPZ has no row_position; frozen worker source plus parent CSV IDs equal pristine test order and CSV labels equal NPZ argmax",
+  "scope": "Reused-public component arithmetic only, not full-agent/official improvement"
+}

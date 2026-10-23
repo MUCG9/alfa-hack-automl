@@ -1,0 +1,1 @@
+{"ML_ready": false, "api_calls": 0, "automation": "native_same_thread_5_minutes", "children_started": 0, "cleanup_confirmed": true, "model_fits": 0, "phase_cpu_affinity_count": 2, "platform": "Linux", "publication_ready": false, "schema": 1, "source_only": true, "technical_native_preparation_pass": true, "whole_campaign_cpu_seconds": null, "whole_campaign_rss_mib": null}

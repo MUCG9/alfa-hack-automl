@@ -1,0 +1,390 @@
+{
+  "status": "independently_verified_terminal_task_of_active_campaign",
+  "utc": "2026-10-23T14:19:05.737570+00:00",
+  "tasks": {
+    "regression": {
+      "kind": "regression",
+      "status": "verified_saved_artifacts",
+      "procedure_passed": true,
+      "errors": [],
+      "cuts": {
+        "primary": {
+          "phase": "primary",
+          "metric": "rmse",
+          "value": 38.596141773061916,
+          "fitting_rows": 35000,
+          "validation_rows": 18308,
+          "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+          "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+          "prediction_sha256": "dab0c0dd4dd623c20f07921af02ebd5e9adea08e5d86fa71e6413cf4f68f5a20",
+          "mixture_children": 0,
+          "forward_chronology_verified": true,
+          "validation_periods": [
+            5.0
+          ]
+        },
+        "confirmation": {
+          "phase": "confirmation",
+          "metric": "rmse",
+          "value": 31.826014420739067,
+          "fitting_rows": 22054,
+          "validation_rows": 12946,
+          "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+          "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+          "prediction_sha256": "c51805e3f1c56399ef24be5cbcf497e7c8c91e8e173734823ecf6cfa0eb9c3b4",
+          "mixture_children": 0,
+          "forward_chronology_verified": true,
+          "validation_periods": [
+            4.0
+          ]
+        }
+      },
+      "selected_cut_mean": 35.21107809690049,
+      "mean_definition": "Arithmetic mean of independently verified selected primary and selected confirmation; never proof.metrics/best_validation treated as a mean",
+      "baseline_comparisons": {
+        "v16-mean1": {
+          "baseline_report_sha256": "a431c5de3f02ae362ffb8d083f9b075af9c8020d52c0adafa72c24d575bee309",
+          "cuts": [
+            {
+              "phase": "primary",
+              "current": 38.596141773061916,
+              "preserved_control": 38.902803731334785,
+              "delta_current_minus_control": -0.30666195827286913,
+              "primary_improves": true
+            },
+            {
+              "phase": "confirmation",
+              "current": 31.826014420739067,
+              "preserved_control": 31.991659384340597,
+              "delta_current_minus_control": -0.16564496360152958,
+              "primary_improves": true
+            }
+          ],
+          "cut_comparable_by_preserved_protocol_and_matching_training_row_hashes": true,
+          "historical_confirmation_training_rows_rechecked": true,
+          "historical_confirmation_component_training_hash_matches": [
+            true,
+            true
+          ],
+          "actual_selected_two_cut_mean": 35.21107809690049,
+          "preserved_selected_two_cut_mean": 35.44723155783769,
+          "mean_delta_current_minus_control": -0.2361534609371958,
+          "each_cut_primary_gate_passed": true,
+          "class_each_cut_gate_passed": true,
+          "fresh_control_refit": false,
+          "historical_control_raw_predictions_recomputed": false,
+          "historical_confirmation_raw_partition_rechecked": false,
+          "scope": "Saved qualified full-procedure V11/V16 control; primary partition fingerprint matches, confirmation follows preserved two-cut protocol. Not a prospective matched rerun."
+        }
+      },
+      "protected_control_measurements": {
+        "primary": {
+          "phase": "primary",
+          "metric": "rmse",
+          "value": 38.902803731334785,
+          "fitting_rows": 35000,
+          "validation_rows": 18308,
+          "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+          "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+          "prediction_sha256": "7715ac9ab576c17d8b01db7d80cb2485d2564d75ac18838de9c53fa15131c4c9",
+          "mixture_children": 2,
+          "forward_chronology_verified": true,
+          "validation_periods": [
+            5.0
+          ]
+        },
+        "confirmation": {
+          "phase": "confirmation",
+          "metric": "rmse",
+          "value": 31.991659384340597,
+          "fitting_rows": 22054,
+          "validation_rows": 12946,
+          "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+          "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+          "prediction_sha256": "ec2bb1b95a5e70fad605deffcf69c2f8077261d7809243debe7b0b99be1b4c3a",
+          "mixture_children": 2,
+          "forward_chronology_verified": true,
+          "validation_periods": [
+            4.0
+          ]
+        }
+      },
+      "protected_control_recipe_sha256": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b",
+      "matched_control_comparison": {
+        "cuts": [
+          {
+            "phase": "primary",
+            "current": 38.596141773061916,
+            "protected_control": 38.902803731334785,
+            "delta_current_minus_control": -0.30666195827286913,
+            "primary_improves": true
+          },
+          {
+            "phase": "confirmation",
+            "current": 31.826014420739067,
+            "protected_control": 31.991659384340597,
+            "delta_current_minus_control": -0.16564496360152958,
+            "primary_improves": true
+          }
+        ],
+        "each_cut_primary_gate_passed": true,
+        "class_each_cut_gate_passed": true,
+        "matched_saved_primary_and_confirmation_independently_recomputed": true,
+        "fresh_protected_control_full_refit": false,
+        "scope": "Exact preserved control recipe rerun on the same two fitting/validation partitions; final refit audited only for the selected procedure"
+      },
+      "successful_model_families": [
+        "catboost",
+        "lightgbm",
+        "xgboost"
+      ],
+      "actual_teacher_receipts": [
+        {
+          "stage": "experiment-02",
+          "input_columns": 183,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 15,
+          "selector_seconds": 3.125,
+          "successful_leaf": true,
+          "in_successful_exploratory_candidate": true
+        },
+        {
+          "stage": "experiment-02",
+          "input_columns": 183,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 12,
+          "selector_seconds": 3.672,
+          "successful_leaf": true,
+          "in_successful_exploratory_candidate": true
+        }
+      ],
+      "hpo_trials": [
+        {
+          "number": 0,
+          "phase": "anchor",
+          "status": "verified_ok",
+          "value": 31.846185166957753
+        },
+        {
+          "number": 1,
+          "phase": "startup",
+          "status": "verified_ok",
+          "value": 32.322531919174686
+        },
+        {
+          "number": 2,
+          "phase": "startup",
+          "status": "verified_ok",
+          "value": 32.41458412427035
+        },
+        {
+          "number": 3,
+          "phase": "guided",
+          "status": "verified_ok",
+          "value": 32.86489033726869
+        },
+        {
+          "number": 4,
+          "phase": "guided",
+          "status": "verified_ok",
+          "value": 31.89183129455147
+        },
+        {
+          "number": 5,
+          "phase": "guided",
+          "status": "verified_ok",
+          "value": 32.606159723662
+        },
+        {
+          "number": 6,
+          "phase": "guided",
+          "status": "verified_ok",
+          "value": 31.95530064618428
+        },
+        {
+          "number": 7,
+          "phase": "guided",
+          "status": "verified_ok",
+          "value": 31.826014420739067
+        }
+      ],
+      "hpo_completed": 8,
+      "hpo_guided_successful": 5,
+      "job_sha256": {
+        "confirmation-0/job.json": "5be48008a6ead375b0eaf00d992d45de2ef0c2516500c9b8a769fcb8375876a5",
+        "confirmation-1/job.json": "ef8b9e8428355d8c5884358723b5b5c4cd822db9f175f1ab5fa598b4f3702243",
+        "confirmation-2/job.json": "bc819e51cc48eb33af0bbd61f375fb5ff1ae43d62980c36923fa20e5d31bc309",
+        "experiment-00/job.json": "2051228e5aacc1f486c738a95e4ccadf26aabf48920b95aaba692d642c27865d",
+        "experiment-01/job.json": "17fea594218eaa1dd74315944adf0f6574f16002ee7d468b3b8a9b0783b111a6",
+        "experiment-02/job.json": "f6565c3d53cfb50e519e106354fe83708d887b3249804b0c956bd2a8091c2532",
+        "experiment-03/job.json": "0eadfe9e6abd2eacdc8c8c00f6e06ee32058d8f2426ac2946fc06b29cd43b780",
+        "experiment-04/job.json": "0dd7b14e02df2e9643e3461e8a1fa8b63e1bcaed6e81b699beb1a2c6bb8139b3",
+        "experiment-05/job.json": "eda0fa4516ea4fa5b3885053157e376a5fdf36bd306361fcda91f39537beb7ea",
+        "experiment-06/job.json": "fd97d4a96bd48cdcbc016c3dae9221debde42f813fbc9e012969b3504d157042",
+        "experiment-07/job.json": "89fafedddc6702a71d22d3336aca322d981711523deae8a9b39099cabbc067f3",
+        "experiment-08/job.json": "4c4e28dd9677b9ad07a7ff3d41e25a8485665dffeb1b75557ec700c14dc7e082",
+        "final-fit/job.json": "893bc6c6f6b32e1c823600abd856d201b7b9df9f97c0cad6f9bd6cda73ed9ebb",
+        "inner-hpo/trial-00/job.json": "1a9f261a6e0292609f294c0d8965123a465857703b00ea98380d922b49e25e6e",
+        "inner-hpo/trial-01/job.json": "1631ca78bdba1bd37474cfd32e16bd8670ea21af29e7b11bb5a15c1fc3f85ada",
+        "inner-hpo/trial-02/job.json": "5ae5a08541bde95c74658cc6699540b293e893ce718c0d39f7710ee46996e8c7",
+        "inner-hpo/trial-03/job.json": "0cdce036bcf6053c6a744b0f588183d85c3ced8d2f051326221b4fa410e59684",
+        "inner-hpo/trial-04/job.json": "559bab0526b33672172b9fcc432c939a13048dd08d032f8ae3c36eb8e7cd3a38",
+        "inner-hpo/trial-05/job.json": "d1e15227ce670b2c4bd8e087e6192eeb483c5b0f7153d5f1219f3463aaf605fe",
+        "inner-hpo/trial-06/job.json": "6b2f47239267137915f55da3df146fd011e7ed60d83da3871f4f1c0306becb51",
+        "inner-hpo/trial-07/job.json": "e3d388c22fe31effa82be03ecaba60d21f9ab32d0e53d4359b85745bd0566405"
+      },
+      "actual_artifact_sha256": {
+        "confirmation_split.json": "f6260ad85855f172cd45b53e0382311aff98df7f8d1312e7c212208ab0ee41bf",
+        "confirmation_split.npz": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+        "fallback_submission.csv": "7b96061cff644bfd2e03894a130b624f25500890822cb8a5bf051c3bc8346be4",
+        "initial-data-assessment.json": "1f607ed77e7b4707738f300f78f21c6cad55c1b486e73860315311d6519ceb94",
+        "planner-2.json": "5299ec6e288c196a03da985d0d2e6172845a3701c0a08ee239051c3f728ee927",
+        "profile.json": "4b1e6f715fc0839d1aec7e56dc072436614b90d16202c480f4b010ec26db5470",
+        "progress.json": "27bd136eada9d19cdd01385e27d120e097eb76374757c63aaec4c9802cefa70d",
+        "provenance.json": "06b968574eb4e4b80c06cbbbde02868b6ae9ce15e3f4de36f0aba55d303fd08f",
+        "report.json": "a6fc1214e449ead3eb3d42d2dda0dcf8fb384b27689290a89b79353cdf38c442",
+        "split.json": "0e328caf8c99565f8cc177ff6e171f49830448842ab286073e41b43b73cd06c5",
+        "split.npz": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+        "task_spec.json": "54f54416d24568bce2a7a4f29d806354e686c2e2fbadbf844c22a5ce43c07bd8",
+        "confirmation-0/job.json": "5be48008a6ead375b0eaf00d992d45de2ef0c2516500c9b8a769fcb8375876a5",
+        "confirmation-0/result.json": "cbaae0ba97f57fc2dc02d1a5bcc7b3e79464413b287da688e5b67a24ad20bfb7",
+        "confirmation-0/submission.csv": "8f0b8168d6f1d776fb420c02c3cc34a20f131ea4388aac0e912759c2db85dc2d",
+        "confirmation-0/validation_predictions.csv": "ec2bb1b95a5e70fad605deffcf69c2f8077261d7809243debe7b0b99be1b4c3a",
+        "confirmation-1/job.json": "ef8b9e8428355d8c5884358723b5b5c4cd822db9f175f1ab5fa598b4f3702243",
+        "confirmation-1/result.json": "1abc3e8ee13ad6fd31f2a952b7a4d07a67d439181edbe49582341c83da54b045",
+        "confirmation-1/submission.csv": "b09c042bcf1967de94cf730f83e4b3f2096b45af8d18e8b9ed7fc8b0f230bcdb",
+        "confirmation-1/validation_predictions.csv": "c51805e3f1c56399ef24be5cbcf497e7c8c91e8e173734823ecf6cfa0eb9c3b4",
+        "confirmation-2/job.json": "bc819e51cc48eb33af0bbd61f375fb5ff1ae43d62980c36923fa20e5d31bc309",
+        "confirmation-2/result.json": "53f3717989664e89732794809abfc33452e8a0af9e8aeb6ec5ffb07f201b36e8",
+        "confirmation-2/submission.csv": "3876ec4fc68f6051c16ad2e5c38365f4160ebc6789f3dee757aba469a7fe9958",
+        "confirmation-2/validation_predictions.csv": "25d274cadb6d5c86122fe4302a4c9d4525566421aec9e5fd01872cab5a8a9111",
+        "experiment-00/job.json": "2051228e5aacc1f486c738a95e4ccadf26aabf48920b95aaba692d642c27865d",
+        "experiment-00/result.json": "eae1f01d5902bde0692eb61cbe454995f824b78cd2836050073de0133e605910",
+        "experiment-00/submission.csv": "1ed4cfaabc9ab26e80d31bd49268890b27900407d1eb7e6480df4651d1bd7bc5",
+        "experiment-00/validation_predictions.csv": "7715ac9ab576c17d8b01db7d80cb2485d2564d75ac18838de9c53fa15131c4c9",
+        "experiment-01/job.json": "17fea594218eaa1dd74315944adf0f6574f16002ee7d468b3b8a9b0783b111a6",
+        "experiment-01/result.json": "5b71c1beb7298515ee9f3dadfa8d04cb2075458a45e48f14ede0e4b5276a81ca",
+        "experiment-01/submission.csv": "874067716804031fa18f47bd4e98280d0efa174d81e0807319052c4f4c63b3ca",
+        "experiment-01/validation_predictions.csv": "e78d320cdb7b77f66900713642ea745ec537d4292a004aced3133eb6e6deb0e7",
+        "experiment-02/job.json": "f6565c3d53cfb50e519e106354fe83708d887b3249804b0c956bd2a8091c2532",
+        "experiment-02/result.json": "160c370d2d9a3eea58350ca78bf782806157012525708ece1b543de2511f5706",
+        "experiment-02/submission.csv": "784f2d75c645a657b2b3ec0c3364faedf451d0fe316a5a7397b92a3f5889e5bd",
+        "experiment-02/validation_predictions.csv": "3cec5baf8e476cb932aa5efca333eeaa2ea94f43e0131558c7d0ddef7cd6b343",
+        "experiment-03/job.json": "0eadfe9e6abd2eacdc8c8c00f6e06ee32058d8f2426ac2946fc06b29cd43b780",
+        "experiment-03/result.json": "b8e4612c144fb8be56569bcce4bd1a9854ee798943b90d2c2dcf22314a5dbf20",
+        "experiment-03/submission.csv": "24d726ec362cb90433f4fe4dde06d85c4d2b631ca2fb37fea40468557a4b7b7a",
+        "experiment-03/validation_predictions.csv": "d408708e3cc97ecb486a248b7b5d9a137a28817a5af55da3f49c249a747994ed",
+        "experiment-04/job.json": "0dd7b14e02df2e9643e3461e8a1fa8b63e1bcaed6e81b699beb1a2c6bb8139b3",
+        "experiment-04/result.json": "1cf465737f13fce7f373041740d3ac3919a8a083bbb8faf1c2a5003a9e698fb0",
+        "experiment-04/submission.csv": "777a2bf8227019c331f2648f9c1da1a6047a7d42623b4fa6c91673f4b36c79b8",
+        "experiment-04/validation_predictions.csv": "3c95f749b63f52035ce4c7c64771e9494979e27ca95e459fdc030b38ca4c3d47",
+        "experiment-05/job.json": "eda0fa4516ea4fa5b3885053157e376a5fdf36bd306361fcda91f39537beb7ea",
+        "experiment-05/result.json": "1446c8de21373ec0290e76a7ba8e19846a7c61a141fffd77de1dba9ec224942a",
+        "experiment-05/submission.csv": "e6c927a8d3501b19aff59ea5ef30057696c332975c8c3ef850dce0f2a75e7a02",
+        "experiment-05/validation_predictions.csv": "999d98df3f5bbab8b88c963920168a74a0e4ca22ebac94dbd4a18843bca93c37",
+        "experiment-06/job.json": "fd97d4a96bd48cdcbc016c3dae9221debde42f813fbc9e012969b3504d157042",
+        "experiment-06/result.json": "2be17bb5524315a5cc4530e8a2422a5321313e829fedb1fc18085672ac31f7ee",
+        "experiment-06/submission.csv": "f3bf84f734d4b630ae88c8d34bf612f572f20406cbd98639d3300d98f26ccf7d",
+        "experiment-06/validation_predictions.csv": "3aa8d69792a88ef879e8d4109284c583871c6bf52a4c73962445f4eb158fb539",
+        "experiment-07/job.json": "89fafedddc6702a71d22d3336aca322d981711523deae8a9b39099cabbc067f3",
+        "experiment-07/result.json": "89d431d7f83ea5a84cec2abf668e38b05c27b81b119b46d7e1d9b3ad9c9f7138",
+        "experiment-07/submission.csv": "43dbaf122b66294160dc8875f21221dba17fbe5778671a89c3a960c11f7e08a9",
+        "experiment-07/validation_predictions.csv": "dab0c0dd4dd623c20f07921af02ebd5e9adea08e5d86fa71e6413cf4f68f5a20",
+        "experiment-08/job.json": "4c4e28dd9677b9ad07a7ff3d41e25a8485665dffeb1b75557ec700c14dc7e082",
+        "experiment-08/result.json": "ae4093d064c93b24dc867daef2fe9e3eda1cee0d4b684efcf81f21267d0959bf",
+        "experiment-08/submission.csv": "a2637ffc3256973c98fb758b222e171212d03391bb1ba1d5f4eccfe598a3d5bb",
+        "experiment-08/validation_predictions.csv": "bb05e04a9fcae4ecacfc87597c128d7122154f39193c643a28e056902e026915",
+        "final-fit/job.json": "893bc6c6f6b32e1c823600abd856d201b7b9df9f97c0cad6f9bd6cda73ed9ebb",
+        "final-fit/result.json": "93b9b0bfb9414c2f5f2a41beb908f892d1d6d52d8010b4bd26be3e391b4d945b",
+        "final-fit/submission.csv": "a36238ac78edf76fbab1fa11df2836c210497ab3d8d700bbac62f5d2b6d0439a",
+        "inner-hpo/hpo.json": "b6bf2335e4795170c05972c7b75afbbc2d340aff1683f0971f4a35da6e01aaed",
+        "inner-hpo/split.npz": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+        "confirmation-0/component-0/result.json": "fba139479e51c207cf293aa71b700236906db13cad52eea5e379ee8a3096b6a2",
+        "confirmation-0/component-0/submission.csv": "58c06a83a4e16237a3053b06383713ef2b6965f4ec393f5641a2dc8e7d6abf78",
+        "confirmation-0/component-0/validation_predictions.csv": "e58ca631611681fd6219d64696d7c455c968aadbe27303df131cba2313095ecd",
+        "confirmation-0/component-1/result.json": "c50dbb7c0d0516e14feb94cc615a168590b9441cdf1a19e0eb45641091b7e66d",
+        "confirmation-0/component-1/submission.csv": "890f50a848196aa46342867c8b74fee3ee65039b08801d7e65308c3dbdc8045d",
+        "confirmation-0/component-1/validation_predictions.csv": "af33070cc8d16241bd4f0c0d1496982305c4fbbfd1ea93832f4f27d6de248472",
+        "experiment-00/component-0/result.json": "c1c282ac39a1367a96786769c4de18d1e2d9a4f338cd912b4b242b5c658f1a0d",
+        "experiment-00/component-0/submission.csv": "874067716804031fa18f47bd4e98280d0efa174d81e0807319052c4f4c63b3ca",
+        "experiment-00/component-0/validation_predictions.csv": "e78d320cdb7b77f66900713642ea745ec537d4292a004aced3133eb6e6deb0e7",
+        "experiment-00/component-1/result.json": "476313fc1da9a1a3bb810065918f426063184e288712269d366f5b336772ddee",
+        "experiment-00/component-1/submission.csv": "24d726ec362cb90433f4fe4dde06d85c4d2b631ca2fb37fea40468557a4b7b7a",
+        "experiment-00/component-1/validation_predictions.csv": "d408708e3cc97ecb486a248b7b5d9a137a28817a5af55da3f49c249a747994ed",
+        "inner-hpo/trial-00/job.json": "1a9f261a6e0292609f294c0d8965123a465857703b00ea98380d922b49e25e6e",
+        "inner-hpo/trial-00/result.json": "a7cc8fc941a907460786972751e438dd8460c62477c874c4b2812d619384f06a",
+        "inner-hpo/trial-00/submission.csv": "58c06a83a4e16237a3053b06383713ef2b6965f4ec393f5641a2dc8e7d6abf78",
+        "inner-hpo/trial-00/validation_predictions.csv": "e58ca631611681fd6219d64696d7c455c968aadbe27303df131cba2313095ecd",
+        "inner-hpo/trial-01/job.json": "1631ca78bdba1bd37474cfd32e16bd8670ea21af29e7b11bb5a15c1fc3f85ada",
+        "inner-hpo/trial-01/result.json": "3eebd08609f1dede4a64f7ea03713ab71d9d667a5a636ab37ce62a9a72811026",
+        "inner-hpo/trial-01/submission.csv": "7fbed11c037878dfab646f77d4afe691abaccde4c4b06b4eed450da7a9bfe5c9",
+        "inner-hpo/trial-01/validation_predictions.csv": "eb97f55117eb6a756f6babbc876fbfea2d5e37e7aad20f1c1e33717d78b104be",
+        "inner-hpo/trial-02/job.json": "5ae5a08541bde95c74658cc6699540b293e893ce718c0d39f7710ee46996e8c7",
+        "inner-hpo/trial-02/result.json": "d675e906eeea91b9c0ff5f5f20a2ea91636207bed15ae424828c3c808743bd7c",
+        "inner-hpo/trial-02/submission.csv": "d361262b253f042769c515ccae14c6850d4845f5f56d2762e334198b229937d4",
+        "inner-hpo/trial-02/validation_predictions.csv": "d5e2b9fe4c0c1343cc537851b90a839621ac4232c47bf6c2e914b9f0e954e33b",
+        "inner-hpo/trial-03/job.json": "0cdce036bcf6053c6a744b0f588183d85c3ced8d2f051326221b4fa410e59684",
+        "inner-hpo/trial-03/result.json": "20533fab72d7fb30b45b5a829b39fc99757786da389568b6b643f2095052a5ac",
+        "inner-hpo/trial-03/submission.csv": "df1587364da9a7e6b0cb6306d309e212526395ba34346abea66eddc44e6ef6b0",
+        "inner-hpo/trial-03/validation_predictions.csv": "7401f0001083aa32af362936c6584088d3e5f8da01cec2a1a6dc0d88eb75f710",
+        "inner-hpo/trial-04/job.json": "559bab0526b33672172b9fcc432c939a13048dd08d032f8ae3c36eb8e7cd3a38",
+        "inner-hpo/trial-04/result.json": "e494fccf20037e09b248345faf443f953efb709bbe55f465388689ba5b31523a",
+        "inner-hpo/trial-04/submission.csv": "a2e83905e4db2e62f717f75d676aa713e0c48b9331fa7ec956753cd815f2ec03",
+        "inner-hpo/trial-04/validation_predictions.csv": "528a7175f3079863dd8bc6319f3fa451a664ec99832a78a380d3e3e45126dc86",
+        "inner-hpo/trial-05/job.json": "d1e15227ce670b2c4bd8e087e6192eeb483c5b0f7153d5f1219f3463aaf605fe",
+        "inner-hpo/trial-05/result.json": "a9cd928f2c9959fefb4030aa4fadfff8f249b7dc94886612bfdda65088723f51",
+        "inner-hpo/trial-05/submission.csv": "2d3725cb03b1a7fd02ecc7e7f4a79b5bd54af1ccced296c753b1cffaf8ab83a8",
+        "inner-hpo/trial-05/validation_predictions.csv": "03c8f54a03e76b56defc0be5d3cab8875bcf336bee4d93491d8d1be925a79a6b",
+        "inner-hpo/trial-06/job.json": "6b2f47239267137915f55da3df146fd011e7ed60d83da3871f4f1c0306becb51",
+        "inner-hpo/trial-06/result.json": "ad31d218032deb589e57a7e150326f3cbf7e7c604ce5f08549e0093595db0433",
+        "inner-hpo/trial-06/submission.csv": "59324a1cc96dac477564a1b1ac7d3b877c21c90029de38ca16badc084671c139",
+        "inner-hpo/trial-06/validation_predictions.csv": "7cfdaf63fa6eebd236b9ac8be70f35996fddf969b92405f3213929472581a664",
+        "inner-hpo/trial-07/job.json": "e3d388c22fe31effa82be03ecaba60d21f9ab32d0e53d4359b85745bd0566405",
+        "inner-hpo/trial-07/result.json": "943cde53ac522dd80ba76e5fede64ff8cb74362ae60f3d9b91f66895b8da6839",
+        "inner-hpo/trial-07/submission.csv": "b09c042bcf1967de94cf730f83e4b3f2096b45af8d18e8b9ed7fc8b0f230bcdb",
+        "inner-hpo/trial-07/validation_predictions.csv": "c51805e3f1c56399ef24be5cbcf497e7c8c91e8e173734823ecf6cfa0eb9c3b4"
+      },
+      "stage_hashes": {
+        "report": "a6fc1214e449ead3eb3d42d2dda0dcf8fb384b27689290a89b79353cdf38c442",
+        "initial_assessment": "1f607ed77e7b4707738f300f78f21c6cad55c1b486e73860315311d6519ceb94",
+        "supervisor": "06d3f9ab2c91838d7c729b18a8d54e6c47637fa5776940bb888a35ccfb27b0eb",
+        "hpo": "b6bf2335e4795170c05972c7b75afbbc2d340aff1683f0971f4a35da6e01aaed",
+        "api_ledger": "f1ca12d691ca93bed4d0ad8c8e15f61ebc360759484b2643dbd16189828d28e7"
+      },
+      "api": {
+        "independently_read_closed_ledger": true,
+        "gateway_calls": 2,
+        "http_attempts_reported": 2,
+        "prompt_tokens_reported": 18574,
+        "completion_tokens_reported": 1741,
+        "usage_complete": true
+      },
+      "promotion": false
+    }
+  },
+  "manifest_sha256": "4b987c652864179465dc754e90e3d1c8c9ed7c0a2144db5c3339e4c8a607d07e",
+  "campaign_sha256": "28910ac71aed67b8255cd76d2eb9fda2200907cda39dc55333ba3172f3f40848",
+  "runtime_archive_sha256": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0",
+  "pristine_input_source_hashes_verified": true,
+  "actual_common_deadline_satisfied": null,
+  "actual_elapsed_common_seconds": null,
+  "artifact_procedure_checks_passed": true,
+  "audit_within_original_common_clock": true,
+  "campaign_terminal_confirmed": false,
+  "parent_exec_terminal_qualification_required": true,
+  "campaign_still_active_at_task_only_verification": true,
+  "new_model_fits": 0,
+  "api_calls": 0,
+  "tests_run": 0,
+  "canonical_runtime_results_changed": false,
+  "official_score": null,
+  "official_score_estimated": false,
+  "failed_metrics_zero_imputed": false,
+  "promotion": false,
+  "scope": "New prospective saved-artifact audit on reused public cuts; independent quality gates are separate from stage completion and API completeness",
+  "historical_baseline_limit": "V11/V16 preserved report metrics/confusion matrices are saved-control evidence. Raw historical confirmation predictions are not independently reverified."
+}

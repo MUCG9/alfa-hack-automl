@@ -5,9 +5,12 @@ import json
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
+from importlib.metadata import PackageNotFoundError
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src'));sys.path.insert(0,str(ROOT/'tools'))
 from research_execution_cache import ExecutionCache,cache_key
+from replay_execution_cache import library_identity
 
 
 def context():
@@ -17,6 +20,12 @@ def context():
 
 
 class CacheTests(unittest.TestCase):
+    def test_importable_library_without_distribution_metadata_has_hashed_fallback(self):
+        with patch('replay_execution_cache.importlib.metadata.version',side_effect=PackageNotFoundError):
+            identity=library_identity('json')
+        self.assertIsNone(identity['distribution_version'])
+        self.assertEqual(len(identity['module_file_sha256']),64)
+
     def test_every_fitting_context_change_misses_but_descriptive_hypothesis_does_not(self):
         base=context();key=cache_key(base)
         for field in base:

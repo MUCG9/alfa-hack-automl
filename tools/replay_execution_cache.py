@@ -25,8 +25,17 @@ from research_execution_cache import ExecutionCache
 from verify_marginal_hpo import load
 
 
-def run(output,plan_path):
-    start=time.monotonic();deadline=start+2160
+def library_identity(name):
+    try:return {'distribution_version':importlib.metadata.version(name)}
+    except importlib.metadata.PackageNotFoundError:
+        module=importlib.import_module('sklearn' if name=='scikit-learn' else name)
+        return {'distribution_version':None,'module_version':getattr(module,'__version__',None),
+                'module_file_sha256':digest(module.__file__),'fallback':'importable module without distribution metadata'}
+
+
+def run(output,plan_path,deadline_epoch=None):
+    start=time.monotonic();deadline=start+min(2160,deadline_epoch-time.time() if deadline_epoch is not None else 2160)
+    if deadline-start<65:raise ValueError('Original replay deadline exhausted')
     plan=json.loads(plan_path.read_text())
     if not json.loads((plan_path.parent/'scientific-audit.json').read_text()).get('accepted'):raise ValueError('Scientific audit missing')
     old=json.loads(HPO.read_text());files=build_files();closure=worker_closure(files)
@@ -57,7 +66,8 @@ def run(output,plan_path):
             'command':args[0],'started_after_seconds':round(time.monotonic()-start,3)})
         return process
     frozen.subprocess=SimpleNamespace(Popen=observed_popen)
-    libraries={n:importlib.metadata.version(n) for n in ['numpy','pandas','scikit-learn','lightgbm','catboost','xgboost','optuna']}
+    libraries={n:library_identity(n) for n in ['numpy','pandas','scikit-learn','lightgbm','catboost','xgboost','optuna']}
+    report['deadline_epoch']=deadline_epoch if deadline_epoch is not None else time.time()+deadline-time.monotonic()
 
     def context():
         current_source={n:hashlib.sha256(b).hexdigest() for n,b in build_files().items()}
@@ -106,7 +116,8 @@ def run(output,plan_path):
 
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path,required=True);parser.add_argument('--plan',type=Path,required=True);args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path,required=True);parser.add_argument('--plan',type=Path,required=True)
+    parser.add_argument('--deadline-epoch',type=float);args=parser.parse_args()
     output=args.output.resolve();plan=args.plan.resolve()
     if not all(p.is_relative_to((ROOT/'test-runs').resolve()) for p in [output,plan]):parser.error('Keep replay data ignored')
     def interrupted(signum,frame):raise SystemExit(128+signum)
@@ -114,7 +125,7 @@ def main():
     with (ROOT/'test-runs/.owned-research.lock').open('a+') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);output.mkdir(parents=True,exist_ok=False)
         lock.seek(0);lock.truncate();json.dump({'pid':os.getpid(),'create_time':psutil.Process().create_time()},lock);lock.flush()
-        run(output,plan)
+        run(output,plan,args.deadline_epoch)
 
 
 if __name__=='__main__':main()

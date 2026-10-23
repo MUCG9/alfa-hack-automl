@@ -1,0 +1,35 @@
+{
+  "status": "running_stage1",
+  "stage": "stage1",
+  "publication_commit": "1d82bd004fb4a5940d2ec6c1935091b3222b7b0f",
+  "remote_sha_verified": true,
+  "source_sha256": "b85d04ec335a6cccefd3ed5214d05ea196fc4a62b619a054644b568c6d05d627",
+  "manifest_sha256": "a70f2a0cefb686dd04535c76b4c9e9e80073aba23d86fd7aad7e52fc7b9eee6a",
+  "root_review_sha256": "179f02f87cd59983de4e20d7de03eeb15c6c146ff85932d01a867dafe227e137",
+  "wrapper_sha256": "d3e62d892420eb517687d550af4074eaaac189555bbe0075ca9935257eab7295",
+  "start_unix": 1792736831.466951,
+  "start_monotonic": 6185782.265,
+  "absolute_deadline_unix": 1792801631.466951,
+  "deadline_monotonic": 6250582.265,
+  "common_seconds": 64800,
+  "launcher_identity": {
+    "pid": 16660,
+    "create_time": 1792736825.414838
+  },
+  "fresh_predecessor_identities_absent": 1165,
+  "no_predecessor_signalled": true,
+  "available_RAM_MiB": 5329.25,
+  "free_disk_GiB": 14.01290512084961,
+  "Stage0_original_deadline_unix_preserved": 1792739643.6625292,
+  "Stage0_clock_borrowed_reset_or_extended": false,
+  "stage2_started": false,
+  "promotion": false,
+  "official_submission": false,
+  "coordinator_launcher_identity": {
+    "pid": 24008,
+    "create_time": 1792736831.468812
+  },
+  "snapshot_only": true,
+  "snapshot_recorded_epoch": 1792737030.2514176,
+  "snapshot_scope": "Launch admission and fixed clocks only; active mutable supervisor/task results remain local. No completion or ML gain claimed."
+}

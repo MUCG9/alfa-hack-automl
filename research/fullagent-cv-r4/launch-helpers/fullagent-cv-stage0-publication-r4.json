@@ -1,0 +1,11 @@
+{
+  "status": "actual_R4_Stage0_preparation_published_and_verified",
+  "source_commit": "388adc5d9cfa0e9c08d95a09ba9ec7a7e2da1148",
+  "remote_sha_verified": true,
+  "remote_verification": "Root observed push_branch.py exact local/remote SHA equality; all8 preparation files matched Git tree.",
+  "manifest_sha256": "a70f2a0cefb686dd04535c76b4c9e9e80073aba23d86fd7aad7e52fc7b9eee6a",
+  "root_launch_review_sha256": "f151c6013fb0e484885a41126cb5495ab987ab5e035a1e5ad42d814980eb42d4",
+  "recorded_epoch": 1792736043.661529,
+  "clock_assigned": false,
+  "promotion": false
+}

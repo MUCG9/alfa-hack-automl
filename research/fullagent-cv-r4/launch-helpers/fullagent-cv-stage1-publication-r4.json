@@ -1,0 +1,15 @@
+{
+  "status": "actual_Stage0_proof_and_root_Stage1_decision_published_verified",
+  "source_commit": "1d82bd004fb4a5940d2ec6c1935091b3222b7b0f",
+  "remote_sha_verified": true,
+  "published_files_byte_verified": 9,
+  "remote_verification": "Root observed push_branch.py exact local/remote equality;9 Stage1 files matched Git tree.",
+  "root_review_sha256": "179f02f87cd59983de4e20d7de03eeb15c6c146ff85932d01a867dafe227e137",
+  "manifest_sha256": "a70f2a0cefb686dd04535c76b4c9e9e80073aba23d86fd7aad7e52fc7b9eee6a",
+  "fresh_stage0_and_review_preparer_identities_absent_before_inside_canonical_lock": true,
+  "fresh_tracked_count": 1165,
+  "no_predecessor_signalled": true,
+  "recorded_epoch": 1792736831.4621947,
+  "clock_assigned": false,
+  "promotion": false
+}

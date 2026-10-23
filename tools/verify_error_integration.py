@@ -18,7 +18,9 @@ from automl.infrastructure.processes import wait_owned
 from build_submission import build_files
 
 SCRIPTS = ('test_error_analysis_contracts.py', 'test_error_analysis.py',
-           'test_error_preparation.py', 'test_architecture.py', 'test_diversity.py')
+           'test_error_preparation.py', 'test_architecture.py', 'test_diversity.py',
+           'test_marginal_selection.py', 'test_local_error_preparation.py',
+           'test_marginal_replay.py')
 FROZEN_SHA = '565e0b40d225022f91a3217fae34ac1895044f63d40f854d69ddd4f2e2767a49'
 
 

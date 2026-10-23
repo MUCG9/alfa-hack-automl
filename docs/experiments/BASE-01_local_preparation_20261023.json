@@ -1,0 +1,11 @@
+{
+  "scope": "Independent local BASE preparation only; passports not executed",
+  "new_model_fits": 0,
+  "input_files_verified": 10,
+  "independent_checks_complete": true,
+  "raw_prediction_analysis": "prepared_not_run",
+  "prepared_requests": 8,
+  "baseline_complete": false,
+  "original_data_modified": false,
+  "inventory": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/error-selection-20261023/base-prepared/audit/baseline_inventory.json"
+}

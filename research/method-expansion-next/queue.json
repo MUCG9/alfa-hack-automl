@@ -57,7 +57,7 @@
     {
       "id": "METH-01",
       "name": "ExtraTrees family and complementary predictions",
-      "status": "actual_component_screen_running",
+      "status": "completed_negative_standalone_component_screen",
       "hypothesis": "A randomized forest can add errors different from boosting; diversity may help a fixed blend even when its standalone score is weaker.",
       "factor": "One new learner with its necessary supported preprocessing; no sampling/weight/feature-policy change is credited as a pure model effect",
       "candidate": {
@@ -80,14 +80,32 @@
       "full_refit_or_promotion_here": false,
       "after_screen": "No mandatory full-agent queue inclusion unless measured contribution passes the declared downstream gates; keep negative standalone result even if later blend helps.",
       "actual_command": null,
-      "actual_metric": null,
+      "actual_metric": {
+        "regression": {
+          "metric": "rmse",
+          "required_cuts": 3,
+          "complete": true,
+          "control_mean": 40.60751094989404,
+          "candidate_mean": 50.883029969346545
+        },
+        "classification": {
+          "metric": "macro_f1",
+          "required_cuts": 2,
+          "complete": true,
+          "control_mean": 0.6547938868310776,
+          "candidate_mean": 0.6325094503906941
+        }
+      },
       "clock_start": 1792777952.846402,
-      "source_packet": "research/method-expansion-next/extra-trees-r2",
+      "source_packet": "research/method-expansion-next/component-screen-r1",
       "fixed_weight_scope": "Inherited same power.5 as all3 strong class-control components; no tuned weight experiment",
       "source_registration_alignment_review": "research/method-expansion-next/extra-trees-r2/root-review-r2.json",
       "classification_fixed_class_weight_power": 0.5,
       "exec_session": 3417,
-      "absolute_deadline": 1792784552.846402
+      "absolute_deadline": 1792784552.846402,
+      "actual_exit_code": 0,
+      "decision": "Do not add this ExtraTrees standalone recipe to default portfolio. Retain all aligned negative caches for separately preregistered fixed90/10 METH03 blend.",
+      "root_closure_sha256": "2c67361da8f95875b35d124ac6c19d6cccba28c899f1e20dada88f3bec4ea283"
     },
     {
       "id": "METH-02",
@@ -135,7 +153,7 @@
       "clock_start": null,
       "control_unit": "Exact METH01 first protected SINGLE component percut, not the whole V11/V16 ensemble; preserve distinct component vs complete-agent claims.",
       "fixed_formula": "0.9 * aligned METH01 control predictions/probabilities + 0.1 * aligned METH01 ExtraTrees predictions/probabilities on every one of the5 declared cuts.",
-      "scope_clarified_before_outcome_consumption_epoch": 1792778047.7629492,
+      "scope_clarified_before_outcome_consumption_epoch": 1792778047.7589145,
       "full_refit_or_promotion": false
     },
     {
@@ -199,7 +217,7 @@
       "clock_start": null
     }
   ],
-  "next_action": "Champion Stage0 actual exit0 and root closure technicalPASS. Return to separately bounded champion whole-regression-agent A/B preparation; method studies stay queued.",
+  "next_action": "METH01 closed negative. Next fixed90/10 METH03 on independently verified saved caches; then existing linear_text METH02, source-review and fresh closure required.",
   "new_experiments_started": 1,
   "promotion": false,
   "official_score": null

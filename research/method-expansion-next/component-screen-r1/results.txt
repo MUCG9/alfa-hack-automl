@@ -1,0 +1,9 @@
+METH01 завершён: 10/10 workers exit0, независимый аудит, source/input/split/row/class gates и cleanup PASS.
+ExtraTrees128/depth16/leaf4/max_features0.9/seed42; class power0.5 унаследован и фиксирован.
+Регрессия, три forward cuts: средний RMSE50.8830299693 против SINGLE контроля40.6075109499; все три хуже.
+Классификация, group42/43: средний MacroF1 0.6325094504 против0.6547938868; оба хуже, support/ex-rarest gates FAIL.
+264.266с внутри исходных6600с; API0. Новые technical tests0, exact unchanged T7 source458/exact23 переиспользованы.
+Решение: standalone не продвигать; сохранить отрицательные forecasts для заранее объявленного METH03, fixed90/10.
+Единица: компонент, без полного refit и whole-agent/default promotion. Набор regression cuts отличается от CP1.
+Лучшие полные модели остаются RMSE34.8662208787 (CP1/B=T5) и MacroF1 0.6593178434 (V11/V16).
+Reused-public результаты не official score; нового submit нет.

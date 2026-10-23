@@ -1,4 +1,4 @@
-"""Bounded fixed CPU-embedding screen vs verified strong saved predictions."""
+"""Bounded independent optional-backend screen vs strong saved predictions."""
 from pathlib import Path
 import argparse
 import hashlib
@@ -74,10 +74,19 @@ def case(args):
     before={str(p):sha(p) for p in [request_path,split,control_csv]+([control_prob] if control_prob else [])}
     measured=evaluate(truth,control_pred,kind,spec['metric'],probs,list(classes) or None)[spec['metric']]
     if not np.isclose(measured,expected,rtol=0,atol=1e-10):raise ValueError('Strong control metric differs')
-    request=EmbeddingRequest(TaskSpec.from_legacy(spec),tuple(spec.get('categorical_features') or []),classes,
-        tuple(map(int,fitting)),tuple(map(int,a)),tuple(map(int,b)),tuple(map(int,held)),seconds=165,epochs=20,threads=2)
-    result=fit_predict_embeddings(request,train,test)
-    if not result.full_fit_ok:raise ValueError('No complete embedding refit')
+    boundary=(TaskSpec.from_legacy(spec),tuple(spec.get('categorical_features') or []),classes,
+        tuple(map(int,fitting)),tuple(map(int,a)),tuple(map(int,b)),tuple(map(int,held)))
+    if args.backend=='lama':
+        from automl.contracts.lama import LamaRequest
+        from automl.execution.lama_api import fit_predict_lama
+        request=LamaRequest(*boundary,seconds=165,iterations=400,threads=2)
+        result=fit_predict_lama(request,train,test)
+        stopping={'best_iteration':result.best_iteration}
+    else:
+        request=EmbeddingRequest(*boundary,seconds=165,epochs=20,threads=2)
+        result=fit_predict_embeddings(request,train,test)
+        stopping={'best_epoch':result.best_epoch}
+    if not result.full_fit_ok:raise ValueError('No complete optional-backend refit')
     values={}
     for weight in (1.,.1,.25):
         probability=(weight*result.evaluation_probabilities+(1-weight)*probs) if kind=='classification' else None
@@ -88,17 +97,20 @@ def case(args):
     if result.evaluation_probabilities is not None:
         np.savez_compressed(args.output/'validation_probabilities.npz',row_position=held,classes=np.asarray(classes),probabilities=result.evaluation_probabilities)
     if any(sha(p)!=expected_sha for p,expected_sha in before.items()):raise ValueError('Frozen control changed')
-    receipt={'kind':kind,'scope':scope,'status':'ok','control':measured,'scores_by_embedding_weight':values,
-             'seconds':result.seconds,'best_epoch':result.best_epoch,'full_fit_ok':result.full_fit_ok,
+    receipt={'kind':kind,'scope':scope,'status':'ok','control':measured,'backend':args.backend,
+             'scores_by_backend_weight':values,'scores_by_embedding_weight':values,
+             'seconds':result.seconds,**stopping,'full_fit_ok':result.full_fit_ok,
              'submission_sha256':sha(args.output/'submission.csv'),'frozen_evidence_sha256':before,
              'source_sha256':{str(p):sha(p) for p in source_files()},'metadata':result.metadata,
+             'screen_script_sha256':sha(__file__),
              'evaluation_scope':'fixed candidate/mixes on reused public,not independent/private score'}
     atomic_json(args.output/'case.json',receipt)
-    print(json.dumps({k:receipt[k] for k in ('kind','scope','control','scores_by_embedding_weight','seconds')}),flush=True)
+    print(json.dumps({k:receipt[k] for k in ('kind','scope','backend','control','scores_by_backend_weight','seconds')}),flush=True)
 
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--backend',choices=['embeddings','lama'],default='embeddings',help='ONE independent backend per screen')
     parser.add_argument('--class-task',type=Path,required=True)
     parser.add_argument('--reg-task',type=Path,required=True)
     parser.add_argument('--inventory',type=Path,required=True)
@@ -127,9 +139,9 @@ def main():
     gates={}
     for kind in ('classification','regression'):
         records=[r['result'] for r in results if r['case'].startswith(kind) and r['exit_code']==0]
-        gates[kind]={str(w):len(records)==2 and all((r['scores_by_embedding_weight'][str(w)]>r['control'] if kind=='classification' else r['scores_by_embedding_weight'][str(w)]<r['control']) for r in records) for w in (.1,.25)}
+        gates[kind]={str(w):len(records)==2 and all((r['scores_by_backend_weight'][str(w)]>r['control'] if kind=='classification' else r['scores_by_backend_weight'][str(w)]<r['control']) for r in records) for w in (.1,.25)}
     unchanged=source=={str(p):sha(p) for p in source_files()}
-    summary={'cases':results,'same_fixed_mix_improves_both_cuts':gates,'source_unchanged':unchanged,
+    summary={'backend':args.backend,'cases':results,'same_fixed_mix_improves_both_cuts':gates,'source_unchanged':unchanged,
              'runtime_enabled':False,'promising_screen':unchanged and any(v for g in gates.values() for v in g.values())}
     atomic_json(args.output/'result.json',summary)
     print(json.dumps({k:summary[k] for k in ('same_fixed_mix_improves_both_cuts','source_unchanged','promising_screen')}))

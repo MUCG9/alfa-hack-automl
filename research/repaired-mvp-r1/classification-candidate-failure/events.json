@@ -1,0 +1,32 @@
+{
+  "events": [
+    {
+      "status": "candidate_failed",
+      "task": "classification",
+      "candidate": "experiment-05",
+      "engine": "catboost",
+      "params": {
+        "iterations": 1000,
+        "learning_rate": 0.05,
+        "depth": 6,
+        "l2_leaf_reg": 3,
+        "min_iterations": 100,
+        "early_metric": "primary",
+        "nested_stopping": true
+      },
+      "metric": "macro_f1",
+      "metric_value": null,
+      "strong_V11_V16_mean_macro_f1": 0.6593178433614652,
+      "comparison": "No numeric comparison possible: candidate failed; never treated as zero F1",
+      "error": "CatBoostError: catboost/libs/metrics/metric.cpp:6822: If non-default weights for objects are not set, the 'use_weights' parameter must not be specified.",
+      "decision": "Candidate rejected; preserve failure and continue already declared queue",
+      "source_unchanged": true,
+      "result_sha256": "cf84c0c06c92472923d8e9689a85e3185b13ccc116777b7eb09dceac6e9bfaed",
+      "job_sha256": "92d57e139288c3072969d52a68b5364a765c7d7896969103f67c852a4f344c32",
+      "runtime_archive_sha256": "cfd5ff3b44f77227b15b130c16762e6c8349ac53f02a53462883680aad436459",
+      "fix_scope": "Prospective isolated adapter investigation; active742 not changed",
+      "parent_campaign_still_running": true,
+      "promotion": false
+    }
+  ]
+}

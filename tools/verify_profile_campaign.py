@@ -59,9 +59,13 @@ def verify(path):
     if (campaign['status'] != 'completed' or len(campaign['tasks']) != 2
             or not campaign['source_unchanged'] or not campaign['harness_unchanged']):
         raise ValueError('Complete frozen campaign required')
+    if [task['kind'] for task in campaign['tasks']] != ['regression', 'classification']:
+        raise ValueError('Both distinct public tasks must be completed')
     results = []
     for task in campaign['tasks']:
         rp = Path(task['report_path']); report = json.loads(rp.read_text()); spec = report['spec']
+        if spec['kind'] != task['kind'] or not task['complete']:
+            raise ValueError('Completed task identity mismatch')
         directory = rp.parent; copied = directory.parents[1]
         verifier = Verifier({'spec': spec, 'source_sha256': campaign['source_sha256'],
             'input_sha256': {k: v for k, v in task['input_sha256'].items() if k != 'task'}}, copied)
@@ -79,6 +83,12 @@ def verify(path):
                 raise ValueError('Protected source/input fingerprint changed')
         qualified = json.loads((ROOT/'docs/experiments'/('reg_blend01_candidates_20261023.json'
             if spec['kind'] == 'regression' else 'blend01_candidates_20261023.json')).read_text())[0]['recipe']
+        old_root = ROOT/'test-runs/llm-upgrade-20261022/final-default-parity'/(
+            'task-00' if spec['kind'] == 'regression' else 'task-01')/'automl_runs/run-v2'
+        old = json.loads((old_root/'report.json').read_text())
+        old_inputs = json.loads((old_root/'provenance.json').read_text())['sha256']
+        if any(old_inputs['input:'+name] != digest(source) for name, source in spec['paths'].items()):
+            raise ValueError('Qualified control and new procedure use different source inputs')
         if not all(same_recipe(r['recipe'], qualified) for r in report['profile_controls']):
             raise ValueError('Control is not the qualified complete procedure')
         cuts = []; partitions = []
@@ -86,11 +96,17 @@ def verify(path):
         for cut in range(2):
             split = directory/('split.npz' if cut == 0 else 'confirmation_split.npz')
             tr, va = verifier.split(split); partitions.append((tr, va))
+            original_partition = verifier.split(old_root/split.name)
+            if not all(np.array_equal(a, b) for a, b in zip((tr, va), original_partition)):
+                raise ValueError('Actual saved qualified/new partitions differ')
             control = report['profile_controls'][cut]; where = Path(control['submission']).parent
             job = json.loads((where/'job.json').read_text())
             if job['full_fit'] or job['threads'] != 2 or job['recipe'] != control['recipe']:
                 raise ValueError('Control job contract changed')
             measured = verifier.outcome(control, where, va)
+            original_value = old['ensemble']['primary' if cut == 0 else 'confirmation']['metrics'][spec['metric']]
+            if not math.isclose(measured['value'], original_value, abs_tol=1e-9, rel_tol=1e-12):
+                raise ValueError('Complete control numerical parity failed')
             chosen = measured; candidate = None; gate = None
             if augmented:
                 arm = report['profile_augmentations'][cut]; arm_dir = Path(arm['submission']).parent
@@ -128,6 +144,8 @@ def verify(path):
         expected_iterations = median_iterations(*[r['fit_iterations'] for r in report['profile_controls']])
         if arms[0]['fit_iterations'] != expected_iterations:
             raise ValueError('Full control iteration transfer differs')
+        if digest(arms[0]['submission']) != old['submission_sha256']:
+            raise ValueError('Full control CSV byte parity failed')
         if augmented:
             if spec['kind'] == 'regression':
                 study = report['hpo_studies'][2]
@@ -171,6 +189,8 @@ def verify(path):
                         'final_leaf_learners': leaves, 'final_iterations': full['fit_iterations'],
                         'submission_sha256': digest(report['submission_path']), 'csv_rows': len(submission),
                         'source_matches_current': verifier.source_matches_current,
+                        'actual_qualified_partition_and_control_parity': True,
+                        'full_control_csv_byte_parity': True,
                         'refit_csv_integrity_verified': True})
     return {'scope': campaign['scope'], 'verified': True, 'tasks': results,
             'archive_sha256': campaign['archive_sha256'], 'source_sha256': campaign['source_sha256'],

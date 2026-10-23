@@ -18,7 +18,8 @@ accidentally imported an existing unittest TestCase, ran13 checks successfully b
 FAILED expected-count gate; import fixed, fresh r2 ran exactly6. Do not count
 repeated checks as13 new LAMA tests. No public quality claim from fixtures.
 
-Next: one independent four-case public screen via tools/screen_embeddings.py
+Active: ONE controller30382,source1d550b9,output
+test-runs/lama-20261023/public-screen/. One independent four-case public screen via tools/screen_embeddings.py
 --backend lama; same strong controls/original partitions as EMB, not combined
 with EMB/HPO. At most180s/2CPU/1.7GiB percase. No canonical edits while source-
 guarded controller is active. Check actual outputs before repeating any action.

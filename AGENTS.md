@@ -1,5 +1,10 @@
 # Development instructions — current checkpoint, 22 October 2026
 
+LatestLAMA-01:read LAMA-01_progress_20261023.md. Pinnedseparateenv,6fixture+7arch
+PASS;ONE4casepublicscreencontroller30382 from1d550b9. No canonicaledits or other
+heavyfits/suites until ends. Next finalappAGENT-01 protocol91b61f3,offlinecontracts
+when currentprivateenvunconfigured;nohistoricalkeyretrieval. No additionaluploads.
+
 23Oct LONG-01 is COMPLETE, controller25832 exit0; actual exports verified.
 Captain then explicitly authorized ONE official upload of the best measured
 version: solution-long01-submit2.zip accepted in queue, counter2->1. See

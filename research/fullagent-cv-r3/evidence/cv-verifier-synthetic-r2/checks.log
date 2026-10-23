@@ -1,0 +1,6 @@
+test_early_rejection_unattempted_slots_need_prior_audit_not_cleanup (__main__.Contracts.test_early_rejection_unattempted_slots_need_prior_audit_not_cleanup) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.804s
+
+OK

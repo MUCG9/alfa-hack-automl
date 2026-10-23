@@ -1,0 +1,20 @@
+test_actual_saved_supervisor_bytes_bound (__main__.Contracts.test_actual_saved_supervisor_bytes_bound) ... ok
+test_corrupt_second_seal_before_outer_labels (__main__.Contracts.test_corrupt_second_seal_before_outer_labels) ... ok
+test_fresh_identity_gone_reused_live_and_denial (__main__.Contracts.test_fresh_identity_gone_reused_live_and_denial) ... ok
+test_handled_failed_student_nonnull_metrics_rejected (__main__.Contracts.test_handled_failed_student_nonnull_metrics_rejected) ... ok
+test_inline_supervisor_cannot_replace_saved_object (__main__.Contracts.test_inline_supervisor_cannot_replace_saved_object) ... ok
+test_no_confirmation_branch_and_failed_confirmation (__main__.Contracts.test_no_confirmation_branch_and_failed_confirmation) ... ok
+test_partial_matrix_keeps_six_slots_and_null_aggregates (__main__.Contracts.test_partial_matrix_keeps_six_slots_and_null_aggregates) ... ok
+test_saved_stage_slot_binding (__main__.Contracts.test_saved_stage_slot_binding) ... ok
+test_unsealed_second_arm_before_any_arm_or_outer_labels (__main__.Contracts.test_unsealed_second_arm_before_any_arm_or_outer_labels) ... ok
+test_valid_tiny_pair_failed_students_and_no_confirmation (__main__.Contracts.test_valid_tiny_pair_failed_students_and_no_confirmation) ... ok
+test_wrong_csv_id_order_rejected (__main__.Contracts.test_wrong_csv_id_order_rejected) ... ok
+test_wrong_nested_iteration_rejected (__main__.Contracts.test_wrong_nested_iteration_rejected) ... ok
+test_wrong_probability_classes_rejected (__main__.Contracts.test_wrong_probability_classes_rejected) ... ok
+test_wrong_probability_mixture_rejected (__main__.Contracts.test_wrong_probability_mixture_rejected) ... ok
+test_wrong_probability_rows_rejected (__main__.Contracts.test_wrong_probability_rows_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 24.258s
+
+OK

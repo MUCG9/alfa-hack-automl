@@ -1,0 +1,173 @@
+{
+  "status": "source_only_next_experiment_protocol_not_launched",
+  "scope": "Current t6 is unchanged and remains the sole active queue. This note reads frozen source and closed historical proofs only. No active t6 outcomes/metrics, labels/prediction arrays, API ledgers or private config were read; no fits/API/tests/source mutations.",
+  "dataflow_facts": [
+    {
+      "path": "m3dev/src/automl/search/runner.py:276-285",
+      "fact": "Primary split uses make_split(seed42). All search workers evaluate on that same primary validation partition. ordered(records) ranks by that metric; planner_context forwards measured scalar/per-class feedback to Qwen. Primary validation labels therefore participate in adaptive model/feature/parameter selection."
+    },
+    {
+      "path": "m3dev/src/automl/search/hpo.py:15-33, optimize_recipe",
+      "fact": "HPO nested_partition subsets only primary fitting_rows, makes an inner split(seed137), and remaps local indices to original positions. Trial objective/study.tell uses inner worker metrics. This prevents primary validation labels entering the HPO trial objective, but does not make the full adaptive procedure primary-blind."
+    },
+    {
+      "path": "m3dev/src/automl/evaluation/service.py:make_split/make_time_split",
+      "fact": "Time strategy dispatches make_split to make_time_split; seed is ignored for time. Offset0 validates the latest available period; offset1 validates the immediately preceding period. Nested HPO sees only periods before the primary period, so its latest inner period is exactly the confirmation period."
+    },
+    {
+      "path": "m3dev/src/automl/search/runner.py:confirmation/selection/ensemble loops",
+      "fact": "Confirmation is not evaluation-only: candidate means(primary,confirmation) choose the final recipe; candidate iteration trees use both runs; blend weights are searched over both cuts. The complete procedure consumes both sets of labels through metrics."
+    },
+    {
+      "path": "m3dev/src/automl/task_understanding/service.py:profile construction",
+      "fact": "EDA target_summary/class_counts are computed over the entire supplied train.csv before splitting. They are full-input aggregates, not fitting-only estimates. A real external holdout must be physically excluded from this agent train input, not merely marked by another NPZ."
+    },
+    {
+      "path": "m3dev/src/automl/search/runner.py:final-fit",
+      "fact": "Final selected recipe refits on all supplied train rows for deployment. This is appropriate for a genuinely unlabeled test set; it does not turn selected local search scores into blind estimates."
+    }
+  ],
+  "archived_T5_vs_current_m3": {
+    "dataflow_modules_byte_identical": {
+      "automl_runner.py": true,
+      "automl_search_hpo.py": true,
+      "automl_evaluation.py": true
+    },
+    "current_compiled_sha256": {
+      "automl_runner.py": "5992cf7c3044cedc7e5fceef16615832484c9b7a287a83e9c79acc26e6c9e914",
+      "automl_search_hpo.py": "2675ef78df893b73689ed38143d252e7d747b059494f59c4bfbd4989fd78c508",
+      "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d"
+    },
+    "difference_scope": "CatBoost adapter technical fix only; no change to this validation dataflow is present in m3."
+  },
+  "measured_historical_split_proof": {
+    "scope": "Closed T5 regression only; existing R4 numeric audit and lineage report, no new scoring in this note.",
+    "primary_positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+    "HPO_inner_positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+    "confirmation_positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+    "HPO_inner_equals_confirmation": true,
+    "primary_validation_periods": [
+      5
+    ],
+    "HPO_and_confirmation_validation_periods": [
+      4
+    ],
+    "classification_scope": "The regression equality is not claimed for classification: its primary seed42, nested seed137 and full-data confirmation seed43 use group splits; nonidentity of NPZs alone would not establish independence. Confirmation still participates in selection and can include rows used elsewhere."
+  },
+  "evidence_interpretation": {
+    "independent_numeric_audit": "Independent code recomputes metrics from saved predictions and pristine labels, checks splits/row/class/probability/CSV/source contracts. This proves the recorded arithmetic/artifact integrity under that scope.",
+    "blind_validation": "Requires labels used only after the complete adaptive procedure/recipe/predictions are locked, including Qwen prompts, HPO, candidate/ensemble selection and stopping. Independent rescoring is not the same property.",
+    "public_reuse_limit": "These public labels have already informed historical research. A newly reserved split can be hidden from the next algorithm run, but cannot be called unseen to the researchers or a fresh external/private benchmark. Strict external generalization needs new labels/time/entities or the platform private test."
+  },
+  "historical_failure_constraints": {
+    "R4_full_agent_CV": {
+      "receipt": "f4/stage1.json",
+      "status": "rejected_early_incomplete_CV",
+      "failure": "unsupported_outer_output_contract (obsolete label vs canonical value assertion)",
+      "complete_CV": false,
+      "OOF_complete": false,
+      "quality_aggregate": null
+    },
+    "posthoc_p0_p1": "Separate nofit diagnostics also failed due import tripwires; preserved, with no full CV score. They do not justify an unbiased result or another continuation of the exhausted candidate.",
+    "next_scope": "Do not reopen/relabel/extend f4/p0/p1, their candidates, manifests or clocks. Propose one new outer holdout of the newly frozen lean whole procedure, not multi-fold/full-agent A/B CV."
+  },
+  "next_experiment": {
+    "name": "one-outer-holdout-procedure-r1 (prospective preparation only)",
+    "hypothesis": "The complete frozen lean adaptive procedure can produce an auditable once-held-out prediction and outperform the exact frozen strong control under an honest10800s shared clock. This tests procedure performance/completion under heldout separation; it is not a claim that validation plumbing improves model quality.",
+    "minimal_mechanism": "Wrap the existing frozen agent in one external outer split; keep all its adaptation inside derived outer-training inputs. Reuse current metric functions/guards and exact protected-control recipes. Do not redesign inner HPO or pretend its confirmation is blind.",
+    "preregister_before_outer_scores": "Freeze candidate full source/archive SHA, control JSON/signatures, input hashes, split algorithm/seed/indices SHA, all limits and success/failure rules. Materialize actual partitions only after t6 terminal+fresh owner closure. No holdout labels are opened during current preparation.",
+    "outer_partition": {
+      "regression": "Deterministically reserve the latest original observation period as outer evaluation; outer fitting periods must all be strictly earlier. This is currently the already-reused period5, so it is prospective algorithm-facing, not historically unseen.",
+      "classification": "One declared fold0 of5fold StratifiedGroupKFold seed1009 on ORIGINAL feature hashes; forbid original-feature hash group overlap. Split-maker may stratify using labels, but learns no score and sends no heldout target statistics to agent. Pin actual row indices before fits. Preserve all10 classes in objective; if a class/split is infeasible fail, never drop/reseed after results.",
+      "unit": "One time holdout and one grouped holdout, not full CV, OOF completeness or a population uncertainty estimate."
+    },
+    "agent_input_boundary": "Give agent only outer-fitting rows with labels as train.csv and outer-validation features/IDs as test.csv; sample_submission contains placeholders, never true heldout targets. Task/dictionary preserve the original metric/roles. Holdout target/mapping lives with the independent judge, outside child input manifests. EDA/HPO/calibration/TE/selector/class support/LLM context are recomputed from outer-fitting input only. Frozen allowlisted code/inputs must not read the original full-target CSV via another path.",
+    "inner_procedure": "Run exactly the frozen four-stage procedure on each derived outer task, max9 search,2planner/4gateway,8HPO trials,TPE seed137,HPO900/2100s,2modelthreads,existing memory caps, protected original recipes and selector scope. Source/hash and saved-stage gates stay strict. Inner primary/confirmation may remain adaptive/reused; label them accordingly.",
+    "control": "Preserve exact V16 regression and V11/V16-class strong control JSON/signatures from current manifest. Run one fixed complete control refit on the same outer-fitting rows and outer-test features; choose its refit iterations only from its completed inner control receipts, not outer labels. If selected recipe is exactly that control and job/input/iteration hashes match, a predeclared exact prediction reuse may avoid duplicate fit; otherwise no reuse or cached outer selection. Both control and candidate need real outer predictions.",
+    "freeze_then_judge": "Before opening outer labels, seal source/inputs/inner decisions/selected recipe/iteration tree/final-fit jobs/predictions/CSV/SHA and terminal worker cleanup. Run inner procedure auditor on derived-task manifests plus a small outer judge reusing frozen manual F1/RMSE/class-order rules. Score candidate and control exactly once on the original heldout labels/IDs/positions; no further weight/threshold/recipe choice or outer-guided refit.",
+    "outer_criteria": "Report both tasks with unchanged RMSE(lower)/MacroF1 over ALL10 classes(higher), per-class/support and ex-rarest diagnostics, failures/runtime. Apply the existing class drop/ex-rarest criteria as additional predeclared checks, never replace the all-class objective. One cut cannot show significance. No promotion if either procedure fails stages/refit/CSV/source/owner/deadline gates; preserve null metrics for technical failures.",
+    "budget_parent_seconds": {
+      "preflight_source_exact_and_outer_materialization": 900,
+      "complete_regression_agent_including_selected_refit": 2100,
+      "complete_classification_agent_including_selected_refit": 6000,
+      "fixed_regression_control_outer_refit": 180,
+      "fixed_classification_control_outer_refit": 1200,
+      "combined_inner_procedure_and_once_only_outer_audit": 300,
+      "terminal_cleanup_power_release_source_checks_and_receipts": 120
+    },
+    "budget_total_seconds": 10800,
+    "budget_semantics": "One new absolute common deadline, sequential heavy jobs only. Agent caps include selected final refit/export and task cleanup. Classification6000 implies solver5910 with the current90s wrapper reserve; first HPO observer must still prove full2100s+actual export reserve+30. Do not launch a phase lacking its entire reserved cap and mandatory remainder. Source/outer materialization900 includes current600+180 gates plus120s setup. Combined final audit300 contains both derived-task integrity audit and once-only outer scoring. Cleanup/power release120 is inside the common clock. No retries/extensions.",
+    "feasibility_evidence": "T5 regression agent295.438s parent-reported with independently verified selected refit/CSV; class HPO8completed in697.484s and protected confirmation839.219s parent-reported. Full class task failed before final refit with a~3040s monitoring gap. These justify a bounded pilot, not guaranteed6000s completion or1200s control refit. Max9 removes five old fallback attempts including a900.578s timeout, but actual savings and final-fit cost must be measured.",
+    "known_limitations": [
+      "Regression outer holdout reduces agent development history by one period; the HPO inner fit can have fewer than history_min_periods3, so unchanged history policy may disable features in that fit. Record this; do not silently weaken the control or claim the same learned transform availability.",
+      "Grouped classification outer fitting leaves fewer rare groups; all-class/support diagnostics and failure accounting remain mandatory.",
+      "A single stochastic agent run vs fixed control evaluates that procedure realization, not a causal TPE advantage or an A/B comparison of two adaptive agents.",
+      "Separate future repeats/new external labels are needed for uncertainty and generalization. Three-hour full multi-fold A/B nested CV is not supported by these costs."
+    ]
+  },
+  "needs_actual_future_work": [
+    "Implement only a thin outer-task materializer/target boundary and judge, with source review and tiny source-only contract fixtures first. Do not launch old CV coordinator.",
+    "Declare and pin actual outer row indices, derived task manifests, inner expected split refs for those derived tasks and new clock before any learner. Current R4 global split refs cannot be copied blindly.",
+    "Run all stage/source/exact contracts and real refits/CSV/cleanup inside budget; until then every new quality result remains null."
+  ],
+  "qualified_controls": {
+    "regression": {
+      "path": "m2packet/control-r.json",
+      "sha256": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b",
+      "signature": "773dfb566afd9b2ad6c47853ffaa6898392c009fd41c9202d89184b3c50ceb9e"
+    },
+    "classification": {
+      "path": "m2packet/control-c.json",
+      "sha256": "56c0e2204df33ebc733034ad5ed835d902874862c71bbb4a16a043c3a99781a9",
+      "signature": "a828ab557d308ecaf186ab48ede3e606bb3631f318c11202136384916643d394"
+    }
+  },
+  "original_input_hashes": [
+    {
+      "kind": "regression",
+      "source": "evaluation/regression",
+      "files": {
+        "task.md": "33f743ead4840336856cb9db8e25867f44512231beebff927326e8580e14d9d0",
+        "train.csv": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775",
+        "test.csv": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
+        "data_dictionary.csv": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
+        "sample_submission.csv": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1"
+      }
+    },
+    {
+      "kind": "classification",
+      "source": "evaluation/multiclass",
+      "files": {
+        "task.md": "eebb55ebb8deb8257a2c012330ecc015e8d3a0bc3619c40da6c2a6ab200709bf",
+        "train.csv": "171a8915070b7575b729a32f70a45d1ad7b6f43c65b4ce12a0a68af30d5cb4e0",
+        "test.csv": "b825449603931b5f05a8855e3d92b57775221c93ed4730ac6b4c75b9ea608862",
+        "data_dictionary.csv": "13d2651c5fe02b7fc30f0e7290af45606aad5de76c2f7b69217abc270dbbcef4",
+        "sample_submission.csv": "4d23642fcff01e49b0ef5a9f018b2381c12fad97282fa586285ad49b01e9623e"
+      }
+    }
+  ],
+  "sha256_sources": {
+    "m3packet/manifest.json": "4b987c652864179465dc754e90e3d1c8c9ed7c0a2144db5c3339e4c8a607d07e",
+    "m2packet/repaired-source.zip": "cfd5ff3b44f77227b15b130c16762e6c8349ac53f02a53462883680aad436459",
+    "m3packet/lean-source.zip": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0",
+    "m3dev/src/automl/search/runner.py": "e204a9eec98e7f3fa7799470cc453e8f4a3887247e8d102b5d0bb834f88c2ef3",
+    "m3dev/src/automl/search/hpo.py": "6aac0dd13ae81e4b38295987ffe23235908a1c399d93335eb156bee070c8309d",
+    "m3dev/src/automl/evaluation/service.py": "4aac3ca3cdd3714e3d61598020bb9597faa68a460f0dc4a356dc9591a9a27b9e",
+    "m3dev/src/automl/task_understanding/service.py": "8d5ee8225e7be13f9bd99c257eeeb6d98094d16476b1f69a1e3221ea340a9e44",
+    "repaired-mvp-r1-dev/evaluator_r4.py": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+    "t5-regression-lineage-analysis.json": "426792c3bf354ef84c3581ce7a051c7b1724e0986c1a333fc8c0ea288d8b39d9",
+    "t5-independent-r4/audit.json": "91a7c91b6f48f59485dd7ccb720b0793d6069f1c9b437696bd2323771669ca59",
+    "f4/stage1.json": "d2e5f64276e639fd6f20b315014701bb12352b2f2c65b3294ced04a9ccd7c456",
+    "fullagent-cv-launch-r4/manifest.json": "a70f2a0cefb686dd04535c76b4c9e9e80073aba23d86fd7aad7e52fc7b9eee6a",
+    "fullagent-cv-launch-r4/independent_verifier.py": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+    "posthoc-pair0-proposal-r1/source-only-review.json": "a66caa84d5a48fc442163ec9dd30f97dc391949f73812633333271714a73d905",
+    "nofit-import-diagnostic-r1/concrete-cause.json": "6084d991d011bf09d0a62ab32144c0b48fcf9c1192d656ed52c9c4b21e657e83",
+    "nofit-import-diagnostic-r2/knowledge-result.json": "aacc0f307a2f9af7397a40412ae3934b985c2cd15513c187547d70c4df4fa64e"
+  },
+  "fits": 0,
+  "API_calls": 0,
+  "tests_run": 0,
+  "current_manifest_or_splits_or_gates_or_AGENTS_or_state_changed": false,
+  "new_ML_improvement_claim": false,
+  "promotion": false
+}

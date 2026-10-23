@@ -1,9 +1,0 @@
-{
-  "method": "random_holdout_20pct",
-  "seed": 42,
-  "train_rows": 42646,
-  "validation_rows": 10662,
-  "split_sha256": "13cc9c4db238d4f6fe3ad16148cfe5d71a875b52859f680d85f9d95731efbc0d",
-  "shared_feature_hashes": 101,
-  "validation_class_counts": null
-}

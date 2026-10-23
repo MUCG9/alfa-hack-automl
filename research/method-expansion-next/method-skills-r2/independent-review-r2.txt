@@ -1,7 +1,0 @@
-R2 source-only review: prior factual P2 resolved; no new critical issue found.
-
-linear_tabular now correctly points to existing linear_text with numeric median/scaling+sparse OHE, Ridge alpha10/lsqr and logistic C1 or SGD. Text mode has its separate card. No unimplemented ridge/logistic engine key is advertised. Runner is byte-identical to R1 and its default-OFF AST projection matches exact m3.
-
-The added-packet UTF8 cap remains8192. Conservative AST/literal-only arithmetic serialized all6cards (including both mutually exclusive linear modes), all5tools and largest finite-float budget integer: 4331bytes. Actual source selects at most5cards and rejects overflow. This is not execution of the helper or its6prepared tests. Complete-message same-both-arms preflight and actual source/exact contracts remain future prerequisites.
-
-Application imports/tests/builders/fits/API/new clocks/STATE/Git/T7/csdev changes by reviewer:0. R1 preserved; no candidate files edited.

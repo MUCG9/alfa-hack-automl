@@ -15,14 +15,16 @@ tests constrained decision factors after the complete class ensemble, with fresh
 inner five-leaf controls. Qwen xhigh chose JOINT_TIGHT. Initial no-fit loader
 failure preserved; corrected retry must retain original deadline1792742389.7839258.
 Inspect round06/detached-screen-attempt2.json and actual lock/process before fits.
+ROUND06 corrected coordinator121617/create_time1792739843.36 is active at
+c315874; preserved first attempt launched0workers, five focused checks PASS.
 New captain steering: verify reasoning. Actual gateway was explicitly OFF;
 REASONING01 real xhigh probe PASS:1014reasoning tokens,14.716s, valid JSON.
 Active dev planners now use explicit xhigh/32768combined output/300s call.
 Read docs/experiments/reasoning01_results_20261023.md. Effective server effort
 is not echoed; do not claim a quality gain. New source has20focused checks PASS;
 historical352-source gate is not a rerun on this changed source. Uploaded ZIP is
-immutable. ROUND05 worst-period protocol revised BEFORE fits for fresh xhigh
-planning and a fresh cache (full-source identity changed; do not seed old cache).
+immutable. ROUND05 used fresh xhigh planning and a fresh cache (full-source
+identity changed; no old cache seeding). It completed as a negative screen.
 Preserve the immutable verified submission archive while testing dev-only tools.
 ONE improved official upload COMPLETE: platform queue accepted PIPE02 archive
 a2ca9244, IDd495ef4b-e721-40ba-bfed-7c85b051ce2b, attempts3->2. Authorized

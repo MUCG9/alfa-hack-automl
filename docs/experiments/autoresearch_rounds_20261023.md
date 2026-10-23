@@ -30,6 +30,11 @@ and global lock before any fit. Historical ROUND04 candidateea0677c,
 rollback tagqwen-round04-forward-start-20261023;5400s/1800study/600worker,
 2threads/1536MiB worker+parent, sequential global training lock.
 
+ROUND06 corrected active identity121617/create_time1792739843.36,
+candidatec315874; `round06/detached-screen-attempt2.json`, output
+`round06/screen-attempt2/`. Original deadline1792742389.7839258 retained.
+No new outer results were observed before this setup correction.
+
 All commits are on work/qwen-optuna-mvp-20261022, main unchanged. Last verified
 public push in this continuation:b38ef3e; subsequent commits local until verified
 push. Git authentication succeeded using the already authorized private process

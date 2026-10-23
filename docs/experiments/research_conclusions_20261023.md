@@ -1,12 +1,11 @@
 # Qwen MVP и autoresearch: проверенные результаты и следующие решения
 
-Статус на промежуточном checkpoint23Oct: полный MVP завершён; независимые
-основная ночная очередь завершена и независимо проверена без ошибок артефактов.
-Отдельный FE-02 followup ещё выполняется; обе blend qualification подготовлены.
-[Полная замороженная сводка](overnight_screens_20261023.json).
-Отдельный fixed BLEND-01 replay прошёл оба cuts; его grouped CV подготовлен,
-ещё не запущен. Replay не меняет qualified status.
-Лучший qualified полный агент остаётся V11/V16. Official uploads не делались.
+Промежуточный checkpoint23Oct: полный MVP, основная ночная очередь и FE-02
+завершены и независимо проверены. [Замороженная сводка](overnight_screens_20261023.json).
+REG-BLEND-01 прошёл три forward cuts и обе mean-comparisons;
+class BLEND-01 grouped CV выполняется. Подготовлен
+[PIPE-02](pipe02_protocol_20261023.md) для полного исполнения квалифицированной
+процедуры после CV. Текущий qualified default — V11/V16. Official uploads не делались.
 
 ## Полный MVP
 
@@ -33,7 +32,11 @@ Receipt: [mvp01_complete_20261023.json](mvp01_complete_20261023.json).
 0fits/5.863s. [Receipt](reg_blend01_replay_20261023.json),
 [протокол трёх forward cuts](reg_blend01_cv_protocol_20261023.md).
 Это отдельная новая adaptive mixture procedure; standalone HPO-01 остаётся
-отрицательным. Qualification ещё не запущена и не означает full OOF.
+отрицательным. Qualification завершена: все три cuts улучшаются, mean трёх
+cuts40.613390328165174→40.56328943398112. Equal-cap Random8 mixture mean
+40.603758853175314, unchanged-anchor mixture40.60001490341628; TPE mixture
+лучше обеих по preregistered mean criterion. [Проверка](reg_blend01_forward_20261023.json).
+Это три forward holdouts, не exactly-once OOF. Full-study/refit/export ещё впереди.
 
 ## Почему обязательные стадии оказались дорогими
 
@@ -84,6 +87,7 @@ predictions и дорогие model fits; включать FE/HPO только �
 |Regression TPE8|40.60751094989404|40.502667267123364|FAIL: один cut хуже, хотя mean лучше random|
 |Regression typed feature DSL|40.60751094989404|41.03555398191205|FAIL: все3cuts хуже|
 |Classification CatBoost top32|.6547938868310776|.654200887190105|FAIL: cut42 хуже, cut43 лучше|
+|Classification protected-original union top32|.6547938868310776|.6562392739683203|FAIL: cut42 хуже, cut43 лучше|
 |Classification Random8|.6547938868310776|.6512720038256385|FAIL: оба cuts хуже|
 |Classification TPE8|.6547938868310776|.6470992370165256|FAIL: оба cuts хуже, mean хуже random|
 
@@ -123,6 +127,12 @@ Inventory [selector_feature_inventory_20261023.json](selector_feature_inventory_
 как проверку другой семантики отбора: raw protected union ordinary top32.
 Это не доказывает причину loss или будущий gain. Например, в cut43 selector
 не сохранил отдельные Worms TE columns, но итоговый Worms F1 не изменился.
+
+FE-02 finished: .6530865547069306/.6593919932297099, mean .6562392739683203,
+выше SINGLE control mean .6547938868310776, но cut42 ухудшился. Поэтому gate
+FAIL, дальнейшего FE-02 CV/promotion нет. [Receipt](fe02_results_20261023.json).
+Сохранение raw inputs уменьшило потери обычного top32, но не дало устойчивого
+выигрыша. Это не результат сравнения с полным V11/V16 mean .6593178433614652.
 
 В cut42 supported-class violation — Analysis (695 independent fitting groups,
 delta−.011701); Worms46groups не входит в заранее заданный >=100 gate.

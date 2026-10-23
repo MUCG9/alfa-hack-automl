@@ -32,38 +32,22 @@ is enabled, but keep sequential/resource/provenance rules. MVP regression is
 verified negative: mean36.02469255996805 vs35.44723155783769, both cuts worse.
 Classification MVP is also negative: meanF1 .6544845346080569 vs .6593178433614652.
 Both final CSVs/refits/integrity and actual matching control partitions verified;
-see mvp01_complete_20261023.json. Queue PID37960/create_time1792705065.83 now
-runs classification HPO after completed regression screens and class FE-01;
-read current receipts for status. See overnight_20261023.md and the
-ignored overnight identity/queue receipts. Do not start duplicate fits. Canonical
-source remains frozen; compiler4 and lifecycle2 are separate development checks.
-Captain requested the autoresearch-ml skill based on karpathy/autoresearch.
-Versioned entry: skills/autoresearch-ml/SKILL.md; installed as an independent user
-skill copy so a repository rollback does not remove it. Installed hashes match.
-Read its alfa-hack profile for subsequent research. It preserves existing budgets,
-frozen evaluators, negative evidence and rollback history; it grants no new actions.
-Skill quick validation PASS; contest source hashes remain unchanged.
-Pending FE-02 is predeclared in docs/experiments/fe02_protocol_20261023.md:
-union original columns with ordinary CatBoost top32, trusted dev dispatcher only.
-Three no-fit checks and flat import/expected protocol rejection PASS, zero fits.
-Run only after MVP AND existing overnight queue/descendants finish and lock frees.
-FE-02 is NOW already scheduled by followup coordinator PID49264,
-create_time1792709589.83, fe02-identity.json and fe02-20261023/followup.json.
-It waits without owning the training lock. Do not start a manual duplicate.
-Do not change canonical source before all frozen research finishes; HPO sparse
-anchor-default audit is recorded for a subsequent narrow fix.
-BLEND-01 one fixed no-fit .9complete-control+.1MVP replay PASSED both cuts:
-meanF1 .6600536197705544 vs .6593178433614652. Not qualified/release/private.
-Preregistered grouped CV: docs/experiments/blend01_cv_protocol_20261023.md and
-blend01_candidates_20261023.json. Run ONLY after queue+FE-02/descendants/lock;
-it is prepared, NOT yet launched. Keep source frozen through this CV as well.
-No new weight grid or automatic default promotion. Current qualified is V11/V16.
-REG-BLEND-01 separate fixed .9complete-control+.1nested-TPE replay also PASSED
-both cuts: meanRMSE35.39729814378806 vs35.44723155783769,0fits. Preregistered
-forward qualification: reg_blend01_cv_protocol_20261023.md, driver
-tools/run_blend_cv.py --kind regression. Prepared, NOT launched; run after
-queue+FE-02, before classification blend CV, all sequential under the same lock.
-Keep source frozen through BOTH qualifications; no new weight grid or promotion.
+see mvp01_complete_20261023.json. All overnight component screens and FE-02 are now complete and source-unchanged;
+portable evidence is overnight_screens_20261023.json and fe02_results_20261023.json.
+No standalone selector/HPO/prompt change passed its declared all-cut gate.
+Captain requested the autoresearch-ml skill based on karpathy/autoresearch:
+skills/autoresearch-ml/SKILL.md, independently installed with matching hashes.
+REG-BLEND-01 fixed .9complete-control+.1nested-TPE passed three forward cuts
+and mean comparisons with equal-cap Random8/unchanged-anchor mixtures;
+see reg_blend01_forward_20261023.json. Not full-refit/release/official evidence yet.
+Class BLEND-01 grouped CV is ACTIVE PID92500/create_time1792726586.69,
+detached-blend01-cv.json and blend01-cv-20261023/coordinator.json. Six sequential
+workers, same owned training lock. Keep canonical source, candidate contracts and
+its six harness files FROZEN until it and descendants finish. No duplicate fits.
+PIPE-02 opt-in full-procedure protocol is pipe02_protocol_20261023.md. A dev-only
+prototype is outside canonical source; implement/test/integrate only after CV,
+including the deferred narrow sparse HPO-anchor default correction. Preserve
+default policy and V11/V16; no official submit, main merge, or extra agents.
 Local rollback tags: baseline-before-qwen-optuna-20261022,
 qwen-optuna-core-20261022, qwen-mvp-cli-tested-20261023.
 

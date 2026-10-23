@@ -34,6 +34,14 @@ int-median двух fits. Нет изменения веса или замены
 неудачное дополнение возвращает полный control. Неподдерживаемый schema/kind
 возвращается к прежнему baseline, не получает public-task shortcut.
 
+Заранее заданное futility rule: после первого проваленного paired gate либо
+неуспешного augmentation/study не тратить оставшийся бюджет на дополнительные
+augmentation fits. Закончить оба control cuts и full control; сохранить actual
+отрицательный mixed score и причину. Такой fallback явно отмечается в report.
+Полная положительная PIPE-02 квалификация требует фактически выполненного
+augmentation на обоих regression cuts, восьми успешных trials в каждой из трёх
+studies и final augmentation refit. Fallback не считается проверкой этой ветви.
+
 Оркестрировать два arms отдельными sequential workers и cached mixing.
 Не расширять ради этого global ensemble worker contract. Сохранить row/class
 order и actual immutable splits; source/input fingerprints и все selected

@@ -1,0 +1,585 @@
+{
+  "experiment_id": "METH-02-RECOVERY",
+  "status": "completed_negative_after_initial_failed_contract_attempt",
+  "source_commit": "0a9590b2fb8d5814c7f0410e7339d014272d019c",
+  "actual_exec_session": 38041,
+  "actual_exit_code": 0,
+  "recovery_technical_procedure_passed": true,
+  "original_attempt_status": "FAILED_preserved",
+  "original_failure_root_closure_sha256": "220e7c93f56eaa4a9c2e09ce70aa3ba406d864686cc68520bf69eace4ed75361",
+  "component_quality_gates_passed": false,
+  "metrics": {
+    "regression": {
+      "metric": "rmse",
+      "required_cuts": 3,
+      "complete": true,
+      "control_mean": 40.60751094989404,
+      "candidate_mean": 68.73432800657811
+    },
+    "classification": {
+      "metric": "macro_f1",
+      "required_cuts": 2,
+      "complete": true,
+      "control_mean": 0.6547938868310776,
+      "candidate_mean": 0.48610909247641776
+    }
+  },
+  "rows": [
+    {
+      "key": "regression0-control",
+      "kind": "regression",
+      "cut": 0,
+      "arm": "control",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 39.05167816956453,
+      "diagnostics": {
+        "phase": "regression0-control",
+        "metric": "rmse",
+        "value": 39.05167816956453,
+        "fitting_rows": 35000,
+        "validation_rows": 18308,
+        "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+        "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+        "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+        "prediction_sha256": "e78d320cdb7b77f66900713642ea745ec537d4292a004aced3133eb6e6deb0e7",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          5.0
+        ]
+      },
+      "integrity_passed": true
+    },
+    {
+      "key": "regression0-candidate",
+      "kind": "regression",
+      "cut": 0,
+      "arm": "candidate",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 51.78928264202533,
+      "diagnostics": {
+        "phase": "regression0-candidate",
+        "metric": "rmse",
+        "value": 51.78928264202533,
+        "fitting_rows": 35000,
+        "validation_rows": 18308,
+        "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+        "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+        "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+        "prediction_sha256": "c0abe8028826e1927eee0513965834d34829ffdba3e5247bcdd43852e9325658",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          5.0
+        ]
+      },
+      "integrity_passed": true
+    },
+    {
+      "key": "regression1-control",
+      "kind": "regression",
+      "cut": 1,
+      "arm": "control",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 31.846185166957753,
+      "diagnostics": {
+        "phase": "regression1-control",
+        "metric": "rmse",
+        "value": 31.846185166957753,
+        "fitting_rows": 22054,
+        "validation_rows": 12946,
+        "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+        "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+        "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+        "prediction_sha256": "e58ca631611681fd6219d64696d7c455c968aadbe27303df131cba2313095ecd",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          4.0
+        ]
+      },
+      "integrity_passed": true
+    },
+    {
+      "key": "regression1-candidate",
+      "kind": "regression",
+      "cut": 1,
+      "arm": "candidate",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 53.33077709936319,
+      "diagnostics": {
+        "phase": "regression1-candidate",
+        "metric": "rmse",
+        "value": 53.33077709936319,
+        "fitting_rows": 22054,
+        "validation_rows": 12946,
+        "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+        "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+        "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+        "prediction_sha256": "1f48c8cae3ce4c5b3d557f11ca27d107e32ffd6581a55651a98b55865d4ddfd2",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          4.0
+        ]
+      },
+      "integrity_passed": true
+    },
+    {
+      "key": "regression2-control",
+      "kind": "regression",
+      "cut": 2,
+      "arm": "control",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 50.92466951315985,
+      "diagnostics": {
+        "phase": "regression2-control",
+        "metric": "rmse",
+        "value": 50.92466951315985,
+        "fitting_rows": 11175,
+        "validation_rows": 10879,
+        "positions_sha256": "c30d5cffda6b60f0e70cb67c12d1bb6ae776ee764c3c39480a255ecb715eed89",
+        "training_rows_canonical_sha256": "ad949bed13579ababe82c8ffdbb14423df1552c82f32a27eff4d805a7e251fbe",
+        "split_file_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+        "prediction_sha256": "e69e4863b219d0c07a0b5ec5dfa4b38dce831da288169550a842f83ae24aaa96",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          3.0
+        ]
+      },
+      "integrity_passed": true
+    },
+    {
+      "key": "regression2-candidate",
+      "kind": "regression",
+      "cut": 2,
+      "arm": "candidate",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 101.08292427834583,
+      "diagnostics": {
+        "phase": "regression2-candidate",
+        "metric": "rmse",
+        "value": 101.08292427834583,
+        "fitting_rows": 11175,
+        "validation_rows": 10879,
+        "positions_sha256": "c30d5cffda6b60f0e70cb67c12d1bb6ae776ee764c3c39480a255ecb715eed89",
+        "training_rows_canonical_sha256": "ad949bed13579ababe82c8ffdbb14423df1552c82f32a27eff4d805a7e251fbe",
+        "split_file_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+        "prediction_sha256": "fbdf5c0b0d6856de897a8cd83703b7a330f08afd3f3b0392ba92bf18a41aaa4f",
+        "mixture_children": 0,
+        "forward_chronology_verified": true,
+        "validation_periods": [
+          3.0
+        ]
+      },
+      "integrity_passed": true
+    },
+    {
+      "key": "classification42-control",
+      "kind": "classification",
+      "cut": 42,
+      "arm": "control",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 0.6558634659956402,
+      "diagnostics": {
+        "phase": "classification42-control",
+        "metric": "macro_f1",
+        "value": 0.6558634659956402,
+        "fitting_rows": 70529,
+        "validation_rows": 17141,
+        "positions_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+        "training_rows_canonical_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+        "split_file_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+        "prediction_sha256": "f3803745a6e1a2e2a00e046f61854cdf350949a63d315712353e4af2fa653f20",
+        "mixture_children": 2,
+        "per_class_f1": {
+          "Analysis": 0.3375796178343949,
+          "Backdoor": 0.2146341463414634,
+          "DoS": 0.4978365996436752,
+          "Exploits": 0.6790680874119559,
+          "Fuzzers": 0.7555448408871746,
+          "Generic": 0.9878147847278635,
+          "Normal": 0.915273556231003,
+          "Reconnaissance": 0.8223615464994776,
+          "Shellcode": 0.6643109540636042,
+          "Worms": 0.6842105263157895
+        },
+        "independent_fitting_groups": {
+          "Analysis": 695,
+          "Backdoor": 666,
+          "DoS": 2032,
+          "Exploits": 8833,
+          "Fuzzers": 6767,
+          "Generic": 2829,
+          "Normal": 21177,
+          "Reconnaissance": 3202,
+          "Shellcode": 440,
+          "Worms": 46
+        },
+        "rarest_fitting_class": "Worms",
+        "ex_rarest_macro_f1": 0.6527137926267348,
+        "feature_groups_disjoint": true
+      },
+      "integrity_passed": true
+    },
+    {
+      "key": "classification42-candidate",
+      "kind": "classification",
+      "cut": 42,
+      "arm": "candidate",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 0.4862484988325576,
+      "diagnostics": {
+        "phase": "classification42-candidate",
+        "metric": "macro_f1",
+        "value": 0.4862484988325576,
+        "fitting_rows": 70529,
+        "validation_rows": 17141,
+        "positions_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+        "training_rows_canonical_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+        "split_file_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+        "prediction_sha256": "5036d617ca7c1dbf783d4e4c88165e1fe496420f4ef19551358562d36dae45e1",
+        "mixture_children": 0,
+        "per_class_f1": {
+          "Analysis": 0.292358803986711,
+          "Backdoor": 0.04329004329004329,
+          "DoS": 0.4298949969116739,
+          "Exploits": 0.6218922651933702,
+          "Fuzzers": 0.6280150475768975,
+          "Generic": 0.9793828325023581,
+          "Normal": 0.8816115907512156,
+          "Reconnaissance": 0.634046052631579,
+          "Shellcode": 0.31627906976744186,
+          "Worms": 0.03571428571428571
+        },
+        "independent_fitting_groups": {
+          "Analysis": 695,
+          "Backdoor": 666,
+          "DoS": 2032,
+          "Exploits": 8833,
+          "Fuzzers": 6767,
+          "Generic": 2829,
+          "Normal": 21177,
+          "Reconnaissance": 3202,
+          "Shellcode": 440,
+          "Worms": 46
+        },
+        "rarest_fitting_class": "Worms",
+        "ex_rarest_macro_f1": 0.536307855845699,
+        "feature_groups_disjoint": true
+      },
+      "integrity_passed": true
+    },
+    {
+      "key": "classification43-control",
+      "kind": "classification",
+      "cut": 43,
+      "arm": "control",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 0.653724307666515,
+      "diagnostics": {
+        "phase": "classification43-control",
+        "metric": "macro_f1",
+        "value": 0.653724307666515,
+        "fitting_rows": 70321,
+        "validation_rows": 17349,
+        "positions_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+        "training_rows_canonical_sha256": "98042ca608f0d55d96547ef6a59d21f007cc370e024d9e500e7e735e25dffa7d",
+        "split_file_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+        "prediction_sha256": "212d2c1c68fa3c68ba0acb4e6cfeb7f8e6cb17d66a048546345bd53136f665eb",
+        "mixture_children": 2,
+        "per_class_f1": {
+          "Analysis": 0.2733812949640288,
+          "Backdoor": 0.21374045801526717,
+          "DoS": 0.4831251660908849,
+          "Exploits": 0.6828217555196554,
+          "Fuzzers": 0.7510184519530314,
+          "Generic": 0.9897619657025851,
+          "Normal": 0.9150819054791941,
+          "Reconnaissance": 0.842159916926272,
+          "Shellcode": 0.7432950191570882,
+          "Worms": 0.6428571428571429
+        },
+        "independent_fitting_groups": {
+          "Analysis": 705,
+          "Backdoor": 664,
+          "DoS": 2061,
+          "Exploits": 8882,
+          "Fuzzers": 6765,
+          "Generic": 2828,
+          "Normal": 21095,
+          "Reconnaissance": 3206,
+          "Shellcode": 446,
+          "Worms": 54
+        },
+        "rarest_fitting_class": "Worms",
+        "ex_rarest_macro_f1": 0.6549317704231119,
+        "feature_groups_disjoint": true
+      },
+      "integrity_passed": true
+    },
+    {
+      "key": "classification43-candidate",
+      "kind": "classification",
+      "cut": 43,
+      "arm": "candidate",
+      "status": "ok",
+      "exit_code": 0,
+      "metric": 0.4859696861202779,
+      "diagnostics": {
+        "phase": "classification43-candidate",
+        "metric": "macro_f1",
+        "value": 0.4859696861202779,
+        "fitting_rows": 70321,
+        "validation_rows": 17349,
+        "positions_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+        "training_rows_canonical_sha256": "98042ca608f0d55d96547ef6a59d21f007cc370e024d9e500e7e735e25dffa7d",
+        "split_file_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+        "prediction_sha256": "70859f6bf8099a1641da9a9e9fc9a58db672ffea8c16b4cbf97026fa41a805aa",
+        "mixture_children": 0,
+        "per_class_f1": {
+          "Analysis": 0.2206405693950178,
+          "Backdoor": 0.018867924528301886,
+          "DoS": 0.43880861102919494,
+          "Exploits": 0.6055676066522053,
+          "Fuzzers": 0.6250274906531779,
+          "Generic": 0.984301212507977,
+          "Normal": 0.8844427093499903,
+          "Reconnaissance": 0.6402640264026402,
+          "Shellcode": 0.2653061224489796,
+          "Worms": 0.17647058823529413
+        },
+        "independent_fitting_groups": {
+          "Analysis": 705,
+          "Backdoor": 664,
+          "DoS": 2061,
+          "Exploits": 8882,
+          "Fuzzers": 6765,
+          "Generic": 2828,
+          "Normal": 21095,
+          "Reconnaissance": 3206,
+          "Shellcode": 446,
+          "Worms": 54
+        },
+        "rarest_fitting_class": "Worms",
+        "ex_rarest_macro_f1": 0.520358474774165,
+        "feature_groups_disjoint": true
+      },
+      "integrity_passed": true
+    }
+  ],
+  "candidate_gates": {
+    "regression_all_three_strict_RMSE_improvement": false,
+    "regression_cuts": [
+      {
+        "cut": 0,
+        "strict_RMSE_improvement": false
+      },
+      {
+        "cut": 1,
+        "strict_RMSE_improvement": false
+      },
+      {
+        "cut": 2,
+        "strict_RMSE_improvement": false
+      }
+    ],
+    "classification": {
+      "cuts": [
+        {
+          "phase": "primary",
+          "current": 0.4862484988325576,
+          "protected_control": 0.6558634659956402,
+          "delta_current_minus_control": -0.16961496716308255,
+          "primary_improves": false,
+          "per_class_f1_delta": {
+            "Analysis": -0.045220813847683894,
+            "Backdoor": -0.17134410305142012,
+            "DoS": -0.06794160273200134,
+            "Exploits": -0.05717582221858575,
+            "Fuzzers": -0.12752979331027703,
+            "Generic": -0.008431952225505412,
+            "Normal": -0.03366196547978739,
+            "Reconnaissance": -0.1883154938678986,
+            "Shellcode": -0.34803188429616233,
+            "Worms": -0.6484962406015038
+          },
+          "supported_class_losses_over_001": {
+            "Analysis": -0.045220813847683894,
+            "Backdoor": -0.17134410305142012,
+            "DoS": -0.06794160273200134,
+            "Exploits": -0.05717582221858575,
+            "Fuzzers": -0.12752979331027703,
+            "Normal": -0.03366196547978739,
+            "Reconnaissance": -0.1883154938678986,
+            "Shellcode": -0.34803188429616233
+          },
+          "ex_rarest_macro_f1_delta": -0.11640593678103575,
+          "all_class_gates_passed": false,
+          "cut_alias": "group_seed_42",
+          "cut": 42
+        },
+        {
+          "phase": "confirmation",
+          "current": 0.4859696861202779,
+          "protected_control": 0.653724307666515,
+          "delta_current_minus_control": -0.1677546215462371,
+          "primary_improves": false,
+          "per_class_f1_delta": {
+            "Analysis": -0.05274072556901099,
+            "Backdoor": -0.1948725334869653,
+            "DoS": -0.044316555061689966,
+            "Exploits": -0.07725414886745008,
+            "Fuzzers": -0.12599096129985354,
+            "Generic": -0.005460753194608148,
+            "Normal": -0.03063919612920385,
+            "Reconnaissance": -0.20189589052363177,
+            "Shellcode": -0.47798889670810857,
+            "Worms": -0.46638655462184875
+          },
+          "supported_class_losses_over_001": {
+            "Analysis": -0.05274072556901099,
+            "Backdoor": -0.1948725334869653,
+            "DoS": -0.044316555061689966,
+            "Exploits": -0.07725414886745008,
+            "Fuzzers": -0.12599096129985354,
+            "Normal": -0.03063919612920385,
+            "Reconnaissance": -0.20189589052363177,
+            "Shellcode": -0.47798889670810857
+          },
+          "ex_rarest_macro_f1_delta": -0.1345732956489469,
+          "all_class_gates_passed": false,
+          "cut_alias": "group_seed_43",
+          "cut": 43
+        }
+      ],
+      "each_cut_MacroF1_improves": false,
+      "each_cut_supported_class_and_ex_rarest_gates_passed": false
+    },
+    "component_quality_gates_passed": false,
+    "negative_standalone_artifacts_retained_for_separate_METH03": true,
+    "full_refit_or_promotion": false,
+    "scope": "Registered standalone component gates only; class primary/confirmation names are aliases for group seeds42/43, not whole-agent phases"
+  },
+  "original_common_seconds": 10800,
+  "original_start_unix": 1792779687.2118866,
+  "original_deadline_unix": 1792790487.2118866,
+  "original_common_elapsed_seconds": 869.1560000000027,
+  "setup_seconds_including_failure_fix_review_publication": 546.5460000000021,
+  "recovery_attempt_elapsed_seconds": 331.0,
+  "worker_jobs_completed": 10,
+  "synthetic_tests_passed": 8,
+  "tiny_fitting_callbacks": 10,
+  "reused_T7_source_checks": 458,
+  "reused_T7_exact_checks": 23,
+  "workers": [
+    {
+      "key": "regression0-control",
+      "status": "ok",
+      "exit_code": 0,
+      "seconds_including_seal": 8.968999999997322,
+      "peak_owned_tree_rss_mib": 405.26171875,
+      "cleanup_confirmed": true
+    },
+    {
+      "key": "regression0-candidate",
+      "status": "ok",
+      "exit_code": 0,
+      "seconds_including_seal": 5.0310000000026776,
+      "peak_owned_tree_rss_mib": 342.62890625,
+      "cleanup_confirmed": true
+    },
+    {
+      "key": "regression1-control",
+      "status": "ok",
+      "exit_code": 0,
+      "seconds_including_seal": 7.219000000004598,
+      "peak_owned_tree_rss_mib": 391.078125,
+      "cleanup_confirmed": true
+    },
+    {
+      "key": "regression1-candidate",
+      "status": "ok",
+      "exit_code": 0,
+      "seconds_including_seal": 5.0,
+      "peak_owned_tree_rss_mib": 305.3359375,
+      "cleanup_confirmed": true
+    },
+    {
+      "key": "regression2-control",
+      "status": "ok",
+      "exit_code": 0,
+      "seconds_including_seal": 5.687999999994645,
+      "peak_owned_tree_rss_mib": 361.23828125,
+      "cleanup_confirmed": true
+    },
+    {
+      "key": "regression2-candidate",
+      "status": "ok",
+      "exit_code": 0,
+      "seconds_including_seal": 4.703000000001339,
+      "peak_owned_tree_rss_mib": 271.59765625,
+      "cleanup_confirmed": true
+    },
+    {
+      "key": "classification42-control",
+      "status": "ok",
+      "exit_code": 0,
+      "seconds_including_seal": 80.5,
+      "peak_owned_tree_rss_mib": 487.88671875,
+      "cleanup_confirmed": true
+    },
+    {
+      "key": "classification42-candidate",
+      "status": "ok",
+      "exit_code": 0,
+      "seconds_including_seal": 22.656000000002678,
+      "peak_owned_tree_rss_mib": 387.390625,
+      "cleanup_confirmed": true
+    },
+    {
+      "key": "classification43-control",
+      "status": "ok",
+      "exit_code": 0,
+      "seconds_including_seal": 103.4690000000046,
+      "peak_owned_tree_rss_mib": 502.94921875,
+      "cleanup_confirmed": true
+    },
+    {
+      "key": "classification43-candidate",
+      "status": "ok",
+      "exit_code": 0,
+      "seconds_including_seal": 67.2809999999954,
+      "peak_owned_tree_rss_mib": 375.59375,
+      "cleanup_confirmed": true
+    }
+  ],
+  "root_closure_sha256": "fe00067cb099fdd4fdcd036861f5c3d55cd1c9ee0ee75bcddf488cfc035fe7f7",
+  "independent_audit_sha256": "b753143e28d17a9d442eef7671ef7c49426b49d6595587d952b83dda0d725627",
+  "manifest_sha256": "de81793861ea143395a1233deadffe69b194afc32dc123edc625b452202b8628",
+  "post_root_fresh_absence_sha256": "5b63cab0a17f4a68d948f63f3515dd4ef24d6547698b8cfbbcd126e8d7d211e9",
+  "first_failure": null,
+  "error_history": [],
+  "API_calls": 0,
+  "full_refit": false,
+  "promotion": false,
+  "submit": false,
+  "official_score": null,
+  "decision": "Do not add these fixed standalone linear recipes to mandatory default portfolio. All five cuts lose. Retain original failed attempt and all aligned caches for pre-outcome registered fixed90/10 METH-03-LINEAR; keep universal adapter available for other appropriate tasks.",
+  "scope": "Fixed existing numeric/category-only Ridge10/lsqr and LogisticC1/power.5 recipe package vs exact protected SINGLE. Different feature preparation: not a pure model-family causal effect. Five reused public cuts, no full refit/default promotion/official score.",
+  "strong_whole_agent_reference": {
+    "best_verified_regression_RMSE": 34.86622087872278,
+    "historical_class_MacroF1": 0.6593178433614652,
+    "unchanged": true
+  }
+}

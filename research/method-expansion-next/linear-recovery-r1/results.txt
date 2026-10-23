@@ -1,0 +1,7 @@
+METH02 ONE recovery: all8 synthetic contracts,10public workers and independent R4 pristine-label audit PASS; original first attempt remains FAIL.
+Fixed no-text Ridge10/lsqr RMSE68.7343280066 vs protected SINGLE40.6075109499 on3forward cuts; all3worse.
+Fixed LogisticC1/power.5 MacroF1 .486109092476 vs SINGLE.654793886831 on2group cuts; bothworse, support/exrarest FAIL.
+Decision: do not add these standalone recipes to mandatory default portfolio. Existing general-purpose adapter remains supported. This measures the fixed preparation+model package, not every possible linear model.
+Original common10800 clock retained; total869.156sec includes failed first attempt, fix/review/publication and successful recovery; setup546.546sec inside original900. No reset.
+Saved aligned caches reserved for fixed90/10 linear blend preregistered before METH02 launch/outcomes. No new fullrefit/defaultpromotion/officialscore/submit.
+Strong CP1/B regression34.8662208787 and historical V11/V16 class.6593178434 unchanged.

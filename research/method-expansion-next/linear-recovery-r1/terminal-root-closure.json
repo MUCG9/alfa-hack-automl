@@ -1,0 +1,917 @@
+{
+  "status": "component_screen_recovery_verified_original_failed_preserved",
+  "actual_exec_session": 38041,
+  "actual_exec_exit_code_observed_by_root": 0,
+  "actual_tool_evidence": "Actual write_stdin38041 toolc4f53b exit0; inherited original common elapsed869.156sec includes failed first attempt and source repair; no new clock",
+  "cleanup_confirmed": true,
+  "source_unchanged": true,
+  "owned_identities": [
+    {
+      "pid": 1184,
+      "create_time": 1792780261.070194
+    },
+    {
+      "pid": 2204,
+      "create_time": 1792780549.5534604
+    },
+    {
+      "pid": 4604,
+      "create_time": 1792780374.6760771
+    },
+    {
+      "pid": 5544,
+      "create_time": 1792780234.8054745
+    },
+    {
+      "pid": 6332,
+      "create_time": 1792780352.0562167
+    },
+    {
+      "pid": 8472,
+      "create_time": 1792780230.524011
+    },
+    {
+      "pid": 10248,
+      "create_time": 1792780230.5405476
+    },
+    {
+      "pid": 11932,
+      "create_time": 1792780248.8365655
+    },
+    {
+      "pid": 12476,
+      "create_time": 1792780481.5506723
+    },
+    {
+      "pid": 13292,
+      "create_time": 1792780271.4874327
+    },
+    {
+      "pid": 14548,
+      "create_time": 1792780248.8250823
+    },
+    {
+      "pid": 14700,
+      "create_time": 1792780481.5161264
+    },
+    {
+      "pid": 14784,
+      "create_time": 1792780266.7906768
+    },
+    {
+      "pid": 17624,
+      "create_time": 1792780352.0420473
+    },
+    {
+      "pid": 18076,
+      "create_time": 1792780271.475712
+    },
+    {
+      "pid": 18444,
+      "create_time": 1792780549.5398197
+    },
+    {
+      "pid": 20188,
+      "create_time": 1792780266.7759912
+    },
+    {
+      "pid": 21132,
+      "create_time": 1792780374.6882193
+    },
+    {
+      "pid": 21624,
+      "create_time": 1792780261.083429
+    },
+    {
+      "pid": 22280,
+      "create_time": 1792780225.3033333
+    },
+    {
+      "pid": 22432,
+      "create_time": 1792780225.2876935
+    },
+    {
+      "pid": 22508,
+      "create_time": 1792780256.0948172
+    },
+    {
+      "pid": 23236,
+      "create_time": 1792780243.8062894
+    },
+    {
+      "pid": 24172,
+      "create_time": 1792780256.1116593
+    },
+    {
+      "pid": 24212,
+      "create_time": 1792780234.796096
+    },
+    {
+      "pid": 24720,
+      "create_time": 1792780243.8240263
+    }
+  ],
+  "closure_preparer_identities": [
+    {
+      "pid": 4344,
+      "create_time": 1792780601.12782
+    },
+    {
+      "pid": 1864,
+      "create_time": 1792780601.1085625
+    }
+  ],
+  "active_owned_processes": [],
+  "uncertain_owned": [],
+  "changed_or_conflicting_pins": [],
+  "immutable_and_core_refs_rehashed": 935,
+  "original_start_unix": 1792779687.2118866,
+  "original_deadline_unix": 1792790487.2118866,
+  "original_common_seconds": 10800,
+  "original_failed_attempt": {
+    "path": "meth02/terminal-root-closure.json",
+    "sha256": "220e7c93f56eaa4a9c2e09ce70aa3ba406d864686cc68520bf69eace4ed75361",
+    "campaign_path": "meth02/campaign.json",
+    "campaign_sha256": "fbc2844806b1ebda4912aa038f5b407931eff8c8a38c7fcf5f8722e11930e2f3",
+    "actual_exec_session": null,
+    "actual_exec_exit_code_observed_by_root": 1,
+    "original_status": "FAILED_preserved",
+    "only_ONE_recovery": true
+  },
+  "recovery_attempt_start_unix": 1792780225.3680599,
+  "original_attempt_status": "FAILED_preserved",
+  "raw_parent_elapsed_seconds": 869.1560000000027,
+  "technical_procedure_passed": true,
+  "independent_artifact_integrity": true,
+  "first_failure": null,
+  "error_history": [],
+  "independent_audit": {
+    "path": "meth02b/independent-audit.json",
+    "sha256": "b753143e28d17a9d442eef7671ef7c49426b49d6595587d952b83dda0d725627",
+    "raw_result": {
+      "status": "component_artifacts_verified_pending_parent_terminal",
+      "rows": [
+        {
+          "key": "regression0-control",
+          "kind": "regression",
+          "cut": 0,
+          "arm": "control",
+          "status": "ok",
+          "exit_code": 0,
+          "metric": 39.05167816956453,
+          "diagnostics": {
+            "phase": "regression0-control",
+            "metric": "rmse",
+            "value": 39.05167816956453,
+            "fitting_rows": 35000,
+            "validation_rows": 18308,
+            "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+            "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+            "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+            "prediction_sha256": "e78d320cdb7b77f66900713642ea745ec537d4292a004aced3133eb6e6deb0e7",
+            "mixture_children": 0,
+            "forward_chronology_verified": true,
+            "validation_periods": [
+              5.0
+            ]
+          },
+          "integrity_passed": true,
+          "failed_metric_zero_imputed": false,
+          "artifact_hashes": {
+            "meth02b/r/regression0-control/job.json": "46610ed7a497d91ac5c99809d23946596ce20f376b7d674e7993ca18479d2b1f",
+            "meth02b/r/regression0-control/result.json": "9021df532ba7fe1f02ecde540f82ce5a1f7878a69e0add6f0192b3dbd6a3b95c",
+            "meth02b/r/regression0-control/submission.csv": "874067716804031fa18f47bd4e98280d0efa174d81e0807319052c4f4c63b3ca",
+            "meth02b/r/regression0-control/validation_predictions.csv": "e78d320cdb7b77f66900713642ea745ec537d4292a004aced3133eb6e6deb0e7"
+          },
+          "measurement_status": "independent_component_metric"
+        },
+        {
+          "key": "regression0-candidate",
+          "kind": "regression",
+          "cut": 0,
+          "arm": "candidate",
+          "status": "ok",
+          "exit_code": 0,
+          "metric": 51.78928264202533,
+          "diagnostics": {
+            "phase": "regression0-candidate",
+            "metric": "rmse",
+            "value": 51.78928264202533,
+            "fitting_rows": 35000,
+            "validation_rows": 18308,
+            "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+            "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+            "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+            "prediction_sha256": "c0abe8028826e1927eee0513965834d34829ffdba3e5247bcdd43852e9325658",
+            "mixture_children": 0,
+            "forward_chronology_verified": true,
+            "validation_periods": [
+              5.0
+            ]
+          },
+          "integrity_passed": true,
+          "failed_metric_zero_imputed": false,
+          "artifact_hashes": {
+            "meth02b/r/regression0-candidate/job.json": "6613928f8273050aa9f166df4614c9f4e3dee3432f0002f927beaacd5956a0e0",
+            "meth02b/r/regression0-candidate/result.json": "dbbfde0e14077657b25f60aa868ee4004c4b428d31a3c1ad24e63bcfa6125ac9",
+            "meth02b/r/regression0-candidate/submission.csv": "d82484c6abe6905758313c61e4da4a77b4b61b7c94b11f76afa8cb8430acd4f3",
+            "meth02b/r/regression0-candidate/validation_predictions.csv": "c0abe8028826e1927eee0513965834d34829ffdba3e5247bcdd43852e9325658"
+          },
+          "measurement_status": "independent_component_metric"
+        },
+        {
+          "key": "regression1-control",
+          "kind": "regression",
+          "cut": 1,
+          "arm": "control",
+          "status": "ok",
+          "exit_code": 0,
+          "metric": 31.846185166957753,
+          "diagnostics": {
+            "phase": "regression1-control",
+            "metric": "rmse",
+            "value": 31.846185166957753,
+            "fitting_rows": 22054,
+            "validation_rows": 12946,
+            "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+            "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+            "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+            "prediction_sha256": "e58ca631611681fd6219d64696d7c455c968aadbe27303df131cba2313095ecd",
+            "mixture_children": 0,
+            "forward_chronology_verified": true,
+            "validation_periods": [
+              4.0
+            ]
+          },
+          "integrity_passed": true,
+          "failed_metric_zero_imputed": false,
+          "artifact_hashes": {
+            "meth02b/r/regression1-control/job.json": "41ce0feafa88258be50cf4ae3a208e91fdac4f110a4cb1aa01464c65908e1252",
+            "meth02b/r/regression1-control/result.json": "7c14b3e93687874e89d7957751f3cb61955833d028095f647236684b5b7ded0f",
+            "meth02b/r/regression1-control/submission.csv": "58c06a83a4e16237a3053b06383713ef2b6965f4ec393f5641a2dc8e7d6abf78",
+            "meth02b/r/regression1-control/validation_predictions.csv": "e58ca631611681fd6219d64696d7c455c968aadbe27303df131cba2313095ecd"
+          },
+          "measurement_status": "independent_component_metric"
+        },
+        {
+          "key": "regression1-candidate",
+          "kind": "regression",
+          "cut": 1,
+          "arm": "candidate",
+          "status": "ok",
+          "exit_code": 0,
+          "metric": 53.33077709936319,
+          "diagnostics": {
+            "phase": "regression1-candidate",
+            "metric": "rmse",
+            "value": 53.33077709936319,
+            "fitting_rows": 22054,
+            "validation_rows": 12946,
+            "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+            "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+            "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+            "prediction_sha256": "1f48c8cae3ce4c5b3d557f11ca27d107e32ffd6581a55651a98b55865d4ddfd2",
+            "mixture_children": 0,
+            "forward_chronology_verified": true,
+            "validation_periods": [
+              4.0
+            ]
+          },
+          "integrity_passed": true,
+          "failed_metric_zero_imputed": false,
+          "artifact_hashes": {
+            "meth02b/r/regression1-candidate/job.json": "3411aaf772d1b64394e075b8da66d60a820bc1ba1c02c7e8d46e8596230d654b",
+            "meth02b/r/regression1-candidate/result.json": "466fd63b09b1397be410c36344749db53c6d651b383d059e7cc4857c654f377c",
+            "meth02b/r/regression1-candidate/submission.csv": "d20122494093c167960559361c36ca5b02032a20919ba3742b5642f6df0d6918",
+            "meth02b/r/regression1-candidate/validation_predictions.csv": "1f48c8cae3ce4c5b3d557f11ca27d107e32ffd6581a55651a98b55865d4ddfd2"
+          },
+          "measurement_status": "independent_component_metric"
+        },
+        {
+          "key": "regression2-control",
+          "kind": "regression",
+          "cut": 2,
+          "arm": "control",
+          "status": "ok",
+          "exit_code": 0,
+          "metric": 50.92466951315985,
+          "diagnostics": {
+            "phase": "regression2-control",
+            "metric": "rmse",
+            "value": 50.92466951315985,
+            "fitting_rows": 11175,
+            "validation_rows": 10879,
+            "positions_sha256": "c30d5cffda6b60f0e70cb67c12d1bb6ae776ee764c3c39480a255ecb715eed89",
+            "training_rows_canonical_sha256": "ad949bed13579ababe82c8ffdbb14423df1552c82f32a27eff4d805a7e251fbe",
+            "split_file_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+            "prediction_sha256": "e69e4863b219d0c07a0b5ec5dfa4b38dce831da288169550a842f83ae24aaa96",
+            "mixture_children": 0,
+            "forward_chronology_verified": true,
+            "validation_periods": [
+              3.0
+            ]
+          },
+          "integrity_passed": true,
+          "failed_metric_zero_imputed": false,
+          "artifact_hashes": {
+            "meth02b/r/regression2-control/job.json": "684f028a99c854093f340e8bd0fc8c003c00ea2fb4a98e48f2c6297edd84e810",
+            "meth02b/r/regression2-control/result.json": "084dc94eb48bac34502b65df7c92a5c3285a71d6f85915c5e34581931a8611f3",
+            "meth02b/r/regression2-control/submission.csv": "ca8b3c6be1263360f423c46bede6232944ac301d8b5c945ec8d1cc17d647ebaa",
+            "meth02b/r/regression2-control/validation_predictions.csv": "e69e4863b219d0c07a0b5ec5dfa4b38dce831da288169550a842f83ae24aaa96"
+          },
+          "measurement_status": "independent_component_metric"
+        },
+        {
+          "key": "regression2-candidate",
+          "kind": "regression",
+          "cut": 2,
+          "arm": "candidate",
+          "status": "ok",
+          "exit_code": 0,
+          "metric": 101.08292427834583,
+          "diagnostics": {
+            "phase": "regression2-candidate",
+            "metric": "rmse",
+            "value": 101.08292427834583,
+            "fitting_rows": 11175,
+            "validation_rows": 10879,
+            "positions_sha256": "c30d5cffda6b60f0e70cb67c12d1bb6ae776ee764c3c39480a255ecb715eed89",
+            "training_rows_canonical_sha256": "ad949bed13579ababe82c8ffdbb14423df1552c82f32a27eff4d805a7e251fbe",
+            "split_file_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+            "prediction_sha256": "fbdf5c0b0d6856de897a8cd83703b7a330f08afd3f3b0392ba92bf18a41aaa4f",
+            "mixture_children": 0,
+            "forward_chronology_verified": true,
+            "validation_periods": [
+              3.0
+            ]
+          },
+          "integrity_passed": true,
+          "failed_metric_zero_imputed": false,
+          "artifact_hashes": {
+            "meth02b/r/regression2-candidate/job.json": "82987aeaae5b60e48ee5c28bbdb05a83d0ca5c7daa324b6919c4068dcf3318f5",
+            "meth02b/r/regression2-candidate/result.json": "054b0bf49919822abb45013d93662a4f3452307269eaaebdf268130cba6cdbc9",
+            "meth02b/r/regression2-candidate/submission.csv": "5ed77753aaa8814b91288b77692a228080108433ef5c8614a67153bd96f55483",
+            "meth02b/r/regression2-candidate/validation_predictions.csv": "fbdf5c0b0d6856de897a8cd83703b7a330f08afd3f3b0392ba92bf18a41aaa4f"
+          },
+          "measurement_status": "independent_component_metric"
+        },
+        {
+          "key": "classification42-control",
+          "kind": "classification",
+          "cut": 42,
+          "arm": "control",
+          "status": "ok",
+          "exit_code": 0,
+          "metric": 0.6558634659956402,
+          "diagnostics": {
+            "phase": "classification42-control",
+            "metric": "macro_f1",
+            "value": 0.6558634659956402,
+            "fitting_rows": 70529,
+            "validation_rows": 17141,
+            "positions_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "training_rows_canonical_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+            "split_file_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+            "prediction_sha256": "f3803745a6e1a2e2a00e046f61854cdf350949a63d315712353e4af2fa653f20",
+            "mixture_children": 2,
+            "per_class_f1": {
+              "Analysis": 0.3375796178343949,
+              "Backdoor": 0.2146341463414634,
+              "DoS": 0.4978365996436752,
+              "Exploits": 0.6790680874119559,
+              "Fuzzers": 0.7555448408871746,
+              "Generic": 0.9878147847278635,
+              "Normal": 0.915273556231003,
+              "Reconnaissance": 0.8223615464994776,
+              "Shellcode": 0.6643109540636042,
+              "Worms": 0.6842105263157895
+            },
+            "independent_fitting_groups": {
+              "Analysis": 695,
+              "Backdoor": 666,
+              "DoS": 2032,
+              "Exploits": 8833,
+              "Fuzzers": 6767,
+              "Generic": 2829,
+              "Normal": 21177,
+              "Reconnaissance": 3202,
+              "Shellcode": 440,
+              "Worms": 46
+            },
+            "rarest_fitting_class": "Worms",
+            "ex_rarest_macro_f1": 0.6527137926267348,
+            "feature_groups_disjoint": true
+          },
+          "integrity_passed": true,
+          "failed_metric_zero_imputed": false,
+          "artifact_hashes": {
+            "meth02b/c/classification42-control/job.json": "0277c5efc65807a88bd4027df2428d24b107a8fa547c9b295d992c7b516960a0",
+            "meth02b/c/classification42-control/result.json": "c8037b1f52bf5de0302fa4c2d9643d94e884990a2c3b2db55f6b117bbe378364",
+            "meth02b/c/classification42-control/submission.csv": "2bf38c3e6fd9b205c2baada93a7a44028b05018200eac20eb56c3f809b840ddc",
+            "meth02b/c/classification42-control/test_probabilities.npz": "beb1f3a07ac6900fa6fd47eb6aac3620141e70aab1004ebecf6a90e17ca48a9b",
+            "meth02b/c/classification42-control/validation_predictions.csv": "f3803745a6e1a2e2a00e046f61854cdf350949a63d315712353e4af2fa653f20",
+            "meth02b/c/classification42-control/validation_probabilities.npz": "6c9e2457e8f0c077e623b4738c5a0c23259091f2d2313e6c9d998b67f49677e0",
+            "meth02b/c/classification42-control/component-0/result.json": "ca580dbbe06e8bc4fbe1728c51cbe4758dd38e61da7dbd727e2a215e113bd515",
+            "meth02b/c/classification42-control/component-0/submission.csv": "ff43a29b25ad458658ad1a8c06ea5edf508f2d7d5863898438bc2f620fd47aa3",
+            "meth02b/c/classification42-control/component-0/test_probabilities.npz": "daa7684b04a4bf0863618fffbc100f0fbb14fb9246a7e71a553addb94eaa0339",
+            "meth02b/c/classification42-control/component-0/validation_predictions.csv": "e4c6813e6e37ae309b661a1880b5e8c82fdce46eac70008f5b14f398c63f91de",
+            "meth02b/c/classification42-control/component-0/validation_probabilities.npz": "05a13382368d44b1a85712356d0c54d4390875e2f461a749d8147b7c9c5b0635",
+            "meth02b/c/classification42-control/component-1/result.json": "694f8ab44d6fcdbd55dff93a4debbc0ef964dbefac97e70baff49f7acdc1cfaa",
+            "meth02b/c/classification42-control/component-1/submission.csv": "66264b10f4082dd3058f2960f14c70683d333dad24e54b1089ef14046c06d5d8",
+            "meth02b/c/classification42-control/component-1/test_probabilities.npz": "086a60ab27caaea71bb8c2e0a9d6fc1ab4ef096c4d3680d19e800ec48a747950",
+            "meth02b/c/classification42-control/component-1/validation_predictions.csv": "1a1e76707f013e624f127247b0652eb0b7b0a7d69fe1023d920b20ac9de2814b",
+            "meth02b/c/classification42-control/component-1/validation_probabilities.npz": "56c93d2e83392f2d8ee0a27859fe8b49fb8387dd516c605a15490146cf54f912"
+          },
+          "measurement_status": "independent_component_metric"
+        },
+        {
+          "key": "classification42-candidate",
+          "kind": "classification",
+          "cut": 42,
+          "arm": "candidate",
+          "status": "ok",
+          "exit_code": 0,
+          "metric": 0.4862484988325576,
+          "diagnostics": {
+            "phase": "classification42-candidate",
+            "metric": "macro_f1",
+            "value": 0.4862484988325576,
+            "fitting_rows": 70529,
+            "validation_rows": 17141,
+            "positions_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "training_rows_canonical_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+            "split_file_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+            "prediction_sha256": "5036d617ca7c1dbf783d4e4c88165e1fe496420f4ef19551358562d36dae45e1",
+            "mixture_children": 0,
+            "per_class_f1": {
+              "Analysis": 0.292358803986711,
+              "Backdoor": 0.04329004329004329,
+              "DoS": 0.4298949969116739,
+              "Exploits": 0.6218922651933702,
+              "Fuzzers": 0.6280150475768975,
+              "Generic": 0.9793828325023581,
+              "Normal": 0.8816115907512156,
+              "Reconnaissance": 0.634046052631579,
+              "Shellcode": 0.31627906976744186,
+              "Worms": 0.03571428571428571
+            },
+            "independent_fitting_groups": {
+              "Analysis": 695,
+              "Backdoor": 666,
+              "DoS": 2032,
+              "Exploits": 8833,
+              "Fuzzers": 6767,
+              "Generic": 2829,
+              "Normal": 21177,
+              "Reconnaissance": 3202,
+              "Shellcode": 440,
+              "Worms": 46
+            },
+            "rarest_fitting_class": "Worms",
+            "ex_rarest_macro_f1": 0.536307855845699,
+            "feature_groups_disjoint": true
+          },
+          "integrity_passed": true,
+          "failed_metric_zero_imputed": false,
+          "artifact_hashes": {
+            "meth02b/c/classification42-candidate/job.json": "f164f4539d04c16202feb5bed3cab88a5a6fc030d9a17c05e1723a777515319c",
+            "meth02b/c/classification42-candidate/result.json": "ca1f8f17d9763da3c19d996c43a6515a8c1ab15a714e86a4c4cba726017e0c76",
+            "meth02b/c/classification42-candidate/submission.csv": "2d06a6b4aa2607fbb4982959dfd8cba340836d36b59c7d14e72e772240b380de",
+            "meth02b/c/classification42-candidate/test_probabilities.npz": "175af92ab834c5c89e0ed0cf677797d2096f26380c87c18b3f40799a126c3548",
+            "meth02b/c/classification42-candidate/validation_predictions.csv": "5036d617ca7c1dbf783d4e4c88165e1fe496420f4ef19551358562d36dae45e1",
+            "meth02b/c/classification42-candidate/validation_probabilities.npz": "8053e55b24e098f50caa42775d0ede2d1b037f3603b76de237d412b81f4694a8"
+          },
+          "measurement_status": "independent_component_metric"
+        },
+        {
+          "key": "classification43-control",
+          "kind": "classification",
+          "cut": 43,
+          "arm": "control",
+          "status": "ok",
+          "exit_code": 0,
+          "metric": 0.653724307666515,
+          "diagnostics": {
+            "phase": "classification43-control",
+            "metric": "macro_f1",
+            "value": 0.653724307666515,
+            "fitting_rows": 70321,
+            "validation_rows": 17349,
+            "positions_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "training_rows_canonical_sha256": "98042ca608f0d55d96547ef6a59d21f007cc370e024d9e500e7e735e25dffa7d",
+            "split_file_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+            "prediction_sha256": "212d2c1c68fa3c68ba0acb4e6cfeb7f8e6cb17d66a048546345bd53136f665eb",
+            "mixture_children": 2,
+            "per_class_f1": {
+              "Analysis": 0.2733812949640288,
+              "Backdoor": 0.21374045801526717,
+              "DoS": 0.4831251660908849,
+              "Exploits": 0.6828217555196554,
+              "Fuzzers": 0.7510184519530314,
+              "Generic": 0.9897619657025851,
+              "Normal": 0.9150819054791941,
+              "Reconnaissance": 0.842159916926272,
+              "Shellcode": 0.7432950191570882,
+              "Worms": 0.6428571428571429
+            },
+            "independent_fitting_groups": {
+              "Analysis": 705,
+              "Backdoor": 664,
+              "DoS": 2061,
+              "Exploits": 8882,
+              "Fuzzers": 6765,
+              "Generic": 2828,
+              "Normal": 21095,
+              "Reconnaissance": 3206,
+              "Shellcode": 446,
+              "Worms": 54
+            },
+            "rarest_fitting_class": "Worms",
+            "ex_rarest_macro_f1": 0.6549317704231119,
+            "feature_groups_disjoint": true
+          },
+          "integrity_passed": true,
+          "failed_metric_zero_imputed": false,
+          "artifact_hashes": {
+            "meth02b/c/classification43-control/job.json": "6e0c213496b9192e4f8cab762791923ae8ba011c6a1f966e3f2fd2366e63c211",
+            "meth02b/c/classification43-control/result.json": "68db3009010e5baf305bf537a49082698881f642e0b608b42bc2b21a1034232e",
+            "meth02b/c/classification43-control/submission.csv": "409590d90b812c5b2914a360b1770b47f554ad7b03ffa83e3da7f96052d56bcc",
+            "meth02b/c/classification43-control/test_probabilities.npz": "97d583b51e3177ed2c742e511396e02ff5e5da5c3aef8d5be3bf666f64c6b20a",
+            "meth02b/c/classification43-control/validation_predictions.csv": "212d2c1c68fa3c68ba0acb4e6cfeb7f8e6cb17d66a048546345bd53136f665eb",
+            "meth02b/c/classification43-control/validation_probabilities.npz": "eb204fbd6462e5513a65d05dda70cdbd63e42749cc758aaf4070b969e7d1f33b",
+            "meth02b/c/classification43-control/component-0/result.json": "6a20ad7c1fc963a913eb2800d937ed5334fa3ecda0d7650e475085489783c7a9",
+            "meth02b/c/classification43-control/component-0/submission.csv": "32abcecbb95381106fb0beeee41e05a0d184d48550a093d763c666997a46805f",
+            "meth02b/c/classification43-control/component-0/test_probabilities.npz": "2347df1a0549d4f69368e27960f2a8d26af00c60b9cbcf887e1631ed8b27b6f4",
+            "meth02b/c/classification43-control/component-0/validation_predictions.csv": "04dd91151cb01749d893fab20c96d1b061ac06b5cb16ed261569a35e8f211b36",
+            "meth02b/c/classification43-control/component-0/validation_probabilities.npz": "62fb6b7122e876b6337d52d0b1d95a112b4c12a77d52e6b64ad44a66fa5f85d8",
+            "meth02b/c/classification43-control/component-1/result.json": "b8ae29006cb4f7d715456c7e1ceeace11ccfcbcfb12089f5910979fcf7edd432",
+            "meth02b/c/classification43-control/component-1/submission.csv": "7337ceef787fd38fbb8b3ab4a96b1e395f6f2d6f9820f0b9b65974b718894559",
+            "meth02b/c/classification43-control/component-1/test_probabilities.npz": "a6325784983655bf43b9966a0a845299df45e2f5b357b5c61163c7dcaf33a3fd",
+            "meth02b/c/classification43-control/component-1/validation_predictions.csv": "2b58acaf2e2a951c8c7e29234657f8268724b722454e086e3a752e70f091e6f6",
+            "meth02b/c/classification43-control/component-1/validation_probabilities.npz": "242908faa87f66aa3eeffd34d58148926f912a3e963c7064628df1974f183bf7"
+          },
+          "measurement_status": "independent_component_metric"
+        },
+        {
+          "key": "classification43-candidate",
+          "kind": "classification",
+          "cut": 43,
+          "arm": "candidate",
+          "status": "ok",
+          "exit_code": 0,
+          "metric": 0.4859696861202779,
+          "diagnostics": {
+            "phase": "classification43-candidate",
+            "metric": "macro_f1",
+            "value": 0.4859696861202779,
+            "fitting_rows": 70321,
+            "validation_rows": 17349,
+            "positions_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "training_rows_canonical_sha256": "98042ca608f0d55d96547ef6a59d21f007cc370e024d9e500e7e735e25dffa7d",
+            "split_file_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+            "prediction_sha256": "70859f6bf8099a1641da9a9e9fc9a58db672ffea8c16b4cbf97026fa41a805aa",
+            "mixture_children": 0,
+            "per_class_f1": {
+              "Analysis": 0.2206405693950178,
+              "Backdoor": 0.018867924528301886,
+              "DoS": 0.43880861102919494,
+              "Exploits": 0.6055676066522053,
+              "Fuzzers": 0.6250274906531779,
+              "Generic": 0.984301212507977,
+              "Normal": 0.8844427093499903,
+              "Reconnaissance": 0.6402640264026402,
+              "Shellcode": 0.2653061224489796,
+              "Worms": 0.17647058823529413
+            },
+            "independent_fitting_groups": {
+              "Analysis": 705,
+              "Backdoor": 664,
+              "DoS": 2061,
+              "Exploits": 8882,
+              "Fuzzers": 6765,
+              "Generic": 2828,
+              "Normal": 21095,
+              "Reconnaissance": 3206,
+              "Shellcode": 446,
+              "Worms": 54
+            },
+            "rarest_fitting_class": "Worms",
+            "ex_rarest_macro_f1": 0.520358474774165,
+            "feature_groups_disjoint": true
+          },
+          "integrity_passed": true,
+          "failed_metric_zero_imputed": false,
+          "artifact_hashes": {
+            "meth02b/c/classification43-candidate/job.json": "66f2af09691ef937d5ab8d5f5d75361dd2710d65fcf8c5a530109bc07c92855e",
+            "meth02b/c/classification43-candidate/result.json": "cc98e8a646c9e9b80212204de84aebdc9e48d64f70c50838166226129718d51f",
+            "meth02b/c/classification43-candidate/submission.csv": "3547170aa52a82d7f9c8c62980851c487dd13a686515adef8e478a2c8d294c33",
+            "meth02b/c/classification43-candidate/test_probabilities.npz": "e56a4cb989441d172bc4b15b791a2cf481f2f518e66a8c579ea6baf25b5f8928",
+            "meth02b/c/classification43-candidate/validation_predictions.csv": "70859f6bf8099a1641da9a9e9fc9a58db672ffea8c16b4cbf97026fa41a805aa",
+            "meth02b/c/classification43-candidate/validation_probabilities.npz": "b48f8b25d4e4930b57d2b295fbb42c30b533d5aec30561e261d52b820576684f"
+          },
+          "measurement_status": "independent_component_metric"
+        }
+      ],
+      "comparisons": [
+        {
+          "kind": "regression",
+          "cut": 0,
+          "control": 39.05167816956453,
+          "candidate": 51.78928264202533,
+          "delta_candidate_minus_control": 12.737604472460795,
+          "complete": true,
+          "greater_is_better": false
+        },
+        {
+          "kind": "regression",
+          "cut": 1,
+          "control": 31.846185166957753,
+          "candidate": 53.33077709936319,
+          "delta_candidate_minus_control": 21.484591932405436,
+          "complete": true,
+          "greater_is_better": false
+        },
+        {
+          "kind": "regression",
+          "cut": 2,
+          "control": 50.92466951315985,
+          "candidate": 101.08292427834583,
+          "delta_candidate_minus_control": 50.15825476518598,
+          "complete": true,
+          "greater_is_better": false
+        },
+        {
+          "kind": "classification",
+          "cut": 42,
+          "control": 0.6558634659956402,
+          "candidate": 0.4862484988325576,
+          "delta_candidate_minus_control": -0.16961496716308255,
+          "complete": true,
+          "greater_is_better": true
+        },
+        {
+          "kind": "classification",
+          "cut": 43,
+          "control": 0.653724307666515,
+          "candidate": 0.4859696861202779,
+          "delta_candidate_minus_control": -0.1677546215462371,
+          "complete": true,
+          "greater_is_better": true
+        }
+      ],
+      "quality_metric": {
+        "regression": {
+          "metric": "rmse",
+          "required_cuts": 3,
+          "complete": true,
+          "control_mean": 40.60751094989404,
+          "candidate_mean": 68.73432800657811
+        },
+        "classification": {
+          "metric": "macro_f1",
+          "required_cuts": 2,
+          "complete": true,
+          "control_mean": 0.6547938868310776,
+          "candidate_mean": 0.48610909247641776
+        }
+      },
+      "all_workers_succeeded": true,
+      "component_quality_gates_passed": false,
+      "registered_component_decisions": {
+        "regression_all_three_strict_RMSE_improvement": false,
+        "regression_cuts": [
+          {
+            "cut": 0,
+            "strict_RMSE_improvement": false
+          },
+          {
+            "cut": 1,
+            "strict_RMSE_improvement": false
+          },
+          {
+            "cut": 2,
+            "strict_RMSE_improvement": false
+          }
+        ],
+        "classification": {
+          "cuts": [
+            {
+              "phase": "primary",
+              "current": 0.4862484988325576,
+              "protected_control": 0.6558634659956402,
+              "delta_current_minus_control": -0.16961496716308255,
+              "primary_improves": false,
+              "per_class_f1_delta": {
+                "Analysis": -0.045220813847683894,
+                "Backdoor": -0.17134410305142012,
+                "DoS": -0.06794160273200134,
+                "Exploits": -0.05717582221858575,
+                "Fuzzers": -0.12752979331027703,
+                "Generic": -0.008431952225505412,
+                "Normal": -0.03366196547978739,
+                "Reconnaissance": -0.1883154938678986,
+                "Shellcode": -0.34803188429616233,
+                "Worms": -0.6484962406015038
+              },
+              "supported_class_losses_over_001": {
+                "Analysis": -0.045220813847683894,
+                "Backdoor": -0.17134410305142012,
+                "DoS": -0.06794160273200134,
+                "Exploits": -0.05717582221858575,
+                "Fuzzers": -0.12752979331027703,
+                "Normal": -0.03366196547978739,
+                "Reconnaissance": -0.1883154938678986,
+                "Shellcode": -0.34803188429616233
+              },
+              "ex_rarest_macro_f1_delta": -0.11640593678103575,
+              "all_class_gates_passed": false,
+              "cut_alias": "group_seed_42",
+              "cut": 42
+            },
+            {
+              "phase": "confirmation",
+              "current": 0.4859696861202779,
+              "protected_control": 0.653724307666515,
+              "delta_current_minus_control": -0.1677546215462371,
+              "primary_improves": false,
+              "per_class_f1_delta": {
+                "Analysis": -0.05274072556901099,
+                "Backdoor": -0.1948725334869653,
+                "DoS": -0.044316555061689966,
+                "Exploits": -0.07725414886745008,
+                "Fuzzers": -0.12599096129985354,
+                "Generic": -0.005460753194608148,
+                "Normal": -0.03063919612920385,
+                "Reconnaissance": -0.20189589052363177,
+                "Shellcode": -0.47798889670810857,
+                "Worms": -0.46638655462184875
+              },
+              "supported_class_losses_over_001": {
+                "Analysis": -0.05274072556901099,
+                "Backdoor": -0.1948725334869653,
+                "DoS": -0.044316555061689966,
+                "Exploits": -0.07725414886745008,
+                "Fuzzers": -0.12599096129985354,
+                "Normal": -0.03063919612920385,
+                "Reconnaissance": -0.20189589052363177,
+                "Shellcode": -0.47798889670810857
+              },
+              "ex_rarest_macro_f1_delta": -0.1345732956489469,
+              "all_class_gates_passed": false,
+              "cut_alias": "group_seed_43",
+              "cut": 43
+            }
+          ],
+          "each_cut_MacroF1_improves": false,
+          "each_cut_supported_class_and_ex_rarest_gates_passed": false
+        },
+        "component_quality_gates_passed": false,
+        "negative_standalone_artifacts_retained_for_separate_METH03": true,
+        "full_refit_or_promotion": false,
+        "scope": "Registered standalone component gates only; class primary/confirmation names are aliases for group seeds42/43, not whole-agent phases"
+      },
+      "artifact_integrity_checks_passed": true,
+      "audit_within_original_common_clock": true,
+      "campaign_terminal_confirmed": false,
+      "parent_exec_terminal_qualification_required": true,
+      "actual_common_deadline_satisfied": null,
+      "manifest_sha256": "de81793861ea143395a1233deadffe69b194afc32dc123edc625b452202b8628",
+      "verification_plan_sha256": "319da16558027b89e8083ed02b962f3b8558bbb8155a92a88b60b1a64d5eb995",
+      "campaign_sha256": "f3667f85dfdbe5ac81560493f8cad7f18bd9e5c8c0c2787b4e7bb1fbff9f33d1",
+      "manual_metric_source_sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+      "source_and_core_rechecked": true,
+      "failed_metrics_zero_imputed": false,
+      "new_model_fits": 0,
+      "API_calls": 0,
+      "tests_run": 0,
+      "full_refit": false,
+      "promotion": false,
+      "submit": false,
+      "official_score": null,
+      "scope": "Fixed component screen only on reused public forward/group cuts; weak standalone results retained for future separately declared diversity analysis. Not whole-agent or blind/private gain."
+    }
+  },
+  "qualified_ML_metrics": {
+    "regression": {
+      "metric": "rmse",
+      "required_cuts": 3,
+      "complete": true,
+      "control_mean": 40.60751094989404,
+      "candidate_mean": 68.73432800657811
+    },
+    "classification": {
+      "metric": "macro_f1",
+      "required_cuts": 2,
+      "complete": true,
+      "control_mean": 0.6547938868310776,
+      "candidate_mean": 0.48610909247641776
+    }
+  },
+  "candidate_gates": {
+    "regression_all_three_strict_RMSE_improvement": false,
+    "regression_cuts": [
+      {
+        "cut": 0,
+        "strict_RMSE_improvement": false
+      },
+      {
+        "cut": 1,
+        "strict_RMSE_improvement": false
+      },
+      {
+        "cut": 2,
+        "strict_RMSE_improvement": false
+      }
+    ],
+    "classification": {
+      "cuts": [
+        {
+          "phase": "primary",
+          "current": 0.4862484988325576,
+          "protected_control": 0.6558634659956402,
+          "delta_current_minus_control": -0.16961496716308255,
+          "primary_improves": false,
+          "per_class_f1_delta": {
+            "Analysis": -0.045220813847683894,
+            "Backdoor": -0.17134410305142012,
+            "DoS": -0.06794160273200134,
+            "Exploits": -0.05717582221858575,
+            "Fuzzers": -0.12752979331027703,
+            "Generic": -0.008431952225505412,
+            "Normal": -0.03366196547978739,
+            "Reconnaissance": -0.1883154938678986,
+            "Shellcode": -0.34803188429616233,
+            "Worms": -0.6484962406015038
+          },
+          "supported_class_losses_over_001": {
+            "Analysis": -0.045220813847683894,
+            "Backdoor": -0.17134410305142012,
+            "DoS": -0.06794160273200134,
+            "Exploits": -0.05717582221858575,
+            "Fuzzers": -0.12752979331027703,
+            "Normal": -0.03366196547978739,
+            "Reconnaissance": -0.1883154938678986,
+            "Shellcode": -0.34803188429616233
+          },
+          "ex_rarest_macro_f1_delta": -0.11640593678103575,
+          "all_class_gates_passed": false,
+          "cut_alias": "group_seed_42",
+          "cut": 42
+        },
+        {
+          "phase": "confirmation",
+          "current": 0.4859696861202779,
+          "protected_control": 0.653724307666515,
+          "delta_current_minus_control": -0.1677546215462371,
+          "primary_improves": false,
+          "per_class_f1_delta": {
+            "Analysis": -0.05274072556901099,
+            "Backdoor": -0.1948725334869653,
+            "DoS": -0.044316555061689966,
+            "Exploits": -0.07725414886745008,
+            "Fuzzers": -0.12599096129985354,
+            "Generic": -0.005460753194608148,
+            "Normal": -0.03063919612920385,
+            "Reconnaissance": -0.20189589052363177,
+            "Shellcode": -0.47798889670810857,
+            "Worms": -0.46638655462184875
+          },
+          "supported_class_losses_over_001": {
+            "Analysis": -0.05274072556901099,
+            "Backdoor": -0.1948725334869653,
+            "DoS": -0.044316555061689966,
+            "Exploits": -0.07725414886745008,
+            "Fuzzers": -0.12599096129985354,
+            "Normal": -0.03063919612920385,
+            "Reconnaissance": -0.20189589052363177,
+            "Shellcode": -0.47798889670810857
+          },
+          "ex_rarest_macro_f1_delta": -0.1345732956489469,
+          "all_class_gates_passed": false,
+          "cut_alias": "group_seed_43",
+          "cut": 43
+        }
+      ],
+      "each_cut_MacroF1_improves": false,
+      "each_cut_supported_class_and_ex_rarest_gates_passed": false
+    },
+    "component_quality_gates_passed": false,
+    "negative_standalone_artifacts_retained_for_separate_METH03": true,
+    "full_refit_or_promotion": false,
+    "scope": "Registered standalone component gates only; class primary/confirmation names are aliases for group seeds42/43, not whole-agent phases"
+  },
+  "component_quality_gates_passed": false,
+  "strong_complete_control": {
+    "regression_RMSE": 35.44723155783769,
+    "classification_MacroF1": 0.6593178433614652
+  },
+  "best_whole_regression_RMSE": 34.86622087872278,
+  "promotion": false,
+  "full_refit": false,
+  "submit": false,
+  "official_score": null,
+  "new_model_fits": 0,
+  "API_calls": 0,
+  "own_actual_exec_exit_and_fresh_preparer_absence_required": true,
+  "scope": "Fixed SINGLE-control component screen, not whole-agent/refit/official qualification; preserve negative rows for predeclared blend."
+}

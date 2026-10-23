@@ -1,0 +1,89 @@
+{
+  "status": "source_only_no_new_concrete_blocker_not_execution_ready",
+  "reviewer": "audit_contract",
+  "input_sha256": {
+    "method-skills-next-dev-r2/source-handoff.json": "dea905de3616df802c4083aad8ce0e928c680f83178271ea5a2a7a265b138971",
+    "method-skills-next-dev-r2/src/automl/search/method_skills.py": "6b2d45eb5f2ad5cac869889733278444e73d6ca67baab5e0a16d167b319040d9",
+    "method-skills-next-dev-r2/src/automl/search/runner.py": "a5636b50e6c76e0bcc996db9aadd3304871b636e20d94f970501bfc72d82b1e3",
+    "method-skills-next-dev-r2/tests/test_method_skills.py": "823c09f5ddfe0db3d55185f08a2a1ea4bf7ca79b28e25caf91a039d4e55c5f1d",
+    "method-skills-next-dev-r2/runner.patch": "f519937fa3974b71d0dfd3b7ee9207aed41d6a5366163bc1d17d714a654bee5d",
+    "m3dev/src/automl/search/runner.py": "e204a9eec98e7f3fa7799470cc453e8f4a3887247e8d102b5d0bb834f88c2ef3",
+    "m3dev/src/automl/execution/model_adapters/linear_text.py": "2598bfa99f846eac2d2599b457fbd8ea70f292b4a49eaaf15bebfd3d2760e842",
+    "m3dev/src/automl/execution/model_adapters/extra_trees.py": "0a6a1093cd6f329ad69cddc7f3965067f7b539835312d2c16029deec47b5692a",
+    "m3dev/src/automl/execution/model_adapters/registry.py": "f8451f7b1dbcc58c5f151cfd07a32068ffa4ac533430647d87c9653dba603fab",
+    "m3dev/src/automl/execution/preprocessing/frames.py": "859a7559e3d2b0111191f9d45b6d94408faea100bd370fb60ce51415b7e5f76d",
+    "m3dev/src/automl/execution/worker.py": "ffa06615a7f59f958f77a24d1f89727dc31fae7d4ba49f30201d77c331887b14",
+    "m3dev/src/automl/search/hpo.py": "6aac0dd13ae81e4b38295987ffe23235908a1c399d93335eb156bee070c8309d",
+    "m3dev/src/automl/search/policy.py": "3f6a8477b8076e83531b62d4ffc383ce935c6cf912a61cccde6201f7f7fd8e61",
+    "m3dev/tools/build_submission.py": "8bda307675a952b2e4dc9d53ea8d738be05f8ca15a0e85d79c566e42cf95a6b6"
+  },
+  "source_handoff_pins_match": true,
+  "pin_results": {
+    "src/automl/search/method_skills.py": true,
+    "src/automl/search/runner.py": true,
+    "tests/test_method_skills.py": true
+  },
+  "default_OFF_AST_equal_to_exact_m3": true,
+  "runner_byte_equal_to_preserved_R1": true,
+  "factual_cards": {
+    "linear_tabular": "Registered linear_text adapter supports numeric/category-only frames. It fits median imputation, with_mean=False scaling and sparse OHE with unknown ignored; regression Ridge alpha10/lsqr, classification logistic C clipped .01..100 or SGD. Card names the actual engine and these existing settings accurately.",
+    "linear_text": "Same adapter adds fitting-only TF-IDF and optional character/SVD transforms when actual text_features are present. Text/nontext card choice does not invent dedicated ridge/logistic keys.",
+    "extra_trees": "Actual frequency category conversion and numeric fitting-median fill verified in prepare_frames; no early stopping, and HPO search_space supports only LightGBM/CatBoost/XGBoost.",
+    "validation_and_preparation": "Instructions preserve fitting-only learned preprocessing, declared evaluator/partitions, strong control, resource/CSV/refit gates. They add no admission authority or quality measurement."
+  },
+  "bounds": {
+    "declared_UTF8_packet_cap": 8192,
+    "declared_card_cap": 6,
+    "source_maximum_selected_cards": 5,
+    "conservative_static_JSON_bytes": 4331,
+    "static_method": "AST literal table only; serialized all six cards including mutually exclusive linear variants, all five registered tools, and the largest finite-float integer budget. No helper invocation.",
+    "budget_values": "Exact int/float types only; finite and nonnegative. Bool/NaN/Inf rejected; remaining below export reserve yields usable zero.",
+    "full_message_bound": "Packet-only bound; inherited context/system/gateway messages still require future matched complete-message preflight in both arms."
+  },
+  "integration": {
+    "new_field": "method_skills",
+    "injection_sites": [
+      "four-stage cold-start request",
+      "ordinary/four-stage followup planner request"
+    ],
+    "default_changed": false,
+    "portfolio_or_HPO_admission_changed": false,
+    "new_flat_module": "automl_search_method_skills",
+    "mapping_evidence": "Existing builder discovers all non-init src/automl modules and assigns unmapped names using dots-to-underscores before rewriting ImportFrom. Static source coverage verified; no actual build/import/unpacked run.",
+    "prepared_test_methods": [
+      "test_adds_one_field_without_changing_inherited_context",
+      "test_extra_trees_and_text_follow_task_properties",
+      "test_invalid_or_exhausted_budget_is_explicit",
+      "test_no_double_injection_or_unimplemented_task_contract",
+      "test_only_implemented_tools_are_exposed",
+      "test_packet_is_bounded_and_does_not_claim_planned_tools_ready"
+    ],
+    "prepared_test_count": 6,
+    "tests_executed": 0
+  },
+  "findings": [],
+  "resolved_prior_issue": "R1 assertion that tabular Ridge/LogisticRegression were unavailable has been corrected to distinguish actual linear_text implementation from absent dedicated keys or guaranteed portfolio placement.",
+  "readiness": {
+    "source_review_no_blocker": true,
+    "runtime_pass": false,
+    "source_and_exact_contracts_run": false,
+    "future_packet_and_controller_freeze_required": true,
+    "future_matched_complete_message_preflight_required": true,
+    "future_matched_context_config_caps_required": true,
+    "clock_assigned": false,
+    "launch_ready": false,
+    "quality_gain": null
+  },
+  "execution": {
+    "candidate_runtime_imports": 0,
+    "helper_or_builder_executions": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "active_outcome_reads": 0,
+    "candidate_source_changes": 0,
+    "STATE_writes": 0,
+    "Git_operations": 0,
+    "scope": "Own stdlib hashing/AST/literal arithmetic and new review receipt only"
+  }
+}

@@ -131,7 +131,7 @@
     {
       "id": "METH-04",
       "name": "Task-selected method skills in Qwen context",
-      "status": "optin_source_overlay_prepared_tests_not_run",
+      "status": "optin_source_overlay_pure_helper_contracts6_passed_full_integration_pending",
       "source_packet": "work/method-skills-next-dev-r2",
       "hypothesis": "Explicit task-appropriate instructions about actually implemented methods improve Qwen proposals and reduce attempts at unavailable tools or inappropriate preprocessing.",
       "factor": "Only bounded method_skills context field; portfolio, objective, HPO and worker behavior unchanged",
@@ -147,7 +147,9 @@
       "then": "Only promising generation findings advance to separate matched full-agent A/B at equal10800s per arm, common pair21600 including gates/refit/CSV/audits. Proposal validity alone is not an ML gain.",
       "actual_command": null,
       "actual_metric": null,
-      "clock_start": null
+      "clock_start": null,
+      "pure_contract_evidence": "research/method-expansion-next/method-skills-r2/checks/result.json",
+      "scope_limitation": "No runner integration, exact release, Qwen generation or ML quality evidence yet."
     },
     {
       "id": "METH-05",
@@ -187,7 +189,7 @@
       "clock_start": null
     }
   ],
-  "next_action": "T7 actual terminal/rootR4 closure completed. Resume automatic objective via separately bounded champion Stage0 after its source publication; then readiness-ordered champion/context/method experiments. This registry itself launches nothing.",
+  "next_action": "Champion Stage0 actual exit0 and root closure technicalPASS. Return to separately bounded champion whole-regression-agent A/B preparation; method studies stay queued.",
   "new_experiments_started": 0,
   "promotion": false,
   "official_score": null

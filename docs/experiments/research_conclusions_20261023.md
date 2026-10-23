@@ -138,6 +138,25 @@ preprocessing, чтобы искусственно выровнять feature co
 
 ## Направления после текущих screens
 
+Разработанный исследовательский контур (отдельно от frozen contest runtime):
+
+```mermaid
+flowchart LR
+    A[Протокол, control, budget и splits] --> B[Qwen: гипотеза и bounded proposal]
+    B --> C[Typed contract и preflight]
+    C --> D[Последовательный worker: fitting-only FE и модель]
+    D --> E[Независимый пересчёт scores и costs]
+    E --> F{Все gates пройдены?}
+    F -->|Нет| G[Сохранить отрицательный результат и control]
+    F -->|Да| H[CV всей fixed procedure]
+    H --> I[Integration, full-agent refit, CSV и code gates]
+    E --> J[Knowledge и следующая гипотеза]
+    J --> B
+```
+
+Стрелка к integration — обязательный следующий gate, не статус уже выполненной
+интеграции. Qwen не присваивает qualified status и не меняет контракты.
+
 Приоритет имеют cost-aware scheduling, полный period/class feedback и
 conditional feature/HPO activation. Scope-aware кеширование teacher fits можно
 изучить только с проверкой полного fingerprint: rows, transformed fitting X,

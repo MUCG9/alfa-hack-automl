@@ -53,8 +53,12 @@ def main():
         identity = {'pid': os.getpid(), 'create_time': psutil.Process().create_time()}
         lock.seek(0); lock.truncate(); json.dump(identity, lock); lock.flush()
         candidates = ROOT/'docs/experiments/blend01_candidates_20261023.json'
+        harness = {name: digest(ROOT/'tools'/name) for name in [
+            'run_blend_cv.py', 'benchmark_candidates.py', 'verify_blend_cv.py',
+            'replay_blend01.py', 'summarize_research.py']}
         report = {'status': 'running', 'identity': identity, 'source_sha256': initial,
                   'candidates_sha256': digest(candidates), 'maximum_seconds': 6000,
+                  'harness_sha256': harness,
                   'worker_seconds': 900, 'memory_mib': 1536, 'threads': 2,
                   'maximum_workers': 6, 'scope': 'BLEND-01 grouped CV only; no integration/promotion/upload'}
         path = args.output/'coordinator.json'
@@ -77,6 +81,9 @@ def main():
                                            stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
                 code = wait_owned(process, 5900, 2*2**30)
             report['exit_code'] = code
+            if (source_hashes() != initial or digest(candidates) != report['candidates_sha256']
+                    or any(digest(ROOT/'tools'/name) != value for name, value in harness.items())):
+                raise RuntimeError('Frozen CV source, candidates or harness changed')
             if code == 0:
                 summary = verify(args.output/'benchmark/results.json')
                 atomic_json(args.output/'verified.json', summary)
@@ -88,7 +95,12 @@ def main():
                           exception_type=type(exc).__name__)
             raise
         finally:
-            report.update(seconds=round(time.monotonic()-started, 3), source_unchanged=source_hashes() == initial)
+            report.update(seconds=round(time.monotonic()-started, 3), source_unchanged=source_hashes() == initial,
+                          harness_unchanged=all(digest(ROOT/'tools'/name) == value for name, value in harness.items()),
+                          candidates_unchanged=digest(candidates) == report['candidates_sha256'])
+            if report['status'] == 'completed' and not all(report[k] for k in [
+                    'source_unchanged', 'harness_unchanged', 'candidates_unchanged']):
+                report['status'] = 'frozen_inputs_changed'
             atomic_json(path, report)
             signal.signal(signal.SIGTERM, previous)
         if report['status'] != 'completed' or not report['source_unchanged']:

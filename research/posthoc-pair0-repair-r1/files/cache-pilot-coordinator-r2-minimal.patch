@@ -1,0 +1,41 @@
+--- prepare_cache_pilot_r1.py
++++ prepare_cache_pilot_r2.py
+@@ -168,8 +168,8 @@
+               'fullagent-cv-stage1-terminal-ownership-fenced-r1.json',
+               'alfa-hack-automl/tools/research_lock.py', 'hpo_campaign_coordinator.py',
+               'alfa-hack-automl/src/automl/infrastructure/processes.py',
+-              'fullagent_cv_coordinator_r4.py', 'prepare_cache_pilot_r1.py',
+-              'cache_pilot_coordinator_r1.py', 'verify_cache_pilot_r1.py']:
++              'fullagent_cv_coordinator_r4.py', 'prepare_cache_pilot_r2.py',
++              'cache_pilot_coordinator_r2.py', 'verify_cache_pilot_r2.py']:
+         immutable[n] = digest(path(work, n))
+     require(immutable['terminal_identity_fence_r1.py'] ==
+             'f6f112fc9eedce4e402e87a306dfae30bfedd75b457458b5ac5431f2f67757c8'
+--- cache_pilot_coordinator_r1.py
++++ cache_pilot_coordinator_r2.py
+@@ -104,7 +104,7 @@
+     for n, sha in manifest['immutable_files'].items():
+         require(digest(resolve(work, n)) == sha, 'immutable_source_or_input_changed')
+     require(digest(sys.executable) == manifest['python_sha256'], 'interpreter_changed')
+-    prep = module('_cache_guard_preparation', work / 'prepare_cache_pilot_r1.py')
++    prep = module('_cache_guard_preparation', work / 'prepare_cache_pilot_r2.py')
+     require(prep.dependencies() == manifest['dependencies'], 'dependency_inventory_changed')
+     for root_name, entries in (deployment or {}).items():
+         root = resolve(work, root_name)
+@@ -543,6 +543,7 @@
+                 report['gates'].append({'name': name, 'supervisor': {'path': relative(work, ref),
+                     'sha256': digest(ref)}, 'proof': proof, 'parent_seconds': time.monotonic() - tick, 'parent_cap': cap})
+                 persist()
++                require(time.monotonic() < tick + cap, 'technical_gate_terminal_parent_write_over_cap')
+             shared_inputs(work, output, manifest, deployment)
+             guard(work, manifest, deployment)
+             report['status'] = 'running_six_fixed_callbacks'
+@@ -594,7 +595,7 @@
+             # Final audit parent includes source guards, child, cleanup and final
+             # qualification write; child has580s inside the600s fixed envelope.
+             audit_deadline = min(tick + FINAL_RESERVE, deadline)
+-            command = [sys.executable, '-B', str(work / 'verify_cache_pilot_r1.py'),
++            command = [sys.executable, '-B', str(work / 'verify_cache_pilot_r2.py'),
+                 '--work-root', str(work), '--manifest', str(packet / 'manifest.json'),
+                 '--campaign', str(campaign), '--output', str(output / 'independent-audit.json'),
+                 '--deadline-monotonic', str(audit_deadline - 15)]

@@ -1,0 +1,13 @@
+{
+  "status": "import_context_completed",
+  "supervisor_sha256": "cc35956cd499938745c34032cb12ff867a0d071c90ff55b7a63fc9221993b831",
+  "expected_child_exit_code": 2,
+  "seconds": 2.483999999999469,
+  "peak_rss_mib": 98.75,
+  "cleanup_confirmed": true,
+  "source_unchanged": true,
+  "fixed_cause": "socket.gethostname blocked during sklearn_import",
+  "before_verifier_labels_predictions_or_scoring": true,
+  "fits": 0,
+  "API_calls": 0
+}

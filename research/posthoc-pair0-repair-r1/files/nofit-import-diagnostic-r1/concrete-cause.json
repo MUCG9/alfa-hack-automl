@@ -1,0 +1,79 @@
+{
+  "status": "concrete_local_hostname_tripwire_cause_reproduced_no_data",
+  "recorded_epoch": 1792745704.092927,
+  "p0_technical_failure_preserved": true,
+  "observed": [
+    {
+      "tripwire": "socket_event",
+      "event_code": "socket.gethostname"
+    },
+    {
+      "status": "import_only_failed",
+      "phase": "sklearn_import",
+      "exception_code": "RuntimeError",
+      "versions": {
+        "numpy": "1.26.4",
+        "pandas": "2.2.3",
+        "psutil": "6.1.1"
+      }
+    }
+  ],
+  "bounded_import_reproduction": {
+    "parent_seconds": 60,
+    "child_seconds": 40,
+    "memory_mib": 512,
+    "threads": 1,
+    "seconds": 2.483999999999469,
+    "peak_parent_and_owned_rss_mib": 98.75,
+    "child_exit_code": 2,
+    "cleanup_confirmed": true,
+    "source_unchanged": true
+  },
+  "source_bound_before_reproduction": true,
+  "pretest_manifest_sha256": "dc3bf2594fde688aae3a1234e8a27b7e0e02b0cf29f19344c4b181cbd9d84eb2",
+  "versions_observed_before_failure": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "psutil": "6.1.1"
+  },
+  "sklearn_version_from_package_metadata_only": "1.5.2",
+  "python_version": "3.12.14",
+  "static_call_chain_inference": [
+    "sklearn/utils/fixes.py:33 evaluates platform.machine() during module import",
+    "Python platform.py:1024 machine() calls uname()",
+    "Python platform.py:910-914 Windows os.uname unavailable branch calls _node()",
+    "Python platform.py:621-631 _node() calls socket.gethostname()"
+  ],
+  "call_chain_status": "Source-only inferred caller chain consistent with actual sklearn-import event; no traceback arguments, paths or hostname value were emitted by diagnostic child",
+  "source_callers": {
+    "sklearn_utils_fixes_sha256": "78a74177e84359e40a8d117dcf957af1754c47337cfd6bf0e19eaf0c18f985ac",
+    "python_platform_sha256": "f5ff83f15c841792be42709a6710dc8d7a9f72791c1ae4cad719b1fb0abe0a05",
+    "sklearn_metadata_sha256": "486833d77aa752cb0e5dfa4fccb0ccfd92e3647f35a80307b1ed923efe650c86"
+  },
+  "proof_sha256": {
+    "p0/parent-receipt.json": "544bb56c74db46a2dcffdcdd1b82417f41065533d852e9b82aa287f1539001f1",
+    "p0/child.log": "61ed8c4367aec65c2e1e43774a3601aebda548c78b11a0b3bbfb9202731c4e67",
+    "p0/child_bootstrap.py": "f297fb8e82b045475abb8ca64723d4a68fe995399d46d1bc0c6507393461f279",
+    "nofit-import-diagnostic-r1/pretest-manifest.json": "dc3bf2594fde688aae3a1234e8a27b7e0e02b0cf29f19344c4b181cbd9d84eb2",
+    "nofit-import-diagnostic-r1/child.py": "a3c31153853655ad15f20d9349a865a45cbcc82998650aaf481a2bb211e1e9a3",
+    "nofit-import-diagnostic-r1/parent.py": "b56e98673c9bd09f40645aeaff5814917d3bf03f0e219603109fa16dbb660eed",
+    "nofit-import-diagnostic-r1/child.log": "11e618649167f0432f96ef99429caa2b73f40e43179c3793a22169c5f31edc68",
+    "nofit-import-diagnostic-r1/supervisor.json": "cc35956cd499938745c34032cb12ff867a0d071c90ff55b7a63fc9221993b831"
+  },
+  "observed_event_counts_before_first_denial": {
+    "socket_gethostname_denied": 1,
+    "socket_connect_events": 0,
+    "socket_bind_events": 0,
+    "socket_getaddrinfo_events": 0,
+    "socket_creation_events": 0,
+    "subprocess_events": 0,
+    "model_runtime_import_denials": 0
+  },
+  "hostname_value_read_or_reported": false,
+  "full_verifier_or_data_or_predictions_read_by_reproduction": false,
+  "fits": 0,
+  "API_calls": 0,
+  "metric_fields_inspected_or_scores_computed": false,
+  "original_p0_clock_resumed_or_reset": false,
+  "proposed_repair_executed": false
+}

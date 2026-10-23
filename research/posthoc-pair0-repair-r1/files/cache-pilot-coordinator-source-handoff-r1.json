@@ -1,0 +1,47 @@
+{
+  "status": "source_only_handoff_frozen_for_root_and_independent_review_not_execution_ready",
+  "files_sha256": {
+    "prepare_cache_pilot_r1.py": "2c3a0e0e89a28efb4c88a4a1942b344faed9b391721562e20af9c1f61c5e0ae7",
+    "cache_pilot_coordinator_r1.py": "760baec608cc7d6233467967a9e130c0c10b395a86449b309bcd85b7b3d62257",
+    "verify_cache_pilot_r1.py": "9f6abe5f43fddb5ccf1fa2c736d3509a8692aba2259ac831a5264ba6938381c2",
+    "cache-pilot-coordinator-handoff-r1.txt": "4275d2de96d4753d6e00b23c9009a27264331528c2b6c25a1578a9dff6e570e0"
+  },
+  "static_syntax": {
+    "prepare_cache_pilot_r1.py": {
+      "AST_parse": "PASS",
+      "lines": 297,
+      "top_level_nodes": 29
+    },
+    "cache_pilot_coordinator_r1.py": {
+      "AST_parse": "PASS",
+      "lines": 696,
+      "top_level_nodes": 43
+    },
+    "verify_cache_pilot_r1.py": {
+      "AST_parse": "PASS",
+      "lines": 570,
+      "top_level_nodes": 31
+    }
+  },
+  "plan_manifest_sha256": "132a1d797288a4a5f839fec3d9760764d3bc833540798de1535bb272a5f9ef1c",
+  "candidate_archive_sha256": "e0f57d148bab30c98d06c4ee933c0a7edcbd321e26b456feb588bfc78fdc04fa",
+  "source_imported_or_executed": false,
+  "tests_run": 0,
+  "gates_run": 0,
+  "jobs_materialized": 0,
+  "input_copies": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "network_calls": 0,
+  "deadline_assigned": null,
+  "root_review_required": true,
+  "promotion": false,
+  "remaining_prerequisites": [
+    "Independent source/verifier review",
+    "New complete predecessor binding including later posthoc diagnostic guards",
+    "Actual source-derived k1 source/unpacked fixture path proof",
+    "Root preparation review and exact publication",
+    "New root-reviewed immutable7200 clock after all predecessors clean",
+    "Fresh technical gates and fixed callbacks before any benefit claim"
+  ]
+}

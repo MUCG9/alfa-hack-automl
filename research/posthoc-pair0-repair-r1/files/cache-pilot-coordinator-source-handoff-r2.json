@@ -1,0 +1,32 @@
+{
+  "status": "source_only_tiny_R2_handoff_for_independent_review_not_execution_ready",
+  "parent_handoff_sha256": "c633ae47764a13f79c704979eda381af6ab8c13d5138c49843c977483f01ea0c",
+  "R1_files_sha256_preserved": {
+    "prepare_cache_pilot_r1.py": "2c3a0e0e89a28efb4c88a4a1942b344faed9b391721562e20af9c1f61c5e0ae7",
+    "cache_pilot_coordinator_r1.py": "760baec608cc7d6233467967a9e130c0c10b395a86449b309bcd85b7b3d62257",
+    "verify_cache_pilot_r1.py": "9f6abe5f43fddb5ccf1fa2c736d3509a8692aba2259ac831a5264ba6938381c2"
+  },
+  "files_sha256": {
+    "prepare_cache_pilot_r2.py": "63de03622908b95e4aa16d1937f0fde03a2c2aa6f06fd984c4cb7fc32fe277a0",
+    "cache_pilot_coordinator_r2.py": "5a2237a401c1ff65029cd7ed2fb463e9e7ac4b0ede98a39bfc9ad14e3f8d769d",
+    "verify_cache_pilot_r2.py": "9f6abe5f43fddb5ccf1fa2c736d3509a8692aba2259ac831a5264ba6938381c2"
+  },
+  "minimal_patch": {
+    "path": "cache-pilot-coordinator-r2-minimal.patch",
+    "sha256": "c872a729a29fe9a4a15aa4da771a946bde2144453afbfba865640e92dfde7054"
+  },
+  "behavior_change": "After each technical gate proof is appended and its campaign receipt saved, check the original complete gateparent cap again, including that terminal persistence. Failure remains technical STOP.",
+  "filename_changes_only": "Three self/dependency source references point to the new R2 copies. Verifier bytes unchanged. All sources, factors, slots, limits, output root, clock protocol, numerical and decision gates unchanged.",
+  "AST_parse": "PASS (static parse only)",
+  "source_imported_or_executed": false,
+  "tests_run": 0,
+  "gates_run": 0,
+  "jobs_materialized": 0,
+  "input_copies": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "network_calls": 0,
+  "deadline_assigned": null,
+  "root_review_required": true,
+  "promotion": false
+}

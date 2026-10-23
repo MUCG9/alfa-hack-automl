@@ -1,0 +1,166 @@
+{
+  "schema": 1,
+  "recorded_unix": 1792792336.991731,
+  "status": "blocked_source_cause_independently_resolved_new_source_repair_required",
+  "packets": [
+    {
+      "job_id": "remote-port-01",
+      "result_sha": "7f4cdec88fc2b82e80779e3b0ab27709f6f75101",
+      "claim_sha": "88316062feadfef26c2da8543603400a4646e074",
+      "worker_id": "remote-worker-f7dd39e0",
+      "report": {
+        "deadline_unix": 1792795139.0268688,
+        "finished_unix": 1792791073.450446,
+        "first_error": {
+          "code": "PackageNotFoundError",
+          "detail": "Initial preflight resolved the venv interpreter to base Python. Repaired launcher only; failed receipt retained, no model/API work."
+        },
+        "metrics": {
+          "macro_f1": null,
+          "rmse": null
+        },
+        "schema": 1,
+        "secondary_errors": [
+          {
+            "code": "exact_npz_byte_mismatch",
+            "detail": "All5 raw NPZ gates fail. Regression3 explained by Windows ZIP creator-system metadata; class2 unexplained. No normalization accepted or indices changed."
+          },
+          {
+            "code": "UnicodeEncodeError",
+            "detail": "Expected pure Unicode-temp joblib baseline failure reproduced; ASCII process-local variant passed on Linux."
+          },
+          {
+            "code": "ChildProcessError",
+            "detail": "Secondary resource-tracker shutdown exception observed in failed Unicode probe; retained privately. Final guarded ASCII probe cleanup confirmed."
+          }
+        ],
+        "start_unix": 1792789739.0268688,
+        "status": "blocked",
+        "usage": {
+          "api_calls": 0,
+          "cpu_threads": null,
+          "fits": 0,
+          "wall_seconds": 1334.4235787391663,
+          "whole_memory_mib": null,
+          "worker_memory_mib": null
+        }
+      },
+      "artifacts_sha256": {
+        "capabilities.json": "425bbdb684acf208868481e3ea4034874332c5d36ca8df7d0c1987993b63c604",
+        "changes.patch": "9a86b3479130382ace06429b5bf13f28d090a502f9f89b9ff7d04c1b5277f2d4",
+        "next-hypotheses.json": "971b2a2ff6445bd1eb06d8026d28deda858562b20821f0b5fb8461ec761899bb",
+        "portable_harness.py": "24e333d7d588b43962b42ab920d52e05b63d7c0bb027b7d0bc93e7ef772d1299",
+        "protocol.json": "74710e94b195546f6106554f2f60cec47763112a59c3fd5a75ac780b4f7fc37c",
+        "pure-checks.json": "064d0ba9f5bf158147cc38e2ddcb99b4971291e76627957b7b1a72710770c132",
+        "summary.txt": "3e27f1527b482c6bdb7bded274b5f99723207f97561f860e4d4fb65ee40f9085"
+      },
+      "binding_verified": true,
+      "resource_observations": "remote_reported_not_independently_measured",
+      "approved_for_bounded_experiments": false,
+      "promotion": false
+    },
+    {
+      "job_id": "remote-port-02-repository-map",
+      "result_sha": "46904b38087b5b68dffe4c07197552553503dd12",
+      "claim_sha": "b81edeea419c29228dbe2e44d6eda2170eb39c94",
+      "worker_id": "remote-worker-f7dd39e0",
+      "report": {
+        "deadline_unix": 1792792250.2831726,
+        "finished_unix": 1792791388.927756,
+        "first_error": null,
+        "metrics": {
+          "quality": null
+        },
+        "schema": 1,
+        "secondary_errors": [],
+        "start_unix": 1792791350.2831726,
+        "status": "completed",
+        "usage": {
+          "api_calls": 0,
+          "cpu_threads": 1,
+          "fits": 0,
+          "wall_seconds": 38.64458346366882,
+          "whole_memory_mib": null,
+          "worker_memory_mib": null
+        }
+      },
+      "artifacts_sha256": {
+        "ack.txt": "4248b4aaf80cd7dc131c37bfc8d3d473d49715cb347b5ea433d81df6af7ded24"
+      },
+      "binding_verified": true,
+      "resource_observations": "remote_reported_not_independently_measured",
+      "approved_for_bounded_experiments": false,
+      "promotion": false
+    },
+    {
+      "job_id": "remote-port-03-linux-diagnostic",
+      "result_sha": "82df1c0fea3847cc1cb2f73b7d5e2ecd05acf204",
+      "claim_sha": "2cad546705fd10c236857fcde9010eb76881995f",
+      "worker_id": "remote-worker-f7dd39e0",
+      "report": {
+        "deadline_unix": 1792792325.850229,
+        "finished_unix": 1792791565.642381,
+        "first_error": {
+          "code": "AssertionError",
+          "detail": "Diagnostic helper input-file existence check used a relative helper-root path with incorrect parent arithmetic. Two preflight attempts failed before dataset read; corrected private helper path only. No data/source/clock changed, no fits/API."
+        },
+        "metrics": {
+          "macro_f1": null,
+          "rmse": null
+        },
+        "schema": 1,
+        "secondary_errors": [
+          {
+            "code": "FileNotFoundError",
+            "detail": "Premature delivery invocation found no report after preflight failure; no result was pushed. Original claim retained."
+          }
+        ],
+        "start_unix": 1792791425.850229,
+        "status": "completed",
+        "usage": {
+          "api_calls": 0,
+          "cpu_threads": 1,
+          "fits": 0,
+          "wall_seconds": 139.792151927948,
+          "whole_memory_mib": null,
+          "worker_memory_mib": null
+        }
+      },
+      "artifacts_sha256": {
+        "blocker.json": "c7bff92ed9a63ff205696f2bb2b240f051585edf73053a5cb43666c4a5068c84",
+        "capabilities.json": "d42f7a9ff8d05cf8241c83076d479626d819b292f4b640969a47e8878301547e",
+        "next-protocol.json": "5ae35f60a4b89e3db35b3958bbdcde03b11a3882ee383ac1007e02f658a741e9",
+        "summary.txt": "a832bc36ae42de62d2bf38a1dd3fa16b8661c7bb27fcec1425b03b9737bbcab8"
+      },
+      "binding_verified": true,
+      "resource_observations": "remote_reported_not_independently_measured",
+      "approved_for_bounded_experiments": false,
+      "promotion": false
+    }
+  ],
+  "findings": [
+    "First remote-port-01 error remains PackageNotFoundError from symlink-resolved venv launcher; interpreter-only correction reported under its original claim clock.",
+    "All5 original ordered split values and all10 member numeric fingerprints match the remote sealed evidence. Primary read-only deterministic encoding independently reproduces all5 Linux raw NPZ hashes exactly from original pinned Windows partitions.",
+    "Windows ZIP creator0 vs Linux3 changes container bytes. Original Windows classification indices are int32, Linux indices int64. The original source-only r2 manifest incorrectly assumed all original arrays int64.",
+    "A new native-v3 profile binds actual OS, exact raw/member/header/dtype/shape and canonical numeric value identities; no solver arrays are cast or partitions changed, old failed raw-byte gate is preserved.",
+    "remote-port-02 returned the requested navigation/notices ACK. Content is an actual immutable worker acknowledgement, not an independent machine availability assertion.",
+    "remote-port-03 completed negative ML-readiness diagnosis, retained its own two preflight AssertionError attempts and premature delivery FileNotFoundError. No new splits/model fits/API. Whole worker/root RSS remain null.",
+    "Remote critical libraries match for the kernel screen; optional missing/mismatched distributions are not installed or declared ready. Source metadata is not proof every installed library works.",
+    "Independent guard/admission/R4 review still blocks model execution. Next job04 is source-only and cannot approve itself."
+  ],
+  "proof": {
+    "original_members": "c41248d5d312404556f2f51cf772c18041f3f3acfd39b3603369332241615cc3",
+    "numeric_comparison": "674c64d695428f0764d5faa695abfac9174a2e7aad3b73beb38bb9bb56e500c9",
+    "derived_Linux_containers": "211e51fa267b58f26e1fb02d5fe3d7b2cddcd95f994f808685150cf6fff5d93d",
+    "new_native_contract": "f5ad8c55aec198b689abf4bd8cf4ed0caf967fcd9f0d9f6db12f70513e1a60e5",
+    "contract_review": "2ed638a997d709278f28ed96f20c9e7e53feeeca1948f1d8b68607da9093c92f"
+  },
+  "local_model_fits": 0,
+  "local_API_calls": 0,
+  "remote_model_fits_reported": 0,
+  "remote_API_calls_reported": 0,
+  "ML_metrics": null,
+  "quality_comparison": null,
+  "quality_decision": "No model result; retain CP1/B and V11/V16.",
+  "no_default_promotion": true
+}

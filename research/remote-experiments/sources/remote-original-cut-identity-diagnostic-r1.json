@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "status": "original_vs_sealed_remote_metadata_diagnostic",
+  "created_unix": 1792791616.5812135,
+  "remote_result_sha": "7f4cdec88fc2b82e80779e3b0ab27709f6f75101",
+  "original_members_manifest_sha256": "c41248d5d312404556f2f51cf772c18041f3f3acfd39b3603369332241615cc3",
+  "cuts": [
+    {
+      "kind": "regression",
+      "cut": 0,
+      "original_npz_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+      "remote_npz_sha256": "cb5cc91326bbe0c4144db3b7bd47bdbb0122cde4aeb32e2597f820c2834549e6",
+      "raw_container_matches": false,
+      "original_canonical_concat_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+      "remote_reported_ordered_i64_concat_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+      "ordered_values_match": true,
+      "members": [
+        {
+          "name": "train.npy",
+          "original_dtype": "<i8",
+          "original_shape": [
+            35000
+          ],
+          "expected_little_endian_i64_npy_sha256": "241777fc9bed59aeab4d9ec2d85c024ca6c09b3b93c089d49ae80dc59d5306c0",
+          "remote_reported_npy_sha256": "241777fc9bed59aeab4d9ec2d85c024ca6c09b3b93c089d49ae80dc59d5306c0",
+          "matches": true
+        },
+        {
+          "name": "validation.npy",
+          "original_dtype": "<i8",
+          "original_shape": [
+            18308
+          ],
+          "expected_little_endian_i64_npy_sha256": "fef6de0f735e4620437db8c45219e9d8f23d19d7b4eb5b83f4082de5e1a06c2d",
+          "remote_reported_npy_sha256": "fef6de0f735e4620437db8c45219e9d8f23d19d7b4eb5b83f4082de5e1a06c2d",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "kind": "regression",
+      "cut": 1,
+      "original_npz_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+      "remote_npz_sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
+      "raw_container_matches": false,
+      "original_canonical_concat_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+      "remote_reported_ordered_i64_concat_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+      "ordered_values_match": true,
+      "members": [
+        {
+          "name": "train.npy",
+          "original_dtype": "<i8",
+          "original_shape": [
+            22054
+          ],
+          "expected_little_endian_i64_npy_sha256": "e10f62032776e25400257716fded23e3fa2dc520e9736b5c059f61e66c15e26b",
+          "remote_reported_npy_sha256": "e10f62032776e25400257716fded23e3fa2dc520e9736b5c059f61e66c15e26b",
+          "matches": true
+        },
+        {
+          "name": "validation.npy",
+          "original_dtype": "<i8",
+          "original_shape": [
+            12946
+          ],
+          "expected_little_endian_i64_npy_sha256": "f71dd72e71d16631e5e28d02bb48f22f5be75252f913040575bb6fd5edb1cb49",
+          "remote_reported_npy_sha256": "f71dd72e71d16631e5e28d02bb48f22f5be75252f913040575bb6fd5edb1cb49",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "kind": "regression",
+      "cut": 2,
+      "original_npz_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+      "remote_npz_sha256": "a42ef4152b4dae2627ab1a8ab191600aae1c1337390b48d315b52d6419c2016e",
+      "raw_container_matches": false,
+      "original_canonical_concat_sha256": "c30d5cffda6b60f0e70cb67c12d1bb6ae776ee764c3c39480a255ecb715eed89",
+      "remote_reported_ordered_i64_concat_sha256": "c30d5cffda6b60f0e70cb67c12d1bb6ae776ee764c3c39480a255ecb715eed89",
+      "ordered_values_match": true,
+      "members": [
+        {
+          "name": "train.npy",
+          "original_dtype": "<i8",
+          "original_shape": [
+            11175
+          ],
+          "expected_little_endian_i64_npy_sha256": "8436e9e5f6f06ed243fdcdf4e4a5ecb6eb9a78ae0f82b4800ea66e5bddd74344",
+          "remote_reported_npy_sha256": "8436e9e5f6f06ed243fdcdf4e4a5ecb6eb9a78ae0f82b4800ea66e5bddd74344",
+          "matches": true
+        },
+        {
+          "name": "validation.npy",
+          "original_dtype": "<i8",
+          "original_shape": [
+            10879
+          ],
+          "expected_little_endian_i64_npy_sha256": "81d3667f1eca187d157a0fc43f3a57996656521c58eee4a62c69e078b98e5665",
+          "remote_reported_npy_sha256": "81d3667f1eca187d157a0fc43f3a57996656521c58eee4a62c69e078b98e5665",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "kind": "classification",
+      "cut": 42,
+      "original_npz_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+      "remote_npz_sha256": "0daf20f2020a795fa0503deab309959953d814821be7792d53f26e1e467829f7",
+      "raw_container_matches": false,
+      "original_canonical_concat_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+      "remote_reported_ordered_i64_concat_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+      "ordered_values_match": true,
+      "members": [
+        {
+          "name": "train.npy",
+          "original_dtype": "<i4",
+          "original_shape": [
+            70529
+          ],
+          "expected_little_endian_i64_npy_sha256": "90a588bda5d6f390975ce8a63ae97a7dd5a958ca269c9f3faf3fd610de392fdb",
+          "remote_reported_npy_sha256": "90a588bda5d6f390975ce8a63ae97a7dd5a958ca269c9f3faf3fd610de392fdb",
+          "matches": true
+        },
+        {
+          "name": "validation.npy",
+          "original_dtype": "<i4",
+          "original_shape": [
+            17141
+          ],
+          "expected_little_endian_i64_npy_sha256": "db0f0c58337804e5ae800b7ff5b7fe990a57c3a4eb45c05c88d644bc44489d74",
+          "remote_reported_npy_sha256": "db0f0c58337804e5ae800b7ff5b7fe990a57c3a4eb45c05c88d644bc44489d74",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "kind": "classification",
+      "cut": 43,
+      "original_npz_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+      "remote_npz_sha256": "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a",
+      "raw_container_matches": false,
+      "original_canonical_concat_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "remote_reported_ordered_i64_concat_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "ordered_values_match": true,
+      "members": [
+        {
+          "name": "train.npy",
+          "original_dtype": "<i4",
+          "original_shape": [
+            70321
+          ],
+          "expected_little_endian_i64_npy_sha256": "6701d7b2f6e17b1a96df20de8df17c9929fef7d6e25360a5854e7c7bd6228746",
+          "remote_reported_npy_sha256": "6701d7b2f6e17b1a96df20de8df17c9929fef7d6e25360a5854e7c7bd6228746",
+          "matches": true
+        },
+        {
+          "name": "validation.npy",
+          "original_dtype": "<i4",
+          "original_shape": [
+            17349
+          ],
+          "expected_little_endian_i64_npy_sha256": "a11741eb5674a7df38db856117d88319c7d74b8e56a209ca6bf4531b54d8e361",
+          "remote_reported_npy_sha256": "a11741eb5674a7df38db856117d88319c7d74b8e56a209ca6bf4531b54d8e361",
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "all5_ordered_values_match": true,
+  "all10_expected_i64_npy_members_match": true,
+  "observations": "Original Windows regression arrays are int64, classification arrays int32. Remote harness requires int64. A diagnostic little-endian int64 encoding of original ordered values is compared with sealed remote hashes; no files/rows/order or earlier gate result are changed.",
+  "limitations": "Remote hashes remain reported evidence, not possession of remote private arrays. Old raw-byte gate remains blocked. A separate versioned cross-platform serialization contract must be reviewed before later fits.",
+  "model_fits": 0,
+  "API_calls": 0
+}

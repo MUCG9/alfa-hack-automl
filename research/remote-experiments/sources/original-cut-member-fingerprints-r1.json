@@ -1,0 +1,227 @@
+{
+  "schema": 1,
+  "status": "read_only_original_split_header_hashes_no_fits",
+  "created_unix": 1792791494.547337,
+  "cuts": [
+    {
+      "kind": "regression",
+      "cut": 0,
+      "original_npz_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+      "members": [
+        {
+          "name": "train.npy",
+          "npy_header": {
+            "descr": "<i8",
+            "fortran_order": false,
+            "shape": [
+              35000
+            ]
+          },
+          "npy_bytes": 280128,
+          "npy_sha256": "241777fc9bed59aeab4d9ec2d85c024ca6c09b3b93c089d49ae80dc59d5306c0",
+          "payload_sha256": "1bd80fb4045513b8ae79527ef2e8961041c9ddf3b30987cd8b3d94b2b3223dd2",
+          "canonical_ordered_values_profile": "nonnegative_index_le_i64_v1",
+          "canonical_ordered_values_sha256": "1bd80fb4045513b8ae79527ef2e8961041c9ddf3b30987cd8b3d94b2b3223dd2",
+          "zip_creator_system": 0,
+          "zip_compress_type": 0,
+          "zip_external_attr": 25165824
+        },
+        {
+          "name": "validation.npy",
+          "npy_header": {
+            "descr": "<i8",
+            "fortran_order": false,
+            "shape": [
+              18308
+            ]
+          },
+          "npy_bytes": 146592,
+          "npy_sha256": "fef6de0f735e4620437db8c45219e9d8f23d19d7b4eb5b83f4082de5e1a06c2d",
+          "payload_sha256": "b204bbfdde7a65085b492a92bebf91a72e9225aa046f1082fc27c1e3aafa35d0",
+          "canonical_ordered_values_profile": "nonnegative_index_le_i64_v1",
+          "canonical_ordered_values_sha256": "b204bbfdde7a65085b492a92bebf91a72e9225aa046f1082fc27c1e3aafa35d0",
+          "zip_creator_system": 0,
+          "zip_compress_type": 0,
+          "zip_external_attr": 25165824
+        }
+      ]
+    },
+    {
+      "kind": "regression",
+      "cut": 1,
+      "original_npz_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+      "members": [
+        {
+          "name": "train.npy",
+          "npy_header": {
+            "descr": "<i8",
+            "fortran_order": false,
+            "shape": [
+              22054
+            ]
+          },
+          "npy_bytes": 176560,
+          "npy_sha256": "e10f62032776e25400257716fded23e3fa2dc520e9736b5c059f61e66c15e26b",
+          "payload_sha256": "15b3ab1e64945a1a4e48de88c76f6f8877179688dea08e2445e9e65dc8d71b8c",
+          "canonical_ordered_values_profile": "nonnegative_index_le_i64_v1",
+          "canonical_ordered_values_sha256": "15b3ab1e64945a1a4e48de88c76f6f8877179688dea08e2445e9e65dc8d71b8c",
+          "zip_creator_system": 0,
+          "zip_compress_type": 0,
+          "zip_external_attr": 25165824
+        },
+        {
+          "name": "validation.npy",
+          "npy_header": {
+            "descr": "<i8",
+            "fortran_order": false,
+            "shape": [
+              12946
+            ]
+          },
+          "npy_bytes": 103696,
+          "npy_sha256": "f71dd72e71d16631e5e28d02bb48f22f5be75252f913040575bb6fd5edb1cb49",
+          "payload_sha256": "7de8258fb8eb556ad4f3f840f02886e264a22ae178d63852510b2bf4867dcc4f",
+          "canonical_ordered_values_profile": "nonnegative_index_le_i64_v1",
+          "canonical_ordered_values_sha256": "7de8258fb8eb556ad4f3f840f02886e264a22ae178d63852510b2bf4867dcc4f",
+          "zip_creator_system": 0,
+          "zip_compress_type": 0,
+          "zip_external_attr": 25165824
+        }
+      ]
+    },
+    {
+      "kind": "regression",
+      "cut": 2,
+      "original_npz_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+      "members": [
+        {
+          "name": "train.npy",
+          "npy_header": {
+            "descr": "<i8",
+            "fortran_order": false,
+            "shape": [
+              11175
+            ]
+          },
+          "npy_bytes": 89528,
+          "npy_sha256": "8436e9e5f6f06ed243fdcdf4e4a5ecb6eb9a78ae0f82b4800ea66e5bddd74344",
+          "payload_sha256": "a1002297ff8398277f1d09d897a76f1bcc981465bd1bf2efb42bc7a20cfabde6",
+          "canonical_ordered_values_profile": "nonnegative_index_le_i64_v1",
+          "canonical_ordered_values_sha256": "a1002297ff8398277f1d09d897a76f1bcc981465bd1bf2efb42bc7a20cfabde6",
+          "zip_creator_system": 0,
+          "zip_compress_type": 0,
+          "zip_external_attr": 25165824
+        },
+        {
+          "name": "validation.npy",
+          "npy_header": {
+            "descr": "<i8",
+            "fortran_order": false,
+            "shape": [
+              10879
+            ]
+          },
+          "npy_bytes": 87160,
+          "npy_sha256": "81d3667f1eca187d157a0fc43f3a57996656521c58eee4a62c69e078b98e5665",
+          "payload_sha256": "9581c2ba048a6d195122237bc248c247ae44e184e61d857882682f022dc9bf54",
+          "canonical_ordered_values_profile": "nonnegative_index_le_i64_v1",
+          "canonical_ordered_values_sha256": "9581c2ba048a6d195122237bc248c247ae44e184e61d857882682f022dc9bf54",
+          "zip_creator_system": 0,
+          "zip_compress_type": 0,
+          "zip_external_attr": 25165824
+        }
+      ]
+    },
+    {
+      "kind": "classification",
+      "cut": 42,
+      "original_npz_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+      "members": [
+        {
+          "name": "train.npy",
+          "npy_header": {
+            "descr": "<i4",
+            "fortran_order": false,
+            "shape": [
+              70529
+            ]
+          },
+          "npy_bytes": 282244,
+          "npy_sha256": "512176a69656632a4ec0cbd1217db6440478ebd030a9e7ae344238cfcd3b3389",
+          "payload_sha256": "0b9f76062575a00c565f22e485c3850d099c7a83cbcaf4b19e813764357ad7ce",
+          "canonical_ordered_values_profile": "nonnegative_index_le_i64_v1",
+          "canonical_ordered_values_sha256": "7f2d8e1da6d0f24e442892512d7e218dcf089264bdc558473d152640213b41a5",
+          "zip_creator_system": 0,
+          "zip_compress_type": 0,
+          "zip_external_attr": 25165824
+        },
+        {
+          "name": "validation.npy",
+          "npy_header": {
+            "descr": "<i4",
+            "fortran_order": false,
+            "shape": [
+              17141
+            ]
+          },
+          "npy_bytes": 68692,
+          "npy_sha256": "b5811ce4e72731dbedcd9093c995372d690b047c3ccf2ce84cb3a0940e776f30",
+          "payload_sha256": "983ee6b7237e2ea559ca809916faa18c16c1a46e64bba9625e1a7dc4d9f43660",
+          "canonical_ordered_values_profile": "nonnegative_index_le_i64_v1",
+          "canonical_ordered_values_sha256": "2d9fbd27d11acbf94243f3d25d5058a47c6eb73d38512da86084ecd3928fbdba",
+          "zip_creator_system": 0,
+          "zip_compress_type": 0,
+          "zip_external_attr": 25165824
+        }
+      ]
+    },
+    {
+      "kind": "classification",
+      "cut": 43,
+      "original_npz_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+      "members": [
+        {
+          "name": "train.npy",
+          "npy_header": {
+            "descr": "<i4",
+            "fortran_order": false,
+            "shape": [
+              70321
+            ]
+          },
+          "npy_bytes": 281412,
+          "npy_sha256": "2dc2ac29f513c3177bb594f8ba564a7de547ba68eb8148dca87a8bddee4b84ad",
+          "payload_sha256": "66ef87fde1f88a0eaa4ae693fcc6a00acbcb30875be661aeab3bb7d8bb18648c",
+          "canonical_ordered_values_profile": "nonnegative_index_le_i64_v1",
+          "canonical_ordered_values_sha256": "cf9ad0008f5151360565b5f59ab3bd4fae028300c8c78ef70dea609b37bbb722",
+          "zip_creator_system": 0,
+          "zip_compress_type": 0,
+          "zip_external_attr": 25165824
+        },
+        {
+          "name": "validation.npy",
+          "npy_header": {
+            "descr": "<i4",
+            "fortran_order": false,
+            "shape": [
+              17349
+            ]
+          },
+          "npy_bytes": 69524,
+          "npy_sha256": "9eac6100534afcb620c710977ec9405d9f9958c467818db0b37e3a92b3aba620",
+          "payload_sha256": "5069e9b038760b61e6b2b9da259448ebfd2622c3a8a027602fef976952836b54",
+          "canonical_ordered_values_profile": "nonnegative_index_le_i64_v1",
+          "canonical_ordered_values_sha256": "6a14a4b6f131ba0d7258db264857d18cc28f6b42222d3c1064fb52914542e9f3",
+          "zip_creator_system": 0,
+          "zip_compress_type": 0,
+          "zip_external_attr": 25165824
+        }
+      ]
+    }
+  ],
+  "source_manifest_sha256": "a56b9c3d5909ea4eb4854d3f3b6bd908360dd2cb84b7b19fa86323e3297a6d12",
+  "canonicalization_scope": "Diagnostic hashing of original nonnegative integer values only. Original files/rows/order/dtypes unchanged; no authority to replace earlier raw-byte gates.",
+  "source_data_or_indices_published": false,
+  "model_fits": 0,
+  "API_calls": 0
+}

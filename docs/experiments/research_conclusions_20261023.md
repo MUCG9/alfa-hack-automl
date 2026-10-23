@@ -188,6 +188,16 @@ y, weights, recipe/seed и версии. Равные source row hashes сами
 доказывают одинаковый transformed fit. Нельзя кешировать outer selector для
 inner scopes или строить выбор features по validation.
 
+Отдельная перспективная гипотеза — оптимизировать marginal contribution к
+incumbent вместо standalone objective. Для честного inner-HPO incumbent
+потребуется заново обучить ВНУТРИ inner fitting rows; использовать outer-model
+probabilities как inner objective нельзя. Его можно кешировать между trials
+одного неизменного inner split. В текущем REG-BLEND-01 TPE по-прежнему выбирался
+по standalone inner RMSE; новая mixture лишь проверяется снаружи. Qualification
+дополнена fixed mixtures с Random8 и unchanged anchor (0дополнительных fits),
+чтобы отделить пользу adaptive TPE от добавления ещё одного прогноза. Это не
+проверка новой conditional-objective HPO процедуры.
+
 Практическая memory должна доходить до Qwen через harness: локальные
 AGENTS.md/skills сами по себе не загружаются plain API planner. В контекст
 нужен компактный current-task ledger с source/recipe/split fingerprint,

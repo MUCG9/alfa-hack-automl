@@ -30,3 +30,11 @@ evaluation, не full exactly-once OOF; temporal uncertainty unavailable при 
 validation period каждого cut. Negative останавливает конфигурацию без нового
 веса. Positive потребует full fitting/export полной adaptive procedure и
 required code/archive gates, без official upload или автоматической promotion.
+
+До новых control fits и расчёта дополнительных mixtures добавлены более строгие
+comparators: те же .9complete-control+.1Random8 и .9complete-control+.1unchanged
+single anchor. Все их exact outer artifacts уже independently verified в HPO-01;
+дополнительных fits нет. Чтобы приписывать пользу именно adaptive TPE addition,
+mean3 TPE-mixture должен также быть ниже ОБОИХ comparator mixtures. Основной
+all3-cuts gate против полного control сохраняется. Это усиление qualification,
+не изменение старого HPO-01 standalone gate и не подбор новых weights.

@@ -48,19 +48,25 @@ def verify(path):
         control = verifier.outcome(row, directory, va)
         if cut < 2 and not math.isclose(control['value'], old['cuts'][cut]['control']['value'], abs_tol=1e-9, rel_tol=1e-12):
             raise ValueError('Qualified control numerical parity mismatch')
-        tpe_directory = hpo_path.parent/f'cut-{cut}/outer-tpe'
         control_predictions = pd.read_csv(directory/'validation_predictions.csv').y_pred.to_numpy()
-        tpe_predictions = pd.read_csv(tpe_directory/'validation_predictions.csv').y_pred.to_numpy()
+        arm_predictions = {name: pd.read_csv(hpo_path.parent/f'cut-{cut}'/('outer-'+name)/'validation_predictions.csv').y_pred.to_numpy()
+                           for name in ['control', 'random', 'tpe']}
         # summarize_hpo above already verified source labels, exact row order,
         # selected outer recipes and every inner objective in these artifacts.
-        blend = .9*control_predictions+.1*tpe_predictions
-        value = float(np.sqrt(np.mean((verifier.train[verifier.spec['target']].iloc[va].to_numpy()-blend)**2)))
-        if not math.isfinite(value):
+        truth = verifier.train[verifier.spec['target']].iloc[va].to_numpy()
+        mixtures = {name: float(np.sqrt(np.mean((truth-(.9*control_predictions+.1*predictions))**2)))
+                    for name, predictions in arm_predictions.items()}
+        value = mixtures['tpe']
+        if not all(math.isfinite(v) for v in mixtures.values()):
             raise ValueError('Nonfinite forward blend metric')
         folds.append({'cut': cut, 'control': control,
             'tpe': hpo_verified['cuts'][cut]['outcomes']['tpe'], 'blend_rmse': value,
+            'anchor_blend_rmse': mixtures['control'], 'random_blend_rmse': mixtures['random'],
             'gate_passed': value < control['value'], 'split_sha256': list(map(digest, split_paths)),
             'fitting_rows': len(tr), 'validation_rows': len(va)})
+    means = {name: float(np.mean([c[name] for c in folds])) for name in [
+        'blend_rmse', 'anchor_blend_rmse', 'random_blend_rmse']}
+    beats_comparators = means['blend_rmse'] < min(means['anchor_blend_rmse'], means['random_blend_rmse'])
     return {'scope': 'REG-BLEND-01 complete-control plus separately nested inner-TPE procedure, three forward cuts, reused public; not full exactly-once OOF/private/official score',
             'source_sha256': manifest['source'], 'input_sha256': manifest['inputs'],
             'source_matches_current': verifier.source_matches_current,
@@ -68,8 +74,9 @@ def verify(path):
             'benchmark_manifest_sha256': digest(path), 'verifier_sha256': digest(__file__),
             'gate_implementation_sha256': digest(ROOT/'tools/summarize_research.py'),
             'cuts': folds, 'control_mean': float(np.mean([c['control']['value'] for c in folds])),
-            'blend_mean': float(np.mean([c['blend_rmse'] for c in folds])),
-            'measured_cv_gate_passed': all(c['gate_passed'] for c in folds),
+            'blend_mean': means['blend_rmse'], 'anchor_blend_mean': means['anchor_blend_rmse'],
+            'random_blend_mean': means['random_blend_rmse'], 'mean_beats_both_comparator_mixtures': beats_comparators,
+            'measured_cv_gate_passed': all(c['gate_passed'] for c in folds) and beats_comparators,
             'coverage': 'three forward periods; not full exactly-once OOF',
             'temporal_uncertainty': 'unavailable: one validation period per cut',
             'worker_seconds': [r['seconds'] for r in manifest['results']],

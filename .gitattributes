@@ -107,3 +107,5 @@ research/champion-seed-next/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-a
 research/lean-supervision-next/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 research/lean-mvp-r2/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 research/class-support-bounded-r3/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+research/hpo-memory-next/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+research/progress-20261023/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol

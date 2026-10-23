@@ -1,0 +1,11 @@
+T5/T6/T7 regression HPO повторил одни и те же8 успешных trials: params/recipes/inner RMSE/fit iterations/phase полностью совпадают. Все24 trial имеют verified_ok в существующих R4 audits; recorded prediction/submission SHA совпадают. Здесь data/predictions/split arrays не открывались.
+
+Study wall: T5=39.547с, T6=34.813с, T7=41.391с; всего115.751с. Повтор T6+T7 послеT5 стоил76.204с (worker-result wall51.922с). Это наблюдённая повторная стоимость, не измеренная экономия. При8новых attempts warmstart расширяет информацию/поиск, не обещает сокращение времени.
+
+Seeded TPE137 каждый раз создаётся с нуля, тем же anchor/startup3/space/split. Все inner values одинаковы; лучший trial7=31.826014420739067, num_leaves104/reg_lambda12.639692527584211/colsample0.9899657323952007. Это inner winner, не прежний лучший full-procedure T5 Qwen winner.
+
+T6/T7 archive/source equal. T5 отличается только CatBoost adapter среди67 provenance sources, LightGBM/HPO/worker совпадают. Data/task SHA, nonpath spec, split, recorded Python/package metadata совпадают. Но actual per-trial native DLL/effective environment и prepared X/y/weights digests не сохранены. Поэтому legacy import сейчас НЕ сертифицирован; неизвестные поля не заполнены догадками.
+
+Предложение — отдельный warm-start factor: совместимые7 non-anchor inner observations + свежий тот же protected anchor первым в обоих arms; ≤8fresh ask attempts/arm,900s study/600s worker/2threads/1.5GiB без изменения cap/seed/model/context/champion. Прежнее вычисление банкa явно оплачено. При отсутствии полной совместимости нужен будущий prospectively fingerprinted8trial bank. Нет outer metrics/models/predictions cache. Optuna4.2.1 public create_trial/add_trial подходит, но application selected/best/seen и отдельные imported/fresh счётчики должны быть корректно инициализированы. Это warm start, не восстановление RNG continuation.
+
+План source-only, implementation/tests/fits/API/clock0; current T7 classification/STATE/Git не затронуты. HPO inner partition совпадает с reused confirmation, перенос наблюдений не делает эту оценку слепой. Качество/ускорение/продвижение не обещаются.

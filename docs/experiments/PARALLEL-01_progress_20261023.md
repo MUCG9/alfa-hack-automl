@@ -20,6 +20,8 @@ on the finite agreed plan, respecting real permissions/service limits.
   original compiled files including original requirements byte-identical to
   LONG-01.12 dormant modules added (diagnostics plus selector). This is NOT the
   full release gate. Receipt ERR-SEL_integration_gate_20261023.json.
+- Full source runner now registers387 expected unique checks. It has NOT run
+  during LONG-01;387 must not be reported as passed based on126 focused checks.
 - SEL-01 pure third-slot selector and fixed-grid replay implemented/tested, NOT
   wired into runtime. Predeclared criterion/protocol before actual cached screen.
   Frozen first2, fixed1/3 marginal criterion, no fitted weights or new recipes.

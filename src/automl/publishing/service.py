@@ -1,8 +1,61 @@
 from pathlib import Path
 import shutil
-import re,json,hashlib
+import re,json,hashlib,os,tempfile
 import numpy as np
 import pandas as pd
+
+
+def _check_expected_output(path,expected_current_sha):
+    """Optional stale-writer guard, not a global atomic compare-and-swap."""
+    if expected_current_sha is None:
+        return
+    if (not isinstance(expected_current_sha,str)
+            or re.fullmatch('[0-9a-f]{64}',expected_current_sha) is None):
+        raise ValueError('Expected output SHA must be a lowercase SHA256 digest')
+    digest=hashlib.sha256()
+    try:
+        with path.open('rb') as stream:
+            for block in iter(lambda:stream.read(2**20),b''):
+                digest.update(block)
+    except FileNotFoundError as exc:
+        raise ValueError('Expected current output is missing') from exc
+    if digest.hexdigest()!=expected_current_sha:
+        raise ValueError('Current output SHA differs from the expected version')
+
+
+def _atomic_write(path,write,*,binary=False,expected_current_sha=None):
+    """Write a unique sibling, flush/fsync/close, then replace the destination.
+
+    A failed validation or pre-replacement I/O operation leaves the last output
+    intact. A provided expected hash is checked before staging and immediately
+    before replacement; the coordinator still owns concurrent-writer exclusion.
+    """
+    path=Path(path)
+    _check_expected_output(path,expected_current_sha)
+    temporary=None
+    options={} if binary else {'encoding':'utf-8','newline':''}
+    try:
+        with tempfile.NamedTemporaryFile(mode='wb' if binary else 'w',
+                dir=path.parent,prefix='.'+path.name+'.',suffix='.tmp',
+                delete=False,**options) as stream:
+            temporary=Path(stream.name)
+            write(stream)
+            stream.flush()
+            os.fsync(stream.fileno())
+        _check_expected_output(path,expected_current_sha)
+        os.replace(temporary,path)
+    finally:
+        if temporary is not None:
+            try:
+                temporary.unlink(missing_ok=True)
+            except OSError:
+                # A cleanup error must not mask the publication failure.
+                pass
+
+
+def _atomic_csv(result,path,*,expected_current_sha=None):
+    _atomic_write(path,lambda stream:result.to_csv(stream,index=False),
+                  expected_current_sha=expected_current_sha)
 
 
 def positive_class_index(spec,classes):
@@ -32,7 +85,7 @@ def read_submission_values(spec,path):
     return values if spec.get('prediction_type')=='probability_matrix' else values[:,0]
 
 
-def save_submission(spec, sample, test, predictions, path):
+def save_submission(spec, sample, test, predictions, path,*,expected_current_sha=None):
     result=sample.copy()
     if len(predictions)!=len(test) or len(sample)!=len(test):
         raise ValueError('Wrong prediction length')
@@ -65,9 +118,7 @@ def save_submission(spec, sample, test, predictions, path):
     identifier=spec.get('id')
     if identifier is not None and (result[identifier].tolist()!=sample[identifier].tolist() or result[identifier].tolist()!=test[identifier].iloc[order].tolist()):
         raise ValueError('Submission ID contract violation')
-    temp=path.with_suffix('.csv.tmp')
-    result.to_csv(temp,index=False,encoding='utf-8')
-    temp.replace(path)
+    _atomic_csv(result,path,expected_current_sha=expected_current_sha)
 
 
 def dummy_predictions(spec, train, n):
@@ -78,16 +129,52 @@ def dummy_predictions(spec, train, n):
     if spec.get('prediction_type')=='probability_matrix':
         frequencies=y.astype(str).value_counts(normalize=True)
         return np.tile([frequencies.get(str(c),0) for c in spec['output_columns']],(n,1))
-    value=float(y.mean()) if spec['kind']=='regression' else y.mode().iloc[0]
+    if spec['kind']=='regression':
+        value=float(y.median() if spec.get('metric')=='mae' else y.mean())
+    else:
+        value=y.mode().iloc[0]
     return np.repeat(value,n)
 
 
-def checkpoint(record,output):
-    temporary=output.with_suffix('.csv.tmp')
-    shutil.copyfile(record['submission'],temporary); temporary.replace(output)
+def checkpoint(record,output,*,spec=None,sample=None,test=None,expected_current_sha=None):
+    """Publish a validated candidate when its full output context is supplied.
+
+    Legacy callers remain compatible but perform an unvalidated byte copy. The
+    returned receipt distinguishes that boundary; it is not a champion/CAS gate.
+    Input-table dtype policy is unchanged. Strings are retained only while
+    validating this already-generated CSV, so lexical IDs/labels are not lost.
+    """
+    context=(spec,sample,test)
+    if any(value is not None for value in context):
+        if not all(value is not None for value in context):
+            raise ValueError('Validated checkpoint requires spec, sample and test')
+        frame=pd.read_csv(record['submission'],dtype=str,keep_default_na=False)
+        if len(frame)!=len(sample) or list(frame.columns)!=list(sample.columns):
+            raise ValueError('Checkpoint submission schema mismatch')
+        identifier=spec.get('id')
+        if identifier is not None and frame[identifier].tolist()!=sample[identifier].astype(str).tolist():
+            raise ValueError('Checkpoint submission ID order mismatch')
+        columns=spec.get('output_columns',[spec['target']])
+        values=frame[columns].to_numpy()
+        order=prediction_row_order(spec,len(test))
+        values=values[np.argsort(order)]
+        if spec['kind']=='regression' or spec.get('prediction_type') in {'probability','probability_matrix'}:
+            values=np.asarray(values,dtype=float)
+        if spec.get('prediction_type')!='probability_matrix':
+            values=values[:,0]
+        save_submission(spec,sample,test,values,output,expected_current_sha=expected_current_sha)
+        validation='validated_output_context'
+    else:
+        def copy(stream):
+            with Path(record['submission']).open('rb') as source:
+                shutil.copyfileobj(source,stream)
+        _atomic_write(output,copy,binary=True,expected_current_sha=expected_current_sha)
+        validation='not_fully_validated_legacy_copy'
+    return {'validation':validation,'atomic_publication':True,
+            'expected_current_sha_checked':expected_current_sha is not None}
 
 
-def publish_targets(parts,sample,path):
+def publish_targets(parts,sample,path,*,expected_current_sha=None):
     """Combine already sample-ordered, validated single-target publications."""
     result=sample.copy(); seen=set()
     for spec,source in parts:
@@ -110,4 +197,4 @@ def publish_targets(parts,sample,path):
         elif set(values.astype(str))-set(spec['classes']): raise ValueError('Unknown child class labels')
         result[target]=values.to_numpy()
     if result.isna().any().any(): raise ValueError('Null multi-target publication values')
-    temporary=path.with_suffix('.csv.tmp'); result.to_csv(temporary,index=False,encoding='utf-8'); temporary.replace(path)
+    _atomic_csv(result,path,expected_current_sha=expected_current_sha)

@@ -1,0 +1,165 @@
+{
+  "schema": "L1-whole-agent-AB-executable-source-v1",
+  "status": "source_only_recovery_original_LA1_FAIL_preserved_unexecuted",
+  "research_proposal": {
+    "path": "loss-seed-whole-agent-ab-plan-r1/protocol-proposal.json",
+    "sha256": "cbf49a15d4fd68ae60fc3e8f0db41c65620ea7115a354c44057480d2b5af9ce6"
+  },
+  "budgets": {
+    "assigned": true,
+    "actual_start_unix": 1792790233.8414314,
+    "actual_start_monotonic": 49238.875,
+    "actual_deadline_unix": 1792801033.8414314,
+    "actual_deadline_monotonic": 60038.875,
+    "proposed_common_seconds": 10800,
+    "allocation": {
+      "setup": 900,
+      "A_regression_parent": 900,
+      "B_regression_parent": 900,
+      "A_classification_parent": 3600,
+      "B_classification_parent": 3600,
+      "independent_both_tasks_audit": 600,
+      "cleanup_root_export": 300
+    },
+    "sum_check": 10800,
+    "proposed_serial_order": [
+      "A_regression",
+      "B_regression",
+      "A_classification",
+      "B_classification"
+    ],
+    "task_parent_includes": "Materialization/argv+source/input guards, child supervision, cleanup, sealing, task receipts and post-task guard all inside the fixed parent allocation.",
+    "setup_includes": "Fresh actual closed predecessor/lock/source/archive/library/input/split/CLI inventory checks and any setup performed by this pair; previously spent source gates remain separately reported historical cost.",
+    "admission": "Before every parent/child, require the full original allocation plus all remaining fixed task allocations plus audit600+cleanup300 within the unchanged common deadline. No cap clipping, retries, deadline reset or recycling unused slots.",
+    "wall_monotonic": "Inherited exactly from pinned terminal LA1 campaign; no fresh wall/monotonic clock. Setup900 includes original failure and repair/publication.",
+    "no_automatic_run": true
+  },
+  "task_caps": {
+    "regression": {
+      "parent": 900,
+      "child_watchdog": 870,
+      "solver_budget": 810,
+      "hpo_requested_window": 300,
+      "solver_to_child_margin": 60,
+      "child_to_parent_margin": 30
+    },
+    "classification": {
+      "parent": 3600,
+      "child_watchdog": 3570,
+      "solver_budget": 3510,
+      "hpo_requested_window": 900,
+      "solver_to_child_margin": 60,
+      "child_to_parent_margin": 30
+    },
+    "resource": "One solver/logical worker at a time; two worker threads, BLAS1, per-worker1.5GiB/whole owned tree2GiB, audit one thread. Existing same controlled Qwen model/reasoningoff/temperature0.4; two planner/four gateway logical calls per task; raw attempts/usage unknowns retained."
+  },
+  "factor": {
+    "A": "Same future tested candidate archive; --loss-seed-l1 absent.",
+    "B": "Same future tested candidate archive; --loss-seed-l1 only on regression.",
+    "regression_common": "Exact complete V16 control and exact CP1 champion914880 in both arms; first6 required seeds, protected unprofiled SINGLE HPO anchor unchanged.",
+    "B_slot6": "Fixed raw copy of protected LightGBM SINGLE with only loss_profile_id=lgbm_l1_v1, consuming the optional initial Qwen slot under max9.",
+    "classification": "Same archive, controls, command flags and inputs in both arms; --loss-seed-l1 and --champion-recipe absent in both classification commands.",
+    "inherited_behavior": "Initial L1 admission<=1; existing feedback/inheritance/ensemble/refit may cause additional L1 fits. No loss-skill, loss-HPO or new inner-fact builder.",
+    "unchanged": "No kernel/class-blend/cache/context/method-portfolio factors. Ordinary planner CAPABILITIES unchanged.",
+    "causal_limit": "One sequential stochastic Qwen A/B, with no supported deterministic Qwen seed; admission displacement/feedback and scheduling remain limits."
+  },
+  "hpo_admission": {
+    "source_reserve_formula": "R=min(1200,max(60,0.2*T)); D is the actual effective constrained solver deadline.",
+    "source_deadline_formula": "HPO_end=min(D-R-30, now+H). Existing source clips the study window instead of requiring the full nominal window.",
+    "full_window_inequality": "At HPO call, D-now >= R+30+H. Equality leaves no operational slack; observe actual timestamps/deadlines rather than infer admission from CLI.",
+    "regression": {
+      "T": 810,
+      "R": 162,
+      "H": 300,
+      "required_remaining": 492,
+      "latest_optimistic_elapsed_from_D_minus_T": 318
+    },
+    "classification": {
+      "T": 3510,
+      "R": 702,
+      "H": 900,
+      "required_remaining": 1632,
+      "latest_optimistic_elapsed_from_D_minus_T": 1878
+    },
+    "elapsed_scope": "Elapsed includes input/roles/EDA/preparation and all initial experiments charged before the call. RunBudget may constrain D earlier than _run entry; use actual D, never reset elapsed there.",
+    "audit_evidence": "Freeze actual call/start/effective study deadline and initial-queue terminal time if available. Missing timing proof remains null/uncertified; requested args alone do not prove a full HPO window.",
+    "requested_vs_actual": "Requested8 is not eight successful trials. Verify maximum_trials8, exact unprofiled SINGLE anchor, tpe seed137, split and all trial0..7 receipts/status/value/nulls. Preserve actual attempted/completed/failed/duplicate/unattempted counts.",
+    "strict_four_stage_qualification": "Do not claim complete requested HPO8 stage if fewer than8 attempts or full-window proof is absent/clipped. A valid fallback CSV may still be recorded, with the stage qualification explicitly incomplete; no invented failure score.",
+    "existing_handled_failure": "An honestly handled ordinary failed student trial keeps its null objective and does not by itself falsify the whole completed procedure. Source/resource/clock/integrity/cleanup failure is technical failure.",
+    "historical_match": "Equal HPO windows across A/B, but regression300 differs from historical CP1/T5/T6/T7 nominal900. This pair is not budget-matched to history."
+  },
+  "official_default_qualification_gap": {
+    "standard_command": "python3 solution.py task.md",
+    "research_dependencies": "CP1/L1 need --four-stage/--preserve-anchor/--control-recipe plus external CP1 champion JSON and B --loss-seed-l1; ordinary standard invocation does not carry these flags/inputs.",
+    "archive_constraint": "Contest ZIP contains only root Python modules and original requirements; no external recipe JSON assumed available on platform.",
+    "required_later_step": "Separate generic policy integration followed by source/exact-unpacked gates and BOTH complete tasks using the unchanged standard command, full refit/CSV/R4 and actual source/archive/requirements fingerprints. No such default integration or qualification claimed here."
+  },
+  "actual_clock_assigned": false,
+  "output_root": "la2",
+  "order": [
+    "Ar",
+    "Br",
+    "Ac",
+    "Bc"
+  ],
+  "source_sha256": {
+    "run_pair.py": "5c44afde422008e77348ae9f43e21d22e2901dd1acac85beb393be82e66eafdd",
+    "audit_pair.py": "d0f2becf11979ea56d9523f0f010391325c2e684af0e7e521b3bbb832cba5e3c",
+    "close_pair.py": "aedb425b5c784601de9e06ba86a34f6563cfe5fbb4500dcc669ce45fdb6a7f3f"
+  },
+  "required_future_dynamic_bindings": [
+    "prepared-manifest path/SHA",
+    "same source-archive path/SHA",
+    "actual Stage0 campaign path/SHA",
+    "actual Stage0 rootclosure path/SHA",
+    "actual Stage0 exec session or explicit null",
+    "self/auditor/closer SHA",
+    "root actual terminal newest KERN01 receipt through existing extra-terminal argument before launch",
+    "Exact previous-campaign path/SHA",
+    "Exact previous-root-closure path/SHA;25252/exit1"
+  ],
+  "actual_stage0": {
+    "manifest_sha256": null,
+    "archive_sha256": null,
+    "root_closure_sha256": null,
+    "actual_exec_session": null
+  },
+  "mandatory_Stage0": "Exact reviewed overlay00a41/testedLOSS backend, actual source499/51+zero skips/exact23+flatLOSS16/seed12=28, all source/member hashes and original900root clock rechecked. No guessed proof.",
+  "readiness": "Source-only; requires exact peer review, publication and real Stage0/newest predecessor terminal receipts, root actual launch and later actual terminal closure. Default inspection does no copying/imports/process scans/clock.",
+  "independent_audit": "All four complete core seals and saved supervisor equality before first R4 import/pristine labels. Exact R4 formulas unchanged; supplemental CP1bothreg/L1Bslot6/actual8accounting/first-worker492or1632 proof and actualbooster.params per fitting-scope lineage. All four fullrefit/CSV/source/SHA checked after scoring.",
+  "HPO_clock_boundary": "Frozen43be supervisor exposes availability at first observed HPO worker only. Actual optimize_recipe call/effective deadline remains null, not invented. Conservative firstworker proof plus actual8 attempts required; clipped/missing stage fails qualification.",
+  "failure": "Primary/secondary errors retained, current failed and unattempted slots explicitnull, no zero/retries/resume/reset. Ordinary failed student objectives are null and do not alone invalidate valid source procedure; wholearm/admission/resource/clock/integrity/cleanup failures do.",
+  "root_closer": "30s within original10800/cleanup300, actual exit/tool/session or genuine null, ResearchLock+strict known identity/preparer absence, all source/core/input/plan/supervisor rehash. Writes only exclusive la2/terminal-root-closure.json; root confirms own helper exit/preparer absence separately. Original failure remains failure. Explicitly validates all four inherited clock values and retains original_failed_attempt.",
+  "scope_limit": "No generic platform integration, no new engine/loss skill/catalog advertisement, no default promotion, no official-score estimate. Same new archive A/B differs only Breg seedflag; history budgets not matched.",
+  "performed": {
+    "source_AST_parse_and_inmemory_compile_only": true,
+    "candidate_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "process_scans": 0,
+    "input_materialization": 0,
+    "clocks": 0,
+    "STATE_or_Git_edits": false
+  },
+  "recovery": {
+    "campaign": {
+      "path": "la1/campaign.json",
+      "sha256": "dd078763bdc5c8f1831ae231c387b2dfe06c606b8b3ac3f1814ead0e2252a5be"
+    },
+    "root_closure": {
+      "path": "la1/terminal-root-closure.json",
+      "sha256": "312f21c33afaa479d25483883c7a96e6d3fb5af9736ba5d9268255b4f4c4a07d"
+    },
+    "actual_exec_session": 25252,
+    "actual_exit_code": 1,
+    "original_start_unix": 1792790233.8414314,
+    "original_start_monotonic": 49238.875,
+    "original_deadline_unix": 1792801033.8414314,
+    "original_deadline_monotonic": 60038.875,
+    "setup900_includes": "Original LA1 failure, sourcefix, publication, privateenvbootstrap and LA2 setup; never new10800.",
+    "original_status": "FAIL_permanent",
+    "first_failure": "authorized_API_environment_missing",
+    "current_attempt_errors": "Separate current error_history; original first/secondary errors retained under original_failed_attempt."
+  }
+}

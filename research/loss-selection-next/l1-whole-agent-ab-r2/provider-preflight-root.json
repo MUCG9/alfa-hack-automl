@@ -1,0 +1,37 @@
+{
+  "status": "private_provider_preflight_verified_no_API",
+  "actual_exec_session": null,
+  "actual_exec_exit_code_observed_by_root": 0,
+  "actual_tool_evidence": "1594af",
+  "cleanup_confirmed": true,
+  "source_unchanged": true,
+  "owned_identities": [
+    {
+      "pid": 23112,
+      "create_time": 1792790582.7013736
+    },
+    {
+      "pid": 24580,
+      "create_time": 1792790582.6843176
+    }
+  ],
+  "closure_preparer_identities": [
+    {
+      "pid": 5044,
+      "create_time": 1792790657.6903996
+    },
+    {
+      "pid": 10552,
+      "create_time": 1792790657.6755311
+    }
+  ],
+  "active_owned_processes": [],
+  "uncertain_owned": [],
+  "original_deadline_unix": 1792801033.8414314,
+  "authorized_private_environment_ready": true,
+  "API_calls": 0,
+  "model_fits": 0,
+  "quality_metric": null,
+  "loader_sha256": "e87b38dc077c89b00ae0d2b041d72eccf0914973f25061c6f6b0147209a4f9f6",
+  "preflight_metadata_sha256": "0833556644e8bad96ea3284e7130855973844dda77454cae7a016e0d8919b67e"
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "LA2-same-process-launcher-source-v1",
+  "status": "frozen_source_only_peer_review_pending",
+  "files_sha256": {
+    "launcher.py": "e87b38dc077c89b00ae0d2b041d72eccf0914973f25061c6f6b0147209a4f9f6",
+    "launcher.py.patch": "340077e649a8b809d3520af4c6818db5db4ae39561f5818b2f380939910217f0"
+  },
+  "base_launcher": {
+    "path": "work/launch_champion_pair_r1.py",
+    "sha256": "6f4d56878a14e07203490b0c9044e083060e86bc84d3fa726a5e508f60db5deb"
+  },
+  "coordinator_source_directory": "work/loss-seed-whole-agent-ab-r2-next-dev",
+  "publication_root": "required explicit --published-root research/...; source files and launcher must be under same published directory",
+  "launch_syntax": "launcher.py --launch --self-sha256 SHA --coordinator-sha256 SHA --auditor-sha256 SHA --closer-sha256 SHA --expected-commit COMMIT --published-root research/PATH -- ACTUAL_COORDINATOR_BINDINGS",
+  "preflight_syntax": "launcher.py --preflight-env [--self-sha256 SHA] [--metadata-output WORK_RELATIVE_EXCLUSIVE_JSON]",
+  "private_environment": "Runtime-only existing private configuration read, same-process os.environ then runpy. No secret argv/receipt/error text. No private configuration was read while preparing this source.",
+  "clocks": "No time module, experiment clock/deadline, source copying or STATE writes. Actual coordinator must inherit all original LA1 clocks including setup900. Optional preflight identities are actual own/bootstrap PID/create_time only.",
+  "worker_policy": "Unchanged reviewed supervisor only injects provider credential into primary solver; inherited model-worker blacklist removes API key. No worker runtime modification.",
+  "review_boundary": "No actual preflight, Git source verification, import, coordinator invocation, tests, fits or API executed. Publication/runtime availability are pending root action.",
+  "performed": {
+    "AST_and_inmemory_compile_only": true,
+    "candidate_runtime_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "private_config_reads": 0,
+    "process_scans": 0,
+    "Git_calls": 0,
+    "experiment_clocks": 0,
+    "STATE_changes": false
+  }
+}

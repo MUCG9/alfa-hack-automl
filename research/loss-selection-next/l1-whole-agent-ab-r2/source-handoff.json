@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "status": "frozen_source_only_recovery_pending_root_publication_execution",
+  "files_sha256": {
+    "audit_pair.py": "d0f2becf11979ea56d9523f0f010391325c2e684af0e7e521b3bbb832cba5e3c",
+    "audit_pair.py.patch": "a38f490daff8c372d1be20df8dfe9461a8814b4203ee25fc95c79c332fe411ed",
+    "close_pair.py": "aedb425b5c784601de9e06ba86a34f6563cfe5fbb4500dcc669ce45fdb6a7f3f",
+    "close_pair.py.patch": "39262d39a40d9e0ccd5472ba3d7755a71e2036ab771d9d12c02d54a12a73e019",
+    "protocol.json": "bc00e860bade9e2977041f5a770beefb411123e093e97f848f7668cdb2f16ae4",
+    "README.txt": "58afbeb74c511479acd0822f28bd4627a761ed3646a4320073f3310911996b7b",
+    "run_pair.py": "5c44afde422008e77348ae9f43e21d22e2901dd1acac85beb393be82e66eafdd",
+    "run_pair.py.patch": "02868de867468ea5d50735ae7a85472c97ef33a43389f3cbc51b55596ebc8d7b",
+    "launcher-source-review.json": "b3198e5d9bd0f8eefe729a8cdfbca430bba85c1c07445eeda1e0b38c9e071b08"
+  },
+  "previous_campaign": {
+    "path": "la1/campaign.json",
+    "sha256": "dd078763bdc5c8f1831ae231c387b2dfe06c606b8b3ac3f1814ead0e2252a5be"
+  },
+  "previous_root_closure": {
+    "path": "la1/terminal-root-closure.json",
+    "sha256": "312f21c33afaa479d25483883c7a96e6d3fb5af9736ba5d9268255b4f4c4a07d"
+  },
+  "previous_actual_exec_session": 25252,
+  "previous_actual_exit": 1,
+  "previous_actual_tool": "8353f1",
+  "original_LA1_status": "FAIL_permanent_preserved",
+  "output_root": "la2",
+  "inherited_clocks": {
+    "start_unix": 1792790233.8414314,
+    "start_monotonic": 49238.875,
+    "deadline_unix": 1792801033.8414314,
+    "deadline_monotonic": 60038.875
+  },
+  "new_clock_assigned": false,
+  "setup900_includes": "Original failure+fix/review/publication/bootstrap+recovery setup",
+  "runtime_archive_recipes_evaluator_caps_unchanged": true,
+  "inmemory_compile_passed": true,
+  "performed": {
+    "candidate_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "process_scans": 0,
+    "input_materialization": 0,
+    "new_research_clocks": 0,
+    "STATE_Git_edits": 0
+  },
+  "no_more_source_writes": true
+}

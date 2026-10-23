@@ -1,0 +1,175 @@
+--- original/run_pair.py
++++ recovery/run_pair.py
+@@ -1,5 +1,6 @@
+ """SOURCE-ONLY until reviewed/published; future serial L1 seed whole-agent A/B.
+-One new10800s envelope includes setup900, four fixed parents900/900/3600/3600,
++ONE recovery under original LA1 10800s wall/monotonic clocks; setup900 includes
++firstfailure, fix/publication and all preparation. Four fixed parents900/900/3600/3600,
+ audit600 and cleanup/root300. No clocks, copying, imports or children at preparation.
+ Both arms use one identical tested future source; only B regression enables L1.
+ Research evaluation; not official-default ready (flags/external JSON remain).
+@@ -20,7 +21,7 @@
+ 
+ sys.dont_write_bytecode = True
+ WORK = Path(__file__).resolve().parents[1]
+-OUTPUT = WORK/'la1'
++OUTPUT = WORK/'la2'
+ BASE, BASE_SHA = 'm4packet/manifest.json', '8faf33cd81c0e864bcf338828c34447000111eda85bc719b8f43312d2babae9a'
+ COORDINATOR, COORDINATOR_SHA = 'run_lean_mvp_r2.py', '43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818'
+ R4, R4_SHA = 'repaired-mvp-r1-dev/evaluator_r4.py', 'c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783'
+@@ -31,6 +32,10 @@
+ CHAMPION_SIGNATURE = '959a9b8fed203d71bafbbd4770b6bfb5b6aa5da79d08ee568b93979d7f795421'
+ OVERLAY_HANDOFF = '00a41c5c9d9bb4363e58e7c5a98ebd6356b86bbf107a23065249c2958edf2086'
+ COMMON, SETUP, AUDIT, CLEANUP = 10800, 900, 600, 300
++PREVIOUS_CAMPAIGN = ('la1/campaign.json', 'dd078763bdc5c8f1831ae231c387b2dfe06c606b8b3ac3f1814ead0e2252a5be')
++PREVIOUS_ROOT = ('la1/terminal-root-closure.json', '312f21c33afaa479d25483883c7a96e6d3fb5af9736ba5d9268255b4f4c4a07d')
++ORIGINAL_CLOCK = (1792790233.8414314, 49238.875, 1792801033.8414314, 60038.875)
++
+ CAPS = {'regression': dict(parent=900, child=870, solver=810, hpo=300),
+         'classification': dict(parent=3600, child=3570, solver=3510, hpo=900)}
+ ORDER = [('A','regression','r'),('B','regression','r'),('A','classification','c'),('B','classification','c')]
+@@ -104,6 +109,48 @@
+ 
+ 
+ 
++def inherited_clock(args):
++    need((args.previous_campaign,args.previous_campaign_sha256)==PREVIOUS_CAMPAIGN
++         and (args.previous_root_closure,args.previous_root_closure_sha256)==PREVIOUS_ROOT,
++         'exact_original_failed_LA1_bindings_required')
++    need(sha(local(PREVIOUS_CAMPAIGN[0]))==PREVIOUS_CAMPAIGN[1]
++         and sha(local(PREVIOUS_ROOT[0]))==PREVIOUS_ROOT[1], 'original_failure_receipt_changed')
++    previous,proof=load(local(PREVIOUS_CAMPAIGN[0])),load(local(PREVIOUS_ROOT[0]))
++    fields=['start_unix','start_monotonic','absolute_deadline_unix','common_deadline_monotonic']
++    need(all(type(previous.get(k)) in [int,float] and math.isfinite(previous[k]) for k in fields)
++         and tuple(previous[k] for k in fields)==ORIGINAL_CLOCK and previous['common_seconds']==COMMON,
++         'only_original_LA1_common_clock_allowed_no_reset')
++    attempt_unix,attempt_mono=time.time(),time.monotonic()
++    need(previous.get('status')=='technical_failure' and previous.get('qualification')=='FAIL'
++         and previous.get('cleanup_confirmed') is True and previous.get('source_unchanged') is True
++         and previous.get('arms')==[] and previous.get('independent_audit') is None
++         and previous.get('first_failure',{}).get('code')=='authorized_API_environment_missing'
++         and previous.get('finished_unix',float('inf'))<=attempt_unix
++         and previous.get('finished_monotonic',float('inf'))<=attempt_mono,
++         'only_closed_pre_model_API_environment_failure_recovery_allowed')
++    need(proof.get('actual_exec_session')==25252 and proof.get('actual_exec_exit_code_observed_by_root')==1
++         and proof.get('cleanup_confirmed') is True and proof.get('source_unchanged') is True
++         and proof.get('technical_procedure_passed') is False
++         and proof.get('original_common_seconds')==COMMON
++         and proof.get('original_start_unix')==ORIGINAL_CLOCK[0]
++         and proof.get('original_deadline_unix')==ORIGINAL_CLOCK[2]
++         and proof.get('first_failure')==previous['first_failure']
++         and proof.get('error_history')==previous['error_history']
++         and proof.get('owned_identities') and proof.get('closure_preparer_identities')
++         and proof.get('active_owned_processes',[])==[] and proof.get('uncertain_owned',[])==[],
++         'actual_failed_25252_clean_root_proof_required')
++    need(attempt_unix<ORIGINAL_CLOCK[0]+SETUP and attempt_mono<ORIGINAL_CLOCK[1]+SETUP,
++         'original_setup900_exhausted_no_reset')
++    need(abs((ORIGINAL_CLOCK[2]-attempt_unix)-(ORIGINAL_CLOCK[3]-attempt_mono))<=5,
++         'wall_monotonic_clock_disagreement')
++    reference=dict(campaign=dict(path=PREVIOUS_CAMPAIGN[0],sha256=PREVIOUS_CAMPAIGN[1]),
++        root_closure=dict(path=PREVIOUS_ROOT[0],sha256=PREVIOUS_ROOT[1]),
++        actual_exec_session=25252,actual_exec_exit_code_observed_by_root=1,
++        original_status='FAIL_preserved',only_ONE_recovery=True,
++        first_failure=previous['first_failure'],error_history=previous['error_history'])
++    return (*ORIGINAL_CLOCK,attempt_unix,attempt_mono,reference)
++
++
+ def main():
+     global FAILURE_TYPE
+     p=argparse.ArgumentParser(description=__doc__)
+@@ -111,6 +158,8 @@
+     for name in ['self-sha256','auditor-sha256','closer-sha256','prepared-manifest','prepared-manifest-sha256',
+                  'source-archive','source-archive-sha256','stage0-campaign','stage0-campaign-sha256',
+                  'stage0-root-closure','stage0-root-closure-sha256','stage0-exec-session']:
++        p.add_argument('--'+name)
++    for name in ['previous-campaign','previous-campaign-sha256','previous-root-closure','previous-root-closure-sha256']:
+         p.add_argument('--'+name)
+     p.add_argument('--bootstrap-launcher');p.add_argument('--bootstrap-launcher-sha256')
+     p.add_argument('--extra-terminal-receipt',action='append',default=[],metavar='WORK_REL_PATH=SHA256')
+@@ -122,15 +171,17 @@
+     need(all(getattr(args,n.replace('-','_')) is not None for n in
+         ['self-sha256','auditor-sha256','closer-sha256','prepared-manifest','prepared-manifest-sha256',
+          'source-archive','source-archive-sha256','stage0-campaign','stage0-campaign-sha256',
+-         'stage0-root-closure','stage0-root-closure-sha256','stage0-exec-session']), 'actual_dynamic_Stage0_bindings_required')
++         'stage0-root-closure','stage0-root-closure-sha256','stage0-exec-session',
++         'previous-campaign','previous-campaign-sha256','previous-root-closure','previous-root-closure-sha256']), 'actual_dynamic_Stage0_bindings_required')
+     actual_stage0_session=session(args.stage0_exec_session)
+     need(sys.flags.optimize==0 and not OUTPUT.exists(),'new_unoptimized_pair_required_no_resume')
+-    start_unix,start_mono=time.time(),time.monotonic()
+-    unix,deadline=start_unix+COMMON,start_mono+COMMON
++    start_unix,start_mono,unix,deadline,attempt_unix,attempt_mono,failed_reference=inherited_clock(args)
+     OUTPUT.mkdir()
+     import psutil
+     state=dict(status='starting',qualification='PENDING',start_unix=start_unix,start_monotonic=start_mono,
+         common_deadline_monotonic=deadline,absolute_deadline_unix=unix,common_seconds=COMMON,
++        attempt_start_unix=attempt_unix,attempt_start_monotonic=attempt_mono,
++        original_failed_attempt=failed_reference,
+         allocations=dict(setup=SETUP,A_regression=900,B_regression=900,A_classification=3600,B_classification=3600,
+                          independent_pair_audit=AUDIT,final_cleanup=CLEANUP),
+         owned_root=dict(pid=os.getpid(),create_time=psutil.Process().create_time()),
+@@ -140,11 +191,11 @@
+         independent_audit=None,descriptive_retention_win=None,error_history=[],quality_metric=None,
+         root_actual_exec_qualification='pending_root_observed_actual_exec_and_fresh_closure',
+         root_confirmation_required_before_unix=unix,promotion=False,submit=False,official_score=None,
+-        official_default_ready=False,scope='Equal-budget whole-agent L1 admission A/B; adaptive reused public, not blind/private or default-release qualification')
++        official_default_ready=False,scope='LA2 recovery under original LA1 clock; original LA1 FAIL preserved. Equal-budget whole-agent L1 admission A/B; adaptive reused public, not blind/private or default-release qualification')
+     pins,deployment,known,finished={},{},set(),set()
+     coor=owner=processes=awake=None;final_end=None
+-    auditor='loss-seed-whole-agent-ab-next-dev/audit_pair.py'
+-    closer='loss-seed-whole-agent-ab-next-dev/close_pair.py'
++    auditor='loss-seed-whole-agent-ab-r2-next-dev/audit_pair.py'
++    closer='loss-seed-whole-agent-ab-r2-next-dev/close_pair.py'
+     manifest_path,plan_path=OUTPUT/'manifest.json',OUTPUT/'verification-plan.json'
+     def persist():
+         data = {k: v for k, v in state.items() if not k.startswith('_')}
+@@ -205,7 +256,8 @@
+             LINEAGE:LINEAGE_SHA,SEED:SEED_SHA,auditor:args.auditor_sha256,closer:args.closer_sha256,
+             Path(__file__).resolve().relative_to(WORK).as_posix():args.self_sha256,
+             args.prepared_manifest:args.prepared_manifest_sha256,args.source_archive:args.source_archive_sha256,
+-            args.stage0_campaign:args.stage0_campaign_sha256}
++            args.stage0_campaign:args.stage0_campaign_sha256,
++            PREVIOUS_CAMPAIGN[0]:PREVIOUS_CAMPAIGN[1],PREVIOUS_ROOT[0]:PREVIOUS_ROOT[1]}
+         for name,digest in explicit.items():
+             need(sha(local(name),check)==digest,'pair_explicit_source_binding_failed');merge(pins,name,digest)
+         need(bool(args.bootstrap_launcher)==bool(args.bootstrap_launcher_sha256),'paired_bootstrap_path_SHA_required')
+@@ -245,7 +297,8 @@
+             if not any(Path(v).resolve() in own_paths for v in parent.cmdline() if not v.startswith('-')):break
+             need(parent.create_time()==birth,'pair_bootstrap_identity_changed')
+             state['coordinator_bootstrap_identities'].append(dict(pid=parent.pid,create_time=birth));parent=parent.parent()
+-        refs=[(args.stage0_root_closure,args.stage0_root_closure_sha256,actual_stage0_session,0)]
++        refs=[(args.stage0_root_closure,args.stage0_root_closure_sha256,actual_stage0_session,0),
++              (PREVIOUS_ROOT[0],PREVIOUS_ROOT[1],25252,1)]
+         refs += [(n,h,s,e) for n,(h,s,e) in RETAINED_TERMINAL.items()]
+         for value in args.extra_terminal_receipt:
+             n,h=value.rsplit('=',1);refs.append((n,h,'saved',None))
+@@ -296,7 +349,7 @@
+         arms={a:dict(archive=args.source_archive,archive_sha256=args.source_archive_sha256,compiled_sha256=compiled,
+                      source_root=prepared['source_root'],tasks=tasks) for a in ['A','B']}
+         slots={a+c:dict(arm=a,kind=k,code=c,argv=solver_argv(a,k),caps=CAPS[k]) for a,k,c in ORDER}
+-        manifest=dict(schema='L1-whole-agent-pair-v1',output_root='la1',immutable_files=pins,arms=arms,tasks=tasks,slots=slots,
++        manifest=dict(schema='L1-whole-agent-pair-v1',output_root='la2',original_failed_attempt=failed_reference,immutable_files=pins,arms=arms,tasks=tasks,slots=slots,
+             archive=args.source_archive,archive_sha256=args.source_archive_sha256,compiled_sha256=compiled,
+             common_seconds=COMMON,caps=CAPS,order=[a+c for a,k,c in ORDER],maximum_experiments=9,hpo_trials=8,
+             champion=dict(path=CHAMPION,sha256=CHAMPION_SHA,signature=CHAMPION_SIGNATURE),
+@@ -309,6 +362,7 @@
+         plan=copy.deepcopy(base['verification_plan_template'])
+         plan.update(verifier_source_sha256=args.auditor_sha256,manual_metric_verifier_path=R4,manual_metric_verifier_sha256=R4_SHA,
+             original_common_start_unix=start_unix,original_absolute_deadline_unix=unix,common_seconds=COMMON,
++            original_failed_attempt=failed_reference,
+             hpo_requested_budget_seconds={k:v['hpo'] for k,v in CAPS.items()},
+             expected_regression_splits=copy.deepcopy(lineage['split_fingerprints']),T5_cut_floors=copy.deepcopy(lineage['selected_independently_verified_metrics']),
+             reproduction_absolute_tolerance=1e-9,expected_champion_signature=CHAMPION_SIGNATURE,
+@@ -366,10 +420,10 @@
+                     tick=time.monotonic();need(deadline-tick>=AUDIT+CLEANUP,'audit_cleanup_reserve_unavailable')
+                     absence();frozen();state.update(status='verifying',cleanup_confirmed=True,source_unchanged=True);persist()
+                     audit_argv=[sys.executable,'-B','-X','utf8',str(local(auditor)),
+-                        '--work-root',str(WORK),'--pair-root','la1','--manifest','la1/manifest.json',
+-                        '--manifest-sha256',state['manifest_sha256'],'--plan','la1/verification-plan.json',
++                        '--work-root',str(WORK),'--pair-root','la2','--manifest','la2/manifest.json',
++                        '--manifest-sha256',state['manifest_sha256'],'--plan','la2/verification-plan.json',
+                         '--plan-sha256',state['verification_plan_sha256'],'--self-sha256',args.auditor_sha256,
+-                        '--output','la1/independent-audit.json']
++                        '--output','la2/independent-audit.json']
+                     sup=coor.supervise(audit_argv,WORK,OUTPUT/'audit-supervisor.json','pair-audit',tick,AUDIT,AUDIT-30,
+                         deadline,unix,AUDIT+CLEANUP,state,persist,frozen,owner,processes,state['coordinator_bootstrap_identities'])
+                     coor.child_errors(state,sup);finished.update(coor.identities(sup.get('owned_process_identities',[])))

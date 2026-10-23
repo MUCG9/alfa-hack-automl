@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "status": "source_review_only_no_blocker_found",
+  "source_path": "loss-seed-whole-agent-ab-r2-launch-next-dev/launcher.py",
+  "source_sha256": "e87b38dc077c89b00ae0d2b041d72eccf0914973f25061c6f6b0147209a4f9f6",
+  "scope": "Same-process provider env then runpy; no time/newclock/STATE; four local/publishedHEAD SHA bindings, reservedargs and bootstrapfilepath compatible; no API request.",
+  "performed": {
+    "candidate_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "process_scans": 0,
+    "input_materialization": 0,
+    "new_research_clocks": 0,
+    "STATE_Git_edits": 0
+  }
+}

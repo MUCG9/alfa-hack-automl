@@ -1,0 +1,85 @@
+{
+  "status": "independently_verified_regression_task_T7_still_active",
+  "metric": "rmse",
+  "direction": "lower",
+  "cuts": [
+    {
+      "phase": "primary",
+      "current": 37.783309369362556,
+      "protected_control": 38.902803731334785,
+      "delta_current_minus_control": -1.1194943619722295,
+      "primary_improves": true
+    },
+    {
+      "phase": "confirmation",
+      "current": 32.06406922203338,
+      "protected_control": 31.991659384340597,
+      "delta_current_minus_control": 0.07240983769278486,
+      "primary_improves": false
+    }
+  ],
+  "two_cut_mean": 34.92368929569797,
+  "matched_fresh_V16_mean": 35.44723155783769,
+  "delta_vs_V16": -0.5235422621397205,
+  "previous_T5_mean": 34.86622087872278,
+  "delta_vs_T5": 0.05746841697519045,
+  "previous_T6_mean": 35.21107809690049,
+  "delta_vs_T6": -0.28738880120252475,
+  "HPO_completed": 8,
+  "HPO_guided_successful": 5,
+  "model_families": [
+    "catboost",
+    "lightgbm",
+    "xgboost"
+  ],
+  "api": {
+    "independently_read_closed_ledger": true,
+    "gateway_calls": 2,
+    "http_attempts_reported": 2,
+    "prompt_tokens_reported": 18567,
+    "completion_tokens_reported": 1774,
+    "usage_complete": true
+  },
+  "full_refit_CSV_integrity_verified": true,
+  "both_cuts_better_than_V16": false,
+  "preserved_V16_gates": {
+    "baseline_report_sha256": "a431c5de3f02ae362ffb8d083f9b075af9c8020d52c0adafa72c24d575bee309",
+    "cuts": [
+      {
+        "phase": "primary",
+        "current": 37.783309369362556,
+        "preserved_control": 38.902803731334785,
+        "delta_current_minus_control": -1.1194943619722295,
+        "primary_improves": true
+      },
+      {
+        "phase": "confirmation",
+        "current": 32.06406922203338,
+        "preserved_control": 31.991659384340597,
+        "delta_current_minus_control": 0.07240983769278486,
+        "primary_improves": false
+      }
+    ],
+    "cut_comparable_by_preserved_protocol_and_matching_training_row_hashes": true,
+    "historical_confirmation_training_rows_rechecked": true,
+    "historical_confirmation_component_training_hash_matches": [
+      true,
+      true
+    ],
+    "actual_selected_two_cut_mean": 34.92368929569797,
+    "preserved_selected_two_cut_mean": 35.44723155783769,
+    "mean_delta_current_minus_control": -0.5235422621397205,
+    "each_cut_primary_gate_passed": false,
+    "class_each_cut_gate_passed": true,
+    "fresh_control_refit": false,
+    "historical_control_raw_predictions_recomputed": false,
+    "historical_confirmation_raw_partition_rechecked": false,
+    "scope": "Saved qualified full-procedure V11/V16 control; primary partition fingerprint matches, confirmation follows preserved two-cut protocol. Not a prospective matched rerun."
+  },
+  "scope": "Reused public; HPO inner overlaps confirmation. Independent numeric integrity, not blind score.",
+  "whole_T7_terminal": false,
+  "official_score": null,
+  "promotion": false,
+  "submit": false,
+  "control_limit": "Matched control rerun on two cuts; no fresh full control refit"
+}

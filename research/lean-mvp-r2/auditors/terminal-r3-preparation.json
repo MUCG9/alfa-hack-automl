@@ -1,0 +1,16 @@
+{
+  "status": "prepared_not_executed",
+  "scope": "T7 root terminal closure helper only",
+  "source": "work/close_lean_mvp_r3.py",
+  "sha256": "183988d89ba455d992f5d0f42902b032a2eaa532b567499a245234a9860117d7",
+  "supersedes_unexecuted_source": "work/close_lean_mvp_r2.py",
+  "superseded_sha256": "4a06ba66cd767259cab3fb10a4f28283bcb03558fae1f143639fc29c3a01bfc4",
+  "finding": "Inherited additional-audit proof union omitted closure-preparer identities. R3 includes them for fresh exact PID/create_time absence checks.",
+  "prior_R2_actual_execution": false,
+  "active_T7_sources_or_clock_changed": false,
+  "static_compile_passed": true,
+  "tests_executed": 0,
+  "new_fits": 0,
+  "API_calls": 0,
+  "actual_use_requires_root_observed_terminal_exec_session": 65008
+}

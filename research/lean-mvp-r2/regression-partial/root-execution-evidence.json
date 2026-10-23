@@ -1,0 +1,12 @@
+{
+  "audit_wrapper_actual_exec_exit_code": 0,
+  "audit_wrapper_tool_chunk": "dd3245",
+  "root_closure_helper_actual_exec_exit_code": 0,
+  "root_closure_helper_tool_chunk": "e7bdf8",
+  "root_closure_preparers_fresh_absence_tool_chunk": "7cc51e",
+  "audit_sha256": "57ac0844a186fd36e40eafb3ee83a6888dc34a496abfe9cd054680fccef5224f",
+  "root_closure_sha256": "760c2ef8efb137ca4cc08ae0191f149d1df16a3d4d13f6898250cab75b9b467f",
+  "whole_T7_terminal": false,
+  "new_fits": 0,
+  "API_calls": 0
+}

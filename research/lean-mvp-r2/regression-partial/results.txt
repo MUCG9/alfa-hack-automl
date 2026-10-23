@@ -1,0 +1,3 @@
+T7 regression RMSE 34.9236892957; V16 35.4472315578; прежний T5 34.8662208787; прежний T6 35.2110780969.
+Оба среза лучшеV16: False. Full refit/CSV/integrity проверены.
+Классификация и whole-T7 terminal pending. Reused-public, не слепая проверка/official score; продвижения нет.

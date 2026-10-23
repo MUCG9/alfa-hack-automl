@@ -18,6 +18,11 @@ def close(left, right):
         raise ValueError('Independent recomputation differs')
 
 
+def same_json(left, right):
+    """Reports may contain tuple-valued search bounds before JSON persistence."""
+    return json.loads(json.dumps(left)) == right
+
+
 def load(verifier, directory, expected_split, expected_recipe):
     directory = Path(directory)
     record = json.loads((directory/'result.json').read_text())
@@ -66,7 +71,7 @@ def verify(path, in_progress=None):
         verified_row = {'cut':cut, 'PIPE02_rmse':strong, 'inner_subset_verified':True, 'studies':{}, 'outer':{}}
         for sampler in ['random','tpe']:
             study = row['studies'][sampler]
-            if study != json.loads((where/sampler/'hpo.json').read_text()): raise ValueError('Ledger copies differ')
+            if not same_json(study,json.loads((where/sampler/'hpo.json').read_text())): raise ValueError('Ledger copies differ')
             actual = verifier.split(where/sampler/'split.npz')
             if not all(np.array_equal(a,b) for a,b in zip(actual,inner)): raise ValueError('Sampler used another inner split')
             if study['sampler'] != sampler or study['seed'] != 137 or study['startup_trials'] != 3 or study['maximum_trials'] != 8:

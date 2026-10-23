@@ -6,6 +6,7 @@ import numpy as np
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 from benchmark_marginal_hpo import mixed_rmse, inner_subset, objective_result, summarize, worker_closure
+from verify_marginal_hpo import same_json
 
 
 class MarginalTests(unittest.TestCase):
@@ -32,6 +33,10 @@ class MarginalTests(unittest.TestCase):
     def test_worker_closure_includes_transitive_dependencies(self):
         files={'automl_worker.py':b'from a import run','a.py':b'import b','b.py':b'answer=1','unused.py':b'pass'}
         self.assertEqual(worker_closure(files),['a.py','automl_worker.py','b.py'])
+
+    def test_ledger_comparison_preserves_values_across_json_tuple_conversion(self):
+        self.assertTrue(same_json({'space':{'leaves':('int',31,127)}},{'space':{'leaves':['int',31,127]}}))
+        self.assertFalse(same_json({'value':31.},{'value':32.}))
 
 
 if __name__=='__main__':unittest.main()

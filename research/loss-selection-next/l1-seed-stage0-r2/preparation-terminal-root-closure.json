@@ -1,0 +1,56 @@
+{
+  "status": "source_preparation_verified_no_gates",
+  "actual_exec_session": 83888,
+  "actual_exec_exit_code_observed_by_root": 0,
+  "actual_tool_evidence": "4dc9eb",
+  "cleanup_confirmed": true,
+  "source_unchanged": true,
+  "active_owned_processes": [],
+  "uncertain_owned": [],
+  "owned_identities": [
+    {
+      "pid": 1848,
+      "create_time": 1792787416.568087
+    },
+    {
+      "pid": 9160,
+      "create_time": 1792787416.4527507
+    },
+    {
+      "pid": 23064,
+      "create_time": 1792787416.4671721
+    },
+    {
+      "pid": 24820,
+      "create_time": 1792787416.581593
+    }
+  ],
+  "closure_preparer_identities": [
+    {
+      "pid": 21980,
+      "create_time": 1792787487.1051157
+    },
+    {
+      "pid": 2680,
+      "create_time": 1792787487.0894842
+    }
+  ],
+  "prepared_manifest_sha256": "f025f1144d23724a8963d77ee2fce8d66f1fa3ff5cd0bda07203dd995d1e48b6",
+  "prepared_archive_sha256": "16be73e1a8493f64b752231cf8f333856197e43ba3939b243496bc7da6cc5f04",
+  "source_files": 700,
+  "expected_checks": 499,
+  "expected_flat_checks": [
+    23,
+    28
+  ],
+  "parent_elapsed_seconds": 13.235000000000582,
+  "engineering_total_cap_seconds": 75,
+  "root_metadata_closer_seconds": 0.17199999999866122,
+  "root_metadata_observed_since_preparation_start": 70.79529976844788,
+  "root_metadata_scope": "Separate no-fit terminal metadata, not an ML clock or a model gate. Parent completed in13.235 seconds; source-preparation budget was not reset.",
+  "source_preparation_receipt_sha256": "171355434b42602244930f5fa2757a9ed81a6289ceda18dc8dad4d84d3bf3aa8",
+  "new_model_fits": 0,
+  "API_calls": 0,
+  "stage0_ML_clock_assigned": false,
+  "root_own_actual_exit_and_fresh_absence_required": true
+}

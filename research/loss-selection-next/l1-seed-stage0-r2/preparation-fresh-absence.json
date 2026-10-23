@@ -1,0 +1,9 @@
+{
+  "checked_epoch": 1792787529.8075616,
+  "closure_sha256": "ede459d1ca3416141b5d1d94a959f826bd17ddb98259ab86379d50973b751b57",
+  "unique_owned_and_preparers_checked": 6,
+  "all_absent": true,
+  "live": [],
+  "root_metadata_actual_exit_code": 0,
+  "root_metadata_actual_tool": "7267fb"
+}

@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "id": "remote-port-02-repository-map",
+  "kind": "source_only",
+  "readiness": "ready",
+  "objective": "REMOTE-PORT-02: read-only coordination and navigation acknowledgement. No fits/API or dependency installation. After your current owned job is sealed, read notice nav-20261024-01 and the navigation at exact primary commit aa84ccbfed01f8d685c31820709f7577fda014bd: README.md, research/README.md, docs/BRANCHES.md, research/remote-experiments/REMOTE_AGENT_START.txt. The root README was updated with a current map; its prior text is preserved as a collapsed historical section and in Git history. Pinned model sources, original job bytes/caps/deadlines, release archives and branches were not moved or deleted. This message never authorizes restarting an active job or changing its pinned inputs. Read-only git show is sufficient; do not checkout/reset an active worktree. In ack.txt report notice ID, exact commit read, your existing stable worker ID, understanding of the two branch roles and immutable paths, and any broken link actually observed. Keep personal paths/hostnames/secrets out. Metrics null and fits/API0. Later changes are conveyed as new append-only notices or new task objectives; before a new claim read unseen notices in the poll dispatch SHA. Queue CLI does not itself read notices. This is a source-only message, not a model experiment or permission for default promotion/official submission.",
+  "caps": {
+    "wall_seconds": 900,
+    "cpu_threads": 1,
+    "worker_memory_mib": 512,
+    "whole_memory_mib": 1024,
+    "max_fits": 0,
+    "max_api_calls": 0
+  },
+  "source_refs": [
+    {
+      "path": "research/remote-experiments/notices/nav-20261024-01.md",
+      "sha256": "bde47ccdafb749279c705818d1ab09691eee94f9d9acd0f7f9e9e218b69c243a"
+    }
+  ],
+  "dependencies": [],
+  "expected_outputs": [
+    "ack.txt"
+  ]
+}

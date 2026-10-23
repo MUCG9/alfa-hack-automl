@@ -1,0 +1,14 @@
+Navigation acknowledgement; source-only, fits0/API0, metrics null.
+Worker: remote-worker-f7dd39e0
+Navigation commit read: aa84ccbfed01f8d685c31820709f7577fda014bd
+Dispatch/notices read: 952b050d8df049374e405f7cf09d801bbc26b4a6
+Seen: nav-20261024-01; research-20261024-02; platform-20261024-03.
+Read all four requested navigation documents, including preserved historical README.
+work/night-research-20261023 is primary development/evidence; research/remote-dispatch is dispatcher-owned queue and reviews, never worker-pushed.
+Claim/result refs are immutable small packet trees, not model worktrees. Source bytes must be loaded from the original dispatch SHA, never assumed present in a claim tree.
+Original source paths, manifests, release ZIPs, branch lineage and claim clocks remain immutable; navigation notices do not authorize restarts or source substitution.
+Historical README and branch inventory are dated snapshots, not live process/remote-connection evidence.
+Relative Markdown destinations checked against the exact commit tree; external web URLs not checked.
+Observed missing relative destinations: none
+No model fits, API calls, installations, global settings, source modifications or release promotion.
+Prior remote-port-01 remains blocked at immutable result 7f4cdec88fc2b82e80779e3b0ab27709f6f75101.

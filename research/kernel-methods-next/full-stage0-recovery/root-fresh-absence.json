@@ -1,0 +1,9 @@
+{
+  "checked_epoch": 1792786271.2063127,
+  "closure_sha256": "e648ec50c574309edf9305f43f8ce2e5b0e25daf2f9060c417712d615b7412a7",
+  "unique_owned_and_preparers_checked": 376,
+  "live_matches": [],
+  "all_absent": true,
+  "root_closer_actual_tool": "633a65",
+  "root_closer_actual_exit_code": 0
+}

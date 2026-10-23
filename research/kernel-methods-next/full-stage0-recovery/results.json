@@ -1,0 +1,45 @@
+{
+  "experiment": "KERN00 full technical Stage0",
+  "status": "technical_stage0_verified",
+  "actual_exec": {
+    "session": 19035,
+    "exit_code": 0,
+    "observed_tool": "2b7dd1"
+  },
+  "actual_root_closer": {
+    "exit_code": 0,
+    "observed_tool": "633a65",
+    "seconds": 1.5193802
+  },
+  "original_clock": {
+    "start_unix": 1792785834.275884,
+    "deadline_unix": 1792786734.275884,
+    "common_seconds": 900,
+    "parent_elapsed_seconds": 327.57800000000134,
+    "root_closed_and_fresh_cleanup_observed_by_seconds": 436.9304287433624,
+    "timing_scope": "327.578 is parent execution only; root actual terminal/closure and fresh cleanup were observed within 436.931 seconds of the same original900 clock; clock not reset"
+  },
+  "technical_checks": {
+    "source": 483,
+    "source_skipped": 0,
+    "exact_default_repeated": 23,
+    "same_flat_kernel_contracts": 12,
+    "changed_guarded_files": []
+  },
+  "prepared_manifest_sha256": "8e9fb3c8e428df7e372dc53d0e3b11bc4c435bdf13c89426ebe5b0e45ebffa98",
+  "prepared_archive_sha256": "ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c",
+  "closure_sha256": "e648ec50c574309edf9305f43f8ce2e5b0e25daf2f9060c417712d615b7412a7",
+  "fresh_owned_and_preparers_absent": 376,
+  "peak_owned_tree_rss_mib": 487.609375,
+  "first_source_preparation_failure": {
+    "preserved": true,
+    "receipt": "full-stage0-initial-prep-failure/receipt.json",
+    "reason": "compared inventory lists with integer counts before source creation; one narrow type-aware correction, no original result rewriting"
+  },
+  "public_fits": 0,
+  "ML_metric": null,
+  "whole_agent_confirmation": false,
+  "quality_promotion": false,
+  "submit": false,
+  "source_only_next": "KERN0115jobs still not launched; release priority buffer applies"
+}

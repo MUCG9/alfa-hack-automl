@@ -1,0 +1,530 @@
+--- a/portable_harness.py
++++ b/portable_harness.py
+@@ -163,16 +163,26 @@
+             return not self.errors
+         except Exception as e:self.errors.append(type(e).__name__);return False
+ 
+-def supervise(command, cwd, env, frozen, clock, receipt, parent_seconds=480, child_seconds=450):
++def terminal_poll(process, child_deadline):
++    """Exit observation itself must be strictly before the original child end."""
++    code=process.poll();observed=time.monotonic()
++    if observed>=child_deadline:
++        exc=Blocked('child_deadline');exc.observed_monotonic=observed;exc.terminal_code=code;raise exc
++    return code,observed
++
++def supervise(command, cwd, env, frozen, clock, receipt, parent_seconds=480, child_seconds=450, parent_deadline=None, phase='worker'):
+     """Private guarded primitive, not a public arbitrary-argv model CLI."""
+-    need(0<child_seconds and child_seconds+5<=parent_seconds<=480,'full_parent_allocation')
++    maximum=600 if phase=='audit' else 480
++    need(phase in ('worker','audit') and 0<child_seconds and child_seconds+5<=parent_seconds<=maximum,'full_parent_allocation')
++    need(child_seconds<=(570 if phase=='audit' else 450),'fixed_child_profile')
+     clock.tick(parent_seconds);start_w,start_m=time.time(),time.monotonic()
+-    parent_end=start_m+parent_seconds
++    parent_end=start_m+parent_seconds if parent_deadline is None else min(start_m+parent_seconds,parent_deadline)
+     def tick(allocation=0):
+         clock.tick(allocation);need(time.monotonic()+allocation<parent_end,'parent_deadline')
+     before=inventory(frozen,tick)
+     # Hashing cost does not silently steal a declared full child allocation.
+     tick(child_seconds+5);p=None;tree=None;errors=[];status='blocked';peaks=[0,0];clean=False
++    child_start_w=child_start_m=child_observed_end=None
+     owned_parent=OwnedTree(os.getpid())
+     with Path(receipt).with_suffix('.log').open('xb') as log:
+         try:
+@@ -180,24 +190,29 @@
+             need(platform.system()=='Linux','Linux_supervisor_only')
+             allowed=sorted(os.sched_getaffinity(0))[:2];need(allowed,'CPU_affinity_unavailable')
+             tick(child_seconds+5)
++            child_start_w,child_start_m=time.time(),time.monotonic();child_end=child_start_m+child_seconds
+             p=subprocess.Popen(command,cwd=cwd,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True,
+                                preexec_fn=lambda:os.sched_setaffinity(0,allowed))
+-            child_end=time.monotonic()+child_seconds
+             tree=OwnedTree(p.pid)
+             write_new(Path(receipt).with_suffix('.identity.json'),dict(pid=tree.root[0],create_time=tree.root[1],original_deadline=clock.wall_deadline))
+             while True:
+                 tick();worker=tree.sample();whole=owned_parent.sample()
+                 peaks=[max(peaks[0],worker),max(peaks[1],whole)]
+                 need(worker<=1536*2**20 and whole<=2048*2**20,'RSS_cap')
+-                if p.poll() is not None:break
+-                need(time.monotonic()<child_end,'child_deadline');time.sleep(.05)
++                code,observed=terminal_poll(p,child_end)
++                if code is not None:child_observed_end=observed;break
++                time.sleep(.05)
+             status='completed' if p.returncode==0 else 'failed'
+             if status=='failed':errors.append(dict(code='nonzero_child_exit',detail='Owned child returned nonzero; raw private log retained.'))
+-        except Exception as e:errors.append(dict(code=type(e).__name__,detail=str(e)));status='blocked'
++        except Exception as e:
++            if getattr(e,'terminal_code',None) is not None:child_observed_end=e.observed_monotonic
++            errors.append(dict(code=type(e).__name__,detail=str(e)));status='blocked'
+         finally:
+             if tree:
+                 tree.cleanup(tick)
+-                try:p.wait(timeout=2)
++                try:
++                    p.wait(timeout=2)
++                    if child_observed_end is None:child_observed_end=time.monotonic()
+                 except Exception as e:tree.errors.append(type(e).__name__)
+                 clean=tree.absent()
+                 if tree.errors:errors.extend(dict(code=e,detail='sticky owned observation or cleanup failure') for e in tree.errors)
+@@ -208,6 +223,8 @@
+     result=dict(status=status,exit_code=p.returncode if p else None,cleanup_confirmed=clean,
+                 first_error=errors[0] if errors else None,secondary_errors=errors[1:],
+                 start_unix=start_w,start_monotonic=start_m,original_deadline=clock.wall_deadline,parent_deadline_monotonic=parent_end,
++                child_start_unix=child_start_w,child_start_monotonic=child_start_m,child_deadline_monotonic=child_start_m+child_seconds if child_start_m else None,
++                child_terminal_observed_monotonic=child_observed_end,child_elapsed_seconds=child_observed_end-child_start_m if child_observed_end is not None else None,
+                 finished_unix=time.time(),wall_seconds=time.monotonic()-start_m,
+                 peak_worker_subtree_rss_mib=peaks[0]/2**20,peak_whole_owned_rss_mib=peaks[1]/2**20,
+                 identities=sorted(tree.known) if tree else [],frozen_sha256=before,cpu_threads_cap=2)
+@@ -237,15 +254,52 @@
+     need(binding['job_id']==job_id and binding['worker_id']==worker,'execution_binding_identity')
+     return claim,job,binding
+ 
+-def model_driver(repo,queue_file,queue_sha,job_id,worker,claim_sha,bundle,manifest,private_job,private_job_sha,clock_path,lock_path,receipt):
++def driver_finalize(raw, clock, parent_end, receipt, errors):
++    """Called only AFTER temp removal and lock release (or held-lock check)."""
++    errors=list(errors);raw_errors=([raw['first_error']] if raw and raw.get('first_error') else [])+(raw.get('secondary_errors',[]) if raw else [])
++    try:
++        clock.tick();need(time.monotonic()<parent_end,'driver_parent_deadline')
++    except Exception as exc:errors.append(dict(code=type(exc).__name__,detail=str(exc)))
++    all_errors=raw_errors+errors
++    result=dict(status=raw['status'] if raw and not errors else 'blocked',cleanup_confirmed=bool(raw and raw['cleanup_confirmed'] and not errors),
++                raw_supervisor_sha256=sha(receipt) if Path(receipt).exists() else None,original_deadline=clock.wall_deadline,
++                parent_deadline_monotonic=parent_end,finished_unix=time.time(),
++                first_error=all_errors[0] if all_errors else None,secondary_errors=all_errors[1:])
++    final=Path(receipt).with_name(Path(receipt).stem+'.driver.json')
++    try:
++        clock.tick();need(time.monotonic()<parent_end,'driver_parent_deadline');write_new(final,result)
++        clock.tick();need(time.monotonic()<parent_end,'driver_parent_deadline')
++    except Exception as exc:
++        err=dict(code=type(exc).__name__,detail=str(exc));all_errors.append(err)
++        result.update(status='blocked',cleanup_confirmed=False,first_error=all_errors[0],secondary_errors=all_errors[1:],finished_unix=time.time())
++        final.write_text(json.dumps(result,sort_keys=True))
++    return result
++
++@contextmanager
++def selected_lock(path, held=None):
++    if held is None:
++        with host_lock(path) as identity:yield identity
++    else:
++        current=psutil.Process();expected=dict(pid=current.pid,create_time=current.create_time())
++        need(held==expected and load(path)==expected,'already_held_lock_identity')
++        yield held
++        need(load(path)==expected,'already_held_lock_release_check')
++
++def model_driver(repo,queue_file,queue_sha,job_id,worker,claim_sha,bundle,manifest,private_job,private_job_sha,clock_path,lock_path,receipt,held_lock=None,common_clock=None,parent_deadline=None):
+     """Prospective entrypoint. This source job never invokes it."""
++    parent_start=time.monotonic();parent_end=parent_start+480 if parent_deadline is None else min(parent_start+480,parent_deadline)
+     claim,job,binding=queue_admission(repo,queue_file,queue_sha,job_id,worker,claim_sha)
++    if 'components' in binding:
++        matches=[v for v in binding['components'] if v['private_job_sha256']==private_job_sha]
++        need(len(matches)==1,'exact_one_matrix_leaf_binding')
++        binding=dict(binding,**matches[0])
+     need(job['caps']['cpu_threads']==2 and job['caps']['worker_memory_mib']==1536
+          and job['caps']['whole_memory_mib']==2048,'driver_exact_approved_resource_profile')
+     need(manifest['source_archive_sha256']=='ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c','algorithm_archive_pin')
+     # Manifest itself must be one of this future immutable job's primary pins.
+     need(binding['manifest_canonical_sha256']==canonical(manifest),'manifest_binding')
+-    clock=Clock.retained(claim,clock_path)
++    clock=Clock.retained(claim,clock_path) if common_clock is None else common_clock
++    need(clock.wall_deadline==claim['deadline_unix'],'driver_common_clock_binding')
+     need(sha(private_job,clock.tick)==private_job_sha,'private_job_seal')
+     leaf=load(private_job)
+     need(leaf['threads']==2 and leaf['full_fit'] is False and leaf['recipe'] and leaf['spec'],'typed_component_job')
+@@ -254,10 +308,17 @@
+     check_inventory(bundle,manifest['flat_files_sha256'],clock.tick)
+     shared_lock=Path(repo).resolve().parent/'remote-research-state'/'experiment.lock'
+     need(Path(lock_path).resolve()==shared_lock,'shared_host_lock_path_required')
+-    with host_lock(lock_path):
+-        with tempfile.TemporaryDirectory(prefix='automl-source-') as temp:
+-            env=clean_environment(temp);clock.tick(480)
+-            return supervise([sys.executable,str(Path(bundle).resolve()/'automl_worker.py'),str(Path(private_job).resolve())],bundle,env,bundle,clock,receipt)
++    raw=None;errors=[]
++    try:
++        with selected_lock(lock_path,held_lock):
++            with tempfile.TemporaryDirectory(prefix='automl-source-') as temp:
++                env=clean_environment(temp);clock.tick(480)
++                raw=supervise([sys.executable,str(Path(bundle).resolve()/'automl_worker.py'),str(Path(private_job).resolve())],bundle,env,bundle,clock,receipt,parent_deadline=parent_end)
++        check_inventory(bundle,manifest['flat_files_sha256'],clock.tick)
++    except Exception as exc:
++        errors.append(dict(code=type(exc).__name__,detail=str(exc)))
++        if raw is None:raise
++    return driver_finalize(raw,clock,parent_end,receipt,errors)
+ 
+ if __name__=='__main__':
+     raise SystemExit('source-only wrapper: learner execution refused; no model CLI enabled')
+--- a/experiment_driver.py
++++ b/experiment_driver.py
+@@ -0,0 +1,221 @@
++"""Opt-in, fixed six-classification component caller. DEFAULT INSPECTION ONLY.
++
++SOURCE_ONLY jobs always denied. This source task never invokes execute(). Future
++prepared authority/bindings must be independently pinned by the primary first.
++"""
++from pathlib import Path
++import copy,json,os,sys,time
++import portable_harness as h
++import component_audit as audit
++
++PROTOCOL_SHA='81cd9df5566f5453600117a5cb902f8ca7d37dbee3c9ee2347ff5100a9baff46'
++SOURCE_SHA='0ed0e74706b6620ffc1b29216a8f2c00ab40771ef7ebaecb0cc61092f78c4bae'
++INPUT_SHA='247ecf4d3ce8670be0573ed0808b0cfce9352babb78ca7cc02c9103ca3bee4c7'
++NATIVE_SHA='f5ad8c55aec198b689abf4bd8cf4ed0caf967fcd9f0d9f6db12f70513e1a60e5'
++CONTROL_SHA='118ba895201bef8149fdd6bb88464bb2e02b23985a34629a47d52df5e5536f46'
++QUEUE_SHA='d42cb979db953eeffabfa65ee2a40d8763dfd835f91ce35149327f3d181e4c49'
++ORDER=[(cut,arm) for cut in (42,43) for arm in ('strong','linear','rbf')]
++KEYS=[f'classification{cut}-{arm}' for cut,arm in ORDER]
++def inspect_plan():
++    return dict(mode='inspection_only',keys=KEYS,model_processes=0,learner_fits=0,api_calls=0,
++                future_common_seconds=5400,static_fit_cap=16,requires_separate_bounded_READY_job=True)
++def local(root,relative):
++    p=Path(relative);result=(Path(root)/p).resolve()
++    h.need(not p.is_absolute() and '\\' not in str(p) and '..' not in p.parts and result.is_relative_to(Path(root).resolve()),'native_relative_path_required')
++    return result
++def reserve(clock,index):
++    h.need(type(index) is int and 0<=index<6,'fixed_slot_index')
++    # Includes THIS full parent, all future fixed parents, audit, cleanup and spare.
++    clock.tick((6-index)*480+600+300+1020)
++
++def validate_matrix(authority, protocol, native, source, inputs, control):
++    """Pure structural checks BEFORE Popen or label-bearing CSV parsing."""
++    h.need(protocol['cuts']==[42,43] and protocol['task_kind']=='classification','fixed_class_protocol')
++    h.need(protocol['budget']['common_seconds']==5400 and protocol['budget']['maximum_learner_fit_calls']==16,'fixed_budget')
++    h.need(source['source_archive_sha256']=='ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c'
++           and len(source['flat_files_sha256'])==70,'fixed_original_source')
++    h.need(authority['source_manifest']==source,'authority_source_binding')
++    h.need(protocol['recipes']['strong']==control['classification'],'protected_first_SINGLE')
++    components=authority['components'];h.need(len(components)==6,'exact_six_components')
++    h.need([v['key'] for v in components]==KEYS and len({v['output_relative'] for v in components})==6,'unique_key_folder_order')
++    spec=authority['spec']
++    h.need(spec['kind']=='classification' and spec['metric']=='macro_f1' and spec['prediction_type']=='value','classification_value_spec')
++    roles=authority['roles'];audit.native_roles(spec,roles)
++    h.need(set(roles)=={'train','test','sample_submission','data_dictionary'},'exact_four_roles')
++    approved={v['name']:v['sha256'] for v in inputs['files'] if v['task']=='multiclass'}
++    h.need(authority['input_sha256']=={r:approved[r+'.csv'] for r in roles},'approved_exact_input_hashes')
++    h.need(authority['task_sha256']==approved['task.md'],'approved_task_hash')
++    for index,(entry,(cut,arm)) in enumerate(zip(components,ORDER)):
++        expected_cut=next(v for v in native['cuts'] if v['kind']=='classification' and v['cut']==cut)
++        h.need(entry['native_cut']==expected_cut and entry['arm']==arm and entry['cut']==cut,'exact_native_cut_arm')
++        h.need(entry['recipe']==protocol['recipes'][arm],'exact_raw_recipe')
++        h.need(entry['output_relative']=='cores/'+KEYS[index] and entry['split_relative']==f'splits/classification-{cut}.npz','fixed_component_paths')
++        h.need(entry['job_relative']=='jobs/'+KEYS[index]+'.json' and entry['spec_canonical_sha256']==h.canonical(spec),'fixed_job_spec')
++        h.need(entry['threads']==2 and entry['full_fit'] is False,'fixed_leaf_caps')
++    expected={name:dict(candidate={'primary':f'classification42-{candidate}','confirmation':f'classification43-{candidate}'},
++                             control={'primary':f'classification42-{reference}','confirmation':f'classification43-{reference}'})
++              for name,candidate,reference in [('rbf_vs_fresh_strong','rbf','strong'),('linear_vs_fresh_strong','linear','strong'),('rbf_vs_matched_linear','rbf','linear')]}
++    h.need(authority['comparisons']==expected,'fixed_three_contrasts_cut_mapping')
++    return True
++
++def fixed_fit_count(folder,arm):
++    """Only successful sealed results permit exact actual learner-call counts."""
++    folder=Path(folder);record=h.load(folder/'result.json')
++    if record.get('status')!='ok':return None
++    if arm in ('linear','rbf'):
++        h.need(record.get('fit_iterations')==1 and record.get('representation'),'successful_fixed_head_required')
++        return 1
++    h.need(arm=='strong' and record['recipe']['params']['feature_views']=='categorical_te_pair','fixed_strong_count')
++    total=0;seen=set()
++    for index in (0,1):
++        leaf=(folder/f'component-{index}').resolve();h.need(leaf not in seen,'unique_actual_view_leaf');seen.add(leaf)
++        v=h.load(leaf/'result.json');h.need(v['status']=='ok','successful_actual_view_leaf')
++        runs=v.get('data_policy_runs');h.need(isinstance(runs,list) and 1<=len(runs)<=3 and all(isinstance(r,dict) for r in runs),'successful_fit_policy_list_bound')
++        total+=len(runs)
++    h.need(2<=total<=6,'strong_actual_fit_count_cap');return total
++
++def verify_prepared(root, authority, binding, clock):
++    h.need(h.canonical(authority)==binding['prepared_authority_sha256'],'independent_prepared_authority_pin')
++    spec=authority['spec'];audit.native_roles(spec,authority['roles'])
++    h.need(h.canonical(spec)==binding['spec_canonical_sha256'],'pinned_native_spec')
++    execution=authority['source_inventories'][authority['execution_relative']]
++    h.need(execution==binding['execution_sha256'] and set(execution)=={'portable_harness.py','component_audit.py','experiment_driver.py','pure_contracts.py'},'complete_four_source_binding')
++    h.need(authority['source_inventories'][authority['library_relative']]==audit.LIBRARIES,'complete_two_library_binding')
++    for role,path in authority['roles'].items():
++        h.need(Path(path).resolve()==local(root,'inputs/'+role+'.csv'),'native_role_expected_location')
++        h.need(h.sha(path,clock.tick)==authority['input_sha256'][role],'input_bytes_changed')
++    h.need(Path(spec['task_path']).resolve()==local(root,'inputs/task.md') and Path(spec['root']).resolve()==local(root,'inputs'),'native_task_spec_paths')
++    h.need(h.sha(local(root,'inputs/task.md'),clock.tick)==authority['task_sha256'],'task_bytes_changed')
++    for prefix,seals in authority['source_inventories'].items():h.check_inventory(local(root,prefix),seals,clock.tick)
++    for item in authority['components']:
++        p=local(root,item['job_relative']);h.need(h.sha(p,clock.tick)==item['private_job_sha256'],'private_job_changed')
++        leaf=h.load(p)
++        h.need(leaf['spec']==spec and leaf['recipe']==item['recipe'] and leaf['threads']==2 and leaf['full_fit'] is False,'exact_native_leaf')
++        h.need(Path(leaf['output_dir']).resolve()==local(root,item['output_relative']) and Path(leaf['split_path']).resolve()==local(root,item['split_relative']),'exact_native_leaf_paths')
++        h.need(h.sha(local(root,item['split_relative']),clock.tick)==item['native_cut']['native_profiles']['Linux']['raw_npz_sha256'],'native_raw_split_changed')
++    h.need(binding['components']==authority['components'],'all_six_independently_bound')
++
++def audit_matrix(root, authority, binding, terminal_slots, libroot, clock):
++    """No label parsing for missing/failed/unattempted slots or unqualified driver."""
++    h.need([s['key'] for s in terminal_slots]==KEYS,'all_six_terminal_slots')
++    if any(s['status']!='completed' or s['fits'] is None for s in terminal_slots):
++        return dict(status='incomplete_matrix',qualified=False,metrics=None,slots=terminal_slots)
++    actual=copy.deepcopy(authority)
++    for item,slot in zip(actual['components'],terminal_slots):
++        final=local(root,slot['driver_relative']);raw=local(root,slot['terminal_relative'])
++        h.need(h.sha(final,clock.tick)==slot['driver_sha256'] and h.sha(raw,clock.tick)==slot['terminal_sha256'],'parent_terminal_seals')
++        final_value=h.load(final)
++        h.need(final_value['status']=='completed' and final_value['cleanup_confirmed'] is True and final_value['original_deadline']==clock.wall_deadline,'final_driver_qualification')
++        h.need(final_value['raw_supervisor_sha256']==slot['terminal_sha256'],'raw_final_driver_binding')
++        item.update(core_sha256=slot['core_sha256'],terminal_relative=slot['terminal_relative'],terminal_sha256=slot['terminal_sha256'])
++        h.check_inventory(local(root,item['output_relative']),slot['core_sha256'],clock.tick)
++    # Actual terminal inventories are sealed by the owned parent, not model output.
++    # A separately pinned parent journal authority binds their canonical hash.
++    journal=local(root,'terminal-journal.json');h.need(h.load(journal)==terminal_slots,'sealed_parent_terminal_journal')
++    sealed=h.canonical(actual)
++    return audit.audit(root,actual,sealed,libroot,clock)
++
++def execute(repo,queue_file,job_id,worker,claim_sha,root,prepared_path,clock_path):
++    """Prepared prospective caller; never used in05. No arbitrary recipes/argv."""
++    claim,job,binding=h.queue_admission(repo,queue_file,QUEUE_SHA,job_id,worker,claim_sha)
++    h.need(job['kind']=='bounded_experiment' and job['readiness']=='ready','separate_bounded_READY_required')
++    h.need(job['caps']==dict(wall_seconds=5400,cpu_threads=2,worker_memory_mib=1536,whole_memory_mib=2048,max_fits=16,max_api_calls=0),'exact_future06_caps')
++    root=Path(root).resolve();clock=h.Clock.retained(claim,clock_path);clock.tick()
++    # Immutable primary-pinned metadata copied to the prepared root before claim.
++    refs={'protocol.json':PROTOCOL_SHA,'source-manifest.json':SOURCE_SHA,'approved-input-manifest.json':INPUT_SHA,
++          'native-cut-contract-v3-r2.json':NATIVE_SHA,'protected-single-controls.json':CONTROL_SHA}
++    docs={}
++    for name,pin in refs.items():
++        p=local(root,'metadata/'+name);h.need(h.sha(p,clock.tick)==pin,'exact_protocol_manifest_pin');docs[name]=h.load(p)
++    authority=h.load(prepared_path)
++    validate_matrix(authority,docs['protocol.json'],docs['native-cut-contract-v3-r2.json'],docs['source-manifest.json'],docs['approved-input-manifest.json'],docs['protected-single-controls.json'])
++    verify_prepared(root,authority,binding,clock)
++    h.need(time.time()<claim['claimed_at_unix']+600,'original_setup600_exceeded')
++    slots=[];systemic=False;total_fits=0;shared=Path(repo).resolve().parent/'remote-research-state/experiment.lock'
++    root_identity=dict(pid=os.getpid(),create_time=h.psutil.Process().create_time())
++    with h.host_lock(shared) as held:
++        for index,item in enumerate(authority['components']):
++            if systemic:
++                slots.append(dict(key=item['key'],status='not_attempted_due_prior_technical_failure',fits=None,metric=None));continue
++            try:
++                reserve(clock,index);slot_parent_end=time.monotonic()+480;slot_fits=None
++                verify_prepared(root,authority,binding,clock)
++                output=local(root,item['output_relative']);h.need(not output.exists(),'fresh_component_folder_required');output.mkdir(parents=True)
++                # Original worker/R4 requires the exact top job beside core results.
++                import shutil
++                shutil.copyfile(local(root,item['job_relative']),output/'job.json')
++                receipt=local(root,'terminal/'+item['key']+'.json');receipt.parent.mkdir(exist_ok=True)
++                final=h.model_driver(repo,queue_file,QUEUE_SHA,job_id,worker,claim_sha,local(root,authority['algorithm_relative']),docs['source-manifest.json'],
++                                     local(root,item['job_relative']),item['private_job_sha256'],clock_path,shared,receipt,held_lock=held,common_clock=clock,parent_deadline=slot_parent_end)
++                raw=h.load(receipt);driver=receipt.with_name(receipt.stem+'.driver.json')
++                clean_failed=final['status']=='failed' and final['cleanup_confirmed'] is True and raw.get('exit_code') not in (0,None)
++                if final['status']!='completed':
++                    failed=dict(key=item['key'],status=final['status'],fits=None,metric=None,first_error=final.get('first_error'),secondary_errors=final.get('secondary_errors',[]),
++                                core_sha256=h.inventory(output,clock.tick),terminal_relative=str(receipt.relative_to(root)),terminal_sha256=h.sha(receipt,clock.tick),
++                                driver_relative=str(driver.relative_to(root)),driver_sha256=h.sha(driver,clock.tick))
++                    clock.tick();h.need(time.monotonic()<slot_parent_end,'failed_core_seal_parent480_exceeded');slots.append(failed)
++                    if not clean_failed:systemic=True
++                    continue
++                fits=fixed_fit_count(output,item['arm']);slot_fits=fits;total_fits+=fits;h.need(total_fits<=16,'actual_learner_fit_cap')
++                slot=dict(key=item['key'],status='completed',fits=fits,metric=None,core_sha256=h.inventory(output,clock.tick),
++                                  terminal_relative=str(receipt.relative_to(root)),terminal_sha256=h.sha(receipt,clock.tick),
++                                  driver_relative=str(driver.relative_to(root)),driver_sha256=h.sha(driver,clock.tick))
++                clock.tick();h.need(time.monotonic()<slot_parent_end,'core_seal_parent480_exceeded')
++                slot['core_seal_finished_unix']=time.time();slot['parent_deadline_monotonic']=slot_parent_end;slots.append(slot)
++            except Exception as exc:
++                systemic=True;slots.append(dict(key=item['key'],status='blocked',fits=slot_fits,metric=None,first_error=dict(code=type(exc).__name__,detail=str(exc))))
++        h.write_new(root/'terminal-journal.json',slots);verify_prepared(root,authority,binding,clock);clock.tick(600+300+1020)
++        all_complete=all(s['status']=='completed' for s in slots)
++        audit_result=None;audit_receipt=None
++        if all_complete:
++            request=dict(repo=str(Path(repo).resolve()),queue_file=str(Path(queue_file).resolve()),job_id=job_id,worker=worker,claim_sha=claim_sha,
++                         root=str(root),prepared_path=str(Path(prepared_path).resolve()),clock_path=str(Path(clock_path).resolve()),
++                         terminal_journal_sha256=h.sha(root/'terminal-journal.json',clock.tick))
++            request_path=root/'audit-request.json';h.write_new(request_path,request);request_sha=h.sha(request_path,clock.tick)
++            with h.tempfile.TemporaryDirectory(prefix='automl-audit-') as temp:
++                audit_parent_end=time.monotonic()+600
++                audit_receipt=h.supervise([sys.executable,str(local(root,authority['execution_relative'])/'experiment_driver.py'),'--audit',str(request_path),request_sha],
++                                         root,h.clean_environment(temp),local(root,authority['execution_relative']),clock,root/'audit-supervisor.json',
++                                         parent_seconds=600,child_seconds=570,parent_deadline=audit_parent_end,phase='audit')
++            clock.tick();h.need(time.monotonic()<audit_parent_end,'audit_context_parent600_exceeded')
++            h.need(audit_receipt['status']=='completed' and audit_receipt['cleanup_confirmed'] is True,'independent_audit_child_failed')
++            audit_result=h.load(root/'component-audit.json')
++            verify_prepared(root,authority,binding,clock)
++        else:audit_result=dict(status='incomplete_matrix',qualified=False,metrics=None)
++        cleanup_start=time.monotonic();clock.tick(300+1020)
++    # Shared-lock release is explicitly before final common/gap qualification.
++    clock.tick();h.need(time.monotonic()<cleanup_start+300,'root_cleanup300_exceeded')
++    verify_prepared(root,authority,binding,clock)
++    campaign=dict(status='component_complete' if all_complete else 'incomplete_matrix',root_identity=root_identity,
++                  original_start_unix=claim['claimed_at_unix'],original_deadline_unix=claim['deadline_unix'],
++                  slots=slots,actual_learner_fits=total_fits if all_complete else None,
++                  audit=audit_result,api_calls=0,finished_unix=time.time(),full_refit=False,promotion=False)
++    h.write_new(root/'campaign.json',campaign)
++    try:
++        clock.tick();h.need(time.monotonic()<cleanup_start+300,'root_final_receipt_cleanup300_exceeded')
++    except Exception as exc:
++        campaign.update(status='blocked',actual_learner_fits=None,first_error=dict(code=type(exc).__name__,detail=str(exc)),finished_unix=time.time())
++        (root/'campaign.json').write_text(json.dumps(campaign,sort_keys=True));raise
++    return campaign
++
++def audit_child(request_path,request_sha):
++    """Separate no-fit process: original queue+primary pins checked before truth."""
++    h.need(h.sha(request_path)==request_sha,'audit_request_seal')
++    request=h.load(request_path)
++    claim,job,binding=h.queue_admission(request['repo'],request['queue_file'],QUEUE_SHA,request['job_id'],request['worker'],request['claim_sha'])
++    h.need(job['kind']=='bounded_experiment' and job['caps']['wall_seconds']==5400,'audit_original_bounded_authority')
++    root=Path(request['root']).resolve();clock=h.Clock.retained(claim,request['clock_path'])
++    authority=h.load(request['prepared_path']);verify_prepared(root,authority,binding,clock)
++    docs={}
++    for name,pin in {'protocol.json':PROTOCOL_SHA,'source-manifest.json':SOURCE_SHA,'approved-input-manifest.json':INPUT_SHA,'native-cut-contract-v3-r2.json':NATIVE_SHA,'protected-single-controls.json':CONTROL_SHA}.items():
++        p=local(root,'metadata/'+name);h.need(h.sha(p,clock.tick)==pin,'audit_metadata_pin');docs[name]=h.load(p)
++    validate_matrix(authority,docs['protocol.json'],docs['native-cut-contract-v3-r2.json'],docs['source-manifest.json'],docs['approved-input-manifest.json'],docs['protected-single-controls.json'])
++    journal=root/'terminal-journal.json';h.need(h.sha(journal,clock.tick)==request['terminal_journal_sha256'],'all_terminal_journal_seal')
++    result=audit_matrix(root,authority,binding,h.load(journal),local(root,authority['library_relative']),clock)
++    verify_prepared(root,authority,binding,clock);h.need(h.sha(request_path,clock.tick)==request_sha and h.sha(journal,clock.tick)==request['terminal_journal_sha256'],'audit_post_seals')
++    h.write_new(root/'component-audit.json',result);clock.tick()
++
++if __name__=='__main__':
++    if len(sys.argv)==4 and sys.argv[1]=='--audit':audit_child(sys.argv[2],sys.argv[3])
++    elif len(sys.argv)==1:print(json.dumps(inspect_plan(),sort_keys=True))
++    else:raise SystemExit('inspection only; execute requires separately reviewed immutable bounded job')
+--- a/pure_contracts.py
++++ b/pure_contracts.py
+@@ -6,11 +6,13 @@
+ import pandas as pd
+ import portable_harness as h
+ import component_audit as a
++import experiment_driver as d
+ 
+ LIBROOT=None
+ QUEUE=None
+ ORIGINAL_SOURCE=None
+ SOURCE_MANIFEST=None
++ROOT_REFS=None
+ def write(path,v):Path(path).write_text(json.dumps(v))
+ def clock(seconds=60):
+     w,m=time.time(),time.monotonic();return h.Clock(w,m,w+seconds,m+seconds,m)
+@@ -60,6 +62,127 @@
+     def setUp(self):self.tmp=tempfile.TemporaryDirectory(prefix='automl-contract-');self.root=Path(self.tmp.name)
+     def tearDown(self):self.tmp.cleanup()
+     def libs(self):return a.libraries(LIBROOT)
++    def matrix(self):
++        protocol=h.load(ROOT_REFS/'protocol.json');native=h.load(ROOT_REFS/'native-cut-contract-v3-r2.json')
++        source=h.load(ROOT_REFS/'source-manifest.json');inputs=h.load(ROOT_REFS/'approved-input-manifest.json');control=h.load(ROOT_REFS/'protected-single-controls.json')
++        roles={r:str(self.root/(r+'.csv')) for r in ('train','test','sample_submission','data_dictionary')}
++        spec=dict(kind='classification',metric='macro_f1',prediction_type='value',paths=roles)
++        approved={v['name']:v['sha256'] for v in inputs['files'] if v['task']=='multiclass'}
++        authority=dict(spec=spec,roles=roles,source_manifest=source,input_sha256={r:approved[r+'.csv'] for r in roles},task_sha256=approved['task.md'],components=[],comparisons={})
++        for cut,arm in d.ORDER:
++            key=f'classification{cut}-{arm}'
++            authority['components'].append(dict(key=key,cut=cut,arm=arm,output_relative='cores/'+key,job_relative='jobs/'+key+'.json',
++                split_relative=f'splits/classification-{cut}.npz',native_cut=next(v for v in native['cuts'] if v['kind']=='classification' and v['cut']==cut),
++                recipe=copy.deepcopy(protocol['recipes'][arm]),spec_canonical_sha256=h.canonical(spec),threads=2,full_fit=False))
++        for name,candidate,reference in [('rbf_vs_fresh_strong','rbf','strong'),('linear_vs_fresh_strong','linear','strong'),('rbf_vs_matched_linear','rbf','linear')]:
++            authority['comparisons'][name]=dict(candidate={'primary':f'classification42-{candidate}','confirmation':f'classification43-{candidate}'},control={'primary':f'classification42-{reference}','confirmation':f'classification43-{reference}'})
++        return authority,protocol,native,source,inputs,control
++    def test_terminal_before450(self):
++        p=MagicMock();p.poll.return_value=0
++        with patch.object(h.time,'monotonic',return_value=449.999):self.assertEqual(h.terminal_poll(p,450)[0],0)
++    def test_terminal_at450_refused(self):
++        p=MagicMock();p.poll.return_value=0
++        with patch.object(h.time,'monotonic',return_value=450):
++            with self.assertRaisesRegex(h.Blocked,'child_deadline'):h.terminal_poll(p,450)
++    def test_terminal_after450_refused(self):
++        p=MagicMock();p.poll.return_value=0
++        with patch.object(h.time,'monotonic',return_value=450.03):
++            with self.assertRaisesRegex(h.Blocked,'child_deadline'):h.terminal_poll(p,450)
++    def test_driver_finalize_parent480(self):
++        receipt=self.root/'raw.json';write(receipt,{'original':'untouched'});c=MagicMock();c.wall_deadline=10000
++        raw=dict(status='completed',cleanup_confirmed=True,first_error=None,secondary_errors=[])
++        with patch.object(h.time,'monotonic',return_value=480):result=h.driver_finalize(raw,c,480,receipt,[])
++        self.assertEqual(result['status'],'blocked');self.assertFalse(result['cleanup_confirmed']);self.assertEqual(h.load(receipt),{'original':'untouched'})
++    def test_driver_finalize_common_gap(self):
++        receipt=self.root/'raw.json';write(receipt,{});c=clock();c.last-=11
++        result=h.driver_finalize(dict(status='completed',cleanup_confirmed=True,first_error=None,secondary_errors=[]),c,time.monotonic()+480,receipt,[])
++        self.assertEqual(result['status'],'blocked');self.assertFalse(result['cleanup_confirmed'])
++    def test_driver_failure_errors_preserved(self):
++        receipt=self.root/'raw.json';write(receipt,{})
++        first=dict(code='nonzero_child_exit',detail='original failure');second=dict(code='secondary',detail='retained')
++        result=h.driver_finalize(dict(status='failed',cleanup_confirmed=True,first_error=first,secondary_errors=[second]),clock(),time.monotonic()+480,receipt,[])
++        self.assertEqual(result['first_error'],first);self.assertEqual(result['secondary_errors'],[second]);self.assertEqual(result['status'],'failed')
++    def test_driver_success_after_contexts(self):
++        receipt=self.root/'raw.json';write(receipt,{});raw=dict(status='completed',cleanup_confirmed=True,first_error=None,secondary_errors=[])
++        result=h.driver_finalize(raw,clock(),time.monotonic()+480,receipt,[])
++        self.assertEqual(result['status'],'completed');self.assertTrue(result['cleanup_confirmed'])
++    def test_driver_context_exception_downgrade(self):
++        receipt=self.root/'raw.json';write(receipt,{})
++        result=h.driver_finalize(dict(status='completed',cleanup_confirmed=True,first_error=None,secondary_errors=[]),clock(),time.monotonic()+480,receipt,[dict(code='PermissionError',detail='context release denied')])
++        self.assertEqual(result['status'],'blocked');self.assertFalse(result['cleanup_confirmed']);self.assertEqual(result['first_error']['code'],'PermissionError')
++    def invoke_context_driver(self,denied=None):
++        from contextlib import contextmanager
++        repo=self.root/'repo';repo.mkdir();state=self.root/'remote-research-state';state.mkdir()
++        bundle=self.root/'bundle';bundle.mkdir();(bundle/'automl_worker.py').write_text('# inert fixture never invoked\n')
++        manifest=dict(source_archive_sha256='ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c',flat_files_sha256=h.inventory(bundle))
++        leaf=dict(threads=2,full_fit=False,recipe={'engine':'inert'},spec={'kind':'synthetic'});p=self.root/'job.json';write(p,leaf)
++        binding=dict(manifest_canonical_sha256=h.canonical(manifest),private_job_sha256=h.sha(p),entrypoint='automl_worker.py',recipe=leaf['recipe'],spec_canonical_sha256=h.canonical(leaf['spec']))
++        c=clock(1000);claim=dict(claimed_at_unix=c.wall_start,deadline_unix=c.wall_deadline);job={'caps':dict(cpu_threads=2,worker_memory_mib=1536,whole_memory_mib=2048)}
++        flags=[];receipt=self.root/'raw.json';raw=dict(status='completed',cleanup_confirmed=True,first_error=None,secondary_errors=[])
++        @contextmanager
++        def temporary(*args,**kwargs):
++            yield str(self.root);flags.append('temp_exit')
++            if denied=='temp':raise PermissionError('temp cleanup denied')
++        @contextmanager
++        def lock(*args,**kwargs):
++            yield {'owned':'fixture'};flags.append('lock_exit')
++            if denied=='lock':raise PermissionError('lock exit denied')
++        def supervised(*args,**kwargs):write(receipt,raw);return raw
++        with patch.object(h,'queue_admission',return_value=(claim,job,binding)),patch.object(h,'supervise',side_effect=supervised),patch.object(h.tempfile,'TemporaryDirectory',side_effect=temporary),patch.object(h,'selected_lock',side_effect=lock):
++            result=h.model_driver(repo,__file__,'pin','j','w','c',bundle,manifest,p,h.sha(p),self.root/'clock.json',state/'experiment.lock',receipt,common_clock=c)
++        return result,flags,h.load(receipt)
++    def test_real_driver_after_both_context_exits(self):
++        result,flags,raw=self.invoke_context_driver();self.assertEqual(flags,['temp_exit','lock_exit']);self.assertEqual(result['status'],'completed');self.assertEqual(raw['status'],'completed')
++    def test_real_driver_temp_exit_denial(self):
++        result,flags,raw=self.invoke_context_driver('temp');self.assertEqual(result['status'],'blocked');self.assertFalse(result['cleanup_confirmed']);self.assertEqual(raw['status'],'completed')
++    def test_real_driver_lock_exit_denial(self):
++        result,flags,raw=self.invoke_context_driver('lock');self.assertEqual(result['status'],'blocked');self.assertFalse(result['cleanup_confirmed']);self.assertEqual(raw['status'],'completed')
++    def test_fixed_matrix_positive(self):self.assertTrue(d.validate_matrix(*self.matrix()))
++    def test_fixed_matrix_duplicate_key(self):
++        args=self.matrix();args[0]['components'][1]['key']=args[0]['components'][0]['key']
++        with self.assertRaises(h.Blocked):d.validate_matrix(*args)
++    def test_fixed_matrix_duplicate_folder(self):
++        args=self.matrix();args[0]['components'][1]['output_relative']=args[0]['components'][0]['output_relative']
++        with self.assertRaises(h.Blocked):d.validate_matrix(*args)
++    def test_fixed_matrix_wrong_recipe(self):
++        args=self.matrix();args[0]['components'][0]['recipe']['params']['seed']=42
++        with self.assertRaisesRegex(h.Blocked,'exact_raw_recipe'):d.validate_matrix(*args)
++    def test_fixed_matrix_wrong_spec(self):
++        args=self.matrix();args[0]['components'][0]['spec_canonical_sha256']='0'*64
++        with self.assertRaises(h.Blocked):d.validate_matrix(*args)
++    def test_fixed_matrix_wrong_native_cut(self):
++        args=self.matrix();args[0]['components'][0]['native_cut']=args[0]['components'][3]['native_cut']
++        with self.assertRaises(h.Blocked):d.validate_matrix(*args)
++    def test_fixed_matrix_wrong_source(self):
++        args=self.matrix();args[0]['source_manifest']=dict(args[3],source_archive_sha256='0'*64)
++        with self.assertRaises(h.Blocked):d.validate_matrix(*args)
++    def test_fixed_matrix_wrong_input(self):
++        args=self.matrix();args[0]['input_sha256']['train']='0'*64
++        with self.assertRaises(h.Blocked):d.validate_matrix(*args)
++    def test_fixed_matrix_wrong_contrast_phase(self):
++        args=self.matrix();args[0]['comparisons']['rbf_vs_fresh_strong']['candidate']['primary']='classification43-rbf'
++        with self.assertRaises(h.Blocked):d.validate_matrix(*args)
++    def test_source05_caller_denied_before_model(self):
++        with patch.object(h,'queue_admission',side_effect=h.Blocked('source_only_fit_refused')),patch.object(h.subprocess,'Popen') as spawn:
++            with self.assertRaisesRegex(h.Blocked,'source_only'):d.execute('.',__file__,'source05','w','c',self.root,self.root/'unused.json',self.root/'clock.json')
++            spawn.assert_not_called()
++    def test_default_caller_inspection_no_models(self):
++        with patch.object(h.subprocess,'Popen') as spawn:self.assertEqual(d.inspect_plan()['model_processes'],0);spawn.assert_not_called()
++    def test_fixed_remaining_budget(self):
++        c=MagicMock();d.reserve(c,0);c.tick.assert_called_once_with(4800)
++        c.reset_mock();d.reserve(c,5);c.tick.assert_called_once_with(2400)
++    def test_fit_count_unique_leaf_not_parent_embedded(self):
++        folder=self.root/'strong';folder.mkdir();write(folder/'result.json',dict(status='ok',recipe={'params':{'feature_views':'categorical_te_pair'}},components=[{'data_policy_runs':[{}]*100}]))
++        for i,n in [(0,3),(1,2)]:
++            leaf=folder/f'component-{i}';leaf.mkdir();write(leaf/'result.json',dict(status='ok',data_policy_runs=[{}]*n))
++        self.assertEqual(d.fixed_fit_count(folder,'strong'),5)
++    def test_failed_fit_count_unknown_not_zero(self):
++        folder=self.root/'failed';folder.mkdir();write(folder/'result.json',dict(status='error'))
++        self.assertIsNone(d.fixed_fit_count(folder,'linear'))
++    def test_incomplete_matrix_no_truth(self):
++        slots=[dict(key=key,status='not_attempted_due_prior_technical_failure',fits=None) for key in d.KEYS]
++        with patch.object(pd,'read_csv') as read:
++            result=d.audit_matrix(self.root,{}, {},slots,LIBROOT,clock());self.assertFalse(result['qualified']);read.assert_not_called()
+     def test_environment_ascii_no_credentials(self):
+         with patch.dict(os.environ,{'OPENAI_BASE_URL':'private','QWEN_MODEL':'private','SOME_SECRET':'private','PYTHONPATH':'private'}):
+             env=h.clean_environment(self.root)
+@@ -284,7 +407,7 @@
+         with self.assertRaises(AssertionError):kern.representation_receipt(r4,v,record,job)
+ 
+ if __name__=='__main__':
+-    LIBROOT=Path(sys.argv.pop(1));output=Path(sys.argv.pop(1));QUEUE=Path(sys.argv.pop(1));ORIGINAL_SOURCE=Path(sys.argv.pop(1));SOURCE_MANIFEST=Path(sys.argv.pop(1));start=time.monotonic()
++    LIBROOT=Path(sys.argv.pop(1));output=Path(sys.argv.pop(1));QUEUE=Path(sys.argv.pop(1));ORIGINAL_SOURCE=Path(sys.argv.pop(1));SOURCE_MANIFEST=Path(sys.argv.pop(1));ROOT_REFS=Path(sys.argv.pop(1));start=time.monotonic()
+     suite=unittest.defaultTestLoader.loadTestsFromTestCase(Contracts);result=unittest.TextTestRunner(verbosity=2).run(suite)
+     report=dict(tests_run=result.testsRun,failures=len(result.failures),errors=len(result.errors),skipped=len(result.skipped),passed=result.wasSuccessful(),
+                 fits=0,api_calls=0,wall_seconds=time.monotonic()-start,

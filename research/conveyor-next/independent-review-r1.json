@@ -1,0 +1,56 @@
+{
+  "status": "no_blocker_in_declared_source_only_scope_after_narrow_fixes",
+  "bindings": {
+    "conveyor-next-dev/conveyor.py": "0caf720c415ba628be3265a1a737d5dbc83544f26e030fe1f839adf453f24cd2",
+    "conveyor-next-dev/test_conveyor.py": "7ce5082f1753df002970d031034d016694285d5592de31ff9408abae5c42bd8b",
+    "kernel-method-selection-skill-dev/SKILL.md": "3d18756ec6c7e1c78e81eb84795a19805fae9ece7e3d60c5ab4b08cec564f802"
+  },
+  "conveyor": {
+    "scope": "Local filesystem transitions only; existing training guard, canonical lock, actual-exit observation and evaluator remain authoritative.",
+    "contracts_read": [
+      "Exclusive transition-directory creation serializes claims and transitions; stale/busy locks fail closed and are never stolen. Existing running packets block every new claim.",
+      "Task/source/control/input/split/evaluator pins, budget types and dependency review conditions are checked before admission. Claim hashes the task and assigns no experiment clock.",
+      "Only complete known terminal packets move into results. Missing artifacts, absent actual-exit/cleanup declarations, live or explicitly uncertain ownership prevent publication; failed/timeout/OOM/interrupted statuses remain representable.",
+      "Task, claim, receipt, metrics, closure and summary are sealed before publication. Review revalidates task lineage and all sealed bytes; reviewed dependencies bind both task and terminal-seal hash.",
+      "Source and destination queue paths reject links/junction escape at the transition checks. No subprocess, ML launch, retry, requeue or clock-reset action exists."
+    ],
+    "resolved_findings": [
+      "Published task and terminal evidence mutation was previously accepted before review; current review verifies the claim/receipt task lineage and terminal file seal.",
+      "Explicit uncertain ownership was previously ignored; current publication rejects nonempty uncertain_owned.",
+      "Rename destinations previously bypassed the existing inside() invariant; promote, publish and review now check their destinations.",
+      "Reviewed dependencies now bind the terminal-seal file digest, preventing silent seal regeneration after review."
+    ],
+    "boundaries": [
+      "Metrics are an opaque preserved payload. This helper does not certify finite/null/per-cut quality semantics or independently establish the truth of a runtime closure receipt.",
+      "A completed dependency means any reviewed experiment, including a negative or failed result. An accepted dependency requires an accepted review.",
+      "A transition interrupted after writing claim or seal can require explicit inspection; no automatic recovery is provided.",
+      "This is a cooperative local filesystem integrity contract, not an OS sandbox or an adversarial authorization service."
+    ],
+    "tests": {
+      "prepared_methods_source_count": 12,
+      "executed_by_reviewer": 0,
+      "scope": "Source inspection of lifecycle, serial claims, lock preservation, admission, dependencies, mutation, partial/unclean publication, timeout-null preservation, seal and uncertain-ownership cases. No test pass is claimed here."
+    }
+  },
+  "kernel_skill": {
+    "status": "no_semantic_blocker",
+    "contracts_read": [
+      "Only implemented catalog profiles may be proposed; library availability is not adapter readiness.",
+      "Exact SVM, bounded RBF approximation and polynomial expansion are distinguished, with dimensions/memory/time and probability-training costs checked before admission.",
+      "Preprocessing and learned transforms fit only appropriate fitting rows at every split/refit. Validation/test information and outer-label calibration are excluded.",
+      "The first representation comparison preserves the learner/preparation control; later hyperparameters and weights remain separate factors. Target metric, splits, target transformation, original-scale evaluation, row/class order and probability validity remain fixed.",
+      "Inner evidence requires provenance; diversity and component screens do not establish whole-agent gain. Failures and missing predictions remain explicit/null, with full procedure/refit/CSV audit required before portfolio expansion."
+    ],
+    "boundary": "Generic Codex instructions only; validation/installation or this review does not prove Qwen backend integration, implemented kernel adapters, model gain or execution readiness."
+  },
+  "performed_by_reviewer": {
+    "source_reads_and_hashes_only": true,
+    "candidate_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "process_scans": 0,
+    "clock_assigned": false,
+    "candidate_STATE_Git_edits": false
+  }
+}

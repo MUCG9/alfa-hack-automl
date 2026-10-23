@@ -1,0 +1,437 @@
+--- METH01/audit_components.py
++++ LOSS01/audit_components.py
+@@ -1,6 +1,6 @@
+-"""METH01 saved component artifacts: frozen R4.TaskVerifier/diagnostics, no fits.
+-
+-All ten closed cores are sealed and rehashed BEFORE pristine labels are parsed.
++"""LOSS01 saved component artifacts: frozen R4.TaskVerifier/diagnostics, no fits.
++
++All nine closed cores are sealed and rehashed BEFORE pristine labels are parsed.
+ An ordinary failed worker has a null metric; it is never dropped or zero-imputed.
+ This component screen cannot qualify a whole agent, refit, blend or release.
+ """
+@@ -19,17 +19,18 @@
+ 
+ R4 = ('repaired-mvp-r1-dev/evaluator_r4.py','c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783')
+ BASE_SHA = '8faf33cd81c0e864bcf338828c34447000111eda85bc719b8f43312d2babae9a'
+-ARCHIVE_SHA = '16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0'
+-ORDER = ['regression0-control','regression0-candidate','regression1-control','regression1-candidate',
+-    'regression2-control','regression2-candidate','classification42-control','classification42-candidate',
+-    'classification43-control','classification43-candidate']
+-FIXED = dict(engine='extra_trees',feature_code='',params=dict(iterations=128,max_depth=16,
+-    min_samples_leaf=4,max_features=.9,seed=42,generic_features='none'))
+-CUT_SHA = {('regression',0):'5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84',
+-    ('regression',1):'e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b',
+-    ('regression',2):'60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc',
+-    ('classification',42):'e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0',
+-    ('classification',43):'d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df'}
++ARCHIVE_SHA = '037f88de1d547a18ff63e300c81b4ecd9e36935d2ddc32a0ba3fe304b105439d'
++PROFILES=['lgbm_l2_v1','lgbm_l1_v1','lgbm_huber_a09_v1']
++ORDER=[f'regression{cut}-{profile}' for cut in [0,1,2] for profile in PROFILES]
++PROFILE_PARAMETERS={'lgbm_l2_v1':('regression',None),'lgbm_l1_v1':('regression_l1',None),
++                    'lgbm_huber_a09_v1':('huber',.9)}
++LOSS_BASE=('loss-stage0-packet/manifest.json','319d6035162f46e6a1272a833d5f8668c731294b443eeae2dd8fc8c897dabfdc')
++LOSS00=('loss0/terminal-root-closure.json','c4916f2e7c7bd38e394bcb2ab33a51daf7a472a2aec8e08ff4b8a79a8fd5ba69')
++LEGACY_ROOT=('meth01/terminal-root-closure.json','2c67361da8f95875b35d124ac6c19d6cccba28c899f1e20dada88f3bec4ea283')
++CUT_SHA={('regression',0):'5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84',
++ ('regression',1):'e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b',
++ ('regression',2):'60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc'}
++
+ 
+ 
+ def need(value, code):
+@@ -45,6 +46,57 @@
+ 
+ def load(path):
+     return json.loads(Path(path).read_text('utf-8'))
++
++
++def verify_telemetry(record,job,verifier,r4,partition):
++    profile=job['profile_id'];objective,alpha=PROFILE_PARAMETERS[profile]
++    need(record.get('loss_profile_id')==profile and record.get('early_stopping_source')=='inner_training_holdout'
++         and record.get('inner_split_error') is None and record.get('full_fit') is False,'loss_profile_or_nested_stopping_missing')
++    tr,va=r4.split(partition,len(verifier.train));spec=verifier.spec
++    column=spec['time_column'];need(spec.get('validation_strategy')=='time'
++        and (spec.get('time_candidate') or {}).get('split_mode')=='period','registered_numeric_period_inner_required')
++    values=r4.pd.to_numeric(verifier.train[column],errors='raise').to_numpy(dtype=float)
++    need(r4.np.isfinite(values).all(),'nonfinite_time_feature')
++    local_values=values[tr];latest=r4.np.unique(local_values)[-1]
++    local_tr=r4.np.flatnonzero(local_values<latest);local_va=r4.np.flatnonzero(local_values==latest)
++    need(len(local_tr)>0 and len(local_va)>0,'nested_inner_partition_empty')
++    inner_tr=tr[local_tr]
++    expected=dict(method='forward_observation_period',time_column=column,cut=float(latest),offset=0,
++        train_rows=len(local_tr),validation_rows=len(local_va),excluded_future_rows=0,
++        split_sha256=r4.index_sha(local_tr,local_va))
++    need(record.get('inner_split')==expected,'independent_inner_partition_mismatch')
++    target=verifier.train[spec['target']].iloc[tr].to_numpy(dtype=float)
++    need(r4.np.isfinite(target).all(),'nonfinite_fitting_targets')
++    scale='log1p' if job['recipe']['params'].get('log_target',False) and float(target.min())>=0 else 'original'
++    runs=record.get('data_policy_runs');need(isinstance(runs,list) and len(runs)==2,'exact_two_nested_fit_receipts_required')
++    proofs=[]
++    for index,(run,parents,scope,stopping) in enumerate(zip(runs,[inner_tr,tr],['inner_fitting','outer_fitting'],[True,False]),1):
++        proof=run.get('loss_profile')
++        need(run.get('source_rows')==len(parents) and run.get('output_rows')==len(parents)
++             and run.get('source_parent_sha256')==r4.canonical(parents.tolist())
++             and run.get('synthetic_rows')==0 and run.get('weights_source')=='original fitting rows before resampling'
++             and run.get('effective_weight_sum')==len(parents),'independent_fitting_parent_or_weight_mismatch')
++        need(isinstance(proof,dict) and proof.get('loss_profile_id')==profile
++             and proof.get('requested_objective')==objective and proof.get('effective_objective')==objective
++             and proof.get('requested_alpha')==alpha and (alpha is None or proof.get('effective_alpha')==alpha)
++             and proof.get('requested_metric')=='None' and proof.get('verified') is True
++             and proof.get('evidence_source')=='fitted_booster.params' and proof.get('library')=='lightgbm'
++             and proof.get('library_version')=='4.6.0' and proof.get('fit_index')==index
++             and proof.get('model_scope')==scope and proof.get('validation_used_for_stopping') is stopping
++             and proof.get('primary_metric')=='rmse' and proof.get('target_scale')==scale,
++             'actual_postfit_booster_telemetry_mismatch')
++        metric=proof.get('effective_metric');metrics=[metric] if isinstance(metric,str) else metric
++        need(isinstance(metrics,list) and len(metrics)>0 and all(isinstance(v,str) and v.lower() in {'none','na','null','custom'} for v in metrics),
++             'actual_booster_default_loss_metric_not_disabled')
++        actual_alpha=proof.get('effective_alpha')
++        need(actual_alpha is None or type(actual_alpha) in (int,float) and math.isfinite(actual_alpha),'invalid_actual_alpha')
++        proofs.append(proof)
++    need(record.get('effective_loss_profile')==proofs[-1],'last_actual_profile_receipt_mismatch')
++    need(type(record.get('fit_iterations')) is int and job['recipe']['params'].get('min_iterations',1)<=record['fit_iterations']<=job['recipe']['params']['iterations'],
++         'selected_iterations_outside_unchanged_limits')
++    return dict(verified=True,profile_id=profile,actual_postfit_receipts=proofs,
++        inner_partition_independently_recomputed=True,outer_fitting_rows=len(tr),validation_rows=len(va),
++        original_scale_primary_metric='rmse',target_scale=scale)
+ 
+ 
+ def main():
+@@ -54,26 +106,27 @@
+     args=p.parse_args();need(__debug__,'nonoptimized_python_required');work=Path(args.work_root).resolve()
+     def local(name):
+         path=(work/name).resolve();need(not Path(name).is_absolute() and path.is_relative_to(work),'audit_reference_outside_work');return path
+-    root=work/'meth01';output=local(args.output)
++    root=work/'loss01';output=local(args.output)
+     need(output==root/'independent-audit.json' and not output.exists(),'exclusive_expected_component_output_required')
+     need(digest(__file__)==args.self_sha256 and digest(local(args.manifest))==args.manifest_sha256
+          and digest(local(args.plan))==args.plan_sha256,'explicit_component_audit_pin_failed')
+     manifest,plan,campaign=load(local(args.manifest)),load(local(args.plan)),load(root/'campaign.json')
+-    need(manifest['schema']=='METH01-component-v1' and manifest['common_seconds']==6600
+-         and plan['schema']=='METH01-component-audit-v1' and plan['common_seconds']==6600
++    need(manifest['schema']=='LOSS01-component-v1' and manifest['common_seconds']==7200
++         and plan['schema']=='LOSS01-component-audit-v1' and plan['common_seconds']==7200
+          and plan['ordered_jobs']==ORDER,'registered_component_contract_changed')
+-    need(plan['quality_gate_policy']==dict(regression='strict_RMSE_improvement_on_all_three_cuts',
+-        classification='both_MacroF1_improve_and_supported_class_and_ex_rarest_gates',supported_independent_groups_min=100,
+-        maximum_supported_class_drop=.01,class_drop_tolerance=1e-12,ex_rarest_gain_strictly_positive=True,
+-        failed_or_null_cut_gate=False,full_refit_or_promotion=False),'registered_component_quality_gates_changed')
++    need(plan['profiles']==PROFILES and manifest['profiles']==PROFILES
++         and plan['quality_gate_policy']==dict(
++             regression='each_non_L2_profile_strict_RMSE_improvement_on_all_three_cuts_vs_fresh_L2',
++             failed_or_null_cut_gate=False,full_refit_or_promotion=False,
++             legacy_SINGLE='additional_parity_reference_only'),'registered_loss_quality_policy_changed')
+     need(plan['verifier_source_sha256']==args.self_sha256 and plan['execution_manifest_sha256']==args.manifest_sha256
+          and plan['manual_metric_verifier_path']==R4[0] and plan['manual_metric_verifier_sha256']==R4[1]
+          and digest(local(R4[0]))==R4[1],'frozen_R4_manual_metric_source_required')
+     need(campaign['manifest_sha256']==args.manifest_sha256 and campaign['verification_plan_sha256']==args.plan_sha256
+          and campaign['start_unix']==plan['original_common_start_unix']
+          and campaign['absolute_deadline_unix']==plan['original_absolute_deadline_unix']
+-         and abs(campaign['absolute_deadline_unix']-campaign['start_unix']-6600)<=1e-6
+-         and abs(campaign['common_deadline_monotonic']-campaign['start_monotonic']-6600)<=1e-6,
++         and abs(campaign['absolute_deadline_unix']-campaign['start_unix']-7200)<=1e-6
++         and abs(campaign['common_deadline_monotonic']-campaign['start_monotonic']-7200)<=1e-6,
+          'original_component_clock_binding_failed')
+     need(campaign['status']=='verifying' and campaign['cleanup_confirmed'] is True
+          and campaign['source_unchanged'] is True and campaign.get('finished_unix') is None,'closed_workers_before_live_parent_audit_required')
+@@ -87,48 +140,66 @@
+         for name,h in {**manifest['immutable_files'],**manifest['setup_deployment_sha256']}.items():
+             need(digest(local(name))==h,'component_frozen_source_input_spec_job_split_changed');clock()
+     frozen()
+-    need(manifest['immutable_files']['m4packet/manifest.json']==BASE_SHA,'exact_native_ET_base_required')
++    need(manifest['immutable_files']['m4packet/manifest.json']==BASE_SHA,'pristine_metadata_base_required')
+     base=load(local('m4packet/manifest.json'))
+-    need(manifest['archive_sha256']==ARCHIVE_SHA==base['archive_sha256'] and manifest['archive']==base['archive']
+-         and manifest['compiled_sha256']==base['compiled_sha256'] and digest(local(manifest['archive']))==ARCHIVE_SHA,
+-         'unchanged_native_ET_archive_required')
++    need(manifest['loss_prepared_manifest']==dict(path=LOSS_BASE[0],sha256=LOSS_BASE[1])
++         and digest(local(LOSS_BASE[0]))==LOSS_BASE[1],'exact_qualified_LOSS_source_manifest_required')
++    loss_base=load(local(LOSS_BASE[0]))
++    need(manifest['archive_sha256']==ARCHIVE_SHA==loss_base['archive_sha256']
++         and manifest['archive']==loss_base['archive'] and manifest['compiled_sha256']==loss_base['compiled_sha256']
++         and digest(local(manifest['archive']))==ARCHIVE_SHA,'unchanged_qualified_LOSS_archive_required')
+     with zipfile.ZipFile(local(manifest['archive'])) as z:
+-        need(len(z.namelist())==68 and len(set(z.namelist()))==68 and all(Path(n).name==n for n in z.namelist()),'flat_archive_inventory_changed')
++        need(len(z.namelist())==len(set(z.namelist()))==68 and all(Path(n).name==n for n in z.namelist()),'flat_archive_inventory_changed')
+         need({n:hashlib.sha256(z.read(n)).hexdigest() for n in z.namelist()}==manifest['compiled_sha256'],'compiled_archive_changed')
+-    need(manifest['per_worker_parent_seconds']==480 and manifest['per_worker_child_seconds']==450
++    need(manifest['per_worker_parent_seconds']==600 and manifest['per_worker_child_seconds']==570
+          and manifest['threads']==2 and manifest['BLAS_threads']==1 and manifest['worker_memory_gib']==1.5
+          and manifest['whole_tree_memory_gib']==2 and manifest['refit'] is False,'registered_resource_contract_changed')
+     jobs=manifest['jobs'];entries=campaign['workers']
+     need([j['key'] for j in jobs]==ORDER and [e['key'] for e in entries]==ORDER,'complete_registered_order_required')
++    rootref=manifest['loss00_predecessor']
++    need(rootref==dict(path=LOSS00[0],sha256=LOSS00[1],actual_exec_session=99080,actual_exec_exit_code_observed_by_root=0)
++         and digest(local(LOSS00[0]))==LOSS00[1],'actual_LOSS00_terminal_binding_required')
++    prior=load(local(LOSS00[0]));old_campaign=load(local('loss0/campaign.json'))
++    need(prior['technical_procedure_passed'] is True and prior['cleanup_confirmed'] is True and prior['source_unchanged'] is True
++         and prior['actual_exec_session']==99080 and prior['actual_exec_exit_code_observed_by_root']==0
++         and prior['prepared_manifest_sha256']==LOSS_BASE[1]
++         and old_campaign['prepared_manifest_sha256']==LOSS_BASE[1]
++         and old_campaign['start_unix']==prior['original_start_unix']
++         and old_campaign['absolute_deadline_unix']==prior['original_deadline_unix']
++         and old_campaign['elapsed_common_seconds']==prior['raw_parent_elapsed_seconds'],
++         'actual_full_LOSS00_readiness_lineage_required')
+     gates={r['name']:r for r in campaign['gates']}
+-    need(set(gates)=={'source','exact'},'fresh_source_exact_gates_required')
+-    for gate in gates.values():
+-        need(gate.get('evidence_mode')=='REUSED_T7_UNCHANGED_SOURCE_NOT_EXECUTED_AGAIN','reused_gate_evidence_scope_required')
+-        need(digest(local(gate['supervisor_path']))==gate['supervisor_sha256']
+-             and load(local(gate['supervisor_path']))==gate['supervisor'],'gate_inline_differs_from_saved_terminal')
++    need(set(gates)=={'source','exact-default','exact-optin'},'full_reused_LOSS00_gate_inventory_required')
++    for name,gate in gates.items():
++        expected=next(g for g in old_campaign['gates'] if g['name']==name)
++        need(gate['evidence_mode']=='REUSED_LOSS00_UNCHANGED_SOURCE_NOT_EXECUTED_AGAIN'
++             and gate['checks']==expected['checks'] and gate['result_sha256']==expected['sha256']
++             and digest(local(gate['result_path']))==gate['result_sha256']
++             and digest(local(gate['supervisor_path']))==gate['supervisor_sha256']
++             and load(local(gate['supervisor_path']))==gate['supervisor'],'reused_LOSS00_gate_ref_changed')
+         need(gate['supervisor']['status']=='ok' and gate['supervisor']['exit_code']==0
+-             and gate['supervisor']['cleanup_confirmed'] is True and digest(local(gate['result_path']))==gate['result_sha256'],
+-             'reused_gate_terminal_contract_failed')
+-    old_campaign=load(local('t7/campaign.json'));old_root=load(local('m4packet/terminal-root-closure.json'))
+-    need(old_campaign['manifest_sha256']==BASE_SHA and old_root['actual_exec_session']==65008
+-         and old_root['actual_exec_exit_code_observed_by_root']==0 and old_root['cleanup_confirmed'] is True
+-         and old_root['source_unchanged'] is True,'actual_closed_T7_gate_lineage_required')
+-    source=load(local(gates['source']['result_path']));exact=load(local(gates['exact']['result_path']))
+-    need(source.get('passed') is True and source.get('source_unchanged') is True and source.get('fixture_cleanup_confirmed') is True
+-         and source['unique_checks_passed']==458 and source['unique_checks_skipped']==0
+-         and source['source_sha256']==manifest['compiled_sha256'],'source458_no_skip_required')
++             and gate['supervisor']['cleanup_confirmed'] is True,'reused_LOSS00_supervisor_not_terminal_clean')
++    source=load(local(gates['source']['result_path']));exact=load(local(gates['exact-default']['result_path']))
++    need(source['passed'] is True and source['source_unchanged'] is True and source['fixture_cleanup_confirmed'] is True
++         and source['unique_checks_passed']==487 and source['unique_checks_skipped']==0
++         and source['source_sha256']==manifest['compiled_sha256'],'actual_source487_no_skip_required')
+     registry={r['script']:r for r in source['checks']}
+-    need(set(registry)==set(manifest['registry']) and all(registry[n]['passed'] is True and registry[n]['observed_checks']==c
+-         and registry[n]['skipped_checks']==0 for n,c in manifest['registry'].items()),'reused_source_registry_coverage_changed')
+-    need(exact.get('passed') is True and exact.get('matches_current_source') is True and exact['sha256']==ARCHIVE_SHA
+-         and [r['script'] for r in exact['checks']]==['test_v2.py','test_resilience.py','smoke.py'],'reused_exact23_archive_coverage_changed')
++    need(set(registry)==set(manifest['registry']) and sum(manifest['registry'].values())==487
++         and all(registry[n]['passed'] is True and registry[n]['observed_checks']==count and registry[n]['skipped_checks']==0
++                 for n,count in manifest['registry'].items()),'reused_source_registry_incomplete')
++    need(exact['passed'] is True and exact['matches_current_source'] is True and exact['sha256']==ARCHIVE_SHA,
++         'actual_exact_archive_readiness_required')
++    counts={'test_v2.py':11,'test_resilience.py':7,'smoke.py':5}
++    need([r['script'] for r in exact['checks']]==list(counts),'actual_exact23_inventory_required')
+     for row in exact['checks']:
+         text=row.get('stdout','')+'\n'+row.get('stderr','')
+-        need(row['exit_code']==0 and not re.search(r'\bskipped\s*=\s*[1-9]',text),'reused_exact_failed_or_skipped')
+-        if row['script']=='smoke.py':
+-            cases=json.loads(row['stdout']);need(len(cases)==5 and all(v['status']=='passed' for v in cases),'reused_exact_smoke_incomplete')
+-        else:
+-            counts=re.findall(r'Ran (\d+) tests? in ',text);need(counts and int(counts[-1])==manifest['registry'][row['script']],'reused_exact_count_changed')
++        need(row['exit_code']==0 and not re.search(r'\bskipped\s*=\s*[1-9]',text),'actual_exact_failed_or_skipped')
++        observed=re.findall(r'Ran (\d+) tests? in ',text)
++        if row['script']=='smoke.py':need(len(json.loads(row['stdout']))==5,'actual_exact_smoke5_required')
++        else:need(observed and int(observed[-1])==counts[row['script']],'actual_exact_count_changed')
++    text=local(gates['exact-optin']['result_path']).read_text('utf-8')
++    need(gates['exact-optin']['checks']==16 and re.findall(r'Ran (\d+) tests? in ',text)==['16']
++         and '\nOK\n' in text and 'skipped=' not in text,'actual_flat_LOSS16_required')
+     # Bind every seal, saved terminal supervisor and exact ordered job before
+     # importing NumPy/Pandas or parsing any pristine fitting/validation labels.
+     cores={}
+@@ -141,14 +212,14 @@
+             clock()
+     for job,entry in zip(jobs,entries):
+         kind,arm=job['kind'],job['arm'];meta=manifest['tasks'][kind]
+-        need(arm in {'control','candidate'} and job['key']==f"{kind}{job['cut']}-{arm}",'component_key_arm_cut_mismatch')
++        need(kind=='regression' and arm in PROFILES and job['profile_id']==arm
++             and job['key']==f"{kind}{job['cut']}-{arm}",'loss_key_arm_cut_mismatch')
+         original=next(v for v in base['tasks'] if v['kind']==kind)
+         need(meta['files']==original['files'] and meta['control_recipe']==original['control_recipe'],'protected_pristine_or_control_reference_changed')
+         control=load(local(meta['control_recipe']['path']))['components'][0]
+         need(meta['component_control']==control,'exact_first_SINGLE_control_required')
+-        candidate=copy.deepcopy(FIXED)
+-        if kind=='classification':candidate['params']['class_weight_power']=.5
+-        need(job['recipe']==(control if arm=='control' else candidate),'fixed_component_recipe_changed')
++        candidate=copy.deepcopy(control);candidate['params']['loss_profile_id']=arm
++        need(job['recipe']==candidate,'only_typed_loss_profile_may_differ_from_protected_SINGLE')
+         expected_cut=CUT_SHA[(kind,job['cut'])]
+         original_split=f"alfa-hack-automl/test-runs/2e/fe-{kind}/control_historical/seed-{job['cut']}/split.npz"
+         need(job['split_sha256']==expected_cut==manifest['immutable_files'][original_split]
+@@ -164,8 +235,8 @@
+                     'owned_root','owned_process_identities','cleanup_observation','kind','first_failure','error_history']:
+             need(terminal.get(key)==entry.get(key),'inline_component_differs_from_saved_supervisor:'+key)
+         need(terminal['cleanup_confirmed'] is True and terminal['cleanup_observation']['unresolved']==[]
+-             and terminal['parent_cap_seconds']==480 and terminal['child_cap_seconds']==450
+-             and terminal['solver_budget_seconds'] is None and 0<=entry['seconds_including_seal']<480,
++             and terminal['parent_cap_seconds']==600 and terminal['child_cap_seconds']==570
++             and terminal['solver_budget_seconds'] is None and 0<=entry['seconds_including_seal']<600,
+              'component_closed_parent_contract_failed')
+         local_oom=(terminal.get('status')=='technical_failure' and terminal.get('error_history')
+             and all(r.get('code')=='worker_subtree_memory_limit' for r in terminal['error_history']))
+@@ -180,9 +251,51 @@
+                 need(not name.endswith(('.tmp','.pending')),'unfinished_component_core')
+                 path=Path(parent)/name;actual[path.relative_to(work).as_posix()]=digest(path);clock()
+         need(actual==seal['files_sha256'],'sealed_component_inventory_or_bytes_changed');cores[job['key']]=actual
+-    for a,b in zip(jobs[::2],jobs[1::2]):
+-        need(a['kind']==b['kind'] and a['cut']==b['cut'] and a['split_path']==b['split_path']
+-             and a['split_sha256']==b['split_sha256'],'paired_fitting_validation_rows_must_be_identical')
++    for offset in [0,3,6]:
++        group=jobs[offset:offset+3]
++        need([j['arm'] for j in group]==PROFILES and len({j['cut'] for j in group})==1
++             and len({j['split_path'] for j in group})==1 and len({j['split_sha256'] for j in group})==1,
++             'same_cut_exact_ordered_outer_partition_required')
++    # Historical SINGLE is additional parity only. Its packet is independently
++    # bound before any pristine labels are parsed; failure leaves parity null.
++    legacy_refs={};legacy=None;legacy_reason=None
++    try:
++        need(digest(local(LEGACY_ROOT[0]))==LEGACY_ROOT[1],'legacy_root_pin_failed')
++        proof=load(local(LEGACY_ROOT[0]));reference=proof['independent_audit']
++        need(proof['actual_exec_session']==3417 and proof['actual_exec_exit_code_observed_by_root']==0
++             and proof['technical_procedure_passed'] is True and proof['cleanup_confirmed'] is True
++             and proof['source_unchanged'] is True and digest(local(reference['path']))==reference['sha256'],
++             'legacy_actual_qualified_component_root_required')
++        old_audit=load(local(reference['path']));old_manifest=load(local('meth01/manifest.json'));old_c=load(local('meth01/campaign.json'))
++        need(digest(local('meth01/manifest.json'))==old_audit['manifest_sha256']==old_c['manifest_sha256']
++             and digest(local('meth01/verification-plan.json'))==old_audit['verification_plan_sha256']==old_c['verification_plan_sha256'],
++             'legacy_audit_manifest_plan_lineage_failed')
++        for name,digest_value in [(LEGACY_ROOT[0],LEGACY_ROOT[1]),(reference['path'],reference['sha256']),
++            ('meth01/manifest.json',old_audit['manifest_sha256']),('meth01/verification-plan.json',old_audit['verification_plan_sha256'])]:
++            legacy_refs[name]=digest_value
++        meta=old_manifest['tasks']['regression'];original=next(x for x in base['tasks'] if x['kind']=='regression')
++        need(meta['files']==original['files'] and meta['component_control']==manifest['tasks']['regression']['component_control'],
++             'legacy_exact_pristine_and_SINGLE_required')
++        for name,digest_value in meta['files'].items():
++            ref='meth01/r/'+name;need(digest(local(ref))==digest_value,'legacy_pristine_changed');legacy_refs[ref]=digest_value
++        need(digest(local(meta['spec_path']))==meta['spec_sha256'],'legacy_spec_changed');legacy_refs[meta['spec_path']]=meta['spec_sha256']
++        selected=[]
++        for cut in [0,1,2]:
++            job=next(j for j in old_manifest['jobs'] if j['key']==f'regression{cut}-control')
++            entry=next(e for e in old_c['workers'] if e['key']==job['key'])
++            need(job['recipe']==meta['component_control'] and job['split_sha256']==CUT_SHA[('regression',cut)],'legacy_control_or_cut_changed')
++            for name,digest_value in [(job['job_path'],job['job_sha256']),(job['split_path'],job['split_sha256']),
++                (entry['supervisor_path'],entry['supervisor_sha256']),(entry['seal']['path'],entry['seal']['sha256'])]:
++                need(digest(local(name))==digest_value,'legacy_receipt_changed');legacy_refs[name]=digest_value
++            terminal=load(local(entry['supervisor_path']));seal=load(local(entry['seal']['path']))
++            need(terminal['status']=='ok' and terminal['exit_code']==0 and terminal['cleanup_confirmed'] is True
++                 and seal['sealed_before_independent_label_scoring'] is True,'legacy_control_not_closed')
++            for name,digest_value in seal['files_sha256'].items():
++                need(digest(local(name))==digest_value,'legacy_core_changed');legacy_refs[name]=digest_value;clock()
++            selected.append(job)
++        legacy=dict(meta=meta,jobs=selected)
++    except Exception as exc:
++        legacy=None;legacy_reason=type(exc).__name__
+     spec=importlib.util.spec_from_file_location('_frozen_R4_component_library',local(R4[0]))
+     r4=importlib.util.module_from_spec(spec);spec.loader.exec_module(r4)
+     verifiers={}
+@@ -206,10 +319,11 @@
+                 stored=load(local(job['output_dir'])/'result.json')
+                 record=dict(stored,output_dir=str(local(job['output_dir'])))
+                 verifier=verifiers[job['kind']]
++                telemetry=verify_telemetry(record,job,verifier,r4,local(job['split_path']))
+                 checked=verifier.verify(record,local(job['split_path']),job['key'],False,job['recipe'])
+                 diagnostic=r4.diagnostics(verifier,record,local(job['split_path']),job['key'])
+                 need(math.isfinite(checked['value']),'nonfinite_component_metric')
+-                row.update(metric=checked['value'],diagnostics=diagnostic,integrity_passed=True,measurement_status='independent_component_metric')
++                row.update(metric=checked['value'],diagnostics=diagnostic,loss_telemetry=telemetry,integrity_passed=True,measurement_status='independent_component_metric')
+             except Exception as exc:
+                 trace=exc.__traceback__
+                 while trace is not None and trace.tb_next is not None:trace=trace.tb_next
+@@ -222,59 +336,64 @@
+         rows.append(row)
+     all_succeeded=all(r['status']=='ok' and r['exit_code']==0 and r['integrity_passed'] is True for r in rows)
+     integrity=all(r['integrity_passed'] is True for r in rows)
+-    comparisons=[]
+-    for a,b in zip(rows[::2],rows[1::2]):
+-        complete=a['metric'] is not None and b['metric'] is not None
+-        comparisons.append(dict(kind=a['kind'],cut=a['cut'],control=a['metric'],candidate=b['metric'],
+-            delta_candidate_minus_control=b['metric']-a['metric'] if complete else None,
+-            complete=complete,greater_is_better=a['kind']=='classification'))
+-    quality={}
+-    for kind,count in [('regression',3),('classification',2)]:
+-        group=[v for v in comparisons if v['kind']==kind]
+-        complete=len(group)==count and all(v['complete'] for v in group)
+-        quality[kind]=dict(metric='rmse' if kind=='regression' else 'macro_f1',required_cuts=count,
+-            complete=complete,control_mean=sum(v['control'] for v in group)/count if complete else None,
+-            candidate_mean=sum(v['candidate'] for v in group)/count if complete else None)
+-    regression_gates=[dict(cut=v['cut'],strict_RMSE_improvement=v['complete'] and v['delta_candidate_minus_control']<0)
+-        for v in comparisons if v['kind']=='regression']
+-    class_rows={r['key']:r for r in rows if r['kind']=='classification'}
+-    class_complete=all(class_rows[f'classification{cut}-{arm}']['diagnostics'] is not None
+-        for cut in [42,43] for arm in ['control','candidate'])
+-    class_gates=dict(cuts=[],each_cut_MacroF1_improves=False,each_cut_supported_class_and_ex_rarest_gates_passed=False)
+-    if class_complete:
+-        aliases={'primary':42,'confirmation':43}
+-        candidate={phase:class_rows[f'classification{cut}-candidate']['diagnostics'] for phase,cut in aliases.items()}
+-        control={phase:class_rows[f'classification{cut}-control']['diagnostics'] for phase,cut in aliases.items()}
+-        matched=r4.matched_control_comparison(candidate,control,'classification')
+-        class_gates.update(cuts=[dict(row,cut_alias='group_seed_'+str(aliases[row['phase']]),
+-            cut=aliases[row['phase']]) for row in matched['cuts']],
+-            each_cut_MacroF1_improves=matched['each_cut_primary_gate_passed'],
+-            each_cut_supported_class_and_ex_rarest_gates_passed=matched['class_each_cut_gate_passed'])
+-    else:
+-        class_gates['cuts']=[dict(cut=cut,cut_alias='group_seed_'+str(cut),primary_improves=False,
+-            all_class_gates_passed=False,reason='missing_or_unqualified_control_or_candidate_cut') for cut in [42,43]]
+-    regression_pass=len(regression_gates)==3 and all(v['strict_RMSE_improvement'] for v in regression_gates)
+-    class_pass=class_gates['each_cut_MacroF1_improves'] and class_gates['each_cut_supported_class_and_ex_rarest_gates_passed']
+-    decisions=dict(regression_all_three_strict_RMSE_improvement=regression_pass,regression_cuts=regression_gates,
+-        classification=class_gates,component_quality_gates_passed=regression_pass and class_pass,
+-        negative_standalone_artifacts_retained_for_separate_METH03=True,full_refit_or_promotion=False,
+-        scope='Registered standalone component gates only; class primary/confirmation names are aliases for group seeds42/43, not whole-agent phases')
++    indexed={r['key']:r for r in rows};comparisons=[];quality={};decisions={}
++    for profile in PROFILES:
++        cuts=[]
++        for cut in [0,1,2]:
++            control=indexed[f'regression{cut}-lgbm_l2_v1'];candidate=indexed[f'regression{cut}-{profile}']
++            complete=control['metric'] is not None and candidate['metric'] is not None
++            delta=candidate['metric']-control['metric'] if complete else None
++            cuts.append(dict(cut=cut,control_fresh_L2=control['metric'],candidate=candidate['metric'],complete=complete,
++                delta_candidate_minus_L2=delta,strict_RMSE_improvement=bool(complete and delta<0)))
++        complete=all(v['complete'] for v in cuts)
++        quality[profile]=dict(metric='rmse',required_cuts=3,complete=complete,
++            fresh_L2_mean=sum(v['control_fresh_L2'] for v in cuts)/3 if complete else None,
++            candidate_mean=sum(v['candidate'] for v in cuts)/3 if complete else None)
++        decisions[profile]=dict(cuts=cuts,all_three_strict_RMSE_improvement=bool(profile!='lgbm_l2_v1'
++            and complete and all(v['strict_RMSE_improvement'] for v in cuts)),scope='Fresh same-cut explicitL2 only')
++        comparisons.extend(dict(profile=profile,**v) for v in cuts)
++    legacy_parity=[]
++    if legacy is not None:
++        try:
++            directory=work/'meth01/r';meta=legacy['meta'];specification=load(local(meta['spec_path']))
++            train,test,sample=[r4.pd.read_csv(directory/name) for name in ['train.csv','test.csv','sample_submission.csv']]
++            verifier=r4.TaskVerifier(directory,dict(spec=specification,experiments=[],confirmations=[]),train,test,sample)
++            for job in legacy['jobs']:
++                cut=job['cut'];record=load(local(job['output_dir'])/'result.json');record=dict(record,output_dir=str(local(job['output_dir'])))
++                checked=verifier.verify(record,local(job['split_path']),job['key'],False,job['recipe'])
++                current=indexed[f'regression{cut}-lgbm_l2_v1'];new_job=next(j for j in jobs if j['key']==current['key'])
++                current_checked=verifiers['regression'].verify(dict(load(local(new_job['output_dir'])/'result.json'),
++                    output_dir=str(local(new_job['output_dir']))),local(new_job['split_path']),new_job['key'],False,new_job['recipe']) if current['metric'] is not None else None
++                legacy_parity.append(dict(cut=cut,legacy_SINGLE_RMSE=checked['value'],fresh_L2_RMSE=current['metric'],
++                    prediction_parity=bool(current_checked is not None and r4.np.allclose(checked['validation'],current_checked['validation'],atol=1e-10,rtol=0)
++                        and r4.np.allclose(checked['test'],current_checked['test'],atol=1e-10,rtol=0)),
++                    numeric_metric_parity=bool(current['metric'] is not None and abs(checked['value']-current['metric'])<=1e-10),
++                    role='Additional legacy parity diagnostic; never fresh quality control'))
++        except Exception as exc:
++            legacy_parity=[];legacy_reason=type(exc).__name__
++    if not legacy_parity:legacy_parity=[dict(cut=cut,legacy_SINGLE_RMSE=None,fresh_L2_RMSE=indexed[f'regression{cut}-lgbm_l2_v1']['metric'],
++        prediction_parity=None,numeric_metric_parity=None,reason=legacy_reason or 'unavailable',role='Additional parity only') for cut in [0,1,2]]
++    gate=bool(all_succeeded and integrity and any(decisions[p]['all_three_strict_RMSE_improvement'] for p in PROFILES[1:]))
++    registered=dict(profiles=decisions,component_quality_gates_passed=gate,all_nine_workers_required_for_quality=True,
++        legacy_SINGLE_parity=legacy_parity,full_refit_or_promotion=False,
++        scope='Fixed loss-only SINGLE component cuts, not wholeagent/refit/official score')
+     frozen()
+     for job,entry in zip(jobs,entries):
+         need(digest(local(entry['supervisor_path']))==entry['supervisor_sha256']
+              and digest(local(entry['seal']['path']))==entry['seal']['sha256'],'late_component_receipt_changed')
+         for name,h in cores[job['key']].items():need(digest(local(name))==h,'late_component_core_changed');clock()
++    for name,digest_value in legacy_refs.items():need(digest(local(name))==digest_value,'late_legacy_parity_reference_changed');clock()
+     clock()
+     result=dict(status='component_artifacts_verified_pending_parent_terminal' if integrity else 'component_artifacts_partial_unqualified_pending_parent_terminal',
+         rows=rows,comparisons=comparisons,quality_metric=quality,all_workers_succeeded=all_succeeded,
+-        component_quality_gates_passed=decisions['component_quality_gates_passed'],registered_component_decisions=decisions,
++        component_quality_gates_passed=gate,registered_component_decisions=registered,
+         artifact_integrity_checks_passed=integrity,audit_within_original_common_clock=True,
+         campaign_terminal_confirmed=False,parent_exec_terminal_qualification_required=True,actual_common_deadline_satisfied=None,
+         manifest_sha256=args.manifest_sha256,verification_plan_sha256=args.plan_sha256,campaign_sha256=digest(root/'campaign.json'),
+-        manual_metric_source_sha256=R4[1],source_and_core_rechecked=True,
++        manual_metric_source_sha256=R4[1],source_and_core_rechecked=True,legacy_parity_reference_sha256=legacy_refs,
+         failed_metrics_zero_imputed=False,new_model_fits=0,API_calls=0,tests_run=0,
+         full_refit=False,promotion=False,submit=False,official_score=None,
+-        scope='Fixed component screen only on reused public forward/group cuts; weak standalone results retained for future separately declared diversity analysis. Not whole-agent or blind/private gain.')
++        scope='Fixed loss-only component screen on three reused public forward cuts. Fresh explicitL2 is control, legacySINGLE parity is additional only. No whole-agent or blind/private gain.')
+     with output.open('x',encoding='utf-8') as f:json.dump(result,f,ensure_ascii=False,indent=2,allow_nan=False);f.write('\n')
+     clock();print(json.dumps({k:result[k] for k in ['status','all_workers_succeeded','artifact_integrity_checks_passed']}))
+ 

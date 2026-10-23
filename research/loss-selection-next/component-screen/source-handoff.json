@@ -1,0 +1,89 @@
+{
+  "status": "frozen_source_only_complete_not_executed",
+  "files_sha256": {
+    "audit_components.py": "8ec8654ed282a122e87a4bd73dcfc656f205d270eeb8e68f11c8ec8db84b7643",
+    "audit_components.py.patch": "041b3aef2e9621b52ab10df454652a15d87a581f0232754b5911c6040d34d624",
+    "close_components.py": "5aae8a95a7c6527e2bee4df4fc7d6fe81f9a392a878a7f175e3f19d8f173fb73",
+    "execution-prerequisite-binding.json": "976ff135d9b72739d25b092fe2ca0f47ad1af0d29bf5c537117e54b86b0a10e3",
+    "protocol.json": "47ab4a7d21274c97797994a864f7403c675b17e40193d698207aded5747c1671",
+    "README.txt": "86c15e7eeb2c123efdcfd8ce86e7d88e5a0d39ed59132e48ad4327f86ab1a0fb",
+    "run_components.py": "becedf6c36ca32de775b015def2bd63df1df8fe143951c9ba5c1f8b9280de389",
+    "run_components.py.patch": "0e112c00b0ebe1d368d8f53cc2231206103fd6e5b3c311c97ddd36afc9b6cff9",
+    "static-proof.json": "aec7c169036408927f9df5d79812c71787175651efe07670301549ac76835828"
+  },
+  "independent_review": {
+    "path": "loss-components-independent-source-review-r1.json",
+    "sha256": "7e4e3299cf30e2a7be9ac7d15fc3fb590eeb053bcb0d97f181907cd42ec296fc",
+    "findings": "No remaining source-scope blocker; optionalactualsessionNone failure path resolved"
+  },
+  "source": {
+    "qualified_LOSS_archive_sha256": "037f88de1d547a18ff63e300c81b4ecd9e36935d2ddc32a0ba3fe304b105439d",
+    "source_prepared_manifest_sha256": "319d6035162f46e6a1272a833d5f8668c731294b443eeae2dd8fc8c897dabfdc",
+    "source694": true,
+    "compiled68": true,
+    "METH01_coordinator_reused_without_main": true,
+    "R4_manual_verifier_unchanged": true,
+    "no_class_seed_or_kernel_model_factor": true
+  },
+  "actual_readiness": {
+    "LOSS00_path": "loss0/terminal-root-closure.json",
+    "LOSS00_sha256": "c4916f2e7c7bd38e394bcb2ab33a51daf7a472a2aec8e08ff4b8a79a8fd5ba69",
+    "actual_exec_session": 99080,
+    "actual_exit": 0,
+    "source487_exact23_flat16_reused": true,
+    "queue_original_failure_and_recovery_roots_bound": true,
+    "KERN00_additional_required_binding": "loss-components-next-dev/execution-prerequisite-binding.json",
+    "binding_sha256": "976ff135d9b72739d25b092fe2ca0f47ad1af0d29bf5c537117e54b86b0a10e3",
+    "actual_prior_known_owned_absence_must_be_rechecked_before_and_under_canonical_lock": true
+  },
+  "planned": {
+    "output": "loss01",
+    "three_cut_major_order": [
+      0,
+      1,
+      2
+    ],
+    "profile_order": [
+      "lgbm_l2_v1",
+      "lgbm_l1_v1",
+      "lgbm_huber_a09_v1"
+    ],
+    "workers": 9,
+    "common7200": {
+      "setup": 900,
+      "nine_parents": 5400,
+      "audit": 600,
+      "cleanup_root": 300
+    },
+    "parent600_child570": true,
+    "actual_start_unix": null,
+    "actual_deadline_unix": null,
+    "threads2": true,
+    "BLASenv1": true,
+    "API_calls": 0,
+    "LLM_calls": 0,
+    "HPO_trials": 0,
+    "raw_protected_SINGLE_only_profile_id_changes": true,
+    "source_seals_before_label_audit": true,
+    "expected_nested_estimator_fits_if_all_successful": 18,
+    "full_refit": false
+  },
+  "metrics_scope": "Fresh matched explicitL2 only; L1/Huber each requireall3strictRMSEgains. OldMETH01SINGLE optionalparity only; no zeroimputation, incomplete/systemicFAIL cannot qualifywholequality. Reused public component data, not wholeagent/official.",
+  "performed": {
+    "job_or_data_materialization": 0,
+    "application_runtime_imports": 0,
+    "tests": 0,
+    "fixtures": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "fitting_rows_or_predictions_or_MLmetric_values_parsed": false,
+    "closed_source_schema_recipe_metadata_read": true,
+    "clock_assigned": false,
+    "STATE_or_Git_edits": false
+  },
+  "no_further_source_writes": true,
+  "remaining": "Root reviews/publishes exactsources and immutable refs then launchesONE serial7200. SupplymandatoryKERN00extra-terminalargv; appendactualnewinterveningclosure onlyifrootrunsanymorejobs. Actualworker/runtime/metric/cleanup qualification remainsfuture.",
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

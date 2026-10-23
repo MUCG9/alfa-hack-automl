@@ -82,6 +82,13 @@ elapsed_seconds, peak_memory, completed_trials, status, decision, artifact paths
 и секреты — по политике проекта. Не повторять отрицательный опыт без нового
 механизма или изменившихся условий.
 
+Не выводить исполнение стадии из run-name, docstring, mode label или наличия кода
+в текущем HEAD. Проверять actual archived source/CLI и сохранённые stage receipts:
+валидный EDA до первого worker, фактический selector fit, сравнение семейств,
+завершённые HPO trials и refit/CSV. Если стадия отсутствовала, сохранить численные
+результаты и исходный clock, явно исправить scope отдельной записью; новый полный
+прогон объявлять новым опытом, не переименовывать старый задним числом.
+
 ## Оценивать всю процедуру
 
 Преобразования, selection, target encodings, class factors и calibration обучать

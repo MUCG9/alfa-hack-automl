@@ -1,3 +1,19 @@
+# New submission request,23October2026
+
+The captain now explicitly authorizes an official submit IF the completed local
+solution improves the prior metric. PIPE-02 met that condition: both regression
+cuts improve, classification is unchanged. This supersedes historical no-new-
+submit paragraphs below for ONE improved archive; no duplicate/automatic retry.
+Platform standard command has no profile flag. Prepare/verify the explicit
+submission build with `tools/build_submission.py --research-profile incumbent_mix`;
+67files match the qualified profile exactly, only solution.py activates it.
+Do NOT upload the previous opt-in archive without activating the profile.
+Current preparation: release/qwen-incumbent-submit1/; user desktop was screen-
+locked, an async unlock request is pending. Do not bypass the screen lock.
+No new ML research or model policy change is needed for this packaging step.
+Keep private env/credentials/data/predictions out of Git/ZIP; preserve all old
+archives/receipts, make logical local commits. Main/force push remain forbidden.
+
 # Development instructions — verified checkpoint,23October2026
 
 The overnight request is COMPLETE: four-stage Qwen MVP, measured autoresearch

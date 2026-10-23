@@ -1,0 +1,18 @@
+{
+  "status": "ready_waiting_for_unlocked_browser",
+  "new_upload_performed": false,
+  "upload_actions_performed": 0,
+  "user_authorization": "Submit completed solution if the metric improves; local condition verified true",
+  "archive": "release/qwen-incumbent-submit1/solution-pipe02-submit1.zip",
+  "archive_sha256": "a2ca924416be9b1fc9c528b431f22123b42324b44e50402601e828c4f15056f2",
+  "platform_url": "https://changellenge.com/personal/championships/stage/927270/",
+  "local_rmse_before": 35.44723155783769,
+  "local_rmse_after": 35.39729814378806,
+  "local_macro_f1_before": 0.6593178433614652,
+  "local_macro_f1_after": 0.6593178433614652,
+  "entrypoint_dispatch_checks_passed": 3,
+  "exact_unpacked_repeated_checks_passed": 23,
+  "official_score": null,
+  "screen_lock_bypassed": false,
+  "remaining_attempts": null
+}

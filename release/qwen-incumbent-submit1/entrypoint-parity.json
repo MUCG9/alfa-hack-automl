@@ -1,0 +1,13 @@
+{
+  "canonical_352_source_gate_still_matches": true,
+  "changed_files": [
+    "solution.py"
+  ],
+  "unchanged_files": 67,
+  "profile_dispatch_tests": 3,
+  "source_ml_procedure": "PIPE-02 fully verified profile",
+  "previous_archive_sha256": "5584ee29c725c6fe1aca047a60414278a9660c5a7fd741683944669ff9b53d68",
+  "deployment_archive_sha256": "a2ca924416be9b1fc9c528b431f22123b42324b44e50402601e828c4f15056f2",
+  "qwen_role_discovery_disabled": false,
+  "default_runtime_changed": false
+}

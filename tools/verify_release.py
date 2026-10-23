@@ -24,9 +24,11 @@ def main(argv=None):
     parser=argparse.ArgumentParser(); parser.add_argument('--archive',type=Path,required=True); parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--timeout',type=float,default=300,help='Local per-script watchdog, not the platform task limit')
     parser.add_argument('--memory-gb',type=float,default=1.2,help='Local whole-tree memory guard')
+    parser.add_argument('--research-profile',choices=['incumbent_mix'],default=None)
     args=parser.parse_args(argv)
     if args.timeout<=0 or args.memory_gb<=0: parser.error('Timeout and memory must be positive')
-    expected=build_files(); checks=[]
+    expected=build_files() if args.research_profile is None else build_files(args.research_profile)
+    checks=[]
     with zipfile.ZipFile(args.archive) as archive:
         if len(archive.namelist())!=len(set(archive.namelist())) or set(archive.namelist())!=set(expected): raise ValueError('Archive manifest mismatch')
         for name,data in expected.items():
@@ -43,7 +45,8 @@ def main(argv=None):
                 print(name,check['exit_code'],flush=True)
                 if check['exit_code']!=0: break
     result={'sha256':hashlib.sha256(args.archive.read_bytes()).hexdigest(),'compiled_files':len(expected),
-            'matches_current_source':True,'checks':checks,'passed':len(checks)==3 and all(c['exit_code']==0 for c in checks)}
+            'matches_current_source':True,'deployment_profile':args.research_profile,
+            'checks':checks,'passed':len(checks)==3 and all(c['exit_code']==0 for c in checks)}
     args.output.parent.mkdir(parents=True,exist_ok=True); args.output.write_text(json.dumps(result,ensure_ascii=False,indent=2))
     if not result['passed']: raise SystemExit(1)
 if __name__=='__main__': main()

@@ -16,7 +16,24 @@ class Flatten(ast.NodeTransformer):
             raise ValueError('Unmapped project import: '+node.module)
         return node
 
-def build_files():
+def submission_entrypoint(research_profile=None):
+    if research_profile is None:
+        return b'from automl_runner import THREADS,llm_plan,main,run_worker\nif __name__ == "__main__": main()\n'
+    if research_profile != 'incumbent_mix':
+        raise ValueError('Unknown deployment research profile')
+    return b'''import os
+import sys
+os.environ.setdefault('AUTOML_THREADS', '2')
+from automl_runner import THREADS, llm_plan, main, run_worker
+if __name__ == '__main__':
+    if not any(arg == '--research-profile' or arg.startswith('--research-profile=') for arg in sys.argv[1:]):
+        sys.argv.extend(['--research-profile', 'incumbent_mix'])
+    main()
+'''
+
+
+def build_files(research_profile=None):
+    entrypoint = submission_entrypoint(research_profile)
     mapping=json.loads((ROOT/'tools/module_map.json').read_text())
     for path in (ROOT/'src/automl').rglob('*.py'):
         if path.name=='__init__.py': continue
@@ -33,15 +50,18 @@ def build_files():
         files[flat+'.py']=text.encode()
     for alias,target in {'agent_runner':'automl_runner','agent_policy':'automl_policy','agent_worker':'automl_worker','ensemble_cache':'automl_ensembles'}.items():
         files[alias+'.py']=f'import sys\nimport {target} as _module\nsys.modules[__name__]=_module\n'.encode()
-    files['solution.py']=b'from automl_runner import THREADS,llm_plan,main,run_worker\nif __name__ == "__main__": main()\n'
+    files['solution.py']=entrypoint
     requirement=(ROOT/'requirements.txt').read_bytes()
     if hashlib.sha256(requirement).hexdigest()!=REQUIREMENTS_SHA: raise ValueError('Platform requirements changed')
     files['requirements.txt']=requirement
     return files
 
 def main():
-    parser=argparse.ArgumentParser(); parser.add_argument('--output',type=Path,required=True); args=parser.parse_args()
-    files=build_files(); args.output.parent.mkdir(parents=True,exist_ok=True)
+    parser=argparse.ArgumentParser(); parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--research-profile',choices=['incumbent_mix'],default=None,
+                        help='Activate this explicit profile under the standard platform entrypoint')
+    args=parser.parse_args()
+    files=build_files(args.research_profile); args.output.parent.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(args.output,'x',compression=zipfile.ZIP_DEFLATED) as archive:
         for name,data in sorted(files.items()):
             entry=zipfile.ZipInfo(name,date_time=(2026,1,1,0,0,0)); entry.compress_type=zipfile.ZIP_DEFLATED
@@ -49,6 +69,7 @@ def main():
     if args.output.stat().st_size>100_000_000: raise ValueError('Archive too large')
     manifest={'sha256':hashlib.sha256(args.output.read_bytes()).hexdigest(),'bytes':args.output.stat().st_size,'build_python':sys.version,
               'files':{n:hashlib.sha256(v).hexdigest() for n,v in files.items()}}
+    if args.research_profile is not None: manifest['deployment_profile']=args.research_profile
     args.output.with_suffix('.manifest.json').write_text(json.dumps(manifest,indent=2))
     print(json.dumps(manifest,indent=2))
 if __name__=='__main__': main()

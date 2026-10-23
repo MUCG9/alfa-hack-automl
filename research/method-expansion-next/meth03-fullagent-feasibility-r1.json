@@ -1,0 +1,37 @@
+{
+  "status": "source_feasible_requires_narrow_opt_in_scheduler_change_and_future_protocol",
+  "source_only": true,
+  "bindings": {
+    "worker_sha256": "ffa06615a7f59f958f77a24d1f89727dc31fae7d4ba49f30201d77c331887b14",
+    "policy_sha256": "3f6a8477b8076e83531b62d4ffc383ce935c6cf912a61cccde6201f7f7fd8e61",
+    "champion_stages_sha256": "d8e79f0cb36612849e0d48b2e486c20e773c09696c2d6e788832f19bee509133",
+    "champion_runner_sha256": "4807ba7609009e24899fcc5213fe44db4e2f6ad3d63e57ed2af3e20acdedad2f",
+    "protected_class_control_sha256": "56c0e2204df33ebc733034ad5ed835d902874862c71bbb4a16a043c3a99781a9",
+    "identical_regression_champion_sha256": "914880505ed751da9fd0a38d7f1724dd860c20d98456ff3efd16a195a0709ad4"
+  },
+  "representation": {
+    "recommended_class_candidate": "ensemble components=[exact protected class control.components[0], exact preregistered METH01 ExtraTrees class recipe], weights=[0.9,0.1]",
+    "extra_trees": "128 trees, depth16, min_samples_leaf4, max_features0.9, seed42, generic_features=none, inherited class_weight_power0.5",
+    "valid_existing_worker": "worker.py49-65 accepts two or three positive-weight non-ensemble component recipes. The first lightgbm component may retain categorical_te_pair; worker.py113-124 expands that feature view internally. Result iteration tree is [[view0,view1],ET], supported by existing recursive R4 checks and full-refit dispatch.",
+    "forbidden_expansion": "Explicit nested ensemble is rejected. Adding ET to the entire existing three-component V16 class ensemble, or replacing its first component by an explicit nested blend, cannot preserve exact behavior within the current two/three-component non-nested limit. Flattening the latter needs four top-level components. Do not change this engine contract.",
+    "flattening_unnecessary": "The two-component [feature-view SINGLE,ET] representation already preserves the original view recipe and fitting scope; deriving and freezing feature-view children separately adds avoidable equivalence risk."
+  },
+  "minimal_procedure": {
+    "preserve": "Keep the full historical V16 class ensemble as protected complete control, its first SINGLE as HPO anchor, separate broad/selector candidate and CatBoost/XGBoost family coverage.",
+    "new_opt_in": "The existing --champion-recipe loader rejects components/weights and ensemble at stages.py69-99. Add only a narrowly validated fixed class-blend seed input after the five mandatory seeds; retain default-OFF behavior and the existing worker. Do not generalize planner ensemble syntax or enable arbitrary nesting/weight search.",
+    "slot_effect": "With maximum9 outer experiments and maximum7 initial slots, the new class seed consumes one optional initial Qwen slot, leaving at most one initial proposal and reserving two HPO/followup slots. This compares complete seeded search procedures, not a pure learner effect.",
+    "hpo": "Preserved mode runner.py364-371 selects the original successful SINGLE anchor by signature and allows only lightgbm/catboost/xgboost. The ensemble seed and ExtraTrees must not become HPO anchors.",
+    "automatic_blending": "runner.py436 excludes ensemble candidates from its ordinary cached pair/triple weight search. The new two-component recipe therefore retains its fixed0.9/0.1 weights; do not add a new blend sweep.",
+    "both_task_AB": "Both arms retain the identical CP1 strong regression seed/source policy. Class A retains the current complete procedure; class B adds only the fixed seed as above. Match task order, per-task solver/worker/API/HPO caps, immutable inputs and splits. Require actual selected primary/confirmation evidence, fresh full-data refit, submission CSV/probability/ID integrity, source and terminal ownership proof under R4. Candidate measurement alone does not qualify the selected agent.",
+    "quality": "Declare class per-cut all-class/support/ex-rarest gates and comparison with the retained V16 complete control before execution. Do not infer superiority over V16 from the prior component-versus-SINGLE result. Preserve failed or missing task/cut evidence as null and all historical controls."
+  },
+  "cost": {
+    "scope": "Future training/refitting, not the prior720-second saved-prediction evaluation.",
+    "student_leaves": "The candidate has three student leaves per worker evaluation: two existing feature-view learners plus ET. This is not a total fitting-call count because nested stopping/calibration can perform additional fits.",
+    "outer_formula": "A genuine both-task A/B requires 2*T_regression+2*T_classification+setup+independent_audit+cleanup with equal arm caps and explicit reserves for confirmation/refit/CSV. Existing CP1 allocates2100 per regression task (2010 solver); this does not establish an adequate classification cap. New classification runtime is not measured, so no fixed whole-campaign duration is certified here.",
+    "no_reinvestment_or_extra_factor": true
+  },
+  "performed": {"code_edits": false,"runtime_imports": 0,"tests": 0,"fits": 0,"API_calls": 0,"data_or_outcome_scoring": false,"clock_assigned": false},
+  "execution_ready": false,
+  "promotion": false
+}

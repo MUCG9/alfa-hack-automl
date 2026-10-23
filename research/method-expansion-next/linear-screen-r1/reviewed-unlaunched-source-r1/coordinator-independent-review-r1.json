@@ -1,0 +1,56 @@
+{
+  "status": "source_only_one_concrete_fixture_evidence_gap",
+  "review_scope": "METH02 coordinator/ownership/time/freeze delta vs frozenMETH01; model/fixture semantics reviewed separately",
+  "source_inputs_sha256": {
+    "source-handoff.json": "b2f7a130383c1fb71ac8ef85f2effa85f9f27db86ea930e268b85fef774faf10",
+    "run_components.py": "927112c096df6e86ee52e280ba90724ef830ef24d43bbc387527688efd231571",
+    "audit_components.py": "5fab5c34e84c17759c653243f5dabea5250a2c9894d66321926e2e4064d06075",
+    "close_linear_components.py": "d7dd643be7b382e65767e7c4ab89c45e27e27778844fb7c79d846db23ae0e919",
+    "protocol.json": "07e29fa8c3e3adb43fac51a3204ea6b7b94bdaeb427f261bfc9fb4e16630b56e",
+    "static-proof.json": "3c1b4414ba73597f3824840aa3f4feb33a9d90db6b8409ea92b43cd866caeca6",
+    "execution-prerequisite-binding-r1.json": "9d385f411bc61a5446d4c65dd7580d6f9f0b3fea68d6feab81852b1f15bcc920"
+  },
+  "reviewed_facts": [
+    "Exact METH01 root2c673/exec3417 and closed campaign clock/cleanup/source fields are checked and pinned, without an MLquality-success condition",
+    "CP1/T7/history plus inherited43be T5/T6/fixture/preparer unions and extra-terminal receipt identities are freshly checked before/under canonical lock and between children",
+    "Existing extra-terminal CLI accepts actual intervening METH03 root+preparer proof without guessing a futureSHA; append-only execution binding supplies the actual known proof",
+    "One fresh10800 clock only at actuallaunch; exclusive meth02 prevents resume;10800=900setup+10*600parent+600audit+300cleanup+3000unusedspare",
+    "Worker600 includes570child+30cleanup/source/seal, source/audit caps unchanged; unused3000 does not change any worker or trial cap",
+    "New fixture300parent/270child must fit within setup900 before public jobs; wall and monotonic receipts are checked; supervisor uses solver_seconds=None so no API env and BLAS1 with frozen job learnerthreads2",
+    "Driver adds new fixture result/supervisor hashes to live deployment after initialmanifest and calls frozen(setup_end) before public jobs; live/final parentguard covers them",
+    "First/secondary child errors, failclosed source/clock/denial/cleanup, pure-localOOM-only continue and latequality invalidation remain preserved from METH01"
+  ],
+  "findings": [
+    {
+      "id": "METH02-FIXTURE-LATE-GUARD",
+      "priority": "P2",
+      "status": "open",
+      "files": [
+        "audit_components.py",
+        "close_linear_components.py"
+      ],
+      "trigger": "New mandatory linear-contracts result/supervisor are produced after manifest.setup_deployment_sha256 was snapshotted.",
+      "actual_behavior": "Auditor hashes them before labels, but its final frozen() sees only initialmanifest maps. Post-exit closer merges immutable+initialdeployment+worker seals, omitting campaign.gates result refs; it therefore does not fresh-rehash new linear-contracts.json at terminal qualification. Fixture supervisor is read via campaign.supervisors, but is also absent from final expected rehash set.",
+      "limit": "The active parent does guard both via live deployment; this is a late independent/post-exec evidence completeness gap, not an observed fixture/model failure or a claim that public fits run unguarded.",
+      "minimal_fix": "After scoring recheck captured linear result and supervisor refs; in rootcloser merge captured campaign gate result_path/result_sha256 and supervisor_path/supervisor_sha256 into expected before the final fresh hash walk. No new criterion, test suite, clock or process framework."
+    }
+  ],
+  "not_reviewed": [
+    "model implementation or fixture semantic correctness",
+    "actual execution, process scan, test/fitting success or ML outcomes"
+  ],
+  "executed": {
+    "application_imports": 0,
+    "tests": 0,
+    "fixtures": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "METH01_or_METH03_outcome_files_read": 0,
+    "process_scan": 0,
+    "clock_assigned": false,
+    "STATE_or_Git_writes": 0
+  },
+  "source_edits_by_reviewer": 0,
+  "metrics": null,
+  "promotion": false
+}

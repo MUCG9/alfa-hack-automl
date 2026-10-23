@@ -1,0 +1,77 @@
+{
+  "status": "AST_compile_and_hash_only_source_revision2_no_candidate_execution",
+  "files_sha256": {
+    "audit_components.py": "ed6b88f1060a2aaa87325f2796d3e0f945d8aac0eaa0fbd35f63d1be5d0bb804",
+    "close_linear_components.py": "8716fcec967eb6fbb31e5eff439bd32e93ec07e75e002805c9745ef714be0c1a",
+    "coordinator-independent-review-r1.json": "8a40906824018dbf571d1133fda46f271ecfd94c1aba91a8a8ed6af4800a86ee",
+    "coordinator-independent-review-r1.txt": "6ae1acdec9ae46752d3f1960e2a56540f6bcd145817c998fc5fb682df20b2d2c",
+    "execution-prerequisite-binding-r1.json": "9d385f411bc61a5446d4c65dd7580d6f9f0b3fea68d6feab81852b1f15bcc920",
+    "meth01-to-meth02.patch": "1cf5b9e592dac8734a3c4b12c28d45c954a5f7dfb3b04015c3306cf2c4f15e57",
+    "protocol.json": "f837d5ef58bcf575f9179d2872e5b03032c7eed650ae7f8572d653939deb0d5c",
+    "README.txt": "b5e273f882afefb8873594a0d1c538b078eb6f0258d1294c90469aeb02ad2937",
+    "registered-METH02.json": "9573629c1decf7ad3c29d879f3489778ce70d471ca0a57b065c360b9b78a045e",
+    "run_components.py": "8717b0af3cd313e61f56490627dec17bf8284eef42581157c36649a91178fbaa",
+    "source-evidence.json": "417e9aa41d955d4c03e1abcca862fe77a3c3e8d6422b21da629a5c94c7463adf",
+    "terminal-evidence-fix-r1-to-r2.patch": "2fd6668ce43d563a3c41278ab7164abf62033d7b97dcbdcaabcf90736c73d0cc",
+    "test_tabular_linear_contracts.py": "b6a7e541fbf6cad97956846d23b9ce8ce7b62a56a4509d3e2a5bc76e97ebe814",
+    "_prepare_source.py": "868dd69364e92303b75ebe432b2c38bc8ca1f07af3db42dfbdc6c71a65fd0368"
+  },
+  "base_frozen_unchanged_sha256": {
+    "run_components.py": "672479b4aa444242369c28aef179454e1ab3c6470e3b00052676f255d4281379",
+    "audit_components.py": "bf3526023c265fd102531426a2c35472686be84104500e703eb82d18f9456973",
+    "protocol.json": "d21a32cabd475756f18426760d61a960e92c202978f3d5b324edcd4c57c13ad3",
+    "static-proof.json": "a734fccb1416b3f1b5d82d06322577ab7a80dc5323ebf864ac89db32ed67ee26"
+  },
+  "contract_methods": [
+    "test_no_text_regression_uses_fixed_ridge_and_keeps_empty_numeric",
+    "test_heldout_poison_cannot_change_fitted_preprocessing_or_coefficients",
+    "test_unknown_category_sparse_width_and_row_order",
+    "test_infrequent_vocabulary_is_fitted_only_and_stays_sparse",
+    "test_multiclass_declared_probability_columns_and_validation_rows",
+    "test_binary_probability_uses_declared_positive_class",
+    "test_class_weight_power_uses_only_fitting_labels_and_no_double_balance",
+    "test_absent_declared_fitting_class_is_explicit_never_fabricated"
+  ],
+  "prepared_contract_methods": 8,
+  "actual_tests_run": 0,
+  "arithmetic": "10800=900+10*600+600+300+3000;600=570+30; new300contractgate inside900",
+  "source_delta": "Harness recipe/paths/budgets/new contract gate/METH01 terminal binding only; runtime/adapter/archive unchanged",
+  "inherited_preserved": [
+    "five oldsplit pins",
+    "exact SINGLE control recipes",
+    "CP1/T7/history/T5/T6 closure union",
+    "R4 metrics and perclass gates",
+    "seals before labels",
+    "null failures",
+    "late error clears live quality"
+  ],
+  "expected_reused_registry": 458,
+  "expected_reused_exact": 23,
+  "extra_source_registry_methods_added": 0,
+  "actual_driver_invocations": 0,
+  "actual_auditor_invocations": 0,
+  "actual_application_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API_calls": 0,
+  "actual_data_or_prediction_reads": 0,
+  "actual_generated_jobs": 0,
+  "actual_clocks": 0,
+  "qualification": "Static only. No measured runtime/quality or execution-readiness claim.",
+  "ML_metric": null,
+  "promotion": false,
+  "checks": [
+    "All4future Python sources plus preparation script AST/compile in memory only",
+    "New nested closer derives WORK via parents[1]",
+    "No source/archive/control/oldsplit change; all original METH01 source pins unchanged",
+    "Exact parameters describe supported-package effect, not pure causal learner effect",
+    "New tool contract300/270 inside original setup900; original wall+mono bound checked by driver and auditor",
+    "New fixture result/supervisor hashes now covered both late independent audit and post-exit expected map"
+  ],
+  "source_review_correction": {
+    "preserved_handoff_sha256": "b2f7a130383c1fb71ac8ef85f2effa85f9f27db86ea930e268b85fef774faf10",
+    "preserved_path": "reviewed-unlaunched-source-r1",
+    "change": "Only final fixture receipt rehash and root closer gate refs; driver protocol pin follows metadata",
+    "ML_or_test_failure": false
+  }
+}

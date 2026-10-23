@@ -1,0 +1,33 @@
+{
+  "id": "METH-03-LINEAR",
+  "parent_experiment": "METH-03",
+  "status": "preregistered_before_METH02_launch_and_outcomes",
+  "registered_epoch": 1792779586.0364401,
+  "hypothesis": "Existing no-text linear predictions may complement the same protected SINGLE control, even if standalone is weak.",
+  "control_unit": "Same METH02 protected first SINGLE per cut, no whole V16 mixing",
+  "fixed_weight": {
+    "strong_control": 0.9,
+    "new_component": 0.1
+  },
+  "new_component": "Exact fixed METH02 Ridge/Logistic recipe; no regularization or weight search",
+  "cuts": {
+    "regression": [
+      0,
+      1,
+      2
+    ],
+    "classification": [
+      42,
+      43
+    ]
+  },
+  "common_cap_seconds": 720,
+  "model_fits": 0,
+  "API_calls": 0,
+  "required": "Actual METH02 parent and root terminal+fresh owned/preparer closure, exact same row/class/pristine/core proofs; all5 cuts attempted, failed/missing null; ordinary negative standalone not excluded.",
+  "gates": "All3 regression strict RMSE; both class strict MacroF1 plus independent support>=100 maxloss.01/ex-rarestgain>0 as frozenR4.",
+  "full_refit": false,
+  "promotion": false,
+  "official_score": null,
+  "scope": "Child evaluation of originally registered METH03 weak-family blend hypothesis; distinct linear caches, no duplicated ET run or adaptive weight choice."
+}

@@ -1,0 +1,40 @@
+{
+  "status": "source_only_narrow_R3_rebind_closed_no_new_blocker",
+  "scope": "Only authorized one-line fixture validation-label repair and SHA cascades; prior full operationalR2 review retained, no new full review or runtime claim",
+  "inputs_sha256": {
+    "source-handoff.json": "19f2946def5e0cc260e60b99fff98d1852e58d37441ed58a55c78b887ad668ec",
+    "run_components.py": "952124243389a24fa3c335ffbd19563c000976a943471d17f3d6b62562e9dbd8",
+    "audit_components.py": "b2d611edaa45ab303ffa7bfbd39c925bc585379dd6a125491637c0f117f718c8",
+    "test_tabular_linear_contracts.py": "89776febf62aeb05b71fdbf707f4d9058ea20d41a8e77e4db6e81c05536358d4",
+    "close_linear_components.py": "8716fcec967eb6fbb31e5eff439bd32e93ec07e75e002805c9745ef714be0c1a",
+    "protocol.json": "4d2414a8ad7eebc6cae2644d7583842f339ad79885ab9d1cdc38bfb70c22d205",
+    "static-proof.json": "42b0ec12a0a49c74c73d60581e511c290f177bb17f9661c9e06c6add9e33d509",
+    "execution-prerequisite-binding-r3.json": "0bc45474bd6942ed0dd35ed536767281641c213690ca54728248d716facc1f06",
+    "coordinator-independent-review-r2.json": "579479921f797509c77b80e8ba052a8d4ba1912fc31e9948c8fcbc58aad64ce0"
+  },
+  "prior_full_coordinator_review_sha256": "579479921f797509c77b80e8ba052a8d4ba1912fc31e9948c8fcbc58aad64ce0",
+  "verified_delta": [
+    "Only fixture data change is last3 OUTER validation labels from[unfitted,unfitted,unfitted]to[unfitted,left,right]; initial12 fitting labels left*6/right*6 and all fitting rows/recipes remain byte-identical",
+    "Driver changes only protocolSHA and fixtureSHA literals; auditor changes only fixtureSHA literal; close_linear_components.py is byte-identical8716fcec",
+    "Root actualMETH03 proof901f3c/exec33253/exit0 and fullrootargv are unchanged except new driver/auditor SHA values; no futureproof guessed",
+    "Original10800/900setup/300fixture/600parent570child/600audit/300cleanup/3000unusedspare and operationalownership/freeze logic remain exactlyR2",
+    "Prior P2 fixturelate receipt rehash fix remains in auditor and postexit closer",
+    "All13 finalhandoff file pins match; priorR2 exactbytes preserved under reviewed-unlaunched-source-r2"
+  ],
+  "findings": [],
+  "runtime_maturity": "Intended absent-class branch reachability is source reasoning only. Eight fixtures/ten tiny fitting callbacks have not been executed by this reviewer or certified by this source receipt.",
+  "executed": {
+    "application_imports": 0,
+    "tests": 0,
+    "fixtures": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "outcome_file_reads": 0,
+    "process_scan": 0,
+    "clock_assigned": false,
+    "STATE_or_Git_writes": 0
+  },
+  "source_edits_by_reviewer": 0,
+  "metrics": null,
+  "promotion": false
+}

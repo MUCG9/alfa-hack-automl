@@ -1,0 +1,25 @@
+--- preserved-r1/audit_components.py
++++ current-r2/audit_components.py
+@@ -291,6 +291,10 @@
+         negative_standalone_artifacts_retained_for_separate_METH03=True,full_refit_or_promotion=False,
+         scope='Registered standalone component gates only; class primary/confirmation names are aliases for group seeds42/43, not whole-agent phases')
+     frozen()
++    linear_gate=gates['linear_contracts']
++    need(digest(local(linear_gate['result_path']))==linear_gate['result_sha256']
++         and digest(local(linear_gate['supervisor_path']))==linear_gate['supervisor_sha256'],
++         'late_linear_tool_contract_receipt_changed')
+     for job,entry in zip(jobs,entries):
+         need(digest(local(entry['supervisor_path']))==entry['supervisor_sha256']
+              and digest(local(entry['seal']['path']))==entry['seal']['sha256'],'late_component_receipt_changed')
+--- preserved-r1/close_linear_components.py
++++ current-r2/close_linear_components.py
+@@ -49,6 +49,9 @@
+             merge(row['supervisor_path'],row['supervisor_sha256'])
+             p=local(row['seal']['path']);assert sha(p)==row['seal']['sha256'];merge(row['seal']['path'],row['seal']['sha256'])
+             for n,h in read(p)['files_sha256'].items():merge(n,h)
++        for gate in c.get('gates',[]):
++            merge(gate['result_path'],gate['result_sha256'])
++            merge(gate['supervisor_path'],gate['supervisor_sha256'])
+         for n,h in expected.items():
+             p=local(n)
+             if not p.is_file() or sha(p)!=h:bad.append(n)

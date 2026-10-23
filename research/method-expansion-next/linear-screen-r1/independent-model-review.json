@@ -1,0 +1,36 @@
+{
+  "schema": "method-linear-source-independent-review-v1",
+  "status": "no_blocker_in_declared_source_scope",
+  "bindings": {
+    "source_handoff_sha256": "b2f7a130383c1fb71ac8ef85f2effa85f9f27db86ea930e268b85fef774faf10",
+    "driver_sha256": "927112c096df6e86ee52e280ba90724ef830ef24d43bbc387527688efd231571",
+    "auditor_sha256": "5fab5c34e84c17759c653243f5dabea5250a2c9894d66321926e2e4064d06075",
+    "synthetic_contract_source_sha256": "b6a7e541fbf6cad97956846d23b9ce8ce7b62a56a4509d3e2a5bc76e97ebe814",
+    "closer_sha256": "d7dd643be7b382e65767e7c4ab89c45e27e27778844fb7c79d846db23ae0e919",
+    "protocol_sha256": "07e29fa8c3e3adb43fac51a3204ea6b7b94bdaeb427f261bfc9fb4e16630b56e",
+    "runtime_archive_sha256": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0"
+  },
+  "confirmed": [
+    "The existing no-text adapter uses Ridge(alpha=10, solver=lsqr) for regression and LogisticRegression(C=1, max_iter=1000, random_state=42) with fitting-only class_weight_power=0.5 and no simultaneous balanced class_weight for classification. The fixed raw/no-generic-feature package is explicitly distinct from the rich SINGLE control package.",
+    "The same 68-member runtime archive, five frozen forward/group cuts and exact first protected SINGLE controls are retained. The driver seals actual jobs, splits, pristine copies, saved supervisors and complete cores before the auditor imports R4 or parses labels. Null failures and all per-cut manual R4 gates are retained.",
+    "The clock arithmetic is 10800=900 setup+10*600 worker parents+600 audit+300 final+3000 unused spare. Each worker parent contains 570 child and 30 cleanup/seal; no extra jobs, recipe repair, retry or spare reinvestment is authorized.",
+    "Eight prepared tiny contract methods cover fitting-only preprocessing/weights, fixed estimators, sparse category behavior, row/class/probability alignment and explicit absent-class rejection. They intentionally exercise ten future tiny fitting callbacks under 300 parent/270 child within setup900. They have not been executed by this reviewer.",
+    "Fixture results created after the initial manifest copy are not forgotten: driver lines 361-365 pin their result/supervisor hashes into campaign gates and live deployment, and auditor lines 114-132 independently recheck saved supervisor equality, both file hashes, 300/270 caps and original setup900 bounds. Final driver frozen checks retain those live pins.",
+    "Actual unchanged T7 source458/exact23 evidence is labelled reused and hash-checked; the new eight fixtures do not imply an executed 466-check registry or another broad suite.",
+    "The copied post-exit closer now derives WORK using parents[1]. It preserves technical-versus-quality separation, original clock, saved audit/core/supervisor hashes and exact known identity absence, with its own actual exit and subsequent fresh preparer absence still required."
+  ],
+  "remaining_execution_requirements": [
+    "Root source review/publication and an actual single future launch clock.",
+    "Actual intervening METH03 terminal closure path/SHA supplied through --extra-terminal-receipt after it exists; optional argument syntax itself is not readiness evidence.",
+    "Actual successful eight-method synthetic gate within setup900 before public component workers.",
+    "Actual parent exit, independent saved-artifact audit, post-exit closer and fresh helper/preparer absence."
+  ],
+  "scope": {
+    "candidate_runtime_imports_tests_fits_api": 0,
+    "data_or_prediction_scoring": false,
+    "new_clock_jobs_or_receipts_invented": false,
+    "canonical_or_candidate_source_edits": false,
+    "promotion_submission_or_whole_agent_qualification": false
+  },
+  "limitations": "Static exact-source review only. Future fixture fits and public component outcomes remain unexecuted here. Known/observed ownership scope is preserved without inventing a global orphan scan or an absent terminal receipt."
+}

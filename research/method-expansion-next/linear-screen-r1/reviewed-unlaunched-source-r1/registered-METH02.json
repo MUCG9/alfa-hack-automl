@@ -1,0 +1,33 @@
+{
+  "source_path": "method-expansion-program/queue.json",
+  "source_sha256": "8f3229fb79d23677dc4e652ca529f56d97860c30a1642b5c345ce3de0e8fc733",
+  "registered_entry": {
+    "id": "METH-02",
+    "name": "Enable and audit existing tabular Ridge/LogisticRegression path",
+    "status": "existing_adapter_tabular_contract_and_admission_screen_required",
+    "hypothesis": "Regularized linear models may generalize under temporal shift or add complementary class probabilities while costing less than another boosting fit.",
+    "tools": {
+      "engine_key": "linear_text",
+      "regression": "existing Ridge(alpha10,solverlsqr)",
+      "classification": "existing LogisticRegression(text_classifier=logistic,text_C=1); SGD separate later factor"
+    },
+    "fitting_contract": "Use the existing fitting-only numeric finite conversion/median imputation/scaling plus sparse OneHot(handle_unknown=ignore,min_frequency3). First verify no-text input, unknown category, fitting-scope, finite/class-order outputs and measured resource bounds. Do not rewrite an existing path just because its engine name says text.",
+    "outputs": "Exact rows/ID/schema; regression inverse target transform if explicitly used; class order aligned to declared classes, finite normalized probabilities and all-class F1. Unknown/missing fitting class is an explicit contract outcome, never silently removed.",
+    "screen": "One preregistered regularization setting per task first, same saved cuts/controls. Hyperparameter tuning only after the standalone tool contract and basic measured cost are known.",
+    "common_cap_seconds": 10800,
+    "worker_seconds": 600,
+    "includes": [
+      "source/exact and meaningful leakage/schema tests",
+      "control/candidate fits",
+      "independent numeric audit",
+      "output and cleanup reserve"
+    ],
+    "new_dependencies": [],
+    "installed_allowed_dependency": "scikit-learn1.5.2/scipy1.12.0",
+    "actual_command": null,
+    "actual_metric": null,
+    "clock_start": null,
+    "implementation_change_first": "Admission/source fixture only; no new model implementation until an actual missing contract or failure is established."
+  },
+  "boundary": "Copied registration metadata; original mutable queue is not runtime authority. No job/clock/outcome read."
+}

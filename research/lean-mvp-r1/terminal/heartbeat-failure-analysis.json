@@ -1,0 +1,256 @@
+{
+  "status": "read_only_source_receipt_diagnosis",
+  "scope": {
+    "runtime_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "existing_sources_receipts_or_clocks_changed": false,
+    "model_quality_scored": false,
+    "Windows_System_events_queried": false
+  },
+  "preserved_outcome": {
+    "T6_status": "technical_failure",
+    "qualification": "FAIL",
+    "actual_exec_exit_code": 1,
+    "root_observed_exec_evidence": "Root reports exec88656 terminal exit1, tool chunkf6279b; this analysis did not independently poll the tool session.",
+    "historical_failure_threshold_seconds": 10,
+    "threshold_relaxed": false,
+    "promotion": false,
+    "independent_whole_campaign_R4_launched": false,
+    "independent_audit": null,
+    "qualification_limit": "Completed task refits/CSVs and later independent task audits cannot retroactively make the original parent campaign PASS."
+  },
+  "primary_failure": {
+    "receipt": {
+      "code": "host_supervisor_heartbeat_gap_over10s",
+      "phase": "coordinator",
+      "unix": 1792767669.7182922,
+      "monotonic": 26674.906,
+      "exception_type": "TechnicalFailure",
+      "errno": null,
+      "winerror": null
+    },
+    "largest_observed_gap_seconds": 10.8279999999977,
+    "gap_is_real_elapsed_between_calls": true,
+    "gap_is_OS_sleep_or_descheduling_proof": false,
+    "classification": "Cooperative heartbeat starvation during synchronous post-task integrity/sealing work is supported by exact control flow and saved timestamps. OS descheduling/slow I/O may coexist but are not separately measured.",
+    "source_path": [
+      "supervise finishes classification with successful cleanup; its finally frozen() pulses at run_lean_mvp_r1.py323",
+      "run527 task_proof loads report and hashes report/submission",
+      "run528 core_seal walks all repair4 artifacts and synchronously sha() hashes each file; no heartbeat callback",
+      "run530 save c-seal, construct entry and hash supervisor/seal",
+      "run535 appends classification entry, then frozen(): guard(all immutable+deployment files) BEFORE pulse",
+      "pulse154 heartbeat records10.828s gap; pulse155 throws TechnicalFailure; coordinator catch564 records first failure and invalidates campaign"
+    ],
+    "metric_null_not_zero": true
+  },
+  "secondary_errors": {
+    "error_history_count": 1,
+    "additional_error_entries": [],
+    "regression_supervisor_errors": [],
+    "classification_supervisor_errors": [],
+    "terminal_cleanup_source_flags": {
+      "cleanup_confirmed": true,
+      "source_unchanged": true
+    },
+    "power_release_verified": true,
+    "terminal_power_heartbeat_gap": {
+      "wall_seconds": 1.5019612312316895,
+      "monotonic_seconds": 1.5
+    },
+    "conclusion": "No secondary recorded error: both model task supervisors exited0/cleanuptrue; coordinator terminal cleanup/source and PowerRequest release passed. The single earlier fatal gap remains authoritative."
+  },
+  "timeline": {
+    "classification_report_stat": {
+      "bytes": 792652,
+      "mtime_unix": 1792767657.9454434
+    },
+    "classification_final_result_stat": {
+      "bytes": 42114,
+      "mtime_unix": 1792767657.0517728
+    },
+    "classification_submission_stat": {
+      "bytes": 598849,
+      "mtime_unix": 1792767657.797859
+    },
+    "classification_supervisor_end_unix": 1792767658.8956747,
+    "classification_supervisor_end_monotonic_derived": 26664.078,
+    "classification_seal_stat": {
+      "bytes": 57231,
+      "mtime_unix": 1792767668.937974
+    },
+    "primary_failure_unix": 1792767669.7182922,
+    "primary_failure_UTC": "2026-10-23T15:01:09.718292+00:00",
+    "primary_failure_monotonic": 26674.906,
+    "supervisor_end_to_seal_mtime_seconds": 10.042299270629883,
+    "seal_mtime_to_failure_seconds": 0.7803182601928711,
+    "supervisor_end_to_failure_seconds": 10.822617530822754,
+    "metadata_sealing_duration_from_saved_task_counters": 10.06199999999808,
+    "approx_previous_gap_sample_monotonic": 26664.078,
+    "previous_gap_sample_limit": "Failing heartbeat object was overwritten by a subsequent finally heartbeat. Previous timestamp is reconstructed from first failure/largest gap, not a preserved original bad sample. First-error and monotonic sampling boundaries have millisecond resolution/overhead.",
+    "last_saved_heartbeat_after_failure": {
+      "unix": 1792767670.4862099,
+      "monotonic": 26675.671,
+      "wall_gap_seconds": 0.7679176330566406,
+      "monotonic_gap_seconds": 0.7649999999994179,
+      "wall_minus_monotonic_gap_seconds": 0.0029176330572227016,
+      "scheduling_gap_exceeded": false,
+      "largest_observed_gap_seconds": 10.8279999999977,
+      "threshold_seconds": 10.0,
+      "request_still_effective": null,
+      "deadline_extension_granted": false
+    },
+    "campaign_end_unix": 1792767671.988171,
+    "original_common_deadline_unix": 1792774887.858047,
+    "elapsed_common_seconds": 3584.130124092102,
+    "remaining_original_common_seconds_at_failure": 7218.139754772186
+  },
+  "synchronous_work": {
+    "sealed_artifacts": {
+      "r": {
+        "receipt": {
+          "path": "work/t6/r-seal.json",
+          "sha256": "771b7a7ea4e9eea1e5177ad5269094279e9592c5f579119a1ad51039c2674faa"
+        },
+        "receipt_stat": {
+          "bytes": 17252,
+          "mtime_unix": 1792764643.9883454
+        },
+        "files": 132,
+        "total_file_bytes": 30402554,
+        "extension_counts": {
+          ".json": 56,
+          ".npz": 3,
+          ".csv": 51,
+          ".tsv": 1,
+          ".log": 21
+        },
+        "measurement": "Saved sealed inventory and current filesystem size metadata only; no new per-file hash timing or artifact value parsing."
+      },
+      "c": {
+        "receipt": {
+          "path": "work/t6/c-seal.json",
+          "sha256": "3d8edbbe8c5c70689ac23a1dee46861512c45900e8db4f5a9608154de6ea9eab"
+        },
+        "receipt_stat": {
+          "bytes": 57231,
+          "mtime_unix": 1792767668.937974
+        },
+        "files": 399,
+        "total_file_bytes": 329438382,
+        "extension_counts": {
+          ".json": 102,
+          ".npz": 138,
+          ".csv": 137,
+          ".tsv": 1,
+          ".log": 21
+        },
+        "measurement": "Saved sealed inventory and current filesystem size metadata only; no new per-file hash timing or artifact value parsing."
+      }
+    },
+    "guard_after_both_deployments": {
+      "immutable_file_count": 718,
+      "immutable_map_bytes": 187519701,
+      "deployment_file_count": 149,
+      "deployment_map_bytes": 87439261,
+      "extra_SHA_reads": [
+        "manifest file",
+        "coordinator file",
+        "source archive again"
+      ],
+      "note": "guard also walks candidate Python inventory/resolve paths. Counts describe source-mandated work, not measured throughput or exclusive CPU/I/O attribution."
+    },
+    "minimum_class_seal_plus_guard_map_bytes": 604397344,
+    "heartbeat_coverage": "The source SHA1MiB loop, guard file loops and core_seal file walk perform no pulse or deadline callback. frozen() calls pulse only AFTER complete guard. task_proof/save JSON also have no pulse. During solver supervision loop pulses occur every0.1s and source guard every30s; this terminal sealing path has no equivalent progress yield.",
+    "attribution_limit": "The observed ~10.04s window includes supervisor final save/persist, task_proof JSON/read/hash, core_seal symlink/resolve/hash and seal write. No per-phase timing exists, so exact SHA CPU time, cold I/O/antivirus/metadata overhead, JSON serialization and OS descheduling contributions are null/unknown. Current byte sizes do not benchmark throughput."
+  },
+  "power_guard_interpretation": {
+    "API_acquisition_verified": true,
+    "continuous_effectiveness_verified": false,
+    "forced_sleep_prevention_claimed": false,
+    "global_policy_changed": false,
+    "why_not_sleep_proof": "awake_guard.py80-95 compares consecutive user-level time.time/time.monotonic samples. It does not distinguish running synchronously, descheduled, blocked file I/O, host suspension or prove current power-request effectiveness. Both accepted API requests only prove acquisition.",
+    "Windows_sleep_events": null,
+    "Windows_events_missing_reason": "Not queried; source/timestamp diagnosis suffices, and no sleep/descheduling cause is inferred from elapsed gap."
+  },
+  "minimal_future_fix_recommendation": {
+    "scope": "Separate new source/attempt only; preserve exact historical T6 source, FAIL and clocks. No default/runtime-ML change or posthoc qualification.",
+    "change": "Cooperative checkpoint callback inside SHA before/per1MiBchunk/after, guard loops and core_seal walk. Callback must check the actual existing previous heartbeat before updating it and retain same10s threshold; also check original wall+monotonic/common and relevant parent deadlines. Pulse before/after large synchronous batches, not only after entire guard.",
+    "not_sufficient": [
+      "Only calling pulse after a long guard/seal",
+      "Resetting previous heartbeat before measuring",
+      "Increasing threshold or extending clocks",
+      "A background keepalive thread that hides a blocked coordinator"
+    ],
+    "source_binding": "Freeze the future helper before execution; retain full before/after source/input/artifact inventory equality and exact digest semantics. Chunk callbacks cannot skip files/bytes or excuse changed source.",
+    "diagnostic_improvement": "Persist first exceeded heartbeat sample and bounded phase/file-count/bytes progress before raising, rather than retaining only largest gap and a later nonexceeded last sample.",
+    "future_unexecuted_contracts": [
+      "Simulated >10s total chunked hash work with frequent cooperative callbacks remains heartbeat-valid while common clock is charged.",
+      "Simulated actual >10s uninstrumented gap fails before any reset/extension; fatal history and null qualification survive cleanup."
+    ],
+    "implementation_authorization": "Root separately requested source-only work/lean-supervision-next-dev after this report; no code change or test execution is part of this diagnosis."
+  },
+  "source_evidence": {
+    "work/run_lean_mvp_r1.py": {
+      "sha_callback_missing_lines": [
+        48,
+        53
+      ],
+      "guard_sha_loops": [
+        98,
+        124
+      ],
+      "heartbeat_fatal": [
+        153,
+        155
+      ],
+      "supervisor_last_pulse": [
+        318,
+        337
+      ],
+      "sealing_without_pulse": [
+        373,
+        400
+      ],
+      "post_task_flow": [
+        524,
+        540
+      ],
+      "failure_and_cleanup": [
+        564,
+        590
+      ],
+      "post_release_check": [
+        619,
+        640
+      ]
+    },
+    "work/awake-next-dev/awake_guard.py": {
+      "sample_and_threshold": [
+        80,
+        95
+      ],
+      "API_acquisition": [
+        43,
+        78
+      ],
+      "release": [
+        97,
+        122
+      ]
+    }
+  },
+  "evidence_sha256": {
+    "work/run_lean_mvp_r1.py": "562cfb439a579b2f21541b95e14acdbc650f24547709083e04312e670bb971eb",
+    "work/awake-next-dev/awake_guard.py": "9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b",
+    "work/m3packet/manifest.json": "4b987c652864179465dc754e90e3d1c8c9ed7c0a2144db5c3339e4c8a607d07e",
+    "work/launch_lean_mvp_r1.py": "8d96d9bf5ab42520d27d320a3cc717d2f4b688d43d1e9d8d092c956bd37f394e",
+    "work/t6/campaign.json": "d8004d3c0c5daf2c3f5e599bc7db849f603e6679e59a7559462d0d5bfc53a973",
+    "work/t6/verification-plan.json": "58e3364aa35c43c975ee0b8ade09210f6b058d41157b2a1fc4f4debdb6a35519",
+    "work/t6/r/supervisor.json": "06d3f9ab2c91838d7c729b18a8d54e6c47637fa5776940bb888a35ccfb27b0eb",
+    "work/t6/c/supervisor.json": "ade2f7df61ade0e3ea359d07c80f5ebf3f3bf49d6e83aaabb9f7b880f1f9117c",
+    "work/t6/r-seal.json": "771b7a7ea4e9eea1e5177ad5269094279e9592c5f579119a1ad51039c2674faa",
+    "work/t6/c-seal.json": "3d8edbbe8c5c70689ac23a1dee46861512c45900e8db4f5a9608154de6ea9eab"
+  }
+}

@@ -1,0 +1,13 @@
+T6 remains technical FAIL/exec1. Primary recorded error: host_supervisor_heartbeat_gap_over10s at1792767669.7182922, observed gap10.828s. No threshold or historical clock is changed.
+
+Both model-task supervisors completed exit0/cleanuptrue. Classification supervisor ended1792767658.895675; c-seal mtime1792767668.937974 (~10.042s later); failure followed ~0.780s later. The independent whole-campaign R4 supervisor was never launched.
+
+The exact source path is supervise-finally pulse -> task_proof -> synchronous core_seal -> save seal/append task -> guard(all source/input/deployment hashes) -> next pulse. SHA chunks and sealing loops have no heartbeat callback. This is a real elapsed call gap with a self-starvation path, not proof Windows slept.
+
+Class seal covers399 files/329438382B. The next guard rereads718 immutable files/187519701B plus149 deployment files/87439261B, plus fixed extra hashes. Exact CPU/I/O/serialization/descheduling shares are unmeasured; do not call the entire interval pure hashing time.
+
+error_history contains one primary entry and no secondary errors. Later terminal cleanup/source integrity and PowerRequest release passed; later last heartbeat is under1s and terminal gap1.5s, which does not erase the first fatal sample. API acquisition does not prove continuous sleep prevention.
+
+Future-only minimal fix: cooperative heartbeat+deadline callbacks before/per SHA chunk/after and within guard/seal walks, retaining actual previous samples, threshold10 and original clocks. No reset-before-check, background thread masking, or deadline extension. Add source-only fake-clock contracts for long chunked work and a real uninstrumented>10s gap; execute only after root review.
+
+No model/API/test/runtime import, no Windows-event sleep inference, no frozen mutation. Full portable provenance: work/t6-heartbeat-failure-analysis.json.

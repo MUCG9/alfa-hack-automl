@@ -1,0 +1,233 @@
+--- a/run_lean_mvp_r1.py
++++ b/run_lean_mvp_r1.py
+@@ -45,11 +45,18 @@
+     if not value:
+         raise TechnicalFailure(code)
+ 
+-def sha(path):
++def sha(path, checkpoint=None):
++    # Cooperative progress does not reset clocks or excuse an actual blocked read.
++    if checkpoint is not None: checkpoint()
+     h = hashlib.sha256()
+     with Path(path).open('rb') as stream:
+-        for chunk in iter(lambda: stream.read(2**20), b''):
++        while True:
++            if checkpoint is not None: checkpoint()
++            chunk = stream.read(2**20)
++            if not chunk: break
+             h.update(chunk)
++            if checkpoint is not None: checkpoint()
++    if checkpoint is not None: checkpoint()
+     return h.hexdigest()
+ 
+ def load(path):
+@@ -95,9 +102,10 @@
+         result.add((p, float(c)))
+     return result
+ 
+-def guard(manifest, manifest_path, manifest_sha, deployment):
+-    need(sha(manifest_path) == manifest_sha, 'manifest_changed')
+-    need(sha(__file__) == manifest['coordinator_sha256'], 'coordinator_source_changed')
++def guard(manifest, manifest_path, manifest_sha, deployment, checkpoint=None):
++    if checkpoint is not None: checkpoint()
++    need(sha(manifest_path, checkpoint) == manifest_sha, 'manifest_changed')
++    need(sha(__file__, checkpoint) == manifest['coordinator_sha256'], 'coordinator_source_changed')
+     for name in [*LIBS.values(), PRIOR, FIXTURE, AWAKE, AUDITOR]:
+         need(name in manifest['immutable_files'], 'unbound_runtime_dependency')
+     for ref in manifest.get('extra_predecessor_receipts', []):
+@@ -110,9 +118,9 @@
+         need(manifest['immutable_files'].get(launcher) == manifest['launcher_sha256'],
+              'unbound_bootstrap_launcher')
+     for name, expected in manifest['immutable_files'].items():
+-        need(sha(local(name)) == expected, 'immutable_source_or_input_changed')
++        need(sha(local(name), checkpoint) == expected, 'immutable_source_or_input_changed')
+     for name, expected in deployment.items():
+-        need(sha(local(name)) == expected, 'deployed_source_or_input_changed')
++        need(sha(local(name), checkpoint) == expected, 'deployed_source_or_input_changed')
+     source = local(manifest['source_root'])
+     need(source == WORK/'m3dev', 'unexpected_candidate_source_root')
+     expected = {n for n in manifest['immutable_files'] if n.endswith('.py')
+@@ -120,7 +128,11 @@
+     actual = {relative(p) for folder in ['src', 'tools', 'tests']
+               for p in (source/folder).rglob('*.py')}
+     need(expected == actual, 'candidate_python_inventory_changed')
+-    need(sha(local(manifest['archive'])) == manifest['archive_sha256'], 'archive_changed')
++    need(sha(local(manifest['archive']), checkpoint) == manifest['archive_sha256'], 'archive_changed')
++    # Rebind manifest/coordinator after the complete guarded inventory walk.
++    need(sha(manifest_path, checkpoint) == manifest_sha, 'manifest_changed')
++    need(sha(__file__, checkpoint) == manifest['coordinator_sha256'], 'coordinator_source_changed')
++    if checkpoint is not None: checkpoint()
+ 
+ def clock(deadline, unix):
+     need(abs((deadline-time.monotonic())-(unix-time.time())) <= 5, 'wall_monotonic_clock_disagreement')
+@@ -151,8 +163,20 @@
+     return [dict(pid=p, create_time=c) for p, c in sorted(known)]
+ 
+ def pulse(awake):
++    # heartbeat measures the real previous sample BEFORE updating it. Never reset
++    # its history to excuse slow work, and retain the first bad sample on failure.
+     sample = awake.heartbeat()
++    if sample['scheduling_gap_exceeded']:
++        awake.record.setdefault('first_exceeded_heartbeat', dict(sample))
+     need(not sample['scheduling_gap_exceeded'], 'host_supervisor_heartbeat_gap_over10s')
++
++
++def cooperative_checkpoint(awake, deadline, unix, parent_deadline=None,
++                           parent_code='parent_cap_exhausted'):
++    pulse(awake)
++    clock(deadline, unix)
++    if parent_deadline is not None:
++        need(time.monotonic() < parent_deadline, parent_code)
+ 
+ def error(record, code, phase, exc=None):
+     entry = dict(code=code, phase=phase, unix=time.time(), monotonic=time.monotonic(),
+@@ -208,7 +232,7 @@
+     state['active_supervisor'] = relative(receipt)
+     last = last_guard = time.monotonic()
+     try:
+-        frozen(); clock(deadline, unix)
++        frozen(end, 'parent_cap_exhausted'); clock(deadline, unix)
+         env = environment(receipt.parent/('env-'+name), solver_seconds is not None, state['_manifest'])
+         need(deadline-time.monotonic() >= reserve-(time.monotonic()-parent_start),
+              'full_remaining_common_reserve_unavailable')
+@@ -304,7 +328,7 @@
+                     if child.returncode != 0: error(record, 'child_nonzero_exit', 'child_exit')
+                     break
+                 if now-last_guard >= 30:
+-                    frozen(); last_guard = time.monotonic()
++                    frozen(end, 'parent_cap_exhausted'); last_guard = time.monotonic()
+                 if now-last >= 2:
+                     record.update(heartbeat_unix=time.time(), owned_process_identities=[
+                         dict(pid=p, create_time=c) for p, c in sorted(observer.seen)])
+@@ -320,7 +344,7 @@
+         record['exit_code'] = child.poll() if child is not None else None
+         try:
+             need(record['cleanup_confirmed'], 'cleanup_not_confirmed')
+-            frozen(); clock(deadline, unix)
++            frozen(end, 'parent_cleanup_source_guard_over_cap'); clock(deadline, unix)
+             need(time.monotonic() < end, 'parent_cleanup_source_guard_over_cap')
+         except BaseException as exc:
+             error(record, str(exc) if isinstance(exc, TechnicalFailure) else 'terminal_supervision_failed', 'supervisor_terminal', exc)
+@@ -370,33 +394,39 @@
+     need(sha(directory/'protected_control.json') == control['sha256'], 'protected_control_copy_changed')
+     deployment[relative(directory/'protected_control.json')] = control['sha256']
+ 
+-def task_proof(directory):
++def task_proof(directory, checkpoint=None):
++    if checkpoint is not None: checkpoint()
+     report = directory/'automl_runs/repair4/report.json'
+     submission = directory/'submission.csv'
+     if not report.is_file() or not submission.is_file():
+         return dict(report_path=relative(report), submission_path=relative(submission),
+                     artifacts_complete=False, final_fit_status=None, integrity_ok=None)
+     data = load(report)
+-    return dict(report_path=relative(report), report_sha256=sha(report), submission_path=relative(submission),
+-        submission_sha256=sha(submission), artifacts_complete=True,
++    if checkpoint is not None: checkpoint()
++    return dict(report_path=relative(report), report_sha256=sha(report, checkpoint), submission_path=relative(submission),
++        submission_sha256=sha(submission, checkpoint), artifacts_complete=True,
+         final_fit_status=data.get('final_fit_status'), integrity_ok=data.get('integrity_ok'),
+         solver_report_seconds=data.get('elapsed_seconds'), hpo_reported=data.get('hpo'),
+         stage_report=data.get('pipeline'),
+         scope='Parent metadata only; independent saved-artifact verifier decides stage/quality qualification.')
+ 
+-def core_seal(directory):
++def core_seal(directory, checkpoint=None):
++    if checkpoint is not None: checkpoint()
+     # The API run-budget sibling is deliberately outside this core-artifact
+     # seal. It is never retried or inferred from core prediction integrity.
+     files = {}
+     root = directory/'automl_runs/repair4'
+     if root.exists():
+         for parent, dirs, names in os.walk(root):
++            if checkpoint is not None: checkpoint()
+             need(not any((Path(parent)/n).is_symlink() for n in [*dirs, *names]), 'artifact_symlink')
+             for name in names:
++                if checkpoint is not None: checkpoint()
+                 p = Path(parent)/name
+                 need(not name.endswith(('.tmp', '.pending')), 'unfinished_core_artifact')
+-                files[relative(p)] = sha(p)
+-    if (directory/'submission.csv').exists(): files[relative(directory/'submission.csv')] = sha(directory/'submission.csv')
++                files[relative(p)] = sha(p, checkpoint)
++    if (directory/'submission.csv').exists(): files[relative(directory/'submission.csv')] = sha(directory/'submission.csv', checkpoint)
++    if checkpoint is not None: checkpoint()
+     return files
+ 
+ def invalidate(state):
+@@ -416,7 +446,12 @@
+          and 0 <= time.time()-args.common_start_unix <= 30, 'one_fresh_independent10800_clock_required')
+     deadline = time.monotonic()+args.deadline_unix-time.time()
+     deployment = {}
+-    frozen = lambda: (guard(manifest, path, manifest_sha, deployment), pulse(awake))
++    def frozen(parent_deadline=None, parent_code='parent_cap_exhausted'):
++        check = lambda: cooperative_checkpoint(awake, deadline, args.deadline_unix,
++                                               parent_deadline, parent_code)
++        check()
++        guard(manifest, path, manifest_sha, deployment, checkpoint=check)
++        check()
+     frozen()
+     modules = {k: imported('_repair4_'+k, local(v)) for k, v in LIBS.items()}
+     owner, processes = modules['owner'], modules['processes']
+@@ -441,7 +476,8 @@
+         cleanup_confirmed=False, source_unchanged=False, qualification=None,
+         qualified_four_stage_both_tasks=False, independent_audit=None, quality_gain=None,
+         promotion=False, submit=False, root_actual_exec_qualification='pending', awake_guard=awake.record,
+-        error_history=[], _manifest=manifest, _pulse=lambda: pulse(awake), _deployment=deployment)
++        error_history=[], _manifest=manifest,
++        _pulse=lambda: cooperative_checkpoint(awake, deadline, args.deadline_unix), _deployment=deployment)
+     def persist(): save(output/'campaign.json', {k: v for k, v in state.items() if not k.startswith('_')})
+     finished = set()
+     final_deadline = None
+@@ -524,15 +560,20 @@
+                 child_errors(state, sup)
+                 finished |= identities(sup['owned_process_identities'])
+                 need(sup['status'] != 'technical_failure' and sup['cleanup_confirmed'], 'task_technical_failure')
+-                proof = task_proof(directory)
+-                sealed = core_seal(directory)
++                task_check = lambda: cooperative_checkpoint(awake, deadline, args.deadline_unix,
++                    tick+cap, 'task_metadata_seal_over_parent_cap')
++                frozen(tick+cap, 'task_metadata_seal_over_parent_cap')
++                proof = task_proof(directory, checkpoint=task_check)
++                sealed = core_seal(directory, checkpoint=task_check)
+                 seal_path = output/(task['code']+'-seal.json')
++                task_check()
+                 save(seal_path, dict(files_sha256=sealed, cleanup_confirmed=True, source_unchanged=True), True)
++                task_check()
+                 entry = dict(sup, kind=task['kind'], code=task['code'], allocated_parent_seconds=cap,
+                     solver_budget_seconds=seconds, proof=proof, qualified=False,
+-                    supervisor_path=relative(directory/'supervisor.json'), supervisor_sha256=sha(directory/'supervisor.json'),
+-                    seal=dict(path=relative(seal_path), sha256=sha(seal_path)), seconds_including_verification=time.monotonic()-tick)
+-                state['tasks'].append(entry); frozen(); persist()
++                    supervisor_path=relative(directory/'supervisor.json'), supervisor_sha256=sha(directory/'supervisor.json', task_check),
++                    seal=dict(path=relative(seal_path), sha256=sha(seal_path, task_check)), seconds_including_verification=time.monotonic()-tick)
++                state['tasks'].append(entry); frozen(tick+cap, 'task_metadata_seal_over_parent_cap'); persist(); task_check()
+                 need(time.monotonic() < tick+cap, 'task_metadata_seal_over_parent_cap')
+             tick = time.monotonic()
+             final_deadline = tick+FINAL
+@@ -572,7 +613,9 @@
+                 for entry in state['tasks']:
+                     receipt = local(entry['seal']['path'])
+                     need(sha(receipt) == entry['seal']['sha256'], 'late_seal_receipt_changed')
+-                    need(load(receipt)['files_sha256'] == core_seal(output/entry['code']), 'late_core_artifact_changed')
++                    final_check = lambda: cooperative_checkpoint(awake, deadline, args.deadline_unix,
++                        final_deadline, 'final_audit_terminal_cleanup_over_cap')
++                    need(load(receipt)['files_sha256'] == core_seal(output/entry['code'], checkpoint=final_check), 'late_core_artifact_changed')
+                 need(all(r['cleanup_confirmed'] is True for r in state['supervisors']),
+                      'prior_supervisor_cleanup_unknown')
+                 state.update(cleanup_confirmed=True, source_unchanged=True)
+@@ -620,7 +663,14 @@
+         result['awake_guard'] = awake.record
+         try:
+             need(awake.record.get('release_API_verified') is True, 'power_request_release_unverified')
+-            guard(manifest, path, args.manifest_sha256, result['_deployment'])
++            def post_release_check():
++                last_sample = awake.record['last_heartbeat']
++                need(max(time.time()-last_sample['unix'], time.monotonic()-last_sample['monotonic']) <= 10,
++                     'terminal_host_heartbeat_gap_over10s')
++                clock(result['common_deadline_monotonic'], args.deadline_unix)
++                need(result['_final_deadline'] is None or time.monotonic() < result['_final_deadline'],
++                     'final_audit_power_release_over_cap')
++            guard(manifest, path, args.manifest_sha256, result['_deployment'], checkpoint=post_release_check)
+             last = awake.record['last_heartbeat']
+             result['terminal_power_heartbeat_gap'] = dict(wall_seconds=time.time()-last['unix'],
+                 monotonic_seconds=time.monotonic()-last['monotonic'])

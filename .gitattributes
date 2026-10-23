@@ -82,3 +82,6 @@ docs/experiments/true-four-stage-tm1/ownership-completion.json -text whitespace=
 docs/experiments/true-four-stage-tm1/classification-audit-guard.json -text whitespace=cr-at-eol
 docs/experiments/true-four-stage-tm1/terminal-analysis.json -text whitespace=cr-at-eol
 docs/experiments/true-four-stage-tm1/terminal-results.txt -text whitespace=cr-at-eol
+
+docs/experiments/fullagent-stage0-failed-r1/** -text whitespace=cr-at-eol
+docs/experiments/selector-cost-analysis-r1/** -text whitespace=cr-at-eol

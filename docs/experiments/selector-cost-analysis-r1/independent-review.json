@@ -1,0 +1,246 @@
+{
+  "status": "read_only_cost_analysis_review_complete; future_pilot_not_execution_ready",
+  "created_utc": "2026-10-23T05:54:47.151700+00:00",
+  "reviewed_files_sha256": {
+    "hpo-selector-cost-audit-r1/manifest.json": "2f4a65c44214b2bd7ac7fb11f101262108a33e0744bd0ab47f2441acef0fe4da",
+    "hpo-selector-cost-audit-r1/observations.json": "d374eb20369e7809f629e9039c52bd648df0f115b69eff45179d7ef96904238e",
+    "hpo-selector-cost-audit-r1/next-factor-proposal.json": "3f93c49a3f510411cc75a2fbdbe6ec81f5644b91f7a9e79bef21bf1d533cbc54",
+    "hpo-selector-cost-audit-r1/analysis.txt": "6180b65ec376e01f6bc386cd54aa998741c429f663c0521efb42ca0b41294275",
+    "analyze_hpo_selector_costs_r1.py": "f25ea6d9c67a97d1878a6b9ba5ae9fda0a25e40c50965521d8d6f501ccf78ff9",
+    "hpo-selector-cost-independent-checks-r1.json": "502eb0c37400958ff77c34430c67a2a2084bc9d41913fd664e4a7a64bf2ec9b9",
+    "selector-cache-prototype.json": "a8538caa629fd02471e9d80454a0172b743b05c79b1a8010d5f5b37e071cb967",
+    "selector-cache-mock-checks-r1/results.json": "6d32f668fff56d7e996fd15f4ec0e1721d586d440dfad2a9029b463821814ae8",
+    "selector-cache-dev/src/automl/execution/feature_engineering/selection.py": "46005426777b60358549dc7dcecc559631b9012a9b3c6c90df24d4a2ffeb7008",
+    "selector-cache-dev/src/automl/execution/feature_engineering/importance_cache.py": "aed6d38534e8959f78587bb6e80025731923d2d5ed374a2853e5cb84c206c02a",
+    "selector-cache-dev/src/automl/execution/worker.py": "3d612d0e61b543aa8b05bdf7679e0b5005765cfd7e21899328d7e9e9bd7067f9",
+    "selector-cache-dev/tests/test_teacher_importance_cache.py": "7237383822152f98094e867cc3c5d3d99734cd78825b32ab3e09f80fd45df7b3",
+    "selector-cache-dev/tools/run_checks.py": "ea7cc507c9a73b26d769bdc652b701b629ed9bca6ad233532e68c470259e653a"
+  },
+  "scope": {
+    "saved_receipts_and_static_source_only": true,
+    "pinned_input_files_rehashed_unchanged": 100,
+    "selector_records_independently_recomputed": 47,
+    "outer_quality_scoring": false,
+    "private_API_ledgers_read": false,
+    "fits": 0,
+    "API_calls": 0,
+    "tests_run": 0,
+    "canonical_or_frozen_edits": false,
+    "launches": 0,
+    "promotion": false
+  },
+  "verdict": {
+    "cost_aggregates_reproduced": true,
+    "budget_arithmetic_correct": true,
+    "metadata_equality_limits_honestly_declared": true,
+    "blocker_for_analysis_only_packet": false,
+    "pilot_execution_ready": false,
+    "actual_cache_savings_demonstrated": false
+  },
+  "cost_results": {
+    "r": {
+      "attempted": 8,
+      "status_counts": {
+        "ok": 8
+      },
+      "whole_study_seconds": 83.563,
+      "successful_worker_reported_wall_sum": 71.891,
+      "all_attempted_reported_wall_sum": 71.891,
+      "successful_teacher_calls": 16,
+      "successful_selector_seconds": 45.924,
+      "failed_parent_completed_leaf_known_selector_seconds": 0,
+      "known_selector_seconds": 45.924,
+      "successful_selector_fraction": 0.6388004061704524,
+      "known_selector_fraction_whole": 0.5495733757763603,
+      "successful_metadata_repeat_groups": 0,
+      "successful_repeat_selector_seconds": 0,
+      "all_saved_repeat_selector_seconds": 0,
+      "adaptive_TPE_sampling_inferred": "at_most5_guided_after3startup_regression_existing_verified"
+    },
+    "c": {
+      "attempted": 3,
+      "status_counts": {
+        "ok": 2,
+        "timeout": 1
+      },
+      "whole_study_seconds": 900.344,
+      "successful_worker_reported_wall_sum": 664.516,
+      "all_attempted_reported_wall_sum": 890.891,
+      "successful_teacher_calls": 12,
+      "successful_selector_seconds": 544.187,
+      "failed_parent_completed_leaf_known_selector_seconds": 126.438,
+      "known_selector_seconds": 670.625,
+      "successful_selector_fraction": 0.8189223434800667,
+      "known_selector_fraction_whole": 0.7448541890655127,
+      "successful_metadata_repeat_groups": 4,
+      "successful_repeat_selector_seconds": 171.985,
+      "all_saved_repeat_selector_seconds": 211.767,
+      "adaptive_TPE_sampling_inferred": "none_with2successful_below3startup"
+    }
+  },
+  "FE_results": {
+    "regression": {
+      "broad": {
+        "workers": 3,
+        "status_counts": {
+          "ok": 3
+        },
+        "supervised_worker_seconds_sum": 26.484,
+        "successful_leaf_wall_seconds_sum": 22.485,
+        "teacher_fitted_calls": 0,
+        "selector_seconds_sum": 0,
+        "selector_fraction_of_supervised_worker_seconds": 0.0,
+        "within_leaf_metadata_repeat_groups": 0,
+        "repeated_after_first_selector_seconds": 0
+      },
+      "broad_protected32": {
+        "workers": 3,
+        "status_counts": {
+          "ok": 3
+        },
+        "supervised_worker_seconds_sum": 34.781,
+        "successful_leaf_wall_seconds_sum": 31.031,
+        "teacher_fitted_calls": 6,
+        "selector_seconds_sum": 17.015,
+        "selector_fraction_of_supervised_worker_seconds": 0.4892038756792502,
+        "within_leaf_metadata_repeat_groups": 0,
+        "repeated_after_first_selector_seconds": 0
+      },
+      "control_historical": {
+        "workers": 3,
+        "status_counts": {
+          "ok": 3
+        },
+        "supervised_worker_seconds_sum": 14.312,
+        "successful_leaf_wall_seconds_sum": 10.219,
+        "teacher_fitted_calls": 0,
+        "selector_seconds_sum": 0,
+        "selector_fraction_of_supervised_worker_seconds": 0.0,
+        "within_leaf_metadata_repeat_groups": 0,
+        "repeated_after_first_selector_seconds": 0
+      }
+    },
+    "classification": {
+      "broad": {
+        "workers": 2,
+        "status_counts": {
+          "ok": 2
+        },
+        "supervised_worker_seconds_sum": 344.766,
+        "successful_leaf_wall_seconds_sum": 340.267,
+        "teacher_fitted_calls": 0,
+        "selector_seconds_sum": 0,
+        "selector_fraction_of_supervised_worker_seconds": 0.0,
+        "within_leaf_metadata_repeat_groups": 0,
+        "repeated_after_first_selector_seconds": 0
+      },
+      "broad_protected32": {
+        "workers": 2,
+        "status_counts": {
+          "ok": 2
+        },
+        "supervised_worker_seconds_sum": 787.124,
+        "successful_leaf_wall_seconds_sum": 782.546,
+        "teacher_fitted_calls": 10,
+        "selector_seconds_sum": 533.5,
+        "selector_fraction_of_supervised_worker_seconds": 0.6777839323918468,
+        "within_leaf_metadata_repeat_groups": 2,
+        "repeated_after_first_selector_seconds": 98.657
+      },
+      "control_historical": {
+        "workers": 2,
+        "status_counts": {
+          "ok": 2
+        },
+        "supervised_worker_seconds_sum": 152.844,
+        "successful_leaf_wall_seconds_sum": 147.968,
+        "teacher_fitted_calls": 0,
+        "selector_seconds_sum": 0,
+        "selector_fraction_of_supervised_worker_seconds": 0.0,
+        "within_leaf_metadata_repeat_groups": 0,
+        "repeated_after_first_selector_seconds": 0
+      }
+    }
+  },
+  "count_and_timing_boundaries": [
+    "The 100 pinned records are files, not 100 successful fits. Worker leaf artifact paths are not proof of distinct operating-system processes.",
+    "Regression has 8 ok inner-HPO attempts; the previously verified startup-3 study has 5 subsequent guided successful trials. Classification has 2 ok and 1 timeout, so its 3-successful-complete startup threshold was not reached; a TPE sampler name alone does not establish adaptive sampling.",
+    "Classification successful selector calls total 544.187s,81.8922% of664.516s successful worker-reported wall. A completed child under the timed-out parent adds126.438s known selector time; interrupted unsaved work remains unknown.670.625s known selector is74.4854% of900.344s study wall.",
+    "Selector duration includes preprocessing, teacher construction/fit, importance extraction, ranking and slicing; it is not pure teacher.fit. Study wall minus worker-reported wall is not isolated Optuna overhead."
+  ],
+  "duplication_verdict": {
+    "successful_classification_within_leaf_metadata_repeat_groups": 4,
+    "second_call_selector_seconds": 171.985,
+    "including_saved_child_of_timeout_repeat_seconds": 211.767,
+    "actual_prepared_teacher_input_equal_groups": null,
+    "old_receipt_proven_cache_hits": 0,
+    "measured_cache_savings_seconds": null,
+    "reason": "Parent-row hashes, selected-column hashes and a parameter subset were checked, including actual saved train positions; actual ordered prepared teacher X/y/weights/effective settings were not captured. Same parents or selected columns cannot certify reuse. Cross-callback signatures are outside this leaf-local cache."
+  },
+  "registry_and_tests": {
+    "current_scripts": 46,
+    "current_expected_checks": 451,
+    "new_cache_methods_prepared_and_saved_mock_pass": 12,
+    "registered": false,
+    "only_this_addition_expected_scripts": 47,
+    "only_this_addition_expected_checks": 463,
+    "actual_full_source_or_unpacked_pass_for_cache": false
+  },
+  "saved_mock_evidence": {
+    "methods_passed": 12,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "reported_wall_seconds": 2.422,
+    "actual_fit_API_network_tripwires": 0,
+    "rerun_by_reviewer": false,
+    "historical_card_prepared_only_language_superseded_only_for_these_mock_results": true,
+    "full_source_or_exact_unpacked_cache_gate_pass": false
+  },
+  "prospective7200": {
+    "proposed_total_seconds": 7200,
+    "worker_caps_seconds": 2640,
+    "technical_source": 1800,
+    "exact_unpacked": 960,
+    "no_fit_contracts": 300,
+    "artifact_audit": 600,
+    "overhead_margin": 900,
+    "clock_assigned": false,
+    "status": "proposal_only_not_execution_ready",
+    "class_jobs2_plus_reg_negative_control": true,
+    "HPO_studies_changed": false,
+    "arithmetic": "2640 worker caps +1800 source +960 exact-unpacked +300 no-fit contracts +600 audit +900 overhead =7200",
+    "factor_scope_valid_for_mechanism_pilot": "Only default-false selector_importance_cache OFF/ON within one isolated common runtime/diagnostics; two completed class callbacks plus one regression negative control; no cross-leaf/view/callback cache.",
+    "required_before_any_future_fit": [
+      "Freeze common actual-fitting-input digest collector and honestly named teacher timing in BOTH arms; include all common diagnostic/hash/I/O costs.",
+      "Freeze numerical probability/prediction parity tolerances and all failure/null rules before observing outcomes.",
+      "Register the 12 new methods in a new isolated harness;463checks/47scripts is expected only if this is the sole registry addition. Pass actual zero-skip source and exact-unpacked gates and bind their receipts.",
+      "Review/publish exact runtime, input/job recipe mappings, guards and resources; only after active work is terminal and lock is free assign a new immutable7200s clock with full remaining-cap/audit admission. No retry, cap clipping,clock borrowing or reinvestment."
+    ],
+    "deferred_HPO20_study_unchanged": true,
+    "small_N_wall_gain_not_full_agent_quality_or_release": true
+  },
+  "narrow_nonblocking_notes": [
+    {
+      "priority": "P3",
+      "file": "selector-cache-dev/src/automl/execution/feature_engineering/selection.py",
+      "lines": [
+        61,
+        67
+      ],
+      "issue": "Prototype teacher_fit_seconds starts before create_model and ends after feature_importances_ extraction. It includes constructor and extraction; future pure-fit telemetry must time only .fit or use an inclusive field name.",
+      "effect": "Does not invalidate current whole-selector sums; prevents treating that prototype timer as pure fit."
+    },
+    {
+      "priority": "P3",
+      "file": "analyze_hpo_selector_costs_r1.py",
+      "lines": [
+        30,
+        35
+      ],
+      "issue": "Metadata subset uses history_minimum_periods, while worker.py168 reads history_min_periods. The subset must not be promoted into an exact cache key.",
+      "effect": "No demonstrated aggregate cost error; already-declared metadata-only equality remains incomplete."
+    }
+  ],
+  "preservation": "Original cost packet/prototype/frozen395/canonical runtime and every old receipt preserved; this review and independent aggregate checks are new work files only."
+}

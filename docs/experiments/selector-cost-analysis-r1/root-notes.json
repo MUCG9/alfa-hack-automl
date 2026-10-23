@@ -1,0 +1,22 @@
+{
+  "status": "root_reviewed_cost_observation_only; future_pilot_unlaunched",
+  "pinned_sources_rehashed": 100,
+  "independent_selector_records_recomputed": 47,
+  "classification_successful_worker_selector_fraction": 0.8189223434800667,
+  "classification_known_selector_seconds_including_completed_timeout_child": 670.625,
+  "classification_whole_study_seconds": 900.344,
+  "metadata_repeat_seconds_successful": 171.985,
+  "actual_cache_savings_seconds": null,
+  "corrections_and_limits": [
+    "The historical metadata subset key history_minimum_periods is a typo; runtime reads history_min_periods. Do not use this incomplete subset as an exact cache key. Original observations are preserved.",
+    "Prototype teacher_fit_seconds currently includes constructor and importance extraction. Future common diagnostics must distinguish that inclusive region from pure .fit time.",
+    "Actual teacher X/y/weights keys are absent from old receipts, so metadata repeats are neither proven cache hits nor measured savings.",
+    "The 12 saved cache mock methods are not registered in the current full gate. A future isolated addition alone would make463 checks/47 scripts; these are expected, not actual passed counts.",
+    "The proposed7200-second pilot needs frozen common diagnostics, numerical tolerances, source/unpacked gates, ownership and publication before any new clock or fit.",
+    "The current full-agent CV model factor remains unchanged; no cache/telemetry/HPO factor is merged into it."
+  ],
+  "new_fits": 0,
+  "new_API_calls": 0,
+  "promotion": false,
+  "official_submission": false
+}

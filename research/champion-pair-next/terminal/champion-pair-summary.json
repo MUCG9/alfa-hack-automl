@@ -1,0 +1,62 @@
+{
+  "status": "verified_regression_champion_policy_retention",
+  "actual_exec_session": 43472,
+  "actual_exec_exit_code": 0,
+  "actual_exit_tool": "1b5cd8",
+  "root_closer_actual_exit_code": 0,
+  "root_closer_actual_tool": "f09844",
+  "root_closure_sha256": "96f5d956fa235cfd0904d55f67aeeaae8c93a083391fe8b370836f6e39ba309d",
+  "root_preparers_fresh_absent": true,
+  "root_preparers_absence_tool": "503bb2",
+  "source_commit": "61213b742b0182e486b9769bfbd439acea312938",
+  "independent_audit_sha256": "00c5abcb306010d194b7d642cc6c1b6fe354ff24c89e9c7354fc084fea20dba4",
+  "elapsed_common_seconds": 526.359000000004,
+  "original_limit_seconds": 5400,
+  "comparison": {
+    "cuts": [
+      {
+        "phase": "primary",
+        "A": 38.584497514084575,
+        "B": 37.988491672517135,
+        "delta_B_minus_A": -0.5960058415674396,
+        "B_no_worse_than_A": true,
+        "retained_T5_floor": 37.988491672517135,
+        "B_meets_retained_T5_floor": true
+      },
+      {
+        "phase": "confirmation",
+        "A": 31.83068683979394,
+        "B": 31.743950084928418,
+        "delta_B_minus_A": -0.08673675486552312,
+        "B_no_worse_than_A": true,
+        "retained_T5_floor": 31.743950084928418,
+        "B_meets_retained_T5_floor": true
+      }
+    ],
+    "A_mean": 35.20759217693926,
+    "B_mean": 34.86622087872278,
+    "delta_B_minus_A": -0.3413712982164796,
+    "absolute_reproduction_tolerance": 1e-09,
+    "descriptive_retention_win": true,
+    "independent_raw_T5_predictions_reverified": false,
+    "limitation": "T5 cut floor is pinned previously audited reused-public evidence; one stochastic A/B does not establish stable causal or blind/private gain."
+  },
+  "V16_mean_RMSE": 35.44723155783769,
+  "retained_T5_mean_RMSE": 34.86622087872278,
+  "selected_B_exact_pinned_champion": true,
+  "champion_absent_from_A_primary": true,
+  "B_delta_vs_V16": -0.581010679114911,
+  "B_delta_vs_prior_T5": 0.0,
+  "complete_regression_procedure_verified": true,
+  "classification_tested_here": false,
+  "source_gate_scope": "T7 source458/exact23 and actualChampionStage0 source471/exact23+1 reused with fresh source pins; no full suite rerun in CP1",
+  "promotion": false,
+  "submit": false,
+  "official_score": null,
+  "limitations": [
+    "One stochastic A/B; initial/followup Qwen proposals differ and one optional initial slot is displaced.",
+    "Both selected cuts independently recalculated against pristine labels; confirmation overlaps inner HPO.",
+    "Preserved T5 floor already audited; raw old T5 predictions not rescored in this A/B.",
+    "Only regression whole-agent verified here; no new two-task/default release qualification."
+  ]
+}

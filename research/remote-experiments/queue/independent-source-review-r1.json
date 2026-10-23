@@ -1,0 +1,86 @@
+{
+  "schema": "remote-experiment-queue-independent-source-review-v1",
+  "status": "no_open_source_blocker_in_declared_scope_pre_execution",
+  "packet": "remote-experiment-queue-next-dev",
+  "source_sha256": {
+    "remote_queue.py": "d42cb979db953eeffabfa65ee2a40d8763dfd835f91ce35149327f3d181e4c49",
+    "test_remote_queue.py": "af46ed5174694104d0368e35ac235f83a3425210b3be9dff8e088efeceafe6ed",
+    "source-handoff.json": "71983de169d500709fd461548675a8fb0279f7e43f1a91451fba9907827d3cec",
+    "README.txt": "a5ca3348cefb1b920f1ebc9ce9ad651ddd7738fdc896df7815ebf9f55cabbfcf",
+    "REMOTE_AGENT_START.txt": "e28eb98f76223b044f9a1cc704b0101ba8280e6dceb1cf9edcc13d6a82bc4a81",
+    "static-proof.json": "005a650fe6150cc05777854a2cd53d4b704862df90b7bb750ac38055e8fae55e"
+  },
+  "author_final_handoff_sha256": "71983de169d500709fd461548675a8fb0279f7e43f1a91451fba9907827d3cec",
+  "scope": "Independent read-only source/metadata review, including final bounded-admission and deletion delta. No CLI/model/test import or Git command was executed by reviewer.",
+  "checked": [
+    "Fixed Git argv via shell=False; hooks disabled; no job/source/patch execution, model launcher, scheduler, arbitrary shell payload or main/force/dispatch push path. Claims/results write only their declared research refs.",
+    "Immutable job bytes pinned to exact dispatch commit and SHA; source_refs path/SHA verified. Current path history rejects mutation and targeted deletion history rejects removal before enumeration.",
+    "Claim commit exact parent=dispatch; normal push to absent per-job ref makes concurrent distinct sibling claims non-fast-forward competitors. Readback checks ref. Same declared owner resumes exact old claim/deadline; other owner/reclaim/expiry/reset not implemented.",
+    "Bounded claims require completed source_only dependency from same worker, exact primary-published approval source_ref path/SHA, dependency result commit+worker identity and requested caps within approved/global caps. All dependencies completed.",
+    "Results are write-once normal-push children of exact claim, bind immutable job/claim bytes, worker and hashes; collect revalidates exact parent and payload. Failure/timeout/blocked metrics null with first_error, secondary errors retained; finite scalar reported metrics and original clock/caps validated.",
+    "Completed artifact names exactly equal expected_outputs; failure subset only; declared/actual casefold collisions rejected. Flat UTF8 source/patch/text/JSON only, regular file mode, bounded bytes/counts, traversal/binary/symlink/credential/private-path/common data/prediction/weight-name filters.",
+    "Collected metrics/resources/clocks remain remote_reported_requires_independent_verification and promotion=false. No remote connection, actual worker execution or ML improvement inferred from source readiness.",
+    "13 prepared offline bare-Git test methods cover race, roundtrip, owner/resume, immutable mutation/deletion/result, bad bindings/hashes, caps/null clock, sanitized outputs, symlink modes and same-worker primary approval. Test source inspected, not executed."
+  ],
+  "resolved_findings": [
+    {
+      "id": "P2-output-allowlist",
+      "issue": "Original draft validated expected_outputs but did not bind submit/collect artifact names.",
+      "resolution": "Exact successful set / failed subset enforced at submit and collect."
+    },
+    {
+      "id": "P2-casefold-portability",
+      "issue": "Distinct Foo.py/foo.py in Linux result could overwrite during Windows collection.",
+      "resolution": "Case-insensitive duplicate declared/actual artifact names rejected."
+    },
+    {
+      "id": "P2-malformed-entry",
+      "issue": "Invalid source_refs entry type could raise uncaught TypeError instead of sanitized failure.",
+      "resolution": "Entry/type guards added before schema set checks; malformed JSON subcases prepared."
+    },
+    {
+      "id": "P2-immutable-deletion",
+      "issue": "Removed current-tree job escaped per-path history and unfinished-worker enumeration.",
+      "resolution": "Targeted historical deletion guard precedes enumeration; existing immutable-job test adds actual deletion case."
+    }
+  ],
+  "limitations": [
+    "This is a trusted Git collaboration protocol, not a security sandbox: source/text filters cannot prove semantic absence of disguised raw rows, predictions, weights or every credential. Root/manual review remains mandatory; returned code is never automatically applied/imported.",
+    "Ownership atomicity is per job ref. One existing caller per worker is a cooperative operational rule; no distributed worker-wide mutex between different concurrent job IDs is claimed.",
+    "Git result records pre-push submitted timestamp; actual publication latency and remote host wall/RSS/ML metrics are not independently certified. Root must retain late/unknown evidence and independently verify/local-confirm before qualification.",
+    "Transport preparation/status is separate from immutable ready jobs. Publish each final READY job once only after root actual offline-check PASS/closure. Do not mutate draft to ready under an already published job ID.",
+    "No actual remote claim/connection or execution was observed by this reviewer. Local offline fixtures cannot establish real cross-computer transport or model correctness."
+  ],
+  "root_next_step": "Run exact13 offline tests sequentially under the root-owned180s guard, retain actual exit/cleanup/source hashes, then publish READY only on actual PASS. No reviewer execution authorization or quality promotion is implied.",
+  "prepared_test_methods": [
+    "test_roundtrip_source_patch_is_remote_reported_only",
+    "test_two_worker_atomic_claim_race_has_exactly_one_winner",
+    "test_same_owner_resume_keeps_exact_original_clock",
+    "test_other_owner_cannot_reclaim",
+    "test_changed_job_id_cannot_be_reused",
+    "test_wrong_claim_and_worker_cannot_submit",
+    "test_collect_rejects_wrong_job_binding",
+    "test_collect_rejects_wrong_artifact_hash",
+    "test_result_ref_is_write_once",
+    "test_null_timeout_and_original_deadline_contract",
+    "test_secret_data_binary_private_path_and_cap_denials",
+    "test_git_symlink_mode_and_bounded_claim_fail_closed",
+    "test_bounded_requires_exact_same_worker_primary_approval_and_caps"
+  ],
+  "actual_reviewer_actions": {
+    "source_and_hash_reads": true,
+    "AST_test_method_inventory_only": true,
+    "candidate_imports": 0,
+    "test_runs": 0,
+    "Git_commands": 0,
+    "network_or_API_calls": 0,
+    "model_fits": 0,
+    "process_scans": 0,
+    "source_edits": 0,
+    "STATE_Git_edits": 0,
+    "clocks_assigned": 0
+  },
+  "promotion": false,
+  "official_score": null,
+  "actual_remote_execution": false
+}

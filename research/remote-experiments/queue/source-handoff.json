@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "status": "source_frozen_prepared_unexecuted_pending_root_technical_tests",
+  "files_sha256": {
+    "remote_queue.py": "d42cb979db953eeffabfa65ee2a40d8763dfd835f91ce35149327f3d181e4c49",
+    "test_remote_queue.py": "af46ed5174694104d0368e35ac235f83a3425210b3be9dff8e088efeceafe6ed",
+    "README.txt": "a5ca3348cefb1b920f1ebc9ce9ad651ddd7738fdc896df7815ebf9f55cabbfcf",
+    "REMOTE_AGENT_START.txt": "e28eb98f76223b044f9a1cc704b0101ba8280e6dceb1cf9edcc13d6a82bc4a81",
+    "job-template.json": "394721c2f892455789e0132ac245f91afbb37a55e6979555671f0d2aee3e7f71",
+    "static-proof.json": "005a650fe6150cc05777854a2cd53d4b704862df90b7bb750ac38055e8fae55e"
+  },
+  "prepared_tests": 13,
+  "executed_tests": 0,
+  "published_cli_path": "research/remote-experiments/queue/remote_queue.py",
+  "dispatch_branch": "research/remote-dispatch",
+  "job_directory": "research/remote-experiments/jobs",
+  "claim_branch_template": "refs/heads/research/remote-claims/<jobid>",
+  "result_branch_template": "refs/heads/research/remote-results/<jobid>",
+  "schema_field": "schema",
+  "schema_version": 1,
+  "subcommands": {
+    "list": [],
+    "poll": [
+      "--worker-id"
+    ],
+    "claim": [
+      "--job-id",
+      "--worker-id",
+      "optional --dispatch-sha"
+    ],
+    "submit": [
+      "--job-id",
+      "--worker-id",
+      "--claim-sha",
+      "--report",
+      "--artifacts"
+    ],
+    "collect": [
+      "--job-id",
+      "optional --output"
+    ]
+  },
+  "global_options": [
+    "--repo",
+    "--remote",
+    "--dispatch-branch"
+  ],
+  "test_command": "python -B -X utf8 -m unittest discover -s work/remote-experiment-queue-next-dev -p test_remote_queue.py -v",
+  "bounded_admission": "Completed source_only dependency collected for same worker + exact pinned primary review JSON matching resultSHA/worker/dependency with all requestedcaps <= approvedcaps and globalcaps.",
+  "hardcaps": {
+    "wall_seconds": 10800,
+    "cpu_threads": 2,
+    "worker_memory_mib": 1536,
+    "whole_memory_mib": 2048,
+    "max_fits": 128,
+    "max_api_calls": 0
+  },
+  "fit_definition": "Actual learner fit calls including nested fitting and refit; preprocessing tracked separately.",
+  "artifact_caps": {
+    "per_file_bytes": 131072,
+    "artifact_total_bytes": 262144,
+    "file_count": 16,
+    "flat_extensions": [
+      ".py",
+      ".patch",
+      ".json",
+      ".txt",
+      ".md"
+    ]
+  },
+  "guarantees_source_scope": [
+    "normalpush unique single-parent sibling claim, no force/requeue/reclaim/reset",
+    "write-once result child of exact claim",
+    "historical job edit/delete failclosed",
+    "original claim start/deadline preserved",
+    "declared output names exact on completed and subset on failure, casefold collision denied",
+    "collect validates byte hashes/lineage/caps/nulls/errors, never executes artifacts",
+    "Git credential interaction disabled via GIT_TERMINAL_PROMPT=0 and GCM_INTERACTIVE=Never"
+  ],
+  "limitations": [
+    "No runtime/tests executed by author; root technical tests required before actualuse.",
+    "Only atomic per-job ownership; assumes one existing cooperative caller per stable worker, not a distributed worker mutex.",
+    "Content filters are not semantic proof against disguised data/secrets; all received code/metadata needs manual primary review.",
+    "Remote clocks/RSS/fit counts/scalar metrics remain remote-reported; no automatic promotion or officialscore.",
+    "Git packet prepush timestamp cannot independently prove remote publication completion before deadline.",
+    "Requires existing Git authentication and SHA1 object IDs; no keys supplied.",
+    "Git stdout is checked after command completion, not a hard streaming memory guarantee.",
+    "Remote agent connection remains waiting_for_first_claim until an actual validated claim is observed."
+  ],
+  "earlier_work": "KERN fixed-blend draft preserved; failed KERN01 parent does not qualify blends.",
+  "performed": {
+    "queue_module_imports": 0,
+    "Git_commands_or_writes": 0,
+    "tests_run": 0,
+    "project_model_imports": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "process_scans": 0,
+    "research_clocks_assigned": 0,
+    "STATE_edits": 0
+  },
+  "no_more_source_writes_without_concrete_defect": true
+}

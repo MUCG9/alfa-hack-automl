@@ -1,0 +1,71 @@
+Read this once in the EXISTING authorized remote agent task. No new agent,
+service, cron or machine. The queue does not itself run work or establish a
+connection. Keep your stable lowercase WORKER_ID, e.g. worker-b.
+
+Use existing Git credentials only. Never print/commit tokens, API keys, passwords,
+private paths, datasets, predictions, probabilities, learned weights or models.
+First task is source_only: zero fits/API. Later ML jobs require a completed source-only dependency for THIS SAME worker
+and an immutable primary approval pinned by the new job. Without it the CLI
+refuses bounded_experiment claims. With it, perform only the bounded requested
+experiment, one active model/experiment at a time, including all nested fits,
+refit/audit/cleanup/submission in the ORIGINAL claim clock. Never exceed jobcaps.
+
+From your existing repository clone, use the root-published queue script:
+
+python research/remote-experiments/queue/remote_queue.py --repo . --remote origin --dispatch-branch research/remote-dispatch poll --worker-id worker-b
+
+If claimed_job is returned, resume that claim with its exact original clock. If
+next_job is returned, claim that JOB_ID at the exact dispatch_sha from poll:
+
+python research/remote-experiments/queue/remote_queue.py --repo . --remote origin --dispatch-branch research/remote-dispatch claim --job-id JOB_ID --worker-id worker-b --dispatch-sha DISPATCH_SHA
+
+Only successful claim/already_owned authorizes you. If another worker won, do
+not change identity, reclaim, force-push, delete refs or reset clocks. Read
+claimed_job and AGENT_PROMPT. Perform only the work explicitly authorized by the claimed job, with pinned
+code/input references and original caps. Source-only forbids fits/API; a later
+bounded job must pass the same-worker primary approval/caps check. The original start is claim.claimed_at_unix and deadline
+is claim.deadline_unix, including preparation/checks/patch/submission. No retry.
+
+Do not claim another unfinished job while running a model. The existing
+heartbeat resumes the current original claim; it must not create parallel fits.
+The source-manifest may bind an exact root-approved pure-code ZIP and member
+hashes. Manually verify those hashes before using that code. Do not execute
+unreviewed downloads. No private datasets/predictions are required for bootstrap.
+
+Put only the exact expected_outputs into a flat ARTIFACT_DIR. Completed results
+require all declared outputs; failures may return a subset. Allowed public UTF8
+.py/.patch/.json/.txt/.md only, each128KiB,16files/256KiB total. No nested folders,
+symlinks, ZIPs, binaries, data, predictions, weights, secrets or private paths.
+All source/metadata still needs main-agent review: filters are not a semantic
+proof against disguised data or secrets. Never import/apply a returned patch
+without review.
+
+REPORT.json exact fields (replace placeholders with actual original numbers):
+{
+ "schema":1,"status":"completed",
+ "start_unix":ORIGINAL_CLAIM_START,"deadline_unix":ORIGINAL_CLAIM_DEADLINE,
+ "finished_unix":ACTUAL_FINISH,
+ "metrics":{"rmse":null},
+ "usage":{"wall_seconds":ACTUAL_ELAPSED,"cpu_threads":1,
+          "worker_memory_mib":null,"whole_memory_mib":null,"fits":0,"api_calls":0},
+ "first_error":null,"secondary_errors":[]
+}
+Unknown measurements are null. On failed/blocked/timeout use that status, null
+metrics and first_error={"code":"bounded_reason","detail":"short public reason"};
+preserve secondary errors. Never label late work completed. Fits means actual
+learner fit calls including nested/refit, not logical jobs; preprocessing is
+separate. Source-only remains0 fits/API and no numeric ML scores. Later bounded numeric
+metrics need complete reported usage under caps and independent root
+verification; never upload predictions or learned weights.
+
+Submit once with your successful claim_sha:
+
+python research/remote-experiments/queue/remote_queue.py --repo . --remote origin --dispatch-branch research/remote-dispatch submit --job-id JOB_ID --worker-id worker-b --claim-sha CLAIM_SHA --report REPORT.json --artifacts ARTIFACT_DIR
+
+A failed/uncertain push requires inspecting the exact existing ref. Never force,
+overwrite, replace results, delete or reclaim. Wait for root review/new jobs.
+Your EXISTING heartbeat can poll the same command again; do not add a service
+or new scheduler. If no ready job, wait in this task. Do not merge into main or
+dispatch. Every result remains remote-reported until independent verification or
+local confirmation. No automatic model promotion, official-score or connection
+claim. Root says waiting_for_first_claim until a valid claim is actually observed.

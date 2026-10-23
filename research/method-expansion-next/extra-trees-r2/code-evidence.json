@@ -1,0 +1,143 @@
+{
+  "status": "source_and_closed_metadata_only",
+  "requirements": {
+    "evidence_path": "evidence/allowed-requirements.txt",
+    "sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+    "sklearn_allowed": "1.5.2",
+    "scipy_allowed": "1.12.0",
+    "torch_allowed": "2.5.1",
+    "lightautoml_allowed": "0.4.2",
+    "autogluon_tabular_allowed": "1.3.1",
+    "flaml_allowed": "2.3.6"
+  },
+  "installed_distribution_metadata": [
+    {
+      "distribution": "scikit-learn",
+      "version": "1.5.2",
+      "metadata_path": "venv/Lib/site-packages/scikit_learn-1.5.2.dist-info/METADATA",
+      "metadata_sha256": "486833d77aa752cb0e5dfa4fccb0ccfd92e3647f35a80307b1ed923efe650c86",
+      "record_sha256": "25be8ea3d004ae7347de2b8579f503096146cf0b4c0994d6a3dc6db98cb5bfcb",
+      "boundary": "On-disk distribution metadata; no import or native runtime fingerprint"
+    },
+    {
+      "distribution": "scipy",
+      "version": "1.12.0",
+      "metadata_path": "venv/Lib/site-packages/scipy-1.12.0.dist-info/METADATA",
+      "metadata_sha256": "78c7c9088567159c959b9536bc2f5b1c5ca6a45ee6e32e0b4ab385e0c76568dd",
+      "record_sha256": "e565e0db6080149f6e54f82b1c13a3edd6f51e9067b9c9779acef435ca1f5758",
+      "boundary": "On-disk distribution metadata; no import or native runtime fingerprint"
+    }
+  ],
+  "not_verified_installed_metadata_absent": {
+    "torch": true,
+    "lightautoml": true,
+    "autogluon": true,
+    "flaml": true
+  },
+  "base_sources": {
+    "m3dev/src/automl/search/policy.py": "3f6a8477b8076e83531b62d4ffc383ce935c6cf912a61cccde6201f7f7fd8e61",
+    "m3dev/src/automl/search/stages.py": "f21ef2e2b8cb20c4a6ec84aab246e710e477994f551405f7aa7c2d660def0f3e",
+    "m3dev/src/automl/search/runner.py": "e204a9eec98e7f3fa7799470cc453e8f4a3887247e8d102b5d0bb834f88c2ef3",
+    "m3dev/src/automl/execution/worker.py": "ffa06615a7f59f958f77a24d1f89727dc31fae7d4ba49f30201d77c331887b14",
+    "m3dev/src/automl/execution/preprocessing/frames.py": "859a7559e3d2b0111191f9d45b6d94408faea100bd370fb60ce51415b7e5f76d",
+    "m3dev/src/automl/execution/model_adapters/extra_trees.py": "0a6a1093cd6f329ad69cddc7f3965067f7b539835312d2c16029deec47b5692a",
+    "m3dev/src/automl/execution/model_adapters/linear_text.py": "2598bfa99f846eac2d2599b457fbd8ea70f292b4a49eaaf15bebfd3d2760e842",
+    "m3dev/src/automl/execution/model_adapters/registry.py": "f8451f7b1dbcc58c5f151cfd07a32068ffa4ac533430647d87c9653dba603fab",
+    "m3dev/src/automl/execution/weighting/classes.py": "421ba823788be5e3c4d6c529578c7fb7e5f64b5e95c4c35ca11c7ce75fd1ccd5",
+    "m3dev/src/automl/infrastructure/runtime.py": "c450ef040bd04e55c295c51ff1037147b938afb8e239617cb936bcfc2a9047d8",
+    "m3dev/tools/module_map.json": "f989a9177958b6d0c539b6e3bc9b0a4f8a686c5dea8801af8a94a3ee7aa4ab8e",
+    "m3dev/tools/build_submission.py": "8bda307675a952b2e4dc9d53ea8d738be05f8ca15a0e85d79c566e42cf95a6b6"
+  },
+  "closed_participation": [
+    {
+      "report": "t5/r/automl_runs/repair4/report.json",
+      "sha256": "6f75caecac002984ae14217fd6185386cd42e4ba1fcbeed11d2a0f16a89adce9",
+      "primary_records": 14,
+      "top_level_engine_counts": {
+        "ensemble": 1,
+        "lightgbm": 10,
+        "catboost": 2,
+        "xgboost": 1
+      },
+      "recursive_recipe_engine_counts": {
+        "ensemble": 1,
+        "lightgbm": 11,
+        "catboost": 3,
+        "xgboost": 1
+      },
+      "extra_trees_observed": false,
+      "linear_text_observed": false,
+      "scope": "Closed saved recipe metadata only; not rescored and not all historical runs"
+    },
+    {
+      "report": "t6/r/automl_runs/repair4/report.json",
+      "sha256": "a6fc1214e449ead3eb3d42d2dda0dcf8fb384b27689290a89b79353cdf38c442",
+      "primary_records": 9,
+      "top_level_engine_counts": {
+        "ensemble": 1,
+        "lightgbm": 5,
+        "catboost": 2,
+        "xgboost": 1
+      },
+      "recursive_recipe_engine_counts": {
+        "ensemble": 1,
+        "lightgbm": 6,
+        "catboost": 3,
+        "xgboost": 1
+      },
+      "extra_trees_observed": false,
+      "linear_text_observed": false,
+      "scope": "Closed saved recipe metadata only; not rescored and not all historical runs"
+    },
+    {
+      "report": "t6/c/automl_runs/repair4/report.json",
+      "sha256": "13f063633691823aed9e2a7d28038a1d5829a12d05d2a1935595df6fa75fff7a",
+      "primary_records": 9,
+      "top_level_engine_counts": {
+        "ensemble": 1,
+        "lightgbm": 5,
+        "catboost": 2,
+        "xgboost": 1
+      },
+      "recursive_recipe_engine_counts": {
+        "ensemble": 1,
+        "lightgbm": 7,
+        "xgboost": 2,
+        "catboost": 2
+      },
+      "extra_trees_observed": false,
+      "linear_text_observed": false,
+      "scope": "Closed saved recipe metadata only; not rescored and not all historical runs"
+    }
+  ],
+  "established_facts": [
+    "ExtraTrees is already a supported adapter and Qwen recipe engine; ordinary non-text deterministic portfolio does not include it.",
+    "ExtraTrees fitting-only frequency/median preprocessing uses the worker fitting rows; no new preprocessing is added.",
+    "Existing linear_text supports text_columns=[] with numeric fitting-only median/scale, sparse categorical OHE and Ridge10 or SGD/logistic classification.",
+    "Ordinary non-text deterministic portfolio does not currently include linear_text; engine name alone does not imply text-only capability.",
+    "No torch/LightAutoML/AutoGluon/FLAML adapters are added or proposed ready based on allowed requirements alone."
+  ],
+  "no_claims": [
+    "No current T7 classification results read",
+    "No complete historical participation census",
+    "No measured method gain",
+    "No package imports or native library verification"
+  ],
+  "R2_registered_alignment": {
+    "registration_path": "registered-METH01.json",
+    "source_sha256": "ac359bfc16ac43a044ff08f346b05514c1dfe719dea7844256cb382b91331d4d",
+    "candidate": {
+      "iterations": 128,
+      "max_depth": 16,
+      "min_samples_leaf": 4,
+      "max_features": 0.9,
+      "seed": 42
+    },
+    "worker_seconds": 480,
+    "common_seconds": 6600,
+    "inherited_class_weight_provenance": {
+      "path": "inherited-class-weights.json",
+      "sha256": "b2ba760cfe7f7184823e627adc900442346f2799d9b8747400319ed30a91d93e"
+    }
+  }
+}

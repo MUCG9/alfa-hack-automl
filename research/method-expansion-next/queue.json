@@ -57,7 +57,7 @@
     {
       "id": "METH-01",
       "name": "ExtraTrees family and complementary predictions",
-      "status": "source_preparation_pending_no_fits",
+      "status": "R2_source_prepared_registration_aligned_component_execution_pending",
       "hypothesis": "A randomized forest can add errors different from boosting; diversity may help a fixed blend even when its standalone score is weaker.",
       "factor": "One new learner with its necessary supported preprocessing; no sampling/weight/feature-policy change is credited as a pure model effect",
       "candidate": {
@@ -81,7 +81,11 @@
       "after_screen": "No mandatory full-agent queue inclusion unless measured contribution passes the declared downstream gates; keep negative standalone result even if later blend helps.",
       "actual_command": null,
       "actual_metric": null,
-      "clock_start": null
+      "clock_start": null,
+      "source_packet": "research/method-expansion-next/extra-trees-r2",
+      "fixed_weight_scope": "Inherited same power.5 as all3 strong class-control components; no tuned weight experiment",
+      "source_registration_alignment_review": "research/method-expansion-next/extra-trees-r2/root-review-r2.json",
+      "classification_fixed_class_weight_power": 0.5
     },
     {
       "id": "METH-02",

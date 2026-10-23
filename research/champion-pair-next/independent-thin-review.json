@@ -1,0 +1,53 @@
+{
+  "status": "source_only_thin_auditor_review_no_remaining_concrete_blocker",
+  "reviewer": "features_models",
+  "source_sha256": {
+    "champion-pair-next-dev/run_pair.py": "f0c154649b28c6366c106e6adcddb6965a0f914a1d9a7231370e693f8349f935",
+    "champion-pair-next-dev/audit_pair.py": "ba14ac9c55f7222be7d25b110291725b20905b6f16259d64ff79e0c886581f57",
+    "run_lean_mvp_r2.py": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "repaired-mvp-r1-dev/evaluator_r4.py": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+    "csdev/src/automl/search/stages.py": "d8e79f0cb36612849e0d48b2e486c20e773c09696c2d6e788832f19bee509133",
+    "csdev/src/automl/search/runner.py": "4807ba7609009e24899fcc5213fe44db4e2f6ad3d63e57ed2af3e20acdedad2f",
+    "champion-seed-next-dev/champion-t5-regression.json": "914880505ed751da9fd0a38d7f1724dd860c20d98456ff3efd16a195a0709ad4",
+    "champion-seed-next-dev/champion-t5-lineage.json": "408d24be5c884152531552bb0016611eb55b9123aadb4c1a361396d3f7115cf3"
+  },
+  "scope": "Thin auditor, source/argv/control/champion ordering/seals. Coordinator ownership review is separate ca28f3c4; no actual launch/artifact scoring performed by this reviewer.",
+  "critical_findings": [],
+  "resolved_finding": {
+    "id": "CP-SUPERVISOR-BINDING",
+    "description": "Initial48786 auditor checked saved supervisor hash/cleanup but used inline status/exit for procedure qualification without explicit stable-field equality.",
+    "resolution": "Current auditor compares saved status, exit, cleanup, solver/parent/child/HPO caps, owned root/identities and cleanup_observation to inline entry; checks no unresolved cleanup and rehashes supervisor after scoring.",
+    "observed_runtime_failure": false
+  },
+  "checked": {
+    "source_and_argv": "A exactm4 archive1612039, B champion archive52627 differs only runner/stages. Both actual argv frozen before A; B adds only champion input flag. Existing worker/model/evaluator and both task/control bytes retained.",
+    "control_and_HPO": "Both report protected complete control and exact first SINGLE HPO control are audited. Three family success and separate broad/CatBoost32-protected branch remain required; HPO budget8/900 and max9 unchanged.",
+    "champion": "Input914880/snapshot/provenance/signature959a9b8 are checked; scheduled prior_champion at actual index5 and successful same recipe primary measurement required. Extra independent R4 diagnostics audits champion even if unselected; optional actual confirmation is also verified.",
+    "seals_and_truth": "ExactlyA/B arm entries, terminal cleanup, supervisor hash and complete actual core inventories are checked for BOTH arms before frozen R4 import/label parsing. Source/control/pristine input and core/supervisor hashes rechecked after scoring.",
+    "metrics": "Frozen R4 formulas/partitions/manual predictions reused; exact lineage row/split fingerprints compared. Arm failure stays explicit null, no zero imputation. Retention comparison only when both procedures pass; Bmean<A plus eachcut <=A and retainedT5 floors+tolerance1e-9.",
+    "boundaries": "One stochastic reused-public A/B is descriptive, not stable causal or hidden/official score. No promotion/refit policy relaxation; parent actualexec/fresh terminal ownership/source/deadline qualification remains required separately.",
+    "clock": "One5400 envelope420+2100+2100+600+180, matched solver2010/parent2040 inside each2100 slot; setup and seal metadata counted; source-only analysis does not certify actual caps."
+  },
+  "withdrawn_partial_concern": {
+    "topic": "predecessor_orphan_scan",
+    "status": "withdrawn_not_a_bug_or_requested_policy_change",
+    "reason": "Exact43be predecessor uses known identity union and StrictOwnedObserver descendants, not a global PPID scan. My temporary suggestion imported older45dd semantics incorrectly. Current secondary observer already checks full known union; no global scan requirement is introduced."
+  },
+  "readiness": {
+    "source_scope_no_remaining_concrete_blocker": true,
+    "root_actual_stage0_and_fresh_closure_prerequisite": true,
+    "full_pair_executed": false,
+    "actual_A_or_B_quality": null,
+    "launch_approval_given_by_reviewer": false,
+    "promotion": false
+  },
+  "reviewer_execution": {
+    "candidate_runtime_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "actual_pair_output_reads": 0,
+    "source_edits": 0,
+    "STATE_or_Git_actions": 0
+  }
+}

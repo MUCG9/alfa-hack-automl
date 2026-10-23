@@ -1,0 +1,254 @@
+{
+  "status": "closed_classification_HPO_repetition_verified_no_new_fits",
+  "input_sha256": {
+    "t6-independent-classification-r1/audit.json": "831582b935dbfeabd5b6438d3133ab8fffcb8252708062f86057a5ac64d343b7",
+    "t7/independent-audit.json": "938dfd90713ae2a53555caf1831ebda01c56f9526d7b868d001df21a3fa52ca9",
+    "t6/c/automl_runs/repair4/inner-hpo/hpo.json": "3ffdb7373425ea0dc82d561cc2555b361a0a4b0e4262d641c698bb773b310937",
+    "t7/c/automl_runs/repair4/inner-hpo/hpo.json": "c8c438aff26f68c80821e83d338069769725ff5bb9341c2b5f425a0fbf901f38"
+  },
+  "trials": [
+    {
+      "number": 0,
+      "params_equal": true,
+      "recipe_equal": true,
+      "phase_equal": true,
+      "objective_equal": true,
+      "fit_iterations_equal": true,
+      "prediction_hashes": [
+        {
+          "member": "inner-hpo/trial-00/validation_predictions.csv",
+          "T6": "9e301c0b996caaa71d20205cad0867d4aace1859c765a28f53fb21fdc5efe4cc",
+          "T7": "9e301c0b996caaa71d20205cad0867d4aace1859c765a28f53fb21fdc5efe4cc",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-00/component-0/validation_predictions.csv",
+          "T6": "921d3a71bad8ff71c89dff09e9ad657094884a2f5130c1aaf0739881bffac871",
+          "T7": "921d3a71bad8ff71c89dff09e9ad657094884a2f5130c1aaf0739881bffac871",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-00/component-1/validation_predictions.csv",
+          "T6": "7ead8f503be83967090a417a9315a43b66a2cb22ec7c78646e6cbc80004aa5d3",
+          "T7": "7ead8f503be83967090a417a9315a43b66a2cb22ec7c78646e6cbc80004aa5d3",
+          "byte_equal": true
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "params_equal": true,
+      "recipe_equal": true,
+      "phase_equal": true,
+      "objective_equal": true,
+      "fit_iterations_equal": true,
+      "prediction_hashes": [
+        {
+          "member": "inner-hpo/trial-01/validation_predictions.csv",
+          "T6": "afc08f2bfc716a65346f8b5119c754543224cd75439ab39f11509564783faf86",
+          "T7": "afc08f2bfc716a65346f8b5119c754543224cd75439ab39f11509564783faf86",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-01/component-0/validation_predictions.csv",
+          "T6": "8c4ba774c7702e0cc4bfc80f2124c9e66ba55978d811cf71f26c9a28cde8593e",
+          "T7": "8c4ba774c7702e0cc4bfc80f2124c9e66ba55978d811cf71f26c9a28cde8593e",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-01/component-1/validation_predictions.csv",
+          "T6": "b64be2bdeba772670e3433f6da8bd552f3c7d3aff00cb0e8df981d0afc9d6354",
+          "T7": "b64be2bdeba772670e3433f6da8bd552f3c7d3aff00cb0e8df981d0afc9d6354",
+          "byte_equal": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "params_equal": true,
+      "recipe_equal": true,
+      "phase_equal": true,
+      "objective_equal": true,
+      "fit_iterations_equal": true,
+      "prediction_hashes": [
+        {
+          "member": "inner-hpo/trial-02/validation_predictions.csv",
+          "T6": "c3719692e87a81ced68474ca2a1e953e6a04580dae3ee130d5b2a218f3ee9882",
+          "T7": "c3719692e87a81ced68474ca2a1e953e6a04580dae3ee130d5b2a218f3ee9882",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-02/component-0/validation_predictions.csv",
+          "T6": "1f882dcdacc487987369702715a65a89797a7b1880ccbec8b67ddeb6ac3334bb",
+          "T7": "1f882dcdacc487987369702715a65a89797a7b1880ccbec8b67ddeb6ac3334bb",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-02/component-1/validation_predictions.csv",
+          "T6": "cea38d8995c3b6a127aaa89e699281e7096b0ac2caf0f500594297061ea8d7d0",
+          "T7": "cea38d8995c3b6a127aaa89e699281e7096b0ac2caf0f500594297061ea8d7d0",
+          "byte_equal": true
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "params_equal": true,
+      "recipe_equal": true,
+      "phase_equal": true,
+      "objective_equal": true,
+      "fit_iterations_equal": true,
+      "prediction_hashes": [
+        {
+          "member": "inner-hpo/trial-03/validation_predictions.csv",
+          "T6": "3df14cbb24f39549133d4199ed0b87911aeeac53334b7b25aab6999c46683f5a",
+          "T7": "3df14cbb24f39549133d4199ed0b87911aeeac53334b7b25aab6999c46683f5a",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-03/component-0/validation_predictions.csv",
+          "T6": "2cdb75a47c2c6acd311fef8a164c6945cb9a95717f75c31d595a1bbd656d3787",
+          "T7": "2cdb75a47c2c6acd311fef8a164c6945cb9a95717f75c31d595a1bbd656d3787",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-03/component-1/validation_predictions.csv",
+          "T6": "8055a93c09fce1af685c4699f3ddb22405fff9d345b64d1027a8093c39333108",
+          "T7": "8055a93c09fce1af685c4699f3ddb22405fff9d345b64d1027a8093c39333108",
+          "byte_equal": true
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "params_equal": true,
+      "recipe_equal": true,
+      "phase_equal": true,
+      "objective_equal": true,
+      "fit_iterations_equal": true,
+      "prediction_hashes": [
+        {
+          "member": "inner-hpo/trial-04/validation_predictions.csv",
+          "T6": "f40360e6334afb6b66a0954f3d0ad43653bb7e64c60bdf7e1d8ffbf60813bc27",
+          "T7": "f40360e6334afb6b66a0954f3d0ad43653bb7e64c60bdf7e1d8ffbf60813bc27",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-04/component-0/validation_predictions.csv",
+          "T6": "2fd4ee818d642493009c64d5ce5ed8eb683feeff00b422fc795ab3f04b632287",
+          "T7": "2fd4ee818d642493009c64d5ce5ed8eb683feeff00b422fc795ab3f04b632287",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-04/component-1/validation_predictions.csv",
+          "T6": "75db25b9da97ecd0fda3b12a1de7e478bc880d4ce3d229159afbc2403172de3c",
+          "T7": "75db25b9da97ecd0fda3b12a1de7e478bc880d4ce3d229159afbc2403172de3c",
+          "byte_equal": true
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "params_equal": true,
+      "recipe_equal": true,
+      "phase_equal": true,
+      "objective_equal": true,
+      "fit_iterations_equal": true,
+      "prediction_hashes": [
+        {
+          "member": "inner-hpo/trial-05/validation_predictions.csv",
+          "T6": "32b3cd1ec62a5e38c8a48cb521374fea0c935d1600c06f8fbd8071b56e0f08b5",
+          "T7": "32b3cd1ec62a5e38c8a48cb521374fea0c935d1600c06f8fbd8071b56e0f08b5",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-05/component-0/validation_predictions.csv",
+          "T6": "753be2b3c7c1faed26b83b5bd52027caa7650ede653f150f70338fad0e669c8b",
+          "T7": "753be2b3c7c1faed26b83b5bd52027caa7650ede653f150f70338fad0e669c8b",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-05/component-1/validation_predictions.csv",
+          "T6": "c919c97723e201b5b239f4bd720cdbcafce0de5c7676e2ab605352a87872c9e3",
+          "T7": "c919c97723e201b5b239f4bd720cdbcafce0de5c7676e2ab605352a87872c9e3",
+          "byte_equal": true
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "params_equal": true,
+      "recipe_equal": true,
+      "phase_equal": true,
+      "objective_equal": true,
+      "fit_iterations_equal": true,
+      "prediction_hashes": [
+        {
+          "member": "inner-hpo/trial-06/validation_predictions.csv",
+          "T6": "f46392ca3f29976ab5f9057ab1e5a58b1baa4e8a00b43e7a5302d34bcae51bc1",
+          "T7": "f46392ca3f29976ab5f9057ab1e5a58b1baa4e8a00b43e7a5302d34bcae51bc1",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-06/component-0/validation_predictions.csv",
+          "T6": "ef142bae99bd5368a4b0815b9816f1772433eefc1b2cf557b54036a516b2aa67",
+          "T7": "ef142bae99bd5368a4b0815b9816f1772433eefc1b2cf557b54036a516b2aa67",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-06/component-1/validation_predictions.csv",
+          "T6": "dc3e988e15bca5ee74835e27e161e71e8567a24fbca73b24849d5691a3873eab",
+          "T7": "dc3e988e15bca5ee74835e27e161e71e8567a24fbca73b24849d5691a3873eab",
+          "byte_equal": true
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "params_equal": true,
+      "recipe_equal": true,
+      "phase_equal": true,
+      "objective_equal": true,
+      "fit_iterations_equal": true,
+      "prediction_hashes": [
+        {
+          "member": "inner-hpo/trial-07/validation_predictions.csv",
+          "T6": "d57a9abb8ba479778a2f479880bd521f56dabd76e8e8acfe3c447210454a22f8",
+          "T7": "d57a9abb8ba479778a2f479880bd521f56dabd76e8e8acfe3c447210454a22f8",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-07/component-0/validation_predictions.csv",
+          "T6": "b4fc32c8d3ecf7937bd8b16d54d896be9d263bd92c48cabdf077a2252977d64c",
+          "T7": "b4fc32c8d3ecf7937bd8b16d54d896be9d263bd92c48cabdf077a2252977d64c",
+          "byte_equal": true
+        },
+        {
+          "member": "inner-hpo/trial-07/component-1/validation_predictions.csv",
+          "T6": "5fa9d93cd31f0f42050fd2136341488cc58f77548c61c17e13645eb0f997a840",
+          "T7": "5fa9d93cd31f0f42050fd2136341488cc58f77548c61c17e13645eb0f997a840",
+          "byte_equal": true
+        }
+      ]
+    }
+  ],
+  "all_eight_semantically_and_prediction_identical": true,
+  "T6_HPO_parent_reported_seconds": 627.968,
+  "T7_HPO_parent_reported_seconds": 656.719,
+  "total_recorded_study_seconds": 1284.687,
+  "second_repeated_study_seconds": 656.719,
+  "best_inner_MacroF1": 0.644363740413238,
+  "observed_cache_saved_seconds": 0,
+  "new_fits": 0,
+  "API_calls": 0,
+  "new_quality_metric": null,
+  "promotion": false,
+  "limits": [
+    "Independent prior R4 scores and actual48 prediction hashes rechecked; numeric metrics not recomputed again from labels here.",
+    "Time is the stored study wall, not a fresh timing or measured cache speedup.",
+    "T6 overall campaign remains FAIL; separately verified HPO artifacts do not change it.",
+    "Legacy studies lack prospective native/prepared-matrix fingerprints; do not import them as certified cache.",
+    "A future memory experiment needs fully fingerprinted bank, fresh anchor, equal caps and app incumbent/seen initialization."
+  ],
+  "elapsed_seconds": 0.10899999999674037
+}

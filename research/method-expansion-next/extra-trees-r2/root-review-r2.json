@@ -1,0 +1,21 @@
+{
+  "status": "R2_registration_drift_fixed_source_only_not_execution_ready",
+  "source_handoff_sha256": "be8a7f72fcbc8ecda804855c880ad5d29cbee073da611dce57949938317ebbb2",
+  "manifest_sha256": "d5b610d2fbcaa60870bb234d04bc135444b83aa756045e7fe14f7824e502cb5a",
+  "prior_R1_review_sha256": "745a3b8cd439350c1bd4f947c3fb101c7df2d23fb55154f3693aaf473bd3f74b",
+  "registered_recipe_caps_match": true,
+  "root_checked_correction_patch": true,
+  "classification_weights_fixed_matching_all_three_control_components": true,
+  "prepared_contracts": 8,
+  "contracts_executed": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "clock_assigned": false,
+  "quality_metric": null,
+  "remaining": [
+    "Actual complete source/flat deployment and 8 admission/preprocessing contracts",
+    "Immutable component split/input/evaluator/array/resource manifest and operational bounded screen",
+    "Actual independent model/prediction metrics; whole-agent phase separately declared"
+  ],
+  "recorded_epoch": 1792775691.8357093
+}

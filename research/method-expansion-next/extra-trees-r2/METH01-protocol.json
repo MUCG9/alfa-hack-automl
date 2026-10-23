@@ -1,0 +1,228 @@
+{
+  "status": "registered_component_screen_source_aligned_not_launch_ready",
+  "factor": "registered_fixed_ExtraTrees_component_screen_first; seeded_fullagent_admission_is_only_a_later_prospective_phase",
+  "default": "OFF",
+  "arm_A": {
+    "source": "same_future_candidate_archive",
+    "extra_trees_portfolio": false,
+    "status": "future_fullagent_phase_only"
+  },
+  "arm_B": {
+    "source": "same_future_candidate_archive",
+    "extra_trees_portfolio": true,
+    "status": "future_fullagent_phase_only"
+  },
+  "source_reference": "Exact source-only default-OFF structural projection to m3dev, not executed baseline parity",
+  "cli_surface": "--extra-trees-portfolio",
+  "eligibility": "Ordinary non-text regression/classification; CLI requires --four-stage --preserve-anchor and >=6 search slots; fixed future protocol uses max9. Actual preserved first5 must be distinct and cover LGB/CB/XGB, else fail before first model worker.",
+  "fixed_recipe": {
+    "engine": "extra_trees",
+    "feature_code": "",
+    "params": {
+      "iterations": 128,
+      "max_depth": 16,
+      "min_samples_leaf": 4,
+      "max_features": 0.9,
+      "seed": 42,
+      "generic_features": "none"
+    },
+    "classification_only_params": {
+      "class_weight_power": 0.5
+    },
+    "normalized_by": "existing normalize/validate_feature_view/signature; normalization adds legacy shared defaults but ExtraTrees capability nested_stopping=False governs actual fit",
+    "classification_weight_provenance": {
+      "classification_class_weight_power": 0.5,
+      "status": "fixed_inherited_weight_not_tuned",
+      "control_path": "m2packet/control-c.json",
+      "control_sha256": "56c0e2204df33ebc733034ad5ed835d902874862c71bbb4a16a043c3a99781a9",
+      "components": [
+        {
+          "engine": "lightgbm",
+          "class_weight_power": 0.5
+        },
+        {
+          "engine": "lightgbm",
+          "class_weight_power": 0.5
+        },
+        {
+          "engine": "xgboost",
+          "class_weight_power": 0.5
+        }
+      ],
+      "boundary": "Existing worker weights on fitting labels only. Do not credit inherited weighting as a new class-weight experiment."
+    }
+  },
+  "admission": {
+    "initial_cap": 7,
+    "max_primary_experiments": 9,
+    "slots_zero_based": [
+      "unchanged_complete_control",
+      "unchanged_protected_SINGLE",
+      "separate_broad_CatBoost32_protect_original",
+      "existing_CatBoost_family",
+      "existing_XGBoost_family",
+      "explicit_ExtraTrees_method",
+      "first_remaining_unique_Qwen_proposal"
+    ],
+    "remaining": "HPO/proposals/fallback retain original scheduler and SAME protected SINGLE anchor. Queue dedup can move actual admission; verify signatures/receipts rather than infer by index.",
+    "optional_proposal_tradeoff": 1,
+    "original_initial_Qwen_request_limit": 2,
+    "hypothesis_wording_not_semantic_identity": true,
+    "status": "future_fullagent_phase_only_defaultOFF_source_prepared"
+  },
+  "held_constant": [
+    "Task/input bytes and roles",
+    "Protected complete control recipe/signature and SINGLE anchor",
+    "SYSTEM+STAGED and planner context code",
+    "Qwen effort/model/call and token caps",
+    "Seed42 primary/43 confirmation or existing forward offsets",
+    "Feature engineering branch only broad+CatBoost32/protect originals",
+    "HPO eight requested trials/900s, same protected SINGLE anchor",
+    "Worker preprocessing, adapters, weighting, metrics, selection, calibration, refit and publishing",
+    "No champion memory, class-support context, cache, skill routing, novel linear adapter or blend"
+  ],
+  "bounded_future_fullagent_AB": {
+    "per_arm_common_seconds": 10800,
+    "source_parent_seconds": 600,
+    "exact_parent_seconds": 180,
+    "regression_parent_seconds": 2100,
+    "classification_parent_seconds": 7200,
+    "final_audit_seconds": 300,
+    "cleanup_reserve_seconds": 120,
+    "unallocated_reserve_seconds": 300,
+    "arithmetic_total": 10800,
+    "technical_gates_in_common_clock": true,
+    "threads": 2,
+    "worker_memory_gib": 1.5,
+    "whole_tree_memory_gib": 2,
+    "task_gateway_call_cap": 4,
+    "planner_call_cap": 2,
+    "hpo_requested_trials": 8,
+    "hpo_budget_seconds": 900,
+    "paired_arms_total_seconds_upper_bound": 21600,
+    "boundary": "Separate later prospective phase only, after standalone component evidence and new root review/registration. Equal10800 arms are a proposal, not the registered METH-01 component cap6600 or an actual deadline.",
+    "technical_gate_threads": 1,
+    "status": "future_phase_only_not_registered_not_launched"
+  },
+  "component_first": {
+    "status": "registered_component_screen_first",
+    "worker_seconds": 480,
+    "threads": 2,
+    "worker_memory_gib": 1.5,
+    "common_cap_seconds": 6600,
+    "registration": "registered-METH01.json",
+    "scope": "Five cuts x two fixed controls/candidates, full source/row/class/probability parity; no tuning. No complete-agent promotion here.",
+    "clock_and_exact_component_manifest": null,
+    "reason": "Exact ordered arrays/evaluator/library/source guards still require future root preparation; no component job executed."
+  },
+  "input_metadata_reference": {
+    "path": "m4packet/manifest.json",
+    "sha256": "8faf33cd81c0e864bcf338828c34447000111eda85bc719b8f43312d2babae9a",
+    "boundary": "Existing frozen task/control metadata copied as a prospective reference; no raw task/data files opened for this package."
+  },
+  "task_inputs": {
+    "regression": {
+      "files_sha256": {
+        "task.md": "33f743ead4840336856cb9db8e25867f44512231beebff927326e8580e14d9d0",
+        "train.csv": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775",
+        "test.csv": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
+        "data_dictionary.csv": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
+        "sample_submission.csv": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1"
+      },
+      "protected_control": {
+        "path": "m2packet/control-r.json",
+        "sha256": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b",
+        "signature": "773dfb566afd9b2ad6c47853ffaa6898392c009fd41c9202d89184b3c50ceb9e"
+      }
+    },
+    "classification": {
+      "files_sha256": {
+        "task.md": "eebb55ebb8deb8257a2c012330ecc015e8d3a0bc3619c40da6c2a6ab200709bf",
+        "train.csv": "171a8915070b7575b729a32f70a45d1ad7b6f43c65b4ce12a0a68af30d5cb4e0",
+        "test.csv": "b825449603931b5f05a8855e3d92b57775221c93ed4730ac6b4c75b9ea608862",
+        "data_dictionary.csv": "13d2651c5fe02b7fc30f0e7290af45606aad5de76c2f7b69217abc270dbbcef4",
+        "sample_submission.csv": "4d23642fcff01e49b0ef5a9f018b2381c12fad97282fa586285ad49b01e9623e"
+      },
+      "protected_control": {
+        "path": "m2packet/control-c.json",
+        "sha256": "56c0e2204df33ebc733034ad5ed835d902874862c71bbb4a16a043c3a99781a9",
+        "signature": "a828ab557d308ecaf186ab48ede3e606bb3631f318c11202136384916643d394"
+      }
+    }
+  },
+  "future_split_array_sha256": null,
+  "missing_split_reason": "Freeze exact ordered primary/confirmation/fitting partitions before future outcomes; no split generation or data import performed here.",
+  "readiness": [
+    "Source peer review; actual candidate build and unchanged requirements",
+    "Register eight prepared contracts without deleting old checks; complete current registry and exact-unpacked source/fixture gates (including nine metadata dependencies and pristine task files)",
+    "Meaningful mock/no-fit default/control/admission tests; actual recipe/preprocessing/probability contracts",
+    "Actual terminal/fresh ownership/lock of all predecessors, root-owned absolute clocks and measured envelopes",
+    "Freeze full input/source/library/native/environment and fitting-array fingerprints plus independent evaluator/gates before fits"
+  ],
+  "technical_failure": "Invalid eligibility/recipe or missing mandatory family fails clearly before a model worker. Worker timeout/OOM/error stays explicit null; preserve cleanup/source/clock failure receipts; do not impute zero or discard failed task from any aggregate.",
+  "qualification": "Retain strong historical V11/V16 and matched fresh control. Positive component alone is not whole-agent promotion. Full-agent paired cuts, exact CSV/refit and independent metrics/support/ex-rarest gates plus complete-procedure grouped CV are required under the separately frozen approved evaluator. Unbound evaluator/array/source prerequisites mean no quality qualification.",
+  "historical_reference_only": {
+    "classification_strong_mean_macro_f1": 0.6593178433614652,
+    "regression_strong_mean_rmse": 35.44723155783769,
+    "not_replaced": true
+  },
+  "stochastic_Qwen_limit": "Provider seed is unsupported/unproven; live proposal variance and optional-slot displacement can affect results. Do not attribute any result solely to model strength or candidate count without matched evidence.",
+  "metrics": null,
+  "promotion": false,
+  "actual_clock": null,
+  "registered_or_queued_by_packet": false,
+  "registered_component_screen": {
+    "registration": "registered-METH01.json",
+    "fixed_candidate": {
+      "engine": "extra_trees",
+      "iterations": 128,
+      "max_depth": 16,
+      "min_samples_leaf": 4,
+      "max_features": 0.9,
+      "seed": 42
+    },
+    "common_cap_seconds": 6600,
+    "source_exact_setup_seconds": 900,
+    "worker_seconds": 480,
+    "workers": 10,
+    "worker_total_seconds": 4800,
+    "independent_audit_seconds": 600,
+    "cleanup_export_seconds": 300,
+    "arithmetic": "900+10*480+600+300=6600",
+    "cuts": {
+      "regression_forward_offsets": [
+        0,
+        1,
+        2
+      ],
+      "classification_group_seeds": [
+        42,
+        43
+      ]
+    },
+    "pairs": "Protected component control and fixed ExtraTrees candidate use identical frozen ordered fitting/validation rows on each of the five cuts. Whole complete-control references remain retained separately.",
+    "proposed_sequential_order_before_outcomes": [
+      "regression0-control",
+      "regression0-candidate",
+      "regression1-control",
+      "regression1-candidate",
+      "regression2-control",
+      "regression2-candidate",
+      "classification42-control",
+      "classification42-candidate",
+      "classification43-control",
+      "classification43-candidate"
+    ],
+    "threads": 2,
+    "worker_memory_gib": 1.5,
+    "whole_tree_memory_gib": 2,
+    "refit_or_promotion": false,
+    "actual_command": null,
+    "actual_clock": null,
+    "ML_metric": null,
+    "source_gates_executed": false,
+    "independent_audit_executed": false,
+    "no_reinvestment": "Each worker/parent uses the predeclared caps; failed workers remain null, no replacement trials or hidden tuning. Actual parent clocks/evaluator/complete ownership guards remain root-frozen execution prerequisites."
+  },
+  "registered_recipe_alignment": "Exact registered128/depth16/minleaf4/maxfeatures.9/seed42; inherited classpower.5 explicitly source-bound, not tuned."
+}

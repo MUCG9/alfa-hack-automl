@@ -1,0 +1,25 @@
+--- r1/src/automl/search/stages.py
++++ r2/src/automl/search/stages.py
+@@ -69,8 +69,9 @@
+     if (not isinstance(spec,dict) or spec.get('kind') not in {'regression','classification'}
+             or spec.get('text_features') or spec.get('task_family')=='pointwise_ranking'):
+         raise ValueError('ExtraTrees portfolio requires an ordinary non-text regression/classification task')
+-    params={'iterations':128,'max_depth':18,'min_samples_leaf':4,
+-            'max_features':.8,'seed':42,'generic_features':'none'}
++    params={'iterations':128,'max_depth':16,'min_samples_leaf':4,
++            'max_features':.9,'seed':42,'generic_features':'none'}
++    # Inherit the fixed mild weighting already used by all three strong-control class components.
+     if spec['kind']=='classification': params['class_weight_power']=.5
+     recipe=normalize({'engine':'extra_trees','hypothesis':'Bounded randomized-tree family scout',
+                       'params':params,'feature_code':''})
+--- r1/tests/test_extra_trees_portfolio.py
++++ r2/tests/test_extra_trees_portfolio.py
+@@ -134,7 +134,7 @@
+         for candidate in [reg,cls]:
+             params=candidate['params']
+             self.assertEqual((params['iterations'],params['max_depth'],params['min_samples_leaf'],
+-                              params['max_features'],params['seed']),(128,18,4,.8,42))
++                              params['max_features'],params['seed']),(128,16,4,.9,42))
+             self.assertEqual(params['generic_features'],'none')
+             self.assertEqual(candidate['feature_code'],'')
+             for field in ['calibrate','feature_views','target_encoding','history_asof',

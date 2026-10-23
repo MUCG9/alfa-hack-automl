@@ -1,0 +1,27 @@
+{
+  "status": "plan_only_root_owns_linear_tool_scope",
+  "engine": "linear_text",
+  "new_adapter": false,
+  "reason": "The current adapter already handles text_columns=[]; deterministic non-text admission is absent in inspected portfolio.",
+  "factor": "Separate explicit admission/execution of existing no-text path; do not enable together with METH01.",
+  "fixed_regression": "Ridge(alpha10,lsqr), no fake text_alpha Ridge control",
+  "fixed_classification": "text_classifier=logistic,text_C=1; same immutable task objective and output class order",
+  "preprocessing_scope": "All learned median/scale/OHE vocabulary fit only on current worker fitting rows; raw row-local type cleaning may see train/test schemas. No target/ID in X.",
+  "prepared_fixture_requirements": [
+    "No-text numeric plus categorical execution, no TF-IDF needed",
+    "Poison outer/heldout numeric distribution cannot change fitting median/scale",
+    "Unknown category transform stays same width and row order",
+    "All-missing numeric column stays present and finite",
+    "Sparse width/peak memory guarded on bounded high-cardinality fixture",
+    "Binary string labels and multiclass classes/proba/CSV alignment",
+    "Sample weights use only actual fitting labels; excluded rows never enter fit",
+    "Failure/timeout/absent output remain null with honest diagnostics"
+  ],
+  "fixture_implementation": null,
+  "tests_executed": 0,
+  "same_caps_as_paired_control_required": true,
+  "capability_card": "capability-cards.json",
+  "routing_or_prompt_change": "Separate later matched-generation factor, not bundled with model admission.",
+  "metrics": null,
+  "promotion": false
+}

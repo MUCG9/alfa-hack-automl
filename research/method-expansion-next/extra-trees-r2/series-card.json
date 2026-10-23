@@ -1,0 +1,58 @@
+{
+  "status": "source_only_future_series",
+  "architecture": [
+    "task_definition",
+    "fitting_only_analysis",
+    "explicit_capability_and_skill_selection",
+    "method_and_preparation_selection",
+    "bounded_experiments",
+    "independent_validation"
+  ],
+  "series": [
+    {
+      "id": "METH01",
+      "factor": "registered_fixed_ExtraTrees_component_screen",
+      "implementation": "Existing adapter fixed128/depth16/minleaf4/maxfeatures.9/seed42; copied opt-in stages/runner overlay is only for a later separately registered full-agent phase",
+      "hypothesis": "A bounded independent randomized-tree family may offer complementary predictions or a stronger candidate under the same admission/time envelope.",
+      "tradeoff": "Registered component pilot fits fixed controls/candidate on all five cuts; no mandatory full-agent admission/promotion. Later source overlay slot5 displaces one optional Qwen slot under max9 and requires separate root registration.",
+      "status": "registered_component_source_aligned_not_executed",
+      "registered_common_cap_seconds": 6600,
+      "registered_worker_seconds": 480
+    },
+    {
+      "id": "METH02",
+      "factor": "admit_existing_no_text_linear_text_path",
+      "implementation": "Plan and honest capability card only; root owns the separate linear-tool scope",
+      "hypothesis": "Existing sparse numeric/OHE Ridge10 or logistic C1 may be a cheaper or complementary tabular method.",
+      "status": "plan_only_existing_adapter"
+    },
+    {
+      "id": "METH03",
+      "factor": "fixed_90_10_prediction_blend",
+      "implementation": null,
+      "hypothesis": "After independent standalone method screens, a predeclared fixed90/10 mixture may exploit complementarity.",
+      "status": "future_separate_factor_no_weights_tuned_no_scores_computed"
+    },
+    {
+      "id": "METH04",
+      "factor": "skill_and_method_routing_context",
+      "implementation": null,
+      "hypothesis": "Explicit honest capability cards may improve method admission; evaluate matched generation separately from method execution.",
+      "status": "future_separate_factor_not_in_METH01_prompt"
+    }
+  ],
+  "not_added": [
+    "LightAutoML",
+    "AutoGluon",
+    "FLAML",
+    "neural_network_adapter"
+  ],
+  "reason": "Allowed requirements alone do not prove installed/runtime/budget/tool readiness. No new large adapter is part of this packet.",
+  "measured_ml_gain": null,
+  "candidate_imports": 0,
+  "tests_executed": 0,
+  "fits": 0,
+  "api_calls": 0,
+  "active_T7_modified": false,
+  "registry_action": "No studies registered or queued by this packet. METH identifiers reference the root-managed existing series; no duplicate registry entries."
+}

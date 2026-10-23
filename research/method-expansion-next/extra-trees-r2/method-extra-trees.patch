@@ -1,0 +1,136 @@
+--- a/src/automl/search/stages.py
++++ b/src/automl/search/stages.py
+@@ -60,13 +60,41 @@
+     return None
+ 
+ 
++def extra_trees_method_recipe(spec):
++    """One explicit bounded scout using the existing fitting-only tree path.
++
++    This factory changes no default portfolio, objective or HPO anchor. It is
++    intentionally independent of public task/column names and observed scores.
++    """
++    if (not isinstance(spec,dict) or spec.get('kind') not in {'regression','classification'}
++            or spec.get('text_features') or spec.get('task_family')=='pointwise_ranking'):
++        raise ValueError('ExtraTrees portfolio requires an ordinary non-text regression/classification task')
++    params={'iterations':128,'max_depth':16,'min_samples_leaf':4,
++            'max_features':.9,'seed':42,'generic_features':'none'}
++    # Inherit the fixed mild weighting already used by all three strong-control class components.
++    if spec['kind']=='classification': params['class_weight_power']=.5
++    recipe=normalize({'engine':'extra_trees','hypothesis':'Bounded randomized-tree family scout',
++                      'params':params,'feature_code':''})
++    validate_feature_view(recipe,spec)
++    return recipe
++
++
+ def prepare_preserved_four_stage_recipes(spec, base_recipes, proposals, control,
+-                                         top_k=32, maximum_initial=7):
++                                         top_k=32, maximum_initial=7, method_recipe=None):
+     """Keep the saved complete control and its first SINGLE component intact.
+ 
+     Only one explicit FE candidate receives broad expansion and the selector.
+     This avoids imposing an unverified transform on every model comparison.
+     """
++    if method_recipe is not None:
++        # Only the fixed trusted method factory is accepted by this opt-in slot.
++        # Payload metadata/hypotheses never grant scheduler authority.
++        method_recipe=normalize(deepcopy(method_recipe))
++        expected_method=extra_trees_method_recipe(spec)
++        if signature(method_recipe)!=signature(expected_method):
++            raise ValueError('ExtraTrees portfolio requires the exact bounded method recipe')
++        if type(maximum_initial) is not int or maximum_initial<6:
++            raise ValueError('ExtraTrees portfolio requires at least six initial slots')
+     if not isinstance(control,dict) or control.get('engine')!='ensemble':
+         raise ValueError('Preserved complete control must be an ensemble recipe')
+     components=control.get('components',[])
+@@ -105,12 +133,29 @@
+     for engine in ('catboost','xgboost'):
+         candidate=next((r for r in base_recipes if r.get('engine')==engine),None)
+         if candidate is not None: add(normalize(deepcopy(candidate)),'baseline_family')
++    if method_recipe is not None:
++        # The first five mandatory seeds and three supported HPO families stay
++        # intact; fail closed if this control cannot provide that procedure.
++        if len(queue)!=5 or {r['engine'] for r in queue if r['engine']!='ensemble'}!={'lightgbm','catboost','xgboost'}:
++            raise ValueError('ExtraTrees portfolio requires five distinct required seeds and three tree families')
++        if not add(method_recipe,'explicit_method_portfolio'):
++            raise ValueError('ExtraTrees method was not admitted to its reserved initial slot')
+     for i,candidate in enumerate(proposals[:2]):
+         try:
+             candidate=normalize(deepcopy(candidate)); validate_feature_view(candidate,spec)
+             # Selector activation belongs to the explicitly recorded FE branch.
+             candidate['params'].pop('feature_selection_top_k',None)
+             candidate['params'].pop('feature_selection_protect_original',None)
++            if method_recipe is not None:
++                candidate_signature=signature(candidate)
++                if candidate_signature in seen:
++                    receipts.append({'source':'qwen','index':i,'status':'duplicate',
++                        'signature':candidate_signature,'reason':'Normalized recipe already scheduled'})
++                    continue
++                if len(queue)>=maximum_initial:
++                    receipts.append({'source':'qwen','index':i,'status':'omitted',
++                        'signature':candidate_signature,'reason':'Explicit method occupies an optional initial proposal slot'})
++                    continue
+             add(candidate,'qwen')
+         except (ValueError,TypeError,KeyError) as exc:
+             receipts.append({'source':'qwen','index':i,'status':'rejected','reason':str(exc)[:300]})
+--- a/src/automl/search/runner.py
++++ b/src/automl/search/runner.py
+@@ -234,6 +234,7 @@
+     parser.add_argument('--four-stage',action='store_true',help='Experimental Qwen data assessment before broad FE, model selection and nested Optuna')
+     parser.add_argument('--preserve-anchor',action='store_true',help='Keep an explicit complete control and isolate exploratory feature selection')
+     parser.add_argument('--control-recipe',type=Path,help='Frozen selector-free complete control JSON for preserved four-stage mode')
++    parser.add_argument('--extra-trees-portfolio',action='store_true',help='Explicit bounded ExtraTrees initial slot; requires preserved four-stage mode')
+     parser.add_argument('--validation-strategy',choices=['legacy','auto'],default='auto')
+     parser.add_argument('--run-name',default='run-v2')
+     args=parser.parse_args()
+@@ -246,6 +247,8 @@
+     if args.protect_original_features and not args.feature_selection_top_k: parser.error('Protected selection requires positive top-k')
+     if args.preserve_anchor and (not args.four_stage or args.control_recipe is None):
+         parser.error('Preserved anchor requires --four-stage and --control-recipe')
++    if args.extra_trees_portfolio and (not args.four_stage or not args.preserve_anchor or args.max_experiments<6):
++        parser.error('ExtraTrees portfolio requires --four-stage --preserve-anchor and at least six experiments')
+     total_calls=max(0,min(8,args.max_planner_calls))+2 if args.max_llm_calls is None else args.max_llm_calls
+     with RunBudget(args.time_budget,total_calls,args.task.resolve().parent):
+         loaded=load_inputs(args.task,allow_llm=not args.offline)
+@@ -260,6 +263,11 @@
+     started=time.monotonic(); deadline=constrain_deadline(started+args.time_budget)
+     spec,profile,train,test,sample,text,hashes=discover(args.task) if task_data is None else task_data
+     spec=choose_validation(spec,train,args.validation_strategy)
++    if getattr(args,'extra_trees_portfolio',False):
++        if not getattr(args,'four_stage',False) or not getattr(args,'preserve_anchor',False) or args.max_experiments<6:
++            raise ValueError('ExtraTrees portfolio requires preserved four-stage mode and at least six experiments')
++        from automl.search.stages import extra_trees_method_recipe
++        method_recipe=extra_trees_method_recipe(spec)
+     TaskSpec.from_legacy(spec)
+     root=Path(spec['root']) if output_root is None else Path(output_root)
+     runs=root/'automl_runs'/args.run_name
+@@ -317,8 +325,13 @@
+     seeds=portfolio(spec)
+     if four_stage and preserve_anchor:
+         from automl.search.stages import prepare_preserved_four_stage_recipes
+-        queue,stage_receipts,single_anchor=prepare_preserved_four_stage_recipes(
+-            spec,seeds,initial_plans,protected_control,selection_size,maximum_initial=7)
++        if getattr(args,'extra_trees_portfolio',False):
++            queue,stage_receipts,single_anchor=prepare_preserved_four_stage_recipes(
++                spec,seeds,initial_plans,protected_control,selection_size,maximum_initial=7,
++                method_recipe=method_recipe)
++        else:
++            queue,stage_receipts,single_anchor=prepare_preserved_four_stage_recipes(
++                spec,seeds,initial_plans,protected_control,selection_size,maximum_initial=7)
+         initial_rejections=[]
+     elif four_stage:
+         from automl.search.stages import prepare_four_stage_recipes
+@@ -466,6 +479,13 @@
+             report['protected_control']={
+                 'primary':next((r for r in records if signature(r['recipe'])==signature(protected_control)),None),
+                 'confirmation':next((r for r in confirmations if signature(r['recipe'])==signature(protected_control)),None)}
++    if getattr(args,'extra_trees_portfolio',False):
++        report['pipeline']['explicit_method_portfolio']={
++            'method':'extra_trees','mode':'seeded_initial_policy','initial_slot_zero_based':5,
++            'recipe':method_recipe,'signature':signature(method_recipe),'initial_queue_cap':7,
++            'optional_qwen_slot_reservation_reduced_by':1,
++            'scheduled_initial_qwen_count':sum(r.get('source')=='qwen' and r.get('status')=='scheduled' for r in stage_receipts),
++            'requested_max_experiments':args.max_experiments}
+     atomic_json(runs/'report.json',report)
+     if not integrity_ok: raise RuntimeError('Protected inputs or evaluator/source changed during the run; do not trust its metrics')
+     print(json.dumps({k:v for k,v in report.items() if k in {'version','best_validation','final_fit_status','elapsed_seconds','submission_sha256'}},ensure_ascii=False,indent=2),flush=True)

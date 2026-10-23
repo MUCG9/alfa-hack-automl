@@ -1,0 +1,27 @@
+{
+  "status": "all_R1_bytes_preserved",
+  "source_path": "method-portfolio-next-dev",
+  "files_sha256": {
+    "capability-cards.json": "e2c1f3b0454f9f81248f7f99033dc09e7905b1029fddd797f508d6e72deef977",
+    "code-evidence.json": "a457419e7722ae138b02fc92c8b173a047f433ddbb63c91027b835cf39592361",
+    "default-off-ast-proof.json": "4385693f160bc204f8b8d78f31b67e27bb8eae4de880cddf9052d9c879ae7082",
+    "evidence/allowed-requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+    "flat-ast-proof.json": "88ae1ea2622e11b592f1bad6ed0938255515a931c1363b4eda7aeb28d88e4ff1",
+    "HANDOFF.txt": "4637feffc19b19f8abd2e9f76308e9a01a0bb3f06e2d65236e5e8f0afd64458f",
+    "METH01-protocol.json": "afdabdf03f0391da06f6d37be899e725da2d6783ad5b46291751bf192d81e814",
+    "METH02-plan.json": "592e5bd3e6ae0ec380c33671f932ba88773499742d0072a28d8b167da2869db1",
+    "method-extra-trees.patch": "1dda9eb8fbe88b3eee1286112d5f0b33aae0d16137ec799027769b328082d1df",
+    "preparation.json": "2d1e9c61111fd47f468dc1930b24a8f87b93b5ca79f159bad0407dba7b5becaa",
+    "prepared-test-contracts.json": "a52766a003120555a55e4c25dd80573e02f30ff7db2b04ba6406855763bb8bf7",
+    "series-card.json": "c480b94ab60e8105701d9b20d6a3b855b18c3f0de48a666e512fb585f129a19e",
+    "src/automl/search/runner.py": "915ed6c199f299168f7c424a5953a7e8a98178f9a4e43533b3c53b6017b7f31d",
+    "src/automl/search/stages.py": "79198a0885576a424a17092c364590cf85fd31455c37ba5f0de335889da8244e",
+    "tests/fixtures/meth01_baseline_stages.py": "f21ef2e2b8cb20c4a6ec84aab246e710e477994f551405f7aa7c2d660def0f3e",
+    "tests/test_extra_trees_portfolio.py": "08478b7ea936825b0ef5e0d8fa4528a6afe64c20aa36b5ccb335bd0caea0a3ab",
+    "source-manifest.json": "c865ffab09d9a2ae332c5b7848f2fb3109c7f8e7956938bd91a20b6dc21661c4",
+    "source-handoff.json": "f99bb0c6573daf120c999aabbc2d1a5c34ee7c9889800fb276c0af9a010c80a6"
+  },
+  "all_match_at_R2_preparation": true,
+  "R1_not_executed": true,
+  "reason": "Align registered pre-fit METH01 recipe depth16/.9 and480/common6600; preserve original18/.8/600 future fullagent packet as mismatched historical source preparation."
+}

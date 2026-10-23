@@ -1,0 +1,34 @@
+{
+  "source_path": "method-expansion-program/queue.json",
+  "source_sha256": "f81ff64fbdfd9f8e017ded4cae28a98016c2a21d0705a13ab7624ca13128801a",
+  "registered_entry": {
+    "id": "METH-01",
+    "name": "ExtraTrees family and complementary predictions",
+    "status": "source_preparation_pending_no_fits",
+    "hypothesis": "A randomized forest can add errors different from boosting; diversity may help a fixed blend even when its standalone score is weaker.",
+    "factor": "One new learner with its necessary supported preprocessing; no sampling/weight/feature-policy change is credited as a pure model effect",
+    "candidate": {
+      "engine": "extra_trees",
+      "iterations": 128,
+      "max_depth": 16,
+      "min_samples_leaf": 4,
+      "max_features": 0.9,
+      "seed": 42
+    },
+    "plan": "Component screen on3forward regression+2group classification cuts. Fit protected component controls and candidate on identical saved fitting rows; retain all aligned probabilities/predictions for METH-03. Existing ExtraTrees adapter first, no new dependency.",
+    "common_cap_seconds": 6600,
+    "allocation_seconds": {
+      "source_exact_setup": 900,
+      "ten_control_candidate_workers_at_most480each": 4800,
+      "independent_audit": 600,
+      "cleanup_export": 300
+    },
+    "worker_seconds": 480,
+    "full_refit_or_promotion_here": false,
+    "after_screen": "No mandatory full-agent queue inclusion unless measured contribution passes the declared downstream gates; keep negative standalone result even if later blend helps.",
+    "actual_command": null,
+    "actual_metric": null,
+    "clock_start": null
+  },
+  "boundary": "Source-only copied registration excerpt; no job or clock created by this packet."
+}

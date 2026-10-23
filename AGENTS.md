@@ -1,5 +1,18 @@
 # Development instructions — current checkpoint, 22 October 2026
 
+23Oct LONG-01 is COMPLETE, controller25832 exit0; actual exports verified.
+Captain then explicitly authorized ONE official upload of the best measured
+version: solution-long01-submit2.zip accepted in queue, counter2->1. See
+release/long01-submit2/submission-20261023.json and README for verification.
+Only this upload is authorized; no second submission without a new human request.
+The55-file release changes only the launcher versus frozen LONG-01; unchanged
+ML core, offline long budget enabled for task-only invocation. Canonical runtime
+defaults remain unchanged. First wrapper build rejected, never uploaded.
+403 unique source checks after permission retry,23 repeated unpacked checks,
+2 additional bounded default-launcher lifecycles PASS; receipt records scope.
+Continue finite BASE/ERR/SEL plan from existing prepared evidence, not new LONG
+fits or a repeated submission. Current passports still prepared_not_run.
+
 23Oct latest captain instructions authorize parallel BASE-01/ERR-01/SEL-01
 engineering on work/error-selection-20261023 while LONG-01 runs from its own
 frozen task copies. Do not edit active test-runs/long-01-20261023/public-full,

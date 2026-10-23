@@ -1,0 +1,57 @@
+{
+  "archive_sha256": "364f49f62616fc9bddc0d1eeab1146eabfb27dd4ed10a595c88bab29b07d0a7a",
+  "scope": "Two bounded default-launcher fixture lifecycles; not new public quality runs",
+  "results": [
+    {
+      "kind": "classification",
+      "command": [
+        "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/../../work/ml-venv/bin/python",
+        "solution.py",
+        "task.md",
+        "--max-experiments",
+        "2",
+        "--max-extended-experiments",
+        "1"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "version": "long-01-anytime",
+      "integrity_ok": true,
+      "exported_full_fit_ok": true,
+      "final_fit_status": "preserved_trained_baseline",
+      "anytime": {
+        "wall_budget": 10800,
+        "finalization_reserve": 1200,
+        "extended_attempts": 1,
+        "stop_reason": "extended_attempt_guard",
+        "legacy_baseline_trials": 2
+      }
+    },
+    {
+      "kind": "regression",
+      "command": [
+        "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/../../work/ml-venv/bin/python",
+        "solution.py",
+        "task.md",
+        "--max-experiments",
+        "2",
+        "--max-extended-experiments",
+        "1"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "version": "long-01-anytime",
+      "integrity_ok": true,
+      "exported_full_fit_ok": true,
+      "final_fit_status": "preserved_trained_baseline",
+      "anytime": {
+        "wall_budget": 10800,
+        "finalization_reserve": 1200,
+        "extended_attempts": 1,
+        "stop_reason": "extended_attempt_guard",
+        "legacy_baseline_trials": 2
+      }
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "unique_source_checks": 403,
+  "repeated_exact_unpacked_checks": 23,
+  "additional_default_launcher_lifecycles": 2,
+  "canonical_compiled_source_unchanged": true,
+  "first_attempt_passed": false,
+  "first_attempt_failure": "HTTP mock socket PermissionError before network permission",
+  "retry_same_source_passed": true,
+  "final_wrapper_unit_passed": true,
+  "archive_sha256": "364f49f62616fc9bddc0d1eeab1146eabfb27dd4ed10a595c88bab29b07d0a7a",
+  "scope": "Combined evidence, not a claim that original full-suite process exited0"
+}

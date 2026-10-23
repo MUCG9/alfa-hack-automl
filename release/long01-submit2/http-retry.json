@@ -1,0 +1,9 @@
+{
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_live_harness_rejects_nonfixture_credentials_for_local_mock (__main__.GatewayHTTPTests.test_live_harness_rejects_nonfixture_credentials_for_local_mock) ... ok\ntest_sdk_semantic_planner_fit_export_through_local_mock_http (__main__.GatewayHTTPTests.test_sdk_semantic_planner_fit_export_through_local_mock_http) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 18.578s\n\nOK\n",
+  "source_unchanged": true,
+  "script_sha256": "55cc0acef9ffeff75578a36ac32d863d1c1482f7d7916ba5cb2c42c5345b2644",
+  "reason": "Original attempt inherited network-restricted sandbox before turn network permission was granted",
+  "expected_unique_checks": 2
+}

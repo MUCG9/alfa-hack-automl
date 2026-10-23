@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "authorization": "Captain directly requested one upload of the best currently measured version on 23 October 2026",
+  "platform": "https://changellenge.com/personal/championships/stage/927270/",
+  "archive": "release/solution-long01-submit2.zip",
+  "archive_sha256": "364f49f62616fc9bddc0d1eeab1146eabfb27dd4ed10a595c88bab29b07d0a7a",
+  "archive_bytes": 83696,
+  "observed_accepted_by_utc": "2026-10-23T16:06:04Z",
+  "observed_status": "Решение находится на проверке",
+  "attempts_before": 2,
+  "attempts_after": 1,
+  "accepted_in_queue": true,
+  "official_score": null,
+  "waited_for_official_result": false,
+  "proof": "release/long01-submit2/submission-accepted.jpg",
+  "local_quality_scope": "Completed LONG-01 adaptive reused-public two-cut means; not official points",
+  "local_classification_macro_f1": 0.6593178433614652,
+  "local_regression_rmse": 34.696921280971,
+  "mode": "Tested offline universal search; deadline10800 reserve1200; no live-Qwen claim",
+  "new_uploads_authorized_remaining": 0
+}

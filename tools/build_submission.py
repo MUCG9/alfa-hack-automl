@@ -3,6 +3,14 @@ from pathlib import Path
 import argparse,ast,hashlib,json,re,zipfile,sys
 ROOT=Path(__file__).resolve().parents[1]
 REQUIREMENTS_SHA='9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6'
+LONG01_SHA='565e0b40d225022f91a3217fae34ac1895044f63d40f854d69ddd4f2e2767a49'
+LONG01_ENTRY=b'''import sys
+from automl_runner import THREADS,llm_plan,main,run_worker
+if __name__ == "__main__":
+    if not any(arg == "--time-budget" or arg.startswith("--time-budget=") for arg in sys.argv[1:]):
+        sys.argv[1:1] = ["--offline", "--time-budget", "10800", "--search-until-deadline", "--finalization-reserve", "1200", "--max-extended-experiments", "1000"]
+    main()
+'''
 
 class Flatten(ast.NodeTransformer):
     def __init__(self,mapping): self.mapping=mapping
@@ -16,7 +24,9 @@ class Flatten(ast.NodeTransformer):
             raise ValueError('Unmapped project import: '+node.module)
         return node
 
-def build_files():
+def build_files(profile='default'):
+    if profile not in ('default','long01-submit'):
+        raise ValueError('Unknown submission profile')
     mapping=json.loads((ROOT/'tools/module_map.json').read_text())
     for path in (ROOT/'src/automl').rglob('*.py'):
         if path.name=='__init__.py': continue
@@ -37,17 +47,33 @@ def build_files():
     requirement=(ROOT/'requirements.txt').read_bytes()
     if hashlib.sha256(requirement).hexdigest()!=REQUIREMENTS_SHA: raise ValueError('Platform requirements changed')
     files['requirements.txt']=requirement
+    if profile=='long01-submit':
+        # Only the CLI launcher differs from the exact, completed LONG-01 code.
+        # Dormant research/diagnostics modules are not included in this release.
+        frozen=ROOT/'release/solution-long01-anytime1.zip'
+        if hashlib.sha256(frozen.read_bytes()).hexdigest()!=LONG01_SHA:
+            raise ValueError('Frozen LONG-01 archive changed')
+        with zipfile.ZipFile(frozen) as archive:
+            names=archive.namelist()
+            if len(names)!=len(set(names)) or any('/' in n for n in names):
+                raise ValueError('Invalid frozen LONG-01 manifest')
+            for name in names:
+                if files.get(name)!=archive.read(name):
+                    raise ValueError('LONG-01 source differs: '+name)
+            files={name:files[name] for name in names}
+        files['solution.py']=LONG01_ENTRY
     return files
 
 def main():
-    parser=argparse.ArgumentParser(); parser.add_argument('--output',type=Path,required=True); args=parser.parse_args()
-    files=build_files(); args.output.parent.mkdir(parents=True,exist_ok=True)
+    parser=argparse.ArgumentParser(); parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--profile',choices=['default','long01-submit'],default='default'); args=parser.parse_args()
+    files=build_files(args.profile); args.output.parent.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(args.output,'x',compression=zipfile.ZIP_DEFLATED) as archive:
         for name,data in sorted(files.items()):
             entry=zipfile.ZipInfo(name,date_time=(2026,1,1,0,0,0)); entry.compress_type=zipfile.ZIP_DEFLATED
             archive.writestr(entry,data)
     if args.output.stat().st_size>100_000_000: raise ValueError('Archive too large')
-    manifest={'sha256':hashlib.sha256(args.output.read_bytes()).hexdigest(),'bytes':args.output.stat().st_size,'build_python':sys.version,
+    manifest={'sha256':hashlib.sha256(args.output.read_bytes()).hexdigest(),'bytes':args.output.stat().st_size,'build_python':sys.version,'profile':args.profile,
               'files':{n:hashlib.sha256(v).hexdigest() for n,v in files.items()}}
     args.output.with_suffix('.manifest.json').write_text(json.dumps(manifest,indent=2))
     print(json.dumps(manifest,indent=2))

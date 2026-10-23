@@ -5,6 +5,25 @@ SEL predeclaration4aaebaa. This is the ordinary work journal, NOT a handoff.
 Captain cancelled the15%-remaining stop and handoff preparation. Work continues
 on the finite agreed plan, respecting real permissions/service limits.
 
+## New checkpoint: LONG completed; one authorized official upload
+
+LONG-01 completed both tasks; verified exports and controller exit0 saved in
+6ce66a5, LONG-01_progress.md and release/long01-anytime1/completed-assessments.json.
+Regression exported mean34.696921280971,classification unchanged. No more active
+LONG fits, and no need to rerun this full public experiment.
+
+Captain subsequently requested submission of best measured version. Separate
+release profile enables exact tested offline long settings in task-only launcher;
+ALL54 other files unchanged versus LONG-01. solution-long01-submit2.zip accepted
+in queue, counter2->1. SHA364f49f62616fc9bddc0d1eeab1146eabfb27dd4ed10a595c88bab29b07d0a7a.
+One earlier wrapper was rejected by unpacked tests, NEVER uploaded. Source gate
+403unique after HTTP permission retry; final wrapper5tests rerun,23unpacked and
+2bounded default-launcher lifecycles PASS. No changed ML policy/default research
+selector. See release/long01-submit2/. No official score available yet; do not wait
+or resubmit automatically. BASE8passports below remain prepared_not_run.
+Next action: sequential passports+closure, then frozen SEL confirmation screen.
+Historical active/provisional statements below are superseded by this checkpoint.
+
 ## Completed without new model fits
 
 - Fetched colleague work/night-research-20261023@01962f6; imported ONLY diagnostics

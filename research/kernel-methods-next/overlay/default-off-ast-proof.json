@@ -1,0 +1,46 @@
+{
+  "status": "five_legacy_modules_default_OFF_projected_AST_equal",
+  "files": [
+    {
+      "path": "src/automl/contracts/messages.py",
+      "base_sha256": "d7cb04c29dcae92e08dd25e778153d82171be22b30c373c7999a0c8c60635557",
+      "candidate_sha256": "bc43434b574476ae520d19286ea02335c67cd9cf4480022d990456e8fb07f1c2",
+      "default_OFF_projected_AST_equal": true
+    },
+    {
+      "path": "src/automl/execution/api.py",
+      "base_sha256": "9145a371f028a56a0cacda156e05fb96333b26e8ff9156e6e363771debc7c861",
+      "candidate_sha256": "5864854dc27696df7ba19521e34f54853cba4de9c4a89875cb9720e9f2de4ab5",
+      "default_OFF_projected_AST_equal": true
+    },
+    {
+      "path": "src/automl/execution/model_adapters/registry.py",
+      "base_sha256": "f8451f7b1dbcc58c5f151cfd07a32068ffa4ac533430647d87c9653dba603fab",
+      "candidate_sha256": "ddf24292d1261bdf28ad27d523bda1d30c0170418f50580ff1c04c0158f80474",
+      "default_OFF_projected_AST_equal": true
+    },
+    {
+      "path": "src/automl/execution/worker.py",
+      "base_sha256": "ffa06615a7f59f958f77a24d1f89727dc31fae7d4ba49f30201d77c331887b14",
+      "candidate_sha256": "5ccc38ba727cc22c94dd9f780fd82169811431e2a46ea44c0c66fd0ff27c8f53",
+      "default_OFF_projected_AST_equal": true
+    },
+    {
+      "path": "src/automl/search/policy.py",
+      "base_sha256": "3f6a8477b8076e83531b62d4ffc383ce935c6cf912a61cccde6201f7f7fd8e61",
+      "candidate_sha256": "f94628672b8de78e08242b5c00a2c7c24c9e6649ca1fa401ca22140d17d97a61",
+      "default_OFF_projected_AST_equal": true
+    }
+  ],
+  "new_modules": [
+    "src/automl/contracts/representations.py",
+    "src/automl/execution/model_adapters/kernel_tabular.py"
+  ],
+  "linear_text_adapter_sha256": "2598bfa99f846eac2d2599b457fbd8ea70f292b4a49eaaf15bebfd3d2760e842",
+  "ordinary_CAPABILITIES_unchanged_by_projection": true,
+  "projection": "Remove representation imports/validation/opt-in worker branch/receipt; choose legacy normalizer nested_stopping branch; remove hidden internal parameter and restore original CAPABILITIES comprehension. New representation modules unreachable from legacy fitting branch. No profile or loss overlays combined.",
+  "runtime_imports": 0,
+  "tests": 0,
+  "fits": 0,
+  "API_calls": 0
+}

@@ -1,0 +1,46 @@
+{
+  "status": "technical_verified_no_public_quality_score",
+  "actual_exec_session": 99080,
+  "actual_exit_code": 0,
+  "actual_exec_tool": "6bc480",
+  "parent_seconds": 325.734000000004,
+  "common_seconds": 900,
+  "source_checks": 487,
+  "source_skips": 0,
+  "exact_default_checks": 23,
+  "same_flat_loss_contracts": 16,
+  "source_unchanged": true,
+  "fresh_cleanup_confirmed": true,
+  "root_helper_actual_exit_code": 0,
+  "root_helper_tool": "f0dead",
+  "root_closure_sha256": "c4916f2e7c7bd38e394bcb2ab33a51daf7a472a2aec8e08ff4b8a79a8fd5ba69",
+  "post_root_fresh_tool": "9ec966",
+  "fresh_owned_and_preparers_count": 374,
+  "gates": [
+    {
+      "name": "source",
+      "passed": true,
+      "checks": 487,
+      "result": "loss0/source/results.json",
+      "sha256": "f1a4caf1daa8f3ba17874c5402abca8f2d63526d763714cf66f12ace20066072"
+    },
+    {
+      "name": "exact-default",
+      "passed": true,
+      "checks": 23,
+      "result": "loss0/exact.json",
+      "sha256": "5eca2998af3d3f32e67590f64e1d1b6fad2a075405f706828a279cd7204b95d5"
+    },
+    {
+      "name": "exact-optin",
+      "passed": true,
+      "checks": 16,
+      "same_test_bodies_and_assertions": true,
+      "log": "loss0/exact-optin-supervisor.log",
+      "sha256": "f5148f9ab330630bdff6cb09600c6bf9718ab954858831f781e9d50a2ff4e4f0"
+    }
+  ],
+  "quality_metric": null,
+  "promotion": false,
+  "official_score": null
+}

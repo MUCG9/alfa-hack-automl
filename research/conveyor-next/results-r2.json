@@ -1,0 +1,46 @@
+{
+  "status": "pure_filesystem_tests_verified",
+  "actual_exec_session": null,
+  "actual_exec_exit_code_observed_by_root": 0,
+  "actual_tool_evidence": "e2cd1b",
+  "cleanup_confirmed": true,
+  "source_unchanged": true,
+  "owned_identities": [
+    {
+      "pid": 6864,
+      "create_time": 1792783938.4577608
+    },
+    {
+      "pid": 16008,
+      "create_time": 1792783938.446061
+    },
+    {
+      "pid": 24244,
+      "create_time": 1792783938.3086507
+    }
+  ],
+  "closure_preparer_identities": [
+    {
+      "pid": 16160,
+      "create_time": 1792783962.8956573
+    },
+    {
+      "pid": 18304,
+      "create_time": 1792783962.8819916
+    }
+  ],
+  "active_owned_processes": [],
+  "uncertain_owned": [],
+  "checks_passed": 12,
+  "checks_total": 12,
+  "model_fits": 0,
+  "API_calls": 0,
+  "quality_metric": null,
+  "peak_owned_tree_rss_mib": 50.28515625,
+  "original_common_seconds": 60,
+  "elapsed_test_seconds": 0.8129999999946449,
+  "root_confirmation_elapsed_seconds": 24.6267306804657,
+  "original_first_attempt_remains_FAILED": true,
+  "first_attempt_closure_sha256": "4006102127dd971c97843642754a748fc97199e20505c037f1688a80b8e12d27",
+  "recorded_unix": 1792783963.0161622
+}

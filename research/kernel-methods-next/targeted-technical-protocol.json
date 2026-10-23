@@ -1,0 +1,22 @@
+{
+  "id": "KERN-00-TARGETED",
+  "scope": "Only12 source technical contracts on80-file package; not483fullsource or70member unpacked validation and no public score",
+  "common_seconds": 180,
+  "parent_seconds_including_setup": 150,
+  "complete_child_seconds": 120,
+  "terminal_reserve_seconds": 30,
+  "threads": 1,
+  "worker_GiB": 1.5,
+  "whole_owned_tree_GiB": 2,
+  "source_materialization_tool": "3a35f7",
+  "source_materialization_seconds": 0.8589999999967404,
+  "source_handoff_sha256": "3794521c315a93900d22df54472299fa6b71d2a36cda0e6b743784c31737fc55",
+  "independent_review_sha256": "6c240b80bec2543707830a30c629d3a0329929ae4e1f0b9b497724dd0b425f39",
+  "runner_sha256": "9efaff66a2eff296ebf2afb5a32aa76bc286319a0d349c7077f09a3bf661e180",
+  "prepared_methods": 12,
+  "expected_synthetic_fits_if_complete": 11,
+  "actual_start": null,
+  "actual_metric": null,
+  "API_calls": 0,
+  "public_model_fits": 0
+}

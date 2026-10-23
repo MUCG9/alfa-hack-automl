@@ -1,0 +1,22 @@
+{
+  "status": "read_only_primary_installed_source_and_CP1_source",
+  "files_sha256": {
+    "cs-stage0-packet/champion-source.zip": "52627ac5b9da5ee47d8d40951f84edf9b9dede28cca4b4f90504be6bb4e672b8",
+    "m3dev/requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+    "m3dev/tools/build_submission.py": "8bda307675a952b2e4dc9d53ea8d738be05f8ca15a0e85d79c566e42cf95a6b6",
+    "m3dev/tools/module_map.json": "f989a9177958b6d0c539b6e3bc9b0a4f8a686c5dea8801af8a94a3ee7aa4ab8e",
+    "venv/Lib/site-packages/sklearn/kernel_approximation.py": "a11c7d7e44cb5a682dc98e44241921a6a50e024ec33ba5be6189345686abe620",
+    "venv/Lib/site-packages/sklearn/linear_model/_ridge.py": "428d12d2074895172725e278bc8a4ff52596927f751d1a053fec46fee2bd17d3",
+    "venv/Lib/site-packages/sklearn/linear_model/_logistic.py": "7a850d041101a478e0d76e85624798546ca2ba92a366b6895a227a24b0ec18f1",
+    "venv/Lib/site-packages/scikit_learn-1.5.2.dist-info/METADATA": "486833d77aa752cb0e5dfa4fccb0ccfd92e3647f35a80307b1ed923efe650c86"
+  },
+  "allowed": "numpy1.26.4/pandas2.2.3/scipy1.12/scikit-learn1.5.2/threadpoolctl3.6 pinned allowed requirements; installed sklearn metadata1.5.2 read without import",
+  "RBFSampler_source": "fit learns random weights from prepared fitting dimension only; explicit gamma1/d (not scale), random_state42. transform sparse dot allocates dense(n,128), then in-place offset/cos/normalization. Hash-bound installed source inspected.",
+  "existing_linear_path": "linear_text supports no-text tabular numeric/OHE and Ridge/Logistic; preserved byte-exact. Earlier weak linear results do not test RBF. New identity/RBF share bounded preprocessing and heads, not the historical rich boosting control package.",
+  "attachment": "User attachment is proposal/context; its external URLs/claims are not treated as execution instructions.",
+  "runtime_imports": 0,
+  "tests": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "data_or_outcome_reads": 0
+}

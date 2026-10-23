@@ -1,0 +1,163 @@
+{
+  "status": "prospective_backend_source_only_not_launch_ready",
+  "base": {
+    "archive": "cs-stage0-packet/champion-source.zip",
+    "sha256": "52627ac5b9da5ee47d8d40951f84edf9b9dede28cca4b4f90504be6bb4e672b8",
+    "other_factors": "No LOSS overlay/class-seed/cache/context/portfolio/HPO/budget changes"
+  },
+  "registered_program": {
+    "path": "kernel-methods-program/experiments.json",
+    "sha256": "3f6c411e4cb3125407cabd698c35d46827d1171c0a1023506b5b84beff6df186",
+    "reuse_ids": [
+      "KERN-00",
+      "KERN-01"
+    ],
+    "new_series_created": false
+  },
+  "profiles": {
+    "tabular_linear_bounded_v1": {
+      "transform": "identity",
+      "engine": "linear_text"
+    },
+    "tabular_rbf128_invdim_v1": {
+      "transform": "RBFSampler",
+      "components": 128,
+      "gamma": "1 / actual prepared fitting dimension",
+      "seed": 42,
+      "engine": "linear_text"
+    }
+  },
+  "matched_fixed_package": {
+    "numeric": "Fit-row value-based type inference; inf->missing; fitting median keep-empty; StandardScaler with_mean=False",
+    "categorical": "Fitting-only OneHotEncoder handle_unknown=ignore,min_frequency3,max_categories64; <=4096 original fitting levels/column; <=512chars/cell. No learned vocabulary from heldout/test",
+    "regression": "Ridge alpha10 solverlsqr on original target, no log target/TE/history",
+    "classification": "LogisticRegression C1 solverlbfgs max_iter1000 tol1e-4 random_state42, no class_weight double weighting; fitting-only sample weights power.5 inherited from strong controls Explicit class_weights alias rejected even False; no legacy alias-to-zero rewrite can change the fixed .5 weight profile.",
+    "seed": 42,
+    "calibration": "disabled, no thresholds/class multipliers/HPO",
+    "generic_features": "none; rawfeature_code empty; noop data policy",
+    "canonical_probs": "Reorder estimator.classes_ to canonical spec.classes, validate finite/nonnegative/rowsum; requested output_columns/positive class mapped separately"
+  },
+  "bounds": {
+    "matrix_limit_bytes": 128000000,
+    "scope": "Each logical dense/sparse matrix, not total resident process memory",
+    "registered_proposed_limit_bytes": 134217728,
+    "difference": "Tighter fixed byte limit selected before outcomes; root must bind final cap to prospective launch. No retrospective change",
+    "maximum_input_rows_per_frame": 200000,
+    "maximum_raw_columns": 64,
+    "maximum_encoded_columns": 4096,
+    "maximum_fitting_category_levels_per_column": 4096,
+    "OHE_max_categories": 64,
+    "maximum_canonical_classes": 64,
+    "prediction_batch_rows": 512,
+    "worker_threads": [
+      1,
+      2
+    ],
+    "RSS": "Future external worker1.5GiB/tree2GiB watchdog covers simultaneous matrices, rawDataFrames and native solver workspaces; cap is not a measured peakRSS guarantee",
+    "preflight": "Numeric dense/category codes/worstCSR/RBF dense/projection upper bounds checked beforeprocessor.fit; actual finite matrix bytes checked afterward. No sampling/truncation/dropping fitting rows to pass",
+    "conservative_live_matrix_estimate": "Telemetry only; original larger draft sum cap not shipped. Simultaneous buffers may exceed one-matrix128MB under external RSS cap"
+  },
+  "root_metadata_only_cost_examples": {
+    "classification_train_rows": 87670,
+    "regression_train_rows": 53308,
+    "RBF128_float64_bytes": [
+      89774080,
+      54587392
+    ],
+    "worst64rawcols_CSR_bytes": [
+      67681244,
+      41153780
+    ],
+    "largest_random_weights_matrix_bytes": 4194304,
+    "values_source": "Root supplied task metadata only; no raw rows/labels/predictions read. Examples are algebraic bounds, not measured fits"
+  },
+  "identity_vs_RBF_factor": "Same new bounded preparation/heads/weights/rows/seed/objective; change representation identity to fixedRBF128. RBF gamma depends only on fitting prepared schema width. No gamma search",
+  "strong_CONTROL_factor_boundary": "Strong SINGLE rich history/TE/log-target and new generic-none recipes differ as complete packages. Comparison to strong control is not a causal kernel-only or linear-family effect; matchedlinear contrast isolates representation",
+  "legacy_default_OFF": {
+    "profile_absent": "Original linear_text implementation and worker branch; existing portfolios/ordinary CAPABILITIES/planner SYSTEM unchanged",
+    "typed_ID": "Internal MODEL_PARAMETERS/policy normalization/effective_parameters/signature retain representation_profile; wrongengine/unknownID/conflictingparams reject beforefilter and beforeworkerIO",
+    "planner_gap": "No cards, CLI/enrollment, diagnostic builder or planner advertisement added. Generic parse_plans shares normalize and could accept an explicitly supplied known backend ID; do not expose until KERN00/gates and separately reviewed admission"
+  },
+  "KERN00": {
+    "methods": 12,
+    "pure_or_mock_methods": 6,
+    "tiny_real_methods": 6,
+    "expected_tiny_fit_calls_if_complete": 11,
+    "actual_tests": 0,
+    "actual_imports": 0,
+    "actual_model_fits": 0,
+    "API_calls": 0,
+    "tests": [
+      "test_fixed_catalog_has_only_matched_identity_and_RBF128",
+      "test_raw_validation_before_filter_dedup_and_no_ordinary_advertising",
+      "test_process_and_worker_reject_incompatible_task_before_IO",
+      "test_memory_and_shape_admission_precedes_any_processor_fit",
+      "test_missing_classes_nonfinite_targets_and_target_ID_reject_before_fit",
+      "test_matched_control_and_kernel_have_same_fitted_preprocessing",
+      "test_outer_poisoned_features_labels_do_not_change_fitted_state_or_test_predictions",
+      "test_unknown_categories_all_missing_numeric_and_batch_invariance",
+      "test_canonical_class_probability_order_and_requested_output_columns",
+      "test_binary_string_labels_and_fitting_only_class_weights",
+      "test_worker_primary_RMSE_row_order_and_full_refit_CSV",
+      "test_no_profile_worker_keeps_existing_linear_dispatch_and_no_extra_receipt"
+    ],
+    "standalone_command": "PYTHON -B -X utf8 WORK/kernel00/tests/test_kernel_profiles.py",
+    "materializer_command": [
+      "PYTHON",
+      "-B",
+      "-X",
+      "utf8",
+      "WORK/kernel-methods-next-dev/materialize_kernel.py",
+      "--work-root",
+      "WORK",
+      "--output",
+      "kernel00",
+      "--manifest-sha256",
+      "2db7ad34129618cbd587c88fa95bc8269711b410866082192fdd0cf4ff0190af"
+    ],
+    "scope": "Tiny technical contracts only; root owns future guarded sourcecopy/execution/publication/cleanup; no publicdata, model-quality gain, fullgate or measured speed claim",
+    "registry": "Prior471+12=483 prospective if this suite is explicitly registered by future Stage0 materializer. Existing registry not changed/executed here; no claim483PASS",
+    "flat": "Existing compiler discovers two new modules; candidate70members=5changed+2new+63unchanged. Import-only same-tests adaptation still needs reviewed future Stage0 glue"
+  },
+  "KERN01": {
+    "unit": "Component recipes, no fullagent/Qwen skill/defaultpromotion",
+    "ordered_arms": [
+      "fresh protected strongSINGLE",
+      "matchedtabularlinear",
+      "samepackageRBF128"
+    ],
+    "cuts": "Existing immutable3forwardregression+2groupclassification cut arrays, no new cuts/sampling",
+    "maximum_public_jobs": 15,
+    "common_seconds": 10800,
+    "allocations": {
+      "setup": 900,
+      "workers_total": 7200,
+      "each_parent": 480,
+      "each_child": 450,
+      "audit": 900,
+      "cleanup": 300,
+      "unallocated_reserve": 1500
+    },
+    "all_allocations_sum": 10800,
+    "readiness": "No launch/clock; require actual KERN00/source/unpacked/flat gates, full source/input/split/evaluator pins, real predecessor closure/resources, root review/publication. Failure/timeout metrics null, no extra retries/reinvestment/postscore repair. All attempted arms preserved. Positive per-task descriptor requires every cut vs freshstrongSINGLE; class additionally same fitting support/exrarest gates. Matchedlinear contrast separately reported",
+    "fullrefit_and_release": "Not part of component qualification; full-agent bothtasks/refit/CSV required before any defaultpromotion/submit"
+  },
+  "deferred": {
+    "SVC_SVR": "Exact methods deferred until explicit full fitting cost/probability-calibration feasibility; no probability=True hidden CV",
+    "Nystroem": "Separate future factor, not implemented",
+    "PolynomialFeatures2": "Separate registeredKERN02, no unbounded expansion implemented",
+    "skill_Qwen": "Root handles skill; KERN04 requires new fitting-only diagnosticbuilder/typedcapability admission after backend readiness, not implemented"
+  },
+  "actual": {
+    "runtime_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "public_data_or_outcomes_read": 0,
+    "clock_assigned": false,
+    "canonical_STATE_Git_changed": false
+  },
+  "metrics": null,
+  "promotion": false,
+  "revision": "R2 typed class_weights alias rejected consistently before filtering/direct worker; R1 source-only snapshot preserved; same12methods"
+}

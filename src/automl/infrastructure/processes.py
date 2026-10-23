@@ -217,6 +217,28 @@ class ProcessTree:
             if remaining>0:
                 time.sleep(remaining)
             self._confirm_pending_cleanup()
+        if self.strict_observation:
+            unresolved = []
+            # Waiting and signalling are not proof of death. Reopen every
+            # known descendant identity after the final grace period.
+            known = set(identities) | set(alive_identities) | set(self.members)
+            for identity in sorted(known):
+                if identity[0] == self.process.pid:
+                    continue  # The owned Popen.wait above confirms the root.
+                current = self._verified(identity)
+                if current is None:
+                    continue
+                try:
+                    if current.is_running() and current.status() not in {psutil.STATUS_ZOMBIE, psutil.STATUS_DEAD}:
+                        unresolved.append({'pid': identity[0], 'create_time': identity[1],
+                            'action': 'final_fresh_identity_recheck', 'reason': 'same_identity_alive'})
+                except psutil.NoSuchProcess:
+                    self.members.pop(identity, None)
+                except psutil.AccessDenied:
+                    self._denied(identity, 'confirm_terminated')
+            if unresolved:
+                raise ProcessCleanupError({'status': 'cleanup_unconfirmed',
+                    'unresolved': unresolved, 'actions': list(self.cleanup_errors)})
         self.require_observed()
 
 

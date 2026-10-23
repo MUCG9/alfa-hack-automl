@@ -82,6 +82,21 @@ class StrictObservationTests(unittest.TestCase):
         replacement.kill.assert_not_called()
         self.child.terminate.assert_not_called()
 
+    def test_strict_final_survivor_cannot_be_confirmed_clean(self):
+        self.root.children.return_value = [self.child]
+        with self.fake_psutil(), patch.object(processes.psutil, 'wait_procs',
+                return_value=([], [self.child])):
+            tree = processes.ProcessTree(self.popen, strict_observation=True)
+            with self.assertRaises(processes.ProcessCleanupError) as caught:
+                tree.terminate(grace=0)
+        self.assertEqual(caught.exception.receipt['status'], 'cleanup_unconfirmed')
+        self.assertEqual(caught.exception.receipt['unresolved'], [
+            {'pid': 200, 'create_time': 20., 'action': 'final_fresh_identity_recheck',
+             'reason': 'same_identity_alive'}])
+        self.child.terminate.assert_called_once()
+        self.child.kill.assert_called_once()
+        self.popen.terminate.assert_called_once()
+
     def test_resource_read_denial_cannot_be_a_successful_wait(self):
         self.root.children.return_value = [self.child]
         self.child.memory_info.side_effect = processes.psutil.AccessDenied(200)

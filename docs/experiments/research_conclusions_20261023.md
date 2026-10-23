@@ -27,6 +27,13 @@ Receipt: [mvp01_complete_20261023.json](mvp01_complete_20261023.json).
 Это reused-public development, не OOF, private performance или официальные
 нормализованные points. Для points отсутствуют hidden baseline/test metrics.
 
+Отдельный REG-BLEND-01 replay с fixed.9complete-control+.1inner-selectedTPE
+также прошёл оба cuts: meanRMSE35.39729814378806 против35.44723155783769,
+0fits/5.863s. [Receipt](reg_blend01_replay_20261023.json),
+[протокол трёх forward cuts](reg_blend01_cv_protocol_20261023.md).
+Это отдельная новая adaptive mixture procedure; standalone HPO-01 остаётся
+отрицательным. Qualification ещё не запущена и не означает full OOF.
+
 ## Почему обязательные стадии оказались дорогими
 
 MVP classification занял9133.645s. В search записан51 selector fit; эти записи
@@ -129,12 +136,17 @@ preprocessing, чтобы искусственно выровнять feature co
    Цикл: гипотеза/коммит → ограниченный запуск → независимая оценка → решение →
    журнал. Адаптация использует CPU tabular metrics, fitting-only transforms,
    group/time validation, inner HPO и историю отрицательных commits.
-5. Два live Qwen meta-reviews сохранили ограничения самой схемы анализа.
+5. Три live Qwen meta-reviews сохранили ограничения самой схемы анализа.
    REVIEW-01 принял envelope, но ошибся в supported gate; critical numeric rule
    не был явно загружен, локальная ссылка не является tool load. REVIEW-02 на
    тех же фактах и skill с явным contract вернул `{}` и был отклонён.
    Усиление валидации защищает coordinator, но улучшения usable model review
-   эти два вызова не установили. Не делать общий reliability/A-B вывод по N=1.
+   эти два вызова не установили. REVIEW-03 с новыми blend facts дал валидную
+   схему/IDs (7091tokens), но неверные Worms mechanism, unit и RMSE direction.
+   Formatter тоже упускал явные unit/direction MVP cards; после аудита эти
+   поля и signed improvement вычисляет код (5no-fit checks PASS). Эффект
+   последней правки на API-ответ не измерен. Не делать общий reliability/A-B
+   вывод по N=1.
 
 ## Направления после текущих screens
 

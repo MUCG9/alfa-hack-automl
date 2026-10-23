@@ -58,6 +58,12 @@ Preregistered grouped CV: docs/experiments/blend01_cv_protocol_20261023.md and
 blend01_candidates_20261023.json. Run ONLY after queue+FE-02/descendants/lock;
 it is prepared, NOT yet launched. Keep source frozen through this CV as well.
 No new weight grid or automatic default promotion. Current qualified is V11/V16.
+REG-BLEND-01 separate fixed .9complete-control+.1nested-TPE replay also PASSED
+both cuts: meanRMSE35.39729814378806 vs35.44723155783769,0fits. Preregistered
+forward qualification: reg_blend01_cv_protocol_20261023.md, driver
+tools/run_blend_cv.py --kind regression. Prepared, NOT launched; run after
+queue+FE-02, before classification blend CV, all sequential under the same lock.
+Keep source frozen through BOTH qualifications; no new weight grid or promotion.
 Local rollback tags: baseline-before-qwen-optuna-20261022,
 qwen-optuna-core-20261022, qwen-mvp-cli-tested-20261023.
 

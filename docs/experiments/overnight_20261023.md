@@ -200,3 +200,20 @@ MVPsingle прошёл оба paired/support/rarest gates: mean .660053619770554
 проверки и три probability alignment/rejection проверки PASS. Actual coordinator
 refusal при живом predecessor проверен до fitting/output creation (0fits).
 Source остаётся frozen также через этот CV; HPO sparse-default fix отложен.
+
+
+REG-BLEND-01 replay fixed.9complete-control+.1nested-TPE также positive:
+RMSE38.9028037313→38.8295259021 и31.9916593843→31.9650703855,
+mean35.4472315578→35.3972981438. Execution5.863s,0fits. Preregistered
+reg_blend01_cv_protocol:3fresh complete-control forward fits, все3TPE inner
+studies/outer refits уже verified и переиспользуются без повторного обучения.
+Prepared, НЕ запущен; после queue+FE-02, перед class blend CV. Driver общий
+`run_blend_cv.py --kind regression`,2160s/3workers600s/1536MiB/2threads.
+Actual refusal с живым predecessor проверен до fit/output,0fits.
+
+REVIEW-03 live:5512prompt+1579completion=7091tokens,7.948s,1attempt,
+usage_complete. Schema/9evidence IDs accepted, но manual audit обнаружил
+ложный Worms mechanism (delta0), неправильные comparison units и обратную
+трактовку RMSE MVP; три предложенных опыта уже запланированы. Ни один не
+запускается автоматически. Аудит:review03_audit_20261023.json. Это не general
+A/B/compression improvement: факты, context size и skill отличаются от review02.

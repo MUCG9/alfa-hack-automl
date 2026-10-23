@@ -1,0 +1,47 @@
+{
+  "scope": "Manual factual and applicability audit of one syntactically valid Qwen review, not an ML gain or general reliability test",
+  "call_wall_seconds": 7.948,
+  "usage": {
+    "prompt_tokens": 5512,
+    "completion_tokens": 1579,
+    "total_tokens": 7091
+  },
+  "attempts": 1,
+  "usage_complete": true,
+  "schema_accepted": true,
+  "evidence_references": 9,
+  "all_ids_resolve": true,
+  "factual_errors": [
+    {
+      "hypothesis_index": 1,
+      "error": "Attributes classification blend gain to Worms",
+      "correction": "Worms per-class F1 delta is exactly0 on BOTH replay cuts, so its contribution to the MacroF1 delta is0."
+    },
+    {
+      "hypothesis_index": 3,
+      "error": "Labels MVP complete-control comparator CLS_SINGLE",
+      "correction": "MVP control mean .6593178433614652 belongs to COMPLETE_AGENT, not the single-recipe control."
+    },
+    {
+      "hypothesis_index": 4,
+      "error": "Claims MVP regression improves RMSE and labels comparator REG_SINGLE",
+      "correction": "MVP mean36.02469255996805 exceeds complete-control35.44723155783769; lower RMSE is better. The MVP lost; REG_SINGLE is also the wrong comparison unit."
+    }
+  ],
+  "proposal_errors": {
+    "duplicates_of_already_predeclared_probes": [
+      "classification-HAR-01",
+      "FE-02",
+      "REG-BLEND-01-forward"
+    ],
+    "regression_blend_weak_control_id": "REG_SINGLE should be COMPLETE_AGENT",
+    "note": "ID allowlisting and budget validation check schema/references/caps, not factual correctness, novelty or scientific comparison-unit semantics."
+  },
+  "automatic_actions_applied": false,
+  "new_fits_from_reviewer": 0,
+  "interpretation": "Shorter context produced usable JSON once, but several factual premises remain wrong. No general compression/reliability or ML-quality improvement is established. Preserve numeric evaluation and qualification outside the LLM.",
+  "harness_limitations": [
+    "The card formatter omitted an explicit complete-agent unit/control ID and metric direction from MVP cards. The prompt asked to distinguish units but did not map each MVP card explicitly. Do not attribute all errors solely to the model.",
+    "After this call, the formatter was changed to emit COMPLETE_AGENT, direction, oriented gain and mean-improved boolean from code; five no-fit checks pass. No further API call has measured the effect of that repair."
+  ]
+}

@@ -1,4 +1,4 @@
-"""Run preregistered BLEND-01 CV only after the existing frozen jobs finish.
+"""Run preregistered blend qualification after the existing frozen jobs finish.
 
 This coordinator refuses active predecessors or a busy lock. It does not wait,
 change source, select new recipes, publish anything, or promote defaults.
@@ -19,6 +19,7 @@ from automl.infrastructure.atomic import atomic_json
 from automl.infrastructure.processes import wait_owned
 from overnight_research import identity_alive, source_hashes
 from verify_blend_cv import verify
+from verify_reg_blend_cv import verify as verify_regression
 from summarize_research import digest
 import psutil
 
@@ -27,6 +28,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--task', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--kind', choices=['classification', 'regression'], default='classification')
     args = parser.parse_args()
     base = ROOT/'test-runs/qwen-optuna-20261022'
     if not args.output.resolve().is_relative_to((ROOT/'test-runs').resolve()):
@@ -42,7 +44,8 @@ def main():
         if (receipt['status'] not in {'completed', 'completed_with_failures', 'incomplete', 'budget_exhausted'}
                 or not receipt.get('source_unchanged') or receipt['source_sha256'] != initial):
             raise SystemExit('Predecessor receipt/source does not qualify continuation')
-    if not json.loads((base/'blend01-attempt2-20261023/result.json').read_text())['measured_replay_gate_passed']:
+    replay = 'blend01-attempt2-20261023/result.json' if args.kind == 'classification' else 'reg-blend01-20261023/result.json'
+    if not json.loads((base/replay).read_text())['measured_replay_gate_passed']:
         raise SystemExit('No positive fixed replay')
     with (ROOT/'test-runs/.owned-research.lock').open('a+') as lock:
         try:
@@ -52,15 +55,18 @@ def main():
         args.output.mkdir(parents=True, exist_ok=False)
         identity = {'pid': os.getpid(), 'create_time': psutil.Process().create_time()}
         lock.seek(0); lock.truncate(); json.dump(identity, lock); lock.flush()
-        candidates = ROOT/'docs/experiments/blend01_candidates_20261023.json'
+        regression = args.kind == 'regression'
+        candidates = ROOT/'docs/experiments'/('reg_blend01_candidates_20261023.json' if regression else 'blend01_candidates_20261023.json')
+        total_seconds, worker_seconds, maximum_workers = (2160, 600, 3) if regression else (6000, 900, 6)
         harness = {name: digest(ROOT/'tools'/name) for name in [
             'run_blend_cv.py', 'benchmark_candidates.py', 'verify_blend_cv.py',
-            'replay_blend01.py', 'summarize_research.py']}
+            'verify_reg_blend_cv.py', 'replay_blend01.py', 'summarize_research.py']}
         report = {'status': 'running', 'identity': identity, 'source_sha256': initial,
-                  'candidates_sha256': digest(candidates), 'maximum_seconds': 6000,
+                  'candidates_sha256': digest(candidates), 'maximum_seconds': total_seconds,
                   'harness_sha256': harness,
-                  'worker_seconds': 900, 'memory_mib': 1536, 'threads': 2,
-                  'maximum_workers': 6, 'scope': 'BLEND-01 grouped CV only; no integration/promotion/upload'}
+                  'worker_seconds': worker_seconds, 'memory_mib': 1536, 'threads': 2,
+                  'maximum_workers': maximum_workers,
+                  'scope': args.kind+' blend qualification only; no integration/promotion/upload'}
         path = args.output/'coordinator.json'
         atomic_json(path, report)
         started = time.monotonic()
@@ -73,19 +79,20 @@ def main():
                    MKL_NUM_THREADS='2', NUMEXPR_NUM_THREADS='2')
         command = [sys.executable, str(ROOT/'tools/benchmark_candidates.py'), '--task', str(args.task),
                    '--candidates', str(candidates), '--output', str(args.output/'benchmark'),
-                   '--folds', '3', '--seeds', '42', '--validation-strategy', 'auto',
-                   '--threads', '2', '--timeout', '900', '--memory-gb', '1.5']
+                   '--validation-strategy', 'auto', '--threads', '2',
+                   '--timeout', str(worker_seconds), '--memory-gb', '1.5']
+        command += ['--time-backtests', '0', '1', '2'] if regression else ['--folds', '3', '--seeds', '42']
         try:
             with (args.output/'benchmark.log').open('x') as log:
                 process = subprocess.Popen(command, env=env, cwd=ROOT, stdin=subprocess.DEVNULL,
                                            stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
-                code = wait_owned(process, 5900, 2*2**30)
+                code = wait_owned(process, total_seconds-100, 2*2**30)
             report['exit_code'] = code
             if (source_hashes() != initial or digest(candidates) != report['candidates_sha256']
                     or any(digest(ROOT/'tools'/name) != value for name, value in harness.items())):
                 raise RuntimeError('Frozen CV source, candidates or harness changed')
             if code == 0:
-                summary = verify(args.output/'benchmark/results.json')
+                summary = (verify_regression if regression else verify)(args.output/'benchmark/results.json')
                 atomic_json(args.output/'verified.json', summary)
                 report.update(status='completed', measured_cv_gate_passed=summary['measured_cv_gate_passed'])
             else:

@@ -50,6 +50,19 @@ class ResearchEvidenceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Invalid review envelope'):
             validate_review({}, self.context)
 
+    def test_complete_unit_and_rmse_direction_are_computed_by_tool(self):
+        context = evidence_context({'mvp': {'tasks': {
+            'regression': {'metric': 'rmse', 'mean': 36., 'control_mean': 35.},
+            'classification': {'metric': 'macro_f1', 'mean': .6, 'control_mean': .65}}}})
+        reg = context['evidence_cards']['MVP_REGRESSION']['facts']
+        cls = context['evidence_cards']['MVP_CLASSIFICATION']['facts']
+        self.assertEqual(reg['comparison_unit'], 'complete_agent')
+        self.assertEqual(reg['control_id'], 'COMPLETE_AGENT')
+        self.assertEqual(reg['observed_mean_oriented_gain'], -1.)
+        self.assertEqual(reg['metric_direction'], 'minimize')
+        self.assertFalse(reg['observed_mean_improved'])
+        self.assertFalse(cls['observed_mean_improved'])
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

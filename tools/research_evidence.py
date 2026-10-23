@@ -4,6 +4,8 @@ These cards describe supplied, independently verified receipts. They do not
 verify predictions themselves or execute any proposal returned by the model.
 """
 
+import math
+
 CONTRACT_ID = 'paired-support-v1'
 CONTROLS = {
     'CLS_SINGLE': 'Qualified categorical two-view LightGBM component, no selector',
@@ -23,6 +25,7 @@ CONTRACT = {
     'positive_screen_requires_further_whole_procedure_qualification': True,
     'complete_agent_control': 'COMPLETE_AGENT',
     'incomplete_screens_cannot_pass': True,
+    'metric_directions': {'macro_f1': 'maximize', 'rmse': 'minimize'},
 }
 
 
@@ -45,7 +48,20 @@ def evidence_context(documents):
         cards[key] = {'source_path': path, 'facts': compact(value)}
 
     for name, value in documents['mvp']['tasks'].items():
-        card('MVP_' + name.upper(), 'mvp.tasks.' + name, value)
+        # MVP receipts compare complete procedures. Emit unit and direction
+        # explicitly, rather than asking a remote reviewer to infer them.
+        metric = value['metric']
+        if metric not in CONTRACT['metric_directions']:
+            raise ValueError('Unknown MVP metric direction')
+        greater = CONTRACT['metric_directions'][metric] == 'maximize'
+        mean, control = float(value['mean']), float(value['control_mean'])
+        if not all(math.isfinite(v) for v in [mean, control]):
+            raise ValueError('Nonfinite MVP aggregate')
+        oriented = (mean-control)*(1 if greater else -1)
+        facts = dict(value, comparison_unit='complete_agent', control_id='COMPLETE_AGENT',
+                     metric_direction=CONTRACT['metric_directions'][metric],
+                     observed_mean_oriented_gain=oriented, observed_mean_improved=oriented > 0)
+        card('MVP_' + name.upper(), 'mvp.tasks.' + name, facts)
     cost = documents.get('cost', {})
     for key, value in cost.items():
         card(key.upper(), 'cost.' + key, value)

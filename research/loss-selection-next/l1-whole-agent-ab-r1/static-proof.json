@@ -1,0 +1,43 @@
+{
+  "status": "AST_and_inmemory_compile_only_no_execution",
+  "base_sha256": {
+    "run_pair.py": "f0c154649b28c6366c106e6adcddb6965a0f914a1d9a7231370e693f8349f935",
+    "audit_pair.py": "ba14ac9c55f7222be7d25b110291725b20905b6f16259d64ff79e0c886581f57",
+    "close_pair.py": "19673e0817e8a8819973d84c7d852ca5a93c0dea4281e3c72e9264305ea5f03e"
+  },
+  "source_sha256": {
+    "run_pair.py": "c5dcc09f4036e851d95589bdda74707703ee306d8335111e69d6cc3e71131c47",
+    "audit_pair.py": "98c540696816caee47e027ce133d983d2f658ff080772f5e4ea39e38bfff2f26",
+    "close_pair.py": "b2472d08bd6a2e85d7713d510c5f27843d0467931b14bde834277d8f1ec24444"
+  },
+  "all_ten_reused_CP1_helper_function_AST_equal": [
+    "need",
+    "local",
+    "sha",
+    "load",
+    "imported",
+    "merge",
+    "persist",
+    "checkpoint",
+    "frozen",
+    "absence"
+  ],
+  "proven_helpers_imported_only_at_future_launch": {
+    "run_lean_mvp_r2.py": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "R4": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783"
+  },
+  "reuse": "No supervisor/worker/model/validation/HPO source rewrite. Existing supervise/materialize/task_proof/core_seal/process ownership/awake are pinned imports at future launch, not imported here.",
+  "budget_sum": 10800,
+  "full_HPO_remaining": {
+    "regression": 492,
+    "classification": 1632
+  },
+  "Windows_runtime_path_geometry": "la1/A/r and la1/A/c have same depth/length as already used cp1/B/r; same68flat architecture, no new model nesting. Static observation only, not a fresh gate.",
+  "actual_tests": 0,
+  "actual_model_fits": 0,
+  "API_calls": 0,
+  "candidate_runtime_imports": 0,
+  "source_preparation": 0,
+  "process_scans": 0,
+  "clock_assigned": false
+}

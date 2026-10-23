@@ -1,0 +1,14 @@
+{
+  "status": "all_known_owned_and_preparers_absent",
+  "checked_unix": 1792790073.5560222,
+  "closure_sha256": "127fe2a4f67f1b95910b5228c39ebec2f6459b01b7c458aae87926a3893663c5",
+  "actual_closer_exit_observed_by_root": 0,
+  "actual_closer_tool_evidence": "485250",
+  "known_identities_checked": 379,
+  "active_owned_processes": [],
+  "uncertain_owned": [],
+  "original_deadline_unix": 1792790512.840565,
+  "original_clock_satisfied": true,
+  "new_model_fits": 0,
+  "API_calls": 0
+}

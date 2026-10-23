@@ -1,0 +1,150 @@
+{
+  "schema": "l1-whole-qwen-source-readiness-v1",
+  "status": "source_review_complete_actual_Qwen_evidence_pending",
+  "scope": "Read-only Qwen path/caps/ledger review of unchanged frozen c1a335 packet; supplemental to the existing source review, not a new launch or qualification.",
+  "source_sha256": {
+    "work/loss-seed-whole-agent-ab-next-dev/source-handoff.json": "c1a335d833005f921431769694258bcd5cd2b349d74829f07ccfd46d226b2edb",
+    "work/loss-seed-whole-agent-ab-next-dev/run_pair.py": "c5dcc09f4036e851d95589bdda74707703ee306d8335111e69d6cc3e71131c47",
+    "work/loss-seed-whole-agent-ab-next-dev/audit_pair.py": "98c540696816caee47e027ce133d983d2f658ff080772f5e4ea39e38bfff2f26",
+    "work/loss-agent-seed-next-dev/src/automl/search/runner.py": "40d4eae5365a7941fe270eb0cdfe0093019a1bd1c0298b780c16f86d49f32fca",
+    "work/loss00/src/automl/infrastructure/llm_gateway.py": "31e45ff7c44e26a1451089c535ba9090aea9d6d35f7ac810bc157c5bda7e2aba",
+    "work/loss00/src/automl/infrastructure/run_budget.py": "f16fa52a4f051eac331d4411c3ae7e10c81c8f44efed7caefa872e0ad3774b49",
+    "work/loss00/src/automl/task_understanding/semantic_inputs.py": "2d1cb2a85f4d6347496dbd04e2ae27cae7d2dd735ca70e88e51458b42815a2c3",
+    "work/repaired-mvp-r1-dev/evaluator_r4.py": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+    "work/run_lean_mvp_r2.py": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "work/m4packet/manifest.json": "8faf33cd81c0e864bcf338828c34447000111eda85bc719b8f43312d2babae9a",
+    "work/loss-seed-whole-agent-ab-independent-source-review-r1.json": "2b8f3a464fe6199801409d4b0932920fd225c2e33dc38420ea76a7ed4f9b2fb1"
+  },
+  "frozen_handoff_all_9_file_hashes_rechecked": true,
+  "executable_placeholder": "PYTHON means the future coordinator sys.executable; no absolute path or command was executed.",
+  "future_four_commands": [
+    {
+      "slot": "Ar",
+      "cwd": "work/la1/A/r",
+      "command": "PYTHON -B -X utf8 -u solution.py task.md --four-stage --preserve-anchor --protect-original-features --control-recipe protected_control.json --max-experiments 9 --max-planner-calls 2 --max-llm-calls 4 --hpo-trials 8 --hpo-budget 300 --hpo-sampler tpe --validation-strategy auto --feature-selection-top-k 32 --planner-mode staged --run-name repair4 --time-budget 810 --champion-recipe champion_recipe_input.json",
+      "parent_seconds": 900,
+      "child_seconds": 870
+    },
+    {
+      "slot": "Br",
+      "cwd": "work/la1/B/r",
+      "command": "PYTHON -B -X utf8 -u solution.py task.md --four-stage --preserve-anchor --protect-original-features --control-recipe protected_control.json --max-experiments 9 --max-planner-calls 2 --max-llm-calls 4 --hpo-trials 8 --hpo-budget 300 --hpo-sampler tpe --validation-strategy auto --feature-selection-top-k 32 --planner-mode staged --run-name repair4 --time-budget 810 --champion-recipe champion_recipe_input.json --loss-seed-l1",
+      "parent_seconds": 900,
+      "child_seconds": 870
+    },
+    {
+      "slot": "Ac",
+      "cwd": "work/la1/A/c",
+      "command": "PYTHON -B -X utf8 -u solution.py task.md --four-stage --preserve-anchor --protect-original-features --control-recipe protected_control.json --max-experiments 9 --max-planner-calls 2 --max-llm-calls 4 --hpo-trials 8 --hpo-budget 900 --hpo-sampler tpe --validation-strategy auto --feature-selection-top-k 32 --planner-mode staged --run-name repair4 --time-budget 3510",
+      "parent_seconds": 3600,
+      "child_seconds": 3570
+    },
+    {
+      "slot": "Bc",
+      "cwd": "work/la1/B/c",
+      "command": "PYTHON -B -X utf8 -u solution.py task.md --four-stage --preserve-anchor --protect-original-features --control-recipe protected_control.json --max-experiments 9 --max-planner-calls 2 --max-llm-calls 4 --hpo-trials 8 --hpo-budget 900 --hpo-sampler tpe --validation-strategy auto --feature-selection-top-k 32 --planner-mode staged --run-name repair4 --time-budget 3510",
+      "parent_seconds": 3600,
+      "child_seconds": 3570
+    }
+  ],
+  "live_gateway_configuration": {
+    "actual_model_request": "qwen/qwen3.8-27b",
+    "authorized_base_url_required_by_supervisor": "https://changellenge.up.railway.app/v1",
+    "environment_names_only": [
+      "OPENAI_API_KEY",
+      "OPENAI_BASE_URL",
+      "OPENAI_MODEL",
+      "AUTOML_REASONING_EFFORT"
+    ],
+    "secret_values_or_private_configs_read": false,
+    "reasoning_effort": "off",
+    "reasoning_semantics": "Requests extra_body.reasoning.enabled=false. A BadRequest can retry without this off-only compatibility setting; reasoning_requested then becomes null. This is not maximum-reasoning evaluation or independent backend attestation.",
+    "temperature": 0.4,
+    "response_format": "json_object",
+    "offline_flag_present": false,
+    "gateway_is_real_OpenAI_compatible_client": true,
+    "gateway_mock_or_response_replay_path_found": false,
+    "matched_prompts": "Existing SYSTEM_PROMPT+STAGED_PROMPT/CAPABILITIES are used in both arms; fixed L1 seed is source admission, not a Qwen-selected loss or loss-skill experiment."
+  },
+  "caps_and_conditions": {
+    "per_task_logical_gateway_limit": 4,
+    "per_task_planner_limit": 2,
+    "shared_scope": "File-role resolution and planner/EDA share one RunBudget started before load_inputs and solve; no phase reset.",
+    "file_role_optional_calls_max": 2,
+    "file_role_output_tokens_per_HTTP_attempt": 2048,
+    "file_role_logical_timeout_seconds": 45,
+    "initial_EDA_output_tokens_per_HTTP_attempt": 8192,
+    "initial_EDA_logical_timeout_seconds_max": 240,
+    "followup_planner_output_tokens_per_HTTP_attempt": 16384,
+    "followup_planner_logical_timeout_seconds_max": 300,
+    "HTTP_attempts_per_reserved_logical_call_max": 3,
+    "SDK_automatic_retries": 0,
+    "theoretical_HTTP_attempt_bound_per_task": 12,
+    "theoretical_HTTP_attempt_bound_all_four_tasks": 48,
+    "token_scope": "max_tokens bounds requested output for EACH HTTP attempt. There is no separately enforced aggregate prompt+completion/currency cap. Initial8192 does not cap followup16384.",
+    "actual_count_not_guaranteed": "Roles usually resolve deterministically. Initial/followup calls require remaining solver reserve+90; followup also requires an empty initial queue/HPO completion and planner capacity. A limit of2 does not prove2 actual successful planner calls.",
+    "timeouts_shared": "All attempts/backoff share their logical timeout, clipped to the same solver RunBudget deadline.",
+    "usage_unknowns": "Retries may have unknown earlier usage. usage_complete=false must accompany incomplete counts; existing numeric zero fallback counters are not proof of zero actual usage."
+  },
+  "ledger_and_response_paths": {
+    "ledger_template": "work/la1/{A|B}/{r|c}/automl_runs/run-budget-*/report.json",
+    "actual_ledger_path_field": "automl_runs/repair4/report.json -> run_budget_trace",
+    "ledger_directory_allocation": "Atomically unique tempfile name; exact path only known after actual RunBudget entry.",
+    "initial_response": "work/la1/{A|B}/{r|c}/automl_runs/repair4/initial-data-assessment.json: context, terminal_response, parsed plans, call and assessment.",
+    "followup_receipt": "work/la1/{A|B}/{r|c}/automl_runs/repair4/planner-{len(calls)}.json: normalized plans/rejections, context and call; raw followup terminal text is not separately retained by llm_plan.",
+    "call_metadata": [
+      "status",
+      "attempts",
+      "usage",
+      "usage_complete",
+      "response_model",
+      "finish_reason",
+      "compatibility_retry",
+      "reasoning_requested",
+      "reasoning_effort_requested",
+      "reasoning_tokens_reported"
+    ],
+    "ledger_contents": "Purposes/status/reservations/known attempts/reported counters/elapsed and closure status. No prompts, responses, credentials or input rows.",
+    "core_seal_boundary": "repair4 core and submission are sealed. run-budget-* is a sibling deliberately outside core_seal; R4 independently reads and hashes its exact report path."
+  },
+  "R4_audit_boundaries": {
+    "all_four_complete_core_seals_before_first_R4_import_or_labels": true,
+    "initial_EDA_checks": "Valid nonempty data_assessment fields; cold-start feedback[] and best_recipe=null; stage before_any_model_fit; assessment_valid=true; saved hash agrees with supervisor first-worker observation.",
+    "ledger_checks": "Path must resolve inside task directory; independently read closed ledger must have gateway_call_limit4 and calls_started<=4. Noncompleted/incomplete usage adds api_usage_incomplete.",
+    "permission_denied": "Recorded explicitly with null independent usage/hash and no ACL bypass. Parent counters remain labelled non-independent; no zero imputation or silent completeness.",
+    "not_proved_by_R4_alone": [
+      "Exactly2 successful planner calls",
+      "A particular number of nonzero HTTP requests merely from max-call flags",
+      "Cryptographic server model/reasoning execution identity",
+      "Complete token/currency accounting after unknown retry usage",
+      "A mandatory successful followup response"
+    ],
+    "new_Qwen_claim_requirement": "Use new per-task actual EDA responses/call metadata plus closed task ledger/source/argv/first-worker hashes. Historical champion provenance and Stage0 mocked/pure checks are not actual new Qwen calls."
+  },
+  "prelaunch_findings": {
+    "missing_concrete_live_Qwen_CLI_flags": [],
+    "result": "Existing solver argv enables the real gateway and staged EDA; no --offline/mock/replay flag found. No frozen runtime modification proposed.",
+    "pending_actual_evidence": [
+      "Actual successful L1Stage0 campaign/archive/rootclosure and latest closed predecessor bindings; not inspected here.",
+      "Future root launch with authorized provider environment, exact source/argv and immutable common clock. No environment-value check was performed.",
+      "For each of4 tasks: new gateway status/response_model/attempts/reasoning compatibility/usage, valid initial EDA before first worker, generated/admitted/selected proposal distinctions and closed ledger.",
+      "Actual HPO8/full-window/refit/CSV/R4/source/resource/ownership terminal qualification under existing protocol.",
+      "Official default-command qualification remains separate; flags/external recipe JSON are research dependencies."
+    ],
+    "actual_live_Qwen_calls_verified_in_this_review": null,
+    "actual_live_Qwen_calls_verified_reason": "No future whole-agent run executed or outputs read; source readiness is not actual usage evidence."
+  },
+  "performed": {
+    "source_and_saved_static_metadata_reads": true,
+    "candidate_runtime_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "process_scans": 0,
+    "Git_or_STATE_edits": false,
+    "frozen_source_edits": false,
+    "clock_assigned": false,
+    "private_config_reads": false,
+    "active_results_read": false
+  }
+}

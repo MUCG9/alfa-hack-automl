@@ -1,0 +1,100 @@
+{
+  "status": "source_reviewed_no_execution_not_launch_qualified",
+  "scope": "Independent source/hash/typed-metadata review only. No candidate imports, tests, fits, API, process scans, clocks, materialization, outcomes, STATE or Git edits.",
+  "bindings": {
+    "handoff": {
+      "path": "loss-seed-whole-agent-ab-next-dev/source-handoff.json",
+      "sha256": "c1a335d833005f921431769694258bcd5cd2b349d74829f07ccfd46d226b2edb"
+    },
+    "coordinator_sha256": "c5dcc09f4036e851d95589bdda74707703ee306d8335111e69d6cc3e71131c47",
+    "auditor_sha256": "98c540696816caee47e027ce133d983d2f658ff080772f5e4ea39e38bfff2f26",
+    "closer_sha256": "b2472d08bd6a2e85d7713d510c5f27843d0467931b14bde834277d8f1ec24444",
+    "protocol_sha256": "4930508ee854bd2e550a66dcf533666f05ea58621dfdfad65e4d57d3baf17027",
+    "supervisor_sha256": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "manual_R4_sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783"
+  },
+  "checked": {
+    "handoff_file_hashes": 9,
+    "handoff_hash_mismatches": [],
+    "actual_prepared_manifest_sha256": "f025f1144d23724a8963d77ee2fce8d66f1fa3ff5cd0bda07203dd995d1e48b6",
+    "actual_archive_sha256": "16be73e1a8493f64b752231cf8f333856197e43ba3939b243496bc7da6cc5f04",
+    "prepared_source_files": 700,
+    "prepared_flat_members": 68,
+    "registry_expected_checks": 499,
+    "registry_scripts": 51,
+    "expected_exact_default": 23,
+    "expected_flat_combined": 28,
+    "schema": "Actual prepared fields are dict hash maps/native numbers and changed_flat_modules list [automl_runner.py, automl_search_stages.py], matching coordinator217-234. No list-versus-int mismatch found."
+  },
+  "blocking_source_findings": [],
+  "contracts": [
+    {
+      "area": "single factor and admission",
+      "evidence": "run_pair.py85-97,294-308,334-365; audit_pair.py108-117,163-209",
+      "conclusion": "Same tested archive/input/control bytes and fixed caps in both arms. Same CP1 champion in both regression arms; only Br appends --loss-seed-l1. Both classification commands have champion/L1 OFF. Protected complete control, SINGLE HPO anchor, required families and max9 remain checked. Seed slot6 consumes an optional initial Qwen slot; this is whole-policy admission, not a pure loss-only fit contrast."
+    },
+    {
+      "area": "one all-inclusive clock",
+      "evidence": "run_pair.py128-143,169-199,320-350,366-431; close_pair.py24-37,74-105",
+      "conclusion": "10800 = setup900 + Ar900 + Br900 + Ac3600 + Bc3600 + audit600 + cleanup/root300. Each task cap includes materialization/sealing; child870/3570 and solver810/3510 are not reset. Full remaining fixed allocations reserved before each admission. Root closer has own30 within original clock and actual exit/tool/session or genuine null; fresh preparer absence remains root checkpoint."
+    },
+    {
+      "area": "actual HPO accounting and window",
+      "evidence": "audit_pair.py25-38,150-158; frozen R4514-555; supervisor321-327; lsdev runner258,268,397-399",
+      "conclusion": "Requires exactly trials0..7, independent phase chronology through R4, attempted/completed/failed/duplicate/unattempted accounting and null failed values. Eight attempts do not mean eight successful fits. Full-window first-worker lower bound must reach492(reg) or1632(class), with unchanged unprofiled SINGLE and TPE137/startup3. RunBudget begins after child launch and constrains runner deadline, so launch-based observed availability is a conservative sufficient bound. Internal optimize call/deadline remain explicitly null. Nominal CLI alone is not accepted."
+    },
+    {
+      "area": "prelabel sealing and independent metric/refit audit",
+      "evidence": "audit_pair.py108-140,149-217,253-272; frozen R4408-615",
+      "conclusion": "All four distinct saved-supervisor objects and complete core inventories are hash-checked before first R4 import/label parsing. R4 retains pristine five-file checks, exact cuts/rows/classes, recursive mixtures/iterations, manual RMSE/F1 and full-refit CSV. Supplemental L1 check verifies actual Booster objective/metric/alpha, fit scopes, parent row hashes, log-target scale and recursively stored successful profiled leaves including full refit."
+    },
+    {
+      "area": "failure/reporting",
+      "evidence": "run_pair.py137-168,347-365,380-431; audit_pair.py145-147,226-272; close_pair.py81-102",
+      "conclusion": "Whole-arm failures and missing stage evidence yield null qualified metrics; original slots and errors remain. Ordinary failed student/HPO objectives may be retained within a valid whole procedure. Negative quality is separate from artifact/ownership/clock success. Per-task/cut and class support/ex-rarest evidence remains; descriptive_retention_win is a regression research label, not class/default/official promotion."
+    },
+    {
+      "area": "closed predecessor union",
+      "evidence": "run_pair.py192-199,248-293; close_pair.py42-80",
+      "conclusion": "Mandatory retained historical receipts include prior failed METH02/queue evidence and prep2042. Actual Stage0 must pass499/0skips/23/28 with matching prepared/clock/source evidence. Existing --extra-terminal-receipt adds owned and closure-preparer identities, accepts clean historical FAIL without a positive quality gate, rehashes and freshly checks known union before/under lock/between tasks. It does not claim a global orphan scan."
+    }
+  ],
+  "conservative_qualification_limits": [
+    {
+      "code": "L1_FOLLOWUP_SCOPE",
+      "evidence": "audit_pair.py41-76,210-217; lsdev search/policy.py79,105-110",
+      "detail": "Every successful profiled leaf is checked with the original nested identity/no-synthetic receipt model. A later runtime-valid inherited L1 followup with nonnoop data_policy or extra fitting scope can conservatively make the pair unqualified. Fixed raw nested/noop seed is covered. Author confirmed this is an auditor limitation, not a runtime prohibition; any generalization needs a separate pre-fit revision, never postscore repair."
+    },
+    {
+      "code": "FULL_TRAIN_PROFILE",
+      "evidence": "lsdev task_understanding/service.py183-190 and search/runner.py75-97",
+      "detail": "Planner profile still includes full training target_summary/class_counts. HPO fitting split is nested, but overall adaptive reused-public procedure is not fitting-only/blind/private validation. Packet scope does not claim otherwise."
+    },
+    {
+      "code": "BUDGET_AND_STOCHASTIC_LIMITS",
+      "detail": "Full-window admission requires initial work to fit the observed492/1632 thresholds; runtime feasibility is unmeasured here. Regression HPO300 differs from historical900. Qwen arms are sequential stochastic procedures, not deterministic seed-matched replicas."
+    },
+    {
+      "code": "API_AND_DEFAULT_BOUNDARY",
+      "detail": "Missing/denied ledger evidence stays unavailable/unqualified under R4; no ACL bypass or invented provider zeros. Research flags and external control/champion JSON are required; ordinary platform command is not qualified by this packet."
+    }
+  ],
+  "future_execution_requirements": [
+    "Actual L1 Stage0 source499/0skips/exact23+flat28 and actual root/campaign closure must be supplied; preparation f025/archive16be alone does not establish these gates.",
+    "Root must supply latest KERN01 clean failure closure ba402fef7aca74715e9e557e911498a054f99f18597b0d7f8b45431d87684782 (actual46070/exit1) through existing extra-receipt or actual Stage0 inherited receipt chain; do not require ML/technical PASS of that failed historical experiment.",
+    "Root must likewise include actual L1 source-preparer closure ede459d1ca3416141b5d1d94a959f826bd17ddb98259ab86379d50973b751b57 (83888/exit0), including its preparer identities, and every intervening job. These parent-provided new receipt statuses were not independently process-scanned here.",
+    "Root publication/launch assigns one new10800 envelope only after real prerequisites. Final terminal execution/root helper exit and fresh absence must be observed; no launch, runtime gate or quality PASS is claimed."
+  ],
+  "performed": {
+    "candidate_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "process_scans": 0,
+    "clocks": 0,
+    "materialization": 0,
+    "outcome_reads": 0,
+    "author_source_edits": 0,
+    "STATE_Git_edits": 0
+  }
+}

@@ -1,0 +1,12 @@
+L1 whole-agent A/B source-only packet.
+Source: run_pair.py, audit_pair.py (frozen R4 library adapter), close_pair.py. Nothing here was imported/executed, no tests/fits/API/clock/input materialization.
+
+Default run_pair inspection returns static caps only. Future root launch requires --launch --self-sha256 SHA --auditor-sha256 SHA --closer-sha256 SHA --prepared-manifest ACTUAL_WORK_REL_PATH --prepared-manifest-sha256 ACTUAL_SHA --source-archive ACTUAL_PATH --source-archive-sha256 ACTUAL_SHA --stage0-campaign ACTUAL_PATH --stage0-campaign-sha256 ACTUAL_SHA --stage0-root-closure ACTUAL_PATH --stage0-root-closure-sha256 ACTUAL_SHA --stage0-exec-session ACTUAL_SESSION_OR_null. Add real newest terminal closure as --extra-terminal-receipt PATH=SHA after root observes exit; no guessed current KERN01 proof. Optional root-pinned same-process bootstrap has separate path/SHA arguments; no secrets in argv. Root assigns actual10800 clock only through explicit launch.
+
+Setup900 +Ar900 +Br900 +Ac3600 +Bc3600 +audit600 +cleanup/root300=10800. Reg solver810/child870/parent900/HPO300; class3510/3570/3600/HPO900. All preparation/sealing and supervision inside task parents. Full future remaining-parent allocations and original deadline reserved before admission, no reset/reinvestment.
+
+Both arms use SAME future tested lossseed archive and exactV16controls; regression has exact CP1champion in BOTH, onlyBr adds --loss-seed-l1. Class flags OFF identically. Required first5/HPOunprofiled SINGLE/champion5 stay; L1 occupiesoptionalQwen6. Eight actual HPO attempts/counters required, plus existing conservative firstworker availablewindow492/1632; actual internal call/deadline timestamps remain unobserved/null.
+
+All4 core seals/supervisors checked before R4 import/first label scoring. Independent pristine metrics/rows/classes/probabilities/recursive mixtures/refitCSV +actual lossbooster telemetry rechecked; errors/nulls retained. Root closer requires actual tool/exit/genuine session ornull, original clock, strictknown union under ResearchLock, and rehashes all output evidence. Helper own terminal exit+fresh own preparers remain root checkpoint. No STATE/Git/public-output writes.
+
+This is a research A/B, NOT official-default qualification. Standard python3 solution.py task.md does not carry flags or external control/championJSON; later generic default integration plus BOTH standard-command whole-task qualification remains separate. No public/private/official gain promised.

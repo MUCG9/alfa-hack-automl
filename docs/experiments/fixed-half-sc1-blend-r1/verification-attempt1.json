@@ -1,8 +1,0 @@
-{
-  "status": "verifier_schema_error",
-  "error": "test probability artifact has no row_position; validation schema incorrectly reused",
-  "fits": 0,
-  "api_calls": 0,
-  "metric": null,
-  "candidate_artifacts_unchanged": true
-}

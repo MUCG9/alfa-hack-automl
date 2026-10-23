@@ -10,6 +10,10 @@ state. Исторические STOP/PID/статусы не заменяют п
 - `docs/experiments/har02_protocol_20261023.md`: декларативные признаки Qwen.
 - `docs/experiments/overnight_20261023.md`: действующая очередь и ограничения.
 - `docs/experiments/qwen_mvp_history_20261022.md`: checkpoints/rollback tags.
+- `docs/experiments/research_conclusions_20261023.md`: полный MVP, component screens
+  и ограничения meta-review. Статусы проверять по actual receipts.
+- Если продолжается blend qualification: `blend01_cv_protocol_20261023.md` и
+  `reg_blend01_cv_protocol_20261023.md` в `docs/experiments/`.
 - `docs/handoff/START_HERE.md`: qualified baseline и evidence.
 
 Canonical code — `src/automl`, root-файлы — compatibility shims. Contest ZIP
@@ -43,12 +47,19 @@ core checks1thread. Читать identity receipts, PID+create_time, descendants
 .venv/bin/python tools/propose_feature_dsl.py --help
 .venv/bin/python tools/summarize_mvp.py --help
 .venv/bin/python tools/summarize_research.py --help
+.venv/bin/python tools/run_blend_cv.py --help
 ```
 
-`overnight_research.py` уже ведёт последовательную очередь; сначала проверить
-существующий `queue.json`, а не запускать дубль. Manifests содержат actual
+`overnight_research.py` и followups могут вести последовательную очередь; сначала
+проверить существующие receipts/identities, а не запускать дубль. Manifests содержат actual
 source/input/split hashes. Перед promotion выполнить действующий source gate и
 exact-unpacked verification; repeated checks не складывать с unique checks.
+
+Положительный fixed replay означает только measured screen для новой единицы
+сравнения. Не отменять отрицательный standalone gate FE/HPO, не называть replay
+полным refit или qualified release. Grouped CV class и forward qualification reg
+имеют разные coverage semantics; полностью повторять inner selection, либо
+переиспользовать её exact verified artifacts с совпавшими source/input/split hashes.
 
 Qwen-ключ доступен только приватному окружению координатора. `.env` игнорируется
 Git, его содержимое не выводится; workers credentials не получают. Не коммитить

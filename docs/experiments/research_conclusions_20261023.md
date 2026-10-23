@@ -188,6 +188,22 @@ y, weights, recipe/seed и версии. Равные source row hashes сами
 доказывают одинаковый transformed fit. Нельзя кешировать outer selector для
 inner scopes или строить выбор features по validation.
 
+Практическая memory должна доходить до Qwen через harness: локальные
+AGENTS.md/skills сами по себе не загружаются plain API planner. В контекст
+нужен компактный current-task ledger с source/recipe/split fingerprint,
+отрицательными результатами, costs и доступными операциями. Source-specific
+негативный результат не является общим запретом семейства или новым gate.
+Actual capability schema должна учитывать активные feature views; обещание
+«feature-only proposal» не снимает проверку несовместимого feature_code.
+
+Для сохранённых полных worker artifacts перспективен cache с key по source,
+всему spec, input hashes, recipe, partitions, full_fit/fit_iterations и окружению.
+Равенство только params недостаточно. Такие cache hits надо показывать отдельно
+от actual fits. Профилировать также повторную генерацию group partitions и EDA;
+их immutable artifacts можно переиспользовать только при точном fingerprint
+родительских fitting rows, labels/groups, seed и версии алгоритма. Эти ускорения
+пока не реализованы и не измерены как новый полный pipeline.
+
 Positive screen потребует предусмотренных grouped CV всей selection procedure
 либо forward qualification, затем полного агента на обоих tasks и final CSV.
 До этого ни прототип, ни средний выигрыш одного cut не становится release.

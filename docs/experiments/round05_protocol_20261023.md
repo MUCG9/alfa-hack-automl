@@ -6,7 +6,10 @@ The captain then asked to check maximum reasoning. REASONING01 verified xhigh,
 and the gateway/dev planners were independently updated. Ask Qwen for a fresh
 xhigh plan using the complete negative ledger, excluding the unchanged failed
 mean operator. One logical call/360s wall/300s timeout/32768combined tokens;
-up to3HTTP attempts, no silent effort downgrade. Preserve the original conditional
+up to3HTTP attempts per call, no silent effort downgrade. One recorded proposal
+repair is allowed before fitting, at most2logical calls/720s common planning
+deadline measured from the first saved context; preserve rejected raw response
+and audit. No third call or unbounded repair. Preserve the original conditional
 response as provenance and the new typed plan/audit. New numerical factor is max rather than mean of the
 same available inner-fold mixture RMSEs; weights/recipes/space/seeds unchanged.
 

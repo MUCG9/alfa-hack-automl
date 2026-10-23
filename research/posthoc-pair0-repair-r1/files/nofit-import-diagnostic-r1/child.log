@@ -1,0 +1,2 @@
+{"tripwire": "socket_event", "event_code": "socket.gethostname"}
+{"status": "import_only_failed", "phase": "sklearn_import", "exception_code": "RuntimeError", "versions": {"numpy": "1.26.4", "pandas": "2.2.3", "psutil": "6.1.1"}}

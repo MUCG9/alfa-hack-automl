@@ -43,3 +43,6 @@ research/true-four-stage/preparation-receipt-r1.json -text
 research/true-four-stage/ownership.py -text
 research/true-four-stage/prior_ownership.py -text
 research/true-four-stage/independent-review-r1.json -text
+
+docs/experiments/fixed-half-sc1-blend-r1/protocol.json -text
+docs/experiments/fixed-half-sc1-blend-r1/README.md -text

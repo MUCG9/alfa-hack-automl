@@ -1,0 +1,296 @@
+[
+  {
+    "task": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/evaluation/multiclass/task.md",
+    "command": [
+      "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/../../work/ml-venv/bin/python",
+      "-u",
+      "solution.py",
+      "task.md",
+      "--offline",
+      "--time-budget",
+      "10800",
+      "--search-until-deadline",
+      "--finalization-reserve",
+      "1200",
+      "--max-extended-experiments",
+      "1000"
+    ],
+    "threads": 2,
+    "exit_code": 0,
+    "elapsed_seconds": 9598.31,
+    "best_validation": {
+      "macro_f1": 0.6632403174648631,
+      "weighted_f1": 0.8174860357763364,
+      "accuracy": 0.8068374073858001,
+      "per_class_f1": {
+        "Analysis": 0.3425076452599388,
+        "Backdoor": 0.2146341463414634,
+        "DoS": 0.4964788732394366,
+        "Exploits": 0.676939811457578,
+        "Fuzzers": 0.7544194935499283,
+        "Generic": 0.9878147847278635,
+        "Normal": 0.9135873197746587,
+        "Reconnaissance": 0.82259767687434,
+        "Shellcode": 0.6666666666666666,
+        "Worms": 0.7567567567567568
+      },
+      "per_class_diagnostics": {
+        "Analysis": {
+          "precision": 0.4827586206896552,
+          "recall": 0.26540284360189575,
+          "support": 211
+        },
+        "Backdoor": {
+          "precision": 0.46808510638297873,
+          "recall": 0.13924050632911392,
+          "support": 158
+        },
+        "DoS": {
+          "precision": 0.35490830636461707,
+          "recall": 0.8259414225941423,
+          "support": 1195
+        },
+        "Exploits": {
+          "precision": 0.837219730941704,
+          "recall": 0.5681679853925745,
+          "support": 3286
+        },
+        "Fuzzers": {
+          "precision": 0.6727737537281636,
+          "recall": 0.8586188145731376,
+          "support": 1839
+        },
+        "Generic": {
+          "precision": 0.9986312619764577,
+          "recall": 0.9772301098312349,
+          "support": 3733
+        },
+        "Normal": {
+          "precision": 0.9747351263243684,
+          "recall": 0.8596585804132973,
+          "support": 5565
+        },
+        "Reconnaissance": {
+          "precision": 0.8882554161915621,
+          "recall": 0.7659783677482792,
+          "support": 1017
+        },
+        "Shellcode": {
+          "precision": 0.573170731707317,
+          "recall": 0.7966101694915254,
+          "support": 118
+        },
+        "Worms": {
+          "precision": 0.7777777777777778,
+          "recall": 0.7368421052631579,
+          "support": 19
+        }
+      },
+      "confusion_matrix": {
+        "classes": [
+          "Analysis",
+          "Backdoor",
+          "DoS",
+          "Exploits",
+          "Fuzzers",
+          "Generic",
+          "Normal",
+          "Reconnaissance",
+          "Shellcode",
+          "Worms"
+        ],
+        "counts": [
+          [
+            56,
+            5,
+            129,
+            10,
+            0,
+            0,
+            11,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            22,
+            115,
+            17,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            3,
+            7,
+            987,
+            161,
+            11,
+            0,
+            1,
+            9,
+            16,
+            0
+          ],
+          [
+            6,
+            9,
+            1205,
+            1867,
+            59,
+            5,
+            18,
+            83,
+            30,
+            4
+          ],
+          [
+            1,
+            2,
+            125,
+            25,
+            1579,
+            0,
+            91,
+            2,
+            14,
+            0
+          ],
+          [
+            1,
+            0,
+            44,
+            33,
+            4,
+            3648,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            45,
+            0,
+            11,
+            41,
+            673,
+            0,
+            4784,
+            3,
+            8,
+            0
+          ],
+          [
+            3,
+            2,
+            165,
+            65,
+            2,
+            0,
+            1,
+            779,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            6,
+            18,
+            0,
+            0,
+            0,
+            94,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            5,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14
+          ]
+        ]
+      },
+      "log_loss": 0.46113391938503795,
+      "roc_auc": 0.9703049421469853
+    },
+    "final_fit_status": "preserved_trained_baseline",
+    "integrity_ok": true,
+    "submission_sha256": "af64a22a5e9f5ff26ed817dfaa707e77e5bd9500dc63e52748521b00670efa96",
+    "score_scope": "Adaptive reused-public search and confirmation; not independent/private/platform score",
+    "baseline": {
+      "mean": 0.6593178433614652,
+      "search": 0.6632403174648631,
+      "confirmation": 0.6553953692580672,
+      "submission_sha256": "af64a22a5e9f5ff26ed817dfaa707e77e5bd9500dc63e52748521b00670efa96"
+    },
+    "exported_mean": 0.6593178433614652,
+    "best_observed_mean": 0.6593178433614652,
+    "confirmation_metric": 0.6553953692580672,
+    "exported_full_fit_ok": true,
+    "anytime": {
+      "wall_budget": 10800,
+      "finalization_reserve": 1200,
+      "extended_attempts": 26,
+      "stop_reason": "search_deadline",
+      "legacy_baseline_trials": 12
+    }
+  },
+  {
+    "task": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/work/evaluation/regression/task.md",
+    "command": [
+      "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/../../work/ml-venv/bin/python",
+      "-u",
+      "solution.py",
+      "task.md",
+      "--offline",
+      "--time-budget",
+      "10800",
+      "--search-until-deadline",
+      "--finalization-reserve",
+      "1200",
+      "--max-extended-experiments",
+      "1000"
+    ],
+    "threads": 2,
+    "exit_code": 0,
+    "elapsed_seconds": 9607.868,
+    "best_validation": {
+      "rmse": 37.56014204464436,
+      "mae": 19.40624365903614,
+      "r2": 0.5585918368250138
+    },
+    "final_fit_status": "ok",
+    "integrity_ok": true,
+    "submission_sha256": "3b6912dbea6ef7daf3b39a300c9adfc4b89f0321f2a1a4c1a3293e0fea49df38",
+    "score_scope": "Adaptive reused-public search and confirmation; not independent/private/platform score",
+    "baseline": {
+      "mean": 35.44723155783769,
+      "search": 38.902803731334785,
+      "confirmation": 31.991659384340597,
+      "submission_sha256": "05ccd9eabcbf29f4b858e9cd89f6dfe568ce1bdddb32a397c71b98ef1c0c1673"
+    },
+    "exported_mean": 34.696921280971,
+    "best_observed_mean": 34.696921280971,
+    "confirmation_metric": 31.833700517297636,
+    "exported_full_fit_ok": true,
+    "anytime": {
+      "wall_budget": 10800,
+      "finalization_reserve": 1200,
+      "extended_attempts": 690,
+      "stop_reason": "search_deadline",
+      "legacy_baseline_trials": 12
+    }
+  }
+]

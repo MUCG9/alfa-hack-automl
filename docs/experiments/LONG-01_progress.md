@@ -59,3 +59,37 @@ Comparison reference (same reused public two-cut validation):
 
 No conversion from these local metrics to official points is known. More tuning
 on reused public cuts is not independent evidence of private improvement.
+
+## Completed — verified 23 October,18:51 Moscow
+
+Both tasks completed with exit0; controller25832 ended exit0. Both actual
+submission.csv hashes match report.json and assessment.json; integrity and
+exported_full_fit_ok are true. This supersedes the historical RUNNING above.
+
+|Task|Exported search|Exported confirmation|Exported mean|Harness seconds|
+|---|---:|---:|---:|---:|
+|Classification MacroF1|.6632403174648631|.6553953692580672|.6593178433614652|9598.310|
+|Regression RMSE|37.56014204464436|31.833700517297636|34.696921280971|9607.868|
+
+Classification:38 trials (12 baseline+26 extended), no gain; preserved fully
+trained V11 baseline is a valid fallback, not a failed fit. Regression:12 baseline
+plus690 extended attempts; exported_mean equals best_observed_mean, final refit
+status ok, component iterations185/181. Mean RMSE improves by .75031027686669
+(2.1167%); search improves1.342661686690425 and confirmation .157958867042961.
+Both stop reasons search_deadline. The20-minute reserve was NOT required in full:
+regression finished after approximately2h40, not an artificial wait until3h.
+
+Classification CSV SHA256:
+af64a22a5e9f5ff26ed817dfaa707e77e5bd9500dc63e52748521b00670efa96.
+Regression CSV SHA256:
+3b6912dbea6ef7daf3b39a300c9adfc4b89f0321f2a1a4c1a3293e0fea49df38.
+Aggregate harness receipts: release/long01-anytime1/completed-assessments.json.
+Raw predictions/model artifacts stay ignored in the original local directory.
+
+The winning regression blend consists of two existing LightGBM alternatives,
+equal weights,127/255 leaves and seeds526/311; it uses the same allowed
+history/target-encoding/log-target policy, not a new external dependency.
+This is adaptive reused-public evidence after many comparisons, not independent
+CV or official score. No archive/default-policy promotion or upload is implied.
+Next: locally regenerate the8 prepared BASE passports sequentially without fits,
+verify closure, then evaluate the frozen single missing SEL confirmation.

@@ -30,6 +30,16 @@ def fixture():
 
 
 class IncumbentMixTests(unittest.TestCase):
+    def test_invalid_worker_memory_budget_cannot_start_or_create_a_job(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)/'unused'
+            with patch.object(profile.run_worker.__globals__['subprocess'], 'Popen') as process:
+                for value in [0, -1, True, 1.5, 'invalid']:
+                    with self.subTest(value=value), self.assertRaises(ValueError):
+                        profile.run_worker({}, {}, output, None, 10, memory_limit=value)
+                process.assert_not_called()
+                self.assertFalse(output.exists())
+
     def test_profile_priors_match_execution_contract_and_unsupported_tasks_fallback(self):
         spec, *_ = fixture()
         plan = profile.profile_recipes(spec)

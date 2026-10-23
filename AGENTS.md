@@ -1,3 +1,17 @@
+# Continuing research authorization,23October2026
+
+The captain explicitly reopened autonomous Qwen experiments: complete each plan,
+create and execute the next, and implement considered bug fixes/ideas. This
+supersedes the historical completed-checkpoint/no-new-research stops below.
+Use bounded, preregistered sequential rounds and real organizer Qwen calls.
+Current strong control is qualified PIPE-02, not V16 or a single learner.
+Read docs/experiments/round01_protocol_20261023.md before the next round.
+Preserve the immutable verified submission archive while testing dev-only tools.
+ONE improved official upload remains pending browser unlock; no lock bypass,
+duplicate upload, extra Codex agents, paid resources, force push or main merge.
+Local commits remain authorized. Latest verified public SHA is2c4bf16; subsequent
+local commits have not been pushed because temporary Git authentication expired.
+
 # New submission request,23October2026
 
 The captain now explicitly authorizes an official submit IF the completed local

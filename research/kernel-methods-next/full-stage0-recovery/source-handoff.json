@@ -1,0 +1,104 @@
+{
+  "status": "frozen_source_only_narrow_preparation_recovery_independent_review_no_blocker",
+  "files_sha256": {
+    "close_stage0.py": "f438798c4dbb834e7857abe161f89fddf9b1a53ef55d6a03277b69561ff9464b",
+    "prepare_source.py": "f749889a9a6eb29859169468c352345e05d41aa357579df132a1ff9cfb7520a8",
+    "protocol.json": "13505781d6e92a7164c216fe0fdb2d6e7a85a4e4e2aa197a5e1b976e2a88f553",
+    "README.txt": "160126db27f282a372c40ff2cb0d4fe97cced6a4724da026cbee57df3c22f910",
+    "recovery.patch": "2a709bc5f3badb307c11cbc3e26075d0fe420483ac800da53d785f5e54df55e7",
+    "run_stage0.py": "4675c25636709ad176c778c502c47a4a7639b9abc55df65f75e2a35d1797551b",
+    "static-proof.json": "84e6c259482cf3c41180362b6e617d293e0d7dcd8b96a864cfdacff9f91b8aa3"
+  },
+  "source_base": {
+    "path": "cs-stage0-packet/manifest.json",
+    "sha256": "5160562be127dc6130a1f3349a21b552c8aac526ead484048982716b037aa1c1",
+    "archive_sha256": "52627ac5b9da5ee47d8d40951f84edf9b9dede28cca4b4f90504be6bb4e672b8",
+    "LOSS_backend_included": false,
+    "class_seed_included": false
+  },
+  "overlay": {
+    "path": "kernel-methods-next-dev/source-handoff.json",
+    "sha256": "3794521c315a93900d22df54472299fa6b71d2a36cda0e6b743784c31737fc55",
+    "review_path": "kernel-methods-independent-source-review-r2.json",
+    "review_sha256": "6c240b80bec2543707830a30c629d3a0329929ae4e1f0b9b497724dd0b425f39"
+  },
+  "operational_review": {
+    "path": "kernel-stage0-recovery-independent-review-r1.json",
+    "sha256": "d2ed7c4fc737925dd65a1926d89c36f734a6a99e2451576fac7387d701665936",
+    "concrete_source_scope_blockers": []
+  },
+  "future": {
+    "source_root": "kern00",
+    "packet": "kern-stage0-packet",
+    "output": "kern0",
+    "source_files": 694,
+    "source_registry": 483,
+    "source_scripts": 50,
+    "archive_members": 70,
+    "python_members": 69,
+    "changed_runtime_members": 5,
+    "new_members": 2,
+    "unchanged_members": 63,
+    "source_skips": 0,
+    "exact_repeated": 23,
+    "flat_same_tests": 12,
+    "kernel_tiny_fit_calls_per_suite": 11,
+    "common_seconds": 900,
+    "setup_source": 600,
+    "exact_all": 180,
+    "final_root": 120,
+    "actual_start_unix": null,
+    "actual_deadline_unix": null,
+    "no_reset_or_retry": true
+  },
+  "verification": {
+    "registry_AST": 483,
+    "flat_AST_hashes_equal_overlay": true,
+    "assertion_AST_equal": true,
+    "test_method_AST_equal_after_inverse_two_mock_module_prefixes": true,
+    "literal_pins_reconciled": 28,
+    "existing_targeted_kernel00_unchanged": true,
+    "actual_targeted12_pass_is_not_full483_or_flat70_pass": true,
+    "actual_list_dict_shapes_reconciled": true,
+    "driver_AST_equal_after_only_path_and_hash_rebind": true,
+    "closer_bytes_identical_to_R1": true
+  },
+  "latest_predecessor": {
+    "path": "loss01/terminal-root-closure.json",
+    "sha256": "ce6accf1ec6b6f1e0c14dbb0c8913b55538f6a460450cbb2705ae36a37d3bcf3",
+    "actual_exec_session": 68631,
+    "actual_exec_exit_code_observed_by_root": 0,
+    "root_helper_exit0": "9011ff",
+    "root_fresh_absence": "8e3d9b"
+  },
+  "performed": {
+    "materialization_or_archive_build": 0,
+    "application_runtime_imports": 0,
+    "tests": 0,
+    "fixtures": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "data_or_outcome_values_read": false,
+    "clock_assigned": false,
+    "STATE_or_Git_edits": false
+  },
+  "source_frozen": true,
+  "no_further_source_writes": true,
+  "remaining": "Root actual corrected source preparation, prepared packet review/publication, one serial483/23/12 gate within newly assigned900 and actual terminal/root closure plus fresh preparer absence. Prior R1 preparation failed before any ML clock; failure remains separate.",
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false,
+  "recovery": {
+    "prior_handoff_path": "kernel-stage0-next-dev/source-handoff.json",
+    "prior_handoff_sha256": "12bf48d492ba0c107dfab4b90ff3ec92e2ed5607f499ef552cd239ba80bb9d9b",
+    "prior_preparer_sha256": "3316d02fd116c18b1e753967fd905c4129b92999cf8a4cd2a5172863a1e26357",
+    "actual_prior_tool": "b66cf9",
+    "actual_prior_exit_code": 1,
+    "actual_prior_exec_session": null,
+    "root_reported_failure": "Pre-destination assertion compared changed_runtime_modules/new_runtime_modules lists to integers.",
+    "root_reported_destinations_absent": true,
+    "ML_clock_ever_assigned": false,
+    "change": "Validate exact native list type, length, uniqueness, strings and equality with frozen handoff changed_source_paths/new_source_paths. No model/test/resource/factor change.",
+    "original_failure_preserved": true
+  }
+}

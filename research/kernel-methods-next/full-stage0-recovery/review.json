@@ -1,0 +1,48 @@
+{
+  "status": "no_blocker_in_narrow_source_and_actual_JSON_schema_repair",
+  "bindings": {
+    "kernel-stage0-recovery-dev/prepare_source.py": "f749889a9a6eb29859169468c352345e05d41aa357579df132a1ff9cfb7520a8",
+    "kernel-stage0-recovery-dev/run_stage0.py": "4675c25636709ad176c778c502c47a4a7639b9abc55df65f75e2a35d1797551b",
+    "kernel-stage0-recovery-dev/protocol.json": "13505781d6e92a7164c216fe0fdb2d6e7a85a4e4e2aa197a5e1b976e2a88f553",
+    "kernel-stage0-recovery-dev/close_stage0.py": "f438798c4dbb834e7857abe161f89fddf9b1a53ef55d6a03277b69561ff9464b",
+    "kernel-methods-next-dev/materialization.json": "2db7ad34129618cbd587c88fa95bc8269711b410866082192fdd0cf4ff0190af",
+    "kernel-methods-next-dev/source-handoff.json": "3794521c315a93900d22df54472299fa6b71d2a36cda0e6b743784c31737fc55"
+  },
+  "preserved_failure": {
+    "root_reported_tool": "b66cf9",
+    "root_reported_exit_code": 1,
+    "actual_exec_session": null,
+    "original_preparer_sha256": "3316d02fd116c18b1e753967fd905c4129b92999cf8a4cd2a5172863a1e26357",
+    "original_handoff_sha256": "12bf48d492ba0c107dfab4b90ff3ec92e2ed5607f499ef552cd239ba80bb9d9b",
+    "diagnosis": "The original preparer compared JSON lists changed_runtime_modules/new_runtime_modules to integer counts before creating the destination.",
+    "reviewer_correction": "The prior source review missed these actual JSON field types. Its preparer-readiness conclusion is corrected here; the original source, failed attempt and review remain preserved."
+  },
+  "actual_metadata_checked": {
+    "materialization_changed_runtime_modules": "Native JSON array, five unique string paths; exactly the handoff changed_source_paths set. Array order differs, so list equality is inappropriate.",
+    "materialization_new_runtime_modules": "Native JSON array, two unique string paths; exactly the handoff new_source_paths set.",
+    "source_inventory": "Base source map690 plus overlay map80 has union694. Existing changed paths are precisely the five handoff runtime paths; the four added paths are the two new modules, kernel test and capabilities fixture.",
+    "flat_metadata": "Base compiled map68; flat-proof changed_members is a five-key object with base_sha256/candidate_sha256 values; new_members is a two-key SHA string map. Candidate70 and unchanged63 agree.",
+    "registry_and_fixture": "Base registry values are native integers totaling471. The exact source marker for adding twelve kernel methods exists in the pinned original run_checks source; prospective total remains483."
+  },
+  "repair_review": [
+    "The new preparer requires native lists, exact5/2 lengths, string elements, no duplicates and equality to the respective exact handoff path sets.",
+    "The substantive preparer change is limited to the faulty metadata assertion. Driver differences are the new preparer/protocol paths and their SHA cascade; the closer is byte-identical.",
+    "Runtime backend, five module changes/two additions, tests/assertions, resources, archive derivation, gate counts, predecessor guard, one future900-second clock and ownership behavior are unchanged.",
+    "The original preparation assigned no Stage0 clock. No failed campaign clock is reset or reused; actual preparation success, root review and future explicit Stage0 launch remain separate prerequisites."
+  ],
+  "limits": [
+    "This review reads source and actual pinned JSON metadata; it does not execute the preparer, compiler, tests or model code.",
+    "Metadata agreement is not a claim of successful materialization or483/flat70 gate success. Actual preparation and all runtime evidence remain future requirements."
+  ],
+  "performed_by_reviewer": {
+    "source_and_static_JSON_reads_only": true,
+    "candidate_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "public_data_or_outcome_values_read": false,
+    "process_scans": 0,
+    "clock_assigned": false,
+    "candidate_STATE_Git_edits": false
+  }
+}

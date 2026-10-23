@@ -1,0 +1,36 @@
+{
+  "status": "pretest_portability_revision_only_no_new_outcomes",
+  "reason": "New default-parity test used an undeclared sibling source path inR1. Move exact frozen selector source into the candidate own tests/fixtures so future fullsource gate inventory is self-contained.",
+  "R1_pretest_sha256": "04a51d057fd191c4c40782f4facd2c3ad3640d3734317dc49a3d26b6ea61e5aa",
+  "R1_final_manifest_sha256": "96aac75d42fe0d15144c914dda8cd40d786a56cea49a8e7a18c16c50ae42e65b",
+  "R1_test_source_preserved": {
+    "path": "cache-pilot-dev/evidence/r1-preserved/test_teacher_probe.py",
+    "sha256": "e2c772abbcf9806f57ea940c150768c54aa1d8b5ab92b3661d23a9f157229f75"
+  },
+  "fixture": {
+    "path": "tests/fixtures/teacher_selector_default_off.py",
+    "sha256": "46005426777b60358549dc7dcecc559631b9012a9b3c6c90df24d4a2ffeb7008",
+    "must_be_in_future_source_gate_inventory": true,
+    "must_be_deployed_under_each_source_root": true,
+    "compiled_ML_archive_member": false
+  },
+  "only_existing_source_change": "tests/test_teacher_probe.py fixture path",
+  "new_runtime_or_model_changes": false,
+  "compiled70member_map_byteidentical": true,
+  "archive_sha256_unchanged": "e0f57d148bab30c98d06c4ee933c0a7edcbd321e26b456feb588bfc78fdc04fa",
+  "candidate_registry_expected": {
+    "checks": 471,
+    "scripts": 48
+  },
+  "focused_expected": 20,
+  "caps_unchanged": true,
+  "prospective_pilot_seconds": 7200,
+  "fullsource_or_unpacked_gates_run": false,
+  "fits": 0,
+  "API_calls": 0,
+  "ownership_library": {
+    "path": "support_component_coordinator.py",
+    "sha256": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "already_in_R1_169map": true
+  }
+}

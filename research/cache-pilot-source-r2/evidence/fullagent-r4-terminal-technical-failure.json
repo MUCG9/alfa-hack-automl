@@ -1,0 +1,45 @@
+{
+  "status": "rejected_early_incomplete_CV",
+  "rejection_kind": "technical_failure",
+  "failure_code": "unsupported_outer_output_contract",
+  "actual_exec_session": 78130,
+  "actual_exec_exit_code": 1,
+  "stage_receipt_sha256": "d2e5f64276e639fd6f20b315014701bb12352b2f2c65b3294ced04a9ccd7c456",
+  "launch_receipt_sha256": "574051f8ee5cb4d3bf69219c967cfa652c4d9b297c2030161fa6158004624709",
+  "technical_rejection_sha256": "c091a42c69b597b3b643359741ecb2a6267995994ec2d9fa74faccbab3a593d2",
+  "actual_parent_elapsed_seconds": 3029.625,
+  "original_common_deadline_unix": 1792801631.466951,
+  "original_common_seconds": 64800,
+  "completed_solver_arms": [
+    {
+      "directory": "0a",
+      "exit_code": 0,
+      "supervisor_sha256": "81c497077a880e777d611be5e43541796a3fde7d1b4fb6cc6857ded5878e5642"
+    },
+    {
+      "directory": "0b",
+      "exit_code": 0,
+      "supervisor_sha256": "a828e7a0ed55954e55d535d770d330ac4c685d2d5c6c4543e5b6ff009d6a4234"
+    }
+  ],
+  "later_arms_not_attempted": [
+    "1b",
+    "1a",
+    "2a",
+    "2b"
+  ],
+  "original_verifier_expected": "label",
+  "actual_parser_contract": "value",
+  "quality_metrics": null,
+  "complete_CV": false,
+  "OOF_complete": false,
+  "full_aggregates": null,
+  "source430_parent_report_unchanged": true,
+  "parent_cleanup_confirmed": true,
+  "fresh_terminal_strict_ownership": "blocked_pending_lineage_review_no_new_heavy_jobs",
+  "preserved_strict_closure_failure_sha256": "6cf9fc7a8af4c02772d8418a0a3f9184144a65a4e3079dd9896acca1f96b8b41",
+  "posthoc_pair_audit_not_yet_executed": true,
+  "original_attempt_resumed": false,
+  "promotion": false,
+  "official_submission": false
+}

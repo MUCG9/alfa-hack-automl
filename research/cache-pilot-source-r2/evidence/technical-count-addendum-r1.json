@@ -1,0 +1,40 @@
+{
+  "status": "prospective_counts_frozen_before_any_focused_test_outcomes",
+  "plan_manifest": "cache-pilot-plan-r1/manifest-r3.json",
+  "plan_manifest_sha256": "132a1d797288a4a5f839fec3d9760764d3bc833540798de1535bb272a5f9ef1c",
+  "root_authorized": true,
+  "original_registry": {
+    "checks": 451,
+    "scripts": 46
+  },
+  "existing_cache_addition": {
+    "checks": 12,
+    "scripts": 1,
+    "test_source_unchanged": true
+  },
+  "new_common_probe_addition": {
+    "checks": 8,
+    "scripts": 1,
+    "methods": [
+      "test_actual_fitting_values_log_target_weights_and_history_context_are_distinct",
+      "test_common_hashes_match_both_arms_without_supplying_free_cache_key",
+      "test_default_path_has_no_probe_or_keys_and_keeps_original_outputs",
+      "test_fake_clock_separates_actual_fit_from_constructor_and_importance",
+      "test_flat_build_maps_probe_and_keeps_registered_method_counts",
+      "test_mock_worker_probe_has_same_inner_keys_outer_miss_and_exact_csv",
+      "test_scopes_fresh_leaf_and_bounded_lru_trace_keep_no_fitting_values",
+      "test_uncacheable_types_and_invalid_flags_keep_fit_or_fail_before_io"
+    ]
+  },
+  "expected_candidate_registry": {
+    "checks": 471,
+    "scripts": 48
+  },
+  "focused_synthetic_expected": 20,
+  "caps_changed": false,
+  "prospective_pilot_seconds": 7200,
+  "actual_full_source_gates_run": false,
+  "actual_exact_unpacked_gates_run": false,
+  "model_fits": 0,
+  "API_calls": 0
+}

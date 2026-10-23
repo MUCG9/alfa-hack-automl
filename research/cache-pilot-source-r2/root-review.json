@@ -1,0 +1,33 @@
+{
+  "status": "root_accepted_isolated_source_and_synthetic_contracts_only",
+  "final_manifest_sha256": "f83e57929928b2e31a114c18f44d1ed85a2d0e541dc7df12fdc9c9d7887c94ba",
+  "independent_review_sha256": "79efd2cd69839872af00d2439f4f93d1118ad1da21d40dfad399f8500e09f0ff",
+  "candidate_archive_sha256": "e0f57d148bab30c98d06c4ee933c0a7edcbd321e26b456feb588bfc78fdc04fa",
+  "flat_members": 70,
+  "source_and_evidence_rehashed": {
+    "source_code_files_sha256": 179,
+    "evidence_files_sha256": 24
+  },
+  "focused_unique_mock_tests_passed": 20,
+  "focused_runs": 2,
+  "unique_tests_not_40": true,
+  "mock_supervisor_sha256": "8740c8b35d4dbc1cf78574be7f845ba0d8d60a78c17eea4943cc878b3d06e783",
+  "mock_seconds": 2.5940000005066395,
+  "peak_owned_tree_rss_mib": 190.18359375,
+  "mock_cleanup_confirmed": true,
+  "real_full_source_gates_passed": false,
+  "real_unpacked_gates_passed": false,
+  "registry_expected_only": {
+    "checks": 471,
+    "scripts": 48
+  },
+  "actual_callbacks": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "measured_cache_savings": null,
+  "fullagent_quality_gain": null,
+  "default_changed": false,
+  "promotion": false,
+  "official_submission": false,
+  "next": "Separate root-reviewed coordinator/verifier, fresh ownership closure, publication,7200 clock and actual source/unpacked/six fixed callbacks remain required."
+}

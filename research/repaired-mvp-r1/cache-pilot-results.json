@@ -1,0 +1,55 @@
+{
+  "status": "independently_verified_complete_six_cache_pilot",
+  "scope": "Three fixed callback pairs, reused public inner cuts; descriptive timing only",
+  "complete_six": true,
+  "mechanism_pass": true,
+  "parity_pass": true,
+  "positive_descriptive_time_label": true,
+  "total_parent_delta_OFF_minus_ON": 85.96999999999662,
+  "pairs": [
+    {
+      "anchor": "c-trial00",
+      "status": "paired_parity_pass",
+      "metrics": {
+        "OFF": 0.6323685569451175,
+        "ON": 0.6323685569451175
+      },
+      "parent_seconds_OFF": 352.59400000000005,
+      "parent_seconds_ON": 281.8590000000004,
+      "parent_delta_OFF_minus_ON": 70.73499999999967,
+      "eligible_hits": 2
+    },
+    {
+      "anchor": "c-trial01",
+      "status": "paired_parity_pass",
+      "metrics": {
+        "OFF": 0.6252099951735258,
+        "ON": 0.6252099951735258
+      },
+      "parent_seconds_OFF": 372.6869999999999,
+      "parent_seconds_ON": 357.15600000000086,
+      "parent_delta_OFF_minus_ON": 15.53099999999904,
+      "eligible_hits": 2
+    },
+    {
+      "anchor": "r-trial00",
+      "status": "paired_parity_pass",
+      "metrics": {
+        "OFF": 37.343230482757285,
+        "ON": 37.343230482757285
+      },
+      "parent_seconds_OFF": 16.031999999999243,
+      "parent_seconds_ON": 16.32800000000134,
+      "parent_delta_OFF_minus_ON": -0.2960000000020955,
+      "eligible_hits": 0
+    }
+  ],
+  "actual_outer_exec_session": 23927,
+  "actual_outer_exit_code": 0,
+  "root_terminal_closure_sha256": "a42d2fedb4156158d8876134e238c7b86863d70506fcb59697c28efb096f939e",
+  "audit_sha256": "7cedba3ce665758af1f014a37ba118e0aa7f9db44b32e7783aae4f57ba265407",
+  "strong_control_replaced": false,
+  "full_agent_gain": null,
+  "official_score": null,
+  "submit": false
+}

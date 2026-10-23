@@ -1,0 +1,14 @@
+{
+  "status": "prepared_only_for_root_review_no_Stage1_authorization",
+  "source_sha256": "fc4599b140641897cc3127dde8175fa2d7f50c052a630f07ac511157daead329",
+  "recorded_epoch": 1792736704.863943,
+  "files_sha256": {
+    "stage0-terminal-ownership.json": "39bb0dfbe944ecadb48f10196d57ab8c8c8def40aad284b96952d3072588b011",
+    "technical-summary.json": "fa92d60991beb96615c3f3a3f382c4a931c49a2769a3d3f173a8db76635910f8",
+    "stage1-root-review-PROPOSAL.json": "e3fe2e4b91d8e139c346aeb34c3fa1b7dcc74d2f558f635edda71b180f74e53b"
+  },
+  "Stage1_clock_assigned": false,
+  "Stage1_launched": false,
+  "new_fits": 0,
+  "API_calls": 0
+}

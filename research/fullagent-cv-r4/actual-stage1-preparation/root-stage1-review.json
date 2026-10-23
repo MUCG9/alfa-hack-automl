@@ -1,0 +1,75 @@
+{
+  "status": "root_reviewed_actual_Stage0_pass_and_prospective_Stage1",
+  "recorded_epoch": 1792736776.739715,
+  "source_sha256": "b85d04ec335a6cccefd3ed5214d05ea196fc4a62b619a054644b568c6d05d627",
+  "manifest_sha256": "a70f2a0cefb686dd04535c76b4c9e9e80073aba23d86fd7aad7e52fc7b9eee6a",
+  "root_launch_reviewed": true,
+  "authorized_stage": "stage1",
+  "stage1_seconds": 64800,
+  "clock_assigned": false,
+  "Stage0_completion_sha256": "bfe8bfcb7bf06fc13bf4292a1ba1adb7234677685f667cd231a13537b2b7e5c4",
+  "Stage0_closure_sha256": "39bb0dfbe944ecadb48f10196d57ab8c8c8def40aad284b96952d3072588b011",
+  "Stage0_technical_summary_sha256": "fa92d60991beb96615c3f3a3f382c4a931c49a2769a3d3f173a8db76635910f8",
+  "all_four_actual_gates_passed": true,
+  "source430_unchanged": true,
+  "root_reviewed_unchanged_limits": {
+    "stage0": 3600,
+    "stage1": 64800,
+    "parent": 10200,
+    "solver": 9900,
+    "arm_audit": 120,
+    "final_audit": 1200
+  },
+  "root_reviewed_unchanged_slots": [
+    {
+      "fold": 0,
+      "arm": "a",
+      "directory": "0a"
+    },
+    {
+      "fold": 0,
+      "arm": "b",
+      "directory": "0b"
+    },
+    {
+      "fold": 1,
+      "arm": "b",
+      "directory": "1b"
+    },
+    {
+      "fold": 1,
+      "arm": "a",
+      "directory": "1a"
+    },
+    {
+      "fold": 2,
+      "arm": "a",
+      "directory": "2a"
+    },
+    {
+      "fold": 2,
+      "arm": "b",
+      "directory": "2b"
+    }
+  ],
+  "root_reviewed_unchanged_solver_cli": [
+    "-u",
+    "solution.py",
+    "task.md",
+    "--offline",
+    "--max-llm-calls",
+    "0"
+  ],
+  "root_launch_requires_fresh_strict_absence_of_all_Stage0_and_preparer_identities": true,
+  "old_root_review_sha256": "f151c6013fb0e484885a41126cb5495ab987ab5e035a1e5ad42d814980eb42d4",
+  "historical_reference_aliases": {
+    "fullagent-cv-launch-r4/review.json": "fullagent-cv-launch-r4/review-stage0-r4.json"
+  },
+  "historical_alias_scope": "Only the Stage0 closure old review reference; current packet/review.json will become this separately published Stage1 decision at launch. Every other closed reference remains at its original path.",
+  "positive_requires_all_three_paired_folds_complete_OOF_all_R3_quality_refit_CSV_source_gates": true,
+  "early_stop_is_declared_negative_only_and_incomplete_full_CV_metrics_remain_null": true,
+  "API_limit": 0,
+  "Stage2_authorized_by_this_review": false,
+  "promotion": false,
+  "official_submission": false
+}

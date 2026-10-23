@@ -1,0 +1,97 @@
+{
+  "status": "actual_R4_Stage0_technical_gates_verified_ready_for_root_Stage1_review",
+  "source_sha256": "b85d04ec335a6cccefd3ed5214d05ea196fc4a62b619a054644b568c6d05d627",
+  "manifest_sha256": "a70f2a0cefb686dd04535c76b4c9e9e80073aba23d86fd7aad7e52fc7b9eee6a",
+  "gates": [
+    {
+      "name": "a_source",
+      "passed": true,
+      "checks": 451,
+      "scripts": 46,
+      "skips": 0,
+      "parent_cap_seconds": 900,
+      "parent_seconds_including_cleanup_and_proof": 254.06199999991804,
+      "supervised_seconds": 253.18699999991804,
+      "peak_owned_tree_rss_mib": 524.5390625,
+      "supervisor_sha256": "4e21b82035ff4be3259852b94a4bb4173c88c713de201d2bcb1ec9baa0a713e4",
+      "result_sha256": "0bd169565dd9aafc3258cccc9042ef33852943b2a904fffa1be1b54140d6a8e4"
+    },
+    {
+      "name": "b_source",
+      "passed": true,
+      "checks": 468,
+      "scripts": 48,
+      "skips": 0,
+      "parent_cap_seconds": 900,
+      "parent_seconds_including_cleanup_and_proof": 255.14099999982864,
+      "supervised_seconds": 254.26599999982864,
+      "peak_owned_tree_rss_mib": 526.8515625,
+      "supervisor_sha256": "777b55fe26d7c7b45196ca20d5df3d114221894b79759078d2e5d676fca09951",
+      "result_sha256": "1d4f57389a8579d2c92acb7640e53f8d2b64f966f6abcf912309350122e2cd12"
+    },
+    {
+      "name": "a_exact",
+      "passed": true,
+      "checks": 23,
+      "scripts": 3,
+      "skips": 0,
+      "counts": {
+        "test_v2.py": 11,
+        "test_resilience.py": 7,
+        "smoke.py": 5
+      },
+      "parent_cap_seconds": 480,
+      "parent_seconds_including_cleanup_and_proof": 43.17200000025332,
+      "supervised_seconds": 42.26599999982864,
+      "peak_owned_tree_rss_mib": 528.328125,
+      "supervisor_sha256": "47d5429fc84316e3cb257f738a41fb61916e91f167880284f0919ebb416ed4c3",
+      "result_sha256": "67b0ae4012bf25d19626dffec359e06307fe97393ef8f28b2c61451c5d22e223"
+    },
+    {
+      "name": "b_exact",
+      "passed": true,
+      "checks": 23,
+      "scripts": 3,
+      "skips": 0,
+      "counts": {
+        "test_v2.py": 11,
+        "test_resilience.py": 7,
+        "smoke.py": 5
+      },
+      "parent_cap_seconds": 480,
+      "parent_seconds_including_cleanup_and_proof": 42.29700000025332,
+      "supervised_seconds": 41.39100000075996,
+      "peak_owned_tree_rss_mib": 528.72265625,
+      "supervisor_sha256": "d2a6480a06e84d80ed28c0ce1d42bae54ea2bdb362579a5515929b5d1e4f46db",
+      "result_sha256": "8b1f3b5e329fc7ca9ec51c57631a613e51f8685bfd1cdd2fee94edb39dde1853"
+    }
+  ],
+  "all_four_gates_passed": true,
+  "source_checks": {
+    "a": 451,
+    "b": 468
+  },
+  "source_scripts": {
+    "a": 46,
+    "b": 48
+  },
+  "exact_checks_per_arm": 23,
+  "exact_scripts_per_arm": 3,
+  "skips": 0,
+  "original_stage0_common_seconds": 3600,
+  "actual_stage0_seconds": 611.8439999995753,
+  "original_stage0_end_unix": 1792736656.3357348,
+  "fresh_owned_absence_verified": true,
+  "source430_unchanged": true,
+  "actual_CV_arms": 0,
+  "complete_CV": false,
+  "OOF_complete": false,
+  "quality_metrics": null,
+  "Stage1_authorized": false,
+  "Stage1_deadline_assigned": false,
+  "API_provider_closed_ledger_certified": null,
+  "API_proof_scope": "Reviewed technical controller/source/CLI API cap0; not a provider-side usage certification.",
+  "reviewer_new_fits": 0,
+  "reviewer_API_calls": 0,
+  "promotion": false
+}

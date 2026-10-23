@@ -1,0 +1,20 @@
+{
+  "failure": "R1 pre-fit strict PID reuse false orphan",
+  "failed_launch_sha256": "55c357c4c8ada13565cfe06dd6b03be5bee005ebc31937ae98c728593454d627",
+  "actual_failed_exec_exit_code": 1,
+  "old_source_preserved_in_parent_commit": true,
+  "manifest_sha256": "c14b147e0e84e39201c72de14b99e788d262d1c05c0cbb37b80e25aa83099838",
+  "common_start_unix": 1792750977.2275486,
+  "absolute_deadline_unix": 1792761777.2275486,
+  "common_seconds": 10800,
+  "clock_reset": false,
+  "pre_failure_gates": 0,
+  "pre_failure_fits": 0,
+  "repair": "Extend exact proved lifetime fence to2013 owned identities in SHA-bound k1 closure; earlier or unknown children remain blocked",
+  "model_runtime_archive_unchanged": "cfd5ff3b44f77227b15b130c16762e6c8349ac53f02a53462883680aad436459",
+  "pristine_input_split_control_bytes_unchanged": true,
+  "classification_minimum_parent_seconds": 6000,
+  "classification_actual_parent_up_to_seconds": 8200,
+  "actual_allocation_comes_from_original_remaining_seconds": true,
+  "promotion": false
+}

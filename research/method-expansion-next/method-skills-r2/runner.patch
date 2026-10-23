@@ -1,0 +1,34 @@
+--- a/src/automl/search/runner.py
++++ b/src/automl/search/runner.py
+@@ -229,6 +229,7 @@
+     parser.add_argument('--hpo-budget',type=int,default=900,help='Maximum total seconds for the inner study')
+     parser.add_argument('--hpo-sampler',choices=['tpe','random'],default='tpe')
+     parser.add_argument('--planner-mode',choices=['baseline','staged'],default='baseline')
++    parser.add_argument('--method-skills',action='store_true',help='Opt-in bounded instructions for implemented task-appropriate tools; does not change portfolio')
+     parser.add_argument('--feature-selection-top-k',type=int,default=0,help='Explicit experimental CatBoost selector; 0 disables')
+     parser.add_argument('--protect-original-features',action='store_true',help='Experimental union of original columns and CatBoost top-k')
+     parser.add_argument('--four-stage',action='store_true',help='Experimental Qwen data assessment before broad FE, model selection and nested Optuna')
+@@ -305,6 +306,11 @@
+             'remaining_task_seconds':deadline-time.monotonic(),
+             'control_preserved':preserve_anchor,'selector_scope':'separate_candidates_only' if preserve_anchor else 'all_tree_candidates'}
+         context['instruction']='Cold start: no model outcomes exist yet. Read statistics, roles, missingness, class support and documented time/group structure. Return JSON with data_assessment object containing validation_risks, feature_hypotheses, model_priorities (each a nonempty string or list of nonempty strings), plus candidates with at most TWO falsifiable initial model recipes. The coordinator will generate at most128 trusted broad row-local features, fit CatBoost top-k inside fitting rows, compare model families, then run inner-only Optuna. Do not invent measured failures or compare inner scores with outer scores. Use the existing recipe schema; target/ID remain forbidden.'
++        if getattr(args,'method_skills',False):
++            from automl.search.method_skills import attach_method_skills
++            from automl.execution.api import CAPABILITIES
++            context,knowledge_receipt=attach_method_skills(context,spec,CAPABILITIES,deadline-time.monotonic(),reserve)
++            atomic_json(runs/'method-skills-initial.json',knowledge_receipt)
+         content,usage=request_json(SYSTEM_PROMPT+STAGED_PROMPT,context,max_output=8192,
+             timeout=max(5,min(240,deadline-time.monotonic()-reserve-30)))
+         from automl.search.stages import initial_assessment_status
+@@ -350,6 +356,11 @@
+             if remaining<reserve+30: break
+         if not queue and not args.offline and len(calls)<max(0,min(args.max_planner_calls,8)) and remaining>reserve+90:
+             context=planner_context(spec,profile,text,split_info,records,best,remaining,len(calls)+1)
++            if getattr(args,'method_skills',False):
++                from automl.search.method_skills import attach_method_skills
++                from automl.execution.api import CAPABILITIES
++                context,knowledge_receipt=attach_method_skills(context,spec,CAPABILITIES,deadline-time.monotonic(),reserve)
++                atomic_json(runs/'method-skills-followup.json',knowledge_receipt)
+             plans,usage=llm_plan(context,runs,timeout=max(5,min(300,remaining-reserve-30)),prompt_mode=getattr(args,'planner_mode','baseline'))
+             plans,rejections=coordinator_plans(plans,0 if preserve_anchor else selection_size,
+                 protect_original,False if preserve_anchor else four_stage)

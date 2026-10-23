@@ -1,0 +1,55 @@
+{
+  "status": "source_preparation_and_future_technical_envelope_only",
+  "user_authorization": "Existing autonomous research permission; no new user approval required",
+  "preparation": {
+    "purpose": "Copy frozen m3 source and fixture metadata, apply only reviewed champion overlay, register12synthetic+1actual-pinned contracts, AST-build an isolated archive",
+    "source_only_wall_cap_seconds": 60,
+    "application_runtime_imports": 0,
+    "tests_executed": 0,
+    "model_fits": 0,
+    "API_calls": 0,
+    "training_lock_required": false,
+    "T7_sources_or_inputs_modified": false,
+    "source_input_bytes_are_copied_and_hashed": true,
+    "no_actual_ML_research_clock_assigned": true
+  },
+  "future_Stage0": {
+    "status": "driver_not_yet_reviewed_or_executed",
+    "before_launch": "Actual T7 exec65008 terminal plus fresh complete source/owned/bootstrap/closure-preparer proof, including partial audits and retained T5/T6; canonical research lock acquired and rechecked",
+    "common_seconds": 900,
+    "absolute_start_unix": null,
+    "absolute_deadline_unix": null,
+    "phase_parent_seconds": {
+      "setup_and_source": 600,
+      "exact_archive_and_optin_contract": 180,
+      "final_source_cleanup_and_root_confirmation": 120
+    },
+    "setup_charged_to_first_phase": true,
+    "no_clock_reset_reinvestment_or_retry": true,
+    "source_expected_unique_checks": 471,
+    "source_expected_skips": 0,
+    "exact_default_repeated_checks": 23,
+    "additional_exact_flat_pinned_champion_contracts_required": 1,
+    "technical_threads": 1,
+    "worker_memory_GiB": 1.5,
+    "whole_owned_tree_GiB": 2,
+    "suite_internal_child_memory_GiB": 1.2,
+    "gateway_API_calls": 0,
+    "synthetic_fixture_fits": "Existing registered source/exact smoke suites include tiny technical fits; they must run serially after T7, never reported as public ML gains",
+    "heartbeat": "Reuse real10s wall/monotonic threshold and cooperative chunk checkpoints; preserve first bad sample and common/parent clocks, no background keepalive or reset",
+    "power": "Per-process PowerRequestGuard only, no global power policy change or forced-sleep-prevention claim",
+    "success": "Actual terminal exec, exact fresh owned cleanup, immutable source/input/archive/compiled parity, all declared counts/no skips and in-clock export/root confirmation",
+    "quality_metric": null,
+    "promotion": false
+  },
+  "paired_model_experiment": {
+    "not_started": true,
+    "protocol_source": "champion-seed-next-dev/proposal.json",
+    "common_seconds_proposed": 5400,
+    "absolute_start_unix": null,
+    "scope": "Separate future full regression-agent A/B seed-admission policy, not part of Stage0; no new classification factor, no HPO-memory/context mix",
+    "requires_actual_Stage0_success": true,
+    "historical_T5_is_reused_public_not_blind": true,
+    "no_automatic_submission": true
+  }
+}

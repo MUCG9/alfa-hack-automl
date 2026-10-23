@@ -1,0 +1,22 @@
+{
+  "status": "source_reviewed_actual_execution_pending",
+  "source_sha256": "3fdeff5dd225bf02bc8d806a5a0616a5949b7a1d3b2ce5363339d96bd4cd311f",
+  "review": "Root read complete driver, checked real T7 exact schema compiled_files68, source471 registry, additional flat1 same assertions, inherited standalone supervision and fresh T7+retained predecessor unions. Actual execution has not occurred.",
+  "source_expected": 471,
+  "exact_default_repeated": 23,
+  "extra_flat_optin": 1,
+  "common_seconds": 900,
+  "source600_includes_setup": true,
+  "exact180": true,
+  "final120": true,
+  "tests_executed": 0,
+  "ML_gain": null,
+  "launcher_ready_after_this_commit_and_fresh_closure": true,
+  "T7_terminal_exec65008": 0,
+  "T7_quality_promoted": false,
+  "root_exporter_actual_exit": 0,
+  "root_exporter_tool": "07491f",
+  "root_exporter_fresh_absence": true,
+  "extra_terminal_receipt": "t7-report-publication-closure-r2.json",
+  "extra_terminal_SHA": "154eca18b219f8c62ec79ec391da2b09fa59c891fcb444e96732e1c2f1afed20"
+}

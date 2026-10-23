@@ -109,3 +109,6 @@ research/lean-mvp-r2/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 research/class-support-bounded-r3/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 research/hpo-memory-next/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 research/progress-20261023/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+research/outer-validation-next-r3/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+research/champion-stage0-next/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+research/method-expansion-next/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol

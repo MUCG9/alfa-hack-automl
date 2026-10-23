@@ -1,0 +1,77 @@
+{
+  "status": "source_only_review_no_blocking_issue_for_exclusive_preparation_ast_build",
+  "reviewer": "ownership_temporal",
+  "reviewed_source_sha256": {
+    "champion-stage0-next-dev/prepare_source.py": "888e3c44b0380aef4fac94709e639954bcef411ea76d46fada7e76bc263ee0a5",
+    "champion-stage0-next-dev/test_pinned_champion_seed.py": "71f5be06fd5d691b0b5048ce177ed7083f47884640f1f6d81849f6f08e13c810",
+    "m4packet/manifest.json": "8faf33cd81c0e864bcf338828c34447000111eda85bc719b8f43312d2babae9a",
+    "champion-seed-next-dev/manifest.json": "bf577474788a6896f1724cf426e383830866fdcc3eb7a8063f76a24cef12df6b",
+    "champion-seed-next-dev/src/automl/search/runner.py": "4807ba7609009e24899fcc5213fe44db4e2f6ad3d63e57ed2af3e20acdedad2f",
+    "champion-seed-next-dev/src/automl/search/stages.py": "d8e79f0cb36612849e0d48b2e486c20e773c09696c2d6e788832f19bee509133",
+    "champion-seed-next-dev/tests/test_champion_seed.py": "7641869fe8a3d59b91a410599e95570268da15e0c40fa5205d4ed050c622cf4c",
+    "m3dev/tools/build_submission.py": "8bda307675a952b2e4dc9d53ea8d738be05f8ca15a0e85d79c566e42cf95a6b6",
+    "m3dev/tools/run_checks.py": "d5eda85e5a5832646f61859349766157afb9fa232421a09927b4382ef6c0389b",
+    "m3dev/tools/module_map.json": "f989a9177958b6d0c539b6e3bc9b0a4f8a686c5dea8801af8a94a3ee7aa4ab8e",
+    "m3dev/src/automl/search/policy.py": "3f6a8477b8076e83531b62d4ffc383ce935c6cf912a61cccde6201f7f7fd8e61",
+    "m3dev/src/automl/execution/model_adapters/registry.py": "f8451f7b1dbcc58c5f151cfd07a32068ffa4ac533430647d87c9653dba603fab",
+    "m3dev/src/automl/execution/feature_views.py": "091f58656042cb51a920f10e6884c333a95690beae64031000f9cd7c72bb9b9a",
+    "m3dev/src/automl/execution/postprocessing/targets.py": "7cdf29444a2035e18dd06b59c94490db191aaba6e3d662396d5bcb6c441e5d91",
+    "champion-seed-next-dev/champion-t5-regression.json": "914880505ed751da9fd0a38d7f1724dd860c20d98456ff3efd16a195a0709ad4",
+    "m2packet/control-r.json": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b"
+  },
+  "scope": "Only new preparer and pinned test plus their explicitly referenced source/JSON/archive metadata; no active T7 task outputs, data parsing, labels or predictions.",
+  "critical_findings": [],
+  "facts": {
+    "base_source_root": "m3dev",
+    "base_source_refs": 686,
+    "base_source_bytes": 98488444,
+    "source_registry_before": 458,
+    "new_prepared_contracts": 12,
+    "new_pinned_contracts": 1,
+    "source_registry_after": 471,
+    "source_registry_scripts_before": 47,
+    "source_registry_scripts_after": 49,
+    "source_marker_occurrences": 1,
+    "base_archive_members": 68,
+    "base_archive_python_members": 67,
+    "required_changed_flat_modules": [
+      "automl_runner.py",
+      "automl_search_stages.py"
+    ],
+    "requirements_sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+    "concrete_json_signature_arithmetic": {
+      "champion": "959a9b8fed203d71bafbbd4770b6bfb5b6aa5da79d08ee568b93979d7f795421",
+      "complete_control": "773dfb566afd9b2ad6c47853ffaa6898392c009fd41c9202d89184b3c50ceb9e",
+      "single_anchor": "2fc0e515e31ac01c2557cb4f9b255ac81a99478c33810021ef5f02ebf7a47b79"
+    },
+    "signature_method": "Independent inert JSON-only arithmetic following reviewed signature/effective_parameters for these concrete already-effective recipes; application function not imported or executed.",
+    "path_contract": "Preparer resolves work via its own parent.parent, writes only new work/csdev and work/cs-stage0-packet; copied compiler ROOT resolves csdev. Pinned fixtures live at tests/fixtures/champion_seed under copied test parent.",
+    "queue_contract_source": "No proposals gives five required seeds. Champion is distinct from exact history anchor and is appended at index5; protected control and HPO anchor use the same first component. Synthetic schema supplies period for history and no unsupported feature-view/smearing option.",
+    "compiler_contract_source": "Pinned compiler module imports stdlib only; top level establishes ROOT and functions. build_files parses/transforms/unparses/compiles source text but does not execute candidate code. Flat comparison requires complete archive inventory and all bytes unchanged except two reviewed modules, including identical requirements.",
+    "base_sources_preserved": "Preparer reads/hashes m3dev; all writes target new csdev/packet and it rehashes every original m3dev immutable ref before emitting manifest.",
+    "destination_exists_at_review": false,
+    "packet_exists_at_review": false
+  },
+  "execution_assumptions": [
+    "Use existing venv interpreter with -B and without -O: -B avoids compiler __pycache__ in newly inventoried source; -O would disable assert guards. This is source preparation, not an executed technical gate.",
+    "The 60-second assertions are cooperative elapsed checks, not a hard external process watchdog; root may bound the preparation command using its existing execution facility.",
+    "Inputs are published/frozen trusted source bytes; concurrent mutation is outside this narrow preparation. Expected overlay/fixture hashes are checked before copying and actual new source hashes are recorded; future frozen Stage0 must bind the resulting manifest.",
+    "Actual prepared archive equality, full 471 checks, repeated 23 exact checks, normalize fixed point and runtime behavior remain unexecuted; no launch-ready or metric claim follows from this source review."
+  ],
+  "execution": {
+    "application_imports": 0,
+    "builder_executions": 0,
+    "candidate_build_executions": 0,
+    "tests_executed": 0,
+    "fixtures_executed": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "new_campaign_clocks": 0,
+    "STATE_writes": 0,
+    "Git_operations": 0,
+    "T7_mutations": 0,
+    "source_compile_only": 2,
+    "stdlib_review_hash_ast_arithmetic_only": true
+  },
+  "review_tool_note": "An initial read-only hashing command referenced registry.py at the wrong historical directory and stopped with FileNotFoundError before producing any output file; corrected to execution/model_adapters/registry.py. No candidate import/execution occurred."
+}

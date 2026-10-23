@@ -1,0 +1,194 @@
+{
+  "schema": "autoresearch-experiment-queue-v1",
+  "status": "added_after_user_method_and_skill_architecture_request",
+  "objective": "Improve universal agent quality and final CSV under the existing constraints; retain the strongest verified controls",
+  "authorization": "Existing user permission; prepare these experiments, then return to the active automatic research objective",
+  "active_run_unchanged": {
+    "experiment": "T7",
+    "exec_session": 65008,
+    "frozen_refs": 733,
+    "common_seconds": 10800,
+    "status": "T7_terminal_exec0_technical_pass_quality_not_promoted",
+    "regression_RMSE": 34.92368929569797,
+    "classification_MacroF1": 0.6569242332626644
+  },
+  "execution_policy": "Sequential after actual current terminal and fresh owned/bootstrap/preparer closure, canonical lock, published source and declared gates. No new clock or job is started by this queue file.",
+  "observed_scope": {
+    "requirements_sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+    "implemented_tree_tools": [
+      "lightgbm",
+      "catboost",
+      "xgboost",
+      "extra_trees"
+    ],
+    "implemented_linear_scope": "Existing linear_text supports numeric median/scaling, categorical OHE, Ridge(alpha10) and LogisticRegression/SGD even without text columns; dedicated tabular engine names and mandatory portfolio admission are absent.",
+    "T7_both_tasks_search_engines_observed": [
+      "ensemble",
+      "lightgbm",
+      "catboost",
+      "xgboost"
+    ],
+    "extra_trees_in_actual_T7_search": false,
+    "local_distribution_metadata": {
+      "scikit-learn": "1.5.2",
+      "scipy": "1.12.0",
+      "torch": null,
+      "lightautoml": null,
+      "autogluon.tabular": null,
+      "flaml": null
+    },
+    "metadata_note": "Metadata lookup only, no import or availability test. All are allowed by original requirements; missing local distributions are not implemented ready tools."
+  },
+  "common_quality_rules": {
+    "regression": "Lower RMSE; preserve forward offsets0/1/2 for component screens",
+    "classification": "Higher all-class MacroF1 on fixed group cuts42/43, supported-class loss and ex-rarest gates retained",
+    "complete_control": "Saved V11/V16, regression35.4472315578 and classification0.6593178434. Best verified regression component T5=34.8662208787 retained. Fresh weaker control cannot manufacture a historical win.",
+    "component_vs_procedure": "Component controls and whole-agent control are different units. Screens do not promote a whole pipeline; promising components require complete agent/refit/CSV/integrity/source/exact gates.",
+    "failure": "Keep timeouts/OOM/errors/absent CSV as explicit null failures, never objective0; preserve original clocks and all receipts",
+    "resources": {
+      "public_threads": 2,
+      "technical_threads": 1,
+      "worker_GiB": 1.5,
+      "whole_tree_GiB": 2
+    },
+    "scope": "Reused-public research only, not private/official score"
+  },
+  "experiments": [
+    {
+      "id": "METH-01",
+      "name": "ExtraTrees family and complementary predictions",
+      "status": "source_preparation_pending_no_fits",
+      "hypothesis": "A randomized forest can add errors different from boosting; diversity may help a fixed blend even when its standalone score is weaker.",
+      "factor": "One new learner with its necessary supported preprocessing; no sampling/weight/feature-policy change is credited as a pure model effect",
+      "candidate": {
+        "engine": "extra_trees",
+        "iterations": 128,
+        "max_depth": 16,
+        "min_samples_leaf": 4,
+        "max_features": 0.9,
+        "seed": 42
+      },
+      "plan": "Component screen on3forward regression+2group classification cuts. Fit protected component controls and candidate on identical saved fitting rows; retain all aligned probabilities/predictions for METH-03. Existing ExtraTrees adapter first, no new dependency.",
+      "common_cap_seconds": 6600,
+      "allocation_seconds": {
+        "source_exact_setup": 900,
+        "ten_control_candidate_workers_at_most480each": 4800,
+        "independent_audit": 600,
+        "cleanup_export": 300
+      },
+      "worker_seconds": 480,
+      "full_refit_or_promotion_here": false,
+      "after_screen": "No mandatory full-agent queue inclusion unless measured contribution passes the declared downstream gates; keep negative standalone result even if later blend helps.",
+      "actual_command": null,
+      "actual_metric": null,
+      "clock_start": null
+    },
+    {
+      "id": "METH-02",
+      "name": "Enable and audit existing tabular Ridge/LogisticRegression path",
+      "status": "existing_adapter_tabular_contract_and_admission_screen_required",
+      "hypothesis": "Regularized linear models may generalize under temporal shift or add complementary class probabilities while costing less than another boosting fit.",
+      "tools": {
+        "engine_key": "linear_text",
+        "regression": "existing Ridge(alpha10,solverlsqr)",
+        "classification": "existing LogisticRegression(text_classifier=logistic,text_C=1); SGD separate later factor"
+      },
+      "fitting_contract": "Use the existing fitting-only numeric finite conversion/median imputation/scaling plus sparse OneHot(handle_unknown=ignore,min_frequency3). First verify no-text input, unknown category, fitting-scope, finite/class-order outputs and measured resource bounds. Do not rewrite an existing path just because its engine name says text.",
+      "outputs": "Exact rows/ID/schema; regression inverse target transform if explicitly used; class order aligned to declared classes, finite normalized probabilities and all-class F1. Unknown/missing fitting class is an explicit contract outcome, never silently removed.",
+      "screen": "One preregistered regularization setting per task first, same saved cuts/controls. Hyperparameter tuning only after the standalone tool contract and basic measured cost are known.",
+      "common_cap_seconds": 10800,
+      "worker_seconds": 600,
+      "includes": [
+        "source/exact and meaningful leakage/schema tests",
+        "control/candidate fits",
+        "independent numeric audit",
+        "output and cleanup reserve"
+      ],
+      "new_dependencies": [],
+      "installed_allowed_dependency": "scikit-learn1.5.2/scipy1.12.0",
+      "actual_command": null,
+      "actual_metric": null,
+      "clock_start": null,
+      "implementation_change_first": "Admission/source fixture only; no new model implementation until an actual missing contract or failure is established."
+    },
+    {
+      "id": "METH-03",
+      "name": "Fixed weak-model blend contribution",
+      "status": "wait_for_METH01_or_METH02_closed_prediction_artifacts",
+      "hypothesis": "A different family can improve the strong ensemble through complementary predictions, despite a weaker standalone metric.",
+      "fixed_weight": {
+        "strong_control": 0.9,
+        "new_component": 0.1
+      },
+      "factor": "A single predeclared blend, no validation-guided weight grid or selecting weights separately by cut",
+      "common_cap_seconds": 720,
+      "model_fits": 0,
+      "requires": "Independently verified same-partition/source/row/class aligned component caches and pristine labels. Examine every declared cut/support gate. Positive component result still needs later real full refits and whole-agent qualification.",
+      "actual_command": null,
+      "actual_metric": null,
+      "clock_start": null
+    },
+    {
+      "id": "METH-04",
+      "name": "Task-selected method skills in Qwen context",
+      "status": "optin_source_overlay_prepared_tests_not_run",
+      "source_packet": "work/method-skills-next-dev-r2",
+      "hypothesis": "Explicit task-appropriate instructions about actually implemented methods improve Qwen proposals and reduce attempts at unavailable tools or inappropriate preprocessing.",
+      "factor": "Only bounded method_skills context field; portfolio, objective, HPO and worker behavior unchanged",
+      "implementation": "Opt-in --method-skills source overlay selects bounded instructions by task kind/text and trusted runtime CAPABILITIES, before initial/followup requests. Default-OFF AST projection matches base. This is embedded instruction retrieval, not a claim that Qwen already reads arbitrary SKILL.md files.",
+      "generation_screen_seconds": 600,
+      "generation_limits": {
+        "logical_calls_each": 1,
+        "logical_seconds_each": 120,
+        "max_candidates_each": 2,
+        "packet_UTF8_bytes": 8192
+      },
+      "fairness": "Both OFF/ON full messages pass same shared byte/resource preflight; same frozen context/model/reasoning/configuration, remove added field to recover OFF. Record invalid/duplicates/null/timeouts/costs.",
+      "then": "Only promising generation findings advance to separate matched full-agent A/B at equal10800s per arm, common pair21600 including gates/refit/CSV/audits. Proposal validity alone is not an ML gain.",
+      "actual_command": null,
+      "actual_metric": null,
+      "clock_start": null
+    },
+    {
+      "id": "METH-05",
+      "name": "Conditional portfolio by fitting properties and measured budget",
+      "status": "wait_for_measured_tools_and_costs",
+      "hypothesis": "Allocating scarce candidate slots according to data properties and observed fit cost outperforms always running the same family list.",
+      "factor": "Fixed expanded portfolio versus preregistered conditional admission, with same max candidates/API/HPO/common budget and unchanged protected control",
+      "inputs": "Task kind, fitting-only numeric/categorical/text/cardinality/missingness properties and measured cost. No holdout labels or official scores; freeze thresholds before outcomes.",
+      "common_pair_cap_seconds": 21600,
+      "full_agent_cap_each_seconds": 10800,
+      "cannot_change": [
+        "metric",
+        "splits",
+        "strong control",
+        "deadline",
+        "model implementation"
+      ],
+      "actual_command": null,
+      "actual_metric": null,
+      "clock_start": null
+    },
+    {
+      "id": "METH-06",
+      "name": "Nested AutoML or small CPU neural model feasibility",
+      "status": "lower_priority_tool_feasibility_only_not_ready",
+      "hypothesis": "A separately bounded AutoML or small neural candidate may supply useful diversity; nested search overhead may also exhaust the budget without helping.",
+      "allowed_candidates": [
+        "lightautoml0.4.2",
+        "flaml2.3.6",
+        "torch2.5.1"
+      ],
+      "initial_feasibility_cap_seconds": 900,
+      "initial_work": "Inspect allowed API and isolated environment compatibility; no change to the active venv. First prove CPU/thread/memory/deadline/output contracts, then preregister a small candidate screen. Never advertise a missing or untested tool to Qwen as ready.",
+      "restrictions": "No runtime package install, pretrained weights, external training data, paid compute or GPU. No nested unlimited HPO. Full fit/search/export costs count in the same experiment budget.",
+      "actual_command": null,
+      "actual_metric": null,
+      "clock_start": null
+    }
+  ],
+  "next_action": "T7 actual terminal/rootR4 closure completed. Resume automatic objective via separately bounded champion Stage0 after its source publication; then readiness-ordered champion/context/method experiments. This registry itself launches nothing.",
+  "new_experiments_started": 0,
+  "promotion": false,
+  "official_score": null
+}

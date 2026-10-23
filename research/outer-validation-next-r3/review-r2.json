@@ -1,0 +1,112 @@
+{
+  "status": "source_only_R2_review_concrete_fixes_and_operational_gaps",
+  "reviewer_relation": "Same subagent prepared R2; this is a fresh source audit, not an independently executed or second-author validation.",
+  "reviewed_files_sha256": {
+    "implementation-plan.json": "5e6fa58c9f20ad28ba561db444154b30ba7a782ba62fa007fc451c86e47320db",
+    "outer_judge_gate_draft.py": "9229715a4ba5ff4839cf70475f6868c35a3b6ec7018682ca355f0eaa5dea7b2c",
+    "outer_materializer_draft.py": "25da85ff9b593ed397763c785a158f3e4790c5ca8a905d584d2ba5be1d6452bc",
+    "prepare_outer_packet_r2.py": "418a4b9a2ffc48ddab4d3657e36e459221be9e9dc8c893e5e2be57708de0f1e1",
+    "prospective-evaluator-plan.json": "e12a59eeed0d50d1051e92279d971af5f3e9dcb8e77a65fc9edd357331353bfa",
+    "README.txt": "2a76eccd718e2a8b8c7155b328d3258ec263d697ee1773c5cf4698bddb3f997d",
+    "source-handoff.json": "fc3d7c3fdf4a1303a2e31967f76227fce3a762ed219781c23f379ebd0482d26a"
+  },
+  "findings": [
+    {
+      "id": "P2-dummy-sample-false-proof",
+      "priority": 2,
+      "kind": "concrete_source_defect",
+      "file": "outer_materializer_draft.py",
+      "function": "verify_actual_reader_roundtrip",
+      "issue": "Returns placeholder_sample_only=True after checking sample schema/IDs only; sample output values are not checked against the declared constant placeholder. A supplied/tampered sample containing real heldout targets could still pass this claimed invariant.",
+      "minimal_fix": "R3 validates exact expected sample output constant without reading heldout labels; ID dtype/value equality and declared ordered test columns are checked too."
+    },
+    {
+      "id": "P2-source-SHA-override",
+      "priority": 2,
+      "kind": "concrete_source_defect",
+      "file": "outer_judge_gate_draft.py",
+      "function": "verify_prelabel_seal",
+      "issue": "all_refs.update can silently replace an immutable expected SHA when an artifact path equals the immutable-source path. Relative paths are also resolved against ambient cwd rather than an explicit work root.",
+      "minimal_fix": "R3 canonicalizes each ref from explicit work root, rejects conflicting SHAs for same canonical path, validates nonnull SHA/path records and returns authorizes_label_read=False for hash-inventory-only success."
+    },
+    {
+      "id": "P2-per-task-plan-schema",
+      "priority": 2,
+      "kind": "operational_contract_gap",
+      "file": "prospective-evaluator-plan.json",
+      "issue": "Combined template has per-kind control recipes and null partition/clock values, while hash helper expects singular protected_control_recipe_sha256 and actual per-task outer partition/clock. It is not an executable judge plan.",
+      "minimal_fix": "R3 adds explicit per-task plan instantiation binding actual nonnull source/indices/rowmap/hash/schema/derived-input/control refs and shared10800 clock; semantic judge still remains unimplemented."
+    },
+    {
+      "id": "P3-delimiter-assumption",
+      "priority": 3,
+      "kind": "concrete_source_defect",
+      "file": "outer_materializer_draft.py",
+      "function": "write_outer_csv_tables",
+      "issue": "csv.reader implicitly assumes comma while frozen runtime supports comma/semicolon/tab/pipe. The prototype would reject or misread a different original CSV dialect before otherwise valid materialization.",
+      "minimal_fix": "R3 requires an explicitly frozen source_delimiter from the original trusted-reader probe; writes derived comma CSV and demands exact reader roundtrip."
+    },
+    {
+      "id": "P3-full-target-schema",
+      "priority": 3,
+      "kind": "contract_hardening",
+      "file": "outer_materializer_draft.py",
+      "issue": "Functions rely on caller-correct features and check only primary target explicitly. Operational contract should bind all_targets, exact ordered test schema and actual splitter proof to prevent wrong-role/mismatched partition inputs.",
+      "minimal_fix": "R3 verifies all declared targets excluded, unique bounded column lists and expected partitionSHA before writing; scoped current value-output tasks remain unchanged."
+    },
+    {
+      "id": "P2-operational-driver-and-judge-not-present",
+      "priority": 2,
+      "kind": "declared_implementation_gap_not_false_claim",
+      "file": "prepare_outer_packet_r2.py",
+      "issue": "CLI deliberately refuses materialization. There is no bounded supervisor/phase ledger/source+exact registration, derived-inner semantic evaluator, fixed-control iteration-tree verifier or once-only numeric outer judge. Admission arithmetic and boolean/hash checks are not these implementations.",
+      "minimal_fix": "Keep notoperational status; implement thin trusted controller and validators, then meaningful source/IO fixtures under existing resource caps. No new OS/ACL requirement."
+    },
+    {
+      "id": "P3-IO-scope-wording",
+      "priority": 3,
+      "kind": "scope_clarification",
+      "file": "implementation-plan.json",
+      "issue": "Directory separation is not a security claim, but this experiment only needs trusted algorithm-facing source/IO invariants. Materializer may stratify/read original labels; agent+workers must use derived train/test only; judge opens targets after seal. An OS sandbox is not required by this review.",
+      "minimal_fix": "R3 removes ACL/OS-isolation implications; use explicit role/source/job-path read-flow audit and meaningful I/O fixtures, without permission prompts or global configuration."
+    },
+    {
+      "id": "P3-budget-supervision-maturity",
+      "priority": 3,
+      "kind": "factual_maturity",
+      "file": "prepare_outer_packet_r2.py",
+      "issue": "Phase totals are exactly10800 and setup startup is already charged; admit_phase has no actual clock assignment, process timeout/memory/ownership or phase receipt sequencing. Source458/exact23 are inherited inventories, not new gate passes.",
+      "minimal_fix": "Future controller enforces caps, full remaining mandatory reservations, per-phase cleanup/report accounting and once-only sealed scoring. No cap reset/reinvestment; setup600source incl registered newcontracts+180exact+120materialization."
+    }
+  ],
+  "operational_builder_ready": false,
+  "new_quality_claim": null,
+  "scope": {
+    "executed": 0,
+    "application_runtime_imports": 0,
+    "tests_or_fixtures_run": 0,
+    "actual_inputs_or_predictions_read": false,
+    "active_T7_sources_or_outputs_read": false,
+    "fits": 0,
+    "API_calls": 0,
+    "clock_assigned": false,
+    "STATE_changes": false,
+    "Git_calls": 0,
+    "R2_sources_or_plans_modified": false
+  },
+  "budget": {
+    "phase_caps": [
+      900,
+      2100,
+      6000,
+      180,
+      1200,
+      300,
+      120
+    ],
+    "sum_seconds": 10800,
+    "arithmetic_valid": true,
+    "measured_feasibility": null
+  },
+  "next": "Make minimal source-only corrections in NEW validation-next-dev-r3 preserving R2. Operational missing contracts remain explicit; no new user approval/OS/ACL requirement."
+}

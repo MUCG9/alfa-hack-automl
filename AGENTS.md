@@ -20,8 +20,11 @@ cut0 F1 .6632403175 -> .6597688459, rejected; cut1 absent/meanNone, independent
 verification PASS incl60solver objectives/all5leaf fitting lineage. One complete
 inner worker364.498s/839MiB worker+parent; no owned fits. Preserved first attempt
 launched0workers, five focused checks PASS. Do not retune the grid on these rows.
-ROUND07 active coordinator124348/create_time1792741325.72 at1a2c32e:
-fitting-only log-probability stacker, max1800s/1new complete-inner+2meta fits.
+ROUND07 completed as failed_before_candidate; coordinator124348/create_time
+1792741325.72 at1a2c32e exited, no owned fits or training lock. Fitting-only
+log-probability stacker hit declared1200lbfgs iterations; no converged meta model,
+outer candidate, score or mean. Zero new complete controls, one failed meta fit.
+Read round07_results_20261023.md; do not relabel it a measured quality loss.
 Read round07_protocol_20261023.md and detached-screen.json before fitting.
 Original rich xhigh proposal truncated/looped, no accepted plan or dataset fit;
 separate bounded compact-choice experiment passed (C1,12534thinking tokens,
@@ -45,7 +48,7 @@ a2ca9244, IDd495ef4b-e721-40ba-bfed-7c85b051ce2b, attempts3->2. Authorized
 existing platform session used; desktop lock unchanged. Official score pending;
 prior V11 official score2309.002. Read release/qwen-incumbent-submit1/submission-20261023.json.
 No duplicate upload, extra Codex agents, paid resources, force push or main merge.
-Local commits remain authorized. Latest verified public SHA is13930d4; later
+Local commits remain authorized. Latest verified public SHA isf303ff3; later
 commits remain local until next verified push. Temporary private Git auth worked;
 never expose or commit credentials. Main remains unchanged.
 

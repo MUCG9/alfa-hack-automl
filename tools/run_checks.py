@@ -18,7 +18,7 @@ CHECKS={'test_v2.py':11,'test_resilience.py':7,'smoke.py':5,
         'test_anytime.py':25,'test_anytime_lifecycle.py':4,
         'test_error_analysis_contracts.py':20,'test_error_analysis.py':39,'test_error_preparation.py':16,
         'test_marginal_selection.py':15,'test_local_error_preparation.py':7,'test_marginal_replay.py':3,
-        'test_confirmation_readiness.py':11,'test_long_submission.py':5,'test_selector_confirmation.py':6}
+        'test_confirmation_readiness.py':11,'test_long_submission.py':5,'test_selector_confirmation.py':7}
 
 
 def source_hashes():

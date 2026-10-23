@@ -10,8 +10,12 @@ ML core, offline long budget enabled for task-only invocation. Canonical runtime
 defaults remain unchanged. First wrapper build rejected, never uploaded.
 403 unique source checks after permission retry,23 repeated unpacked checks,
 2 additional bounded default-launcher lifecycles PASS; receipt records scope.
-Continue finite BASE/ERR/SEL plan from existing prepared evidence, not new LONG
-fits or a repeated submission. Current passports still prepared_not_run.
+Continue finite BASE/ERR/SEL plan, not new LONG fits or a repeated submission.
+BASE-01 locally CLOSED,8passports/4original runs verified,0newfits. ERR diagnoses
+saved in docs/experiments/ERR-01_local_diagnoses_20261023.md/JSON. SEL executor7
+fit-free checks PASS; first launch failed before reading job (noMLfit); corrected
+absolute-path retry in fresh sel01-one-confirmation-r2. Consult actual exit/report
+and SEL-01_confirmation_execution_20261023.md before any action. Selector OFF.
 
 23Oct latest captain instructions authorize parallel BASE-01/ERR-01/SEL-01
 engineering on work/error-selection-20261023 while LONG-01 runs from its own

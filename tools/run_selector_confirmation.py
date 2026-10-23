@@ -72,6 +72,7 @@ def validate(plan,output,baseline,search_request):
 
 
 def worker(plan,output,task):
+    output=Path(output).resolve()
     # Set this before importing runner, whose resource setting is import-time.
     os.environ['AUTOML_THREADS']='2'
     from automl.search.runner import run_worker,discover,load_inputs
@@ -156,7 +157,7 @@ def main():
              'executor_sha256':sha(__file__),'runtime_selector_enabled':False}
     atomic_json(args.output/'fit-receipt.json',receipt)
     if status!=0 or not all((protected_ok,source_ok,receipt['plan_unchanged'])):
-        print(json.dumps(receipt));return 2
+        print(json.dumps({k:receipt[k] for k in ('experiment','exit_code','elapsed_seconds','frozen_artifacts_unchanged','compiled_source_unchanged')}));return 2
     result=extend_request(plan,args.output,manifest,args.baseline,args.search_request,args.plan)
     print(json.dumps({k:result[k] for k in ('recommendation','control','candidate','both_cached_cuts_strictly_improve')}))
     return 0

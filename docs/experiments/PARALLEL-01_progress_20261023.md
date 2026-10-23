@@ -1,5 +1,13 @@
 # Parallel engineering progress — 23 October2026
 
+Latest: BASE-01 locally CLOSED,8new diagnostics/4original runs/0newfits; see
+BASE-01_local_verified_20261023.json and ERR-01_local_diagnoses_20261023.md.
+SEL executor implemented with7 fit-free checks; first launch failed BEFORE
+reading job (relative output path); corrected absolute-path retry justified,
+same frozen recipe/split/seed/budget. See SEL-01_confirmation_execution_20261023.md
+and actual fresh sel01-one-confirmation-r2 output. No candidate score yet at
+this checkpoint; selector OFF. Prior prepared_not_run text below is historical.
+
 Branch `work/error-selection-20261023`, parent7b071ab; ERR integrationa396368,
 SEL predeclaration4aaebaa. This is the ordinary work journal, NOT a handoff.
 Captain cancelled the15%-remaining stop and handoff preparation. Work continues

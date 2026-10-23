@@ -1,0 +1,118 @@
+{
+  "baseline_complete": true,
+  "inventory_sha256": "7c67e2c60eb4fa75107787c3a7352a0b54288489bd071d795586b30fc9be3c05",
+  "new_model_fits": 0,
+  "original_runs": [
+    {
+      "actual_csv_bytes_verified": true,
+      "actual_final_csv_sha256": "af64a22a5e9f5ff26ed817dfaa707e77e5bd9500dc63e52748521b00670efa96",
+      "kind": "classification",
+      "mean": 0.6593178433614652,
+      "scopes": [
+        {
+          "metric": "macro_f1",
+          "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/error-selection-20261023/base-prepared/audit/v11-featureviews1-classification-search/passport/error_profile.json",
+          "profile_sha256": "641396d4e8672229a3aa3a6c253e7c2f60d65321a1505092d98c4587f4cf94be",
+          "profile_status": "complete",
+          "request_sha256": "32c056a2be5b7937d3b6d21313b1dcaab51ae3dfde737f47d86b2eca675e359d",
+          "scope": "search",
+          "value": 0.6632403174648631
+        },
+        {
+          "metric": "macro_f1",
+          "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/error-selection-20261023/base-prepared/audit/v11-featureviews1-classification-confirmation/passport/error_profile.json",
+          "profile_sha256": "1ee9a85bebac30449fefd422e5d596840e969dd58db001627d575f5d8e78797d",
+          "profile_status": "complete",
+          "request_sha256": "08aa72f377031e037fd6d7d75279654fc94fa119d0407e7d6f059141ab62d5fe",
+          "scope": "confirmation",
+          "value": 0.6553953692580672
+        }
+      ],
+      "version": "v11-featureviews1"
+    },
+    {
+      "actual_csv_bytes_verified": true,
+      "actual_final_csv_sha256": "05ccd9eabcbf29f4b858e9cd89f6dfe568ce1bdddb32a397c71b98ef1c0c1673",
+      "kind": "regression",
+      "mean": 35.44723155783769,
+      "scopes": [
+        {
+          "metric": "rmse",
+          "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/error-selection-20261023/base-prepared/audit/v11-featureviews1-regression-search/passport/error_profile.json",
+          "profile_sha256": "ec20bc107add470c574b4e9b8f6b06494ac6d0bb7c6cce03dd24e235fe29c809",
+          "profile_status": "partial",
+          "request_sha256": "b3b06ccf4a803a357470306505e46a307d1890d5ecd5a32a749afbabc940192a",
+          "scope": "search",
+          "value": 38.902803731334785
+        },
+        {
+          "metric": "rmse",
+          "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/error-selection-20261023/base-prepared/audit/v11-featureviews1-regression-confirmation/passport/error_profile.json",
+          "profile_sha256": "d9f8a2ebbdb8f5a36d87903eb69a0794b1ea07fd395258c461d74994f6d520fb",
+          "profile_status": "partial",
+          "request_sha256": "7b31f4c3339d2d90592af581218421634df9327deb5ba0b8260d56403c4e114b",
+          "scope": "confirmation",
+          "value": 31.991659384340597
+        }
+      ],
+      "version": "v11-featureviews1"
+    },
+    {
+      "actual_csv_bytes_verified": true,
+      "actual_final_csv_sha256": "05ccd9eabcbf29f4b858e9cd89f6dfe568ce1bdddb32a397c71b98ef1c0c1673",
+      "kind": "regression",
+      "mean": 35.44723155783769,
+      "scopes": [
+        {
+          "metric": "rmse",
+          "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/error-selection-20261023/base-prepared/audit/v16-mean1-regression-search/passport/error_profile.json",
+          "profile_sha256": "6be38c2f81f509309191445ad5aab9e0b248326df1ea9d7803f5265bf8739f68",
+          "profile_status": "partial",
+          "request_sha256": "298f611d12ea29d21a8e66b5fec48eb3812bf68990daec365f442606a45f80d7",
+          "scope": "search",
+          "value": 38.902803731334785
+        },
+        {
+          "metric": "rmse",
+          "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/error-selection-20261023/base-prepared/audit/v16-mean1-regression-confirmation/passport/error_profile.json",
+          "profile_sha256": "c526332c9925ddbf00c0a879411499be441dc84e69ca5410f05d65ca9c6d23c7",
+          "profile_status": "partial",
+          "request_sha256": "bf503f63768a3b86b0288c85d461ccec69e46ba55763d349e6a559937b717cbd",
+          "scope": "confirmation",
+          "value": 31.991659384340597
+        }
+      ],
+      "version": "v16-mean1"
+    },
+    {
+      "actual_csv_bytes_verified": true,
+      "actual_final_csv_sha256": "af64a22a5e9f5ff26ed817dfaa707e77e5bd9500dc63e52748521b00670efa96",
+      "kind": "classification",
+      "mean": 0.6593178433614652,
+      "scopes": [
+        {
+          "metric": "macro_f1",
+          "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/error-selection-20261023/base-prepared/audit/v16-mean1-classification-search/passport/error_profile.json",
+          "profile_sha256": "a7dfa30e6d68feb14ad8ed85038b71bf290b4c36457f1bb558ba90d1736afda6",
+          "profile_status": "complete",
+          "request_sha256": "1b84a643d8e94f2740a5172ddfca423ea5f5285962407469cc02607962a2a28c",
+          "scope": "search",
+          "value": 0.6632403174648631
+        },
+        {
+          "metric": "macro_f1",
+          "path": "/home/mucg9/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/outputs/team-project/test-runs/error-selection-20261023/base-prepared/audit/v16-mean1-classification-confirmation/passport/error_profile.json",
+          "profile_sha256": "a422f36bd0ad1c9f81295de3c04103fd082a99bdd9818f263ecaf8ec3211fff3",
+          "profile_status": "complete",
+          "request_sha256": "dedd8a8d061647a2a1c158621321c944b002ccb9a07ec8c1e396db61a0a6e43c",
+          "scope": "confirmation",
+          "value": 0.6553953692580672
+        }
+      ],
+      "version": "v16-mean1"
+    }
+  ],
+  "schema_version": "1.0",
+  "scope": "Recomputed diagnostics from original frozen predictions; not new independent model-quality evaluation.",
+  "v10_used_as_v11": false
+}

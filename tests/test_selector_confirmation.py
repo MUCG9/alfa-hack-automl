@@ -69,5 +69,21 @@ class ConfirmationExecutorTests(unittest.TestCase):
         self.baseline.write_text(json.dumps({'baseline_complete':False}))
         with self.assertRaisesRegex(ValueError,'BASE-01 closure'):self.call()
 
+    def test_worker_resolves_directory_before_changing_child_cwd(self):
+        spec={'features':['x'],'classes':['a','b'],'n_train':5,'n_test':2,'id':'id',
+              'target':'target','kind':'classification','metric':'macro_f1','greater_is_better':True,
+              'paths':{'train':str(self.search)}}
+        report=self.root/'report.json';report.write_text(json.dumps({'spec':spec}))
+        request=type('Request',(),{'dataset':type('Dataset',(),{'sha256':executor.sha(self.search)})()})()
+        plan=dict(self.plan,original_report=str(report),original_confirmation_request='fixture')
+        expected=self.root/'resolved';expected.mkdir()
+        relative=Path(__import__('os').path.relpath(expected,Path.cwd()))
+        import automl.search.runner as runner
+        with patch.object(runner,'discover',return_value=(dict(spec),)),patch.object(runner,'load_inputs',return_value={}),patch.object(runner,'run_worker',return_value={'status':'ok'}) as call,patch.object(executor.ErrorAnalysisRequest,'from_json',return_value=request),patch.object(executor.Path,'read_text',autospec=True,side_effect=lambda path:json.dumps({'spec':spec})):
+            # Path.read_text mock supplies both the report and nominal request.
+            self.assertEqual(executor.worker(plan,relative,Path('task.md')),0)
+        self.assertTrue(call.call_args.args[2].is_absolute())
+        self.assertEqual(call.call_args.args[2],expected/'candidate')
+
 
 if __name__=='__main__':unittest.main()

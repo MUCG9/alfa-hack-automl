@@ -14,7 +14,7 @@ sys.path.insert(0, str(ROOT/'src'))
 sys.path.insert(0, str(ROOT/'tools'))
 import numpy as np
 import pandas as pd
-import incumbent_mix_prototype as profile
+import automl.search.incumbent_mix as profile
 
 
 def fixture():

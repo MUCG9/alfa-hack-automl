@@ -40,16 +40,17 @@ skills/autoresearch-ml/SKILL.md, independently installed with matching hashes.
 REG-BLEND-01 fixed .9complete-control+.1nested-TPE passed three forward cuts
 and mean comparisons with equal-cap Random8/unchanged-anchor mixtures;
 see reg_blend01_forward_20261023.json. Not full-refit/release/official evidence yet.
-Class BLEND-01 grouped CV is ACTIVE PID92500/create_time1792726586.69,
-detached-blend01-cv.json and blend01-cv-20261023/coordinator.json. Six sequential
-workers, same owned training lock. Keep canonical source, candidate contracts and
-its six harness files FROZEN until it and descendants finish. No duplicate fits.
-PIPE-02 opt-in full-procedure protocol is pipe02_protocol_20261023.md. A dev-only
-prototype is outside canonical source; implement/test/integrate only after CV,
-including the deferred narrow sparse HPO-anchor default correction. Preserve
-default policy and V11/V16; no official submit, main merge, or extra agents.
-Local rollback tags: baseline-before-qwen-optuna-20261022,
-qwen-optuna-core-20261022, qwen-mvp-cli-tested-20261023.
+Class BLEND-01 grouped CV COMPLETE,6/6workers successful,3202.755s,
+source/harness/candidates unchanged; ALL-fold gate FAIL (fold0 primary loss
+and Analysis F1 loss>.01). PIDs92500/92521/96763 exited; lock verified free.
+See blend01_cv_results_20261023.json. No new class mixture weights or promotion.
+PIPE-02 opt-in full procedure now being integrated after freeze ended:
+pipe02_protocol_20261023.md and pipe02_implementation_20261023.md. Class branch
+uses qualified complete control only, regression uses qualified nested-TPE
+augmentation. Sparse HPO anchor defaults corrected in a708b1c;3no-fit adapter
+checks PASS; explicit measured controls unchanged. New source/archive/full-fit
+gates must complete before claiming profile qualification. Default HPO/selector
+remain OFF. No official submit, main merge, force push, extra agents or paid work.
 
 The paragraphs below describe the preceding completed checkpoint.
 

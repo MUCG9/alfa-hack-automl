@@ -1,0 +1,588 @@
+{
+  "verification": {
+    "scope": "Independently verified fixed BLEND-01 procedure, reused-public grouped CV; not replay of the initial agent search or private/official score",
+    "source_matches_current": true,
+    "source_sha256": {
+      "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+      "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+      "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+      "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+      "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+      "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+      "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+      "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+      "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+      "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+      "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+      "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+      "automl_models.py": "d4c78d9e7b3e596d695080315b4f671d6cfc841f44bc237790df3ddbf5125f24",
+      "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+      "automl_ensembles.py": "ccbb07cef50a1ebfef8a157a86515a3b494e5c3ce8c37b518eca44265e3bd054",
+      "automl_worker.py": "93d0887bc59e507880608810f900971b1008f07f3faf864814df3eed7d43c75d",
+      "automl_policy.py": "af4fdc6a89b493db659d732259c1777b58a7a0ae28278f611411cbfa122611a3",
+      "automl_runner.py": "56acce4f742640334027c8a8e194f726d6404afc7c5b4673c6a02a7709109745",
+      "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+      "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+      "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+      "automl_contracts_error_analysis.py": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a",
+      "automl_contracts_messages.py": "dc14ab3c2e257b8ae8dacc3c3888580f01b9a5f5494322273989345d4f429623",
+      "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+      "automl_error_analysis_api.py": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad",
+      "automl_error_analysis_preparation.py": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52",
+      "automl_error_analysis_classification.py": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073",
+      "automl_error_analysis_reporting.py": "2b47e915e3d02c8cf2b1e803394247b3983576d99d7575a96ea5097370b4b664",
+      "automl_error_analysis_artifacts.py": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454",
+      "automl_error_analysis_uncertainty.py": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591",
+      "automl_error_analysis_regression.py": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719",
+      "automl_error_analysis_slices.py": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f",
+      "automl_error_analysis_comparisons.py": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418",
+      "automl_error_analysis_service.py": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630",
+      "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+      "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+      "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+      "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+      "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+      "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+      "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+      "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+      "automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
+      "automl_search_multitarget.py": "a855c0966156ccb5343471754d2028e20a8513aac706c33bb2c6dfa8201d4754",
+      "automl_search_hpo.py": "d608a56db313502800c9afc259a82d4ddf67887108074b3d1567d78e36416db4",
+      "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+      "automl_infrastructure_llm_gateway.py": "4d85eeac0985f6bb9995a07e6cf372621c2455d614b01959bd3b8fb82704d27d",
+      "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+      "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1",
+      "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+      "automl_infrastructure_run_budget.py": "0d94db9d5647731740e38e11069818ea3578dcc8a09cf217f736cae8fe8bdeb3",
+      "automl_execution_api.py": "37e92f85f4e8de65b9cf2fdf1dbee27549938c5d035aa0ece766f796076fc1aa",
+      "automl_execution_feature_views.py": "af53acb2ce53c2bb3bccd713d7d4be94f11a853ba3e4e1097590dead07bb86c4",
+      "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+      "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+      "automl_execution_feature_engineering_selection.py": "51d9f8e948478f861b2645e31a2ddcb308cfbe93209daf5aebcf08b1e4c7e77c",
+      "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+      "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+      "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+      "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+      "automl_execution_postprocessing_targets.py": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218",
+      "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+      "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+      "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+      "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+      "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953",
+      "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+    },
+    "input_sha256": {
+      "train": "171a8915070b7575b729a32f70a45d1ad7b6f43c65b4ce12a0a68af30d5cb4e0",
+      "test": "b825449603931b5f05a8855e3d92b57775221c93ed4730ac6b4c75b9ea608862",
+      "sample_submission": "4d23642fcff01e49b0ef5a9f018b2381c12fad97282fa586285ad49b01e9623e",
+      "data_dictionary": "13d2651c5fe02b7fc30f0e7290af45606aad5de76c2f7b69217abc270dbbcef4"
+    },
+    "candidate_contract_sha256": "0fd769b73565f4ae2eb4478d043dfbd3c790feba9032cc936d9c0d23d9641ad9",
+    "benchmark_manifest_sha256": "08ebeb673119d128cdfb8abe8bdc8bd3f4479534d5403c3c440c8af8a248ce41",
+    "folds": [
+      {
+        "fold": 0,
+        "control": {
+          "value": 0.6360995393943651,
+          "validation_rows": 29243,
+          "prediction_sha256": "4d54b5efe025cc9e878145622d497717a415e0916100a34c6f88ff9983ea5361",
+          "row_order_verified": true,
+          "per_class_f1": {
+            "Analysis": 0.2384937238493724,
+            "Backdoor": 0.19070904645476772,
+            "DoS": 0.4572265982780729,
+            "Exploits": 0.7099350973539691,
+            "Fuzzers": 0.7437262357414449,
+            "Generic": 0.9899151128201408,
+            "Normal": 0.9178615093920196,
+            "Reconnaissance": 0.8416565164433617,
+            "Shellcode": 0.7089715536105032,
+            "Worms": 0.5625
+          },
+          "status": "verified",
+          "seconds": 572.704
+        },
+        "mvp": {
+          "value": 0.6315691619072796,
+          "validation_rows": 29243,
+          "prediction_sha256": "db1cd6a8e81c8474e39399c842f5c3bcc5b11c1147509a872c77760e26dbf05d",
+          "row_order_verified": true,
+          "per_class_f1": {
+            "Analysis": 0.21875,
+            "Backdoor": 0.1431578947368421,
+            "DoS": 0.4880024929884699,
+            "Exploits": 0.6838433843384338,
+            "Fuzzers": 0.7534288326729656,
+            "Generic": 0.9899869394862865,
+            "Normal": 0.9203262934406079,
+            "Reconnaissance": 0.8442211055276382,
+            "Shellcode": 0.7158351409978309,
+            "Worms": 0.5581395348837209
+          },
+          "status": "verified",
+          "seconds": 541.043
+        },
+        "blend": {
+          "value": 0.6347894530397721,
+          "per_class_f1": {
+            "Analysis": 0.22406639004149378,
+            "Backdoor": 0.1909307875894988,
+            "DoS": 0.46961894953656025,
+            "Exploits": 0.7007268951194184,
+            "Fuzzers": 0.7447647951441578,
+            "Generic": 0.9899136492271968,
+            "Normal": 0.9184706995380933,
+            "Reconnaissance": 0.8412746585735964,
+            "Shellcode": 0.7056277056277056,
+            "Worms": 0.5625
+          }
+        },
+        "gate": {
+          "oriented_gain": -0.0013100863545930652,
+          "primary_improved": false,
+          "per_class_delta": {
+            "Analysis": -0.014427333807878612,
+            "Backdoor": 0.00022174113473108492,
+            "DoS": 0.012392351258487366,
+            "Exploits": -0.009208202234550655,
+            "Fuzzers": 0.001038559402712913,
+            "Generic": -1.463592943951042e-06,
+            "Normal": 0.0006091901460737459,
+            "Reconnaissance": -0.0003818578697653008,
+            "Shellcode": -0.003343847982797632,
+            "Worms": 0.0
+          },
+          "independent_fitting_groups": {
+            "Analysis": 583,
+            "Backdoor": 550,
+            "DoS": 1752,
+            "Exploits": 7348,
+            "Fuzzers": 5641,
+            "Generic": 2354,
+            "Normal": 17618,
+            "Reconnaissance": 2709,
+            "Shellcode": 368,
+            "Worms": 51
+          },
+          "rarest_class": "Worms",
+          "gain_without_rarest_class": -0.001455651505103449,
+          "supported_class_violations": {
+            "Analysis": -0.014427333807878612
+          },
+          "passed": false
+        },
+        "split_sha256": [
+          "b8129d69348bece9a72d73d35b2dac8702ea873fbdc85e3a90c2d154b5d453c6",
+          "b8129d69348bece9a72d73d35b2dac8702ea873fbdc85e3a90c2d154b5d453c6"
+        ],
+        "probabilities_sha256": [
+          "25c0d1b7c72f532faf825f690faf1f18bf5446a63ccd6fb904e01dfdd3f4c55b",
+          "c5685cd17592063b3b84441cbb77d1ec6ffcff91d8f793d758fab8bc28ccd12b"
+        ]
+      },
+      {
+        "fold": 1,
+        "control": {
+          "value": 0.6342553287558182,
+          "validation_rows": 28854,
+          "prediction_sha256": "0c22bbbe88c903908c81149a6df951d62d74a6ce0004eec48bf99dabd154544d",
+          "row_order_verified": true,
+          "per_class_f1": {
+            "Analysis": 0.2529182879377432,
+            "Backdoor": 0.22670025188916876,
+            "DoS": 0.48916861826697894,
+            "Exploits": 0.6638763683193818,
+            "Fuzzers": 0.7414448669201521,
+            "Generic": 0.9887209023278137,
+            "Normal": 0.9121861744812565,
+            "Reconnaissance": 0.8241724870938354,
+            "Shellcode": 0.6719367588932806,
+            "Worms": 0.5714285714285714
+          },
+          "status": "verified",
+          "seconds": 403.024
+        },
+        "mvp": {
+          "value": 0.6359800902102346,
+          "validation_rows": 28854,
+          "prediction_sha256": "64e61ec019df95ef1f334ccef68589363e45ead3ab5e12677fb9310b4446352b",
+          "row_order_verified": true,
+          "per_class_f1": {
+            "Analysis": 0.23062381852551986,
+            "Backdoor": 0.1625207296849088,
+            "DoS": 0.49326454571510464,
+            "Exploits": 0.6579212916246215,
+            "Fuzzers": 0.749437021468248,
+            "Generic": 0.9887209023278137,
+            "Normal": 0.9159931701764371,
+            "Reconnaissance": 0.818692694469092,
+            "Shellcode": 0.6854838709677419,
+            "Worms": 0.6571428571428571
+          },
+          "status": "verified",
+          "seconds": 441.893
+        },
+        "blend": {
+          "value": 0.6344673288063254,
+          "per_class_f1": {
+            "Analysis": 0.2558139534883721,
+            "Backdoor": 0.21782178217821782,
+            "DoS": 0.49041255084253343,
+            "Exploits": 0.6636422553467272,
+            "Fuzzers": 0.7443906731192257,
+            "Generic": 0.9887209023278137,
+            "Normal": 0.9130285321416294,
+            "Reconnaissance": 0.8248108925869894,
+            "Shellcode": 0.6746031746031746,
+            "Worms": 0.5714285714285714
+          }
+        },
+        "gate": {
+          "oriented_gain": 0.000212000050507144,
+          "primary_improved": true,
+          "per_class_delta": {
+            "Analysis": 0.002895665550628923,
+            "Backdoor": -0.008878469710950937,
+            "DoS": 0.001243932575554496,
+            "Exploits": -0.00023411297265463205,
+            "Fuzzers": 0.002945806199073586,
+            "Generic": 0.0,
+            "Normal": 0.0008423576603728833,
+            "Reconnaissance": 0.0006384054931539707,
+            "Shellcode": 0.00266641570989401,
+            "Worms": 0.0
+          },
+          "independent_fitting_groups": {
+            "Analysis": 577,
+            "Backdoor": 547,
+            "DoS": 1709,
+            "Exploits": 7387,
+            "Fuzzers": 5648,
+            "Generic": 2367,
+            "Normal": 17602,
+            "Reconnaissance": 2620,
+            "Shellcode": 372,
+            "Worms": 31
+          },
+          "rarest_class": "Worms",
+          "gain_without_rarest_class": 0.00023555561167470004,
+          "supported_class_violations": {},
+          "passed": true
+        },
+        "split_sha256": [
+          "653c6f8eb7f66a1c6665b265df712c15c87f95ccd8c9570a7242ee0922410adf",
+          "653c6f8eb7f66a1c6665b265df712c15c87f95ccd8c9570a7242ee0922410adf"
+        ],
+        "probabilities_sha256": [
+          "6460a0aa20908741a5b24b6e352bf49e2103fc3e3e2b1e991d547ef03c3faf0b",
+          "e1d9d4836c71e75ce02ed2149b3113bc4d757eaf3e58ef7d96f0e7ae675a5f32"
+        ]
+      },
+      {
+        "fold": 2,
+        "control": {
+          "value": 0.6348397165869643,
+          "validation_rows": 29573,
+          "prediction_sha256": "a72f85c1d39669a424d8e6b814ccaf40392a48ba32f375a5966cb43270790561",
+          "row_order_verified": true,
+          "per_class_f1": {
+            "Analysis": 0.2596899224806202,
+            "Backdoor": 0.19839142091152814,
+            "DoS": 0.4843640443135605,
+            "Exploits": 0.6598803652009655,
+            "Fuzzers": 0.7453469917760784,
+            "Generic": 0.9886056971514243,
+            "Normal": 0.9119543509272467,
+            "Reconnaissance": 0.8264264264264264,
+            "Shellcode": 0.6883720930232559,
+            "Worms": 0.5853658536585366
+          },
+          "status": "verified",
+          "seconds": 389.949
+        },
+        "mvp": {
+          "value": 0.6417969470955672,
+          "validation_rows": 29573,
+          "prediction_sha256": "df3ebd73ab21ffafce894fed0b9a8d9fe50929ca15036aa40f0b962d12d9f043",
+          "row_order_verified": true,
+          "per_class_f1": {
+            "Analysis": 0.2556701030927835,
+            "Backdoor": 0.16443594646271512,
+            "DoS": 0.49254540525887774,
+            "Exploits": 0.6515876468029578,
+            "Fuzzers": 0.757598003230069,
+            "Generic": 0.9889813357319541,
+            "Normal": 0.9185947841828365,
+            "Reconnaissance": 0.8321123321123322,
+            "Shellcode": 0.7064439140811456,
+            "Worms": 0.65
+          },
+          "status": "verified",
+          "seconds": 819.76
+        },
+        "blend": {
+          "value": 0.6371235095698584,
+          "per_class_f1": {
+            "Analysis": 0.2648221343873518,
+            "Backdoor": 0.1953727506426735,
+            "DoS": 0.4858141160027952,
+            "Exploits": 0.6622474747474747,
+            "Fuzzers": 0.7494937807347412,
+            "Generic": 0.9887539361223572,
+            "Normal": 0.9138657855759371,
+            "Reconnaissance": 0.8276069921639542,
+            "Shellcode": 0.6978922716627635,
+            "Worms": 0.5853658536585366
+          }
+        },
+        "gate": {
+          "oriented_gain": 0.0022837929828941617,
+          "primary_improved": true,
+          "per_class_delta": {
+            "Analysis": 0.005132211906731632,
+            "Backdoor": -0.003018670268854634,
+            "DoS": 0.001450071689234722,
+            "Exploits": 0.002367109546509205,
+            "Fuzzers": 0.004146788958662717,
+            "Generic": 0.00014823897093285687,
+            "Normal": 0.0019114346486903688,
+            "Reconnaissance": 0.0011805657375277834,
+            "Shellcode": 0.009520178639507604,
+            "Worms": 0.0
+          },
+          "independent_fitting_groups": {
+            "Analysis": 592,
+            "Backdoor": 533,
+            "DoS": 1629,
+            "Exploits": 7321,
+            "Fuzzers": 5657,
+            "Generic": 2343,
+            "Normal": 17660,
+            "Reconnaissance": 2663,
+            "Shellcode": 376,
+            "Worms": 48
+          },
+          "rarest_class": "Worms",
+          "gain_without_rarest_class": 0.0025375477587713615,
+          "supported_class_violations": {},
+          "passed": true
+        },
+        "split_sha256": [
+          "2fff9233da87973294c3ce1585c6da659ddb2d4c785bb8a0d4f412ba50d1e655",
+          "2fff9233da87973294c3ce1585c6da659ddb2d4c785bb8a0d4f412ba50d1e655"
+        ],
+        "probabilities_sha256": [
+          "cce9257a6098b99d1f7c9750d937d6e6eeb9cc17b4062a6f2b578ee72b6a1f8e",
+          "63506cafd38fa2b80469410d39d3bf8dc11e2267c407668096645002d283106e"
+        ]
+      }
+    ],
+    "verifier_sha256": "b28786b729fd9c2a9a28bf5675b0bdf23c0d744b6c985044614a7f9fbd78b280",
+    "probability_reader_sha256": "4d200b9cc98bb0b9d708bcf888df6ed33b9362c6b111b6cc759d8833e12de851",
+    "gate_implementation_sha256": "73c30d1e78feefa9a9f3e7c8af3b3bb519163ee924cb0933357062d175fe6d07",
+    "coverage": "exactly_once",
+    "rows": 87670,
+    "groups_disjoint": true,
+    "fold_mean": {
+      "control": 0.6350648615790493,
+      "mvp": 0.6364487330710271,
+      "blend": 0.635460097138652
+    },
+    "pooled": {
+      "qualified-complete-control": {
+        "value": 0.6352949542659656,
+        "per_class_f1": {
+          "Analysis": 0.2506631299734748,
+          "Backdoor": 0.20525869380831213,
+          "DoS": 0.4784265266192977,
+          "Exploits": 0.678539255768831,
+          "Fuzzers": 0.7435116004718836,
+          "Generic": 0.9890975166565718,
+          "Normal": 0.9140375719814973,
+          "Reconnaissance": 0.8307257494700717,
+          "Shellcode": 0.6891600861450108,
+          "Worms": 0.5735294117647058
+        }
+      },
+      "mvp-complement": {
+        "value": 0.6369288846229857,
+        "per_class_f1": {
+          "Analysis": 0.2339622641509434,
+          "Backdoor": 0.15740162398500937,
+          "DoS": 0.4913834600943487,
+          "Exploits": 0.6642965596415213,
+          "Fuzzers": 0.7535190176699611,
+          "Generic": 0.9892489400363416,
+          "Normal": 0.9183178097657353,
+          "Reconnaissance": 0.8316733067729084,
+          "Shellcode": 0.7020348837209303,
+          "Worms": 0.6274509803921569
+        }
+      },
+      "blend": {
+        "value": 0.6355725835712441,
+        "per_class_f1": {
+          "Analysis": 0.24867021276595744,
+          "Backdoor": 0.20132013201320131,
+          "DoS": 0.4826579411024415,
+          "Exploits": 0.6757537334460412,
+          "Fuzzers": 0.746248093293313,
+          "Generic": 0.9891468955073195,
+          "Normal": 0.9151518583536251,
+          "Reconnaissance": 0.8312159709618875,
+          "Shellcode": 0.6920315865039484,
+          "Worms": 0.5735294117647058
+        }
+      }
+    },
+    "pooled_gate": {
+      "oriented_gain": 0.00027762930527852614,
+      "primary_improved": true,
+      "per_class_delta": {
+        "Analysis": -0.0019929172075173474,
+        "Backdoor": -0.003938561795110818,
+        "DoS": 0.004231414483143792,
+        "Exploits": -0.002785522322789835,
+        "Fuzzers": 0.0027364928214294038,
+        "Generic": 4.9378850747738845e-05,
+        "Normal": 0.0011142863721278484,
+        "Reconnaissance": 0.0004902214918157677,
+        "Shellcode": 0.002871500358937573,
+        "Worms": 0.0
+      },
+      "independent_fitting_groups": {
+        "Analysis": 577,
+        "Backdoor": 533,
+        "DoS": 1629,
+        "Exploits": 7321,
+        "Fuzzers": 5641,
+        "Generic": 2343,
+        "Normal": 17602,
+        "Reconnaissance": 2620,
+        "Shellcode": 368,
+        "Worms": 31
+      },
+      "rarest_class": "Worms",
+      "gain_without_rarest_class": 0.0003084770058649026,
+      "supported_class_violations": {},
+      "passed": true
+    },
+    "pooled_support_scope": "Minimum independent fitting feature-group count across folds",
+    "measured_cv_gate_passed": false,
+    "worker_seconds": [
+      572.704,
+      403.024,
+      389.949,
+      541.043,
+      441.893,
+      819.76
+    ],
+    "worker_peak_mib": [
+      560.9,
+      563.2,
+      556.7,
+      906.5,
+      897.4,
+      953.5
+    ],
+    "qualified_release": false,
+    "official_submission": false
+  },
+  "execution": {
+    "status": "completed",
+    "identity": {
+      "pid": 92500,
+      "create_time": 1792726586.69
+    },
+    "source_sha256": {
+      "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+      "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+      "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+      "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+      "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+      "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+      "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+      "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+      "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+      "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+      "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+      "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+      "automl_models.py": "d4c78d9e7b3e596d695080315b4f671d6cfc841f44bc237790df3ddbf5125f24",
+      "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+      "automl_ensembles.py": "ccbb07cef50a1ebfef8a157a86515a3b494e5c3ce8c37b518eca44265e3bd054",
+      "automl_worker.py": "93d0887bc59e507880608810f900971b1008f07f3faf864814df3eed7d43c75d",
+      "automl_policy.py": "af4fdc6a89b493db659d732259c1777b58a7a0ae28278f611411cbfa122611a3",
+      "automl_runner.py": "56acce4f742640334027c8a8e194f726d6404afc7c5b4673c6a02a7709109745",
+      "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+      "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+      "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+      "automl_contracts_error_analysis.py": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a",
+      "automl_contracts_messages.py": "dc14ab3c2e257b8ae8dacc3c3888580f01b9a5f5494322273989345d4f429623",
+      "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+      "automl_error_analysis_api.py": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad",
+      "automl_error_analysis_preparation.py": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52",
+      "automl_error_analysis_classification.py": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073",
+      "automl_error_analysis_reporting.py": "2b47e915e3d02c8cf2b1e803394247b3983576d99d7575a96ea5097370b4b664",
+      "automl_error_analysis_artifacts.py": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454",
+      "automl_error_analysis_uncertainty.py": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591",
+      "automl_error_analysis_regression.py": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719",
+      "automl_error_analysis_slices.py": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f",
+      "automl_error_analysis_comparisons.py": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418",
+      "automl_error_analysis_service.py": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630",
+      "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+      "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+      "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+      "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+      "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+      "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+      "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+      "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+      "automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
+      "automl_search_multitarget.py": "a855c0966156ccb5343471754d2028e20a8513aac706c33bb2c6dfa8201d4754",
+      "automl_search_hpo.py": "d608a56db313502800c9afc259a82d4ddf67887108074b3d1567d78e36416db4",
+      "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+      "automl_infrastructure_llm_gateway.py": "4d85eeac0985f6bb9995a07e6cf372621c2455d614b01959bd3b8fb82704d27d",
+      "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+      "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1",
+      "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+      "automl_infrastructure_run_budget.py": "0d94db9d5647731740e38e11069818ea3578dcc8a09cf217f736cae8fe8bdeb3",
+      "automl_execution_api.py": "37e92f85f4e8de65b9cf2fdf1dbee27549938c5d035aa0ece766f796076fc1aa",
+      "automl_execution_feature_views.py": "af53acb2ce53c2bb3bccd713d7d4be94f11a853ba3e4e1097590dead07bb86c4",
+      "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+      "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+      "automl_execution_feature_engineering_selection.py": "51d9f8e948478f861b2645e31a2ddcb308cfbe93209daf5aebcf08b1e4c7e77c",
+      "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+      "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+      "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+      "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+      "automl_execution_postprocessing_targets.py": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218",
+      "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+      "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+      "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+      "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+      "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953",
+      "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+    },
+    "candidates_sha256": "0fd769b73565f4ae2eb4478d043dfbd3c790feba9032cc936d9c0d23d9641ad9",
+    "maximum_seconds": 6000,
+    "harness_sha256": {
+      "run_blend_cv.py": "cc74acb0f70b14a0331ca6bbfdff1d050fb02adf35f6dc463da81a4bb56eee29",
+      "benchmark_candidates.py": "f4f9600b33932efc900f6f3f7308bd99f07ddfe85a691f3c1de6765c4a14911e",
+      "verify_blend_cv.py": "b28786b729fd9c2a9a28bf5675b0bdf23c0d744b6c985044614a7f9fbd78b280",
+      "verify_reg_blend_cv.py": "9c850224a3ebaf3aed71ab71bc21d0bf9f2c3fba2ffe5fa5250ac77a33d8b627",
+      "replay_blend01.py": "4d200b9cc98bb0b9d708bcf888df6ed33b9362c6b111b6cc759d8833e12de851",
+      "summarize_research.py": "73c30d1e78feefa9a9f3e7c8af3b3bb519163ee924cb0933357062d175fe6d07"
+    },
+    "worker_seconds": 900,
+    "memory_mib": 1536,
+    "threads": 2,
+    "maximum_workers": 6,
+    "scope": "classification blend qualification only; no integration/promotion/upload",
+    "exit_code": 0,
+    "measured_cv_gate_passed": false,
+    "seconds": 3202.755,
+    "source_unchanged": true,
+    "harness_unchanged": true,
+    "candidates_unchanged": true
+  }
+}

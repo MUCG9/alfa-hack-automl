@@ -1,12 +1,12 @@
 # PIPE-02: реализация и обязательная полная проверка
 
 Preregistered protocol: [pipe02_protocol_20261023.md](pipe02_protocol_20261023.md).
-Пока идёт frozen class CV, implementation находится только в dev prototype;
-canonical source не изменялся. Пять no-fit checks проверили fitting-only study
+Class CV завершён отрицательно; freeze снят после проверки process identities
+и lock. Прототип перенесён в canonical source. Шесть no-fit checks проверили fitting-only study
 scope, передачу full iterations, пересчёт по исходным labels вместо доверия
 worker scores, futility fallback и порядок классов/строк при экспорте.
 
-После CV модуль переносится в canonical `src/automl/search`, подключается
+Модуль в canonical `src/automl/search/incumbent_mix.py`, подключается
 явным `--research-profile incumbent_mix`. Без флага остаётся исходный search.
 Профиль — замороженные learned priors, не online Qwen search; новая полная
 проверка использует `--offline` и0API calls. Рецепты выбираются по kind/metric/

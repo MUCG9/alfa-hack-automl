@@ -3,7 +3,7 @@
 Промежуточный checkpoint23Oct: полный MVP, основная ночная очередь и FE-02
 завершены и независимо проверены. [Замороженная сводка](overnight_screens_20261023.json).
 REG-BLEND-01 прошёл три forward cuts и обе mean-comparisons;
-class BLEND-01 grouped CV выполняется. Подготовлен
+class BLEND-01 grouped CV завершён с gate FAIL. Подготовлен
 [PIPE-02](pipe02_protocol_20261023.md) для полного исполнения квалифицированной
 процедуры после CV. Текущий qualified default — V11/V16. Official uploads не делались.
 
@@ -66,6 +66,16 @@ Supported/rarest gates проходят; Worms F1 не меняется. Это 
 До CV записан [протокол](blend01_cv_protocol_20261023.md) всей фиксированной
 ensemble procedure с повторным fitting preprocessing/selection/calibration.
 Новая mixture weight или другой complement после этих scores не подбираются.
+
+Grouped CV завершён,6/6workers успешны;3202.755s, source/harness/candidates
+неизменны. Fold mean control .6350648615790493→blend .635460097138652;
+pooled .6352949542659656→.6355725835712441, exactly-once coverage.
+Но fold0 primary gain−.0013100863545930652, Analysis F1−.014427333807878612
+при достаточном fitting-group support. Folds1/2 проходят, pooled gate проходит;
+обязательный ALL-fold gate FAIL. [Receipt](blend01_cv_results_20261023.json).
+Классификационный augmentation отклонён, веса не переподбираются. PIPE-02
+использует qualified complete classification control без MVP-добавки.
+
 
 Практическая гипотеза: отдельно резервировать дешёвую обработку готовых
 predictions и дорогие model fits; включать FE/HPO только после component gate,

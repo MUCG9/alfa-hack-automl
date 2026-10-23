@@ -117,7 +117,9 @@ def llm_plan(context,root,max_output=16384,timeout=300,prompt_mode='baseline'):
     except (ValueError,TypeError) as exc:
         return [],dict(call,status='error',exception_type=type(exc).__name__)
 
-def run_worker(spec,recipe,run_dir,split_path,timeout,full_fit=False,fit_iterations=None):
+def run_worker(spec,recipe,run_dir,split_path,timeout,full_fit=False,fit_iterations=None,memory_limit=None):
+    if memory_limit is not None and (type(memory_limit) is not int or memory_limit<=0):
+        raise ValueError('Worker memory limit must be a positive integer number of bytes')
     run_dir=Path(run_dir); run_dir.mkdir(parents=True,exist_ok=True)
     if (run_dir/'result.json').exists():
         return {'status':'error','error':'Existing result refused to prevent stale-checkpoint reuse','recipe':recipe,'output_dir':str(run_dir)}
@@ -127,7 +129,9 @@ def run_worker(spec,recipe,run_dir,split_path,timeout,full_fit=False,fit_iterati
     job_path=run_dir/'job.json'; atomic_json(job_path,job)
     env={k:v for k,v in os.environ.items() if not any(s in k.upper() for s in ['KEY','TOKEN','SECRET','PROXY','PASSWORD','PASSWD','AUTH'])}
     env.update(PYTHONIOENCODING='utf-8',MPLCONFIGDIR=str(run_dir/'mpl-cache'))
-    started=time.monotonic(); killed=None; peak=0; peak_total=0; budget=ResourceBudget(); tree=None
+    started=time.monotonic(); killed=None; peak=0; peak_total=0
+    budget=ResourceBudget() if memory_limit is None else ResourceBudget(memory_limit=memory_limit)
+    tree=None
     try:
         with (run_dir/'worker.log').open('w',encoding='utf-8') as log:
             process=subprocess.Popen([sys.executable,'-u',str(worker_entrypoint()),str(job_path)],cwd=spec['root'],env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
@@ -216,6 +220,8 @@ def _main():
     parser.add_argument('--hpo-sampler',choices=['tpe','random'],default='tpe')
     parser.add_argument('--planner-mode',choices=['baseline','staged'],default='baseline')
     parser.add_argument('--feature-selection-top-k',type=int,default=0,help='Explicit experimental CatBoost selector; 0 disables')
+    parser.add_argument('--research-profile',choices=['incumbent_mix'],default=None,
+                        help='Opt-in frozen learned procedure; unsupported schemas retain baseline search')
     parser.add_argument('--validation-strategy',choices=['legacy','auto'],default='auto')
     parser.add_argument('--run-name',default='run-v2')
     args=parser.parse_args()
@@ -250,6 +256,11 @@ def solve_single(args,task_data=None,output_root=None):
     tr,va,split_info=make_split(spec,train,hashes,seed=42)
     split=runs/'split.npz'; np.savez(split,train=tr,validation=va)
     atomic_json(runs/'task_spec.json',spec); atomic_json(runs/'profile.json',profile); atomic_json(runs/'split.json',split_info)
+    if getattr(args,'research_profile',None)=='incumbent_mix':
+        from automl.search.incumbent_mix import solve_profile
+        report=solve_profile(args,(spec,profile,train,test,sample,text,hashes),runs,root,
+                             (tr,va,split_info),protected_paths,fingerprints,started,deadline)
+        if report is not None: return report
     dummy=dummy_predictions(spec,train.iloc[tr],len(va))
     if spec.get('prediction_type')=='probability_matrix':
         baseline=evaluate(train[spec['target']].iloc[va].astype(str),np.asarray(spec['output_columns'])[dummy.argmax(axis=1)],spec['kind'],spec['metric'],dummy,spec['output_columns'],**metric_context(spec,train,va))

@@ -1,19 +1,15 @@
-"""Development implementation for PIPE-02; no fits or source mutations on import.
+"""Opt-in frozen incumbent mixtures, independently gated and fully refitted.
 
-Move the tested implementation into canonical search only after frozen CV ends.
-Fitting is intentionally not exposed as a standalone CLI during that freeze.
+Default orchestration remains unchanged. Classification uses the qualified
+control only: the proposed augmentation failed its grouped-CV gate.
 """
 from copy import deepcopy
 from pathlib import Path
 import hashlib
 import json
-import sys
 import time
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT/'src'))
 import numpy as np
-import pandas as pd
 from automl.infrastructure.atomic import atomic_json
 from automl.infrastructure.run_budget import budget_metadata
 from automl.evaluation.api import make_split, make_time_split
@@ -23,7 +19,7 @@ from automl.search.policy import portfolio, normalize, signature
 from automl.search.hpo import optimize_recipe
 from automl.search.runner import run_worker, median_iterations, file_fingerprints, journal
 
-CLASS_AUGMENTATION_QUALIFIED = False  # Change only following the ongoing CV gate.
+CLASS_AUGMENTATION_QUALIFIED = False  # BLEND-01 failed one grouped fold.
 
 
 def profile_recipes(spec, allow_class_augmentation=False):
@@ -190,13 +186,14 @@ def solve_profile(args, task_data, runs, root, primary, protected_paths, fingerp
                 atomic_json(runs/'confirmation_split.json', info)
             control = fit(plan['control'], runs/f'control-{cut}', split)
             controls.append(control)
-            journal(runs, 'profile_control', control, spec['metric'], 'fixed_complete_control')
             if control['status'] != 'ok':
+                journal(runs, 'profile_control', control, spec['metric'], 'fixed_complete_control')
                 break
-            checkpoint(control, output)
             control_cache = load(control, va)
             control_metrics = combine(spec, [control_cache], [1.])[0]
             control['metrics'] = control_metrics  # Source truth, not worker-reported scores.
+            journal(runs, 'profile_control', control, spec['metric'], 'fixed_complete_control')
+            checkpoint(control, output)
             chosen = control
             candidate_metrics, cut_gate, reason = None, False, 'augmentation_disabled_or_prior_failure'
             if all_augmentation_valid:

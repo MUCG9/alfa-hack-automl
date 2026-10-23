@@ -1,0 +1,44 @@
+{
+  "status": "FAIL",
+  "recorded_epoch": 1792744425.4896271,
+  "start_epoch": 1792744425.0152137,
+  "seconds": 0.48500000000012733,
+  "exit_code": 15,
+  "pretest_manifest_sha256": "0e992db8c6579e8921b7d83ac3d91cfee5c86942faa40379f52d83467ba2dfff",
+  "source_evidence_sha256": {
+    "terminal_identity_fence_r1.py": "f6f112fc9eedce4e402e87a306dfae30bfedd75b457458b5ac5431f2f67757c8",
+    "terminal-identity-fence-independent-review-r1.json": "d6dacce680e4bf57b979cb8cc7a4d07c196e52354dbfdc3d1b229d145d17b64c",
+    "terminal-identity-fence-synthetic-r1/tests.py": "c6773ad7463cad95b5aec52405e7a3fa89bd4a4975e27d9964e934dbc4ca40cf",
+    "terminal-identity-fence-synthetic-r1/guard.py": "6d0b53189a2b03b1502d27c7ce04665e37687b333dbe91af971b12f87ff5fdb5",
+    "fullagent-cv-stage1-review-r4/stage0-terminal-ownership.json": "39bb0dfbe944ecadb48f10196d57ab8c8c8def40aad284b96952d3072588b011",
+    "fullagent-cv-terminal-closure-blocked-r4.json": "6cf9fc7a8af4c02772d8418a0a3f9184144a65a4e3079dd9896acca1f96b8b41",
+    "build_fullagent_cv_binding.py": "84a519c3f6a916c82c568be1944f5c9e0fac6409b5ac50f8fbafac2a7398b5ff",
+    "fullagent-cv-launch-r4/ownership.py": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "close_cv_stage1_r4.py": "6eede97afcd412435015ae3e7042969a0f8d0222ef0f9c72d11755e4b04cb4a2"
+  },
+  "raw_results_sha256": null,
+  "raw_log_sha256": null,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "source_unchanged": true,
+  "immutable_campaign_source_files_rehashed": 430,
+  "peak_guard_plus_child_rss_mib": 27.98828125,
+  "maximum_threads_per_observed_process": 4,
+  "failure": "synthetic_thread_limit",
+  "owned_child_identities": [
+    {
+      "pid": 6896,
+      "create_time": 1792744425.2480142
+    }
+  ],
+  "cleanup_confirmed": true,
+  "unresolved": [],
+  "signals": 1,
+  "unique_synthetic_tests": 26,
+  "actual_terminal_observer_executed": false,
+  "new_actual_cleanup_certificate": false,
+  "fits": 0,
+  "API_calls": 0,
+  "network_calls": 0,
+  "actual_heavy_jobs_started": 0,
+  "root_source_review_required_before_actual_use": true
+}

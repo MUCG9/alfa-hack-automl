@@ -1,0 +1,101 @@
+{
+  "status": "source_only_contract_review_completed_proposal_unexecuted",
+  "recorded_epoch": 1792744121.0205863,
+  "scope": "Static verifier versus canonical frozen runtime and actual report/spec schemas only",
+  "reviewer": "verifier_contract subagent",
+  "preparation_helper_sha256": "583c1e64ec31a2d85e734c9fd45f1d0aea73e03f4f61b38537b9d839b5138ff0",
+  "bindings_sha256": {
+    "verify_fullagent_cv.py": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+    "fullagent-cv-launch-r4/independent_verifier.py": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+    "fullagent-cv-launch-r4/manifest.json": "a70f2a0cefb686dd04535c76b4c9e9e80073aba23d86fd7aad7e52fc7b9eee6a",
+    "f4/stage1.json": "d2e5f64276e639fd6f20b315014701bb12352b2f2c65b3294ced04a9ccd7c456",
+    "f4/0a/automl_runs/run-v2/report.json": "6b3b3cab6cbb70b5bde21a0ea75bf46984d2ee99f5b68abcb5b864d985fe7927",
+    "f4/0b/automl_runs/run-v2/report.json": "a55d00923b13f43b5b4b6816a7e1d888407004bdc5693e48b84e6aaad8825ada",
+    "f4/0a/automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+    "f4/0b/automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+    "f4/0a/automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+    "f4/0b/automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+    "f4/0a/automl_worker.py": "8dc5a05d22df2c7b9c4d39e88b89fcb1648cf0b2d3b0fc6b2c1fcd3597f65dad",
+    "f4/0b/automl_worker.py": "4f153fdf0e645d47bdb3537cd951ab2227b06bc987bc27c6b6ee5919da91da85",
+    "f4/0a/automl_runner.py": "f1aa35ca9d04eb1c55e9d6b899b86343764ad2660025d850fb3fc06d244d0e0c",
+    "f4/0b/automl_runner.py": "65661773df2598c6ce591ad493dba149d7f64b2e4e7de09e5db3c888bd30b089",
+    "f4/0a/automl_execution_feature_views.py": "3188c6a64aee09a012fdb4bf49eeec1b780046ad0a4390ad69a7f9d2e7c598ea",
+    "f4/0b/automl_execution_feature_views.py": "f7adc282e735f22ab03a6a4d46c0f97adcf6b94968867b70be7732ab1e3617c8",
+    "f4/0a/automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+    "f4/0b/automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+    "f4/0a/automl_ensembles.py": "f52deb156e74e6e8e46b67fa6045bbaf942a2b9dac32e6ec11b16d1782328185",
+    "f4/0b/automl_ensembles.py": "f52deb156e74e6e8e46b67fa6045bbaf942a2b9dac32e6ec11b16d1782328185",
+    "f4/0a/automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5"
+  },
+  "canonical_enum": {
+    "task_parser": "automl_task.py:162-170",
+    "values": [
+      "probability_matrix",
+      "probability",
+      "value"
+    ],
+    "single_column_macro_f1_classification": "value",
+    "label_is_canonical_enum": false,
+    "publishing": "automl_publishing.py:39-60 checks value against classification classes",
+    "worker": "automl_worker.py maps adjusted class probabilities argmax to labels for value",
+    "reports_actual_types": [
+      "value",
+      "value"
+    ]
+  },
+  "necessary_artifact_contract_correction": {
+    "location": "ArtifactAudit.__init__ original lines413-414",
+    "old": "prediction_type == 'label'",
+    "new": "prediction_type == 'value'",
+    "output_columns_remain_strict": "[spec.target]",
+    "accepting_arbitrary_or_both_enums": false,
+    "solver_or_saved_report_change": false
+  },
+  "other_static_contracts_reviewed_no_second_obvious_schema_defect": [
+    "feature-view 2/4 child order, hypotheses, raw/encoded params and equal weights",
+    "global ensemble 2/3 non-nested components and training_reused cached child lookup",
+    "primary/confirmation split seeds42/43; inner fitting-only seed73 and reset_index",
+    "sampling source_parent_sha256 over ordered fitting parent row positions",
+    "recursive fit-iteration median max(30,int(median)) and fresh-refit tree",
+    "validation NPZ row_position required; test NPZ row_position intentionally optional",
+    "report spec root/paths/classes/features and publishing target/id output interpretation"
+  ],
+  "not_verified_by_static_review": [
+    "probability values, normalization, row alignment and recursive mixture values",
+    "prefix11 metric/prediction parity, any internal or outer metric value",
+    "runtime saved fitting scopes, source integrity or model iteration consistency",
+    "fresh canonical-lock ownership or strict orphan closure"
+  ],
+  "posthoc_proposal": {
+    "path": "posthoc-pair0-proposal-r1/proposed_verify_pair0.py",
+    "sha256": "d33c69293d13995ff38e2459ebe9291d055706cd42b6331b70c401f44cfb4383",
+    "execution_attempted": false,
+    "root_review_required": true,
+    "changes": [
+      "exact canonical enum correction label to value",
+      "separate self-hash declaration; original plan/manifest still pin original verifier33f98",
+      "original terminal stage bytes pinned; 0b technical_failure accepted only as saved solver-complete evidence under exact terminal schema failure",
+      "all original exact stage_slot, solver exit0, supervisor, seal, archive, source, API0 and clock checks retained",
+      "root-reviewed declaration requires complete430 source and canonical-lock strict-orphan terminal closure; closure failure blocks execution",
+      "fresh tracked+launcher identity absence checked again without process signals",
+      "separate monotonic diagnostic cap <=600 seconds inside original immutable64800 clock",
+      "fold0 only; full-CV public entry refuses, output explicitly incomplete and not qualified"
+    ],
+    "unchanged_quality_gates": [
+      "strict positive Macro F1",
+      "strict positive ex-rarest Macro F1",
+      "supported class loss floor minus0.01"
+    ],
+    "ready_to_execute": false,
+    "reason": "Root source review, new declaration, bounded guard and complete terminal ownership closure still required"
+  },
+  "fits": 0,
+  "api_calls": 0,
+  "prediction_array_reads": 0,
+  "raw_label_reads": 0,
+  "metrics_read_or_computed": false,
+  "full_CV_complete": false,
+  "qualification": null,
+  "promotion": false,
+  "official_submission": false
+}

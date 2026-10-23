@@ -1,0 +1,29 @@
+--- nofit_parentguard.py
++++ nofit_parentguard_r2.py
+@@ -255,6 +255,17 @@
+     before = fence.strict_orphan_check_with_one_fence(owner, prior, fence_proof)
+     child, tree, verified = None, None, False
+     observer = owner.StrictOwnedObserver()
++    # Record only self plus consecutive Python redirectors running this exact
++    # resolved script argument. Never inventory unrelated process names/argv.
++    current = psutil.Process()
++    launchers = [identity({'pid': current.pid, 'create_time': current.create_time()})]
++    own_script = str(Path(__file__).resolve())
++    redirector = current.parent()
++    while redirector is not None and redirector.name().lower() in {'python.exe', 'pythonw.exe'}:
++        if own_script not in redirector.cmdline():
++            break
++        launchers.append(identity({'pid': redirector.pid, 'create_time': redirector.create_time()}))
++        redirector = redirector.parent()
+     result = {'scope': SCOPE, 'status': 'preparing_bounded_nofit_diagnostic',
+               'start_unix': start, 'start_monotonic': tick, 'parent_seconds': PARENT_SECONDS,
+               'child_seconds': CHILD_SECONDS, 'memory_mib': 1024, 'threads': 1,
+@@ -267,6 +278,8 @@
+               'metrics_trusted': False, 'metrics': None, 'gain_claims': None,
+               'source_unchanged': None, 'global_terminal_fenced_check_passed': False,
+               'fits_started': 0, 'API_calls_started': 0,
++              'launcher_identities': identities(launchers),
++              'launchers_must_be_absent_before_next_queue': True,
+               'parent_identity': identity({'pid': psutil.Process().pid, 'create_time': psutil.Process().create_time()})}
+     with locks.ResearchLock(repo / 'test-runs/.owned-research.lock') as lock:
+         lock.write_identity(result['parent_identity'])

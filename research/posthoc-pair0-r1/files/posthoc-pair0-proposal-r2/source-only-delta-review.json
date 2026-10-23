@@ -1,0 +1,67 @@
+{
+  "status": "source_only_r2_recheck_delta_prepared_not_executed",
+  "recorded_epoch": 1792744444.6489797,
+  "root_requested_delta": true,
+  "scope": "posthoc saved-artifact pair0 diagnostic only; incomplete CV remains unqualified",
+  "r1_source_sha256": "d33c69293d13995ff38e2459ebe9291d055706cd42b6331b70c401f44cfb4383",
+  "r1_review_sha256": "a66caa84d5a48fc442163ec9dd30f97dc391949f73812633333271714a73d905",
+  "r1_completion_sha256": "74d540ed4085b9a82ddd580f0d1960213c931aa3887113fc6c7a22913da2c882",
+  "r1_artifacts_unchanged": true,
+  "original_bindings_rehashed_unchanged": {
+    "verify_fullagent_cv.py": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+    "fullagent-cv-launch-r4/independent_verifier.py": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+    "fullagent-cv-launch-r4/manifest.json": "a70f2a0cefb686dd04535c76b4c9e9e80073aba23d86fd7aad7e52fc7b9eee6a",
+    "f4/stage1.json": "d2e5f64276e639fd6f20b315014701bb12352b2f2c65b3294ced04a9ccd7c456",
+    "f4/0a/automl_runs/run-v2/report.json": "6b3b3cab6cbb70b5bde21a0ea75bf46984d2ee99f5b68abcb5b864d985fe7927",
+    "f4/0b/automl_runs/run-v2/report.json": "a55d00923b13f43b5b4b6816a7e1d888407004bdc5693e48b84e6aaad8825ada",
+    "f4/0a/automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+    "f4/0b/automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+    "f4/0a/automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+    "f4/0b/automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+    "f4/0a/automl_worker.py": "8dc5a05d22df2c7b9c4d39e88b89fcb1648cf0b2d3b0fc6b2c1fcd3597f65dad",
+    "f4/0b/automl_worker.py": "4f153fdf0e645d47bdb3537cd951ab2227b06bc987bc27c6b6ee5919da91da85",
+    "f4/0a/automl_runner.py": "f1aa35ca9d04eb1c55e9d6b899b86343764ad2660025d850fb3fc06d244d0e0c",
+    "f4/0b/automl_runner.py": "65661773df2598c6ce591ad493dba149d7f64b2e4e7de09e5db3c888bd30b089",
+    "f4/0a/automl_execution_feature_views.py": "3188c6a64aee09a012fdb4bf49eeec1b780046ad0a4390ad69a7f9d2e7c598ea",
+    "f4/0b/automl_execution_feature_views.py": "f7adc282e735f22ab03a6a4d46c0f97adcf6b94968867b70be7732ab1e3617c8",
+    "f4/0a/automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+    "f4/0b/automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+    "f4/0a/automl_ensembles.py": "f52deb156e74e6e8e46b67fa6045bbaf942a2b9dac32e6ec11b16d1782328185",
+    "f4/0b/automl_ensembles.py": "f52deb156e74e6e8e46b67fa6045bbaf942a2b9dac32e6ec11b16d1782328185",
+    "f4/0a/automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5"
+  },
+  "r2_source_sha256": "f58ae5b865eea672a8904d6ba96a5381f112f71c46bdf42919b9b46525ddd426",
+  "preparation_helper_sha256": "3fa06039ae04228bae75c19fd983576ea388990d521480e826804a52a2cc00a2",
+  "only_source_deltas": [
+    "posthoc_context now checks original common clock and separate audit deadline on every call",
+    "repeat posthoc_context after sealed/pristine checks immediately before returning audited pair0 results",
+    "repeat posthoc_context after CLI output is closed, causing exit failure if self/declaration/terminalclosure binding or ownership/clock fails"
+  ],
+  "sha_bindings_rechecked_by_each_posthoc_context_call": [
+    "exact original terminal stage d2e5f64276e639fd6f20b315014701bb12352b2f2c65b3294ced04a9ccd7c456",
+    "exact original frozen verifier33f98 ancestry",
+    "root declaration bytes bound by plan.posthoc_declaration.sha256",
+    "r2 verifier self bytes bound by declaration.posthoc_verifier_sha256",
+    "terminal ownership closure bytes bound by declaration.terminal_ownership.sha256"
+  ],
+  "new_guard_failure_after_output_write": {
+    "CLI_exit": "nonzero exception",
+    "written_output": "preserved as failed-audit artifact, never independently successful or qualified",
+    "parent_guard_required": "Treat nonzero exit or failed post-write hash/clock/ownership gate as technical failure with no trusted metrics or gain claims"
+  },
+  "unchanged_requirements": [
+    "root-reviewed execution declaration still absent and mandatory",
+    "fresh strict canonical-lock terminal closure430 still mandatory",
+    "original stage/manifest/statuses and source430 never modified",
+    "fold0 only; original quality gates unchanged; fullCV entry refuses",
+    "bounded root parent guard must enforce memory/time and zero network/fits/API"
+  ],
+  "source_parse_compile_only_passed": true,
+  "verifier_imported_or_executed": false,
+  "fits": 0,
+  "api_calls": 0,
+  "label_or_prediction_array_reads": 0,
+  "metric_fields_inspected_or_scores_computed": false,
+  "execution_ready": false,
+  "promotion": false
+}

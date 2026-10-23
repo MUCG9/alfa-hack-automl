@@ -1,0 +1,105 @@
+{
+  "status": "source_receipt_review_supports_one_identity_fence_proposal_only",
+  "recorded_epoch": 1792744130.5927403,
+  "review_source_sha256": "08f5381e8192e39a3a0447513ec1ffe7021e9fa023ba3f056611da192fb5ef25",
+  "evidence_sha256": {
+    "f4/0a-supervisor.json": "81c497077a880e777d611be5e43541796a3fde7d1b4fb6cc6857ded5878e5642",
+    "f4/0b-supervisor.json": "a828e7a0ed55954e55d535d770d330ac4c685d2d5c6c4543e5b6ff009d6a4234",
+    "f4/gate-a_exact.json": "47d5429fc84316e3cb257f738a41fb61916e91f167880284f0919ebb416ed4c3",
+    "f4/gate-a_source.json": "4e21b82035ff4be3259852b94a4bb4173c88c713de201d2bcb1ec9baa0a713e4",
+    "f4/gate-b_exact.json": "d2a6480a06e84d80ed28c0ce1d42bae54ea2bdb362579a5515929b5d1e4f46db",
+    "f4/gate-b_source.json": "777b55fe26d7c7b45196ca20d5df3d114221894b79759078d2e5d676fca09951",
+    "f4/stage0.json": "b7fe434e62677cfb7e11e755b557a0ed486cd6f9ebe7a668e143b71caa4e0ec0",
+    "f4/stage1.json": "d2e5f64276e639fd6f20b315014701bb12352b2f2c65b3294ced04a9ccd7c456",
+    "f4/technical-rejection-00.json": "c091a42c69b597b3b643359741ecb2a6267995994ec2d9fa74faccbab3a593d2",
+    "fullagent-cv-stage0-launch-r4.json": "131407fc3fa35ac282615ba911e6ce2acce6ffbc373e1648031be729229e2134",
+    "fullagent-cv-stage1-launch-r4.json": "574051f8ee5cb4d3bf69219c967cfa652c4d9b297c2030161fa6158004624709",
+    "fullagent-cv-stage1-review-r4/stage0-terminal-ownership.json": "39bb0dfbe944ecadb48f10196d57ab8c8c8def40aad284b96952d3072588b011",
+    "fullagent-cv-stage1-review-r4/completion.json": "bfe8bfcb7bf06fc13bf4292a1ba1adb7234677685f667cd231a13537b2b7e5c4",
+    "fullagent-cv-launch-r4/review-stage1-r4.json": "179f02f87cd59983de4e20d7de03eeb15c6c146ff85932d01a867dafe227e137",
+    "fullagent-cv-terminal-closure-blocked-r4.json": "6cf9fc7a8af4c02772d8418a0a3f9184144a65a4e3079dd9896acca1f96b8b41"
+  },
+  "immutable_source_files_rehashed": 430,
+  "historical_parent": {
+    "pid": 16936,
+    "create_time": 1792736162.1905231,
+    "source_receipt": "f4/gate-a_source.json",
+    "absent_no_later_than_epoch": 1792736704.863943,
+    "strict_terminal_proof_sha256": "39bb0dfbe944ecadb48f10196d57ab8c8c8def40aad284b96952d3072588b011"
+  },
+  "known_original_campaign_identity_count": 1236,
+  "fresh_known_exact_before": {
+    "absent_or_reused": 1236,
+    "live": [],
+    "denied": []
+  },
+  "fresh_known_exact_after": {
+    "absent_or_reused": 1236,
+    "live": [],
+    "denied": []
+  },
+  "fresh_historical_parent": {
+    "absent": [
+      {
+        "pid": 16936,
+        "create_time": 1792736162.1905231,
+        "reason": "not_present"
+      }
+    ],
+    "live": [],
+    "denied": []
+  },
+  "fresh_direct_children_of_matching_parent_pid": [
+    {
+      "pid": 16556,
+      "create_time": 1792742610.0300035,
+      "ppid": 16936,
+      "seconds_after_historical_parent_absence": 5905.166060447693,
+      "temporal_parent_edge_impossible": true
+    }
+  ],
+  "reasoning": [
+    "The exact parent identity was strictly absent by the pinned Stage0 proof time; its lifetime cannot extend beyond that bound.",
+    "A process born strictly after that bound cannot have that exact historical identity as direct parent. Its PPID can instead refer to a later reused incarnation that has since exited.",
+    "This conclusion does not identify the actual later parent, does not depend on an executable name and does not certify all campaign cleanup.",
+    "The terminal Stage1 end timestamp alone is not used as a blanket fence. Only the SHA-bound Stage0 tracked identity 16936 is eligible.",
+    "Original blocked scan and all old receipts/source are retained. Observer-adopted uncertain candidates are not promoted to original owned identities."
+  ],
+  "proposal": {
+    "path": "terminal_identity_fence_r1.py",
+    "sha256": "f6f112fc9eedce4e402e87a306dfae30bfedd75b457458b5ac5431f2f67757c8",
+    "implementation_executed": false,
+    "review_before_execution_required": true,
+    "caller_must_hold_canonical_lock": true,
+    "caller_must_recheck_source_and_terminal_evidence": true,
+    "only_exception": "missing current parent, exact historical identity covered by pinned Stage0 proof, freshly reverified child birth strictly after proof epoch",
+    "hard_fail": [
+      "any saved exact identity alive",
+      "any known identity/traversal/parent/child AccessDenied",
+      "unknown matching child birth",
+      "uncovered pre-fence orphan remains live",
+      "proof/source drift"
+    ],
+    "required_synthetic_cases_before_use": [
+      "late child of pinned absent parent excluded",
+      "child equal to fence adopted and blocks",
+      "pre-fence child adopted and blocks",
+      "late child of other absent parent adopted and blocks",
+      "missing child birth blocks",
+      "parent access denied blocks",
+      "child reverify access denied blocks",
+      "live saved exact identity blocks",
+      "tampered closure blocks",
+      "normal current reused parent exclusion preserved"
+    ],
+    "fresh_lock_scoped_terminal_closure_not_yet_obtained": true
+  },
+  "old_strict_failure_preserved": true,
+  "new_cleanup_certificate": false,
+  "new_heavy_launch_authorized": false,
+  "fits": 0,
+  "API_calls": 0,
+  "signals": 0,
+  "process_names_read": false,
+  "unrelated_argv_or_env_read": false
+}

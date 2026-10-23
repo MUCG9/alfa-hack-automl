@@ -1,0 +1,137 @@
+{
+  "status": "strict_terminal_closure_blocked_no_signals",
+  "recorded_epoch": 1792743004.8646924,
+  "closure_source_sha256": "6eede97afcd412435015ae3e7042969a0f8d0222ef0f9c72d11755e4b04cb4a2",
+  "diagnostic_source_sha256": "84c0bbddc11931a9017445f2d7158ee149cafba2075d3cd5589cae83ec43cf9c",
+  "unresolved": [
+    {
+      "pid": 10000,
+      "create_time": 1792742631.1273947,
+      "action": "final_fresh_identity_recheck",
+      "reason": "same_identity_alive",
+      "name": "browser.exe",
+      "current_create_time": 1792742631.1273947,
+      "ppid": 16556
+    },
+    {
+      "pid": 11468,
+      "create_time": 1792742610.6888976,
+      "action": "final_fresh_identity_recheck",
+      "reason": "same_identity_alive",
+      "name": "browser.exe",
+      "current_create_time": 1792742610.6888976,
+      "ppid": 16556
+    },
+    {
+      "pid": 13916,
+      "create_time": 1792742800.751186,
+      "action": "final_fresh_identity_recheck",
+      "reason": "same_identity_alive",
+      "name": "browser.exe",
+      "current_create_time": 1792742800.751186,
+      "ppid": 16556
+    },
+    {
+      "pid": 14088,
+      "create_time": 1792742610.6309001,
+      "action": "final_fresh_identity_recheck",
+      "reason": "same_identity_alive",
+      "name": "browser.exe",
+      "current_create_time": 1792742610.6309001,
+      "ppid": 16556
+    },
+    {
+      "pid": 15344,
+      "create_time": 1792742612.6191876,
+      "action": "final_fresh_identity_recheck",
+      "reason": "same_identity_alive",
+      "name": "browser.exe",
+      "current_create_time": 1792742612.6191876,
+      "ppid": 16556
+    },
+    {
+      "pid": 16556,
+      "create_time": 1792742610.0300035,
+      "action": "final_fresh_identity_recheck",
+      "reason": "same_identity_alive",
+      "name": "browser.exe",
+      "current_create_time": 1792742610.0300035,
+      "ppid": 16936
+    },
+    {
+      "pid": 16800,
+      "create_time": 1792742610.1030188,
+      "action": "final_fresh_identity_recheck",
+      "reason": "same_identity_alive",
+      "name": "browser.exe",
+      "current_create_time": 1792742610.1030188,
+      "ppid": 16556
+    },
+    {
+      "pid": 17312,
+      "create_time": 1792742611.52511,
+      "action": "final_fresh_identity_recheck",
+      "reason": "same_identity_alive",
+      "name": "browser.exe",
+      "current_create_time": 1792742611.52511,
+      "ppid": 16556
+    },
+    {
+      "pid": 17372,
+      "create_time": 1792742613.386828,
+      "action": "final_fresh_identity_recheck",
+      "reason": "same_identity_alive",
+      "name": "browser.exe",
+      "current_create_time": 1792742613.386828,
+      "ppid": 16556
+    },
+    {
+      "pid": 20712,
+      "create_time": 1792742641.2927773,
+      "action": "final_fresh_identity_recheck",
+      "reason": "same_identity_alive",
+      "name": "browser.exe",
+      "current_create_time": 1792742641.2927773,
+      "ppid": 16556
+    },
+    {
+      "pid": 20852,
+      "create_time": 1792742642.245165,
+      "action": "final_fresh_identity_recheck",
+      "reason": "same_identity_alive",
+      "name": "browser.exe",
+      "current_create_time": 1792742642.245165,
+      "ppid": 16556
+    },
+    {
+      "pid": 20932,
+      "create_time": 1792742642.6253548,
+      "action": "final_fresh_identity_recheck",
+      "reason": "same_identity_alive",
+      "name": "browser.exe",
+      "current_create_time": 1792742642.6253548,
+      "ppid": 16556
+    },
+    {
+      "pid": 21780,
+      "create_time": 1792742731.6923428,
+      "action": "final_fresh_identity_recheck",
+      "reason": "same_identity_alive",
+      "name": "browser.exe",
+      "current_create_time": 1792742731.6923428,
+      "ppid": 16556
+    },
+    {
+      "pid": 22180,
+      "create_time": 1792742942.8758588,
+      "action": "final_fresh_identity_recheck",
+      "reason": "same_identity_alive",
+      "name": "browser.exe",
+      "current_create_time": 1792742942.8758588,
+      "ppid": 16556
+    }
+  ],
+  "fits": 0,
+  "signals": 0,
+  "observer_decision_unchanged": true
+}

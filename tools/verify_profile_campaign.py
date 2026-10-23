@@ -33,7 +33,8 @@ def full_leaves(record, count):
     if record.get('components'):
         return sum(full_leaves(child, count) for child in record['components'])
     runs = record.get('data_policy_runs', [])
-    expected = hashlib.sha256(np.arange(count, dtype=np.int64).tobytes()).hexdigest()
+    expected = hashlib.sha256(json.dumps(list(range(count)), sort_keys=True,
+                                        separators=(',', ':'), ensure_ascii=False).encode()).hexdigest()
     if (not runs or runs[-1]['source_rows'] != count or runs[-1]['source_parent_sha256'] != expected
             or record['early_stopping_source'] != 'full_refit'):
         raise ValueError('Final learner did not fit all original training rows in order')

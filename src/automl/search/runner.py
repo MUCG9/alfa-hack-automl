@@ -185,12 +185,19 @@ def _main():
     parser.add_argument('task',type=Path,nargs='?',default=Path('task.md'))
     parser.add_argument('--time-budget',type=int,default=9900)
     parser.add_argument('--max-experiments',type=int,default=12)
+    parser.add_argument('--search-until-deadline',action='store_true',help='Opt-in anytime extension after the ordinary baseline; legacy defaults unchanged')
+    parser.add_argument('--finalization-reserve',type=int,default=1200,help='Seconds reserved for final full refit/export in anytime mode')
+    parser.add_argument('--max-extended-experiments',type=int,default=1000,help='Safety cap, not the stopping target, for anytime extension')
     parser.add_argument('--max-planner-calls',type=int,default=4)
     parser.add_argument('--max-llm-calls',type=int,default=None,help='Total gateway calls including file roles and every target; default planner limit+2')
     parser.add_argument('--offline',action='store_true')
     parser.add_argument('--validation-strategy',choices=['legacy','auto'],default='auto')
     parser.add_argument('--run-name',default='run-v2')
     args=parser.parse_args()
+    if args.search_until_deadline:
+        from automl.search.anytime import baseline_budget
+        baseline_budget(args.time_budget,args.finalization_reserve)
+        if not 1<=args.max_extended_experiments<=10000: parser.error('Extended attempt guard must be in1..10000')
     total_calls=max(0,min(8,args.max_planner_calls))+2 if args.max_llm_calls is None else args.max_llm_calls
     with RunBudget(args.time_budget,total_calls,args.task.resolve().parent):
         loaded=load_inputs(args.task,allow_llm=not args.offline)
@@ -202,6 +209,9 @@ def _main():
 
 
 def solve_single(args,task_data=None,output_root=None):
+    if getattr(args,'search_until_deadline',False):
+        from automl.search.anytime import solve_anytime
+        return solve_anytime(args,task_data,output_root)
     started=time.monotonic(); deadline=constrain_deadline(started+args.time_budget)
     spec,profile,train,test,sample,text,hashes=discover(args.task) if task_data is None else task_data
     spec=choose_validation(spec,train,args.validation_strategy)

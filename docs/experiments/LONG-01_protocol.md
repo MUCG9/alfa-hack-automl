@@ -35,6 +35,10 @@ results. Validate a promising candidate on the SAME original seed43/forward
 confirmation split while still before cutoff; no new split or validation-label
 preprocessing. Compare best3 confirmed standalone recipes and the existing fixed
 blend grid; do not create nested engine=ensemble recipes from old blends.
+Pre-fit clarification: retain the EXISTING V11 third-family rule (top2, then an
+independent engine if both leaders share a family), rather than silently dropping
+the useful XGBoost/CatBoost branch when many related LightGBM seeds accumulate.
+Apply that rule to confirmed pairs; no new blend weights or family sweeps.
 
 Promotion: strictly better two-cut mean AND neither cut worse than baseline
 chosen solution. Keep baseline if not satisfied. This is reused-public adaptive

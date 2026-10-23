@@ -21,6 +21,9 @@ def main():
     parser.add_argument('--offline',action='store_true')
     parser.add_argument('--time-budget',type=int,default=9900)
     parser.add_argument('--max-experiments',type=int,help='Explicit bounded lifecycle check; omit for default search')
+    parser.add_argument('--search-until-deadline',action='store_true')
+    parser.add_argument('--finalization-reserve',type=int,default=1200)
+    parser.add_argument('--max-extended-experiments',type=int,default=1000)
     parser.add_argument('--jobs',type=int,default=1,choices=[1,2])
     parser.add_argument('--threads',type=int,default=4,choices=range(1,9))
     parser.add_argument('--archive',type=Path)
@@ -56,6 +59,9 @@ def main():
         if args.validation_strategy is not None: command.extend(['--validation-strategy',args.validation_strategy])
         if args.time_budget!=9900: command.extend(['--time-budget',str(args.time_budget)])
         if args.max_experiments is not None: command.extend(['--max-experiments',str(args.max_experiments)])
+        if args.search_until_deadline:
+            command.extend(['--search-until-deadline','--finalization-reserve',str(args.finalization_reserve),
+                            '--max-extended-experiments',str(args.max_extended_experiments)])
         started=time.monotonic()
         with (target/'process.log').open('w',encoding='utf-8') as stream:
             try:
@@ -73,6 +79,7 @@ def main():
         if report.exists():
             value=json.loads(report.read_text())
             result.update({k:value[k] for k in ['best_validation','selection','final_fit_status','integrity_ok','submission_sha256','score_scope'] if k in value})
+            result.update({k:value[k] for k in ['baseline','exported_mean','best_observed_mean','confirmation_metric','exported_full_fit_ok','anytime'] if k in value})
             if value.get('version')=='independent-multi-target-v1':
                 result['targets']=value['targets']
                 result['children']=[{k:c[k] for k in ['target','status','trained','final_fit_status','best_validation','budget_seconds'] if k in c} for c in value['children']]

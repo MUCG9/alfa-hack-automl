@@ -1,0 +1,60 @@
+{
+  "status": "prospective_specifications_only_not_implemented_or_run",
+  "cases": [
+    {
+      "name": "legacy_default_parity",
+      "assert": "With proposed mode off, exact recipes/calls/ordering/worker budgets/report values remain baseline-identical."
+    },
+    {
+      "name": "complete_prefix_required",
+      "assert": "No optional worker until both tasks have validated fullfit/CSV/closed API and fresh cleanup; missing proof refuses."
+    },
+    {
+      "name": "chronological_admission",
+      "assert": "Future duration/value mutation does not change any earlier decision; only past matching costs matter."
+    },
+    {
+      "name": "failure_is_not_zero",
+      "assert": "Timeout/nonfinite/zero/missing durations do not lower estimated cost; failure metrics remain null and included."
+    },
+    {
+      "name": "cold_or_scope_change",
+      "assert": "New schema/rows/feature/selector/capacity envelope uses600 or refuses, without borrowing another task/control median."
+    },
+    {
+      "name": "reserve_exact_boundary",
+      "assert": "At estimate+reserve+cleanup admit; one tick below refuse; serialization delay forces immediate recheck."
+    },
+    {
+      "name": "estimate_underpredicts",
+      "assert": "Independent watchdog ends optional work before protected reserve; known descendants are cleaned or campaign stops."
+    },
+    {
+      "name": "single_pending",
+      "assert": "One candidate must complete both research splits/refit/export or be discarded before a second task gains refit debt."
+    },
+    {
+      "name": "sampler_prefix_state",
+      "assert": "Continued ask/tell proposals match uninterrupted sampler chronology, including anchor/failed/duplicate/startup trials; no anchor reset."
+    },
+    {
+      "name": "incumbent_atomicity",
+      "assert": "Any optional fit/refit/export failure leaves both original qualified export bytes untouched."
+    },
+    {
+      "name": "no_outer_or_extra_api",
+      "assert": "Changing sealed evaluator labels cannot change proposals/admission; optional phase opens zero gateway requests."
+    },
+    {
+      "name": "shared_clock_complete_denominator",
+      "assert": "No deadline reset through retries/resume/branch; failed task/cut remains present and invalid, never silently dropped."
+    },
+    {
+      "name": "support_and_metrics",
+      "assert": "Identical independent quality/support calculation for both arms; utilization/trial count alone cannot qualify promotion."
+    }
+  ],
+  "fits": 0,
+  "api_calls": 0,
+  "tests_run": 0
+}

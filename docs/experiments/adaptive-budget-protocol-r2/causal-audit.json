@@ -1,0 +1,780 @@
+{
+  "revision": "adaptive-budget-causal-audit-r2",
+  "status": "read_only_finished_evidence_and_future_plan",
+  "created_utc": "2026-10-23T03:34:19.027223+00:00",
+  "scope_correction": {
+    "legacy_mvp": "Both original public MVP solvers were legacy staged search with fitting-partition CatBoost selection and nested Optuna. Their actual runner had no --four-stage flag or initial LLM EDA/broad coordinator. Misleading run names are not stage proof.",
+    "true_mvp": "tm1 is a separate new10800-second campaign from exact88dac runtime, explicit --four-stage. Only finished regression is audited here; classification and full-agent outcome remain pending at this snapshot.",
+    "old_metrics_preserved": true,
+    "old_clock_not_restarted": true,
+    "quality_improvement_claim": false
+  },
+  "legacy_campaign_clock": {
+    "original_limit_seconds": 10800,
+    "start_from_receipt_creation_epoch": 1792710014.3533921,
+    "recovery_deadline_epoch": 1792720814.3533921,
+    "recovery_finished_epoch": 1792716130.8521833,
+    "unused_seconds": 4683.501208782196,
+    "unused_fraction": 0.43365751933168484,
+    "task_reports_elapsed_sum_seconds": 5794.0470000000005,
+    "other_elapsed_including_recovery_seconds": 322.4517912178035,
+    "caveat": "Recorded recovery deadline reconciled exactly; initial start was inferred from original Windows receipt creation time, not original independent monotonic telemetry. Original campaign receipt remained stale running after cleanup error."
+  },
+  "legacy_tasks": [
+    {
+      "task": "regression",
+      "actual_runtime": {
+        "path": "work/frozen-mvp/test-runs/public-mvp-native/task-00/automl_runner.py",
+        "sha256": "2ed8122a6b9f19e8eed8d67db588aa2c252b78ce19e5bfa1e4d53c694999ba62",
+        "bytes": 29717
+      },
+      "argparse_defaults": {
+        "task": "<dynamic>",
+        "--time-budget": 9900,
+        "--max-experiments": 12,
+        "--max-planner-calls": 4,
+        "--max-llm-calls": null,
+        "--offline": "<argparse implicit>",
+        "--hpo-trials": 0,
+        "--hpo-budget": 900,
+        "--hpo-sampler": "tpe",
+        "--planner-mode": "baseline",
+        "--feature-selection-top-k": 0,
+        "--validation-strategy": "auto",
+        "--run-name": "run-v2"
+      },
+      "reconstructed_executed_command": [
+        "<same-sys.executable>",
+        "-u",
+        "solution.py",
+        "task.md",
+        "--time-budget",
+        "9900",
+        "--max-experiments",
+        "14",
+        "--max-planner-calls",
+        "2",
+        "--max-llm-calls",
+        "4",
+        "--hpo-trials",
+        "8",
+        "--hpo-budget",
+        "900",
+        "--feature-selection-top-k",
+        "32",
+        "--planner-mode",
+        "staged",
+        "--run-name",
+        "mvp-four-stage"
+      ],
+      "command_evidence_limit": "Command reconstructed from preserved coordinator source and independently corroborated flags/limits/indices in actual reports/closed ledgers; original process argv was not persisted.",
+      "stage_facts": {
+        "deterministic_profile_before_models": true,
+        "llm_initial_eda_before_fitting": false,
+        "runtime_supports_four_stage_cli": false,
+        "initial_assessment_artifact_exists": false,
+        "trusted_broad_recipe_count": 0,
+        "generic_feature_modes": {
+          "missing": 10,
+          "none": 4
+        },
+        "explicit_catboost_selector_top_k": 32,
+        "model_families": [
+          "catboost",
+          "lightgbm",
+          "xgboost"
+        ],
+        "hpo_attempted": true,
+        "staged_planner_feedback_exists": true,
+        "pipeline_field_present": false
+      },
+      "search_stop_evidence": {
+        "indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "all14_search_statuses": [
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok"
+        ],
+        "range_limit_expression": "limit=max(1,min(args.max_experiments,14)); for iteration in range(limit)",
+        "configured_limit": 14,
+        "reserve_seconds": 1200,
+        "minimum_earlier_remaining_lower_bound_seconds": 9571.141,
+        "reserve_break_threshold_seconds": 1230,
+        "deadline_break_cannot_explain_actual_search_end": true,
+        "plateau_or_confidence_stopping_present": false,
+        "inference": "Given all14 indices0..13 executed and even final closed local remaining exceeded every search reserve threshold, the finite range limit ended search; no branch stop_reason was logged."
+      },
+      "hpo": {
+        "configured_trials": 8,
+        "actual_trials": 8,
+        "seconds": 59.421,
+        "completed_trials": 8,
+        "statuses": [
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok"
+        ],
+        "binding_limit_inference": "8-trial maximum, not the900-second allocation",
+        "second_study_possible_in_original_source": false,
+        "one_shot_gate": "hpo_attempted=True before call; never reset"
+      },
+      "closed_local_budget": {
+        "status": "completed",
+        "wall_limit_seconds": 9900,
+        "elapsed_seconds": 328.859,
+        "remaining_seconds": 9571.141,
+        "gateway_call_limit": 4,
+        "gateway_calls_started": 2,
+        "http_attempts_reported": 2,
+        "prompt_tokens_reported": 23775,
+        "completion_tokens_reported": 1402,
+        "usage_complete": true,
+        "events": [
+          {
+            "event": 1,
+            "purpose": "planner",
+            "status": "ok",
+            "reserved_gateway_call": true,
+            "http_attempts_known": 1,
+            "prompt_tokens_reported": 11750,
+            "completion_tokens_reported": 678,
+            "usage_complete": true,
+            "elapsed_seconds": 254.968
+          },
+          {
+            "event": 2,
+            "purpose": "planner",
+            "status": "ok",
+            "reserved_gateway_call": true,
+            "http_attempts_known": 1,
+            "prompt_tokens_reported": 12025,
+            "completion_tokens_reported": 724,
+            "usage_complete": true,
+            "elapsed_seconds": 271.171
+          }
+        ]
+      },
+      "planner_files": [
+        {
+          "path": "work/frozen-mvp/test-runs/public-mvp-native/task-00/automl_runs/mvp-four-stage/planner-1.json",
+          "sha256": "761536a0f09f5f29fc11a0bbe9f173efea0d3af7252cb9979427ce3f7e3abcfb",
+          "accepted_plans": 1,
+          "planner_status": "ok",
+          "exception_type": null,
+          "feedback_records": 12,
+          "context_round": 1
+        },
+        {
+          "path": "work/frozen-mvp/test-runs/public-mvp-native/task-00/automl_runs/mvp-four-stage/planner-2.json",
+          "sha256": "a19588aa908666b441ed068819994248b081f18e06425d88d69591c988cce048",
+          "accepted_plans": 1,
+          "planner_status": "ok",
+          "exception_type": null,
+          "feedback_records": 12,
+          "context_round": 2
+        }
+      ],
+      "phases": {
+        "search": {
+          "rows": 14,
+          "recorded_worker_seconds": 186.799,
+          "statuses": {
+            "ok": 14
+          }
+        },
+        "confirmation": {
+          "rows": 3,
+          "recorded_worker_seconds": 21.047,
+          "statuses": {
+            "ok": 3
+          }
+        },
+        "ensemble_search": {
+          "rows": 1,
+          "recorded_worker_seconds": 0.047,
+          "statuses": {
+            "ok": 1
+          }
+        },
+        "ensemble_confirmation": {
+          "rows": 1,
+          "recorded_worker_seconds": 0.031,
+          "statuses": {
+            "ok": 1
+          }
+        },
+        "full_refit": {
+          "rows": 1,
+          "recorded_worker_seconds": 20.172,
+          "statuses": {
+            "ok": 1
+          }
+        }
+      },
+      "final_fit_status": "ok",
+      "integrity_ok": true,
+      "report_elapsed_seconds": 328.328
+    },
+    {
+      "task": "classification",
+      "actual_runtime": {
+        "path": "work/frozen-mvp/test-runs/public-mvp-resume/task-00/automl_runner.py",
+        "sha256": "2ed8122a6b9f19e8eed8d67db588aa2c252b78ce19e5bfa1e4d53c694999ba62",
+        "bytes": 29717
+      },
+      "argparse_defaults": {
+        "task": "<dynamic>",
+        "--time-budget": 9900,
+        "--max-experiments": 12,
+        "--max-planner-calls": 4,
+        "--max-llm-calls": null,
+        "--offline": "<argparse implicit>",
+        "--hpo-trials": 0,
+        "--hpo-budget": 900,
+        "--hpo-sampler": "tpe",
+        "--planner-mode": "baseline",
+        "--feature-selection-top-k": 0,
+        "--validation-strategy": "auto",
+        "--run-name": "run-v2"
+      },
+      "reconstructed_executed_command": [
+        "<same-sys.executable>",
+        "-u",
+        "solution.py",
+        "task.md",
+        "--time-budget",
+        "9900",
+        "--max-experiments",
+        "14",
+        "--max-planner-calls",
+        "2",
+        "--max-llm-calls",
+        "4",
+        "--hpo-trials",
+        "8",
+        "--hpo-budget",
+        "900",
+        "--feature-selection-top-k",
+        "32",
+        "--planner-mode",
+        "staged",
+        "--run-name",
+        "mvp-four-stage"
+      ],
+      "command_evidence_limit": "Command reconstructed from preserved coordinator source and independently corroborated flags/limits/indices in actual reports/closed ledgers; original process argv was not persisted.",
+      "stage_facts": {
+        "deterministic_profile_before_models": true,
+        "llm_initial_eda_before_fitting": false,
+        "runtime_supports_four_stage_cli": false,
+        "initial_assessment_artifact_exists": false,
+        "trusted_broad_recipe_count": 0,
+        "generic_feature_modes": {
+          "none": 14
+        },
+        "explicit_catboost_selector_top_k": 32,
+        "model_families": [
+          "catboost",
+          "lightgbm",
+          "xgboost"
+        ],
+        "hpo_attempted": true,
+        "staged_planner_feedback_exists": true,
+        "pipeline_field_present": false
+      },
+      "search_stop_evidence": {
+        "indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "all14_search_statuses": [
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok"
+        ],
+        "range_limit_expression": "limit=max(1,min(args.max_experiments,14)); for iteration in range(limit)",
+        "configured_limit": 14,
+        "reserve_seconds": 1200,
+        "minimum_earlier_remaining_lower_bound_seconds": 4433.062,
+        "reserve_break_threshold_seconds": 1230,
+        "deadline_break_cannot_explain_actual_search_end": true,
+        "plateau_or_confidence_stopping_present": false,
+        "inference": "Given all14 indices0..13 executed and even final closed local remaining exceeded every search reserve threshold, the finite range limit ended search; no branch stop_reason was logged."
+      },
+      "hpo": {
+        "configured_trials": 8,
+        "actual_trials": 5,
+        "seconds": 900.157,
+        "completed_trials": 4,
+        "statuses": [
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "timeout"
+        ],
+        "binding_limit_inference": "900-second study deadline, not8-trial maximum; final failed timeout is retained",
+        "second_study_possible_in_original_source": false,
+        "one_shot_gate": "hpo_attempted=True before call; never reset"
+      },
+      "closed_local_budget": {
+        "status": "completed",
+        "wall_limit_seconds": 9900,
+        "elapsed_seconds": 5466.938,
+        "remaining_seconds": 4433.062,
+        "gateway_call_limit": 4,
+        "gateway_calls_started": 2,
+        "http_attempts_reported": 2,
+        "prompt_tokens_reported": 19911,
+        "completion_tokens_reported": 1485,
+        "usage_complete": true,
+        "events": [
+          {
+            "event": 1,
+            "purpose": "planner",
+            "status": "ok",
+            "reserved_gateway_call": true,
+            "http_attempts_known": 1,
+            "prompt_tokens_reported": 9677,
+            "completion_tokens_reported": 7,
+            "usage_complete": true,
+            "elapsed_seconds": 2513.094
+          },
+          {
+            "event": 2,
+            "purpose": "planner",
+            "status": "ok",
+            "reserved_gateway_call": true,
+            "http_attempts_known": 1,
+            "prompt_tokens_reported": 10234,
+            "completion_tokens_reported": 1478,
+            "usage_complete": true,
+            "elapsed_seconds": 2779.407
+          }
+        ]
+      },
+      "planner_files": [
+        {
+          "path": "work/frozen-mvp/test-runs/public-mvp-resume/task-00/automl_runs/mvp-four-stage/planner-1.json",
+          "sha256": "9832e5a342e93aef4279164ec568400b2a865bfc11a760102840d454f74e6fca",
+          "accepted_plans": 0,
+          "planner_status": "error",
+          "exception_type": "ValueError",
+          "feedback_records": 7,
+          "context_round": 1
+        },
+        {
+          "path": "work/frozen-mvp/test-runs/public-mvp-resume/task-00/automl_runs/mvp-four-stage/planner-2.json",
+          "sha256": "52111eb8d89f9d5c0d66f393d962475bc0461b0ba95d8f753860293bbb3b0bce",
+          "accepted_plans": 1,
+          "planner_status": "ok",
+          "exception_type": null,
+          "feedback_records": 8,
+          "context_round": 2
+        }
+      ],
+      "phases": {
+        "search": {
+          "rows": 14,
+          "recorded_worker_seconds": 3418.89,
+          "statuses": {
+            "ok": 14
+          }
+        },
+        "confirmation": {
+          "rows": 3,
+          "recorded_worker_seconds": 633.485,
+          "statuses": {
+            "ok": 3
+          }
+        },
+        "ensemble_search": {
+          "rows": 1,
+          "recorded_worker_seconds": 0.375,
+          "statuses": {
+            "ok": 1
+          }
+        },
+        "ensemble_confirmation": {
+          "rows": 1,
+          "recorded_worker_seconds": 0.39,
+          "statuses": {
+            "ok": 1
+          }
+        },
+        "full_refit": {
+          "rows": 1,
+          "recorded_worker_seconds": 452.547,
+          "statuses": {
+            "ok": 1
+          }
+        }
+      },
+      "final_fit_status": "ok",
+      "integrity_ok": true,
+      "report_elapsed_seconds": 5465.719
+    }
+  ],
+  "legacy_causal_conclusions": [
+    "All14 search indices executed successfully for each task. Even final closed local remaining time exceeded reserve+30, so the finite14-iteration range, not the local time-reserve condition, ended those searches. This is inference from source and receipt; there is no explicit stop_reason.",
+    "Regression completed8 inner trials in59.421s: the trial-count cap bound that study. Classification completed4 valid trials plus1 retained timeout in900.157s: the study deadline bound; raising8 alone would not extend it.",
+    "hpo_attempted is a one-shot gate. Extra common time did not schedule a second study in the original procedure.",
+    "Two planner slots were used per task; one classification parse failure consumed a slot. Only2 of4 logical gateway slots were used, so the transport-call limit was not exhausted. The planner slot cap and gateway cap are distinct.",
+    "4683.501208782196s remained under the recorded recovery deadline. Fixed caps explain search termination, not the causal amount of every residual second or the quality of hypothetical extra work.",
+    "The algorithm contains no plateau/uncertainty certificate. Repeated holdout stagnation cannot justify a confidence-based stopping claim."
+  ],
+  "finished_true_mvp_regression": {
+    "report": {
+      "path": "work/alfa-hack-automl/test-runs/tm1/r/automl_runs/true4/report.json",
+      "sha256": "e74e62277f9c068b7029d4385606ac11f060af32acff39a12e2748bbb904a787",
+      "bytes": 216788
+    },
+    "supervisor": {
+      "path": "work/alfa-hack-automl/test-runs/tm1/r/supervisor.json",
+      "sha256": "18431e75758c229fcf0e0a93cfa77d91a9a1f34eac2d2ae1f874b8d82318e2a8",
+      "bytes": 19322
+    },
+    "stage_proof": {
+      "path": "work/alfa-hack-automl/test-runs/tm1/r/four-stage-proof.json",
+      "sha256": "62b8f8f4e499f4d6b74e9bce64c4a5d86b7165a0f03a504ce596606489c5b3f1",
+      "bytes": 2074
+    },
+    "source_runner": {
+      "path": "work/alfa-hack-automl/test-runs/tm1/r/automl_runner.py",
+      "sha256": "f1aa35ca9d04eb1c55e9d6b899b86343764ad2660025d850fb3fc06d244d0e0c",
+      "bytes": 34748
+    },
+    "source_hpo": {
+      "path": "work/alfa-hack-automl/test-runs/tm1/r/automl_search_hpo.py",
+      "sha256": "2675ef78df893b73689ed38143d252e7d747b059494f59c4bfbd4989fd78c508",
+      "bytes": 9210
+    },
+    "successful_student_families": [
+      "catboost",
+      "lightgbm",
+      "xgboost"
+    ],
+    "initial_eda_valid_before_first_worker": true,
+    "initial_eda_sha256_seen_before_first_worker": "3adbb9795c6a24b4c47fa8b981e658a7a124c4af2431bea91e1076e5de073392",
+    "search_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "all_search_statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "ok",
+      "ok",
+      "ok",
+      "ok",
+      "ok",
+      "ok",
+      "ok",
+      "ok",
+      "ok",
+      "ok",
+      "ok"
+    ],
+    "search_worker_seconds": [
+      11.719,
+      84.985,
+      16.843,
+      20.5,
+      10.125,
+      11.407,
+      13.015,
+      14.312,
+      13.906,
+      10.735,
+      10.265,
+      10.782,
+      10.843,
+      10.89
+    ],
+    "search_worker_seconds_sum": 250.327,
+    "hpo_requested_trials": 8,
+    "hpo_valid_trials": 8,
+    "hpo_actual_seconds": 83.563,
+    "hpo_worker_seconds_sum": 71.891,
+    "hpo_full_initial900_allocation_observed": true,
+    "report_elapsed_seconds": 449.109,
+    "supervisor_seconds": 451.23400000017136,
+    "supervisor_including_verification_seconds": 452.4060000004247,
+    "allocated_parent_seconds": 2400,
+    "allocated_solver_seconds": 2310,
+    "parent_residual_after_verification_seconds": 1947.5939999995753,
+    "parent_residual_meaning": "Unused local task allocation; classification already received a newly computed9960-second parent allocation. This is not an unused-common-budget measurement.",
+    "embedded_running_budget_remaining_seconds": 1860.391,
+    "search_reserve_seconds": 462.0,
+    "search_break_threshold_seconds": 492.0,
+    "search_binding_limit_inference": "All14 iterations executed; the final embedded remaining1860.391s already exceeds492s. Earlier monotonic remaining was larger, so the finite14 range ended search. No explicit branch stop_reason was persisted.",
+    "hpo_binding_limit_inference": "All8 trials succeeded within83.563s under an independently observed full900 initial allocation: the8-trial cap bound this study. This does not show that more trials would generalize.",
+    "planner_call_semantics": "Two logical requests: first is cold pre-fit EDA, second is a feedback planner. This role schedule differs from the legacy two post-fit calls.",
+    "run_budget_closure_limit": {
+      "status": "not_readable_by_normal_read",
+      "path": "work/alfa-hack-automl/test-runs/tm1/r/automl_runs/run-budget-g69u6rac/report.json",
+      "observed_error": "Access to the directory was denied; no ACL bypass, escalation, or second read attempt performed. Embedded report is status running and is not represented as closed telemetry."
+    },
+    "quality_scope": "Independent saved selected primary/confirmation metrics and core stage/CSV checks are verified. Two-cut mean38.104037903547336 is worse than preserved V16 mean35.44723155783769; no fresh control/raw historical confirmation reread, private score, independent API qualification or full-campaign success is claimed.",
+    "parent_four_stage_proof_qualified": true,
+    "independent_core_stages_metrics_csv_verified": true,
+    "independent_procedure_passed": false,
+    "independent_api": {
+      "independently_read_closed_ledger": false,
+      "gateway_calls": null,
+      "http_attempts_reported": null,
+      "prompt_tokens_reported": null,
+      "completion_tokens_reported": null,
+      "usage_complete": null,
+      "unavailable_reason": "PermissionError",
+      "winerror": null,
+      "acl_bypass_attempted": false,
+      "parent_supervisor_reported_usage": {
+        "gateway_calls": 2,
+        "gateway_calls_reported": 2,
+        "http_attempts_reported": 2,
+        "usage_complete": true,
+        "prompt_tokens_reported": 19302,
+        "completion_tokens_reported": 954
+      },
+      "parent_report_is_independent_ledger_read": false
+    },
+    "parent_report_api_snapshot": {
+      "gateway_calls_started": 2,
+      "gateway_call_limit": 4,
+      "http_attempts_reported": 2,
+      "prompt_tokens_reported": 19302,
+      "completion_tokens_reported": 954,
+      "usage_complete": true
+    },
+    "teacher_selection_observation": {
+      "independent_receipts": 52,
+      "selector_seconds_sum": 164.192,
+      "fraction_of_report_elapsed_seconds": 0.3655949891897068,
+      "observation_only": true,
+      "scope": "Sum of actual selector function timings across search/HPO/confirmation/final-fit receipts, including preparation/teacher/ranking/slicing. Not pure CatBoost fit, avoided duplicates, or measured cache savings; no extrapolation to old untimed MVP."
+    },
+    "independent_selected_metric_audit": {
+      "source": {
+        "path": "work/true-four-stage-regression-independent-tm1.json",
+        "sha256": "c9f71c3b48e200079d4ac9e9704e0e0ade8b798d3c8d243e110ee2a6236c1447",
+        "bytes": 35016
+      },
+      "selected_two_cut_rmse_mean": 38.104037903547336,
+      "mean_definition": "Arithmetic mean of independently verified selected primary and selected confirmation; never proof.metrics/best_validation treated as a mean",
+      "baseline_comparisons": {
+        "v16-mean1": {
+          "baseline_report_sha256": "a431c5de3f02ae362ffb8d083f9b075af9c8020d52c0adafa72c24d575bee309",
+          "cuts": [
+            {
+              "phase": "primary",
+              "current": 38.91902905502106,
+              "preserved_control": 38.902803731334785,
+              "delta_current_minus_control": 0.01622532368627816,
+              "primary_improves": false
+            },
+            {
+              "phase": "confirmation",
+              "current": 37.28904675207362,
+              "preserved_control": 31.991659384340597,
+              "delta_current_minus_control": 5.29738736773302,
+              "primary_improves": false
+            }
+          ],
+          "cut_comparable_by_preserved_protocol_and_matching_training_row_hashes": true,
+          "historical_confirmation_training_rows_rechecked": true,
+          "historical_confirmation_component_training_hash_matches": [
+            true,
+            true
+          ],
+          "actual_selected_two_cut_mean": 38.104037903547336,
+          "preserved_selected_two_cut_mean": 35.44723155783769,
+          "mean_delta_current_minus_control": 2.656806345709647,
+          "each_cut_primary_gate_passed": false,
+          "class_each_cut_gate_passed": true,
+          "fresh_control_refit": false,
+          "historical_control_raw_predictions_recomputed": false,
+          "historical_confirmation_raw_partition_rechecked": false,
+          "scope": "Saved qualified full-procedure V11/V16 control; primary partition fingerprint matches, confirmation follows preserved two-cut protocol. Not a prospective matched rerun."
+        }
+      },
+      "independent_procedure_passed": false,
+      "scope": "Independent saved-artifact audit on reused public research cuts; no fresh control, full-agent confirmation CV, private or official score claim",
+      "historical_baseline_limit": "V11/V16 selected complete-procedure report metrics and class confusion matrices are preserved evidence. Their raw confirmation partitions/predictions are not present here and are not claimed independently reverified.",
+      "promotion": false
+    }
+  },
+  "true_campaign_snapshot": {
+    "status_at_observation": "classification_running",
+    "new_common_seconds": 10800,
+    "absolute_deadline_unix": 1792735776.7207654,
+    "classification_allocated_parent_seconds": 9960,
+    "classification_solver_seconds": 9870,
+    "classification_allocation_observation": "Initial stable allocation fields read from running supervisor; no class metrics/report or changing source snapshot reused.",
+    "common_unused_seconds": null,
+    "full_agent_metrics": null,
+    "reason": "Both-task completion and independent final audit are required before common residual or full-agent results can be computed."
+  },
+  "sources": [
+    {
+      "path": "work/mvp-causal-audit-r1/receipt.json",
+      "sha256": "2840d42c70a46716633a701c21de2801887109d11391f127154243e365cf7bfd",
+      "bytes": 20578
+    },
+    {
+      "path": "work/mvp-four-stage-independent-correction.json",
+      "sha256": "3b20000030fb42a4d9cbd849db038354585f383045e457d664ae8fe14aa63001",
+      "bytes": 9715
+    },
+    {
+      "path": "work/mvp-recovery.json",
+      "sha256": "e0d0aff263a25a8807045263e5679c296553113017c332a401aac385e1f656c5",
+      "bytes": 1041
+    },
+    {
+      "path": "work/iteration3-campaign-plan-r1/future-budget-utilization-card.json",
+      "sha256": "5dff6a6414c07b3d5f0bbc65a927d380cae2b499272911db2e1399fdcce0de13",
+      "bytes": 3841
+    },
+    {
+      "path": "work/true_four_stage_mvp.py",
+      "sha256": "4abc86b070c8f629cf60a77ffa7dcfe24b3a5369945759b3907f51f67d222205",
+      "bytes": 42101
+    },
+    {
+      "path": "work/true-four-stage-launch-r1/manifest.json",
+      "sha256": "a9cabbff77f0cc795c12ee0cb9afed71f330cdd4c803536ea0be3a2ce73a7e94",
+      "bytes": 54559
+    },
+    {
+      "path": "work/alfa-hack-automl/test-runs/tm1/r/automl_runner.py",
+      "sha256": "f1aa35ca9d04eb1c55e9d6b899b86343764ad2660025d850fb3fc06d244d0e0c",
+      "bytes": 34748
+    },
+    {
+      "path": "work/alfa-hack-automl/test-runs/tm1/r/automl_search_hpo.py",
+      "sha256": "2675ef78df893b73689ed38143d252e7d747b059494f59c4bfbd4989fd78c508",
+      "bytes": 9210
+    },
+    {
+      "path": "work/alfa-hack-automl/test-runs/tm1/r/automl_runs/true4/report.json",
+      "sha256": "e74e62277f9c068b7029d4385606ac11f060af32acff39a12e2748bbb904a787",
+      "bytes": 216788
+    },
+    {
+      "path": "work/alfa-hack-automl/test-runs/tm1/r/automl_runs/true4/inner-hpo/hpo.json",
+      "sha256": "7e8cf04023302095121bc7d133fced6adbf39e79e8e88d735a06c8e30b36ef65",
+      "bytes": 14268
+    },
+    {
+      "path": "work/alfa-hack-automl/test-runs/tm1/r/supervisor.json",
+      "sha256": "18431e75758c229fcf0e0a93cfa77d91a9a1f34eac2d2ae1f874b8d82318e2a8",
+      "bytes": 19322
+    },
+    {
+      "path": "work/alfa-hack-automl/test-runs/tm1/r/four-stage-proof.json",
+      "sha256": "62b8f8f4e499f4d6b74e9bce64c4a5d86b7165a0f03a504ce596606489c5b3f1",
+      "bytes": 2074
+    },
+    {
+      "path": "work/alfa-hack-automl/test-runs/tm1/r/automl_runs/true4/initial-data-assessment.json",
+      "sha256": "3adbb9795c6a24b4c47fa8b981e658a7a124c4af2431bea91e1076e5de073392",
+      "bytes": 38189
+    },
+    {
+      "path": "work/frozen-mvp/test-runs/public-mvp-native/task-00/automl_runner.py",
+      "sha256": "2ed8122a6b9f19e8eed8d67db588aa2c252b78ce19e5bfa1e4d53c694999ba62",
+      "bytes": 29717
+    },
+    {
+      "path": "work/frozen-mvp/test-runs/public-mvp-resume/task-00/automl_runner.py",
+      "sha256": "2ed8122a6b9f19e8eed8d67db588aa2c252b78ce19e5bfa1e4d53c694999ba62",
+      "bytes": 29717
+    },
+    {
+      "path": "work/true-four-stage-regression-independent-tm1.json",
+      "sha256": "c9f71c3b48e200079d4ac9e9704e0e0ade8b798d3c8d243e110ee2a6236c1447",
+      "bytes": 35016
+    }
+  ],
+  "new_fits": 0,
+  "new_api_calls": 0,
+  "new_tests": 0,
+  "new_process_launches": 0,
+  "canonical_or_frozen_edits": false,
+  "promotion": false,
+  "revision_lineage": {
+    "supersedes": {
+      "path": "work/adaptive-budget-protocol-r1/causal-audit.json",
+      "sha256": "b51ee7a77873948844fc79df96eca8db7da242cbca730da8c81434eb97a740af",
+      "bytes": 24089
+    },
+    "reason": "Distinguish parent stage qualification from failed independent API-ledger gate; incorporate finished independent teacher/metric evidence. No new model or runtime activity."
+  }
+}

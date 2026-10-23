@@ -53,3 +53,5 @@ docs/experiments/fixed-half-sc1-blend-r1/results.json -text
 docs/experiments/fixed-half-sc1-blend-r1/verification-attempt1.json -text
 docs/experiments/true-four-stage-tm1/regression-independent.json -text
 docs/experiments/true-four-stage-tm1/regression-summary.txt -text
+docs/experiments/adaptive-budget-protocol-r2/* -text
+docs/experiments/fullagent-fixed-half-plan-r2/* -text

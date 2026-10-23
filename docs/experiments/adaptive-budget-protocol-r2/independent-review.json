@@ -1,0 +1,40 @@
+{
+  "status": "no_new_blocker_for_plan_only_not_execution_ready",
+  "protocol_sha256": "bb3e01f7fac45563c3bc2911c77922286fda5ae66e48af1ff1dd250bbf644246",
+  "packet_files_sha256": {
+    "causal-audit.json": "a13045049abed5c5b6f078ad72155164953639df723f87d5bea91bc5c63d1c95",
+    "future-usage-export-design.json": "901a75120a5fa9a95fd0c31c58a3ea6cb713ef12b78ebcb8ff209fb28fa7f4bf",
+    "nofit-test-specifications.json": "4896eeeba2dfc2a5727125543c22a70a38af108ee9715d0f93cb2c25761d2152",
+    "preparation-receipt.json": "53498c3a48602e83453f650619a1eb428219a07a8553d0219ba321c920ea358a",
+    "protocol.json": "bb3e01f7fac45563c3bc2911c77922286fda5ae66e48af1ff1dd250bbf644246",
+    "README.md": "4c20b881f07e4370fe841da20b3f7eae25d281114baf14b7685d8c8b99a3b814",
+    "source-card.json": "b74368057df2a8a2caf5d55c25360ae3e0b298a54055131ef56d36b316f953a3"
+  },
+  "review_scope": "Read-only causal/accounting/admission/prospective-comparator review; no implementation or launch review",
+  "mechanism_identical_to_r1": true,
+  "confirmed": [
+    "Legacy14-search range and reg8-trial/class900-second study caps are distinguished; no invented plateau/uncertainty stop.",
+    "Shared COMPLETE both-task prefix/transcript is a causal continuation-versus-stop counterfactual with common prefix cost charged in both logical arms, not two independent live-Qwen runs.",
+    "No fill-up/additional API calls; logical and HTTP attempts distinguished, live equal caps do not imply identical realized proposals/tokens.",
+    "One pending candidate and fixed regression/class round-robin avoid unreserved simultaneous refit debt and outer-score-based task ordering.",
+    "Cost/admission uses only past chronological matching fitting scope and complete callback time including preprocessing/teacher/startup/artifacts/cleanup; unknown/failure/timeout cannot become free work.",
+    "3720-second completion reserve is explicitly a proposal awaiting completed costs, not measured affordability or a claim extra work fits.",
+    "Prefix immutable exports remain incumbents until optional candidate confirmation/refit/export fully succeeds; fail/null work remains in denominator and common clock never resets.",
+    "True-regression1947.594 local residual is not unused common time; classification already receives9960 and whole-campaign residual remains unknown.",
+    "R2 correctly distinguishes parent stage proof from independent core metrics and unavailable closed API ledger. Selector164.192s is total measured selector function time, not pure CatBoost or cache savings.",
+    "Separate sealed whole-procedure outer evaluation is mandatory; repeated public research selection gains alone cannot qualify generalization."
+  ],
+  "explicit_pending_before_execution": [
+    "Complete tm1 both-task closure, readable independently certified API accounting or prospective reviewed creator-side export, fresh ownership/resource release.",
+    "Exact Optuna sampler RNG/ask-tell/study state continuation or verified reconstruction; restarting same seed is not continuation.",
+    "Freeze precise candidate eligibility/history envelopes, reserves/watchdog boundaries and default-OFF implementation with no-fit chronology/failure/parity tests.",
+    "Freeze independent paired outer partitions/repetitions, task clock allocation/normalization/failure handling before outcomes; do not repurpose20study jobs."
+  ],
+  "root_observation": "Current final tm1/API artifacts are not modified, queried via ACL tools, or bypassed by this review.",
+  "fits": 0,
+  "api_calls": 0,
+  "tests_run": 0,
+  "process_launches": 0,
+  "canonical_or_guarded_source_edits": false,
+  "promotion": false
+}

@@ -1,0 +1,39 @@
+{
+  "status": "source_snapshot_prepared_not_execution_ready",
+  "source_sha256": "45dd8bc9e56b4874e43e051cf279f0497c0b82f628d5c1db7cb6ec2e2bad8a24",
+  "mechanical_verifier_sha256": "c5ba4e65be7b0d75bca13b224b8901b491efd23ac33c6031ddf724e47602ee9f",
+  "independent_verifier_sha256": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+  "files_sha256": {
+    "fullagent_cv_coordinator-r3.py": "45dd8bc9e56b4874e43e051cf279f0497c0b82f628d5c1db7cb6ec2e2bad8a24",
+    "verification.py": "c5ba4e65be7b0d75bca13b224b8901b491efd23ac33c6031ddf724e47602ee9f",
+    "independent_verifier.py": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+    "CARD-r3.md": "a1ca10ef761520745d6447a33902584fd61311df6ebb5070b22d9a3907884877",
+    "binding-template-r2.json": "bab28e48a27538a563089a778d7c72c22a5d8ce85fa8a86a14ffe1923b915568",
+    "preparation-proof-r3.json": "7fc5d0b2b9736aeb8537689be3732cb75145fc05762700b4c42c6948ff62572c",
+    "runtime-path-proof-r2.json": "4e610c316ab1e8e1bc7b91cdc5f32adbc20a3fadcc0a3740b297fc3e31046720",
+    "fixture-path-proof-r2.json": "9d6836cb51a6f880a2f36f6585926ed0a7b57e0ce17df1213340ad4607daa85f"
+  },
+  "protocol": {
+    "path": "fullagent-fixed-half-plan-r3/protocol.json",
+    "sha256": "5b2164c3721c84b8e6eb85c0dec7571474316b2e956d6ecdeee235d0193addcb"
+  },
+  "archives_sha256": {
+    "a": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0",
+    "b": "d5144685e682654bfed3a0e216ecec4f2ada4868b7df0e0d9779aba9f79d77bc"
+  },
+  "source_publication_receipt_sha256": "d4b3ac1ebdbb860d6cb126224807db29de80d997c209aa9a9e206290186c9a51",
+  "old_card_and_template_preserved": true,
+  "fits": 0,
+  "api_calls": 0,
+  "tests": 0,
+  "new_children": 0,
+  "deadline_assigned": false,
+  "launch_authorized": false,
+  "promotion": false,
+  "source_file": "fullagent_cv_coordinator-r3.py",
+  "previous_snapshot": {
+    "path": "fullagent-cv-supervisor-plan-r1/source-snapshot-manifest-r2.json",
+    "sha256": "d189e223907b8c9df53967a0fc07c6f9b58479f558a10fdcb6eeedfd73ac2726"
+  },
+  "finalization": "late technical failure nulls nested live final_CV; actual audit remains SHA-bound unqualified diagnostic"
+}

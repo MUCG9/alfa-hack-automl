@@ -1,0 +1,90 @@
+{
+  "status": "no_open_blocker_in_declared_combined_saved_artifact_scope",
+  "source_sha256": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+  "preparation_r2_sha256": "7c47392ce8247541d0ae9e450e954b51da483a6e754417f93c384048cb477000",
+  "card_r1_sha256": "51ade8b3c24920f020e0248b80f3d699364bfb3a37c101bdbcac1d0ce75d5f7f",
+  "evidence_sha256": {
+    "verify_fullagent_cv.py": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+    "fullagent-cv-verifier-card-r1.json": "51ade8b3c24920f020e0248b80f3d699364bfb3a37c101bdbcac1d0ce75d5f7f",
+    "fullagent-cv-verifier-preparation-r2.json": "7c47392ce8247541d0ae9e450e954b51da483a6e754417f93c384048cb477000",
+    "cv-verifier-synthetic-preparation-r1.json": "0869d8fa44fa372efa7a8b73076f5953fdd889abb823a13c426697997ad5223e",
+    "test_cv_verifier_synthetic_r1.py": "433cf7752ef42051ccd89996a945fd681f63d0fdaafa0cc3b6e6199a1f9cc2cc",
+    "run_cv_verifier_synthetic_r1.py": "540e57699d313727e250e9f3a63af5dda02eddad7dee332cb459c9e7904afa28",
+    "cv-verifier-synthetic-r1/checks.log": "40bbcded20792dac2ffade9dcaca0e907896db7bec7cda1d4dd3f92f800a629d",
+    "cv-verifier-synthetic-r1/supervisor.json": "c4b8415aaed8f1b84a33284851582d5d0ec6eda499ab54fe5daad68b991ddb08",
+    "vs1/results.json": "f17a9af353689562e817c1db7f31f06c43907546ecfb18f40643a488ccdd0eef",
+    "test_cv_verifier_synthetic_r2.py": "1887122c93d6bd917ef4f03d5a63a3a42790f9a95c15d9e123e93bdd6510a885",
+    "run_cv_verifier_synthetic_r2.py": "3b22fdb5a60ccd27d7fa7b8f24d05d811ed64470ad906e66398f90130de0f943",
+    "cv-verifier-synthetic-r2/checks.log": "6931d1bcb1ae42b654db26c29a29463b64599c60558559f5a74180a93baaa935",
+    "cv-verifier-synthetic-r2/supervisor.json": "c058c46d58bc22463225c3105208784e790a242aaf172b562f73869375042665",
+    "vs2/results.json": "def66b613c845e4e2cdb53454cb17982dfea7352ae9a7e75a20a7f3bc5e6c09d"
+  },
+  "synthetic_contract_checks": {
+    "unique_methods": 16,
+    "executions": [
+      15,
+      1
+    ],
+    "passed": 16,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "threads": 1,
+    "wall_cap_per_attempt_seconds": 300,
+    "memory_cap_per_attempt_mib": 512,
+    "seconds_sum": 28.640999999828637,
+    "maximum_observed_owned_rss_mib": 77.9296875,
+    "all_owned_cleanup_confirmed": true,
+    "source_unchanged": true,
+    "model_fits": 0,
+    "API_calls": 0,
+    "network_guard_calls": 0,
+    "learner_import_guard_calls": 0,
+    "child_launches_inside_test_guard": 0,
+    "actual_CV_outcomes_read": false,
+    "actual_CV_metrics_computed": false,
+    "synthetic_quality_values_only": true
+  },
+  "covered_contracts": [
+    "Valid tiny two-arm pair including recursive four leaves, handled failed-student null and absent selected confirmation",
+    "Both terminal/seal headers before any SealedArm artifact constructor; both full seals before mocked pristine outer-label boundary",
+    "Saved supervisor JSON byte hash, inline object equality, canonical digest and saved-stage slot lineage",
+    "Wrong probability class set/validation row order/CSV ID order, recursive mixture and iteration-tree rejected",
+    "Nonnull failed-student metrics rejected; no-confirmation and failed-confirmation branch accepted only with empty selection",
+    "Six-slot partial matrix keeps mean/pooled/OOF null, including four not_attempted_due_prior_gate_failure slots with a SHA-bound decisive prior pair audit",
+    "Real fresh_gone function under fake psutil states: missing/reused accepted, live/AccessDenied rejected without signals"
+  ],
+  "mocked_boundaries": [
+    "production context/publication/hash/68-member archive inventory replaced by tiny synthetic context",
+    "frozen_inputs pristine arrays/hash reproduction replaced by tiny synthetic arrays and an instrumented boundary",
+    "expected_inner_split replaced by deterministic synthetic fitting-only split rule",
+    "fresh_gone normally mocked while actual saved receipt lineage is checked; separate fake-process test covers its identity branches"
+  ],
+  "static_findings": [
+    {
+      "code": "root_final_job_is_combined_gate_requirement",
+      "severity": "scope_boundary",
+      "details": "Independent verify() permits missing job when expected_recipe is supplied, including final root. Mandatory actual final-fit/job.json and selected recipe/spec/thread/iterations binding are enforced first by mechanical verification.py:178-181. Independent module is not a standalone full-procedure certificate."
+    },
+    {
+      "code": "API_and_wall_evidence_combined_scope",
+      "severity": "scope_boundary",
+      "details": "Mechanical module additionally enforces embedded9900 wall limit/events[]. Independent checks cap0/started0/http0/llm_calls[], exact archives and CLI. Neither reads private ledger or proves provider accounting."
+    },
+    {
+      "code": "preliminary_partial_matrix_finding_withdrawn",
+      "severity": "corrected_review_note",
+      "details": "Initial read suggested unattempted_due_prior was treated as attempted failure. Exact frozen33f98 line803 already exempts it; focused15+1 synthetic evidence confirms correct branch. No source patch/R3 warranted."
+    }
+  ],
+  "remaining_required": [
+    "Root review/publication and a complete frozen supervisor launch manifest",
+    "Mandatory trueMVP terminal ownership/cleanup and released central lock before future heavy gates",
+    "Fresh source451/B468 zero-skip and exact-unpacked gates",
+    "Actual whole-procedure six-arm CV and independent real artifact/ownership/clock qualification"
+  ],
+  "full_CV_pass": false,
+  "runtime_source_edits": false,
+  "promotion": false,
+  "launch_authorized": false
+}

@@ -1,0 +1,21 @@
+{
+  "status": "prepared_bounded_synthetic_contracts_only",
+  "source_sha256": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+  "files_sha256": {
+    "test_cv_verifier_synthetic_r1.py": "433cf7752ef42051ccd89996a945fd681f63d0fdaafa0cc3b6e6199a1f9cc2cc",
+    "run_cv_verifier_synthetic_r1.py": "540e57699d313727e250e9f3a63af5dda02eddad7dee332cb459c9e7904afa28",
+    "verify_fullagent_cv.py": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519"
+  },
+  "expected_methods": 15,
+  "limits": {
+    "wall_seconds": 300,
+    "owned_tree_memory_mib": 512,
+    "threads": 1
+  },
+  "real_CV_outcome_access": false,
+  "fits": 0,
+  "API_calls": 0,
+  "context_mocked": true,
+  "full_CV_pass_claimed": false,
+  "current_source_unchanged_required": true
+}

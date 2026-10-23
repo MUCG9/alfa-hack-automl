@@ -1,0 +1,53 @@
+{
+  "status": "source_preparation_only_static_pass_not_execution_ready",
+  "revision": "r2",
+  "source": "verify_fullagent_cv.py",
+  "source_sha256": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+  "source_lines": 853,
+  "preserved_r1": {
+    "path": "fullagent-cv-verifier-r1-preserved.py",
+    "sha256": "52fd670db38e9a772772a4affe7d24919a02fc9b7e48b33903c64d5560290aa9",
+    "preparation": "fullagent-cv-verifier-preparation-r1.json",
+    "preparation_sha256": "7d0876a13afaa6e873fe7faa1f1c589105a4c23d2526c1fc854e4ec43be261fb"
+  },
+  "change": "Order-only evidence repair: preflight BOTH terminal-clean/seal-bound slots before opening either arm artifact; defer all frozen/pristine label-containing byte hashes and outer arrays until BOTH complete arm seals verified. Context before seals reads only source, publication and aggregate predeclared metadata. No API/gate/quality/recipe change.",
+  "public_API": {
+    "audit_pair": [
+      "work",
+      "plan",
+      "slots",
+      "fold_manifest",
+      "deadline_monotonic=None"
+    ],
+    "audit_complete_oof": [
+      "work",
+      "plan",
+      "slots",
+      "fold_manifest",
+      "deadline_monotonic=None"
+    ]
+  },
+  "static_checks": {
+    "AST": true,
+    "compile_without_execution": true,
+    "public_API": true,
+    "no_fit_launch_API_signal_imports_or_calls": true,
+    "input_reads_after_both_seals_order": true,
+    "r1_preserved_exact": true
+  },
+  "tests_executed": 0,
+  "verifier_executions": 0,
+  "actual_CV_predictions_read": false,
+  "actual_CV_metrics_computed": false,
+  "fits": 0,
+  "API_calls": 0,
+  "processes_launched": 0,
+  "canonical_or_active_source_changes": false,
+  "launch_authorized": false,
+  "pending": [
+    "Root/peer review",
+    "Meaningful synthetic no-fit tests",
+    "Frozen supervisor packet and actual future source gates",
+    "Root prospective launch approval"
+  ]
+}

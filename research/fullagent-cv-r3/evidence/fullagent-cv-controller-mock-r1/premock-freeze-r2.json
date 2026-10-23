@@ -1,0 +1,13 @@
+{
+  "source_sha256": "45dd8bc9e56b4874e43e051cf279f0497c0b82f628d5c1db7cb6ec2e2bad8a24",
+  "checks_sha256": "cdba3988082a416632c737e050f568bc9a98e2420b224e28c54745fa90366bad",
+  "guard_sha256": "db1a1987b4dd5fa4785212c9d91d44cf8d967cfc53a40f30e4d0256a44720282",
+  "maximum_seconds": 300,
+  "maximum_rss_mib": 512,
+  "threads": 1,
+  "real_worker_processes": 0,
+  "fits": 0,
+  "api_calls": 0,
+  "scope": "narrow synthetic controller contracts; actual experiment ownership/quality/gates not certified",
+  "base_python_stdlib_only": true
+}

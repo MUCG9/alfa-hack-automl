@@ -1,0 +1,193 @@
+{
+  "status": "root_reviewed_prospective_source_and_scoped_contract_evidence",
+  "root_source_reviewed": true,
+  "launch_authorized": false,
+  "coordinator_source_sha256": "45dd8bc9e56b4874e43e051cf279f0497c0b82f628d5c1db7cb6ec2e2bad8a24",
+  "mechanical_verifier_sha256": "c5ba4e65be7b0d75bca13b224b8901b491efd23ac33c6031ddf724e47602ee9f",
+  "independent_verifier_sha256": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+  "source_snapshot_manifest_sha256": "0c72192e008ccde9ed6b2ea05b1fd3582c3603d8415af151e5c2ddad9e531ae9",
+  "archive_sha256": {
+    "a": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0",
+    "b": "d5144685e682654bfed3a0e216ecec4f2ada4868b7df0e0d9779aba9f79d77bc"
+  },
+  "independent_verifier_synthetic_methods_passed": 16,
+  "controller_narrow_mock_methods_passed": 7,
+  "actual_source_or_unpacked_gates_run": false,
+  "actual_CV_arms_run": 0,
+  "tm1_terminal_closure_still_required": true,
+  "source_gate_expected_counts": {
+    "A": 451,
+    "B": 468
+  },
+  "exact_unpacked_expected_repeated_per_arm": 23,
+  "synthetic_mock_boundaries_remain_explicit": true,
+  "private_API_ledger_or_provider_accounting_claim": false,
+  "full_agent_gain_or_promotion": false,
+  "files": [
+    {
+      "path": "packet/source-snapshot-manifest-r3.json",
+      "sha256": "0c72192e008ccde9ed6b2ea05b1fd3582c3603d8415af151e5c2ddad9e531ae9",
+      "bytes": 2169
+    },
+    {
+      "path": "packet/fullagent_cv_coordinator-r3.py",
+      "sha256": "45dd8bc9e56b4874e43e051cf279f0497c0b82f628d5c1db7cb6ec2e2bad8a24",
+      "bytes": 72054
+    },
+    {
+      "path": "packet/verification.py",
+      "sha256": "c5ba4e65be7b0d75bca13b224b8901b491efd23ac33c6031ddf724e47602ee9f",
+      "bytes": 12275
+    },
+    {
+      "path": "packet/independent_verifier.py",
+      "sha256": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+      "bytes": 54428
+    },
+    {
+      "path": "packet/CARD-r3.md",
+      "sha256": "a1ca10ef761520745d6447a33902584fd61311df6ebb5070b22d9a3907884877",
+      "bytes": 6369
+    },
+    {
+      "path": "packet/binding-template-r2.json",
+      "sha256": "bab28e48a27538a563089a778d7c72c22a5d8ce85fa8a86a14ffe1923b915568",
+      "bytes": 42284
+    },
+    {
+      "path": "packet/preparation-proof-r3.json",
+      "sha256": "7fc5d0b2b9736aeb8537689be3732cb75145fc05762700b4c42c6948ff62572c",
+      "bytes": 1727
+    },
+    {
+      "path": "packet/runtime-path-proof-r2.json",
+      "sha256": "4e610c316ab1e8e1bc7b91cdc5f32adbc20a3fadcc0a3740b297fc3e31046720",
+      "bytes": 90771
+    },
+    {
+      "path": "packet/fixture-path-proof-r2.json",
+      "sha256": "9d6836cb51a6f880a2f36f6585926ed0a7b57e0ce17df1213340ad4607daa85f",
+      "bytes": 71844
+    },
+    {
+      "path": "evidence/cv-verifier-independent-review-r2.json",
+      "sha256": "ae795dc41f6eb9c354244eaaae03173a2222323c8acd2d5a8c96c4ae344e337e",
+      "bytes": 5636
+    },
+    {
+      "path": "evidence/fullagent-cv-supervisor-independent-review-r3.json",
+      "sha256": "b217c186a645e1ca0fa2b557565231c5c9b879ecd71d2ff312d3ddf06b103236",
+      "bytes": 3293
+    },
+    {
+      "path": "evidence/fullagent-cv-closing-review-audit-r3.json",
+      "sha256": "684e151186e0e2d60347f80efbeca059ceb07cd0b2847f05d8b3e5a8a980e0dd",
+      "bytes": 9514
+    },
+    {
+      "path": "evidence/fullagent-cv-verifier-card-r1.json",
+      "sha256": "51ade8b3c24920f020e0248b80f3d699364bfb3a37c101bdbcac1d0ce75d5f7f",
+      "bytes": 6285
+    },
+    {
+      "path": "evidence/fullagent-cv-verifier-preparation-r2.json",
+      "sha256": "7c47392ce8247541d0ae9e450e954b51da483a6e754417f93c384048cb477000",
+      "bytes": 1944
+    },
+    {
+      "path": "evidence/cv-verifier-synthetic-preparation-r1.json",
+      "sha256": "0869d8fa44fa372efa7a8b73076f5953fdd889abb823a13c426697997ad5223e",
+      "bytes": 775
+    },
+    {
+      "path": "evidence/test_cv_verifier_synthetic_r1.py",
+      "sha256": "433cf7752ef42051ccd89996a945fd681f63d0fdaafa0cc3b6e6199a1f9cc2cc",
+      "bytes": 20639
+    },
+    {
+      "path": "evidence/run_cv_verifier_synthetic_r1.py",
+      "sha256": "540e57699d313727e250e9f3a63af5dda02eddad7dee332cb459c9e7904afa28",
+      "bytes": 4108
+    },
+    {
+      "path": "evidence/cv-verifier-synthetic-r1/checks.log",
+      "sha256": "40bbcded20792dac2ffade9dcaca0e907896db7bec7cda1d4dd3f92f800a629d",
+      "bytes": 1892
+    },
+    {
+      "path": "evidence/cv-verifier-synthetic-r1/supervisor.json",
+      "sha256": "c4b8415aaed8f1b84a33284851582d5d0ec6eda499ab54fe5daad68b991ddb08",
+      "bytes": 885
+    },
+    {
+      "path": "evidence/vs1/results.json",
+      "sha256": "f17a9af353689562e817c1db7f31f06c43907546ecfb18f40643a488ccdd0eef",
+      "bytes": 1162
+    },
+    {
+      "path": "evidence/test_cv_verifier_synthetic_r2.py",
+      "sha256": "1887122c93d6bd917ef4f03d5a63a3a42790f9a95c15d9e123e93bdd6510a885",
+      "bytes": 21848
+    },
+    {
+      "path": "evidence/run_cv_verifier_synthetic_r2.py",
+      "sha256": "3b22fdb5a60ccd27d7fa7b8f24d05d811ed64470ad906e66398f90130de0f943",
+      "bytes": 4108
+    },
+    {
+      "path": "evidence/cv-verifier-synthetic-r2/checks.log",
+      "sha256": "6931d1bcb1ae42b654db26c29a29463b64599c60558559f5a74180a93baaa935",
+      "bytes": 267
+    },
+    {
+      "path": "evidence/cv-verifier-synthetic-r2/supervisor.json",
+      "sha256": "c058c46d58bc22463225c3105208784e790a242aaf172b562f73869375042665",
+      "bytes": 884
+    },
+    {
+      "path": "evidence/vs2/results.json",
+      "sha256": "def66b613c845e4e2cdb53454cb17982dfea7352ae9a7e75a20a7f3bc5e6c09d",
+      "bytes": 1161
+    },
+    {
+      "path": "evidence/controller-mock-evidence-r1.json",
+      "sha256": "d8031d34fe38611849319803c2a94488c291fb50de4bf2b9dc612cfcfe0f9388",
+      "bytes": 2381
+    },
+    {
+      "path": "evidence/fullagent-cv-controller-mock-r1/checks.py",
+      "sha256": "cdba3988082a416632c737e050f568bc9a98e2420b224e28c54745fa90366bad",
+      "bytes": 10496
+    },
+    {
+      "path": "evidence/fullagent-cv-controller-mock-r1/run_guarded.py",
+      "sha256": "db1a1987b4dd5fa4785212c9d91d44cf8d967cfc53a40f30e4d0256a44720282",
+      "bytes": 5175
+    },
+    {
+      "path": "evidence/fullagent-cv-controller-mock-r1/premock-freeze-r2.json",
+      "sha256": "0a0c41af6cf32a760988ad9f5d41f79ada869075b2fc14b27e58ead2dcf2af0a",
+      "bytes": 549
+    },
+    {
+      "path": "evidence/fullagent-cv-controller-mock-r1/results.json",
+      "sha256": "ccf0d9aacdfccdadf48002023499ae95f35ea5dd9e4a2a39471f85e5f8b83475",
+      "bytes": 636
+    },
+    {
+      "path": "evidence/fullagent-cv-controller-mock-r1/guarded-results.json",
+      "sha256": "5929770219d69060350276777dbde10847bb34a27ddba9f8d2862c69b4e02c68",
+      "bytes": 886
+    },
+    {
+      "path": "evidence/fullagent-cv-controller-mock-r1/checks.log",
+      "sha256": "6ac7afd9bab1f4701c77568385f7ab8f5a950f578cbae86b59c9e16687f1a53c",
+      "bytes": 1168
+    },
+    {
+      "path": "evidence/fullagent-cv-controller-mock-r1/guarded-stdout.log",
+      "sha256": "9a30c7c22423ad6d4d3eb82dd5f59d251b242b228b1a834165b9a900398162d3",
+      "bytes": 579
+    }
+  ]
+}

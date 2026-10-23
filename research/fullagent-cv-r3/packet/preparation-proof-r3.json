@@ -1,0 +1,43 @@
+{
+  "status": "static_source_preparation_only",
+  "source_sha256": "45dd8bc9e56b4874e43e051cf279f0497c0b82f628d5c1db7cb6ec2e2bad8a24",
+  "mechanical_verifier_sha256": "c5ba4e65be7b0d75bca13b224b8901b491efd23ac33c6031ddf724e47602ee9f",
+  "independent_verifier_sha256": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+  "syntax": {
+    "AST_parse": true,
+    "in_memory_compile": true,
+    "source_files": 3
+  },
+  "target_module_imports": 0,
+  "coordinator_prepare_executions": 0,
+  "tests": 0,
+  "verifier_executions": 0,
+  "outcome_reads": 0,
+  "new_children": 0,
+  "fits": 0,
+  "api_calls": 0,
+  "network_calls": 0,
+  "deadline_assigned": false,
+  "launch_authorized": false,
+  "execution_ready": false,
+  "runtime_path_proof": {
+    "path": "fullagent-cv-supervisor-plan-r1/runtime-path-proof-r2.json",
+    "sha256": "4e610c316ab1e8e1bc7b91cdc5f32adbc20a3fadcc0a3740b297fc3e31046720"
+  },
+  "fixture_path_proof": {
+    "path": "fullagent-cv-supervisor-plan-r1/fixture-path-proof-r2.json",
+    "sha256": "9d6836cb51a6f880a2f36f6585926ed0a7b57e0ce17df1213340ad4607daa85f"
+  },
+  "pending": [
+    "bounded meaningful mock contracts",
+    "independent/root exact-source review/publication",
+    "actual tm1 terminal ownership/source/input/lock proof",
+    "complete root binding and prepared-manifest review",
+    "actual Stage0 both full source and exact-unpacked gates",
+    "root-assigned immutable launch clocks"
+  ],
+  "r2_preserved_source_sha256": "a29a74cf9df9072c60852106691da1566fc9ff0eb761185924ed08e3295587d6",
+  "late_technical_failure_nulls_nested_final_CV": true,
+  "late_technical_failure_preserves_audit_as_unqualified_SHA_bound_receipt": true,
+  "new_runtime_or_verifier_execution": false
+}

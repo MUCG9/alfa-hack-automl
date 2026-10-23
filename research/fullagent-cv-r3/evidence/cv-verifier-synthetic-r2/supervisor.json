@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "source_sha256": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+  "test_sha256": "1887122c93d6bd917ef4f03d5a63a3a42790f9a95c15d9e123e93bdd6510a885",
+  "max_seconds": 300,
+  "max_memory_mib": 512,
+  "threads": 1,
+  "cleanup_confirmed": true,
+  "exit_code": 0,
+  "benchmark_exit_code": 0,
+  "owned_process_identities": [
+    {
+      "pid": 24028,
+      "create_time": 1792731883.521703
+    },
+    {
+      "pid": 25552,
+      "create_time": 1792731883.537383
+    }
+  ],
+  "cleanup_observation": {
+    "observed_count": 2,
+    "denial_count": 0,
+    "unresolved": [],
+    "tracked_before_cleanup_count": 2,
+    "tracked_after_cleanup_count": 0
+  },
+  "seconds": 3.593999999575317,
+  "peak_owned_rss_mib": 75.8359375,
+  "source_unchanged": true,
+  "fits": 0,
+  "API_calls": 0,
+  "real_CV_outcomes_read": false,
+  "scoped_contract_only": true
+}

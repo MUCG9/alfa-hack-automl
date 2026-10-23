@@ -1,0 +1,44 @@
+{
+  "status": "no_open_blocker_in_declared_read_only_supervisor_scope",
+  "source_sha256": "45dd8bc9e56b4874e43e051cf279f0497c0b82f628d5c1db7cb6ec2e2bad8a24",
+  "source_snapshot_manifest_sha256": "0c72192e008ccde9ed6b2ea05b1fd3582c3603d8415af151e5c2ddad9e531ae9",
+  "all_eight_snapshot_files_match": true,
+  "snapshot_files_sha256": {
+    "fullagent_cv_coordinator-r3.py": "45dd8bc9e56b4874e43e051cf279f0497c0b82f628d5c1db7cb6ec2e2bad8a24",
+    "verification.py": "c5ba4e65be7b0d75bca13b224b8901b491efd23ac33c6031ddf724e47602ee9f",
+    "independent_verifier.py": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+    "CARD-r3.md": "a1ca10ef761520745d6447a33902584fd61311df6ebb5070b22d9a3907884877",
+    "binding-template-r2.json": "bab28e48a27538a563089a778d7c72c22a5d8ce85fa8a86a14ffe1923b915568",
+    "preparation-proof-r3.json": "7fc5d0b2b9736aeb8537689be3732cb75145fc05762700b4c42c6948ff62572c",
+    "runtime-path-proof-r2.json": "4e610c316ab1e8e1bc7b91cdc5f32adbc20a3fadcc0a3740b297fc3e31046720",
+    "fixture-path-proof-r2.json": "9d6836cb51a6f880a2f36f6585926ed0a7b57e0ce17df1213340ad4607daa85f"
+  },
+  "independent_verifier_review": {
+    "path": "cv-verifier-independent-review-r2.json",
+    "sha256": "ae795dc41f6eb9c354244eaaae03173a2222323c8acd2d5a8c96c4ae344e337e"
+  },
+  "resolved_draft_findings": [
+    "RSS uses only exact identities already strictly observed with cached verified ancestry; no fresh-PID child adoption",
+    "Full allocation admission rechecked after copies/setup and immediately before Popen; original stage clocks checked after guards/audits and terminal receipt write",
+    "Both source gate deployments pin10 pristine fixtures; Stage1 deployment exact5 task plus68 flat code entries only",
+    "Derived runtime producer graph plus separate source/exact fixture proof replace guessed path suffixes",
+    "Late clock/source/cleanup failure invalidates nested live final_CV and all aggregate/OOF flags while retaining only SHA-bound unqualified diagnostic"
+  ],
+  "reviewed_contracts": [
+    "Mandatory terminal tm1 proof with fresh exact PID/create_time/descendant absence, sticky denials, no predecessor signaling and canonical central ResearchLock",
+    "Worker subtree1.5GiB/whole tree2GiB, one logical job with venv ancestry dedup, owned cleanup union/fresh recheck",
+    "Fresh Stage0 A451/46+B468/48 zero-skip and exact-unpacked prerequisites; source/archive/hash guards",
+    "Prospective separate3600/64800 absolute+monotonic stage clocks,9900 solver/10200 parent caps, full remaining caps+1200 reserve, no retry/resume reset",
+    "AB/BA/AB, pair sealing before outer audit, R3 negative-only early stop with null unattempted/aggregate evidence, no Stage2/promotion",
+    "Append-only technical rejection receipts with bound prior-gate references and strict source/runtime/deployed input guards"
+  ],
+  "review_boundary": "Read-only source/snapshot review. Synthetic16 checks exercise independent verifier only; wrapper actual ownership/process/clock integration and heavy source/ML gates remain future.",
+  "coordinator_imports_or_launches": 0,
+  "source_tests_executed": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "actual_CV_outcomes_read": false,
+  "canonical_runtime_edits": false,
+  "promotion": false,
+  "launch_authorized": false
+}

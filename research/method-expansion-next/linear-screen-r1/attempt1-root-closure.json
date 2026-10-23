@@ -1,0 +1,94 @@
+{
+  "status": "component_screen_failed_or_unqualified",
+  "actual_exec_session": null,
+  "actual_exec_exit_code_observed_by_root": 1,
+  "actual_tool_evidence": "Direct exec1105d2 completed exit1 in9.779s; no session_id returned. METH02 actual9.484s failed linear-contracts child; seven tests passed one error, no publicworkers",
+  "cleanup_confirmed": true,
+  "source_unchanged": true,
+  "owned_identities": [
+    {
+      "pid": 2396,
+      "create_time": 1792779687.1356099
+    },
+    {
+      "pid": 10660,
+      "create_time": 1792779687.1207128
+    },
+    {
+      "pid": 11276,
+      "create_time": 1792779692.3214157
+    },
+    {
+      "pid": 21004,
+      "create_time": 1792779692.3360271
+    }
+  ],
+  "closure_preparer_identities": [
+    {
+      "pid": 22840,
+      "create_time": 1792779770.17673
+    },
+    {
+      "pid": 15624,
+      "create_time": 1792779770.1579597
+    }
+  ],
+  "active_owned_processes": [],
+  "uncertain_owned": [],
+  "changed_or_conflicting_pins": [],
+  "immutable_and_core_refs_rehashed": 853,
+  "original_start_unix": 1792779687.2118866,
+  "original_deadline_unix": 1792790487.2118866,
+  "original_common_seconds": 10800,
+  "raw_parent_elapsed_seconds": 9.48399999999674,
+  "technical_procedure_passed": false,
+  "independent_artifact_integrity": false,
+  "first_failure": {
+    "code": "child_nonzero_exit",
+    "phase": "child_exit",
+    "unix": 1792779694.0334735,
+    "monotonic": 38699.078,
+    "exception_type": null,
+    "errno": null,
+    "winerror": null,
+    "child_kind": "linear-contracts"
+  },
+  "error_history": [
+    {
+      "code": "child_nonzero_exit",
+      "phase": "child_exit",
+      "unix": 1792779694.0334735,
+      "monotonic": 38699.078,
+      "exception_type": null,
+      "errno": null,
+      "winerror": null,
+      "child_kind": "linear-contracts"
+    },
+    {
+      "code": "linear_contract_process_failed",
+      "phase": "component_procedure",
+      "exception_type": "TechnicalFailure",
+      "unix": 1792779694.8283832,
+      "monotonic": 38699.875,
+      "errno": null,
+      "winerror": null
+    }
+  ],
+  "independent_audit": null,
+  "qualified_ML_metrics": null,
+  "candidate_gates": null,
+  "component_quality_gates_passed": null,
+  "strong_complete_control": {
+    "regression_RMSE": 35.44723155783769,
+    "classification_MacroF1": 0.6593178433614652
+  },
+  "best_whole_regression_RMSE": 34.86622087872278,
+  "promotion": false,
+  "full_refit": false,
+  "submit": false,
+  "official_score": null,
+  "new_model_fits": 0,
+  "API_calls": 0,
+  "own_actual_exec_exit_and_fresh_preparer_absence_required": true,
+  "scope": "Fixed SINGLE-control component screen, not whole-agent/refit/official qualification; preserve negative rows for predeclared blend."
+}

@@ -1,0 +1,13 @@
+{
+  "status": "failed",
+  "tests_run": 8,
+  "errors": 1,
+  "failures": 0,
+  "skipped": 0,
+  "tiny_fitting_callbacks": 10,
+  "fixture_source_sha256": "89776febf62aeb05b71fdbf707f4d9058ea20d41a8e77e4db6e81c05536358d4",
+  "public_data_used": false,
+  "API_calls": 0,
+  "public_quality_metric": null,
+  "scope": "Synthetic existing-adapter contracts only; charged inside same setup/common clock"
+}

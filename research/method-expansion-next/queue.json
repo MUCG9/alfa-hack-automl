@@ -110,7 +110,7 @@
     {
       "id": "METH-02",
       "name": "Enable and audit existing tabular Ridge/LogisticRegression path",
-      "status": "existing_adapter_tabular_contract_and_admission_screen_required",
+      "status": "FAIL_synthetic_contract_error_before_public_fits",
       "hypothesis": "Regularized linear models may generalize under temporal shift or add complementary class probabilities while costing less than another boosting fit.",
       "tools": {
         "engine_key": "linear_text",
@@ -132,8 +132,13 @@
       "installed_allowed_dependency": "scikit-learn1.5.2/scipy1.12.0",
       "actual_command": null,
       "actual_metric": null,
-      "clock_start": null,
-      "implementation_change_first": "Admission/source fixture only; no new model implementation until an actual missing contract or failure is established."
+      "clock_start": 1792779687.2118866,
+      "implementation_change_first": "Admission/source fixture only; no new model implementation until an actual missing contract or failure is established.",
+      "absolute_deadline": 1792790487.2118866,
+      "actual_exit_code": 1,
+      "actual_exec_tool": "1105d2",
+      "attempt1_result": "research/method-expansion-next/linear-screen-r1/attempt1-failure.json",
+      "bounded_source_recovery_pending": true
     },
     {
       "id": "METH-03",

@@ -35,4 +35,7 @@ actual full outputs, final CSV/schema/ID order/hash. Regression fallback не
 считается завершённым опытом новой ветви. Public cuts не являются private/official
 score, а три forward cuts не означают exactly-once OOF.
 
-Статус запуска/результата будет записан после code gates и полной кампании.
+Code gates завершены:352unique source checks/266.083s,23repeated exact-unpacked
+checks. Archive68files/SHA5584ee29c725c6fe1aca047a60414278a9660c5a7fd741683944669ff9b53d68.
+Полная кампанию запускать только из этого exact ZIP. Результаты actual campaign
+будут добавлены после завершения; code gates не доказывают model quality.

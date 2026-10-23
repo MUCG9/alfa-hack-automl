@@ -1,5 +1,23 @@
 # Ночная очередь исследований
 
+Актуальное дополнение: Полный MVP и все component screens завершены; standalone gates отрицательны.
+REG-BLEND-01 прошёл3forward cuts и обе mean-comparisons. Class BLEND-01
+прошёл6/6workers, но ALL-fold gate FAIL: fold0 ухудшил primary и Analysis F1.
+Классификационная добавка отклонена, новые веса не подбираются. Все прежние
+координаторы/descendants exited, lock проверен свободным.
+
+Freeze снят. Sparse HPO anchor corrected вa708b1c (3checks PASS); explicit
+measured controls не меняются. Canonical opt-in PIPE-02 integrated в2ddaf10:
+`--research-profile incumbent_mix`, fixed complete class control и nested-TPE
+regression augmentation. Default baseline/HPO0/selector0 сохранён.
+Сейчас выполняется352-check source gate в
+`test-runs/qwen-optuna-20261022/pipe02-source-checks/`; новых public fits ещё нет.
+После gates: exact ZIP verification, затем один sequential PIPE-02 campaign
+по `docs/experiments/pipe02_protocol_20261023.md`; не дублировать jobs.
+
+Ниже сохранён хронологический журнал прежних стадий.
+
+
 Капитан23октября разрешил продолжать автономно ночью без вопросов. Это
 продолжение прежнего поручения: MVP, затем анализ и несколько измеренных
 итераций. Работа на своей ветке; публичный push кода/технических отчётов разрешён

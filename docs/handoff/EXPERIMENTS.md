@@ -4,14 +4,19 @@
 
 |ID|Состояние|Доказательство|
 |---|---|---|
-|MVP-01|RUNNING: полный четырёхэтапный Qwen pipeline, две задачи последовательно; итоговых новых метрик ещё нет|[протокол](../experiments/hpo01_protocol_20261022.md), ignored public-mvp-attempt2/campaign.json|
-|LIVE-01|DONE: настоящий organizer API roles→planner, Optuna4, active CatBoost selector, refit/CSV/integrity|[343 source/23 unpacked и live receipt](../experiments/mvp_verification_20261023.json)|
-|FE-01/HPO-01|IMPLEMENTED optional/OFF default; отдельные paired screens ещё не выполнялись|[протокол](../experiments/hpo01_protocol_20261022.md)|
-|HAR-01|IMPLEMENTED baseline/staged prompt comparison tool; matched quality experiment ещё не выполнялся|tools/compare_planners.py|
+|MVP-01|COMPLETE/REJECT: F1 .654484535, RMSE36.024692560; оба refits/CSV/integrity verified|[receipt](../experiments/mvp01_complete_20261023.json)|
+|LIVE-01|DONE: настоящий organizer API roles→planner, Optuna4, active CatBoost selector, refit/CSV/integrity|[live receipt](../experiments/mvp_verification_20261023.json)|
+|FE-01/HPO-01|COMPLETE/REJECT по declared standalone paired gates; defaults OFF|[независимая сводка](../experiments/overnight_screens_20261023.json)|
+|HAR-01/02|COMPLETE/REJECT по paired gates; matched prompts и typed DSL фактически проверены|[разбор](../experiments/research_conclusions_20261023.md)|
+|FE-02|COMPLETE/REJECT: original+top32, better mean SINGLE, один cut потерян|[receipt](../experiments/fe02_results_20261023.json)|
+|BLEND-01|REPLAY PASS, GROUPED CV REJECT: fold0 primary/Analysis loss;6/6workers, exactly-once coverage|[CV receipt](../experiments/blend01_cv_results_20261023.json)|
+|REG-BLEND-01|FORWARD QUALIFICATION PASS:3cuts и mean vs Random8/anchor mixtures; пока не full deployment|[receipt](../experiments/reg_blend01_forward_20261023.json)|
+|PIPE-02|IMPLEMENTED opt-in; source/exact ZIP gates выполняются, full campaign ещё не запущен|[protocol](../experiments/pipe02_protocol_20261023.md)|
+|META-REVIEW|3реальных Qwen calls: numeric/semantic ошибки даже при schema PASS;0автоматических actions|[анализ](../experiments/research_conclusions_20261023.md)|
+|SKILL|DONE/INSTALLED: Karpathy-based autoresearch-ml, independent copy/hash parity|[skill](../../skills/autoresearch-ml/SKILL.md)|
 
-Основной контроль V11/V16 сохраняется. RUNNING не является KEEP или новым gain.
-Капитан разрешил local fits и публичный push рабочей ветки; новых official submit
-и дополнительных Codex agents нет. Исторические разделы ниже сохранены.
+Qualified default V11/V16 сохраняется. Новых official submit/main merge/extra
+agents нет. Верхняя таблица заменяет исторические статусы ниже.
 
 Статусы: KEEP=метод прошёл свой заявленный gate; REJECT=конкретный рецепт не
 прошёл; MIXED=направления расходятся; DONE=инженерная возможность проверена;

@@ -1,3 +1,18 @@
+# Текущая завершающая стадия23Oct
+
+MVP и component screens завершены; class blend CV отклонён, reg blend forward
+qualification положительна. [Результаты](../experiments/research_conclusions_20261023.md).
+PIPE-02 integrated в2ddaf10; текущий source gate352, затем exact ZIP23 и один
+полный двух-task campaign с source freeze/common10800s/owned lock. Протокол:
+[PIPE-02](../experiments/pipe02_protocol_20261023.md). После независимой проверки
+refits/CSV/metrics/integrity закончить checkpoint, Git push и rollback history;
+новых направлений после финальной parity не начинать.
+
+Ниже сохранён исторический план. Его STOP/permission и старые статусы
+не заменяют актуальные AGENTS.md/receipts/последнее поручение.
+
+---
+
 # План работы в новом чате
 
 Текущий разрешённый этап23октября: четырёхэтапный Qwen MVP и последующие

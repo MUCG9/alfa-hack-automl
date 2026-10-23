@@ -12,24 +12,20 @@ MacroF1 .6544845346080569, RMSE36.02469255996805 уступают qualified V11/
 не запускать MVP повторно. Первый interrupted attempt сохранён, общий10800s
 campaign deadline не обнулялся. Live four-stage Qwen smoke также PASS.
 
-Активная последовательная очередь PID37960/create_time1792705065.83;
-`test-runs/qwen-optuna-20261022/overnight-20261023/queue.json` — текущие стадии.
-FE-02 followup PID49264/create_time1792709589.83 ждёт её завершения, уже запланирован.
-Не запускать ручные дубли. Проверять actual process identity/descendants и lock.
-Source freeze охватывает также следующий prepared BLEND-01 CV.
+Полный MVP и все component screens завершены; standalone gates отрицательны.
+REG-BLEND-01 прошёл3forward cuts и обе mean-comparisons. Class BLEND-01
+прошёл6/6workers, но ALL-fold gate FAIL: fold0 ухудшил primary и Analysis F1.
+Классификационная добавка отклонена, новые веса не подбираются. Все прежние
+координаторы/descendants exited, lock проверен свободным.
 
-**BLEND-01 replay положителен**, fixed.9complete-control+.1MVP: meanF1
-.6600536197705544, оба paired/support gates PASS,0fits. Это не release/private
-score. [CV protocol](../experiments/blend01_cv_protocol_20261023.md),
-`tools/run_blend_cv.py` — подготовлен, НЕ запущен. Он откажет при активном
-predecessor/lock. Запускать только после queue+FE-02 и всех descendants.
-Все completed regression FE/HPO/HAR screens отрицательны; class FE-01 тоже
-не прошёл paired gate. Class HPO уже проиграл первый cut, второй ещё идёт.
-
-Contest source343 и exact-unpacked23 checks PASS на frozen code. Отдельный
-новый no-fit `test_hpo_anchor.py` пока RED: sparse adapter-default drift;
-explicit measured controls PASS. Исправить узко только ПОСЛЕ всех frozen fits/CV,
-затем новые code/archive gates. Не менять defaults selector/Optuna без qualification.
+Freeze снят. Sparse HPO anchor corrected вa708b1c (3checks PASS); explicit
+measured controls не меняются. Canonical opt-in PIPE-02 integrated в2ddaf10:
+`--research-profile incumbent_mix`, fixed complete class control и nested-TPE
+regression augmentation. Default baseline/HPO0/selector0 сохранён.
+Сейчас выполняется352-check source gate в
+`test-runs/qwen-optuna-20261022/pipe02-source-checks/`; новых public fits ещё нет.
+После gates: exact ZIP verification, затем один sequential PIPE-02 campaign
+по `docs/experiments/pipe02_protocol_20261023.md`; не дублировать jobs.
 
 [Karpathy-based skill](../../skills/autoresearch-ml/SKILL.md) создан/установлен
 независимой копией в `~/.codex/skills/autoresearch-ml`, validation PASS.

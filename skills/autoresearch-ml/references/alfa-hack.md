@@ -14,6 +14,8 @@ state. Исторические STOP/PID/статусы не заменяют п
   и ограничения meta-review. Статусы проверять по actual receipts.
 - Если продолжается blend qualification: `blend01_cv_protocol_20261023.md` и
   `reg_blend01_cv_protocol_20261023.md` в `docs/experiments/`.
+- Если исполняется полный learned profile: `docs/experiments/pipe02_protocol_20261023.md`
+  и `pipe02_implementation_20261023.md`; его CLI flag не меняет default search.
 - `docs/handoff/START_HERE.md`: qualified baseline и evidence.
 
 Canonical code — `src/automl`, root-файлы — compatibility shims. Contest ZIP
@@ -48,6 +50,8 @@ core checks1thread. Читать identity receipts, PID+create_time, descendants
 .venv/bin/python tools/summarize_mvp.py --help
 .venv/bin/python tools/summarize_research.py --help
 .venv/bin/python tools/run_blend_cv.py --help
+.venv/bin/python tools/run_profile_campaign.py --help
+.venv/bin/python tools/verify_profile_campaign.py --help
 ```
 
 `overnight_research.py` и followups могут вести последовательную очередь; сначала

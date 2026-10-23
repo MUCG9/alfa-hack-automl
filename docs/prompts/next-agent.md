@@ -5,19 +5,26 @@
 Полный MVP COMPLETE и отрицателен: F1 .654484535/RMSE36.024692560;
 qualified V11/V16 .659317843/35.447231558 сохранён. PID33136 exited, не перезапускать.
 
-Очередь PID37960/create_time1792705065.83 выполняет class HPO/HAR;
-FE-02 PID49264/create_time1792709589.83 уже ждёт. Проверять receipts/identities/
-descendants/training lock, не дублировать fits. Source freeze до конца обоих
-и prepared BLEND-01 CV. Replay одной смеси.9V16+.1MVP прошёл оба gates,
-meanF1 .6600536197705544,0fits; это не qualified release. Протокол
-`docs/experiments/blend01_cv_protocol_20261023.md`, driver`tools/run_blend_cv.py`.
-CV пока НЕ запущен, только после predecessor completion; gate не ослаблять.
+Полный MVP и все component screens завершены; standalone gates отрицательны.
+REG-BLEND-01 прошёл3forward cuts и обе mean-comparisons. Class BLEND-01
+прошёл6/6workers, но ALL-fold gate FAIL: fold0 ухудшил primary и Analysis F1.
+Классификационная добавка отклонена, новые веса не подбираются. Все прежние
+координаторы/descendants exited, lock проверен свободным.
+
+Freeze снят. Sparse HPO anchor corrected вa708b1c (3checks PASS); explicit
+measured controls не меняются. Canonical opt-in PIPE-02 integrated в2ddaf10:
+`--research-profile incumbent_mix`, fixed complete class control и nested-TPE
+regression augmentation. Default baseline/HPO0/selector0 сохранён.
+Сейчас выполняется352-check source gate в
+`test-runs/qwen-optuna-20261022/pipe02-source-checks/`; новых public fits ещё нет.
+После gates: exact ZIP verification, затем один sequential PIPE-02 campaign
+по `docs/experiments/pipe02_protocol_20261023.md`; не дублировать jobs.
 
 Karpathy-based `skills/autoresearch-ml/SKILL.md` создан и installed independent copy,
 validation PASS. Полный разбор: `docs/experiments/research_conclusions_20261023.md`.
-Source343+unpacked23 ранее PASS; новый no-fit HPO-anchor test RED для sparse
-missing defaults, explicit measured controls PASS. Узкий fix отложен до окончания
-всех frozen jobs/CV, затем required tests/build/exact-unpacked. Без ненужных refits.
+Frozen MVP source343+unpacked23 PASS; текущий PIPE-02 gate имеет352checks,
+результат читать из actual receipt. После full campaign остановить новые
+направления и завершить честный checkpoint/push/rollback history.
 
 Public push кода/отчётов рабочей ветки разрешён, SHA проверять через Git/ignored
 receipt. Делать логические commits. Keys/env/raw/predictions/weights не коммитить.

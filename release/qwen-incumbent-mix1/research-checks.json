@@ -1,0 +1,18 @@
+{
+  "checks": 30,
+  "passed": true,
+  "seconds": 0.226,
+  "scripts": [
+    "test_feature_dsl.py",
+    "test_owned_research.py",
+    "test_research_summary.py",
+    "test_planner_comparison.py",
+    "test_protected_selection.py",
+    "test_followup_fe02.py",
+    "test_research_evidence.py",
+    "test_replay_blend.py",
+    "test_blend_cv.py",
+    "test_profile_verification.py"
+  ],
+  "scope": "Development research harness checks, separately counted from canonical source and unpacked checks"
+}

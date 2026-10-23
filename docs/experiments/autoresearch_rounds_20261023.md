@@ -18,7 +18,8 @@ web session used, desktop lock unchanged. Never duplicate this upload.
 |04|Mean of up to2 inner forward-period marginal RMSEs|strict cut1 tie rejects,32aggregate objectives/20cache hits/52workers|round04_results_20261023.json|
 |Reasoning01|Captain asks to check maximum thinking|Actual OFF found; real xhigh accepted,1014reasoning tokens,valid JSON; active dev planners now xhigh|reasoning01_results_20261023.json|
 |05|Maximum of two inner forward-period marginal RMSEs, Qwen xhigh|cut0 loses;16aggregate objectives/6cache hits/30workers, independent verification PASS|round05_results_20261023.json|
-|06|Small constrained class multipliers AFTER the complete ensemble, Qwen xhigh|Qwen selected tight grid; initial no-fit loader failure preserved, corrected with original deadline|round06_protocol_20261023.md|
+|06|Small constrained class multipliers AFTER the complete ensemble, Qwen xhigh|cut0 F1 .6632403175 -> .6597688459, reject; independent60objective/5leaf audit PASS|round06_results_20261023.json|
+|Reasoning02|Three paired structured decisions, equal caller messages/token/time caps|xhigh3/3 vs off1/3,6HTTP/0retries, independent verification PASS; small audit only|reasoning02_results_20261023.json|
 
 ROUND04 completed identity: PID113079/create_time1792735955.46. Receipt:
 `test-runs/autoresearch-rounds-20261023/round04/detached-screen.json`.
@@ -30,13 +31,14 @@ and global lock before any fit. Historical ROUND04 candidateea0677c,
 rollback tagqwen-round04-forward-start-20261023;5400s/1800study/600worker,
 2threads/1536MiB worker+parent, sequential global training lock.
 
-ROUND06 corrected active identity121617/create_time1792739843.36,
+ROUND06 corrected completed identity121617/create_time1792739843.36,
 candidatec315874; `round06/detached-screen-attempt2.json`, output
 `round06/screen-attempt2/`. Original deadline1792742389.7839258 retained.
 No new outer results were observed before this setup correction.
+Coordinator and descendant exited; no owned fit/lock after verification.
 
 All commits are on work/qwen-optuna-mvp-20261022, main unchanged. Last verified
-public push in this continuation:b38ef3e; subsequent commits local until verified
+public push in this continuation:13930d4; subsequent commits local until verified
 push. Git authentication succeeded using the already authorized private process
 credential; no value in code/commands/logs, temporary helper removed. Receipt:
 `test-runs/autoresearch-rounds-20261023/git-push-current.json`.

@@ -15,13 +15,20 @@ tests constrained decision factors after the complete class ensemble, with fresh
 inner five-leaf controls. Qwen xhigh chose JOINT_TIGHT. Initial no-fit loader
 failure preserved; corrected retry must retain original deadline1792742389.7839258.
 Inspect round06/detached-screen-attempt2.json and actual lock/process before fits.
-ROUND06 corrected coordinator121617/create_time1792739843.36 is active at
-c315874; preserved first attempt launched0workers, five focused checks PASS.
+ROUND06 corrected coordinator121617/create_time1792739843.36 exited at c315874:
+cut0 F1 .6632403175 -> .6597688459, rejected; cut1 absent/meanNone, independent
+verification PASS incl60solver objectives/all5leaf fitting lineage. One complete
+inner worker364.498s/839MiB worker+parent; no owned fits. Preserved first attempt
+launched0workers, five focused checks PASS. Do not retune the grid on these rows.
 New captain steering: verify reasoning. Actual gateway was explicitly OFF;
 REASONING01 real xhigh probe PASS:1014reasoning tokens,14.716s, valid JSON.
 Active dev planners now use explicit xhigh/32768combined output/300s call.
 Read docs/experiments/reasoning01_results_20261023.md. Effective server effort
 is not echoed; do not claim a quality gain. New source has20focused checks PASS;
+REASONING02 equal-cap six-call audit COMPLETE: xhigh3/3 structured decisions,
+off1/3, independent verification PASS. Read reasoning02_results_20261023.md;
+only3paired cases, no general-quality/ML-gain or significance claim. All thinking
+tokens9509xhigh/0off,179.003s/5.875s observed. No internal thinking text saved.
 historical352-source gate is not a rerun on this changed source. Uploaded ZIP is
 immutable. ROUND05 used fresh xhigh planning and a fresh cache (full-source
 identity changed; no old cache seeding). It completed as a negative screen.
@@ -31,7 +38,7 @@ a2ca9244, IDd495ef4b-e721-40ba-bfed-7c85b051ce2b, attempts3->2. Authorized
 existing platform session used; desktop lock unchanged. Official score pending;
 prior V11 official score2309.002. Read release/qwen-incumbent-submit1/submission-20261023.json.
 No duplicate upload, extra Codex agents, paid resources, force push or main merge.
-Local commits remain authorized. Latest verified public SHA isb38ef3e; later
+Local commits remain authorized. Latest verified public SHA is13930d4; later
 commits remain local until next verified push. Temporary private Git auth worked;
 never expose or commit credentials. Main remains unchanged.
 

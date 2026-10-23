@@ -32,5 +32,6 @@ Four actual-local-HTTP/configuration checks,14shared-deadline/call-budget checks
 and2SDK/CLI checks (including a local mock fit/export) PASS. This is a focused
 20-check gate; the previous352-source gate belongs to its historical source.
 New LLM policy is independent of model training; no new public-dataset fitting or
-full release qualification claimed. The draft worst-period ROUND05 is deferred
-while the captain's higher-reasoning steering is applied to the next Qwen plan.
+full release qualification is part of REASONING01. Subsequent real xhigh plans
+and fitting results are recorded separately in ROUND05/06. The equal-cap paired
+agent audit is [REASONING02](reasoning02_results_20261023.md).

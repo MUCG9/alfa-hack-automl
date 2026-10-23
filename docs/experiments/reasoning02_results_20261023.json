@@ -1,0 +1,139 @@
+{
+  "status": "independently_verified",
+  "model": "qwen/qwen3.8-27b",
+  "combined_token_cap_each": 32768,
+  "timeout_cap_each": 300,
+  "cases": [
+    {
+      "id": "marginal_tie",
+      "profiles": {
+        "off": {
+          "json_valid": true,
+          "schema_valid": true,
+          "scientific_correct": true,
+          "incorrect_fields": [],
+          "seconds": 1.481,
+          "reasoning_tokens_reported": 0,
+          "finish_reason": "stop",
+          "HTTP_attempts": 1,
+          "status": "ok",
+          "final_decisive_sentence": "Candidate fails the preregistered gate due to a tie at cut 1 and missing cut 2, and lacks a complete mean or official score."
+        },
+        "xhigh": {
+          "json_valid": true,
+          "schema_valid": true,
+          "scientific_correct": true,
+          "incorrect_fields": [],
+          "seconds": 9.32,
+          "reasoning_tokens_reported": 1465,
+          "finish_reason": "stop",
+          "HTTP_attempts": 1,
+          "status": "ok",
+          "final_decisive_sentence": "The candidate fails the preregistered all-cuts strict-improvement gate at cut 1 and lacks a known official score, so it is not promoted and only untested FORWARD_WORST remains."
+        }
+      },
+      "paired_messages_sha256": "a6f9ae4eb297594f275d3bd002b64a620b89532b3bcfe440218505acefc6e148"
+    },
+    {
+      "id": "qualified_pipe02",
+      "profiles": {
+        "xhigh": {
+          "json_valid": true,
+          "schema_valid": true,
+          "scientific_correct": true,
+          "incorrect_fields": [],
+          "seconds": 142.354,
+          "reasoning_tokens_reported": 5058,
+          "finish_reason": "stop",
+          "HTTP_attempts": 1,
+          "status": "ok",
+          "final_decisive_sentence": "Promote locally because PIPE02_CONFIRMED shows both required cuts improve and all complete-procedure gates pass, while the official score remains unknown and no operators are allowed."
+        },
+        "off": {
+          "json_valid": true,
+          "schema_valid": true,
+          "scientific_correct": false,
+          "incorrect_fields": [
+            "complete_mean_available"
+          ],
+          "seconds": 2.988,
+          "reasoning_tokens_reported": 0,
+          "finish_reason": "stop",
+          "HTTP_attempts": 1,
+          "status": "ok",
+          "final_decisive_sentence": "The candidate passes all declared complete-procedure gates with improved regression cuts against the comparison control, satisfying local qualification criteria."
+        }
+      },
+      "paired_messages_sha256": "0febb6b607eed4123df0e5db40d359278be600d5b99b1329f114543f06b3e0e4"
+    },
+    {
+      "id": "class_cv_rejection",
+      "profiles": {
+        "off": {
+          "json_valid": true,
+          "schema_valid": false,
+          "scientific_correct": false,
+          "incorrect_fields": [],
+          "seconds": 1.406,
+          "reasoning_tokens_reported": 0,
+          "finish_reason": "stop",
+          "HTTP_attempts": 1,
+          "status": "ok",
+          "final_decisive_sentence": null
+        },
+        "xhigh": {
+          "json_valid": true,
+          "schema_valid": true,
+          "scientific_correct": true,
+          "incorrect_fields": [],
+          "seconds": 27.329,
+          "reasoning_tokens_reported": 2986,
+          "finish_reason": "stop",
+          "HTTP_attempts": 1,
+          "status": "ok",
+          "final_decisive_sentence": "CLASS_BLEND is not promoted because its completed grouped CV failed the required fold-level gate, leaving only the untested JOINT operators as allowed next steps."
+        }
+      },
+      "paired_messages_sha256": "a5ff175e5775a5eb0ed5161c63140db8725e8c52caf6904a0f82f982d13771f5"
+    }
+  ],
+  "profiles": {
+    "off": {
+      "responses": 3,
+      "json_valid": 3,
+      "schema_valid": 2,
+      "scientific_correct": 1,
+      "wall_seconds": 5.875,
+      "reasoning_tokens_reported": 0,
+      "completion_tokens_reported": 279,
+      "prompt_tokens_reported": 1649,
+      "HTTP_attempts_reported": 3,
+      "usage_complete": true
+    },
+    "xhigh": {
+      "responses": 3,
+      "json_valid": 3,
+      "schema_valid": 3,
+      "scientific_correct": 3,
+      "wall_seconds": 179.003,
+      "reasoning_tokens_reported": 9509,
+      "completion_tokens_reported": 9943,
+      "prompt_tokens_reported": 1757,
+      "HTTP_attempts_reported": 3,
+      "usage_complete": true
+    }
+  },
+  "comparison": "Three fixed paired agent decisions, one sample each; no significance/general-quality/ML-gain claim",
+  "internal_reasoning_saved": false,
+  "source_sha256": {
+    "tools/evaluate_reasoning_profiles.py": "96c76495e74098b88efea6dacf4ec1870cfea35626b9046753f0022c1b007503",
+    "docs/experiments/reasoning02_cases_20261023.json": "3129092d56308101c4d538c551248d9ec118bf2de754a0b572ca6550648c2229",
+    "docs/experiments/reasoning02_protocol_20261023.md": "8f4efa61131b3be0b4819ed05f637479a44e7abfd4bdaa3c54b5fa54cdb33a13",
+    "src/automl/infrastructure/llm_gateway.py": "4355e01fc5522927a70e63794a1a5e338661113f2e361522d7d2d6d3057c5f5f",
+    "src/automl/infrastructure/run_budget.py": "d9369c51541fadb23e05716e17b7e198be06a939910c04c148423016d6440464",
+    "tools/research_llm_config.py": "1c59bde4aea3acb11f2861832e9e3e5d2f5f40356531c6c4e1b3885256e2319c"
+  },
+  "manifest_sha256": "a0b6ad47104cec68ff74bfa56ee48eec4979017c12c15fbeef0a080ee2fcec93",
+  "verifier_sha256": "3ee7875e97916f12a455929993d89cc25607e8f013c4f3353b587bfe487a0b79",
+  "scientific_correctness_difference_xhigh_minus_off": 2
+}

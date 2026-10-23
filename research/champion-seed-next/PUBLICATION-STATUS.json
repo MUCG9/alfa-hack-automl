@@ -1,0 +1,67 @@
+{
+  "status": "published_source_only_preparation_not_launched",
+  "prepared_and_reviewed_source_snapshot": true,
+  "files": [
+    {
+      "path": "champion-recipe-template.json",
+      "sha256": "a46ad38e1393d0d27598eda69e164d99e23fe00973992e142cb9723d021c93a8"
+    },
+    {
+      "path": "champion-t5-lineage.json",
+      "sha256": "408d24be5c884152531552bb0016611eb55b9123aadb4c1a361396d3f7115cf3"
+    },
+    {
+      "path": "champion-t5-regression.json",
+      "sha256": "914880505ed751da9fd0a38d7f1724dd860c20d98456ff3efd16a195a0709ad4"
+    },
+    {
+      "path": "changes.patch",
+      "sha256": "e9f8a44637de636466ef2cf459cb714556e095a0b602001151e331ca0b6b1981"
+    },
+    {
+      "path": "default-off-ast-proof.json",
+      "sha256": "3df83e83b819e425251892f5ef5ad70e3ace2d95a7c0cf8d71953f20ebab4be8"
+    },
+    {
+      "path": "flat-mapping-static-proof.json",
+      "sha256": "42426637fb88c8262af8551e91d2a557d7e49bae5a91f3fbfe31fac07f9c9b9b"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "bf577474788a6896f1724cf426e383830866fdcc3eb7a8063f76a24cef12df6b"
+    },
+    {
+      "path": "proposal.json",
+      "sha256": "a3621c38d035e30630337b00b8f5715c7baed22a4d72eebcd5165289f83593cd"
+    },
+    {
+      "path": "README.md",
+      "sha256": "3747b3efe7ba8d78e3a8f03bb3cd708642ae9816cc9baa9428f474fe5edbb590"
+    },
+    {
+      "path": "root-source-review.json",
+      "sha256": "3bffec33c8b335f9c0ae5d0ffd949ad492414e15d041f3631c5d67a879d13111"
+    },
+    {
+      "path": "src/automl/search/runner.py",
+      "sha256": "4807ba7609009e24899fcc5213fe44db4e2f6ad3d63e57ed2af3e20acdedad2f"
+    },
+    {
+      "path": "src/automl/search/stages.py",
+      "sha256": "d8e79f0cb36612849e0d48b2e486c20e773c09696c2d6e788832f19bee509133"
+    },
+    {
+      "path": "tests/test_champion_seed.py",
+      "sha256": "7641869fe8a3d59b91a410599e95570268da15e0c40fa5205d4ed050c622cf4c"
+    }
+  ],
+  "actual_tests_run": 0,
+  "actual_fits": 0,
+  "actual_API_calls": 0,
+  "actual_flat_build": false,
+  "actual_runtime_parity_verified": false,
+  "clock_assigned": false,
+  "current_T6_unchanged": true,
+  "user_authorization_already_granted": true,
+  "publication_scope": "Reviewable optional seeded-initial-policy. Requires new frozen archive/protocol/actualtechnicalgates and full T6 terminal closure before any new ML run."
+}

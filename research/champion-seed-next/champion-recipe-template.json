@@ -1,0 +1,10 @@
+{
+  "engine": "lightgbm",
+  "hypothesis": "Illustrative SINGLE tree recipe; pin real external provenance before using as a champion.",
+  "params": {
+    "iterations": 600,
+    "learning_rate": 0.05,
+    "generic_features": "missing"
+  },
+  "feature_code": ""
+}

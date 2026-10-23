@@ -1,0 +1,8 @@
+{
+  "actual_exit_code": 0,
+  "actual_tool_chunk": "b1fb50",
+  "helper_sha256": "ab67568d719fb2f67ae287743dad4b0e116f883980ac1c76acf34d4c68b93077",
+  "helper_exit_is_not_T6_success": true,
+  "preparer_fresh_absence_tool_chunk": "87b9a4",
+  "preparers_confirmed_absent": true
+}

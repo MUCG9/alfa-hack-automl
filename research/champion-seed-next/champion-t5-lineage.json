@@ -1,0 +1,110 @@
+{
+  "status": "pinned_local_benchmark_recipe_not_authority",
+  "recipe": {
+    "path": "work/champion-seed-next-dev/champion-t5-regression.json",
+    "sha256": "914880505ed751da9fd0a38d7f1724dd860c20d98456ff3efd16a195a0709ad4"
+  },
+  "recipe_signature_from_actual_search_and_confirmation_journal": "959a9b8fed203d71bafbbd4770b6bfb5b6aa5da79d08ee568b93979d7f795421",
+  "hypothesis_semantics": "Existing search.policy.signature excludes hypothesis and normalizes executable effective parameters, noop DataPolicy and integer/float equivalence; reuse that function unchanged.",
+  "source_report": {
+    "path": "work/t5/r/automl_runs/repair4/report.json",
+    "sha256": "6f75caecac002984ae14217fd6185386cd42e4ba1fcbeed11d2a0f16a89adce9"
+  },
+  "source_journal": {
+    "path": "work/t5/r/automl_runs/repair4/results.tsv",
+    "sha256": "a81c56843c7ddd49795117a1cdc0b5a4cd15c3591d02702819489d98419c9fe0"
+  },
+  "source_primary_job": {
+    "path": "work/t5/r/automl_runs/repair4/experiment-07/job.json",
+    "sha256": "7fb163c5c6ffa9fe27629e661a59ebd8c09dd016a15f8237c5855a9c0e56fec2"
+  },
+  "source_primary_result": {
+    "path": "work/t5/r/automl_runs/repair4/experiment-07/result.json",
+    "sha256": "061907c9bd4462b08bbda79f728f4647e2ebf44bd70e23539f23cbef5c60f156"
+  },
+  "source_selected_independent_audit": {
+    "path": "work/t5-independent-r4/audit.json",
+    "sha256": "91a7c91b6f48f59485dd7ccb720b0793d6069f1c9b437696bd2323771669ca59"
+  },
+  "source_runtime_archive": {
+    "path": "work/m2packet/repaired-source.zip",
+    "sha256": "cfd5ff3b44f77227b15b130c16762e6c8349ac53f02a53462883680aad436459"
+  },
+  "source_flat_runner": {
+    "path": "work/t5/r/automl_runner.py",
+    "sha256": "5992cf7c3044cedc7e5fceef16615832484c9b7a287a83e9c79acc26e6c9e914"
+  },
+  "source_flat_lightgbm": {
+    "path": "work/t5/r/automl_model_lightgbm.py",
+    "sha256": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05"
+  },
+  "current_T6_flat_lightgbm": {
+    "path": "work/t6/r/automl_model_lightgbm.py",
+    "sha256": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05"
+  },
+  "raw_task_input_sha256": {
+    "task.md": "33f743ead4840336856cb9db8e25867f44512231beebff927326e8580e14d9d0",
+    "train.csv": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775",
+    "test.csv": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
+    "data_dictionary.csv": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
+    "sample_submission.csv": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1"
+  },
+  "selected_independently_verified_metrics": {
+    "primary_rmse": 37.988491672517135,
+    "confirmation_rmse": 31.743950084928418,
+    "arithmetic_cut_mean": 34.86622087872278
+  },
+  "split_fingerprints": {
+    "primary": {
+      "fitting_rows": 35000,
+      "validation_rows": 18308,
+      "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+      "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+      "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+      "prediction_sha256": "059da6d14874de803e82f0b4a40457239b7c5323460b564a2081b461ecb77f58",
+      "validation_periods": [
+        5.0
+      ]
+    },
+    "confirmation": {
+      "fitting_rows": 22054,
+      "validation_rows": 12946,
+      "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+      "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+      "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+      "prediction_sha256": "54be140139b4a7f15192c30fa3014f2d0529664eed3aef646563ca54200997bf",
+      "validation_periods": [
+        4.0
+      ]
+    }
+  },
+  "split_files": {
+    "split.npz": {
+      "path": "work/t5/r/automl_runs/repair4/split.npz",
+      "sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84"
+    },
+    "confirmation_split.npz": {
+      "path": "work/t5/r/automl_runs/repair4/confirmation_split.npz",
+      "sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b"
+    },
+    "inner-hpo/split.npz": {
+      "path": "work/t5/r/automl_runs/repair4/inner-hpo/split.npz",
+      "sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b"
+    }
+  },
+  "statistical_limit": "Winner selected using reused public temporal cuts; confirmation matches the HPO tuning partition. No blind/private or out-of-sample qualification is asserted.",
+  "current_T6_comparison": {
+    "selected_mean": 35.21107809690049,
+    "winner_absent_evidence": {
+      "path": "work/t6-regression-lineage-analysis.json",
+      "sha256": "bc859eb85a2b739f2bd550d918438e1cd9ad72f303c9f65cd5056907e5fa3b08"
+    },
+    "quality_promotion": false
+  },
+  "control_preserved": {
+    "path": "work/m2packet/control-r.json",
+    "sha256": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b"
+  },
+  "runtime_reads_this_metadata": false,
+  "raw_rows_predictions_or_secrets_included": false
+}

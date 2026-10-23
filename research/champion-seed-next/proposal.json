@@ -1,0 +1,191 @@
+{
+  "status": "prospective_source_only_not_execution_ready",
+  "schema": "champion-seed-policy-proposal-v1",
+  "created_utc": "2026-10-23T14:53:34.849341+00:00",
+  "scope": {
+    "allowed_now": "Changed source copies, patch, static AST inspection, pinned recipe/provenance, unexecuted pure contract test source and protocol only.",
+    "actual_fits": 0,
+    "API_calls": 0,
+    "tests_executed": 0,
+    "runtime_imports": 0,
+    "canonical_or_current_T6_sources_changed": false,
+    "absolute_clock_assigned": false,
+    "absolute_deadline_unix": null,
+    "clock_missing_reason": "Root must first establish actual T6 terminal status/fresh ownership closure, then review/publish/gate the future source and launch it with a new immutable clock."
+  },
+  "factor": {
+    "name": "seeded-initial-policy under fixed max9",
+    "hypothesis": "Explicitly retaining an already verified component winner can prevent rediscovery loss from stochastic Qwen responses while preserving the complete control and required four-stage work.",
+    "causal_boundary": "This is a queue/admission policy factor, not merely a free addition or an isolated causal hyperparameter ablation. It changes optional initial Qwen admission, feedback and possibly followup admission. Qwen has no supported deterministic seed; one matched A/B pair does not establish stable causal gain."
+  },
+  "generic_infrastructure": {
+    "CLI": "--champion-recipe PATH",
+    "default": "Absent: prior behavior, default portfolio, controls, HPO and API/resource caps unchanged.",
+    "path_and_schema": "One <=32768-byte UTF-8 regular JSON file, no symlink/reparse ancestors, stable read identity/size, duplicate keys/nonfinite JSON rejected. Only supported SINGLE recipe fields. Unknown params/authority keys, ensembles, free feature code, nonnoop data policy, text/ranking and second selector rejected in V1. Existing normalize, signature, feature-view/target-smearing validators retained.",
+    "feature_compatibility": "Trusted generic_features modes preserved exactly; no forced broad/selection on champion. Explicit history and target-encoding groups must match available schema. Target-dependent checks and all fitting-scope guards remain in worker.",
+    "preconditions": "Explicit --four-stage --preserve-anchor --control-recipe; max_experiments>=9, >=2 planner calls and positive HPO trials. Invalid/missing champion aborts the opted-in whole experiment before the first model fit; no silent drop, control replacement or zero metric.",
+    "authority": "Recipe data cannot modify CLI, input paths, code, evaluators, budgets or control. Sidecar metadata is for root audit only and is never read as runtime authority.",
+    "input_policy": "Future coordinator copies exactly the pinned champion JSON bytes into candidate task cwd as champion_recipe_input.json; no metadata, rows, predictions or model state. Runtime records source SHA/bytes/signature, writes normalized champion_recipe.json snapshot, and protects both input and snapshot in provenance. No imports from candidate files. JSON is outside the table resolver csv/tsv/tab catalog.",
+    "reusable_vs_local": "No task ID, public feature name, label, baseline score or T5-specific filename exists in generic source. champion-t5-regression.json/lineage are separate local benchmark inputs."
+  },
+  "queue_policy": {
+    "maximum_initial": 7,
+    "distinct_seed_slots_zero_based": {
+      "0": "Unchanged exact complete V16 ensemble",
+      "1": "Unchanged first SINGLE component and returned HPO anchor",
+      "2": "Separate trusted broad+CatBoost32 with original protection",
+      "3": "Existing CatBoost family seed",
+      "4": "Existing XGBoost family seed",
+      "5": "Prior champion if distinct by existing executable signature",
+      "6": "First valid distinct initial Qwen proposal that still fits"
+    },
+    "mandatory_model_families": [
+      "lightgbm",
+      "catboost",
+      "xgboost"
+    ],
+    "reserved_slots_under_max9": {
+      "7": "Inner-HPO selected recipe if successful and distinct",
+      "8": "First valid followup Qwen proposal if still within time and unique"
+    },
+    "dynamic_dedup": "Champion duplicate of required seed receives explicit duplicate receipt, no extra fit; hypotheses and 5/5.0/noop policy do not create distinct signatures. Qwen duplicate champion is not fitted twice. Exact positions may advance when dedup reduces queue; none are evidence that actual stages completed.",
+    "tradeoff": "With five required seeds and a distinct champion, a full initial queue admits one of two initial Qwen proposals; the second has not_scheduled_initial_capacity receipt. This replaces optional admission, not control/family/broad/HPO. Under shorter initial queues the remaining optional followup capacity can differ.",
+    "current_T6_observation": "T6 initial EDA returned two parsed plans and both were admitted in initial slots5/6; its later planner-2 returned two plans but only the first ran at outer8 under max9. Proposed B instead reserves initial slot5 for champion and admits at most one initial Qwen plan at6. Do not confuse initial EDA with followup planner-2.",
+    "HPO_anchor": "Always the unchanged protected SINGLE success record, never the prior champion or current best; sampler/seed/trials/budget unchanged.",
+    "execution_limit": "Reservation of slots does not guarantee successful stages or sufficient wall time. Actual EDA-before-fit, selector success, families, HPO, selection/refit/CSV must pass independent future proof."
+  },
+  "local_benchmark": {
+    "candidate_input": {
+      "path": "work/champion-seed-next-dev/champion-t5-regression.json",
+      "sha256": "914880505ed751da9fd0a38d7f1724dd860c20d98456ff3efd16a195a0709ad4"
+    },
+    "lineage": {
+      "path": "work/champion-seed-next-dev/champion-t5-lineage.json",
+      "sha256": "408d24be5c884152531552bb0016611eb55b9123aadb4c1a361396d3f7115cf3"
+    },
+    "expected_champion_signature": "959a9b8fed203d71bafbbd4770b6bfb5b6aa5da79d08ee568b93979d7f795421",
+    "protected_control": {
+      "path": "m2packet/control-r.json",
+      "sha256": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b",
+      "signature": "773dfb566afd9b2ad6c47853ffaa6898392c009fd41c9202d89184b3c50ceb9e"
+    },
+    "known_control_mean_rmse": 35.44723155783769,
+    "known_T5_mean_rmse": 34.86622087872278,
+    "current_T6_mean_rmse": 35.21107809690049,
+    "prior_T5_and_V16_remain_preserved": true
+  },
+  "future_matched_A_B": {
+    "unit": "Entire regression agent procedure: search/confirmation selection/full refit/final CSV, not one preselected component fit.",
+    "A": "Exact archived current m3 source; no champion flag.",
+    "A_archive": {
+      "path": "work/m3packet/lean-source.zip",
+      "sha256": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0"
+    },
+    "B": "Same current m3 source plus only reviewed stages.py/runner.py patch, same task/control; --champion-recipe champion_recipe_input.json. No class-context/cache/power changes.",
+    "B_archive_sha256": null,
+    "B_archive_missing_reason": "Source copies/patch only; build and independent release inventory are pending root review.",
+    "raw_inputs": {
+      "task.md": "33f743ead4840336856cb9db8e25867f44512231beebff927326e8580e14d9d0",
+      "train.csv": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775",
+      "test.csv": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
+      "data_dictionary.csv": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
+      "sample_submission.csv": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1"
+    },
+    "primary_and_confirmation_fingerprints": {
+      "primary": {
+        "fitting_rows": 35000,
+        "validation_rows": 18308,
+        "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+        "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+        "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+        "validation_periods": [
+          5.0
+        ]
+      },
+      "confirmation": {
+        "fitting_rows": 22054,
+        "validation_rows": 12946,
+        "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+        "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+        "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+        "validation_periods": [
+          4.0
+        ]
+      }
+    },
+    "fixed_flags_both": {
+      "four_stage": true,
+      "preserve_anchor": true,
+      "protect_original_features": true,
+      "max_experiments": 9,
+      "max_planner_calls": 2,
+      "max_llm_calls": 4,
+      "hpo_trials": 8,
+      "hpo_budget_seconds": 900,
+      "hpo_sampler": "tpe",
+      "feature_selection_top_k": 32,
+      "planner_mode": "staged",
+      "validation_strategy": "auto"
+    },
+    "seeds": {
+      "primary": 42,
+      "confirmation": "Existing forward offset1; no independent random reseed",
+      "hpo": 137,
+      "model": "Unchanged existing adapter/default seeds; capture actual effective recipe and job",
+      "Qwen": null,
+      "Qwen_seed_reason": "Gateway does not send/expose deterministic seed; temperature0.4/model qwen/qwen3.8-27b/effort off unchanged."
+    },
+    "proposed_equal_resource_caps": {
+      "task_allocation_seconds_each": 2100,
+      "supervisor_parent_seconds_each": 2040,
+      "solver_seconds_each": 2010,
+      "search_worker_max_seconds_existing_source": 900,
+      "hpo_study_seconds_each": 900,
+      "worker_threads": 2,
+      "worker_memory_gib": 1.5,
+      "whole_owned_tree_gib": 2,
+      "common_seconds_proposed": 5400,
+      "common_allocation": "2x2100 task allocations +600 independent paired saved-artifact audit +180 final cleanup +420 setup/final reservation =5400. Technical source/unpacked gates require a separately reviewed serial Stage0 envelope before this model-pair envelope. No cap or clock is active/approved by this source-only proposal."
+    },
+    "order": "One paired sequential A then B; freeze actual sources, argv, raw input/split/control/champion hashes and all resource/deadline constants before either outcome. No retries, reseeding, extra plans or reinvesting unspent caps.",
+    "evidence": "Raw proposal/receipt chronology, unique signatures, dropped/duplicate proposals, attempted/completed HPO and selected measurements retained, including failures; source/input/CSV/provenance SHA before/after. Seal both terminal arms before independent pair scoring.",
+    "failure_policy": "Invalid champion, parent/common deadline, missing mandatory stages/final CSV, resource/integrity/ownership failure => entire arm technical/procedure failure, metric null with reason. Clean handled failed student experiments remain failed/null records; do not fabricate zero or discard the arm if the existing whole procedure legitimately completes. No automatic repair/retry."
+  },
+  "future_gates": {
+    "before_any_heavy_execution": [
+      "Root verifies actual T6 terminal campaign/exec/fresh PID-create_time union/orphans and free central lock, then reviews/publishes new source/card; no old clock reset.",
+      "Apply patch in a new isolated copy, register exactly12 new contract methods, preserve all existing tests/assertions; actual source and exact-unpacked technical gates with complete metadata9/public10 dependencies, no skips.",
+      "Build B through existing module-map AST mechanism; independently inventory exact archive, unchanged requirements/evaluator/splits/adapters, both source bytes and deployed JSON. No new runtime module or module_map change is needed.",
+      "Run meaningful no-fit contracts only after explicit root launch authorization, with one-thread/memory/time/tripwire guards; currently all12 are source-only, unexecuted.",
+      "Freeze full A/B source/input/argv/resource/ownership manifest and independent evaluator before outcomes; actual deployment/path/receipt proof pending."
+    ],
+    "technical_success": [
+      "Both whole-agent arms terminal-clean with immutable input/source/control, valid EDA before first fit, successful separate broad+CatBoost32/original protection, three families and completed supported HPO.",
+      "Unchanged protected complete control and SINGLE signatures/measurements, actual champion signature/admission receipt and measurement in B, independent selected primary+confirmation/refit CSV/IDs/schema/finite validation.",
+      "Measured Qwen call counts/usage and actually attempted/completed/failed/unattempted records; no invented independent ledger completeness."
+    ],
+    "quality_decision": "Descriptive retention win only if both whole procedures qualify; B mean RMSE improves A, each B cut is no worse than A and retained T5 cut floor within predeclared numerical reproduction tolerance1e-9 absolute. T5 floor is prior reused-public evidence, not blind truth; changed feedback/stochastic Qwen prevent stable single-pair causal claims. Record component retention separately if overall policy does not improve.",
+    "promotion": "No default promotion, official score estimate or submit from this source/protocol or a single paired public result; existing independent whole-agent/release gates remain."
+  },
+  "static_preparation": {
+    "changed_existing_modules": [
+      "src/automl/search/stages.py",
+      "src/automl/search/runner.py"
+    ],
+    "new_runtime_modules": 0,
+    "module_map_change": false,
+    "pure_contract_test_source": {
+      "path": "work/champion-seed-next-dev/tests/test_champion_seed.py",
+      "sha256": "7641869fe8a3d59b91a410599e95570268da15e0c40fa5205d4ed050c622cf4c"
+    },
+    "prospective_test_methods": 12,
+    "tests_executed": 0,
+    "test_registration_status": "Pending future isolated technical source-gate inventory; no current/frozen registry changed.",
+    "default_OFF_AST_proof": {
+      "path": "work/champion-seed-next-dev/default-off-ast-proof.json",
+      "sha256": "3df83e83b819e425251892f5ef5ad70e3ace2d95a7c0cf8d71953f20ebab4be8"
+    },
+    "actual_output_parity": null,
+    "output_parity_reason": "No runtime imports/test or model runs authorized/executed in current preparation."
+  }
+}

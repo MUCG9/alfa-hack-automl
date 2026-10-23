@@ -1,0 +1,137 @@
+{
+  "experiment": "T6",
+  "status": "terminal_technical_failure",
+  "actual_exec_session": 88656,
+  "actual_exit_code": 1,
+  "actual_terminal_tool_evidence": "write_stdin chunk f6279b",
+  "original_start_unix": 1792764087.858047,
+  "original_deadline_unix": 1792774887.858047,
+  "common_limit_seconds": 10800,
+  "elapsed_common_seconds": 3584.130124092102,
+  "first_failure": {
+    "code": "host_supervisor_heartbeat_gap_over10s",
+    "phase": "coordinator",
+    "unix": 1792767669.7182922,
+    "monotonic": 26674.906,
+    "exception_type": "TechnicalFailure",
+    "errno": null,
+    "winerror": null
+  },
+  "error_history": [
+    {
+      "code": "host_supervisor_heartbeat_gap_over10s",
+      "phase": "coordinator",
+      "unix": 1792767669.7182922,
+      "monotonic": 26674.906,
+      "exception_type": "TechnicalFailure",
+      "errno": null,
+      "winerror": null
+    }
+  ],
+  "largest_observed_heartbeat_gap_seconds": 10.8279999999977,
+  "heartbeat_gap_threshold_seconds": 10,
+  "windows_sleep_cause_established": false,
+  "source_checks_passed": 458,
+  "source_checks_skipped": 0,
+  "exact_unpacked_repeated_checks_passed": 23,
+  "tasks": [
+    {
+      "kind": "regression",
+      "status": "ok",
+      "exit_code": 0,
+      "cleanup_confirmed": true,
+      "qualified": false,
+      "seal": {
+        "path": "t6/r-seal.json",
+        "sha256": "771b7a7ea4e9eea1e5177ad5269094279e9592c5f579119a1ad51039c2674faa"
+      }
+    },
+    {
+      "kind": "classification",
+      "status": "ok",
+      "exit_code": 0,
+      "cleanup_confirmed": true,
+      "qualified": false,
+      "seal": {
+        "path": "t6/c-seal.json",
+        "sha256": "3d8edbbe8c5c70689ac23a1dee46861512c45900e8db4f5a9608154de6ea9eab"
+      }
+    }
+  ],
+  "original_campaign_independent_audit": null,
+  "root_fresh_closure": {
+    "path": "terminal-root-closure.json",
+    "sha256": "ca4796c602ac213a2c48a652fcbb8461ddceadd51b4aa0b8f661ad59931b344a",
+    "cleanup_confirmed": true,
+    "source_unchanged": true,
+    "identities_checked": 452,
+    "immutable_refs_rehashed": 718
+  },
+  "separately_verified_regression": {
+    "status": "independently_verified_regression_task_T6_campaign_still_active",
+    "metric": "rmse",
+    "direction": "lower",
+    "cuts": [
+      {
+        "phase": "primary",
+        "current": 38.596141773061916,
+        "protected_control": 38.902803731334785,
+        "delta_current_minus_control": -0.30666195827286913,
+        "primary_improves": true
+      },
+      {
+        "phase": "confirmation",
+        "current": 31.826014420739067,
+        "protected_control": 31.991659384340597,
+        "delta_current_minus_control": -0.16564496360152958,
+        "primary_improves": true
+      }
+    ],
+    "two_cut_mean": 35.21107809690049,
+    "matched_fresh_V16_control_mean": 35.44723155783769,
+    "delta_vs_V16": -0.2361534609371958,
+    "relative_reduction_vs_V16_percent": 0.6662112965066809,
+    "previous_verified_T5_regression_mean": 34.86622087872278,
+    "delta_vs_previous_best_T5": 0.3448572181777152,
+    "both_cuts_better_than_V16": true,
+    "successful_model_families": [
+      "catboost",
+      "lightgbm",
+      "xgboost"
+    ],
+    "HPO_completed": 8,
+    "HPO_guided_successful": 5,
+    "closed_API_ledger": {
+      "independently_read_closed_ledger": true,
+      "gateway_calls": 2,
+      "http_attempts_reported": 2,
+      "prompt_tokens_reported": 18574,
+      "completion_tokens_reported": 1741,
+      "usage_complete": true
+    },
+    "full_refit_CSV_integrity_verified": true,
+    "whole_campaign_terminal": false,
+    "whole_campaign_deadline_met": null,
+    "scope": "Reused-public search cuts; regression HPO inner overlaps confirmation. Independent numeric integrity, not blind validation.",
+    "control_limit": "Control recipe rerun on matching two cuts; only selected candidate final full refit audited.",
+    "audit": "work/t6-independent-regression-r1/audit.json",
+    "audit_sha256": "09cd760943277860f97d495302ff77f374ba448d3cf754c26aea3ef162778655",
+    "root_closure": "work/t6-independent-regression-r1/root-closure.json",
+    "root_closure_sha256": "fe8247caa956d948d2c9d42a42fc2d07dc052473a160ac96ac0078c29454edae",
+    "decision": "Retain previous T5 regression candidate and complete V11/V16; T6 regression improves V16 but is worse than previous verified partial best. Classification pending.",
+    "official_score": null,
+    "promotion": false,
+    "submit": false
+  },
+  "classification_independent_metric": null,
+  "classification_metric_reason": "Separate postfailure saved-artifact audit pending; no new fit",
+  "procedure_success": false,
+  "quality_promotion": false,
+  "official_score": null,
+  "submit": false,
+  "retained_best": {
+    "complete_control": "V11/V16",
+    "regression_prior_T5_mean_RMSE": 34.86622087872278
+  },
+  "validation_scope": "Reused-public search cuts; regression HPO inner overlaps confirmation. No blind/private score."
+}

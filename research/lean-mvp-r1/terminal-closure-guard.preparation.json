@@ -1,0 +1,9 @@
+{
+  "status": "static_compile_and_root_source_review_only_not_executed",
+  "source_sha256": "ab67568d719fb2f67ae287743dad4b0e116f883980ac1c76acf34d4c68b93077",
+  "current_exec_session": 88656,
+  "must_only_run_after_root_observed_actual_terminal_exit": true,
+  "new_fits": 0,
+  "API_calls": 0,
+  "criteria": "Originaldeadline+wallmonotonic, exactfreshPIDunioninclpartialaudits/preparers, source/deployment/coreseal,R4artifactprocedurevsquality, rawfailuresunchanged; no signals."
+}

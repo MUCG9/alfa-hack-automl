@@ -1,0 +1,23 @@
+{
+  "status": "root_source_review_completed_runtime_gates_pending",
+  "recorded_epoch": 1792767743.6491907,
+  "manifest_sha256": "bf577474788a6896f1724cf426e383830866fdcc3eb7a8063f76a24cef12df6b",
+  "patch_sha256": "e9f8a44637de636466ef2cf459cb714556e095a0b602001151e331ca0b6b1981",
+  "review": "Root read complete225linepatch andcard. Boundedrecipeinput, noauthoritysidecar, exactV16preserved, seedconsumesoptionalQweninitialslot; SINGLE/HPOanchor andbroadbranchunchanged. Invalidchampionfailspre-firstfit. Runtime/model/CSVparity not yetproven.",
+  "critical_source_issues_found": [],
+  "actual_static_compile_changed_modules": 2,
+  "actual_pure_tests_run": 0,
+  "actual_full_source_gates_run": 0,
+  "actual_exact_archive_gates_run": 0,
+  "actual_fits": 0,
+  "actual_API_calls": 0,
+  "new_clock_assigned": false,
+  "launch_ready": false,
+  "future_prerequisites": [
+    "actualT6terminal+freshcompleteownershipclosureincludingpreparers",
+    "fullnewarchive/manifest/gates underdeclaredclock",
+    "reviewedbudgets/protocol andworker/LLM actualcaps"
+  ],
+  "user_authorization_already_granted": true,
+  "promotion": false
+}

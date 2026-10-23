@@ -13,7 +13,7 @@ class ArchitectureTests(unittest.TestCase):
             for node in ast.walk(ast.parse(path.read_text())):
                 if not isinstance(node,ast.ImportFrom) or not node.module or not node.module.startswith('automl.'): continue
                 parts=node.module.split('.')
-                if parts[1] in {'task_understanding','evaluation','search','execution','publishing'} and parts[1]!=own:
+                if parts[1] in {'task_understanding','evaluation','search','execution','publishing','error_analysis'} and parts[1]!=own:
                     self.assertEqual(parts[-1],'api',f'{path}: private import {node.module}')
     def test_contracts_have_no_model_data_or_client_dependencies(self):
         path=ROOT/'src/automl/contracts/messages.py'

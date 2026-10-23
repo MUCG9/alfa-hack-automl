@@ -1,5 +1,15 @@
 # Development instructions — current checkpoint, 22 October 2026
 
+23Oct latest captain instructions authorize parallel BASE-01/ERR-01/SEL-01
+engineering on work/error-selection-20261023 while LONG-01 runs from its own
+frozen task copies. Do not edit active test-runs/long-01-20261023/public-full,
+the frozen release or its environment. No extra fits/heavy suites until it ends.
+Reuse reviewed colleague diagnostics; keep ML policy unchanged during integration.
+After LONG-01 follow the agreed finite research plan. Captain explicitly cancelled
+the 15%-remaining stopping threshold and handoff preparation. Historical quota/
+documentation-only instructions below are superseded. Keep normal commits and
+evidence; real service limits and permissions still apply, no reset credits.
+
 23Oct captain explicitly authorizes LONG-01 implementation and local3h/task runs
 on experiment/v11-long-budget-20261023. This supersedes documentation/transfer-only
 instructions below. Read docs/experiments/LONG-01_protocol.md. No official upload,

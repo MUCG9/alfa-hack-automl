@@ -1,0 +1,46 @@
+{
+  "source_commit": "97f0cf434078dc072b408efdb578317ff13b44e4",
+  "manifest_sha256": "55d96a8e5327078edebf09486c24afac4a50e0de139c57638de91d3433073d35",
+  "transfer_tool_sha256": "5cfe5ce0611c516b68a8517886b90b6a77a61610fe8c1d9e8c84a10302d089a4",
+  "retrieval": "HTTPS at exact commit verified against Git ls-remote; old five shards reused without downloading",
+  "files_verified": 852,
+  "unique_objects": 485,
+  "previous_848_mtime_and_bytes_preserved": true,
+  "new_shard": {
+    "sha256": "cb967516b13d216acb05a93227998e7b15995002fb1e4476d93b29cae69a19d8",
+    "bytes": 187658
+  },
+  "added_files": [
+    {
+      "path": "test-runs/llm-upgrade-20261022/featureviews1-full/task-00/automl_runs/run-v2/confirmation_split.npz",
+      "sha256": "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a",
+      "bytes": 701876,
+      "logical_split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "matches_original_split_metadata": true
+    },
+    {
+      "path": "test-runs/llm-upgrade-20261022/featureviews1-full/task-01/automl_runs/run-v2/confirmation_split.npz",
+      "sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
+      "bytes": 280516,
+      "logical_split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+      "matches_original_split_metadata": true
+    },
+    {
+      "path": "test-runs/llm-upgrade-20261022/final-default-parity/task-00/automl_runs/run-v2/confirmation_split.npz",
+      "sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
+      "bytes": 280516,
+      "logical_split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+      "matches_original_split_metadata": true
+    },
+    {
+      "path": "test-runs/llm-upgrade-20261022/final-default-parity/task-01/automl_runs/run-v2/confirmation_split.npz",
+      "sha256": "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a",
+      "bytes": 701876,
+      "logical_split_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "matches_original_split_metadata": true
+    }
+  ],
+  "original_json_rewritten": false,
+  "new_model_fits": 0,
+  "negative_check_incomplete_old_manifest_rejected": true
+}

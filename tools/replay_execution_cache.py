@@ -11,7 +11,6 @@ import signal
 import subprocess
 import sys
 import time
-from types import SimpleNamespace
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src'));sys.path.insert(0,str(ROOT/'tools'))
 os.environ.setdefault('AUTOML_THREADS','2')
@@ -23,6 +22,12 @@ from summarize_research import Verifier,digest
 from benchmark_marginal_hpo import HPO,worker_closure
 from research_execution_cache import ExecutionCache
 from verify_marginal_hpo import load
+
+
+class ObservedSubprocess:
+    """Observe launches while preserving every other subprocess attribute."""
+    def __init__(self,spawn):self.spawn=spawn
+    def __getattr__(self,name):return self.spawn if name=='Popen' else getattr(subprocess,name)
 
 
 def library_identity(name):
@@ -65,7 +70,7 @@ def run(output,plan_path,deadline_epoch=None):
         report['worker_launches'].append({'pid':process.pid,'create_time':psutil.Process(process.pid).create_time(),
             'command':args[0],'started_after_seconds':round(time.monotonic()-start,3)})
         return process
-    frozen.subprocess=SimpleNamespace(Popen=observed_popen)
+    frozen.subprocess=ObservedSubprocess(observed_popen)
     libraries={n:library_identity(n) for n in ['numpy','pandas','scikit-learn','lightgbm','catboost','xgboost','optuna']}
     report['deadline_epoch']=deadline_epoch if deadline_epoch is not None else time.time()+deadline-time.monotonic()
 
@@ -83,7 +88,9 @@ def run(output,plan_path,deadline_epoch=None):
         remaining=min(600,deadline-time.monotonic()-60)
         if remaining<1:raise RuntimeError('Deadline before worker')
         record=frozen.run_worker(spec,recipe,directory,split,remaining,memory_limit=1536*2**20)
-        if record.get('status')!='ok':raise RuntimeError('Replay worker failed')
+        if record.get('status')!='ok':
+            atomic_json(directory/'execution-failure.json',record)
+            raise RuntimeError('Replay worker failed: '+str(record.get('exception_type',record.get('status'))))
         return record
 
     cache=ExecutionCache(output/'cache',output)

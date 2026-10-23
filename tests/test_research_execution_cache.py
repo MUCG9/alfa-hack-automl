@@ -10,7 +10,7 @@ from importlib.metadata import PackageNotFoundError
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src'));sys.path.insert(0,str(ROOT/'tools'))
 from research_execution_cache import ExecutionCache,cache_key
-from replay_execution_cache import library_identity
+from replay_execution_cache import library_identity,ObservedSubprocess
 
 
 def context():
@@ -20,6 +20,13 @@ def context():
 
 
 class CacheTests(unittest.TestCase):
+    def test_launch_observer_preserves_stderr_and_error_contracts(self):
+        import subprocess
+        calls=[];proxy=ObservedSubprocess(lambda *args,**kwargs:calls.append((args,kwargs)))
+        proxy.Popen(['worker'],stderr=proxy.STDOUT)
+        self.assertEqual(calls, [((['worker'],),{'stderr':subprocess.STDOUT})])
+        self.assertIs(proxy.TimeoutExpired,subprocess.TimeoutExpired)
+
     def test_importable_library_without_distribution_metadata_has_hashed_fallback(self):
         with patch('replay_execution_cache.importlib.metadata.version',side_effect=PackageNotFoundError):
             identity=library_identity('json')

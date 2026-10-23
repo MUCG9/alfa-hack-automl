@@ -85,3 +85,15 @@ gate;32objective независимо проверены, cut2 не запуск
 `round02_protocol_20261023.md`. Новые планы и фактические статусы читать из Git/
 receipts. У repaired Qwen plan явно разделены PIPE02 comparison control и V16
 mixture-component control; наблюдённый repair не является reliability A/B.
+
+Капитан затем попросил проверить максимальный reasoning. Canonical gateway
+явно выключал его. REASONING01 real xhigh:1014reasoning tokens/14.716s и final
+JSON PASS; off0/1.491s. У qwen3.8-27b документированный максимум называется
+xhigh, не ultra. Active dev planners используют research_llm_config.py:
+xhigh/32768combined tokens/300s call/360s wall; ordinary runtime opt-in,
+immutable uploaded PIPE02 ZIP не менялся. Сервер effective effort не возвращает.
+Сложный subsequent xhigh plan использовал12253thinking tokens/112.082s, но был
+отклонён за смешение fact IDs с именами разделов и повтор failed mean в next step.
+Это observation, не quality A/B. См. reasoning01_results_20261023.md и фактические
+ROUND05 receipts. Изменение gateway инвалидирует full-source cache identity:
+не ослаблять ключ ради seeding старых fits.

@@ -58,6 +58,8 @@ def resolve_metric_spec(text, kind, *, source='task_description', class_count=No
         # strict overlap resolution needs the complete composite metric span.
         patterns['rmse'] = (r'\brmse\b|root[\s_-]*mean[\s_-]*squared?'
                             r'(?:[\s_-]*error)?|среднеквадрат')
+        patterns['rmsle'] = (r'\brmsle\b|root[\s_-]*mean[\s_-]*squared'
+                             r'[\s_-]*logarithmic(?:[\s_-]*error)?')
     else:
         # Bare AUC is not enough to distinguish ROC from PR AUC.
         patterns['roc_auc'] = (r'\broc[\s_-]*auc\b|'

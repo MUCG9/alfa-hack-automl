@@ -1,0 +1,69 @@
+{
+  "schema": "LA2-postfailure-audit-independent-source-review-v1",
+  "status": "source_reviewed_no_blocker_in_declared_scope",
+  "source_only": true,
+  "bindings": {
+    "la2-audit-repair-next-dev/audit_pair.py": "a3f9a6703fc85d039d6f44eea85e30ffac38daf4a4dbc47f3a9d216ef27939b9",
+    "la2-audit-repair-next-dev/run_guard.py": "0258c438cd89ca1b18beb87c247462e0d2404f6eb16410097b544ba192b4e604",
+    "la2-audit-repair-next-dev/close_guard.py": "80c1637424e587cb039eb915535c19dda716461ee1505a79c6069367474f8db1",
+    "la2-audit-repair-next-dev/guard-manifest.json": "a16ce0ed2473480771568882118721454a491c36fe22dce664ea3aa80c49247e",
+    "la2-audit-repair-next-dev/source-handoff.json": "e99ecb749f71a1cbfa8279f67cc7cf2360be3adf47016e890d4f613ddf0ec449"
+  },
+  "original_auditor_sha256": "d0f2becf11979ea56d9523f0f010391325c2e684af0e7e521b3bbb832cba5e3c",
+  "reviewed_diff": {
+    "changed_top_level_definitions": [
+      "main"
+    ],
+    "unchanged_metric_HPO_loss_helpers": true,
+    "kind_mapping": "inline semantic kind; saved terminal exact kind+hyphen+arm; all other common fields still compared",
+    "original_plan_and_R4_pins_preserved": true,
+    "all_four_seals_core_inventories_and_archive_members_precede_first_R4_import": true,
+    "new_output_exclusive": true,
+    "original_technical_failure_FAIL_immutable": true
+  },
+  "guard": {
+    "parent_seconds": 300,
+    "child_seconds": 240,
+    "closer_seconds": 30,
+    "uses_original_10800_clock_and_exact_original_deadlines": true,
+    "minimum_original_reserve_seconds": 330,
+    "pinned_helpers_verified_before_import": true,
+    "central_research_lock": true,
+    "known_predecessor_PID_create_time_absence_fail_closed": true,
+    "supervisor_exact_owned_cleanup_reused": true,
+    "child_API_environment_not_forwarded": true,
+    "post_source_and_deadline_checks": true
+  },
+  "closer": {
+    "requires_actual_exit0_for_qualified_audit": true,
+    "requires_no_error_history_and_source_cleanup_and_awake_release": true,
+    "fresh_prior_guard_child_identity_union_and_own_preparers": true,
+    "new_model_fits": 0,
+    "API_calls": 0,
+    "original_LA2_remains_FAIL": true
+  },
+  "preparation_note": {
+    "temporary_closer_pin_mismatch": "observed during announced prelaunch root release-API tightening; resolved in final pinned guard manifest",
+    "final_closer_pin_matches": true,
+    "all_2552_runtime_pin_verification": "root reported c13bd5; this source-only reviewer checked guard/source/helper pins, did not reread sealed data/prediction artifacts"
+  },
+  "limitations": [
+    "Static review is not an actual guard/supervisor/closer execution receipt or verified ML result.",
+    "Metrics become eligible only after actual new audit exit and separate terminal closure; original failed campaign is never relabelled.",
+    "Unexpected setup failure before a complete guard campaign may require root-owned failure closure; no positive qualification is available through that path.",
+    "Resource measurements and ownership coverage retain the reviewed supervisor sampled-RSS and known-descendant scope."
+  ],
+  "blocking_findings": [],
+  "activity": {
+    "candidate_or_helper_imports": 0,
+    "tests": 0,
+    "model_fits": 0,
+    "API_calls": 0,
+    "process_scans": 0,
+    "data_or_prediction_or_metric_reads": 0,
+    "STATE_or_Git_changes": 0
+  },
+  "changed_files": [
+    "work/la2-audit-repair-independent-review-r1.json"
+  ]
+}

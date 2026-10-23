@@ -48,6 +48,10 @@ class MetricContractTests(unittest.TestCase):
         for alias in ['Root-Mean-Squared-Error', 'root_mean_squared_error']:
             self.assertEqual(resolve_metric_spec('Metric: ' + alias,
                                                 'regression').name, 'rmse')
+        for alias in ['root mean squared logarithmic error',
+                      'root_mean_squared_logarithmic_error']:
+            self.assertEqual(resolve_metric_spec('Metric: ' + alias,
+                                                'regression').name, 'rmsle')
 
     def test_binary_vs_multiclass_probability_inputs(self):
         binary = resolve_metric_spec('Metric: logloss', 'binary', class_count=2)

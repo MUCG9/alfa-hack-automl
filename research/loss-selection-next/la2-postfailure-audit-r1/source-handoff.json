@@ -1,0 +1,59 @@
+{
+  "status": "FROZEN_SOURCE_ONLY_REVIEW_REQUIRED_NO_EXECUTION",
+  "author_owned_files": {
+    "audit_pair.py": "a3f9a6703fc85d039d6f44eea85e30ffac38daf4a4dbc47f3a9d216ef27939b9",
+    "changes.patch": "bc7a72430919d25a9fa1d3cf304bb7e8e45112781f5f76ef2d3a3c70f2cc7277",
+    "source-proof.json": "1a4a4428c27da02e0b2967212ffd3d782c63c5faec3ad1eb8dd93efff597b65b",
+    "protocol.json": "9abc40bdd70c6c3f7147f8fb5333dc23c133f0af68931d50fe1a15c35abddc52"
+  },
+  "root_owned_files_not_authored_or_frozen_by_this_handoff": [
+    "run_guard.py",
+    "close_guard.py"
+  ],
+  "original_source_sha256": "d0f2becf11979ea56d9523f0f010391325c2e684af0e7e521b3bbb832cba5e3c",
+  "repair_source_sha256": "a3f9a6703fc85d039d6f44eea85e30ffac38daf4a4dbc47f3a9d216ef27939b9",
+  "future_child_argv": [
+    "<approved-python>",
+    "-B",
+    "-X",
+    "utf8",
+    "la2-audit-repair-next-dev/audit_pair.py",
+    "--work-root",
+    "<task-work-root>",
+    "--pair-root",
+    "la2",
+    "--manifest",
+    "la2/manifest.json",
+    "--manifest-sha256",
+    "bc80d137d18a24ac74acf623152f9664232dd9680562621490209bb20fc90d77",
+    "--plan",
+    "la2/verification-plan.json",
+    "--plan-sha256",
+    "98ca6f294b048eccf1025bf6d1956804ba970aafc88f79630790f7a6fd4cd060",
+    "--self-sha256",
+    "a3f9a6703fc85d039d6f44eea85e30ffac38daf4a4dbc47f3a9d216ef27939b9",
+    "--original-auditor",
+    "loss-seed-whole-agent-ab-r2-next-dev/audit_pair.py",
+    "--original-auditor-sha256",
+    "d0f2becf11979ea56d9523f0f010391325c2e684af0e7e521b3bbb832cba5e3c",
+    "--closed-root-receipt",
+    "la2/terminal-root-closure.json",
+    "--closed-root-receipt-sha256",
+    "3ae50a32e3931f214e59343eee99654c37b77bf66b1b8ec233d416586d6cfd8b",
+    "--failed-campaign-sha256",
+    "61a38e491a0c3753af5ff1c2ededfc992031bd209e38e414e65f7966c880e88f",
+    "--output",
+    "la2-audit-repair-r1/independent-audit.json"
+  ],
+  "actual": {
+    "AST_parse": "PASS",
+    "tests": 0,
+    "runtime_imports": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "label_prediction_score_reads": 0,
+    "frozen_edits": 0
+  },
+  "original_LA1_and_LA2_FAIL_preserved": true,
+  "preparation_attempt": "Initial exclusive mkdir refused root-created guard directory before writes; rerun added only these5 own files, preserved root guards."
+}

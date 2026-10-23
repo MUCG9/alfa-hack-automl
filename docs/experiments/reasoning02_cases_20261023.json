@@ -1,0 +1,41 @@
+[
+  {
+    "id": "marginal_tie",
+    "facts": {
+      "MARGINAL_SCREEN": {"comparison_control": "PIPE02_COMPLETE", "mixture_component_control": "V16_COMPLETE", "formula": ".9*fresh fitting-only V16_COMPLETE+.1*trial", "metric": "RMSE, minimize", "cuts": [{"cut": 0, "control": 38.82952590212054, "candidate": 38.76140658403198}, {"cut": 1, "control": 31.965070385455594, "candidate": 31.965070385455594}], "cut2": "not run; preregistered first failed required cut stops", "gate": "ALL three cuts must strictly improve; then candidate mean beats Random8 mean"},
+      "NEGATIVE_MEMORY": {"FORWARD_MEAN": "already evaluated after MARGINAL_SCREEN; same cut1 tie and rejected; no changed conditions", "RESIDUAL_FEATURES": "already rejected cut0 loss; no changed conditions"},
+      "CACHE": {"prediction_parity": "exact", "pair_speedup": 1.888958641761044, "scope": "execution cost only"},
+      "OFFICIAL": {"new_PIPE02": "processing, score empty", "prior_V11_score": 2309.002}
+    },
+    "operator_registry": ["FORWARD_MEAN", "FORWARD_WORST", "RESIDUAL_FEATURES"],
+    "next_rule": "Return all registry operators not already rejected unchanged. An untested operator is an available hypothesis, not a promotion.",
+    "expected": {"comparison_control": "PIPE02_COMPLETE", "component_control": "V16_COMPLETE", "promote": false, "complete_mean_available": false, "efficiency_is_quality": false, "official_score_known": false, "allowed_next_operator_ids": ["FORWARD_WORST"]},
+    "required_evidence_id": "MARGINAL_SCREEN"
+  },
+  {
+    "id": "qualified_pipe02",
+    "facts": {
+      "PIPE02_CONFIRMED": {"comparison_control": "V16_COMPLETE", "mixture_component_control": "V16_COMPLETE", "candidate": "PIPE02_COMPLETE", "formula": ".9*V16_COMPLETE+.1*standalone_inner_TPE8", "metric": "RMSE, minimize", "required_cuts": [{"cut": 0, "control": 38.902803731334785, "candidate": 38.82952590212054}, {"cut": 1, "control": 31.991659384340597, "candidate": 31.965070385455594}], "classification": "unchanged; exact CSV/metric parity", "forward_additional_gate": "PASS against V16, equal-cap Random8 and anchor mixtures", "entire_procedure": "PASS: both actual cuts, full refit, actual final CSV/integrity, original requirements, source and exact-unpacked checks", "gate": "For this already-completed qualification, both regression cuts improve and every stated procedure/release check passes"},
+      "CACHE": {"scope": "separate execution-only parity experiment; no predictive gain"},
+      "OFFICIAL": {"PIPE02_file": "uploaded once, processing, score empty", "prior_V11_score": 2309.002}
+    },
+    "operator_registry": [],
+    "next_rule": "No new operators listed. Decide local qualification only. Local promotion does not imply an official-score improvement or another upload.",
+    "expected": {"comparison_control": "V16_COMPLETE", "component_control": "V16_COMPLETE", "promote": true, "complete_mean_available": true, "efficiency_is_quality": false, "official_score_known": false, "allowed_next_operator_ids": []},
+    "required_evidence_id": "PIPE02_CONFIRMED"
+  },
+  {
+    "id": "class_cv_rejection",
+    "facts": {
+      "CLASS_BLEND": {"comparison_control": "COMPLETE_CLASS_CONTROL", "mixture_component_control": "COMPLETE_CLASS_CONTROL", "formula": ".9*complete_class_control+.1*fixed_TPE_augmentation", "public_holdouts": "both improved", "grouped_CV": "all3folds completed, exactly-once coverage verified; fold0 primary did not improve and Analysis F1 loss .014427 exceeded allowed .01 at support>=100", "gate": "EACH fold must improve MacroF1, supported-class losses <=.01, gain excluding rarest >0; a better mean cannot override failed folds"},
+      "EXISTING_CALIBRATION": "All5leaf learners already include training-only component decision calibration. Adding generic thresholds is not a novel mechanism.",
+      "NEGATIVE_MEMORY": {"REPEAT_CLASS_BLEND": "same .9/.1 blend failed declared CV; no changed conditions", "COMPONENT_NELDER": "previous measured component Nelder-Mead worsened both outer cuts; no changed conditions"},
+      "JOINT_RULE": "Fresh fitting-only complete-ensemble predictions followed by additional bounded multipliers AFTER the ensemble is an untested mechanism; existing calibration preserved.",
+      "OFFICIAL": "new PIPE02 official score still unknown; do not confuse prior score with this candidate"
+    },
+    "operator_registry": ["REPEAT_CLASS_BLEND", "COMPONENT_NELDER", "JOINT_TIGHT", "JOINT_NARROW"],
+    "next_rule": "Return all registry operators not already rejected unchanged. No tuning a new blend weight after observed CV. Decide promotion of the existing CLASS_BLEND, not the untested JOINT_RULE.",
+    "expected": {"comparison_control": "COMPLETE_CLASS_CONTROL", "component_control": "COMPLETE_CLASS_CONTROL", "promote": false, "complete_mean_available": true, "efficiency_is_quality": false, "official_score_known": false, "allowed_next_operator_ids": ["JOINT_TIGHT", "JOINT_NARROW"]},
+    "required_evidence_id": "CLASS_BLEND"
+  }
+]

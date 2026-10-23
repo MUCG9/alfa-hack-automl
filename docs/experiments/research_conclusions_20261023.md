@@ -1,8 +1,9 @@
 # Qwen MVP и autoresearch: проверенные результаты и следующие решения
 
 Статус на промежуточном checkpoint23Oct: полный MVP завершён; независимые
-regression screens и classification FE-01/HPO-01 завершены. Classification
-HAR-01 и отдельный FE-02 followup ещё выполняются/ожидают; их результатов здесь пока нет.
+основная ночная очередь завершена и независимо проверена без ошибок артефактов.
+Отдельный FE-02 followup ещё выполняется; обе blend qualification подготовлены.
+[Полная замороженная сводка](overnight_screens_20261023.json).
 Отдельный fixed BLEND-01 replay прошёл оба cuts; его grouped CV подготовлен,
 ещё не запущен. Replay не меняет qualified status.
 Лучший qualified полный агент остаётся V11/V16. Official uploads не делались.
@@ -100,7 +101,9 @@ HAR-01 classification generation: по2raw proposals у baseline/staged, по1va
 Второй у обоих отклонён из-за `feature_views` с изменёнными features. Оба valid
 recipes идентичны по signature: тот же two-view control с class_weight_power1.0.
 [Generation receipt](har01_generation_20261023.json). Промпты не дали разных
-исполнимых идей в этом matched случае. В текущем протоколе ML fits повторяются;
+исполнимых идей в этом matched случае. Оба фактически дали meanF1
+.6493301241872902 против .6547938868310776 control, оба cuts хуже.
+Измеренные scores совпали между режимами. В текущем протоколе ML fits повторяются;
 будущий cache по полному source/input/recipe/split fingerprint мог бы избежать
 повторного обучения при одинаковом recipe. Пока это гипотеза экономии времени,
 не измеренный scheduler gain. Feature-view/typed-row-feature bridge должен
@@ -148,7 +151,7 @@ preprocessing, чтобы искусственно выровнять feature co
    Цикл: гипотеза/коммит → ограниченный запуск → независимая оценка → решение →
    журнал. Адаптация использует CPU tabular metrics, fitting-only transforms,
    group/time validation, inner HPO и историю отрицательных commits.
-5. Три live Qwen meta-reviews сохранили ограничения самой схемы анализа.
+5. Три live Qwen meta-reviews выявили ограничения самой схемы анализа.
    REVIEW-01 принял envelope, но ошибся в supported gate; critical numeric rule
    не был явно загружен, локальная ссылка не является tool load. REVIEW-02 на
    тех же фактах и skill с явным contract вернул `{}` и был отклонён.

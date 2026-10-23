@@ -1,0 +1,2567 @@
+{
+  "scope": "Independently recomputed reused-public development screens; positive gates require further qualification, not a release",
+  "queue_status": "completed",
+  "queue_source_unchanged": true,
+  "screens": {
+    "regression-hpo": {
+      "mode": "hpo",
+      "metric": "rmse",
+      "cuts": [
+        {
+          "cut": 0,
+          "outcomes": {
+            "control": {
+              "value": 39.05167816956453,
+              "validation_rows": 18308,
+              "prediction_sha256": "7589bb1b1f6535ef0e4de1a0346addffc0861b294d7380c40bf76dfef858c61c",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 12.386
+            },
+            "random": {
+              "value": 39.05167816956453,
+              "validation_rows": 18308,
+              "prediction_sha256": "7589bb1b1f6535ef0e4de1a0346addffc0861b294d7380c40bf76dfef858c61c",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 12.385
+            },
+            "tpe": {
+              "value": 38.59512241438067,
+              "validation_rows": 18308,
+              "prediction_sha256": "ef3df143fc97d58abe810e0f836b442be48e46880a1a6199a2e7a199069872a6",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 13.212
+            }
+          },
+          "gates": {
+            "random": {
+              "oriented_gain": -0.0,
+              "primary_improved": false,
+              "passed": false
+            },
+            "tpe": {
+              "oriented_gain": 0.4565557551838637,
+              "primary_improved": true,
+              "passed": true
+            }
+          },
+          "split_sha256": "cb5cc91326bbe0c4144db3b7bd47bdbb0122cde4aeb32e2597f820c2834549e6",
+          "studies": {
+            "random": {
+              "status": "verified",
+              "completed_trials": 8,
+              "successful_trials_after_startup": 5,
+              "sampler": "random",
+              "seconds": 59.827,
+              "best_inner_value": 31.846185166957753,
+              "split_sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
+              "inside_outer_fitting_rows_verified": true
+            },
+            "tpe": {
+              "status": "verified",
+              "completed_trials": 8,
+              "successful_trials_after_startup": 5,
+              "sampler": "tpe",
+              "seconds": 62.455,
+              "best_inner_value": 31.827106600469268,
+              "split_sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
+              "inside_outer_fitting_rows_verified": true
+            }
+          },
+          "matched_inner_partitions_verified": true
+        },
+        {
+          "cut": 1,
+          "outcomes": {
+            "control": {
+              "value": 31.846185166957753,
+              "validation_rows": 12946,
+              "prediction_sha256": "bd003cae6a86b73077f1609b3b37ffa02bb2e100980196d12ec85a6ac2531721",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 8.558
+            },
+            "random": {
+              "value": 32.03374593558134,
+              "validation_rows": 12946,
+              "prediction_sha256": "af7571e5ca27302f77b2f75dccd81ee4ad5a2ee0272b94506539ea544ef2c5fd",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 7.917
+            },
+            "tpe": {
+              "value": 32.22338042388107,
+              "validation_rows": 12946,
+              "prediction_sha256": "0e455d404253e7c96f86b2253b2884a82afc3d87922eca603eddb6765f9bd20e",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 8.112
+            }
+          },
+          "gates": {
+            "random": {
+              "oriented_gain": -0.18756076862358384,
+              "primary_improved": false,
+              "passed": false
+            },
+            "tpe": {
+              "oriented_gain": -0.377195256923315,
+              "primary_improved": false,
+              "passed": false
+            }
+          },
+          "split_sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
+          "studies": {
+            "random": {
+              "status": "verified",
+              "completed_trials": 8,
+              "successful_trials_after_startup": 5,
+              "sampler": "random",
+              "seconds": 39.526,
+              "best_inner_value": 50.6211181832578,
+              "split_sha256": "a42ef4152b4dae2627ab1a8ab191600aae1c1337390b48d315b52d6419c2016e",
+              "inside_outer_fitting_rows_verified": true
+            },
+            "tpe": {
+              "status": "verified",
+              "completed_trials": 8,
+              "successful_trials_after_startup": 5,
+              "sampler": "tpe",
+              "seconds": 39.696,
+              "best_inner_value": 50.753989613758485,
+              "split_sha256": "a42ef4152b4dae2627ab1a8ab191600aae1c1337390b48d315b52d6419c2016e",
+              "inside_outer_fitting_rows_verified": true
+            }
+          },
+          "matched_inner_partitions_verified": true
+        },
+        {
+          "cut": 2,
+          "outcomes": {
+            "control": {
+              "value": 50.92466951315985,
+              "validation_rows": 10879,
+              "prediction_sha256": "60336096ceb8be0682d296391d493d06464ebb3a57b4b28d7b18445a3396ec73",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 4.957
+            },
+            "random": {
+              "value": 51.22409886518898,
+              "validation_rows": 10879,
+              "prediction_sha256": "9ef4af716caa9aecbf505553d778c7abbc1494ec232075d0e16c16340b4ab7cf",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 4.712
+            },
+            "tpe": {
+              "value": 50.68949896310836,
+              "validation_rows": 10879,
+              "prediction_sha256": "75f093a533f11e1a6f0928edf741f4eb0b6ea30185002315d426f32927f8c564",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 4.827
+            }
+          },
+          "gates": {
+            "random": {
+              "oriented_gain": -0.29942935202912935,
+              "primary_improved": false,
+              "passed": false
+            },
+            "tpe": {
+              "oriented_gain": 0.23517055005148535,
+              "primary_improved": true,
+              "passed": true
+            }
+          },
+          "split_sha256": "a42ef4152b4dae2627ab1a8ab191600aae1c1337390b48d315b52d6419c2016e",
+          "studies": {
+            "random": {
+              "status": "verified",
+              "completed_trials": 8,
+              "successful_trials_after_startup": 5,
+              "sampler": "random",
+              "seconds": 82.162,
+              "best_inner_value": 52.724534109246264,
+              "split_sha256": "2ba973d20bd729234f3ad862b27c2acb665686263937d133ef1e3f755f0f13fb",
+              "inside_outer_fitting_rows_verified": true
+            },
+            "tpe": {
+              "status": "verified",
+              "completed_trials": 8,
+              "successful_trials_after_startup": 5,
+              "sampler": "tpe",
+              "seconds": 82.978,
+              "best_inner_value": 52.50806525649524,
+              "split_sha256": "2ba973d20bd729234f3ad862b27c2acb665686263937d133ef1e3f755f0f13fb",
+              "inside_outer_fitting_rows_verified": true
+            }
+          },
+          "matched_inner_partitions_verified": true
+        }
+      ],
+      "source_matches_current": true,
+      "source_sha256": {
+        "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+        "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+        "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+        "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+        "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+        "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+        "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+        "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+        "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+        "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+        "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+        "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+        "automl_models.py": "d4c78d9e7b3e596d695080315b4f671d6cfc841f44bc237790df3ddbf5125f24",
+        "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+        "automl_ensembles.py": "ccbb07cef50a1ebfef8a157a86515a3b494e5c3ce8c37b518eca44265e3bd054",
+        "automl_worker.py": "93d0887bc59e507880608810f900971b1008f07f3faf864814df3eed7d43c75d",
+        "automl_policy.py": "af4fdc6a89b493db659d732259c1777b58a7a0ae28278f611411cbfa122611a3",
+        "automl_runner.py": "56acce4f742640334027c8a8e194f726d6404afc7c5b4673c6a02a7709109745",
+        "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+        "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+        "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+        "automl_contracts_error_analysis.py": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a",
+        "automl_contracts_messages.py": "dc14ab3c2e257b8ae8dacc3c3888580f01b9a5f5494322273989345d4f429623",
+        "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+        "automl_error_analysis_api.py": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad",
+        "automl_error_analysis_preparation.py": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52",
+        "automl_error_analysis_classification.py": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073",
+        "automl_error_analysis_reporting.py": "2b47e915e3d02c8cf2b1e803394247b3983576d99d7575a96ea5097370b4b664",
+        "automl_error_analysis_artifacts.py": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454",
+        "automl_error_analysis_uncertainty.py": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591",
+        "automl_error_analysis_regression.py": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719",
+        "automl_error_analysis_slices.py": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f",
+        "automl_error_analysis_comparisons.py": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418",
+        "automl_error_analysis_service.py": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630",
+        "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+        "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+        "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+        "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+        "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+        "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+        "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+        "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+        "automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
+        "automl_search_multitarget.py": "a855c0966156ccb5343471754d2028e20a8513aac706c33bb2c6dfa8201d4754",
+        "automl_search_hpo.py": "d608a56db313502800c9afc259a82d4ddf67887108074b3d1567d78e36416db4",
+        "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+        "automl_infrastructure_llm_gateway.py": "4d85eeac0985f6bb9995a07e6cf372621c2455d614b01959bd3b8fb82704d27d",
+        "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+        "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1",
+        "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+        "automl_infrastructure_run_budget.py": "0d94db9d5647731740e38e11069818ea3578dcc8a09cf217f736cae8fe8bdeb3",
+        "automl_execution_api.py": "37e92f85f4e8de65b9cf2fdf1dbee27549938c5d035aa0ece766f796076fc1aa",
+        "automl_execution_feature_views.py": "af53acb2ce53c2bb3bccd713d7d4be94f11a853ba3e4e1097590dead07bb86c4",
+        "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+        "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+        "automl_execution_feature_engineering_selection.py": "51d9f8e948478f861b2645e31a2ddcb308cfbe93209daf5aebcf08b1e4c7e77c",
+        "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+        "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+        "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+        "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+        "automl_execution_postprocessing_targets.py": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218",
+        "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+        "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+        "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+        "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+        "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953",
+        "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+      },
+      "expected_cuts": [
+        0,
+        1,
+        2
+      ],
+      "screen_status": "completed",
+      "complete_verified_screen": true,
+      "mean": {
+        "control": 40.60751094989404,
+        "random": 40.76984099011162,
+        "tpe": 40.502667267123364
+      },
+      "paired_gate_passed": {
+        "random": false,
+        "tpe": false
+      },
+      "tpe_mean_beats_random": true,
+      "measured_screen_gate_passed": false,
+      "advance_gate_passed": false
+    },
+    "classification-hpo": {
+      "mode": "hpo",
+      "metric": "macro_f1",
+      "cuts": [
+        {
+          "cut": 42,
+          "outcomes": {
+            "control": {
+              "value": 0.6558634659956402,
+              "validation_rows": 17141,
+              "prediction_sha256": "7b261f84576c81a917f224975ce7c9b3faf8907596decad21f5fb81a20c42eb8",
+              "row_order_verified": true,
+              "per_class_f1": {
+                "Analysis": 0.3375796178343949,
+                "Backdoor": 0.2146341463414634,
+                "DoS": 0.4978365996436752,
+                "Exploits": 0.6790680874119559,
+                "Fuzzers": 0.7555448408871746,
+                "Generic": 0.9878147847278635,
+                "Normal": 0.915273556231003,
+                "Reconnaissance": 0.8223615464994776,
+                "Shellcode": 0.6643109540636042,
+                "Worms": 0.6842105263157895
+              },
+              "status": "verified",
+              "seconds": 187.594
+            },
+            "random": {
+              "value": 0.6521687684435193,
+              "validation_rows": 17141,
+              "prediction_sha256": "564f68ba01d58444959d6fb39c055033149d5fd31c7d250d243ce21ed66153fb",
+              "row_order_verified": true,
+              "per_class_f1": {
+                "Analysis": 0.36585365853658536,
+                "Backdoor": 0.21568627450980393,
+                "DoS": 0.49293240812130557,
+                "Exploits": 0.6818586434039523,
+                "Fuzzers": 0.7526621490803485,
+                "Generic": 0.9872594198969911,
+                "Normal": 0.914067715784454,
+                "Reconnaissance": 0.8226652675760755,
+                "Shellcode": 0.6601307189542484,
+                "Worms": 0.6285714285714286
+              },
+              "status": "verified",
+              "seconds": 201.104
+            },
+            "tpe": {
+              "value": 0.6406114276690915,
+              "validation_rows": 17141,
+              "prediction_sha256": "61289a8d346b53d11a1558ac79083028e118cbfe51b8d2524ec403d36314020a",
+              "row_order_verified": true,
+              "per_class_f1": {
+                "Analysis": 0.2807017543859649,
+                "Backdoor": 0.22018348623853212,
+                "DoS": 0.4908669925392333,
+                "Exploits": 0.6812366737739872,
+                "Fuzzers": 0.7598905200298581,
+                "Generic": 0.9876777251184834,
+                "Normal": 0.9191672918229558,
+                "Reconnaissance": 0.8246445497630331,
+                "Shellcode": 0.6792452830188679,
+                "Worms": 0.5625
+              },
+              "status": "verified",
+              "seconds": 208.939
+            }
+          },
+          "gates": {
+            "random": {
+              "oriented_gain": -0.003694697552120818,
+              "primary_improved": false,
+              "per_class_delta": {
+                "Analysis": 0.028274040702190473,
+                "Backdoor": 0.0010521281683405215,
+                "DoS": -0.00490419152236965,
+                "Exploits": 0.002790555991996402,
+                "Fuzzers": -0.0028826918068260987,
+                "Generic": -0.0005553648308724846,
+                "Normal": -0.0012058404465490336,
+                "Reconnaissance": 0.00030372107659792924,
+                "Shellcode": -0.004180235109355834,
+                "Worms": -0.05563909774436093
+              },
+              "independent_fitting_groups": {
+                "Analysis": 695,
+                "Backdoor": 666,
+                "DoS": 2032,
+                "Exploits": 8833,
+                "Fuzzers": 6767,
+                "Generic": 2829,
+                "Normal": 21177,
+                "Reconnaissance": 3202,
+                "Shellcode": 440,
+                "Worms": 46
+              },
+              "rarest_class": "Worms",
+              "gain_without_rarest_class": 0.002076902469239136,
+              "supported_class_violations": {},
+              "passed": false
+            },
+            "tpe": {
+              "oriented_gain": -0.015252038326548645,
+              "primary_improved": false,
+              "per_class_delta": {
+                "Analysis": -0.05687786344842999,
+                "Backdoor": 0.005549339897068711,
+                "DoS": -0.006969607104441888,
+                "Exploits": 0.0021685863620313217,
+                "Fuzzers": 0.004345679142683578,
+                "Generic": -0.00013705960938015238,
+                "Normal": 0.0038937355919527183,
+                "Reconnaissance": 0.002283003263555572,
+                "Shellcode": 0.014934328955263698,
+                "Worms": -0.12171052631578949
+              },
+              "independent_fitting_groups": {
+                "Analysis": 695,
+                "Backdoor": 666,
+                "DoS": 2032,
+                "Exploits": 8833,
+                "Fuzzers": 6767,
+                "Generic": 2829,
+                "Normal": 21177,
+                "Reconnaissance": 3202,
+                "Shellcode": 440,
+                "Worms": 46
+              },
+              "rarest_class": "Worms",
+              "gain_without_rarest_class": -0.0034233174388551588,
+              "supported_class_violations": {
+                "Analysis": -0.05687786344842999
+              },
+              "passed": false
+            }
+          },
+          "split_sha256": "0daf20f2020a795fa0503deab309959953d814821be7792d53f26e1e467829f7",
+          "studies": {
+            "random": {
+              "status": "verified",
+              "completed_trials": 8,
+              "successful_trials_after_startup": 5,
+              "sampler": "random",
+              "seconds": 1428.989,
+              "best_inner_value": 0.6436748918407986,
+              "split_sha256": "647fc402812f8bd9006ca699cb763c3cbc830f12258a243724ec6ff1b44ada30",
+              "inside_outer_fitting_rows_verified": true
+            },
+            "tpe": {
+              "status": "verified",
+              "completed_trials": 8,
+              "successful_trials_after_startup": 5,
+              "sampler": "tpe",
+              "seconds": 1464.641,
+              "best_inner_value": 0.644363740413238,
+              "split_sha256": "647fc402812f8bd9006ca699cb763c3cbc830f12258a243724ec6ff1b44ada30",
+              "inside_outer_fitting_rows_verified": true
+            }
+          },
+          "matched_inner_partitions_verified": true
+        },
+        {
+          "cut": 43,
+          "outcomes": {
+            "control": {
+              "value": 0.653724307666515,
+              "validation_rows": 17349,
+              "prediction_sha256": "55cddf91e3e5c8416e84bbadef0cc683e90c307d11d38eeeb50142fb05b3bf67",
+              "row_order_verified": true,
+              "per_class_f1": {
+                "Analysis": 0.2733812949640288,
+                "Backdoor": 0.21374045801526717,
+                "DoS": 0.4831251660908849,
+                "Exploits": 0.6828217555196554,
+                "Fuzzers": 0.7510184519530314,
+                "Generic": 0.9897619657025851,
+                "Normal": 0.9150819054791941,
+                "Reconnaissance": 0.842159916926272,
+                "Shellcode": 0.7432950191570882,
+                "Worms": 0.6428571428571429
+              },
+              "status": "verified",
+              "seconds": 199.978
+            },
+            "random": {
+              "value": 0.6503752392077577,
+              "validation_rows": 17349,
+              "prediction_sha256": "f2dd271c57c6e2b36988d3cdf3101f9f4ac4343b2dc9b9b26320e075695a713a",
+              "row_order_verified": true,
+              "per_class_f1": {
+                "Analysis": 0.27414330218068533,
+                "Backdoor": 0.25,
+                "DoS": 0.4744160177975528,
+                "Exploits": 0.6848835172534594,
+                "Fuzzers": 0.7508274231678487,
+                "Generic": 0.9898834677935715,
+                "Normal": 0.9141720348616901,
+                "Reconnaissance": 0.8443759630200308,
+                "Shellcode": 0.7003610108303249,
+                "Worms": 0.6206896551724138
+              },
+              "status": "verified",
+              "seconds": 217.675
+            },
+            "tpe": {
+              "value": 0.6535870463639596,
+              "validation_rows": 17349,
+              "prediction_sha256": "ad7ed395d886390aa4ad1270384a9324cd0b10752a2ef8ab2efbc93acd09affa",
+              "row_order_verified": true,
+              "per_class_f1": {
+                "Analysis": 0.23809523809523808,
+                "Backdoor": 0.23728813559322035,
+                "DoS": 0.4914877868245744,
+                "Exploits": 0.674934235249906,
+                "Fuzzers": 0.7559016792406912,
+                "Generic": 0.9902688860435339,
+                "Normal": 0.9192569775039672,
+                "Reconnaissance": 0.8444676409185804,
+                "Shellcode": 0.7413127413127413,
+                "Worms": 0.6428571428571429
+              },
+              "status": "verified",
+              "seconds": 252.668
+            }
+          },
+          "gates": {
+            "random": {
+              "oriented_gain": -0.003349068458757265,
+              "primary_improved": false,
+              "per_class_delta": {
+                "Analysis": 0.000762007216656535,
+                "Backdoor": 0.03625954198473283,
+                "DoS": -0.00870914829333208,
+                "Exploits": 0.002061761733804013,
+                "Fuzzers": -0.00019102878518273414,
+                "Generic": 0.00012150209098638065,
+                "Normal": -0.0009098706175040272,
+                "Reconnaissance": 0.0022160460937588056,
+                "Shellcode": -0.04293400832676331,
+                "Worms": -0.022167487684729092
+              },
+              "independent_fitting_groups": {
+                "Analysis": 705,
+                "Backdoor": 664,
+                "DoS": 2061,
+                "Exploits": 8882,
+                "Fuzzers": 6765,
+                "Generic": 2828,
+                "Normal": 21095,
+                "Reconnaissance": 3206,
+                "Shellcode": 446,
+                "Worms": 54
+              },
+              "rarest_class": "Worms",
+              "gain_without_rarest_class": -0.0012581329892048427,
+              "supported_class_violations": {
+                "Shellcode": -0.04293400832676331
+              },
+              "passed": false
+            },
+            "tpe": {
+              "oriented_gain": -0.0001372613025554248,
+              "primary_improved": false,
+              "per_class_delta": {
+                "Analysis": -0.035286056868790716,
+                "Backdoor": 0.023547677577953174,
+                "DoS": 0.008362620733689485,
+                "Exploits": -0.00788752026974937,
+                "Fuzzers": 0.004883227287659775,
+                "Generic": 0.000506920340948791,
+                "Normal": 0.004175072024773074,
+                "Reconnaissance": 0.002307723992308386,
+                "Shellcode": -0.0019822778443469025,
+                "Worms": 0.0
+              },
+              "independent_fitting_groups": {
+                "Analysis": 705,
+                "Backdoor": 664,
+                "DoS": 2061,
+                "Exploits": 8882,
+                "Fuzzers": 6765,
+                "Generic": 2828,
+                "Normal": 21095,
+                "Reconnaissance": 3206,
+                "Shellcode": 446,
+                "Worms": 54
+              },
+              "rarest_class": "Worms",
+              "gain_without_rarest_class": -0.0001525125583949226,
+              "supported_class_violations": {
+                "Analysis": -0.035286056868790716
+              },
+              "passed": false
+            }
+          },
+          "split_sha256": "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a",
+          "studies": {
+            "random": {
+              "status": "verified",
+              "completed_trials": 8,
+              "successful_trials_after_startup": 5,
+              "sampler": "random",
+              "seconds": 1436.903,
+              "best_inner_value": 0.6318622857763505,
+              "split_sha256": "6b5bffeed0a25211dfdf1873ebbaa83c0d9a1657ad29ef82203361c121fbe96a",
+              "inside_outer_fitting_rows_verified": true
+            },
+            "tpe": {
+              "status": "verified",
+              "completed_trials": 8,
+              "successful_trials_after_startup": 5,
+              "sampler": "tpe",
+              "seconds": 1405.727,
+              "best_inner_value": 0.6437498373977427,
+              "split_sha256": "6b5bffeed0a25211dfdf1873ebbaa83c0d9a1657ad29ef82203361c121fbe96a",
+              "inside_outer_fitting_rows_verified": true
+            }
+          },
+          "matched_inner_partitions_verified": true
+        }
+      ],
+      "source_matches_current": true,
+      "source_sha256": {
+        "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+        "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+        "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+        "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+        "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+        "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+        "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+        "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+        "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+        "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+        "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+        "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+        "automl_models.py": "d4c78d9e7b3e596d695080315b4f671d6cfc841f44bc237790df3ddbf5125f24",
+        "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+        "automl_ensembles.py": "ccbb07cef50a1ebfef8a157a86515a3b494e5c3ce8c37b518eca44265e3bd054",
+        "automl_worker.py": "93d0887bc59e507880608810f900971b1008f07f3faf864814df3eed7d43c75d",
+        "automl_policy.py": "af4fdc6a89b493db659d732259c1777b58a7a0ae28278f611411cbfa122611a3",
+        "automl_runner.py": "56acce4f742640334027c8a8e194f726d6404afc7c5b4673c6a02a7709109745",
+        "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+        "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+        "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+        "automl_contracts_error_analysis.py": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a",
+        "automl_contracts_messages.py": "dc14ab3c2e257b8ae8dacc3c3888580f01b9a5f5494322273989345d4f429623",
+        "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+        "automl_error_analysis_api.py": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad",
+        "automl_error_analysis_preparation.py": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52",
+        "automl_error_analysis_classification.py": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073",
+        "automl_error_analysis_reporting.py": "2b47e915e3d02c8cf2b1e803394247b3983576d99d7575a96ea5097370b4b664",
+        "automl_error_analysis_artifacts.py": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454",
+        "automl_error_analysis_uncertainty.py": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591",
+        "automl_error_analysis_regression.py": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719",
+        "automl_error_analysis_slices.py": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f",
+        "automl_error_analysis_comparisons.py": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418",
+        "automl_error_analysis_service.py": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630",
+        "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+        "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+        "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+        "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+        "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+        "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+        "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+        "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+        "automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
+        "automl_search_multitarget.py": "a855c0966156ccb5343471754d2028e20a8513aac706c33bb2c6dfa8201d4754",
+        "automl_search_hpo.py": "d608a56db313502800c9afc259a82d4ddf67887108074b3d1567d78e36416db4",
+        "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+        "automl_infrastructure_llm_gateway.py": "4d85eeac0985f6bb9995a07e6cf372621c2455d614b01959bd3b8fb82704d27d",
+        "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+        "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1",
+        "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+        "automl_infrastructure_run_budget.py": "0d94db9d5647731740e38e11069818ea3578dcc8a09cf217f736cae8fe8bdeb3",
+        "automl_execution_api.py": "37e92f85f4e8de65b9cf2fdf1dbee27549938c5d035aa0ece766f796076fc1aa",
+        "automl_execution_feature_views.py": "af53acb2ce53c2bb3bccd713d7d4be94f11a853ba3e4e1097590dead07bb86c4",
+        "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+        "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+        "automl_execution_feature_engineering_selection.py": "51d9f8e948478f861b2645e31a2ddcb308cfbe93209daf5aebcf08b1e4c7e77c",
+        "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+        "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+        "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+        "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+        "automl_execution_postprocessing_targets.py": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218",
+        "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+        "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+        "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+        "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+        "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953",
+        "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+      },
+      "expected_cuts": [
+        42,
+        43
+      ],
+      "screen_status": "completed",
+      "complete_verified_screen": true,
+      "mean": {
+        "control": 0.6547938868310776,
+        "random": 0.6512720038256385,
+        "tpe": 0.6470992370165256
+      },
+      "paired_gate_passed": {
+        "random": false,
+        "tpe": false
+      },
+      "tpe_mean_beats_random": false,
+      "measured_screen_gate_passed": false,
+      "advance_gate_passed": false
+    },
+    "classification-prompt-staged": {
+      "mode": "candidate_screen",
+      "metric": "macro_f1",
+      "control": "qualified-control",
+      "source_matches_current": true,
+      "source_sha256": {
+        "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+        "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+        "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+        "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+        "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+        "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+        "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+        "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+        "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+        "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+        "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+        "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+        "automl_models.py": "d4c78d9e7b3e596d695080315b4f671d6cfc841f44bc237790df3ddbf5125f24",
+        "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+        "automl_ensembles.py": "ccbb07cef50a1ebfef8a157a86515a3b494e5c3ce8c37b518eca44265e3bd054",
+        "automl_worker.py": "93d0887bc59e507880608810f900971b1008f07f3faf864814df3eed7d43c75d",
+        "automl_policy.py": "af4fdc6a89b493db659d732259c1777b58a7a0ae28278f611411cbfa122611a3",
+        "automl_runner.py": "56acce4f742640334027c8a8e194f726d6404afc7c5b4673c6a02a7709109745",
+        "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+        "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+        "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+        "automl_contracts_error_analysis.py": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a",
+        "automl_contracts_messages.py": "dc14ab3c2e257b8ae8dacc3c3888580f01b9a5f5494322273989345d4f429623",
+        "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+        "automl_error_analysis_api.py": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad",
+        "automl_error_analysis_preparation.py": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52",
+        "automl_error_analysis_classification.py": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073",
+        "automl_error_analysis_reporting.py": "2b47e915e3d02c8cf2b1e803394247b3983576d99d7575a96ea5097370b4b664",
+        "automl_error_analysis_artifacts.py": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454",
+        "automl_error_analysis_uncertainty.py": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591",
+        "automl_error_analysis_regression.py": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719",
+        "automl_error_analysis_slices.py": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f",
+        "automl_error_analysis_comparisons.py": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418",
+        "automl_error_analysis_service.py": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630",
+        "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+        "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+        "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+        "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+        "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+        "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+        "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+        "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+        "automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
+        "automl_search_multitarget.py": "a855c0966156ccb5343471754d2028e20a8513aac706c33bb2c6dfa8201d4754",
+        "automl_search_hpo.py": "d608a56db313502800c9afc259a82d4ddf67887108074b3d1567d78e36416db4",
+        "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+        "automl_infrastructure_llm_gateway.py": "4d85eeac0985f6bb9995a07e6cf372621c2455d614b01959bd3b8fb82704d27d",
+        "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+        "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1",
+        "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+        "automl_infrastructure_run_budget.py": "0d94db9d5647731740e38e11069818ea3578dcc8a09cf217f736cae8fe8bdeb3",
+        "automl_execution_api.py": "37e92f85f4e8de65b9cf2fdf1dbee27549938c5d035aa0ece766f796076fc1aa",
+        "automl_execution_feature_views.py": "af53acb2ce53c2bb3bccd713d7d4be94f11a853ba3e4e1097590dead07bb86c4",
+        "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+        "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+        "automl_execution_feature_engineering_selection.py": "51d9f8e948478f861b2645e31a2ddcb308cfbe93209daf5aebcf08b1e4c7e77c",
+        "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+        "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+        "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+        "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+        "automl_execution_postprocessing_targets.py": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218",
+        "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+        "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+        "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+        "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+        "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953",
+        "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+      },
+      "expected_cuts": [
+        42,
+        43
+      ],
+      "candidates": {
+        "staged-1": {
+          "cuts": [
+            {
+              "cut": 42,
+              "control": {
+                "value": 0.6558634659956402,
+                "validation_rows": 17141,
+                "prediction_sha256": "7b261f84576c81a917f224975ce7c9b3faf8907596decad21f5fb81a20c42eb8",
+                "row_order_verified": true,
+                "per_class_f1": {
+                  "Analysis": 0.3375796178343949,
+                  "Backdoor": 0.2146341463414634,
+                  "DoS": 0.4978365996436752,
+                  "Exploits": 0.6790680874119559,
+                  "Fuzzers": 0.7555448408871746,
+                  "Generic": 0.9878147847278635,
+                  "Normal": 0.915273556231003,
+                  "Reconnaissance": 0.8223615464994776,
+                  "Shellcode": 0.6643109540636042,
+                  "Worms": 0.6842105263157895
+                },
+                "status": "verified",
+                "seconds": 184.212
+              },
+              "candidate": {
+                "value": 0.6488951448308256,
+                "validation_rows": 17141,
+                "prediction_sha256": "ca521edecedd3f402fbc438001030af55d30d0ec7f3e74e2dc81970774fddadd",
+                "row_order_verified": true,
+                "per_class_f1": {
+                  "Analysis": 0.3003412969283277,
+                  "Backdoor": 0.16501650165016502,
+                  "DoS": 0.4971127290986693,
+                  "Exploits": 0.6766205389657683,
+                  "Fuzzers": 0.7572393822393823,
+                  "Generic": 0.9875338753387534,
+                  "Normal": 0.9153736316039981,
+                  "Reconnaissance": 0.8164992067689053,
+                  "Shellcode": 0.6875,
+                  "Worms": 0.6857142857142857
+                },
+                "status": "verified",
+                "seconds": 475.446
+              },
+              "gate": {
+                "oriented_gain": -0.006968321164814606,
+                "primary_improved": false,
+                "per_class_delta": {
+                  "Analysis": -0.03723832090606721,
+                  "Backdoor": -0.049617644691298396,
+                  "DoS": -0.0007238705450058891,
+                  "Exploits": -0.002447548446187553,
+                  "Fuzzers": 0.0016945413522077013,
+                  "Generic": -0.00028090938911018437,
+                  "Normal": 0.00010007537299505653,
+                  "Reconnaissance": -0.0058623397305722635,
+                  "Shellcode": 0.023189045936395813,
+                  "Worms": 0.0015037593984962294
+                },
+                "independent_fitting_groups": {
+                  "Analysis": 695,
+                  "Backdoor": 666,
+                  "DoS": 2032,
+                  "Exploits": 8833,
+                  "Fuzzers": 6767,
+                  "Generic": 2829,
+                  "Normal": 21177,
+                  "Reconnaissance": 3202,
+                  "Shellcode": 440,
+                  "Worms": 46
+                },
+                "rarest_class": "Worms",
+                "gain_without_rarest_class": -0.007909663449626993,
+                "supported_class_violations": {
+                  "Analysis": -0.03723832090606721,
+                  "Backdoor": -0.049617644691298396
+                },
+                "passed": false
+              }
+            },
+            {
+              "cut": 43,
+              "control": {
+                "value": 0.653724307666515,
+                "validation_rows": 17349,
+                "prediction_sha256": "55cddf91e3e5c8416e84bbadef0cc683e90c307d11d38eeeb50142fb05b3bf67",
+                "row_order_verified": true,
+                "per_class_f1": {
+                  "Analysis": 0.2733812949640288,
+                  "Backdoor": 0.21374045801526717,
+                  "DoS": 0.4831251660908849,
+                  "Exploits": 0.6828217555196554,
+                  "Fuzzers": 0.7510184519530314,
+                  "Generic": 0.9897619657025851,
+                  "Normal": 0.9150819054791941,
+                  "Reconnaissance": 0.842159916926272,
+                  "Shellcode": 0.7432950191570882,
+                  "Worms": 0.6428571428571429
+                },
+                "status": "verified",
+                "seconds": 182.375
+              },
+              "candidate": {
+                "value": 0.6497651035437549,
+                "validation_rows": 17349,
+                "prediction_sha256": "dd1c97c09b19d84dd88cbebb6335813002e8bbacea87119eea40b4821d98414e",
+                "row_order_verified": true,
+                "per_class_f1": {
+                  "Analysis": 0.26373626373626374,
+                  "Backdoor": 0.23134328358208955,
+                  "DoS": 0.491417361451692,
+                  "Exploits": 0.6676691729323309,
+                  "Fuzzers": 0.7479185938945421,
+                  "Generic": 0.9900076863950807,
+                  "Normal": 0.9079060852898898,
+                  "Reconnaissance": 0.8454258675078864,
+                  "Shellcode": 0.7368421052631579,
+                  "Worms": 0.6153846153846154
+                },
+                "status": "verified",
+                "seconds": 352.941
+              },
+              "gate": {
+                "oriented_gain": -0.003959204122760074,
+                "primary_improved": false,
+                "per_class_delta": {
+                  "Analysis": -0.009645031227765055,
+                  "Backdoor": 0.017602825566822383,
+                  "DoS": 0.008292195360807109,
+                  "Exploits": -0.015152582587324548,
+                  "Fuzzers": -0.0030998580584893354,
+                  "Generic": 0.00024572069249562123,
+                  "Normal": -0.007175820189304294,
+                  "Reconnaissance": 0.0032659505816143852,
+                  "Shellcode": -0.006452913893930323,
+                  "Worms": -0.027472527472527486
+                },
+                "independent_fitting_groups": {
+                  "Analysis": 705,
+                  "Backdoor": 664,
+                  "DoS": 2061,
+                  "Exploits": 8882,
+                  "Fuzzers": 6765,
+                  "Generic": 2828,
+                  "Normal": 21095,
+                  "Reconnaissance": 3206,
+                  "Shellcode": 446,
+                  "Worms": 54
+                },
+                "rarest_class": "Worms",
+                "gain_without_rarest_class": -0.001346612639452673,
+                "supported_class_violations": {
+                  "Exploits": -0.015152582587324548
+                },
+                "passed": false
+              }
+            }
+          ],
+          "feature_code": false,
+          "complete_verified_screen": true,
+          "measured_screen_gate_passed": false,
+          "advance_gate_passed": false,
+          "control_mean": 0.6547938868310776,
+          "candidate_mean": 0.6493301241872902
+        }
+      }
+    },
+    "classification-feature-selection": {
+      "mode": "selection",
+      "metric": "macro_f1",
+      "cuts": [
+        {
+          "cut": 42,
+          "outcomes": {
+            "control": {
+              "value": 0.6558634659956402,
+              "validation_rows": 17141,
+              "prediction_sha256": "7b261f84576c81a917f224975ce7c9b3faf8907596decad21f5fb81a20c42eb8",
+              "row_order_verified": true,
+              "per_class_f1": {
+                "Analysis": 0.3375796178343949,
+                "Backdoor": 0.2146341463414634,
+                "DoS": 0.4978365996436752,
+                "Exploits": 0.6790680874119559,
+                "Fuzzers": 0.7555448408871746,
+                "Generic": 0.9878147847278635,
+                "Normal": 0.915273556231003,
+                "Reconnaissance": 0.8223615464994776,
+                "Shellcode": 0.6643109540636042,
+                "Worms": 0.6842105263157895
+              },
+              "status": "verified",
+              "seconds": 185.638
+            },
+            "selection": {
+              "value": 0.6502622584145485,
+              "validation_rows": 17141,
+              "prediction_sha256": "cb6920303dc4ab1577f7e015619906886debb81bcfd1700ecd95f499f6fce518",
+              "row_order_verified": true,
+              "per_class_f1": {
+                "Analysis": 0.3258785942492013,
+                "Backdoor": 0.22564102564102564,
+                "DoS": 0.4926489553778695,
+                "Exploits": 0.6852925672113864,
+                "Fuzzers": 0.7606816497900716,
+                "Generic": 0.9873966662149343,
+                "Normal": 0.9180513595166163,
+                "Reconnaissance": 0.823342175066313,
+                "Shellcode": 0.7211895910780669,
+                "Worms": 0.5625
+              },
+              "status": "verified",
+              "seconds": 434.83
+            }
+          },
+          "gates": {
+            "selection": {
+              "oriented_gain": -0.005601207581091616,
+              "primary_improved": false,
+              "per_class_delta": {
+                "Analysis": -0.011701023585193593,
+                "Backdoor": 0.011006879299562233,
+                "DoS": -0.005187644265805702,
+                "Exploits": 0.006224479799430527,
+                "Fuzzers": 0.005136808902897028,
+                "Generic": -0.0004181185129292775,
+                "Normal": 0.0027778032856132784,
+                "Reconnaissance": 0.0009806285668354509,
+                "Shellcode": 0.05687863701446272,
+                "Worms": -0.12171052631578949
+              },
+              "independent_fitting_groups": {
+                "Analysis": 695,
+                "Backdoor": 666,
+                "DoS": 2032,
+                "Exploits": 8833,
+                "Fuzzers": 6767,
+                "Generic": 2829,
+                "Normal": 21177,
+                "Reconnaissance": 3202,
+                "Shellcode": 440,
+                "Worms": 46
+              },
+              "rarest_class": "Worms",
+              "gain_without_rarest_class": 0.00729982783387474,
+              "supported_class_violations": {
+                "Analysis": -0.011701023585193593
+              },
+              "passed": false
+            }
+          },
+          "split_sha256": "0daf20f2020a795fa0503deab309959953d814821be7792d53f26e1e467829f7"
+        },
+        {
+          "cut": 43,
+          "outcomes": {
+            "control": {
+              "value": 0.653724307666515,
+              "validation_rows": 17349,
+              "prediction_sha256": "55cddf91e3e5c8416e84bbadef0cc683e90c307d11d38eeeb50142fb05b3bf67",
+              "row_order_verified": true,
+              "per_class_f1": {
+                "Analysis": 0.2733812949640288,
+                "Backdoor": 0.21374045801526717,
+                "DoS": 0.4831251660908849,
+                "Exploits": 0.6828217555196554,
+                "Fuzzers": 0.7510184519530314,
+                "Generic": 0.9897619657025851,
+                "Normal": 0.9150819054791941,
+                "Reconnaissance": 0.842159916926272,
+                "Shellcode": 0.7432950191570882,
+                "Worms": 0.6428571428571429
+              },
+              "status": "verified",
+              "seconds": 184.002
+            },
+            "selection": {
+              "value": 0.6581395159656617,
+              "validation_rows": 17349,
+              "prediction_sha256": "ac22a50cb520c769abddc614e60c7fb3928c741ea8ba4aa1c478d8b0ff7abeae",
+              "row_order_verified": true,
+              "per_class_f1": {
+                "Analysis": 0.28753993610223644,
+                "Backdoor": 0.24528301886792453,
+                "DoS": 0.4950149551345962,
+                "Exploits": 0.6793850713095018,
+                "Fuzzers": 0.7522373999057936,
+                "Generic": 0.9898782831518258,
+                "Normal": 0.9114960030452989,
+                "Reconnaissance": 0.8431578947368421,
+                "Shellcode": 0.7345454545454545,
+                "Worms": 0.6428571428571429
+              },
+              "status": "verified",
+              "seconds": 366.56
+            }
+          },
+          "gates": {
+            "selection": {
+              "oriented_gain": 0.004415208299146656,
+              "primary_improved": true,
+              "per_class_delta": {
+                "Analysis": 0.01415864113820764,
+                "Backdoor": 0.03154256085265736,
+                "DoS": 0.011889789043711296,
+                "Exploits": -0.00343668421015364,
+                "Fuzzers": 0.0012189479527622282,
+                "Generic": 0.0001163174492406771,
+                "Normal": -0.0035859024338952272,
+                "Reconnaissance": 0.0009979778105700943,
+                "Shellcode": -0.008749564611633676,
+                "Worms": 0.0
+              },
+              "independent_fitting_groups": {
+                "Analysis": 705,
+                "Backdoor": 664,
+                "DoS": 2061,
+                "Exploits": 8882,
+                "Fuzzers": 6765,
+                "Generic": 2828,
+                "Normal": 21095,
+                "Reconnaissance": 3206,
+                "Shellcode": 446,
+                "Worms": 54
+              },
+              "rarest_class": "Worms",
+              "gain_without_rarest_class": 0.004905786999051861,
+              "supported_class_violations": {},
+              "passed": true
+            }
+          },
+          "split_sha256": "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a"
+        }
+      ],
+      "source_matches_current": true,
+      "source_sha256": {
+        "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+        "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+        "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+        "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+        "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+        "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+        "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+        "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+        "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+        "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+        "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+        "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+        "automl_models.py": "d4c78d9e7b3e596d695080315b4f671d6cfc841f44bc237790df3ddbf5125f24",
+        "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+        "automl_ensembles.py": "ccbb07cef50a1ebfef8a157a86515a3b494e5c3ce8c37b518eca44265e3bd054",
+        "automl_worker.py": "93d0887bc59e507880608810f900971b1008f07f3faf864814df3eed7d43c75d",
+        "automl_policy.py": "af4fdc6a89b493db659d732259c1777b58a7a0ae28278f611411cbfa122611a3",
+        "automl_runner.py": "56acce4f742640334027c8a8e194f726d6404afc7c5b4673c6a02a7709109745",
+        "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+        "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+        "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+        "automl_contracts_error_analysis.py": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a",
+        "automl_contracts_messages.py": "dc14ab3c2e257b8ae8dacc3c3888580f01b9a5f5494322273989345d4f429623",
+        "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+        "automl_error_analysis_api.py": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad",
+        "automl_error_analysis_preparation.py": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52",
+        "automl_error_analysis_classification.py": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073",
+        "automl_error_analysis_reporting.py": "2b47e915e3d02c8cf2b1e803394247b3983576d99d7575a96ea5097370b4b664",
+        "automl_error_analysis_artifacts.py": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454",
+        "automl_error_analysis_uncertainty.py": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591",
+        "automl_error_analysis_regression.py": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719",
+        "automl_error_analysis_slices.py": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f",
+        "automl_error_analysis_comparisons.py": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418",
+        "automl_error_analysis_service.py": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630",
+        "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+        "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+        "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+        "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+        "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+        "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+        "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+        "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+        "automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
+        "automl_search_multitarget.py": "a855c0966156ccb5343471754d2028e20a8513aac706c33bb2c6dfa8201d4754",
+        "automl_search_hpo.py": "d608a56db313502800c9afc259a82d4ddf67887108074b3d1567d78e36416db4",
+        "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+        "automl_infrastructure_llm_gateway.py": "4d85eeac0985f6bb9995a07e6cf372621c2455d614b01959bd3b8fb82704d27d",
+        "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+        "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1",
+        "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+        "automl_infrastructure_run_budget.py": "0d94db9d5647731740e38e11069818ea3578dcc8a09cf217f736cae8fe8bdeb3",
+        "automl_execution_api.py": "37e92f85f4e8de65b9cf2fdf1dbee27549938c5d035aa0ece766f796076fc1aa",
+        "automl_execution_feature_views.py": "af53acb2ce53c2bb3bccd713d7d4be94f11a853ba3e4e1097590dead07bb86c4",
+        "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+        "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+        "automl_execution_feature_engineering_selection.py": "51d9f8e948478f861b2645e31a2ddcb308cfbe93209daf5aebcf08b1e4c7e77c",
+        "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+        "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+        "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+        "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+        "automl_execution_postprocessing_targets.py": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218",
+        "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+        "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+        "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+        "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+        "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953",
+        "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+      },
+      "expected_cuts": [
+        42,
+        43
+      ],
+      "screen_status": "completed",
+      "complete_verified_screen": true,
+      "mean": {
+        "control": 0.6547938868310776,
+        "selection": 0.654200887190105
+      },
+      "paired_gate_passed": {
+        "selection": false
+      },
+      "measured_screen_gate_passed": false,
+      "advance_gate_passed": false
+    },
+    "regression-feature-selection": {
+      "mode": "selection",
+      "metric": "rmse",
+      "cuts": [
+        {
+          "cut": 0,
+          "outcomes": {
+            "control": {
+              "value": 39.05167816956453,
+              "validation_rows": 18308,
+              "prediction_sha256": "7589bb1b1f6535ef0e4de1a0346addffc0861b294d7380c40bf76dfef858c61c",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 12.683
+            },
+            "selection": {
+              "value": 40.13054654395413,
+              "validation_rows": 18308,
+              "prediction_sha256": "fbe5c06c854fd168a0a6e20132d29756fc565c6d9a2546415c9264db884caf8b",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 12.628
+            }
+          },
+          "gates": {
+            "selection": {
+              "oriented_gain": -1.0788683743896001,
+              "primary_improved": false,
+              "passed": false
+            }
+          },
+          "split_sha256": "cb5cc91326bbe0c4144db3b7bd47bdbb0122cde4aeb32e2597f820c2834549e6"
+        },
+        {
+          "cut": 1,
+          "outcomes": {
+            "control": {
+              "value": 31.846185166957753,
+              "validation_rows": 12946,
+              "prediction_sha256": "bd003cae6a86b73077f1609b3b37ffa02bb2e100980196d12ec85a6ac2531721",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 8.56
+            },
+            "selection": {
+              "value": 32.063943365696076,
+              "validation_rows": 12946,
+              "prediction_sha256": "f7654c54eeffa0268f029201961d995e48b72fd29c5cf331f756f4631176214a",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 9.021
+            }
+          },
+          "gates": {
+            "selection": {
+              "oriented_gain": -0.21775819873832347,
+              "primary_improved": false,
+              "passed": false
+            }
+          },
+          "split_sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a"
+        },
+        {
+          "cut": 2,
+          "outcomes": {
+            "control": {
+              "value": 50.92466951315985,
+              "validation_rows": 10879,
+              "prediction_sha256": "60336096ceb8be0682d296391d493d06464ebb3a57b4b28d7b18445a3396ec73",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 4.954
+            },
+            "selection": {
+              "value": 51.93118809519675,
+              "validation_rows": 10879,
+              "prediction_sha256": "0ded04c6071eb0e8c97d0e318cef3b4fec9461495136a29e55c98fa0c8c45f33",
+              "row_order_verified": true,
+              "status": "verified",
+              "seconds": 6.166
+            }
+          },
+          "gates": {
+            "selection": {
+              "oriented_gain": -1.0065185820369038,
+              "primary_improved": false,
+              "passed": false
+            }
+          },
+          "split_sha256": "a42ef4152b4dae2627ab1a8ab191600aae1c1337390b48d315b52d6419c2016e"
+        }
+      ],
+      "source_matches_current": true,
+      "source_sha256": {
+        "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+        "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+        "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+        "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+        "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+        "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+        "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+        "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+        "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+        "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+        "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+        "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+        "automl_models.py": "d4c78d9e7b3e596d695080315b4f671d6cfc841f44bc237790df3ddbf5125f24",
+        "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+        "automl_ensembles.py": "ccbb07cef50a1ebfef8a157a86515a3b494e5c3ce8c37b518eca44265e3bd054",
+        "automl_worker.py": "93d0887bc59e507880608810f900971b1008f07f3faf864814df3eed7d43c75d",
+        "automl_policy.py": "af4fdc6a89b493db659d732259c1777b58a7a0ae28278f611411cbfa122611a3",
+        "automl_runner.py": "56acce4f742640334027c8a8e194f726d6404afc7c5b4673c6a02a7709109745",
+        "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+        "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+        "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+        "automl_contracts_error_analysis.py": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a",
+        "automl_contracts_messages.py": "dc14ab3c2e257b8ae8dacc3c3888580f01b9a5f5494322273989345d4f429623",
+        "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+        "automl_error_analysis_api.py": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad",
+        "automl_error_analysis_preparation.py": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52",
+        "automl_error_analysis_classification.py": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073",
+        "automl_error_analysis_reporting.py": "2b47e915e3d02c8cf2b1e803394247b3983576d99d7575a96ea5097370b4b664",
+        "automl_error_analysis_artifacts.py": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454",
+        "automl_error_analysis_uncertainty.py": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591",
+        "automl_error_analysis_regression.py": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719",
+        "automl_error_analysis_slices.py": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f",
+        "automl_error_analysis_comparisons.py": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418",
+        "automl_error_analysis_service.py": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630",
+        "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+        "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+        "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+        "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+        "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+        "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+        "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+        "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+        "automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
+        "automl_search_multitarget.py": "a855c0966156ccb5343471754d2028e20a8513aac706c33bb2c6dfa8201d4754",
+        "automl_search_hpo.py": "d608a56db313502800c9afc259a82d4ddf67887108074b3d1567d78e36416db4",
+        "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+        "automl_infrastructure_llm_gateway.py": "4d85eeac0985f6bb9995a07e6cf372621c2455d614b01959bd3b8fb82704d27d",
+        "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+        "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1",
+        "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+        "automl_infrastructure_run_budget.py": "0d94db9d5647731740e38e11069818ea3578dcc8a09cf217f736cae8fe8bdeb3",
+        "automl_execution_api.py": "37e92f85f4e8de65b9cf2fdf1dbee27549938c5d035aa0ece766f796076fc1aa",
+        "automl_execution_feature_views.py": "af53acb2ce53c2bb3bccd713d7d4be94f11a853ba3e4e1097590dead07bb86c4",
+        "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+        "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+        "automl_execution_feature_engineering_selection.py": "51d9f8e948478f861b2645e31a2ddcb308cfbe93209daf5aebcf08b1e4c7e77c",
+        "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+        "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+        "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+        "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+        "automl_execution_postprocessing_targets.py": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218",
+        "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+        "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+        "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+        "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+        "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953",
+        "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+      },
+      "expected_cuts": [
+        0,
+        1,
+        2
+      ],
+      "screen_status": "completed",
+      "complete_verified_screen": true,
+      "mean": {
+        "control": 40.60751094989404,
+        "selection": 41.37522600161565
+      },
+      "paired_gate_passed": {
+        "selection": false
+      },
+      "measured_screen_gate_passed": false,
+      "advance_gate_passed": false
+    },
+    "regression-prompt-staged": {
+      "mode": "candidate_screen",
+      "metric": "rmse",
+      "control": "qualified-control",
+      "source_matches_current": true,
+      "source_sha256": {
+        "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+        "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+        "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+        "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+        "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+        "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+        "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+        "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+        "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+        "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+        "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+        "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+        "automl_models.py": "d4c78d9e7b3e596d695080315b4f671d6cfc841f44bc237790df3ddbf5125f24",
+        "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+        "automl_ensembles.py": "ccbb07cef50a1ebfef8a157a86515a3b494e5c3ce8c37b518eca44265e3bd054",
+        "automl_worker.py": "93d0887bc59e507880608810f900971b1008f07f3faf864814df3eed7d43c75d",
+        "automl_policy.py": "af4fdc6a89b493db659d732259c1777b58a7a0ae28278f611411cbfa122611a3",
+        "automl_runner.py": "56acce4f742640334027c8a8e194f726d6404afc7c5b4673c6a02a7709109745",
+        "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+        "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+        "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+        "automl_contracts_error_analysis.py": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a",
+        "automl_contracts_messages.py": "dc14ab3c2e257b8ae8dacc3c3888580f01b9a5f5494322273989345d4f429623",
+        "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+        "automl_error_analysis_api.py": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad",
+        "automl_error_analysis_preparation.py": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52",
+        "automl_error_analysis_classification.py": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073",
+        "automl_error_analysis_reporting.py": "2b47e915e3d02c8cf2b1e803394247b3983576d99d7575a96ea5097370b4b664",
+        "automl_error_analysis_artifacts.py": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454",
+        "automl_error_analysis_uncertainty.py": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591",
+        "automl_error_analysis_regression.py": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719",
+        "automl_error_analysis_slices.py": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f",
+        "automl_error_analysis_comparisons.py": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418",
+        "automl_error_analysis_service.py": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630",
+        "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+        "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+        "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+        "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+        "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+        "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+        "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+        "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+        "automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
+        "automl_search_multitarget.py": "a855c0966156ccb5343471754d2028e20a8513aac706c33bb2c6dfa8201d4754",
+        "automl_search_hpo.py": "d608a56db313502800c9afc259a82d4ddf67887108074b3d1567d78e36416db4",
+        "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+        "automl_infrastructure_llm_gateway.py": "4d85eeac0985f6bb9995a07e6cf372621c2455d614b01959bd3b8fb82704d27d",
+        "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+        "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1",
+        "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+        "automl_infrastructure_run_budget.py": "0d94db9d5647731740e38e11069818ea3578dcc8a09cf217f736cae8fe8bdeb3",
+        "automl_execution_api.py": "37e92f85f4e8de65b9cf2fdf1dbee27549938c5d035aa0ece766f796076fc1aa",
+        "automl_execution_feature_views.py": "af53acb2ce53c2bb3bccd713d7d4be94f11a853ba3e4e1097590dead07bb86c4",
+        "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+        "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+        "automl_execution_feature_engineering_selection.py": "51d9f8e948478f861b2645e31a2ddcb308cfbe93209daf5aebcf08b1e4c7e77c",
+        "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+        "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+        "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+        "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+        "automl_execution_postprocessing_targets.py": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218",
+        "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+        "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+        "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+        "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+        "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953",
+        "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+      },
+      "expected_cuts": [
+        0,
+        1,
+        2
+      ],
+      "candidates": {
+        "staged-1": {
+          "cuts": [
+            {
+              "cut": 0,
+              "control": {
+                "value": 39.05167816956453,
+                "validation_rows": 18308,
+                "prediction_sha256": "7589bb1b1f6535ef0e4de1a0346addffc0861b294d7380c40bf76dfef858c61c",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 12.456
+              },
+              "candidate": {
+                "value": 38.406472347708196,
+                "validation_rows": 18308,
+                "prediction_sha256": "f3b834919eee4f9e5302757565a0551c37a3b039c811c88419ae6f8417679cab",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 13.412
+              },
+              "gate": {
+                "oriented_gain": 0.6452058218563366,
+                "primary_improved": true,
+                "passed": true
+              }
+            },
+            {
+              "cut": 1,
+              "control": {
+                "value": 31.846185166957753,
+                "validation_rows": 12946,
+                "prediction_sha256": "bd003cae6a86b73077f1609b3b37ffa02bb2e100980196d12ec85a6ac2531721",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 8.62
+              },
+              "candidate": {
+                "value": 32.41587479804582,
+                "validation_rows": 12946,
+                "prediction_sha256": "782d82d7d09c981c485d29ae557ac4529b71edf4272b9431ab5984ca75664885",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 8.42
+              },
+              "gate": {
+                "oriented_gain": -0.5696896310880675,
+                "primary_improved": false,
+                "passed": false
+              }
+            },
+            {
+              "cut": 2,
+              "control": {
+                "value": 50.92466951315985,
+                "validation_rows": 10879,
+                "prediction_sha256": "60336096ceb8be0682d296391d493d06464ebb3a57b4b28d7b18445a3396ec73",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 5.071
+              },
+              "candidate": {
+                "value": 51.21033680396055,
+                "validation_rows": 10879,
+                "prediction_sha256": "53d694a0d3a3159229a230741dcb7e42a3fdd73f4e79a25a72191a7247094f5a",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 5.323
+              },
+              "gate": {
+                "oriented_gain": -0.28566729080070274,
+                "primary_improved": false,
+                "passed": false
+              }
+            }
+          ],
+          "feature_code": false,
+          "complete_verified_screen": true,
+          "measured_screen_gate_passed": false,
+          "advance_gate_passed": false,
+          "control_mean": 40.60751094989404,
+          "candidate_mean": 40.67756131657152
+        },
+        "staged-2": {
+          "cuts": [
+            {
+              "cut": 0,
+              "control": {
+                "value": 39.05167816956453,
+                "validation_rows": 18308,
+                "prediction_sha256": "7589bb1b1f6535ef0e4de1a0346addffc0861b294d7380c40bf76dfef858c61c",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 12.456
+              },
+              "candidate": {
+                "value": 38.326420012804995,
+                "validation_rows": 18308,
+                "prediction_sha256": "7f48631c415e566f37b12a0e1a7c0e3d6dada33cfec9cc6563ba4a8cde027a26",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 13.246
+              },
+              "gate": {
+                "oriented_gain": 0.7252581567595371,
+                "primary_improved": true,
+                "passed": true
+              }
+            },
+            {
+              "cut": 1,
+              "control": {
+                "value": 31.846185166957753,
+                "validation_rows": 12946,
+                "prediction_sha256": "bd003cae6a86b73077f1609b3b37ffa02bb2e100980196d12ec85a6ac2531721",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 8.62
+              },
+              "candidate": {
+                "value": 31.904568641316988,
+                "validation_rows": 12946,
+                "prediction_sha256": "c1dc56f3baf2e727ebb79876d9d62dc2cc79a4609bb1ea7c194c87ff776400f9",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 8.648
+              },
+              "gate": {
+                "oriented_gain": -0.05838347435923552,
+                "primary_improved": false,
+                "passed": false
+              }
+            },
+            {
+              "cut": 2,
+              "control": {
+                "value": 50.92466951315985,
+                "validation_rows": 10879,
+                "prediction_sha256": "60336096ceb8be0682d296391d493d06464ebb3a57b4b28d7b18445a3396ec73",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 5.071
+              },
+              "candidate": {
+                "value": 51.12184595745976,
+                "validation_rows": 10879,
+                "prediction_sha256": "cec1ccc83e16b28c480e83e1d7851bed8a804b0230fb38ac480c1390625bdffd",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 5.263
+              },
+              "gate": {
+                "oriented_gain": -0.1971764442999131,
+                "primary_improved": false,
+                "passed": false
+              }
+            }
+          ],
+          "feature_code": true,
+          "complete_verified_screen": true,
+          "measured_screen_gate_passed": false,
+          "advance_gate_passed": false,
+          "control_mean": 40.60751094989404,
+          "candidate_mean": 40.45094487052725
+        }
+      }
+    },
+    "har02-regression": {
+      "mode": "candidate_screen",
+      "metric": "rmse",
+      "control": "qualified-asof-control",
+      "source_matches_current": true,
+      "source_sha256": {
+        "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+        "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+        "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+        "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+        "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+        "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+        "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+        "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+        "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+        "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+        "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+        "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+        "automl_models.py": "d4c78d9e7b3e596d695080315b4f671d6cfc841f44bc237790df3ddbf5125f24",
+        "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+        "automl_ensembles.py": "ccbb07cef50a1ebfef8a157a86515a3b494e5c3ce8c37b518eca44265e3bd054",
+        "automl_worker.py": "93d0887bc59e507880608810f900971b1008f07f3faf864814df3eed7d43c75d",
+        "automl_policy.py": "af4fdc6a89b493db659d732259c1777b58a7a0ae28278f611411cbfa122611a3",
+        "automl_runner.py": "56acce4f742640334027c8a8e194f726d6404afc7c5b4673c6a02a7709109745",
+        "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+        "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+        "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+        "automl_contracts_error_analysis.py": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a",
+        "automl_contracts_messages.py": "dc14ab3c2e257b8ae8dacc3c3888580f01b9a5f5494322273989345d4f429623",
+        "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+        "automl_error_analysis_api.py": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad",
+        "automl_error_analysis_preparation.py": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52",
+        "automl_error_analysis_classification.py": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073",
+        "automl_error_analysis_reporting.py": "2b47e915e3d02c8cf2b1e803394247b3983576d99d7575a96ea5097370b4b664",
+        "automl_error_analysis_artifacts.py": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454",
+        "automl_error_analysis_uncertainty.py": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591",
+        "automl_error_analysis_regression.py": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719",
+        "automl_error_analysis_slices.py": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f",
+        "automl_error_analysis_comparisons.py": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418",
+        "automl_error_analysis_service.py": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630",
+        "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+        "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+        "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+        "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+        "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+        "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+        "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+        "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+        "automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
+        "automl_search_multitarget.py": "a855c0966156ccb5343471754d2028e20a8513aac706c33bb2c6dfa8201d4754",
+        "automl_search_hpo.py": "d608a56db313502800c9afc259a82d4ddf67887108074b3d1567d78e36416db4",
+        "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+        "automl_infrastructure_llm_gateway.py": "4d85eeac0985f6bb9995a07e6cf372621c2455d614b01959bd3b8fb82704d27d",
+        "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+        "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1",
+        "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+        "automl_infrastructure_run_budget.py": "0d94db9d5647731740e38e11069818ea3578dcc8a09cf217f736cae8fe8bdeb3",
+        "automl_execution_api.py": "37e92f85f4e8de65b9cf2fdf1dbee27549938c5d035aa0ece766f796076fc1aa",
+        "automl_execution_feature_views.py": "af53acb2ce53c2bb3bccd713d7d4be94f11a853ba3e4e1097590dead07bb86c4",
+        "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+        "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+        "automl_execution_feature_engineering_selection.py": "51d9f8e948478f861b2645e31a2ddcb308cfbe93209daf5aebcf08b1e4c7e77c",
+        "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+        "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+        "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+        "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+        "automl_execution_postprocessing_targets.py": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218",
+        "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+        "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+        "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+        "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+        "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953",
+        "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+      },
+      "expected_cuts": [
+        0,
+        1,
+        2
+      ],
+      "candidates": {
+        "qwen-structured-features": {
+          "cuts": [
+            {
+              "cut": 0,
+              "control": {
+                "value": 39.05167816956453,
+                "validation_rows": 18308,
+                "prediction_sha256": "7589bb1b1f6535ef0e4de1a0346addffc0861b294d7380c40bf76dfef858c61c",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 12.398
+              },
+              "candidate": {
+                "value": 39.187618627641186,
+                "validation_rows": 18308,
+                "prediction_sha256": "d07e52dfd324b6750e7e73cbb90f0e514dc2abd1e7f3b35d3227cd108dc175df",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 13.433
+              },
+              "gate": {
+                "oriented_gain": -0.13594045807665367,
+                "primary_improved": false,
+                "passed": false
+              }
+            },
+            {
+              "cut": 1,
+              "control": {
+                "value": 31.846185166957753,
+                "validation_rows": 12946,
+                "prediction_sha256": "bd003cae6a86b73077f1609b3b37ffa02bb2e100980196d12ec85a6ac2531721",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 8.644
+              },
+              "candidate": {
+                "value": 32.708406944280256,
+                "validation_rows": 12946,
+                "prediction_sha256": "5ae72c2b74217e9ffa8b2f088b70ef88ade84f501d4a6aecda6be32de405fb52",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 7.755
+              },
+              "gate": {
+                "oriented_gain": -0.8622217773225032,
+                "primary_improved": false,
+                "passed": false
+              }
+            },
+            {
+              "cut": 2,
+              "control": {
+                "value": 50.92466951315985,
+                "validation_rows": 10879,
+                "prediction_sha256": "60336096ceb8be0682d296391d493d06464ebb3a57b4b28d7b18445a3396ec73",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 5.113
+              },
+              "candidate": {
+                "value": 51.2106363738147,
+                "validation_rows": 10879,
+                "prediction_sha256": "c746c5af4519623e534ec98521d97c8617de4ed37fd204f00c7397056af53ff4",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 5.28
+              },
+              "gate": {
+                "oriented_gain": -0.28596686065485244,
+                "primary_improved": false,
+                "passed": false
+              }
+            }
+          ],
+          "feature_code": true,
+          "complete_verified_screen": true,
+          "measured_screen_gate_passed": false,
+          "advance_gate_passed": false,
+          "control_mean": 40.60751094989404,
+          "candidate_mean": 41.035553981912045
+        }
+      }
+    },
+    "classification-prompt-baseline": {
+      "mode": "candidate_screen",
+      "metric": "macro_f1",
+      "control": "qualified-control",
+      "source_matches_current": true,
+      "source_sha256": {
+        "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+        "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+        "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+        "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+        "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+        "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+        "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+        "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+        "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+        "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+        "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+        "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+        "automl_models.py": "d4c78d9e7b3e596d695080315b4f671d6cfc841f44bc237790df3ddbf5125f24",
+        "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+        "automl_ensembles.py": "ccbb07cef50a1ebfef8a157a86515a3b494e5c3ce8c37b518eca44265e3bd054",
+        "automl_worker.py": "93d0887bc59e507880608810f900971b1008f07f3faf864814df3eed7d43c75d",
+        "automl_policy.py": "af4fdc6a89b493db659d732259c1777b58a7a0ae28278f611411cbfa122611a3",
+        "automl_runner.py": "56acce4f742640334027c8a8e194f726d6404afc7c5b4673c6a02a7709109745",
+        "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+        "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+        "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+        "automl_contracts_error_analysis.py": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a",
+        "automl_contracts_messages.py": "dc14ab3c2e257b8ae8dacc3c3888580f01b9a5f5494322273989345d4f429623",
+        "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+        "automl_error_analysis_api.py": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad",
+        "automl_error_analysis_preparation.py": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52",
+        "automl_error_analysis_classification.py": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073",
+        "automl_error_analysis_reporting.py": "2b47e915e3d02c8cf2b1e803394247b3983576d99d7575a96ea5097370b4b664",
+        "automl_error_analysis_artifacts.py": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454",
+        "automl_error_analysis_uncertainty.py": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591",
+        "automl_error_analysis_regression.py": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719",
+        "automl_error_analysis_slices.py": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f",
+        "automl_error_analysis_comparisons.py": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418",
+        "automl_error_analysis_service.py": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630",
+        "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+        "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+        "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+        "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+        "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+        "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+        "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+        "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+        "automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
+        "automl_search_multitarget.py": "a855c0966156ccb5343471754d2028e20a8513aac706c33bb2c6dfa8201d4754",
+        "automl_search_hpo.py": "d608a56db313502800c9afc259a82d4ddf67887108074b3d1567d78e36416db4",
+        "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+        "automl_infrastructure_llm_gateway.py": "4d85eeac0985f6bb9995a07e6cf372621c2455d614b01959bd3b8fb82704d27d",
+        "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+        "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1",
+        "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+        "automl_infrastructure_run_budget.py": "0d94db9d5647731740e38e11069818ea3578dcc8a09cf217f736cae8fe8bdeb3",
+        "automl_execution_api.py": "37e92f85f4e8de65b9cf2fdf1dbee27549938c5d035aa0ece766f796076fc1aa",
+        "automl_execution_feature_views.py": "af53acb2ce53c2bb3bccd713d7d4be94f11a853ba3e4e1097590dead07bb86c4",
+        "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+        "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+        "automl_execution_feature_engineering_selection.py": "51d9f8e948478f861b2645e31a2ddcb308cfbe93209daf5aebcf08b1e4c7e77c",
+        "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+        "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+        "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+        "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+        "automl_execution_postprocessing_targets.py": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218",
+        "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+        "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+        "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+        "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+        "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953",
+        "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+      },
+      "expected_cuts": [
+        42,
+        43
+      ],
+      "candidates": {
+        "baseline-1": {
+          "cuts": [
+            {
+              "cut": 42,
+              "control": {
+                "value": 0.6558634659956402,
+                "validation_rows": 17141,
+                "prediction_sha256": "7b261f84576c81a917f224975ce7c9b3faf8907596decad21f5fb81a20c42eb8",
+                "row_order_verified": true,
+                "per_class_f1": {
+                  "Analysis": 0.3375796178343949,
+                  "Backdoor": 0.2146341463414634,
+                  "DoS": 0.4978365996436752,
+                  "Exploits": 0.6790680874119559,
+                  "Fuzzers": 0.7555448408871746,
+                  "Generic": 0.9878147847278635,
+                  "Normal": 0.915273556231003,
+                  "Reconnaissance": 0.8223615464994776,
+                  "Shellcode": 0.6643109540636042,
+                  "Worms": 0.6842105263157895
+                },
+                "status": "verified",
+                "seconds": 200.448
+              },
+              "candidate": {
+                "value": 0.6488951448308256,
+                "validation_rows": 17141,
+                "prediction_sha256": "ca521edecedd3f402fbc438001030af55d30d0ec7f3e74e2dc81970774fddadd",
+                "row_order_verified": true,
+                "per_class_f1": {
+                  "Analysis": 0.3003412969283277,
+                  "Backdoor": 0.16501650165016502,
+                  "DoS": 0.4971127290986693,
+                  "Exploits": 0.6766205389657683,
+                  "Fuzzers": 0.7572393822393823,
+                  "Generic": 0.9875338753387534,
+                  "Normal": 0.9153736316039981,
+                  "Reconnaissance": 0.8164992067689053,
+                  "Shellcode": 0.6875,
+                  "Worms": 0.6857142857142857
+                },
+                "status": "verified",
+                "seconds": 517.07
+              },
+              "gate": {
+                "oriented_gain": -0.006968321164814606,
+                "primary_improved": false,
+                "per_class_delta": {
+                  "Analysis": -0.03723832090606721,
+                  "Backdoor": -0.049617644691298396,
+                  "DoS": -0.0007238705450058891,
+                  "Exploits": -0.002447548446187553,
+                  "Fuzzers": 0.0016945413522077013,
+                  "Generic": -0.00028090938911018437,
+                  "Normal": 0.00010007537299505653,
+                  "Reconnaissance": -0.0058623397305722635,
+                  "Shellcode": 0.023189045936395813,
+                  "Worms": 0.0015037593984962294
+                },
+                "independent_fitting_groups": {
+                  "Analysis": 695,
+                  "Backdoor": 666,
+                  "DoS": 2032,
+                  "Exploits": 8833,
+                  "Fuzzers": 6767,
+                  "Generic": 2829,
+                  "Normal": 21177,
+                  "Reconnaissance": 3202,
+                  "Shellcode": 440,
+                  "Worms": 46
+                },
+                "rarest_class": "Worms",
+                "gain_without_rarest_class": -0.007909663449626993,
+                "supported_class_violations": {
+                  "Analysis": -0.03723832090606721,
+                  "Backdoor": -0.049617644691298396
+                },
+                "passed": false
+              }
+            },
+            {
+              "cut": 43,
+              "control": {
+                "value": 0.653724307666515,
+                "validation_rows": 17349,
+                "prediction_sha256": "55cddf91e3e5c8416e84bbadef0cc683e90c307d11d38eeeb50142fb05b3bf67",
+                "row_order_verified": true,
+                "per_class_f1": {
+                  "Analysis": 0.2733812949640288,
+                  "Backdoor": 0.21374045801526717,
+                  "DoS": 0.4831251660908849,
+                  "Exploits": 0.6828217555196554,
+                  "Fuzzers": 0.7510184519530314,
+                  "Generic": 0.9897619657025851,
+                  "Normal": 0.9150819054791941,
+                  "Reconnaissance": 0.842159916926272,
+                  "Shellcode": 0.7432950191570882,
+                  "Worms": 0.6428571428571429
+                },
+                "status": "verified",
+                "seconds": 198.405
+              },
+              "candidate": {
+                "value": 0.6497651035437549,
+                "validation_rows": 17349,
+                "prediction_sha256": "dd1c97c09b19d84dd88cbebb6335813002e8bbacea87119eea40b4821d98414e",
+                "row_order_verified": true,
+                "per_class_f1": {
+                  "Analysis": 0.26373626373626374,
+                  "Backdoor": 0.23134328358208955,
+                  "DoS": 0.491417361451692,
+                  "Exploits": 0.6676691729323309,
+                  "Fuzzers": 0.7479185938945421,
+                  "Generic": 0.9900076863950807,
+                  "Normal": 0.9079060852898898,
+                  "Reconnaissance": 0.8454258675078864,
+                  "Shellcode": 0.7368421052631579,
+                  "Worms": 0.6153846153846154
+                },
+                "status": "verified",
+                "seconds": 355.65
+              },
+              "gate": {
+                "oriented_gain": -0.003959204122760074,
+                "primary_improved": false,
+                "per_class_delta": {
+                  "Analysis": -0.009645031227765055,
+                  "Backdoor": 0.017602825566822383,
+                  "DoS": 0.008292195360807109,
+                  "Exploits": -0.015152582587324548,
+                  "Fuzzers": -0.0030998580584893354,
+                  "Generic": 0.00024572069249562123,
+                  "Normal": -0.007175820189304294,
+                  "Reconnaissance": 0.0032659505816143852,
+                  "Shellcode": -0.006452913893930323,
+                  "Worms": -0.027472527472527486
+                },
+                "independent_fitting_groups": {
+                  "Analysis": 705,
+                  "Backdoor": 664,
+                  "DoS": 2061,
+                  "Exploits": 8882,
+                  "Fuzzers": 6765,
+                  "Generic": 2828,
+                  "Normal": 21095,
+                  "Reconnaissance": 3206,
+                  "Shellcode": 446,
+                  "Worms": 54
+                },
+                "rarest_class": "Worms",
+                "gain_without_rarest_class": -0.001346612639452673,
+                "supported_class_violations": {
+                  "Exploits": -0.015152582587324548
+                },
+                "passed": false
+              }
+            }
+          ],
+          "feature_code": false,
+          "complete_verified_screen": true,
+          "measured_screen_gate_passed": false,
+          "advance_gate_passed": false,
+          "control_mean": 0.6547938868310776,
+          "candidate_mean": 0.6493301241872902
+        }
+      }
+    },
+    "regression-prompt-baseline": {
+      "mode": "candidate_screen",
+      "metric": "rmse",
+      "control": "qualified-control",
+      "source_matches_current": true,
+      "source_sha256": {
+        "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+        "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+        "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+        "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+        "automl_features.py": "f985dbd59b4aaa4eca0ef851f8bce90510705317a2d2b2af8c45a1477c8394ce",
+        "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+        "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+        "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+        "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+        "automl_model_catboost.py": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+        "automl_model_lightgbm.py": "a77cd8b2d43b3472e8b956c02df9d8b6f8418b5fc93f55e28f07879fff2e0d05",
+        "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+        "automl_models.py": "d4c78d9e7b3e596d695080315b4f671d6cfc841f44bc237790df3ddbf5125f24",
+        "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+        "automl_ensembles.py": "ccbb07cef50a1ebfef8a157a86515a3b494e5c3ce8c37b518eca44265e3bd054",
+        "automl_worker.py": "93d0887bc59e507880608810f900971b1008f07f3faf864814df3eed7d43c75d",
+        "automl_policy.py": "af4fdc6a89b493db659d732259c1777b58a7a0ae28278f611411cbfa122611a3",
+        "automl_runner.py": "56acce4f742640334027c8a8e194f726d6404afc7c5b4673c6a02a7709109745",
+        "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+        "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+        "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+        "automl_contracts_error_analysis.py": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a",
+        "automl_contracts_messages.py": "dc14ab3c2e257b8ae8dacc3c3888580f01b9a5f5494322273989345d4f429623",
+        "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+        "automl_error_analysis_api.py": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad",
+        "automl_error_analysis_preparation.py": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52",
+        "automl_error_analysis_classification.py": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073",
+        "automl_error_analysis_reporting.py": "2b47e915e3d02c8cf2b1e803394247b3983576d99d7575a96ea5097370b4b664",
+        "automl_error_analysis_artifacts.py": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454",
+        "automl_error_analysis_uncertainty.py": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591",
+        "automl_error_analysis_regression.py": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719",
+        "automl_error_analysis_slices.py": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f",
+        "automl_error_analysis_comparisons.py": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418",
+        "automl_error_analysis_service.py": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630",
+        "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+        "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+        "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+        "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+        "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+        "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+        "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+        "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+        "automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
+        "automl_search_multitarget.py": "a855c0966156ccb5343471754d2028e20a8513aac706c33bb2c6dfa8201d4754",
+        "automl_search_hpo.py": "d608a56db313502800c9afc259a82d4ddf67887108074b3d1567d78e36416db4",
+        "automl_infrastructure_processes.py": "33e93bffa60568e75409f1b026317428e4d76e9ee922ddc160d25256523b4428",
+        "automl_infrastructure_llm_gateway.py": "4d85eeac0985f6bb9995a07e6cf372621c2455d614b01959bd3b8fb82704d27d",
+        "automl_infrastructure_resources.py": "7c6a2eac2676b5b4868fa8a663e17b5358f97c76727830df68877d8d3bbd79aa",
+        "automl_infrastructure_tables.py": "030e7d888348cb10c681f3e2fc45acc528d39736f58b4432872c86dde71f1cc1",
+        "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+        "automl_infrastructure_run_budget.py": "0d94db9d5647731740e38e11069818ea3578dcc8a09cf217f736cae8fe8bdeb3",
+        "automl_execution_api.py": "37e92f85f4e8de65b9cf2fdf1dbee27549938c5d035aa0ece766f796076fc1aa",
+        "automl_execution_feature_views.py": "af53acb2ce53c2bb3bccd713d7d4be94f11a853ba3e4e1097590dead07bb86c4",
+        "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+        "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+        "automl_execution_feature_engineering_selection.py": "51d9f8e948478f861b2645e31a2ddcb308cfbe93209daf5aebcf08b1e4c7e77c",
+        "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+        "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+        "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+        "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+        "automl_execution_postprocessing_targets.py": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218",
+        "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+        "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+        "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+        "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+        "solution.py": "095964027a3271e12f0a63746fd9d2bd2ff473a45f7e37b02450b3c0537ed953",
+        "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+      },
+      "expected_cuts": [
+        0,
+        1,
+        2
+      ],
+      "candidates": {
+        "baseline-1": {
+          "cuts": [
+            {
+              "cut": 0,
+              "control": {
+                "value": 39.05167816956453,
+                "validation_rows": 18308,
+                "prediction_sha256": "7589bb1b1f6535ef0e4de1a0346addffc0861b294d7380c40bf76dfef858c61c",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 12.617
+              },
+              "candidate": {
+                "value": 37.827124972650616,
+                "validation_rows": 18308,
+                "prediction_sha256": "b43e505cff21f618dd6710039ecc9f5a6d83c29b925f57c37eff151ea7aaafe7",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 12.126
+              },
+              "gate": {
+                "oriented_gain": 1.2245531969139165,
+                "primary_improved": true,
+                "passed": true
+              }
+            },
+            {
+              "cut": 1,
+              "control": {
+                "value": 31.846185166957753,
+                "validation_rows": 12946,
+                "prediction_sha256": "bd003cae6a86b73077f1609b3b37ffa02bb2e100980196d12ec85a6ac2531721",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 8.631
+              },
+              "candidate": {
+                "value": 32.945533083769384,
+                "validation_rows": 12946,
+                "prediction_sha256": "9559856e6fcbb2a905a82385a924313314f91f129a87f806be3f23d61c01be09",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 10.181
+              },
+              "gate": {
+                "oriented_gain": -1.099347916811631,
+                "primary_improved": false,
+                "passed": false
+              }
+            },
+            {
+              "cut": 2,
+              "control": {
+                "value": 50.92466951315985,
+                "validation_rows": 10879,
+                "prediction_sha256": "60336096ceb8be0682d296391d493d06464ebb3a57b4b28d7b18445a3396ec73",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 5.069
+              },
+              "candidate": {
+                "value": 51.992520537940905,
+                "validation_rows": 10879,
+                "prediction_sha256": "52f557528fa5a3ec1248c7eaed6c2bfd58778d185c092786a0c404225de7f951",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 4.83
+              },
+              "gate": {
+                "oriented_gain": -1.0678510247810564,
+                "primary_improved": false,
+                "passed": false
+              }
+            }
+          ],
+          "feature_code": false,
+          "complete_verified_screen": true,
+          "measured_screen_gate_passed": false,
+          "advance_gate_passed": false,
+          "control_mean": 40.60751094989404,
+          "candidate_mean": 40.921726198120304
+        },
+        "baseline-2": {
+          "cuts": [
+            {
+              "cut": 0,
+              "control": {
+                "value": 39.05167816956453,
+                "validation_rows": 18308,
+                "prediction_sha256": "7589bb1b1f6535ef0e4de1a0346addffc0861b294d7380c40bf76dfef858c61c",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 12.617
+              },
+              "candidate": {
+                "value": 38.23937178868103,
+                "validation_rows": 18308,
+                "prediction_sha256": "ae0268c44d9d1599fbea1d08112403ed6d89f427f68f12fb9d4555ae2c55b692",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 13.268
+              },
+              "gate": {
+                "oriented_gain": 0.8123063808835056,
+                "primary_improved": true,
+                "passed": true
+              }
+            },
+            {
+              "cut": 1,
+              "control": {
+                "value": 31.846185166957753,
+                "validation_rows": 12946,
+                "prediction_sha256": "bd003cae6a86b73077f1609b3b37ffa02bb2e100980196d12ec85a6ac2531721",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 8.631
+              },
+              "candidate": {
+                "value": 32.920657651759775,
+                "validation_rows": 12946,
+                "prediction_sha256": "4a1c823340e553f375ad44c05888c8c193ef16378e03f311cf3e36e273712edd",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 7.806
+              },
+              "gate": {
+                "oriented_gain": -1.0744724848020226,
+                "primary_improved": false,
+                "passed": false
+              }
+            },
+            {
+              "cut": 2,
+              "control": {
+                "value": 50.92466951315985,
+                "validation_rows": 10879,
+                "prediction_sha256": "60336096ceb8be0682d296391d493d06464ebb3a57b4b28d7b18445a3396ec73",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 5.069
+              },
+              "candidate": {
+                "value": 50.88808638377033,
+                "validation_rows": 10879,
+                "prediction_sha256": "6a53a37ab63cc1c7043a692d570744b59a696ee95bf9b09996ec9ead468ff6ba",
+                "row_order_verified": true,
+                "status": "verified",
+                "seconds": 5.246
+              },
+              "gate": {
+                "oriented_gain": 0.0365831293895198,
+                "primary_improved": true,
+                "passed": true
+              }
+            }
+          ],
+          "feature_code": true,
+          "complete_verified_screen": true,
+          "measured_screen_gate_passed": false,
+          "advance_gate_passed": false,
+          "control_mean": 40.60751094989404,
+          "candidate_mean": 40.682705274737046
+        }
+      }
+    }
+  },
+  "planner_generation": {
+    "regression-matched-prompts": {
+      "baseline": {
+        "call": {
+          "status": "ok",
+          "wall_seconds": 7.748,
+          "usage": {
+            "completion_tokens": 344,
+            "prompt_tokens": 9321,
+            "total_tokens": 9665,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0,
+              "cache_creation_tokens": 0
+            }
+          },
+          "finish_reason": "stop",
+          "compatibility_retry": false,
+          "reasoning_requested": false,
+          "attempts": 1,
+          "usage_complete": true
+        },
+        "distinct_candidates": 2,
+        "raw_supported_proposals": 2,
+        "candidate_limit": 2,
+        "rejected": [],
+        "diagnostics": {
+          "status": "decoded",
+          "raw_candidates": 2,
+          "candidates": [
+            {
+              "proposal": 1,
+              "status": "supported"
+            },
+            {
+              "proposal": 2,
+              "status": "supported"
+            }
+          ]
+        }
+      },
+      "staged": {
+        "call": {
+          "status": "ok",
+          "wall_seconds": 7.423,
+          "usage": {
+            "completion_tokens": 359,
+            "prompt_tokens": 9477,
+            "total_tokens": 9836,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0,
+              "cache_creation_tokens": 0
+            }
+          },
+          "finish_reason": "stop",
+          "compatibility_retry": false,
+          "reasoning_requested": false,
+          "attempts": 1,
+          "usage_complete": true
+        },
+        "distinct_candidates": 2,
+        "raw_supported_proposals": 2,
+        "candidate_limit": 2,
+        "rejected": [],
+        "diagnostics": {
+          "status": "decoded",
+          "raw_candidates": 2,
+          "candidates": [
+            {
+              "proposal": 1,
+              "status": "supported"
+            },
+            {
+              "proposal": 2,
+              "status": "supported"
+            }
+          ]
+        }
+      }
+    },
+    "classification-matched-prompts": {
+      "baseline": {
+        "call": {
+          "status": "ok",
+          "wall_seconds": 4.025,
+          "usage": {
+            "completion_tokens": 374,
+            "prompt_tokens": 7963,
+            "total_tokens": 8337,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0,
+              "cache_creation_tokens": 0
+            }
+          },
+          "finish_reason": "stop",
+          "compatibility_retry": false,
+          "reasoning_requested": false,
+          "attempts": 1,
+          "usage_complete": true
+        },
+        "distinct_candidates": 1,
+        "raw_supported_proposals": 1,
+        "candidate_limit": 2,
+        "rejected": [],
+        "diagnostics": {
+          "status": "decoded",
+          "raw_candidates": 2,
+          "candidates": [
+            {
+              "proposal": 1,
+              "status": "supported"
+            },
+            {
+              "proposal": 2,
+              "status": "rejected",
+              "reason": "Feature views require unchanged features and noop data policy"
+            }
+          ]
+        }
+      },
+      "staged": {
+        "call": {
+          "status": "ok",
+          "wall_seconds": 4.928,
+          "usage": {
+            "completion_tokens": 374,
+            "prompt_tokens": 8119,
+            "total_tokens": 8493,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0,
+              "cache_creation_tokens": 0
+            }
+          },
+          "finish_reason": "stop",
+          "compatibility_retry": false,
+          "reasoning_requested": false,
+          "attempts": 1,
+          "usage_complete": true
+        },
+        "distinct_candidates": 1,
+        "raw_supported_proposals": 1,
+        "candidate_limit": 2,
+        "rejected": [],
+        "diagnostics": {
+          "status": "decoded",
+          "raw_candidates": 2,
+          "candidates": [
+            {
+              "proposal": 1,
+              "status": "supported"
+            },
+            {
+              "proposal": 2,
+              "status": "rejected",
+              "reason": "Feature views require unchanged features and noop data policy"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "errors": {},
+  "official_submission": false,
+  "verification_time_utc": "2026-10-23T03:15:47.212671+00:00",
+  "canonical_source_checkpoint": "bc51d88 (frozen research source; future sparse-default fix is not applied)",
+  "queue_seconds_including_predecessor_wait": 19779.569,
+  "jobs": [
+    {
+      "name": "mvp-summary",
+      "status": "ok",
+      "seconds": 3.504,
+      "harness_sha256": "31196a688aef21b32cab4951bcf70d1bf15885f036dbdd197a1961fc00216c7d"
+    },
+    {
+      "name": "regression-feature-selection",
+      "status": "ok",
+      "seconds": 58.079,
+      "harness_sha256": "4ef966900dcfb6c2ae26b37a751317441861bad286043842c210b1055944050b"
+    },
+    {
+      "name": "regression-hpo",
+      "status": "ok",
+      "seconds": 447.909,
+      "harness_sha256": "4ef966900dcfb6c2ae26b37a751317441861bad286043842c210b1055944050b"
+    },
+    {
+      "name": "har02-structured-regression",
+      "status": "ok",
+      "seconds": 55.889,
+      "harness_sha256": "f4f9600b33932efc900f6f3f7308bd99f07ddfe85a691f3c1de6765c4a14911e"
+    },
+    {
+      "name": "regression-prompt-proposals",
+      "status": "ok",
+      "seconds": 18.579,
+      "harness_sha256": "0b8ccbe663c1a8f28bca0c31fb038cde084843f0a0d4caf1f7d7f6f07a0c1b6e"
+    },
+    {
+      "name": "regression-prompt-baseline",
+      "status": "ok",
+      "seconds": 83.045,
+      "harness_sha256": "f4f9600b33932efc900f6f3f7308bd99f07ddfe85a691f3c1de6765c4a14911e"
+    },
+    {
+      "name": "regression-prompt-staged",
+      "status": "ok",
+      "seconds": 83.735,
+      "harness_sha256": "f4f9600b33932efc900f6f3f7308bd99f07ddfe85a691f3c1de6765c4a14911e"
+    },
+    {
+      "name": "classification-feature-selection",
+      "status": "ok",
+      "seconds": 1233.254,
+      "harness_sha256": "4ef966900dcfb6c2ae26b37a751317441861bad286043842c210b1055944050b"
+    },
+    {
+      "name": "classification-hpo",
+      "status": "ok",
+      "seconds": 7068.661,
+      "harness_sha256": "4ef966900dcfb6c2ae26b37a751317441861bad286043842c210b1055944050b"
+    },
+    {
+      "name": "classification-prompt-proposals",
+      "status": "ok",
+      "seconds": 12.285,
+      "harness_sha256": "0b8ccbe663c1a8f28bca0c31fb038cde084843f0a0d4caf1f7d7f6f07a0c1b6e"
+    },
+    {
+      "name": "classification-prompt-baseline",
+      "status": "ok",
+      "seconds": 1334.695,
+      "harness_sha256": "f4f9600b33932efc900f6f3f7308bd99f07ddfe85a691f3c1de6765c4a14911e"
+    },
+    {
+      "name": "classification-prompt-staged",
+      "status": "ok",
+      "seconds": 1256.183,
+      "harness_sha256": "f4f9600b33932efc900f6f3f7308bd99f07ddfe85a691f3c1de6765c4a14911e"
+    }
+  ],
+  "queue_maximum_seconds": 21600
+}

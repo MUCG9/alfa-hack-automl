@@ -1,0 +1,12 @@
+{
+  "status": "root_source_reviewed_not_executed",
+  "change": "Ignore fresh NoSuchProcess during RSS polling when the observed child has finished; access denials still fail",
+  "predecessor_r1_actual_exit_code": 1,
+  "predecessor_r1_actual_tool_chunk": "88b05c",
+  "predecessor_fresh_absence_confirmed": true,
+  "tests": 2,
+  "common_cap_seconds": 60,
+  "memory_cap_mib": 512,
+  "new_fits": 0,
+  "API_calls": 0
+}

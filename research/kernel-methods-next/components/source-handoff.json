@@ -1,0 +1,87 @@
+{
+  "status": "frozen_source_only_future_KERN01_pending_actual_KERN00_terminal_and_independent_review",
+  "files_sha256": {
+    "audit_components.py": "a7528e969cd2f58ef4562c34ab344852acdfde535f223d9fedcf3877fa9cdcdb",
+    "changes.patch": "434fe460ffcf0721ffef7717dd3ce41672db2e56e5bfad426dae83fb3067ad26",
+    "close_components.py": "3bb48155f36b6d26e3d1ad155919fb057b2cd77c4125d7a4f0176e1a086e6c5e",
+    "protocol.json": "2e5f697ac772a2f0386cff30874d6c40e123b4e6636ac2c8791cbb7b2c431ace",
+    "README.txt": "e9505c0998937a9f407c4b6fde0ee2311f4d2d7e6cd1483c2d2206bde59c3544",
+    "run_components.py": "3239234d7674b22a822f35f2a7e046b42c838b2b6f9c86e1e854ed7ad43d40a5",
+    "static-proof.json": "284cd9b82b3bcecb68620bcf5568e4ee44cd5483c3003f4666dde4e15aa8b5a7"
+  },
+  "experiment_id": "KERN-01",
+  "registration": {
+    "path": "kernel-methods-program/experiments.json",
+    "sha256": "3f6c411e4cb3125407cabd698c35d46827d1171c0a1023506b5b84beff6df186"
+  },
+  "actual_prepared_source": {
+    "manifest": "kern-stage0-packet/manifest.json",
+    "sha256": "8e9fb3c8e428df7e372dc53d0e3b11bc4c435bdf13c89426ebe5b0e45ebffa98",
+    "archive_sha256": "ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c",
+    "source_files": 694,
+    "registry": 483,
+    "archive_members": 70,
+    "root_reported_source_preparation_actual56393_exit0": true
+  },
+  "prerequisite": {
+    "path": "kern0/terminal-root-closure.json",
+    "sha256": null,
+    "expected_actual_exec_session": 19035,
+    "expected_exit_code": 0,
+    "actual_terminal_unknown": true,
+    "source483_exact23_flat12_plus_cleanup_source_fresh_owned_required": true,
+    "explicit_SHA_CLI_required": true,
+    "no_guessed_pass": true
+  },
+  "source_preparation_root": {
+    "path": "kern-prep-r2-exec/terminal-root-closure.json",
+    "sha256": "2042c250fefd526acee4ac40cd4d68fc3690220f6d3021bc691b885b5e3ae37e",
+    "actual_exec_session": 56393,
+    "exit_code": 0,
+    "all_owned_and_preparers_in_union": true
+  },
+  "future": {
+    "output": "kern01",
+    "cuts": 5,
+    "arms": [
+      "strong",
+      "linear",
+      "rbf"
+    ],
+    "jobs": 15,
+    "each_parent_seconds": 480,
+    "each_child_seconds": 450,
+    "common_seconds": 10800,
+    "setup": 900,
+    "workers_total": 7200,
+    "audit": 900,
+    "cleanup_root": 300,
+    "unallocated_spare": 1500,
+    "no_spare_reinvestment": true,
+    "actual_start": null,
+    "actual_deadline": null,
+    "all_source_setup_jobs_seals_labels_audit_cleanup_inside_one_clock": true
+  },
+  "independent_review": {
+    "status": "source_review_in_progress",
+    "agent": "audit_contract",
+    "exact_four_source_hashes_supplied": true,
+    "not_yet_claimed_clear": true
+  },
+  "performed": {
+    "application_runtime_imports": 0,
+    "materializers_builders_tests_fixtures_executed": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "fitting_data_predictions_or_outcome_values_read": false,
+    "active_KERN00_gates_results_read": false,
+    "clock_assigned": false,
+    "STATE_or_Git_edits": false
+  },
+  "scope": "Source-only fixed component screen. Per-arm/task gates and matched representation contrasts separately saved. No wholeagent/refit/private or official gain/promotion/submit.",
+  "source_frozen": true,
+  "no_more_source_writes_absent_concrete_review_defect": true,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

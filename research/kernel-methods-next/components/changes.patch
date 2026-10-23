@@ -1,0 +1,775 @@
+--- loss-components-next-dev/run_components.py
++++ kernel-components-next-dev/run_components.py
+@@ -1,6 +1,6 @@
+-"""LOSS01: nine fixed loss-only jobs on three existing cuts, one future7200s clock.
+-
+-No new model/pipeline source change; reuse qualified LOSSarchive037f88 and standalone43be supervisor.
++"""KERN01: fifteen fixed representation jobs on five existing cuts, one future10800s clock.
++
++No new model/pipeline source change; reuse qualified KERN70 archive and standalone43be supervisor.
+ Source preparation does not create jobs, parse fitting data, or assign a clock.
+ """
+ from pathlib import Path
+@@ -20,34 +20,33 @@
+ 
+ sys.dont_write_bytecode = True
+ WORK = Path(__file__).resolve().parents[1]
+-ROOT = WORK/'loss01'
++ROOT = WORK/'kern01'
+ BASE = ('m4packet/manifest.json', '8faf33cd81c0e864bcf338828c34447000111eda85bc719b8f43312d2babae9a')
+ COOR = ('run_lean_mvp_r2.py', '43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818')
+ R4 = ('repaired-mvp-r1-dev/evaluator_r4.py', 'c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783')
+-REGISTRATION = ('loss-selection-program/experiments.json','71f72c906e22a3d754e460b8cc5bbb6d4902650cb9c4e1de73e701207ff2f59e')
+-PROTOCOL = ('loss-components-next-dev/protocol.json','47ab4a7d21274c97797994a864f7403c675b17e40193d698207aded5747c1671')
+-AUDITOR = 'loss-components-next-dev/audit_components.py'
+-SPECS = {'regression': ('t7/r/automl_runs/repair4/task_spec.json','e8306fe48200d2cfbdf040e68159bd1ceeb505c61363a4302639b9c637368f4f')}
+-CUTS = [('regression',0,'5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84'),
+-        ('regression',1,'e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b'),
+-        ('regression',2,'60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc')]
+-PROFILES=['lgbm_l2_v1','lgbm_l1_v1','lgbm_huber_a09_v1']
+-COMMON,SETUP,PARENT,CHILD,AUDIT,CLEANUP=7200,900,600,570,600,300
++REGISTRATION = ('kernel-methods-program/experiments.json','3f6c411e4cb3125407cabd698c35d46827d1171c0a1023506b5b84beff6df186')
++PROTOCOL = ('kernel-components-next-dev/protocol.json','2e5f697ac772a2f0386cff30874d6c40e123b4e6636ac2c8791cbb7b2c431ace')
++AUDITOR = 'kernel-components-next-dev/audit_components.py'
++SPECS = {'regression': ('t7/r/automl_runs/repair4/task_spec.json', 'e8306fe48200d2cfbdf040e68159bd1ceeb505c61363a4302639b9c637368f4f'),
++         'classification': ('t7/c/automl_runs/repair4/task_spec.json', '76a50236a9a8b8733c69e3bba3922448bd8b19b19a24e1aafdec6a7daab53b50')}
++CUTS = [
++    ('regression', 0, '5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84'),
++    ('regression', 1, 'e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b'),
++    ('regression', 2, '60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc'),
++    ('classification', 42, 'e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0'),
++    ('classification', 43, 'd4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df')]
++ARMS=['strong','linear','rbf']
++PROFILES={'linear':'tabular_linear_bounded_v1','rbf':'tabular_rbf128_invdim_v1'}
++COMMON,SETUP,PARENT,CHILD,AUDIT,CLEANUP,SPARE=10800,900,480,450,900,300,1500
+ FAILURE=RuntimeError
+-LOSS_BASE=('loss-stage0-packet/manifest.json','319d6035162f46e6a1272a833d5f8668c731294b443eeae2dd8fc8c897dabfdc')
+-ARCHIVE_SHA='037f88de1d547a18ff63e300c81b4ecd9e36935d2ddc32a0ba3fe304b105439d'
+-LOSS00=('loss0/terminal-root-closure.json','c4916f2e7c7bd38e394bcb2ab33a51daf7a472a2aec8e08ff4b8a79a8fd5ba69')
+-HISTORY={
+- 'queue-checks/terminal-root-closure.json':('4006102127dd971c97843642754a748fc97199e20505c037f1688a80b8e12d27',None,1),
+- 'queue-checks-r2/terminal-root-closure.json':('887a4b82614ca18d4589102a9f385d513e96ff5562dcb56ca3d2f95b6a186c34',None,0),
+- 'meth03l/terminal-root-closure.json':('e02fd31162f1db27342895901ebb52764b140d59f9cd7651c9be447283bd3b9d',63424,0),
+- 'meth02b/terminal-root-closure.json':('fe00067cb099fdd4fdcd036861f5c3d55cd1c9ee0ee75bcddf488cfc035fe7f7',38041,0),
+- 'meth02/terminal-root-closure.json':('220e7c93f56eaa4a9c2e09ce70aa3ba406d864686cc68520bf69eace4ed75361',None,1),
+- 'meth03/terminal-root-closure.json':('901f3c928d95d992800aef808ff70f84768a456bc23235e0ae63fd539fe159bf',33253,0),
+- 'meth01/terminal-root-closure.json':('2c67361da8f95875b35d124ac6c19d6cccba28c899f1e20dada88f3bec4ea283',3417,0),
+- 'cp1/terminal-root-closure.json':('96f5d956fa235cfd0904d55f67aeeaae8c93a083391fe8b370836f6e39ba309d',43472,0),
+- 'cs0/terminal-root-closure.json':('06d20ce5b1bfd51ceefc924f8d09eb06b4022e9998bcef4d36343cb58669fba8',79591,0),
+- 'm4packet/terminal-root-closure.json':('d19648a53253c0b070fe12068d6eafef5569e2d51332d9b212ef44cc828b9ddc',65008,0)}
++KERN_BASE='kern-stage0-packet/manifest.json'
++KERN_MANIFEST_SHA='8e9fb3c8e428df7e372dc53d0e3b11bc4c435bdf13c89426ebe5b0e45ebffa98'
++ARCHIVE_SHA='ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c'
++KERN_ROOT='kern0/terminal-root-closure.json'
++KERN_SOURCE_PINS={
++ 'kernel-stage0-recovery-dev/source-handoff.json':'0eb5df09b431730a29e5cd6516603c6868fcf9ab53f98d9caf9403d08b9a8dce',
++ 'kernel-methods-next-dev/source-handoff.json':'3794521c315a93900d22df54472299fa6b71d2a36cda0e6b743784c31737fc55'}
++HISTORY={'kern-prep-r2-exec/terminal-root-closure.json':('2042c250fefd526acee4ac40cd4d68fc3690220f6d3021bc691b885b5e3ae37e',56393,0),'loss0/terminal-root-closure.json': ('c4916f2e7c7bd38e394bcb2ab33a51daf7a472a2aec8e08ff4b8a79a8fd5ba69', 99080, 0), 'kern-checks/terminal-root-closure.json': ('fef1f0342a991a76c6d1e99ed408d4660f738b11b31726ac78f991757d69f0f0', None, 0), 'queue-checks/terminal-root-closure.json': ('4006102127dd971c97843642754a748fc97199e20505c037f1688a80b8e12d27', None, 1), 'queue-checks-r2/terminal-root-closure.json': ('887a4b82614ca18d4589102a9f385d513e96ff5562dcb56ca3d2f95b6a186c34', None, 0), 'meth03l/terminal-root-closure.json': ('e02fd31162f1db27342895901ebb52764b140d59f9cd7651c9be447283bd3b9d', 63424, 0), 'meth02b/terminal-root-closure.json': ('fe00067cb099fdd4fdcd036861f5c3d55cd1c9ee0ee75bcddf488cfc035fe7f7', 38041, 0), 'meth02/terminal-root-closure.json': ('220e7c93f56eaa4a9c2e09ce70aa3ba406d864686cc68520bf69eace4ed75361', None, 1), 'meth03/terminal-root-closure.json': ('901f3c928d95d992800aef808ff70f84768a456bc23235e0ae63fd539fe159bf', 33253, 0), 'meth01/terminal-root-closure.json': ('2c67361da8f95875b35d124ac6c19d6cccba28c899f1e20dada88f3bec4ea283', 3417, 0), 'cp1/terminal-root-closure.json': ('96f5d956fa235cfd0904d55f67aeeaae8c93a083391fe8b370836f6e39ba309d', 43472, 0), 'cs0/terminal-root-closure.json': ('06d20ce5b1bfd51ceefc924f8d09eb06b4022e9998bcef4d36343cb58669fba8', 79591, 0), 'm4packet/terminal-root-closure.json': ('d19648a53253c0b070fe12068d6eafef5569e2d51332d9b212ef44cc828b9ddc', 65008, 0), 'loss01/terminal-root-closure.json': ('ce6accf1ec6b6f1e0c14dbb0c8913b55538f6a460450cbb2705ae36a37d3bcf3', 68631, 0)}
+ PUBLICATION={
+  't7-report-publication-closure-r2.json':'154eca18b219f8c62ec79ec391da2b09fa59c891fcb444e96732e1c2f1afed20',
+  'method-update-publication-closure-r1.json':'93bd05d3ff741eadf9bfc8858c875e8c130ec2aadc216c77e9480283b2692030'}
+@@ -93,10 +92,10 @@
+     global FAILURE
+     p = argparse.ArgumentParser(description=__doc__)
+     p.add_argument('--launch', action='store_true', required=True)
+-    for name in ['self-sha256','auditor-sha256','loss00-root-closure','loss00-root-closure-sha256']:
++    for name in ['self-sha256','auditor-sha256','kernel-manifest-sha256','kernel00-root-closure','kernel00-root-closure-sha256']:
+         p.add_argument('--'+name, required=True)
+-    p.add_argument('--loss00-exec-session',type=int,required=True)
+-    p.add_argument('--loss00-exit-code',type=int,required=True)
++    p.add_argument('--kernel00-exec-session',type=int,required=True)
++    p.add_argument('--kernel00-exit-code',type=int,required=True)
+     p.add_argument('--bootstrap-launcher'); p.add_argument('--bootstrap-launcher-sha256')
+     p.add_argument('--extra-terminal-receipt', action='append', default=[], metavar='WORK_REL_PATH=SHA256')
+     args = p.parse_args()
+@@ -107,14 +106,14 @@
+     import psutil
+     state = dict(status='starting', start_unix=start_unix, start_monotonic=start_mono,
+         absolute_deadline_unix=unix, common_deadline_monotonic=deadline, common_seconds=COMMON,
+-        allocations=dict(setup_reused_readiness=SETUP, nine_workers=9*PARENT, independent_audit=AUDIT, cleanup_export=CLEANUP),
++        allocations=dict(setup_reused_readiness=SETUP,fifteen_workers=15*PARENT,independent_audit=AUDIT,cleanup_export=CLEANUP,unallocated_spare=SPARE),
+         owned_root=dict(pid=os.getpid(), create_time=psutil.Process().create_time()),
+         coordinator_bootstrap_identities=[], supervisors=[], active_supervisor=None,
+         gates=[], workers=[], error_history=[], cleanup_confirmed=False, source_unchanged=False,
+         component_procedure_passed=False, component_quality_gates_passed=None, quality_metric=None, independent_audit=None,
+         root_actual_exec_qualification='pending_root_observed_actual_exec_and_fresh_closure',
+         promotion=False, submit=False, official_score=None,
+-        scope='Fixed loss-only SINGLE regression9jobs on three reused public forwardcuts; no full refit, HPO, LLM or whole-agent promotion')
++        scope='Fixed strong/matchedidentity/RBF component15jobs on five reused public forward/groupcuts; no full refit, HPO, LLM or whole-agent promotion')
+     coor = owner = awake = None
+     pins, deployment, known, finished = {}, {}, set(), set()
+     manifest_path, plan_path = ROOT/'manifest.json', ROOT/'verification-plan.json'
+@@ -177,28 +176,33 @@
+     try:
+         setup_end = start_mono+SETUP
+         check = lambda: checkpoint(setup_end, 'component_setup_cap_exhausted')
+-        explicit = dict([BASE,COOR,R4,REGISTRATION,PROTOCOL,LOSS_BASE,*SPECS.values()])
++        explicit = dict([BASE,COOR,R4,REGISTRATION,PROTOCOL,(KERN_BASE,args.kernel_manifest_sha256),*SPECS.values(),*KERN_SOURCE_PINS.items()])
+         explicit[Path(__file__).resolve().relative_to(WORK).as_posix()] = args.self_sha256
+         explicit[AUDITOR] = args.auditor_sha256
+         for name, digest in explicit.items():
+             need(sha(local(name), check) == digest, 'explicit_component_source_pin_failed'); merge(name,digest)
+         coor = imported('_component_proven_coordinator', local(COOR[0])); FAILURE = coor.TechnicalFailure
+         base = load(local(BASE[0]))
+-        loss_base=load(local(LOSS_BASE[0]))
+-        need(loss_base['source_root']=='loss00' and loss_base['archive_sha256']==ARCHIVE_SHA
+-             and len(loss_base['compiled_sha256'])==68 and sum(loss_base['registry'].values())==487,
+-             'actual_LOSS00_unchanged_source_required')
+-        for name,digest in loss_base['source_files_sha256'].items():merge('loss00/'+name,digest)
+-        merge(loss_base['archive'],ARCHIVE_SHA)
++        need(args.kernel_manifest_sha256==KERN_MANIFEST_SHA,'actual_KERN_prepared_manifest_required')
++        kernel_base=load(local(KERN_BASE))
++        archive_sha=kernel_base['archive_sha256']
++        need(archive_sha==ARCHIVE_SHA and kernel_base['source_root']=='kern00' and len(kernel_base['compiled_sha256'])==70
++             and sum(kernel_base['registry'].values())==483 and len(kernel_base['source_files_sha256'])==694
++             and kernel_base['base_archive_sha256']=='52627ac5b9da5ee47d8d40951f84edf9b9dede28cca4b4f90504be6bb4e672b8'
++             and kernel_base['overlay_handoff_sha256']==KERN_SOURCE_PINS['kernel-methods-next-dev/source-handoff.json']
++             and kernel_base['self_sha256']=='f749889a9a6eb29859169468c352345e05d41aa357579df132a1ff9cfb7520a8'
++             and kernel_base['source_skipped_expected']==0 and kernel_base['exact_flat_kernel_checks']==12,
++             'actual_KERN00_unchanged_source_required')
++        for name,digest in kernel_base['source_files_sha256'].items():merge('kern00/'+name,digest)
++        merge(kernel_base['archive'],archive_sha)
+         for name, digest in base['immutable_files'].items(): merge(name,digest)
+         for name in [*coor.LIBS.values(), coor.AWAKE]: need(name in pins, 'runtime_helper_unbound')
+         need(bool(args.bootstrap_launcher) == bool(args.bootstrap_launcher_sha256), 'paired_bootstrap_pin_required')
+         if args.bootstrap_launcher: merge(args.bootstrap_launcher, args.bootstrap_launcher_sha256)
+         for kind, cut, digest in CUTS: merge(split_source(kind,cut),digest)
+-        need((args.loss00_root_closure,args.loss00_root_closure_sha256)==LOSS00
+-             and args.loss00_exec_session==99080 and args.loss00_exit_code==0,
+-             'actual_LOSS00_root_proof_required')
+-        refs=[(LOSS00[0],LOSS00[1],99080,0)]
++        need(args.kernel00_root_closure==KERN_ROOT and args.kernel00_exec_session==19035
++             and args.kernel00_exit_code==0,'actual_KERN00_root_proof_required')
++        refs=[(args.kernel00_root_closure,args.kernel00_root_closure_sha256,args.kernel00_exec_session,0)]
+         refs += [(name,digest,session,exitcode) for name,(digest,session,exitcode) in HISTORY.items()]
+         refs += [(name,digest,'not_checked','not_checked') for name,digest in PUBLICATION.items()]
+         refs += [(name,digest,'not_checked','not_checked') for name,digest in
+@@ -213,47 +217,47 @@
+                 need(proof.get('actual_exec_session')==session
+                      and proof.get('actual_exec_exit_code_observed_by_root')==exitcode,'actual_predecessor_exec_binding_failed')
+             if index==0:
+-                need(proof.get('technical_procedure_passed') is True and proof.get('source_checks')==487
+-                     and proof.get('exact_default_repeated')==23 and proof.get('exact_flat_same_LOSS_contracts')==16
+-                     and proof.get('prepared_manifest_sha256')==LOSS_BASE[1],'actual_LOSS00_full_readiness_required')
++                need(proof.get('original_common_seconds')==900 and proof.get('technical_procedure_passed') is True and proof.get('source_checks')==483
++                     and proof.get('exact_default_repeated')==23 and proof.get('exact_flat_same_KERN_contracts')==12
++                     and proof.get('prepared_manifest_sha256')==args.kernel_manifest_sha256,'actual_KERN00_full_readiness_required')
+             known.update(coor.identities(proof['owned_identities']));known.update(coor.identities(proof['closure_preparer_identities']))
+             merge(name,digest)
+-        historical=load(local('loss0/campaign.json'));rootproof=load(local(LOSS00[0]))
+-        need(historical['prepared_manifest_sha256']==LOSS_BASE[1]
++        historical=load(local('kern0/campaign.json'));rootproof=load(local(args.kernel00_root_closure))
++        need(historical['prepared_manifest_sha256']==args.kernel_manifest_sha256
+              and historical['start_unix']==rootproof['original_start_unix']
+              and historical['absolute_deadline_unix']==rootproof['original_deadline_unix']
+              and historical['elapsed_common_seconds']==rootproof['raw_parent_elapsed_seconds']
+              and historical['status']==rootproof['raw_parent_status']
+              and historical['technical_checks_passed'] is True and historical['cleanup_confirmed'] is True
+              and historical['source_unchanged'] is True and not historical['error_history'],
+-             'reused_LOSS00_terminal_lineage_required')
+-        merge('loss0/campaign.json',sha(local('loss0/campaign.json'),check))
+-        expected={'source':(487,'source','source/results.json'),
++             'reused_KERN00_terminal_lineage_required')
++        merge('kern0/campaign.json',sha(local('kern0/campaign.json'),check))
++        expected={'source':(483,'source','source/results.json'),
+                   'exact-default':(23,'exact','exact.json'),
+-                  'exact-optin':(16,'exact-optin','exact-optin-supervisor.log')}
+-        need({g['name'] for g in historical['gates']}==set(expected),'full_LOSS00_gate_inventory_required')
++                  'exact-optin':(12,'exact-optin','exact-optin-supervisor.log')}
++        need({g['name'] for g in historical['gates']}==set(expected),'full_KERN00_gate_inventory_required')
+         for name,(count,supname,filename) in expected.items():
+             saved=next(g for g in historical['gates'] if g['name']==name)
+-            result='loss0/'+filename;supervisor='loss0/'+supname+'-supervisor.json'
++            result='kern0/'+filename;supervisor='kern0/'+supname+'-supervisor.json'
+             ref=next(r for r in historical['supervisors'] if r['path']==supervisor)
+             need(saved['checks']==count and saved['passed'] is True
+                  and sha(local(result),check)==saved['sha256']
+-                 and sha(local(supervisor),check)==ref['sha256'],'reused_LOSS00_gate_ref_changed')
++                 and sha(local(supervisor),check)==ref['sha256'],'reused_KERN00_gate_ref_changed')
+             sup=load(local(supervisor))
+             need(sup['status']=='ok' and sup['exit_code']==0 and sup['cleanup_confirmed'] is True,
+-                 'reused_LOSS00_gate_not_terminal_clean')
++                 'reused_KERN00_gate_not_terminal_clean')
+             merge(result,saved['sha256']);merge(supervisor,ref['sha256'])
+             state['gates'].append(dict(name=name,checks=count,
+-                evidence_mode='REUSED_LOSS00_UNCHANGED_SOURCE_NOT_EXECUTED_AGAIN',
++                evidence_mode='REUSED_KERN00_UNCHANGED_SOURCE_NOT_EXECUTED_AGAIN',
+                 result_path=result,result_sha256=saved['sha256'],supervisor_path=supervisor,
+                 supervisor_sha256=ref['sha256'],supervisor=sup))
+         state['technical_checks_newly_executed']=0
+-        state['technical_gate_evidence']='Actual LOSS00 source487/exact23/flat16 reused; exactsource freshly rehashed'
++        state['technical_gate_evidence']='Actual KERN00 source483/exact23/flat12 reused; exactsource freshly rehashed'
+         frozen(setup_end,'component_setup_cap_exhausted')
+         owner = imported('_component_owner',local(coor.LIBS['owner']))
+         processes = imported('_component_processes',local(coor.LIBS['processes']))
+         locker = imported('_component_lock',local(coor.LIBS['lock']))
+-        awake = imported('_component_awake',local(coor.AWAKE)).PowerRequestGuard('Alfa LOSS01 pid'+str(os.getpid()),10)
++        awake = imported('_component_awake',local(coor.AWAKE)).PowerRequestGuard('Alfa KERN01 pid'+str(os.getpid()),10)
+         parent = psutil.Process().parent(); own_paths = {Path(__file__).resolve()}
+         if args.bootstrap_launcher: own_paths.add(local(args.bootstrap_launcher))
+         while parent is not None:
+@@ -262,22 +266,21 @@
+             need(parent.create_time() == birth,'bootstrap_identity_changed')
+             state['coordinator_bootstrap_identities'].append(dict(pid=parent.pid,create_time=birth)); parent=parent.parent()
+         state.update(_manifest=base,_pulse=lambda:checkpoint(),awake_guard=awake.record)
+-        state['completed_LOSS00_predecessor']=dict(path=LOSS00[0],sha256=LOSS00[1],actual_exec_session=99080,
++        state['completed_KERN00_predecessor']=dict(path=args.kernel00_root_closure,sha256=args.kernel00_root_closure_sha256,actual_exec_session=args.kernel00_exec_session,
+             actual_exec_exit_code_observed_by_root=0)
+         with awake:
+             absence(); frozen(setup_end,'component_setup_cap_exhausted')
+             with locker.ResearchLock(WORK/'alfa-hack-automl/test-runs/.owned-research.lock') as lock:
+                 lock.write_identity(state['owned_root']); absence()
+                 (ROOT/'g').mkdir(); (ROOT/'sources').mkdir(); (ROOT/'supervisors').mkdir()
+-                with zipfile.ZipFile(local(loss_base['archive'])) as z:
+-                    need(len(z.namelist()) == 68 and set(z.namelist()) == set(loss_base['compiled_sha256']), 'exact_flat_archive_inventory_required')
+-                    for name,digest in loss_base['compiled_sha256'].items():
++                with zipfile.ZipFile(local(kernel_base['archive'])) as z:
++                    need(len(z.namelist()) == 70 and set(z.namelist()) == set(kernel_base['compiled_sha256']), 'exact_flat_archive_inventory_required')
++                    for name,digest in kernel_base['compiled_sha256'].items():
+                         need(Path(name).name == name,'flat_archive_required')
+                         target=ROOT/'sources'/name; target.write_bytes(z.read(name))
+                         need(sha(target,check) == digest,'flat_archive_copy_changed'); deployment[coor.relative(target)]=digest
+                 tasks, jobs = {}, []
+                 for task in base['tasks']:
+-                    if task['kind']!='regression':continue
+                     kind, code = task['kind'], task['code']; directory=ROOT/code; directory.mkdir()
+                     for name,digest in task['files'].items():
+                         target=directory/name; shutil.copyfile(local(task['source'])/name,target)
+@@ -293,36 +296,36 @@
+                     code=tasks[kind]['code']; partition=ROOT/code/f'split-{cut}.npz'
+                     shutil.copyfile(local(split_source(kind,cut)),partition)
+                     need(sha(partition,check)==digest,'existing_ordered_split_copy_changed');deployment[coor.relative(partition)]=digest
+-                    for arm in PROFILES:
++                    for arm in ARMS:
+                         key=f'{kind}{cut}-{arm}'; directory=ROOT/code/key;directory.mkdir()
+-                        recipe=copy.deepcopy(tasks[kind]['component_control'])
+-                        need(recipe['engine']=='lightgbm' and recipe['params'].get('early_metric')=='primary'
+-                             and recipe['params'].get('nested_stopping') is True and 'loss_profile_id' not in recipe['params'],
+-                             'unchanged_nested_primary_SINGLE_required')
+-                        recipe['params']['loss_profile_id']=arm
++                        recipe=copy.deepcopy(tasks[kind]['component_control']) if arm=='strong' else dict(
++                            engine='linear_text',feature_code='',params=dict(representation_profile=PROFILES[arm],generic_features='none'))
+                         job=dict(spec=load(local(tasks[kind]['spec_path'])),recipe=recipe,output_dir=str(directory),
+                             split_path=str(partition),threads=2,full_fit=False)
+                         path=directory/'job.json';coor.save(path,job,True);digest_job=sha(path,check);deployment[coor.relative(path)]=digest_job
+-                        jobs.append(dict(key=key,kind=kind,cut=cut,arm=arm,profile_id=arm,job_path=coor.relative(path),job_sha256=digest_job,
++                        jobs.append(dict(key=key,kind=kind,cut=cut,arm=arm,job_path=coor.relative(path),job_sha256=digest_job,
+                             output_dir=coor.relative(directory),split_path=coor.relative(partition),split_sha256=digest,recipe=recipe))
+-                manifest=dict(schema='LOSS01-component-v1',common_seconds=COMMON,immutable_files=dict(pins),
+-                    setup_deployment_sha256=dict(deployment),source_root='loss00',archive=loss_base['archive'],archive_sha256=ARCHIVE_SHA,
+-                    compiled_sha256=loss_base['compiled_sha256'],registry=loss_base['registry'],tasks=tasks,jobs=jobs,profiles=PROFILES,
+-                    loss_prepared_manifest=dict(path=LOSS_BASE[0],sha256=LOSS_BASE[1]),
+-                    loss00_predecessor=state['completed_LOSS00_predecessor'],
++                manifest=dict(schema='KERN01-component-v1',common_seconds=COMMON,immutable_files=dict(pins),
++                    setup_deployment_sha256=dict(deployment),source_root='kern00',archive=kernel_base['archive'],archive_sha256=archive_sha,
++                    compiled_sha256=kernel_base['compiled_sha256'],registry=kernel_base['registry'],tasks=tasks,jobs=jobs,arms=ARMS,profiles=PROFILES,
++                    kernel_prepared_manifest=dict(path=KERN_BASE,sha256=args.kernel_manifest_sha256),
++                    kernel00_predecessor=state['completed_KERN00_predecessor'],
+                     per_worker_parent_seconds=PARENT,per_worker_child_seconds=CHILD,threads=2,BLAS_threads=1,
+                     worker_memory_gib=1.5,whole_tree_memory_gib=2,refit=False,API_calls=0,
+                     interpreter_path=sys.executable,interpreter_sha256=sha(sys.executable,check),interpreter_version=sys.version)
+                 coor.save(manifest_path,manifest,True);state['manifest_sha256']=sha(manifest_path,check)
+-                plan=dict(schema='LOSS01-component-audit-v1',verifier_source_sha256=args.auditor_sha256,
++                plan=dict(schema='KERN01-component-audit-v1',verifier_source_sha256=args.auditor_sha256,
+                     manual_metric_verifier_path=R4[0],manual_metric_verifier_sha256=R4[1],
+                     execution_manifest_sha256=state['manifest_sha256'],original_common_start_unix=start_unix,
+                     original_absolute_deadline_unix=unix,common_seconds=COMMON,ordered_jobs=[j['key'] for j in jobs],
+                     reproduction_absolute_tolerance=1e-10,failed_metrics_zero_imputed=False,promotion=False,
+-                    profiles=PROFILES,quality_gate_policy=dict(
+-                        regression='each_non_L2_profile_strict_RMSE_improvement_on_all_three_cuts_vs_fresh_L2',
+-                        failed_or_null_cut_gate=False,full_refit_or_promotion=False,
+-                        legacy_SINGLE='additional_parity_reference_only'))
++                    arms=ARMS,profiles=PROFILES,quality_gate_policy=dict(
++                        regression='each_new_arm_strict_RMSE_improvement_all_three_cuts_vs_fresh_strong',
++                        classification='each_new_arm_both_MacroF1_improve_and_supported_class_and_ex_rarest_gates',
++                        supported_independent_groups_min=100,maximum_supported_class_drop=.01,class_drop_tolerance=1e-12,
++                        ex_rarest_gain_strictly_positive=True,failed_or_null_cut_gate=False,full_refit_or_promotion=False,
++                        matched_linear_contrast='RBF_minus_matchedlinear_separately_not_strong_control'))
++
+                 coor.save(plan_path,plan,True);state['verification_plan_sha256']=sha(plan_path,check)
+                 deployment[coor.relative(manifest_path)]=state['manifest_sha256'];deployment[coor.relative(plan_path)]=state['verification_plan_sha256']
+                 previous={s:signal.signal(s,lambda n,f:(_ for _ in ()).throw(SystemExit(128+n))) for s in [signal.SIGINT,signal.SIGTERM]}
+@@ -330,7 +333,7 @@
+                 try:
+                     frozen(setup_end,'component_setup_cap_exhausted');state['setup_seconds']=time.monotonic()-start_mono
+                     for index,job in enumerate(jobs):
+-                        tick=time.monotonic();future=(len(jobs)-index-1)*PARENT+AUDIT+CLEANUP
++                        tick=time.monotonic();future=(len(jobs)-index-1)*PARENT+AUDIT+CLEANUP+SPARE
+                         need(deadline-tick>=PARENT+future,'fixed_remaining_component_allocations_unavailable');absence()
+                         state.update(status='running',active_job=job['key']);persist()
+                         receipt=ROOT/'supervisors'/(job['key']+'.json')
+@@ -344,8 +347,8 @@
+                         local_oom=(sup.get('status')=='technical_failure' and sup.get('error_history')
+                             and all(r.get('code')=='worker_subtree_memory_limit' for r in sup['error_history']))
+                         need(sup.get('status') in ordinary or local_oom,'component_systemic_supervisor_failure')
+-                        check_job=lambda:checkpoint(tick+PARENT,'component_cleanup_seal_over600')
+-                        frozen(tick+PARENT,'component_cleanup_seal_over600');files=seal(local(job['output_dir']),check_job)
++                        check_job=lambda:checkpoint(tick+PARENT,'component_cleanup_seal_over480')
++                        frozen(tick+PARENT,'component_cleanup_seal_over480');files=seal(local(job['output_dir']),check_job)
+                         seal_path=ROOT/'supervisors'/(job['key']+'-seal.json')
+                         coor.save(seal_path,dict(key=job['key'],files_sha256=files,cleanup_confirmed=True,source_unchanged=True,
+                             sealed_before_independent_label_scoring=True),True)
+@@ -357,15 +360,15 @@
+                     tick=time.monotonic();need(deadline-tick>=AUDIT+CLEANUP,'component_audit_cleanup_reserve_unavailable');absence();frozen()
+                     state.update(status='verifying',cleanup_confirmed=True,source_unchanged=True);persist()
+                     command=[sys.executable,'-B','-X','utf8',str(local(AUDITOR)),'--work-root',str(WORK),
+-                        '--manifest','loss01/manifest.json','--manifest-sha256',state['manifest_sha256'],
+-                        '--plan','loss01/verification-plan.json','--plan-sha256',state['verification_plan_sha256'],
+-                        '--self-sha256',args.auditor_sha256,'--output','loss01/independent-audit.json']
++                        '--manifest','kern01/manifest.json','--manifest-sha256',state['manifest_sha256'],
++                        '--plan','kern01/verification-plan.json','--plan-sha256',state['verification_plan_sha256'],
++                        '--self-sha256',args.auditor_sha256,'--output','kern01/independent-audit.json']
+                     sup=coor.supervise(command,WORK,ROOT/'audit-supervisor.json','component-audit',tick,AUDIT,AUDIT-30,
+                         deadline,unix,AUDIT+CLEANUP,state,persist,frozen,owner,processes,state['coordinator_bootstrap_identities'])
+                     coor.child_errors(state,sup)
+                     finished.update(coor.identities(sup.get('owned_process_identities',[])))
+                     need(sup.get('status')=='ok' and sup.get('exit_code')==0 and sup.get('cleanup_confirmed') is True,'component_auditor_process_failed')
+-                    audit=load(ROOT/'independent-audit.json');state['independent_audit']=dict(path='loss01/independent-audit.json',sha256=sha(ROOT/'independent-audit.json'),raw_result=audit)
++                    audit=load(ROOT/'independent-audit.json');state['independent_audit']=dict(path='kern01/independent-audit.json',sha256=sha(ROOT/'independent-audit.json'),raw_result=audit)
+                     need(audit.get('artifact_integrity_checks_passed') is True and audit.get('audit_within_original_common_clock') is True
+                          and audit.get('parent_exec_terminal_qualification_required') is True,'component_saved_artifact_contract_failed')
+                     state.update(status='completed_component_screen_pending_root_exec_and_closure',
+--- loss-components-next-dev/close_components.py
++++ kernel-components-next-dev/close_components.py
+@@ -1,4 +1,4 @@
+-"""Root post-exit qualification of LOSS01; no fits or model/API imports."""
++"""Root post-exit qualification of KERN01; no fits or model/API imports."""
+ from pathlib import Path
+ import argparse,hashlib,json,time,psutil
+ 
+@@ -13,14 +13,14 @@
+     ap.add_argument('--actual-tool-evidence',required=True)
+     a=ap.parse_args();begin=time.monotonic()
+     assert __debug__ and hashlib.sha256(Path(__file__).read_bytes()).hexdigest()==a.self_sha256
+-    root=w/'loss01';c=read(root/'campaign.json')
++    root=w/'kern01';c=read(root/'campaign.json')
+     assert c.get('finished_unix') is not None and c.get('finished_monotonic') is not None
+-    assert c['common_seconds']==7200 and abs(c['absolute_deadline_unix']-c['start_unix']-7200)<1e-6
+-    assert abs(c['common_deadline_monotonic']-c['start_monotonic']-7200)<1e-6
++    assert c['common_seconds']==10800 and abs(c['absolute_deadline_unix']-c['start_unix']-10800)<1e-6
++    assert abs(c['common_deadline_monotonic']-c['start_monotonic']-10800)<1e-6
+     out=root/'terminal-root-closure.json';assert not out.exists()
+     def check():
+         assert time.monotonic()-begin<30,'Root closure30s exhausted'
+-        assert time.time()<c['absolute_deadline_unix'] and time.monotonic()<c['common_deadline_monotonic'],'Original LOSS01 clock exhausted'
++        assert time.time()<c['absolute_deadline_unix'] and time.monotonic()<c['common_deadline_monotonic'],'Original KERN01 clock exhausted'
+     def local(n):
+         p=(w/n).resolve();assert p.is_relative_to(w);return p
+     def sha(p):
+@@ -48,7 +48,7 @@
+     if manifest.exists():
+         assert sha(manifest)==c['manifest_sha256'];m=read(manifest)
+         for n,h in list(m['immutable_files'].items())+list(m['setup_deployment_sha256'].items()):merge(n,h)
+-        merge('loss01/verification-plan.json',c['verification_plan_sha256'])
++        merge('kern01/verification-plan.json',c['verification_plan_sha256'])
+         for row in c.get('workers',[]):
+             merge(row['supervisor_path'],row['supervisor_sha256'])
+             p=local(row['seal']['path']);assert sha(p)==row['seal']['sha256'];merge(row['seal']['path'],row['seal']['sha256'])
+@@ -59,8 +59,6 @@
+     else:bad.append('missing-manifest')
+     if c.get('independent_audit'):
+         p=local(c['independent_audit']['path']);assert sha(p)==c['independent_audit']['sha256'];audit=read(p)
+-        for name,digest in audit.get('legacy_parity_reference_sha256',{}).items():
+-            if sha(local(name))!=digest:bad.append(name)
+     artifact_ok=(audit is not None and audit.get('artifact_integrity_checks_passed') is True
+         and audit.get('audit_within_original_common_clock') is True)
+     passed=(a.actual_exit_code==0 and c.get('component_procedure_passed') is True
+@@ -77,7 +75,7 @@
+         actual_tool_evidence=a.actual_tool_evidence,cleanup_confirmed=not live and not uncertain,source_unchanged=not bad,
+         owned_identities=[dict(pid=p,create_time=b) for p,b in sorted(known)],closure_preparer_identities=preparers,
+         active_owned_processes=live,uncertain_owned=uncertain,changed_or_conflicting_pins=bad,immutable_and_core_refs_rehashed=len(expected),
+-        original_start_unix=c['start_unix'],original_deadline_unix=c['absolute_deadline_unix'],original_common_seconds=7200,
++        original_start_unix=c['start_unix'],original_deadline_unix=c['absolute_deadline_unix'],original_common_seconds=10800,
+         raw_parent_elapsed_seconds=c['elapsed_common_seconds'],technical_procedure_passed=passed,
+         independent_artifact_integrity=artifact_ok,first_failure=c.get('first_failure'),error_history=c.get('error_history',[]),
+         independent_audit=c.get('independent_audit'),qualified_ML_metrics=audit.get('quality_metric') if passed else None,
+@@ -85,7 +83,7 @@
+         component_quality_gates_passed=audit.get('component_quality_gates_passed') if passed else None,
+         promotion=False,full_refit=False,submit=False,official_score=None,new_model_fits=0,API_calls=0,
+         own_actual_exec_exit_and_fresh_preparer_absence_required=True,
+-        scope='Fixed loss-only SINGLE component screen; freshL2 quality control, oldSINGLE parity only. No wholeagent/refit/official qualification.')
++        scope='Fixed strong/matchedidentity/RBF component screen on reused public cuts. Strong-vs-new is a complete recipe package; matchedidentity-vs-RBF isolates representation. No wholeagent/refit/official qualification.')
+     # Root still must observe this helper terminal and its exact preparers absent.
+     check()
+     with out.open('x',encoding='utf-8') as stream:json.dump(result,stream,ensure_ascii=False,indent=2,allow_nan=False)
+--- method-component-next-dev/audit_components.py
++++ kernel-components-next-dev/audit_components.py
+@@ -1,6 +1,6 @@
+-"""METH01 saved component artifacts: frozen R4.TaskVerifier/diagnostics, no fits.
+-
+-All ten closed cores are sealed and rehashed BEFORE pristine labels are parsed.
++"""KERN01 saved component artifacts: frozen R4.TaskVerifier/diagnostics, no fits.
++
++All fifteen closed cores are sealed and rehashed BEFORE pristine labels are parsed.
+ An ordinary failed worker has a null metric; it is never dropped or zero-imputed.
+ This component screen cannot qualify a whole agent, refit, blend or release.
+ """
+@@ -19,12 +19,13 @@
+ 
+ R4 = ('repaired-mvp-r1-dev/evaluator_r4.py','c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783')
+ BASE_SHA = '8faf33cd81c0e864bcf338828c34447000111eda85bc719b8f43312d2babae9a'
+-ARCHIVE_SHA = '16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0'
+-ORDER = ['regression0-control','regression0-candidate','regression1-control','regression1-candidate',
+-    'regression2-control','regression2-candidate','classification42-control','classification42-candidate',
+-    'classification43-control','classification43-candidate']
+-FIXED = dict(engine='extra_trees',feature_code='',params=dict(iterations=128,max_depth=16,
+-    min_samples_leaf=4,max_features=.9,seed=42,generic_features='none'))
++KERN_BASE='kern-stage0-packet/manifest.json'
++KERN_MANIFEST_SHA='8e9fb3c8e428df7e372dc53d0e3b11bc4c435bdf13c89426ebe5b0e45ebffa98'
++ARCHIVE_SHA='ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c'
++ARMS=['strong','linear','rbf']
++PROFILES={'linear':'tabular_linear_bounded_v1','rbf':'tabular_rbf128_invdim_v1'}
++ORDER=[f'{kind}{cut}-{arm}' for kind,cut in [('regression',0),('regression',1),('regression',2),
++    ('classification',42),('classification',43)] for arm in ARMS]
+ CUT_SHA = {('regression',0):'5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84',
+     ('regression',1):'e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b',
+     ('regression',2):'60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc',
+@@ -45,6 +46,60 @@
+ 
+ def load(path):
+     return json.loads(Path(path).read_text('utf-8'))
++
++
++def representation_receipt(r4,verifier,record,job):
++    profile=PROFILES[job['arm']];info=record.get('representation')
++    need(isinstance(info,dict),'missing_fixed_representation_receipt')
++    tr,va=r4.split(Path(job['_absolute_split']),len(verifier.train))
++    ordered=r4.np.ascontiguousarray(tr,dtype=r4.np.int64)
++    rowsha=hashlib.sha256(str(ordered.dtype).encode()+str(ordered.shape).encode()+ordered.tobytes()).hexdigest()
++    numeric=[];category=[]
++    import numbers
++    for name in verifier.spec['features']:
++        values=verifier.train[name].iloc[tr].dropna()
++        is_numeric=all(isinstance(v,(numbers.Real,r4.np.number,bool)) for v in values)
++        (numeric if is_numeric else category).append(name)
++    prepared=info.get('prepared_columns');represented=info.get('representation_columns')
++    need(type(prepared) is int and 1<=prepared<=4096 and 1<=len(numeric)+len(category)<=64,
++         'bounded_prepared_schema_required')
++    n=len(tr);width=len(numeric)+64*len(category);dimension=128 if job['arm']=='rbf' else width
++    upper={'numeric_dense':n*len(numeric)*8,'category_codes':n*len(category)*8,
++        'prepared_CSR_upper_bound':n*(len(numeric)+len(category))*12+(n+1)*4,
++        'representation_dense':n*dimension*8 if job['arm']=='rbf' else 0,
++        'random_projection':width*dimension*8 if job['arm']=='rbf' else 0}
++    estimate=n*(len(numeric)*8*3+len(category)*16*3+(len(numeric)+len(category))*16*2)
++    estimate+=n*dimension*8*2 if job['arm']=='rbf' else n*(len(numeric)+len(category))*16
++    estimate+=upper['random_projection']+64*dimension*8
++    budget=dict(fitting_rows=n,numeric_columns=len(numeric),categorical_columns=len(category),
++        maximum_encoded_columns=width,estimated_live_matrix_bytes=estimate,matrix_limit_bytes=128000000,
++        matrix_limit_scope='each_logical_matrix',matrix_bytes_upper_bounds=upper,process_RSS_requires_external_guard=True)
++    need(1<=n<=200000 and width<=4096 and max(upper.values())<=128000000
++         and info.get('budget')==budget,'fixed_representation_budget_or_fitting_schema_mismatch')
++    need(info.get('representation_profile')==profile and info.get('fitting_rows')==n
++         and info.get('fitting_row_order_sha256')==rowsha and info.get('seed')==42
++         and info.get('numeric_columns')==len(numeric) and info.get('categorical_columns')==len(category)
++         and info.get('threads')==2 and info.get('calibration')=='disabled' and info.get('log_target') is False
++         and info.get('preprocessing_scope')=='fitting_rows_only' and info.get('representation_scope')=='fitting_rows_only'
++         and isinstance(info.get('fitting_state_sha256'),str) and re.fullmatch('[0-9a-f]{64}',info['fitting_state_sha256']),
++         'fixed_representation_scope_or_order_mismatch')
++    for key in ['actual_prepared_matrix_bytes','actual_representation_matrix_bytes','projection_bytes']:
++        need(type(info.get(key)) is int and 0<=info[key]<=128000000,'representation_matrix_byte_cap_mismatch')
++    need(info['actual_prepared_matrix_bytes']>0 and info['actual_representation_matrix_bytes']>0,'empty_prepared_matrix')
++    if job['arm']=='rbf':
++        need(represented==128 and info.get('gamma')==1./prepared
++             and info['actual_representation_matrix_bytes']==n*128*8
++             and info['projection_bytes']==prepared*128*8+128*8,'fixed_RBF128_gamma_or_projection_mismatch')
++    else:
++        need(represented==prepared and info.get('gamma') is None and info['projection_bytes']==0
++             and info['actual_representation_matrix_bytes']==info['actual_prepared_matrix_bytes'],
++             'matched_identity_representation_mismatch')
++    expected_estimator=dict(family='Ridge',alpha=10.,solver='lsqr') if job['kind']=='regression' else dict(
++        family='LogisticRegression',C=1.,solver='lbfgs',class_weight_power=.5)
++    need(info.get('estimator')==expected_estimator and info.get('classes')==list(verifier.spec.get('classes') or [])
++         and record.get('fit_iterations')==1,'fixed_linear_head_class_order_or_fit_count_mismatch')
++    return dict(verified=True,profile_id=profile,receipt=info,independent_order_and_schema_verified=True,
++        no_auditor_preprocessor_refit=True,simultaneous_RSS_not_certified_by_single_matrix_cap=True)
+ 
+ 
+ def main():
+@@ -54,26 +109,30 @@
+     args=p.parse_args();need(__debug__,'nonoptimized_python_required');work=Path(args.work_root).resolve()
+     def local(name):
+         path=(work/name).resolve();need(not Path(name).is_absolute() and path.is_relative_to(work),'audit_reference_outside_work');return path
+-    root=work/'meth01';output=local(args.output)
++    root=work/'kern01';output=local(args.output)
+     need(output==root/'independent-audit.json' and not output.exists(),'exclusive_expected_component_output_required')
+     need(digest(__file__)==args.self_sha256 and digest(local(args.manifest))==args.manifest_sha256
+          and digest(local(args.plan))==args.plan_sha256,'explicit_component_audit_pin_failed')
+     manifest,plan,campaign=load(local(args.manifest)),load(local(args.plan)),load(root/'campaign.json')
+-    need(manifest['schema']=='METH01-component-v1' and manifest['common_seconds']==6600
+-         and plan['schema']=='METH01-component-audit-v1' and plan['common_seconds']==6600
++    need(manifest['schema']=='KERN01-component-v1' and manifest['common_seconds']==10800
++         and plan['schema']=='KERN01-component-audit-v1' and plan['common_seconds']==10800
+          and plan['ordered_jobs']==ORDER,'registered_component_contract_changed')
+-    need(plan['quality_gate_policy']==dict(regression='strict_RMSE_improvement_on_all_three_cuts',
+-        classification='both_MacroF1_improve_and_supported_class_and_ex_rarest_gates',supported_independent_groups_min=100,
+-        maximum_supported_class_drop=.01,class_drop_tolerance=1e-12,ex_rarest_gain_strictly_positive=True,
+-        failed_or_null_cut_gate=False,full_refit_or_promotion=False),'registered_component_quality_gates_changed')
++    need(plan['arms']==ARMS and manifest['arms']==ARMS and plan['profiles']==PROFILES and manifest['profiles']==PROFILES
++         and plan['quality_gate_policy']==dict(
++             regression='each_new_arm_strict_RMSE_improvement_all_three_cuts_vs_fresh_strong',
++             classification='each_new_arm_both_MacroF1_improve_and_supported_class_and_ex_rarest_gates',
++             supported_independent_groups_min=100,maximum_supported_class_drop=.01,class_drop_tolerance=1e-12,
++             ex_rarest_gain_strictly_positive=True,failed_or_null_cut_gate=False,full_refit_or_promotion=False,
++             matched_linear_contrast='RBF_minus_matchedlinear_separately_not_strong_control'),
++         'registered_component_quality_gates_changed')
+     need(plan['verifier_source_sha256']==args.self_sha256 and plan['execution_manifest_sha256']==args.manifest_sha256
+          and plan['manual_metric_verifier_path']==R4[0] and plan['manual_metric_verifier_sha256']==R4[1]
+          and digest(local(R4[0]))==R4[1],'frozen_R4_manual_metric_source_required')
+     need(campaign['manifest_sha256']==args.manifest_sha256 and campaign['verification_plan_sha256']==args.plan_sha256
+          and campaign['start_unix']==plan['original_common_start_unix']
+          and campaign['absolute_deadline_unix']==plan['original_absolute_deadline_unix']
+-         and abs(campaign['absolute_deadline_unix']-campaign['start_unix']-6600)<=1e-6
+-         and abs(campaign['common_deadline_monotonic']-campaign['start_monotonic']-6600)<=1e-6,
++         and abs(campaign['absolute_deadline_unix']-campaign['start_unix']-10800)<=1e-6
++         and abs(campaign['common_deadline_monotonic']-campaign['start_monotonic']-10800)<=1e-6,
+          'original_component_clock_binding_failed')
+     need(campaign['status']=='verifying' and campaign['cleanup_confirmed'] is True
+          and campaign['source_unchanged'] is True and campaign.get('finished_unix') is None,'closed_workers_before_live_parent_audit_required')
+@@ -87,48 +146,78 @@
+         for name,h in {**manifest['immutable_files'],**manifest['setup_deployment_sha256']}.items():
+             need(digest(local(name))==h,'component_frozen_source_input_spec_job_split_changed');clock()
+     frozen()
+-    need(manifest['immutable_files']['m4packet/manifest.json']==BASE_SHA,'exact_native_ET_base_required')
++    need(manifest['immutable_files']['m4packet/manifest.json']==BASE_SHA,'pristine_metadata_base_required')
+     base=load(local('m4packet/manifest.json'))
+-    need(manifest['archive_sha256']==ARCHIVE_SHA==base['archive_sha256'] and manifest['archive']==base['archive']
+-         and manifest['compiled_sha256']==base['compiled_sha256'] and digest(local(manifest['archive']))==ARCHIVE_SHA,
+-         'unchanged_native_ET_archive_required')
++    prepared_ref=manifest['kernel_prepared_manifest']
++    need(prepared_ref['path']==KERN_BASE and digest(local(KERN_BASE))==prepared_ref['sha256']==KERN_MANIFEST_SHA,
++         'exact_qualified_KERN_source_manifest_required')
++    kernel_base=load(local(KERN_BASE));archive_sha=kernel_base['archive_sha256']
++    need(archive_sha==ARCHIVE_SHA and kernel_base['source_root']=='kern00' and kernel_base['source_expected_checks']==483
++         and kernel_base['self_sha256']=='f749889a9a6eb29859169468c352345e05d41aa357579df132a1ff9cfb7520a8'
++         and kernel_base['base_archive_sha256']=='52627ac5b9da5ee47d8d40951f84edf9b9dede28cca4b4f90504be6bb4e672b8'
++         and kernel_base['overlay_handoff_sha256']=='3794521c315a93900d22df54472299fa6b71d2a36cda0e6b743784c31737fc55'
++         and kernel_base['exact_flat_kernel_checks']==12 and kernel_base['source_skipped_expected']==0,
++         'qualified_kernel_factor_required')
++    need(len(kernel_base['source_files_sha256'])==694,'full_kernel_source_inventory_required')
++    for name,h in kernel_base['source_files_sha256'].items():
++        need(manifest['immutable_files'].get('kern00/'+name)==h and digest(local('kern00/'+name))==h,
++             'direct_qualified_kernel_source_binding_failed');clock()
++    need(manifest['archive_sha256']==archive_sha and manifest['archive']==kernel_base['archive']
++         and manifest['compiled_sha256']==kernel_base['compiled_sha256'] and digest(local(manifest['archive']))==archive_sha,
++         'unchanged_qualified_KERN_archive_required')
+     with zipfile.ZipFile(local(manifest['archive'])) as z:
+-        need(len(z.namelist())==68 and len(set(z.namelist()))==68 and all(Path(n).name==n for n in z.namelist()),'flat_archive_inventory_changed')
++        need(len(z.namelist())==len(set(z.namelist()))==70 and all(Path(n).name==n for n in z.namelist()),'flat_archive_inventory_changed')
+         need({n:hashlib.sha256(z.read(n)).hexdigest() for n in z.namelist()}==manifest['compiled_sha256'],'compiled_archive_changed')
+     need(manifest['per_worker_parent_seconds']==480 and manifest['per_worker_child_seconds']==450
+          and manifest['threads']==2 and manifest['BLAS_threads']==1 and manifest['worker_memory_gib']==1.5
+          and manifest['whole_tree_memory_gib']==2 and manifest['refit'] is False,'registered_resource_contract_changed')
+     jobs=manifest['jobs'];entries=campaign['workers']
+     need([j['key'] for j in jobs]==ORDER and [e['key'] for e in entries]==ORDER,'complete_registered_order_required')
++    rootref=manifest['kernel00_predecessor']
++    need(rootref==dict(path='kern0/terminal-root-closure.json',sha256=rootref['sha256'],actual_exec_session=rootref['actual_exec_session'],actual_exec_exit_code_observed_by_root=0) and type(rootref['actual_exec_session']) is int and rootref['actual_exec_session']==19035
++         and digest(local(rootref['path']))==rootref['sha256'],'actual_KERN00_terminal_binding_required')
++    prior=load(local(rootref['path']));old_campaign=load(local('kern0/campaign.json'))
++    need(prior['original_common_seconds']==900 and prior['source_checks']==483 and prior['exact_default_repeated']==23 and prior['exact_flat_same_KERN_contracts']==12
++         and prior['technical_procedure_passed'] is True and prior['cleanup_confirmed'] is True and prior['source_unchanged'] is True
++         and prior['actual_exec_session']==rootref['actual_exec_session'] and prior['actual_exec_exit_code_observed_by_root']==0
++         and prior['prepared_manifest_sha256']==prepared_ref['sha256']
++         and old_campaign['prepared_manifest_sha256']==prepared_ref['sha256']
++         and old_campaign['start_unix']==prior['original_start_unix']
++         and old_campaign['absolute_deadline_unix']==prior['original_deadline_unix']
++         and old_campaign['elapsed_common_seconds']==prior['raw_parent_elapsed_seconds'],
++         'actual_full_KERN00_readiness_lineage_required')
+     gates={r['name']:r for r in campaign['gates']}
+-    need(set(gates)=={'source','exact'},'fresh_source_exact_gates_required')
+-    for gate in gates.values():
+-        need(gate.get('evidence_mode')=='REUSED_T7_UNCHANGED_SOURCE_NOT_EXECUTED_AGAIN','reused_gate_evidence_scope_required')
+-        need(digest(local(gate['supervisor_path']))==gate['supervisor_sha256']
+-             and load(local(gate['supervisor_path']))==gate['supervisor'],'gate_inline_differs_from_saved_terminal')
++    need(set(gates)=={'source','exact-default','exact-optin'},'full_reused_KERN00_gate_inventory_required')
++    for name,gate in gates.items():
++        expected=next(g for g in old_campaign['gates'] if g['name']==name)
++        need(gate['evidence_mode']=='REUSED_KERN00_UNCHANGED_SOURCE_NOT_EXECUTED_AGAIN'
++             and gate['checks']==expected['checks'] and gate['result_sha256']==expected['sha256']
++             and digest(local(gate['result_path']))==gate['result_sha256']
++             and digest(local(gate['supervisor_path']))==gate['supervisor_sha256']
++             and load(local(gate['supervisor_path']))==gate['supervisor'],'reused_KERN00_gate_ref_changed')
+         need(gate['supervisor']['status']=='ok' and gate['supervisor']['exit_code']==0
+-             and gate['supervisor']['cleanup_confirmed'] is True and digest(local(gate['result_path']))==gate['result_sha256'],
+-             'reused_gate_terminal_contract_failed')
+-    old_campaign=load(local('t7/campaign.json'));old_root=load(local('m4packet/terminal-root-closure.json'))
+-    need(old_campaign['manifest_sha256']==BASE_SHA and old_root['actual_exec_session']==65008
+-         and old_root['actual_exec_exit_code_observed_by_root']==0 and old_root['cleanup_confirmed'] is True
+-         and old_root['source_unchanged'] is True,'actual_closed_T7_gate_lineage_required')
+-    source=load(local(gates['source']['result_path']));exact=load(local(gates['exact']['result_path']))
+-    need(source.get('passed') is True and source.get('source_unchanged') is True and source.get('fixture_cleanup_confirmed') is True
+-         and source['unique_checks_passed']==458 and source['unique_checks_skipped']==0
+-         and source['source_sha256']==manifest['compiled_sha256'],'source458_no_skip_required')
++             and gate['supervisor']['cleanup_confirmed'] is True,'reused_KERN00_supervisor_not_terminal_clean')
++    source=load(local(gates['source']['result_path']));exact=load(local(gates['exact-default']['result_path']))
++    need(source['passed'] is True and source['source_unchanged'] is True and source['fixture_cleanup_confirmed'] is True
++         and source['unique_checks_passed']==483 and source['unique_checks_skipped']==0
++         and source['source_sha256']==manifest['compiled_sha256'],'actual_source483_no_skip_required')
+     registry={r['script']:r for r in source['checks']}
+-    need(set(registry)==set(manifest['registry']) and all(registry[n]['passed'] is True and registry[n]['observed_checks']==c
+-         and registry[n]['skipped_checks']==0 for n,c in manifest['registry'].items()),'reused_source_registry_coverage_changed')
+-    need(exact.get('passed') is True and exact.get('matches_current_source') is True and exact['sha256']==ARCHIVE_SHA
+-         and [r['script'] for r in exact['checks']]==['test_v2.py','test_resilience.py','smoke.py'],'reused_exact23_archive_coverage_changed')
++    need(set(registry)==set(manifest['registry']) and sum(manifest['registry'].values())==483
++         and all(registry[n]['passed'] is True and registry[n]['observed_checks']==count and registry[n]['skipped_checks']==0
++                 for n,count in manifest['registry'].items()),'reused_source_registry_incomplete')
++    need(exact['passed'] is True and exact['matches_current_source'] is True and exact['sha256']==archive_sha,
++         'actual_exact_archive_readiness_required')
++    counts={'test_v2.py':11,'test_resilience.py':7,'smoke.py':5}
++    need([r['script'] for r in exact['checks']]==list(counts),'actual_exact23_inventory_required')
+     for row in exact['checks']:
+         text=row.get('stdout','')+'\n'+row.get('stderr','')
+-        need(row['exit_code']==0 and not re.search(r'\bskipped\s*=\s*[1-9]',text),'reused_exact_failed_or_skipped')
+-        if row['script']=='smoke.py':
+-            cases=json.loads(row['stdout']);need(len(cases)==5 and all(v['status']=='passed' for v in cases),'reused_exact_smoke_incomplete')
+-        else:
+-            counts=re.findall(r'Ran (\d+) tests? in ',text);need(counts and int(counts[-1])==manifest['registry'][row['script']],'reused_exact_count_changed')
++        need(row['exit_code']==0 and not re.search(r'\bskipped\s*=\s*[1-9]',text),'actual_exact_failed_or_skipped')
++        observed=re.findall(r'Ran (\d+) tests? in ',text)
++        if row['script']=='smoke.py':need(len(json.loads(row['stdout']))==5,'actual_exact_smoke5_required')
++        else:need(observed and int(observed[-1])==counts[row['script']],'actual_exact_count_changed')
++    text=local(gates['exact-optin']['result_path']).read_text('utf-8')
++    need(gates['exact-optin']['checks']==12 and re.findall(r'Ran (\d+) tests? in ',text)==['12']
++         and '\nOK\n' in text and 'skipped=' not in text,'actual_flat_KERN12_required')
+     # Bind every seal, saved terminal supervisor and exact ordered job before
+     # importing NumPy/Pandas or parsing any pristine fitting/validation labels.
+     cores={}
+@@ -141,14 +230,13 @@
+             clock()
+     for job,entry in zip(jobs,entries):
+         kind,arm=job['kind'],job['arm'];meta=manifest['tasks'][kind]
+-        need(arm in {'control','candidate'} and job['key']==f"{kind}{job['cut']}-{arm}",'component_key_arm_cut_mismatch')
++        need(arm in set(ARMS) and job['key']==f"{kind}{job['cut']}-{arm}",'component_key_arm_cut_mismatch')
+         original=next(v for v in base['tasks'] if v['kind']==kind)
+         need(meta['files']==original['files'] and meta['control_recipe']==original['control_recipe'],'protected_pristine_or_control_reference_changed')
+         control=load(local(meta['control_recipe']['path']))['components'][0]
+         need(meta['component_control']==control,'exact_first_SINGLE_control_required')
+-        candidate=copy.deepcopy(FIXED)
+-        if kind=='classification':candidate['params']['class_weight_power']=.5
+-        need(job['recipe']==(control if arm=='control' else candidate),'fixed_component_recipe_changed')
++        candidate=dict(engine='linear_text',feature_code='',params=dict(representation_profile=PROFILES[arm],generic_features='none')) if arm!='strong' else None
++        need(job['recipe']==(control if arm=='strong' else candidate),'fixed_component_recipe_changed')
+         expected_cut=CUT_SHA[(kind,job['cut'])]
+         original_split=f"alfa-hack-automl/test-runs/2e/fe-{kind}/control_historical/seed-{job['cut']}/split.npz"
+         need(job['split_sha256']==expected_cut==manifest['immutable_files'][original_split]
+@@ -180,9 +268,10 @@
+                 need(not name.endswith(('.tmp','.pending')),'unfinished_component_core')
+                 path=Path(parent)/name;actual[path.relative_to(work).as_posix()]=digest(path);clock()
+         need(actual==seal['files_sha256'],'sealed_component_inventory_or_bytes_changed');cores[job['key']]=actual
+-    for a,b in zip(jobs[::2],jobs[1::2]):
+-        need(a['kind']==b['kind'] and a['cut']==b['cut'] and a['split_path']==b['split_path']
+-             and a['split_sha256']==b['split_sha256'],'paired_fitting_validation_rows_must_be_identical')
++    for offset in range(0,len(jobs),3):
++        group=jobs[offset:offset+3]
++        need([j['arm'] for j in group]==ARMS and len({(j['kind'],j['cut'],j['split_path'],j['split_sha256']) for j in group})==1,
++             'three_arms_fitting_validation_rows_must_be_identical')
+     spec=importlib.util.spec_from_file_location('_frozen_R4_component_library',local(R4[0]))
+     r4=importlib.util.module_from_spec(spec);spec.loader.exec_module(r4)
+     verifiers={}
+@@ -208,8 +297,9 @@
+                 verifier=verifiers[job['kind']]
+                 checked=verifier.verify(record,local(job['split_path']),job['key'],False,job['recipe'])
+                 diagnostic=r4.diagnostics(verifier,record,local(job['split_path']),job['key'])
++                representation=representation_receipt(r4,verifier,record,dict(job,_absolute_split=str(local(job['split_path'])))) if job['arm']!='strong' else None
+                 need(math.isfinite(checked['value']),'nonfinite_component_metric')
+-                row.update(metric=checked['value'],diagnostics=diagnostic,integrity_passed=True,measurement_status='independent_component_metric')
++                row.update(metric=checked['value'],diagnostics=diagnostic,representation_verification=representation,integrity_passed=True,measurement_status='independent_component_metric')
+             except Exception as exc:
+                 trace=exc.__traceback__
+                 while trace is not None and trace.tb_next is not None:trace=trace.tb_next
+@@ -222,43 +312,42 @@
+         rows.append(row)
+     all_succeeded=all(r['status']=='ok' and r['exit_code']==0 and r['integrity_passed'] is True for r in rows)
+     integrity=all(r['integrity_passed'] is True for r in rows)
+-    comparisons=[]
+-    for a,b in zip(rows[::2],rows[1::2]):
+-        complete=a['metric'] is not None and b['metric'] is not None
+-        comparisons.append(dict(kind=a['kind'],cut=a['cut'],control=a['metric'],candidate=b['metric'],
+-            delta_candidate_minus_control=b['metric']-a['metric'] if complete else None,
+-            complete=complete,greater_is_better=a['kind']=='classification'))
+-    quality={}
+-    for kind,count in [('regression',3),('classification',2)]:
+-        group=[v for v in comparisons if v['kind']==kind]
+-        complete=len(group)==count and all(v['complete'] for v in group)
+-        quality[kind]=dict(metric='rmse' if kind=='regression' else 'macro_f1',required_cuts=count,
+-            complete=complete,control_mean=sum(v['control'] for v in group)/count if complete else None,
+-            candidate_mean=sum(v['candidate'] for v in group)/count if complete else None)
+-    regression_gates=[dict(cut=v['cut'],strict_RMSE_improvement=v['complete'] and v['delta_candidate_minus_control']<0)
+-        for v in comparisons if v['kind']=='regression']
+-    class_rows={r['key']:r for r in rows if r['kind']=='classification'}
+-    class_complete=all(class_rows[f'classification{cut}-{arm}']['diagnostics'] is not None
+-        for cut in [42,43] for arm in ['control','candidate'])
+-    class_gates=dict(cuts=[],each_cut_MacroF1_improves=False,each_cut_supported_class_and_ex_rarest_gates_passed=False)
+-    if class_complete:
+-        aliases={'primary':42,'confirmation':43}
+-        candidate={phase:class_rows[f'classification{cut}-candidate']['diagnostics'] for phase,cut in aliases.items()}
+-        control={phase:class_rows[f'classification{cut}-control']['diagnostics'] for phase,cut in aliases.items()}
+-        matched=r4.matched_control_comparison(candidate,control,'classification')
+-        class_gates.update(cuts=[dict(row,cut_alias='group_seed_'+str(aliases[row['phase']]),
+-            cut=aliases[row['phase']]) for row in matched['cuts']],
+-            each_cut_MacroF1_improves=matched['each_cut_primary_gate_passed'],
+-            each_cut_supported_class_and_ex_rarest_gates_passed=matched['class_each_cut_gate_passed'])
+-    else:
+-        class_gates['cuts']=[dict(cut=cut,cut_alias='group_seed_'+str(cut),primary_improves=False,
+-            all_class_gates_passed=False,reason='missing_or_unqualified_control_or_candidate_cut') for cut in [42,43]]
+-    regression_pass=len(regression_gates)==3 and all(v['strict_RMSE_improvement'] for v in regression_gates)
+-    class_pass=class_gates['each_cut_MacroF1_improves'] and class_gates['each_cut_supported_class_and_ex_rarest_gates_passed']
+-    decisions=dict(regression_all_three_strict_RMSE_improvement=regression_pass,regression_cuts=regression_gates,
+-        classification=class_gates,component_quality_gates_passed=regression_pass and class_pass,
+-        negative_standalone_artifacts_retained_for_separate_METH03=True,full_refit_or_promotion=False,
+-        scope='Registered standalone component gates only; class primary/confirmation names are aliases for group seeds42/43, not whole-agent phases')
++    lookup={r['key']:r for r in rows};comparisons=[];quality={};decisions={}
++    pairs=[('linear','strong'),('rbf','strong'),('rbf','linear')]
++    for arm,baseline in pairs:
++        tag=arm+'_vs_'+baseline;comp=[];perkind={}
++        for kind,cut in [('regression',0),('regression',1),('regression',2),('classification',42),('classification',43)]:
++            a=lookup[f'{kind}{cut}-{baseline}'];b=lookup[f'{kind}{cut}-{arm}'];complete=a['metric'] is not None and b['metric'] is not None
++            comp.append(dict(kind=kind,cut=cut,baseline_arm=baseline,arm=arm,baseline=a['metric'],candidate=b['metric'],
++                delta_candidate_minus_baseline=b['metric']-a['metric'] if complete else None,complete=complete,
++                greater_is_better=kind=='classification'))
++        for kind,count in [('regression',3),('classification',2)]:
++            group=[v for v in comp if v['kind']==kind];complete=len(group)==count and all(v['complete'] for v in group)
++            perkind[kind]=dict(metric='rmse' if kind=='regression' else 'macro_f1',required_cuts=count,complete=complete,
++                baseline_mean=sum(v['baseline'] for v in group)/count if complete else None,
++                candidate_mean=sum(v['candidate'] for v in group)/count if complete else None)
++        reg=[dict(cut=v['cut'],strict_RMSE_improvement=v['complete'] and v['delta_candidate_minus_baseline']<0)
++            for v in comp if v['kind']=='regression']
++        cls_complete=all(lookup[f'classification{cut}-{a}']['diagnostics'] is not None for cut in [42,43] for a in [arm,baseline])
++        cls=dict(cuts=[],each_cut_MacroF1_improves=False,each_cut_supported_class_and_ex_rarest_gates_passed=False)
++        if cls_complete:
++            aliases={'primary':42,'confirmation':43}
++            candidate={phase:lookup[f'classification{cut}-{arm}']['diagnostics'] for phase,cut in aliases.items()}
++            control={phase:lookup[f'classification{cut}-{baseline}']['diagnostics'] for phase,cut in aliases.items()}
++            matched=r4.matched_control_comparison(candidate,control,'classification')
++            cls.update(cuts=[dict(v,cut=aliases[v['phase']],cut_alias='group_seed_'+str(aliases[v['phase']])) for v in matched['cuts']],
++                each_cut_MacroF1_improves=matched['each_cut_primary_gate_passed'],
++                each_cut_supported_class_and_ex_rarest_gates_passed=matched['class_each_cut_gate_passed'])
++        else:cls['cuts']=[dict(cut=cut,primary_improves=False,all_class_gates_passed=False,reason='missing_or_unqualified_arm') for cut in [42,43]]
++        decisions[tag]=dict(regression_all_three_strict_RMSE_improvement=len(reg)==3 and all(v['strict_RMSE_improvement'] for v in reg),
++            regression_cuts=reg,classification=cls,classification_all_gates_passed=cls['each_cut_MacroF1_improves'] and cls['each_cut_supported_class_and_ex_rarest_gates_passed'],
++            reference_scope='fresh_strong_SINGLE_package' if baseline=='strong' else 'matched_preparation_representation_contrast',
++            qualified_for_promotion=False)
++        comparisons.append(dict(contrast=tag,cuts=comp));quality[tag]=perkind
++    gatespassed=all(decisions[tag]['regression_all_three_strict_RMSE_improvement'] and decisions[tag]['classification_all_gates_passed']
++        for tag in ['linear_vs_strong','rbf_vs_strong']) and all_succeeded and integrity
++    decisions=dict(contrasts=decisions,component_quality_gates_passed=gatespassed,full_refit_or_promotion=False,
++        scope='Fixed component comparisons; strong-vs-new is whole recipe package, RBF-vs-linear isolates representation; reused public cuts, not wholeagent or unseen researcher holdout.')
+     frozen()
+     for job,entry in zip(jobs,entries):
+         need(digest(local(entry['supervisor_path']))==entry['supervisor_sha256']
+@@ -267,14 +356,14 @@
+     clock()
+     result=dict(status='component_artifacts_verified_pending_parent_terminal' if integrity else 'component_artifacts_partial_unqualified_pending_parent_terminal',
+         rows=rows,comparisons=comparisons,quality_metric=quality,all_workers_succeeded=all_succeeded,
+-        component_quality_gates_passed=decisions['component_quality_gates_passed'],registered_component_decisions=decisions,
++        component_quality_gates_passed=gatespassed,registered_component_decisions=decisions,
+         artifact_integrity_checks_passed=integrity,audit_within_original_common_clock=True,
+         campaign_terminal_confirmed=False,parent_exec_terminal_qualification_required=True,actual_common_deadline_satisfied=None,
+         manifest_sha256=args.manifest_sha256,verification_plan_sha256=args.plan_sha256,campaign_sha256=digest(root/'campaign.json'),
+         manual_metric_source_sha256=R4[1],source_and_core_rechecked=True,
+         failed_metrics_zero_imputed=False,new_model_fits=0,API_calls=0,tests_run=0,
+         full_refit=False,promotion=False,submit=False,official_score=None,
+-        scope='Fixed component screen only on reused public forward/group cuts; weak standalone results retained for future separately declared diversity analysis. Not whole-agent or blind/private gain.')
++        scope='Fixed component screen only on reused public forward/group cuts; all fixed arm results retained, including negative or null. Not whole-agent or blind/private gain.')
+     with output.open('x',encoding='utf-8') as f:json.dump(result,f,ensure_ascii=False,indent=2,allow_nan=False);f.write('\n')
+     clock();print(json.dumps({k:result[k] for k in ['status','all_workers_succeeded','artifact_integrity_checks_passed']}))
+ 

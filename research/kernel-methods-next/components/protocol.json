@@ -1,0 +1,162 @@
+{
+  "status": "source_prepared_not_executed_not_a_metric",
+  "experiment_id": "KERN-01",
+  "scope": "Fixed component15jobs on five reused publiccuts; no fullagent/Qwen/HPO/refit/defaultpromotion.",
+  "registration": {
+    "path": "kernel-methods-program/experiments.json",
+    "sha256": "3f6c411e4cb3125407cabd698c35d46827d1171c0a1023506b5b84beff6df186"
+  },
+  "source": {
+    "base_CP1B_archive_sha256": "52627ac5b9da5ee47d8d40951f84edf9b9dede28cca4b4f90504be6bb4e672b8",
+    "kernel_overlay_handoff_sha256": "3794521c315a93900d22df54472299fa6b71d2a36cda0e6b743784c31737fc55",
+    "prepared_manifest": "kern-stage0-packet/manifest.json",
+    "prepared_manifest_sha256": "8e9fb3c8e428df7e372dc53d0e3b11bc4c435bdf13c89426ebe5b0e45ebffa98",
+    "required_source483_exact23_flat12": true,
+    "archive_members": 70,
+    "LOSS_backend": false,
+    "class_seed": false,
+    "actual_archive_sha256": "ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c"
+  },
+  "clock": {
+    "common_seconds": 10800,
+    "assigned_once_at_actual_launch": true,
+    "actual_start": null,
+    "actual_deadline": null,
+    "no_resume_retry_reset": true
+  },
+  "allocations_seconds": {
+    "setup": 900,
+    "workers_total": 7200,
+    "each_parent": 480,
+    "each_child": 450,
+    "audit": 900,
+    "audit_child": 870,
+    "cleanup_root": 300,
+    "unallocated_reserve": 1500,
+    "total": 10800,
+    "spare_not_reinvested": true
+  },
+  "arms": [
+    "strong",
+    "linear",
+    "rbf"
+  ],
+  "profiles": {
+    "linear": "tabular_linear_bounded_v1",
+    "rbf": "tabular_rbf128_invdim_v1"
+  },
+  "raw_fixed_recipe": {
+    "engine": "linear_text",
+    "params": {
+      "representation_profile": "ARM_PROFILE_ID",
+      "generic_features": "none"
+    },
+    "feature_code": ""
+  },
+  "fixed_heads": {
+    "regression": "Ridge alpha10 solverlsqr on original target",
+    "classification": "LogisticRegression C1 lbfgs max_iter1000 tol1e-4 seed42 samplepower.5 fitting-only"
+  },
+  "representation": {
+    "RBF_components": 128,
+    "gamma": "1/actual prepared fitting dimension",
+    "seed": 42,
+    "calibration": "disabled",
+    "log_target": false,
+    "raw_features_only": true,
+    "data_policy": "noop",
+    "matrix_limit_bytes": 128000000,
+    "matrix_limit_scope": "each logical matrix, not total RSS",
+    "maximum_rows": 200000,
+    "maximum_raw_columns": 64,
+    "maximum_encoded_columns": 4096,
+    "prediction_batch_rows": 512
+  },
+  "strong_control": "Exact untyped protected control JSON components[0], preserving rich TE/history/log-target/featureviews. Strong-vs-new package is not a kernel-only causal effect.",
+  "cuts": "Exact5 prior NPZ bytes: regression0/1/2; classification42/43. Copy only, never regenerate. Three arms share one saved ordered partition percut.",
+  "ordered_jobs": [
+    "regression0-strong",
+    "regression0-linear",
+    "regression0-rbf",
+    "regression1-strong",
+    "regression1-linear",
+    "regression1-rbf",
+    "regression2-strong",
+    "regression2-linear",
+    "regression2-rbf",
+    "classification42-strong",
+    "classification42-linear",
+    "classification42-rbf",
+    "classification43-strong",
+    "classification43-linear",
+    "classification43-rbf"
+  ],
+  "resources": {
+    "job_threads": 2,
+    "BLAS_env_threads": 1,
+    "worker_GiB": 1.5,
+    "whole_tree_GiB": 2,
+    "one_worker_at_once": true,
+    "API_credentials": false,
+    "API_calls": 0
+  },
+  "predecessor": {
+    "required_future_actual_KERN00_root": "kern0/terminal-root-closure.json",
+    "sha256": null,
+    "actual_exec_session": 19035,
+    "exit_code": 0,
+    "known_parent": "Actual LOSS01ce6/68631exit0 and all targeted/queue/METH/CP1/T7/publication/T5/T6 histories retained.",
+    "fresh_known_union_before_and_under_lock": true,
+    "no_name_or_PPID_adoption": true,
+    "terminal_status": "unknown_active_stage0_not_read",
+    "source_preparation_root": {
+      "path": "kern-prep-r2-exec/terminal-root-closure.json",
+      "sha256": "2042c250fefd526acee4ac40cd4d68fc3690220f6d3021bc691b885b5e3ae37e",
+      "actual_exec_session": 56393,
+      "actual_exec_exit_code_observed_by_root": 0,
+      "own_and_preparer_union_required": true
+    }
+  },
+  "readiness_reuse": "Reuse actual completed KERN00source483/exact23/sameflat12 plus exact prepared manifest, source/archive hashes and rootproof; no repeat broad tests. Prerequisite actualproof/manifestSHA required explicitCLI; never guessed.",
+  "prelabel": "Seal ALL15 cores after real saved supervisor closure; validate exact jobs/specs/splits/raworiginal+copy5file hashes/archive+source/gates before R4 import or first label parse. Rehash after all scoring.",
+  "independent_audit": {
+    "manual_metric_source": "repaired-mvp-r1-dev/evaluator_r4.py",
+    "sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+    "calls": [
+      "TaskVerifier.verify",
+      "diagnostics",
+      "matched_control_comparison class cuts/booleans only"
+    ],
+    "representation_receipts": "Validate fixed profile/head/scopes/row-order digest/gamma/shape/class order/matrix byte bounds; matching fitted preprocessing is proven by technical tests/source, not independently refit by auditor."
+  },
+  "quality": {
+    "each_new_arm_vs_freshstrong": "Every3 regressioncut strictRMSE or both2class MacroF1+support>=100 loss>=-.01-1e-12+exrarestgain>0.",
+    "matched_RBF_vs_linear": "Report separate samepackage representation contrasts on everycut; no promotion from relative-to-linear alone.",
+    "all_missing_failed_timeout_unqualified": "null, no zero/drop/replacement; quality gates false",
+    "component_only": true,
+    "full_refit": false,
+    "promotion": false,
+    "official_score": null
+  },
+  "failures": {
+    "first_and_secondary_preserved": true,
+    "ordinary_child_failure": "Continue fixed queue only after clean bounded closure/source/seal; metricnull.",
+    "systemic": "Stop on source/clock/wholeRSS/denial/unknowncleanup; partial quality unqualified.",
+    "local_OOM": "Continue only all errors worker_subtree_memory_limit, clean closure and exactcaps."
+  },
+  "executed": {
+    "source_materialization": 0,
+    "application_runtime_imports": 0,
+    "tests": 0,
+    "fixtures": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "input_generation": 0,
+    "fitting_data_reads": 0,
+    "prediction_reads": 0,
+    "clocks_assigned": 0
+  },
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

@@ -1,0 +1,23 @@
+{
+  "status": "root_exact_R4_manifest_review_for_new_Stage0_only",
+  "recorded_epoch": 1792736026.6675715,
+  "root_launch_reviewed": true,
+  "authorized_stage": "stage0",
+  "source_sha256": "b85d04ec335a6cccefd3ed5214d05ea196fc4a62b619a054644b568c6d05d627",
+  "manifest_sha256": "a70f2a0cefb686dd04535c76b4c9e9e80073aba23d86fd7aad7e52fc7b9eee6a",
+  "binding_sha256": "d106e33958fbd553561df602609f69bc8eca827c6fd2b5ab60ed63bfa8bf51f4",
+  "independent_actual_review_sha256": "fd1fa384c55121c916d93e4c381fb8bcc9ef532b2f005306a786b549ef69a52a",
+  "immutable_files_rehashed": 430,
+  "all_prior395_preserved": true,
+  "shared_gate_metadata_added_per_arm": 9,
+  "separate_technical_repair_of_failed_f3": true,
+  "old_clock_or_receipts_changed": false,
+  "stage0_seconds": 3600,
+  "clock_assigned": false,
+  "fresh_ownership_orphans_and_lock_required_at_admission": true,
+  "actual_new_source_or_unpacked_gates_passed": false,
+  "Stage1_requires_actual_Stage0_pass_cleanup_and_separate_root_review_clock": true,
+  "new_fits_or_API_by_review": 0,
+  "promotion": false,
+  "official_submission": false
+}

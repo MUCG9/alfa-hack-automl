@@ -1,3 +1,0 @@
-METH03-LINEAR: technically verified, fixed90/10 blend rejected.
-RMSE41.0908044240 vs SINGLE40.6075109499 (2/3cuts worse); MacroF1 .6543999492 vs.6547938868 (1/2cuts worse).
-13.078sec within original720, model fits0/API0, pristine-label and saved-array audit PASS. No full refit/default promotion/official score/submit. Prior METH02 first failure remains explicit. Strong CP1/B34.8662208787 and historical V11/V16.6593178434 unchanged.

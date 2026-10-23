@@ -1,0 +1,46 @@
+Read REMOTE_AGENT_START.txt once. This tool never executes the job. Use only existing authorized context. No new agent/service, private data or credentials. Keep the original claim clock and failures. Public source/notes only; metrics require independent verification.
+CLAIM_SHA=None
+{
+  "schema": 1,
+  "id": "remote-port-03-linux-diagnostic",
+  "kind": "source_only",
+  "readiness": "ready",
+  "objective": "REMOTE-PORT-03: Linux capability and blocked-cause diagnosis only, maxfits0/API0. The primary is Windows; you are Linux. Finish/seal your current claim first; never reset it or rerun models. Preserve the original remote-port-01 blocked outcome. Read all unseen append-only notices at poll dispatch SHA, including nav-20261024-01/research-20261024-02/platform-20261024-03.\n\nReturn the actual original failing operation/error code and stage, separating observed facts from possible causes. Keep raw private traceback local and public details/path refs relative. Record Linux/Python/installed allowed-library versions and declared usable CPU/RAM without hostname/account/home paths. No package installation, model fits, API calls, subprocess Codex, global settings or paid resources in this diagnostic job. Metadata reads, reviewed source inspection and pure non-fitting checks are allowed.\n\nCheck that source refs are loaded at their original dispatch SHA: a claim tree contains only job/claim/prompt, not the model bundle or queue program. Keep the dispatch clone/worktree and active experiment sources separate. Read exact source files by git show; do not checkout/reset an active worktree. The approved70-file flat bundle has portable Linux resource handling; Windows PowerRequestGuard is a primary-host supervisor outside that bundle and must not be imported on Linux. discover expects pathlib.Path(task.md); each task.md must be beside its own4approved CSVs, not a shared parent containing both tasks. automl_worker.py job.json is the later fitting CLI; agent_worker.py is only an import alias. --offline is not a no-fit mode and must not be run here.\n\nIf dependencies/data are missing or exact cut reproduction cannot run, this diagnostic MAY complete with a negative capability finding: report the missing requirement and actual failing stage in blocker.json, ml_ready=false in capabilities.json, metricsnull. This is completion of diagnosis only, never a successful model or a relabel of remote-port-01. Do not substitute cuts/labels, fabricate scores or claim unexecuted contracts. Describe the narrow next Linux source/env preparation needed, its actual allowed libraries, prospective time/memory/thread limits and tests in next-protocol.json; no new fits until a separately reviewed bounded job.\n\nReturn exactly capabilities.json, blocker.json, next-protocol.json and summary.txt. Include read notice IDs and dispatch SHA in summary. A main-agent approval remains required before any later bounded_experiment. The same-worker source capability handshake does not itself attest ML quality or authorize default promotion.",
+  "caps": {
+    "wall_seconds": 900,
+    "cpu_threads": 1,
+    "worker_memory_mib": 1024,
+    "whole_memory_mib": 1536,
+    "max_fits": 0,
+    "max_api_calls": 0
+  },
+  "source_refs": [
+    {
+      "path": "research/remote-experiments/notices/platform-20261024-03.md",
+      "sha256": "df8b9af4ec278c612bd0fc02e433d64881341b79e3caec2c480eaf143e341898"
+    },
+    {
+      "path": "research/remote-experiments/sources/source-manifest.json",
+      "sha256": "0ed0e74706b6620ffc1b29216a8f2c00ab40771ef7ebaecb0cc61092f78c4bae"
+    },
+    {
+      "path": "research/remote-experiments/sources/approved-input-manifest.json",
+      "sha256": "247ecf4d3ce8670be0573ed0808b0cfce9352babb78ca7cc02c9103ca3bee4c7"
+    },
+    {
+      "path": "research/remote-experiments/sources/fixed-cut-manifest-r2.json",
+      "sha256": "a56b9c3d5909ea4eb4854d3f3b6bd908360dd2cb84b7b19fa86323e3297a6d12"
+    },
+    {
+      "path": "research/remote-experiments/sources/protected-single-controls.json",
+      "sha256": "118ba895201bef8149fdd6bb88464bb2e02b23985a34629a47d52df5e5536f46"
+    }
+  ],
+  "dependencies": [],
+  "expected_outputs": [
+    "capabilities.json",
+    "blocker.json",
+    "next-protocol.json",
+    "summary.txt"
+  ]
+}

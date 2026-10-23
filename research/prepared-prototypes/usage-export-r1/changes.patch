@@ -1,0 +1,464 @@
+--- a/src/automl/infrastructure/run_budget.py
++++ b/src/automl/infrastructure/run_budget.py
+@@ -1,7 +1,7 @@
+ """One coordinator-wide deadline and API ledger, shared across task phases/targets."""
+ from contextvars import ContextVar
+ from pathlib import Path
+-import math,tempfile,time
++import hashlib,json,math,tempfile,time
+ from automl.infrastructure.atomic import atomic_json
+ 
+ _CURRENT=ContextVar('automl_run_budget',default=None)
+@@ -17,7 +17,60 @@
+ 
+ def budget_metadata():
+     budget=current_budget()
+-    return {'run_budget_trace':str(budget.trace),'run_budget':budget.snapshot()} if budget is not None else {}
++    return {'run_budget_trace':str(budget.trace),'run_budget':budget.snapshot(),
++            'api_usage_export':budget.usage_export_metadata()} if budget is not None else {}
++
++
++_USAGE_PURPOSES={'planner','file_roles','initial_eda','task_understanding'}
++_USAGE_STATUSES={'ok','error','timeout','unconfigured','run_call_limit',
++                 'run_deadline_exhausted','invalid_json','empty','unknown'}
++_NO_NETWORK_STATUSES={'unconfigured','run_call_limit','run_deadline_exhausted'}
++
++
++def _usage_count(value):
++    return value if type(value) is int and value>=0 else None
++
++
++def _usage_seconds(value):
++    return round(value,3) if type(value) in (int,float) and math.isfinite(value) and value>=0 else None
++
++
++def _usage_event(call,purpose,reserved,number,elapsed):
++    """Whitelist raw call metadata before the legacy ledger coerces unknowns to0."""
++    usage=call.get('usage'); usage=usage if isinstance(usage,dict) else {}
++    attempts=_usage_count(call.get('attempts'))
++    status=call.get('status'); status=status if type(status) is str and status in _USAGE_STATUSES else 'unknown'
++    no_network=not reserved and attempts==0 and status in _NO_NETWORK_STATUSES
++    def count(primary,alias):
++        value=usage[primary] if primary in usage else usage.get(alias)
++        return 0 if no_network else _usage_count(value)
++    prompt=count('prompt_tokens','input_tokens'); completion=count('completion_tokens','output_tokens')
++    complete=no_network or (bool(reserved) and attempts==1 and
++                            call.get('usage_complete') is True and
++                            prompt is not None and completion is not None)
++    return {'event':number,'purpose':purpose if type(purpose) is str and purpose in _USAGE_PURPOSES else 'unknown',
++            'status':status,'reserved_gateway_call':bool(reserved),
++            'http_attempts_known':attempts,'prompt_tokens_reported':prompt,
++            'completion_tokens_reported':completion,'usage_complete':complete,
++            'elapsed_seconds':_usage_seconds(elapsed)}
++
++
++def _atomic_usage_json(path,value):
++    # Create bytes in the normal destination parent; no inherited creator-temp ACL.
++    payload=(json.dumps(value,ensure_ascii=True,indent=2,allow_nan=False)+'\n').encode('utf-8')
++    for number in range(1,10001):
++        temporary=path.with_name(path.name+f'.tmp-{number:04d}')
++        try:
++            stream=temporary.open('xb')
++        except FileExistsError:
++            continue
++        try:
++            with stream: stream.write(payload)
++            temporary.replace(path)
++            return
++        finally:
++            if temporary.exists(): temporary.unlink()
++    raise OSError('Usage export temporary slots exhausted')
+ 
+ 
+ class RunBudget:
+@@ -30,6 +83,8 @@
+         self.deadline=self.started+seconds; self.seconds=seconds; self.max_calls=max_calls
+         self.trace_root=Path(root)/'automl_runs'; self.trace=None
+         self.calls_started=0; self.events=[]; self.status='running'; self.exception_type=None
++        self.usage_events=[]; self.usage_export=None; self.usage_export_closed=False
++        self.usage_export_failed=False
+ 
+     def remaining(self): return max(0.,self.deadline-self.clock())
+ 
+@@ -40,6 +95,7 @@
+         if self.calls_started>=self.max_calls:
+             return None,{'status':'run_call_limit','attempts':0,'usage_complete':True}
+         self.calls_started+=1
++        self._export_usage(False)
+         return allowed,None
+ 
+     def record(self,call,purpose,reserved=False):
+@@ -57,6 +113,11 @@
+                'completion_tokens_reported':count('completion_tokens','output_tokens'),
+                'usage_complete':bool(no_network or call.get('usage_complete',False)),
+                'elapsed_seconds':round(self.clock()-self.started,3)}
++        try:
++            self.usage_events.append(_usage_event(call,purpose,reserved,len(self.usage_events)+1,
++                                                  self.clock()-self.started))
++        except Exception:
++            self.usage_export_failed=True
+         self.events.append(event); self.flush()
+ 
+     def snapshot(self):
+@@ -70,18 +131,86 @@
+                 'exception_type':self.exception_type,
+                 'scope':'One shared ledger; child snapshots are cumulative, not additive. Reported tokens exclude unknown retry usage; no currency/balance estimate.'}
+ 
+-    def flush(self): atomic_json(self.trace,self.snapshot())
++    def usage_export_metadata(self):
++        return {'path':self.usage_export.relative_to(self.trace_root.parent).as_posix()
++                       if self.usage_export is not None else None,
++                'closed':self.usage_export_closed,'export_integrity_ok':not self.usage_export_failed}
++
++    def _prepare_usage_export(self):
++        try:
++            directory=self.trace_root/'api-usage'
++            if self.trace_root.resolve().parent!=self.trace_root.parent.resolve():
++                raise ValueError('Artifact parent escaped the owned run root')
++            directory.mkdir(exist_ok=True)
++            if directory.is_symlink() or directory.resolve().parent!=self.trace_root.resolve():
++                raise ValueError('Usage export is not an ordinary owned directory')
++            if hasattr(directory,'is_junction') and directory.is_junction():
++                raise ValueError('Usage export directory is a junction')
++            for number in range(1,10001):
++                candidate=directory/f'{number:04d}.json'
++                try:
++                    with candidate.open('xb'): pass
++                except FileExistsError:
++                    continue
++                self.usage_export=candidate
++                break
++            if self.usage_export is None: raise OSError('Usage export slots exhausted')
++        except Exception:
++            # Telemetry failure is visible to qualification, never a new ML policy.
++            self.usage_export_failed=True
++
++    def _export_usage(self,closed):
++        if self.usage_export is None: return
++        try:
++            source=self.trace.read_bytes()
++            source_status=json.loads(source).get('status')
++            events=[dict(event) for event in self.usage_events]
++            recorded=sum(event['reserved_gateway_call'] for event in events)
++            accounted=recorded==self.calls_started
++            complete=accounted and all(event['usage_complete'] for event in events)
++            elapsed=_usage_seconds(self.clock()-self.started)
++            value={'schema_version':'owner-usage-export-prototype1',
++                   'status':self.status,'closed':bool(closed),
++                   'source_ledger_sha256':hashlib.sha256(source).hexdigest(),
++                   'source_ledger_closed':bool(closed and source_status in {'completed','failed','interrupted'}),
++                   'wall_limit_seconds':self.seconds,'elapsed_seconds':elapsed,
++                   'remaining_seconds':_usage_seconds(self.remaining()),
++                   'gateway_call_limit':self.max_calls,'gateway_calls_started':self.calls_started,
++                   'reserved_events_recorded':recorded,
++                   'unreported_reserved_calls':max(0,self.calls_started-recorded),
++                   'http_attempts_reported':sum(e['http_attempts_known'] for e in events)
++                       if accounted and all(e['http_attempts_known'] is not None for e in events) else None,
++                   'prompt_tokens_reported':sum(e['prompt_tokens_reported'] for e in events) if complete else None,
++                   'completion_tokens_reported':sum(e['completion_tokens_reported'] for e in events) if complete else None,
++                   'prompt_tokens_known_sum':sum(e['prompt_tokens_reported'] or 0 for e in events),
++                   'completion_tokens_known_sum':sum(e['completion_tokens_reported'] or 0 for e in events),
++                   'usage_complete':complete,
++                   'export_integrity_ok':not self.usage_export_failed and elapsed is not None,
++                   'events':events}
++            _atomic_usage_json(self.usage_export,value)
++            self.usage_export_closed=bool(closed)
++        except Exception:
++            self.usage_export_failed=True
++
++    def flush(self):
++        atomic_json(self.trace,self.snapshot())
++        self._export_usage(False)
+ 
+     def __enter__(self):
+         self.trace_root.mkdir(parents=True,exist_ok=True)
+         # Wall-clock timestamps can repeat, including between nested contexts
+         # on Windows. mkdtemp reserves each directory atomically and retries.
+         self.trace=Path(tempfile.mkdtemp(prefix='run-budget-',dir=self.trace_root))/'report.json'
++        self._prepare_usage_export()
+         self.token=_CURRENT.set(self); self.flush()
+         return self
+ 
+     def __exit__(self,kind,value,traceback):
+         self.status='completed' if kind is None else 'interrupted' if issubclass(kind,(SystemExit,KeyboardInterrupt)) else 'failed'
+         self.exception_type=kind.__name__ if kind is not None else None
+-        try: self.flush()
+-        finally: _CURRENT.reset(self.token)
++        source_closed=False
++        try:
++            self.flush(); source_closed=True
++        finally:
++            self._export_usage(source_closed)
++            _CURRENT.reset(self.token)
+--- /dev/null
++++ b/tests/test_usage_export.py
+@@ -0,0 +1,179 @@
++"""Pure metadata fixtures: no gateway, model imports, fitting or private ledgers."""
++from pathlib import Path
++import hashlib,importlib.util,json,os,subprocess,sys,tempfile,unittest
++from unittest.mock import patch
++
++ROOT=Path(__file__).resolve().parents[1]
++sys.path.insert(0,str(ROOT/'src'))
++from automl.infrastructure import run_budget as module
++from automl.infrastructure.run_budget import RunBudget,current_budget,budget_metadata
++
++
++def saved(budget): return json.loads(budget.usage_export.read_bytes())
++
++
++class UsageExportTests(unittest.TestCase):
++    def test_only_whitelisted_metadata_and_persisted_byte_hash(self):
++        marker='PRIVATE-fixture-unicode-Ж-secret'
++        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
++            with RunBudget(100,2,directory,clock=lambda:10.) as budget:
++                budget.authorize(20,'planner')
++                budget.record({'status':'ok','attempts':1,'usage_complete':True,
++                    'usage':{'prompt_tokens':10,'input_tokens':999,'completion_tokens':3},
++                    'error_message':marker,'prompt':marker,'headers':{'authorization':marker},
++                    'response_model':marker,'url':marker,'nonce':marker},'planner',True)
++                self.assertFalse(saved(budget)['closed'])
++            value=saved(budget); raw=budget.usage_export.read_bytes()
++            self.assertNotIn(marker,raw.decode('utf-8'))
++            self.assertNotIn(b'\r\n',raw)
++            self.assertEqual(value['source_ledger_sha256'],hashlib.sha256(budget.trace.read_bytes()).hexdigest())
++            self.assertTrue(value['closed']); self.assertTrue(value['source_ledger_closed'])
++            self.assertTrue(value['usage_complete']); self.assertEqual(value['prompt_tokens_reported'],10)
++            self.assertEqual(value['completion_tokens_reported'],3)
++            self.assertNotIn('path',value); self.assertNotIn('nonce',value)
++            self.assertEqual(set(value['events'][0]),{'event','purpose','status','reserved_gateway_call',
++                'http_attempts_known','prompt_tokens_reported','completion_tokens_reported',
++                'usage_complete','elapsed_seconds'})
++
++    def test_unknown_purpose_status_and_token_counts_are_not_text_or_zero(self):
++        marker='PRIVATE-fixture-string'
++        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
++            with RunBudget(100,1,directory) as budget:
++                budget.authorize(20,'planner')
++                budget.record({'status':marker,'attempts':1,'usage_complete':True,
++                    'usage':{'prompt_tokens':None,'input_tokens':99,'completion_tokens':True}},marker,True)
++            value=saved(budget); event=value['events'][0]
++            self.assertEqual((event['purpose'],event['status']),('unknown','unknown'))
++            self.assertIsNone(event['prompt_tokens_reported']); self.assertIsNone(event['completion_tokens_reported'])
++            self.assertIsNone(value['prompt_tokens_reported']); self.assertFalse(value['usage_complete'])
++            self.assertNotIn(marker,budget.usage_export.read_text(encoding='utf-8'))
++
++    def test_missing_aliases_and_noninteger_counts_stay_unknown(self):
++        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
++            with RunBudget(100,1,directory) as budget:
++                budget.authorize(20,'planner')
++                budget.record({'status':'ok','attempts':1,'usage_complete':True,
++                    'usage':{'output_tokens':2.0}},'planner',True)
++            value=saved(budget)
++            self.assertIsNone(value['events'][0]['prompt_tokens_reported'])
++            self.assertIsNone(value['events'][0]['completion_tokens_reported'])
++            self.assertFalse(value['usage_complete'])
++
++    def test_retry_even_with_true_usage_flag_does_not_fabricate_complete_totals(self):
++        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
++            with RunBudget(100,1,directory) as budget:
++                budget.authorize(20,'planner')
++                budget.record({'status':'ok','attempts':2,'usage_complete':True,
++                    'usage':{'input_tokens':10,'output_tokens':2}},'planner',True)
++            value=saved(budget)
++            self.assertEqual(value['http_attempts_reported'],2)
++            self.assertEqual(value['prompt_tokens_known_sum'],10)
++            self.assertIsNone(value['prompt_tokens_reported']); self.assertFalse(value['usage_complete'])
++
++    def test_inflight_authorization_is_visible_and_incomplete(self):
++        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
++            with RunBudget(100,1,directory) as budget:
++                budget.authorize(20,'planner')
++                value=saved(budget)
++                self.assertEqual(value['gateway_calls_started'],1)
++                self.assertEqual(value['unreported_reserved_calls'],1)
++                self.assertFalse(value['closed']); self.assertIsNone(value['http_attempts_reported'])
++            self.assertFalse(saved(budget)['usage_complete'])
++            self.assertIsNone(saved(budget)['prompt_tokens_reported'])
++
++    def test_no_network_and_real_zero_usage_remain_zero(self):
++        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
++            with RunBudget(100,0,directory) as budget:
++                allowed,error=budget.authorize(20,'planner')
++                self.assertIsNone(allowed)
++                budget.record(error,'planner',False)
++            value=saved(budget)
++            self.assertTrue(value['usage_complete']); self.assertEqual(value['http_attempts_reported'],0)
++            self.assertEqual(value['prompt_tokens_reported'],0)
++
++    def test_failed_and_interrupted_closures_preserve_context_and_drop_messages(self):
++        for kind,status in [(ValueError,'failed'),(SystemExit,'interrupted')]:
++            with self.subTest(kind=kind),tempfile.TemporaryDirectory(dir=ROOT) as directory:
++                budget=RunBudget(100,1,directory)
++                with self.assertRaises(kind):
++                    with budget: raise kind('PRIVATE-fixture-exception-message')
++                value=saved(budget)
++                self.assertEqual(value['status'],status); self.assertTrue(value['closed'])
++                self.assertIsNone(current_budget())
++                self.assertNotIn('PRIVATE-fixture',budget.usage_export.read_text(encoding='utf-8'))
++
++    def test_export_failure_does_not_change_budget_policy_or_hide_qualification_failure(self):
++        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
++            budget=RunBudget(100,1,directory,clock=lambda:0.)
++            with patch.object(module,'_atomic_usage_json',side_effect=PermissionError('PRIVATE-fixture')):
++                with budget:
++                    self.assertEqual(budget.authorize(20,'planner'),(20.,None))
++                    self.assertEqual(budget.authorize(20,'planner')[1]['status'],'run_call_limit')
++                    metadata=budget_metadata()['api_usage_export']
++                    self.assertFalse(metadata['export_integrity_ok'])
++            self.assertFalse(budget.usage_export_metadata()['closed'])
++            self.assertFalse(budget.usage_export_metadata()['export_integrity_ok'])
++            self.assertEqual(json.loads(budget.trace.read_bytes())['status'],'completed')
++            self.assertIsNone(current_budget())
++
++    def test_exclusive_ordinal_preserves_existing_artifact_and_nested_exports(self):
++        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
++            artifact=Path(directory)/'automl_runs/api-usage/0001.json'
++            artifact.parent.mkdir(parents=True); artifact.write_bytes(b'preserved')
++            with RunBudget(100,1,directory) as outer:
++                with RunBudget(20,0,directory) as inner:
++                    self.assertIs(current_budget(),inner)
++                self.assertIs(current_budget(),outer)
++            self.assertEqual(artifact.read_bytes(),b'preserved')
++            self.assertEqual(outer.usage_export.name,'0002.json')
++            self.assertEqual(inner.usage_export.name,'0003.json')
++
++    def test_preexisting_temporary_artifact_is_not_overwritten(self):
++        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
++            artifact=Path(directory)/'automl_runs/api-usage/0001.json.tmp-0001'
++            artifact.parent.mkdir(parents=True);artifact.write_bytes(b'preserved-temp')
++            with RunBudget(100,0,directory) as budget: pass
++            self.assertEqual(artifact.read_bytes(),b'preserved-temp')
++            self.assertTrue(saved(budget)['closed'])
++            self.assertFalse(artifact.with_name('0001.json.tmp-0002').exists())
++
++    def test_transient_export_failure_remains_a_sticky_qualification_failure(self):
++        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
++            with RunBudget(100,1,directory) as budget:
++                with patch.object(module,'_atomic_usage_json',side_effect=PermissionError('fixture')):
++                    budget.authorize(20,'planner')
++                budget.record({'status':'ok','attempts':1,'usage_complete':True,
++                    'usage':{'input_tokens':10,'output_tokens':2}},'planner',True)
++            value=saved(budget)
++            self.assertTrue(value['closed']); self.assertTrue(value['usage_complete'])
++            self.assertFalse(value['export_integrity_ok'])
++            self.assertFalse(budget.usage_export_metadata()['export_integrity_ok'])
++
++    def test_normal_independent_reader_opens_closed_export_without_permissions_changes(self):
++        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
++            with RunBudget(100,0,directory) as budget: pass
++            code='import json,pathlib,sys; d=json.loads(pathlib.Path(sys.argv[1]).read_bytes()); assert d["closed"] and d["usage_complete"]; print("readable_closed")'
++            env={key:value for key,value in os.environ.items() if key.upper() in {'SYSTEMROOT','WINDIR','PATH','TEMP','TMP'}}
++            env['PYTHONUTF8']='1'
++            result=subprocess.run([sys.executable,'-c',code,str(budget.usage_export)],capture_output=True,text=True,env=env,timeout=10,check=True)
++            self.assertEqual(result.stdout.strip(),'readable_closed')
++
++    def test_legacy_deadline_authorization_and_snapshot_parity(self):
++        spec=importlib.util.spec_from_file_location('usage_export_legacy_fixture',ROOT/'tests/fixtures/run_budget_legacy.py')
++        legacy=importlib.util.module_from_spec(spec);spec.loader.exec_module(legacy)
++        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
++            snapshots=[]; admissions=[]
++            for cls,name in [(legacy.RunBudget,'baseline'),(RunBudget,'prototype')]:
++                tick=[0.]
++                with cls(20,1,Path(directory)/name,clock=lambda:tick[0]) as budget:
++                    admissions.append([budget.authorize(100,'planner')])
++                    budget.record({'status':'ok','attempts':1,'usage_complete':True,
++                        'usage':{'prompt_tokens':10,'completion_tokens':2}},'planner',True)
++                    tick[0]=17.; admissions[-1].append(budget.authorize(100,'planner'))
++                    snapshots.append(budget.snapshot())
++                snapshots.append(budget.snapshot())
++            self.assertEqual(admissions[0],admissions[1])
++            self.assertEqual(snapshots[0],snapshots[2]); self.assertEqual(snapshots[1],snapshots[3])
++
++
++if __name__=='__main__': unittest.main()
+--- /dev/null
++++ b/tests/fixtures/run_budget_legacy.py
+@@ -0,0 +1,87 @@
++"""One coordinator-wide deadline and API ledger, shared across task phases/targets."""
++from contextvars import ContextVar
++from pathlib import Path
++import math,tempfile,time
++from automl.infrastructure.atomic import atomic_json
++
++_CURRENT=ContextVar('automl_run_budget',default=None)
++
++
++def current_budget(): return _CURRENT.get()
++
++
++def constrain_deadline(deadline):
++    budget=current_budget()
++    return min(deadline,budget.deadline) if budget is not None else deadline
++
++
++def budget_metadata():
++    budget=current_budget()
++    return {'run_budget_trace':str(budget.trace),'run_budget':budget.snapshot()} if budget is not None else {}
++
++
++class RunBudget:
++    def __init__(self,seconds,max_calls,root,clock=None):
++        if not isinstance(seconds,(int,float)) or not math.isfinite(seconds) or seconds<=0:
++            raise ValueError('Run time budget must be finite and positive')
++        if type(max_calls) is not int or not 0<=max_calls<=16:
++            raise ValueError('Run gateway call limit must be an integer in0..16')
++        self.clock=clock or time.monotonic; self.started=self.clock()
++        self.deadline=self.started+seconds; self.seconds=seconds; self.max_calls=max_calls
++        self.trace_root=Path(root)/'automl_runs'; self.trace=None
++        self.calls_started=0; self.events=[]; self.status='running'; self.exception_type=None
++
++    def remaining(self): return max(0.,self.deadline-self.clock())
++
++    def authorize(self,timeout,purpose):
++        allowed=min(float(timeout),self.remaining())
++        if not math.isfinite(allowed) or allowed<5:
++            return None,{'status':'run_deadline_exhausted','attempts':0,'usage_complete':True}
++        if self.calls_started>=self.max_calls:
++            return None,{'status':'run_call_limit','attempts':0,'usage_complete':True}
++        self.calls_started+=1
++        return allowed,None
++
++    def record(self,call,purpose,reserved=False):
++        # Do not store prompts, responses, errors, env, credentials or task rows.
++        usage=call.get('usage') or {}
++        def count(name,alias=None):
++            value=usage.get(name,usage.get(alias,0))
++            return int(value) if type(value) in (int,float) and math.isfinite(value) and value>=0 else 0
++        attempts=call.get('attempts')
++        attempts=attempts if type(attempts) is int and attempts>=0 else None
++        no_network=not reserved and attempts in (None,0)
++        event={'event':len(self.events)+1,'purpose':purpose,'status':call.get('status','unknown'),
++               'reserved_gateway_call':bool(reserved),'http_attempts_known':attempts,
++               'prompt_tokens_reported':count('prompt_tokens','input_tokens'),
++               'completion_tokens_reported':count('completion_tokens','output_tokens'),
++               'usage_complete':bool(no_network or call.get('usage_complete',False)),
++               'elapsed_seconds':round(self.clock()-self.started,3)}
++        self.events.append(event); self.flush()
++
++    def snapshot(self):
++        return {'schema_version':'1.0','status':self.status,'wall_limit_seconds':self.seconds,
++                'elapsed_seconds':round(self.clock()-self.started,3),'remaining_seconds':round(self.remaining(),3),
++                'gateway_call_limit':self.max_calls,'gateway_calls_started':self.calls_started,
++                'http_attempts_reported':sum(e['http_attempts_known'] or 0 for e in self.events),
++                'prompt_tokens_reported':sum(e['prompt_tokens_reported'] for e in self.events),
++                'completion_tokens_reported':sum(e['completion_tokens_reported'] for e in self.events),
++                'usage_complete':all(e['usage_complete'] for e in self.events) and sum(e['reserved_gateway_call'] for e in self.events)==self.calls_started,'events':list(self.events),
++                'exception_type':self.exception_type,
++                'scope':'One shared ledger; child snapshots are cumulative, not additive. Reported tokens exclude unknown retry usage; no currency/balance estimate.'}
++
++    def flush(self): atomic_json(self.trace,self.snapshot())
++
++    def __enter__(self):
++        self.trace_root.mkdir(parents=True,exist_ok=True)
++        # Wall-clock timestamps can repeat, including between nested contexts
++        # on Windows. mkdtemp reserves each directory atomically and retries.
++        self.trace=Path(tempfile.mkdtemp(prefix='run-budget-',dir=self.trace_root))/'report.json'
++        self.token=_CURRENT.set(self); self.flush()
++        return self
++
++    def __exit__(self,kind,value,traceback):
++        self.status='completed' if kind is None else 'interrupted' if issubclass(kind,(SystemExit,KeyboardInterrupt)) else 'failed'
++        self.exception_type=kind.__name__ if kind is not None else None
++        try: self.flush()
++        finally: _CURRENT.reset(self.token)

@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "tests_run": 9,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "forbidden_real_fit_attempts": 0,
+  "forbidden_api_attempts": 0,
+  "forbidden_network_connect_attempts": 0,
+  "model_fits": 0,
+  "api_calls": 0,
+  "network_connections": 0,
+  "source_unchanged": true,
+  "source_sha256": {
+    "src/automl/execution/feature_views.py": "cba2369d6fe1e542b1edc0b07f4e4c44f02d9eba366f16616e8b0b69a41e9102",
+    "src/automl/execution/worker.py": "1b61954e95f72d421f08a27cbfe3c7a2605c4d563db95c1cdc264fcc0a2802b9",
+    "tests/test_four_leaf_feature_views.py": "2b3bb831e358c2c68e27ede549ce8ec28eb0387b531a9d1e543581d17a87cd7f"
+  },
+  "prototype_patch_sha256": "f262291b291a55314388e855192077bdded87434d172fc335c524f6f9cbdb38c",
+  "prototype_manifest_sha256": "c516d8ecbe7b2de7cfe3cb5aac4fb11862db6b95e24cbd4b974a449474850d3c",
+  "actual_seconds": 2.0309999994933605,
+  "mock_runner_sha256": "85b6ee9ba4cb0a2548d8d32db124f3c6ef9a0d73277892fe8441f2673aa0becb",
+  "scope": "Synthetic mocked teachers and students only; no actual ML quality qualification",
+  "promotion": false
+}

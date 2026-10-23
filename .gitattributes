@@ -55,3 +55,11 @@ docs/experiments/true-four-stage-tm1/regression-independent.json -text
 docs/experiments/true-four-stage-tm1/regression-summary.txt -text
 docs/experiments/adaptive-budget-protocol-r2/* -text
 docs/experiments/fullagent-fixed-half-plan-r2/* -text
+docs/experiments/fullagent-fixed-half-plan-r3/* -text
+research/cv-stage1-inputs-r1/* -text
+research/prepared-prototypes/four-leaf-r2/* -text
+research/prepared-prototypes/usage-export-r1/* -text
+research/prepared-prototypes/legacy-launcher-r1/* -text
+research/prepared-prototypes/four-leaf-r2/changes.patch whitespace=-blank-at-eol
+research/prepared-prototypes/usage-export-r1/changes.patch whitespace=-blank-at-eol
+research/prepared-prototypes/legacy-launcher-r1/legacy-launcher-deprecation.patch whitespace=-blank-at-eol

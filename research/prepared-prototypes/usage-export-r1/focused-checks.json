@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "command": [
+    "<python>",
+    "-B",
+    "tests/test_usage_export.py",
+    "-v"
+  ],
+  "final_tests": 13,
+  "failures": 0,
+  "errors": 0,
+  "unittest_elapsed_seconds": 0.491,
+  "exit_code": 0,
+  "source": {
+    "path": "src/automl/infrastructure/run_budget.py",
+    "sha256": "79e1a7e20e1b175c4399f7e2631544ed47dc13da67aac87f3cdcccbb2f12ecaf",
+    "bytes": 11910
+  },
+  "test_module": {
+    "path": "tests/test_usage_export.py",
+    "sha256": "dcdcc9cb13888446ae0161b3c4a1d17c9fb9905f83ce580eeb2219eb0883fa14",
+    "bytes": 11343
+  },
+  "legacy_fixture": {
+    "path": "tests/fixtures/run_budget_legacy.py",
+    "sha256": "f16fa52a4f051eac331d4411c3ae7e10c81c8f44efed7caefa872e0ad3774b49",
+    "bytes": 4851
+  },
+  "test_revisions_executed": [
+    {
+      "tests": 11,
+      "seconds": 0.842
+    },
+    {
+      "tests": 13,
+      "seconds": 0.619
+    },
+    {
+      "tests": 13,
+      "seconds": 0.491
+    }
+  ],
+  "tiny_fixture_reader_subprocesses_total": 3,
+  "research_worker_launches": 0,
+  "model_fits": 0,
+  "api_calls": 0,
+  "canonical_edits": 0,
+  "current_private_ledger_reads": 0,
+  "acl_changes_or_bypasses": 0
+}

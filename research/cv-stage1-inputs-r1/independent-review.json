@@ -1,0 +1,78 @@
+{
+  "status": "no_open_blocker_in_prepared_fold_inputs_source_and_saved_artifact_review",
+  "manifest_sha256": "f8a0b9ad5b3e9e403aa9a567234ba203c8537c19eee78dd6257d9d8259bb4910",
+  "frozen_files_sha256": "9883c8fe781be541dbbeefe831ea73a3b939628aea09a470e155ee1e1fac1224",
+  "prepare_source_sha256": "bdd554e3204ac09c7c0b75a538aa79684ae7044d4c432873053a46af0330e416",
+  "outer_arrays_sha256": "9e7b4db439598745f418c8419efa2a85a2701736166907ad17c86fe54a6ea328",
+  "reviewed_protocol_r2_sha256": "5ae51e6e5981acfbd03ab670a33f70177163aed1a088eb3cf4407f5e5f113046",
+  "prospective_r3_protocol_sha256": "5b2164c3721c84b8e6eb85c0dec7571474316b2e956d6ecdeee235d0193addcb",
+  "scope": "Read-only preparer semantics plus independent streamed saved file hashes, pristine label/ID mapping, saved split/coverage/group/support structure. No preparer, splitter, solver, tests, API or fitting invoked.",
+  "findings": [],
+  "folds": [
+    {
+      "fold": 0,
+      "fitting_rows": 58712,
+      "heldout_rows": 28958,
+      "shared_saved_raw_feature_groups": 0,
+      "split_sha256": "020d09f6203256d68df3fc813c1e4f6fe7ed888bad5da324af5f89a6f842dc9e",
+      "all_classes_in_fitting_and_validation": true,
+      "excluded_rarest_class": "Worms",
+      "supported_class_count": 9,
+      "arm_order": [
+        "A_control",
+        "B_candidate"
+      ]
+    },
+    {
+      "fold": 1,
+      "fitting_rows": 58450,
+      "heldout_rows": 29220,
+      "shared_saved_raw_feature_groups": 0,
+      "split_sha256": "8d6c95d21164744be7251c16241e6e553f768fcd4dade14fe015a5bb36b0cd92",
+      "all_classes_in_fitting_and_validation": true,
+      "excluded_rarest_class": "Worms",
+      "supported_class_count": 9,
+      "arm_order": [
+        "B_candidate",
+        "A_control"
+      ]
+    },
+    {
+      "fold": 2,
+      "fitting_rows": 58178,
+      "heldout_rows": 29492,
+      "shared_saved_raw_feature_groups": 0,
+      "split_sha256": "1cc0953617fa6eb09d3892732f45328e57cff35debe9bc270f29d06de02b5309",
+      "all_classes_in_fitting_and_validation": true,
+      "excluded_rarest_class": "Worms",
+      "supported_class_count": 9,
+      "arm_order": [
+        "A_control",
+        "B_candidate"
+      ]
+    }
+  ],
+  "total_rows": 87670,
+  "all24_frozen_file_hashes_match": true,
+  "pristine_input_hashes_match": true,
+  "exactly_once_saved_coverage": true,
+  "solver_allowlist_exact_five_files": true,
+  "solver_heldout_target_absent": true,
+  "sample_values_are_constant_fitting_class_placeholder": true,
+  "all_truth_positions_IDs_labels_equal_pristine": true,
+  "A_B_templates_identical": true,
+  "algorithm_review": "Preparer binds make_folds/discover AST to frozen88dac archive and explicitly rejects reduction below3, nongrouped fallback, overlap/missing fitting classes/serialization drift. Saved records are exactly SGKF3 seed83; reviewer did not regenerate assignments.",
+  "limits": [
+    "Future execution must deploy only the5-file task allowlist into each actual solver workspace; plan/manifest/verifier/full pristine labels remain outside solver inputs. This is operational separation, not an OS ACL sandbox.",
+    "Raw-feature hashes were inspected from the frozen saved arrays and checked for overlap/support; the preparer exact-source + input SHA binding and its saved serialization assertions are evidence, but this reviewer did not rerun pandas feature hashing or sklearn split construction.",
+    "R3 failure-only amendment needs root approval/commit and append-only binding to these exact arrays/task hashes. Existing r1 artifacts remain unchanged.",
+    "Default last-slot integration, changed-source technical/release/path gates, sequential supervisor, active tm1 terminal owned cleanup/released lock and future immutable Stage1 clock remain mandatory before fits.",
+    "No prediction metrics or complete CV qualification exist in this input preparation."
+  ],
+  "fits": 0,
+  "api_calls": 0,
+  "tests": 0,
+  "source_or_bundle_changes": false,
+  "promotion": false,
+  "launch_authorized": false
+}

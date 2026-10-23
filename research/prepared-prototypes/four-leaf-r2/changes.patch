@@ -1,0 +1,342 @@
+diff --git a/src/automl/execution/feature_views.py b/src/automl/execution/feature_views.py
+index 4e6d56c..4a2d94e 100644
+--- a/src/automl/execution/feature_views.py
++++ b/src/automl/execution/feature_views.py
+@@ -6,14 +6,20 @@ import numbers
+ from automl.contracts.messages import DataPolicy
+ 
+ METHOD = 'categorical_te_pair'
++FIXED_CAPACITY_METHOD = 'categorical_te_capacity_pair'
+ 
+ 
+ def validate_feature_view(recipe, spec=None):
+     params = recipe.get('params', {})
+     if 'feature_views' not in params:
+         return None
+-    if params['feature_views'] != METHOD or recipe.get('engine') != 'lightgbm':
++    if params['feature_views'] not in (METHOD, FIXED_CAPACITY_METHOD) or recipe.get('engine') != 'lightgbm':
+         raise ValueError('Unsupported feature-view learner')
++    if params['feature_views'] == FIXED_CAPACITY_METHOD:
++        if type(params.get('num_leaves')) is not int or params['num_leaves'] != 63:
++            raise ValueError('Fixed capacity views require base num_leaves=63')
++        if params.get('generic_features', 'none') != 'none' or params.get('feature_selection_top_k', 0):
++            raise ValueError('Fixed capacity views require unchanged features and no selector')
+     if recipe.get('feature_code') or not DataPolicy.parse(recipe.get('data_policy')).is_noop:
+         raise ValueError('Feature views require unchanged features and noop data policy')
+     if any(k.startswith('target_encoding') or k.startswith('history_') for k in params):
+@@ -47,6 +53,11 @@ def feature_view_components(recipe, spec):
+                              target_encoding_smoothing=20.)
+     plain['hypothesis'] = 'Fixed feature view: original categorical features'
+     encoded['hypothesis'] = 'Fixed feature view: fitting-cross-fitted categorical statistics'
++    if recipe['params']['feature_views'] == FIXED_CAPACITY_METHOD:
++        larger_plain, larger_encoded = deepcopy(plain), deepcopy(encoded)
++        larger_plain['params']['num_leaves'] = 98
++        larger_encoded['params']['num_leaves'] = 98
++        return [plain, encoded, larger_plain, larger_encoded]
+     return [plain, encoded]
+ 
+ 
+@@ -61,8 +72,10 @@ def validate_fit_iterations(recipe, value):
+         for child, selected in zip(children, value):
+             validate_fit_iterations(child, selected)
+     elif 'feature_views' in recipe.get('params', {}):
+-        if not isinstance(value, list) or len(value) != 2:
+-            raise ValueError('Feature-view iterations require exactly two leaves')
++        size = 4 if recipe['params']['feature_views'] == FIXED_CAPACITY_METHOD else 2
++        if not isinstance(value, list) or len(value) != size:
++            raise ValueError('Fixed-capacity feature-view iterations require exactly four leaves'
++                             if size == 4 else 'Feature-view iterations require exactly two leaves')
+         for leaf in value:
+             _iteration_leaf(leaf)
+     else:
+diff --git a/src/automl/execution/worker.py b/src/automl/execution/worker.py
+index 4102a1f..a5b0705 100644
+--- a/src/automl/execution/worker.py
++++ b/src/automl/execution/worker.py
+@@ -29,7 +29,7 @@ from automl.execution.model_adapters.linear_text import linear_text_fit
+ from automl.contracts.messages import DataPolicy,SplitPlan,PredictionBundle
+ from dataclasses import asdict
+ from automl.execution.sampling.policies import prepare_training
+-from automl.execution.feature_views import validate_feature_view,feature_view_components,validate_fit_iterations
++from automl.execution.feature_views import validate_feature_view,feature_view_components,validate_fit_iterations,FIXED_CAPACITY_METHOD
+ from automl.evaluation.api import calibrate_class_factors,validate_decision_optimizer
+ from automl.execution.postprocessing.targets import validate_target_smearing,fit_smearing,inverse_log_predictions
+ 
+@@ -46,15 +46,21 @@ from automl.execution.postprocessing.targets import validate_target_smearing,fit
+ 
+ 
+ 
+-def run_ensemble(job):
++def run_ensemble(job,fixed_capacity_views=False):
+     start=time.monotonic()
+     recipe=job['recipe']; spec=job['spec']; output=Path(job['output_dir'])
+     components=recipe.get('components',[])
+-    if not 2<=len(components)<=3 or any(c.get('engine')=='ensemble' for c in components):
++    if (not fixed_capacity_views and not 2<=len(components)<=3) or any(c.get('engine')=='ensemble' for c in components):
+         raise ValueError('Ensemble must contain two or three non-nested recipes')
+     weights=np.asarray(recipe.get('weights',[1]*len(components)),dtype=float)
+     if len(weights)!=len(components) or not np.isfinite(weights).all() or (weights<=0).any():
+         raise ValueError('Invalid ensemble weights')
++    if fixed_capacity_views:
++        if (len(components)!=4 or list(weights)!=[.25]*4 or
++                any(c.get('engine')!='lightgbm' or 'feature_views' in c.get('params',{}) for c in components) or
++                [c['params'].get('num_leaves') for c in components]!=[63,63,98,98] or
++                [bool(c['params'].get('target_encoding')) for c in components]!=[False,True,False,True]):
++            raise ValueError('Invalid trusted fixed four-view component tree')
+     weights=weights/weights.sum()
+     records=[]
+     for index,component in enumerate(components):
+@@ -114,12 +120,17 @@ def run_feature_views(job):
+     recipe=job['recipe']
+     validate_selection(recipe.get('params',{}))
+     components=feature_view_components(recipe,job['spec'])
+-    internal=dict(recipe,engine='ensemble',params={},components=components,weights=[.5,.5])
+-    run_ensemble(dict(job,recipe=internal))
++    fixed_capacity=recipe['params']['feature_views']==FIXED_CAPACITY_METHOD
++    weights=[.25]*4 if fixed_capacity else [.5,.5]
++    internal=dict(recipe,engine='ensemble',params={},components=components,weights=weights)
++    if fixed_capacity:
++        run_ensemble(dict(job,recipe=internal),fixed_capacity_views=True)
++    else:
++        run_ensemble(dict(job,recipe=internal))
+     path=Path(job['output_dir'])/'result.json'
+     record=json.loads(path.read_text(encoding='utf-8'))
+     record['recipe']=recipe
+-    record['feature_views']={'method':'categorical_te_pair','weights':[.5,.5],
++    record['feature_views']={'method':recipe['params']['feature_views'],'weights':weights,
+         'groups':components[1]['params']['target_encoding_groups'],
+         'iteration_tree':record['fit_iterations']}
+     atomic_json(path,record)
+diff --git a/tests/test_four_leaf_feature_views.py b/tests/test_four_leaf_feature_views.py
+new file mode 100644
+index 0000000..b5fd2d8
+--- /dev/null
++++ b/tests/test_four_leaf_feature_views.py
+@@ -0,0 +1,227 @@
++"""Default-off four-leaf view contracts with saved synthetic mock probabilities."""
++from copy import deepcopy
++from itertools import combinations
++from pathlib import Path
++import json
++import sys
++import tempfile
++import unittest
++from unittest.mock import patch
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path[:0] = [str(ROOT/'src'), str(ROOT)]
++
++import numpy as np
++import pandas as pd
++from automl.execution import worker
++from automl.execution.feature_views import (METHOD, FIXED_CAPACITY_METHOD,
++    feature_view_components, validate_feature_view, validate_fit_iterations)
++from automl.search.policy import normalize, portfolio, signature
++from automl.search.runner import median_iterations
++
++
++def schema():
++    return {'kind': 'classification', 'metric': 'macro_f1', 'text_features': [],
++        'features': ['measure', 'first', 'second', 'third'],
++        'categorical_features': ['third', 'second', 'first']}
++
++
++def recipe(method=METHOD):
++    return normalize({'engine': 'lightgbm', 'params': {'iterations': 1200,
++        'learning_rate': .04, 'num_leaves': 63, 'max_depth': -1,
++        'min_child_samples': 25, 'reg_lambda': 5, 'subsample': 1,
++        'colsample_bytree': .9, 'class_weight_power': .5,
++        'calibrate': True, 'min_iterations': 100, 'feature_views': method}})
++
++
++def fixture(root):
++    train = pd.DataFrame({'row_id': np.arange(8), 'measure': np.arange(8, dtype=float),
++        'first': list('abababab'), 'second': list('xxyyxxyy'), 'third': list('ppqqppqq'),
++        'response': ['A', 'B', 'C', 'A', 'B', 'C', 'A', 'B']})
++    test = train.iloc[:3].drop(columns='response').copy()
++    test['row_id'] += 100
++    sample = pd.DataFrame({'row_id': test.row_id, 'response': 'A'})
++    train.to_csv(root/'train.csv', index=False)
++    test.to_csv(root/'test.csv', index=False)
++    sample.to_csv(root/'sample.csv', index=False)
++    np.savez(root/'split.npz', train=np.arange(6), validation=np.arange(6, 8))
++    spec = dict(schema(), target='response', id='row_id', classes=['A', 'B', 'C'],
++        output_columns=['response'], prediction_type='label', root=str(root),
++        paths={'train': str(root/'train.csv'), 'test': str(root/'test.csv'),
++               'sample_submission': str(root/'sample.csv')})
++    return spec, sample
++
++
++VECTORS = np.array([[.99, .005, .005], [.45, .5, .05], [.45, .05, .5], [.45, .5, .05]])
++
++
++def mocked_leaf_dispatch(spec, sample, calls):
++    def run(job):
++        selected = job['recipe']
++        validate_fit_iterations(selected, job.get('fit_iterations'))
++        if selected['params'].get('feature_views'):
++            return worker.run_feature_views(job)
++        calls.append(deepcopy(job))
++        index = (2 if selected['params']['num_leaves'] == 98 else 0) + int(bool(selected['params'].get('target_encoding')))
++        directory = Path(job['output_dir'])
++        classes = np.asarray(spec['classes'])
++        p = np.tile(VECTORS[index], (len(sample), 1))
++        order = np.roll(np.arange(3), index)  # Ensure canonical class alignment.
++        np.savez(directory/'test_probabilities.npz', classes=classes[order], probabilities=p[:, order])
++        prediction = sample.copy()
++        prediction['response'] = classes[p.argmax(axis=1)]
++        prediction.to_csv(directory/'submission.csv', index=False)
++        if not job.get('full_fit', False):
++            np.savez(directory/'validation_probabilities.npz', classes=classes[order],
++                probabilities=np.tile(VECTORS[index][order], (2, 1)), row_position=np.arange(6, 8))
++        record = {'status': 'ok', 'recipe': selected, 'full_fit': job.get('full_fit', False),
++            'fit_iterations': job.get('fit_iterations', 100), 'feature_count': len(spec['features']),
++            'submission': str(directory/'submission.csv'), 'wall_seconds': 0.}
++        (directory/'result.json').write_text(json.dumps(record), encoding='utf-8')
++    return run
++
++
++class FourLeafViewTests(unittest.TestCase):
++    def test_explicit_mode_expands_exact_original_and_support_parents_without_mutation(self):
++        selected, spec = recipe(FIXED_CAPACITY_METHOD), schema()
++        before = deepcopy(selected)
++        actual = feature_view_components(selected, spec)
++        first = recipe()
++        second = deepcopy(first)
++        second['params']['num_leaves'] = 98
++        expected = feature_view_components(first, spec) + feature_view_components(second, spec)
++        self.assertEqual(actual, expected)
++        self.assertEqual(selected, before)
++        self.assertEqual([r['params']['num_leaves'] for r in actual], [63, 63, 98, 98])
++        self.assertTrue(all(r['params']['calibrate'] is True for r in actual))
++        self.assertTrue(all(r['params']['class_weight_power'] == .5 for r in actual))
++
++    def test_default_portfolio_and_original_two_leaf_factory_stay_unchanged(self):
++        selected = portfolio(schema())
++        self.assertFalse(any(r['params'].get('feature_views') == FIXED_CAPACITY_METHOD for r in selected))
++        original = feature_view_components(recipe(), schema())
++        self.assertEqual(len(original), 2)
++        self.assertNotIn('feature_views', original[0]['params'])
++        self.assertNotIn('target_encoding', original[0]['params'])
++        self.assertEqual(original[1]['params']['target_encoding_groups'],
++                         [list(v) for v in combinations(['first', 'second', 'third'], 2)])
++        self.assertEqual(original[1]['params']['target_encoding_smoothing'], 20.)
++        self.assertNotEqual(signature(recipe()), signature(recipe(FIXED_CAPACITY_METHOD)))
++
++    def test_schema_renaming_preserves_group_structure_not_public_names(self):
++        spec = schema()
++        rename = {name: 'opaque'+str(i) for i, name in enumerate(spec['features'])}
++        other = dict(spec, features=[rename[n] for n in spec['features']],
++            categorical_features=[rename[n] for n in spec['categorical_features']])
++        a = feature_view_components(recipe(FIXED_CAPACITY_METHOD), spec)
++        b = feature_view_components(recipe(FIXED_CAPACITY_METHOD), other)
++        for i in [1, 3]:
++            self.assertEqual(b[i]['params']['target_encoding_groups'],
++                [[rename[n] for n in group] for group in a[i]['params']['target_encoding_groups']])
++
++    def test_fixed_mode_rejects_transforms_selector_capacity_and_unsupported_tasks(self):
++        for params in [{'num_leaves': 98}, {'num_leaves': 63.}, {'generic_features': 'broad'},
++                       {'feature_selection_top_k': 2}, {'calibrate': False}, {'target_encoding': True}]:
++            with self.subTest(params=params), self.assertRaises(ValueError):
++                normalize(dict(recipe(FIXED_CAPACITY_METHOD), params=dict(recipe(FIXED_CAPACITY_METHOD)['params'], **params)))
++        for invalid in [[], {}, None]:
++            with self.subTest(invalid_method=invalid), self.assertRaises(ValueError):
++                validate_feature_view(dict(recipe(), params=dict(recipe()['params'], feature_views=invalid)))
++        for change in [{'kind': 'regression'}, {'text_features': ['measure']},
++                       {'task_family': 'pointwise_ranking'}, {'categorical_features': ['first']}]:
++            with self.subTest(change=change), self.assertRaises(ValueError):
++                validate_feature_view(recipe(FIXED_CAPACITY_METHOD), dict(schema(), **change))
++
++    def test_four_leaf_iteration_tree_and_global_parent_medians_are_preserved(self):
++        selected = recipe(FIXED_CAPACITY_METHOD)
++        validate_fit_iterations(selected, [30, 40, 50, 60])
++        parent = {'engine': 'ensemble', 'components': [selected, recipe()]}
++        a, b = [[30, 40, 50, 60], [70, 80]], [[40, 50, 60, 70], [80, 90]]
++        expected = [[35, 45, 55, 65], [75, 85]]
++        self.assertEqual(median_iterations(a, b), expected)
++        validate_fit_iterations(parent, expected)
++        for bad in [30, [30, 40], [30, 40, 50], [30, 40, 50, 60, 70],
++                    [30, 40, True, 60], [30, 40, None, 60], [30, 40, 0, 60]]:
++            with self.subTest(bad=bad), self.assertRaises(ValueError):
++                validate_fit_iterations(selected, bad)
++        with self.assertRaises(ValueError):
++            median_iterations([30, 40], [30, 40, 50, 60])
++
++    def test_fixed_four_probability_mix_refit_tree_and_calibration_passthrough(self):
++        for full in [False, True]:
++            with self.subTest(full=full), tempfile.TemporaryDirectory() as directory:
++                root = Path(directory)
++                spec, sample = fixture(root)
++                output = root/'out'
++                output.mkdir()
++                calls = []
++                selected = recipe(FIXED_CAPACITY_METHOD)
++                with patch.object(worker, 'run', side_effect=mocked_leaf_dispatch(spec, sample, calls)):
++                    worker.run_feature_views(dict(spec=spec, recipe=selected, output_dir=str(output),
++                        split_path=str(root/'split.npz'), threads=1, full_fit=full, fit_iterations=[30, 40, 50, 60]))
++                self.assertEqual(len(calls), 4)
++                self.assertEqual([c['fit_iterations'] for c in calls], [30, 40, 50, 60])
++                self.assertTrue(all(c['recipe']['params']['calibrate'] for c in calls))
++                self.assertTrue(all(c['full_fit'] is full for c in calls))
++                with np.load(output/'test_probabilities.npz', allow_pickle=False) as saved:
++                    np.testing.assert_allclose(saved['probabilities'], np.tile(VECTORS.mean(axis=0), (3, 1)))
++                record = json.loads((output/'result.json').read_text(encoding='utf-8'))
++                self.assertEqual(record['feature_views']['weights'], [.25]*4)
++                self.assertEqual(record['fit_iterations'], [30, 40, 50, 60])
++                self.assertEqual(record['recipe'], selected)
++                # Majority leaf labels would choose B; probability mean chooses A.
++                self.assertEqual(pd.read_csv(output/'submission.csv').response.tolist(), ['A']*3)
++
++    def test_existing_two_views_still_mix_halves_and_keep_two_iterations(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            spec, sample = fixture(root)
++            output = root/'out'
++            output.mkdir()
++            calls = []
++            with patch.object(worker, 'run', side_effect=mocked_leaf_dispatch(spec, sample, calls)):
++                worker.run_feature_views(dict(spec=spec, recipe=recipe(), output_dir=str(output),
++                    split_path=str(root/'split.npz'), threads=1, full_fit=True, fit_iterations=[30, 40]))
++            self.assertEqual([c['fit_iterations'] for c in calls], [30, 40])
++            with np.load(output/'test_probabilities.npz', allow_pickle=False) as saved:
++                np.testing.assert_allclose(saved['probabilities'], np.tile(VECTORS[:2].mean(axis=0), (3, 1)))
++            record = json.loads((output/'result.json').read_text(encoding='utf-8'))
++            self.assertEqual(record['feature_views']['method'], METHOD)
++            self.assertEqual(record['feature_views']['weights'], [.5, .5])
++
++    def test_global_two_parent_ensemble_accepts_four_view_subtree_without_losing_leaves(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            spec, sample = fixture(root)
++            output = root/'out'
++            output.mkdir()
++            calls = []
++            selected = {'engine': 'ensemble', 'params': {},
++                'components': [recipe(FIXED_CAPACITY_METHOD), recipe()], 'weights': [.6, .4]}
++            iterations = [[30, 40, 50, 60], [70, 80]]
++            with patch.object(worker, 'run', side_effect=mocked_leaf_dispatch(spec, sample, calls)):
++                worker.run_ensemble(dict(spec=spec, recipe=selected, output_dir=str(output),
++                    split_path=str(root/'split.npz'), threads=1, full_fit=True, fit_iterations=iterations))
++            self.assertEqual(len(calls), 6)
++            self.assertEqual([c['fit_iterations'] for c in calls], [30, 40, 50, 60, 70, 80])
++            record = json.loads((output/'result.json').read_text(encoding='utf-8'))
++            self.assertEqual(record['fit_iterations'], iterations)
++            with np.load(output/'test_probabilities.npz', allow_pickle=False) as saved:
++                expected = .6*VECTORS.mean(axis=0)+.4*VECTORS[:2].mean(axis=0)
++                np.testing.assert_allclose(saved['probabilities'], np.tile(expected, (3, 1)))
++
++    def test_ordinary_global_four_parent_and_forged_internal_weights_fail_before_io(self):
++        leaves = feature_view_components(recipe(FIXED_CAPACITY_METHOD), schema())
++        job = {'spec': schema(), 'output_dir': 'unused',
++               'recipe': {'engine': 'ensemble', 'components': leaves, 'weights': [.25]*4}}
++        with self.assertRaisesRegex(ValueError, 'two or three'):
++            worker.run_ensemble(job)
++        for weights in [[.5, .5, .5, .5], [.1, .2, .3, .4]]:
++            forged = deepcopy(job)
++            forged['recipe']['weights'] = weights
++            with self.subTest(weights=weights), self.assertRaisesRegex(ValueError, 'trusted fixed'):
++                worker.run_ensemble(forged, fixed_capacity_views=True)
++
++
++if __name__ == '__main__':
++    unittest.main(verbosity=2)

@@ -1,0 +1,19 @@
+{
+  "status": "root_reviewed_prospective_protocol_binding_not_launch_ready",
+  "r3_protocol_sha256": "5b2164c3721c84b8e6eb85c0dec7571474316b2e956d6ecdeee235d0193addcb",
+  "r2_protocol_preserved_sha256": "5ae51e6e5981acfbd03ab670a33f70177163aed1a088eb3cf4407f5e5f113046",
+  "input_manifest_sha256": "f8a0b9ad5b3e9e403aa9a567234ba203c8537c19eee78dd6257d9d8259bb4910",
+  "frozen_files_sha256": "9883c8fe781be541dbbeefe831ea73a3b939628aea09a470e155ee1e1fac1224",
+  "outer_arrays_sha256": "9e7b4db439598745f418c8419efa2a85a2701736166907ad17c86fe54a6ea328",
+  "folds_and_gates_unchanged": true,
+  "within_fold_order": "AB/BA/AB",
+  "A_archive_must_be_exact": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0",
+  "B_archive_sha256": null,
+  "new_source_OFF_tree_is_mock_fixture_only": true,
+  "no_usage_export_cache_HPO_or_other_factor_merged": true,
+  "source_release_supervisor_and_tm1_cleanup_still_pending": true,
+  "fits": 0,
+  "API_calls": 0,
+  "launch_authorized": false,
+  "promotion": false
+}

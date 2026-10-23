@@ -1,0 +1,41 @@
+{
+  "status": "default_off_backend_mock_verified_not_ML_qualified",
+  "base_commit": "b505629876770d741627f371a0778dd30f3b9dc0",
+  "initial_r1_manifest_preserved_sha256": "ed558632bddbffde2233193934324da03a59acb5658ddd9ec165994428b0af49",
+  "initial_r1_tests_executed": 0,
+  "preserved_r1_directory": "work/four-leaf-view-r1-preserved",
+  "r1_verified_proof_preserved_sha256": "294ae3eb2d400d68881f982ddd67a281af773cd61969224e216d8a7d554df78a",
+  "manifest_sha256": "c516d8ecbe7b2de7cfe3cb5aac4fb11862db6b95e24cbd4b974a449474850d3c",
+  "patch_sha256": "f262291b291a55314388e855192077bdded87434d172fc335c524f6f9cbdb38c",
+  "source_sha256": {
+    "src/automl/execution/feature_views.py": "cba2369d6fe1e542b1edc0b07f4e4c44f02d9eba366f16616e8b0b69a41e9102",
+    "src/automl/execution/worker.py": "1b61954e95f72d421f08a27cbfe3c7a2605c4d563db95c1cdc264fcc0a2802b9",
+    "tests/test_four_leaf_feature_views.py": "2b3bb831e358c2c68e27ede549ce8ec28eb0387b531a9d1e543581d17a87cd7f"
+  },
+  "r2_change": "Tuple membership preserves ValueError rejection for JSON null/list/object unsupported method values; three targeted cases added inside existing mock method.",
+  "mock_results_sha256": "51565cd6a866c042e4e450ee38a77bff0f4c97d95014e3e2876006d6ecd38023",
+  "mock_supervision_sha256": "0d836b5ab896a175345e352bd3bd21ff6cfbd546ee9b5130e04dcc58d17d1776",
+  "AST_flat_compile_sha256": "e4773084b115233cbc01560a6e1a99cab4a63e63ac3cf8840a169f9e16afa0f4",
+  "AST_flat_compiled_files": 68,
+  "source_unchanged_after_mock_checks": true,
+  "default_portfolio_and_entrypoint_unchanged": true,
+  "explicit_opt_in_method": "categorical_te_capacity_pair",
+  "internal_leaf_weights": [
+    0.25,
+    0.25,
+    0.25,
+    0.25
+  ],
+  "internal_capacity_parent_alpha": 0.5,
+  "existing_outer_global_ensemble_weights_policy_unchanged": true,
+  "default_entrypoint_last_slot_integration_done": false,
+  "source_check_full_registry_and_exact_unpacked_pending": true,
+  "whole_selection_groupCV_pending": true,
+  "prospective_protocol_sha256": "5ae51e6e5981acfbd03ab670a33f70177163aed1a088eb3cf4407f5e5f113046",
+  "model_fits": 0,
+  "api_calls": 0,
+  "network_calls": 0,
+  "canonical_active_source_edits": 0,
+  "promotion": false,
+  "actual_cost_or_quality_gain": null
+}

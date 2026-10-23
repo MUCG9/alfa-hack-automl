@@ -1,0 +1,34 @@
+{
+  "status": "no_open_blocker_in_metadata_prototype_review_scope",
+  "scope": "Read-only privacy, terminal export closure, creator-side exact source byte hash, unknown/retry/inflight accounting, sticky export failure and deterministic legacy-policy parity review. No implementation integration or current ledger access.",
+  "manifest_sha256": "e3c9349a79d5a1ff25fcacd625ebac3239b4848446f806ceb0f8228b451fc298",
+  "runtime_sha256": "79e1a7e20e1b175c4399f7e2631544ed47dc13da67aac87f3cdcccbb2f12ecaf",
+  "patch_sha256": "8ee18209a3e409597e37ef2f3907ad6558e5182b99d7493cf663879b9b3e9ce9",
+  "findings": [],
+  "verified_contracts": [
+    "Export events use a fixed purpose/status whitelist and scalar finite/count metadata; free-text errors/prompts/responses/headers/model names/environment/addresses/absolute paths are excluded.",
+    "Missing or invalid counts stay null, primary missing value does not silently fall back to alias, retries retain known sums with incomplete total usage; in-flight authorizations are visible and cannot yield usage_complete.",
+    "Only own creating RunBudget reads its newly created source ledger; exact persisted bytes are SHA256-bound. Closed export is attempted after source flush at actual context exit; failed/interrupted solver status is distinct from usage completeness.",
+    "Destination and temporary files use exclusive ordinal creation under an ordinary checked parent; existing artifacts are preserved and write failure stays sticky across later successful exports.",
+    "Original snapshot and authorization control logic remain in place; saved deterministic parity fixture compares exact legacy snapshot/admission outcomes, not measured wall-time overhead or provider billing."
+  ],
+  "saved_check_evidence": {
+    "path": "work/usage-export-prototype/focused-checks.json",
+    "sha256": "09eb98be3228bded5d1d8410dc9d8b21c02d6e68c8bc8773c0fb58989eae6b05",
+    "reviewer_reran_checks": false
+  },
+  "limits": [
+    "New file I/O has unmeasured real wall-time cost charged to the future common clock; unchanged deterministic clock fixtures do not prove zero timing overhead.",
+    "Future supervisor must independently require normal readability, closed/source_ledger_closed/export_integrity_ok/usage_complete, allowed terminal status, valid arithmetic and finite cap bounds; parent-reported counters cannot replace a missing export.",
+    "Source hash is a creator-side byte binding, not independent access to the private source ledger or provider billing proof. No historical inaccessible ledger is retrofitted.",
+    "Registry/flat-build/full release/live destination gate remain pending; canonical and active tm1 source stay frozen."
+  ],
+  "reviewer_fits": 0,
+  "reviewer_api_calls": 0,
+  "reviewer_subprocesses": 0,
+  "reviewer_tests": 0,
+  "current_private_ledger_reads": 0,
+  "acl_changes_or_bypasses": 0,
+  "canonical_or_active_changes": false,
+  "promotion": false
+}

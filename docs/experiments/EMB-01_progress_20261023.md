@@ -31,3 +31,22 @@ Fixed mixtures .1/.25,not learnedweights;require SAME mixture improve BOTHcuts
 for at leastone task,complete lifecycle. Positiveonlyadditionalgroup/forward and
 fullagentgates,NOTdefaultpromotion or officialupload. Negative/incomplete retained.
 Next conditional LAMA-01,then app-levelAGENT-01;do not invent endlessnewstages.
+
+## Public screen completed — DISCARD
+
+Controller57404 exit0,all4cases exit0,sourceunchanged,fullouterrefit/exportPASS.
+Strong controls exactly reproduced,not substituted. No same fixed mixture
+improves BOTHcuts of either task. Evidence EMB-01_results_20261023.json.
+
+|Task/cut|Strongcontrol|StandaloneEMB|10%EMB|25%EMB|
+|---|---:|---:|---:|---:|
+|Class/searchF1↑|.6632403175|.5048597059|.6525933754|.6415745790|
+|Class/confirmF1↑|.6553953693|.4880923256|.6550788564|.6437944963|
+|Reg/searchRMSE↓|37.5601420446|59.4362707493|37.5194486244|38.6369243621|
+|Reg/confirmRMSE↓|31.8337005173|55.7536555846|32.1855560220|33.8763620801|
+
+Class casewall35.711/29.672s,bestepochs16/10;reg6.036/5.232s,bestepochs2/2.
+The smallregsearch gain at10% is mixedwithconfirmregression,not promotion.
+Do not increaseepochs/changeclassweights/newseed posthoc to erase this outcome.
+Dormant typed backend retained,defaultregistryOFF,no furtherCV/fullagent/submit.
+Next LAMA-01 compatibility/strictisolation/refit admission,not another EMBfit.

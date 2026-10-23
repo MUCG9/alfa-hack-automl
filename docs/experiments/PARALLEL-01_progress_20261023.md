@@ -1,5 +1,10 @@
 # Parallel engineering progress — 23 October2026
 
+EMB-01 now COMPLETE/DISCARD:all4cases exit0/source/refit/exportPASS,none of fixed
+.1/.25mix improves bothcuts of anytask. See EMB-01_progress/results_20261023.
+NoactiveownedMLfit,backendOFF,nextconditionalLAMA-01 admission. PriorACTIVEbelow
+is historical;do not restart controller57404.
+
 EMB-01 now:read EMB-01_progress_20261023.md,source f458c0c,7CPUfixture and7arch
 checksPASS;ONE publicscreencontroller57404/test-runs/emb-20261023/public-screen/.
 Fourcases sequential,max180s/2CPU/1.7GiB each;do NOTduplicate or modify active

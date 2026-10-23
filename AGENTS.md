@@ -26,6 +26,9 @@ EMB-01 CPU pilot now admitted,f458c0c,7real/syntheticfixture+7arch checksPASS.
 One publicscreencontroller57404,read EMB-01_progress_20261023.md and actual
 test-runs/emb-20261023/public-screen/ outputs. Backend dormant,uploaded55files
 unchanged. No concurrentfits or canonicalcode edits until it exits.
+EMB-01 screen now completed/DISCARDED (all4exit0,source/refit/exportPASS,no same
+miximprovesbothcuts),controller57404 ended. BackendOFF,no repeat/newCV. Next
+conditionalLAMA-01 admission; read latest progressbeforeoldACTIVEstatements.
 
 23Oct latest captain instructions authorize parallel BASE-01/ERR-01/SEL-01
 engineering on work/error-selection-20261023 while LONG-01 runs from its own

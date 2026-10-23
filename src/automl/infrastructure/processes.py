@@ -50,7 +50,10 @@ class ProcessTree:
             self._observation_denied((process.pid, None), 'discover_root_identity')
         # Return the owned tree even after denied discovery, so the caller can
         # still clean up its Popen handle. refresh/terminate enforce the error.
-        self._refresh()
+        if self.strict_observation:
+            self._refresh()
+        else:
+            self.refresh()
 
     def _observation_denied(self, identity, action):
         if self.strict_observation:
@@ -171,7 +174,10 @@ class ProcessTree:
         recheck_at=time.monotonic()+max(0,grace)
         # Attempt cleanup of known identities/Popen even after a strict
         # observation failure. The sticky error is raised after that attempt.
-        self._refresh()
+        if self.strict_observation:
+            self._refresh()
+        else:
+            self.refresh()
         identities=[key for key in self.members if key[0]!=self.process.pid]
         for identity in reversed(identities):
             member=self._verified(identity)

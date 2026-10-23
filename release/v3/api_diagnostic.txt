@@ -1,4 +1,0 @@
-BUDGET {"spend": 63.35075173865452, "max_budget": 600.0, "budget_duration": "1d", "budget_reset_at": "2026-10-22T00:00:00+00:00"}
-AVAILABLE_MODELS ["qwen/qwen3.8-27b"]
-PROBE {"content": null, "call": {"status": "error", "exception_type": "InternalServerError", "wall_seconds": 20.781, "usage": {}, "finish_reason": null, "compatibility_retry": false, "attempts": 3, "status_code": 503, "error_message": "Error code: 503 - {'error': {'message': \"litellm.ServiceUnavailableError: ServiceUnavailableError: OpenrouterException - Insufficient credits.\\n\\nLiteLLM: model group 'qwen/qwen3.8-27b' failed with the error above. No fallback was attempted.\", 'type': 'internal_server_error', 'param': None, 'code': '503'}}"}}
-BUDGET {"spend": 63.35075173865452, "max_budget": 600.0, "budget_duration": "1d", "budget_reset_at": "2026-10-22T00:00:00+00:00"}

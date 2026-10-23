@@ -1,0 +1,86 @@
+Read REMOTE_AGENT_START.txt once. This tool never executes the job. Use only existing authorized context. No new agent/service, private data or credentials. Keep the original claim clock and failures. Public source/notes only; metrics require independent verification.
+CLAIM_SHA=None
+{
+  "schema": 1,
+  "id": "remote-port-05-source-runner-repair",
+  "kind": "source_only",
+  "readiness": "ready",
+  "objective": "REMOTE-PORT-05: source-only runner repair after immutable completed remote04 result6929ef34a90e4438816d4b2ca653bcb0e3c4a380. This NEW declared SOURCE_ONLY job permits0 learner fits/API; use its own single claim2400s wall/monotonic clock without resets. Do not relabel remote01 or04 failures, including inventory_changed/cleanupfalse, as repaired historical success. No install/GPU/external service/new model/source algorithm/wholeagent/regression experiment. Finish earlier owned work, read unseen notices and all pinned manifests/reviews at this dispatch SHA.\n\n1. Read remote-port-05-source-manifest.json and the final primary04 guard/auditor reviews. Obtain the exact9 original artifact bytes from the manifest's immutable result Git commit (read-only); verify each SHA before treating it as input. Do not trust a mutable local working copy. Read the class-kernel-six-jobs-r1 protocol81cd9df5, source-handoff399fc034, independent review06adea0b and fit-count source proof. Original70-file ca8a algorithm/requirements and approved input/native/control manifests remain unchanged. Missing or mismatched input stays blocked/null; never choose another native profile or cast/sort/reseed arrays.\n\n2. Repair ONLY reviewed G01/G02 in the opt-in portable wrapper. G01: enforce the actual child450 deadline BEFORE accepting a terminal p.poll result. A zero exit first observed at/after the deadline is not timely success. Record actual child start/end/elapsed. G02: model_driver must not return from inside TemporaryDirectory/host_lock. Retain raw supervisor result, exit both contexts, then check the SAME original parent480/common wall+monotonic deadline and cooperative10s gap and persist a truthful final driver qualification. Cleanup/lock-release/hash/receipt costs remain charged; late or denied finalization downgrades success and preserves first+secondary errors/raw receipts. Do not reset last heartbeat before checking a gap, create a background heartbeat, extend time, weaken strict ownership/resource checks or add a new watchdog framework.\n\n3. Prepare experiment_driver.py as a SEPARATE narrow fixed6-class entrypoint, never execute learners in05. Default inspection must have no model process. Actual future execute path must require a separately published READY bounded_experiment06, actual immutable queue job/claim/worker/dispatch and exact same-worker primary approval/result/caps and independently pinned execution binding. SOURCE_ONLY05 is always denied before any learner Popen. Keep sys.executable venv identity, provider/credential stripping, process-local owned ASCII temp and the one canonical selected-repo host lock; no Windows PowerGuard. Use existing reviewed guard/admission helpers, not arbitrary argv/recipe/source knobs.\n\n4. Fixed future caller authority: exactly6 distinct keys and output folders, cut42 then43 x strong,linear,rbf per protocol; classification only, full_fitFalse/threads2. Exact raw3recipes/protected firstSINGLE remain as protocol, no normalization that changes measured defaults, no new hyperparameters/FE/calibration/weights/seed/model. Bind class42/43 native entries f5ad8c55, original70/member inventory, approved247ecf4d byte hashes and explicit native4 data roles plus task/spec paths. No POSIX basename on Windows strings. Freeze all6 jobs/spec/recipe/split/input/source maps before first future fit. Bind primary=42 and confirmation=43 and comparisons RBF-vs-strong, linear-vs-strong, RBF-vs-linear separately. No regression replay, whole-agentHPO/refit, blend/sweep or new cuts.\n\n5. Future06 budget is EXACT protocol5400: setup600 +6*parent480 +audit600 +cleanup300 +reserved spare1020. Child450 is inside its original480 parent; cleanup/context exit/core seals/final receipts and audit/posthash all stay inside parent/common caps. Before every job require full480 plus remaining fixed parents+audit600+cleanup300+spare1020, and recheck full450+cleanup after source hashing immediately before Popen. No cap clipping, reset/resume-as-success/retries/reinvestment/new jobs. Use one host lock for the full sequential matrix; distinguish already-held lock ownership from a helper that would reacquire the same nonreentrant lock. CPU<=2, complete worker descendant subtree1536MiB and whole-owned tree2048MiB, sticky identity/traversal/termination denials, exact fresh final PID/create_time absence. Preserve actual root/preparer/child identities and first+secondary failures; do not signal unknown PIDs.\n\n6. Wire existing component_audit.py/R4 libraries, not a new large auditor. The primary04 auditor review found its successful-core primitive usable but external authority must fix the complete6-key/folder/recipe/spec/input/native/source/terminal binding independently of the worker. All6 attempted cores, terminal supervisor+driver qualification, source/job/spec/input/split/prediction/CSV/test+validation probability inventories must be sealed BEFORE pristine truth parsing; failed/unattempted slots explicitnull. R4 TaskVerifier.verify(full=False, expected_exact_recipe), diagnostics, matched_control_comparison and pinned representation_receipt only; no main/verify_task/algorithm.evaluate substitute or preprocessing refit. Validate recursive2-view mixtures/iteration tree, canonical classes/probability/ID/sample row order, fitting raw-feature-group support/ex-rarest gates; rehash ALL inventories and source/libraries after audit. A systemic source/clock/resource/ownership/cleanup failure stops future slots; ordinary clean failed worker may continue only already reserved slots, but incomplete matrix has no qualified aggregate. No truth scoring/public model outcomes in05.\n\n7. Fit accounting for future06: successful strong data_policy_runs list length on each UNIQUE actual view leaf, summed once (do not double count embedded parent.components), count1 head each successful fixed linear/RBF. Static maximum16 is an upper admission bound, not actual usage.fits. Failed/interrupted count unknown ->null and unqualified; do not fake0/16. Separate learner.fit calls from preprocessing fits/trees/iterations. Keep raw negative or partial outcomes privately. Numeric transport metrics require complete honest resource/fit usage; otherwise metricsnull, never imputation or silent success.\n\n8. Preserve all43 existing pure method names/meaningful assertions; add focused pure/mock regressions for terminal-before/at/after450, context cleanup/lock exit crossing parent480/common/gap, exact6unique caller binding, duplicate/wrong-key/recipe/spec/native/source denial before Popen/truth, and no source05 model authorization. Include child failure/null/first+secondary preservation and success path only with final cleanup/posthash qualification. Existing synthetic R4 checks remain; no learner fit/API. Before final suite or FIRST real inert Popen, freeze/hash ALL4 source files portable_harness.py/component_audit.py/experiment_driver.py/pure_contracts.py and any private helper/tests, actual method names and exact expected count43+N. Record actual executed counts/exit/skips/error/elapsed/phase RSS/source inventory and real inert child cleanup. One sequential bounded suite; source mutation during guarded work fails, no editing it into a passing attempt. Do not report inherited43PASS as new05 execution or phase-only peaks as wholecampaign host attestation.\n\n9. Return EXACT10 declared output names, UTF8 sources/patch/sanitized aggregate metadata only,128KiB each/256KiB total. Keep changes.patch minimal from immutable04 inputs so added caller fits package cap. No raw tables/labels/index arrays/NPZ/predictions/probabilities/models/weights/binaries/secrets/private absolute paths/symlinks in Git. Raw learner paths stay private and inert until06 approval. Summary ACKs notices+dispatch SHA, oldfirst/secondary history, actual05 source checks/usage and remaining gaps. Source may complete with future_ml_ready=false; no execution approval, measured ML gain, promotion or official score is granted by this job.",
+  "caps": {
+    "wall_seconds": 2400,
+    "cpu_threads": 2,
+    "worker_memory_mib": 1536,
+    "whole_memory_mib": 2048,
+    "max_fits": 0,
+    "max_api_calls": 0
+  },
+  "source_refs": [
+    {
+      "path": "research/remote-experiments/sources/remote-port-05-source-manifest.json",
+      "sha256": "03b686f8d31c4ec8b35950069e3ed8af49fdb5f3d488255e2ed1870192ce8591"
+    },
+    {
+      "path": "research/remote-experiments/reviews/remote-port-04-source-r1/guard-review.json",
+      "sha256": "03ba8dfedf4d10614a6294c31ff19be7241df440312daf09aac0a3f218333bfd"
+    },
+    {
+      "path": "research/remote-experiments/reviews/remote-port-04-source-r1/audit-review.json",
+      "sha256": "2dd85b5ea5ff6a3439db1f20497869988cc24f34890577ed066c35ad1ad795f6"
+    },
+    {
+      "path": "research/remote-experiments/reviews/remote-port-04-source-r1/primary-summary.json",
+      "sha256": "4ca506f15a87deb22ec56e72fe3acfc80883ea7013f7abe43f9af19f9ca91cd1"
+    },
+    {
+      "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/protocol.json",
+      "sha256": "81cd9df5566f5453600117a5cb902f8ca7d37dbee3c9ee2347ff5100a9baff46"
+    },
+    {
+      "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/fit-count-source-proof.json",
+      "sha256": "7c0a3b1c3888573ab254989bee767a3d49fe4a3c84d1a57a17e647a99c083613"
+    },
+    {
+      "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/independent-source-review.json",
+      "sha256": "06adea0b2d6d3bcf03d1d738659a13c6d92947532f607c8327a90c591929977e"
+    },
+    {
+      "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/source-handoff.json",
+      "sha256": "399fc0346323d64d65114a33f096d7cfa7905d4bee8612c7df140f10649dcd39"
+    },
+    {
+      "path": "research/remote-experiments/sources/source-manifest.json",
+      "sha256": "0ed0e74706b6620ffc1b29216a8f2c00ab40771ef7ebaecb0cc61092f78c4bae"
+    },
+    {
+      "path": "research/remote-experiments/sources/approved-input-manifest.json",
+      "sha256": "247ecf4d3ce8670be0573ed0808b0cfce9352babb78ca7cc02c9103ca3bee4c7"
+    },
+    {
+      "path": "research/remote-experiments/sources/native-cut-contract-v3-r2.json",
+      "sha256": "f5ad8c55aec198b689abf4bd8cf4ed0caf967fcd9f0d9f6db12f70513e1a60e5"
+    },
+    {
+      "path": "research/remote-experiments/sources/derived-linux-npz-fingerprints-r1.json",
+      "sha256": "211e51fa267b58f26e1fb02d5fe3d7b2cddcd95f994f808685150cf6fff5d93d"
+    },
+    {
+      "path": "research/remote-experiments/sources/protected-single-controls.json",
+      "sha256": "118ba895201bef8149fdd6bb88464bb2e02b23985a34629a47d52df5e5536f46"
+    }
+  ],
+  "dependencies": [
+    "remote-port-04-portability-repair"
+  ],
+  "expected_outputs": [
+    "portable_harness.py",
+    "component_audit.py",
+    "experiment_driver.py",
+    "pure_contracts.py",
+    "changes.patch",
+    "protocol.json",
+    "capabilities.json",
+    "pure-checks.json",
+    "summary.txt",
+    "next-hypotheses.json"
+  ]
+}

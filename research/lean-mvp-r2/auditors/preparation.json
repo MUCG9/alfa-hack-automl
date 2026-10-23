@@ -1,0 +1,20 @@
+{
+  "status": "prepared_source_only_not_executed",
+  "manifest_sha256": "8faf33cd81c0e864bcf338828c34447000111eda85bc719b8f43312d2babae9a",
+  "plan_sha256": "1a506dc89c6001668bfcc72aebab842151164cf1c67dcc43909c5a87e5236277",
+  "source_sha256": {
+    "run_t7_regression_audit_r1.py": "7d30cf21ac57866ed6b37c55b8d27220682a20f5438ac1fd1ac035e02d5c9567",
+    "close_lean_mvp_r2.py": "4a06ba66cd767259cab3fb10a4f28283bcb03558fae1f143639fc29c3a01bfc4"
+  },
+  "regression_audit_parent_seconds": 60,
+  "regression_audit_memory_mib": 512,
+  "threads": 1,
+  "primary_common_deadline_unix": 1792780615.4813344,
+  "clock_reset_or_extended": false,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "API_calls": 0,
+  "partial_audit_scope": "Only after closed regression supervisor/core seal. Classification may continue. Root actual exec exit and fresh closure required; record all extra owned IDs for whole-campaign closure.",
+  "terminal_scope": "Only after root observes actual session65008 terminal. Rehash all733, both core seals, all primary/audit/preparer IDs. Preserve raw failures. Outputs use new filenames and supervision_retry_mvp; T6 results preserved.",
+  "quality_scope": "Require both matched fresh-control AND stronger preserved historical V16 cut/class gates; no relaxed control, no default promotion or submit. T5 regression component kept separately."
+}

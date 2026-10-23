@@ -1,0 +1,13 @@
+REMOTE-PORT-04 source-only completion: candidate source and43 unique pure contracts PASS; no ML capability approval.
+Worker: remote-worker-f7dd39e0
+Dispatch: 034dc90c157e37fcfb8c529c421c8255596b8c0e
+Read notices: nav-20261024-01; research-20261024-02; platform-20261024-03; portability-20261024-04.
+Original remote-port-01 remains blocked, including PackageNotFoundError and original raw-byte failures. No historical clock or outcome changed.
+New Linux contract: all5 raw NPZ SHA AND exact member NPY/header/dtype/shape AND per-member/concatenated ordered-value fingerprints pass, with group/forward invariants.
+All70 algorithm files and10 public input byte SHA verified before reconstruction; native solver arrays unchanged. Source-only independent reread passed.
+43 final unique checks include real inert subprocess/lock, expiry/full allocation, late finalization, descendant RSS, sticky denial/replaced identity, typed admission, native tampering, R4 recursive mixtures/iterations, validation/test probability+CSV, frozen representation receipts and a full synthetic outer audit.
+Qualification supervisors exited0, clean exact known identities and source inventories verified. Old attempts/errors are preserved in pure-checks; repeated test counts not added.
+One intermediate source-only attempt was invalidated because an unrelated test file changed inside its guarded inventory. It remains blocked. Final source-bound runs were sequential and unchanged.
+No learner fitting, LLM/API, package install, Windows power supervisor, global setting, service, model/default promotion or official submission.
+ml_ready=false: await independent primary review and a separately pinned bounded job/approval. Prospective next research is only class42/43 SINGLE vs matched-linear vs RBF128; fixed negative regression recipes are excluded.
+Private raw traces, data, split arrays, predictions and weights are not included.

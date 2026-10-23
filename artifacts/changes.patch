@@ -1,0 +1,1096 @@
+--- a/portable_harness.py
++++ b/portable_harness.py
+@@ -1,440 +1,263 @@
+-"""Source-only portability preflight. No CLI option can launch model training.
+-
+-Future model execution needs a separately READY bounded job and primary approval.
+-The frozen algorithm ZIP is never patched. ASCII temp isolation happens before
+-starting a new interpreter, not through global OS/environment configuration.
++"""Opt-in Linux source wrapper. No learner is invoked by this source-only CLI.
++
++Future model entry requires independently reviewed queue approval and exact seals.
++RSS is sampled (not a cgroup/OS security boundary); uncertainty fails closed.
+ """
+ from contextlib import contextmanager
++from dataclasses import dataclass
+ from pathlib import Path
+-import argparse
+-import hashlib
+-import importlib.metadata
+-import json
+-import math
+-import os
+-import stat
+-import struct
+-import subprocess
+-import sys
+-import tempfile
+-import time
+-import zipfile
+-
+-ARCHIVE_SHA='ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c'
+-REQUIREMENTS_SHA='9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6'
+-PINS={'numpy':'1.26.4','pandas':'2.2.3','scipy':'1.12.0','scikit-learn':'1.5.2',
+-      'joblib':'1.4.2','threadpoolctl':'3.6.0','psutil':'6.1.1'}
+-
+-
+-class Blocked(RuntimeError):pass
+-
+-
+-def sha(path):
+-    digest=hashlib.sha256()
+-    with Path(path).open('rb') as stream:
+-        for chunk in iter(lambda:stream.read(2**20),b''):digest.update(chunk)
+-    return digest.hexdigest()
+-
+-
+-def write_json(path,value):
+-    path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
+-    if path.exists():raise Blocked('immutable_receipt_exists')
+-    path.write_text(json.dumps(value,sort_keys=True,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+-
+-
+-def require_pins():
+-    actual={name:importlib.metadata.version(name) for name in PINS}
+-    if actual!=PINS:raise Blocked('original_dependency_pin_mismatch')
+-    return actual
+-
+-
+-def verified_bundle(sources,destination):
+-    sources=Path(sources);destination=Path(destination)
+-    manifest=json.loads((sources/'source-manifest.json').read_text())
+-    archive=sources/'kernel-source.zip'
+-    if manifest['source_archive_sha256']!=ARCHIVE_SHA or sha(archive)!=ARCHIVE_SHA:raise Blocked('archive_sha_mismatch')
+-    with zipfile.ZipFile(archive) as packed:
+-        names=packed.namelist()
+-        if len(names)!=70 or len(set(names))!=70 or set(names)!=set(manifest['flat_files_sha256']):raise Blocked('archive_inventory')
+-        for name in names:
+-            item=packed.getinfo(name)
+-            if '/' in name or '\\' in name or stat.S_ISLNK(item.external_attr>>16) or not (name.endswith('.py') or name=='requirements.txt'):
+-                raise Blocked('unsafe_archive_member')
+-            if hashlib.sha256(packed.read(name)).hexdigest()!=manifest['flat_files_sha256'][name]:raise Blocked('member_sha_mismatch')
+-        if manifest['flat_files_sha256']['requirements.txt']!=REQUIREMENTS_SHA:raise Blocked('requirements_changed')
+-        destination.mkdir(parents=True,exist_ok=False)
+-        for name in names:(destination/name).write_bytes(packed.read(name))
+-    return manifest
+-
+-
+-def verify_inputs(manifest,root):
+-    paths={};receipt=[]
+-    for entry in manifest['files']:
+-        candidates=[p for p in (Path(root)/entry['task']).rglob(entry['name']) if p.is_file() and p.stat().st_size==entry['bytes']]
+-        matched=[p for p in candidates if sha(p)==entry['sha256']]
+-        if len(matched)!=1:raise Blocked('missing_ambiguous_or_corrupted_input_'+entry['task']+'_'+entry['name'])
+-        paths[(entry['task'],entry['name'])]=matched[0]
+-        receipt.append({k:entry[k] for k in ('task','name','bytes','sha256')})
+-    if len(paths)!=10:raise Blocked('ten_original_inputs_required')
+-    return paths,receipt
+-
+-
+-def validate_indices(train,validation,size):
++import hashlib, io, json, os, platform, subprocess, sys, tempfile, time, zipfile
++import psutil
++
++class Blocked(RuntimeError): pass
++def need(value, code):
++    if not value: raise Blocked(code)
++def sha(path, tick=lambda: None):
++    h=hashlib.sha256()
++    with Path(path).open('rb') as f:
++        for chunk in iter(lambda:f.read(2**20),b''): h.update(chunk);tick()
++    return h.hexdigest()
++def canonical(value):
++    return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
++def load(path): return json.loads(Path(path).read_text())
++def write_new(path, value):
++    with Path(path).open('x') as f: json.dump(value,f,sort_keys=True,allow_nan=False)
++
++@dataclass
++class Clock:
++    wall_start: float
++    mono_start: float
++    wall_deadline: float
++    mono_deadline: float
++    last: float
++    @classmethod
++    def retained(cls, claim, path):
++        w,m=time.time(),time.monotonic();path=Path(path)
++        if path.exists():
++            v=load(path)
++            need(v['start']==claim['claimed_at_unix'] and v['deadline']==claim['deadline_unix'],'clock_reset')
++            need(abs((w-m)-v['offset'])<5,'clock_discontinuity')
++        else:
++            v=dict(start=claim['claimed_at_unix'],deadline=claim['deadline_unix'],wall=w,mono=m,offset=w-m,
++                   mono_deadline=m+claim['deadline_unix']-w,claim_mono_start=None)
++            write_new(path,v)
++        c=cls(v['wall'],v['mono'],v['deadline'],v['mono_deadline'],m);c.tick();return c
++    def tick(self, allocation=0):
++        w,m=time.time(),time.monotonic()
++        need(m-self.last<=10,'observation_gap_over_10s');self.last=m
++        need(abs((w-m)-(self.wall_start-self.mono_start))<5,'clock_discontinuity')
++        need(w+allocation<self.wall_deadline and m+allocation<self.mono_deadline,'deadline_or_full_allocation')
++
++def inventory(root, tick=lambda:None):
++    root=Path(root).resolve();out={}
++    for p in sorted(root.rglob('*')):
++        need(not p.is_symlink(),'inventory_symlink')
++        if p.is_file():out[str(p.relative_to(root))]=sha(p,tick)
++        tick()
++    return out
++def check_inventory(root, expected, tick=lambda:None):
++    need(inventory(root,tick)==expected,'inventory_changed')
++
++def native_split(path, cut, n, groups=None, times=None):
++    """Conjunctive native/container/member/value checks; arrays never rewritten."""
+     import numpy as np
+-    for rows in (train,validation):
+-        if rows.ndim!=1 or rows.dtype!=np.dtype('int64') or len(rows)==0 or rows.min()<0 or rows.max()>=size or len(np.unique(rows))!=len(rows):
+-            raise Blocked('invalid_original_indices')
+-    if np.intersect1d(train,validation).size:raise Blocked('partition_overlap')
+-
+-
+-def exact_npz(path,train,validation,expected):
+-    import numpy as np
+-    path=Path(path)
+-    if path.exists():raise Blocked('immutable_split_exists')
+-    np.savez(path,train=train,validation=validation)
+-    actual=sha(path)
+-    if actual!=expected:raise Blocked('exact_original_npz_bytes_not_reproduced')
+-    return actual
+-
+-
+-def container_diagnostic(path,expected):
+-    """Read-only diagnosis, NEVER a replacement for the required raw-byte gate."""
+-    raw=Path(path).read_bytes();copy=bytearray(raw);changes=[]
+-    with zipfile.ZipFile(path) as packed:
+-        members=[{'name':m.filename,'creator_system':m.create_system,'crc':m.CRC,
+-            'uncompressed_member_sha256':hashlib.sha256(packed.read(m.filename)).hexdigest()} for m in packed.infolist()]
+-    # ZIP central directory version-made-by high byte is OS, not array payload.
+-    end=raw.rfind(b'PK\x05\x06')
+-    if end<0:raise Blocked('zip_directory_unavailable')
+-    entries=struct.unpack_from('<H',raw,end+10)[0]
+-    at=struct.unpack_from('<I',raw,end+16)[0]
+-    if entries!=len(members):raise Blocked('zip64_or_unsupported_directory')
+-    for _ in range(entries):
+-        if raw[at:at+4]!=b'PK\x01\x02':raise Blocked('zip_directory_boundary')
+-        if copy[at+5]!=0:changes.append(at+5);copy[at+5]=0
+-        name,extra,comment=struct.unpack_from('<HHH',raw,at+28)
+-        at+=46+name+extra+comment
+-    candidate=hashlib.sha256(copy).hexdigest()
+-    return {'raw_sha256':hashlib.sha256(raw).hexdigest(),'expected_sha256':expected,
+-        'raw_bytes_match':hashlib.sha256(raw).hexdigest()==expected,'members':members,
+-        'windows_creator_only_diagnostic_sha256':candidate,
+-        'windows_creator_only_diagnostic_matches':candidate==expected,
+-        'changed_in_memory_bytes':len(changes),'file_modified':False,
+-        'array_payload_modified':False,'diagnostic_is_NOT_gate_acceptance':True}
+-
+-
+-def prepare_splits(sources,inputs,private):
+-    import numpy as np
+-    require_pins();sources=Path(sources);private=Path(private)
+-    private.mkdir(parents=True,exist_ok=False)
+-    source=verified_bundle(sources,private/'frozen')
+-    input_manifest=json.loads((sources/'approved-input-manifest.json').read_text())
+-    paths,input_receipts=verify_inputs(input_manifest,inputs)
+-    sys.path.insert(0,str(private/'frozen'))
+-    from automl_task import discover
+-    from automl_evaluation import choose_validation,make_time_split,make_split
+-    from automl_infrastructure_observation_time import observation_values
+-    cuts=json.loads((sources/'fixed-cut-manifest-r2.json').read_text())
+-    completed=[]
+-    for kind,task in [('regression','regression'),('classification','multiclass')]:
+-        spec,_,frame,_,_,_,hashes=discover(paths[(task,'task.md')],allow_llm=False)
+-        spec=choose_validation(spec,frame,mode='legacy')
+-        if kind=='regression':spec.update(validation_strategy='time',time_column=spec['time_candidate']['column'])
+-        for item in [c for c in cuts['cuts'] if c['kind']==kind]:
+-            tr,va,details=make_time_split(spec,frame,offset=item['cut']) if kind=='regression' else make_split(spec,frame,hashes,seed=item['cut'])
+-            validate_indices(tr,va,len(frame))
+-            if kind=='classification' and set(hashes[tr])&set(hashes[va]):raise Blocked('feature_groups_overlap')
+-            if kind=='regression':
+-                times=observation_values(frame[spec['time_column']])[0].to_numpy()
+-                if not max(times[tr])<min(times[va]):raise Blocked('forward_order_violated')
+-            name=kind+'-'+str(item['cut'])+'.npz'
+-            try:actual=exact_npz(private/name,tr,va,item['saved_npz_sha256']);raw_match=True
+-            except Blocked as exc:
+-                if str(exc)!='exact_original_npz_bytes_not_reproduced':raise
+-                actual=sha(private/name);raw_match=False
+-            completed.append({'kind':kind,'cut':item['cut'],'npz_sha256':actual,
+-                'train_rows':len(tr),'validation_rows':len(va),'method':details['method'],
+-                'ordered_indices_sha256':hashlib.sha256(tr.tobytes()+va.tobytes()).hexdigest(),
+-                'raw_bytes_match':raw_match,'diagnostic':container_diagnostic(private/name,item['saved_npz_sha256'])})
+-        # Private absolute input paths/spec/arrays are deliberately not returned.
+-        write_json(private/(kind+'-spec.json'),spec)
+-    if any(sha(private/'frozen'/name)!=digest for name,digest in source['flat_files_sha256'].items()):raise Blocked('frozen_source_changed')
+-    verify_inputs(input_manifest,inputs)
+-    return {'status':'passed' if all(c['raw_bytes_match'] for c in completed) else 'blocked',
+-        'source_archive_sha256':ARCHIVE_SHA,'members':70,
+-        'input_receipts':input_receipts,'cuts':completed,'fits':0,'api_calls':0,
+-        'quality_metrics':{'rmse':None,'macro_f1':None},'reason':'source_only_no_models_fitted',
+-        'fit_admitted':False,'byte_gate_not_relaxed':True}
+-
+-
+-def clean_environment(owned_temp,threads=2):
+-    value=str(Path(owned_temp).resolve())
+-    if not value.isascii():raise Blocked('ascii_temp_required')
++    need(platform.system()=='Linux','Linux_only');profile=cut['native_profiles']['Linux']
++    need(sha(path)==profile['raw_npz_sha256'],'native_raw_sha')
++    arrays=[];parts=[]
++    with zipfile.ZipFile(path) as z:
++        need(z.namelist()==['train.npy','validation.npy'],'native_member_order')
++        for info,expected in zip(z.infolist(),profile['members']):
++            raw=z.read(info.filename)
++            need(info.create_system==profile['zip_creator_system'] and info.filename==expected['name'],'native_creator_name')
++            need(hashlib.sha256(raw).hexdigest()==expected['npy_sha256'],'native_member_sha')
++            f=io.BytesIO(raw);version=np.lib.format.read_magic(f)
++            need(version==(1,0),'native_header_version')
++            shape,fortran,dtype=np.lib.format.read_array_header_1_0(f)
++            need(list(shape)==expected['shape'] and fortran is expected['fortran_order'] and dtype.str==expected['dtype'],'native_header')
++            a=np.load(io.BytesIO(raw),allow_pickle=False)
++            need(a.ndim==1 and a.dtype.kind in 'iu' and len(a)>0 and a.min()>=0 and a.max()<n and len(np.unique(a))==len(a),'native_indices')
++            # Canonical comparison ONLY, never replace arrays used by the solver.
++            values=a.astype('<i8').tobytes()
++            need(hashlib.sha256(values).hexdigest()==expected['canonical_ordered_values_sha256'],'native_member_values')
++            arrays.append(a);parts.append(values)
++    tr,va=arrays
++    need(not np.intersect1d(tr,va).size,'native_overlap')
++    need(hashlib.sha256(b''.join(parts)).hexdigest()==cut['canonical_concat_train_validation_sha256'],'native_concat_values')
++    if cut['kind']=='classification':
++        need(groups is not None and not np.intersect1d(groups[tr],groups[va]).size,'native_group_overlap')
++    else:
++        need(times is not None and times[tr].max()<times[va].min(),'native_chronology')
++    return tr,va
++
++def clean_environment(temp, threads=2):
++    temp=str(Path(temp).resolve());need(temp.isascii(),'ascii_temp')
+     env={k:v for k,v in os.environ.items() if not any(s in k.upper() for s in ('KEY','TOKEN','SECRET','AUTH','PASSWORD','PASSWD','PROXY','COOKIE'))
+          and not k.upper().startswith(('OPENAI_','QWEN_','ANTHROPIC_','HF_','HUGGINGFACE_'))}
+-    for k in ('PYTHONPATH','PYTHONSTARTUP','PYTHONHOME'):env.pop(k,None)
+-    env.update(TMPDIR=value,TEMP=value,TMP=value,JOBLIB_TEMP_FOLDER=value,PYTHONIOENCODING='utf-8',PYTHONUTF8='1',
+-        AUTOML_THREADS=str(threads),OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',MKL_NUM_THREADS='1',NUMEXPR_NUM_THREADS='1')
++    for k in ('PYTHONPATH','PYTHONHOME','PYTHONSTARTUP'):env.pop(k,None)
++    env.update(TMP=temp,TEMP=temp,TMPDIR=temp,JOBLIB_TEMP_FOLDER=temp,PYTHONUTF8='1',PYTHONDONTWRITEBYTECODE='1',
++               OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',MKL_NUM_THREADS='1',NUMEXPR_NUM_THREADS='1',AUTOML_THREADS=str(threads))
+     return env
+ 
+-
+ @contextmanager
+-def owned_ascii_temp(root=None):
+-    base=Path(root) if root is not None else Path(tempfile.gettempdir())
+-    if not str(base.resolve()).isascii() or not base.is_dir():raise Blocked('owned_ascii_temp_root_unavailable')
+-    with tempfile.TemporaryDirectory(prefix='automl-kernel-',dir=base) as folder:
+-        yield Path(folder)
+-
+-
+-@contextmanager
+-def exclusive_host_lock(path):
+-    import psutil
+-    path=Path(path);current=psutil.Process();identity={'pid':current.pid,'create_time':current.create_time()}
+-    try:
+-        with path.open('x',encoding='utf-8') as stream:json.dump(identity,stream)
+-    except FileExistsError:raise Blocked('existing_owned_job_lock_no_automatic_reclaim')
++def host_lock(path):
++    path=Path(path);p=psutil.Process();identity=dict(pid=p.pid,create_time=p.create_time())
++    try:write_new(path,identity)
++    except FileExistsError:raise Blocked('host_lock_occupied_no_reclaim')
+     try:yield identity
+     finally:
+-        if json.loads(path.read_text())!=identity:raise Blocked('lock_ownership_changed')
+-        path.unlink()
+-
+-
+-def model_admission(job,claim):
+-    if job.get('kind')!='bounded_experiment' or job['caps'].get('max_fits',0)<=0:
+-        raise Blocked('source_only_model_fit_forbidden')
+-    if not job.get('dependencies') or not claim.get('primary_approval_verified',False):raise Blocked('independent_primary_approval_required')
+-    if time.time()>=claim['deadline_unix']:raise Blocked('original_deadline_expired')
+-
+-
+-def retained_clock(claim,path):
+-    """Retain the FIRST paired observation. Reboot/clock discontinuity blocks."""
+-    path=Path(path);wall=time.time();mono=time.monotonic()
+-    if path.exists():
+-        value=json.loads(path.read_text())
+-        if value['original_start_unix']!=claim['claimed_at_unix'] or value['original_deadline_unix']!=claim['deadline_unix']:raise Blocked('original_clock_reset_denied')
+-        if abs((wall-mono)-value['observed_epoch_offset'])>5:raise Blocked('reboot_or_wall_clock_discontinuity')
+-    else:
+-        value={'original_start_unix':claim['claimed_at_unix'],'original_deadline_unix':claim['deadline_unix'],
+-            'observed_wall':wall,'observed_monotonic':mono,'observed_epoch_offset':wall-mono,
+-            'common_monotonic_deadline':mono+max(0.,claim['deadline_unix']-wall),
+-            'original_claim_monotonic_start':None}
+-        write_json(path,value)
+-    if wall>=value['original_deadline_unix'] or mono>=value['common_monotonic_deadline']:raise Blocked('original_deadline_expired')
+-    return value
+-
+-
+-def guard(argv,cwd,env,bundle,deadline_unix,log,timeout=480,worker_mib=1536,whole_mib=2048,clock=None):
+-    """Only reviewed Python entrypoints; caller admission remains mandatory.
+-
+-    RSS sums are conservative sampled RSS, not PSS. Unknown identity/cleanup
+-    fails closed. No process outside a new owned Popen family is terminated.
+-    """
+-    import psutil
+-    sys.path.insert(0,str(bundle))
+-    from automl_infrastructure_processes import ProcessTree
+-    if not 0<timeout<=480 or not 0<worker_mib<=1536 or not worker_mib<=whole_mib<=2048:raise Blocked('invalid_worker_caps')
+-    wall=time.time();mono=time.monotonic();remaining=min(timeout,450,deadline_unix-wall)
+-    if any(Path(str(a)).name=='automl_worker.py' for a in argv) and clock is None:raise Blocked('model_requires_retained_common_clock')
+-    if clock is not None:
+-        if deadline_unix!=clock['original_deadline_unix'] or abs((wall-mono)-clock['observed_epoch_offset'])>5:raise Blocked('original_clock_reset_denied')
+-        remaining=min(remaining,clock['common_monotonic_deadline']-mono)
+-    if remaining<=0:raise Blocked('original_deadline_expired')
+-    mono_deadline=mono+remaining
+-    sources={p.name:sha(p) for p in Path(bundle).glob('*.py')}
+-    script_sha=sha(__file__)
+-    start_status={};peak_worker=0;peak_whole=0;errors=[];status='running';tree=None;process=None;observed=set();cleanup_confirmed=None
+-    parent=psutil.Process()
+-    with Path(log).open('x',encoding='utf-8') as stream:
+-        try:
+-            process=subprocess.Popen(argv,cwd=cwd,env=env,stdout=stream,stderr=subprocess.STDOUT,start_new_session=os.name!='nt')
+-            tree=ProcessTree(process);root=psutil.Process(process.pid)
+-            start_status={'pid':root.pid,'create_time':root.create_time()}
+-            # Private identity receipt permits a later heartbeat to resume, not duplicate.
+-            write_json(Path(log).with_suffix('.identity.json'),{**start_status,'observed_start_unix':wall,
+-                'observed_start_monotonic':mono,'original_deadline_unix':deadline_unix,'effective_monotonic_deadline':mono_deadline})
+-            while process.poll() is None:
+-                tree.refresh();observed.update(tree.members);total=parent.memory_info().rss;worker=0
+-                for identity in list(tree.members):
+-                    member=tree._verified(identity)
+-                    if member is None:continue
+-                    memory=member.memory_info().rss;total+=memory
+-                    if member.pid==process.pid:worker=memory
+-                peak_worker=max(peak_worker,worker);peak_whole=max(peak_whole,total)
+-                if time.time()>=deadline_unix or time.monotonic()>=mono_deadline:status='timeout';break
+-                if worker>worker_mib*2**20 or total>whole_mib*2**20:status='memory_limit';break
+-                time.sleep(.05)
+-            if status=='running':status='completed' if process.returncode==0 else 'failed'
+-        except (OSError,psutil.Error) as exc:
+-            errors.append({'code':type(exc).__name__,'detail':'owned process inspection/spawn failed'});status='blocked'
++        need(load(path)==identity,'host_lock_identity_changed');path.unlink()
++
++class OwnedTree:
++    """Strict identity union; denial/replacement/traversal failures remain sticky."""
++    def __init__(self,pid):
++        p=psutil.Process(pid);self.root=(p.pid,p.create_time());self.known={self.root};self.errors=[]
++    def fail(self,exc):
++        self.errors.append(type(exc).__name__);raise Blocked('owned_observation_'+type(exc).__name__)
++    def verified(self,identity):
++        try:
++            p=psutil.Process(identity[0])
++            need(p.create_time()==identity[1],'owned_identity_replaced')
++            return p
++        except psutil.NoSuchProcess:return None
++        except Exception as e:self.fail(e)
++    def sample(self):
++        total=0
++        try:
++            for identity in list(self.known):
++                p=self.verified(identity)
++                if p is None:continue
++                # Direct traversal per known member discovers full recursive union;
++                # never suppress AccessDenied as the old frozen helper did.
++                for child in p.children(recursive=True):self.known.add((child.pid,child.create_time()))
++            for identity in list(self.known):
++                p=self.verified(identity)
++                if p is not None:total+=p.memory_info().rss
++        except Exception as e:self.fail(e)
++        need(not self.errors,'sticky_owned_failure');return total
++    def cleanup(self,tick):
++        confirmed=False
++        try:
++            self.sample()
++            for identity in sorted(self.known,reverse=True):
++                tick();p=self.verified(identity)
++                if p is not None and p.status() not in (psutil.STATUS_ZOMBIE,psutil.STATUS_DEAD):p.terminate()
++            end=time.monotonic()+2
++            while time.monotonic()<end:
++                tick();alive=[]
++                for identity in self.known:
++                    p=self.verified(identity)
++                    if p is not None and p.status() not in (psutil.STATUS_ZOMBIE,psutil.STATUS_DEAD):alive.append(identity)
++                if not alive:break
++                time.sleep(.02)
++            for identity in self.known:
++                tick();p=self.verified(identity)
++                if p is not None and p.status() not in (psutil.STATUS_ZOMBIE,psutil.STATUS_DEAD):p.kill()
++            # Caller reaps direct Popen; final fresh absence is checked afterwards.
++        except Exception as e:self.errors.append(type(e).__name__)
++        return confirmed
++    def absent(self):
++        try:
++            for identity in self.known:
++                # Exact fresh absence, zombie is not accepted as absent.
++                need(self.verified(identity) is None,'owned_identity_not_absent')
++            return not self.errors
++        except Exception as e:self.errors.append(type(e).__name__);return False
++
++def supervise(command, cwd, env, frozen, clock, receipt, parent_seconds=480, child_seconds=450):
++    """Private guarded primitive, not a public arbitrary-argv model CLI."""
++    need(0<child_seconds and child_seconds+5<=parent_seconds<=480,'full_parent_allocation')
++    clock.tick(parent_seconds);start_w,start_m=time.time(),time.monotonic()
++    parent_end=start_m+parent_seconds
++    def tick(allocation=0):
++        clock.tick(allocation);need(time.monotonic()+allocation<parent_end,'parent_deadline')
++    before=inventory(frozen,tick)
++    # Hashing cost does not silently steal a declared full child allocation.
++    tick(child_seconds+5);p=None;tree=None;errors=[];status='blocked';peaks=[0,0];clean=False
++    owned_parent=OwnedTree(os.getpid())
++    with Path(receipt).with_suffix('.log').open('xb') as log:
++        try:
++            tick(child_seconds+5)
++            need(platform.system()=='Linux','Linux_supervisor_only')
++            allowed=sorted(os.sched_getaffinity(0))[:2];need(allowed,'CPU_affinity_unavailable')
++            tick(child_seconds+5)
++            p=subprocess.Popen(command,cwd=cwd,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True,
++                               preexec_fn=lambda:os.sched_setaffinity(0,allowed))
++            child_end=time.monotonic()+child_seconds
++            tree=OwnedTree(p.pid)
++            write_new(Path(receipt).with_suffix('.identity.json'),dict(pid=tree.root[0],create_time=tree.root[1],original_deadline=clock.wall_deadline))
++            while True:
++                tick();worker=tree.sample();whole=owned_parent.sample()
++                peaks=[max(peaks[0],worker),max(peaks[1],whole)]
++                need(worker<=1536*2**20 and whole<=2048*2**20,'RSS_cap')
++                if p.poll() is not None:break
++                need(time.monotonic()<child_end,'child_deadline');time.sleep(.05)
++            status='completed' if p.returncode==0 else 'failed'
++            if status=='failed':errors.append(dict(code='nonzero_child_exit',detail='Owned child returned nonzero; raw private log retained.'))
++        except Exception as e:errors.append(dict(code=type(e).__name__,detail=str(e)));status='blocked'
+         finally:
+-            if tree is not None:
+-                try:
+-                    tree.refresh();observed.update(tree.members);tree.terminate()
+-                    cleanup_confirmed=True
+-                    for pid,created in observed:
+-                        try:
+-                            member=psutil.Process(pid)
+-                            if member.create_time()==created and member.is_running() and member.status() not in (psutil.STATUS_ZOMBIE,psutil.STATUS_DEAD):cleanup_confirmed=False
+-                        except psutil.NoSuchProcess:pass
+-                    if not cleanup_confirmed:raise Blocked('owned_process_still_alive')
+-                except Exception as exc:errors.append({'code':type(exc).__name__,'detail':'owned cleanup not independently confirmed'});status='blocked'
+-    if status!='completed' and not errors:errors.append({'code':status,'detail':'pure worker did not complete successfully'})
+-    result={'status':status,'exit_code':process.returncode if process else None,'identity':start_status,
+-        'start_unix':wall,'start_monotonic':mono,'deadline_unix':deadline_unix,'effective_monotonic_deadline':mono_deadline,
+-        'finished_unix':time.time(),'elapsed_seconds':time.monotonic()-mono,'peak_worker_rss_mib':peak_worker/2**20,
+-        'peak_whole_sampled_rss_mib':peak_whole/2**20,'first_error':errors[0] if errors else None,
+-        'secondary_errors':errors[1:],'fits':0,'api_calls':0,'metrics':None,'raw_log_sha256':sha(log),
+-        'harness_sha256':script_sha,'frozen_python_sha256':sources,
+-        'owned_identities':[{'pid':p,'create_time':c} for p,c in sorted(observed)],'cleanup_confirmed':cleanup_confirmed,
+-        'source_unchanged':sources=={p.name:sha(p) for p in Path(bundle).glob('*.py')} and script_sha==sha(__file__)}
+-    if not result['source_unchanged']:result['status']='blocked'
+-    write_json(Path(log).with_suffix('.receipt.json'),result)
++            if tree:
++                tree.cleanup(tick)
++                try:p.wait(timeout=2)
++                except Exception as e:tree.errors.append(type(e).__name__)
++                clean=tree.absent()
++                if tree.errors:errors.extend(dict(code=e,detail='sticky owned observation or cleanup failure') for e in tree.errors)
++                if not clean or owned_parent.errors:status='blocked';clean=False
++    try:
++        tick();check_inventory(frozen,before,tick);tick()
++    except Exception as e:errors.append(dict(code=type(e).__name__,detail=str(e)));status='blocked';clean=False
++    result=dict(status=status,exit_code=p.returncode if p else None,cleanup_confirmed=clean,
++                first_error=errors[0] if errors else None,secondary_errors=errors[1:],
++                start_unix=start_w,start_monotonic=start_m,original_deadline=clock.wall_deadline,parent_deadline_monotonic=parent_end,
++                finished_unix=time.time(),wall_seconds=time.monotonic()-start_m,
++                peak_worker_subtree_rss_mib=peaks[0]/2**20,peak_whole_owned_rss_mib=peaks[1]/2**20,
++                identities=sorted(tree.known) if tree else [],frozen_sha256=before,cpu_threads_cap=2)
++    # Receipt finalization is inside, never beyond, the same parent/common envelope.
++    try:tick();write_new(receipt,result);tick()
++    except Exception as e:
++        result.update(status='blocked',cleanup_confirmed=False,finalization_error=type(e).__name__)
++        # Returned state is authoritative on write/late errors; never publish old PASS.
++        Path(receipt).write_text(json.dumps(result,sort_keys=True))
+     return result
+ 
+-
+-def audit_component(spec,raw_train,expected_rows,output):
+-    """Prospective independent auditor; NEVER trains or accepts reported scalar scores."""
+-    import numpy as np
+-    import pandas as pd
+-    from automl_evaluation import evaluate
+-    from automl_publishing import read_submission_values
+-    from automl_infrastructure_tables import read_input_table
+-    output=Path(output);actual=pd.read_csv(output/'validation_predictions.csv')
+-    sample=read_input_table(spec['paths']['sample_submission']);test=read_input_table(spec['paths']['test'])
+-    exported_frame=pd.read_csv(output/'submission.csv')
+-    if list(exported_frame.columns)!=list(sample.columns) or len(exported_frame)!=len(test) or len(sample)!=len(test) or exported_frame.isna().any().any():raise Blocked('auditor_export_shape_schema')
+-    if spec.get('id') and not np.array_equal(exported_frame[spec['id']],sample[spec['id']]):raise Blocked('auditor_export_ids')
+-    exported=read_submission_values(spec,output/'submission.csv')
+-    if len(exported)==0:raise Blocked('auditor_empty_export')
+-    if not np.array_equal(actual.row_position.to_numpy(),expected_rows):raise Blocked('auditor_row_order_mismatch')
+-    truth=raw_train[spec['target']].iloc[expected_rows].to_numpy()
+-    if spec['kind']=='classification':
+-        if not np.array_equal(actual.y_true.astype(str).to_numpy(),truth.astype(str)):raise Blocked('auditor_truth_mismatch')
+-        with np.load(output/'validation_probabilities.npz',allow_pickle=False) as cache:
+-            if cache['classes'].astype(str).tolist()!=spec['classes'] or not np.array_equal(cache['row_position'],expected_rows):raise Blocked('auditor_probability_alignment')
+-            probabilities=cache['probabilities'].copy()
+-        if not np.isfinite(probabilities).all() or np.any(probabilities<0) or not np.allclose(probabilities.sum(axis=1),1,atol=1e-6):raise Blocked('auditor_probability_values')
+-        predicted=np.asarray(spec['classes'])[probabilities.argmax(axis=1)]
+-        if not np.array_equal(predicted,actual.y_pred.astype(str).to_numpy()):raise Blocked('auditor_decision_mismatch')
+-    else:
+-        if not np.allclose(truth.astype(float),actual.y_true.to_numpy(),rtol=0,atol=1e-10):raise Blocked('auditor_truth_mismatch')
+-        predicted=actual.y_pred.to_numpy();probabilities=None
+-        if not np.isfinite(predicted).all():raise Blocked('auditor_nonfinite_prediction')
+-    return evaluate(truth,predicted,spec['kind'],spec['metric'],probabilities,spec.get('classes'))
+-
+-
+-def child_probe(mode):
+-    # Process-local CPU affinity before joblib import; no global OS changes.
+-    import psutil
+-    process=psutil.Process()
+-    affinity=process.cpu_affinity() if hasattr(process,'cpu_affinity') else None
+-    if affinity is not None:process.cpu_affinity(affinity[:2])
+-    if mode=='timeout':time.sleep(20);return
+-    from joblib import Parallel,delayed
+-    values=Parallel(n_jobs=2,temp_folder=os.environ['JOBLIB_TEMP_FOLDER'])(delayed(pow)(i,2) for i in range(4))
+-    if values!=[0,1,4,9]:raise Blocked('pure_joblib_output_changed')
+-    if any(k in os.environ for k in ('OPENAI_API_KEY','OPENAI_BASE_URL','QWEN_API_KEY')):raise Blocked('credential_environment_not_stripped')
+-    print(json.dumps({'status':'passed','pure_joblib_tasks':4,'fits':0,'api_calls':0,
+-        'ascii_temp':os.environ['JOBLIB_TEMP_FOLDER'].isascii(),'platform_specific_windows_proof':os.name=='nt'}))
+-
+-
+-def self_tests(private,bundle,deadline):
+-    """Meaningful non-learning contracts, including genuine owned process timeout."""
+-    import unittest
+-    from unittest.mock import patch
+-    import numpy as np
+-    import pandas as pd
+-    import psutil
+-    private=Path(private);private.mkdir(parents=True,exist_ok=False)
+-    sys.path.insert(0,str(bundle))
+-
+-    class Contracts(unittest.TestCase):
+-        def test_overlap_is_rejected(self):
+-            with self.assertRaises(Blocked):validate_indices(np.array([0,1]),np.array([1,2]),3)
+-        def test_wrong_dtype_is_rejected_not_cast(self):
+-            with self.assertRaises(Blocked):validate_indices(np.array([0],dtype='int32'),np.array([1],dtype='int32'),3)
+-        def test_exact_bytes_are_mandatory(self):
+-            with self.assertRaises(Blocked):exact_npz(private/'wrong.npz',np.array([0]),np.array([1]),'0'*64)
+-        def test_container_diagnostic_is_read_only_not_acceptance(self):
+-            path=private/'diagnostic.npz';np.savez(path,train=np.array([0]),validation=np.array([1]))
+-            before=sha(path);value=container_diagnostic(path,'0'*64)
+-            self.assertEqual(before,sha(path));self.assertFalse(value['raw_bytes_match'])
+-            self.assertTrue(value['diagnostic_is_NOT_gate_acceptance']);self.assertFalse(value['array_payload_modified'])
+-        def test_credentials_and_external_python_paths_stripped(self):
+-            with owned_ascii_temp() as tmp,patch.dict(os.environ,{'OPENAI_'+'API_KEY':'fixture-only','OPENAI_BASE_URL':'fixture','PYTHONPATH':'fixture'}):
+-                env=clean_environment(tmp);self.assertNotIn('OPENAI_'+'API_KEY',env)
+-                self.assertNotIn('PYTHONPATH',env);self.assertEqual(env['JOBLIB_TEMP_FOLDER'],str(tmp))
+-        def test_unicode_temp_root_fails_closed(self):
+-            folder=private/'unicode-\u00e9';folder.mkdir()
+-            with self.assertRaises(Blocked):
+-                with owned_ascii_temp(folder):pass
+-        def test_lock_cannot_be_reclaimed(self):
+-            lock=private/'owned.lock'
+-            with exclusive_host_lock(lock):
+-                with self.assertRaises(Blocked):
+-                    with exclusive_host_lock(lock):pass
+-            self.assertFalse(lock.exists())
+-        def test_expired_original_deadline_never_spawns(self):
+-            with self.assertRaises(Blocked):guard([sys.executable],private,{},bundle,time.time()-1,private/'forbidden.log')
+-            self.assertFalse((private/'forbidden.log').exists())
+-        def test_source_only_cannot_admit_a_model(self):
+-            with self.assertRaises(Blocked):model_admission({'kind':'source_only','caps':{'max_fits':0}},{})
+-        def test_future_model_requires_independent_approval(self):
+-            with self.assertRaises(Blocked):model_admission({'kind':'bounded_experiment','dependencies':['port'],'caps':{'max_fits':1}},{'primary_approval_verified':False})
+-        def test_retained_clock_does_not_extend_on_resume(self):
+-            claim={'claimed_at_unix':time.time()-1,'deadline_unix':deadline}
+-            path=private/'clock.json';first=retained_clock(claim,path);second=retained_clock(claim,path)
+-            self.assertEqual(first,second)
+-            with self.assertRaises(Blocked):retained_clock(dict(claim,deadline_unix=deadline+1),path)
+-        def test_model_entry_requires_retained_clock_before_spawn(self):
+-            with self.assertRaises(Blocked):guard([sys.executable,'automl_worker.py'],private,{},bundle,deadline,private/'no-model.log')
+-            self.assertFalse((private/'no-model.log').exists())
+-        def test_real_owned_timeout_is_retained_and_reaped(self):
+-            with owned_ascii_temp() as tmp:
+-                result=guard([sys.executable,str(Path(__file__).resolve()),'--child-probe','timeout'],private,clean_environment(tmp),bundle,deadline,private/'timeout.log',timeout=.2)
+-            self.assertEqual(result['status'],'timeout');self.assertIsNotNone(result['first_error'])
+-            self.assertEqual(result['fits'],0);self.assertIsNone(result['metrics'])
+-            try:
+-                p=psutil.Process(result['identity']['pid'])
+-                self.assertNotEqual(p.create_time(),result['identity']['create_time'])
+-            except psutil.NoSuchProcess:pass
+-        def test_auditor_recomputes_and_rejects_row_and_label_changes(self):
+-            folder=private/'audit';folder.mkdir()
+-            train=pd.DataFrame({'target':[1.,2.,3.]})
+-            sample=pd.DataFrame({'id':[3,2],'target':[0.,0.]});test=pd.DataFrame({'id':[2,3]})
+-            sample.to_csv(folder/'sample.csv',index=False);test.to_csv(folder/'test.csv',index=False)
+-            spec={'kind':'regression','metric':'rmse','target':'target','id':'id','sample_test_positions':[1,0],
+-                'paths':{'sample_submission':str(folder/'sample.csv'),'test':str(folder/'test.csv')}}
+-            sample.assign(target=[2.,1.]).to_csv(folder/'submission.csv',index=False)
+-            frame=pd.DataFrame({'row_position':[0,1],'y_true':[1.,2.],'y_pred':[1.,2.]})
+-            frame.to_csv(folder/'validation_predictions.csv',index=False)
+-            self.assertEqual(audit_component(spec,train,np.array([0,1]),folder)['rmse'],0.)
+-            frame.assign(row_position=[1,0]).to_csv(folder/'validation_predictions.csv',index=False)
+-            with self.assertRaises(Blocked):audit_component(spec,train,np.array([0,1]),folder)
+-            frame.assign(y_true=[99.,2.]).to_csv(folder/'validation_predictions.csv',index=False)
+-            with self.assertRaises(Blocked):audit_component(spec,train,np.array([0,1]),folder)
+-    suite=unittest.defaultTestLoader.loadTestsFromTestCase(Contracts)
+-    result=unittest.TextTestRunner(verbosity=2).run(suite)
+-    return {'tests_run':result.testsRun,'failures':len(result.failures),'errors':len(result.errors),
+-        'passed':result.wasSuccessful(),'fits':0,'api_calls':0,'scope':'pure fixtures,not trained ML metrics'}
+-
+-
+-def main():
+-    parser=argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument('--sources',type=Path);parser.add_argument('--inputs',type=Path)
+-    parser.add_argument('--private',type=Path);parser.add_argument('--receipt',type=Path)
+-    parser.add_argument('--child-probe',choices=['joblib','timeout'])
+-    args=parser.parse_args()
+-    if args.child_probe:return child_probe(args.child_probe)
+-    if any(v is None for v in (args.sources,args.inputs,args.private,args.receipt)):parser.error('Source-only preparation paths required')
+-    def forbid_network(event,args):
+-        if event in ('socket.connect','socket.getaddrinfo'):raise Blocked('source_only_network_forbidden')
+-    sys.addaudithook(forbid_network)
+-    result=prepare_splits(args.sources,args.inputs,args.private)
+-    write_json(args.receipt,result)
+-    print(json.dumps({'status':result['status'],'checked_cuts':len(result['cuts']),
+-        'exact_byte_matches':sum(c['raw_bytes_match'] for c in result['cuts']),'fits':0,'api_calls':0}))
+-    return 0 if result['status']=='passed' else 2
+-
+-
+-if __name__=='__main__':raise SystemExit(main())
++def queue_admission(repo, queue_file, queue_sha, job_id, worker, claim_sha):
++    """Verify actual immutable Git packets + pinned primary approval, not a bool."""
++    import importlib.util
++    need(sha(queue_file)==queue_sha,'queue_source_pin')
++    spec=importlib.util.spec_from_file_location('_pinned_queue',queue_file);q=importlib.util.module_from_spec(spec);spec.loader.exec_module(q)
++    g=q.Git(repo);oid,claim,job,_=q.read_claim(g,job_id)
++    need(oid==claim_sha and claim['worker_id']==worker and job['id']==job_id,'queue_identity_binding')
++    need(job['kind']=='bounded_experiment' and job['caps']['max_fits']>0,'source_only_fit_refused')
++    q.jobs(g,claim['dispatch_sha']);q.bounded_admission(g,claim['dispatch_sha'],job,worker)
++    need(time.time()<claim['deadline_unix'],'queue_expired')
++    refs={r['path']:r['sha256'] for r in job['source_refs']}
++    binding_path='research/remote-experiments/sources/'+job_id+'-execution-binding.json'
++    need(binding_path in refs,'typed_execution_binding_required')
++    raw=g.blob(claim['dispatch_sha'],binding_path);need(q.digest(raw)==refs[binding_path],'execution_binding_pin')
++    binding=q.decode(raw)
++    need(binding['job_id']==job_id and binding['worker_id']==worker,'execution_binding_identity')
++    return claim,job,binding
++
++def model_driver(repo,queue_file,queue_sha,job_id,worker,claim_sha,bundle,manifest,private_job,private_job_sha,clock_path,lock_path,receipt):
++    """Prospective entrypoint. This source job never invokes it."""
++    claim,job,binding=queue_admission(repo,queue_file,queue_sha,job_id,worker,claim_sha)
++    need(job['caps']['cpu_threads']==2 and job['caps']['worker_memory_mib']==1536
++         and job['caps']['whole_memory_mib']==2048,'driver_exact_approved_resource_profile')
++    need(manifest['source_archive_sha256']=='ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c','algorithm_archive_pin')
++    # Manifest itself must be one of this future immutable job's primary pins.
++    need(binding['manifest_canonical_sha256']==canonical(manifest),'manifest_binding')
++    clock=Clock.retained(claim,clock_path)
++    need(sha(private_job,clock.tick)==private_job_sha,'private_job_seal')
++    leaf=load(private_job)
++    need(leaf['threads']==2 and leaf['full_fit'] is False and leaf['recipe'] and leaf['spec'],'typed_component_job')
++    need(binding['private_job_sha256']==private_job_sha and binding['entrypoint']=='automl_worker.py','private_job_dispatch_binding')
++    need(binding['recipe']==leaf['recipe'] and binding['spec_canonical_sha256']==canonical(leaf['spec']),'private_recipe_spec_binding')
++    check_inventory(bundle,manifest['flat_files_sha256'],clock.tick)
++    shared_lock=Path(repo).resolve().parent/'remote-research-state'/'experiment.lock'
++    need(Path(lock_path).resolve()==shared_lock,'shared_host_lock_path_required')
++    with host_lock(lock_path):
++        with tempfile.TemporaryDirectory(prefix='automl-source-') as temp:
++            env=clean_environment(temp);clock.tick(480)
++            return supervise([sys.executable,str(Path(bundle).resolve()/'automl_worker.py'),str(Path(private_job).resolve())],bundle,env,bundle,clock,receipt)
++
++if __name__=='__main__':
++    raise SystemExit('source-only wrapper: learner execution refused; no model CLI enabled')
+--- a/component_audit.py
++++ b/component_audit.py
+@@ -0,0 +1,106 @@
++"""Thin opt-in component audit using the two exact approved independent libraries.
++
++Not a whole-agent, refit, process-supervision or official-score qualification.
++No CLI; caller must supply primary-pinned authority and fresh terminal core seals.
++"""
++from pathlib import Path
++import importlib.util, json
++from portable_harness import need, sha, canonical, inventory, check_inventory, native_split, load
++
++LIBRARIES={
++ 'evaluator.py':'c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783',
++ 'audit_components.py':'a7528e969cd2f58ef4562c34ab344852acdfde535f223d9fedcf3877fa9cdcdb'}
++def libraries(root, tick=lambda:None):
++    need(__debug__,'nonoptimized_python_required');modules=[]
++    for name,expected in LIBRARIES.items():
++        path=Path(root)/name;need(sha(path,tick)==expected,'audit_library_pin')
++        spec=importlib.util.spec_from_file_location('_independent_'+name.replace('.','_'),path)
++        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);modules.append(module);tick()
++    return modules
++
++def native_roles(spec, mapping):
++    need(set(mapping)=={'train','test','sample_submission','data_dictionary'},'explicit_native_roles')
++    for role,path in mapping.items():
++        need(Path(path).is_absolute() and '\\' not in str(path),'native_not_windows_path')
++        need(Path(spec['paths'][role]).resolve()==Path(path).resolve(),'native_role_binding')
++
++def iterations(folder, recipe, expected=None):
++    record=load(Path(folder)/'result.json');value=record['fit_iterations']
++    if expected is not None:need(value==expected,'recursive_iterations_binding')
++    if recipe['engine']=='ensemble':children=recipe['components']
++    elif recipe.get('params',{}).get('feature_views'):
++        # R4 checks exact expanded feature-view recipes separately.
++        children=[None,None]
++    else:children=[]
++    if children:
++        need(isinstance(value,list) and len(value)==len(children),'recursive_iterations_shape')
++        for i,child in enumerate(children):
++            path=Path(folder)/('component-'+str(i));saved=load(path/'result.json')
++            if child is None:child=saved['recipe']
++            need(saved['recipe']==child,'recursive_recipe_binding');iterations(path,child,value[i])
++    else:need(type(value) is int and 1<=value<=3000,'leaf_iteration_bounds')
++
++def closed_core(folder, expected_recipe, spec, split_path, expected_inventory, terminal, clock):
++    """Every recursive byte bound BEFORE any label-bearing CSV is loaded."""
++    check_inventory(folder,expected_inventory,clock.tick)
++    need(terminal['status']=='completed' and terminal['exit_code']==0 and terminal['cleanup_confirmed'] is True,'terminal_component_required')
++    need(terminal['original_deadline']==clock.wall_deadline and terminal['finished_unix']<clock.wall_deadline,'terminal_clock_binding')
++    need(terminal['peak_worker_subtree_rss_mib']<=1536 and terminal['peak_whole_owned_rss_mib']<=2048,'terminal_resources')
++    job=load(Path(folder)/'job.json')
++    need(job['spec']==spec and job['recipe']==expected_recipe and job['threads']==2 and job['full_fit'] is False,'component_job_binding')
++    need(Path(job['output_dir']).resolve()==Path(folder).resolve() and Path(job['split_path']).resolve()==Path(split_path).resolve(),'component_paths')
++    iterations(folder,expected_recipe)
++
++def audit(root, authority, authority_sha, libroot, clock):
++    """authority_sha must come from the separately primary-pinned execution plan.
++
++    Core SHA inventories and terminal-receipt hashes are sealed by the owned
++    parent before this separate audit process starts. No learned code is loaded.
++    """
++    import numpy as np
++    import pandas as pd
++    need(__debug__,'nonoptimized_python_required');clock.tick()
++    need(canonical(authority)==authority_sha,'external_authority_pin')
++    root=Path(root).resolve();spec=authority['spec'];roles=authority['roles'];native_roles(spec,roles)
++    source=authority['source_manifest']
++    need(source['source_archive_sha256']=='ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c'
++         and len(source['flat_files_sha256'])==70,'approved_original_source')
++    need(authority['source_inventories'][authority['algorithm_relative']]==source['flat_files_sha256'],'complete_original_source_inventory')
++    need(set(authority['input_sha256'])==set(roles),'all_pristine_roles_required')
++    def frozen():
++        clock.tick()
++        for name,expected in LIBRARIES.items():need(sha(Path(libroot)/name,clock.tick)==expected,'audit_library_changed')
++        for role,path in roles.items():need(sha(path,clock.tick)==authority['input_sha256'][role],'pristine_input_changed')
++        for prefix,seals in authority['source_inventories'].items():check_inventory(root/prefix,seals,clock.tick)
++        for item in authority['components']:
++            folder=root/item['output_relative'];need(folder.is_relative_to(root),'component_escape')
++            check_inventory(folder,item['core_sha256'],clock.tick)
++            need(sha(root/item['split_relative'],clock.tick)==item['native_cut']['native_profiles']['Linux']['raw_npz_sha256'],'native_split_seal')
++            need(sha(root/item['terminal_relative'],clock.tick)==item['terminal_sha256'],'terminal_seal')
++    frozen()
++    for item in authority['components']:
++        closed_core(root/item['output_relative'],item['recipe'],spec,root/item['split_relative'],item['core_sha256'],load(root/item['terminal_relative']),clock)
++    r4,kern=libraries(libroot,clock.tick)
++    # Only after ALL terminal cores, jobs, specs, sources, inputs and splits seal.
++    train,test,sample=[pd.read_csv(roles[r]) for r in ('train','test','sample_submission')];clock.tick()
++    verifier=r4.TaskVerifier(root,{'spec':spec,'experiments':[],'confirmations':[]},train,test,sample)
++    found={};representations={}
++    for item in authority['components']:
++        clock.tick();path=root/item['split_relative'];kind=item['native_cut']['kind']
++        groups=verifier.hashes if kind=='classification' else None
++        times=train[spec['time_column']].to_numpy() if kind=='regression' else None
++        native_split(path,item['native_cut'],len(train),groups,times)
++        folder=root/item['output_relative'];record=dict(load(folder/'result.json'),output_dir=str(folder))
++        r4.TaskVerifier.verify(verifier,record,path,item['key'],full=False,expected_recipe=item['recipe'])
++        found[item['key']]=r4.diagnostics(verifier,record,path,item['key'])
++        if item['arm'] in ('linear','rbf'):
++            representations[item['key']]=kern.representation_receipt(r4,verifier,record,dict(item,_absolute_split=str(path),kind=kind))
++        frozen()
++    comparisons={}
++    for arm,pair in authority['comparisons'].items():
++        actual={phase:found[key] for phase,key in pair['candidate'].items()}
++        control={phase:found[key] for phase,key in pair['control'].items()}
++        comparisons[arm]=r4.matched_control_comparison(actual,control,spec['kind'])
++    frozen();clock.tick()
++    return dict(status='component_audit_only',diagnostics=found,comparisons=comparisons,
++                representations=representations,source_unchanged=True,full_refit=False,promotion=False)
+--- a/pure_contracts.py
++++ b/pure_contracts.py
+@@ -0,0 +1,292 @@
++"""Bounded synthetic/mock/inert contracts only; no estimator fitting or API."""
++from pathlib import Path
++from unittest.mock import patch, MagicMock
++import copy, hashlib, io, json, os, subprocess, sys, tempfile, time, unittest, zipfile
++import numpy as np
++import pandas as pd
++import portable_harness as h
++import component_audit as a
++
++LIBROOT=None
++QUEUE=None
++ORIGINAL_SOURCE=None
++SOURCE_MANIFEST=None
++def write(path,v):Path(path).write_text(json.dumps(v))
++def clock(seconds=60):
++    w,m=time.time(),time.monotonic();return h.Clock(w,m,w+seconds,m+seconds,m)
++
++def cut_contract(path,tr,va,kind='classification'):
++    np.savez(path,train=tr,validation=va)
++    members=[]
++    with zipfile.ZipFile(path) as z:
++        for info,x in zip(z.infolist(),[tr,va]):
++            members.append(dict(name=info.filename,shape=list(x.shape),fortran_order=False,dtype=x.dtype.str,
++                                npy_sha256=hashlib.sha256(z.read(info.filename)).hexdigest(),
++                                canonical_ordered_values_sha256=hashlib.sha256(x.astype('<i8').tobytes()).hexdigest()))
++    return dict(kind=kind,cut=42,canonical_concat_train_validation_sha256=hashlib.sha256(tr.astype('<i8').tobytes()+va.astype('<i8').tobytes()).hexdigest(),
++                native_profiles={'Linux':dict(raw_npz_sha256=h.sha(path),zip_creator_system=3,members=members)})
++
++def fixture(root,r4,feature_views=False,ensemble=False):
++    root=Path(root);root.mkdir(exist_ok=True)
++    train=pd.DataFrame(dict(id=list(range(6)),x=list(range(6)),y=['A','B','A','B','A','B']))
++    test=pd.DataFrame(dict(id=[10,11],x=[8,9]));sample=pd.DataFrame(dict(id=[10,11],y=['A','B']))
++    spec=dict(kind='classification',metric='macro_f1',prediction_type='value',output_columns=['y'],target='y',id='id',features=['x'],
++              categorical_features=[],n_train=6,n_test=2,classes=['A','B'])
++    split=root/'split.npz';tr=np.array([0,1,2,3],dtype='int64');va=np.array([4,5],dtype='int64');np.savez(split,train=tr,validation=va)
++    recipe=dict(engine='lightgbm',params={},hypothesis='synthetic inert artifact')
++    if feature_views:recipe['params']['feature_views']='categorical_te_pair'
++    if ensemble:recipe=dict(engine='ensemble',components=[copy.deepcopy(recipe),copy.deepcopy(recipe)],weights=[.5,.5],params={})
++    folder=root/'out';folder.mkdir()
++    probs=np.array([[.8,.2],[.2,.8]])
++    def leaf(folder,recipe,top):
++        if recipe['engine']=='ensemble':children=recipe['components']
++        elif recipe.get('params',{}).get('feature_views'):children=r4.child_feature_views(recipe,spec)
++        else:children=[]
++        its=[1,1] if children else 1
++        record=dict(status='ok',recipe=recipe,full_fit=False,fit_iterations=its,metrics={'macro_f1':1.})
++        write(folder/'result.json',record)
++        if top:write(folder/'job.json',dict(spec=spec,recipe=recipe,threads=2,full_fit=False,output_dir=str(folder),split_path=str(split)))
++        sample.to_csv(folder/'submission.csv',index=False)
++        pd.DataFrame(dict(row_position=va,y_true=['A','B'],y_pred=['A','B'])).to_csv(folder/'validation_predictions.csv',index=False)
++        np.savez(folder/'validation_probabilities.npz',probabilities=probs,classes=np.array(['A','B']),row_position=va)
++        np.savez(folder/'test_probabilities.npz',probabilities=probs,classes=np.array(['A','B']))
++        for i,child in enumerate(children):
++            d=folder/('component-'+str(i));d.mkdir();leaf(d,child,False)
++        return record
++    record=leaf(folder,recipe,True);record['output_dir']=str(folder)
++    return root,spec,train,test,sample,split,folder,recipe,record
++
++class Contracts(unittest.TestCase):
++    def setUp(self):self.tmp=tempfile.TemporaryDirectory(prefix='automl-contract-');self.root=Path(self.tmp.name)
++    def tearDown(self):self.tmp.cleanup()
++    def libs(self):return a.libraries(LIBROOT)
++    def test_environment_ascii_no_credentials(self):
++        with patch.dict(os.environ,{'OPENAI_BASE_URL':'private','QWEN_MODEL':'private','SOME_SECRET':'private','PYTHONPATH':'private'}):
++            env=h.clean_environment(self.root)
++        self.assertNotIn('OPENAI_BASE_URL',env);self.assertNotIn('QWEN_MODEL',env);self.assertNotIn('SOME_SECRET',env);self.assertNotIn('PYTHONPATH',env)
++        self.assertTrue(env['JOBLIB_TEMP_FOLDER'].isascii())
++        with self.assertRaises(h.Blocked):h.clean_environment(self.root/'é')
++    def test_actual_exclusive_lock(self):
++        p=self.root/'host.lock'
++        with h.host_lock(p):
++            with self.assertRaises(h.Blocked):
++                with h.host_lock(p):pass
++        self.assertFalse(p.exists())
++    def test_lock_identity_replacement(self):
++        p=self.root/'host.lock'
++        with self.assertRaises(h.Blocked):
++            with h.host_lock(p):write(p,{'pid':0})
++        self.assertTrue(p.exists())
++    def test_retained_original_clock(self):
++        claim=dict(claimed_at_unix=time.time(),deadline_unix=time.time()+60);p=self.root/'clock.json'
++        h.Clock.retained(claim,p);before=p.read_bytes();h.Clock.retained(claim,p);self.assertEqual(before,p.read_bytes())
++        with self.assertRaises(h.Blocked):h.Clock.retained(dict(claim,deadline_unix=claim['deadline_unix']+1),p)
++    def test_gap_clock(self):
++        c=clock();c.last-=11
++        with self.assertRaises(h.Blocked):c.tick()
++    def test_full_allocation_no_popen(self):
++        frozen=self.root/'frozen';frozen.mkdir()
++        with patch.object(h.subprocess,'Popen') as spawn:
++            with self.assertRaises(h.Blocked):h.supervise([],self.root,{},frozen,clock(3),self.root/'r.json',parent_seconds=8,child_seconds=1)
++            spawn.assert_not_called()
++    def test_hash_expiry_before_popen(self):
++        frozen=self.root/'frozen';frozen.mkdir();c=clock()
++        def expired(*args):c.wall_deadline=time.time()-1;return {}
++        with patch.object(h,'inventory',side_effect=expired),patch.object(h.subprocess,'Popen') as spawn:
++            with self.assertRaises(h.Blocked):h.supervise([],self.root,{},frozen,c,self.root/'r.json',parent_seconds=8,child_seconds=1)
++            spawn.assert_not_called()
++    def test_real_inert_child(self):
++        frozen=self.root/'frozen';frozen.mkdir();env=h.clean_environment(self.root)
++        result=h.supervise([sys.executable,'-c','print(123)'],self.root,env,frozen,clock(),self.root/'r.json',parent_seconds=8,child_seconds=1)
++        self.assertEqual(result['status'],'completed');self.assertTrue(result['cleanup_confirmed']);self.assertEqual(result['exit_code'],0)
++    def test_late_finalization_downgrade(self):
++        frozen=self.root/'frozen';frozen.mkdir();c=clock()
++        def late(*args):c.wall_deadline=time.time()-1
++        with patch.object(h,'check_inventory',side_effect=late):
++            r=h.supervise([sys.executable,'-c','pass'],self.root,h.clean_environment(self.root),frozen,c,self.root/'r.json',parent_seconds=8,child_seconds=1)
++        self.assertEqual(r['status'],'blocked');self.assertFalse(r['cleanup_confirmed'])
++    def test_descendant_rss_not_direct_only(self):
++        p=MagicMock();p.pid=11;p.create_time.return_value=1;p.memory_info.return_value.rss=3
++        child=MagicMock();child.pid=12;child.create_time.return_value=2;child.memory_info.return_value.rss=7
++        p.children.return_value=[child];child.children.return_value=[]
++        with patch.object(h.psutil,'Process',side_effect=lambda pid:p if pid==11 else child):
++            tree=h.OwnedTree(11);self.assertEqual(tree.sample(),10);self.assertEqual(tree.known,{(11,1),(12,2)})
++    def test_traversal_denial_sticky(self):
++        p=MagicMock();p.pid=11;p.create_time.return_value=1;p.children.side_effect=h.psutil.AccessDenied(11)
++        with patch.object(h.psutil,'Process',return_value=p):
++            tree=h.OwnedTree(11)
++            with self.assertRaises(h.Blocked):tree.sample()
++            p.children.side_effect=None;p.children.return_value=[]
++            with self.assertRaises(h.Blocked):tree.sample()
++            self.assertFalse(tree.absent())
++    def test_final_cleanup_identity_replacement(self):
++        p=MagicMock();p.pid=11;p.create_time.return_value=1
++        with patch.object(h.psutil,'Process',return_value=p):
++            tree=h.OwnedTree(11);p.create_time.return_value=2
++            self.assertFalse(tree.absent());p.kill.assert_not_called();p.terminate.assert_not_called()
++    def test_final_cleanup_denied(self):
++        p=MagicMock();p.pid=11;p.create_time.return_value=1
++        with patch.object(h.psutil,'Process',return_value=p):
++            tree=h.OwnedTree(11);p.create_time.side_effect=h.psutil.AccessDenied(11)
++            self.assertFalse(tree.absent());self.assertTrue(tree.errors)
++    def test_source_cli_refuses(self):
++        result=subprocess.run([sys.executable,str(Path(h.__file__).resolve())],capture_output=True,timeout=5,env=h.clean_environment(self.root))
++        self.assertNotEqual(result.returncode,0);self.assertIn(b'learner execution refused',result.stderr)
++    def test_source_admission_refuses_before_popen(self):
++        q=MagicMock();q.Git.return_value=object();q.read_claim.return_value=('c',{'worker_id':'w'},{'id':'j','kind':'source_only','caps':{'max_fits':0}},None)
++        s=MagicMock();s.loader.exec_module.side_effect=lambda mod:mod.__dict__.update(q.__dict__)
++        # Test the real admission path with a mocked immutable queue module.
++        with patch.object(h,'sha',return_value='pin'),patch('importlib.util.spec_from_file_location',return_value=s),patch('importlib.util.module_from_spec',return_value=q):
++            with self.assertRaises(h.Blocked):h.queue_admission('.',__file__,'pin','j','w','c')
++        q.bounded_admission.assert_not_called()
++    def test_wrong_worker_or_claim_refused(self):
++        q=MagicMock();q.read_claim.return_value=('wrong',{'worker_id':'other'},{'id':'j'},None)
++        s=MagicMock()
++        with patch.object(h,'sha',return_value='pin'),patch('importlib.util.spec_from_file_location',return_value=s),patch('importlib.util.module_from_spec',return_value=q):
++            with self.assertRaises(h.Blocked):h.queue_admission('.',__file__,'pin','j','w','c')
++    def test_primary_approval_result_binding(self):
++        import importlib.util
++        self.assertEqual(h.sha(QUEUE),'d42cb979db953eeffabfa65ee2a40d8763dfd835f91ce35149327f3d181e4c49')
++        s=importlib.util.spec_from_file_location('_actual_queue_test',QUEUE);q=importlib.util.module_from_spec(s);s.loader.exec_module(q)
++        approval=dict(schema=1,job_id='dependency',result_sha='incorrect',worker_id='w',approved_for_bounded_experiments=True,
++                      caps=dict(wall_seconds=900,cpu_threads=2,worker_memory_mib=1536,whole_memory_mib=2048,max_fits=10,max_api_calls=0))
++        raw=json.dumps(approval).encode();g=MagicMock();g.blob.return_value=raw
++        job=dict(id='j',kind='bounded_experiment',dependencies=['dependency'],source_refs=[dict(path='research/remote-experiments/reviews/dependency.json',sha256=hashlib.sha256(raw).hexdigest())])
++        with patch.object(q,'read_claim',return_value=(None,None,{'kind':'source_only'},None)),patch.object(q,'collect',return_value={'worker_id':'w','result_sha':'actual','report':{'status':'completed'}}):
++            with self.assertRaises(q.QueueError):q.bounded_admission(g,'dispatch',job,'w')
++    def test_model_driver_lock_is_wired(self):
++        bundle=self.root/'bundle';bundle.mkdir();(bundle/'automl_worker.py').write_text('# inert fixture, never executed\n')
++        manifest={'source_archive_sha256':'ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c','flat_files_sha256':h.inventory(bundle)}
++        leaf={'threads':2,'full_fit':False,'recipe':{'engine':'inert'},'spec':{'kind':'synthetic'}};p=self.root/'private.json';write(p,leaf)
++        binding=dict(manifest_canonical_sha256=h.canonical(manifest),private_job_sha256=h.sha(p),entrypoint='automl_worker.py',recipe=leaf['recipe'],spec_canonical_sha256=h.canonical(leaf['spec']))
++        claim={'claimed_at_unix':time.time(),'deadline_unix':time.time()+1000};repo=self.root/'remote-research';repo.mkdir()
++        state=self.root/'remote-research-state';state.mkdir();lock=state/'experiment.lock'
++        job={'caps':dict(cpu_threads=2,worker_memory_mib=1536,whole_memory_mib=2048)}
++        with h.host_lock(lock),patch.object(h,'queue_admission',return_value=(claim,job,binding)),patch.object(h,'supervise') as spawn:
++            with self.assertRaisesRegex(h.Blocked,'host_lock_occupied_no_reclaim'):h.model_driver(repo,__file__,'pin','j','w','c',bundle,manifest,p,h.sha(p),self.root/'clock.json',lock,self.root/'receipt.json')
++            spawn.assert_not_called()
++    def test_wrong_job_identity_refused(self):
++        q=MagicMock();q.read_claim.return_value=('c',{'worker_id':'w'},{'id':'another'},None);s=MagicMock()
++        with patch.object(h,'sha',return_value='pin'),patch('importlib.util.spec_from_file_location',return_value=s),patch('importlib.util.module_from_spec',return_value=q):
++            with self.assertRaises(h.Blocked):h.queue_admission('.',__file__,'pin','j','w','c')
++    def test_native_linux_exact(self):
++        p=self.root/'s.npz';tr=np.array([0,1],dtype='int64');va=np.array([2],dtype='int64');cut=cut_contract(p,tr,va)
++        actual=h.native_split(p,cut,3,np.arange(3));self.assertTrue(np.array_equal(actual[0],tr))
++    def test_native_tampered_dtype(self):
++        p=self.root/'s.npz';tr=np.array([0,1],dtype='int64');va=np.array([2],dtype='int64');cut=cut_contract(p,tr,va);cut['native_profiles']['Linux']['members'][0]['dtype']='<i4'
++        with self.assertRaises(h.Blocked):h.native_split(p,cut,3,np.arange(3))
++    def test_native_tampered_order_hash(self):
++        p=self.root/'s.npz';cut=cut_contract(p,np.array([0,1]),np.array([2]));np.savez(p,train=np.array([1,0]),validation=np.array([2]))
++        with self.assertRaises(h.Blocked):h.native_split(p,cut,3,np.arange(3))
++    def test_native_tampered_values_digest(self):
++        p=self.root/'s.npz';cut=cut_contract(p,np.array([0,1]),np.array([2]));cut['canonical_concat_train_validation_sha256']='0'*64
++        with self.assertRaises(h.Blocked):h.native_split(p,cut,3,np.arange(3))
++    def test_native_group_chronology(self):
++        p=self.root/'s.npz';cut=cut_contract(p,np.array([0,1]),np.array([2]))
++        with self.assertRaises(h.Blocked):h.native_split(p,cut,3,np.zeros(3))
++        cut['kind']='regression'
++        with self.assertRaises(h.Blocked):h.native_split(p,cut,3,times=np.array([2,1,1]))
++    def test_native_path_role_mapping(self):
++        roles={k:str(self.root/(k+'.csv')) for k in ('train','test','sample_submission','data_dictionary')};a.native_roles({'paths':roles},roles)
++        roles['train']='C'+':'+chr(92)+'synthetic'+chr(92)+'train.csv'
++        with self.assertRaises(h.Blocked):a.native_roles({'paths':roles},roles)
++    def test_r4_leaf_and_diagnostics(self):
++        r4,_=self.libs();root,spec,train,test,sample,split,out,recipe,record=fixture(self.root,r4)
++        v=r4.TaskVerifier(root,{'spec':spec,'experiments':[],'confirmations':[]},train,test,sample)
++        self.assertEqual(v.verify(record,split,'primary',False,recipe)['value'],1.)
++        d=r4.diagnostics(v,record,split,'primary');self.assertTrue(d['feature_groups_disjoint'])
++        comparison=r4.matched_control_comparison({'primary':d,'confirmation':d},{'primary':d,'confirmation':d},'classification')
++        self.assertFalse(comparison['each_cut_primary_gate_passed'])
++    def check_r4(self,mutate,views=False,ensemble=False):
++        r4,_=self.libs();root,spec,train,test,sample,split,out,recipe,record=fixture(self.root,r4,views,ensemble);mutate(out,record)
++        v=r4.TaskVerifier(root,{'spec':spec,'experiments':[],'confirmations':[]},train,test,sample)
++        with self.assertRaises((AssertionError,h.Blocked)):v.verify(record,split,'primary',False,recipe)
++    def test_r4_probability_width_tamper(self):
++        self.check_r4(lambda out,r:np.savez(out/'test_probabilities.npz',probabilities=np.ones((2,1)),classes=np.array(['A','B'])))
++    def test_r4_probability_csv_mismatch(self):
++        self.check_r4(lambda out,r:pd.DataFrame(dict(id=[10,11],y=['B','B'])).to_csv(out/'submission.csv',index=False))
++    def test_r4_truth_tamper(self):
++        self.check_r4(lambda out,r:pd.DataFrame(dict(row_position=[4,5],y_true=['B','B'],y_pred=['A','B'])).to_csv(out/'validation_predictions.csv',index=False))
++    def test_r4_validation_positions_tamper(self):
++        self.check_r4(lambda out,r:np.savez(out/'validation_probabilities.npz',probabilities=np.array([[.8,.2],[.2,.8]]),classes=np.array(['A','B']),row_position=np.array([5,4])))
++    def test_r4_nonfinite_probability(self):
++        self.check_r4(lambda out,r:np.savez(out/'test_probabilities.npz',probabilities=np.array([[np.nan,.2],[.2,.8]]),classes=np.array(['A','B'])))
++    def test_r4_probability_sum(self):
++        self.check_r4(lambda out,r:np.savez(out/'test_probabilities.npz',probabilities=np.array([[.8,.8],[.2,.8]]),classes=np.array(['A','B'])))
++    def test_r4_reversed_class_label_tamper(self):
++        self.check_r4(lambda out,r:np.savez(out/'test_probabilities.npz',probabilities=np.array([[.8,.2],[.2,.8]]),classes=np.array(['B','A'])))
++    def test_r4_recursive_ensemble_tamper(self):
++        def change(out,r):np.savez(out/'component-0/test_probabilities.npz',probabilities=np.array([[.7,.3],[.3,.7]]),classes=np.array(['A','B']))
++        self.check_r4(change,ensemble=True)
++    def test_r4_feature_view_tamper(self):
++        def change(out,r):np.savez(out/'component-1/test_probabilities.npz',probabilities=np.array([[.7,.3],[.3,.7]]),classes=np.array(['A','B']))
++        self.check_r4(change,views=True)
++    def test_recursive_iterations_bound(self):
++        r4,_=self.libs();*_,out,recipe,record=fixture(self.root,r4,ensemble=True);a.iterations(out,recipe)
++        child=h.load(out/'component-0/result.json');child['fit_iterations']=2;write(out/'component-0/result.json',child)
++        with self.assertRaises(h.Blocked):a.iterations(out,recipe)
++    def test_pretruth_inventory_tamper(self):
++        frozen=self.root/'core';frozen.mkdir();(frozen/'result.json').write_text('{}');sealed=h.inventory(frozen);(frozen/'result.json').write_text('{"changed":1}')
++        with self.assertRaises(h.Blocked):h.check_inventory(frozen,sealed)
++    def test_audit_authority_before_truth(self):
++        with patch.object(pd,'read_csv') as read:
++            with self.assertRaises(h.Blocked):a.audit(self.root,{},'bad-authority',LIBROOT,clock())
++            read.assert_not_called()
++    def test_outer_component_audit_synthetic_positive(self):
++        import shutil
++        r4,_=self.libs();root,spec,train,test,sample,split,out,recipe,record=fixture(self.root,r4)
++        manifest=h.load(SOURCE_MANIFEST);algorithm=root/'algorithm'
++        shutil.copytree(ORIGINAL_SOURCE,algorithm);h.check_inventory(algorithm,manifest['flat_files_sha256'])
++        inputs=root/'inputs';inputs.mkdir();roles={r:str(inputs/(r+'.csv')) for r in ('train','test','sample_submission','data_dictionary')}
++        train.to_csv(roles['train'],index=False);test.to_csv(roles['test'],index=False);sample.to_csv(roles['sample_submission'],index=False)
++        pd.DataFrame({'feature':['x']}).to_csv(roles['data_dictionary'],index=False)
++        spec['paths']=roles;job=h.load(out/'job.json');job['spec']=spec;write(out/'job.json',job)
++        c=clock();terminal=dict(status='completed',exit_code=0,cleanup_confirmed=True,original_deadline=c.wall_deadline,
++                               finished_unix=time.time(),peak_worker_subtree_rss_mib=1,peak_whole_owned_rss_mib=1)
++        write(root/'synthetic-terminal.json',terminal)
++        cut=cut_contract(split,np.array([0,1,2,3],dtype='int64'),np.array([4,5],dtype='int64'))
++        authority=dict(spec=spec,roles=roles,input_sha256={r:h.sha(p) for r,p in roles.items()},source_manifest=manifest,
++                       algorithm_relative='algorithm',source_inventories={'algorithm':manifest['flat_files_sha256']},
++                       components=[dict(key='synthetic42',arm='strong',output_relative='out',recipe=recipe,split_relative='split.npz',native_cut=cut,
++                                        terminal_relative='synthetic-terminal.json',terminal_sha256=h.sha(root/'synthetic-terminal.json'),core_sha256=h.inventory(out))],comparisons={})
++        result=a.audit(root,authority,h.canonical(authority),LIBROOT,c)
++        self.assertEqual(result['status'],'component_audit_only');self.assertEqual(result['diagnostics']['synthetic42']['value'],1.)
++        self.assertFalse(result['promotion'])
++        # A dirty recursive/output seal must fail before pristine labels are loaded.
++        (out/'result.json').write_text('{}')
++        with patch.object(pd,'read_csv') as read:
++            with self.assertRaises(h.Blocked):a.audit(root,authority,h.canonical(authority),LIBROOT,clock())
++            read.assert_not_called()
++    def representation(self,arm):
++        r4,kern=self.libs();root,spec,train,test,sample,split,out,recipe,record=fixture(self.root,r4)
++        v=r4.TaskVerifier(root,{'spec':spec,'experiments':[],'confirmations':[]},train,test,sample);n=4;dim=128 if arm=='rbf' else 1
++        budget=dict(fitting_rows=n,numeric_columns=1,categorical_columns=0,maximum_encoded_columns=1,
++                    estimated_live_matrix_bytes=n*(8*3+16*2)+(n*dim*8*2 if arm=='rbf' else n*16)+(dim*8 if arm=='rbf' else 0)+64*dim*8,
++                    matrix_limit_bytes=128000000,matrix_limit_scope='each_logical_matrix',
++                    matrix_bytes_upper_bounds={'numeric_dense':n*8,'category_codes':0,'prepared_CSR_upper_bound':n*12+(n+1)*4,'representation_dense':n*dim*8 if arm=='rbf' else 0,'random_projection':dim*8 if arm=='rbf' else 0},process_RSS_requires_external_guard=True)
++        tr=np.arange(4,dtype='int64');rowsha=hashlib.sha256(str(tr.dtype).encode()+str(tr.shape).encode()+tr.tobytes()).hexdigest()
++        info=dict(prepared_columns=1,representation_columns=dim,budget=budget,representation_profile=kern.PROFILES[arm],fitting_rows=n,
++                  fitting_row_order_sha256=rowsha,seed=42,numeric_columns=1,categorical_columns=0,threads=2,calibration='disabled',log_target=False,
++                  preprocessing_scope='fitting_rows_only',representation_scope='fitting_rows_only',fitting_state_sha256='0'*64,
++                  actual_prepared_matrix_bytes=n*8,actual_representation_matrix_bytes=n*dim*8,projection_bytes=dim*8+128*8 if arm=='rbf' else 0,
++                  gamma=1. if arm=='rbf' else None,estimator=dict(family='LogisticRegression',C=1.,solver='lbfgs',class_weight_power=.5),classes=['A','B'])
++        record.update(representation=info,fit_iterations=1);job=dict(arm=arm,kind='classification',_absolute_split=str(split))
++        return r4,kern,v,record,job
++    def test_frozen_linear_representation_receipt(self):
++        r4,kern,v,record,job=self.representation('linear');self.assertTrue(kern.representation_receipt(r4,v,record,job)['verified'])
++    def test_frozen_rbf_representation_receipt(self):
++        r4,kern,v,record,job=self.representation('rbf');self.assertTrue(kern.representation_receipt(r4,v,record,job)['verified'])
++    def test_frozen_rbf_gamma_tamper(self):
++        r4,kern,v,record,job=self.representation('rbf');record['representation']['gamma']=2.
++        with self.assertRaises(AssertionError):kern.representation_receipt(r4,v,record,job)
++    def test_frozen_representation_fit_scope_tamper(self):
++        r4,kern,v,record,job=self.representation('linear');record['representation']['fitting_row_order_sha256']='1'*64
++        with self.assertRaises(AssertionError):kern.representation_receipt(r4,v,record,job)
++
++if __name__=='__main__':
++    LIBROOT=Path(sys.argv.pop(1));output=Path(sys.argv.pop(1));QUEUE=Path(sys.argv.pop(1));ORIGINAL_SOURCE=Path(sys.argv.pop(1));SOURCE_MANIFEST=Path(sys.argv.pop(1));start=time.monotonic()
++    suite=unittest.defaultTestLoader.loadTestsFromTestCase(Contracts);result=unittest.TextTestRunner(verbosity=2).run(suite)
++    report=dict(tests_run=result.testsRun,failures=len(result.failures),errors=len(result.errors),skipped=len(result.skipped),passed=result.wasSuccessful(),
++                fits=0,api_calls=0,wall_seconds=time.monotonic()-start,
++                source_sha256={p.name:h.sha(p) for p in Path(__file__).parent.glob('*.py')})
++    h.write_new(output,report);raise SystemExit(0 if result.wasSuccessful() else 1)

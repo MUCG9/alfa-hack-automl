@@ -1,0 +1,91 @@
+{
+  "status": "next_import_context_tripwire_identified_for_knowledge_only",
+  "recorded_epoch": 1792746136.4487126,
+  "p1_failure_preserved": true,
+  "p1_or_full_audit_retried": false,
+  "guard_or_permission_modified": false,
+  "observed_fixed_code_output": [
+    {
+      "tripwire": "process_event",
+      "event_code": "subprocess.Popen"
+    },
+    {
+      "status": "import_only_failed",
+      "phase": "sklearn_import",
+      "exception_code": "RuntimeError",
+      "versions": {
+        "numpy": "1.26.4",
+        "pandas": "2.2.3",
+        "psutil": "6.1.1"
+      }
+    }
+  ],
+  "conclusion": "p1 bootstrap denies a subprocess.Popen audit event during sklearn_import before any verifier/data/labels/predictions/scoring are loaded. The audit hook prevents process creation.",
+  "runtime_caller_or_subprocess_arguments_inspected": false,
+  "source_only_candidate_callers_not_runtime_attribution": [
+    "Python platform._syscmd_ver shell fallback in platform.uname, reached by sklearn.utils.fixes platform.machine",
+    "joblib loky physical-core detection also has a Windows subprocess path; attribution unresolved without further execution"
+  ],
+  "source_candidate_sha256": {
+    "python_platform": "f5ff83f15c841792be42709a6710dc8d7a9f72791c1ae4cad719b1fb0abe0a05",
+    "sklearn_fixes": "78a74177e84359e40a8d117dcf957af1754c47337cfd6bf0e19eaf0c18f985ac",
+    "joblib_loky_context": "1860541a9e100f1d6abc1b960efc8e4a3356600efdb21c6001a82cadcc40e741"
+  },
+  "bounded_parent_result": {
+    "parent_seconds": 60,
+    "child_seconds": 40,
+    "memory_mib": 512,
+    "threads": 1,
+    "seconds": 2.6719999999995707,
+    "peak_parent_and_owned_rss_mib": 100.65625,
+    "child_exit_code": 2,
+    "cleanup_confirmed": true,
+    "source_unchanged": true
+  },
+  "observed_denied_event_counts_before_termination": {
+    "subprocess_Popen": 1,
+    "socket_connect": 0,
+    "socket_creation": 0,
+    "socket_bind": 0,
+    "socket_DNS": 0,
+    "model_runtime_import": 0
+  },
+  "hostname_value_reported_or_saved": false,
+  "launcher_identities": [
+    {
+      "pid": 11948,
+      "create_time": 1792746059.696484
+    }
+  ],
+  "owned_root": {
+    "pid": 23068,
+    "create_time": 1792746061.2146735
+  },
+  "owned_process_identities": [
+    {
+      "pid": 6148,
+      "create_time": 1792746061.228878
+    },
+    {
+      "pid": 23068,
+      "create_time": 1792746061.2146735
+    }
+  ],
+  "launchers_must_be_absent_before_next_queue": true,
+  "proof_sha256": {
+    "nofit-import-diagnostic-r2/pretest-manifest.json": "f5bcf686f0be4e6d872a3ec4785e0ee434c2d153187f8945d2b96565b87412d5",
+    "nofit-import-diagnostic-r2/parent.py": "30bde3bbaf50d2eaf3f650671c35dbb62980be4c91048d25a2b5d486ea9bcf3c",
+    "nofit-import-diagnostic-r2/child.py": "780ae963f05649cfedacf42fbed0902496be6b3c1bb1b8cdebbe9dc499b6f69a",
+    "nofit-import-diagnostic-r2/child.log": "dcf7d1fcbe01481e82eaf48f8170c44f23a038cd7d29e1f7dd3a96fcd8d1e02f",
+    "nofit-import-diagnostic-r2/supervisor.json": "614991617156f646687101d4bd54a03a7ad205f6fadeafe1bf9b030c2111663b",
+    "p1/parent-receipt.json": "e2035fede34f734eb1cbb457ef7c035463520d6fbd4ddb8ce714106ca4d032ea",
+    "p1/child_bootstrap.py": "b27f497faaec365db7f3c187791ac7e17a114d5a7667cd560963e0aaa28f8bf7",
+    "posthoc-pair0-proposal-r2/nofit_parentguard_r3.py": "74266e7985f1d7466440d31720fbb300a54bef66f6117409027f2a9ad5f4eeab"
+  },
+  "fits": 0,
+  "API_calls": 0,
+  "metrics": null,
+  "full_verifier_or_data_or_labels_or_prediction_arrays_loaded": false,
+  "followup": "Preserve p0/p1 technical failures; no further full-audit repair. Root proceeds to separate cache pilot after fresh exact predecessor union closure.",
+  "promotion": false
+}

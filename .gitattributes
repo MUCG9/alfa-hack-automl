@@ -99,3 +99,5 @@ research/cache-pilot-source-r2/** whitespace=cr-at-eol,-blank-at-eof
 research/posthoc-pair0-r1/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 
 research/posthoc-pair0-repair-r1/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+
+research/cache-pilot-launch-r2/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol

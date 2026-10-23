@@ -34,3 +34,10 @@ locked; запрос разблокировки отправлен пользо�
 Нельзя считать прежний score2187.849 результатом V11: это historical V9.
 Одна отправка, затем проверить queue acceptance/имя файла/счётчик и записать
 новый receipt. Не повторять upload, если результат первого действия неясен.
+# Submission update,23October2026
+
+The standard-entrypoint archive was accepted into the platform queue at09:25
+Moscow. One upload, attempts3->2, official score pending; prior V11 score2309.002.
+See [submission receipt](submission-20261023.json). No duplicate/replacement
+upload. Later opt-in Qwen reasoning changes do not modify this immutable ZIP.
+

@@ -6,12 +6,23 @@ supersedes the historical completed-checkpoint/no-new-research stops below.
 Use bounded, preregistered sequential rounds and real organizer Qwen calls.
 Current strong control is qualified PIPE-02, not V16 or a single learner.
 Read docs/experiments/autoresearch_rounds_20261023.md and actual round receipts.
-ROUND01/02 rejected; ROUND03 narrow dev-cache parity/cost PASS; ROUND04 is ACTIVE
-PID113079/create_time1792735955.46, candidateea0677c. No concurrent fits or edits
-to its frozen canonical source/listed harness. Inspect identity/lock before work.
+ROUND01/02 rejected; ROUND03 narrow dev-cache parity/cost PASS; ROUND04 also
+rejected on cut1 tie, independent verification PASS,52workers/20cache hits.
+Coordinator113079/create_time1792735955.46 exited; no owned fitting jobs.
+New captain steering: verify reasoning. Actual gateway was explicitly OFF;
+REASONING01 real xhigh probe PASS:1014reasoning tokens,14.716s, valid JSON.
+Active dev planners now use explicit xhigh/32768combined output/300s call.
+Read docs/experiments/reasoning01_results_20261023.md. Effective server effort
+is not echoed; do not claim a quality gain. New source has20focused checks PASS;
+historical352-source gate is not a rerun on this changed source. Uploaded ZIP is
+immutable. ROUND05 worst-period protocol revised BEFORE fits for fresh xhigh
+planning and a fresh cache (full-source identity changed; do not seed old cache).
 Preserve the immutable verified submission archive while testing dev-only tools.
-ONE improved official upload remains pending browser unlock; no lock bypass,
-duplicate upload, extra Codex agents, paid resources, force push or main merge.
+ONE improved official upload COMPLETE: platform queue accepted PIPE02 archive
+a2ca9244, IDd495ef4b-e721-40ba-bfed-7c85b051ce2b, attempts3->2. Authorized
+existing platform session used; desktop lock unchanged. Official score pending;
+prior V11 official score2309.002. Read release/qwen-incumbent-submit1/submission-20261023.json.
+No duplicate upload, extra Codex agents, paid resources, force push or main merge.
 Local commits remain authorized. Latest verified public SHA isb38ef3e; later
 commits remain local until next verified push. Temporary private Git auth worked;
 never expose or commit credentials. Main remains unchanged.

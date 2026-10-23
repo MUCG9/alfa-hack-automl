@@ -1,0 +1,25 @@
+{
+  "status": "queue_accepted",
+  "official_submission": true,
+  "upload_actions": 1,
+  "retry_allowed": false,
+  "stage_id": 927270,
+  "submission_id": "d495ef4b-e721-40ba-bfed-7c85b051ce2b",
+  "archive": "solution-pipe02-submit1.zip",
+  "archive_sha256": "a2ca924416be9b1fc9c528b431f22123b42324b44e50402601e828c4f15056f2",
+  "platform_state": "processing",
+  "platform_message": "Решение находится на проверке",
+  "platform_meta": "загружено в 09:25",
+  "attempts_before": 3,
+  "attempts_after": 2,
+  "previous_file": "solution-v11-featureviews1.zip",
+  "previous_official_score": 2309.002,
+  "new_official_score": null,
+  "local_qualified_metrics": {
+    "macro_f1": 0.6593178433614652,
+    "rmse": 35.39729814378806
+  },
+  "method": "authorized existing platform session and documented web application upload action; desktop lock unchanged",
+  "identity_and_integrity_verified": true,
+  "submitted_source_checkpoint": "a8fe37f5a69665c3c9de3a1797043e53951d2ed1"
+}

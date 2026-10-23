@@ -1,0 +1,15 @@
+{
+  "schema": "uar01r2-compat-source-review-v1",
+  "status": "NARROW_SOURCE_PASS_NOT_EXECUTED",
+  "final_sha256": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3",
+  "base_E01R3_working_sha256": "f621ea725c7b4ae54dfc65cba6b0d75ddf3bc2b1b69ea8e6ecd495d68960a29c",
+  "changed_functions": [
+    "__init__",
+    "terminate"
+  ],
+  "public_refresh_unchanged_nonrecursive": true,
+  "strict_behavior_unchanged_AST_projection": true,
+  "legacy_public_refresh_hook_restored_before_identity_recheck": true,
+  "tests_modified": false,
+  "tests_imports_fits_API": 0
+}

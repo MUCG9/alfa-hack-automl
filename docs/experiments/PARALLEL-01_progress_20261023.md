@@ -2,6 +2,14 @@
 
 Latest: BASE-01 locally CLOSED,8new diagnostics/4original runs/0newfits; see
 BASE-01_local_verified_20261023.json and ERR-01_local_diagnoses_20261023.md.
+SEL-01 now DISCARDED: r2 exited0,fit70.379s/iterations333,all protected/source
+hashes unchanged; samegridmean .6575816208657863 vs .6593178433614652control,
+searchimproves but confirmationregresses. SelectorOFF;NO CV/fullagent/promotion.
+Evidence SEL-01_confirmation_replay_20261023.json and fitreceipt. Do NOT repeat.
+Next distinct HPO-01 isolated protocol HPO-01_isolated_protocol_20261023.md:
+one LightGBM family,originalhistoryanchor,noFE,randomvsTPE,equal420s/cut/arm,
+12trials/startup3,strictfitting-inner forward split. Separatepinnedenv preparing,
+admission pilot not yet launched at this checkpoint.
 SEL executor implemented with7 fit-free checks; first launch failed BEFORE
 reading job (relative output path); corrected absolute-path retry justified,
 same frozen recipe/split/seed/budget. See SEL-01_confirmation_execution_20261023.md

@@ -29,3 +29,25 @@ No overlap with LONG (already completed),no change to uploaded release.
 Status at this checkpoint: corrected retry ready to launch; no candidate score
 or promotion yet. Record actual result after its exit,do not automatically repeat
 an interrupted or negative quality result.
+
+## Completed corrected retry — DISCARD
+
+r2/session94221 exit0; recipe evaluation73.479s,worker70.379s,iterations333,
+459MiB observed worker peak. Originalsplit/plan/protectedartifacts/canonical and
+compiledsources unchanged. Raw candidate confirmationMacroF1 .6395695856289502.
+Same fixed blend-grid replay:
+
+|Policy|Search|Confirmation|Mean|
+|---|---:|---:|---:|
+|V11 control,3equalweights|.6632403174648631|.6553953692580672|.6593178433614652|
+|Marginalthird,XGBweight.5|.6642260242015644|.6509372175300082|.6575816208657863|
+
+Search+.000985707 but confirmation−.004458152; mean−.0017362225. This is MIXED/
+NEGATIVE under the declared both-cuts gate. DISCARD the policy, runtime remains
+OFF. No groupedCV/fullagent/refit/export/promotion or officialsubmit for SEL.
+Do not repeat without a concrete NEW hypothesis; no new seed/weights workaround.
+One successful recipe evaluation comprised nested stopping and fitting; do not
+count it as one elementary model fit. Technical firstattempt started0fits.
+Evidence: SEL-01_confirmation_replay_20261023.json and fit_receipt JSON, original
+predictions remain ignored under test-runs/error-selection-20261023/.
+Next distinct stage HPO-01,with BASE/ERR already CLOSED.

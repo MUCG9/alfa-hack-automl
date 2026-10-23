@@ -16,6 +16,9 @@ saved in docs/experiments/ERR-01_local_diagnoses_20261023.md/JSON. SEL executor7
 fit-free checks PASS; first launch failed before reading job (noMLfit); corrected
 absolute-path retry in fresh sel01-one-confirmation-r2. Consult actual exit/report
 and SEL-01_confirmation_execution_20261023.md before any action. Selector OFF.
+SEL-01 r2 now completed and DISCARDED (meanF1 .6575816208657863,confirmation
+regresses),no new SEL fits/CV/promotion. Next is separate HPO-01 isolated study,
+predeclared HPO-01_isolated_protocol_20261023.md. Read latest journal first.
 
 23Oct latest captain instructions authorize parallel BASE-01/ERR-01/SEL-01
 engineering on work/error-selection-20261023 while LONG-01 runs from its own

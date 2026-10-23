@@ -46,6 +46,10 @@ class ResearchEvidenceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Resource cap'):
             validate_review(review, self.context)
 
+    def test_empty_live_response_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, 'Invalid review envelope'):
+            validate_review({}, self.context)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

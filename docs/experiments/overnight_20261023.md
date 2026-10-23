@@ -176,3 +176,13 @@ Installed copy синхронизирована с guard против чужих
 FE-01 classification также COMPLETE: .6547938868310776→.654200887190105 mean
 сильного SINGLE control/selector. Cut42 хуже (.655863→.650262),cut43 лучше
 (.653724→.658140); paired gate FAIL. Это не mean полного V11 ансамбля.
+
+
+Подготовлен отдельный no-fit regression test `tests/test_hpo_anchor.py`.
+Real adapters construction + actual Optuna с injected worker (0 model fits)
+воспроизводит drift первого trial для sparse LGBM/XGB recipes: defaults63/5
+против adapter31/3 и XGB6/5 против adapter8/8. Explicit measured controls PASS.
+Тест пока RED, исправление canonical source ОТЛОЖЕНО до завершения queue+FE-02.
+Добавлена также проверка legacy XGB depth alias и явного max_depth precedence.
+Эти sparse recipes не использованы в измеренных screens; прежние scores и
+source343/exact-unpacked23 относятся к зафиксированному исходнику.

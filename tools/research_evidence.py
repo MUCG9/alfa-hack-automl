@@ -17,6 +17,7 @@ CONTRACT = {
     'all_predeclared_outer_cuts_must_improve': True,
     'classification_minimum_independent_fitting_groups': 100,
     'classification_maximum_supported_class_f1_loss': .01,
+    'floating_tolerance': 1e-12,
     'classification_positive_gain_excluding_rarest_class': True,
     'hpo_tpe_mean_must_also_beat_equal_cap_random': True,
     'positive_screen_requires_further_whole_procedure_qualification': True,
@@ -52,7 +53,7 @@ def evidence_context(documents):
     if diag:
         classes = diag['per_class']
         violations = {k: v['delta'] for k, v in classes.items()
-                      if v['independent_fitting_groups'] >= 100 and v['delta'] < -.01}
+                      if v['independent_fitting_groups'] >= 100 and v['delta'] < -.01-1e-12}
         # Independently derive the original numeric gate rather than trusting
         # a model's interpretation of the boolean saved in the receipt.
         gate = {'minimum_groups': 100, 'maximum_f1_loss': .01,

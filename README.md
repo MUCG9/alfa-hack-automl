@@ -1,10 +1,23 @@
-# Alfa Hack AutoML: проверенный V11 и исследования V12–V17
+# Alfa Hack AutoML: V11/V16 и Qwen autoresearch
+
+Продолжение23Oct — [work/qwen-optuna-mvp-20261022](https://github.com/MUCG9/alfa-hack-automl/tree/work/qwen-optuna-mvp-20261022).
+Четырёхэтапный Qwen MVP завершён с проверенными refits/CSV: Macro F1 .654485,
+RMSE36.024693. Он уступил qualified V11/V16 (.659318/35.447232); default
+Optuna и CatBoost selection остаются OFF. Последовательные component screens
+и итерации harness описаны в [разборе](docs/experiments/research_conclusions_20261023.md),
+текущие jobs — в [AGENTS.md](AGENTS.md) и фактических локальных receipts.
+
+По запросу создан [скилл autoresearch-ml](skills/autoresearch-ml/SKILL.md) на основе
+[Andrej Karpathy autoresearch](https://github.com/karpathy/autoresearch):
+фиксированный evaluator, ограниченные эксперименты, проверка по метрикам,
+сохранение отрицательных результатов и rollback через Git. Installed copy:
+`~/.codex/skills/autoresearch-ml`. Навык не входит в конкурсный ZIP.
 
 **Для нового чата:** [единая точка входа](docs/handoff/START_HERE.md),
 [реестр экспериментов](docs/handoff/EXPERIMENTS.md),
 [план](docs/handoff/PLAN.md), [готовый промпт](docs/prompts/next-agent.md).
 
-Текущее продолжение — [work/llm-upgrade-20261022](https://github.com/MUCG9/alfa-hack-automl/tree/work/llm-upgrade-20261022).
+Предыдущее продолжение — [work/llm-upgrade-20261022](https://github.com/MUCG9/alfa-hack-automl/tree/work/llm-upgrade-20261022).
 `main` сохранён как v2. Новые исходники и кандидаты не означают автоматически
 новый официальный submit.
 

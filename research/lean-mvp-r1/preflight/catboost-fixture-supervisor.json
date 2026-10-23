@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "parent_cap_seconds": 30,
+  "child_cap_seconds": 25,
+  "whole_memory_cap_mib": 512,
+  "threads": 1,
+  "maximum_fixture_fits": 2,
+  "API": 0,
+  "scope": "New technical fixture after failed MVP; original MVP status/clock is not changed",
+  "owned_root": {
+    "pid": 23220,
+    "create_time": 1792762687.3161433
+  },
+  "bootstrap_identities": [
+    {
+      "pid": 19776,
+      "create_time": 1792762687.3018138
+    },
+    {
+      "pid": 24232,
+      "create_time": 1792762686.9477847
+    }
+  ],
+  "promotion": false,
+  "cleanup_confirmed": true,
+  "benchmark_exit_code": 0,
+  "owned_process_identities": [
+    {
+      "pid": 21584,
+      "create_time": 1792762687.6832435
+    },
+    {
+      "pid": 22744,
+      "create_time": 1792762687.6729875
+    }
+  ],
+  "cleanup_observation": {
+    "observed_count": 2,
+    "denial_count": 0,
+    "unresolved": [],
+    "tracked_before_cleanup_count": 2,
+    "tracked_after_cleanup_count": 0
+  },
+  "source_unchanged": true,
+  "exit_code": 0,
+  "seconds": 1.5309999999990396,
+  "peak_owned_tree_rss_mib": 119.96484375
+}

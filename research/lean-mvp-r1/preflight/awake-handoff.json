@@ -1,0 +1,39 @@
+{
+  "status": "single_API_probe_completed",
+  "files_sha256": {
+    "awake_guard.py": "9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b",
+    "probe_awake_guard_r1.py": "f5ca7860c69f6a142b71744f14505f4ac7d13d22e50869d35da1ba2c530ec7b3",
+    "probe-r1.json": "e7f6b94852e4f03b338ce319aa86e048d813232fa8c555e744148f7be7535231"
+  },
+  "API_request_and_release_verified": true,
+  "powercfg_own_reason_visibility": null,
+  "powercfg_visibility_unavailable_reason": "Non-elevated requests query denied; no bypass attempted",
+  "current_AC_line_status_at_probe": 1,
+  "active_scheme_AllowSystemRequired": {
+    "AC": 1,
+    "DC": 1
+  },
+  "readonly_policy_override": {
+    "scope": "Read-only optional HKLM policy override inspection",
+    "values": {},
+    "mutated": false,
+    "key_present": false
+  },
+  "continuous_or_forced_sleep_effectiveness_verified": false,
+  "global_policy_changed": false,
+  "new_model_fits": 0,
+  "ML_API_calls": 0,
+  "integration": "Use PowerRequestGuard(reason) as a context in the next supervisor before the long task; call heartbeat() in its existing loop, persist wall/monotonic gaps, and stop/invalidate if scheduling_gap_exceeded. Preserve the independently declared original deadline. Exit clears only this process request counts and closes its handle.",
+  "documented_limits": [
+    "SystemRequired addresses idle sleep; ExecutionRequired addresses process lifetime management.",
+    "User-initiated sleep can terminate both requests. Modern Standby DC power has documented request duration limits.",
+    "No display, away-mode, lid, battery, registry or power-scheme changes are made."
+  ],
+  "official_sources": [
+    "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-powercreaterequest",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-powersetrequest",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-powerclearrequest",
+    "https://learn.microsoft.com/en-us/windows/win32/api/minwinbase/ns-minwinbase-reason_context",
+    "https://learn.microsoft.com/en-us/windows-hardware/customize/power-settings/sleep-settings-allow-system-required-requests"
+  ]
+}

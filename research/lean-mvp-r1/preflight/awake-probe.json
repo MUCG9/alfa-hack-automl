@@ -1,0 +1,105 @@
+{
+  "status": "completed_API_probe",
+  "started_unix": 1792762668.3493006,
+  "ML_fits": 0,
+  "ML_API_calls": 0,
+  "global_power_policy_changed": false,
+  "forced_sleep_prevention_claimed": false,
+  "source_sha256": {
+    "probe_awake_guard_r1.py": "f5ca7860c69f6a142b71744f14505f4ac7d13d22e50869d35da1ba2c530ec7b3",
+    "awake_guard.py": "9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b"
+  },
+  "readonly_policy": {
+    "GetSystemPowerStatus_API_verified": true,
+    "ac_line_status_raw": 1,
+    "current_source": "AC",
+    "PowerGetActiveScheme_error": 0,
+    "AC_AllowSystemRequired_scheme_index": 1,
+    "AC_read_error": 0,
+    "DC_AllowSystemRequired_scheme_index": 1,
+    "DC_read_error": 0,
+    "scheme_pointer_freed": true,
+    "policy_or_user_forced_sleep_effectiveness_verified": false
+  },
+  "active_own_request_query": {
+    "exit_code": 1,
+    "own_reason_visible": null,
+    "own_reason_match_count": null,
+    "own_reason_lines": [],
+    "error_if_nonzero": "Для выполнения этой команды требуются права администратора, и ее необходимо выполнять в командной строке с повышенными привилегиями.\r\n"
+  },
+  "heartbeat_sample": {
+    "unix": 1792762668.3621032,
+    "monotonic": 21674.078,
+    "wall_gap_seconds": 0.010739564895629883,
+    "monotonic_gap_seconds": 0.01599999999962165,
+    "wall_minus_monotonic_gap_seconds": -0.005260435103991767,
+    "scheduling_gap_exceeded": false,
+    "largest_observed_gap_seconds": 0.01599999999962165,
+    "threshold_seconds": 10.0,
+    "request_still_effective": null,
+    "deadline_extension_granted": false
+  },
+  "released_own_request_query": {
+    "exit_code": 1,
+    "own_reason_visible": null,
+    "own_reason_match_count": null,
+    "own_reason_lines": [],
+    "error_if_nonzero": "Для выполнения этой команды требуются права администратора, и ее необходимо выполнять в командной строке с повышенными привилегиями.\r\n"
+  },
+  "guard": {
+    "owner_pid": 6068,
+    "reason": "Alfa AutoML bounded power probe pid6068 1792762668349814700",
+    "acquire_results": [
+      {
+        "type": "SystemRequired",
+        "accepted": true,
+        "winerror": 0
+      },
+      {
+        "type": "ExecutionRequired",
+        "accepted": true,
+        "winerror": 0
+      }
+    ],
+    "clear_results": [
+      {
+        "type": "ExecutionRequired",
+        "cleared": true,
+        "winerror": 0
+      },
+      {
+        "type": "SystemRequired",
+        "cleared": true,
+        "winerror": 0
+      }
+    ],
+    "handle_closed": true,
+    "requested_types": [
+      "SystemRequired",
+      "ExecutionRequired"
+    ],
+    "API_acquisition_verified": true,
+    "continuous_effectiveness_verified": false,
+    "forced_sleep_prevention_claimed": false,
+    "global_policy_changed": false,
+    "acquired_unix": 1792762668.3513637,
+    "last_heartbeat": {
+      "unix": 1792762668.3621032,
+      "monotonic": 21674.078,
+      "wall_gap_seconds": 0.010739564895629883,
+      "monotonic_gap_seconds": 0.01599999999962165,
+      "wall_minus_monotonic_gap_seconds": -0.005260435103991767,
+      "scheduling_gap_exceeded": false,
+      "largest_observed_gap_seconds": 0.01599999999962165,
+      "threshold_seconds": 10.0,
+      "request_still_effective": null,
+      "deadline_extension_granted": false
+    },
+    "close_winerror": 0,
+    "released_unix": 1792762668.3621032,
+    "release_API_verified": true
+  },
+  "seconds": 0.01599999999962165,
+  "finished_unix": 1792762668.3638663
+}

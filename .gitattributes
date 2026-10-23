@@ -33,3 +33,13 @@ docs/experiments/native_mvp_scope_audit_20261023.json -text
 docs/experiments/native_mvp_scope_correction_20261023.json -text
 
 docs/experiments/native_mvp_independent_scope_correction_20261023.json -text
+
+research/true-four-stage/run_true_mvp.py -text
+research/true-four-stage/execution-manifest-r1.json -text
+research/true-four-stage/historical-mvp-correction.json -text
+research/true-four-stage/README.md -text
+research/true-four-stage/resume-policy.json -text
+research/true-four-stage/preparation-receipt-r1.json -text
+research/true-four-stage/ownership.py -text
+research/true-four-stage/prior_ownership.py -text
+research/true-four-stage/independent-review-r1.json -text

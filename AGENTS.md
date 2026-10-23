@@ -19,6 +19,9 @@ and SEL-01_confirmation_execution_20261023.md before any action. Selector OFF.
 SEL-01 r2 now completed and DISCARDED (meanF1 .6575816208657863,confirmation
 regresses),no new SEL fits/CV/promotion. Next is separate HPO-01 isolated study,
 predeclared HPO-01_isolated_protocol_20261023.md. Read latest journal first.
+HPO-01 isolated now COMPLETED/DISCARDED;4arms12trials each,18guidedTPEsuccesses,
+TPE worse than random bothcuts. No repeats/promotion. Evidence HPO-01_isolated_*
+docs; next conditionalEMB-01 CPU pilot. Historical active study lines superseded.
 
 23Oct latest captain instructions authorize parallel BASE-01/ERR-01/SEL-01
 engineering on work/error-selection-20261023 while LONG-01 runs from its own

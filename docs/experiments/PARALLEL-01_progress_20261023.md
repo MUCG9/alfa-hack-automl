@@ -1,5 +1,10 @@
 # Parallel engineering progress — 23 October2026
 
+HPO-01 isolated DONE/DISCARD: all4arms12/12trials,18guidedTPESuccesses,256.021s,
+sourceunchanged. TPE loses bothcuts vs random and searchvsanchor/LONG. See
+HPO-01_isolated_progress_20261023.md/results/receipt. No new HPO fits/CV/promotion.
+Next conditional EMB-01 CPU technicalpilot,not a new submitteddefault.
+
 Current HPO-01 isolated study: read HPO-01_isolated_progress_20261023.md and actual
 test-runs/hpo-isolated-20261023/study/{progress,result,process-receipt}.json.
 Admission pilotPASSED (worker4.176s),Optuna4.2.1 separateenv ready,4equal-caparms

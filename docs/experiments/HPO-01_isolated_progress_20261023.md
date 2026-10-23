@@ -31,3 +31,24 @@ Then only additional-forward research,not defaultpromotion or officialsubmit.
 
 Other stages EMB/LAMA/app-levelAGENT not started. Their conditional admission
 depends on measured evidence/resources/allowed versions; no actual extra agents.
+
+## Study completed — DISCARD,all4arms successful
+
+Controller47027 exit0,total256.021s,canonicalsource unchanged,2threads/1.7GiB.
+Each arm completed12/12trials; TPE9guided successes PERcut,18total. No failed or
+unattempted trials. This is actual adaptive evidence,unlike earlier tm1class0guided.
+
+|Policy|Search outerRMSE|Confirmation outerRMSE|
+|---|---:|---:|
+|Original single anchor|39.05167816956453|31.846185166957753|
+|Random12|38.92945219951651|31.79420957842594|
+|TPE12|40.07166154271537|31.81603137060995|
+|Strong LONG-01 reference|37.56014204464436|31.833700517297636|
+
+TPE worse than random on BOTH outercuts,and search worse than anchor andLONG.
+Thus declared gate FAILS:DISCARD policy,not a conclusion that Optuna can never
+help elsewhere. Do NOT widen space/change seed/budget posthoc or promote this
+negative screen. No further HPO CV/fullagent/refit/officialupload.
+Results HPO-01_isolated_results_20261023.json and isolated_receipt JSON; trial
+predictions/splits stay ignored. CanonicalML/runtime and uploaded ZIP unchanged.
+Next conditional finite stage EMB-01 CPU embedding resource/contractpilot.

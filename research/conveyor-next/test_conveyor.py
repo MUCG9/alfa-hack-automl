@@ -82,7 +82,7 @@ class QueueContracts(unittest.TestCase):
         self.draft();q.promote(self.root,'EXP-001');q.claim(self.root,'PLUS-1');self.terminal()
         q.publish(self.root,'PLUS-1','EXP-001');p=self.root/'results/EXP-001'
         value=q.read(p/'task.json');value['factor']='changed';(p/'task.json').write_text(json.dumps(value),encoding='utf-8')
-        with self.assertRaisesRegex(ValueError,'published task changed'):q.review(self.root,'EXP-001','accepted')
+        with self.assertRaisesRegex(ValueError,'terminal packet changed'):q.review(self.root,'EXP-001','accepted')
     def test_published_metrics_receipt_closure_and_summary_are_sealed(self):
         for i,name in enumerate(['metrics.json','receipt.json','closure.json','summary.txt']):
             identity='EXP-30'+str(i);self.draft(identity);q.promote(self.root,identity)

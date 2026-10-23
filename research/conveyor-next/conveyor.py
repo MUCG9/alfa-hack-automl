@@ -145,10 +145,10 @@ def review(root,experiment_id,decision):
     identifier(experiment_id);need(decision in ('accepted','rejected','completed'),'invalid decision')
     with transition(root) as root:
         src=inside(root,root/'results'/experiment_id);task(src)
+        verify_seal(src)
         expected=digest(src/'task.json')
         need(expected==read(src/'claim.json')['task_sha256']==read(src/'receipt.json')['task_sha256'],
              'published task changed before review')
-        verify_seal(src)
         dst=inside(root,root/'reviewed'/experiment_id);need(not dst.exists(),'review already exists')
         write(src/'review.json',{'decision':decision,'task_sha256':digest(src/'task.json'),
             'terminal_seal_sha256':digest(src/'terminal-seal.json'),'reviewed_unix':time.time()})

@@ -1,0 +1,75 @@
+{
+  "scope": "REG-BLEND-01 fixed no-fit .9complete-control+.1inner-selected TPE8; posthoc reused public, not qualified/private/official",
+  "weights": [
+    0.9,
+    0.1
+  ],
+  "configurations": 1,
+  "model_fits": 0,
+  "control_report_sha256": "b092ee6487387e59526e982a1125bf7586b815a310e07ac3d94932dd926114fb",
+  "hpo_manifest_sha256": "1a6f3131a3934da8f20e2f2d059b6afa8d953858eb249c2c136c49ef357cebe0",
+  "control_provenance_sha256": "a2018615501117617f0d10ee876918355fa8e1c1f5dbae255bae32cc718c3f7f",
+  "input_sha256": {
+    "train": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775",
+    "test": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
+    "sample_submission": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1",
+    "data_dictionary": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3"
+  },
+  "harness_sha256": "bc935d620b53b077b0ce4162bf73cab0a7c3ab79ff12a761f64d36da78fbfd4b",
+  "cuts": [
+    {
+      "cut": 0,
+      "split_sha256": [
+        "cb5cc91326bbe0c4144db3b7bd47bdbb0122cde4aeb32e2597f820c2834549e6",
+        "cb5cc91326bbe0c4144db3b7bd47bdbb0122cde4aeb32e2597f820c2834549e6"
+      ],
+      "control": {
+        "value": 38.902803731334785,
+        "validation_rows": 18308,
+        "prediction_sha256": "4ea34e20206bf7a270d19302ba1c93c9d20dee962a36339770c987d94e028541",
+        "row_order_verified": true
+      },
+      "tpe": {
+        "value": 38.59512241438067,
+        "validation_rows": 18308,
+        "prediction_sha256": "ef3df143fc97d58abe810e0f836b442be48e46880a1a6199a2e7a199069872a6",
+        "row_order_verified": true
+      },
+      "blend_rmse": 38.82952590212054,
+      "gate_passed": true
+    },
+    {
+      "cut": 1,
+      "split_sha256": [
+        "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
+        "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a"
+      ],
+      "control": {
+        "value": 31.991659384340597,
+        "validation_rows": 12946,
+        "prediction_sha256": "a1cf78664c092ab4b78fcf076c5a39f3106ba28e8277bf50f734da25bdec5b54",
+        "row_order_verified": true
+      },
+      "tpe": {
+        "value": 32.22338042388107,
+        "validation_rows": 12946,
+        "prediction_sha256": "0e455d404253e7c96f86b2253b2884a82afc3d87922eca603eddb6765f9bd20e",
+        "row_order_verified": true
+      },
+      "blend_rmse": 31.965070385455594,
+      "gate_passed": true
+    }
+  ],
+  "control_mean": 35.44723155783769,
+  "blend_mean": 35.39729814378806,
+  "measured_replay_gate_passed": true,
+  "full_refit": false,
+  "qualified_release": false,
+  "execution": {
+    "exit_code": 0,
+    "seconds": 5.863,
+    "model_fits": 0,
+    "maximum_seconds": 120,
+    "memory_mib": 512
+  }
+}

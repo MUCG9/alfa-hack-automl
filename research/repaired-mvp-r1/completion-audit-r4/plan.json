@@ -1,0 +1,49 @@
+{
+  "verifier_source_sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+  "execution_manifest_sha256": "ac28e6da826809e3fe334a6096229ad6410500d7f91a65071987f37ac80ce716",
+  "original_absolute_deadline_unix": 1792761777.2275486,
+  "expected_classification_splits": {
+    "primary": {
+      "path": "alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/split.npz",
+      "sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0"
+    },
+    "confirmation": {
+      "path": "alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/confirmation_split.npz",
+      "sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df"
+    }
+  },
+  "hpo_requested_budget_seconds": {
+    "regression": 900,
+    "classification": 2100
+  },
+  "baseline_reports": {
+    "regression": {
+      "v16-mean1": {
+        "path": "alfa-hack-automl/release/v16-mean1/regression-report.json",
+        "sha256": "a431c5de3f02ae362ffb8d083f9b075af9c8020d52c0adafa72c24d575bee309"
+      }
+    },
+    "classification": {
+      "v11-featureviews1": {
+        "path": "alfa-hack-automl/release/v11-featureviews1/classification-report.json",
+        "sha256": "4ede975b795192dabd26b20b164c2c7351d41a73b2f36e00f30ff322fbd9fab5"
+      },
+      "v16-mean1": {
+        "path": "alfa-hack-automl/release/v16-mean1/classification-report.json",
+        "sha256": "2905c32aa98270fb5b76f6ca1a4e664c0e76f7b399772864b51d0baf8e08a606"
+      }
+    }
+  },
+  "protected_control_recipes": {
+    "regression": {
+      "path": "m2packet/control-r.json",
+      "sha256": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b",
+      "signature": "773dfb566afd9b2ad6c47853ffaa6898392c009fd41c9202d89184b3c50ceb9e"
+    },
+    "classification": {
+      "path": "m2packet/control-c.json",
+      "sha256": "56c0e2204df33ebc733034ad5ed835d902874862c71bbb4a16a043c3a99781a9",
+      "signature": "a828ab557d308ecaf186ab48ede3e606bb3631f318c11202136384916643d394"
+    }
+  }
+}

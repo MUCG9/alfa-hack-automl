@@ -1,0 +1,26 @@
+{
+  "status": "predeclared_not_launched",
+  "declared_epoch": 1792754832.805308,
+  "scope": "Separate no-fit saved-artifact R4 verification after complete t5 primary cleanup; primary result not replaced",
+  "watcher_source_sha256": "af1f17e689c41ff53dc1fe523970ac17ce3b83cb0517f3b2bfbdb996404f0683",
+  "verifier_source_sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+  "original_plan_path": "t5/verification-plan.json",
+  "original_plan_sha256": "067a35a95795dfeed88217b534e9205fc3a66dc60069a48cc6160ba3c3914e0d",
+  "plan_sha256": "00bdd54c69d29bd47cf40f75e67459dfcc4360ce3bff92ba6995a41632d0830b",
+  "changed_plan_fields": [
+    "verifier_source_sha256"
+  ],
+  "execution_manifest_sha256": "ac28e6da826809e3fe334a6096229ad6410500d7f91a65071987f37ac80ce716",
+  "original_absolute_deadline_unix": 1792761777.2275486,
+  "clock_reset": false,
+  "new_model_fits": 0,
+  "API_calls": 0,
+  "metrics_read": false,
+  "child_cap_seconds": 180,
+  "whole_memory_mib": 512,
+  "waiter_memory_mib": 64,
+  "compute_threads": 1,
+  "attempts": 1,
+  "root_actual_exec_qualification": "pending",
+  "promotion": false
+}

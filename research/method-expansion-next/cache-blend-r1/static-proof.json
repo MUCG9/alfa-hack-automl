@@ -1,0 +1,32 @@
+{
+  "status": "static_source_only_not_runtime_verified",
+  "files_sha256": {
+    "protocol.json": "a9898b15042275c1aaf311dd4b04e62e5ec17dbd1f4c1a69c77e200a6c9eac1b",
+    "README.txt": "01be9697a9ecb56622d15acf42ccb8ded8b7bee93fc84b34c987ed70e43f92a0",
+    "registration.json": "b3a48e46b579a053b62214a0f3779747a9d855bfbf4ff09da593ca5e56566092",
+    "run_blend.py": "dd9240fac7a56a4bcd5676bd048953b8308e471ee538f790352fd124c8a8459e"
+  },
+  "static_checks": [
+    "compile() in memory only, no application source imported/executed",
+    "720=90setup+570parent(540child+30cleanup)+60final",
+    "Fixed weight .9/.1 preregistration copied before any METH01 outcome information; no weight changes after parent reported closure",
+    "Exactactual3417exit0/rootclosure2c673 bind, freshunion before/underlock and after nofit child",
+    "All original component core/seal/supervisor/pristine/job/split bytes checked before R4/labels; actual audit-root-manifest-plan correspondence explicit",
+    "Only R4 TaskVerifier cached validation vectors and manualRMSE/F1/support/ex-rarest; no worker/learner fit or API calls",
+    "Validation-only CSV/probabilities roundtrip/hash receipts; missingfailednull, mandatory5cut completion separate from quality gates",
+    "Root closer source fields match current manifest/campaign/audit output; technical and quality flags separate"
+  ],
+  "executed": {
+    "driver_invocations": 0,
+    "evaluate_child_invocations": 0,
+    "application_runtime_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "METH01_outcome_files_read": 0,
+    "input_or_prediction_generation": 0,
+    "clocks_assigned": 0
+  },
+  "metrics": null,
+  "promotion": false
+}

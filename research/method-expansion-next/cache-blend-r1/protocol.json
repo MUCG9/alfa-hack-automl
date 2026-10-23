@@ -1,0 +1,96 @@
+{
+  "status": "source_only_not_executed",
+  "experiment_id": "METH-03",
+  "registration": {
+    "path": "method-blend-next-dev/registration.json",
+    "sha256": "b3a48e46b579a053b62214a0f3779747a9d855bfbf4ff09da593ca5e56566092",
+    "fixed_before_any_METH01_outcome_information": true
+  },
+  "unit": "same METH01 protected first SINGLE component, not whole V16 ensemble",
+  "fixed_weight": {
+    "strong_control": 0.9,
+    "new_component": 0.1
+  },
+  "cuts": {
+    "regression_forward_offsets": [
+      0,
+      1,
+      2
+    ],
+    "classification_group_seeds": [
+      42,
+      43
+    ]
+  },
+  "resources": {
+    "common_seconds": 720,
+    "setup_seconds": 90,
+    "evaluator_parent_seconds": 570,
+    "evaluator_child_seconds": 540,
+    "evaluator_cleanup_guard_seconds": 30,
+    "terminal_seconds": 60,
+    "arithmetic_total_seconds": 720,
+    "threads": 1,
+    "whole_owned_tree_gib": 2,
+    "model_fits": 0,
+    "API_calls": 0
+  },
+  "clock": "One fresh720 clock assigned only by actual future --launch; no resuming/resetting METH01, no clock assigned by this source preparation",
+  "actual_METH01_predecessor": {
+    "path": "meth01/terminal-root-closure.json",
+    "sha256": "2c67361da8f95875b35d124ac6c19d6cccba28c899f1e20dada88f3bec4ea283",
+    "actual_exec_session": 3417,
+    "actual_exit_code": 0,
+    "fresh_absence": "Runtime before+under canonical lock and after child for proof-owned IDs and all closure preparers; retained T5/T6+CP1/T7/history unions through existing43be predecessor and fixed proof refs. Root has reported helper13792/9168 fresh absence; no tool ID invented."
+  },
+  "pipeline_source_changed": false,
+  "helpers": {
+    "coordinator": "run_lean_mvp_r2.py SHA43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "reused_functions": [
+      "supervise(solver_seconds=None)",
+      "cooperative_checkpoint",
+      "predecessor",
+      "StrictOwnedObserver",
+      "ResearchLock",
+      "PowerRequestGuard"
+    ],
+    "forbidden_calls": [
+      "coordinator.run",
+      "coordinator.main",
+      "R4.main",
+      "R4.verify_task",
+      "any learner fit or API"
+    ],
+    "manual_metric_library": "repaired-mvp-r1-dev/evaluator_r4.py SHAc08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783"
+  },
+  "input_contract": "Exact source/input/spec/job/split/control hashes, closed METH01 campaign and independent audit. All existing core inventories and saved terminal supervisor equality checked before first R4 NumPy/Pandas import/label parse. Only independently qualified matching component rows eligible; R4.TaskVerifier independently reproduces parent metrics/CSV/probabilities/classes/row/pristine/fitting partition, including SINGLE recursive feature views. No new split generation.",
+  "blend_formula": "Every validation value/probability =0.9*same protected SINGLE cache+0.1*same ET cache, unconditionally for all5 cuts. No weight search, cut-specific choice, clipping/recalibration/renormalization or new model fit.",
+  "emitted_artifacts": "New validation_predictions.csv on each available cut, class validation_probabilities.npz, independently scored auditJSON with exact source/parent and generated-file hashes. CSVfloat17g/round_trip and probability class/row/finite/sum/argmax verified. Existing parent test predictions are audited for their original component contract only; no new test mixture or submission is emitted.",
+  "gates": {
+    "regression": "All3 strict RMSE improvements vs SAME SINGLE control",
+    "classification": "Both strict all-class MacroF1 improvements, independent support>=100 cannot drop below -.01-1e-12, ex-rarest gain>0, frozenR4 matched_control_comparison cut/boolean fields only",
+    "failed_or_missing": "Metricnull, required-cut gatefalse, fixed-kind aggregate null unless all required cuts complete; never fit, select another cache, sweep/reweight or impute0",
+    "negative_ET_standalone": "Not excluded; registered diversity hypothesis tests it unchanged"
+  },
+  "qualification": "Technical artifact audit, complete5cut coverage, quality gates and root actualexec/terminalclosure are distinct. Component validation-cache evidence only, reused-public; not a new full refit, whole-agent promotion or official score.",
+  "failure": "First/secondary errors retained. All partial validation outputs hashed even if roundtrip/metric failure. Late source/clock/power/cleanup/write failure clears live quality flags/metrics while raw audit remains diagnostic. Model fits/API0 throughout.",
+  "preparation_executed": {
+    "runtime_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "METH01_outcome_files_read": 0,
+    "input_or_prediction_generation": 0,
+    "clocks_assigned": 0
+  },
+  "metrics": null,
+  "promotion": false,
+  "audit_chain": "Parent and no-fit child bind root-certified METH01 audit path/SHA to closed campaign, old audit manifest/verification-plan/manualR4 SHA to actual files and original plan source/clock. Old verifying-campaignSHA is intentionally not equated to later terminal snapshot.",
+  "procedure_completion": "Parent component_procedure_passed requires all five cuts complete; null/missing cuts remain failures and cause nonzero parent exit. This is separate from quality gates, which may be false for a completed screen.",
+  "post_exec_root_closer": {
+    "path": "close_method_blend_r1.py",
+    "sha256": "1b44885cb7e67a9ebf2a9c8c5977d66ec8c97627459f0faff2269add3567fb8e",
+    "source_fields_reviewed": true,
+    "actual_exec_and_fresh_preparer_absence_required": true
+  }
+}

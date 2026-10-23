@@ -1,0 +1,32 @@
+{
+  "status": "registered_before_any_METH01_outcome_read",
+  "source_path": "method-expansion-program/queue.json",
+  "source_sha256": "0f372189c0549c7662d5a26d57f7b981c7deff30e893c5693c65b478b00efc37",
+  "registered_entry": {
+    "id": "METH-03",
+    "name": "Fixed weak-model blend contribution",
+    "status": "wait_for_METH01_or_METH02_closed_prediction_artifacts",
+    "hypothesis": "A different family can improve the strong ensemble through complementary predictions, despite a weaker standalone metric.",
+    "fixed_weight": {
+      "strong_control": 0.9,
+      "new_component": 0.1
+    },
+    "factor": "A single predeclared blend, no validation-guided weight grid or selecting weights separately by cut",
+    "common_cap_seconds": 720,
+    "model_fits": 0,
+    "requires": "Independently verified same-partition/source/row/class aligned component caches and pristine labels. Examine every declared cut/support gate. Positive component result still needs later real full refits and whole-agent qualification.",
+    "actual_command": null,
+    "actual_metric": null,
+    "clock_start": null,
+    "control_unit": "Exact METH01 first protected SINGLE component percut, not the whole V11/V16 ensemble; preserve distinct component vs complete-agent claims.",
+    "fixed_formula": "0.9 * aligned METH01 control predictions/probabilities + 0.1 * aligned METH01 ExtraTrees predictions/probabilities on every one of the5 declared cuts.",
+    "scope_clarified_before_outcome_consumption_epoch": 1792778047.7589145,
+    "full_refit_or_promotion": false
+  },
+  "execution_unit_clarification": "90% same METH01 protected first SINGLE component plus10% same METH01 fixed ExtraTrees; not full V16 ensemble",
+  "validation_only": true,
+  "full_refit_or_promotion": false,
+  "actual_clock": null,
+  "METH01_outcomes_read": 0,
+  "metrics": null
+}

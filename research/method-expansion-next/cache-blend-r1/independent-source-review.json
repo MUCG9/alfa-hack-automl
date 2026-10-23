@@ -1,0 +1,31 @@
+{
+  "schema": "method-blend-source-independent-review-v1",
+  "status": "no_blocker_in_declared_source_scope",
+  "bindings": {
+    "driver": {"path": "method-blend-next-dev/run_blend.py", "sha256": "dd9240fac7a56a4bcd5676bd048953b8308e471ee538f790352fd124c8a8459e"},
+    "closer": {"path": "close_method_blend_r1.py", "sha256": "1b44885cb7e67a9ebf2a9c8c5977d66ec8c97627459f0faff2269add3567fb8e"},
+    "registration": {"path": "method-blend-next-dev/registration.json", "sha256": "b3a48e46b579a053b62214a0f3779747a9d855bfbf4ff09da593ca5e56566092"},
+    "protocol": {"path": "method-blend-next-dev/protocol.json", "sha256": "a9898b15042275c1aaf311dd4b04e62e5ec17dbd1f4c1a69c77e200a6c9eac1b"},
+    "manual_metric_source_sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+    "supervisor_source_sha256": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "parent_terminal_proof_sha256": "2c67361da8f95875b35d124ac6c19d6cccba28c899f1e20dada88f3bec4ea283"
+  },
+  "confirmed": [
+    "The parent and child bind the METH01 root-certified audit path/SHA to the actual original manifest, verification plan, manual metric source and original clock before label parsing. The prior verifying campaign snapshot is correctly not required to equal the later terminal campaign SHA.",
+    "The factor remains the preregistered fixed 0.9 exact protected SINGLE plus 0.1 same-cut ExtraTrees prediction blend across all five cuts. Negative standalone candidate quality does not exclude an otherwise valid saved component.",
+    "Original job/split/supervisor/core seals, pristine task bindings, canonical class/row order and recursive saved mixtures are checked. Regression uses manual RMSE; classification uses manual all-class Macro-F1, supported-class loss and ex-rarest gates separately on each cut. Probability tolerance matches the pinned R4 source.",
+    "The single future 720-second clock allocates 90 setup, 570 evaluator parent including 540 child and 30 cleanup, and 60 final. The pinned supervisor receives solver_seconds=None and strips API credentials. This is saved-validation evaluation with zero fitting and no submission/refit qualification.",
+    "Missing or failed cuts retain null evidence and cannot yield parent procedure success. Technical failure clears the quality qualification; an ordinary measured negative blend may still be a completed technical procedure.",
+    "The closer requires actual parent exit evidence, original clock, immutable/generated/supervisor hashes and fresh known PID/create-time absence. Technical validity remains separate from quality. Its own actual exit and a subsequent fresh preparer absence check remain required."
+  ],
+  "execution_boundary": {
+    "driver_launched_by_reviewer": false,
+    "closer_executed_by_reviewer": false,
+    "runtime_imports_tests_fits_api": 0,
+    "new_metrics_computed": false,
+    "actual_future_root_exit_and_terminal_ownership_required": true,
+    "promotion_or_submission": false
+  },
+  "disclosure": "During lineage schema inspection, the reviewer accidentally displayed already closed parent METH01 numeric results nested in a receipt. No raw labels or predictions were scored, no blend result was computed, and no registered factor, threshold or gate was changed in response. Values are intentionally not reproduced here.",
+  "limitations": "This is static review of the exact source bytes, not an execution, fresh ownership certification or proof of quality. It does not claim a global orphan discovery capability beyond the reviewed supervisor and known/observed identity scope."
+}

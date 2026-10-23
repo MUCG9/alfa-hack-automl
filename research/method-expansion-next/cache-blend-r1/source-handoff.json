@@ -1,0 +1,44 @@
+{
+  "status": "source_frozen_not_executed",
+  "files_sha256": {
+    "protocol.json": "a9898b15042275c1aaf311dd4b04e62e5ec17dbd1f4c1a69c77e200a6c9eac1b",
+    "README.txt": "01be9697a9ecb56622d15acf42ccb8ded8b7bee93fc84b34c987ed70e43f92a0",
+    "registration.json": "b3a48e46b579a053b62214a0f3779747a9d855bfbf4ff09da593ca5e56566092",
+    "run_blend.py": "dd9240fac7a56a4bcd5676bd048953b8308e471ee538f790352fd124c8a8459e",
+    "static-proof.json": "164548de4ad3cf4401fc6f6b9bdbde7d588e50916d72cd01f554f82b68dcdd69"
+  },
+  "execution_unit": "90% SAME METH01 protected first SINGLE+10% SAME ExtraTrees, validation-only on3forward+2group saved cuts, not fullV16ensemble",
+  "fixed_weight_registration_sha256": "b3a48e46b579a053b62214a0f3779747a9d855bfbf4ff09da593ca5e56566092",
+  "fixed_before_any_METH01_outcome_information": true,
+  "actual_METH01_root_closure": {
+    "path": "meth01/terminal-root-closure.json",
+    "sha256": "2c67361da8f95875b35d124ac6c19d6cccba28c899f1e20dada88f3bec4ea283",
+    "actual_exec_session": 3417,
+    "actual_exit_code": 0
+  },
+  "budget_seconds": "720=90setup+570parent(540child+30cleanup)+60final",
+  "model_fits": 0,
+  "API_calls": 0,
+  "inputs": "Source/root/audit/manifest/plan correspondence and exact job/split/pristine/closed-core hash pins; all ownership/preparer identities freshly absent before+under canonical lock; originalMETH01clock untouched",
+  "outputs": "Validation-only CSV/probabilities and manualmetric/support gates with hashes, never test/submission/fullrefit. Required missing/failedcut metricnull/gatefalse/nonzero parent; no reweight/sweep/refit. Technical complete and quality win distinct.",
+  "root_closer": {
+    "path": "close_method_blend_r1.py",
+    "sha256": "1b44885cb7e67a9ebf2a9c8c5977d66ec8c97627459f0faff2269add3567fb8e",
+    "fields_source_reviewed": true
+  },
+  "independent_review": "Parent reports no blocker on b77f22 source; audit_contract writes separate closing source receipt. Finaldd delta sent: use frozenR4 exact probability tolerance and requireall5cut procedure completion. No extra code framework/approval requirements.",
+  "executed": {
+    "driver_invocations": 0,
+    "evaluate_child_invocations": 0,
+    "runtime_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "METH01_outcome_files_read": 0,
+    "input_or_prediction_generation": 0,
+    "clocks_assigned": 0
+  },
+  "more_writes_by_author": false,
+  "metrics": null,
+  "promotion": false
+}

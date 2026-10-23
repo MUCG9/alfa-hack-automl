@@ -5,7 +5,9 @@ engineering on work/error-selection-20261023 while LONG-01 runs from its own
 frozen task copies. Do not edit active test-runs/long-01-20261023/public-full,
 the frozen release or its environment. No extra fits/heavy suites until it ends.
 Read docs/experiments/PARALLEL-01_progress_20261023.md before repeating BASE/ERR
-work:126 fit-free checks passed;8 requests prepared; SEL needs missing confirmation.
+work:137 fit-free checks passed;8 requests prepared; SEL needs missing confirmation.
+Its bounded plan/readiness guard are prepared, NOT executed; full398-check gate
+is deferred. See SEL-01_confirmation_protocol_20261023.md and source-review note.
 Reuse reviewed colleague diagnostics; keep ML policy unchanged during integration.
 After LONG-01 follow the agreed finite research plan. Captain explicitly cancelled
 the 15%-remaining stopping threshold and handoff preparation. Historical quota/

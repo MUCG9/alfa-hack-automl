@@ -16,12 +16,13 @@ on the finite agreed plan, respecting real permissions/service limits.
 - New local BASE adapter maps the actual declared organizer file locations using
   a fresh symlink view, not a copy or source rewrite. Eight original search/
   confirmation requests prepared. It NEVER runs passports automatically.
-- Fit-free integration gate PASS:126 unique checks, source unchanged; ALL55
+- Latest fit-free integration gate PASS:137 unique checks, source unchanged; ALL55
   original compiled files including original requirements byte-identical to
   LONG-01.12 dormant modules added (diagnostics plus selector). This is NOT the
-  full release gate. Receipt ERR-SEL_integration_gate_20261023.json.
-- Full source runner now registers387 expected unique checks. It has NOT run
-  during LONG-01;387 must not be reported as passed based on126 focused checks.
+  full release gate. Latest receipt ERR-SEL_integration_gate_r3_20261023.json;
+  earlier126-check evidence remains preserved separately.
+- Full source runner now registers398 expected unique checks. It has NOT run
+  during LONG-01;398 must not be reported as passed based on137 focused checks.
 - SEL-01 pure third-slot selector and fixed-grid replay implemented/tested, NOT
   wired into runtime. Predeclared criterion/protocol before actual cached screen.
   Frozen first2, fixed1/3 marginal criterion, no fitted weights or new recipes.
@@ -36,6 +37,23 @@ No candidate confirmation/mean/full-refit/private score exists. Do NOT report
 the search-only difference as an improvement or enable the selector by default.
 Source/frozen request/artifact fingerprints: SEL-01_cached_replay_20261023.json.
 Missing predictions must NOT be substituted or inferred. No V14 rerun.
+
+The missing candidate is the ORIGINAL uncalibrated XGBoost recipe (1800max
+iterations,lr.035,depth6,mild class-weight power.5), primary iterations345.
+ONE bounded confirmation recipe evaluation is prepared, NOT executed:
+SEL-01_confirmation_plan_20261023.json and
+SEL-01_confirmation_protocol_20261023.md. At most900s/2threads/1.7GiB whole tree;
+nested fits counted separately. Plan uses original split bytes and artifact
+hashes. tools/prepare_selector_confirmation.py cannot train; its readiness guard
+requires both LONG-01 reports, successful assessments, trained exports and actual
+CSV hashes.11 readiness/output-isolation tests passed within the137-check gate.
+The saved blocked_by entry is a historical preparation snapshot: recompute
+readiness before any future fit rather than treating it as a live lock/PID.
+
+Also reviewed colleague HPO source/protocol/tm1 lessons without importing its
+runtime or installing dependencies. See HPO-01_source_review_20261023.md. Its old
+class campaign reached0 guided TPE trials; do not blindly repeat the combined
+FE/selector/HPO procedure or call planned trials adaptive-search evidence.
 
 ## Current work and next allowed actions
 

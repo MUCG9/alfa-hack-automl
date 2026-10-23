@@ -1,0 +1,80 @@
+{
+  "status": "source_only_existing_worker_route_identified",
+  "inputs_sha256": {
+    "method-portfolio-next-dev-r2/registered-METH01.json": "ac359bfc16ac43a044ff08f346b05514c1dfe719dea7844256cb382b91331d4d",
+    "method-portfolio-next-dev-r2/METH01-protocol.json": "5d8d384555bf92ab452a9552e8eb270bf8a3a13a7709272f9dbccc282af1ca61",
+    "m3dev/tools/benchmark_candidates.py": "389e84fc0f81731e6704d9286e92ea13ac24b17c2664549c5936adf045970a26",
+    "native_research_queue.py": "9d3f1aea41ed523f8af6063838e38fafbdc7375d8fe2a4f55ab726de471eab86",
+    "m3dev/src/automl/execution/worker.py": "ffa06615a7f59f958f77a24d1f89727dc31fae7d4ba49f30201d77c331887b14",
+    "m3dev/src/automl/execution/model_adapters/extra_trees.py": "0a6a1093cd6f329ad69cddc7f3965067f7b539835312d2c16029deec47b5692a",
+    "m3dev/src/automl/evaluation/service.py": "4aac3ca3cdd3714e3d61598020bb9597faa68a460f0dc4a356dc9591a9a27b9e",
+    "run_lean_mvp_r2.py": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "repaired-mvp-r1-dev/evaluator_r4.py": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+    "m4packet/manifest.json": "8faf33cd81c0e864bcf338828c34447000111eda85bc719b8f43312d2babae9a",
+    "m4packet/lean-source.zip": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0",
+    "m2packet/control-r.json": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b",
+    "m2packet/control-c.json": "56c0e2204df33ebc733034ad5ed835d902874862c71bbb4a16a043c3a99781a9",
+    "t7/r/automl_runs/repair4/task_spec.json": "e8306fe48200d2cfbdf040e68159bd1ceeb505c61363a4302639b9c637368f4f",
+    "t7/c/automl_runs/repair4/task_spec.json": "76a50236a9a8b8733c69e3bba3922448bd8b19b19a24e1aafdec6a7daab53b50",
+    "alfa-hack-automl/test-runs/2e/fe-regression/control_historical/seed-0/split.npz": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+    "alfa-hack-automl/test-runs/2e/fe-regression/control_historical/seed-1/split.npz": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+    "alfa-hack-automl/test-runs/2e/fe-regression/control_historical/seed-2/split.npz": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+    "alfa-hack-automl/test-runs/2e/fe-classification/control_historical/seed-42/split.npz": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+    "alfa-hack-automl/test-runs/2e/fe-classification/control_historical/seed-43/split.npz": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df"
+  },
+  "scope": "METH01 fixed ExtraTrees component screen, no pipeline/portfolio flag changes",
+  "recipe_control": "m2packet/control-{r,c}.json components[0], JSON-equal to old2e historical component recipe",
+  "worker_cli": "PYTHON -B -X utf8 UNPACKED/automl_worker.py JOB.json",
+  "job_fields": [
+    "spec",
+    "recipe",
+    "output_dir",
+    "split_path",
+    "threads=2",
+    "full_fit=false"
+  ],
+  "reuse": "coordinator43be.supervise standalone with solver_seconds=None, so no API environment; job threads2 and BLAS1<=2",
+  "splits": "Exact five existing NPZ bytes, offsets0/1/2 and group seeds42/43; never regenerate",
+  "order": [
+    "regression0-control",
+    "regression0-candidate",
+    "regression1-control",
+    "regression1-candidate",
+    "regression2-control",
+    "regression2-candidate",
+    "classification42-control",
+    "classification42-candidate",
+    "classification43-control",
+    "classification43-candidate"
+  ],
+  "budget_seconds": {
+    "common": 6600,
+    "setup_source_exact": 900,
+    "each_worker_parent": 480,
+    "each_child": 450,
+    "cleanup_and_seal_within_each_parent": 30,
+    "workers": 10,
+    "audit": 600,
+    "final_cleanup_export": 300
+  },
+  "independent_audit": "Frozen R4.TaskVerifier and diagnostics only, not fullagent verify_task/main. Exact job/split/pristine/CSV/probability/recursive-control provenance rechecked. Null metrics on failure. Preserve aligned artifacts.",
+  "old_benchmark_limits": [
+    "candidate-major order differs registered interleave",
+    "no frozen split argument; generates splits",
+    "timeout does not include cleanup or global6600",
+    "old2e native launcher has expired21600 clock/unrelated API queue; do not run"
+  ],
+  "next_missing": "New thin10-row driver and component audit; freeze actual rebound specs,10jobs,5copied NPZ and input/source/dependency pins inside future6600 setup. Require actual cp1 terminal/root closure and fresh known identities before/underlock.",
+  "executed": {
+    "application_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "split_generation": 0,
+    "fitting_data_reads": 0,
+    "prediction_reads": 0,
+    "clocks_assigned": 0
+  },
+  "metrics": null,
+  "promotion": false
+}

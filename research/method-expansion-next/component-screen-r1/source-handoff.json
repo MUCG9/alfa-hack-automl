@@ -1,0 +1,54 @@
+{
+  "status": "source_frozen_peer_reviewed_not_executed",
+  "files_sha256": {
+    "audit_components.py": "bf3526023c265fd102531426a2c35472686be84104500e703eb82d18f9456973",
+    "protocol.json": "d21a32cabd475756f18426760d61a960e92c202978f3d5b324edcd4c57c13ad3",
+    "README.txt": "7c27328685976c51116d5e65fe9adcabe84d8a44cc929f16c27fbfd9d054ae8a",
+    "reuse-review.json": "b58df91500c0b9ecc3160eaf5ac262aa6cb0c7441e67712d634fcde1ac45c2e2",
+    "reuse-review.txt": "59d6bc9a05abd71d5bfd8862e8b2fbb25450576f738e0a0f6479c6265c6c8930",
+    "run_components.py": "672479b4aa444242369c28aef179454e1ab3c6470e3b00052676f255d4281379",
+    "static-proof.json": "a734fccb1416b3f1b5d82d06322577ab7a80dc5323ebf864ac89db32ed67ee26"
+  },
+  "peer_reviews_sha256": {
+    "method-component-coordinator-independent-review-r2.json": "f4fd1cadc5d28cbcfcda40573a7234b6828b2bb31555917851a68ed9ef2af660",
+    "method-component-thin-independent-review-r1.json": "68e3327d60dfeb54cd953cd163fb7455cc50d2e4b67ba67f3cef45115a8c6135"
+  },
+  "post_exec_root_closer": {
+    "path": "close_method_components_r1.py",
+    "sha256": "7a6ef1331c49699a6fdd8cb10353b6b051594761856ba9f2d1c17bf38c3ed9d7"
+  },
+  "runtime_source_changed": false,
+  "existing_archive_sha256": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0",
+  "actual_CP1_predecessor": {
+    "path": "cp1/terminal-root-closure.json",
+    "sha256": "96f5d956fa235cfd0904d55f67aeeaae8c93a083391fe8b370836f6e39ba309d",
+    "actual_exec_session": 43472,
+    "actual_exec_exit_code_observed_by_root": 0
+  },
+  "fixed_budget_seconds": "6600=900setup+10*(450child+30cleanup/source/seal)+600audit+300cleanup/export",
+  "technical_gates": "REUSED exact actual T7 source458/no skips and exact23 on unchanged archive/model source; freshly source/input/evidence rehashed, newlyexecuted broadchecks0, no saved time reinvested",
+  "recipe_and_cuts": "Existing fixed ExtraTrees vs first protected SINGLE JSON on five exact saved NPZ arrays; interleaved registered10jobs; no new model/pipeline source, tuning/refit/blend",
+  "qualification": "Technical completion, registered percut component quality gates and root actualexec/freshclosure are separate; all negatives/failures retained; no promotion/official score",
+  "actual_future_setup_only": [
+    "materialize pristine copies",
+    "rebind specs",
+    "copy5existingNPZ",
+    "freeze10jobs/manifest/plan",
+    "assign original6600clock"
+  ],
+  "executed": {
+    "driver_invocations": 0,
+    "auditor_invocations": 0,
+    "application_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "input_generation": 0,
+    "fitting_data_reads": 0,
+    "prediction_reads": 0,
+    "clock_assigned": false
+  },
+  "more_writes_by_author": false,
+  "metrics": null,
+  "promotion": false
+}

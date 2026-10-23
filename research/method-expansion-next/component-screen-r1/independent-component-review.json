@@ -1,0 +1,162 @@
+{
+  "status": "source_only_component_job_metric_review_no_remaining_concrete_blocker",
+  "reviewer": "features_models",
+  "source_sha256": {
+    "method-component-next-dev/run_components.py": "672479b4aa444242369c28aef179454e1ab3c6470e3b00052676f255d4281379",
+    "method-component-next-dev/audit_components.py": "bf3526023c265fd102531426a2c35472686be84104500e703eb82d18f9456973",
+    "method-component-next-dev/protocol.json": "d21a32cabd475756f18426760d61a960e92c202978f3d5b324edcd4c57c13ad3",
+    "method-component-next-dev/static-proof.json": "a734fccb1416b3f1b5d82d06322577ab7a80dc5323ebf864ac89db32ed67ee26",
+    "method-component-next-dev/reuse-review.json": "b58df91500c0b9ecc3160eaf5ac262aa6cb0c7441e67712d634fcde1ac45c2e2",
+    "method-portfolio-next-dev-r2/registered-METH01.json": "ac359bfc16ac43a044ff08f346b05514c1dfe719dea7844256cb382b91331d4d",
+    "run_lean_mvp_r2.py": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "repaired-mvp-r1-dev/evaluator_r4.py": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+    "m4packet/manifest.json": "8faf33cd81c0e864bcf338828c34447000111eda85bc719b8f43312d2babae9a",
+    "m3dev/src/automl/execution/worker.py": "ffa06615a7f59f958f77a24d1f89727dc31fae7d4ba49f30201d77c331887b14",
+    "m3dev/src/automl/execution/model_adapters/extra_trees.py": "0a6a1093cd6f329ad69cddc7f3965067f7b539835312d2c16029deec47b5692a",
+    "m3dev/src/automl/execution/preprocessing/frames.py": "859a7559e3d2b0111191f9d45b6d94408faea100bd370fb60ce51415b7e5f76d",
+    "m3dev/src/automl/execution/feature_views.py": "091f58656042cb51a920f10e6884c333a95690beae64031000f9cd7c72bb9b9a",
+    "m3dev/src/automl/execution/weighting/classes.py": "421ba823788be5e3c4d6c529578c7fb7e5f64b5e95c4c35ca11c7ce75fd1ccd5",
+    "t7/r/automl_runs/repair4/task_spec.json": "e8306fe48200d2cfbdf040e68159bd1ceeb505c61363a4302639b9c637368f4f",
+    "t7/c/automl_runs/repair4/task_spec.json": "76a50236a9a8b8733c69e3bba3922448bd8b19b19a24e1aafdec6a7daab53b50"
+  },
+  "scope": "Fixed component jobs/specs/worker/archive/splits and thin R4 auditor. Clock/ownership wrapper and actual root publication/launch are separately reviewed.",
+  "critical_findings": [],
+  "resolved_source_points": [
+    {
+      "id": "PRISTINE-COPY-LINK",
+      "resolution": "Auditor directly requires all5 rebound task/input hashes equal expected original source bytes before pandas label parsing; late frozen guards recheck source/copies."
+    },
+    {
+      "id": "COMPONENT-QUALITY-GATES",
+      "resolution": "Plan binds regression3strict RMSE cuts and class2MacroF1/support>=100/drop.01/exrarest>0. Class helper aliases42/43 to R4 matched comparison without fullagent HPO/report obligations; only cuts/booleans copied. Negative standalone rows retained for separate METH03, no promotion."
+    },
+    {
+      "id": "LATE-QUALITY-NULL",
+      "resolution": "Driver error() clears live component_quality_gates_passed=None, component_procedure_passed=False and quality_metric=None; raw independent-audit sidecar is retained as pending parent-terminal diagnostic evidence."
+    }
+  ],
+  "fixed_recipe": {
+    "engine": "extra_trees",
+    "iterations": 128,
+    "max_depth": 16,
+    "min_samples_leaf": 4,
+    "max_features": 0.9,
+    "seed": 42,
+    "generic_features": "none",
+    "feature_code": "",
+    "classification_class_weight_power": 0.5,
+    "weight_scope": "Fixed inherited mild power matches all3 strong complete-control class components; existing worker uses only fitting labels.",
+    "execution": "Worker clips iterations30..3000, adapter caps500; explicit128 is128 trees. CAPABILITIES nested_stoppingFalse for ExtraTrees, no selector/history/calibration added. Existing fitting-only frequency/median preprocessing unchanged."
+  },
+  "legacy_control_and_split_checks": [
+    {
+      "kind": "regression",
+      "cut": 0,
+      "legacy_job": "alfa-hack-automl/test-runs/2e/fe-regression/control_historical/seed-0/job.json",
+      "legacy_job_sha256": "81e1b45a83951dfef85ebb1b0f9e7541b07ebf8cb3d69023ae7c645f02f194cd",
+      "protected_component_recipe_JSON_equal": true,
+      "control_source": "m2packet/control-r.json",
+      "control_source_sha256": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b",
+      "split_path": "alfa-hack-automl/test-runs/2e/fe-regression/control_historical/seed-0/split.npz",
+      "exact_existing_split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+      "split_bytes_hashed_only": true,
+      "split_arrays_decoded_by_reviewer": false
+    },
+    {
+      "kind": "regression",
+      "cut": 1,
+      "legacy_job": "alfa-hack-automl/test-runs/2e/fe-regression/control_historical/seed-1/job.json",
+      "legacy_job_sha256": "c93541294a779be98d3b77cb1f0b008179ed50ce3da9f24bb14841f8707f5343",
+      "protected_component_recipe_JSON_equal": true,
+      "control_source": "m2packet/control-r.json",
+      "control_source_sha256": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b",
+      "split_path": "alfa-hack-automl/test-runs/2e/fe-regression/control_historical/seed-1/split.npz",
+      "exact_existing_split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+      "split_bytes_hashed_only": true,
+      "split_arrays_decoded_by_reviewer": false
+    },
+    {
+      "kind": "regression",
+      "cut": 2,
+      "legacy_job": "alfa-hack-automl/test-runs/2e/fe-regression/control_historical/seed-2/job.json",
+      "legacy_job_sha256": "40b0c9c7bc8e9c1b27a3b5ab8eb34296dcc8ba818ff635bc94dbeb1bd57c5720",
+      "protected_component_recipe_JSON_equal": true,
+      "control_source": "m2packet/control-r.json",
+      "control_source_sha256": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b",
+      "split_path": "alfa-hack-automl/test-runs/2e/fe-regression/control_historical/seed-2/split.npz",
+      "exact_existing_split_file_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+      "split_bytes_hashed_only": true,
+      "split_arrays_decoded_by_reviewer": false
+    },
+    {
+      "kind": "classification",
+      "cut": 42,
+      "legacy_job": "alfa-hack-automl/test-runs/2e/fe-classification/control_historical/seed-42/job.json",
+      "legacy_job_sha256": "bd777af14a9c361d706edfd84f1edd2859b2148bc5a952129db1fa8dae8210e6",
+      "protected_component_recipe_JSON_equal": true,
+      "control_source": "m2packet/control-c.json",
+      "control_source_sha256": "56c0e2204df33ebc733034ad5ed835d902874862c71bbb4a16a043c3a99781a9",
+      "split_path": "alfa-hack-automl/test-runs/2e/fe-classification/control_historical/seed-42/split.npz",
+      "exact_existing_split_file_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+      "split_bytes_hashed_only": true,
+      "split_arrays_decoded_by_reviewer": false
+    },
+    {
+      "kind": "classification",
+      "cut": 43,
+      "legacy_job": "alfa-hack-automl/test-runs/2e/fe-classification/control_historical/seed-43/job.json",
+      "legacy_job_sha256": "111356600a61b149ed660d35d175268347eaad5ba16a6396d261c6d060b422fa",
+      "protected_component_recipe_JSON_equal": true,
+      "control_source": "m2packet/control-c.json",
+      "control_source_sha256": "56c0e2204df33ebc733034ad5ed835d902874862c71bbb4a16a043c3a99781a9",
+      "split_path": "alfa-hack-automl/test-runs/2e/fe-classification/control_historical/seed-43/split.npz",
+      "exact_existing_split_file_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+      "split_bytes_hashed_only": true,
+      "split_arrays_decoded_by_reviewer": false
+    }
+  ],
+  "archive_check": {
+    "path": "m4packet/lean-source.zip",
+    "sha256": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0",
+    "all68_flat_member_hashes_match": true,
+    "archive_imported_or_executed": false
+  },
+  "R4_component_usability": {
+    "direct_functions": [
+      "TaskVerifier.verify",
+      "diagnostics",
+      "matched_control_comparison for class cut fields only"
+    ],
+    "stub_report": "spec plus empty experiments/confirmations suffices for these actual direct SINGLE controls; class SINGLE featureview recursively provides expected_recipe for each leaf. No global materialized ensemble requires fullreport history.",
+    "fullagent_verify_task_or_main_used": false,
+    "no_HPO_or_EDA_or_selected_recipe_assumption": true,
+    "pristine_and_outputs": "R4 value-output contract checks input/spec roles, full class order, sample/test ID permutation and target-free features. Validation row positions/truth, finite manual RMSE/all-classF1, normalized aligned class probabilities, test CSV/proba agreement and recursive2view mixtures checked independently.",
+    "groups_and_chronology": "R4 diagnostics checks disjoint raw-feature hash patterns for class and strict forward time for reg. Counts are distinct fitting feature vectors, not identified independent business entities."
+  },
+  "artifact_order_and_failures": {
+    "order": "All10 closed saved supervisors, actual dispatch job/spec/split, direct pristine source/copy bytes and complete seal inventories checked before R4 import/first label parsing; final core/supervisor/source rechecks after scoring.",
+    "ordinary_failure": "Failed/timeout/clean local OOM worker rows remain metricNone and are not dropped; kind means require every declared cut. No zero imputation. Systemic failure stops, preserving completed/missing records.",
+    "success_separation": "All-worker technical success, independent artifact integrity and component quality gates are separate. Component quality is not wholeagent/refit/CSV release promotion."
+  },
+  "technical_gate_evidence": "Source458/no skips and exact23 explicitly REUSED from byte-identical T7 source/archive with saved supervisor/campaign/root lineage; newly executed broad checks0. Setup900 retained and saved time not reinvested. Reviewer did not rerun gates or perform fresh process checks.",
+  "readiness": {
+    "declared_source_scope_no_remaining_blocker": true,
+    "actual_runtime_or_metric_evidence_from_review": false,
+    "new_launch_approved_by_reviewer": false,
+    "actual_source_publication_and_fresh_launch_checks_required": true,
+    "external_root_exec_and_terminal_preparer_absence_still_required": true,
+    "quality_metric": null,
+    "promotion": false
+  },
+  "reviewer_execution": {
+    "candidate_runtime_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "new_jobs_specs_splits_or_clocks_created": 0,
+    "raw_fitting_CSV_or_predictions_read": false,
+    "active_campaign_outcomes_read": false,
+    "source_edits": 0,
+    "STATE_or_Git_changes": 0
+  }
+}

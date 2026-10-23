@@ -1,0 +1,61 @@
+{
+  "status": "future_probe_contract_not_implemented",
+  "existing_key_source_sha256": "aed6d38534e8959f78587bb6e80025731923d2d5ed374a2853e5cb84c206c02a",
+  "key_version": "worker-teacher-importance-v1",
+  "canonicalization": "Reproduce existing teacher_key/_feed/_array typed length-delimited stream exactly: preserve dict insertion order, scalar types/missing/IEEEbytes and array dtype/shape/C-order. Component hashes auxiliary; do not replace whole stream with combined hashes, raw rows or64-bit shortcuts.",
+  "required_components": {
+    "rows": "Actual ordered fitting positional rows with dtype/shape plus explicit scope namespace; source split/parent mapping SHA separately.",
+    "X_index": "Actual CatBoost-prepared fitting X index type, names and ordered index values.",
+    "X_schema": "Unique ordered names, each dtype, pandas categorical ordered flag/category universe if any, categorical feature list/order.",
+    "X_values": "Every actual CatBoost-prepared fitting column in row order: numeric float32 conversion, NaN/inf/missing sentinels, exact string bytes. No raw-data/selected-feature-hash substitute.",
+    "y": "Actual transformed fitting fit_y consumed by teacher (log1p only when runtime qualifies), target name/dtype/index names+values and ordered values. Not raw y for a log-target teacher.",
+    "weights": "ExplicitNone or consumed ordered type/dtype/shape/value bytes. Classification from original fitting y/class_weight_power; regressionNone.",
+    "teacher_settings": "Exact teacher_recipe,kind,threads,fixed100iterations,categorical order,selection top_k/protect_original/ordered protected columns and explicit inner/outer/full/calibration scope.",
+    "libraries": "Existing key Python version/implementation,numpy,pandas,CatBoost plus separately pinned full runtime/student library and source inventory.",
+    "transitive_semantics": "Full recipe/spec/source context SHA incl selector,CatBoost adapter,preprocessor,worker,FE,encoding/history/weights,module mapping. Actual history_min_periods (not old collector typo history_minimum_periods). Do not treat a parameter subset as exact identity.",
+    "effective_params": "Actual teacher.get_params digest on normalfit/miss; hit references earlier same-key source-miss receipt in same leaf. Do not construct a new teacher only for telemetry."
+  },
+  "per_request": [
+    "slot/arm/anchor,leaf/view path,leaf invocation UUID,request ordinal,scope",
+    "wholekey and component digests,source/library/context SHA,row/column count",
+    "OFF disabled+normal teacher; ONmiss/hit/bypass/store/eviction+bounded snapshot",
+    "hit origin miss reference and importance digest; finite shape/rank/orderedselected columns on each request",
+    "student fit counts, ordered parents, selected iteration tree, stopping/calibration status/factors"
+  ],
+  "scope_plumbing": "Future common probe must receive actual explicit cache_scope in BOTH arms; current OFF does not pass cache_scope to selector because it has no cache. Do not infer OFF scopeNone or enable a cache merely to get telemetry.",
+  "fair_cost": "Identical independent common full-input probe runs on every selector request in BOTH arms including ONhits. ON still pays separate existing cache.lookup keyhash/lookup/store. Commonprobe must not provide free cache key/payload or skip work onhits. Normal nonpilot defaultOFF remains nohash/no telemetry.",
+  "timers": [
+    "common_probe_digest_seconds",
+    "common_probe_receipt_IO_seconds",
+    "cache_key_lookup_seconds (existing hash_seconds includes lookup overhead)",
+    "cache_store_seconds",
+    "teacher_constructor_seconds",
+    "teacher_pure_fit_seconds (only .fit)",
+    "teacher_importance_extraction_seconds",
+    "teacher_constructor_fit_importance_inclusive_seconds (legacy teacher_fit_seconds)",
+    "whole_selector_seconds incl preprocessing/probe/cache/teacher/ranking/slicing",
+    "worker_reported_seconds",
+    "external_supervisor_worker_seconds incl startup/predict/CSV",
+    "parent_cleanup_guard_seal_seconds"
+  ],
+  "legacy_timer_note": "teacher_fit_seconds starts BEFORE create_model and ends AFTER feature_importances_ extraction. Preserve truthfully as inclusive; do not call purefit. Unknown/failed timing null. A true hit may record invokedfalse/purefit0 for an omitted invocation, never failed quality0 or proven wall saving.",
+  "payload": "Compact digests/count/schema/importance only. Do not retain or serialize raw fitting values/y/weights/model. Cache payload unchanged4/262144; source collector overhead/memory included.",
+  "conditional_prediction": {
+    "each_class_callback": "If actual full inner keys repeat as old metadata suggests:6requests/2leaves; OFF6teacherfits,ON4fits+2hits. Student fitting unchanged. Not preverified exactkey equality.",
+    "regression_callback": "Two distinct inner/outer scopes,OFF2/ON2teacherfits,0hits.",
+    "no_matching_keys": "Inconclusive/no eligible reuse; never relax scope/addcrossworkerreuse."
+  },
+  "versions_observed_now_not_future_launch_pin": {
+    "python": "3.12.14",
+    "implementation": "CPython",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "catboost": "1.2.8",
+    "lightgbm": "4.6.0",
+    "scikit-learn": "1.5.2",
+    "scipy": "1.12.0",
+    "threadpoolctl": "3.6.0",
+    "psutil": "6.1.1"
+  },
+  "future_exact_library_freeze_required": true
+}

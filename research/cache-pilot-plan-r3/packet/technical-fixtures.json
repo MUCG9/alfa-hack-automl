@@ -1,0 +1,41 @@
+{
+  "status": "mandatory_future_gate_inventory_not_copied_now",
+  "required_metadata9_sha256": {
+    "docs/handoff/public_inputs.json": "8ede0d93bf39d62bef496e5d9b95f76c604f6b0a8d4cbcf76bb60a6d742cb970",
+    "release/v11-featureviews1/public-full.json": "1ceb6cd4b9a2dd12d841f204c70055602c92330a638773a946fc5e68c34185b5",
+    "release/v11-featureviews1/classification-report.json": "4ede975b795192dabd26b20b164c2c7351d41a73b2f36e00f30ff322fbd9fab5",
+    "release/solution-v11-featureviews1.zip": "fbbd2511652814d7c05334ab0240f18b81e88a7b59dfc979efa617011dc84490",
+    "release/solution-v11-featureviews1.manifest.json": "95cf1ee08188daa5ea28099da404f3eb62378efcf9bb1a0cf5e6ea43ced2a4fc",
+    "release/v16-mean1/public-full.json": "c559648cc94ebfa2ddbdde2e9fac1c6744ac85e223ae67843f727362a82243ce",
+    "release/v16-mean1/classification-report.json": "2905c32aa98270fb5b76f6ca1a4e664c0e76f7b399772864b51d0baf8e08a606",
+    "release/solution-v16-mean1.zip": "68e1eb0c933807720178ef4708df2c0dbf55fe9940b0dfb849d7704dbe3b2566",
+    "release/solution-v16-mean1.manifest.json": "020ac7b94e5d7d34f21dbeeab47d22584870bb3ab40d47e679b0401d8f0571f3"
+  },
+  "metadata_bytes_each_gate_source": 1088058,
+  "same9_required_in_baseline_and_candidate": true,
+  "required_public10_sha256": {
+    "public_tasks/classification/data_dictionary.csv": "13d2651c5fe02b7fc30f0e7290af45606aad5de76c2f7b69217abc270dbbcef4",
+    "public_tasks/classification/sample_submission.csv": "4d23642fcff01e49b0ef5a9f018b2381c12fad97282fa586285ad49b01e9623e",
+    "public_tasks/classification/task.md": "eebb55ebb8deb8257a2c012330ecc015e8d3a0bc3619c40da6c2a6ab200709bf",
+    "public_tasks/classification/test.csv": "b825449603931b5f05a8855e3d92b57775221c93ed4730ac6b4c75b9ea608862",
+    "public_tasks/classification/train.csv": "171a8915070b7575b729a32f70a45d1ad7b6f43c65b4ce12a0a68af30d5cb4e0",
+    "public_tasks/regression/data_dictionary.csv": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
+    "public_tasks/regression/sample_submission.csv": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1",
+    "public_tasks/regression/task.md": "33f743ead4840336856cb9db8e25867f44512231beebff927326e8580e14d9d0",
+    "public_tasks/regression/test.csv": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
+    "public_tasks/regression/train.csv": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775"
+  },
+  "requirements_sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+  "conditional_not_required_in_declared_branches": [
+    "release/v11-featureviews1/public-source-manifest.json",
+    "release/v16-mean1/public-source-manifest.json"
+  ],
+  "never_stage": [
+    "ignored original prediction caches",
+    "original final submission CSVs",
+    "private API ledgers",
+    "private API configuration"
+  ],
+  "fresh_dependency_inventory_and_source_hash_guards_required": true,
+  "presence_is_not_testpass": true
+}

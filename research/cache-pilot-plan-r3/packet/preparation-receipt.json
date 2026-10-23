@@ -1,0 +1,32 @@
+{
+  "status": "plan_static_consistency_checked_no_execution_qualification",
+  "checks": {
+    "JSON_parsed": 7,
+    "six_fixed_slots": true,
+    "three_original_recipe_hashes_bound": true,
+    "ordered_split_metadata_bound": true,
+    "budget_sum7200": true,
+    "worker_sum2640": true,
+    "parent_sum2820": true,
+    "metadata9_public10": true,
+    "read_only_reference_files_rehashed_unchanged": 31,
+    "absolute_machine_paths_or_credential_patterns": 0
+  },
+  "source_imports": 0,
+  "tests_run": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "network_calls": 0,
+  "raw_rows_or_labels_read": false,
+  "split_position_arrays_read_only": true,
+  "current_f4_outputs_read": false,
+  "existing_or_frozen_edits": 0,
+  "launches": 0,
+  "future_common_probe_implemented": false,
+  "actual_cache_savings": null,
+  "promotion": false,
+  "preparation_notes": [
+    "One exploratory JSON inspection assumed tasks was a mapping; corrected to the actual list, no files written.",
+    "One plan-generation attempt refused a nonexistent root-level module_map.json reference before creating a directory; corrected reference to tools/module_map.json. No existing file was changed and no runtime was executed."
+  ]
+}

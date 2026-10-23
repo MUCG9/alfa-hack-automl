@@ -1,0 +1,329 @@
+{
+  "id": "leaf-local-selector-cache-six-fixed-callbacks-r1",
+  "status": "plan_only_not_execution_ready",
+  "created_utc": "2026-10-23T06:27:37.366223+00:00",
+  "factor": {
+    "only_treatment": "selector_importance_cache false versus true",
+    "same_common_runtime": true,
+    "common_diagnostics_identical_in_both_arms": true,
+    "default_cache": false,
+    "default_diagnostics": false,
+    "cache_bounds": {
+      "maximum_entries": 4,
+      "maximum_conservative_bytes": 262144
+    },
+    "cache_payload": "Importance array and ordered column metadata only. No frames, targets, weights, models or predictions.",
+    "namespace": "Fresh leaf-worker instance only. Never cross view/callback/trial/cut/task/process or inner/outer/full/calibration namespace; a same-leaf repeated inner context may hit.",
+    "excluded": [
+      "HPO/search/admission/budget/iterations changes",
+      "feature/selection/target/weight/calibration changes",
+      "four-leaf/default-slot integration",
+      "cross-worker or persistent cache",
+      "new seeds/jobs/tasks selected from quality"
+    ]
+  },
+  "source": {
+    "prototype_manifest": "selector-cache-prototype.json",
+    "prototype_manifest_sha256": "a8538caa629fd02471e9d80454a0172b743b05c79b1a8010d5f5b37e071cb967",
+    "future_common_source_tree": null,
+    "future_archive_sha256": null,
+    "future_full_module_inventory": null,
+    "baseline_archive": {
+      "path": "four-leaf-default-plan-r1/arm-A.zip",
+      "sha256": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0"
+    },
+    "source_OFF_is_not_byteidentical_baseline": true,
+    "source_OFF_default_parity_required": true,
+    "existing_prototype_edits_allowed": false,
+    "implementation_authorized_here": false
+  },
+  "jobs": {
+    "file": "anchors.json",
+    "slots": [
+      {
+        "index": 0,
+        "anchor": "c-trial00",
+        "arm": "off",
+        "selector_importance_cache": false,
+        "common_diagnostics": true,
+        "future_job": "k1/c0o/job.json",
+        "future_output": "k1/c0o",
+        "worker_cap_seconds": 600,
+        "parent_cap_seconds": 630,
+        "status": "not_attempted",
+        "materialized_job_sha256": null,
+        "metrics": null,
+        "timing": null,
+        "supervisor": null,
+        "seal": null
+      },
+      {
+        "index": 1,
+        "anchor": "c-trial00",
+        "arm": "on",
+        "selector_importance_cache": true,
+        "common_diagnostics": true,
+        "future_job": "k1/c0n/job.json",
+        "future_output": "k1/c0n",
+        "worker_cap_seconds": 600,
+        "parent_cap_seconds": 630,
+        "status": "not_attempted",
+        "materialized_job_sha256": null,
+        "metrics": null,
+        "timing": null,
+        "supervisor": null,
+        "seal": null
+      },
+      {
+        "index": 2,
+        "anchor": "c-trial01",
+        "arm": "on",
+        "selector_importance_cache": true,
+        "common_diagnostics": true,
+        "future_job": "k1/c1n/job.json",
+        "future_output": "k1/c1n",
+        "worker_cap_seconds": 600,
+        "parent_cap_seconds": 630,
+        "status": "not_attempted",
+        "materialized_job_sha256": null,
+        "metrics": null,
+        "timing": null,
+        "supervisor": null,
+        "seal": null
+      },
+      {
+        "index": 3,
+        "anchor": "c-trial01",
+        "arm": "off",
+        "selector_importance_cache": false,
+        "common_diagnostics": true,
+        "future_job": "k1/c1o/job.json",
+        "future_output": "k1/c1o",
+        "worker_cap_seconds": 600,
+        "parent_cap_seconds": 630,
+        "status": "not_attempted",
+        "materialized_job_sha256": null,
+        "metrics": null,
+        "timing": null,
+        "supervisor": null,
+        "seal": null
+      },
+      {
+        "index": 4,
+        "anchor": "r-trial00",
+        "arm": "off",
+        "selector_importance_cache": false,
+        "common_diagnostics": true,
+        "future_job": "k1/r0o/job.json",
+        "future_output": "k1/r0o",
+        "worker_cap_seconds": 120,
+        "parent_cap_seconds": 150,
+        "status": "not_attempted",
+        "materialized_job_sha256": null,
+        "metrics": null,
+        "timing": null,
+        "supervisor": null,
+        "seal": null
+      },
+      {
+        "index": 5,
+        "anchor": "r-trial00",
+        "arm": "on",
+        "selector_importance_cache": true,
+        "common_diagnostics": true,
+        "future_job": "k1/r0n/job.json",
+        "future_output": "k1/r0n",
+        "worker_cap_seconds": 120,
+        "parent_cap_seconds": 150,
+        "status": "not_attempted",
+        "materialized_job_sha256": null,
+        "metrics": null,
+        "timing": null,
+        "supervisor": null,
+        "seal": null
+      }
+    ],
+    "order": "AB/BA/AB: c0 OFF/ON, c1 ON/OFF, r0 OFF/ON",
+    "basis": "Two completed classification callbacks with matching-inner repeats in both existing views; regression trial00 distinct inner/outer scopes. Selected from saved cost/scope only; no outer quality consulted.",
+    "preserve": [
+      "Exact source recipe/hypothesis/feature_code and nonpath spec semantics",
+      "Five exact task input files, exact ordered split",
+      "threads2/full_fitfalse/absent fit_iterations/absent seed default42",
+      "Every student fit/iteration/FE/weight/calibration branch"
+    ],
+    "allowed_relocation": [
+      "job.output_dir",
+      "job.split_path",
+      "spec.root",
+      "spec.task_path",
+      "spec.paths"
+    ],
+    "allowed_nonpath_additions": [
+      "selector_importance_cache bool",
+      "Same reviewed common-diagnostic option true both arms; option name/source to be frozen before execution"
+    ],
+    "future_entrypoint": [
+      "{python}",
+      "-B",
+      "{candidate_flat}/automl_worker.py",
+      "{work}/k1/{slot}/job.json"
+    ],
+    "do_not_execute_alias": "Flat agent_worker.py is only import alias without __main__. Require actual automl_worker.py executable job contract and pinned archive AST.",
+    "fresh_fitting_required": true,
+    "reuse_old_predictions_or_models": false,
+    "future_shared_inputs": [
+      "k1/d/c/{five_task_files,split.npz}",
+      "k1/d/r/{five_task_files,split.npz}"
+    ],
+    "no_worker_jobs_or_inputs_created_now": true
+  },
+  "key_and_cost_contract": "diagnostic-contract.json",
+  "input_fingerprints": "data-fingerprints.json",
+  "parity_failure_contract": "parity-and-failure.json",
+  "technical_gates": {
+    "baseline_source": {
+      "expected_checks": 451,
+      "expected_scripts": 46,
+      "parent_cap_seconds": 900
+    },
+    "candidate_source": {
+      "expected_checks": 463,
+      "expected_scripts": 47,
+      "parent_cap_seconds": 900
+    },
+    "register_existing12": {
+      "file": "tools/run_checks.py",
+      "add": {
+        "test_teacher_importance_cache.py": 12
+      },
+      "currently_registered": false,
+      "methods": [
+        "test_default_off_fits_normally_and_does_not_compute_keys",
+        "test_identical_actual_teacher_context_reuses_importances_and_preserves_outputs",
+        "test_nonfitting_values_labels_and_test_values_cannot_affect_key",
+        "test_each_teacher_input_or_scope_change_is_a_miss",
+        "test_library_identity_and_inner_outer_phase_cannot_share",
+        "test_fresh_worker_cache_cannot_reuse_another_worker",
+        "test_duplicate_content_on_different_row_positions_is_not_same_scope",
+        "test_only_importance_and_column_metadata_are_retained_and_copies_are_defensive",
+        "test_unsupported_exact_key_type_bypasses_without_changing_fit_behavior",
+        "test_lru_entry_and_byte_bounds_and_nonfinite_rejection",
+        "test_opt_in_requires_explicit_scope_and_invalid_job_flag_fails_before_io",
+        "test_leaf_worker_matching_inner_refit_hits_but_outer_refit_does_not"
+      ],
+      "rule": "Preserve all original tests/assertions.463/47 only if this is sole registry addition; extra methods require a pre-outcome protocol/count revision."
+    },
+    "dedicated_nofit_contract_cap_seconds": 300,
+    "dedicated_nofit_scope": "Common-probe fidelity/cost parity, exact fitting mutation/scope/default/bounded payload contracts; may extend existing12 methods without dropping assertions. No new cache implementation.",
+    "exact_unpacked": [
+      {
+        "arm": "baseline",
+        "expected_repeated_checks": 23,
+        "parent_cap_seconds": 480
+      },
+      {
+        "arm": "candidate",
+        "expected_repeated_checks": 23,
+        "parent_cap_seconds": 480
+      }
+    ],
+    "zero_skips": true,
+    "all_technical_gates_before_callbacks": true,
+    "fixtures": "technical-fixtures.json",
+    "source_and_archive_current_gate_PASS": null,
+    "existing_gate_receipt_reuse": false,
+    "counts": "451 baseline checks repeat in candidate and unpacked gates; do not sum as914unique. Report per-script counts/skips/status.",
+    "gate_parent_cap": "Includes startup, actual tests, cleanup, hashes/proofs and receipt. Child watchdog alone cannot certify parent gate deadline.",
+    "actual_Windows_path_proof_required": true,
+    "Windows_proof_scope": "Actual k1 prefix, source/unpacked fixture roots, complete runtime view/component/calibration/cache/atomic producer graph; no guessed suffix list and no OS long-path assumption."
+  },
+  "budget": {
+    "prospective_total_seconds": 7200,
+    "upper_bound_not_ETA": true,
+    "assigned_start_unix": null,
+    "assigned_start_monotonic": null,
+    "deadline_unix": null,
+    "deadline_monotonic": null,
+    "parts_seconds": {
+      "dedicated_nofit": 300,
+      "baseline_source": 900,
+      "candidate_source": 900,
+      "baseline_exact_unpacked": 480,
+      "candidate_exact_unpacked": 480,
+      "six_worker_caps": 2640,
+      "six_cleanup_seal_reserves": 180,
+      "independent_final_audit": 600,
+      "other_setup_guards_receipts_margin": 720
+    },
+    "sum_seconds": 7200,
+    "six_parent_caps_sum_seconds": 2820,
+    "admission": "Reserve every remaining full parent cap plus final600 inside original common deadline before admitting each gate/job; repeat immediately before Popen after env/log/setup I/O. No clipped allocations/retries/reinvestment.",
+    "worker_parent_caps": "Class600/630; regression120/150, including30 cleanup+seal reserve each.",
+    "final_audit_cap_seconds": 600,
+    "final_audit_deadline": "min(now+600, original deadline). Final source/cleanup/clock/terminal-write must finish inside same7200.",
+    "threads_per_model": 2,
+    "technical_threads": 1,
+    "worker_subtree_GiB": 1.5,
+    "whole_owned_tree_GiB": 2,
+    "nofit_contract_GiB": 0.5,
+    "one_logical_job": true,
+    "clock_rule": "Root alone assigns a fresh immutable absolute+monotonic clock after publication/review and all prior heavy work terminal/clean. Never borrow/reset activeR4/tm1/CV/HPO13h or prior failed attempt clocks."
+  },
+  "ownership_API": {
+    "launch_authorized": false,
+    "future_predecessor_proof": "Actual saved launch/stage/supervisor PID/create_time union including activef4 and any later predecessor; terminal/cleanup/source proofs then fresh strict no-signal union/orphan checks before/inside central ResearchLock. No assumed future closure.",
+    "ResearchLock_required": true,
+    "strict_rule": "Exact identities; never adopt PID-reused unrelated descendants. Persistent identity/traversal denial fatal; fresh union absence proof after termination.",
+    "bootstrap": "One logical resolved job plus topmost verified role ancestry; venv parent/child same argv is not two jobs. Distinct logical roots fail.",
+    "receipts": "Immediate confirmed owned root and identities/resource heartbeat<=2s; actual supervisor file hash+inline object binding and final seal.",
+    "predecessor_signals": false,
+    "scoped_awake": true,
+    "environment": "Reviewed allowlist no private API credentials/config or network. -B/PYTHONDONTWRITEBYTECODE1, UTF8 and fixed threads. Do not read or repair old private API ledgers.",
+    "API_calls": 0,
+    "proof_boundary": "Direct frozen worker source/command/report no planner/gateway; requested cap0. Do not claim independent private ledger closure from source or this plan."
+  },
+  "decision": {
+    "mechanism": "All six complete/clean/parity-valid, actual fitting keys equal corresponding OFF/ON, eligible hits only repeated inner within same leaf, regression0hits and bounded payload. No actual repeated key => no eligible reuse, not positive gain.",
+    "timing": "Report both class ON-OFF observed worker/parent/selector deltas plus summed class delta and regression no-hit overhead. Positive descriptive label only if both class pairs improve and common costs do not offset total benefit. Two class pairs do not establish stable speedup. Never sum skipped teacher time as saved wall.",
+    "quality_gain": null,
+    "measured_savings": null,
+    "full_agent_gain": null,
+    "promotion": false,
+    "default_change": false,
+    "submit": false,
+    "later_gate": "Separate reviewed both-task full-agent confirmation/refit/CSV/exact-release campaign against strongV11/V16 floors, not authorized here."
+  },
+  "deferred_HPO_unchanged": {
+    "path": "iteration3-dev/docs/experiments/hpo_admission_b_protocol_20261023-r2.json",
+    "sha256": "b5062f10ffa6ddd5cd42438149bd16b148bee8ebab0625756c661e1fb677981c",
+    "changed": false,
+    "studies": 20,
+    "study_full_initial_seconds": 900,
+    "samplers": [
+      "random",
+      "tpe"
+    ],
+    "admission_factor": "legacy versus measured1.5median of prior successful costs",
+    "nonduplication": "That protocol uses strongest SINGLE recipes without selector; the cache cannot save teacher work there. Do not add cache, FE, adaptive admission or new budgets to its arms. This fixed-callback pilot isolates selector reuse first; any later cached-HPO900 comparison is a separate prospective one-factor protocol."
+  },
+  "blocking_before_execution": [
+    "New isolated common probe/timing source+default parity review, without editing existing prototype",
+    "Register12 and freeze exact source/archive/modules/libs/requirements/full path/dependency inventories",
+    "Root publication and independent protocol/source/verifier review",
+    "Actual predecessor terminal strict ownership and free central lock",
+    "All fresh zero-skip technical gates before six callbacks under one7200 clock"
+  ],
+  "activity": {
+    "implementation_edits": 0,
+    "existing_or_frozen_edits": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "network_calls": 0,
+    "tests_run": 0,
+    "launches": 0,
+    "raw_rows_or_labels_loaded": false,
+    "saved_split_position_arrays_read": true,
+    "existing_runtime_imported": false,
+    "current_f4_outcomes_read": false
+  }
+}

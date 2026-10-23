@@ -90,3 +90,5 @@ docs/experiments/autoresearch_lessons_tm1_20261023* -text whitespace=cr-at-eol
 
 research/fullagent-cv-r4/** -text whitespace=cr-at-eol
 research/fullagent-cv-r4/**/*.patch whitespace=cr-at-eol,-blank-at-eol
+
+research/cache-pilot-plan-r3/** -text whitespace=cr-at-eol

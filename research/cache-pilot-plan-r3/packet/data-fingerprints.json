@@ -1,0 +1,97 @@
+{
+  "tasks": {
+    "r": {
+      "pristine_source": "evaluation/regression",
+      "expected_files_sha256": {
+        "task.md": "33f743ead4840336856cb9db8e25867f44512231beebff927326e8580e14d9d0",
+        "train.csv": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775",
+        "test.csv": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
+        "data_dictionary.csv": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
+        "sample_submission.csv": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1"
+      },
+      "future_shared_dir": "k1/d/r",
+      "hash_authority": "true-four-stage-launch-r1/manifest.json",
+      "raw_files_rehashed_now": false
+    },
+    "c": {
+      "pristine_source": "evaluation/multiclass",
+      "expected_files_sha256": {
+        "task.md": "eebb55ebb8deb8257a2c012330ecc015e8d3a0bc3619c40da6c2a6ab200709bf",
+        "train.csv": "171a8915070b7575b729a32f70a45d1ad7b6f43c65b4ce12a0a68af30d5cb4e0",
+        "test.csv": "b825449603931b5f05a8855e3d92b57775221c93ed4730ac6b4c75b9ea608862",
+        "data_dictionary.csv": "13d2651c5fe02b7fc30f0e7290af45606aad5de76c2f7b69217abc270dbbcef4",
+        "sample_submission.csv": "4d23642fcff01e49b0ef5a9f018b2381c12fad97282fa586285ad49b01e9623e"
+      },
+      "future_shared_dir": "k1/d/c",
+      "hash_authority": "true-four-stage-launch-r1/manifest.json",
+      "raw_files_rehashed_now": false
+    }
+  },
+  "splits": {
+    "c": {
+      "source_path": "alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/inner-hpo/split.npz",
+      "file_sha256": "b2976180af4345100ba101553ed4fed72c68bce0f889a8d5f6ba2b2d7931fcca",
+      "arrays": {
+        "train": {
+          "dtype": "int64",
+          "shape": [
+            56711
+          ],
+          "unique_count": 56711,
+          "array_C_bytes_sha256": "467e818d6c95755143673ac68c36d5b69e06bab47851632d81c51c3f569cd434",
+          "ordered_JSON_sha256": "7376d4359ed39993d7c9c583d20fd4213facbb216a9ce58de1445d0a2e56821d"
+        },
+        "validation": {
+          "dtype": "int64",
+          "shape": [
+            13818
+          ],
+          "unique_count": 13818,
+          "array_C_bytes_sha256": "6add9b796908683c9794cd9dc65e74f4fa03df9cc6fd091bffec926d0720c92c",
+          "ordered_JSON_sha256": "bc1a3c5fffb799bf3df2b266536ac23d7ec18f87eab9bfa3499c3017b1a9d03a"
+        }
+      },
+      "train_validation_disjoint": true,
+      "arrays_inspected_now_without_labels": true,
+      "raw_feature_groups_recomputed_now": false
+    },
+    "r": {
+      "source_path": "alfa-hack-automl/test-runs/tm1/r/automl_runs/true4/inner-hpo/split.npz",
+      "file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+      "arrays": {
+        "train": {
+          "dtype": "int64",
+          "shape": [
+            22054
+          ],
+          "unique_count": 22054,
+          "array_C_bytes_sha256": "15b3ab1e64945a1a4e48de88c76f6f8877179688dea08e2445e9e65dc8d71b8c",
+          "ordered_JSON_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08"
+        },
+        "validation": {
+          "dtype": "int64",
+          "shape": [
+            12946
+          ],
+          "unique_count": 12946,
+          "array_C_bytes_sha256": "7de8258fb8eb556ad4f3f840f02886e264a22ae178d63852510b2bf4867dcc4f",
+          "ordered_JSON_sha256": "dd71a299690a00f6b398a074c787aaf51abf13b647c581a10c41090c696ed4b3"
+        }
+      },
+      "train_validation_disjoint": true,
+      "arrays_inspected_now_without_labels": true,
+      "raw_feature_groups_recomputed_now": false
+    }
+  },
+  "source_job_spec_digest_rule": "SHA canonical JSON all spec keys except root/task_path/paths; all semantic ordered feature/target/id/classes/time/group metadata included without emitting their values.",
+  "hash_conventions": {
+    "file": "ExactbyteSHA256",
+    "array": "SHA256 Ccontiguous exactbytes; dtype/shape separatelyrecorded",
+    "JSON": "SHA256 json.dumps(sort_keysTrue,separators comma/colon,allow_nanFalse),defaultensure_asciiTrue"
+  },
+  "actual_prepared_teacher_X_y_weights_key": null,
+  "raw_files_rehashed_now": false,
+  "source_job_and_split_rehashed_now": true,
+  "teacher_digests_unknown_until_future_fits": true,
+  "holdout_contract": "Key/probe actual CatBoostprepared FITTING X and actualfit_y/weights only; no heldout/test labels or direct outside fitting values appended. Existing FE regenerated on each scope unchanged. Future admission independently rehashes all data copies."
+}

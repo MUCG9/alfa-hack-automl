@@ -1,0 +1,36 @@
+{
+  "status": "append_only_prospective_clarification_no_outcomes",
+  "supersedes_only": "Ambiguous stop/continue treatment of ordinary callback failure; all r1 factors, anchors, order, sources, exact tolerances, caps and gates unchanged.",
+  "r1_manifest_sha256": "d7ddd9d10ffff82d6c924aea66c04b441fef2c57d248dcf10dfff561e7c63c8c",
+  "r1_protocol_sha256": "91c39fe49033c8a8c22bd2d2a12b5c5d28a9c2875154b6757044d87a8e42e4e8",
+  "fixed_six_slots_preserved": true,
+  "clean_ordinary_worker_failure": {
+    "examples": [
+      "Actual worker watchdog at600s classification or120s regression, followed by completed clean terminal cleanup/seal within its parent630/150 cap",
+      "Ordinary model error with truthful result/exit status and full source/input/resource/ownership integrity"
+    ],
+    "action": "Preserve failed slot and known charged elapsed work; missing metrics/predictions/cache-savings null. Continue remaining originally fixed slots in order only after full remaining-parent-caps+final600 admission under original7200. No retry, replacement, clipping or reinvestment.",
+    "aggregate": "Any incomplete callback disqualifies complete-six mechanism/timing aggregate, even if every later callback succeeds."
+  },
+  "technical_failure": {
+    "examples": [
+      "Parent630/150 cap exhausted",
+      "Original common deadline or full-reserve admission fails",
+      "Source/input/key scope/output drift",
+      "Memory/resource violation",
+      "Ownership traversal/identity denial or unconfirmed cleanup",
+      "Seal/final technical proof failure"
+    ],
+    "action": "Safe STOP. No later child admitted. All later fixed slots remain explicit unattempted null records with the saved decisive technical audit path+SHA; clear live nested/aggregate qualification claims."
+  },
+  "no_hit": {
+    "action": "No-hit alone does not stop the fixed matrix. Finish remaining declared callbacks subject to unchanged admission/technical gates. Record no eligible repeat/inconclusive mechanism; never widen scope or add jobs."
+  },
+  "interpretation": "A clean worker watchdog outcome is different from overrun of its complete parent or original common envelope. No positive timing/gain claim for a failed pair.",
+  "implementation_changes": 0,
+  "tests_run": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "launches": 0,
+  "promotion": false
+}

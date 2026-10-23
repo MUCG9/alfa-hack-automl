@@ -1,0 +1,29 @@
+{
+  "status": "prospective_plan_plus_failure_clarification_frozen_for_review_not_execution_ready",
+  "r1_preserved": true,
+  "r1_manifest_sha256": "d7ddd9d10ffff82d6c924aea66c04b441fef2c57d248dcf10dfff561e7c63c8c",
+  "r1_protocol_sha256": "91c39fe49033c8a8c22bd2d2a12b5c5d28a9c2875154b6757044d87a8e42e4e8",
+  "clarification_sha256": "670c3a1f2da020ec0047895f90d5d8f25889392a5e9debdfd433d0796451b31b",
+  "files_sha256": {
+    "anchors.json": "578e027d760c949d5f6c3d72fffe6fb9a546fb6d067f78f5910b6d96c5307c0d",
+    "clarification-r2.json": "670c3a1f2da020ec0047895f90d5d8f25889392a5e9debdfd433d0796451b31b",
+    "data-fingerprints.json": "e89c6563ffe7455fb9bcc2d6953beac4fbad2ef2ffabce8f0a47b777ecb6071b",
+    "diagnostic-contract.json": "03dd023b31eff73cc93c8018626cd82fb2ed944ea4d8788b64faaafca93150c2",
+    "manifest.json": "d7ddd9d10ffff82d6c924aea66c04b441fef2c57d248dcf10dfff561e7c63c8c",
+    "parity-and-failure.json": "1aaacd5fb090b38d3ebea87cad8acbec72ae17867e034497e66485fddc673f0c",
+    "preparation-receipt.json": "0a71a31124f8cc49bb7f9f8026e7f15f1048ce73601ee8c20af6b026b4e07f3c",
+    "protocol.json": "91c39fe49033c8a8c22bd2d2a12b5c5d28a9c2875154b6757044d87a8e42e4e8",
+    "README.md": "9ba5da1cf7c83c1439085ae4d2093fd4124b7c9930675dc934087815196a40e5",
+    "references.json": "24f9440228ad13adaaffe3376306486db1e3c90619f64748304268e52181a0bd",
+    "technical-fixtures.json": "6119dfd0ce98fa28f6ee4292375059c8dc394db0505715121ce6434606eb3046"
+  },
+  "future_implementation_source_sha256": null,
+  "future_archive_sha256": null,
+  "assigned_deadline": null,
+  "tests_run": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "launches": 0,
+  "promotion": false,
+  "root_review_required": true
+}

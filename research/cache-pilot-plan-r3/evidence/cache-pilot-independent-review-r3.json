@@ -1,0 +1,159 @@
+{
+  "status": "independent_plan_only_review_complete_no_blocker_to_future_isolated_implementation_review; execution_not_ready",
+  "created_utc": "2026-10-23T06:36:59.720865+00:00",
+  "bindings_sha256": {
+    "cache-pilot-plan-r1\\manifest.json": "d7ddd9d10ffff82d6c924aea66c04b441fef2c57d248dcf10dfff561e7c63c8c",
+    "cache-pilot-plan-r1\\protocol.json": "91c39fe49033c8a8c22bd2d2a12b5c5d28a9c2875154b6757044d87a8e42e4e8",
+    "cache-pilot-plan-r1\\manifest-r2.json": "9a8d039fee9435943e89ef2a840e87b4a369d59dbeec61fa314ba405d409d27f",
+    "cache-pilot-plan-r1\\clarification-r2.json": "670c3a1f2da020ec0047895f90d5d8f25889392a5e9debdfd433d0796451b31b",
+    "cache-pilot-plan-r1\\manifest-r3.json": "132a1d797288a4a5f839fec3d9760764d3bc833540798de1535bb272a5f9ef1c",
+    "cache-pilot-plan-r1\\clarification-r3.json": "e9ad4f53b8d22faa667aa857d3be1d1a7349fb0e8c6dacfd7ab9436596c35de5",
+    "cache-pilot-plan-r1\\diagnostic-contract.json": "03dd023b31eff73cc93c8018626cd82fb2ed944ea4d8788b64faaafca93150c2",
+    "cache-pilot-plan-r1\\parity-and-failure.json": "1aaacd5fb090b38d3ebea87cad8acbec72ae17867e034497e66485fddc673f0c",
+    "cache-pilot-plan-r1\\technical-fixtures.json": "6119dfd0ce98fa28f6ee4292375059c8dc394db0505715121ce6434606eb3046",
+    "cache-pilot-plan-r1\\references.json": "24f9440228ad13adaaffe3376306486db1e3c90619f64748304268e52181a0bd",
+    "cache-pilot-independent-static-checks-r3.json": "19ed3a63cc931860e85fcfbf9f68b2321e32019fb3d8e65b180ec4a5a4f055e3",
+    "hpo-selector-cost-independent-review-r1.json": "62f64feffcc892ffe2805b3324f56f085c95ac43add80f2d544c9f2850e40cac"
+  },
+  "binding_precedence": [
+    "protocol.json",
+    "clarification-r2.json",
+    "clarification-r3.json"
+  ],
+  "independent_static_checks": {
+    "all13_latest_manifest_bound_files_rehashed": true,
+    "prior_R1_R2_bytes_preserved": true,
+    "reference_files_rehashed_unchanged": 31,
+    "anchors_recipe_nonpath_spec_hashes": 3,
+    "exact_ordered_split_position_dtype_shape_value_and_order_hashes_verified": true,
+    "no_raw_examples_or_labels_read": true,
+    "metadata9_public10_maps_match_frozen_authorities": true
+  },
+  "factor_fairness": {
+    "single_callback_treatment": "Existing leaf-local selector_importance_cache false/true; callbacks both use the same future common runtime and independent diagnostics.",
+    "two_technical_source_gates_are_not_the_callback_arms": "451/46 exact baseline versus463/47 candidate are technical/default-parity gates; actual OFF/ON callbacks share candidate code. SourceOFF explicitly differs from old88dac bytes.",
+    "common_probe": "Every actual selector request in OFF and ON, including hits, consumes the same independent full-input probe and scope plumbing. ON separately pays cache hashing/lookup/store; no free key from probe.",
+    "identity_semantics": "Typed ordered actual fitting X/index/schema/categories/values, transformed fit_y/index/values, explicitNone or exact ordered weights, rows/scope, teacher_recipe/kind/threads/fixed100, protected selection, library versions; full transitive source/recipe/spec context and actual effective params separately pinned/recorded.",
+    "history_field": "history_min_periods is explicitly correct; old metadata subset never used as exact key.",
+    "timer_truth": "Legacy teacher_fit_seconds is constructor+fit+importance extraction. Future collector separates pure.fit/constructor/extraction/commonprobe/cache/selector/wholeworker/completeparent.",
+    "cache_scope_payload": "Fresh leaf/view/callback instance, no cross-inner/outer/full/calibration namespaces; importance+ordered columns only, LRU4 and262144 conservatively counted bytes.",
+    "old171985seconds_is_savings": false
+  },
+  "budget_recomputed": {
+    "fixed_order": [
+      "c0 OFF",
+      "c0 ON",
+      "c1 ON",
+      "c1 OFF",
+      "r0 OFF",
+      "r0 ON"
+    ],
+    "class_worker_parent_seconds": [
+      600,
+      630
+    ],
+    "reg_worker_parent_seconds": [
+      120,
+      150
+    ],
+    "six_worker_caps": 2640,
+    "six_parent_cleanup_seal_extra": 180,
+    "six_parent_caps": 2820,
+    "dedicated_nofit": 300,
+    "baseline_candidate_source_caps": [
+      900,
+      900
+    ],
+    "exact_unpacked_caps": [
+      480,
+      480
+    ],
+    "independent_final_audit": 600,
+    "setup_guards_receipts_margin": 720,
+    "total7200": true,
+    "whole_clock_unassigned": true,
+    "admission": "Every remaining full parent cap plus final600 before gate/job and immediately pre-Popen; no clipping/retry/reinvestment/borrowed prior clock. Parentcap charges setup/startup/cleanup/seal, not merely child watchdog.",
+    "execution_requirement": "Future timer/watchdog code must concretely preserve the full worker allocation within630/150 complete parent caps and charge all setup/receipt costs; this plan is not that implementation."
+  },
+  "pre_fit_ambiguities_resolved_append_only": {
+    "R2": "Clean ordinary model error or local600/120 worker watchdog with clean complete parent630/150 permits only remaining fixed slots subject to unchanged full admission. Parent/common/resource/source/drift/cleanup failure STOP; all later slots explicit null with decisive audit ref. No-hit alone continues fixed matrix.",
+    "R3_time": "Complete parent elapsed is primary. A positive descriptive label needs bothclass OFFminusON>0 and the sum acrossall3anchors>0, including regression no-hit overhead. Worker/teacher/selector durations are secondary.",
+    "R3_mechanism": "At least1 global verified eligible hit plus exact per-leaf bounded LRU replay of hit/miss/bypass/store/eviction; false or missed eligible hits reject, regression0hits, no-hit inconclusive.",
+    "scope_limit": "Global>=1hit is the accepted requirement, not onehit perclasspair. A zero-hit pair timing remains observational; do not attribute that pair improvement to eliminated teacher work."
+  },
+  "numerical_and_failure_gates": {
+    "exact": "Recipe/nonpathspec/input/split, selected columns/order, student iterations/calls/calibration, class order/validation rows/IDs, both callbackCSV byteSHA, existing .5/.5 two-view procedure.",
+    "fixed_numeric_tolerances": {
+      "importance": {
+        "atol": 1e-12,
+        "rtol": 1e-12,
+        "exact_sha_also_reported": true
+      },
+      "class_probabilities_validation_and_test": {
+        "atol": 1e-12,
+        "rtol": 0,
+        "row_sum_atol": 1e-06,
+        "finite": true
+      },
+      "class_calibration_factors": {
+        "atol": 1e-12,
+        "rtol": 0
+      },
+      "regression_predictions_validation_and_test": {
+        "atol": 1e-09,
+        "rtol": 0,
+        "finite": true
+      },
+      "pristine_diagnostic_metric": {
+        "macroF1_atol": 1e-12,
+        "RMSE_atol": 1e-09
+      }
+    },
+    "CSV_rule": "Exact CSVbytes are deliberately stricter than allowed NPZ numeric tolerances; neither can be relaxed after outcomes.",
+    "test_NPZ": "No fabricated row_position required for legitimate testNPZ; sample/ID/order and CSV/argmax verified instead. Validation rows mandatory.",
+    "seals_before_metric_read": "Both corresponding arms terminal-clean and sealed before pristine labels/scoring; no threshold/alpha/job selection.",
+    "failure": "Missing metrics/predictions/savings remain null; onefailed callback forbids complete-six benefit. Late technical/source/ownership/clock/write failure clears nested and aggregate qualification.",
+    "fullagent_refit_or_release_claim": false
+  },
+  "technical_gate_status": {
+    "observed_prototype_registry": [
+      451,
+      46
+    ],
+    "existing_new_cache_methods_AST_count": 12,
+    "new_methods_currently_registered": false,
+    "future_expected_if_only_addition": [
+      463,
+      47
+    ],
+    "saved_old12_mock_PASS_is_not_fresh_fullgate": true,
+    "future_source_and_exact_actual_gates_required": true,
+    "exact_expected_repeated_checks_per_arm": 23,
+    "source_metadata9_and_pristine_public10_required": true,
+    "source_or_unpacked_current_cache_PASS": null,
+    "future_common_probe_source_archive_module_library_path_guards_missing": true,
+    "no_activeR4_gate_reuse_or_outcome_read": true
+  },
+  "verdict": {
+    "blocking_findings_for_this_prospective_plan": [],
+    "future_common_probe_implementation_and_independent_review_still_required": true,
+    "future_full_zero_skip_gates_and_actual_caps_ownership_verifier_still_required": true,
+    "future_new_root_review_publication_and7200clock_required": true,
+    "execution_authorized_by_review": false,
+    "measured_cache_savings": null,
+    "ML_or_full_agent_gain": null,
+    "promotion": false
+  },
+  "reviewer_actions": {
+    "implementation_edits": 0,
+    "application_imports": 0,
+    "tests_run": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "active_R4_outputs_read": false,
+    "frozen430_or_prototype_edits": false,
+    "process_scan_or_lock": false,
+    "publication_or_launch": false,
+    "saved_position_arrays_read": "stdlib NPZ/NPY int64 parsing only; no raw features/labels/scoring"
+  }
+}

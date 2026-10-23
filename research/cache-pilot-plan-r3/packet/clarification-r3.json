@@ -1,0 +1,46 @@
+{
+  "status": "append_only_prospective_decision_formula_clarification_no_outcomes",
+  "inherits": {
+    "r1_manifest_sha256": "d7ddd9d10ffff82d6c924aea66c04b441fef2c57d248dcf10dfff561e7c63c8c",
+    "r1_protocol_sha256": "91c39fe49033c8a8c22bd2d2a12b5c5d28a9c2875154b6757044d87a8e42e4e8",
+    "r2_manifest_sha256": "9a8d039fee9435943e89ef2a840e87b4a369d59dbeec61fa314ba405d409d27f",
+    "r2_clarification_sha256": "670c3a1f2da020ec0047895f90d5d8f25889392a5e9debdfd433d0796451b31b"
+  },
+  "all_prior_bytes_preserved": true,
+  "no_source_job_data_gate_cap_tolerance_or_order_change": true,
+  "primary_time_outcome": {
+    "definition": "Complete parent monotonic elapsed seconds from before child admission/setup through terminal cleanup, source/input guard, artifact seal and saved parent receipt. Use identical frozen timer boundaries in all six arms.",
+    "not_primary": [
+      "worker reported elapsed",
+      "teacher inclusive or pure-fit durations",
+      "whole selector elapsed",
+      "sum of omitted teacher durations"
+    ],
+    "pair_delta": "delta_i = parent_seconds_OFF_i - parent_seconds_ON_i for fixed anchor i; positive means ON completed sooner.",
+    "positive_descriptive_time_label_requires": [
+      "All six complete within original declared caps, source/data/key/scope/numerical/CSV/ownership parity valid, final audit qualified.",
+      "delta_class_trial00 >0 AND delta_class_trial01 >0.",
+      "delta_class_trial00 + delta_class_trial01 + delta_reg_trial00 >0; regression no-hit overhead is included."
+    ],
+    "no_threshold_tuning": true,
+    "otherwise": "Report measured deltas and no observed net time benefit (or incomplete/null). No stable/general/full-agent gain inference from this small fixed matrix."
+  },
+  "mechanism_minimum_and_replay": {
+    "positive_mechanism_pass_requires": [
+      "At least one independently verified eligible same-leaf cached importance reuse;0hits cannot produce mechanismPASS.",
+      "Replay ordered ON requests separately per fresh leaf with the frozen key semantics and LRU4entries/262144conservativebytes. A hit is expected exactly when the complete key has a previously stored cacheable valid importance payload still resident under the original bounds.",
+      "Observed hit/miss/bypass/store/eviction sequence and hit count equal that replay; no same-content reuse across worker/view/callback/inner-outer namespaces.",
+      "Corresponding OFF/ON full prepared fitting contexts and selected outputs agree; student call/iteration/calibration and artifact parity all pass.",
+      "Regression negative control has0hits."
+    ],
+    "future_common_trace_required": "Record ordered request key/scope, cacheability/bypass, store eligibility/result, payload conservative byte count, post-request resident key digests/LRU order or enough bounded metadata to reproduce eviction, importance/column digest and source-miss reference. Compact metadata only; no raw fitting values/targets/models. Trace overhead included identically or truthfully charged to ON when cache-specific; common input probe remains identical both arms.",
+    "no_hit": "If no eligible repeated key occurs or all requests legitimately bypass, conclude no eligible reuse/inconclusive, notPASS or a savings claim; continue the originally fixed matrix per r2.",
+    "missed_or_false_reuse": "An eligible resident repeat missed, a nonresident/cross-scope false hit, invalid store or inconsistent trace rejects the mechanism, even if predictions happen to match."
+  },
+  "future_implementation_is_still_missing": true,
+  "tests_run": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "launches": 0,
+  "promotion": false
+}

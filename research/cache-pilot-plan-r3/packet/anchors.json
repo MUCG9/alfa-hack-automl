@@ -1,0 +1,123 @@
+{
+  "status": "fixed_anchors_not_materialized_jobs",
+  "anchors": [
+    {
+      "id": "c-trial00",
+      "source_job": "alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/inner-hpo/trial-00/job.json",
+      "source_job_sha256": "3e0b49cd3652fe3695d0b8486fe0c0e1830c1af1d599599e954081349b87ca99",
+      "source_split": "alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/inner-hpo/split.npz",
+      "source_split_sha256": "b2976180af4345100ba101553ed4fed72c68bce0f889a8d5f6ba2b2d7931fcca",
+      "recipe": {
+        "hypothesis": "Fixed equal-weight original and cross-fitted categorical feature views; compare full procedure",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "num_leaves": 63,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 5.0,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "class_weight_power": 0.5,
+          "calibrate": true,
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "feature_views": "categorical_te_pair",
+          "generic_features": "broad",
+          "feature_selection_top_k": 32,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "recipe_sha256": "c5a94d62f4492234876f3ff74fde520ae2925ad84cd425faa92640751955338d",
+      "spec_nonpath_semantics_sha256": "4fe57d6c460960dc88cb01feb60f20c0b857766dcbb2b10573727ac8ef7aa127",
+      "threads": 2,
+      "full_fit": false,
+      "fit_iterations_present": false,
+      "n_train": 87670,
+      "n_test": 41166,
+      "actual_teacher_keys": null
+    },
+    {
+      "id": "c-trial01",
+      "source_job": "alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/inner-hpo/trial-01/job.json",
+      "source_job_sha256": "fde1812bfc509ab2beab9cf91213c704e6f7154da9a5e116bbc3bd0cd4ae81c3",
+      "source_split": "alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/inner-hpo/split.npz",
+      "source_split_sha256": "b2976180af4345100ba101553ed4fed72c68bce0f889a8d5f6ba2b2d7931fcca",
+      "recipe": {
+        "hypothesis": "Fixed equal-weight original and cross-fitted categorical feature views; compare full procedure",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1200,
+          "learning_rate": 0.04,
+          "num_leaves": 122,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 2.4523024037214416,
+          "subsample": 1,
+          "colsample_bytree": 0.9238427418978695,
+          "class_weight_power": 0.5,
+          "calibrate": true,
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "feature_views": "categorical_te_pair",
+          "generic_features": "broad",
+          "feature_selection_top_k": 32,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "recipe_sha256": "f3b5ff928be6fc29596b7ee19d32797b2184bd5eb321f4218d9476a88d02c0f8",
+      "spec_nonpath_semantics_sha256": "4fe57d6c460960dc88cb01feb60f20c0b857766dcbb2b10573727ac8ef7aa127",
+      "threads": 2,
+      "full_fit": false,
+      "fit_iterations_present": false,
+      "n_train": 87670,
+      "n_test": 41166,
+      "actual_teacher_keys": null
+    },
+    {
+      "id": "r-trial00",
+      "source_job": "alfa-hack-automl/test-runs/tm1/r/automl_runs/true4/inner-hpo/trial-00/job.json",
+      "source_job_sha256": "9e5e06f4bcaa4f557249af3d6be463ae4e20d2f8467ac97ccfd875bd9d576078",
+      "source_split": "alfa-hack-automl/test-runs/tm1/r/automl_runs/true4/inner-hpo/split.npz",
+      "source_split_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+      "recipe": {
+        "hypothesis": "Log-target history model is a separate candidate; compare both forward backtests",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 127,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 8.0,
+          "subsample": 1,
+          "colsample_bytree": 0.9,
+          "generic_features": "broad",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "feature_selection_top_k": 32,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "recipe_sha256": "89190c1cce9020eaea195dc3f56055a24eb25d4e57ee6120033009a460df4dc7",
+      "spec_nonpath_semantics_sha256": "a05adec616962ff75de4249fb02992b099425c19783656e607fc36887d4c237d",
+      "threads": 2,
+      "full_fit": false,
+      "fit_iterations_present": false,
+      "n_train": 53308,
+      "n_test": 22449,
+      "actual_teacher_keys": null
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "status": "root_accepted_prospective_R3_mechanism_plan_implementation_only",
+  "protocol_sha256": "91c39fe49033c8a8c22bd2d2a12b5c5d28a9c2875154b6757044d87a8e42e4e8",
+  "latest_manifest_sha256": "132a1d797288a4a5f839fec3d9760764d3bc833540798de1535bb272a5f9ef1c",
+  "binding_order": [
+    "protocol.json",
+    "clarification-r2.json",
+    "clarification-r3.json"
+  ],
+  "reference_files_rehashed": 31,
+  "candidate_common_probe_implementation_in_progress_outside_frozen_R4": true,
+  "actual_source_archive_and_gates_still_required": true,
+  "source_gates_expected_only": {
+    "baseline": [
+      451,
+      46
+    ],
+    "candidate_if_only12added": [
+      463,
+      47
+    ]
+  },
+  "future_total_seconds": 7200,
+  "clock_assigned": false,
+  "worker_fits_started": 0,
+  "positive_mechanism_global_verified_hits_minimum": 1,
+  "LRU_replay_and_all6_parity_required": true,
+  "positive_time_uses_complete_parent_and_all3_anchors_including_reg_overhead": true,
+  "zero_hit_pair_time_is_observational": true,
+  "default_change": false,
+  "promotion": false,
+  "full_agent_quality_gain": null,
+  "official_submission": false
+}

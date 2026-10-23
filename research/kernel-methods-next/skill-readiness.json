@@ -1,0 +1,11 @@
+{
+  "status": "skill_validated_installed_no_Qwen_or_ML_effect_measured",
+  "skill_sha256": "3d18756ec6c7e1c78e81eb84795a19805fae9ece7e3d60c5ab4b08cec564f802",
+  "validation_tool": "48cd1a",
+  "actual_validation_exit_code": 0,
+  "runtime_catalog_ready": false,
+  "Qwen_skill_integration_ready": false,
+  "actual_public_fits": 0,
+  "actual_API_calls": 0,
+  "metric": null
+}

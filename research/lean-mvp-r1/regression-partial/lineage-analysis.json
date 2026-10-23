@@ -1,0 +1,1050 @@
+{
+  "status": "saved_artifact_and_source_only_lineage_analysis",
+  "utc": "2026-10-23T14:31:14.072241+00:00",
+  "scope": {
+    "new_fits": 0,
+    "API_calls": 0,
+    "tests": 0,
+    "runtime_imports": 0,
+    "raw_rows_or_prediction_scoring": 0,
+    "classification_artifacts_read": false,
+    "existing_sources_or_results_changed": false,
+    "path_base": "workspace root; all paths portable relative",
+    "parent_T6_terminal_claim": false
+  },
+  "conclusion": {
+    "T6_selected_is_same_HPO_recipe_already_measured_in_T5": true,
+    "T5_selected_is_distinct_first_Qwen_followup": true,
+    "T6_minus_T5_cut_mean": 0.3448572181777152,
+    "T6_minus_T5_primary": 0.607650100544781,
+    "T6_minus_T5_confirmation": 0.08206433581064942,
+    "observed_reason": "T5 Qwen2 proposed learning_rate=.05 plus reg_lambda=5 after the shared HPO winner; T6 instead proposed reg_lambda=15 plus colsample=.85, whose saved primary/confirmation were worse. This explains the observed candidate-set/selection lineage, not the stochastic cause of the different Qwen answer.",
+    "cap9_causal_effect_established": false,
+    "preserve_T5_best_and_V16": true,
+    "promotion": false
+  },
+  "selected": {
+    "t5": {
+      "recipe": {
+        "hypothesis": "The best recipe (38.596) may be over-regularized or under-regularized. This parameter-only ablation tests a slightly higher learning rate (0.05) and lower regularization (reg_lambda=5) to see if the model can capture more signal. It avoids the 'broad' feature failure by keeping the proven 'missing' feature set.",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.05,
+          "num_leaves": 104,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 5,
+          "subsample": 1,
+          "colsample_bytree": 0.9899657323952007,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "target_encoding_hierarchical": true,
+          "history_asof": true,
+          "history_min_periods": 3,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "artifact_recipe_canonical_sha256": "de109fcfabe19a604982358836a3831701b3ac913e1928131a0fa2279eca241e",
+      "origin": "planner-2 plans[0], experiment-07",
+      "independent_audit": {
+        "path": "work/t5-independent-r4/audit.json",
+        "sha256": "91a7c91b6f48f59485dd7ccb720b0793d6069f1c9b437696bd2323771669ca59"
+      },
+      "independently_verified_selected_metrics": {
+        "primary_rmse": 37.988491672517135,
+        "confirmation_rmse": 31.743950084928418,
+        "arithmetic_cut_mean": 34.86622087872278
+      },
+      "cut_fingerprints": {
+        "primary": {
+          "phase": "primary",
+          "metric": "rmse",
+          "value": 37.988491672517135,
+          "fitting_rows": 35000,
+          "validation_rows": 18308,
+          "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+          "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+          "prediction_sha256": "059da6d14874de803e82f0b4a40457239b7c5323460b564a2081b461ecb77f58",
+          "mixture_children": 0,
+          "forward_chronology_verified": true,
+          "validation_periods": [
+            5.0
+          ]
+        },
+        "confirmation": {
+          "phase": "confirmation",
+          "metric": "rmse",
+          "value": 31.743950084928418,
+          "fitting_rows": 22054,
+          "validation_rows": 12946,
+          "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+          "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+          "prediction_sha256": "54be140139b4a7f15192c30fa3014f2d0529664eed3aef646563ca54200997bf",
+          "mixture_children": 0,
+          "forward_chronology_verified": true,
+          "validation_periods": [
+            4.0
+          ]
+        }
+      },
+      "final_fit_iterations": 109,
+      "final_fit_status": "ok",
+      "final_submission_sha256": "08de2f7d1cd824bc629570261433e45ef60a453b5f8788b1506886ded725884c",
+      "parent_solver_report_seconds": 295.438
+    },
+    "t6": {
+      "recipe": {
+        "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 104,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 12.639692527584211,
+          "subsample": 1,
+          "colsample_bytree": 0.9899657323952007,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "target_encoding_hierarchical": true,
+          "history_asof": true,
+          "history_min_periods": 3,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "artifact_recipe_canonical_sha256": "11ab56c37b5e7a591c9cf35dbd049bed5d40a9da5fe33d51b15e8f490bf81007",
+      "origin": "inner-hpo trial-07; copied experiment-07",
+      "independent_audit": {
+        "path": "work/t6-independent-regression-r1/audit.json",
+        "sha256": "09cd760943277860f97d495302ff77f374ba448d3cf754c26aea3ef162778655"
+      },
+      "independently_verified_selected_metrics": {
+        "primary_rmse": 38.596141773061916,
+        "confirmation_rmse": 31.826014420739067,
+        "arithmetic_cut_mean": 35.21107809690049
+      },
+      "cut_fingerprints": {
+        "primary": {
+          "phase": "primary",
+          "metric": "rmse",
+          "value": 38.596141773061916,
+          "fitting_rows": 35000,
+          "validation_rows": 18308,
+          "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+          "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+          "prediction_sha256": "dab0c0dd4dd623c20f07921af02ebd5e9adea08e5d86fa71e6413cf4f68f5a20",
+          "mixture_children": 0,
+          "forward_chronology_verified": true,
+          "validation_periods": [
+            5.0
+          ]
+        },
+        "confirmation": {
+          "phase": "confirmation",
+          "metric": "rmse",
+          "value": 31.826014420739067,
+          "fitting_rows": 22054,
+          "validation_rows": 12946,
+          "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+          "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+          "prediction_sha256": "c51805e3f1c56399ef24be5cbcf497e7c8c91e8e173734823ecf6cfa0eb9c3b4",
+          "mixture_children": 0,
+          "forward_chronology_verified": true,
+          "validation_periods": [
+            4.0
+          ]
+        }
+      },
+      "final_fit_iterations": 190,
+      "final_fit_status": "ok",
+      "final_submission_sha256": "a36238ac78edf76fbab1fa11df2836c210497ab3d8d700bbac62f5d2b6d0439a",
+      "parent_solver_report_seconds": 254.125
+    }
+  },
+  "protected_control": {
+    "artifact": {
+      "path": "work/m2packet/control-r.json",
+      "sha256": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b"
+    },
+    "semantic_signature": "773dfb566afd9b2ad6c47853ffaa6898392c009fd41c9202d89184b3c50ceb9e",
+    "historical_full_procedure_cut_mean": 35.44723155783769,
+    "current_matched_measurements_from_independent_audit": {
+      "cuts": [
+        {
+          "phase": "primary",
+          "current": 38.596141773061916,
+          "protected_control": 38.902803731334785,
+          "delta_current_minus_control": -0.30666195827286913,
+          "primary_improves": true
+        },
+        {
+          "phase": "confirmation",
+          "current": 31.826014420739067,
+          "protected_control": 31.991659384340597,
+          "delta_current_minus_control": -0.16564496360152958,
+          "primary_improves": true
+        }
+      ],
+      "each_cut_primary_gate_passed": true,
+      "class_each_cut_gate_passed": true,
+      "matched_saved_primary_and_confirmation_independently_recomputed": true,
+      "fresh_protected_control_full_refit": false,
+      "scope": "Exact preserved control recipe rerun on the same two fitting/validation partitions; final refit audited only for the selected procedure"
+    },
+    "T5_mean": 34.86622087872278,
+    "T6_mean": 35.21107809690049
+  },
+  "data_and_HPO_identity": {
+    "provenance_input_hashes_equal": true,
+    "input_hashes_verified_by_both_independent_audits": {
+      "input:train": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775",
+      "input:test": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
+      "input:sample_submission": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1",
+      "input:data_dictionary": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
+      "task": "33f743ead4840336856cb9db8e25867f44512231beebff927326e8580e14d9d0"
+    },
+    "non_path_task_spec_equal": true,
+    "threads": 2,
+    "full_fit_trial": false,
+    "primary_split_bytes_equal": true,
+    "confirmation_split_bytes_equal": true,
+    "hpo_split_bytes_equal": true,
+    "hpo_split": {
+      "method": "forward_observation_period",
+      "time_column": "Year_Factor",
+      "cut": 4.0,
+      "offset": 0,
+      "train_rows": 22054,
+      "validation_rows": 12946,
+      "excluded_future_rows": 0,
+      "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+      "local_split_sha256": "b35cb0132841433a53e8aa18f0a08b1b484d2635eb299fa922c266299af1ea8e",
+      "scope": "inside_outer_fitting_rows_only"
+    },
+    "same_all8_trial_params_recipes_phases_values_and_iterations": true,
+    "sampler": "tpe",
+    "seed": 137,
+    "maximum_trials": 8,
+    "startup_trials": 3,
+    "optuna_version": "4.2.1",
+    "exact_trial7": {
+      "number": 7,
+      "params": {
+        "num_leaves": 104,
+        "reg_lambda": 12.639692527584211,
+        "colsample_bytree": 0.9899657323952007
+      },
+      "recipe_sha256": "ff20de3a17bffeefa9f3341e237dee9d267f1323c295b1401acfd670ed6b91af",
+      "recipe": {
+        "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
+        "engine": "lightgbm",
+        "params": {
+          "iterations": 1600,
+          "learning_rate": 0.035,
+          "num_leaves": 104,
+          "max_depth": -1,
+          "min_child_samples": 25,
+          "reg_lambda": 12.639692527584211,
+          "subsample": 1,
+          "colsample_bytree": 0.9899657323952007,
+          "generic_features": "missing",
+          "subsample_freq": 0,
+          "min_iterations": 100,
+          "target_encoding": true,
+          "target_encoding_auto_groups": true,
+          "target_encoding_smoothing": 2,
+          "log_target": true,
+          "target_encoding_hierarchical": true,
+          "history_asof": true,
+          "history_min_periods": 3,
+          "early_metric": "primary",
+          "nested_stopping": true
+        },
+        "feature_code": ""
+      },
+      "sampling_phase": "guided",
+      "completed_before_sampling": 7,
+      "objective_valid": true,
+      "status": "ok",
+      "value": 31.826014420739067,
+      "fit_iterations": 160
+    },
+    "trial7_predictions_bytes_equal": true,
+    "confirmation_is_reused_HPO_tuning_holdout": true,
+    "validation_limit": "Independent audit verifies artifacts/metrics, not statistical independence: HPO inner tuning holdout equals the confirmation partition; no blind-confirmation claim."
+  },
+  "Qwen": {
+    "t5": {
+      "initial_call": {
+        "status": "ok",
+        "wall_seconds": 18.0,
+        "usage": {
+          "completion_tokens": 691,
+          "prompt_tokens": 8178,
+          "total_tokens": 8869,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0,
+            "cache_write_tokens": 0,
+            "cache_creation_tokens": 0
+          },
+          "cost": 0.194824186258
+        },
+        "finish_reason": "stop",
+        "compatibility_retry": false,
+        "reasoning_requested": false,
+        "reasoning_effort_requested": "off",
+        "response_model": "qwen/qwen3.8-27b",
+        "reasoning_tokens_reported": 0,
+        "attempts": 1,
+        "usage_complete": true
+      },
+      "initial_parsed_plan_count": 1,
+      "scheduled_initial_qwen": [
+        {
+          "source": "qwen",
+          "engine": "catboost",
+          "status": "scheduled",
+          "signature": "6e4cf2b3a066cddfca52253284e6f6ea63a08b1b47c0c8530d1863652a2e7acf",
+          "selector_applied": false
+        }
+      ],
+      "followup_call": {
+        "status": "ok",
+        "wall_seconds": 5.281,
+        "usage": {
+          "completion_tokens": 954,
+          "prompt_tokens": 10110,
+          "total_tokens": 11064,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0,
+            "cache_write_tokens": 0,
+            "cache_creation_tokens": 0
+          },
+          "cost": 0.4647761020500001
+        },
+        "finish_reason": "stop",
+        "compatibility_retry": false,
+        "reasoning_requested": false,
+        "reasoning_effort_requested": "off",
+        "response_model": "qwen/qwen3.8-27b",
+        "reasoning_tokens_reported": 0,
+        "attempts": 1,
+        "usage_complete": true
+      },
+      "followup_rejections": [],
+      "followup_context_canonical_sha256": "5d29484cd8cf2e330d8fdc8af416c1309caccc466a1dabb79773960743d1e3bb",
+      "feedback_record_count": 7,
+      "remaining_seconds": 1800,
+      "objective": {
+        "metric": "rmse",
+        "greater_is_better": false,
+        "best_search_value": 38.596141773061916
+      },
+      "best_recipe_canonical_sha256": "11ab56c37b5e7a591c9cf35dbd049bed5d40a9da5fe33d51b15e8f490bf81007",
+      "proposals": [
+        {
+          "plan_index": 0,
+          "recipe_canonical_sha256": "de109fcfabe19a604982358836a3831701b3ac913e1928131a0fa2279eca241e",
+          "hypothesis": "The best recipe (38.596) may be over-regularized or under-regularized. This parameter-only ablation tests a slightly higher learning rate (0.05) and lower regularization (reg_lambda=5) to see if the model can capture more signal. It avoids the 'broad' feature failure by keeping the proven 'missing' feature set.",
+          "feature_code_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "feature_code_characters": 0,
+          "changed_params_from_hpo": {
+            "learning_rate": {
+              "hpo": 0.035,
+              "proposal": 0.05
+            },
+            "reg_lambda": {
+              "hpo": 12.639692527584211,
+              "proposal": 5
+            }
+          },
+          "admitted_experiment_indices": [
+            7
+          ],
+          "unattempted": false,
+          "unattempted_metric": "not_applicable",
+          "confirmation_saved_parent_records": [
+            {
+              "rmse_saved_parent_record": 31.743950084928418,
+              "fit_iterations": 100
+            }
+          ]
+        },
+        {
+          "plan_index": 1,
+          "recipe_canonical_sha256": "09d37744049bdcd29eed2566987243471547dbcd4a9cca6320e64e34345ea5f8",
+          "hypothesis": "The 'broad' feature set failed because generic features added noise. This feature-only ablation adds two explicit interaction features: floor_area * heating_degree_days and floor_area * cooling_degree_days. These capture the physical relationship between building size and weather-driven energy demand, avoiding the noise of generic features.",
+          "feature_code_sha256": "bd63b38c850f0924c67abde6e7377cd14b0c6783af912e7f468c7fbfade275f8",
+          "feature_code_characters": 199,
+          "changed_params_from_hpo": {},
+          "admitted_experiment_indices": [
+            8
+          ],
+          "unattempted": false,
+          "unattempted_metric": "not_applicable",
+          "confirmation_saved_parent_records": []
+        }
+      ]
+    },
+    "t6": {
+      "initial_call": {
+        "status": "ok",
+        "wall_seconds": 14.156,
+        "usage": {
+          "completion_tokens": 713,
+          "prompt_tokens": 8188,
+          "total_tokens": 8901,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0,
+            "cache_write_tokens": 0,
+            "cache_creation_tokens": 0
+          },
+          "cost": 0.1360548459205
+        },
+        "finish_reason": "stop",
+        "compatibility_retry": false,
+        "reasoning_requested": false,
+        "reasoning_effort_requested": "off",
+        "response_model": "qwen/qwen3.8-27b",
+        "reasoning_tokens_reported": 0,
+        "attempts": 1,
+        "usage_complete": true
+      },
+      "initial_parsed_plan_count": 2,
+      "scheduled_initial_qwen": [
+        {
+          "source": "qwen",
+          "engine": "catboost",
+          "status": "scheduled",
+          "signature": "6e4cf2b3a066cddfca52253284e6f6ea63a08b1b47c0c8530d1863652a2e7acf",
+          "selector_applied": false
+        },
+        {
+          "source": "qwen",
+          "engine": "lightgbm",
+          "status": "scheduled",
+          "signature": "b7f6968e918bd82efddefd4b389c4db1b9cc50f998340c3e2e3cfbb7ce17839d",
+          "selector_applied": false
+        }
+      ],
+      "followup_call": {
+        "status": "ok",
+        "wall_seconds": 18.953,
+        "usage": {
+          "completion_tokens": 1028,
+          "prompt_tokens": 10386,
+          "total_tokens": 11414,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0,
+            "cache_write_tokens": 0,
+            "cache_creation_tokens": 0
+          },
+          "cost": 0.314853906536
+        },
+        "finish_reason": "stop",
+        "compatibility_retry": false,
+        "reasoning_requested": false,
+        "reasoning_effort_requested": "off",
+        "response_model": "qwen/qwen3.8-27b",
+        "reasoning_tokens_reported": 0,
+        "attempts": 1,
+        "usage_complete": true
+      },
+      "followup_rejections": [],
+      "followup_context_canonical_sha256": "cba2b3f025731b358d380948b3a2de1ea2dbbc8e814f27eb59181b82bb8e4142",
+      "feedback_record_count": 8,
+      "remaining_seconds": 1806,
+      "objective": {
+        "metric": "rmse",
+        "greater_is_better": false,
+        "best_search_value": 38.596141773061916
+      },
+      "best_recipe_canonical_sha256": "11ab56c37b5e7a591c9cf35dbd049bed5d40a9da5fe33d51b15e8f490bf81007",
+      "proposals": [
+        {
+          "plan_index": 0,
+          "recipe_canonical_sha256": "0ac9b7f23b513dbb6a839f727189b76c23091f20dc7d028078248b33d9843dbf",
+          "hypothesis": "The best recipe (38.60) uses colsample_bytree ~0.99, implying high feature correlation and potential overfitting to specific weather combinations; reducing feature sampling to 0.85 will force the model to rely on more robust, generalizable patterns. This addresses the lack of regularization diversity compared to the worse-performing baseline (48.97) which used 0.8.",
+          "feature_code_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "feature_code_characters": 0,
+          "changed_params_from_hpo": {
+            "colsample_bytree": {
+              "hpo": 0.9899657323952007,
+              "proposal": 0.85
+            },
+            "reg_lambda": {
+              "hpo": 12.639692527584211,
+              "proposal": 15.0
+            }
+          },
+          "admitted_experiment_indices": [
+            8
+          ],
+          "unattempted": false,
+          "unattempted_metric": "not_applicable",
+          "confirmation_saved_parent_records": [
+            {
+              "rmse_saved_parent_record": 33.1288361923557,
+              "fit_iterations": 110
+            }
+          ]
+        },
+        {
+          "plan_index": 1,
+          "recipe_canonical_sha256": "581636c454852f2f0bfc5fc7acc04584426360fe46588fae377d88c2fb6d9444",
+          "hypothesis": "The current model treats monthly temperatures as independent features, missing the seasonal amplitude and thermal stress dynamics that drive energy consumption; adding seasonal temperature range (max-min) and heating/cooling load proxies will provide explicit signals for HVAC intensity. This addresses the potential under-utilization of temporal weather structure in the 38.60 baseline.",
+          "feature_code_sha256": "747fbb12261c033157afb2d922db0d0ff1e4248ff7d10ef9b6f4efb01ffc3e17",
+          "feature_code_characters": 2577,
+          "changed_params_from_hpo": {},
+          "admitted_experiment_indices": [],
+          "unattempted": true,
+          "unattempted_metric": null,
+          "confirmation_saved_parent_records": []
+        }
+      ]
+    }
+  },
+  "context_comparison": {
+    "identical_top_level_fields": [
+      "round",
+      "objective",
+      "instruction",
+      "best_recipe",
+      "allowed_feature_columns",
+      "forbidden_feature_columns",
+      "data_summary",
+      "features",
+      "column_descriptions",
+      "validation_hint",
+      "split",
+      "task_excerpt"
+    ],
+    "differing_top_level_fields": [
+      "feedback_read_first",
+      "remaining_seconds"
+    ],
+    "feedback_difference": "T6 contains an additional initial LightGBM candidate with primary RMSE48.973170708371626 before HPO. Common previous records differ in wall time, initial CatBoost hypothesis text, and the shifted HPO position. Remaining1800 vs1806. Objective, best recipe, schema/statistics/task text/split/instructions identical.",
+    "candidate_replay_cache": "The inspected gateway issues a fresh request directly; it has no local response/candidate cache lookup, and runner does not seed T5 selected recipe into T6. Saved Qwen call receipts both show provider cached_tokens=0. This does not certify all remote provider internals.",
+    "generation": "Gateway temperature=.4; no seed sent/exposed. Same model qwen/qwen3.8-27b and effort off; no deterministic Qwen counterfactual is available."
+  },
+  "admission": {
+    "manifest_limits": {
+      "t5": 14,
+      "t6": 9
+    },
+    "observed_outer_experiment_count": {
+      "t5": 14,
+      "t6": 9
+    },
+    "initial_unique_scheduled_count": {
+      "t5": 6,
+      "t6": 7
+    },
+    "source_rule": "Same frozen runner: consume initial FIFO, then enqueue tuned HPO recipe when empty, then call Qwen when empty and enqueue unseen proposals FIFO; no third planner call while queue remains. limit=min(max_experiments,14).",
+    "trace": [
+      {
+        "run": "t5",
+        "index_zero_based": 0,
+        "status": "ok",
+        "origin": "preserved_complete_control",
+        "recipe_canonical_sha256": "b1f2594e1a41a6fc7a95b1cc2480047c8bcca1a2aeb6862bdcfb6225975a996c",
+        "engine": "ensemble",
+        "rmse_saved_parent_record": 38.90280373133479,
+        "fit_iterations": [
+          173,
+          600
+        ],
+        "selected": false
+      },
+      {
+        "run": "t5",
+        "index_zero_based": 1,
+        "status": "ok",
+        "origin": "preserved_single_anchor",
+        "recipe_canonical_sha256": "049136473c313a8ac90215ea8cde094bca87564a33fa6a26d92b3d88327a3531",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 39.05167816956453,
+        "fit_iterations": 173,
+        "selected": false
+      },
+      {
+        "run": "t5",
+        "index_zero_based": 2,
+        "status": "ok",
+        "origin": "separate_feature_engineering",
+        "recipe_canonical_sha256": "8652c7dc7bcd4cef0ade507396896681f5ef87851eec5c31bb77247a8f1d4d54",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 39.2368172266269,
+        "fit_iterations": 169,
+        "selected": false
+      },
+      {
+        "run": "t5",
+        "index_zero_based": 3,
+        "status": "ok",
+        "origin": "baseline_family",
+        "recipe_canonical_sha256": "f7dd3a9862b541dfd8fcf07d5cc8a9869db5c413b412e4a54c880d4f5c8388c0",
+        "engine": "catboost",
+        "rmse_saved_parent_record": 51.974479167825464,
+        "fit_iterations": 600,
+        "selected": false
+      },
+      {
+        "run": "t5",
+        "index_zero_based": 4,
+        "status": "ok",
+        "origin": "baseline_family",
+        "recipe_canonical_sha256": "926a2534944aa968f85999aef9396427b68101753ae24f9264f89a2d69a2a117",
+        "engine": "xgboost",
+        "rmse_saved_parent_record": 84.4583995790076,
+        "fit_iterations": 404,
+        "selected": false
+      },
+      {
+        "run": "t5",
+        "index_zero_based": 5,
+        "status": "ok",
+        "origin": "qwen",
+        "recipe_canonical_sha256": "b7af0160052e5e7f12c883d5f06e31eb3c8aa9c9ad1a79fab8d169cf63a4f4ce",
+        "engine": "catboost",
+        "rmse_saved_parent_record": 45.302989306839926,
+        "fit_iterations": 467,
+        "selected": false
+      },
+      {
+        "run": "t5",
+        "index_zero_based": 6,
+        "status": "ok",
+        "origin": "inner_hpo",
+        "recipe_canonical_sha256": "11ab56c37b5e7a591c9cf35dbd049bed5d40a9da5fe33d51b15e8f490bf81007",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 38.596141773061916,
+        "fit_iterations": 221,
+        "selected": false
+      },
+      {
+        "run": "t5",
+        "index_zero_based": 7,
+        "status": "ok",
+        "origin": "qwen_followup",
+        "recipe_canonical_sha256": "de109fcfabe19a604982358836a3831701b3ac913e1928131a0fa2279eca241e",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 37.988491672517135,
+        "fit_iterations": 119,
+        "selected": true
+      },
+      {
+        "run": "t5",
+        "index_zero_based": 8,
+        "status": "ok",
+        "origin": "qwen_followup",
+        "recipe_canonical_sha256": "09d37744049bdcd29eed2566987243471547dbcd4a9cca6320e64e34345ea5f8",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 39.42302761862992,
+        "fit_iterations": 275,
+        "selected": false
+      },
+      {
+        "run": "t5",
+        "index_zero_based": 9,
+        "status": "ok",
+        "origin": "fallback",
+        "recipe_canonical_sha256": "898d2e2600e38ebfb549d9941fe99dd52b217fa7c6f47032790f567e89a5adcd",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 39.823056289223544,
+        "fit_iterations": 216,
+        "selected": false
+      },
+      {
+        "run": "t5",
+        "index_zero_based": 10,
+        "status": "ok",
+        "origin": "fallback",
+        "recipe_canonical_sha256": "1e59e554d272ffacaabba3be92326bf220fd00d1ace42f902135a53c12913d45",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 39.30935609262135,
+        "fit_iterations": 191,
+        "selected": false
+      },
+      {
+        "run": "t5",
+        "index_zero_based": 11,
+        "status": "ok",
+        "origin": "fallback",
+        "recipe_canonical_sha256": "313a0dce90a361baa18c8cb811d2822978089ab58b3ba95d6892090b0d654347",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 39.715395320789305,
+        "fit_iterations": 212,
+        "selected": false
+      },
+      {
+        "run": "t5",
+        "index_zero_based": 12,
+        "status": "ok",
+        "origin": "fallback",
+        "recipe_canonical_sha256": "7f1e7302990be2701abab9aa07c898957d91cb130b5149b6fe8be7634dc9380b",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 39.43598646836948,
+        "fit_iterations": 247,
+        "selected": false
+      },
+      {
+        "run": "t5",
+        "index_zero_based": 13,
+        "status": "ok",
+        "origin": "fallback",
+        "recipe_canonical_sha256": "700f791621c15e2e3c5a0cdea1a55d492cc4632e972611a7c011c1ae159683a6",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 39.819070050534265,
+        "fit_iterations": 176,
+        "selected": false
+      },
+      {
+        "run": "t6",
+        "index_zero_based": 0,
+        "status": "ok",
+        "origin": "preserved_complete_control",
+        "recipe_canonical_sha256": "b1f2594e1a41a6fc7a95b1cc2480047c8bcca1a2aeb6862bdcfb6225975a996c",
+        "engine": "ensemble",
+        "rmse_saved_parent_record": 38.90280373133479,
+        "fit_iterations": [
+          173,
+          600
+        ],
+        "selected": false
+      },
+      {
+        "run": "t6",
+        "index_zero_based": 1,
+        "status": "ok",
+        "origin": "preserved_single_anchor",
+        "recipe_canonical_sha256": "049136473c313a8ac90215ea8cde094bca87564a33fa6a26d92b3d88327a3531",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 39.05167816956453,
+        "fit_iterations": 173,
+        "selected": false
+      },
+      {
+        "run": "t6",
+        "index_zero_based": 2,
+        "status": "ok",
+        "origin": "separate_feature_engineering",
+        "recipe_canonical_sha256": "8652c7dc7bcd4cef0ade507396896681f5ef87851eec5c31bb77247a8f1d4d54",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 39.2368172266269,
+        "fit_iterations": 169,
+        "selected": false
+      },
+      {
+        "run": "t6",
+        "index_zero_based": 3,
+        "status": "ok",
+        "origin": "baseline_family",
+        "recipe_canonical_sha256": "f7dd3a9862b541dfd8fcf07d5cc8a9869db5c413b412e4a54c880d4f5c8388c0",
+        "engine": "catboost",
+        "rmse_saved_parent_record": 51.974479167825464,
+        "fit_iterations": 600,
+        "selected": false
+      },
+      {
+        "run": "t6",
+        "index_zero_based": 4,
+        "status": "ok",
+        "origin": "baseline_family",
+        "recipe_canonical_sha256": "926a2534944aa968f85999aef9396427b68101753ae24f9264f89a2d69a2a117",
+        "engine": "xgboost",
+        "rmse_saved_parent_record": 84.4583995790076,
+        "fit_iterations": 404,
+        "selected": false
+      },
+      {
+        "run": "t6",
+        "index_zero_based": 5,
+        "status": "ok",
+        "origin": "qwen",
+        "recipe_canonical_sha256": "7b84437435486fcc2ad3ecc2a7aa05cdbfd903cebae48f182ac4663642dafdc1",
+        "engine": "catboost",
+        "rmse_saved_parent_record": 45.302989306839926,
+        "fit_iterations": 467,
+        "selected": false
+      },
+      {
+        "run": "t6",
+        "index_zero_based": 6,
+        "status": "ok",
+        "origin": "qwen",
+        "recipe_canonical_sha256": "3ebd1861b581dc47232ea08f76b6a26abb99989fa0066399b12077cc2c4d0bdc",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 48.973170708371626,
+        "fit_iterations": 984,
+        "selected": false
+      },
+      {
+        "run": "t6",
+        "index_zero_based": 7,
+        "status": "ok",
+        "origin": "inner_hpo",
+        "recipe_canonical_sha256": "11ab56c37b5e7a591c9cf35dbd049bed5d40a9da5fe33d51b15e8f490bf81007",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 38.596141773061916,
+        "fit_iterations": 221,
+        "selected": true
+      },
+      {
+        "run": "t6",
+        "index_zero_based": 8,
+        "status": "ok",
+        "origin": "qwen_followup",
+        "recipe_canonical_sha256": "0ac9b7f23b513dbb6a839f727189b76c23091f20dc7d028078248b33d9843dbf",
+        "engine": "lightgbm",
+        "rmse_saved_parent_record": 38.74484587175323,
+        "fit_iterations": 267,
+        "selected": false
+      }
+    ],
+    "T5_winner_semantically_present_anywhere_in_T6_candidates": false,
+    "T6_recipe_objects_examined_excluding_hypothesis": 28,
+    "T5_winner_matches": [],
+    "would_T5_winner_fit_max9": {
+      "observed_T5_prefix": true,
+      "evidence": "T5 initial6 -> HPO outer slot6 -> Qwen2 plan0 winner slot7; actual job/result exist, before slot8 and cap9. Not inferred from index alone: initial receipts, source FIFO/HPO scheduling and plan0/experiment exact equality checked.",
+      "conditional_T6_same_winner_as_first_followup": true,
+      "conditional_evidence": "T6 initial7 -> HPO slot7 -> first Qwen2 slot8, so substituting the known T5 plan0 there would admit it under9; actual Qwen did not produce it. No counterfactual model run or causal effect claimed."
+    },
+    "T6_plan1_cut_off_by_limit": true,
+    "T6_unattempted_plan1_metric": null,
+    "cannot_infer": "Larger cap would admit the different T6 FE proposal and fallbacks, not automatically regenerate T5 winner. Its outcome is unknown. Qwen variation, prompt feedback and max-experiment scheduling are confounded."
+  },
+  "source_comparison": {
+    "flat_python_file_counts": {
+      "t5": 67,
+      "t6": 67
+    },
+    "differing_flat_files": {
+      "automl_model_catboost.py": {
+        "t5": "b9366d4864ecd0493b5d0deaa38f4c901ba93df630e9626116e282f62329af77",
+        "t6": "bc4934d9146fb5925df1ce40220c0cd87f143c13213b3c4029266bc9a5cd10c4"
+      }
+    },
+    "runner_stages_gateway_identical": true,
+    "source_archive_sha256": {
+      "t5": "cfd5ff3b44f77227b15b130c16762e6c8349ac53f02a53462883680aad436459",
+      "t6": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0"
+    },
+    "boundary": "Archive/backend differences are recorded; no isolated causal model-backend attribution from this comparison."
+  },
+  "future_single_factor_hypothesis": {
+    "proposal_only": "Add the exact verified T5 selected regression component as an explicit immutable prior-winner seed alongside unchanged V16 complete control, rather than relying on Qwen rediscovery.",
+    "evidence": "T6 initial/proposal/HPO/experiment recipes do not include the executable T5 winner; both protected V16 and T5 artifacts remain retained.",
+    "required_future_controls": "Predeclare dedup/signature and which fixed queue slot it occupies, equal fixed caps/inputs/splits/source, preserve V16, and evaluate whole-procedure selection/refit. Adding a seed consumes admission/time; no unmeasured gain claim or current-T6 change."
+  },
+  "evidence_sha256": {
+    "work/t5/r-seal.json": "491c71c105527b234ca75633a0646fc5661194281160de3b501f26c5eaec0858",
+    "work/t5/verification-plan.json": "067a35a95795dfeed88217b534e9205fc3a66dc60069a48cc6160ba3c3914e0d",
+    "work/t5/r/supervisor.json": "937afd61618a23ee2fb352cfe2c62effcf71b78fc10a59f060d9f48ae8354e59",
+    "work/t5/r/automl_runs/repair4/report.json": "6f75caecac002984ae14217fd6185386cd42e4ba1fcbeed11d2a0f16a89adce9",
+    "work/t5/r/automl_runs/repair4/initial-data-assessment.json": "6ef118fb7bfb77f7c4988e8232a8d5bf4f53eef058b03df139661eba48e19e84",
+    "work/t5/r/automl_runs/repair4/planner-2.json": "b1393bdc2b15cb5a518bbc03f56f377eb2cc40a5dedd1d434e78b91d0471970e",
+    "work/t5/r/automl_runs/repair4/provenance.json": "90417c1020fd5a0621d0ab9f444b02f35629adaa3ebe43f880538e9597fc3ba9",
+    "work/t5/r/automl_runs/repair4/task_spec.json": "b48ed68730843314206ae9b39630abf73e4615222b58d915f6cc3708333ca4f6",
+    "work/t5/r/automl_runs/repair4/split.json": "0e328caf8c99565f8cc177ff6e171f49830448842ab286073e41b43b73cd06c5",
+    "work/t5/r/automl_runs/repair4/split.npz": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+    "work/t5/r/automl_runs/repair4/confirmation_split.json": "f6260ad85855f172cd45b53e0382311aff98df7f8d1312e7c212208ab0ee41bf",
+    "work/t5/r/automl_runs/repair4/confirmation_split.npz": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+    "work/t5/r/automl_runs/repair4/inner-hpo/hpo.json": "ddf16b1e966d4da0eb4abba40f446fdbebcfdf6a31f63f271d124d93c66a7167",
+    "work/t5/r/automl_runs/repair4/inner-hpo/split.npz": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+    "work/t5/r/automl_runs/repair4/inner-hpo/trial-07/job.json": "a19f2852e34c2594922133c468bafb97872df3a11f5da113a7d8a8e8204262aa",
+    "work/t5/r/automl_runs/repair4/inner-hpo/trial-07/result.json": "ee97a282c57ec28a5a29e3d15cb9bda7b88f18263a7b19519e9f96602e244796",
+    "work/t5/r/automl_runs/repair4/inner-hpo/trial-07/validation_predictions.csv": "c51805e3f1c56399ef24be5cbcf497e7c8c91e8e173734823ecf6cfa0eb9c3b4",
+    "work/t5/r/automl_runs/repair4/final-fit/result.json": "f6f8a8aa878ba013ecb1a6eb10fb02207fd97a2e65168dd60a3d9c21b4c4017a",
+    "work/t5/r/automl_runs/repair4/final-fit/submission.csv": "08de2f7d1cd824bc629570261433e45ef60a453b5f8788b1506886ded725884c",
+    "work/t5/r/automl_runs/repair4/experiment-00/job.json": "5b14cef68547ce5ea86fe552eef80b4135b284bddaa0ca6e05589e45fd18462d",
+    "work/t5/r/automl_runs/repair4/experiment-00/result.json": "768ec378f8a40d8eaea2a1a3ec3c2dbcee674be304f652afd786ca81ca981497",
+    "work/t5/r/automl_runs/repair4/experiment-00/validation_predictions.csv": "7715ac9ab576c17d8b01db7d80cb2485d2564d75ac18838de9c53fa15131c4c9",
+    "work/t5/r/automl_runs/repair4/experiment-01/job.json": "af965ea36e831731e8b8731c02b0db6da28bfbd529c1a30ee4cf7fca470afff3",
+    "work/t5/r/automl_runs/repair4/experiment-01/result.json": "de9d182beddf7ef53c5cf32c61f499488c6fc374a8a88829e65d7cf4fe386498",
+    "work/t5/r/automl_runs/repair4/experiment-01/validation_predictions.csv": "e78d320cdb7b77f66900713642ea745ec537d4292a004aced3133eb6e6deb0e7",
+    "work/t5/r/automl_runs/repair4/experiment-02/job.json": "5dd19231b15eca3a78584e7862270b36d6479390c440c69012f7477de2bdc68e",
+    "work/t5/r/automl_runs/repair4/experiment-02/result.json": "48889144234de46ad08505d7c49615b433d79495f3e0aaab5f0a4ec6b39105bb",
+    "work/t5/r/automl_runs/repair4/experiment-02/validation_predictions.csv": "3cec5baf8e476cb932aa5efca333eeaa2ea94f43e0131558c7d0ddef7cd6b343",
+    "work/t5/r/automl_runs/repair4/experiment-03/job.json": "5535fb8fbcd2e2d754625e306a6b6aff7c43a9a393552e1af832ab299b0f9faa",
+    "work/t5/r/automl_runs/repair4/experiment-03/result.json": "d4324f364525edaccf501f85714df074c30d092bf6a449a6f37d40be0f294490",
+    "work/t5/r/automl_runs/repair4/experiment-03/validation_predictions.csv": "d408708e3cc97ecb486a248b7b5d9a137a28817a5af55da3f49c249a747994ed",
+    "work/t5/r/automl_runs/repair4/experiment-04/job.json": "266d53c1d1bacd979480b31dc26928e242b9f2f7ba764a1b50a3a7babeecd517",
+    "work/t5/r/automl_runs/repair4/experiment-04/result.json": "5ed2de61c49b7064b0a5f1b300611e5c1966d22db0465bc42823c014f5f8049e",
+    "work/t5/r/automl_runs/repair4/experiment-04/validation_predictions.csv": "3c95f749b63f52035ce4c7c64771e9494979e27ca95e459fdc030b38ca4c3d47",
+    "work/t5/r/automl_runs/repair4/experiment-05/job.json": "3cf57f4dc294f865d7cca12a94e5ba0c47ee9ae763eff486ce407e8591d9d746",
+    "work/t5/r/automl_runs/repair4/experiment-05/result.json": "c9543df20b60ef74448f61c3a77ca888dbb518b7124fa28f58ff2886593eea33",
+    "work/t5/r/automl_runs/repair4/experiment-05/validation_predictions.csv": "999d98df3f5bbab8b88c963920168a74a0e4ca22ebac94dbd4a18843bca93c37",
+    "work/t5/r/automl_runs/repair4/experiment-06/job.json": "5375a6140473f63b2fc744dab9e0d16ac74661246b19da257205250d61a24145",
+    "work/t5/r/automl_runs/repair4/experiment-06/result.json": "2b70cf365c7196ffff833a96926186cfb73ed888de3b07c3979de6f0dbff0773",
+    "work/t5/r/automl_runs/repair4/experiment-06/validation_predictions.csv": "dab0c0dd4dd623c20f07921af02ebd5e9adea08e5d86fa71e6413cf4f68f5a20",
+    "work/t5/r/automl_runs/repair4/experiment-07/job.json": "7fb163c5c6ffa9fe27629e661a59ebd8c09dd016a15f8237c5855a9c0e56fec2",
+    "work/t5/r/automl_runs/repair4/experiment-07/result.json": "061907c9bd4462b08bbda79f728f4647e2ebf44bd70e23539f23cbef5c60f156",
+    "work/t5/r/automl_runs/repair4/experiment-07/validation_predictions.csv": "059da6d14874de803e82f0b4a40457239b7c5323460b564a2081b461ecb77f58",
+    "work/t5/r/automl_runs/repair4/experiment-08/job.json": "81cde86aa9d2b2aff3a14a015f066c5a87dd435e6c13fad889f7355b4b30a2aa",
+    "work/t5/r/automl_runs/repair4/experiment-08/result.json": "b15bb807fa5cff768836bd8a4138434914d1574e4c9a6f0aa40052bf3362e119",
+    "work/t5/r/automl_runs/repair4/experiment-08/validation_predictions.csv": "ddc652c5b9778e0f8c17e0938bf77aa9a74ee302fc5419d5edcf8da54af62475",
+    "work/t5/r/automl_runs/repair4/experiment-09/job.json": "f77bf3025449e741cb6815d3fe00268629f8669eeb6c0ac1922da1cf32f3fd57",
+    "work/t5/r/automl_runs/repair4/experiment-09/result.json": "47f89686867873a6df77f85741540d4d8954ff72827893a948cb7a15e4438fe9",
+    "work/t5/r/automl_runs/repair4/experiment-09/validation_predictions.csv": "de5163d0197b96dfa986344f82086a882a86425ebd3273c256acb31d3897ba32",
+    "work/t5/r/automl_runs/repair4/experiment-10/job.json": "3d5558c8ecddfade55d3197ef7d82269f6ac3f9b02c6796313376f9e96cc3d52",
+    "work/t5/r/automl_runs/repair4/experiment-10/result.json": "e56d30418f14d9c8b04fc003d08115599365e96dcda6bac496b5d5bb77125d57",
+    "work/t5/r/automl_runs/repair4/experiment-10/validation_predictions.csv": "aa5948e18df85e19e92fdde2e496e75b9dffc2d92d143a08db65e9930a593f91",
+    "work/t5/r/automl_runs/repair4/experiment-11/job.json": "d4f7fbbdfeb4a66f8afecf8504e300dd0a5a17591fb98406f833a1c643590d8f",
+    "work/t5/r/automl_runs/repair4/experiment-11/result.json": "280c123cd4ddc1e7484ab586ff41d1a20a5d9fa135e0f744d4157ebdcb4e23ad",
+    "work/t5/r/automl_runs/repair4/experiment-11/validation_predictions.csv": "6fed16199768b667c2f0ac6c1cb4a5b2387ee627bafc09a69ad3ab66c9f88872",
+    "work/t5/r/automl_runs/repair4/experiment-12/job.json": "a37ab16d1686c2ce298415fd71b394de6a86a7a27990f718a99f1b7f110f80bc",
+    "work/t5/r/automl_runs/repair4/experiment-12/result.json": "ab4bec8c2fe689147293b70cbc636d27b476f75793fe036eb55e61380afd2999",
+    "work/t5/r/automl_runs/repair4/experiment-12/validation_predictions.csv": "dc019fb6a9787f71401aee34c353f8f119f7cecf4e3f09937bc1f402b2bb7da9",
+    "work/t5/r/automl_runs/repair4/experiment-13/job.json": "1ec51701dc804e324953a574604d680a29c03f7cc66ba337f65d558dc75537f8",
+    "work/t5/r/automl_runs/repair4/experiment-13/result.json": "dfef6074e9b9d07fb3cbed87ac16658c72aa0e571639a089ea1b791bb0898cff",
+    "work/t5/r/automl_runs/repair4/experiment-13/validation_predictions.csv": "3ceb03bde85d0f051d1ee67f32bb3a8ce14ad6a4df8451fe23f246a9a465b62d",
+    "work/t5/r/automl_runs/repair4/confirmation-0/job.json": "8c44f423b91c071f99e504f45afb0fab45901f65f75ed07f63f9c658252a251f",
+    "work/t5/r/automl_runs/repair4/confirmation-0/result.json": "c0add0cfcc513058ecc94856434a5141d78a654c3137dc62dcfb0ffe3725f359",
+    "work/t5/r/automl_runs/repair4/confirmation-0/validation_predictions.csv": "ec2bb1b95a5e70fad605deffcf69c2f8077261d7809243debe7b0b99be1b4c3a",
+    "work/t5/r/automl_runs/repair4/confirmation-1/job.json": "7bbe1b2261aae30b0e339a0672f542022ebe364630f60a64dca84ced397fc62d",
+    "work/t5/r/automl_runs/repair4/confirmation-1/result.json": "8499e95d1f2de9cfbaf44d9d53c82eed99aa0b7a7fc03ea67bed1655cc6003ff",
+    "work/t5/r/automl_runs/repair4/confirmation-1/validation_predictions.csv": "54be140139b4a7f15192c30fa3014f2d0529664eed3aef646563ca54200997bf",
+    "work/t5/r/automl_runs/repair4/confirmation-2/job.json": "75a6895368cb16183ecbd364f63d02cd7f74649412e4bddae930667ea820bcd7",
+    "work/t5/r/automl_runs/repair4/confirmation-2/result.json": "f031f59fcb49f64455e35c182863595fa1c05796bbb96ecc6bc0de8f6202640d",
+    "work/t5/r/automl_runs/repair4/confirmation-2/validation_predictions.csv": "c51805e3f1c56399ef24be5cbcf497e7c8c91e8e173734823ecf6cfa0eb9c3b4",
+    "work/t5/r/automl_runner.py": "5992cf7c3044cedc7e5fceef16615832484c9b7a287a83e9c79acc26e6c9e914",
+    "work/t5/r/automl_search_stages.py": "e091eab5311811b9b616a0f9ac9150d7549fc657bd161bcbfec4ffb455ffe818",
+    "work/t5/r/automl_infrastructure_llm_gateway.py": "580261a8cbc720fef77f8e33819faa6c401153b4c6c2006536ec2bfaa0435551",
+    "work/t5/r/automl_search_hpo.py": "2675ef78df893b73689ed38143d252e7d747b059494f59c4bfbd4989fd78c508",
+    "work/t5/r/automl_policy.py": "3e85d6cd6b117ca5977df40565e62cd4b6d6b6e4754855f761363cfb4e1914f0",
+    "work/t6/r-seal.json": "771b7a7ea4e9eea1e5177ad5269094279e9592c5f579119a1ad51039c2674faa",
+    "work/t6/verification-plan.json": "58e3364aa35c43c975ee0b8ade09210f6b058d41157b2a1fc4f4debdb6a35519",
+    "work/t6/r/supervisor.json": "06d3f9ab2c91838d7c729b18a8d54e6c47637fa5776940bb888a35ccfb27b0eb",
+    "work/t6/r/automl_runs/repair4/report.json": "a6fc1214e449ead3eb3d42d2dda0dcf8fb384b27689290a89b79353cdf38c442",
+    "work/t6/r/automl_runs/repair4/initial-data-assessment.json": "1f607ed77e7b4707738f300f78f21c6cad55c1b486e73860315311d6519ceb94",
+    "work/t6/r/automl_runs/repair4/planner-2.json": "5299ec6e288c196a03da985d0d2e6172845a3701c0a08ee239051c3f728ee927",
+    "work/t6/r/automl_runs/repair4/provenance.json": "06b968574eb4e4b80c06cbbbde02868b6ae9ce15e3f4de36f0aba55d303fd08f",
+    "work/t6/r/automl_runs/repair4/task_spec.json": "54f54416d24568bce2a7a4f29d806354e686c2e2fbadbf844c22a5ce43c07bd8",
+    "work/t6/r/automl_runs/repair4/split.json": "0e328caf8c99565f8cc177ff6e171f49830448842ab286073e41b43b73cd06c5",
+    "work/t6/r/automl_runs/repair4/split.npz": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+    "work/t6/r/automl_runs/repair4/confirmation_split.json": "f6260ad85855f172cd45b53e0382311aff98df7f8d1312e7c212208ab0ee41bf",
+    "work/t6/r/automl_runs/repair4/confirmation_split.npz": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+    "work/t6/r/automl_runs/repair4/inner-hpo/hpo.json": "b6bf2335e4795170c05972c7b75afbbc2d340aff1683f0971f4a35da6e01aaed",
+    "work/t6/r/automl_runs/repair4/inner-hpo/split.npz": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+    "work/t6/r/automl_runs/repair4/inner-hpo/trial-07/job.json": "e3d388c22fe31effa82be03ecaba60d21f9ab32d0e53d4359b85745bd0566405",
+    "work/t6/r/automl_runs/repair4/inner-hpo/trial-07/result.json": "943cde53ac522dd80ba76e5fede64ff8cb74362ae60f3d9b91f66895b8da6839",
+    "work/t6/r/automl_runs/repair4/inner-hpo/trial-07/validation_predictions.csv": "c51805e3f1c56399ef24be5cbcf497e7c8c91e8e173734823ecf6cfa0eb9c3b4",
+    "work/t6/r/automl_runs/repair4/final-fit/result.json": "93b9b0bfb9414c2f5f2a41beb908f892d1d6d52d8010b4bd26be3e391b4d945b",
+    "work/t6/r/automl_runs/repair4/final-fit/submission.csv": "a36238ac78edf76fbab1fa11df2836c210497ab3d8d700bbac62f5d2b6d0439a",
+    "work/t6/r/automl_runs/repair4/experiment-00/job.json": "2051228e5aacc1f486c738a95e4ccadf26aabf48920b95aaba692d642c27865d",
+    "work/t6/r/automl_runs/repair4/experiment-00/result.json": "eae1f01d5902bde0692eb61cbe454995f824b78cd2836050073de0133e605910",
+    "work/t6/r/automl_runs/repair4/experiment-00/validation_predictions.csv": "7715ac9ab576c17d8b01db7d80cb2485d2564d75ac18838de9c53fa15131c4c9",
+    "work/t6/r/automl_runs/repair4/experiment-01/job.json": "17fea594218eaa1dd74315944adf0f6574f16002ee7d468b3b8a9b0783b111a6",
+    "work/t6/r/automl_runs/repair4/experiment-01/result.json": "5b71c1beb7298515ee9f3dadfa8d04cb2075458a45e48f14ede0e4b5276a81ca",
+    "work/t6/r/automl_runs/repair4/experiment-01/validation_predictions.csv": "e78d320cdb7b77f66900713642ea745ec537d4292a004aced3133eb6e6deb0e7",
+    "work/t6/r/automl_runs/repair4/experiment-02/job.json": "f6565c3d53cfb50e519e106354fe83708d887b3249804b0c956bd2a8091c2532",
+    "work/t6/r/automl_runs/repair4/experiment-02/result.json": "160c370d2d9a3eea58350ca78bf782806157012525708ece1b543de2511f5706",
+    "work/t6/r/automl_runs/repair4/experiment-02/validation_predictions.csv": "3cec5baf8e476cb932aa5efca333eeaa2ea94f43e0131558c7d0ddef7cd6b343",
+    "work/t6/r/automl_runs/repair4/experiment-03/job.json": "0eadfe9e6abd2eacdc8c8c00f6e06ee32058d8f2426ac2946fc06b29cd43b780",
+    "work/t6/r/automl_runs/repair4/experiment-03/result.json": "b8e4612c144fb8be56569bcce4bd1a9854ee798943b90d2c2dcf22314a5dbf20",
+    "work/t6/r/automl_runs/repair4/experiment-03/validation_predictions.csv": "d408708e3cc97ecb486a248b7b5d9a137a28817a5af55da3f49c249a747994ed",
+    "work/t6/r/automl_runs/repair4/experiment-04/job.json": "0dd7b14e02df2e9643e3461e8a1fa8b63e1bcaed6e81b699beb1a2c6bb8139b3",
+    "work/t6/r/automl_runs/repair4/experiment-04/result.json": "1cf465737f13fce7f373041740d3ac3919a8a083bbb8faf1c2a5003a9e698fb0",
+    "work/t6/r/automl_runs/repair4/experiment-04/validation_predictions.csv": "3c95f749b63f52035ce4c7c64771e9494979e27ca95e459fdc030b38ca4c3d47",
+    "work/t6/r/automl_runs/repair4/experiment-05/job.json": "eda0fa4516ea4fa5b3885053157e376a5fdf36bd306361fcda91f39537beb7ea",
+    "work/t6/r/automl_runs/repair4/experiment-05/result.json": "1446c8de21373ec0290e76a7ba8e19846a7c61a141fffd77de1dba9ec224942a",
+    "work/t6/r/automl_runs/repair4/experiment-05/validation_predictions.csv": "999d98df3f5bbab8b88c963920168a74a0e4ca22ebac94dbd4a18843bca93c37",
+    "work/t6/r/automl_runs/repair4/experiment-06/job.json": "fd97d4a96bd48cdcbc016c3dae9221debde42f813fbc9e012969b3504d157042",
+    "work/t6/r/automl_runs/repair4/experiment-06/result.json": "2be17bb5524315a5cc4530e8a2422a5321313e829fedb1fc18085672ac31f7ee",
+    "work/t6/r/automl_runs/repair4/experiment-06/validation_predictions.csv": "3aa8d69792a88ef879e8d4109284c583871c6bf52a4c73962445f4eb158fb539",
+    "work/t6/r/automl_runs/repair4/experiment-07/job.json": "89fafedddc6702a71d22d3336aca322d981711523deae8a9b39099cabbc067f3",
+    "work/t6/r/automl_runs/repair4/experiment-07/result.json": "89d431d7f83ea5a84cec2abf668e38b05c27b81b119b46d7e1d9b3ad9c9f7138",
+    "work/t6/r/automl_runs/repair4/experiment-07/validation_predictions.csv": "dab0c0dd4dd623c20f07921af02ebd5e9adea08e5d86fa71e6413cf4f68f5a20",
+    "work/t6/r/automl_runs/repair4/experiment-08/job.json": "4c4e28dd9677b9ad07a7ff3d41e25a8485665dffeb1b75557ec700c14dc7e082",
+    "work/t6/r/automl_runs/repair4/experiment-08/result.json": "ae4093d064c93b24dc867daef2fe9e3eda1cee0d4b684efcf81f21267d0959bf",
+    "work/t6/r/automl_runs/repair4/experiment-08/validation_predictions.csv": "bb05e04a9fcae4ecacfc87597c128d7122154f39193c643a28e056902e026915",
+    "work/t6/r/automl_runs/repair4/confirmation-0/job.json": "5be48008a6ead375b0eaf00d992d45de2ef0c2516500c9b8a769fcb8375876a5",
+    "work/t6/r/automl_runs/repair4/confirmation-0/result.json": "cbaae0ba97f57fc2dc02d1a5bcc7b3e79464413b287da688e5b67a24ad20bfb7",
+    "work/t6/r/automl_runs/repair4/confirmation-0/validation_predictions.csv": "ec2bb1b95a5e70fad605deffcf69c2f8077261d7809243debe7b0b99be1b4c3a",
+    "work/t6/r/automl_runs/repair4/confirmation-1/job.json": "ef8b9e8428355d8c5884358723b5b5c4cd822db9f175f1ab5fa598b4f3702243",
+    "work/t6/r/automl_runs/repair4/confirmation-1/result.json": "1abc3e8ee13ad6fd31f2a952b7a4d07a67d439181edbe49582341c83da54b045",
+    "work/t6/r/automl_runs/repair4/confirmation-1/validation_predictions.csv": "c51805e3f1c56399ef24be5cbcf497e7c8c91e8e173734823ecf6cfa0eb9c3b4",
+    "work/t6/r/automl_runs/repair4/confirmation-2/job.json": "bc819e51cc48eb33af0bbd61f375fb5ff1ae43d62980c36923fa20e5d31bc309",
+    "work/t6/r/automl_runs/repair4/confirmation-2/result.json": "53f3717989664e89732794809abfc33452e8a0af9e8aeb6ec5ffb07f201b36e8",
+    "work/t6/r/automl_runs/repair4/confirmation-2/validation_predictions.csv": "25d274cadb6d5c86122fe4302a4c9d4525566421aec9e5fd01872cab5a8a9111",
+    "work/t6/r/automl_runner.py": "5992cf7c3044cedc7e5fceef16615832484c9b7a287a83e9c79acc26e6c9e914",
+    "work/t6/r/automl_search_stages.py": "e091eab5311811b9b616a0f9ac9150d7549fc657bd161bcbfec4ffb455ffe818",
+    "work/t6/r/automl_infrastructure_llm_gateway.py": "580261a8cbc720fef77f8e33819faa6c401153b4c6c2006536ec2bfaa0435551",
+    "work/t6/r/automl_search_hpo.py": "2675ef78df893b73689ed38143d252e7d747b059494f59c4bfbd4989fd78c508",
+    "work/t6/r/automl_policy.py": "3e85d6cd6b117ca5977df40565e62cd4b6d6b6e4754855f761363cfb4e1914f0",
+    "work/t5-independent-r4/audit.json": "91a7c91b6f48f59485dd7ccb720b0793d6069f1c9b437696bd2323771669ca59",
+    "work/t6-independent-regression-r1/audit.json": "09cd760943277860f97d495302ff77f374ba448d3cf754c26aea3ef162778655",
+    "work/t6-independent-regression-r1/root-closure.json": "fe8247caa956d948d2c9d42a42fc2d07dc052473a160ac96ac0078c29454edae",
+    "work/t5-regression-lineage-analysis.json": "426792c3bf354ef84c3581ce7a051c7b1724e0986c1a333fc8c0ea288d8b39d9",
+    "work/m2packet/manifest-continuation-r3.json": "ac28e6da826809e3fe334a6096229ad6410500d7f91a65071987f37ac80ce716",
+    "work/m3packet/manifest.json": "4b987c652864179465dc754e90e3d1c8c9ed7c0a2144db5c3339e4c8a607d07e",
+    "work/m2packet/control-r.json": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b",
+    "work/run_repaired_mvp_r4.py": "db8c20fcaa6eeb55b08ef5b964e367abcc74d946c625242e78d545d319746ea7",
+    "work/run_lean_mvp_r1.py": "562cfb439a579b2f21541b95e14acdbc650f24547709083e04312e670bb971eb",
+    "work/m2packet/repaired-source.zip": "cfd5ff3b44f77227b15b130c16762e6c8349ac53f02a53462883680aad436459",
+    "work/m3packet/lean-source.zip": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0"
+  },
+  "qualification_limits": [
+    "Other candidate values/confirmations and HPO trial values are saved parent/worker records; selected T5 and selected T6 cuts use their independent audits. No new recomputation was performed.",
+    "Task-only T6 regression root closure proves the saved audit cleanup/source integrity, not terminal classification or whole-campaign qualification.",
+    "No official score estimate, submission or replacement of stronger T5 regression winner."
+  ]
+}

@@ -1,0 +1,19 @@
+T6 regression: 35.21107810 mean RMSE versus T5 34.86622088 and V16 35.44723156 (lower is better). T6 improves V16 on both cuts but remains +0.34485722 worse than T5.
+
+Both runs used the same inputs, forward splits, HPO seed137/TPE8 and identical trial7: leaves104, reg_lambda12.639692527584211, colsample0.9899657323952007. T6 selected this shared HPO recipe.
+
+T5 Qwen2 plan0 changed learning_rate0.035 to0.05 and reg_lambda12.63969 to5; it won with cuts37.98849167/31.74395008. These two changes are composite, not separate causal ablations.
+
+T6 Qwen2 plan0 instead changed reg_lambda to15 and colsample to0.85; saved parent primary38.74484587 and confirmation mean35.93684103 were worse. T5 winning executable recipe is absent from all T6 initial/followup/HPO/experiment recipes.
+
+T5 initial6 -> HPO outer6 -> Qwen2 winner7. T6 initial7 -> HPO outer7 -> Qwen2 plan0 outer8. Thus the known T5 winner fits cap9 in the observed T5 prefix and would also fit as first followup under the observed T6 order. Smaller cap is not established as the cause of missing it.
+
+T6 cap9 did leave its different second Qwen2 feature-code proposal unattempted; its metric is null. Larger cap would not automatically reproduce T5 proposal. Context feedback differs by the extra initial LightGBM48.97317, timings/text, and remaining1800/1806; objective/best recipe/schema/task text are equal.
+
+Qwen model/effort match; temperature0.4, no exposed seed, fresh gateway calls, reported provider cached_tokens0. Stochastic answer differences and context/cap effects cannot be separated here.
+
+HPO holdout equals the confirmation partition. Independent artifact verification is not proof of an independent blind confirmation. Other candidate values are saved parent records, not newly independently scored.
+
+Keep T5 best candidate and exact V16 control. A future single-factor option is an explicit deduplicated T5-winner seed alongside V16 with a predeclared slot and matched budget; no measured gain or promotion claimed.
+
+Only source/JSON/hash reads; no fits/API/tests/runtime imports or classification artifact reads. Full provenance and exact winner recipes: work/t6-regression-lineage-analysis.json.

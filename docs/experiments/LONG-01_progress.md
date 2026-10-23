@@ -8,9 +8,25 @@ Original requirements unchanged. Live Qwen credentials absent; runs offline.
 
 Verification COMPLETE: 287 unique unchanged-source checks and23 repeated
 exact-unpacked checks PASS. Receipts in release/long01-anytime1/.
-Full public three-hour fits have NOT started at this checkpoint. No new quality
-result or official submission. Local artifacts stay ignored; only compact
+Full public run STARTED at 2026-10-23 10:30:23 UTC (13:30:23 Moscow).
+Owned terminal controller session: 25832. Classification first, regression queued
+in the same sequential benchmark. First classification worker completed OK and
+the next started. Overall state is RUNNING, not PASS; no new final quality result
+or official submission. Local artifacts stay ignored; only compact
 reports/receipts go into Git. Do not commit new prediction CSV/NPZ/model assets.
+
+Working output: `test-runs/long-01-20261023/public-full/`. Per task inspect
+`automl_runs/run-v2/anytime_state.json`, `best_found.json`, and final `report.json`.
+During the baseline phase its experiments are under `run-v2-baseline/`.
+Final benchmark receipts are `task-00/assessment.json` (classification),
+`task-01/assessment.json` (regression), then overall `assessments.json`.
+Do not start a duplicate run if the controller is still alive. If reconnecting,
+check reports/process status first; this file's RUNNING is a dated checkpoint,
+not proof that the process is still alive or that both tasks succeeded.
+Classification cutoff approximately16:10 Moscow; hard deadline16:30.
+Regression starts after classification finishes; both tasks finish no later
+than approximately19:30 if uninterrupted and not cut short by safety guards.
+Keep the computer awake; local execution does not move to the cloud.
 
 Planned full run, strictly sequential (classification then regression):
 

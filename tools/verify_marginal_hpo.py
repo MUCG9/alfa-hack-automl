@@ -33,7 +33,10 @@ def load(verifier, directory, expected_split, expected_recipe):
     if not all(np.array_equal(a, b) for a, b in zip(actual, expected_split)):
         raise ValueError('Fitting/validation rows differ from declared partition')
     checked = verify_predictions(record, directory, verifier.spec, verifier.train, expected_split[1])
-    return pd.read_csv(directory/'validation_predictions.csv').y_pred.to_numpy(dtype=float), checked
+    predicted = pd.read_csv(directory/'validation_predictions.csv').y_pred
+    if verifier.spec['kind'] == 'classification':
+        return predicted.astype(str).to_numpy(), checked
+    return predicted.to_numpy(dtype=float), checked
 
 
 def verify(path, in_progress=None):

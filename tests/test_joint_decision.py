@@ -2,14 +2,34 @@
 from pathlib import Path
 import sys
 import unittest
+import tempfile
+import json
+from types import SimpleNamespace
 import numpy as np
+import pandas as pd
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'tools'))
 from joint_decision import fit_factors,safety,GRIDS
 from verify_joint_calibration import audit_selection
 from copy import deepcopy
+from verify_marginal_hpo import load
 
 
 class JointDecisionTests(unittest.TestCase):
+    def test_native_artifact_loader_accepts_named_classes_and_keeps_numeric_regression(self):
+        rows=np.array([1,2]);split=(np.array([0]),rows);recipe={'engine':'fixture'}
+        for kind,truth,prediction,metric,value in [
+                ('classification',['Normal','Generic','Normal'],['Generic','Normal'],'macro_f1',1.),
+                ('regression',[0.,2.,3.],[3.,2.],'rmse',1.)]:
+            spec={'kind':kind,'target':'target','metric':metric,'classes':['Generic','Normal']}
+            verifier=SimpleNamespace(spec=spec,train=pd.DataFrame({'target':truth}),split=lambda path:split)
+            with tempfile.TemporaryDirectory() as tmp:
+                directory=Path(tmp)
+                (directory/'job.json').write_text(json.dumps({'full_fit':False,'threads':2,'recipe':recipe,'split_path':'fixture'}))
+                (directory/'result.json').write_text(json.dumps({'recipe':recipe,'metrics':{metric:value}}))
+                pd.DataFrame({'row_position':rows,'y_true':np.array(truth)[rows],'y_pred':prediction}).to_csv(directory/'validation_predictions.csv',index=False)
+                result,checked=load(verifier,directory,split,recipe)
+                np.testing.assert_array_equal(result,prediction);self.assertEqual(checked['value'],value)
+
     def test_supported_class_loss_and_rarest_only_gain_are_refused(self):
         self.assertFalse(safety([.5,.5,.5],[.7,.48,.5],[5,200,200])['passed'])
         self.assertFalse(safety([.5,.5,.5],[.7,.5,.5],[5,200,200])['passed'])

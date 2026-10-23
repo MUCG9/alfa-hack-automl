@@ -17,11 +17,16 @@ web session used, desktop lock unchanged. Never duplicate this upload.
 |03|Exact-context execution reuse|Exact prediction parity,2vs1 physical fits, observed1.889x pair speedup; dev only|round03_results_20261023.json|
 |04|Mean of up to2 inner forward-period marginal RMSEs|strict cut1 tie rejects,32aggregate objectives/20cache hits/52workers|round04_results_20261023.json|
 |Reasoning01|Captain asks to check maximum thinking|Actual OFF found; real xhigh accepted,1014reasoning tokens,valid JSON; active dev planners now xhigh|reasoning01_results_20261023.json|
+|05|Maximum of two inner forward-period marginal RMSEs, Qwen xhigh|cut0 loses;16aggregate objectives/6cache hits/30workers, independent verification PASS|round05_results_20261023.json|
+|06|Small constrained class multipliers AFTER the complete ensemble, Qwen xhigh|Qwen selected tight grid; initial no-fit loader failure preserved, corrected with original deadline|round06_protocol_20261023.md|
 
 ROUND04 completed identity: PID113079/create_time1792735955.46. Receipt:
 `test-runs/autoresearch-rounds-20261023/round04/detached-screen.json`.
 Coordinator and descendants exited. Inspect actual identities/lock before any
-new fit. Historical candidateea0677c,
+new fit. ROUND05 identity117760/create_time1792738296.33 also exited.
+ROUND06 first identity120263/create_time1792739389.25 exited before fitting;
+see round06_harness_correction_20261023.md. Inspect the newest attempt receipt
+and global lock before any fit. Historical ROUND04 candidateea0677c,
 rollback tagqwen-round04-forward-start-20261023;5400s/1800study/600worker,
 2threads/1536MiB worker+parent, sequential global training lock.
 

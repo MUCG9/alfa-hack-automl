@@ -8,7 +8,13 @@ Current strong control is qualified PIPE-02, not V16 or a single learner.
 Read docs/experiments/autoresearch_rounds_20261023.md and actual round receipts.
 ROUND01/02 rejected; ROUND03 narrow dev-cache parity/cost PASS; ROUND04 also
 rejected on cut1 tie, independent verification PASS,52workers/20cache hits.
-Coordinator113079/create_time1792735955.46 exited; no owned fitting jobs.
+Coordinator113079/create_time1792735955.46 exited. ROUND05 worst-period objective
+also rejected cut0 (38.8560293804 vs PIPE02 38.8295259021), verified independently;
+identity117760/create_time1792738296.33 exited. ROUND06 current dev-only screen
+tests constrained decision factors after the complete class ensemble, with fresh
+inner five-leaf controls. Qwen xhigh chose JOINT_TIGHT. Initial no-fit loader
+failure preserved; corrected retry must retain original deadline1792742389.7839258.
+Inspect round06/detached-screen-attempt2.json and actual lock/process before fits.
 New captain steering: verify reasoning. Actual gateway was explicitly OFF;
 REASONING01 real xhigh probe PASS:1014reasoning tokens,14.716s, valid JSON.
 Active dev planners now use explicit xhigh/32768combined output/300s call.

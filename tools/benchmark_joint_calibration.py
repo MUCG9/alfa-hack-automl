@@ -30,8 +30,10 @@ CAMPAIGN=BASE/'campaign.json'
 CONTROL_REPORT=BASE/'task-01/automl_runs/pipe02/report.json'
 
 
-def run(output,plan_path):
-    start=time.monotonic();deadline=start+3000
+def run(output,plan_path,deadline_epoch=None):
+    start=time.monotonic();remaining=3000 if deadline_epoch is None else min(3000,deadline_epoch-time.time())
+    if remaining<=60:raise ValueError('Original common deadline leaves no verification reserve')
+    deadline=start+remaining
     plan=json.loads(plan_path.read_text())
     if not json.loads((plan_path.parent/'scientific-audit.json').read_text()).get('accepted'):raise ValueError('Scientific audit missing')
     operation=plan['operation_id']
@@ -52,7 +54,8 @@ def run(output,plan_path):
         'harness_sha256':{n:digest(ROOT/'tools'/n) for n in harness},'protocol_sha256':digest(ROOT/'docs/experiments/round06_protocol_20261023.md'),
         'plan_path':str(plan_path),'plan_sha256':digest(plan_path),'campaign_sha256':digest(CAMPAIGN),'control_report_sha256':digest(CONTROL_REPORT),
         'operation_id':operation,'grid':GRIDS[operation],'comparison_control':'PIPE02_COMPLETE','control_recipe':control,
-        'identity':{'pid':os.getpid(),'create_time':psutil.Process().create_time()},'limits':{'total_seconds':3000,'worker_seconds':900,'threads':2,'memory_mib_worker_and_parent':1536,'maximum_new_complete_control_workers':2},
+        'identity':{'pid':os.getpid(),'create_time':psutil.Process().create_time()},'limits':{'total_seconds':3000,'worker_seconds':900,'threads':2,'memory_mib_worker_and_parent':1536,'maximum_new_complete_control_workers':2,
+            'original_deadline_epoch':deadline_epoch,'remaining_seconds_at_start':remaining},
         'scope':'Global ensemble decision-rule screen with fresh inner ensemble fitting; reused-public outer controls, not private/official score','cuts':[]}
     path=output/'results.json';atomic_json(path,m);v=Verifier(m,source);train=v.train;classes=spec['classes'];truth=train[spec['target']].astype(str).to_numpy()
     sys.path.insert(0,str(source));frozen=importlib.import_module('automl_runner')
@@ -108,14 +111,14 @@ def run(output,plan_path):
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,required=True);p.add_argument('--plan',type=Path,required=True);args=p.parse_args();output=args.output.resolve();plan=args.plan.resolve()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,required=True);p.add_argument('--plan',type=Path,required=True);p.add_argument('--deadline-epoch',type=float);args=p.parse_args();output=args.output.resolve();plan=args.plan.resolve()
     if not all(p.is_relative_to(ROOT/'test-runs') for p in [output,plan]):raise ValueError('Keep raw artifacts ignored')
     def interrupted(signum,frame):raise SystemExit(128+signum)
     signal.signal(signal.SIGTERM,interrupted)
     with (ROOT/'test-runs/.owned-research.lock').open('a+') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);output.mkdir(parents=True,exist_ok=False)
         lock.seek(0);lock.truncate();json.dump({'pid':os.getpid(),'create_time':psutil.Process().create_time()},lock);lock.flush()
-        run(output,plan)
+        run(output,plan,args.deadline_epoch)
 
 
 if __name__=='__main__':main()

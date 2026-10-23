@@ -1,0 +1,209 @@
+{
+  "status": "independent_source_only_review_complete_runtime_gates_pending",
+  "reviewed_handoff_sha256": "ad8a89c8582c135b06aca8aad440626db449172f266bf9ef10811af43729bede",
+  "reviewed_files_sha256": {
+    "class-support-bounded-next-dev-r3/bounded-class-support-r3.patch": "ad512c7b9735941dfb71821a757ddf1e356aeb284da9d452b981fd4587583052",
+    "class-support-bounded-next-dev-r3/build_static_handoff.py": "f6ebbd477c391acb2b291e87d2cff98e3e1aed821776d42bbfe5289f99ffc88f",
+    "class-support-bounded-next-dev-r3/HANDOFF.txt": "f75c8bfc615deb0f6b3d522e23f651efaf67c1a99964d1af8ec60a6577313ff3",
+    "class-support-bounded-next-dev-r3/protocol-r3.json": "a7c370bbedd6bcc0da4e1d7c9ff84b90b2aec4b09fc97d45185f8d3cc0404d8f",
+    "class-support-bounded-next-dev-r3/r2-to-r3.patch": "21bede7e0d81db84b371b29e7a7ad340dc0a17757fd6345f6a3d518c4f0f5822",
+    "class-support-bounded-next-dev-r3/source-handoff-r3.json": "ad8a89c8582c135b06aca8aad440626db449172f266bf9ef10811af43729bede",
+    "class-support-bounded-next-dev-r3/static-proof-r3.json": "d42c3402233f8165a9fe41136ad5e9530e5a1db5743d98017c5811dbfcef5452",
+    "class-support-bounded-next-dev-r3/tests/test_class_support_bounded.py": "5284ea4b0c1437579bab6797148571301f14bee0729d47c0700682d3a4ed9547",
+    "class-support-bounded-next-dev-r3/src/automl/search/class_support.py": "1f6b27debfdf2609e03641beae8235ad1a034bd97450b61156bd991cc588a93c",
+    "class-support-bounded-next-dev-r3/src/automl/search/class_support_screen.py": "a7116a606a860ae0b0e4118cf460211d591a4fb9ae3a9d338c67dcb3bb5f113f",
+    "class-support-bounded-next-dev-r3/src/automl/search/runner.py": "d1dadb337e5ca5fe49a0767d9efe38937154325fb706c107cb67ab9553421510"
+  },
+  "input_sha_checks_all_matched": true,
+  "incremental_patch_matches_independent_R2_R3_diff": true,
+  "source_changes": [
+    {
+      "path": "src/automl/search/class_support.py",
+      "bytes_identical": false,
+      "unchanged_functions": [
+        "_require",
+        "_sha_string",
+        "validate_task",
+        "validate_fitting_rows",
+        "_check_json_shape",
+        "_json_text",
+        "bounded_messages",
+        "bounded_context_copy",
+        "fitting_class_support",
+        "_file_sha",
+        "_read_json",
+        "_canonical",
+        "capture_primary_bindings",
+        "_common_lineage",
+        "_record_metrics",
+        "primary_f1_feedback",
+        "_feedback_from_checked_values"
+      ],
+      "changed_functions": [
+        "add_support_context"
+      ],
+      "new_functions": [
+        "validate_support_packet"
+      ]
+    },
+    {
+      "path": "src/automl/search/class_support_screen.py",
+      "bytes_identical": false,
+      "unchanged_functions": [],
+      "changed_functions": [
+        "prepare_generation_pair"
+      ],
+      "new_functions": []
+    },
+    {
+      "path": "src/automl/search/runner.py",
+      "bytes_identical": true,
+      "unchanged_functions": [
+        "planner_context",
+        "bounded_context_request",
+        "llm_plan",
+        "run_worker",
+        "ordered",
+        "median_iterations",
+        "file_fingerprints",
+        "journal",
+        "coordinator_selection",
+        "coordinator_plans",
+        "_main",
+        "solve_single",
+        "main"
+      ],
+      "changed_functions": [],
+      "new_functions": []
+    },
+    {
+      "path": "tests/test_class_support_bounded.py",
+      "bytes_identical": false,
+      "unchanged_functions": [
+        "signature",
+        "task",
+        "packet",
+        "fixture"
+      ],
+      "changed_functions": [],
+      "new_functions": []
+    }
+  ],
+  "verdict": {
+    "critical_source_blockers_found": [],
+    "R2_P2_external_support_prevalidation_fixed": true,
+    "runner_byte_identical_to_R2": true,
+    "new_default_OFF_changes": false,
+    "all_class_MacroF1_ranking_models_HPO_refit_CSV_unchanged": true,
+    "source_only": true,
+    "launch_ready": false,
+    "measured_gain": null,
+    "promotion": false
+  },
+  "bounded_validation": {
+    "external_contract": "Native JSON support object plus trusted previously bounded TaskSpec. No validation/availability bool grants support provenance.",
+    "order": [
+      "validate_task limits classes64/labelUTF8<=128",
+      "type(support)isdict and len==10 before key traversal",
+      "10known membership lookups",
+      "type(countmap)isdict and len==K<=64 before values/sets/sums",
+      "type(classlist)islist and len<=K before iteration",
+      "_json_text packet16KiB with JSONshape/node/depth/string/finite checks",
+      "Only then bounded JSONcopy and semantic sum/set/any/count/diagnostic checks"
+    ],
+    "validator_lines": {
+      "start": 311,
+      "bounded_JSON": 336,
+      "semantic_traversals": [
+        {
+          "function": "set",
+          "line": 337
+        },
+        {
+          "function": "sum",
+          "line": 342
+        },
+        {
+          "function": "any",
+          "line": 343
+        },
+        {
+          "function": "any",
+          "line": 352
+        },
+        {
+          "function": "any",
+          "line": 359
+        },
+        {
+          "function": "any",
+          "line": 340
+        },
+        {
+          "function": "set",
+          "line": 340
+        },
+        {
+          "function": "set",
+          "line": 344
+        },
+        {
+          "function": "sum",
+          "line": 347
+        },
+        {
+          "function": "set",
+          "line": 361
+        }
+      ]
+    },
+    "screen_shared_validator_before_sum": {
+      "validator_line": 21,
+      "sum_line": 22
+    },
+    "helper_and_screen_use_same_validator": true,
+    "no_silent_class_or_metric_truncation": true,
+    "remaining_limits": "Five-second/64MiB helper checks remain cooperative; future owned30s/512MiB/1thread parent is not implemented by this module. External allocations made before entry are not measured RSS evidence."
+  },
+  "budget_review": {
+    "shared": "Optional caller-supplied PreparationBudget instance retains original started/io_bytes; existing helper work is checked and not reset.",
+    "local": "Without supplied budget receipt truthfully says screen_entry_only; no claim earlier fitting/capture was counted. Earlier work must share budget or be charged within future30s preparation parent/600s total.",
+    "pair": "30+240+330=600 arithmetic valid. Full SYSTEM+STAGED+context64KiB and packet16KiB checked for both views before any future API. Removing only declaredpacket restores OFF view.",
+    "API": "Protocol correctly distinguishes per-HTTP8192 output cap and<=3attempts from one120s logical timeout. Nominal24576 requested completion ceiling/arm is not measured usage; unavailable retry usage stays null.",
+    "maturity": "Future equal one-call/8192/120s/max2candidate/600s harness explicitly not implemented; current optin runtime defaults8192/240initial,16384/300followup,parser3 remain unchanged. Must not call bare runtimeflag the matchedscreen."
+  },
+  "preserved_lineage": "R2 job/result/spec/split/protected control bytes+signature/CSV/proba validation is unchanged. Missing or invalid same-primary evidence remains null; no independent score recomputation or blind/private gain inferred.",
+  "prepared_tests": {
+    "original_methods": 19,
+    "original_methods_verbatim_preserved": true,
+    "new_methods": [
+      "test_screen_malformed_support_rejects_before_sum",
+      "test_external_container_subclasses_reject_without_enumeration",
+      "test_count_map_cardinality_rejects_before_value_traversal",
+      "test_support_list_cardinality_rejects_before_value_traversal",
+      "test_screen_shared_budget_retains_prior_wall_and_IO"
+    ],
+    "total": 24,
+    "executed": 0,
+    "source_coverage": "New cases target malformed screen before sum, native-container subclass rejection, count/list cardinality before traversal, and preserved shared clock/IO scope. They are unexecuted source, not passed contracts."
+  },
+  "factual_maturity": [
+    "Source/handoff/patch/source SHA bindings checked statically; no application code was imported or executed.",
+    "Actual dependency/source/unpacked technical contracts, measured memory/time, matched API harness and outcomes remain future work.",
+    "Next predecessor correctly points to actual T7 exec65008/source733 terminal plus fresh owned/bootstrap/preparer closure and canonical lock. Older T6 proof is insufficient.",
+    "Future holdout needs declared algorithm-facing dataflow/source/IO invariants and meaningful fixtures; this context-packet review adds no OS-security requirement."
+  ],
+  "scope": {
+    "runtime_imports": 0,
+    "tests_run": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "network_calls": 0,
+    "actual_data_or_T7_outputs_read": false,
+    "clock_assigned": false,
+    "R2_R3_sources_modified": false,
+    "STATE_changed": false,
+    "Git_calls": 0
+  },
+  "official_score": null
+}

@@ -1,0 +1,189 @@
+--- a/src/automl/search/class_support.py
++++ b/src/automl/search/class_support.py
+@@ -308,21 +308,39 @@
+         split_file_sha256=binding['split_file_sha256'],protected_artifact_sha256=binding['protected_artifact']['sha256'])
+ 
+ 
+-def add_support_context(base,spec,support,records,binding,signature_fn,budget=None):
+-    budget=budget or PreparationBudget();validate_task(spec)
+-    if not isinstance(records,list) or len(records)>MAX_PRIMARY_RECORDS:
+-        raise ContextRejected('primary_record_count_limit',MAX_PRIMARY_RECORDS,len(records) if isinstance(records,list) else None)
+-    expected={'scope','split_sha256','raw_fitting_rows_per_class','original_feature_hash_groups_per_class',
++def validate_support_packet(spec,support,budget=None):
++    """Bound external container shape before enumeration, then validate/copy.
++    This accepts only native JSON containers. No public boolean certifies that
++    a caller has already validated a packet or paid its earlier preparation.
++    """
++    budget=budget or PreparationBudget();classes_ordered=validate_task(spec);budget.check()
++    expected=('scope','split_sha256','raw_fitting_rows_per_class','original_feature_hash_groups_per_class',
+         'classes_absent_from_fitting','rarest_fitting_class','diagnostic_support_threshold',
+-        'supported_classes','cross_class_shared_hash_groups','hash_interpretation'}
+-    if not isinstance(support,dict) or set(support)!=expected:raise ContextRejected('support_packet_schema_mismatch')
+-    classes=set(spec['classes'])
+-    for field in ['raw_fitting_rows_per_class','original_feature_hash_groups_per_class']:
++        'supported_classes','cross_class_shared_hash_groups','hash_interpretation')
++    # Exact types avoid invoking custom iteration/len methods. All following
++    # key checks are at most ten lookups, not an enumeration of external keys.
++    if type(support) is not dict or len(support)!=len(expected):
++        raise ContextRejected('support_packet_schema_mismatch')
++    for field in expected:
++        if field not in support:raise ContextRejected('support_packet_schema_mismatch')
++    for field in ('raw_fitting_rows_per_class','original_feature_hash_groups_per_class'):
+         values=support[field]
+-        if not isinstance(values,dict) or set(values)!=classes or any(type(v) is not int or not 0<=v<=MAX_FITTING_ROWS for v in values.values()):
++        if type(values) is not dict or len(values)!=len(classes_ordered):
++            raise ContextRejected('support_count_map_mismatch')
++    for field in ('supported_classes','classes_absent_from_fitting'):
++        values=support[field]
++        if type(values) is not list or len(values)>len(classes_ordered):
++            raise ContextRejected('support_packet_values_mismatch')
++    # JSON shape/bytes, including strings and finite scalar values, are checked
++    # before sum/set/any, semantic traversals or any copy of the external packet.
++    text,_=_json_text(support,MAX_PACKET_BYTES,budget);support=json.loads(text)
++    classes=set(classes_ordered)
++    for field in ('raw_fitting_rows_per_class','original_feature_hash_groups_per_class'):
++        values=support[field]
++        if set(values)!=classes or any(type(v) is not int or not 0<=v<=MAX_FITTING_ROWS for v in values.values()):
+             raise ContextRejected('support_count_map_mismatch')
+     validate_fitting_rows(sum(support['raw_fitting_rows_per_class'].values()))
+-    if (not isinstance(support['supported_classes'],list) or any(not isinstance(c,str) for c in support['supported_classes'])
++    if (any(not isinstance(c,str) for c in support['supported_classes'])
+         or len(set(support['supported_classes']))!=len(support['supported_classes'])
+         or type(support['diagnostic_support_threshold']) is not int or support['diagnostic_support_threshold']<1
+         or type(support['cross_class_shared_hash_groups']) is not int
+@@ -331,20 +349,25 @@
+         or support['scope']!='primary_fitting_rows_only_before_FE_or_resampling'
+         or not isinstance(support['rarest_fitting_class'],str)
+         or not isinstance(support['hash_interpretation'],str)
+-        or not isinstance(support['classes_absent_from_fitting'],list)
+         or any(not isinstance(c,str) for c in support['classes_absent_from_fitting'])):
+         raise ContextRejected('support_packet_values_mismatch')
+-    expected_absent=[c for c in spec['classes'] if not support['raw_fitting_rows_per_class'][c]]
+-    expected_supported=[c for c in spec['classes'] if support['original_feature_hash_groups_per_class'][c]>=support['diagnostic_support_threshold']]
+-    expected_rarest=min(spec['classes'],key=lambda c:(support['original_feature_hash_groups_per_class'][c],c))
++    expected_absent=[c for c in classes_ordered if not support['raw_fitting_rows_per_class'][c]]
++    expected_supported=[c for c in classes_ordered if support['original_feature_hash_groups_per_class'][c]>=support['diagnostic_support_threshold']]
++    expected_rarest=min(classes_ordered,key=lambda c:(support['original_feature_hash_groups_per_class'][c],c))
+     if (support['classes_absent_from_fitting']!=expected_absent or support['supported_classes']!=expected_supported
+         or support['rarest_fitting_class']!=expected_rarest):raise ContextRejected('support_diagnostic_rule_mismatch')
+     if (any(support['original_feature_hash_groups_per_class'][c]>support['raw_fitting_rows_per_class'][c] for c in classes)
+         or support['rarest_fitting_class'] not in classes or len(support['supported_classes'])>len(classes)
+         or not set(support['supported_classes'])<=classes):raise ContextRejected('support_group_or_class_mismatch')
+-    # The fitting helper emits bounded standard JSON. Reject oversized external
+-    # packets before a copy; never trim their classes/fields to make them fit.
+-    text,_=_json_text(support,MAX_PACKET_BYTES,budget);support=json.loads(text)
++    budget.check()
++    return support
++
++
++def add_support_context(base,spec,support,records,binding,signature_fn,budget=None):
++    budget=budget or PreparationBudget();validate_task(spec)
++    if not isinstance(records,list) or len(records)>MAX_PRIMARY_RECORDS:
++        raise ContextRejected('primary_record_count_limit',MAX_PRIMARY_RECORDS,len(records) if isinstance(records,list) else None)
++    support=validate_support_packet(spec,support,budget)
+     context=bounded_context_copy(base,budget);ledger=context['feedback_read_first'];tail=records[-12:]
+     if len(ledger)!=len(tail) or any(row['recipe_sha256']!=signature_fn(record['recipe']) for row,record in zip(ledger,tail)):
+         raise ContextRejected('baseline_ledger_primary_record_alignment_failed')
+--- a/src/automl/search/class_support_screen.py
++++ b/src/automl/search/class_support_screen.py
+@@ -4,12 +4,21 @@
+ """
+ from copy import deepcopy
+ from automl.search.class_support import (PreparationBudget,ContextRejected,validate_task,
+-    validate_fitting_rows,bounded_messages,bounded_context_copy,add_support_context)
++    validate_fitting_rows,validate_support_packet,bounded_messages,bounded_context_copy,add_support_context)
+ 
+ 
+ def prepare_generation_pair(system_prompt,base_context,spec,support,records,
+-                            primary_bindings,signature_fn,fitting_rows):
+-    budget=PreparationBudget();validate_task(spec);validate_fitting_rows(fitting_rows)
++                            primary_bindings,signature_fn,fitting_rows,budget=None):
++    """An optional shared budget retains prior support/capture wall and IO.
++    Without one, this function bounds only work since screen entry. The future
++    parent must still charge all earlier preparation; this is not a free reset.
++    """
++    supplied_budget=budget is not None
++    if supplied_budget and not isinstance(budget,PreparationBudget):
++        raise ContextRejected('preparation_budget_type_required')
++    budget=budget if supplied_budget else PreparationBudget()
++    validate_task(spec);validate_fitting_rows(fitting_rows)
++    support=validate_support_packet(spec,support,budget)
+     if sum(support['raw_fitting_rows_per_class'].values())!=fitting_rows:
+         raise ContextRejected('screen_fitting_row_snapshot_mismatch')
+     # OFF receives exactly the inherited saved context; no arm marker is sent.
+@@ -23,6 +32,8 @@
+     return dict(OFF=off,ON=on),dict(status='both_views_preflighted_no_API',
+         factor='fitting support plus lineage-bound primary-relative diagnostics only',
+         OFF=off_receipt,ON=on_receipt,packet=packet_receipt,
+-        all_preparation_charged_to_same_future_common_parent=True,
++        future_shared_parent_accounting_required=True,
++        preparation_budget_scope='caller_supplied_cumulative_budget' if supplied_budget else 'screen_entry_only',
++        earlier_support_capture_requires_same_budget_or_parent_accounting=True,
+         class_count=len(spec['classes']),fitting_rows=fitting_rows,
+         no_API_until_both_views_and_inputs_frozen=True,**budget.receipt())
+--- a/tests/test_class_support_bounded.py
++++ b/tests/test_class_support_bounded.py
+@@ -1,6 +1,6 @@
+ """PROSPECTIVE pure contract tests; source prepared, NOT executed at handoff.
+ No model/gateway/runner imports, network, fitting or real research data.
+-Future execution needs its own bounded technical envelope after T6 closure.
++Future execution needs a bounded technical envelope after the actual current predecessor closure.
+ """
+ import copy
+ import hashlib
+@@ -205,4 +205,55 @@
+         self.rejected('primary_record_count_limit',support.add_support_context,{},task(),packet(),[{}]*15,None,signature)
+ 
+ 
++    def test_screen_malformed_support_rejects_before_sum(self):
++        base={'feedback_read_first':[]}
++        for value in (None,[],{},dict(packet(),unexpected=1)):
++            with self.subTest(value_type=type(value).__name__),patch('builtins.sum',side_effect=AssertionError('must not sum malformed support')):
++                self.rejected('support_packet_schema_mismatch',screen.prepare_generation_pair,'S',base,task(),value,[],None,signature,4)
++
++    def test_external_container_subclasses_reject_without_enumeration(self):
++        class TrapDict(dict):
++            def __iter__(self):raise AssertionError('external mapping enumerated')
++            def __len__(self):raise AssertionError('external mapping length invoked')
++            def items(self):raise AssertionError('external mapping items invoked')
++            def values(self):raise AssertionError('external mapping values invoked')
++        class TrapList(list):
++            def __iter__(self):raise AssertionError('external list enumerated')
++            def __len__(self):raise AssertionError('external list length invoked')
++        self.rejected('support_packet_schema_mismatch',support.validate_support_packet,task(),TrapDict(packet()))
++        for field in ('raw_fitting_rows_per_class','original_feature_hash_groups_per_class'):
++            value=packet();value[field]=TrapDict(value[field])
++            self.rejected('support_count_map_mismatch',support.validate_support_packet,task(),value)
++        for field in ('supported_classes','classes_absent_from_fitting'):
++            value=packet();value[field]=TrapList(value[field])
++            self.rejected('support_packet_values_mismatch',support.validate_support_packet,task(),value)
++
++    def test_count_map_cardinality_rejects_before_value_traversal(self):
++        for field in ('raw_fitting_rows_per_class','original_feature_hash_groups_per_class'):
++            value=packet();value[field]={'a':object(),'b':object(),'extra':object()}
++            with self.subTest(field=field),patch.object(support,'_json_text',side_effect=AssertionError('must reject before JSON traversal')),patch('builtins.sum',side_effect=AssertionError('must not sum over-cap map')):
++                self.rejected('support_count_map_mismatch',support.add_support_context,{'feedback_read_first':[]},task(),value,[],None,signature)
++                self.rejected('support_count_map_mismatch',screen.prepare_generation_pair,'S',{'feedback_read_first':[]},task(),value,[],None,signature,4)
++
++    def test_support_list_cardinality_rejects_before_value_traversal(self):
++        for field in ('supported_classes','classes_absent_from_fitting'):
++            value=packet();value[field]=[object(),object(),object()]
++            with self.subTest(field=field),patch.object(support,'_json_text',side_effect=AssertionError('must reject before JSON traversal')),patch('builtins.sum',side_effect=AssertionError('must not sum before all container bounds')):
++                self.rejected('support_packet_values_mismatch',support.add_support_context,{'feedback_read_first':[]},task(),value,[],None,signature)
++                self.rejected('support_packet_values_mismatch',screen.prepare_generation_pair,'S',{'feedback_read_first':[]},task(),value,[],None,signature,4)
++
++    def test_screen_shared_budget_retains_prior_wall_and_IO(self):
++        budget=support.PreparationBudget();budget.charge(137)
++        _,receipt=screen.prepare_generation_pair('S',{'feedback_read_first':[]},task(),packet(),[],None,signature,4,budget=budget)
++        self.assertEqual(receipt['preparation_IO_bytes'],137)
++        self.assertEqual(receipt['preparation_budget_scope'],'caller_supplied_cumulative_budget')
++        _,local=screen.prepare_generation_pair('S',{'feedback_read_first':[]},task(),packet(),[],None,signature,4)
++        self.assertEqual(local['preparation_budget_scope'],'screen_entry_only')
++        self.assertTrue(local['earlier_support_capture_requires_same_budget_or_parent_accounting'])
++        value=packet()
++        with patch.object(support.time,'monotonic',return_value=0):spent=support.PreparationBudget()
++        with patch.object(support.time,'monotonic',return_value=6):
++            self.rejected('preparation_time_limit',screen.prepare_generation_pair,'S',{'feedback_read_first':[]},task(),value,[],None,signature,4,budget=spent)
++
++
+ if __name__=='__main__':unittest.main()

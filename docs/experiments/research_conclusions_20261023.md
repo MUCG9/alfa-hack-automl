@@ -77,6 +77,16 @@ predictions и дорогие model fits; включать FE/HPO только �
 |Regression typed feature DSL|40.60751094989404|41.03555398191205|FAIL: все3cuts хуже|
 |Classification CatBoost top32|.6547938868310776|.654200887190105|FAIL: cut42 хуже, cut43 лучше|
 
+Classification HPO пока проверен на первом cut:8complete trials у каждого
+sampler, одинаковые inner partitions,5successful trials after startup. Inner
+TPE .6298975660→.6443637404, но outer .6558634660→.6406114277; random outer
+.6521687684. Этот cut уже исключает advance по исходному all-cuts gate; второй
+cut ещё выполняется. В inner objective Worms имеет11validation groups, его
+F1 изменился .64→.69565; улучшения были также у других классов. Это повод
+исследовать устойчивость inner objective, но не доказательство причины loss:
+Analysis улучшился внутри и заметно ухудшился снаружи. Receipt:
+[class_hpo_inner_support_20261023.json](class_hpo_inner_support_20261023.json).
+
 HAR-01 regression: baseline и staged получили одинаковый measured feedback,
 по два distinct valid предложения. Ни один из четырёх рецептов не улучшил все
 три cuts. Это сравнение двух proposal prompts на фиксированном feedback, а не

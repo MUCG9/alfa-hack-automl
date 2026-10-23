@@ -10,6 +10,10 @@
 библиотеки, общий/per-worker/per-study deadline, RAM, threads, API call cap,
 резерв на confirmation/refit/export и required acceptance gates.
 
+Если нужен ранний futility stop после невыполнимого обязательного gate, задать
+его ДО запуска. Остановленный screen остаётся rejected/incomplete, с отсутствующими
+scores; его mean и work counts нельзя приравнивать к завершённому сравнению.
+
 ## Цикл
 
 Продолжать от qualified incumbent. До запуска записывать гипотезу и критерий её

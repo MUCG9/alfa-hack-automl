@@ -1,0 +1,267 @@
+{
+  "status": "terminal_classification_procedure_failure_no_independent_metric_audit",
+  "scope": "Read-only closed classification receipts/source/time metadata. No independent evaluator launched after the original deadline. No data rows, labels/prediction arrays, API ledgers, model imports, fits, tests or source changes.",
+  "key_result": {
+    "classification_complete": false,
+    "classification_report_exists": false,
+    "full_refit_started": false,
+    "full_refit_result_exists": false,
+    "full_refit_submission_exists": false,
+    "whole_campaign_passed": false,
+    "classification_metric": null,
+    "reason_metric_null": "No complete classification report/refit and no independent metric/integrity audit; completed worker outcomes do not qualify the procedure.",
+    "root_submission_exists": true,
+    "root_submission_interpretation": "Existing search checkpoint CSV; presence does not establish final refit or independent integrity."
+  },
+  "supervisor_terminal": {
+    "status": "technical_failure",
+    "exit_code": 1,
+    "benchmark_exit_code": 1,
+    "exception_type": "TechnicalFailure",
+    "terminal_exception": "TechnicalFailure",
+    "failure_code": "terminal_parent_receipt_over_cap",
+    "cleanup_confirmed": true,
+    "start_unix": 1792753197.2576864,
+    "start_monotonic": 12201.156,
+    "child_start_monotonic": 12203.906,
+    "end_unix": 1792761970.6962936,
+    "seconds": 8775.249999999998,
+    "parent_cap_seconds": 8140,
+    "solver_budget_seconds": 8110,
+    "child_cap_seconds": 8110,
+    "heartbeat_unix": 1792758930.1482146,
+    "peak_owned_tree_rss_mib": 1297.9453125,
+    "maximum_observed_concurrent_worker_jobs": 1,
+    "hpo_full_budget_observed": true,
+    "hpo_first_worker_remaining_lower_bound_seconds": 6943.625000000002
+  },
+  "campaign_terminal": {
+    "status": "technical_failure",
+    "start_unix": 1792750977.2275486,
+    "start_monotonic": 9982.932947158813,
+    "absolute_deadline_unix": 1792761777.2275486,
+    "common_deadline_monotonic": 20782.932947158813,
+    "finished_unix": 1792761974.7797604,
+    "finished_monotonic": 20980.484,
+    "elapsed_common_seconds": 10997.551052841187,
+    "new_common_limit_seconds": 10800,
+    "failure_code": "terminal_campaign_write_over_common_cap",
+    "exception_type": "TechnicalFailure",
+    "terminal_exception": "Blocked",
+    "cleanup_confirmed": false,
+    "source_unchanged": false,
+    "qualification": "FAIL",
+    "qualified_four_stage_both_tasks": false,
+    "independent_audit": null
+  },
+  "time_diagnosis": {
+    "common_overrun_monotonic_seconds": 197.5510528411869,
+    "common_overrun_wall_seconds": 197.5522117614746,
+    "class_parent_overrun_monotonic_seconds": 635.2499999999982,
+    "last_persisted_heartbeat_utc": "2026-10-23T12:35:30.148215+00:00",
+    "class_end_utc": "2026-10-23T13:26:10.696294+00:00",
+    "seconds_end_minus_last_persisted_heartbeat": 3040.5480790138245,
+    "last_incomplete_worker_log_mtime_utc": "2026-10-23T12:33:14.473589+00:00",
+    "seconds_end_minus_worker_log_mtime": 3176.22270488739,
+    "last_observed_worker_roots": [
+      {
+        "job": "t5/c/automl_runs/repair4/confirmation-0/job.json",
+        "observed_monotonic": 16835.156
+      },
+      {
+        "job": "t5/c/automl_runs/repair4/confirmation-1/job.json",
+        "observed_monotonic": 17679.734
+      }
+    ],
+    "classification_state_at_last_artifacts": "confirmation0 complete; confirmation1 in progress, first feature-view component complete, second component directory exists but no parent result/CSV; no final-fit directory.",
+    "source_watchdog_contract": "Coordinator source checks clocks each monitor iteration and persists heartbeat every2s; run_worker also normally polls timeout every0.5s. Nominal sleep calls are0.1s/0.5s, not tens of minutes.",
+    "gap_cause": "Unresolved. The ~3040s persisted-heartbeat gap and missing confirmation1 result are consistent with a long paused/unavailable/blocked monitoring interval, but these receipts do not distinguish host sleep, scheduling/process pause, or a blocking observation/source/filesystem call. No OS sleep event proof or stack trace was inspected. Do not claim sleep or pure model-compute duration as established.",
+    "failure_code_limit": "Final terminal_parent_receipt_over_cap overwrites a prior supervisor failure_code in finally, and terminal_campaign_write_over_common_cap overwrites the campaign failure. Exact triggering operation is not retained.",
+    "memory": "Peak owned-tree1297.945MiB is below the2GiB whole-tree cap; no saved memory-limit failure. This does not prove every unobserved interval stayed below cap."
+  },
+  "costs_parent_reported_not_independently_timed": {
+    "primary_workers": [
+      {
+        "index": 0,
+        "status": "ok",
+        "wall_seconds": 261.61,
+        "engine": "ensemble"
+      },
+      {
+        "index": 1,
+        "status": "ok",
+        "wall_seconds": 83.125,
+        "engine": "lightgbm"
+      },
+      {
+        "index": 2,
+        "status": "ok",
+        "wall_seconds": 433.656,
+        "engine": "lightgbm"
+      },
+      {
+        "index": 3,
+        "status": "ok",
+        "wall_seconds": 214.125,
+        "engine": "catboost"
+      },
+      {
+        "index": 4,
+        "status": "ok",
+        "wall_seconds": 92.188,
+        "engine": "xgboost"
+      },
+      {
+        "index": 5,
+        "status": "error",
+        "wall_seconds": null,
+        "engine": "catboost"
+      },
+      {
+        "index": 6,
+        "status": "ok",
+        "wall_seconds": 24.438,
+        "engine": "lightgbm"
+      },
+      {
+        "index": 7,
+        "status": "ok",
+        "wall_seconds": 263.671,
+        "engine": "lightgbm"
+      },
+      {
+        "index": 8,
+        "status": "ok",
+        "wall_seconds": 367.625,
+        "engine": "lightgbm"
+      },
+      {
+        "index": 9,
+        "status": "ok",
+        "wall_seconds": 297.219,
+        "engine": "lightgbm"
+      },
+      {
+        "index": 10,
+        "status": "ok",
+        "wall_seconds": 272.891,
+        "engine": "lightgbm"
+      },
+      {
+        "index": 11,
+        "status": "timeout",
+        "wall_seconds": 900.578,
+        "engine": "lightgbm"
+      },
+      {
+        "index": 12,
+        "status": "ok",
+        "wall_seconds": 303.328,
+        "engine": "lightgbm"
+      },
+      {
+        "index": 13,
+        "status": "ok",
+        "wall_seconds": 307.172,
+        "engine": "lightgbm"
+      }
+    ],
+    "sum_known_primary_worker_seconds": 3821.626,
+    "missing_primary_time": "Experiment05 CatBoost error lacks wall_seconds; do not zero-impute it.",
+    "HPO_seconds": 697.484,
+    "HPO_attempted": 8,
+    "HPO_completed": 8,
+    "HPO_guided_successes": 5,
+    "HPO_full_requested_allocation_observed": true,
+    "confirmation0_seconds": 839.219,
+    "confirmation0_status": "ok",
+    "confirmation1_completed_first_component_seconds": 116.359,
+    "known_search_HPO_confirmation0_seconds_sum": 5358.329000000001,
+    "sum_limit": "Receipt wall times include nested work, polling/IO and possibly pauses. The sum is not CPU time or a full elapsed-time reconciliation. EDA/LLM, setup, incomplete confirmation1, missing error time and final cleanup are outside it.",
+    "scheduler_observation": "All14 search attempts ran, including a900.578s fallback timeout; confirmation0 alone cost839.219s, and no final refit was reached. This motivates explicit projected confirmation/refit admission but does not prove scheduling alone caused the late parent failure."
+  },
+  "worker_error_log_scan": {
+    "incomplete_confirmation1_has_traceback": false,
+    "incomplete_confirmation1_has_exception_error_token": false,
+    "interpretation": "No matching fatal error token in the incomplete worker log; its last output is a completed first-component receipt, not final job completion."
+  },
+  "artifact_status": {
+    "report.json": {
+      "exists": false,
+      "bytes": null
+    },
+    "final-fit": {
+      "exists": false,
+      "bytes": null
+    },
+    "final-fit/job.json": {
+      "exists": false,
+      "bytes": null
+    },
+    "final-fit/result.json": {
+      "exists": false,
+      "bytes": null
+    },
+    "final-fit/submission.csv": {
+      "exists": false,
+      "bytes": null
+    },
+    "confirmation-0/result.json": {
+      "exists": true,
+      "bytes": 93375
+    },
+    "confirmation-0/submission.csv": {
+      "exists": true,
+      "bytes": 602729
+    },
+    "confirmation-1/job.json": {
+      "exists": true,
+      "bytes": 3580
+    },
+    "confirmation-1/result.json": {
+      "exists": false,
+      "bytes": null
+    },
+    "confirmation-1/submission.csv": {
+      "exists": false,
+      "bytes": null
+    },
+    "confirmation-1/component-0/result.json": {
+      "exists": true,
+      "bytes": 10635
+    },
+    "confirmation-1/component-1/result.json": {
+      "exists": false,
+      "bytes": null
+    }
+  },
+  "source_and_ownership_limits": {
+    "campaign_saved_source_unchanged": false,
+    "campaign_saved_cleanup_confirmed": false,
+    "root_fresh_source742_PASS": "Reported by root separately, not re-executed here; saved false terminal flags must not be reinterpreted as established actual source drift.",
+    "task_cleanup_confirmed": true,
+    "whole_owner_closure": "Separate ownership agent is preparing fresh proof; task-local cleanup is not whole-campaign terminal closure."
+  },
+  "next_work": "After fresh owner closure, review source proposals/tests only. Preserve this failed original common clock and all receipts; any new independent post-deadline diagnostic must be separately declared and cannot qualify this failed three-hour procedure.",
+  "sha256_sources": {
+    "work/t5/c/supervisor.json": "e7eabafad77ee25da3f2133cd4c46ff64438c4bc60bca0d4e61d3e7698437c74",
+    "work/t5/campaign.json": "0fdc81072cdf7244edb6afd92db1bed6b71984c6f7eee18c3fe1045014b43e42",
+    "work/t5/c/automl_runs/repair4/progress.json": "1ab1e0050d3d232ef7a20b2907690701fc64a114bee669cf008708699e7fcf39",
+    "work/t5/c/automl_runs/repair4/inner-hpo/hpo.json": "57c0a012ce31dc04656f06f826391bbe505c805736a2df25e4c8fe676cbc0514",
+    "work/t5/c/automl_runs/repair4/confirmation-0/job.json": "780ffeb7d896b326f7b1a61c7ab993b45c70ca0f5115065ee8221ae71a3dae20",
+    "work/t5/c/automl_runs/repair4/confirmation-0/result.json": "65f595bbb3c98b0d0baac836960a1ae998f4eb51f94676f32fc28bcc68785164",
+    "work/t5/c/automl_runs/repair4/confirmation-1/job.json": "bbf7c13888d33ecc7f5ae0f2840e4984eef579ad814e864aad22d979b4609275",
+    "work/t5/c/automl_runs/repair4/confirmation-1/worker.log": "d8f1e100fae27e148cba56e5dc9ecf66324a63a48dd41cf1642ff2fa41c85036",
+    "work/t5/c/automl_runs/repair4/confirmation-1/component-0/result.json": "a89266719c3a5c3d146d811973692b73687055657ffb7557f49e208a5ec814d0",
+    "work/t5/c/automl_runs/repair4/results.tsv": "e73da76d7d703aba3139072cb46987184d8724c49f555579160e05667c471269",
+    "work/t5/c/supervisor.log": "db10d002547b62f301a2939cea13d286b57ef6736a4cf796b6fa1e9c9e4af5b4",
+    "work/run_repaired_mvp_r4.py": "db8c20fcaa6eeb55b08ef5b964e367abcc74d946c625242e78d545d319746ea7",
+    "work/m2dev/src/automl/search/runner.py": "e204a9eec98e7f3fa7799470cc453e8f4a3887247e8d102b5d0bb834f88c2ef3"
+  },
+  "classification_metrics_independently_verified": false,
+  "metrics_recomputed": false,
+  "fits": 0,
+  "API_calls": 0,
+  "tests_run": 0,
+  "promotion": false
+}

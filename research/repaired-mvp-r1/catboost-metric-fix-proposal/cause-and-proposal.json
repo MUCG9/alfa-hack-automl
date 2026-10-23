@@ -1,0 +1,54 @@
+{
+  "status": "source_only_prospective_narrow_weight_metric_contract_fix_not_executed",
+  "actual_failure": {
+    "receipt": "work/t5/c/automl_runs/repair4/experiment-05/result.json",
+    "status": "error",
+    "metrics": null,
+    "error": "CatBoostError: catboost/libs/metrics/metric.cpp:6822: If non-default weights for objects are not set, the 'use_weights' parameter must not be specified.",
+    "preserved": true
+  },
+  "evidenced_cause": [
+    "Closed job is classification macro_f1, nested_stopping=true, early_metric=primary, CatBoost1000/.05/depth6/l2=3. Neither class_weight_power, class_weights nor data_policy is present. The prose hypothesis claims mild weighting, but actual parameters do not enable it.",
+    "Frozen CatBoost adapter line23 unconditionally sets TotalF1:average=Macro;use_weights=false for primary MacroF1. create_model weighted=false and auto_class_weights=None for this exact job.",
+    "sample_weights returns None when class_weight_power is absent. Default DataPolicy is noop; prepare_training returns the same None weights. Worker adds sample_weight only when weights is not None. Thus this exact job creates no object-weight path.",
+    "Closed worker traceback reaches inner nested fit_on_rows -> estimator.fit -> CatBoost _train and raises the explicit use_weights rejection. No predictions or labels were inspected."
+  ],
+  "minimal_fix": {
+    "scope": "Only omit explicit use_weights on provably unit/unconfigured weight paths; retain all configured weighted paths byte-for-byte in metric strings.",
+    "no_weight_path": "legacy auto_class_weights disabled AND clipped class_weight_power=0/absent AND exact DataPolicy.is_noop.",
+    "unweighted_macro_f1": "TotalF1:average=Macro without explicit use_weights on that path; all objects have unit weights, so its objective remains the same unweighted MacroF1. Accuracy gets the identical applicability guard.",
+    "weighted_behavior": "Any legacy auto-class weighting, positive power or non-noop policy retains ;use_weights=false exactly. Training/sample/class weights and objective/evaluator/gates are not changed.",
+    "limit": "This is intentionally a narrow fix for the evidenced no-weight failure. A configured weighted path can still yield trivial actual weights (e.g. balanced class counts or a noop-effect policy); create_model cannot inspect realized fit weights. Such a preexisting edge case is not claimed fixed and would require a separate actual-fit-weight contract change."
+  },
+  "sha256_sources": {
+    "work/m2dev/src/automl/execution/model_adapters/catboost.py": "8dee9a2ec7b091d92096e4bb8afe0558ee02ba139c0d13db0b95417ff2de1c64",
+    "work/m2dev/src/automl/execution/weighting/classes.py": "421ba823788be5e3c4d6c529578c7fb7e5f64b5e95c4c35ca11c7ce75fd1ccd5",
+    "work/m2dev/src/automl/execution/sampling/policies.py": "3dc5b004df4c46e21e62c358d0b746f0d9e255ab90f24cb4bf1f5096ff01f05c",
+    "work/m2dev/src/automl/execution/worker.py": "ffa06615a7f59f958f77a24d1f89727dc31fae7d4ba49f30201d77c331887b14",
+    "work/m2dev/src/automl/contracts/messages.py": "d7cb04c29dcae92e08dd25e778153d82171be22b30c373c7999a0c8c60635557",
+    "work/t5/c/automl_runs/repair4/experiment-05/job.json": "92d57e139288c3072969d52a68b5364a765c7d7896969103f67c852a4f344c32",
+    "work/t5/c/automl_runs/repair4/experiment-05/result.json": "cf84c0c06c92472923d8e9689a85e3185b13ccc116777b7eb09dceac6e9bfaed",
+    "work/t5/c/automl_runs/repair4/experiment-05/worker.log": "9c36d13ff1a50c1dd50793711b48751503054070f27870b4a9b4077b0fdb5d04"
+  },
+  "new_adapter_sha256": "74071bdf978327ff53aedc1e3209da75107aa76cd2040f9c1fda8befcdb9222b",
+  "patch_sha256": "e68e50d7d16a7ca4a6a5f4a6d3e6bd94b01a1f36c594c958796fa9388de7f6b6",
+  "static_compile_and_AST_only": true,
+  "models_imported": false,
+  "tests_executed": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "future_one_focused_fixture_test": {
+    "when": "After active production queue and ownership cleanup close, under a new root-reviewed prospective source declaration; no current-run repair or retry.",
+    "test": "One fixed synthetic imbalanced multiclass fixture with two subcases: no weight path and a positive class_weight_power path, disjoint tiny training/evaluation positions.",
+    "bounds": "At most2 tiny CatBoost fits,10iterations each,1thread,<=64synthetic rows,30s parent,512MiB; no API/network/current data.",
+    "checks": [
+      "Unit-weight subcase constructs eval_metric TotalF1:average=Macro, fits without original error, metric equals unweighted MacroF1 from fixed held-out fixture labels/predictions.",
+      "Weighted subcase retains exact ;use_weights=false, sample weights come only from fitting labels, and reported held-out metric remains unweighted MacroF1.",
+      "No regression/learner/objective/gate parameters changed. Capture errors/timeout/null metrics, never silently treat failure as zero."
+    ]
+  },
+  "production_742_or_class_support_next_files_changed": false,
+  "active_classification_other_metrics_read": false,
+  "current_failure_retried": false,
+  "promotion": false
+}

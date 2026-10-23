@@ -1,0 +1,66 @@
+{
+  "to_utc": "2026-10-23T13:27:00.0000000Z",
+  "max_events": 100,
+  "events": [
+    {
+      "event_data": {
+        "WakeTimerContextLength": "0",
+        "HiberReadDuration": "5315",
+        "TargetState": "5",
+        "WakeSourceType": "0",
+        "EffectiveState": "5",
+        "WakeDuration": "303",
+        "DriverInitDuration": "252",
+        "WakeSourceText": "",
+        "WakeTimerContext": "",
+        "NoMultiStageResumeReason": "0",
+        "Attributes": "1979728005",
+        "HiberPagesWritten": "1047943",
+        "SleepTime": "2026-10-23T12:35:28.2254446Z",
+        "WakeTimerOwnerLength": "0",
+        "SleepDuration": "1795",
+        "HiberWriteDuration": "3305",
+        "CheckpointDuration": "39",
+        "BiosInitDuration": "3173",
+        "WakeSourceTextLength": "0",
+        "WakeTime": "2026-10-23T13:26:07.8054351Z",
+        "WakeTimerOwner": ""
+      },
+      "event_id": 1,
+      "provider": "Microsoft-Windows-Power-Troubleshooter",
+      "record_id": 100687,
+      "created_utc": "2026-10-23T13:26:09.2302434Z"
+    },
+    {
+      "event_data": {
+        "WakeFromState": "5",
+        "EffectiveState": "5",
+        "WakeRequesterTypeAc": "0",
+        "ProgrammedWakeTimeDc": "1601-01-01T00:00:00.0000000Z",
+        "ProgrammedWakeTimeAc": "1601-01-01T00:00:00.0000000Z",
+        "TargetState": "5",
+        "WakeRequesterTypeDc": "0"
+      },
+      "event_id": 107,
+      "provider": "Microsoft-Windows-Kernel-Power",
+      "record_id": 100664,
+      "created_utc": "2026-10-23T12:35:30.5728323Z"
+    },
+    {
+      "event_data": {
+        "EffectiveState": "5",
+        "TargetState": "5",
+        "Reason": "2",
+        "Flags": "0",
+        "TransitionsToOn": "1"
+      },
+      "event_id": 42,
+      "provider": "Microsoft-Windows-Kernel-Power",
+      "record_id": 100662,
+      "created_utc": "2026-10-23T12:35:29.9506496Z"
+    }
+  ],
+  "scope": "Read-only bounded System power events; no system settings changed",
+  "query_succeeded": true,
+  "from_utc": "2026-10-23T12:30:00.0000000Z"
+}

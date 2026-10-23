@@ -85,3 +85,5 @@ docs/experiments/true-four-stage-tm1/terminal-results.txt -text whitespace=cr-at
 
 docs/experiments/fullagent-stage0-failed-r1/** -text whitespace=cr-at-eol
 docs/experiments/selector-cost-analysis-r1/** -text whitespace=cr-at-eol
+
+docs/experiments/autoresearch_lessons_tm1_20261023* -text whitespace=cr-at-eol

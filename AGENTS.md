@@ -1,3 +1,18 @@
+# Подтверждённый tm1 и знания autoresearch — 23 октября 2026
+
+Сначала прочитать docs/experiments/autoresearch_lessons_tm1_20261023.md и его
+evidence. Настоящий four-stage tm1 завершён; refit/CSV/source core обеих задач
+проверен, но обе selected двухсрезовые метрики хуже сохранённого V11/V16.
+Class API independently closed/read; regression usage остаётся null после
+известного отказа, поэтому общий independent procedure gate не PASS.
+Default promotion и нового official submit из этого результата не следует.
+
+Первый isolated source gate Stage0 завершился техническим FAIL из-за missing
+fixturemetadata при неизменных runtime bytes; это не отрицательная ML-метрика.
+Не исправлять историю/clock и не выводить свежие job/PID/gate statuses из этого
+раздела. Продолжающуюся/новую кампанию проверять по её текущим receipts/identities
+и training lock. Исторические разделы ниже сохраняются как история.
+
 # Active Windows continuation — 23 October 2026
 
 Current branch work/night-research-20261023 continues7202aba. The current human

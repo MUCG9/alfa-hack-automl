@@ -1,3 +1,14 @@
+# Подтверждённое дополнение: tm1 и source gate — 23 октября 2026
+
+|Опыт|Подтверждённый scope/решение|Evidence|
+|---|---|---|
+|true-four-stage tm1|Стадии/refit/CSV core исполнены; обе selected метрики хуже сохранённого V11/V16. Class independent audit PASS, regression API часть null; quality REJECT|[lessons](../experiments/autoresearch_lessons_tm1_20261023.md), terminal-summary/T2/T3|
+|fixed-half SC1|Component gate PASS против SINGLE control; whole-agent gain/CV этим не доказаны|[component decision](../experiments/fixed-half-sc1-blend-r1/decision.json), [R3 protocol](../experiments/fullagent-fixed-half-plan-r3/protocol.json)|
+|Stage0 attempt1|A435script-counted pass/451observed/0skips,2fixturemetadata FileNotFoundError. B/exact not reached; technical FAIL, не ML outcome|[lessons/evidence L9–L10](../experiments/autoresearch_lessons_tm1_20261023.evidence.json)|
+
+Это dated evidence, не текущий process/launch status. Сохранённый старый RUNNING
+ниже не является статусом tm1; новые gates/attempts читать из свежих receipts.
+
 # Реестр исследований: что уже известно
 
 ## Новый разрешённый этап23октября2026

@@ -1,0 +1,530 @@
+{
+  "status": "confirmed_receipt_projection_for_proposed_knowledge_only",
+  "date": "2026-10-23",
+  "sources": {
+    "T1": {
+      "workspace_relative": "alfa-hack-automl/docs/experiments/true-four-stage-tm1/terminal-summary.json",
+      "sha256": "aaa9a22c00647654440dbfb487eca75c73777626448b8d037dfcd398a00c5c92",
+      "already_versioned": true
+    },
+    "T2": {
+      "workspace_relative": "alfa-hack-automl/docs/experiments/true-four-stage-tm1/classification-independent.json",
+      "sha256": "6635c3f35ecc946cb3c5d0451b92b989d1ea7c540664bc3b8c158a837aa4498c",
+      "already_versioned": true
+    },
+    "T3": {
+      "workspace_relative": "alfa-hack-automl/docs/experiments/true-four-stage-tm1/regression-independent.json",
+      "sha256": "c9f71c3b48e200079d4ac9e9704e0e0ade8b798d3c8d243e110ee2a6236c1447",
+      "already_versioned": true
+    },
+    "T4": {
+      "workspace_relative": "alfa-hack-automl/docs/experiments/true-four-stage-tm1/terminal-analysis.json",
+      "sha256": "f90973f8871f5a753d69866ec3763ac3116d373cb0c7de12b74fff0b4ceee301",
+      "already_versioned": true
+    },
+    "T5": {
+      "workspace_relative": "alfa-hack-automl/docs/experiments/true-four-stage-tm1/hpo-cost-r1.json",
+      "sha256": "d2777fd202fba6bfbacbd424a3884b75b6ce4b3304ec70e34d1db9da8f158ede",
+      "already_versioned": true
+    },
+    "C1": {
+      "workspace_relative": "alfa-hack-automl/docs/experiments/fixed-half-sc1-blend-r1/decision.json",
+      "sha256": "617b140e2a0e042f898d0e23f316e141f0d230ee6ae0eaf06cb24631f4f60e82",
+      "already_versioned": true
+    },
+    "C2": {
+      "workspace_relative": "alfa-hack-automl/docs/experiments/fixed-half-sc1-blend-r1/result-summary.txt",
+      "sha256": "1f2c07b989381716d0a7127b90cf6d698d14ebc7e8399b41f5920df521784d28",
+      "already_versioned": true
+    },
+    "P1": {
+      "workspace_relative": "alfa-hack-automl/docs/experiments/fullagent-fixed-half-plan-r3/protocol.json",
+      "sha256": "5b2164c3721c84b8e6eb85c0dec7571474316b2e956d6ecdeee235d0193addcb",
+      "already_versioned": true
+    },
+    "B1": {
+      "workspace_relative": "alfa-hack-automl/research/prepared-prototypes/four-leaf-default-r3/manifest-r3.json",
+      "sha256": "d367c6c18b7aecc5e53803897db0d21a3cb7411e644f158d80508cad3f5467c2",
+      "already_versioned": true
+    },
+    "G1": {
+      "workspace_relative": "f3/stage0.json",
+      "sha256": "fba916c3ea70f7de8a4acfc98e638885173e4204abf6f9f6a2373b3b1d4a3563",
+      "already_versioned": false
+    },
+    "G2": {
+      "workspace_relative": "f3/gate-a_source.json",
+      "sha256": "9db5a17043e35f9058c7da1e391d1d7c79e1b6ea4da4307fe4ee566eeb6d1351",
+      "already_versioned": false
+    },
+    "G3": {
+      "workspace_relative": "f3/gates/a_source/results.json",
+      "sha256": "dbf6102148dbabec999af02fc2cd79d78572f01fd253801ae3ebba03b98b6c82",
+      "already_versioned": false
+    },
+    "G4": {
+      "workspace_relative": "f3/gates/a_source/test_error_preparation.py.log",
+      "sha256": "e7a8db0f3ea24d2d5845fe9874ac72820a45a0d0ba02e050fe3e647782211f70",
+      "already_versioned": false
+    },
+    "G5": {
+      "workspace_relative": "fullagent-cv-launch-r1/manifest.json",
+      "sha256": "910b2705c66d9175e11cd392e33a3be2083a20d29cb595102711f7303b5200a5",
+      "already_versioned": false
+    }
+  },
+  "facts": [
+    {
+      "id": "L1",
+      "claim": "tm1 performed the actual four-stage pipeline and verified both-task saved refit/CSV/source core; technical completion is separate from quality and full independent audit.",
+      "references": [
+        {
+          "id": "T4",
+          "pointer": "/verified_stages"
+        },
+        {
+          "id": "T1",
+          "pointer": "/all_independent_procedure_gates_passed"
+        },
+        {
+          "id": "T1",
+          "pointer": "/all_saved_baseline_quality_gates_passed"
+        }
+      ],
+      "values": {
+        "verified_stages": [
+          "pre-fit valid Qwen EDA",
+          "broad features and actual CatBoost selection",
+          "successful LightGBM/CatBoost/XGBoost comparisons",
+          "inner Optuna",
+          "selected two-cut procedure",
+          "fresh full refit, recursive probabilities, CSV and input/source integrity"
+        ],
+        "all_independent_procedure_gates_passed": false,
+        "all_saved_baseline_quality_gates_passed": false
+      }
+    },
+    {
+      "id": "L2",
+      "claim": "The selected classification procedure is worse than preserved V11/V16 on both reused cuts; supported Analysis/Backdoor and ex-rarest gates fail both.",
+      "references": [
+        {
+          "id": "T1",
+          "pointer": "/tasks/classification/selected_cuts"
+        },
+        {
+          "id": "T4",
+          "pointer": "/classification_supported_class_failure"
+        }
+      ],
+      "values": {
+        "selected_cuts": {
+          "primary": 0.6493072504872177,
+          "confirmation": 0.650516192452206
+        },
+        "selected_mean": 0.6499117214697119,
+        "control_mean": 0.6593178433614652,
+        "per_cut_and_class_limits": {
+          "primary": {
+            "losses_over_001": {
+              "Analysis": -0.03335938027571167,
+              "Backdoor": -0.04631731465829508
+            },
+            "ex_rarest_macro_F1_delta": -0.00547117552070696
+          },
+          "confirmation": {
+            "losses_over_001": {
+              "Analysis": -0.018310311596530682,
+              "Backdoor": -0.061849539101992285
+            },
+            "ex_rarest_macro_F1_delta": -0.005421307562067845
+          }
+        }
+      }
+    },
+    {
+      "id": "L3",
+      "claim": "Regression selected RMSE is worse than preserved V16 on both cuts; this is historical-artifact comparison, not a fresh matched control refit.",
+      "references": [
+        {
+          "id": "T1",
+          "pointer": "/tasks/regression/baseline_comparisons/v16-mean1"
+        }
+      ],
+      "values": {
+        "baseline_report_sha256": "a431c5de3f02ae362ffb8d083f9b075af9c8020d52c0adafa72c24d575bee309",
+        "cuts": [
+          {
+            "phase": "primary",
+            "current": 38.91902905502106,
+            "preserved_control": 38.902803731334785,
+            "delta_current_minus_control": 0.01622532368627816,
+            "primary_improves": false
+          },
+          {
+            "phase": "confirmation",
+            "current": 37.28904675207362,
+            "preserved_control": 31.991659384340597,
+            "delta_current_minus_control": 5.29738736773302,
+            "primary_improves": false
+          }
+        ],
+        "cut_comparable_by_preserved_protocol_and_matching_training_row_hashes": true,
+        "historical_confirmation_training_rows_rechecked": true,
+        "historical_confirmation_component_training_hash_matches": [
+          true,
+          true
+        ],
+        "actual_selected_two_cut_mean": 38.104037903547336,
+        "preserved_selected_two_cut_mean": 35.44723155783769,
+        "mean_delta_current_minus_control": 2.656806345709647,
+        "each_cut_primary_gate_passed": false,
+        "class_each_cut_gate_passed": true,
+        "fresh_control_refit": false,
+        "historical_control_raw_predictions_recomputed": false,
+        "historical_confirmation_raw_partition_rechecked": false,
+        "scope": "Saved qualified full-procedure V11/V16 control; primary partition fingerprint matches, confirmation follows preserved two-cut protocol. Not a prospective matched rerun."
+      }
+    },
+    {
+      "id": "L4",
+      "claim": "Recorded selector cost is substantial, but selector_seconds is the whole selector function and does not establish pure teacher time, exact teacher-input equivalence or cache savings.",
+      "references": [
+        {
+          "id": "T4",
+          "pointer": "/task_costs"
+        },
+        {
+          "id": "T4",
+          "pointer": "/causal_limits"
+        }
+      ],
+      "values": {
+        "regression": {
+          "solver_report_seconds": 449.109,
+          "final_fit_wall_seconds": 37.563,
+          "recorded_selector_seconds_sum": 164.192,
+          "recorded_selector_fraction_of_solver_report": 0.3655949891897068,
+          "actual_teacher_receipts": 52,
+          "outer_search_experiments": 14,
+          "hpo_successful": 8,
+          "hpo_guided_successful": 5,
+          "report_sha256": "e74e62277f9c068b7029d4385606ac11f060af32acff39a12e2748bbb904a787",
+          "final_result_sha256": "0a665f58de196e5a028a3ac2165cc34204561bcf0e3b1b0df129b10b55af9326",
+          "interpretation": "Observational selector function timings, not isolated CatBoost kernel time or measured prospective cache savings."
+        },
+        "classification": {
+          "solver_report_seconds": 7204.438,
+          "final_fit_wall_seconds": 983.766,
+          "recorded_selector_seconds_sum": 4252.255,
+          "recorded_selector_fraction_of_solver_report": 0.5902271627571782,
+          "actual_teacher_receipts": 80,
+          "outer_search_experiments": 14,
+          "hpo_successful": 2,
+          "hpo_guided_successful": 0,
+          "report_sha256": "631d7508494ad466fdf40c9998fe27ec64dc6b499be6fa0f1cc2f371b87ac9a1",
+          "final_result_sha256": "5aed13837242a9c0adaf948e00b4ce147f7996a832fbdc6b52eeb6bea74aebde",
+          "interpretation": "Observational selector function timings, not isolated CatBoost kernel time or measured prospective cache savings."
+        }
+      }
+    },
+    {
+      "id": "L5",
+      "claim": "Class HPO never reached guided TPE; eight requested trials must not be reported as eight successful/adaptive trials. Regression did run five guided successes, with no matched random comparison established here.",
+      "references": [
+        {
+          "id": "T5",
+          "pointer": "/tasks/classification/phase_counts_recounted"
+        },
+        {
+          "id": "T5",
+          "pointer": "/tasks/regression/phase_counts_recounted"
+        }
+      ],
+      "values": {
+        "regression": {
+          "planned_trials": 8,
+          "attempted": 8,
+          "completed_objectives_reported": 8,
+          "failed": 0,
+          "unattempted": 0,
+          "phase_counts_recounted": {
+            "anchor": {
+              "attempted": 1,
+              "completed": 1,
+              "failed": 0
+            },
+            "startup": {
+              "attempted": 2,
+              "completed": 2,
+              "failed": 0
+            },
+            "guided": {
+              "attempted": 5,
+              "completed": 5,
+              "failed": 0
+            },
+            "random": {
+              "attempted": 0,
+              "completed": 0,
+              "failed": 0
+            }
+          },
+          "study_seconds": 83.563
+        },
+        "classification": {
+          "planned_trials": 8,
+          "attempted": 3,
+          "completed_objectives_reported": 2,
+          "failed": 1,
+          "unattempted": 5,
+          "phase_counts_recounted": {
+            "anchor": {
+              "attempted": 1,
+              "completed": 1,
+              "failed": 0
+            },
+            "startup": {
+              "attempted": 2,
+              "completed": 1,
+              "failed": 1
+            },
+            "guided": {
+              "attempted": 0,
+              "completed": 0,
+              "failed": 0
+            },
+            "random": {
+              "attempted": 0,
+              "completed": 0,
+              "failed": 0
+            }
+          },
+          "study_seconds": 900.344
+        }
+      }
+    },
+    {
+      "id": "L6",
+      "claim": "Class closed API ledger was independently read; regression independent API usage remains null after known PermissionError, no retry/bypass. Parent counts are not independent evidence.",
+      "references": [
+        {
+          "id": "T1",
+          "pointer": "/tasks/classification/API"
+        },
+        {
+          "id": "T1",
+          "pointer": "/tasks/regression/API"
+        },
+        {
+          "id": "T1",
+          "pointer": "/regression_known_API_denial_retried"
+        }
+      ],
+      "values": {
+        "classification": {
+          "independently_read_closed_ledger": true,
+          "gateway_calls": 2,
+          "http_attempts_reported": 2,
+          "prompt_tokens_reported": 16492,
+          "completion_tokens_reported": 1826,
+          "usage_complete": true
+        },
+        "regression": {
+          "independently_read_closed_ledger": false,
+          "gateway_calls": null,
+          "http_attempts_reported": null,
+          "prompt_tokens_reported": null,
+          "completion_tokens_reported": null,
+          "usage_complete": null,
+          "unavailable_reason": "PermissionError",
+          "winerror": null,
+          "acl_bypass_attempted": false,
+          "parent_supervisor_reported_usage": {
+            "gateway_calls": 2,
+            "gateway_calls_reported": 2,
+            "http_attempts_reported": 2,
+            "usage_complete": true,
+            "prompt_tokens_reported": 19302,
+            "completion_tokens_reported": 954
+          },
+          "parent_report_is_independent_ledger_read": false
+        },
+        "regression_known_denial_retried": false,
+        "both_task_independent_API_total": null
+      }
+    },
+    {
+      "id": "L7",
+      "claim": "Both tasks hit14 outer slots; tm1 ended inside its original3h clock with residual UTC time. No plateau rule or posthoc clock reset/extra training was introduced.",
+      "references": [
+        {
+          "id": "T4",
+          "pointer": "/observed_binding_search_constraint"
+        },
+        {
+          "id": "T4",
+          "pointer": "/clock_reset_or_extra_training_to_spend_residual"
+        }
+      ],
+      "values": {
+        "original_campaign_elapsed_common_seconds": 7664.906000000425,
+        "original_absolute_deadline_unix": 1792735776.7207654,
+        "campaign_finished_unix": 1792732641.587752,
+        "residual_original_absolute_seconds": 3135.1330132484436,
+        "clock_reset_or_extra_training_to_spend_residual": false,
+        "observed_binding_search_constraint": "Both tasks reached the predeclared14 outer-search slots; no plateau stopping rule or extended study was introduced after observing validation."
+      }
+    },
+    {
+      "id": "L8",
+      "claim": "Fixed-half component gains pass only their declared component gate against a SINGLE control, not complete-agent V11/V16. Whole-selection grouped CV and both-task complete-agent qualification remain distinct requirements.",
+      "references": [
+        {
+          "id": "C1",
+          "pointer": "/cuts"
+        },
+        {
+          "id": "C1",
+          "pointer": "/control"
+        },
+        {
+          "id": "C1",
+          "pointer": "/decision"
+        },
+        {
+          "id": "P1",
+          "pointer": "/whole_selection_grouped_CV"
+        },
+        {
+          "id": "P1",
+          "pointer": "/quality_and_lifecycle_gates"
+        }
+      ],
+      "values": {
+        "component_control": "qualified SINGLE component, distinct from full-agent V11/V16",
+        "component_cuts": [
+          {
+            "cut": 42,
+            "control_macro_f1": 0.6558634659956402,
+            "blend_macro_f1": 0.6580243777951491,
+            "delta": 0.002160911799508833,
+            "ex_rarest_delta": 0.0003463268453528512,
+            "worst_supported_delta": -0.004574458784280366,
+            "gate_passed": true
+          },
+          {
+            "cut": 43,
+            "control_macro_f1": 0.653724307666515,
+            "blend_macro_f1": 0.6561195893741495,
+            "delta": 0.002395281707634428,
+            "ex_rarest_delta": 0.0026614241195938027,
+            "worst_supported_delta": -0.005627910327986985,
+            "gate_passed": true
+          }
+        ],
+        "component_decision": "advance_to_prospective_grouped_and_full_agent_qualification_only",
+        "promotion": false,
+        "whole_agent_qualification_established_by_component_receipt": false
+      }
+    },
+    {
+      "id": "L9",
+      "claim": "A451/B468 are expected registry counts, not completed results. Actual Stage0 first A gate failed with435 script-counted passes/451 observed/0skips; its16-check error-preparation script had2 FileNotFoundError exceptions. B/exact not reached; no model-quality conclusion follows.",
+      "references": [
+        {
+          "id": "B1",
+          "pointer": "/actual_A_full_registry_expected"
+        },
+        {
+          "id": "B1",
+          "pointer": "/candidate_B_full_registry_expected"
+        },
+        {
+          "id": "G1",
+          "pointer": "/status"
+        },
+        {
+          "id": "G2",
+          "pointer": "/exit_code"
+        },
+        {
+          "id": "G3",
+          "pointer": "/checks"
+        },
+        {
+          "id": "G4",
+          "pointer": "text:FileNotFoundError/errors=2"
+        }
+      ],
+      "values": {
+        "A_expected": {
+          "checks": 451,
+          "scripts": 46
+        },
+        "B_expected": {
+          "checks": 468,
+          "scripts": 48
+        },
+        "source_results_passed": false,
+        "script_counted_passes": 435,
+        "observed_checks": 451,
+        "skips": 0,
+        "failing_script": "test_error_preparation.py",
+        "observed_checks_in_failed_script": 16,
+        "FileNotFoundError_count": 2,
+        "gate_exit_code": 1,
+        "stage_status": "failed_stage0",
+        "stage_cleanup_confirmed": true,
+        "stage_source_unchanged": true,
+        "remaining_B_or_exact_gates_attempted": false,
+        "ML_quality_inference": null
+      }
+    },
+    {
+      "id": "L10",
+      "claim": "A395-file frozen byte/inventory guard did not establish transitive fixture dependency closure. A deployment omitted docs/handoff/public_inputs.json read by tests; archive bytes were preserved and the attempt keeps its original failed clock.",
+      "references": [
+        {
+          "id": "G5",
+          "pointer": "/immutable_files"
+        },
+        {
+          "id": "G5",
+          "pointer": "/arms/a/source_files_sha256"
+        },
+        {
+          "id": "G1",
+          "pointer": "/absolute_deadline_unix"
+        },
+        {
+          "id": "G4",
+          "pointer": "text:public_inputs.json"
+        }
+      ],
+      "values": {
+        "immutable_file_count": 395,
+        "missing_from_A_deployment": "docs/handoff/public_inputs.json",
+        "present_in_A_deployment": false,
+        "frozen_archive_sha256": {
+          "a": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0",
+          "b": "d5144685e682654bfed3a0e216ecec4f2ada4868b7df0e0d9779aba9f79d77bc"
+        },
+        "failed_original_deadline_unix": 1792737958.3639908,
+        "old_receipts_or_clock_changed": false,
+        "lesson": "Trace actual test read dependencies, including docs/release metadata, through callees; validate a complete isolated deployment, not only Python inventory and ten task inputs. Future repair must be separately declared; never rewrite old evidence."
+      }
+    }
+  ],
+  "limits": [
+    "No new scoring/fits/API/tests/private-ledger access; facts are read from terminal summaries and audits.",
+    "Historical control comparison limits remain: no fresh control refit/raw historical confirmation prediction recomputation.",
+    "B/exact not reached follows failed first A gate and frozen sequential order; this packet does not describe any later repair attempt.",
+    "Stage0 technical fixtures are not a public quality benchmark.",
+    "Snapshot-specific class names and timings are project evidence, not global ML rules."
+  ],
+  "current_execution_state_from_old_receipt": false,
+  "installed_skill_or_canonical_edits": false,
+  "promotion": false,
+  "launch_authorized": false
+}

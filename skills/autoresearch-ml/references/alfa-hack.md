@@ -58,3 +58,20 @@ Git, его содержимое не выводится; workers credentials н
 raw rows, predictions, weights, окружения и секреты. Публикация рабочей ветки
 имеет отдельное разрешение; из него не следуют official upload/main merge/paid
 compute.
+
+## Подтверждённые lessons tm1 и isolated gates
+
+Перед повтором broad FE/selector/HPO или отчётом о tm1 прочитать от корня
+проекта `docs/experiments/autoresearch_lessons_tm1_20261023.md` и его SHA-bound
+evidence. tm1 исполнил четыре стадии, но не улучшил сохранённый V11/V16;
+class HPO не дошёл до guided TPE. Не превращать combined negative outcome в
+причинный запрет отдельной технологии. У class закрытый API ledger проверен
+независимо, у regression usage null после известного PermissionError; parent
+usage не заменяет независимый аудит.
+
+Expected source registry, статические hash/inventory checks и component gain
+не равны actual full gates или whole-agent CV. Первый Stage0 показал незамкнутую
+fixturemetadata dependency при неизменных395hashes; проверять реальные test
+reads через callees, включая docs/release metadata, в isolated deployment.
+Детали, исходные часы и неудачные attempts сохранять по evidence, а текущий
+execution state всегда читать отдельно из свежих receipts.

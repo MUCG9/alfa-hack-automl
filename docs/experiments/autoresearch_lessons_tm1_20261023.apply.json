@@ -1,0 +1,29 @@
+{
+  "status": "root_reviewed_knowledge_applied_and_skill_packaged",
+  "recorded_epoch": 1792735421.0738788,
+  "proposal_manifest_sha256": "1a4311397d0a28ab9517310b5f6c0fa6bcc5371ff2699d66bab8dbbedee861d3",
+  "versioned_files_sha256": {
+    "docs/experiments/autoresearch_lessons_tm1_20261023.evidence.json": "1d4eb40d036de74b9b54b117a9ea73bc1c5cba3696e635093398f427d1f9e18a",
+    "docs/experiments/autoresearch_lessons_tm1_20261023.md": "3bc299d43fc301e204661548597b599b54701df9c57258c10b23727e4e53c5be",
+    "skills/autoresearch-ml/SKILL.md": "57b9ad3d8b88c0f73d7e54012efff95c2eca56eafbb56d6359f24bf3e50eb792",
+    "skills/autoresearch-ml/references/alfa-hack.md": "c6e856cb28e49e892bcc659a26f746eaa3c9a8c6ec8a4ed87faaae00943830e1",
+    "AGENTS.md": "9923b3ab39021ac7e293e6367db0f8c246cdcd2ccd7a1c2e6ac88d6e1fd9685f",
+    "docs/handoff/EXPERIMENTS.md": "d26aece22a1c90a6dbf1de5c45bfb68c0d7ffb54b1ed53094673eff5834df1ad",
+    "docs/prompts/next-agent.md": "9712723e6faa7e068d4af1c3d8dc9dd28cee28b59d7adbd6ebf2b23fee3fc9e0"
+  },
+  "source_receipts_rehashed": 14,
+  "protected_old395_and_new9_intersection": [],
+  "installed_files_updated": [
+    "SKILL.md",
+    "references/alfa-hack.md"
+  ],
+  "previous_installed_bytes_preserved": "autoresearch-knowledge-previous-installed-r1",
+  "skill_validation_exit_code": 0,
+  "skill_validation_output": "Skill is valid!",
+  "skill_zip_sha256": "5559aba47a21dd8add5a7bd6994afb5f2a45690d31a641e96154827edcf5eba6",
+  "runtime_source_or_archive_or_gate_assertion_changes": false,
+  "new_fits": 0,
+  "API_calls": 0,
+  "promotion": false,
+  "official_submission": false
+}

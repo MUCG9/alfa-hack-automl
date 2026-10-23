@@ -186,3 +186,17 @@ Real adapters construction + actual Optuna с injected worker (0 model fits)
 Добавлена также проверка legacy XGB depth alias и явного max_depth precedence.
 Эти sparse recipes не использованы в измеренных screens; прежние scores и
 source343/exact-unpacked23 относятся к зафиксированному исходнику.
+
+
+BLEND-01: заранее заданный no-fit replay .9qualified complete V16+.1selected
+MVPsingle прошёл оба paired/support/rarest gates: mean .6600536197705544 vs
+.6593178433614652. Не promotion/official/private score. Первая попытка остановилась
+до scoring на отсутствующем historical raw train; replay2 использовал MVP train
+с точным original provenance SHA, original JSON/splits не менялись. Execution
+3.414s,0fits, immutable results/protocols сохранены.
+Подготовлен BLEND-01 grouped CV после queue+FE-02: `run_blend_cv.py` и
+`verify_blend_cv.py`, пока НЕ запущен. Fixed.9/.1,6worker arms максимум,
+900s/1536MiB/2threads per complete-arm,6000s total. Две coverage/pooled-score
+проверки и три probability alignment/rejection проверки PASS. Actual coordinator
+refusal при живом predecessor проверен до fitting/output creation (0fits).
+Source остаётся frozen также через этот CV; HPO sparse-default fix отложен.

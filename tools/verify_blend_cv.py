@@ -34,6 +34,9 @@ def verify(path):
     if manifest['candidates'] != expected:
         raise ValueError('CV recipes differ from preregistered candidates')
     verifier = Verifier(manifest, path.parent/'sources')
+    replay = json.loads((ROOT/'docs/experiments/blend01_replay_20261023.json').read_text())
+    if manifest['inputs']['train'] != replay['train_sha256']:
+        raise ValueError('CV source rows differ from the screened procedure')
     spec, train = verifier.spec, verifier.train
     if (spec['kind'] != 'classification' or spec['metric'] != 'macro_f1'
             or spec.get('validation_strategy') == 'time'):

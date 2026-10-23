@@ -3,6 +3,8 @@
 Статус на промежуточном checkpoint23Oct: полный MVP завершён; независимые
 regression screens и classification FE-01 завершены. Classification HPO/HAR-01
 и отдельный FE-02 followup ещё выполняются/ожидают; их результатов здесь пока нет.
+Отдельный fixed BLEND-01 replay прошёл оба cuts; его grouped CV подготовлен,
+ещё не запущен. Replay не меняет qualified status.
 Лучший qualified полный агент остаётся V11/V16. Official uploads не делались.
 
 ## Полный MVP
@@ -41,6 +43,18 @@ blend scoring. Posthoc replay тех же пяти canonical mixing configuratio
 .6572695988152342. Это всё ещё ниже qualified .6593178433614652. Полного refit
 этого replayed blend нет; первоначальный результат MVP от replay не меняется.
 Receipt: [mvp_cached_blend_replay_20261023.json](mvp_cached_blend_replay_20261023.json).
+
+Другой заранее зафиксированный replay BLEND-01 использует сильный ПОЛНЫЙ
+V11/V16 control с весом.9 и готовый MVP SINGLE с весом.1 (одна конфигурация,
+без grid). Оба cuts улучшились: .6632403175→.6639909034 и
+.6553953693→.6561163362, mean .6600536197705544 против .6593178433614652.
+Supported/rarest gates проходят; Worms F1 не меняется. Это новое положительное
+наблюдение о дополнении ошибок, а не отмена отрицательного FE-01 и не результат
+полного нового агента. Исполнение3.414s/0fits. Receipt:
+[blend01_replay_20261023.json](blend01_replay_20261023.json).
+До CV записан [протокол](blend01_cv_protocol_20261023.md) всей фиксированной
+ensemble procedure с повторным fitting preprocessing/selection/calibration.
+Новая mixture weight или другой complement после этих scores не подбираются.
 
 Практическая гипотеза: отдельно резервировать дешёвую обработку готовых
 predictions и дорогие model fits; включать FE/HPO только после component gate,

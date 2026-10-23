@@ -1,0 +1,525 @@
+{
+  "status": "completed_mvp_artifact_analysis",
+  "new_model_fits": 0,
+  "new_api_calls": 0,
+  "scope": "Measured completed exploratory MVP on reused public cuts; no new experiment or official score estimate",
+  "existing_summary_sha256": "46d9a8b55d16351a90880ce0401a3f381540e66c3c3b2a54368fd301b8bbc359",
+  "existing_summary_consistent": true,
+  "tasks": {
+    "regression": {
+      "metric": "rmse",
+      "elapsed_seconds": 328.328,
+      "report_sha256": "738a2540be57ecdb1a822624f542677fc69541df35d8da425cdd8f39ef5ec59f",
+      "final_result_sha256": "d006ea31e069ef57f7c6eebc9b5f1109d5a53a3b3f3f0e65575d0e5b34a554f0",
+      "api_ledger_sha256": "73a51f3e2f7295449816650fe3d2a822a2bd993f5760c814eaae91808b7918e3",
+      "independent_verification_sha256": "46f09e1500105ce4940b2ccf902d3d2792f1753879c7c4db3634f302be0e4547",
+      "timing_seconds": {
+        "planner": 13.093,
+        "outer_search_workers_including_selector": 186.799,
+        "inner_hpo_whole_study": 59.421,
+        "confirmation_workers_including_selector": 21.047,
+        "cached_blend_evaluation": 0.078,
+        "full_refit_worker_including_selector": 20.172,
+        "unattributed_parent_setup_eda_io_seconds": 27.718,
+        "eda_separate_seconds": null,
+        "selector_separate_seconds": null,
+        "measurement_limit": "EDA, preprocessing, selection and model fitting lack independent timers. Worker wall time includes them; residual is not an EDA estimate. Nested component timings must not be added again."
+      },
+      "api": {
+        "gateway_calls": 2,
+        "http_attempts": 2,
+        "planner_terminal_status_counts": {
+          "ok": 2
+        },
+        "valid_proposals_per_saved_call": [
+          1,
+          1
+        ],
+        "reasoning_requested": [
+          false,
+          false
+        ],
+        "first_planner_ledger_completion_seconds": 254.968,
+        "first_planner_start_seconds_estimated": 248.281
+      },
+      "selector": {
+        "mandatory_top_k": 32,
+        "receipt_count_in_completed_leaf_results": 52,
+        "receipt_status_counts": {
+          "selected": 52
+        },
+        "receipt_stage_counts": {
+          "confirmation": 6,
+          "experiment": 28,
+          "final": 2,
+          "inner": 16
+        },
+        "all_recorded_receipts_100_iterations": true,
+        "input_column_range": [
+          62,
+          87
+        ],
+        "selected_column_count_range": [
+          32,
+          32
+        ],
+        "scope": "Saved completed leaf worker receipts only; interrupted trial may have unrecorded work; cannot infer selector cost or benefit"
+      },
+      "hpo": {
+        "status": "ok",
+        "sampler": "tpe",
+        "planned_trials": 8,
+        "attempted_trials": 8,
+        "completed_trials": 8,
+        "failed_trials": 0,
+        "unattempted_trials": 0,
+        "startup_trials": 3,
+        "phase_counts": {
+          "anchor": {
+            "attempted": 1,
+            "completed": 1,
+            "failed": 0
+          },
+          "startup": {
+            "attempted": 2,
+            "completed": 2,
+            "failed": 0
+          },
+          "guided": {
+            "attempted": 5,
+            "completed": 5,
+            "failed": 0
+          },
+          "random": {
+            "attempted": 0,
+            "completed": 0,
+            "failed": 0
+          }
+        },
+        "guided_attempts": 5,
+        "guided_successful_trials": 5,
+        "selected_trial": 7,
+        "selected_phase": "guided",
+        "best_inner_value": 32.06005834414502,
+        "seconds": 59.421,
+        "trials": [
+          {
+            "number": 0,
+            "status": "ok",
+            "phase_reconstructed": "anchor",
+            "objective": 32.06394336569608,
+            "seconds": 6.125,
+            "params": {
+              "num_leaves": 127,
+              "reg_lambda": 8,
+              "colsample_bytree": 0.9
+            }
+          },
+          {
+            "number": 1,
+            "status": "ok",
+            "phase_reconstructed": "startup",
+            "objective": 32.1372206724451,
+            "seconds": 6.0,
+            "params": {
+              "num_leaves": 122,
+              "reg_lambda": 2.4523024037214416,
+              "colsample_bytree": 0.9238427418978695
+            }
+          },
+          {
+            "number": 2,
+            "status": "ok",
+            "phase_reconstructed": "startup",
+            "objective": 32.41117759184218,
+            "seconds": 5.921,
+            "params": {
+              "num_leaves": 98,
+              "reg_lambda": 6.31873788875852,
+              "colsample_bytree": 0.8756757554812158
+            }
+          },
+          {
+            "number": 3,
+            "status": "ok",
+            "phase_reconstructed": "guided",
+            "objective": 32.86868256251069,
+            "seconds": 5.609,
+            "params": {
+              "num_leaves": 38,
+              "reg_lambda": 19.71105652316699,
+              "colsample_bytree": 0.7684165051065378
+            }
+          },
+          {
+            "number": 4,
+            "status": "ok",
+            "phase_reconstructed": "guided",
+            "objective": 32.72532018624386,
+            "seconds": 5.938,
+            "params": {
+              "num_leaves": 125,
+              "reg_lambda": 9.32008234114909,
+              "colsample_bytree": 0.9733037763736829
+            }
+          },
+          {
+            "number": 5,
+            "status": "ok",
+            "phase_reconstructed": "guided",
+            "objective": 32.68973260103836,
+            "seconds": 5.641,
+            "params": {
+              "num_leaves": 65,
+              "reg_lambda": 6.242089723201091,
+              "colsample_bytree": 0.7958906481274062
+            }
+          },
+          {
+            "number": 6,
+            "status": "ok",
+            "phase_reconstructed": "guided",
+            "objective": 32.283818880687704,
+            "seconds": 5.704,
+            "params": {
+              "num_leaves": 86,
+              "reg_lambda": 2.79644599955306,
+              "colsample_bytree": 0.8551971221782733
+            }
+          },
+          {
+            "number": 7,
+            "status": "ok",
+            "phase_reconstructed": "guided",
+            "objective": 32.06005834414502,
+            "seconds": 6.016,
+            "params": {
+              "num_leaves": 104,
+              "reg_lambda": 12.639692527584211,
+              "colsample_bytree": 0.9899657323952007
+            }
+          }
+        ],
+        "scope": "Inner study only; startup winner is not evidence of adaptive TPE superiority"
+      },
+      "winner_lineage": [
+        {
+          "experiment_index": 12,
+          "engine": "lightgbm",
+          "ensemble_weight": 0.9,
+          "matches_saved_qwen_planner_calls": [
+            1
+          ],
+          "exact_saved_fallback_reconstructed": false,
+          "hypothesis": "The current model uses raw floor_area and year_built; adding log-transformed and age-based features will better capture non-linear relationships between building size/age and energy consumption, avoiding the 40.13 baseline's reliance on complex encoding.",
+          "params": {
+            "iterations": 1600,
+            "learning_rate": 0.035,
+            "num_leaves": 127,
+            "max_depth": -1,
+            "min_child_samples": 25,
+            "reg_lambda": 8,
+            "subsample": 1,
+            "colsample_bytree": 0.9,
+            "generic_features": "missing",
+            "subsample_freq": 0,
+            "min_iterations": 100,
+            "target_encoding": true,
+            "target_encoding_auto_groups": true,
+            "target_encoding_smoothing": 2,
+            "log_target": true,
+            "target_encoding_hierarchical": true,
+            "history_asof": true,
+            "history_min_periods": 3,
+            "feature_selection_top_k": 32,
+            "early_metric": "primary",
+            "nested_stopping": true
+          },
+          "recipe_sha256": "a798841e5cd948efe473c97c9d98636da73ae224db5ff5d8206ec5ae9212921a"
+        },
+        {
+          "experiment_index": 8,
+          "engine": "catboost",
+          "ensemble_weight": 0.09999999999999998,
+          "matches_saved_qwen_planner_calls": [],
+          "exact_saved_fallback_reconstructed": false,
+          "hypothesis": "Bounded native-category pilot",
+          "params": {
+            "iterations": 600,
+            "depth": 6,
+            "learning_rate": 0.07,
+            "l2_leaf_reg": 5,
+            "min_iterations": 100,
+            "feature_selection_top_k": 32,
+            "early_metric": "primary",
+            "nested_stopping": true
+          },
+          "recipe_sha256": "f5e6679298a479d684ea72be7d5ee57e9da5f40953468836512cb24d75c0ceb7"
+        }
+      ],
+      "search_experiments": 14,
+      "confirmation_candidates": 3,
+      "final_metrics": {
+        "search": 39.68401452463683,
+        "confirmation": 31.697010289694845,
+        "cut_mean": 35.69051240716584,
+        "strong_control_mean": 35.44723155783769,
+        "mean_delta_mvp_minus_control": 0.2432808493281513,
+        "every_cut_improves": false
+      }
+    },
+    "classification": {
+      "metric": "macro_f1",
+      "elapsed_seconds": 5465.719,
+      "report_sha256": "84768834e72e0e78b590235fd517885e51e42ef11b71949e25fb3f040f5fc1cc",
+      "final_result_sha256": "a40c70f921f9a853b7efcd9edee177247b9b4783c18bcbdef81879891c534a1e",
+      "api_ledger_sha256": "0fcf5591bec04cf36b6ea2ee3203eb808d1f5e938a5ee045af7f9062fb3f7a29",
+      "independent_verification_sha256": "e0e802bb3c268e27a23df6e37b314b2a4ba3a91c266828d0b9b4e3339e371d83",
+      "timing_seconds": {
+        "planner": 9.109,
+        "outer_search_workers_including_selector": 3418.89,
+        "inner_hpo_whole_study": 900.157,
+        "confirmation_workers_including_selector": 633.485,
+        "cached_blend_evaluation": 0.765,
+        "full_refit_worker_including_selector": 452.547,
+        "unattributed_parent_setup_eda_io_seconds": 50.766,
+        "eda_separate_seconds": null,
+        "selector_separate_seconds": null,
+        "measurement_limit": "EDA, preprocessing, selection and model fitting lack independent timers. Worker wall time includes them; residual is not an EDA estimate. Nested component timings must not be added again."
+      },
+      "api": {
+        "gateway_calls": 2,
+        "http_attempts": 2,
+        "planner_terminal_status_counts": {
+          "error": 1,
+          "ok": 1
+        },
+        "valid_proposals_per_saved_call": [
+          0,
+          1
+        ],
+        "reasoning_requested": [
+          false,
+          false
+        ],
+        "first_planner_ledger_completion_seconds": 2513.094,
+        "first_planner_start_seconds_estimated": 2510.735
+      },
+      "selector": {
+        "mandatory_top_k": 32,
+        "receipt_count_in_completed_leaf_results": 95,
+        "receipt_status_counts": {
+          "selected": 95
+        },
+        "receipt_stage_counts": {
+          "confirmation": 10,
+          "experiment": 57,
+          "final": 6,
+          "inner": 22
+        },
+        "all_recorded_receipts_100_iterations": true,
+        "input_column_range": [
+          42,
+          102
+        ],
+        "selected_column_count_range": [
+          32,
+          32
+        ],
+        "scope": "Saved completed leaf worker receipts only; interrupted trial may have unrecorded work; cannot infer selector cost or benefit"
+      },
+      "hpo": {
+        "status": "ok",
+        "sampler": "tpe",
+        "planned_trials": 8,
+        "attempted_trials": 5,
+        "completed_trials": 4,
+        "failed_trials": 1,
+        "unattempted_trials": 3,
+        "startup_trials": 3,
+        "phase_counts": {
+          "anchor": {
+            "attempted": 1,
+            "completed": 1,
+            "failed": 0
+          },
+          "startup": {
+            "attempted": 2,
+            "completed": 2,
+            "failed": 0
+          },
+          "guided": {
+            "attempted": 2,
+            "completed": 1,
+            "failed": 1
+          },
+          "random": {
+            "attempted": 0,
+            "completed": 0,
+            "failed": 0
+          }
+        },
+        "guided_attempts": 2,
+        "guided_successful_trials": 1,
+        "selected_trial": 2,
+        "selected_phase": "startup",
+        "best_inner_value": 0.6344957005376981,
+        "seconds": 900.157,
+        "trials": [
+          {
+            "number": 0,
+            "status": "ok",
+            "phase_reconstructed": "anchor",
+            "objective": 0.6293967027246721,
+            "seconds": 228.75,
+            "params": {
+              "num_leaves": 63,
+              "reg_lambda": 5,
+              "colsample_bytree": 0.9
+            }
+          },
+          {
+            "number": 1,
+            "status": "ok",
+            "phase_reconstructed": "startup",
+            "objective": 0.6296331435097767,
+            "seconds": 236.688,
+            "params": {
+              "num_leaves": 122,
+              "reg_lambda": 2.4523024037214416,
+              "colsample_bytree": 0.9238427418978695
+            }
+          },
+          {
+            "number": 2,
+            "status": "ok",
+            "phase_reconstructed": "startup",
+            "objective": 0.6344957005376981,
+            "seconds": 206.516,
+            "params": {
+              "num_leaves": 98,
+              "reg_lambda": 6.31873788875852,
+              "colsample_bytree": 0.8756757554812158
+            }
+          },
+          {
+            "number": 3,
+            "status": "ok",
+            "phase_reconstructed": "guided",
+            "objective": 0.631767228353234,
+            "seconds": 196.547,
+            "params": {
+              "num_leaves": 105,
+              "reg_lambda": 19.71105652316699,
+              "colsample_bytree": 0.7626158986068207
+            }
+          },
+          {
+            "number": 4,
+            "status": "timeout",
+            "phase_reconstructed": "guided",
+            "objective": null,
+            "seconds": 19.578,
+            "params": {
+              "num_leaves": 37,
+              "reg_lambda": 9.32008234114909,
+              "colsample_bytree": 0.8050240797300526
+            }
+          }
+        ],
+        "scope": "Inner study only; startup winner is not evidence of adaptive TPE superiority"
+      },
+      "winner_lineage": [
+        {
+          "experiment_index": 11,
+          "engine": "lightgbm",
+          "ensemble_weight": 0.9,
+          "matches_saved_qwen_planner_calls": [],
+          "exact_saved_fallback_reconstructed": true,
+          "hypothesis": "Controlled deterministic alternative",
+          "params": {
+            "iterations": 1200,
+            "learning_rate": 0.04,
+            "num_leaves": 98,
+            "max_depth": -1,
+            "min_child_samples": 25,
+            "reg_lambda": 6.31873788875852,
+            "subsample": 1,
+            "colsample_bytree": 0.8756757554812158,
+            "class_weight_power": 1.0,
+            "calibrate": true,
+            "subsample_freq": 0,
+            "min_iterations": 100,
+            "feature_views": "categorical_te_pair",
+            "feature_selection_top_k": 32,
+            "seed": 53,
+            "early_metric": "primary",
+            "nested_stopping": true
+          },
+          "recipe_sha256": "12972fcf3ef3c08351a60d3193bcba4b5317124acca276fbedc3213e133dae74"
+        },
+        {
+          "experiment_index": 4,
+          "engine": "xgboost",
+          "ensemble_weight": 0.09999999999999998,
+          "matches_saved_qwen_planner_calls": [],
+          "exact_saved_fallback_reconstructed": false,
+          "hypothesis": "Optional training-only XGBoost decision calibration; retain the uncalibrated control",
+          "params": {
+            "iterations": 1800,
+            "learning_rate": 0.035,
+            "max_depth": 6,
+            "min_child_weight": 3,
+            "subsample": 0.85,
+            "colsample_bytree": 0.9,
+            "reg_lambda": 8,
+            "reg_alpha": 0.1,
+            "class_weight_power": 0.5,
+            "min_iterations": 50,
+            "calibrate": true,
+            "feature_selection_top_k": 32,
+            "early_metric": "primary",
+            "nested_stopping": true
+          },
+          "recipe_sha256": "9567c42400b80d1f1e22ab1c0d468900213224d764005cd87370f08b604db64c"
+        }
+      ],
+      "search_experiments": 14,
+      "confirmation_candidates": 3,
+      "final_metrics": {
+        "search": 0.6557068682217162,
+        "confirmation": 0.6618698250907046,
+        "cut_mean": 0.6587883466562103,
+        "strong_control_mean": 0.6593178433614652,
+        "mean_delta_mvp_minus_control": -0.0005294967052548172,
+        "every_cut_improves": false
+      }
+    }
+  },
+  "next_bounded_changes": [
+    {
+      "priority": 1,
+      "change": "Move the first Qwen EDA proposal before the portfolio; keep the same portfolio, API cap and total clock",
+      "evidence": "Saved MVP first planner completions occur after portfolio/HPO work, not at time zero; the newer four-stage harness is a separate intervention",
+      "gate": "Same-budget complete procedure improves both predefined cuts of both tasks; component result alone cannot promote"
+    },
+    {
+      "priority": 2,
+      "change": "Admit HPO trials only when observed complete-trial cost plus confirmation/refit reserve fits",
+      "evidence": "Classification startup trial2 wins; guided trial3 loses and trial4 times out. Existing B replay preserves winner and excludes216.125s saved worker durations",
+      "gate": "Retain startup alternatives; successful guided count is diagnostic, not objective; measure actual full-procedure time and metric"
+    },
+    {
+      "priority": 3,
+      "change": "Send fitting independent-group support in one matched planner context; retain per-class and ex-rarest gates",
+      "evidence": "Search-only exp09 gain vs exp02 disappears after rarest exclusion; saved support-context pair is prepared but unscored",
+      "gate": "Separate frozen group42/43 component protocol, then complete-agent qualification; no generalized prompt claim from one pair"
+    }
+  ],
+  "report_consistency": {
+    "mvp_results_json": "Metrics, report hashes, refit status and CSV hashes agree with completed independently verified reports",
+    "mvp_results_text": "Reports completed MVP and retained V16 control; no stale running status",
+    "older_feature_and_pipeline_reviews": "Historical snapshot analyses; do not reinterpret their old-study timing as final MVP timing",
+    "proposed_concise_addendum": "MVP completed and independently verified. Both tasks fail the each-cut promotion gate, so V16 remains control. New support-context candidates are generated only and have no measured ML improvement yet."
+  }
+}

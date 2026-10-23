@@ -7,8 +7,19 @@ Read docs/experiments/night_native_20261023.md. Historical documentation-only,
 no-fits and no-extra-agent snapshots below do not replace this current scope.
 Main/force pushes and new paid resources are not part of this continuation.
 
-The actual executing MVP is frozen in ../frozen-mvp, not this development tree.
-Do not edit its source/archive during the public campaign. No old Linux jobs or
+The Windows MVP in ../frozen-mvp is COMPLETE, with both tasks independently
+verified through full refit/CSV/integrity. Mean regression RMSE35.69051240716584
+is worse than qualified35.44723155783769; mean classification MacroF1
+.6587883466562103 is worse than qualified.6593178433614652. Preserve V11/V16.
+See docs/experiments/native_mvp_results_20261023.json. Do not rerun that campaign.
+The next sequential queue uses an immutable execution manifest and the original
+absolute deadline; read actual receipts and fresh PID/create_time before fits.
+Source2b and2c technical gate failures are retained; no component screen started
+in those attempts. The2d harness revision uses shallow owned fixture directories
+to avoid Windows path limits, retaining all451 checks and rejecting skips.
+Do not edit source/tools/tests/inputs guarded by a running queue; use an isolated
+development tree. Do not edit frozen MVP archives or historical evidence.
+No old Linux jobs or
 ignored datasets were transferred: current Windows PID checks found old33136
 and37960 absent; the ten public files were downloaded and SHA-verified anew.
 Heavy fits remain sequential. Raw data, predictions, venvs and credentials stay
@@ -17,6 +28,15 @@ outside commits. New default promotion requires full measured/release gates.
 Browser origin approval explicitly rejected changellenge.com. Do not retry via
 another browser/transport or claim upload. Continue authorized local work and
 prepare a reviewable archive; this access blocker is separate from ML progress.
+
+Measured research lessons: a higher scalar class score can be driven entirely
+by a class with46 independent fitting groups; check supported-class losses and
+gain excluding the rarest class. The MVP classification HPO winner was a startup
+trial, despite one successful guided trial; this does not establish TPE beating
+random. Code preflight caught pandas label alignment producing an all-NaN derived
+feature; a code-only repair restored finite values, with ML quality still pending.
+Ordinal period codes are not calendar years. Runtime Qwen does not read this file;
+any planner knowledge must be supplied explicitly in a bounded measured context.
 # Development instructions — current checkpoint, 23 October 2026
 
 NEW captain authorization supersedes the historical no-fitting/documentation-only

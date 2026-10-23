@@ -25,7 +25,10 @@ Canonical code — `src/automl`, root-файлы — compatibility shims. Contes
 Dev tools/skills в flat ZIP не входят. Canonical source не менять во время
 frozen-source campaign.
 
-Qualified complete control — сохранённый V11/V16. Component controls сильные
+После full qualification PIPE-02 сравнивать новые полные процедуры с PIPE-02:
+F1 .6593178433614652/RMSE35.39729814378806. V11/V16 остаётся историческим
+контролем и фиксированным компонентом regression смеси, не текущим best agent.
+Component controls сильные
 SINGLE recipes: categorical two-view LightGBM для classification, asof/history
 LightGBM для regression. Это разные единицы сравнения. Optuna/selector по
 умолчанию OFF; exploratory MVP не означает default promotion.
@@ -72,3 +75,13 @@ Git, его содержимое не выводится; workers credentials н
 raw rows, predictions, weights, окружения и секреты. Публикация рабочей ветки
 имеет отдельное разрешение; из него не следуют official upload/main merge/paid
 compute.
+
+Продолжение23Oct: капитан заново разрешил непрерывные ограниченные Qwen rounds;
+исторический completed-checkpoint stop больше не действует. ROUND-01 marginal
+HPO улучшил forward cut0, повторил текущий PIPE02 на cut1 и остановлен по strict
+gate;32objective независимо проверены, cut2 не запускался, three-cut mean нет.
+Это отрицательный результат конкретной конфигурации, не всех marginal objectives.
+См. `docs/experiments/round01_results_20261023.md`, текущий следующий протокол
+`round02_protocol_20261023.md`. Новые планы и фактические статусы читать из Git/
+receipts. У repaired Qwen plan явно разделены PIPE02 comparison control и V16
+mixture-component control; наблюдённый repair не является reliability A/B.

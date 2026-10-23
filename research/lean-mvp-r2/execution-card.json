@@ -1,0 +1,111 @@
+{
+  "experiment": "T7",
+  "status": "prepared_not_launched",
+  "factor": "external supervision cooperative heartbeat/deadline checkpoints during synchronous hashing/sealing",
+  "previous_T6_status": "FAIL",
+  "previous_T6_actual_exec_exit_code": 1,
+  "manifest_sha256": "8faf33cd81c0e864bcf338828c34447000111eda85bc719b8f43312d2babae9a",
+  "immutable_refs": 733,
+  "source_root": "m3dev",
+  "archive_sha256": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0",
+  "runtime_archive_exactly_T6": true,
+  "source_checks_expected": 458,
+  "source_checks_skipped_permitted": 0,
+  "exact_unpacked_repeated_expected": 23,
+  "common_limit_seconds": 10800,
+  "clock_assigned": false,
+  "start_unix": null,
+  "absolute_deadline_unix": null,
+  "limits": {
+    "common_seconds": 10800,
+    "source_parent": 600,
+    "exact_parent": 180,
+    "regression_parent": 2100,
+    "classification_min_parent": 6000,
+    "classification_max_parent": 8200,
+    "final_audit": 300,
+    "threads": 2,
+    "worker_memory_gib": 1.5,
+    "whole_tree_gib": 2,
+    "task_gateway_call_cap": 4,
+    "maximum_experiments": 9
+  },
+  "maximum_experiments": 9,
+  "HPO_trials": 8,
+  "HPO_seconds": {
+    "regression": 900,
+    "classification": 2100
+  },
+  "protected_controls": {
+    "regression": {
+      "path": "m2packet/control-r.json",
+      "sha256": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b",
+      "signature": "773dfb566afd9b2ad6c47853ffaa6898392c009fd41c9202d89184b3c50ceb9e"
+    },
+    "classification": {
+      "path": "m2packet/control-c.json",
+      "sha256": "56c0e2204df33ebc733034ad5ed835d902874862c71bbb4a16a043c3a99781a9",
+      "signature": "a828ab557d308ecaf186ab48ede3e606bb3631f318c11202136384916643d394"
+    }
+  },
+  "evaluator_source_sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+  "separate_broad_CatBoost_selector": true,
+  "preserve_original_features": true,
+  "champion_seed_enabled": false,
+  "class_support_context_enabled": false,
+  "cache_enabled": false,
+  "requested_model": "qwen/qwen3.8-27b",
+  "reasoning_effort": "off",
+  "terminal_predecessor_refs": [
+    {
+      "path": "m3packet/terminal-root-closure.json",
+      "sha256": "ca4796c602ac213a2c48a652fcbb8461ddceadd51b4aa0b8f661ad59931b344a",
+      "schema": "campaign_root_closure",
+      "expected_exec_session": 88656,
+      "expected_exec_exit_code": 1,
+      "identity_fields": [
+        "owned_identities",
+        "closure_preparer_identities"
+      ]
+    },
+    {
+      "path": "t6-independent-classification-r1/root-closure.json",
+      "sha256": "cdd587b0ab7f93f9af5cbc835267a15bd008d85b3241fb162032ced3a91168f4",
+      "schema": "postfailure_audit_root_closure",
+      "expected_exec_session": 43087,
+      "expected_exec_exit_code": 0,
+      "identity_fields": [
+        "owned_identities",
+        "closure_preparer_identities"
+      ]
+    },
+    {
+      "path": "t7-predecessor-root-closure.json",
+      "sha256": "1c7dea8a72738cee399597d5aef3afb34d220cd9719715fec4525c1dec48caae",
+      "schema": "fresh_supervision_predecessor_closure",
+      "identity_fields": [
+        "owned_identities",
+        "closure_preparer_identities"
+      ]
+    }
+  ],
+  "root_source_review": {
+    "coordinator_sha256": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "launcher_sha256": "85163b1589ac03acbd89ddde0568826fdb1cc9872377e713a78ac95bfe8e6f6f",
+    "critical_findings": [],
+    "actual_cooperative_contracts": 2,
+    "actual_contract_wrapper_exit_code": 0,
+    "actual_contract_tool_chunk": "17f0d4",
+    "contract_source": "checkpoint975796bee5dcd470b1f3ed1822d2d4396402b6bbdd4f2ce156c7a00a94442aa3",
+    "assembled_source_compile_only": true,
+    "root_manifest_and_fresh_470_proofs_tool_chunk": "e2bb3a",
+    "private_env_preflight_tool_chunk": "ffeb8d",
+    "new_fits": 0,
+    "API_calls": 0
+  },
+  "decision": "Require actual complete refit/CSV/R4 and root actual exec/fresh terminal closure; retain V11/V16 and better T5 regression until all quality gates pass",
+  "validation_scope": "Reused public; regression HPO inner overlaps confirmation. Neither blind/private nor official score.",
+  "official_score": null,
+  "promotion": false,
+  "submit": false
+}

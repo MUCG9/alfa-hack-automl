@@ -1,0 +1,15 @@
+{
+  "status": "prepared_only_no_clock_or_jobs",
+  "base_manifest_sha256": "4b987c652864179465dc754e90e3d1c8c9ed7c0a2144db5c3339e4c8a607d07e",
+  "manifest_sha256": "8faf33cd81c0e864bcf338828c34447000111eda85bc719b8f43312d2babae9a",
+  "archive_sha256": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0",
+  "runtime_source_root": "m3dev",
+  "immutable_refs": 733,
+  "source_expected_tests": 458,
+  "exact_expected_tests": 23,
+  "research_clock_assigned": false,
+  "actual_gates_run": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "root_source_review_of_coordinator_predecessor_contract_required": true
+}

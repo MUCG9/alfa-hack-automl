@@ -1,0 +1,15 @@
+{
+  "status": "reviewed_not_executed",
+  "source_sha256": "47693f2e50bf1200fa4d542a12e5d9050eb85036d7bd5aea3cbab9b68b82d016",
+  "only_state_fields": [
+    "supervision_retry_mvp",
+    "heartbeat_last"
+  ],
+  "only_status_output": "outputs/supervision-retry-status.txt",
+  "T6_preserved": true,
+  "new_fits": 0,
+  "API_calls": 0,
+  "signals": 0,
+  "locks": 0,
+  "actual_terminal_confirmation": "root required"
+}

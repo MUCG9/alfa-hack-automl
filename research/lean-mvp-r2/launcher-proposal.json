@@ -1,0 +1,135 @@
+{
+  "status": "source_only_T7_launcher_packet_draft_no_build_or_clock",
+  "source_sha256": {
+    "prepare_lean_mvp_packet_r2.py": "8f138fed5e5555239fa029dc08bf2a20a8a96dcfb85f8f41f00445c64452739f",
+    "launch_lean_mvp_r2.py": "85163b1589ac03acbd89ddde0568826fdb1cc9872377e713a78ac95bfe8e6f6f"
+  },
+  "inputs_sha256": {
+    "m3packet/manifest.json": "4b987c652864179465dc754e90e3d1c8c9ed7c0a2144db5c3339e4c8a607d07e",
+    "launch_lean_mvp_r1.py": "8d96d9bf5ab42520d27d320a3cc717d2f4b688d43d1e9d8d092c956bd37f394e",
+    "run_lean_mvp_r1.py": "562cfb439a579b2f21541b95e14acdbc650f24547709083e04312e670bb971eb",
+    "m3packet/lean-source.zip": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0",
+    "m3packet/terminal-root-closure.json": "ca4796c602ac213a2c48a652fcbb8461ddceadd51b4aa0b8f661ad59931b344a",
+    "t6-independent-classification-r1/root-closure.json": "cdd587b0ab7f93f9af5cbc835267a15bd008d85b3241fb162032ced3a91168f4",
+    "t6-independent-classification-r1/supervisor.json": "be14766f937eef7770b6015c88feb6cf2cc8b7e61aac5b8ac3882dd83a68ab12",
+    "t6-independent-classification-r1/audit.json": "831582b935dbfeabd5b6438d3133ab8fffcb8252708062f86057a5ac64d343b7",
+    "m3packet/launch.json": "808913336453f9fd8c37b10b08c770599ed73163cce048103b10ab75c6f7a61a",
+    "t6/campaign.json": "d8004d3c0c5daf2c3f5e599bc7db849f603e6679e59a7559462d0d5bfc53a973",
+    "m2packet/t5-terminal-closure.json": "0e959a6d35963d30025799805544a35f732bb1b6c52a9bc0c2d345d6f4ecfb09",
+    "repaired-mvp-r1-dev/evaluator_r4.py": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+    "t7-predecessor-root-closure.json": "1c7dea8a72738cee399597d5aef3afb34d220cd9719715fec4525c1dec48caae",
+    "supervision-contracts-r1/receipt.json": "ed74d1b51cf66c8ad21d547c4d9752c925a390085c38e146f1f72c84ac69e4b9",
+    "supervision-contracts-r2/receipt.json": "6ae64fc67e621b49bd574a324393c648d1e516dfa50d0642f1c968e42dddd0eb",
+    "run_lean_mvp_r2.py": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "lean-supervision-next-dev/t7-coordinator-source-handoff.json": "b883633c909bcc95689f802faf473d3d08a356bcb9c46fce514104c5a15972f7"
+  },
+  "source_basis": "Actual T6 manifest+same-process launcher; exact current m3 runtime/archive unchanged. Retain all718 historical source/input refs and add only future controller/launcher/predecessor evidence.",
+  "packet_contract": {
+    "packet": "m4packet",
+    "output": "t7",
+    "coordinator": "run_lean_mvp_r2.py",
+    "launcher": "lean-supervision-next-dev/launch_lean_mvp_r2.py",
+    "runtime": "m3dev",
+    "archive": "m4packet/lean-source.zip",
+    "archive_copy_byte_SHA": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0",
+    "source_expected_tests": 458,
+    "exact_expected_tests": 23,
+    "source_gate_parent": 600,
+    "exact_gate_parent": 180,
+    "common_seconds": 10800,
+    "actual_common_start": null,
+    "actual_deadline": null,
+    "verification_plan_self_manifest_fields": null,
+    "max_experiments": 9,
+    "HPO_trials": 8,
+    "HPO_seconds": {
+      "regression": 900,
+      "classification": 2100
+    },
+    "threads": 2,
+    "worker_GiB": 1.5,
+    "whole_owned_tree_GiB": 2,
+    "complete_exact_V16_controls_unchanged": true,
+    "evaluator_sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+    "no_champion_seed_flag": true,
+    "no_class_support_flag": true,
+    "no_cache_flag": true
+  },
+  "predecessor_contract": {
+    "new_manifest_key": "terminal_predecessor_receipts",
+    "schemas": [
+      "campaign_root_closure",
+      "postfailure_audit_root_closure",
+      "fresh_supervision_predecessor_closure"
+    ],
+    "identity_fields": [
+      "owned_identities",
+      "closure_preparer_identities"
+    ],
+    "expected_executions": {
+      "88656": 1,
+      "43087": 0
+    },
+    "required": "SHA-bound true cleanup/source; strict exact PID/create_time absence before actualclock/again before+under canonical lock in NEWcoordinator; unknownbirth/denials/live failclosed. No recursive analytical edges/PID-name exceptions. Retain priorT5 proof+fixture+existing optional probe.",
+    "source_evidence_only": [
+      "T6 actual failed launch/campaign",
+      "classaudit wrapper/supervisor/audit"
+    ],
+    "root_preparer_pairs_explicit": [
+      {
+        "pid": 26596,
+        "create_time": 1792768923.6274793
+      },
+      {
+        "pid": 24844,
+        "create_time": 1792768923.6106465
+      }
+    ],
+    "latest_root_proof_owned_count": 468,
+    "latest_root_proof_preparer_pairs": [
+      {
+        "pid": 7216,
+        "create_time": 1792769430.0627043
+      },
+      {
+        "pid": 25532,
+        "create_time": 1792769430.0454168
+      }
+    ],
+    "new_evidence": "Both supervision contracts attempts preserved: r1 RSS-race fail, r2 actual2 contracts passed/root tool17f0d4; all three closure/evidenceSHA refs frozen."
+  },
+  "clock_accounting": "Fresh actual10800 assigned only after publication/privateenv/terminal preflight. All actual source/exact gates, both ML tasks/refits/CSV/audits/finalcleanup inside it. No reset/resume/borrow of oldT6clock.",
+  "output_integrity": "No circular manifest freeze: manifest/launch and instantiated plan excluded from immutable refs; plan template manifest/deadline null until coorlaunch. Archive byte copied only, not rebuilt. Newpacket/output exclusive. Launcher does not mutate STATE; root records actual events.",
+  "missing_before_actual_build": [
+    "Final coordinator43be86... source received and independent integration text/AST review complete. Root still reviews launcher/builder and owns source freeze/publication/preparation.",
+    "Root source publication/finalcontrollerSHA+launcherSHA then actual packet preparation. Static marker check is only typo/failclosed guard, not semantic proof.",
+    "Root actual manifest/source/deployment review and fresh full predecessor absence (including latest closure preparers) before launching one sole heavy queue."
+  ],
+  "command_templates": {
+    "prepare": "work/venv/Scripts/python.exe -B -X utf8 work/lean-supervision-next-dev/prepare_lean_mvp_packet_r2.py --work-root WORK --coordinator-sha256 FINAL --launcher-sha256 FINAL",
+    "launch": "work/venv/Scripts/python.exe -B -X utf8 work/lean-supervision-next-dev/launch_lean_mvp_r2.py --work-root WORK --manifest-sha256 ACTUAL --expected-commit PUBLISHED"
+  },
+  "compile_only_PASS": true,
+  "runtime_imports": 0,
+  "tests_executed": 0,
+  "archive_builds": 0,
+  "actual_packet_preparations": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "new_clock_assigned": false,
+  "old_frozen_sources_changed": false,
+  "STATE_changed": false,
+  "Git_calls": 0,
+  "coordinator_integration_review": {
+    "source_sha256": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "root_exact_three_proof_map_pinned": true,
+    "predecessor_calls": 6,
+    "all_calls_pass_terminal_receipts": true,
+    "fresh_before_and_underlock": true,
+    "source_root_m3dev_preserved": true,
+    "new_output_t7_and_packet_m4": true,
+    "critical_source_issues_found": [],
+    "runtime_imports": 0,
+    "actual_tests_of_assembled_source": 0
+  }
+}

@@ -105,3 +105,4 @@ research/repaired-mvp-r1/** -text whitespace=cr-at-eol,-blank-at-eof
 research/lean-mvp-r1/** -text whitespace=cr-at-eol,-blank-at-eof
 research/champion-seed-next/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 research/lean-supervision-next/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+research/lean-mvp-r2/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol

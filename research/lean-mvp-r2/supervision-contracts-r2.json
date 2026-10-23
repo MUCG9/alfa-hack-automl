@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "common_cap_seconds": 60,
+  "memory_cap_mib": 512,
+  "threads": 1,
+  "owned_root": {
+    "pid": 24544,
+    "create_time": 1792769374.352816
+  },
+  "bootstrap_identities": [
+    {
+      "pid": 7824,
+      "create_time": 1792769374.3338723
+    }
+  ],
+  "source_sha256": "975796bee5dcd470b1f3ed1822d2d4396402b6bbdd4f2ce156c7a00a94442aa3",
+  "test_sha256": "3901539a60fb8c8e2060e4e67f6ce2431adadda389cf2dc633651210df771f94",
+  "new_fits": 0,
+  "API_calls": 0,
+  "Power_API_calls": 0,
+  "primary_T6_status": "FAIL",
+  "errors": [],
+  "cleanup_confirmed": true,
+  "tests_expected": 2,
+  "actual_child_exit_code": 0,
+  "tests_passed": 2,
+  "source_unchanged": true,
+  "owned_process_identities": [
+    {
+      "pid": 26464,
+      "create_time": 1792769374.4567416
+    },
+    {
+      "pid": 26512,
+      "create_time": 1792769374.4694712
+    }
+  ],
+  "elapsed_seconds": 0.2809999999990396,
+  "peak_tree_rss_mib": 48.68359375,
+  "finished_unix": 1792769374.7137709
+}

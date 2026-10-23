@@ -1,0 +1,7 @@
+test_long_chunked_work_keeps_gap_valid_and_charges_unchanged_deadline (__main__.CooperativeHeartbeatContracts.test_long_chunked_work_keeps_gap_valid_and_charges_unchanged_deadline) ... ok
+test_real_uninstrumented_over10_gap_fails_without_reset_or_extension (__main__.CooperativeHeartbeatContracts.test_real_uninstrumented_over10_gap_fails_without_reset_or_extension) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.028s
+
+OK

@@ -1,0 +1,21 @@
+{
+  "status": "assembled_source_only_not_launched",
+  "source": "run_lean_mvp_r2.py",
+  "sha256": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+  "external_supervision_only": true,
+  "runtime_archive_sha256": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0",
+  "task_output": "t7",
+  "packet": "m4packet",
+  "terminal_predecessor_receipts": {
+    "m3packet/terminal-root-closure.json": "ca4796c602ac213a2c48a652fcbb8461ddceadd51b4aa0b8f661ad59931b344a",
+    "t6-independent-classification-r1/root-closure.json": "cdd587b0ab7f93f9af5cbc835267a15bd008d85b3241fb162032ced3a91168f4",
+    "t7-predecessor-root-closure.json": "1c7dea8a72738cee399597d5aef3afb34d220cd9719715fec4525c1dec48caae"
+  },
+  "static_compile_passed": true,
+  "actual_tests_of_assembled_source": 0,
+  "prior_checkpoint_fixture_tests_passed": 2,
+  "fits": 0,
+  "API_calls": 0,
+  "clock_assigned": false,
+  "T6_status": "FAIL"
+}

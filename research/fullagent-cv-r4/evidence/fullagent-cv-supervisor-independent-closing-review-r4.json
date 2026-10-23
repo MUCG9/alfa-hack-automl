@@ -1,0 +1,156 @@
+{
+  "status": "independent_read_only_R4_source_closing_review_complete_no_blocker_in_declared_repair_scope",
+  "created_utc": "2026-10-23T06:08:19.066472+00:00",
+  "bindings_sha256": {
+    "fullagent_cv_coordinator_r4.py": "b85d04ec335a6cccefd3ed5214d05ea196fc4a62b619a054644b568c6d05d627",
+    "fullagent_cv_coordinator.py": "45dd8bc9e56b4874e43e051cf279f0497c0b82f628d5c1db7cb6ec2e2bad8a24",
+    "fullagent-cv-supervisor-plan-r4\\source-snapshot-manifest-r4.json": "0bc05c3edd6d56cccadd3d1514510bd852c88688e7c6a0d7209cb32e3f61aa14",
+    "fullagent-cv-supervisor-plan-r4\\binding-draft-r4.json": "05b506726dc66ce0a6bddc5e03d3472bc073515fd522103aa4e7164ecec1a44f",
+    "fullagent-cv-supervisor-plan-r4\\fixture-path-proof-r3.json": "beadcc3dda740a14ef6c743dfaeadcbe728cfe522f779bced801b1b7ad19518d",
+    "fullagent-cv-supervisor-plan-r4\\runtime-path-proof-r3.json": "7e69fe39ebe5c9498cd7da05fc44feafa138280740978180f0a30ec2a1e21df1",
+    "fullagent-cv-supervisor-plan-r4\\CARD.md": "845703c4ee16f9b34af85157bfda227e0ac922a408344a21aca36cfc8875e667",
+    "fullagent-cv-supervisor-plan-r4\\gate-metadata.json": "06406363cdd5ebd9befa519305b3984cf67b6d923aa172078d6b7523b5ef2da6",
+    "fullagent-cv-supervisor-plan-r4\\wrapper-only-diff-r4.patch": "074161f4e33bf6cdca65ffae8a357c5ad8e4be254851e11cb6a9c3016af60b9e",
+    "fullagent-cv-supervisor-plan-r4\\controller-mock-evidence.json": "164065a3bbee9d1d382e3873434f44dc6d0b5657f1305bc0763829e19cc91dfd",
+    "fullagent-cv-supervisor-plan-r4\\preparation-proof.json": "379158b01d95bb6b4a39e7b776c19eb67c599cd10c5bb68001dde17d80e61026",
+    "sourcegate-fixture-dependency-independent-review-r1.json": "861a70fd96cb775221e53b683579df2f6127bc0b17629bc7984d5f08ba83b0b8",
+    "fullagent-cv-stage0-closure-independent-review-r1.json": "7bc4be937f85b3a2cb2551661adbbe29accdbb54bf1ad682507587301630dbde"
+  },
+  "snapshot": {
+    "all9_bound_packet_files_match": true,
+    "source_copy_identical": true,
+    "source_unchanged_after_mock_evidence": true,
+    "prior395immutable_files_rehashed_unchanged": true
+  },
+  "reviewed_repair": {
+    "output": "f4",
+    "packet_default": "fullagent-cv-launch-r4",
+    "added_source_functions": [
+      "gate_metadata",
+      "prior_technical_evidence"
+    ],
+    "changed_inherited_functions": [
+      "configure",
+      "guard",
+      "launch",
+      "main",
+      "paths_audit",
+      "predecessor_check",
+      "prepare"
+    ],
+    "all_other_inherited_function_AST_unchanged": true,
+    "shared_metadata_files": 9,
+    "shared_metadata_bytes_per_arm": 1088058,
+    "source_inventory_counts": {
+      "a": 181,
+      "b": 183
+    },
+    "old_inventory_entries_unchanged": {
+      "a": 172,
+      "b": 174
+    },
+    "metadata_copies_both_arms_rehashed": true,
+    "runtime_archives_unchanged": true,
+    "libraries_verifiers_folds_R3_unchanged": true,
+    "ML_pipeline_feature_recipe_HPO_source_changes": false,
+    "source_gate_registry_test_assertions_or_skips_changed": false,
+    "expected_future_A_checks_scripts": [
+      451,
+      46
+    ],
+    "expected_future_B_checks_scripts": [
+      468,
+      48
+    ],
+    "actual_new_Stage0_gates_run": 0
+  },
+  "prior_attempt_and_ownership": {
+    "prior_closure_sha256": "1d3332619f7cc0781ce563edcf39121fe76e8b3bed70ff24ca2707dcff25c345",
+    "nine_prior_stage_launcher_gate_results_log_manifest_binding_source_refs_match": true,
+    "all395_old_immutable_bytes_carried_into_new_manifest": true,
+    "old_failed_stage_exec1_terminal_not_quality_pass": true,
+    "prior_saved_identity_union": 444,
+    "union_in_existing_strict_predecessor_observer_before_inside_lock_and_gate_arm_checkpoints": true,
+    "fail_closed_for_live_owned_or_identity_denials": true,
+    "predecessors_never_signalled": true,
+    "reviewer_performed_live_scan_or_signalling": false,
+    "new_launch_must_refresh_absence_under_lock": true
+  },
+  "clock_and_procedure": {
+    "new_Stage0_common_seconds": 3600,
+    "unchanged_gate_order": [
+      "a_source",
+      "b_source",
+      "a_exact",
+      "b_exact"
+    ],
+    "unchanged_gate_caps": [
+      900,
+      900,
+      480,
+      480
+    ],
+    "new_deadline_must_differ_old_and_start_after_prior_terminal_end": true,
+    "old_clock_not_restarted_extended_or_reinvested": true,
+    "Stage1_still_separate64800_six_slots_AB_BA_AB": true,
+    "full_gate_no_partial435_reuse": true,
+    "no_retry_loop": true,
+    "source_cli_API0_data_and_label_boundaries_unchanged": true
+  },
+  "path_proof_static": {
+    "source_maps_identical_to_prior_proof": true,
+    "equal_output_prefix_characters": 95,
+    "runtime_combinations": 47724,
+    "runtime_max_file_directory": [
+      193,
+      156
+    ],
+    "fixture_max_file_directory": [
+      241,
+      212
+    ],
+    "all18_added_metadata_path_lengths_recalculated": true,
+    "actual_path_creation_test_by_reviewer": false
+  },
+  "narrow_author_mock_evidence_review": {
+    "methods_passed": 12,
+    "inherited_methods": 7,
+    "new_metadata_prior_methods": 5,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "guard_seconds": 0.25,
+    "peak_rss_mib": 27.8515625,
+    "limits_seconds_mib_threads": [
+      300,
+      512,
+      1
+    ],
+    "owned_cleanup_confirmed": true,
+    "dummy_target_Popen_calls": 4,
+    "stdlib_test_python_children": 1,
+    "real_worker_gate_fit_API_network": 0,
+    "actual_prior_receipts_or_PIDs_used_by_mocks": false,
+    "mocks_rerun_by_reviewer": false,
+    "limitation": "Meaningful scoped synthetic contracts and static exact-byte checks; not actual source/unpacked gates, live ownership integration, data/model outcomes or launch qualification."
+  },
+  "verdict": {
+    "blocking_findings": [],
+    "source_ready_for_root_review_and_publication": true,
+    "actual_prepare_done": false,
+    "actual_manifest_review_still_required": true,
+    "current_draft_prepare_blocked_on_null_new_publication_SHA": true,
+    "new_clock_assigned": false,
+    "launch_authorized_by_this_review": false,
+    "quality_or_promotion_claim": false
+  },
+  "reviewer_actions": {
+    "tests_run": 0,
+    "application_module_imports": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "real_process_scan_or_signals": 0,
+    "canonical_frozen_or_f3_edits": false,
+    "published_or_launched": false
+  }
+}

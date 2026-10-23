@@ -1,0 +1,64 @@
+{
+  "status": "read_only_dependency_packet_review_complete",
+  "created_utc": "2026-10-23T05:59:30.441957+00:00",
+  "bindings_sha256": {
+    "sourcegate-fixture-dependency-audit-r1\\manifest.json": "04138af9e540991f352c6d4837bfba36018904725ad5dfeae211ccd647ffe242",
+    "sourcegate-fixture-dependency-audit-r1\\needed-files.json": "8dc28e4319c814121c899fca357ead65b67daf2135f3a737cafb151315e06689",
+    "sourcegate-fixture-dependency-audit-r1\\analysis.txt": "9e712fd5f79eb65abe4b1283dd670398d39a1b6110e470ca6808225cf3126f2b",
+    "sourcegate-fixture-dependency-audit-r1\\source-io-inventory.json": "a1a393d39de6cf7924c2381ece55b4ef60ee303045adffb52339f19e3e303cec",
+    "fullagent-cv-launch-r1\\manifest.json": "910b2705c66d9175e11cd392e33a3be2083a20d29cb595102711f7303b5200a5",
+    "f3\\sa\\src\\automl\\error_analysis\\preparation.py": "967af2169fcb927f21753352b3b30cf5d1bff8889d872e80bc853d711c983656",
+    "f3\\sa\\tests\\test_error_preparation.py": "0facfed85558cfb541c72564b9cf47938531deb986293d3489252cc6ceb5b641"
+  },
+  "independently_verified": {
+    "shared_metadata_files": 9,
+    "A_and_B_actual_bytes_match": true,
+    "bytes_per_arm": {
+      "a": 1088058,
+      "b": 1088058
+    },
+    "absent_from_both_old_inventories_and_f3_deployment": true,
+    "new_inventory_counts": {
+      "a": 181,
+      "b": 183
+    },
+    "historical_archives": [
+      {
+        "version": "v11-featureviews1",
+        "members": 52,
+        "zip_and_all_members_verified": true,
+        "requirements_bytes_match": true
+      },
+      {
+        "version": "v16-mean1",
+        "members": 54,
+        "zip_and_all_members_verified": true,
+        "requirements_bytes_match": true
+      }
+    ],
+    "all_packet_file_hashes_match": true
+  },
+  "branch_review": {
+    "observed_first_missing_asset": "docs/handoff/public_inputs.json",
+    "direct_audit_baseline_chain": "public input manifest + two public-full reports + two classification reports + two historical ZIP/manifest pairs =9",
+    "conditional_source_manifests_not_reached": "Default no cache_root is blocked; partial fixture supplies report but no saved split. No raw remote cache/finalCSV is required or permitted to synthesize that branch.",
+    "coverage_limit": "This independently validates named assets and source branch, not arbitrary future dynamic I/O. Peer inventory inspected46/48 registered scripts;45 A scripts already passed in failed f3, while only error_preparation raised two missing-asset errors."
+  },
+  "no_blocker_to_minimal_shared_packaging_repair": true,
+  "new_attempt_required": {
+    "output": "f4",
+    "old_attempt_preserved": true,
+    "clock": "New explicit root-assigned absolute+monotonic clock only after exact R4 source review/publication; no reuse/reset of f3 remaining deadline.",
+    "runtime_archives_changed": false,
+    "tests_or_registry_changed": false,
+    "all_four_fresh_technical_gates_still_required": true
+  },
+  "fits": 0,
+  "tests_run": 0,
+  "API_calls": 0,
+  "application_code_imported": false,
+  "new_process_scan": false,
+  "canonical_or_frozen_edits": false,
+  "promotion": false,
+  "R4_final_source_review": "pending_author_freeze"
+}

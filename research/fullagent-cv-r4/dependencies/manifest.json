@@ -1,0 +1,18 @@
+{
+  "status": "read_only_source_dependency_closure",
+  "files_sha256": {
+    "needed-files.json": "8dc28e4319c814121c899fca357ead65b67daf2135f3a737cafb151315e06689",
+    "source-io-inventory.json": "a1a393d39de6cf7924c2381ece55b4ef60ee303045adffb52339f19e3e303cec",
+    "analysis.txt": "9e712fd5f79eb65abe4b1283dd670398d39a1b6110e470ca6808225cf3126f2b"
+  },
+  "prior_manifest_sha256": "910b2705c66d9175e11cd392e33a3be2083a20d29cb595102711f7303b5200a5",
+  "prior_results_sha256": "dbf6102148dbabec999af02fc2cd79d78572f01fd253801ae3ebba03b98b6c82",
+  "preparation_source_sha256": "967af2169fcb927f21753352b3b30cf5d1bff8889d872e80bc853d711c983656",
+  "test_source_sha256": "0facfed85558cfb541c72564b9cf47938531deb986293d3489252cc6ceb5b641",
+  "exact_additional_files": 9,
+  "new_tests": 0,
+  "fits": 0,
+  "api_calls": 0,
+  "launches": 0,
+  "frozen_files_modified": 0
+}

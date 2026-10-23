@@ -1,0 +1,69 @@
+{
+  "status": "read_only_prior_failed_attempt_review_complete",
+  "created_utc": "2026-10-23T05:56:37.447260+00:00",
+  "bindings_sha256": {
+    "fullagent-cv-stage0-terminal-ownership-r1.json": "1d3332619f7cc0781ce563edcf39121fe76e8b3bed70ff24ca2707dcff25c345",
+    "close_cv_stage0_r1.py": "f9fc4e04f5c740120b944ebbb60f1cb0a5f0de9cfa1138daaad0604dd0504881",
+    "fullagent-cv-launch-r1/manifest.json": "910b2705c66d9175e11cd392e33a3be2083a20d29cb595102711f7303b5200a5",
+    "fullagent-cv-stage0-launch-r1.json": "a0349e4eab615e8f27cb71dbb97cd437bfbcdc471c97495daee78093cd827fb1",
+    "f3/stage0.json": "fba916c3ea70f7de8a4acfc98e638885173e4204abf6f9f6a2373b3b1d4a3563",
+    "f3/gate-a_source.json": "9db5a17043e35f9058c7da1e391d1d7c79e1b6ea4da4307fe4ee566eeb6d1351",
+    "f3/gates/a_source/results.json": "dbf6102148dbabec999af02fc2cd79d78572f01fd253801ae3ebba03b98b6c82",
+    "f3/gates/a_source/test_error_preparation.py.log": "e7a8db0f3ea24d2d5845fe9874ac72820a45a0d0ba02e050fe3e647782211f70",
+    "fullagent_cv_coordinator.py": "45dd8bc9e56b4874e43e051cf279f0497c0b82f628d5c1db7cb6ec2e2bad8a24"
+  },
+  "static_evidence_checks": {
+    "all395immutable_files_unchanged": true,
+    "closure_evidence_links_match": true,
+    "closure_helper_sha_matches": true,
+    "known_stage_launcher_gate_identity_union_count": 444,
+    "closure_tracked_identity_count": 444,
+    "known_union_included": true,
+    "stage_manifest_lineage_matches": true,
+    "original_clock_preserved": true
+  },
+  "saved_ownership_evidence": {
+    "closure_asserts_fresh_absence_before_and_inside_canonical_lock": true,
+    "closure_asserts_strict_known_parent_orphan_scan": true,
+    "closure_active": [],
+    "no_signals": true,
+    "gate_final_denials": 0,
+    "gate_final_unresolved": [],
+    "independent_live_process_scan_performed": false,
+    "limitation": "Review verifies saved receipts, exact source and identity coverage; it is not a new fresh launch-time ownership proof."
+  },
+  "actual_stage0": {
+    "terminal_status": "failed_stage0",
+    "observed_methods": 451,
+    "credited_methods_from_successful_scripts": 435,
+    "successful_scripts": 45,
+    "scripts_observed": 46,
+    "failed_script": "test_error_preparation.py",
+    "within_failed_script_passed_methods": 14,
+    "within_failed_script_errors": 2,
+    "skips": 0,
+    "other_three_gates": "not_attempted_due_prior_technical_gate_failure",
+    "CV_arms_all6": "not_attempted",
+    "CV_aggregates": null,
+    "quality_inference": false
+  },
+  "diagnosis": {
+    "observed_failure": "Both errors stop in audit_baseline at preparation.py179 reading missing deployed docs/handoff/public_inputs.json.",
+    "downstream_dependency_chain": "That routine next reads V11/V16 public-full.json/classification-report.json/solution ZIP/ZIP.manifest.json:9 shared files including input manifest. A new deployment must include and bind the whole chain, preserving exact bytes in both arms.",
+    "scope": "Deployment/harness packaging defect; no ML-runtime correction or quality conclusion is supported."
+  },
+  "next_attempt_constraints": [
+    "Preserve f3,45dd,910b and395 prior immutables as failed evidence.",
+    "Use a new reviewed packet/output and only a new explicitly assigned absolute+monotonic clock; do not retry within old remaining time.",
+    "Bind actual prior terminal closure/stage/launcher/gate/results hashes and fresh strict known-union/orphan absence under the shared lock before any new launch.",
+    "Shared A/B metadata deployment must not alter runtime archives, tests/assertions/counts,folds,model factors orR3 quality gates."
+  ],
+  "blocker_to_analysis_closure": false,
+  "future_R4_review_pending": true,
+  "fits": 0,
+  "tests_run": 0,
+  "API_calls": 0,
+  "process_signals": 0,
+  "frozen_or_canonical_edits": false,
+  "publication": false
+}

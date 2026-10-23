@@ -1,5 +1,11 @@
 # Parallel engineering progress — 23 October2026
 
+Current HPO-01 isolated study: read HPO-01_isolated_progress_20261023.md and actual
+test-runs/hpo-isolated-20261023/study/{progress,result,process-receipt}.json.
+Admission pilotPASSED (worker4.176s),Optuna4.2.1 separateenv ready,4equal-caparms
+sequentially RUNNING from executorfac15cd. Do not repeat BASE/ERR/SEL (closed and
+SELdiscarded) or start duplicatefits. Prior not-launched statuses are historical.
+
 Latest: BASE-01 locally CLOSED,8new diagnostics/4original runs/0newfits; see
 BASE-01_local_verified_20261023.json and ERR-01_local_diagnoses_20261023.md.
 SEL-01 now DISCARDED: r2 exited0,fit70.379s/iterations333,all protected/source

@@ -1,0 +1,19 @@
+{
+  "status": "ok",
+  "admitted": true,
+  "inner_rmse": 31.846185166957753,
+  "seconds": 4.176,
+  "inner_split": {
+    "method": "forward_observation_period",
+    "time_column": "Year_Factor",
+    "cut": 4.0,
+    "offset": 0,
+    "train_rows": 22054,
+    "validation_rows": 12946,
+    "excluded_future_rows": 0,
+    "split_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+    "scope": "inside_outer_fitting_only"
+  },
+  "fitting_steps": 2,
+  "scope": "Resource admission only,not external quality gain"
+}

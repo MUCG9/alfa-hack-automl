@@ -1,0 +1,45 @@
+{
+  "status": "prepared_new_independent_experiment_not_started",
+  "previous_t5_failure_preserved": true,
+  "source_changes": "Only CatBoost adapter fixes unit-weight evaluation parameter; class support context remains a separate future factor",
+  "procedure_changes": [
+    "maximum outer experiments14→9, preserving initial family coverage/HPO and Qwen parameter feedback",
+    "full manual R4 auditor from start",
+    "per-process SystemRequired+ExecutionRequired with scheduling-gap/error history"
+  ],
+  "comparators": {
+    "qualified_complete_control": "V11/V16 exact recipes rerun",
+    "previous_verified_regression_partial": 34.86622087872278,
+    "previous_regression_scope": "Reused public; HPO inner equals confirmation; do not claim blind holdout"
+  },
+  "limits": {
+    "common_seconds": 10800,
+    "source_parent": 600,
+    "exact_parent": 180,
+    "regression_parent": 2100,
+    "classification_min_parent": 6000,
+    "classification_max_parent": 8200,
+    "final_audit": 300,
+    "threads": 2,
+    "worker_memory_gib": 1.5,
+    "whole_tree_gib": 2,
+    "task_gateway_call_cap": 4,
+    "maximum_experiments": 9
+  },
+  "new_common_seconds": 10800,
+  "clock_assigned": false,
+  "prelaunch_technical_checks": {
+    "CatBoost_real_fixture_fits": 2,
+    "unweighted_and_Balanced_macro_contracts": "passed",
+    "manual_R4_classification_worker_contract_nofit": "passed",
+    "immutable_hashes": 718,
+    "fresh_predecessor_identities_absent": 2817,
+    "private_environment_preflight": "passed_no_API_calls"
+  },
+  "manifest_sha256": "dd9ce4469112297200e1706eecf38a148ccb9d12bdce2bcf2a3b21848c3e5700",
+  "archive_sha256": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0",
+  "full_source_and_unpacked_gates": "Must execute inside new campaign clock; not claimed passed yet",
+  "official_score": null,
+  "promotion": false,
+  "submit": false
+}

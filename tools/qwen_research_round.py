@@ -14,6 +14,7 @@ sys.path.insert(0, str(ROOT/'src'))
 from automl.infrastructure.atomic import atomic_json
 from automl.infrastructure.llm_gateway import request_json
 from automl.infrastructure.run_budget import RunBudget
+from research_llm_config import configure,MAX_OUTPUT,CALL_TIMEOUT,WALL_SECONDS
 
 OPERATIONS = {
     'MARGINAL_HPO': 'Replace standalone inner RMSE by .9*new-inner-complete-control + .1*trial prediction RMSE; keep weights, recipes, splits, budgets fixed.',
@@ -89,14 +90,9 @@ def main():
     output = args.output.resolve()
     if not output.is_relative_to((ROOT/'test-runs').resolve()): parser.error('Keep raw responses in ignored test-runs/')
     output.mkdir(parents=True, exist_ok=False)
-    from dotenv import dotenv_values
-    private = dotenv_values(ROOT/'.env')
-    for key in ['OPENAI_API_KEY', 'OPENAI_BASE_URL', 'OPENAI_MODEL']:
-        if not private.get(key): raise ValueError('Authorized private API environment missing')
-        os.environ[key] = private[key]
-    if os.environ['OPENAI_BASE_URL'].rstrip('/') != 'https://changellenge.up.railway.app/v1':
-        raise ValueError('Unexpected organizer endpoint')
+    settings=configure()
     ctx = context()
+    ctx['llm_profile']=settings
     if args.repair_from:
         prior = args.repair_from.resolve()
         if not prior.is_relative_to((ROOT/'test-runs').resolve()): parser.error('Repair receipt must be private research data')
@@ -123,11 +119,11 @@ Preserve EACH-cut improvement AND mean-better-than-Random8 gates. Do not add
 a comparison of standalone component RMSE against mixture RMSE: they differ.
 No code or executable commands. A valid schema does not prove free-text claims.'''
     atomic_json(output/'manifest.json', {'maximum_logical_calls': 1, 'gateway_maximum_http_attempts': 3,
-        'maximum_output_tokens': 2048, 'automatic_execution': False,
+        'maximum_output_tokens': MAX_OUTPUT, 'llm_profile':settings,'automatic_execution': False,
         'harness_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         'context_sha256': hashlib.sha256((output/'context.json').read_bytes()).hexdigest()})
-    with RunBudget(180, 1, output):
-        content, call = request_json(prompt, ctx, max_output=2048, timeout=150, purpose='next_research_round')
+    with RunBudget(WALL_SECONDS, 1, output):
+        content, call = request_json(prompt, ctx, max_output=MAX_OUTPUT, timeout=CALL_TIMEOUT, purpose='next_research_round')
     atomic_json(output/'response.json', {'content': content, 'call': {k: v for k, v in call.items() if k != 'error_message'}})
     if call.get('status') != 'ok' or not content: raise RuntimeError('Qwen proposal unavailable; receipt preserved')
     try:

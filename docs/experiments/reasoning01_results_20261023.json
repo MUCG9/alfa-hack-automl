@@ -1,0 +1,121 @@
+{
+  "request": "Check Qwen reasoning/maximal effort",
+  "finding_before_change": "canonical gateway explicitly reasoning.enabled=false, not provider default",
+  "documented_maximum_Qwen38": "xhigh; ultra not listed",
+  "configured_model": "qwen/qwen3.8-27b",
+  "actual_endpoint": "https://changellenge.up.railway.app/v1",
+  "probe": [
+    {
+      "profile": "explicit_off",
+      "max_tokens_combined": 2048,
+      "request_options": {
+        "extra_body": {
+          "reasoning": {
+            "enabled": false
+          }
+        }
+      },
+      "status": "ok",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 87,
+        "prompt_tokens": 381,
+        "total_tokens": 468,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0,
+          "cache_creation_tokens": 0
+        },
+        "cost": 0.030974527155
+      },
+      "reasoning_tokens_reported": 0,
+      "wall_seconds": 1.491,
+      "audit": {
+        "json_valid": true,
+        "facts_correct": true,
+        "expected": {
+          "promote": false,
+          "component_control": "V16_COMPLETE",
+          "comparison_control": "PIPE02_COMPLETE",
+          "full_three_cut_mean_available": false,
+          "cache_speedup_is_ML_gain": false,
+          "new_official_score_known": false
+        }
+      },
+      "server_effective_effort_echoed": null,
+      "response_model": "qwen/qwen3.8-27b"
+    },
+    {
+      "profile": "xhigh",
+      "max_tokens_combined": 32768,
+      "request_options": {
+        "extra_body": {
+          "reasoning": {
+            "enabled": true,
+            "effort": "xhigh",
+            "exclude": true
+          }
+        }
+      },
+      "status": "ok",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 1121,
+        "prompt_tokens": 417,
+        "total_tokens": 1538,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1014,
+          "rejected_prediction_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0,
+          "cache_creation_tokens": 0
+        },
+        "cost": 0.304356104585
+      },
+      "reasoning_tokens_reported": 1014,
+      "wall_seconds": 14.716,
+      "audit": {
+        "json_valid": true,
+        "facts_correct": true,
+        "expected": {
+          "promote": false,
+          "component_control": "V16_COMPLETE",
+          "comparison_control": "PIPE02_COMPLETE",
+          "full_three_cut_mean_available": false,
+          "cache_speedup_is_ML_gain": false,
+          "new_official_score_known": false
+        }
+      },
+      "server_effective_effort_echoed": null,
+      "response_model": "qwen/qwen3.8-27b"
+    }
+  ],
+  "conclusion": "Nested xhigh accepted, actual nonzero reasoning and valid final JSON. Level requested explicitly; server does not echo effective effort. Not a quality or ML improvement A/B.",
+  "changes": "Opt-in AUTOML_REASONING_EFFORT support; active dev planners configure xhigh/32768 combined tokens/300s call/360s wall. Explicit effort never silently dropped on400. Released ZIP immutable.",
+  "focused_checks": {
+    "reasoning_HTTP": 4,
+    "shared_run_budget": 14,
+    "SDK_HTTP_CLI": 2
+  },
+  "sources": [
+    "https://www.alibabacloud.com/help/en/model-studio/qwen-api-via-openai-chat-completions",
+    "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens"
+  ],
+  "internal_reasoning_saved": false
+}

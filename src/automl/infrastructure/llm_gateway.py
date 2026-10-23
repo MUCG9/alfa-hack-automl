@@ -2,6 +2,14 @@
 import json,os,time
 from automl.infrastructure.run_budget import current_budget
 
+def reasoning_options():
+    effort=os.environ.get('AUTOML_REASONING_EFFORT','off').strip().lower()
+    if effort in {'off','none'}:
+        return {'extra_body':{'reasoning':{'enabled':False}}},False,'off'
+    if effort not in {'low','medium','high','xhigh','max'}:
+        raise ValueError('Unsupported AUTOML_REASONING_EFFORT; use off/low/medium/high/xhigh/max')
+    return {'extra_body':{'reasoning':{'enabled':True,'effort':effort,'exclude':True}}},True,effort
+
 def request_json(system_prompt,context,max_output=16384,timeout=300,purpose='planner'):
     budget=current_budget()
     configured=all(os.environ.get(k) for k in ['OPENAI_API_KEY','OPENAI_BASE_URL'])
@@ -21,7 +29,9 @@ def _request_json(system_prompt,context,max_output=16384,timeout=300):
     if not all(os.environ.get(k) for k in ['OPENAI_API_KEY','OPENAI_BASE_URL']): return None,{'status':'unconfigured'}
     from openai import OpenAI,BadRequestError,APIStatusError,APITimeoutError,APIConnectionError
     start=time.monotonic(); usage={}; finish=None; compatibility=False; attempts=0
+    reasoning_requested=False;effort='off'
     try:
+        options,reasoning_requested,effort=reasoning_options()
         client=OpenAI(timeout=timeout,max_retries=0)
         request={'model':os.environ.get('OPENAI_MODEL','qwen/qwen3.8-27b'),
                  'messages':[{'role':'system','content':system_prompt},{'role':'user','content':json.dumps(context,ensure_ascii=False,default=str)}],
@@ -33,11 +43,11 @@ def _request_json(system_prompt,context,max_output=16384,timeout=300):
             if remaining<5: raise TimeoutError('Gateway deadline')
             attempts+=1
             try:
-                extra={} if compatibility else {'extra_body':{'reasoning':{'enabled':False}}}
+                extra={} if compatibility else options
                 response=client.with_options(timeout=remaining).chat.completions.create(**request,**extra)
                 break
             except BadRequestError:
-                if compatibility or retry==2: raise
+                if reasoning_requested or compatibility or retry==2: raise
                 compatibility=True
             except (APIStatusError,APITimeoutError,APIConnectionError) as exc:
                 status=getattr(exc,'status_code',None)
@@ -49,10 +59,13 @@ def _request_json(system_prompt,context,max_output=16384,timeout=300):
                 if pause: time.sleep(pause)
         usage=response.usage.model_dump() if response.usage else {}; finish=response.choices[0].finish_reason
         return response.choices[0].message.content or '',{'status':'ok','wall_seconds':round(time.monotonic()-start,3),
-            'usage':usage,'finish_reason':finish,'compatibility_retry':compatibility,'reasoning_requested':False,
+            'usage':usage,'finish_reason':finish,'compatibility_retry':compatibility,'reasoning_requested':reasoning_requested,
+            'reasoning_effort_requested':effort,'reasoning_tokens_reported':(usage.get('completion_tokens_details') or {}).get('reasoning_tokens'),
+            'max_tokens_combined':max_output,'server_effective_effort_echoed':None,
             'attempts':attempts,'usage_complete':attempts==1 and all(type(usage.get(k)) is int and usage[k]>=0 for k in ['prompt_tokens','completion_tokens'])}
     except Exception as exc:
         message=str(exc).replace(os.environ.get('OPENAI_API_KEY','credential-unset'),'[REDACTED]')[:500]
         return None,{'status':'error','exception_type':type(exc).__name__,'wall_seconds':round(time.monotonic()-start,3),
                      'usage':usage,'finish_reason':finish,'compatibility_retry':compatibility,
+                     'reasoning_requested':reasoning_requested,'reasoning_effort_requested':effort,'max_tokens_combined':max_output,
                      'attempts':attempts,'status_code':getattr(exc,'status_code',None),'error_message':message}

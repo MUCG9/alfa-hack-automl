@@ -40,13 +40,14 @@ class IncumbentMixTests(unittest.TestCase):
                         {'task_family': 'pointwise_ranking'}]:
             self.assertIsNone(profile.profile_recipes(dict(spec, **changes)))
         classification = dict(spec, kind='classification', metric='macro_f1', greater_is_better=True,
-                              categorical_features=['x', 'period'])
+                              categorical_features=['x', 'period'], validation_strategy='group')
         plan = profile.profile_recipes(classification, True)
         self.assertEqual(len(plan['control']['components']), 3)
         self.assertEqual(plan['control']['components'][1]['params']['seed'], 48)
         self.assertEqual(plan['augmentation']['params']['seed'], 53)
         self.assertEqual(plan['augmentation']['params']['feature_selection_top_k'], 32)
         self.assertIsNone(profile.profile_recipes(classification, False)['augmentation'])
+        self.assertIsNone(profile.profile_recipes(dict(classification, validation_strategy='time'), True))
 
     def test_class_gate_uses_fitting_group_support_and_gain_beyond_rarest(self):
         spec = {'kind': 'classification', 'metric': 'macro_f1', 'greater_is_better': True,

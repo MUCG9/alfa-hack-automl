@@ -47,8 +47,8 @@ def main():
             raise SystemExit('Qualification process is still active')
     reg = json.loads((base/'reg-blend01-forward-20261023/coordinator.json').read_text())
     cls = json.loads((base/'blend01-cv-20261023/coordinator.json').read_text())
-    for receipt in [reg, cls]:
-        if receipt.get('status') != 'completed' or not all(receipt.get(k) for k in
+    for receipt, permitted in [(reg, {'completed'}), (cls, {'completed', 'failed'})]:
+        if receipt.get('status') not in permitted or not all(receipt.get(k) for k in
                 ['source_unchanged', 'harness_unchanged', 'candidates_unchanged']):
             raise SystemExit('Qualification did not finish with frozen evidence')
     if not reg['measured_cv_gate_passed']:
@@ -75,7 +75,8 @@ def main():
                   'archive_sha256': digest(args.archive), 'harness_sha256': harness,
                   'source_gate_sha256': digest(args.source_gate), 'unpacked_gate_sha256': digest(args.unpacked_gate),
                   'time_budget': args.time_budget, 'threads': 2, 'worker_memory_mib': 1536,
-                  'llm_calls': 0, 'classification_augmentation_qualified': cls['measured_cv_gate_passed'],
+                  'llm_calls': 0, 'classification_augmentation_qualified': bool(cls.get('measured_cv_gate_passed')),
+                  'classification_cv_status': cls['status'],
                   'scope': 'Opt-in frozen learned procedure on reused public cuts; no official score/upload', 'tasks': []}
         receipt_path = args.output/'campaign.json'
         atomic_json(receipt_path, report)

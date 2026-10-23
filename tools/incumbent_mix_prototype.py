@@ -40,7 +40,8 @@ def profile_recipes(spec, allow_class_augmentation=False):
                             'hypothesis': 'Fixed qualified history/native control',
                             'components': [deepcopy(base), deepcopy(native)], 'weights': [.9, 1-.9]},
                 'augmentation': deepcopy(base), 'adaptive': True}
-    if spec['kind'] == 'classification' and spec['metric'] == 'macro_f1':
+    if (spec['kind'] == 'classification' and spec['metric'] == 'macro_f1'
+            and spec.get('validation_strategy') != 'time'):
         base = next((r for r in candidates if r['params'].get('feature_views')), None)
         independent = next((r for r in candidates if r['engine'] == 'xgboost' and r['params'].get('calibrate')), None)
         if base is None or independent is None:
@@ -270,7 +271,7 @@ def solve_profile(args, task_data, runs, root, primary, protected_paths, fingerp
         final_status = 'profile_incomplete'
     integrity = file_fingerprints(protected_paths) == fingerprints
     report = {'version': 'incumbent-mix-profile-v1', 'research_profile': 'incumbent_mix',
-        'spec': spec, 'experiments': controls[:1]+augmentations[:1],
+        'spec': spec, 'split': primary[2], 'experiments': controls[:1]+augmentations[:1],
         'confirmations': controls[1:]+augmentations[1:], 'llm_calls': [], 'hpo_studies': studies,
         'profile_controls': controls, 'profile_augmentations': augmentations,
         'paired_gates': gates, 'profile_scores': scores, 'validation_complete': phase_complete,
@@ -281,6 +282,7 @@ def solve_profile(args, task_data, runs, root, primary, protected_paths, fingerp
         'final_fit_status': final_status, 'elapsed_seconds': round(time.monotonic()-started, 3),
         'submission_path': str(output), 'submission_sha256': hashlib.sha256(output.read_bytes()).hexdigest(),
         'integrity_ok': integrity, 'provenance_path': str(runs/'provenance.json'),
+        'journal_path': str(runs/'results.tsv'),
         'full_iteration_policy': 'control/ fixed class arm: median2; adaptive arm: selected full-study inner fit',
         'score_scope': 'Fixed learned profile on reused public cuts; not replay of the initial Qwen search or private/official score',
         **budget_metadata()}

@@ -1,0 +1,38 @@
+{
+  "status": "running",
+  "exec_session": 65008,
+  "actual_launch_tool_chunk": "084144",
+  "source_commit": "7311c1b7a6e342aab6b19e54f04cbd2f8117fa06",
+  "manifest_sha256": "8faf33cd81c0e864bcf338828c34447000111eda85bc719b8f43312d2babae9a",
+  "frozen_immutable_count": 733,
+  "common_start_unix": 1792769815.4813344,
+  "absolute_deadline_unix": 1792780615.4813344,
+  "common_limit_seconds": 10800,
+  "clock_assigned": true,
+  "launch_identities": [
+    {
+      "pid": 25820,
+      "create_time": 1792769814.4722917
+    },
+    {
+      "pid": 24716,
+      "create_time": 1792769814.4533377
+    }
+  ],
+  "parent_verified_prior_identities": 3277,
+  "actual_exec_exit_code": null,
+  "root_terminal_qualification": "pending",
+  "four_stages": true,
+  "maximum_experiments": 9,
+  "HPO_trials": 8,
+  "runtime_exactly_T6": true,
+  "metrics": null,
+  "official_score": null,
+  "promotion": false,
+  "submit": false,
+  "observer": "work/observe_lean_mvp_r2.py",
+  "observer_sha256": "47693f2e50bf1200fa4d542a12e5d9050eb85036d7bd5aea3cbab9b68b82d016",
+  "original_T6_status": "FAIL",
+  "previous_T6_task_metrics_verified_separately": true,
+  "no_other_heavy_jobs_permitted": true
+}

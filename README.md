@@ -1,3 +1,25 @@
+# Alfa AutoML: начало работы
+
+Основная ветка исследования: [`work/night-research-20261023`](https://github.com/MUCG9/alfa-hack-automl/tree/work/night-research-20261023). Удалённый исполнитель получает задания из [`research/remote-dispatch`](https://github.com/MUCG9/alfa-hack-automl/tree/research/remote-dispatch). `main` и другие ветки сохраняются.
+
+| Что нужно | Открыть |
+|---|---|
+| Текущие направления и результаты | [Карта исследований](research/README.md) |
+| Работать вторым агентом | [Начальная инструкция](research/remote-experiments/REMOTE_AGENT_START.txt), затем [статус транспорта](research/remote-experiments/transport-status.json) |
+| Понять назначение веток | [Карта веток](docs/BRANCHES.md) |
+| Найти проверенную контрольную версию | [V11](release/v11-featureviews1/README.md) и [V16](release/v16-mean1/README.md) |
+| Разрабатывать и собирать код | [Правила](AGENTS.md), `src/automl/`, `tests/`, `tools/` |
+| Разобрать прошлый эксперимент | Его protocol/manifest, terminal receipt и independent audit по ссылкам из `research/README.md` |
+
+Подготовленный код, технический PASS, локальная ML-метрика и официальный score — отдельные результаты. V11/V16 остаются сохранённым контролем; новый результат не меняет default автоматически. Старые ACTIVE/STOP и «текущее состояние» ниже — датированные снимки, а не статус живого процесса. Запущенный опыт определяется его actual receipts и свежими PID/create_time; этот индекс не запускает и не возобновляет jobs.
+
+Ниже сохранён прежний README с историей. Его старые ссылки «текущее продолжение» следует читать с учётом этой карты.
+
+---
+
+<details>
+<summary>Исторические этапы, команды и результаты</summary>
+
 # Alfa Hack AutoML: проверенный V11 и исследования V12–V17
 
 **Для нового чата:** [единая точка входа](docs/handoff/START_HERE.md),
@@ -192,3 +214,5 @@ python3 scripts/benchmark_release.py --task /data/reg/task.md --task /data/class
 Для CPU-разработки используйте отдельное Python 3.12 окружение. Проверенные версии основных пакетов: numpy 1.26.4, scipy 1.12.0, pandas 2.2.3, scikit-learn 1.5.2, lightgbm 4.6.0, catboost 1.2.8, xgboost-cpu 2.1.4, openai 1.68.2, psutil 6.1.1. Полный исходный requirements содержит и неиспользуемые этим агентом пакеты; его полная установка может быть тяжёлой. `xgboost-cpu` предоставляет импорт `xgboost` для локального CPU, это не изменение платформенного requirements. Локальная среда не является официальным Docker.
 
 Репозиторий создан по просьбе капитана. Issues и Project пока не опубликованы, приглашения участникам и календарные приглашения не отправлялись. Задачи подготовлены в `docs/github_issues.csv`, правила работы — в `CONTRIBUTING.md`.
+
+</details>

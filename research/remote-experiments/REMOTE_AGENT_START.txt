@@ -31,3 +31,7 @@ python research/remote-experiments/queue/remote_queue.py --repo REPO --remote or
 После submit возвращайся к poll. Если заданий нет или они заняты, закончи текущий шаг тихо и дождись следующего штатного запуска. Скалярные метрики второго компьютера считаются remote-reported до проверки главным агентом; самостоятельно не продвигай default, не делай official submit и не меняй защищённую ветку.
 
 Первое задание remote-port-01 — подготовка переносимого kernel harness и безопасного исправления Unicode/joblib, без model fits. После проверки главная задача автоматически опубликует следующий ограниченный ML-эксперимент.
+
+Изменения общей структуры
+При каждом штатном poll, до нового claim, прочитай новые notices из research/remote-experiments/notices/ в ТОЧНОМ dispatch SHA, возвращённом poll. Список можно получить read-only git ls-tree -r --name-only DISPATCH_SHA -- research/remote-experiments/notices, содержимое — git show DISPATCH_SHA:PATH. Сохраняй прочитанные notice IDs в собственном локальном журнале. Queue CLI сам notices пока не читает.
+Навигационные notices не изменяют job/source_refs/caps или clock уже claimed опыта. Не checkout/pull/reset поверх активной рабочей копии и не перезапускай обучение. При следующем разрешённом результате подтверди ID notice и dispatch SHA в уже объявленном notes artifact; не добавляй лишние имена файлов. Если нет предусмотренного поля/артефакта, дождись следующего подходящего job.

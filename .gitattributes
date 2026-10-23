@@ -63,3 +63,9 @@ research/prepared-prototypes/legacy-launcher-r1/* -text
 research/prepared-prototypes/four-leaf-r2/changes.patch whitespace=-blank-at-eol
 research/prepared-prototypes/usage-export-r1/changes.patch whitespace=-blank-at-eol
 research/prepared-prototypes/legacy-launcher-r1/legacy-launcher-deprecation.patch whitespace=-blank-at-eol
+
+research/prepared-prototypes/four-leaf-default-r3/** -text
+research/prepared-prototypes/four-leaf-default-r3/integration-from-frozen-r2-r3.patch whitespace=-blank-at-eol
+research/prepared-prototypes/four-leaf-default-r3/candidate-from-canonical-r3.patch whitespace=-blank-at-eol
+research/prepared-prototypes/four-leaf-default-r3/** whitespace=cr-at-eol
+research/prepared-prototypes/four-leaf-default-r3/*.patch whitespace=cr-at-eol,-blank-at-eol

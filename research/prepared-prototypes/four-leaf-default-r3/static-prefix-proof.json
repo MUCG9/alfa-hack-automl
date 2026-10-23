@@ -1,0 +1,22 @@
+{
+  "status": "passed_AST_only",
+  "unchanged_existing_functions": {
+    "src/automl/search/policy.py:signature": true,
+    "src/automl/search/policy.py:normalize": true,
+    "src/automl/search/policy.py:parse_plans": true,
+    "src/automl/search/policy.py:portfolio": true,
+    "src/automl/search/policy.py:fallback": true,
+    "src/automl/search/runner.py:_main": true,
+    "src/automl/search/runner.py:run_worker": true,
+    "src/automl/search/runner.py:ordered": true,
+    "src/automl/search/runner.py:median_iterations": true,
+    "src/automl/search/runner.py:coordinator_selection": true,
+    "src/automl/search/runner.py:coordinator_plans": true
+  },
+  "solve_single_equals_control_after_removing_only_fixed_slot_init_two_guards_and_report_field": true,
+  "OFF_fixture_vs_ON_source_diff_only_config_bool": true,
+  "actual_A_source_flat_bytes_equal_exact88dac": true,
+  "not_a_model_or_release_import_gate": true,
+  "model_fits": 0,
+  "api_calls": 0
+}

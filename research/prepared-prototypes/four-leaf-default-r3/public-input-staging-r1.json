@@ -1,0 +1,116 @@
+{
+  "status": "ten_pristine_inputs_staged_for_future_no_skips_gate",
+  "created_utc": "2026-10-23T04:16:28.730294+00:00",
+  "frozen_manifest": {
+    "path": "work/four-leaf-default-plan-r1/manifest-r3.json",
+    "sha256": "d367c6c18b7aecc5e53803897db0d21a3cb7411e644f158d80508cad3f5467c2"
+  },
+  "pristine_reference": {
+    "path": "work/iteration3-campaign-plan-r1/public-inputs.json",
+    "sha256": "2162b43a4456492a484b7f7534884dbd9ce6c3aa5a34b9234985923c496ae764"
+  },
+  "files": [
+    {
+      "source": "work/alfa-hack-automl/public_tasks/classification/data_dictionary.csv",
+      "path": "work/four-leaf-default-B-dev/public_tasks/classification/data_dictionary.csv",
+      "sha256": "13d2651c5fe02b7fc30f0e7290af45606aad5de76c2f7b69217abc270dbbcef4",
+      "bytes": 3532,
+      "pristine_manifest_sha256_match": true,
+      "source_unchanged": true,
+      "operation": "copied_exact_bytes"
+    },
+    {
+      "source": "work/alfa-hack-automl/public_tasks/classification/sample_submission.csv",
+      "path": "work/four-leaf-default-B-dev/public_tasks/classification/sample_submission.csv",
+      "sha256": "4d23642fcff01e49b0ef5a9f018b2381c12fad97282fa586285ad49b01e9623e",
+      "bytes": 565229,
+      "pristine_manifest_sha256_match": true,
+      "source_unchanged": true,
+      "operation": "copied_exact_bytes"
+    },
+    {
+      "source": "work/alfa-hack-automl/public_tasks/classification/task.md",
+      "path": "work/four-leaf-default-B-dev/public_tasks/classification/task.md",
+      "sha256": "eebb55ebb8deb8257a2c012330ecc015e8d3a0bc3619c40da6c2a6ab200709bf",
+      "bytes": 4699,
+      "pristine_manifest_sha256_match": true,
+      "source_unchanged": true,
+      "operation": "copied_exact_bytes"
+    },
+    {
+      "source": "work/alfa-hack-automl/public_tasks/classification/test.csv",
+      "path": "work/four-leaf-default-B-dev/public_tasks/classification/test.csv",
+      "sha256": "b825449603931b5f05a8855e3d92b57775221c93ed4730ac6b4c75b9ea608862",
+      "bytes": 7556373,
+      "pristine_manifest_sha256_match": true,
+      "source_unchanged": true,
+      "operation": "copied_exact_bytes"
+    },
+    {
+      "source": "work/alfa-hack-automl/public_tasks/classification/train.csv",
+      "path": "work/four-leaf-default-B-dev/public_tasks/classification/train.csv",
+      "sha256": "171a8915070b7575b729a32f70a45d1ad7b6f43c65b4ce12a0a68af30d5cb4e0",
+      "bytes": 16567584,
+      "pristine_manifest_sha256_match": true,
+      "source_unchanged": true,
+      "operation": "copied_exact_bytes"
+    },
+    {
+      "source": "work/alfa-hack-automl/public_tasks/regression/data_dictionary.csv",
+      "path": "work/four-leaf-default-B-dev/public_tasks/regression/data_dictionary.csv",
+      "sha256": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
+      "bytes": 7408,
+      "pristine_manifest_sha256_match": true,
+      "source_unchanged": true,
+      "operation": "copied_exact_bytes"
+    },
+    {
+      "source": "work/alfa-hack-automl/public_tasks/regression/sample_submission.csv",
+      "path": "work/four-leaf-default-B-dev/public_tasks/regression/sample_submission.csv",
+      "sha256": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1",
+      "bytes": 222554,
+      "pristine_manifest_sha256_match": true,
+      "source_unchanged": true,
+      "operation": "copied_exact_bytes"
+    },
+    {
+      "source": "work/alfa-hack-automl/public_tasks/regression/task.md",
+      "path": "work/four-leaf-default-B-dev/public_tasks/regression/task.md",
+      "sha256": "33f743ead4840336856cb9db8e25867f44512231beebff927326e8580e14d9d0",
+      "bytes": 11089,
+      "pristine_manifest_sha256_match": true,
+      "source_unchanged": true,
+      "operation": "copied_exact_bytes"
+    },
+    {
+      "source": "work/alfa-hack-automl/public_tasks/regression/test.csv",
+      "path": "work/four-leaf-default-B-dev/public_tasks/regression/test.csv",
+      "sha256": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
+      "bytes": 18346633,
+      "pristine_manifest_sha256_match": true,
+      "source_unchanged": true,
+      "operation": "copied_exact_bytes"
+    },
+    {
+      "source": "work/alfa-hack-automl/public_tasks/regression/train.csv",
+      "path": "work/four-leaf-default-B-dev/public_tasks/regression/train.csv",
+      "sha256": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775",
+      "bytes": 43416931,
+      "pristine_manifest_sha256_match": true,
+      "source_unchanged": true,
+      "operation": "copied_exact_bytes"
+    }
+  ],
+  "total_bytes": 86702032,
+  "ignored_by_tracked_gitignore": "public_tasks/",
+  "source_and_harness_164_hashes_unchanged": true,
+  "archives_and_manifest_unchanged": true,
+  "source_full_registry_run": false,
+  "exact_unpacked_run": false,
+  "candidate_training_or_quality_qualification": false,
+  "runtime_edits": 0,
+  "model_fits": 0,
+  "api_calls": 0,
+  "tests_run": 0,
+  "promotion": false
+}

@@ -1,0 +1,108 @@
+{
+  "protocol_id": "four-leaf-ordinary-default-last-slot-integration-r2",
+  "status": "preimplementation_alignment_amendment",
+  "predeclared_before_new_code": true,
+  "basis": [
+    {
+      "path": "work/fullagent-fixed-half-plan-r2/protocol.json",
+      "sha256": "5ae51e6e5981acfbd03ab670a33f70177163aed1a088eb3cf4407f5e5f113046",
+      "bytes": 29753
+    },
+    {
+      "path": "work/four-leaf-view-prototype-r2-verified.json",
+      "sha256": "402c8c5245f3b3252d46406afaebc024eca841139a58e552903bbcbdcb3af301",
+      "bytes": 2280
+    },
+    {
+      "path": "work/four-leaf-view-independent-review-r2.json",
+      "sha256": "ec7d2c5ac63a3f265848aecf627bfc9557ba57ce856350ccd23b5f946caae9fe",
+      "bytes": 5237
+    }
+  ],
+  "base_commit": "b505629876770d741627f371a0778dd30f3b9dc0",
+  "frozen_backend_source_sha256": {
+    "src/automl/execution/feature_views.py": "cba2369d6fe1e542b1edc0b07f4e4c44f02d9eba366f16616e8b0b69a41e9102",
+    "src/automl/execution/worker.py": "1b61954e95f72d421f08a27cbfe3c7a2605c4d563db95c1cdc264fcc0a2802b9",
+    "tests/test_four_leaf_feature_views.py": "2b3bb831e358c2c68e27ede549ce8ec28eb0387b531a9d1e543581d17a87cd7f"
+  },
+  "new_tree": "work/four-leaf-default-dev",
+  "canonical_and_four_leaf_r2_untouched": true,
+  "hypothesis": "Make exactly the reviewed fixed63/98 .25-per-leaf component available in slot11 of the ordinary12-slot offline procedure; qualify only the future whole selection procedure, not a fixed component or opt-in dispatcher.",
+  "source_configuration": {
+    "constant": "DEFAULT_FIXED_CAPACITY_LAST_SLOT",
+    "actual_A_archive_sha256": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0",
+    "actual_A": "Existing exact current runtime, no new four-leaf backend or insertion helper",
+    "B_candidate": true,
+    "new_source_OFF_tree": "Mock prefix parity fixture only, never actual A",
+    "runtime_cli_or_env_override": false
+  },
+  "activation_route": {
+    "entrypoint": [
+      "<same_python>",
+      "solution.py",
+      "task.md",
+      "--offline"
+    ],
+    "maximum_search_slots": 12,
+    "component_slot_zero_based": 11,
+    "first11_slots": "Exact original recipe/order/adaptive fallback logic; no fixed composite can affect an earlier incumbent.",
+    "HPO_trials": 0,
+    "API_calls": 0,
+    "four_stage": false,
+    "selector_top_k": 0,
+    "broad_features": "none"
+  },
+  "eligibility": "Inherited task-agnostic nontext MacroF1 classification with the existing>=2 schema-declared categorical-feature view support. Binary classification is eligible too; no new class-count restriction and no public task/column/label/dataset identifiers.",
+  "factory": "Exact normalized historical63 calibrated softmax LightGBM parent from reviewed protocol, replacing only feature_views with categorical_te_capacity_pair. Fixed backend expands63-original/63-crossfit/98-original/98-crossfit at .25 each. No inherited incumbent parameters and no alpha tuning.",
+  "insertion": "At index11 after the existing remaining-time gate, replace that slot queue with the exact component. Only ordinary matching12-slot offline/HPO0/selector0/no-fourstage route is eligible. Do not append a13th slot, enlarge budgets, or retry if slotnotreached. Unsupported tasks/settings retain old path.",
+  "completion": "After last slot, retain unchanged confirmation, global ensemble2..3 contract, mean selection, four-leaf iteration refit validation and fresh full refit/export. Extra four-leaf cost is inside B clock. Component may lose selection; never force export.",
+  "telemetry": "Record configured/off/on/eligibility, slotattempt/status/not_attempted and recipe signature; metadata is not qualification. Actual worker/metrics/cost/refit/CV gates remain future.",
+  "planned_runtime_delta": [
+    "src/automl/search/policy.py",
+    "src/automl/search/runner.py"
+  ],
+  "frozen_backend_no_changes": [
+    "src/automl/execution/feature_views.py",
+    "src/automl/execution/worker.py"
+  ],
+  "planned_mock_checks": [
+    "Exact first11 recipe/signature/order parity for deterministic varying incumbents",
+    "OFF/ON fixture only slot11 differs under ordinary CLI defaults",
+    "Exact factory normalization/signature/leaf params match reviewed component",
+    "Task/schema rename and unsupported binary/regression/text/ranking/category boundaries",
+    "Nondefault HPO/fourstage/selector/slot settings preserve original path",
+    "Earlybudget stop leaves not_attempted, no13th append/retry",
+    "CLI parses ordinary defaults and offline zero gateway calls",
+    "Mocked end-to-end default regression OFF/ON fixture recipe/refit/CSV parity",
+    "Default ON compiled source without CLI/env overrides; OFF/ON fixture flatdiff only source flag"
+  ],
+  "test_resources": {
+    "threads": 1,
+    "real_fit_api_network_tripwires": true,
+    "heavy_fixtures": false
+  },
+  "prospective_31h_protocol_unchanged": true,
+  "source_full_registry_exact_release_groupCV_public_refits_pending": true,
+  "deadline_assigned": false,
+  "fits": 0,
+  "api_calls": 0,
+  "promotion": false,
+  "predeclared_before_next_code": true,
+  "supersedes_source_card": {
+    "path": "work/four-leaf-default-plan-r1/source-card.json",
+    "sha256": "b6795ef0f5aacf0bb5ec37b93a9031651516c74c3ba78750190df19454d71ad7",
+    "preserved": true
+  },
+  "root_alignment": "ActualA is exact88dac archive. New-source OFF is a mock prefix-parity fixture only, not the actual A arm. B is the new backend and source-ON last-slot integration. Inherited binary/nontext MacroF1 feature-view eligibility is preserved; prior >=3class narrowing is withdrawn before further code.",
+  "no_usage_export_merge": true,
+  "prior_check_revision": {
+    "source_card_sha256": "b6795ef0f5aacf0bb5ec37b93a9031651516c74c3ba78750190df19454d71ad7",
+    "tests": 8,
+    "seconds": 1.327,
+    "scope": "Earlier isolated draft before alignment; superseded eligibility/arm interpretation, preserved as development history, no actual ML/API."
+  },
+  "inherited_campaign_r3": {
+    "path": "work/fullagent-fixed-half-plan-r3/protocol.json",
+    "sha256": "5b2164c3721c84b8e6eb85c0dec7571474316b2e956d6ecdeee235d0193addcb"
+  }
+}

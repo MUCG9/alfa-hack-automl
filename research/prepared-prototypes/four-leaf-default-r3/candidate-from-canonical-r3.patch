@@ -1,0 +1,682 @@
+--- a/src/automl/execution/feature_views.py
++++ b/src/automl/execution/feature_views.py
+@@ -6,14 +6,20 @@
+ from automl.contracts.messages import DataPolicy
+ 
+ METHOD = 'categorical_te_pair'
++FIXED_CAPACITY_METHOD = 'categorical_te_capacity_pair'
+ 
+ 
+ def validate_feature_view(recipe, spec=None):
+     params = recipe.get('params', {})
+     if 'feature_views' not in params:
+         return None
+-    if params['feature_views'] != METHOD or recipe.get('engine') != 'lightgbm':
++    if params['feature_views'] not in (METHOD, FIXED_CAPACITY_METHOD) or recipe.get('engine') != 'lightgbm':
+         raise ValueError('Unsupported feature-view learner')
++    if params['feature_views'] == FIXED_CAPACITY_METHOD:
++        if type(params.get('num_leaves')) is not int or params['num_leaves'] != 63:
++            raise ValueError('Fixed capacity views require base num_leaves=63')
++        if params.get('generic_features', 'none') != 'none' or params.get('feature_selection_top_k', 0):
++            raise ValueError('Fixed capacity views require unchanged features and no selector')
+     if recipe.get('feature_code') or not DataPolicy.parse(recipe.get('data_policy')).is_noop:
+         raise ValueError('Feature views require unchanged features and noop data policy')
+     if any(k.startswith('target_encoding') or k.startswith('history_') for k in params):
+@@ -47,6 +53,11 @@
+                              target_encoding_smoothing=20.)
+     plain['hypothesis'] = 'Fixed feature view: original categorical features'
+     encoded['hypothesis'] = 'Fixed feature view: fitting-cross-fitted categorical statistics'
++    if recipe['params']['feature_views'] == FIXED_CAPACITY_METHOD:
++        larger_plain, larger_encoded = deepcopy(plain), deepcopy(encoded)
++        larger_plain['params']['num_leaves'] = 98
++        larger_encoded['params']['num_leaves'] = 98
++        return [plain, encoded, larger_plain, larger_encoded]
+     return [plain, encoded]
+ 
+ 
+@@ -61,8 +72,10 @@
+         for child, selected in zip(children, value):
+             validate_fit_iterations(child, selected)
+     elif 'feature_views' in recipe.get('params', {}):
+-        if not isinstance(value, list) or len(value) != 2:
+-            raise ValueError('Feature-view iterations require exactly two leaves')
++        size = 4 if recipe['params']['feature_views'] == FIXED_CAPACITY_METHOD else 2
++        if not isinstance(value, list) or len(value) != size:
++            raise ValueError('Fixed-capacity feature-view iterations require exactly four leaves'
++                             if size == 4 else 'Feature-view iterations require exactly two leaves')
+         for leaf in value:
+             _iteration_leaf(leaf)
+     else:
+--- a/src/automl/execution/worker.py
++++ b/src/automl/execution/worker.py
+@@ -29,7 +29,7 @@
+ from automl.contracts.messages import DataPolicy,SplitPlan,PredictionBundle
+ from dataclasses import asdict
+ from automl.execution.sampling.policies import prepare_training
+-from automl.execution.feature_views import validate_feature_view,feature_view_components,validate_fit_iterations
++from automl.execution.feature_views import validate_feature_view,feature_view_components,validate_fit_iterations,FIXED_CAPACITY_METHOD
+ from automl.evaluation.api import calibrate_class_factors,validate_decision_optimizer
+ from automl.execution.postprocessing.targets import validate_target_smearing,fit_smearing,inverse_log_predictions
+ 
+@@ -46,15 +46,21 @@
+ 
+ 
+ 
+-def run_ensemble(job):
++def run_ensemble(job,fixed_capacity_views=False):
+     start=time.monotonic()
+     recipe=job['recipe']; spec=job['spec']; output=Path(job['output_dir'])
+     components=recipe.get('components',[])
+-    if not 2<=len(components)<=3 or any(c.get('engine')=='ensemble' for c in components):
++    if (not fixed_capacity_views and not 2<=len(components)<=3) or any(c.get('engine')=='ensemble' for c in components):
+         raise ValueError('Ensemble must contain two or three non-nested recipes')
+     weights=np.asarray(recipe.get('weights',[1]*len(components)),dtype=float)
+     if len(weights)!=len(components) or not np.isfinite(weights).all() or (weights<=0).any():
+         raise ValueError('Invalid ensemble weights')
++    if fixed_capacity_views:
++        if (len(components)!=4 or list(weights)!=[.25]*4 or
++                any(c.get('engine')!='lightgbm' or 'feature_views' in c.get('params',{}) for c in components) or
++                [c['params'].get('num_leaves') for c in components]!=[63,63,98,98] or
++                [bool(c['params'].get('target_encoding')) for c in components]!=[False,True,False,True]):
++            raise ValueError('Invalid trusted fixed four-view component tree')
+     weights=weights/weights.sum()
+     records=[]
+     for index,component in enumerate(components):
+@@ -114,12 +120,17 @@
+     recipe=job['recipe']
+     validate_selection(recipe.get('params',{}))
+     components=feature_view_components(recipe,job['spec'])
+-    internal=dict(recipe,engine='ensemble',params={},components=components,weights=[.5,.5])
+-    run_ensemble(dict(job,recipe=internal))
++    fixed_capacity=recipe['params']['feature_views']==FIXED_CAPACITY_METHOD
++    weights=[.25]*4 if fixed_capacity else [.5,.5]
++    internal=dict(recipe,engine='ensemble',params={},components=components,weights=weights)
++    if fixed_capacity:
++        run_ensemble(dict(job,recipe=internal),fixed_capacity_views=True)
++    else:
++        run_ensemble(dict(job,recipe=internal))
+     path=Path(job['output_dir'])/'result.json'
+     record=json.loads(path.read_text(encoding='utf-8'))
+     record['recipe']=recipe
+-    record['feature_views']={'method':'categorical_te_pair','weights':[.5,.5],
++    record['feature_views']={'method':recipe['params']['feature_views'],'weights':weights,
+         'groups':components[1]['params']['target_encoding_groups'],
+         'iteration_tree':record['fit_iterations']}
+     atomic_json(path,record)
+--- /dev/null
++++ b/tests/test_four_leaf_feature_views.py
+@@ -0,0 +1,227 @@
++"""Default-off four-leaf view contracts with saved synthetic mock probabilities."""
++from copy import deepcopy
++from itertools import combinations
++from pathlib import Path
++import json
++import sys
++import tempfile
++import unittest
++from unittest.mock import patch
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path[:0] = [str(ROOT/'src'), str(ROOT)]
++
++import numpy as np
++import pandas as pd
++from automl.execution import worker
++from automl.execution.feature_views import (METHOD, FIXED_CAPACITY_METHOD,
++    feature_view_components, validate_feature_view, validate_fit_iterations)
++from automl.search.policy import normalize, portfolio, signature
++from automl.search.runner import median_iterations
++
++
++def schema():
++    return {'kind': 'classification', 'metric': 'macro_f1', 'text_features': [],
++        'features': ['measure', 'first', 'second', 'third'],
++        'categorical_features': ['third', 'second', 'first']}
++
++
++def recipe(method=METHOD):
++    return normalize({'engine': 'lightgbm', 'params': {'iterations': 1200,
++        'learning_rate': .04, 'num_leaves': 63, 'max_depth': -1,
++        'min_child_samples': 25, 'reg_lambda': 5, 'subsample': 1,
++        'colsample_bytree': .9, 'class_weight_power': .5,
++        'calibrate': True, 'min_iterations': 100, 'feature_views': method}})
++
++
++def fixture(root):
++    train = pd.DataFrame({'row_id': np.arange(8), 'measure': np.arange(8, dtype=float),
++        'first': list('abababab'), 'second': list('xxyyxxyy'), 'third': list('ppqqppqq'),
++        'response': ['A', 'B', 'C', 'A', 'B', 'C', 'A', 'B']})
++    test = train.iloc[:3].drop(columns='response').copy()
++    test['row_id'] += 100
++    sample = pd.DataFrame({'row_id': test.row_id, 'response': 'A'})
++    train.to_csv(root/'train.csv', index=False)
++    test.to_csv(root/'test.csv', index=False)
++    sample.to_csv(root/'sample.csv', index=False)
++    np.savez(root/'split.npz', train=np.arange(6), validation=np.arange(6, 8))
++    spec = dict(schema(), target='response', id='row_id', classes=['A', 'B', 'C'],
++        output_columns=['response'], prediction_type='label', root=str(root),
++        paths={'train': str(root/'train.csv'), 'test': str(root/'test.csv'),
++               'sample_submission': str(root/'sample.csv')})
++    return spec, sample
++
++
++VECTORS = np.array([[.99, .005, .005], [.45, .5, .05], [.45, .05, .5], [.45, .5, .05]])
++
++
++def mocked_leaf_dispatch(spec, sample, calls):
++    def run(job):
++        selected = job['recipe']
++        validate_fit_iterations(selected, job.get('fit_iterations'))
++        if selected['params'].get('feature_views'):
++            return worker.run_feature_views(job)
++        calls.append(deepcopy(job))
++        index = (2 if selected['params']['num_leaves'] == 98 else 0) + int(bool(selected['params'].get('target_encoding')))
++        directory = Path(job['output_dir'])
++        classes = np.asarray(spec['classes'])
++        p = np.tile(VECTORS[index], (len(sample), 1))
++        order = np.roll(np.arange(3), index)  # Ensure canonical class alignment.
++        np.savez(directory/'test_probabilities.npz', classes=classes[order], probabilities=p[:, order])
++        prediction = sample.copy()
++        prediction['response'] = classes[p.argmax(axis=1)]
++        prediction.to_csv(directory/'submission.csv', index=False)
++        if not job.get('full_fit', False):
++            np.savez(directory/'validation_probabilities.npz', classes=classes[order],
++                probabilities=np.tile(VECTORS[index][order], (2, 1)), row_position=np.arange(6, 8))
++        record = {'status': 'ok', 'recipe': selected, 'full_fit': job.get('full_fit', False),
++            'fit_iterations': job.get('fit_iterations', 100), 'feature_count': len(spec['features']),
++            'submission': str(directory/'submission.csv'), 'wall_seconds': 0.}
++        (directory/'result.json').write_text(json.dumps(record), encoding='utf-8')
++    return run
++
++
++class FourLeafViewTests(unittest.TestCase):
++    def test_explicit_mode_expands_exact_original_and_support_parents_without_mutation(self):
++        selected, spec = recipe(FIXED_CAPACITY_METHOD), schema()
++        before = deepcopy(selected)
++        actual = feature_view_components(selected, spec)
++        first = recipe()
++        second = deepcopy(first)
++        second['params']['num_leaves'] = 98
++        expected = feature_view_components(first, spec) + feature_view_components(second, spec)
++        self.assertEqual(actual, expected)
++        self.assertEqual(selected, before)
++        self.assertEqual([r['params']['num_leaves'] for r in actual], [63, 63, 98, 98])
++        self.assertTrue(all(r['params']['calibrate'] is True for r in actual))
++        self.assertTrue(all(r['params']['class_weight_power'] == .5 for r in actual))
++
++    def test_default_portfolio_and_original_two_leaf_factory_stay_unchanged(self):
++        selected = portfolio(schema())
++        self.assertFalse(any(r['params'].get('feature_views') == FIXED_CAPACITY_METHOD for r in selected))
++        original = feature_view_components(recipe(), schema())
++        self.assertEqual(len(original), 2)
++        self.assertNotIn('feature_views', original[0]['params'])
++        self.assertNotIn('target_encoding', original[0]['params'])
++        self.assertEqual(original[1]['params']['target_encoding_groups'],
++                         [list(v) for v in combinations(['first', 'second', 'third'], 2)])
++        self.assertEqual(original[1]['params']['target_encoding_smoothing'], 20.)
++        self.assertNotEqual(signature(recipe()), signature(recipe(FIXED_CAPACITY_METHOD)))
++
++    def test_schema_renaming_preserves_group_structure_not_public_names(self):
++        spec = schema()
++        rename = {name: 'opaque'+str(i) for i, name in enumerate(spec['features'])}
++        other = dict(spec, features=[rename[n] for n in spec['features']],
++            categorical_features=[rename[n] for n in spec['categorical_features']])
++        a = feature_view_components(recipe(FIXED_CAPACITY_METHOD), spec)
++        b = feature_view_components(recipe(FIXED_CAPACITY_METHOD), other)
++        for i in [1, 3]:
++            self.assertEqual(b[i]['params']['target_encoding_groups'],
++                [[rename[n] for n in group] for group in a[i]['params']['target_encoding_groups']])
++
++    def test_fixed_mode_rejects_transforms_selector_capacity_and_unsupported_tasks(self):
++        for params in [{'num_leaves': 98}, {'num_leaves': 63.}, {'generic_features': 'broad'},
++                       {'feature_selection_top_k': 2}, {'calibrate': False}, {'target_encoding': True}]:
++            with self.subTest(params=params), self.assertRaises(ValueError):
++                normalize(dict(recipe(FIXED_CAPACITY_METHOD), params=dict(recipe(FIXED_CAPACITY_METHOD)['params'], **params)))
++        for invalid in [[], {}, None]:
++            with self.subTest(invalid_method=invalid), self.assertRaises(ValueError):
++                validate_feature_view(dict(recipe(), params=dict(recipe()['params'], feature_views=invalid)))
++        for change in [{'kind': 'regression'}, {'text_features': ['measure']},
++                       {'task_family': 'pointwise_ranking'}, {'categorical_features': ['first']}]:
++            with self.subTest(change=change), self.assertRaises(ValueError):
++                validate_feature_view(recipe(FIXED_CAPACITY_METHOD), dict(schema(), **change))
++
++    def test_four_leaf_iteration_tree_and_global_parent_medians_are_preserved(self):
++        selected = recipe(FIXED_CAPACITY_METHOD)
++        validate_fit_iterations(selected, [30, 40, 50, 60])
++        parent = {'engine': 'ensemble', 'components': [selected, recipe()]}
++        a, b = [[30, 40, 50, 60], [70, 80]], [[40, 50, 60, 70], [80, 90]]
++        expected = [[35, 45, 55, 65], [75, 85]]
++        self.assertEqual(median_iterations(a, b), expected)
++        validate_fit_iterations(parent, expected)
++        for bad in [30, [30, 40], [30, 40, 50], [30, 40, 50, 60, 70],
++                    [30, 40, True, 60], [30, 40, None, 60], [30, 40, 0, 60]]:
++            with self.subTest(bad=bad), self.assertRaises(ValueError):
++                validate_fit_iterations(selected, bad)
++        with self.assertRaises(ValueError):
++            median_iterations([30, 40], [30, 40, 50, 60])
++
++    def test_fixed_four_probability_mix_refit_tree_and_calibration_passthrough(self):
++        for full in [False, True]:
++            with self.subTest(full=full), tempfile.TemporaryDirectory() as directory:
++                root = Path(directory)
++                spec, sample = fixture(root)
++                output = root/'out'
++                output.mkdir()
++                calls = []
++                selected = recipe(FIXED_CAPACITY_METHOD)
++                with patch.object(worker, 'run', side_effect=mocked_leaf_dispatch(spec, sample, calls)):
++                    worker.run_feature_views(dict(spec=spec, recipe=selected, output_dir=str(output),
++                        split_path=str(root/'split.npz'), threads=1, full_fit=full, fit_iterations=[30, 40, 50, 60]))
++                self.assertEqual(len(calls), 4)
++                self.assertEqual([c['fit_iterations'] for c in calls], [30, 40, 50, 60])
++                self.assertTrue(all(c['recipe']['params']['calibrate'] for c in calls))
++                self.assertTrue(all(c['full_fit'] is full for c in calls))
++                with np.load(output/'test_probabilities.npz', allow_pickle=False) as saved:
++                    np.testing.assert_allclose(saved['probabilities'], np.tile(VECTORS.mean(axis=0), (3, 1)))
++                record = json.loads((output/'result.json').read_text(encoding='utf-8'))
++                self.assertEqual(record['feature_views']['weights'], [.25]*4)
++                self.assertEqual(record['fit_iterations'], [30, 40, 50, 60])
++                self.assertEqual(record['recipe'], selected)
++                # Majority leaf labels would choose B; probability mean chooses A.
++                self.assertEqual(pd.read_csv(output/'submission.csv').response.tolist(), ['A']*3)
++
++    def test_existing_two_views_still_mix_halves_and_keep_two_iterations(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            spec, sample = fixture(root)
++            output = root/'out'
++            output.mkdir()
++            calls = []
++            with patch.object(worker, 'run', side_effect=mocked_leaf_dispatch(spec, sample, calls)):
++                worker.run_feature_views(dict(spec=spec, recipe=recipe(), output_dir=str(output),
++                    split_path=str(root/'split.npz'), threads=1, full_fit=True, fit_iterations=[30, 40]))
++            self.assertEqual([c['fit_iterations'] for c in calls], [30, 40])
++            with np.load(output/'test_probabilities.npz', allow_pickle=False) as saved:
++                np.testing.assert_allclose(saved['probabilities'], np.tile(VECTORS[:2].mean(axis=0), (3, 1)))
++            record = json.loads((output/'result.json').read_text(encoding='utf-8'))
++            self.assertEqual(record['feature_views']['method'], METHOD)
++            self.assertEqual(record['feature_views']['weights'], [.5, .5])
++
++    def test_global_two_parent_ensemble_accepts_four_view_subtree_without_losing_leaves(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            spec, sample = fixture(root)
++            output = root/'out'
++            output.mkdir()
++            calls = []
++            selected = {'engine': 'ensemble', 'params': {},
++                'components': [recipe(FIXED_CAPACITY_METHOD), recipe()], 'weights': [.6, .4]}
++            iterations = [[30, 40, 50, 60], [70, 80]]
++            with patch.object(worker, 'run', side_effect=mocked_leaf_dispatch(spec, sample, calls)):
++                worker.run_ensemble(dict(spec=spec, recipe=selected, output_dir=str(output),
++                    split_path=str(root/'split.npz'), threads=1, full_fit=True, fit_iterations=iterations))
++            self.assertEqual(len(calls), 6)
++            self.assertEqual([c['fit_iterations'] for c in calls], [30, 40, 50, 60, 70, 80])
++            record = json.loads((output/'result.json').read_text(encoding='utf-8'))
++            self.assertEqual(record['fit_iterations'], iterations)
++            with np.load(output/'test_probabilities.npz', allow_pickle=False) as saved:
++                expected = .6*VECTORS.mean(axis=0)+.4*VECTORS[:2].mean(axis=0)
++                np.testing.assert_allclose(saved['probabilities'], np.tile(expected, (3, 1)))
++
++    def test_ordinary_global_four_parent_and_forged_internal_weights_fail_before_io(self):
++        leaves = feature_view_components(recipe(FIXED_CAPACITY_METHOD), schema())
++        job = {'spec': schema(), 'output_dir': 'unused',
++               'recipe': {'engine': 'ensemble', 'components': leaves, 'weights': [.25]*4}}
++        with self.assertRaisesRegex(ValueError, 'two or three'):
++            worker.run_ensemble(job)
++        for weights in [[.5, .5, .5, .5], [.1, .2, .3, .4]]:
++            forged = deepcopy(job)
++            forged['recipe']['weights'] = weights
++            with self.subTest(weights=weights), self.assertRaisesRegex(ValueError, 'trusted fixed'):
++                worker.run_ensemble(forged, fixed_capacity_views=True)
++
++
++if __name__ == '__main__':
++    unittest.main(verbosity=2)
+--- a/src/automl/search/policy.py
++++ b/src/automl/search/policy.py
+@@ -6,6 +6,9 @@
+ from automl.evaluation.api import validate_decision_optimizer
+ 
+ ENGINES=set(CAPABILITIES)
++# Source configuration only: prepare separate OFF/ON archives for paired review.
++# No CLI/environment switch or observed validation outcome enables this policy.
++DEFAULT_FIXED_CAPACITY_LAST_SLOT=True
+ PARAMETERS={'iterations','depth','max_depth','learning_rate','num_leaves','min_child_samples',
+  'reg_lambda','reg_alpha','l2_leaf_reg','random_strength','class_weights','class_weight_power','feature_views','decision_optimizer','target_smearing','target_smearing_method',
+  'subsample','subsample_freq','colsample_bytree','seed','log_target','generic_features','calibrate',
+@@ -163,6 +166,36 @@
+                 hypothesis='Fixed equal-weight original and cross-fitted categorical feature views; compare full procedure')))
+     return recipes
+ 
++def default_fixed_last_slot(spec,args,limit):
++    """One exact component replaces only slot11 on the ordinary offline route."""
++    info={'source_enabled':DEFAULT_FIXED_CAPACITY_LAST_SLOT,'slot_index':11,
++          'search_slots':limit,'eligible':False,'status':'not_enabled'}
++    if not DEFAULT_FIXED_CAPACITY_LAST_SLOT:
++        return None,info
++    info['status']='outside_ordinary_offline_route'
++    if (limit!=12 or not getattr(args,'offline',False)
++            or getattr(args,'hpo_trials',0) or getattr(args,'four_stage',False)
++            or getattr(args,'feature_selection_top_k',0)
++            or getattr(args,'protect_original_features',False)):
++        return None,info
++    info['status']='unsupported_task_schema'
++    if (spec.get('kind')!='classification' or spec.get('metric')!='macro_f1'
++            or spec.get('text_features') or spec.get('task_family')=='pointwise_ranking'):
++        return None,info
++    declared=set(spec.get('categorical_features') or [])
++    if len([name for name in spec.get('features',[]) if name in declared])<2:
++        return None,info
++    recipe=normalize({'engine':'lightgbm',
++        'hypothesis':'Fixed equal-weight63/98 original and cross-fitted categorical views; compare full procedure',
++        'params':{'iterations':1200,'learning_rate':.04,'num_leaves':63,'max_depth':-1,
++            'min_child_samples':25,'reg_lambda':5,'subsample':1,'colsample_bytree':.9,
++            'class_weight_power':.5,'calibrate':True,
++            'feature_views':'categorical_te_capacity_pair'}})
++    validate_feature_view(recipe,spec)
++    info.update(eligible=True,status='not_attempted',recipe_sha256=signature(recipe))
++    return recipe,info
++
++
+ def fallback(spec,number,best):
+     candidate=dict(best or portfolio(spec)[0])
+     candidate['params']=dict(candidate['params'])
+--- a/src/automl/search/runner.py
++++ b/src/automl/search/runner.py
+@@ -18,7 +18,7 @@
+ from automl.task_understanding.api import discover,MultipleTargets,load_inputs
+ from automl.evaluation.api import evaluate,make_split,make_time_split,choose_validation,metric_context
+ from automl.publishing.api import dummy_predictions,save_submission,checkpoint
+-from automl.search.policy import parse_plans,portfolio,fallback,signature,normalize
++from automl.search.policy import parse_plans,portfolio,fallback,signature,normalize,default_fixed_last_slot
+ from automl.execution.api import read_cache,combine,materialize
+ 
+ SYSTEM_PROMPT='''You plan falsifiable experiments inside a universal CPU AutoML agent.
+@@ -288,6 +288,7 @@
+     records=[]; calls=[]; seen=set(); best=None; initial_plans=[]; stage_receipts=[]
+     initial_assessment={'attempted':False,'status':'not_attempted','call_status':None,'assessment_valid':False}
+     reserve=min(1200,max(60,args.time_budget*.2)); limit=max(1,min(args.max_experiments,14))
++    fixed_last_recipe,fixed_last_info=default_fixed_last_slot(spec,args,limit)
+     if four_stage and not args.offline and args.max_planner_calls>0 and deadline-time.monotonic()>reserve+90:
+         context=planner_context(spec,profile,text,split_info,[],None,deadline-time.monotonic(),1)
+         context['stage']='initial_data_assessment_before_any_model_fit'
+@@ -311,6 +312,9 @@
+     for iteration in range(limit):
+         remaining=deadline-time.monotonic()
+         if remaining<reserve+30: break
++        if fixed_last_recipe is not None and iteration==fixed_last_info['slot_index']:
++            queue=[fixed_last_recipe]
++            fixed_last_info['status']='attempted'
+         if not queue and getattr(args,'hpo_trials',0) and not hpo_attempted and best:
+             from automl.search.hpo import optimize_recipe
+             hpo_attempted=True
+@@ -339,6 +343,8 @@
+         print(f'Experiment {iteration}: {recipe["engine"]}: {recipe["hypothesis"]}',flush=True)
+         result=run_worker(spec,recipe,runs/f'experiment-{iteration:02d}',split,min(900,max(5,deadline-time.monotonic()-reserve)))
+         result['experiment_index']=iteration; records.append(result)
++        if fixed_last_recipe is not None and iteration==fixed_last_info['slot_index']:
++            fixed_last_info['status']=result['status']
+         ranked=ordered(records,spec)
+         journal(runs,'search',result,spec['metric'],'keep_search_incumbent' if ranked and ranked[0]['output_dir']==result['output_dir'] else 'discard' if result['status']=='ok' else 'failed')
+         if ranked:
+@@ -417,6 +423,7 @@
+     if getattr(args,'hpo_trials',0): report['hpo']=hpo_report or {'status':'not_reached_within_search_budget'}
+     if getattr(args,'planner_mode','baseline')!='baseline': report['planner_mode']=args.planner_mode
+     if selection_size: report['feature_selection_top_k']=selection_size
++    report['default_fixed_last_slot']=fixed_last_info
+     if four_stage:
+         report['pipeline']={'mode':'four_stage','initial_data_assessment_before_fitting':initial_assessment['assessment_valid'],
+             'initial_data_assessment':initial_assessment,
+--- /dev/null
++++ b/tests/test_four_leaf_default.py
+@@ -0,0 +1,237 @@
++"""One-thread synthetic default-entrypoint checks; no fit, API or child worker."""
++from copy import deepcopy
++from contextlib import ExitStack,redirect_stdout
++from pathlib import Path
++from types import SimpleNamespace
++import io,json,os,runpy,socket,subprocess,sys,tempfile,unittest
++from unittest.mock import patch
++
++for name in ['AUTOML_THREADS','OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS']:
++    os.environ[name]='1'
++ROOT=Path(__file__).resolve().parents[1]
++sys.path[:0]=[str(ROOT/'src'),str(ROOT)]
++import numpy as np
++import pandas as pd
++from automl.search import policy,runner
++from automl.execution import worker
++from automl.execution.feature_views import feature_view_components,FIXED_CAPACITY_METHOD,validate_fit_iterations
++from automl.infrastructure import llm_gateway as gateway
++from automl.task_understanding import semantic_inputs as semantic
++
++
++def args(path,**changes):
++    value=dict(task=path,time_budget=9900,max_experiments=12,max_planner_calls=4,
++        max_llm_calls=None,offline=True,hpo_trials=0,hpo_budget=900,hpo_sampler='tpe',
++        planner_mode='baseline',feature_selection_top_k=0,protect_original_features=False,
++        four_stage=False,validation_strategy='auto',run_name='mock-default')
++    value.update(changes);return SimpleNamespace(**value)
++
++
++def schema():
++    return {'kind':'classification','metric':'macro_f1','greater_is_better':True,
++        'text_features':[],'features':['measure','first','second'],
++        'categorical_features':['second','first'],'classes':['A','B','C']}
++
++
++def fixture(root,regression=False):
++    target=np.arange(12,dtype=float) if regression else np.tile(['A','B','C'],4)
++    train=pd.DataFrame({'row_id':np.arange(12),'measure':np.arange(12,dtype=float),
++        'first':list('abababababab'),'second':list('xxyyxxyyxxyy'),'response':target})
++    test=train.iloc[:3].drop(columns='response').copy();test.row_id+=100
++    sample=pd.DataFrame({'row_id':test.row_id,'response':0. if regression else 'A'})
++    for frame,name in [(train,'train.csv'),(test,'test.csv'),(sample,'sample.csv')]:
++        frame.to_csv(root/name,index=False)
++    path=root/'task.md';path.write_text('Synthetic fixture only.',encoding='utf-8')
++    spec=dict(schema(),root=str(root),task_path=str(path),target='response',id='row_id',
++        output_columns=['response'],prediction_type='label',validation_strategy='group',
++        paths={'train':str(root/'train.csv'),'test':str(root/'test.csv'),
++               'sample_submission':str(root/'sample.csv')})
++    if regression:spec.update(kind='regression',metric='rmse',greater_is_better=False,classes=[],prediction_type='numeric')
++    return path,(spec,{},train,test,sample,'Synthetic fixture only.',np.arange(12))
++
++
++class FourLeafDefaultTests(unittest.TestCase):
++    def setUp(self):
++        self.guards=ExitStack();self.addCleanup(self.guards.close)
++        self.forbidden={'fit':0,'api':0,'network':0,'child_worker':0}
++        def block(kind):
++            def forbidden(*a,**k):
++                self.forbidden[kind]+=1;raise AssertionError('Forbidden '+kind+' in mocked checks')
++            return forbidden
++        for target,name,kind in [(socket.socket,'connect','network'),(socket,'create_connection','network'),
++                (subprocess,'Popen','child_worker'),(runner,'request_json','api'),
++                (gateway,'request_json','api'),(semantic,'request_json','api'),(worker,'run','fit')]:
++            self.guards.enter_context(patch.object(target,name,side_effect=block(kind)))
++        self.addCleanup(lambda:self.assertEqual(self.forbidden,dict.fromkeys(self.forbidden,0)))
++
++    def run_mock(self,root,enabled,regression=False,winner='lightgbm',stop_before_last=False,cli=False,call_cap_zero=False):
++        path,data=fixture(root,regression);spec,_,train,test,sample,_,_=data
++        options=args(path);clock=[0.];calls=[];by_recipe={};captured={}
++        def split(spec,frame,hashes,seed):
++            a,b=(np.arange(8),np.arange(8,12)) if seed==42 else (np.arange(4,12),np.arange(4))
++            return a,b,{'method':'synthetic_fixed','seed':seed}
++        def mock_worker(spec,recipe,directory,split_path,timeout,full_fit=False,fit_iterations=None):
++            directory=Path(directory);directory.mkdir(parents=True)
++            selected=deepcopy(recipe);method=selected['params'].get('feature_views')
++            selected_iterations=([31,41,51,61] if method==FIXED_CAPACITY_METHOD else
++                                  [37,47] if method else 53)
++            if fit_iterations is not None:selected_iterations=deepcopy(fit_iterations)
++            validate_fit_iterations(selected,selected_iterations)
++            key=policy.signature(selected)
++            if directory.name.startswith('experiment-'):
++                index=int(directory.name.rsplit('-',1)[1])
++                value=(.6 if selected['engine']==winner else .4)+index*.001
++                if method==FIXED_CAPACITY_METHOD:value=.95
++                if regression:value=10.-value
++                by_recipe[key]=value
++                if stop_before_last and index==10:clock[0]=9000.
++            else:value=by_recipe[key]
++            charged_seconds=len(selected_iterations) if isinstance(selected_iterations,list) else 1
++            clock[0]+=charged_seconds
++            prediction=sample.copy()
++            prediction['response']=np.arange(len(sample))/10 if regression else 'A'
++            prediction.to_csv(directory/'submission.csv',index=False)
++            record={'status':'ok','recipe':selected,'metrics':{spec['metric']:value},
++                'fit_iterations':selected_iterations,'full_fit':full_fit,'feature_count':len(spec['features']),
++                'wall_seconds':charged_seconds,'submission':str(directory/'submission.csv'),'output_dir':str(directory)}
++            calls.append({'directory':directory.name,'recipe':selected,'timeout':timeout,
++                'full_fit':full_fit,'fit_iterations':deepcopy(fit_iterations),
++                'prediction_bytes':(directory/'submission.csv').read_bytes(),'value':value,
++                'charged_seconds':charged_seconds})
++            (directory/'result.json').write_text(json.dumps(record),encoding='utf-8')
++            return record
++        real_solve=runner.solve_single
++        def capture(options,task_data=None):
++            captured['args']=deepcopy(vars(options));return real_solve(options,task_data)
++        with ExitStack() as mock,redirect_stdout(io.StringIO()):
++            mock.enter_context(patch.object(policy,'DEFAULT_FIXED_CAPACITY_LAST_SLOT',enabled))
++            mock.enter_context(patch.object(runner.time,'monotonic',side_effect=lambda:clock[0]))
++            mock.enter_context(patch.object(runner,'choose_validation',side_effect=lambda s,*a:s))
++            mock.enter_context(patch.object(runner,'source_files',return_value=[]))
++            mock.enter_context(patch.object(runner,'make_split',side_effect=split))
++            mock.enter_context(patch.object(runner,'metric_context',return_value={}))
++            mock.enter_context(patch.object(runner,'run_worker',side_effect=mock_worker))
++            mock.enter_context(patch.object(runner,'read_cache',side_effect=ValueError('No mock global cache')))
++            if cli:
++                loader=mock.enter_context(patch.object(runner,'load_inputs',return_value='mock_loaded'))
++                mock.enter_context(patch.object(runner,'discover',return_value=data))
++                mock.enter_context(patch.object(runner,'solve_single',side_effect=capture))
++                argv=['solution.py',str(path),'--offline']
++                if call_cap_zero:argv.extend(['--max-llm-calls','0'])
++                mock.enter_context(patch.object(sys,'argv',argv))
++                runpy.run_path(str(ROOT/'solution.py'),run_name='__main__')
++                self.assertEqual(loader.call_args.kwargs,{'allow_llm':False})
++                report=json.loads((root/'automl_runs/run-v2/report.json').read_text(encoding='utf-8'))
++            else:report=real_solve(options,data)
++        return report,calls,(root/'submission.csv').read_bytes(),captured
++
++    def temporary_pair(self):
++        short=ROOT.parent/'t';short.mkdir(exist_ok=True)
++        temporary=tempfile.TemporaryDirectory(prefix='fdd-',dir=short);self.addCleanup(temporary.cleanup)
++        root=Path(temporary.name);a=root/'a';b=root/'b';a.mkdir();b.mkdir();return a,b
++
++    def test_source_configs_and_exact_normalized_component(self):
++        self.assertIs(type(policy.DEFAULT_FIXED_CAPACITY_LAST_SLOT),bool)
++        with patch.object(policy,'DEFAULT_FIXED_CAPACITY_LAST_SLOT',False):
++            selected,info=policy.default_fixed_last_slot(schema(),args(Path('task.md')),12)
++        self.assertIsNone(selected);self.assertFalse(info['source_enabled'])
++        with patch.object(policy,'DEFAULT_FIXED_CAPACITY_LAST_SLOT',True):
++            selected,info=policy.default_fixed_last_slot(schema(),args(Path('task.md')),12)
++        base=next(r for r in policy.portfolio(schema()) if r['params'].get('feature_views')=='categorical_te_pair')
++        expected=policy.normalize(dict(base,params=dict(base['params'],feature_views=FIXED_CAPACITY_METHOD)))
++        self.assertEqual(selected['params'],expected['params'])
++        self.assertEqual(policy.signature(selected),policy.signature(expected))
++        self.assertEqual(info['recipe_sha256'],policy.signature(expected))
++        leaves=feature_view_components(selected,schema())
++        self.assertEqual([r['params']['num_leaves'] for r in leaves],[63,63,98,98])
++        self.assertTrue(all(r['params']['calibrate'] and r['params']['class_weight_power']==.5 for r in leaves))
++        self.assertTrue(all(r['params'].get('generic_features','none')=='none' for r in leaves))
++
++    def test_schema_and_class_renames_do_not_change_recipe_eligibility(self):
++        renamed=dict(schema(),features=['opaque0','opaque1','opaque2'],
++            categorical_features=['opaque2','opaque1'],classes=['new0','new1','new2'])
++        with patch.object(policy,'DEFAULT_FIXED_CAPACITY_LAST_SLOT',True):
++            a,_=policy.default_fixed_last_slot(schema(),args(Path('first.md')),12)
++            b,_=policy.default_fixed_last_slot(renamed,args(Path('other.md')),12)
++            binary,_=policy.default_fixed_last_slot(dict(schema(),classes=['left','right']),args(Path('binary.md')),12)
++        self.assertEqual(a,b)
++        self.assertEqual(a,binary)
++
++    def test_unsupported_schemas_and_nondefault_routes_leave_policy_unmodified(self):
++        with patch.object(policy,'DEFAULT_FIXED_CAPACITY_LAST_SLOT',True):
++            for change in [{'kind':'regression'},{'metric':'accuracy'},
++                    {'text_features':['measure']},{'task_family':'pointwise_ranking'},
++                    {'categorical_features':['first']},{'categorical_features':['missing','first']}]:
++                with self.subTest(schema=change):
++                    self.assertIsNone(policy.default_fixed_last_slot(dict(schema(),**change),args(Path('task.md')),12)[0])
++            for change in [{'offline':False},{'hpo_trials':1},{'four_stage':True},
++                    {'feature_selection_top_k':1},{'protect_original_features':True}]:
++                with self.subTest(args=change):
++                    self.assertIsNone(policy.default_fixed_last_slot(schema(),args(Path('task.md'),**change),12)[0])
++            for limit in [1,11,13,14]:
++                self.assertIsNone(policy.default_fixed_last_slot(schema(),args(Path('task.md')),limit)[0])
++
++    def test_first11_search_recipes_outcomes_order_and_predictions_are_identical(self):
++        for winner in ['lightgbm','xgboost','catboost']:
++            with self.subTest(winner=winner):
++                a,b=self.temporary_pair()
++                left,la,_,_=self.run_mock(a,False,winner=winner)
++                right,lb,_,_=self.run_mock(b,True,winner=winner)
++                sa=[x for x in la if x['directory'].startswith('experiment-')]
++                sb=[x for x in lb if x['directory'].startswith('experiment-')]
++                self.assertEqual(len(sa),12);self.assertEqual(len(sb),12)
++                self.assertEqual(sa[:11],sb[:11])
++                self.assertNotEqual(policy.signature(sa[11]['recipe']),policy.signature(sb[11]['recipe']))
++                self.assertEqual(sb[11]['recipe']['params']['feature_views'],FIXED_CAPACITY_METHOD)
++                self.assertTrue(all(x['recipe']['params'].get('feature_views')!=FIXED_CAPACITY_METHOD for x in sb[:11]))
++                self.assertEqual(right['default_fixed_last_slot']['status'],'ok')
++                self.assertFalse(left['default_fixed_last_slot']['source_enabled'])
++
++    def test_ordinary_solution_cli_defaults_reach_source_enabled_last_slot(self):
++        for cap_zero in [False,True]:
++            with self.subTest(explicit_call_cap_zero=cap_zero):
++                _,b=self.temporary_pair();report,calls,_,captured=self.run_mock(b,True,cli=True,call_cap_zero=cap_zero)
++                options=captured['args']
++                self.assertEqual((options['time_budget'],options['max_experiments'],options['hpo_trials'],
++                    options['feature_selection_top_k'],options['four_stage']),(9900,12,0,0,False))
++                self.assertTrue(options['offline'])
++                self.assertEqual(options['max_llm_calls'],0 if cap_zero else None)
++                self.assertEqual(report['run_budget']['gateway_call_limit'],0 if cap_zero else 6)
++                self.assertEqual(report['run_budget']['gateway_calls_started'],0)
++                self.assertEqual(report['run_budget']['http_attempts_reported'],0)
++                self.assertNotIn('hpo',report);self.assertNotIn('pipeline',report)
++                self.assertEqual(report['experiments'][11]['recipe']['params']['feature_views'],FIXED_CAPACITY_METHOD)
++                self.assertEqual(len(report['experiments']),12)
++
++    def test_default_regression_search_refit_and_csv_match_both_source_configs(self):
++        a,b=self.temporary_pair();left,la,ca,_=self.run_mock(a,False,regression=True)
++        right,lb,cb,_=self.run_mock(b,True,regression=True)
++        self.assertEqual(la,lb);self.assertEqual(ca,cb)
++        self.assertEqual(left['selected_recipe'],right['selected_recipe'])
++        self.assertEqual(left['final_fit_iterations'],right['final_fit_iterations'])
++        self.assertEqual(left['best_validation'],right['best_validation'])
++        self.assertEqual(right['default_fixed_last_slot']['status'],'unsupported_task_schema')
++
++    def test_unreached_last_slot_is_not_appended_or_restarted(self):
++        _,b=self.temporary_pair();report,calls,_,_=self.run_mock(b,True,stop_before_last=True)
++        search=[x for x in calls if x['directory'].startswith('experiment-')]
++        self.assertEqual(len(search),11)
++        self.assertEqual(report['default_fixed_last_slot']['status'],'not_attempted')
++        self.assertFalse(any(x['recipe']['params'].get('feature_views')==FIXED_CAPACITY_METHOD for x in calls))
++
++    def test_selected_component_retains_four_leaf_refit_iterations_and_shared_clock(self):
++        _,b=self.temporary_pair();report,calls,_,_=self.run_mock(b,True)
++        final=next(x for x in calls if x['full_fit'])
++        self.assertEqual(final['recipe']['params']['feature_views'],FIXED_CAPACITY_METHOD)
++        self.assertEqual(final['fit_iterations'],[31,41,51,61])
++        self.assertEqual(report['final_fit_iterations'],[31,41,51,61])
++        self.assertEqual(report['final_fit_status'],'ok')
++        search=[x for x in calls if x['directory'].startswith('experiment-')]
++        self.assertEqual(search[-1]['timeout'],search[-2]['timeout'])
++        self.assertEqual(search[-1]['timeout'],900)
++        self.assertEqual(search[-1]['charged_seconds'],4)
++        self.assertEqual(report['elapsed_seconds'],sum(call['charged_seconds'] for call in calls))
++        self.assertLess(final['timeout'],9900-5)
++
++
++if __name__=='__main__':unittest.main(verbosity=2)
+--- a/tools/run_checks.py
++++ b/tools/run_checks.py
+@@ -14,7 +14,8 @@
+         'test_multitarget.py':13,'test_ranking.py':13,'test_search_choices.py':8,'test_binary_probability.py':9,
+         'test_semantic_inputs.py':16,'test_run_budget.py':15,'test_gateway_http.py':2,
+         'test_history.py':13,'test_history_worker.py':8,'test_diversity.py':19,'test_release_verifier.py':3,'test_class_te.py':3,
+-        'test_feature_views.py':11,'test_postprocessor.py':14,'test_target_smearing.py':14,
++        'test_feature_views.py':11,'test_four_leaf_feature_views.py':9,'test_four_leaf_default.py':8,
++        'test_postprocessor.py':14,'test_target_smearing.py':14,
+         'test_error_analysis_contracts.py':20,'test_error_analysis.py':39,'test_error_preparation.py':16,
+         'test_hpo.py':7,'test_feature_selection.py':5,
+         'test_resource_portability.py':3,'test_reasoning_settings.py':3,

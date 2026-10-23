@@ -1,0 +1,45 @@
+{
+  "revision": "root_bound_execution_contract_r3",
+  "formal_protocol": {
+    "path": "work/fullagent-fixed-half-plan-r3/protocol.json",
+    "sha256": "5b2164c3721c84b8e6eb85c0dec7571474316b2e956d6ecdeee235d0193addcb",
+    "bytes": 37526
+  },
+  "formal_publication": {
+    "path": "work/fullagent-protocol-publication-r3.json",
+    "sha256": "1c416cc08ea700fc2c6bece457f1f38e46e897bfa1c8cd3c007036a68685be98",
+    "bytes": 971
+  },
+  "actual_A": "exact88dac",
+  "actual_B": "new backend+ordinarylastslot sourceON",
+  "OFF_tree": "mockfixture only",
+  "entrypoint_both_arms": [
+    "<same_python>",
+    "-u",
+    "solution.py",
+    "task.md",
+    "--offline",
+    "--max-llm-calls",
+    "0"
+  ],
+  "solver_seconds_each": 9900,
+  "search_slots_each": 12,
+  "HPO_trials_each": 0,
+  "HPO_allocated_seconds_each": 0,
+  "feature_selection_top_k_each": 0,
+  "four_stage_each": false,
+  "extra_API_calls": 0,
+  "eligibility": "Inherited nontextMacroF1 and>=2schema categoricalfeatures, includingbinary",
+  "early_negative_only": true,
+  "CV_order": [
+    "A/B",
+    "B/A",
+    "A/B"
+  ],
+  "stage2_only_after_original_positive_gates": true,
+  "root_actual_launch_approval_pending": true,
+  "deadline_assigned": false,
+  "fits": 0,
+  "api_calls": 0,
+  "promotion": false
+}

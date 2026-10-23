@@ -1,0 +1,24 @@
+{
+  "status": "prospective_static_paths_only",
+  "examples": [
+    {
+      "workspace_relative": "work/f3/0b/automl_runs/run-v2/experiment-11/component-3/validation_probabilities.npz.tmp.npz",
+      "absolute_length_on_this_machine": 180
+    },
+    {
+      "workspace_relative": "work/f3/0b/automl_runs/run-v2/final-fit/component-2/component-3/validation_probabilities.npz.tmp.npz",
+      "absolute_length_on_this_machine": 188
+    },
+    {
+      "workspace_relative": "work/f3/0b/automl_runs/run-v2/confirmation-2/component-3/validation_predictions.csv",
+      "absolute_length_on_this_machine": 171
+    },
+    {
+      "workspace_relative": "work/f3/0b/automl_runs/run-v2/final-fit/component-2/component-3/mpl-cache/fontlist-v390.json",
+      "absolute_length_on_this_machine": 180
+    }
+  ],
+  "maximum_example_characters": 188,
+  "under_260_for_examples": true,
+  "not_exhaustive": "Future coordinator must audit actual module-derived worker/calibration/cache/output/temp paths and owned shallow fixture root before launch. No path bypass or long-path settings change used."
+}

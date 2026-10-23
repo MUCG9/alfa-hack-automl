@@ -22,6 +22,10 @@ predeclared HPO-01_isolated_protocol_20261023.md. Read latest journal first.
 HPO-01 isolated now COMPLETED/DISCARDED;4arms12trials each,18guidedTPEsuccesses,
 TPE worse than random bothcuts. No repeats/promotion. Evidence HPO-01_isolated_*
 docs; next conditionalEMB-01 CPU pilot. Historical active study lines superseded.
+EMB-01 CPU pilot now admitted,f458c0c,7real/syntheticfixture+7arch checksPASS.
+One publicscreencontroller57404,read EMB-01_progress_20261023.md and actual
+test-runs/emb-20261023/public-screen/ outputs. Backend dormant,uploaded55files
+unchanged. No concurrentfits or canonicalcode edits until it exits.
 
 23Oct latest captain instructions authorize parallel BASE-01/ERR-01/SEL-01
 engineering on work/error-selection-20261023 while LONG-01 runs from its own

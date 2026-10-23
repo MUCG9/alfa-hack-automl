@@ -1,5 +1,10 @@
 # Parallel engineering progress — 23 October2026
 
+EMB-01 now:read EMB-01_progress_20261023.md,source f458c0c,7CPUfixture and7arch
+checksPASS;ONE publicscreencontroller57404/test-runs/emb-20261023/public-screen/.
+Fourcases sequential,max180s/2CPU/1.7GiB each;do NOTduplicate or modify active
+canonicalcode. Original uploaded55files remain identical,defaultbackendOFF.
+
 HPO-01 isolated DONE/DISCARD: all4arms12/12trials,18guidedTPESuccesses,256.021s,
 sourceunchanged. TPE loses bothcuts vs random and searchvsanchor/LONG. See
 HPO-01_isolated_progress_20261023.md/results/receipt. No new HPO fits/CV/promotion.

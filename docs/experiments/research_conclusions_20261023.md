@@ -1,11 +1,13 @@
 # Qwen MVP и autoresearch: проверенные результаты и следующие решения
 
-Промежуточный checkpoint23Oct: полный MVP, основная ночная очередь и FE-02
-завершены и независимо проверены. [Замороженная сводка](overnight_screens_20261023.json).
-REG-BLEND-01 прошёл три forward cuts и обе mean-comparisons;
-class BLEND-01 grouped CV завершён с gate FAIL. Подготовлен
-[PIPE-02](pipe02_protocol_20261023.md) для полного исполнения квалифицированной
-процедуры после CV. Текущий qualified default — V11/V16. Official uploads не делались.
+Checkpoint23Oct ЗАВЕРШЁН. Полный MVP, девять основных component screens,
+FE-02, два blend qualification paths и PIPE-02 выполнены. Owned ML jobs0;
+после финального refit/export новых направлений не запускалось.
+[Полный итог PIPE-02](pipe02_complete_20261023.md),
+[независимая сводка screens](overnight_screens_20261023.json).
+Ordinary default — V11/V16. Новый локально квалифицированный opt-in profile
+сохранил MacroF1 .6593178433614652 и улучшил RMSE до35.39729814378806.
+Main/official uploads не менялись. Подробные ограничения метрик — ниже.
 
 ## Полный MVP
 
@@ -20,6 +22,15 @@ class BLEND-01 grouped CV завершён с gate FAIL. Подготовлен
 |Qualified V11/V16|.6593178433614652|35.44723155783769|
 |Четырёхэтапный MVP|.6544845346080569|36.02469255996805|
 |MVP минус control|−.004833308753408261|+.577461002130363|
+|PIPE-02 opt-in, полный refit/export verified|.6593178433614652|35.39729814378806|
+|PIPE-02 минус control|0|-0.049933414049625924|
+
+PIPE-02 — frozen learned profile после Qwen research, с0API calls в финальном
+campaign; это не повторный online поиск Qwen. Class augmentation отклонён CV,
+classification использует прежний complete control. Regression adaptive mixture
+проверена как отдельная полная процедура. Actual final campaign1875.771s,
+regression324.811s/classification1548.236s; это отличается от exploratory MVP
+и по priors/search, и по затратам, поэтому не является causal prompt ablation.
 
 Receipt: [mvp01_complete_20261023.json](mvp01_complete_20261023.json).
 Фактическое совпадение четырёх partitions:
@@ -36,7 +47,9 @@ Receipt: [mvp01_complete_20261023.json](mvp01_complete_20261023.json).
 cuts40.613390328165174→40.56328943398112. Equal-cap Random8 mixture mean
 40.603758853175314, unchanged-anchor mixture40.60001490341628; TPE mixture
 лучше обеих по preregistered mean criterion. [Проверка](reg_blend01_forward_20261023.json).
-Это три forward holdouts, не exactly-once OOF. Full-study/refit/export ещё впереди.
+Это три forward holdouts, не exactly-once OOF. Впоследствии PIPE-02 заново исполнил обе outer studies и отдельную full-training
+study:24successful trials, полный refit3learners/CSV/integrity verified.
+[Полный receipt](pipe02_complete_20261023.json).
 
 ## Почему обязательные стадии оказались дорогими
 

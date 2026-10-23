@@ -37,5 +37,7 @@ score, а три forward cuts не означают exactly-once OOF.
 
 Code gates завершены:352unique source checks/266.083s,23repeated exact-unpacked
 checks. Archive68files/SHA5584ee29c725c6fe1aca047a60414278a9660c5a7fd741683944669ff9b53d68.
-Полная кампанию запускать только из этого exact ZIP. Результаты actual campaign
-будут добавлены после завершения; code gates не доказывают model quality.
+Полная кампания из этого exact ZIP завершена за1875.771s. Независимые
+actual metrics/partitions/24inner objectives/full refits/lineage/CSV/integrity
+PASS; [результат](pipe02_complete_20261023.md). Owned jobs0. Code gates отдельно
+от ML qualification; default search не менялся.

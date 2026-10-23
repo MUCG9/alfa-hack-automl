@@ -10,8 +10,8 @@
 |HAR-01/02|COMPLETE/REJECT по paired gates; matched prompts и typed DSL фактически проверены|[разбор](../experiments/research_conclusions_20261023.md)|
 |FE-02|COMPLETE/REJECT: original+top32, better mean SINGLE, один cut потерян|[receipt](../experiments/fe02_results_20261023.json)|
 |BLEND-01|REPLAY PASS, GROUPED CV REJECT: fold0 primary/Analysis loss;6/6workers, exactly-once coverage|[CV receipt](../experiments/blend01_cv_results_20261023.json)|
-|REG-BLEND-01|FORWARD QUALIFICATION PASS:3cuts и mean vs Random8/anchor mixtures; пока не full deployment|[receipt](../experiments/reg_blend01_forward_20261023.json)|
-|PIPE-02|IMPLEMENTED opt-in; source/exact ZIP gates выполняются, full campaign ещё не запущен|[protocol](../experiments/pipe02_protocol_20261023.md)|
+|REG-BLEND-01|FORWARD QUALIFICATION PASS:3cuts и mean vs Random8/anchor mixtures; full deployment выполнен в PIPE-02|[receipt](../experiments/reg_blend01_forward_20261023.json)|
+|PIPE-02|COMPLETE/LOCAL QUALIFIED opt-in: F1 .659317843/RMSE35.397298144, full refits/CSV/integrity PASS,0owned jobs|[итог](../experiments/pipe02_complete_20261023.md)|
 |META-REVIEW|3реальных Qwen calls: numeric/semantic ошибки даже при schema PASS;0автоматических actions|[анализ](../experiments/research_conclusions_20261023.md)|
 |SKILL|DONE/INSTALLED: Karpathy-based autoresearch-ml, independent copy/hash parity|[skill](../../skills/autoresearch-ml/SKILL.md)|
 

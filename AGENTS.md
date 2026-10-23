@@ -1,60 +1,55 @@
-# Development instructions — current checkpoint, 23 October 2026
+# Development instructions — verified checkpoint,23October2026
 
-NEW captain authorization supersedes the historical no-fitting/documentation-only
-stops below: implement and locally run a four-stage Qwen MVP, then investigate
-autoresearch improvements. Current branch `work/qwen-optuna-mvp-20261022`, based
-on `f3c8aba`. Read docs/experiments/hpo01_protocol_20261022.md and
-docs/experiments/qwen_mvp_history_20261022.md first. Code checkpoints c3a63f5,
-b486a4f, bc51d88; CLI source343 checks +23 exact-unpacked repeated checks PASS.
-Optuna and CatBoost selection are OPTIONAL, OFF by default. The exploratory MVP
-explicitly enables them; no component gain or release promotion claimed yet.
-Private .env creation/use was separately authorized; it is mode600 and ignored.
-Never print/commit its contents. Organizer connectivity succeeded; complete live
-path and public MVP status must be read from receipts, not assumed.
+The overnight request is COMPLETE: four-stage Qwen MVP, measured autoresearch
+iterations, Karpathy-based skill, and full opt-in PIPE-02 verification. Read
+`docs/experiments/pipe02_complete_20261023.md`,
+`docs/experiments/research_conclusions_20261023.md`, and
+`docs/experiments/qwen_mvp_history_20261022.md` first. Current task branch:
+`work/qwen-optuna-mvp-20261022`, basef3c8aba. Main remains V2; no main merge,
+force push, new official submit, extra Codex agents or paid resources occurred.
+Public publication of this branch/code/technical reports was explicitly approved.
+Never claim latest remote SHA without the ignored push-verification receipt/Git.
 
-One owned sequential coordinator was started: unpacked gate -> live-four-stage
-smoke -> public-mvp campaign, artifacts in test-runs/qwen-optuna-20261022/.
-Inspect processes/receipts before starting any fits; do not run concurrently.
-Update23Oct: full organizer live-four-stage smoke PASSED (roles/planner, four
-Optuna trials, active CatBoost selection, refit/CSV/integrity). Initial public
-attempt stopped before a completed experiment; original receipt preserved.
-MVP public-mvp-attempt2 is COMPLETE, PID33136 exited; immutable launch identity
-is detached-mvp-attempt2.json. Original common deadline1792713780.3726451 was
-retained. Inspect actual process identity/create_time and receipts before fits;
-an empty restricted process view alone is not proof an outside job stopped.
-User explicitly approved PUBLIC publication of code
-and technical reports to MUCG9/alfa-hack-automl; branch4886ecd push+remote SHA
-verified. Git credentials are temporary/private; never expose or commit them.
-Historical V11/V16 remain the qualified control. No new official submit, extra
-Codex agents, paid GPU/resources, main merge or force push is authorized.
-Night continuation authorized23Oct: no questions, autonomous work. Full access
-is enabled, but keep sequential/resource/provenance rules. MVP regression is
-verified negative: mean36.02469255996805 vs35.44723155783769, both cuts worse.
-Classification MVP is also negative: meanF1 .6544845346080569 vs .6593178433614652.
-Both final CSVs/refits/integrity and actual matching control partitions verified;
-see mvp01_complete_20261023.json. All overnight component screens and FE-02 are now complete and source-unchanged;
-portable evidence is overnight_screens_20261023.json and fe02_results_20261023.json.
-No standalone selector/HPO/prompt change passed its declared all-cut gate.
-Captain requested the autoresearch-ml skill based on karpathy/autoresearch:
-skills/autoresearch-ml/SKILL.md, independently installed with matching hashes.
-REG-BLEND-01 fixed .9complete-control+.1nested-TPE passed three forward cuts
-and mean comparisons with equal-cap Random8/unchanged-anchor mixtures;
-see reg_blend01_forward_20261023.json. Not full-refit/release/official evidence yet.
-Class BLEND-01 grouped CV COMPLETE,6/6workers successful,3202.755s,
-source/harness/candidates unchanged; ALL-fold gate FAIL (fold0 primary loss
-and Analysis F1 loss>.01). PIDs92500/92521/96763 exited; lock verified free.
-See blend01_cv_results_20261023.json. No new class mixture weights or promotion.
-PIPE-02 opt-in full procedure now being integrated after freeze ended:
-pipe02_protocol_20261023.md and pipe02_implementation_20261023.md. Class branch
-uses qualified complete control only, regression uses qualified nested-TPE
-augmentation. Sparse HPO anchor defaults corrected in a708b1c;3no-fit adapter
-checks PASS; explicit measured controls unchanged. New source352 and exact-unpacked23 gates PASS; separately30research checks PASS.
-PIPE-02 full campaign ACTIVE PID100146/create_time1792730294.41,
-detached-pipe02.json and pipe02-20261023/campaign.json. Source/archive/harness
-FROZEN during this one sequential10800s campaign; no other owned fits. Class
-control only, reg nested-TPE; full refits/CSV/integrity still must finish before
-claiming profile qualification. Default HPO/selector
-remain OFF. No official submit, main merge, force push, extra agents or paid work.
+Ordinary default remains V11/V16: meanF1 .6593178433614652/RMSE35.44723155783769.
+Exploratory full Qwen MVP was NEGATIVE (.6544845346080569/36.02469255996805),
+both refits/CSV/input/splits independently verified; original10800s retained.
+Nine main component screens and FE-02 COMPLETE; none passed standalone all-cut
+gates. Preserve negative evidence. Fixed class blend improved reused-public
+replay/mean CV, but FAILED fold0 primary/Analysis support gate; do not tune new
+weights or enable its dormant augmentation. REG-BLEND-01 passed3forward cuts
+and mean comparisons against equal-cap Random8/unchanged-anchor mixtures.
+
+PIPE-02 opt-in `--research-profile incumbent_mix` is locally qualified COMPLETE:
+meanF1 .6593178433614652/RMSE35.39729814378806, both regression cuts improve.
+Fixed complete class control; reg complete control plus .1separately nested-TPE
+arm.24inner objectives, actual saved partitions/labels, full recipe/iteration
+lineage, all final learners on ALL training rows, both final CSVs and integrity
+independently verified. Full CONTROL CSVs of both tasks byte-identical V16.
+Frozen learned priors, final campaign offline/0API calls; not a new online Qwen
+search/private score/official points. Optuna/selector defaults remain OFF outside
+this explicit profile. Unsupported schema/kind falls back to ordinary baseline.
+
+Source352unique checks and23repeated exact-unpacked PASS; separately30dev harness
+checks PASS. Archive `release/qwen-incumbent-mix1/solution.zip`,68flat files with
+original requirements; SHA5584ee29c725c6fe1aca047a60414278a9660c5a7fd741683944669ff9b53d68.
+Canonical code is `src/automl`. Sparse HPO-anchor correctiona708b1c is separate
+from profile integration2ddaf10; explicit measured controls unchanged.
+Full campaign1875.771s under one10800s deadline/owned lock; regression324.811s,
+classification1548.236s,2threads/1536MiB worker+parent. Source/archive/harness
+unchanged. Coordinator100146/create_time1792730294.41 and known descendants
+exited, all old coordinators exited, training lock free. No owned ML jobs remain.
+Do not restart completed campaigns. Final parity stage closes this checkpoint;
+no new research direction is pending under this completed run.
+
+Skill `skills/autoresearch-ml/SKILL.md` is based on pinned karpathy/autoresearch;
+independently installed at ~/.codex/skills/autoresearch-ml so Git rollback does
+not remove it. Five installed/versioned files match, quick validation PASS.
+Private .env creation/use separately authorized; mode600/ignored. Never print or
+commit its contents, credentials, raw rows, prediction CSV/NPZ, weights or envs.
+Rollback tags: baseline-before-qwen-optuna-20261022, qwen-optuna-core-20261022,
+qwen-mvp-cli-tested-20261023, qwen-mvp-frozen-research-20261023,
+qwen-incumbent-mix-tested-20261023, qwen-incumbent-mix-verified-20261023.
+Historical scope/status/PIDs below are provenance, not a new instruction to fit.
 
 The paragraphs below describe the preceding completed checkpoint.
 

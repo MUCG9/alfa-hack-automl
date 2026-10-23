@@ -22,8 +22,20 @@ augmentation провалил grouped CV gate. На неподдержанном
 обычный baseline. У ordinary baseline Optuna/selector по умолчанию OFF; opt-in
 profile сам включает свой фиксированный nested search согласно протоколу.
 
-Qualification stages: исходники352unique checks, exact unpacked23repeated,
-затем полный sequential двух-task campaign и независимая проверка actual
-metrics/inner scope/full refit/CSV/lineage/integrity. Итоговые receipts появятся
-после завершения. Reused-public metrics не равны hidden/official points.
-Новых official uploads или main merge нет.
+Локальная квалификация COMPLETE:352unique source checks,23repeated exact-unpacked,
+отдельно30development harness checks. Полный sequential campaign1875.771s,
+source/archive/harness unchanged, оба refits/CSV/integrity verified.
+[Независимый receipt](full-procedure.json), [campaign](campaign.json),
+[полный разбор](../../docs/experiments/pipe02_complete_20261023.md).
+
+|Mean двух public cuts|MacroF1 ↑|RMSE ↓|
+|---|---:|---:|
+|V11/V16 control|.6593178433614652|35.44723155783769|
+|Opt-in profile|.6593178433614652|35.39729814378806|
+
+Все24inner objectives перепроверены по actual predictions; все final learners
+обучены на всех training rows. Full CONTROL CSV обеих задач побайтно совпали с
+V16. Итоговый regression CSV — новая fixed mixture. Reused-public metrics не
+равны private/official points. Никаких новых official uploads/main merge.
+Source/default search не переключается этим архивом автоматически: flag
+`--research-profile incumbent_mix` необходим для активации профиля.

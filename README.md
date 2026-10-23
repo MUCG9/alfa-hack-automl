@@ -7,11 +7,14 @@ Optuna и CatBoost selection остаются OFF. Последовательн�
 и итерации harness описаны в [разборе](docs/experiments/research_conclusions_20261023.md),
 текущие jobs — в [AGENTS.md](AGENTS.md) и фактических локальных receipts.
 
-Новый [opt-in профиль](release/qwen-incumbent-mix1/README.md)
-`--research-profile incumbent_mix` прошёл352source/23exact-unpacked checks;
-полный двух-task campaign ещё выполняется. Class augmentation отклонён grouped
-CV; в профиле сохранён полный class control, для regression проверяется nested-TPE
-mixture. Результат полного запуска будет опубликован после независимой проверки.
+[Новый opt-in профиль](release/qwen-incumbent-mix1/README.md)
+`--research-profile incumbent_mix` **полностью проверен**: MacroF1 .659318,
+RMSE **35.397298** против35.447232 у контроля, оба regression cuts улучшились.
+352source/23exact-unpacked checks и отдельно30dev checks PASS; full refit,
+оба CSV/source/input integrity verified. Class augmentation отклонён grouped
+CV, поэтому в профиле сохранён прежний полный classification control.
+[Полный результат и ограничения](docs/experiments/pipe02_complete_20261023.md).
+Это frozen learned priors, final verification offline; default search сохранён.
 
 По запросу создан [скилл autoresearch-ml](skills/autoresearch-ml/SKILL.md) на основе
 [Andrej Karpathy autoresearch](https://github.com/karpathy/autoresearch):

@@ -1,3 +1,15 @@
+# Итог ночной работы23Oct: COMPLETE
+
+MVP, component screens и PIPE-02 завершены. [Полный результат](pipe02_complete_20261023.md),
+[анализ](research_conclusions_20261023.md). Final profile meanF1 .6593178433614652,
+RMSE35.39729814378806;24inner trials, full refits/CSV/integrity verified.
+Owned jobs0, all coordinators exited/lock free. Исследовательский checkpoint
+закрыт после final parity; новых направлений не начинать.
+
+Ниже хронологический журнал; прежние ACTIVE/ожидание — датированные snapshots.
+
+---
+
 # Ночная очередь исследований
 
 Актуальное дополнение: Полный MVP и все component screens завершены; standalone gates отрицательны.
@@ -10,10 +22,16 @@ Freeze снят. Sparse HPO anchor corrected вa708b1c (3checks PASS); explicit
 measured controls не меняются. Canonical opt-in PIPE-02 integrated в2ddaf10:
 `--research-profile incumbent_mix`, fixed complete class control и nested-TPE
 regression augmentation. Default baseline/HPO0/selector0 сохранён.
-Сейчас выполняется352-check source gate в
-`test-runs/qwen-optuna-20261022/pipe02-source-checks/`; новых public fits ещё нет.
-После gates: exact ZIP verification, затем один sequential PIPE-02 campaign
-по `docs/experiments/pipe02_protocol_20261023.md`; не дублировать jobs.
+Source352unique/23repeated exact-unpacked и30dev harness checks PASS.
+PIPE-02 full campaign ACTIVE PID100146/create_time1792730294.41,
+`test-runs/qwen-optuna-20261022/detached-pipe02.json` и
+`pipe02-20261023/campaign.json`. Source/archive/harness FROZEN; no duplicate fits.
+Regression COMPLETE/324.811s: оба paired gains воспроизведены,24inner objectives
+и actual full refit/CSV/3learners независимо verified; full control CSV byte parity.
+Classification ещё выполняется; полный campaign пока не qualified.
+После final report: `tools/verify_profile_campaign.py`, actual CSV/source/integrity,
+затем окончательный checkpoint/push/rollback history, без новых направлений.
+
 
 Ниже сохранён хронологический журнал прежних стадий.
 

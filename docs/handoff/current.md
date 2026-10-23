@@ -1,21 +1,31 @@
-# Ночное продолжение23Oct — текущий checkpoint
+# Завершённый checkpoint23Oct2026
 
-[START_HERE.md](START_HERE.md) и [research conclusions](../experiments/research_conclusions_20261023.md)
-содержат актуальный статус. MVP завершён и отрицателен; qualified V11/V16 сохранён.
-Полный MVP и все component screens завершены; standalone gates отрицательны.
-REG-BLEND-01 прошёл3forward cuts и обе mean-comparisons. Class BLEND-01
-прошёл6/6workers, но ALL-fold gate FAIL: fold0 ухудшил primary и Analysis F1.
-Классификационная добавка отклонена, новые веса не подбираются. Все прежние
-координаторы/descendants exited, lock проверен свободным.
+Ночное поручение ЗАВЕРШЕНО. [Полный PIPE-02](../experiments/pipe02_complete_20261023.md),
+[анализ autoresearch](../experiments/research_conclusions_20261023.md).
+Ветка `work/qwen-optuna-mvp-20261022`, canonical code `src/automl`; main V2 сохранён.
 
-Freeze снят. Sparse HPO anchor corrected вa708b1c (3checks PASS); explicit
-measured controls не меняются. Canonical opt-in PIPE-02 integrated в2ddaf10:
-`--research-profile incumbent_mix`, fixed complete class control и nested-TPE
-regression augmentation. Default baseline/HPO0/selector0 сохранён.
-Сейчас выполняется352-check source gate в
-`test-runs/qwen-optuna-20261022/pipe02-source-checks/`; новых public fits ещё нет.
-После gates: exact ZIP verification, затем один sequential PIPE-02 campaign
-по `docs/experiments/pipe02_protocol_20261023.md`; не дублировать jobs.
+MVP COMPLETE и отрицателен: F1 .6544845346080569/RMSE36.02469255996805.
+Все9основных component screens и FE-02 complete/rejected по standalone gates.
+Class BLEND-01:6/6workers, grouped CV FAIL fold0; не искать новые weights.
+REG-BLEND-01:3forward cuts и mean vs Random8/anchor mixtures PASS.
+PIPE-02 explicit `--research-profile incumbent_mix`: F1 .6593178433614652,
+RMSE35.39729814378806 против35.44723155783769 у control; оба reg cuts лучше.
+Default baseline/HPO0/selector0 сохранены; profile — frozen learned priors,
+final offline/0API, не online Qwen search/hidden performance/official points.
+
+352unique source/23repeated exact-unpacked/отдельно30dev checks PASS. Полный
+sequential campaign1875.771s завершён:24inner objectives, actual partitions,
+полные refits/lineage/CSV/source/input integrity verified. Full CONTROL CSVs
+обеих задач byte-identical V16. Archive/receipts: `release/qwen-incumbent-mix1/`.
+
+Owned ML jobs0:100146/92500/91931/37960/49264 exited, lock free. Не перезапускать
+старые campaigns и не продолжать новые направления после final parity.
+Karpathy-based skill versioned/installed independent copy,5file hash parity;
+[откат](../experiments/qwen_mvp_history_20261022.md), verified local tag
+`qwen-incumbent-mix-verified-20261023`. `.env` mode600/ignored, не выводить.
+Public branch publication authorized; remote SHA читать из actual Git/ignored
+push receipt. Новых official uploads/main merge/force push/paid compute/extra
+Codex agents не было. Исторические разделы ниже не являются текущим scope.
 
 Ниже историческое состояние V16, сохранённое для provenance.
 

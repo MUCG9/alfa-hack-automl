@@ -59,3 +59,10 @@ PIPE-02 campaign ACTIVE PID100146/create_time1792730294.41; immutable identity
 `test-runs/qwen-optuna-20261022/detached-pipe02.json`. Пока нет independent full
 verification receipt, tested tag не означает verified full model/refit. Во время
 frozen fitting не переключать checkout; пользоваться историей после завершения.
+
+
+Финальный checkpoint: PIPE-02 COMPLETE, independent verification PASS на обеих
+задачах;[итог](pipe02_complete_20261023.md). Campaign1875.771s,0owned jobs.
+Локальная метка`qwen-incumbent-mix-verified-20261023` сохраняет полный проверенный
+вариант и технические receipts. Прежние ACTIVE/PID выше — история, не инструкция
+перезапуска. Public branch SHA подтверждать через actual push receipt/Git.

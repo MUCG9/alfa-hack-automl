@@ -16,6 +16,8 @@ state. Исторические STOP/PID/статусы не заменяют п
   `reg_blend01_cv_protocol_20261023.md` в `docs/experiments/`.
 - Если исполняется полный learned profile: `docs/experiments/pipe02_protocol_20261023.md`
   и `pipe02_implementation_20261023.md`; его CLI flag не меняет default search.
+  Завершённый полный результат: `docs/experiments/pipe02_complete_20261023.md`;
+  source gates и actual full-procedure verification — разные доказательства.
 - `docs/handoff/START_HERE.md`: qualified baseline и evidence.
 
 Canonical code — `src/automl`, root-файлы — compatibility shims. Contest ZIP

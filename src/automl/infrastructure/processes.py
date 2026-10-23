@@ -17,9 +17,23 @@ class ProcessCleanupError(RuntimeError):
                          json.dumps(receipt, sort_keys=True))
 
 
+class ProcessObservationError(ProcessCleanupError):
+    """Strict observation failed; later absence cannot erase that uncertainty."""
+    def __init__(self, receipt):
+        self.receipt = receipt
+        RuntimeError.__init__(self, 'Owned process observation could not be confirmed: '+
+                              json.dumps(receipt, sort_keys=True))
+
+
 class ProcessTree:
-    def __init__(self, process):
+    def __init__(self, process, strict_observation=False):
+        if type(strict_observation) is not bool:
+            raise ValueError('strict_observation must be a boolean')
         self.process = process
+        # Compatibility default: existing callers retain their old behavior.
+        # New callers must opt in and keep cleanup in a finally block.
+        self.strict_observation = strict_observation
+        self.observation_errors = []
         self.members = {}
         self.cleanup_errors = []
         self._pending_cleanup = {}
@@ -30,11 +44,30 @@ class ProcessTree:
                 identity=(root.pid,root.create_time())
                 if process.poll() is None:
                     self.members[identity]=root
-        except (psutil.NoSuchProcess, psutil.AccessDenied):
+        except psutil.NoSuchProcess:
             pass
-        self.refresh()
+        except psutil.AccessDenied:
+            self._observation_denied((process.pid, None), 'discover_root_identity')
+        # Return the owned tree even after denied discovery, so the caller can
+        # still clean up its Popen handle. refresh/terminate enforce the error.
+        self._refresh()
+
+    def _observation_denied(self, identity, action):
+        if self.strict_observation:
+            entry = {'pid': identity[0], 'create_time': identity[1],
+                     'action': action, 'error': 'AccessDenied'}
+            if entry not in self.observation_errors:
+                self.observation_errors.append(entry)
+
+    def require_observed(self):
+        if self.strict_observation and self.observation_errors:
+            raise ProcessObservationError({
+                'status': 'observation_unconfirmed',
+                'unresolved': list(self.observation_errors),
+                'actions': list(self.cleanup_errors)})
 
     def _denied(self, identity, action):
+        self._observation_denied(identity, action)
         entry={'pid':identity[0],'create_time':identity[1],
                'action':action,'error':'AccessDenied'}
         if entry not in self.cleanup_errors:
@@ -76,7 +109,7 @@ class ProcessTree:
                 members.append(member)
         return members
 
-    def refresh(self):
+    def _refresh(self):
         for identity in list(self.members):
             root=self._verified(identity)
             if root is None:
@@ -94,8 +127,16 @@ class ProcessTree:
                         continue
                     if child_identity not in self._pending_cleanup:
                         self.members[child_identity] = child
-            except (psutil.NoSuchProcess, psutil.AccessDenied):
+            except psutil.NoSuchProcess:
                 continue
+            except psutil.AccessDenied:
+                # Traversal uncertainty is different from an absent process.
+                # Retain the verified root for cleanup, never invent children.
+                self._observation_denied(identity, 'discover_descendants')
+
+    def refresh(self):
+        self._refresh()
+        self.require_observed()
 
     def _confirm_pending_cleanup(self):
         unresolved=[]
@@ -128,7 +169,9 @@ class ProcessTree:
 
     def terminate(self, grace=3):
         recheck_at=time.monotonic()+max(0,grace)
-        self.refresh()
+        # Attempt cleanup of known identities/Popen even after a strict
+        # observation failure. The sticky error is raised after that attempt.
+        self._refresh()
         identities=[key for key in self.members if key[0]!=self.process.pid]
         for identity in reversed(identities):
             member=self._verified(identity)
@@ -174,24 +217,58 @@ class ProcessTree:
             if remaining>0:
                 time.sleep(remaining)
             self._confirm_pending_cleanup()
+        self.require_observed()
 
 
-def wait_owned(process, timeout, memory_bytes=None):
-    tree = ProcessTree(process)
+def wait_owned(process, timeout, memory_bytes=None, *, strict_observation=False):
+    """Optionally require strict observation and an on-time, cleaned terminal.
+
+    Strict timeout includes final owned cleanup. It is a cooperative guard,
+    not an OS resource sandbox; other callers' RSS gates remain separate.
+    """
+    tree = ProcessTree(process, strict_observation=strict_observation)
     deadline = time.monotonic() + timeout
+    primary = None
     try:
         while process.poll() is None:
             tree.refresh()
             if memory_bytes is not None:
                 rss=0
-                for member in list(tree.members.values()):
+                for identity in list(tree.members):
+                    member = tree._verified(identity) if strict_observation else tree.members[identity]
+                    if member is None:
+                        continue
                     try: rss+=member.memory_info().rss
                     except psutil.NoSuchProcess: pass
+                    except psutil.AccessDenied:
+                        if not strict_observation:
+                            raise
+                        tree._denied(identity, 'inspect_memory')
+                tree.require_observed()
                 if rss>memory_bytes: raise MemoryError('Local benchmark memory limit')
             if time.monotonic() >= deadline:
-                import subprocess
                 raise subprocess.TimeoutExpired(process.args, timeout)
             time.sleep(.1)
-        return process.returncode
+        if strict_observation:
+            tree.refresh()
+            if time.monotonic() >= deadline:
+                raise subprocess.TimeoutExpired(process.args, timeout)
+        result = process.returncode
+    except BaseException as exc:
+        primary = exc
+        raise
     finally:
-        tree.terminate()
+        try:
+            tree.terminate()
+        except ProcessCleanupError as exc:
+            if primary is not None:
+                # Cleanup uncertainty must remain fatal, while preserving the
+                # earlier timeout/resource/observation error without argv.
+                raise ProcessCleanupError(dict(exc.receipt,
+                    prior_failure_type=type(primary).__name__)) from primary
+            raise
+    if strict_observation:
+        tree.require_observed()
+        if time.monotonic() >= deadline:
+            raise subprocess.TimeoutExpired(process.args, timeout)
+    return result

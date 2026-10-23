@@ -36,10 +36,11 @@
     "fresh_predecessor_identities_absent": 2817,
     "private_environment_preflight": "passed_no_API_calls"
   },
-  "manifest_sha256": "dd9ce4469112297200e1706eecf38a148ccb9d12bdce2bcf2a3b21848c3e5700",
+  "manifest_sha256": "4b987c652864179465dc754e90e3d1c8c9ed7c0a2144db5c3339e4c8a607d07e",
   "archive_sha256": "16120391716fe43b7f0ec2b36f35eaea7511a08cba4f4108da01cd81dea314d0",
   "full_source_and_unpacked_gates": "Must execute inside new campaign clock; not claimed passed yet",
   "official_score": null,
   "promotion": false,
-  "submit": false
+  "submit": false,
+  "clock_metadata_note": "Old t5 timestamps are historical previous_t5 fields; fresh t6 clock remains unassigned until launch"
 }

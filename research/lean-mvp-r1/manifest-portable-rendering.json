@@ -1110,12 +1110,14 @@
   "k1_cache_enabled": false,
   "clock_assigned": false,
   "promotion": false,
-  "original_common_start_unix": 1792750977.2275486,
-  "original_absolute_deadline_unix": 1792761777.2275486,
+  "original_common_start_unix": null,
+  "original_absolute_deadline_unix": null,
   "extra_predecessor_receipts": [
     {
       "path": "r4-contract-probe/fixture-supervisor.json",
       "sha256": "1339863e0ac6905a01d3cf8abd88c0c152a4ac5181b5eda39de7b2b6fea6eb5b"
     }
-  ]
+  ],
+  "previous_t5_common_start_unix": 1792750977.2275486,
+  "previous_t5_absolute_deadline_unix": 1792761777.2275486
 }

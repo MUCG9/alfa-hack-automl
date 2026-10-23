@@ -1,0 +1,34 @@
+{
+  "status": "source_only_narrow_recovery_review_closed_no_blocker",
+  "inputs_sha256": {
+    "source-handoff.json": "6d06857284cf52d94de4eb3e7df25f0bae6443d47b3fca0f5f631da17e41878a",
+    "run_components.py": "f3feba874b5a00ae74f74d7540e6efe3e55178ef5409c94b98dfd4670c180372",
+    "audit_components.py": "1c663e8ce9600d0679e9d6fbf761edd0d09e2d35a4a78029ef12f61a5d30ffce",
+    "close_linear_components.py": "f75274ec4ca5023eb8a654f63466b1c75390943eb5a784375d639a8e117a8520",
+    "test_tabular_linear_contracts.py": "827fcc5bab907ddeb71248456425a4ba8c31f7ff306cceebee69aa802fb9af34",
+    "protocol.json": "f24988be1d43a141037ff55279c248f12db305105cb1e5eb3085fb191f9bf241"
+  },
+  "verified": [
+    "Exact failedcampaignfbc284+rootclosure220e7c/nullsession/exit1/source/cleanup and no publicworkers required; oldFAIL files/source preserved",
+    "Original Unix+monotonic start/deadlines loaded from hashedfailedcampaign, both10800 identities checked; no new commonclock. Repair/publication consumes originalsetup900",
+    "Before newmeth02b mkdir BOTH original wall/mono setup must retain full300fixture allocation; same300 guard repeated atfixture. All remaining workers/audit use originaldeadline only",
+    "Failed owned+closure-preparer IDs merged into known BEFORE firstfreshabsence; inheritedT5/T6/CP1/T7/history/METH01 and explicitactualMETH03extra root union preserved before/under canonical lock and betweenchildren",
+    "Only fixture model-input delta is OUTER y[12:] permutation[zeta,alpha,middle] instead of outside*3; fittingrows/labels/recipes,8methods/10callbacks and allpublic jobs/cuts/caps unchanged",
+    "New outputmeth02b and separate recoveryoutputs/STATE field; originalfailedMETH02 is not overwritten or renamedPASS. Auditor explicitly checks inherited originalclocks+failure context; postfixture latehashfix retained",
+    "All9handoffpins match; old/new source diff reviewed only; no new framework or tests required by this source receipt"
+  ],
+  "findings": [],
+  "executed": {
+    "runtime_imports": 0,
+    "tests": 0,
+    "fixtures": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "public_outcome_reads": 0,
+    "process_scan": 0,
+    "clock_assignment": 0,
+    "STATE_or_Git_writes": 0
+  },
+  "metrics": null,
+  "promotion": false
+}

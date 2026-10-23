@@ -1,0 +1,21 @@
+{
+  "status": "no_blocker_in_narrow_source_only_recovery_scope",
+  "bindings": {
+    "handoff_sha256": "6d06857284cf52d94de4eb3e7df25f0bae6443d47b3fca0f5f631da17e41878a",
+    "driver_sha256": "f3feba874b5a00ae74f74d7540e6efe3e55178ef5409c94b98dfd4670c180372",
+    "auditor_sha256": "1c663e8ce9600d0679e9d6fbf761edd0d09e2d35a4a78029ef12f61a5d30ffce",
+    "fixture_sha256": "827fcc5bab907ddeb71248456425a4ba8c31f7ff306cceebee69aa802fb9af34",
+    "closer_sha256": "f75274ec4ca5023eb8a654f63466b1c75390943eb5a784375d639a8e117a8520",
+    "protocol_sha256": "f24988be1d43a141037ff55279c248f12db305105cb1e5eb3085fb191f9bf241",
+    "required_actual_failed_closure_sha256": "220e7c93f56eaa4a9c2e09ce70aa3ba406d864686cc68520bf69eace4ed75361"
+  },
+  "confirmed": [
+    "The only substantive fixture change is heldout labels ['outside']*3 to ['zeta','alpha','middle'] in the class-weight invariance test. Fit rows0..11, fitting labels, fixed recipe, fitting-weight equality and coefficient equality assertions remain unchanged. The altered heldout permutation can reach these assertions without the unrelated all-unseen confusion_matrix failure.",
+    "Comparison with the preserved original source confirms eight methods and ten expected future tiny fitting callbacks remain. Other changes isolate output/source references under method-linear-recovery-dev and meth02b, or bind the original failure and clock; no learner, public split, control, metric formula, quality gate or worker cap changes.",
+    "Driver108-129 loads the pinned actual pre-public failed campaign, requires no public workers, null session/actual exit1 closure and clean owned/preparer evidence. It inherits both original start/deadline pairs. Before creating meth02b it requires a full300 seconds remaining in the original setup900; immediately before the new fixture it repeats that full-reserve check against setup_end=original_start_monotonic+900. No new10800 clock or setup reset is assigned.",
+    "The failed attempt remains explicitly FAILED_preserved. The recovery has a distinct output and closer. Actual fresh ownership/lock, publication and successful fixture gate remain root execution preconditions; this receipt does not certify them."
+  ],
+  "performed": {"runtime_imports": 0,"tests": 0,"fits": 0,"API_calls": 0,"data_or_prediction_scoring": false,"old_or_candidate_source_edits": false,"clock_assigned": false},
+  "qualification": "Minimal source-only exception review. Original7/8 fixture failure and zero public fits remain failures, not repaired historical PASS. Actual recovery gate, exit and terminal closure are still required; insufficient original setup time must abort.",
+  "promotion": false
+}

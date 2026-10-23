@@ -1,0 +1,32 @@
+{
+  "root_launch_reviewed": true,
+  "manifest_sha256": "c4c381b639ca31ed76be0df536b872c149532034f0a8a0427ce6479517a66438",
+  "source_sha256": "5a2237a401c1ff65029cd7ed2fb463e9e7ac4b0ede98a39bfc9ad14e3f8d769d",
+  "verifier_sha256": "9f6abe5f43fddb5ccf1fa2c736d3509a8692aba2259ac831a5264ba6938381c2",
+  "publication_remote_sha_verified": true,
+  "source_and_verifier_reviewed": true,
+  "independent_actual_review": {
+    "path": "cache-pilot-actual-manifest-independent-review-r2.json",
+    "sha256": "43e41cde4e5c57fe6a3ee56e9d4497e81e0574251d784472387bf343c2550061"
+  },
+  "new_actual_root_clock_required": true,
+  "future_common_seconds": 7200,
+  "clock_assigned": false,
+  "original_p0_p1_and_CV_clocks_not_resumed": true,
+  "actual_output": "k1",
+  "six_fixed_slots_only": true,
+  "complete_remaining_caps_and_final600_required": true,
+  "pred_bindings": "R2 actual curated owned snapshot only; full failed/analytical receipts remain immutable evidence.",
+  "model_timing_decision": "All6 parity,global>=1 exacteligiblehit,bothclassparentdeltaspositive,sumall3anchorspositive; smallN descriptive only.",
+  "runtime_path_publication": "Absolute local workspace paths are replaced by <WORK> in public rendering; original local manifest bytes/SHA remain fixed.",
+  "actual_gates_not_yet_run": true,
+  "actual_callbacks": 0,
+  "measured_savings": null,
+  "new_model_quality_gain": null,
+  "default_change": false,
+  "promotion": false,
+  "official_submission": false,
+  "source_publication_commit": "e905b781d1c83fa16af0047bbd1c0ab724e78613",
+  "source_publication_exact_Git_files_reverified": 17,
+  "actual_local_manifest_bytes_preserved": true
+}

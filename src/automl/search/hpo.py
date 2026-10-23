@@ -97,9 +97,14 @@ def optimize_recipe(spec, train, hashes, fitting_rows, recipe, output, worker,
                if sampler == 'tpe' else optuna.samplers.RandomSampler(seed=seed))
     study = optuna.create_study(direction='maximize' if spec['greater_is_better'] else 'minimize',
                                 sampler=chooser)
-    defaults = {'num_leaves': 63, 'reg_lambda': 5., 'colsample_bytree': .9,
-                'depth': 6, 'l2_leaf_reg': 5., 'random_strength': 1.,
-                'max_depth': 6, 'min_child_weight': 3.}
+    # The unchanged anchor must construct the same model as the adapters.
+    # Defaults differ by engine; XGBoost also accepts the legacy depth alias.
+    defaults = {
+        'lightgbm': {'num_leaves': 31, 'reg_lambda': 3., 'colsample_bytree': .9},
+        'catboost': {'depth': 6, 'l2_leaf_reg': 5., 'random_strength': 1.},
+        'xgboost': {'max_depth': recipe.get('params', {}).get('depth', 8),
+                    'min_child_weight': 3., 'reg_lambda': 8.},
+    }[recipe['engine']]
     anchor = {k: recipe.get('params', {}).get(k, defaults[k]) for k in space}
     if any(not lo <= anchor[k] <= hi for k, (_, lo, hi) in space.items()):
         report['anchor_error'] = 'Control outside predeclared search space'

@@ -1,0 +1,271 @@
+{
+  "algorithm_archive_sha256": "ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c",
+  "algorithm_files_modified": 0,
+  "before_any_future_fit": [
+    "New immutable READY bounded job",
+    "Completed SAME-worker source job and pinned primary approval",
+    "All exact cut-byte gates pass without casting/sorting/replacing indices",
+    "Freeze source/input/recipe/split/auditor hashes",
+    "Retain original claim and common monotonic deadline",
+    "All expected outputs/refit/export/audit costs fit in unchanged budget"
+  ],
+  "claim_sha": "88316062feadfef26c2da8543603400a4646e074",
+  "current_decision": "BLOCKED. Raw five NPZ byte gates fail. Regression3 are ZIP creator-system-only differences; class2 are not explained by that diagnostic. Do not normalize/cast to force success.",
+  "cuts": [
+    {
+      "cut": 0,
+      "expected_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+      "kind": "regression"
+    },
+    {
+      "cut": 1,
+      "expected_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+      "kind": "regression"
+    },
+    {
+      "cut": 2,
+      "expected_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+      "kind": "regression"
+    },
+    {
+      "cut": 42,
+      "expected_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+      "kind": "classification"
+    },
+    {
+      "cut": 43,
+      "expected_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+      "kind": "classification"
+    }
+  ],
+  "dispatch_sha": "cbd758be9f8e030c55f2a00c61baf7ab119d9eaa",
+  "fit_count_reason": "Three regression controls at up to2fits, two class two-view controls up to6fits, ten fixed representation heads at1fit. Preprocessor fits are separately counted. No complete-agent refit included.",
+  "harness_sha256": "24e333d7d588b43962b42ab920d52e05b63d7c0bb027b7d0bc93e7ef772d1299",
+  "hypothesis": "Correct process-local ASCII temp transport without changing model, seed, weights or rows; then separately test RBF map against its matched linear package.",
+  "job_id": "remote-port-01",
+  "job_sha256": "407315514f9f3fa75b3d2d584bb8da9e2acf83ade1761b7548d88c11ead32aad",
+  "observed_clock": {
+    "limitation": "First paired monotonic observation is after claim; never described as the original claim monotonic timestamp.",
+    "monotonic_claim_start": null,
+    "observed_monotonic": 173088.750214988,
+    "observed_wall": 1792790181.6591394,
+    "original_deadline_unix": 1792795139.0268688,
+    "original_start_unix": 1792789739.0268688
+  },
+  "private_future_prediction_records": "Private output directory, row/class order, source-label binding and CSV/probability SHA retained locally; never upload those files.",
+  "proposed_future_budget": {
+    "api_calls": 0,
+    "audit_seconds": 900,
+    "child_seconds": 450,
+    "cleanup_seconds": 300,
+    "common_seconds": 10800,
+    "cpu_threads": 2,
+    "max_learner_fits_upper_bound": 28,
+    "parent_seconds": 480,
+    "sequential_worker_jobs": 15,
+    "setup_seconds": 900,
+    "spare_seconds": 1500,
+    "whole_tree_memory_mib": 2048,
+    "worker_memory_mib": 1536,
+    "workers_seconds": 7200
+  },
+  "prospective_job_order": [
+    [
+      "regression",
+      0,
+      "strong_control"
+    ],
+    [
+      "regression",
+      0,
+      "matched_linear"
+    ],
+    [
+      "regression",
+      0,
+      "rbf128"
+    ],
+    [
+      "regression",
+      1,
+      "strong_control"
+    ],
+    [
+      "regression",
+      1,
+      "matched_linear"
+    ],
+    [
+      "regression",
+      1,
+      "rbf128"
+    ],
+    [
+      "regression",
+      2,
+      "strong_control"
+    ],
+    [
+      "regression",
+      2,
+      "matched_linear"
+    ],
+    [
+      "regression",
+      2,
+      "rbf128"
+    ],
+    [
+      "classification",
+      42,
+      "strong_control"
+    ],
+    [
+      "classification",
+      42,
+      "matched_linear"
+    ],
+    [
+      "classification",
+      42,
+      "rbf128"
+    ],
+    [
+      "classification",
+      43,
+      "strong_control"
+    ],
+    [
+      "classification",
+      43,
+      "matched_linear"
+    ],
+    [
+      "classification",
+      43,
+      "rbf128"
+    ]
+  ],
+  "prospective_keep_discard": {
+    "all_declared_cuts_required": true,
+    "classification": "Both group cuts improve MacroF1; improvement excluding rarest class and no F1 loss over.01 for classes with at least100 independent fitting feature groups.",
+    "failure_policy": "Any missing/timeout/OOM/incomplete lifecycle or failed partition gate -> null aggregate and no promotion; no posthoc weights/seeds/slices.",
+    "next_qualification": "Component gain is not full-agent gain; whole inner procedure grouped/forward evaluation then both-task full refit/export/integrity needed.",
+    "regression": "RBF lower original-scale RMSE than strong control on all3cuts; separate RBF-vs-matched-linear contrast."
+  },
+  "protected_scope": "SINGLE component control, not whole-agent references; no changed model family, feature/schema/weight/seed/metric or outer selection.",
+  "reboot_policy": "Retained first paired observation, immutable Unix deadline; epoch discontinuity blocks rather than reanchors clocks.",
+  "representation_recipe_sha256": {
+    "matched_linear": "4460cd9de26964783b959291d0e0d287561250760682d57caf9600ce5c2fc1bd",
+    "rbf128": "e8388775bfcdb89726b75bbb515e09110bcc6794d701291d0ed55c5a3281f628"
+  },
+  "representation_recipes": {
+    "matched_linear": {
+      "engine": "linear_text",
+      "feature_code": "",
+      "params": {
+        "representation_profile": "tabular_linear_bounded_v1"
+      }
+    },
+    "rbf128": {
+      "engine": "linear_text",
+      "feature_code": "",
+      "params": {
+        "representation_profile": "tabular_rbf128_invdim_v1"
+      }
+    }
+  },
+  "requirements_sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+  "retained_clock": {
+    "common_monotonic_deadline": 178046.11794460475,
+    "observed_epoch_offset": 1792617092.908924,
+    "observed_monotonic": 173810.476809389,
+    "observed_wall": 1792790903.3857336,
+    "original_claim_monotonic_start": null,
+    "original_deadline_unix": 1792795139.0268688,
+    "original_start_unix": 1792789739.0268688
+  },
+  "schema": 1,
+  "source_only_caps": {
+    "cpu_threads": 2,
+    "max_api_calls": 0,
+    "max_fits": 0,
+    "wall_seconds": 5400,
+    "whole_memory_mib": 2048,
+    "worker_memory_mib": 1536
+  },
+  "source_refs": [
+    {
+      "path": "research/remote-experiments/sources/source-manifest.json",
+      "sha256": "0ed0e74706b6620ffc1b29216a8f2c00ab40771ef7ebaecb0cc61092f78c4bae"
+    },
+    {
+      "path": "research/remote-experiments/sources/approved-input-manifest.json",
+      "sha256": "247ecf4d3ce8670be0573ed0808b0cfce9352babb78ca7cc02c9103ca3bee4c7"
+    },
+    {
+      "path": "research/remote-experiments/sources/fixed-cut-manifest-r2.json",
+      "sha256": "a56b9c3d5909ea4eb4854d3f3b6bd908360dd2cb84b7b19fa86323e3297a6d12"
+    },
+    {
+      "path": "research/remote-experiments/sources/protected-single-controls.json",
+      "sha256": "118ba895201bef8149fdd6bb88464bb2e02b23985a34629a47d52df5e5536f46"
+    },
+    {
+      "path": "research/remote-experiments/sources/remote-port-01-objective-r2.txt",
+      "sha256": "8bbe2d2b3d9e210a18afe142c9a8951ef49d1c07e23e63b7b04a0582712c34b4"
+    }
+  ],
+  "status": "prospective_only_blocked_no_fit_admission",
+  "strong_component_controls": {
+    "classification": {
+      "engine": "lightgbm",
+      "feature_code": "",
+      "hypothesis": "Fixed equal-weight original and cross-fitted categorical feature views; compare full procedure",
+      "params": {
+        "calibrate": true,
+        "class_weight_power": 0.5,
+        "colsample_bytree": 0.9,
+        "early_metric": "primary",
+        "feature_views": "categorical_te_pair",
+        "iterations": 1200,
+        "learning_rate": 0.04,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "min_iterations": 100,
+        "nested_stopping": true,
+        "num_leaves": 63,
+        "reg_lambda": 5,
+        "subsample": 1,
+        "subsample_freq": 0
+      }
+    },
+    "regression": {
+      "engine": "lightgbm",
+      "feature_code": "",
+      "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
+      "params": {
+        "colsample_bytree": 0.9,
+        "early_metric": "primary",
+        "generic_features": "missing",
+        "history_asof": true,
+        "history_min_periods": 3,
+        "iterations": 1600,
+        "learning_rate": 0.035,
+        "log_target": true,
+        "max_depth": -1,
+        "min_child_samples": 25,
+        "min_iterations": 100,
+        "nested_stopping": true,
+        "num_leaves": 127,
+        "reg_lambda": 8,
+        "subsample": 1,
+        "subsample_freq": 0,
+        "target_encoding": true,
+        "target_encoding_auto_groups": true,
+        "target_encoding_hierarchical": true,
+        "target_encoding_smoothing": 2
+      }
+    }
+  }
+}

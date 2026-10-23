@@ -1,0 +1,225 @@
+{
+  "architecture": "x86_64",
+  "automation": {
+    "interval_minutes": 5,
+    "native_same_thread": true,
+    "requires_machine_and_app_running": true,
+    "verified_active": true
+  },
+  "available_memory_mib_observed": 3072.51953125,
+  "critical_reconstruction_pins_passed": true,
+  "declared_job_caps": {
+    "cpu_threads": 2,
+    "max_api_calls": 0,
+    "max_fits": 0,
+    "wall_seconds": 5400,
+    "whole_memory_mib": 2048,
+    "worker_memory_mib": 1536
+  },
+  "fits": 0,
+  "free_disk_mib_observed": 19919.640625,
+  "gpu_inspected": false,
+  "gpu_use_authorized": false,
+  "implementation": "CPython",
+  "installed_allowed_libraries": {
+    "PyYAML": {
+      "exact": true,
+      "installed": "6.0.2",
+      "required": "6.0.2"
+    },
+    "autogluon.tabular": {
+      "exact": true,
+      "installed": "1.3.1",
+      "required": "1.3.1"
+    },
+    "catboost": {
+      "exact": true,
+      "installed": "1.2.8",
+      "required": "1.2.8"
+    },
+    "category-encoders": {
+      "exact": false,
+      "installed": null,
+      "required": "2.6.4"
+    },
+    "cloudpickle": {
+      "exact": false,
+      "installed": "3.1.2",
+      "required": "3.1.1"
+    },
+    "feature-engine": {
+      "exact": false,
+      "installed": null,
+      "required": "1.8.3"
+    },
+    "flaml": {
+      "exact": false,
+      "installed": null,
+      "required": "2.3.6"
+    },
+    "httpx": {
+      "exact": true,
+      "installed": "0.28.1",
+      "required": "0.28.1"
+    },
+    "imbalanced-learn": {
+      "exact": false,
+      "installed": null,
+      "required": "0.12.4"
+    },
+    "joblib": {
+      "exact": true,
+      "installed": "1.4.2",
+      "required": "1.4.2"
+    },
+    "jsonschema": {
+      "exact": false,
+      "installed": null,
+      "required": "4.23.0"
+    },
+    "langchain": {
+      "exact": false,
+      "installed": null,
+      "required": "0.3.27"
+    },
+    "langchain-openai": {
+      "exact": false,
+      "installed": null,
+      "required": "0.3.23"
+    },
+    "langgraph": {
+      "exact": false,
+      "installed": null,
+      "required": "0.6.7"
+    },
+    "lightautoml": {
+      "exact": true,
+      "installed": "0.4.2",
+      "required": "0.4.2"
+    },
+    "lightgbm": {
+      "exact": true,
+      "installed": "4.6.0",
+      "required": "4.6.0"
+    },
+    "matplotlib": {
+      "exact": true,
+      "installed": "3.9.4",
+      "required": "3.9.4"
+    },
+    "numpy": {
+      "exact": true,
+      "installed": "1.26.4",
+      "required": "1.26.4"
+    },
+    "openai": {
+      "exact": true,
+      "installed": "1.68.2",
+      "required": "1.68.2"
+    },
+    "optuna": {
+      "exact": true,
+      "installed": "4.2.1",
+      "required": "4.2.1"
+    },
+    "orjson": {
+      "exact": false,
+      "installed": null,
+      "required": "3.10.15"
+    },
+    "pandas": {
+      "exact": true,
+      "installed": "2.2.3",
+      "required": "2.2.3"
+    },
+    "polars": {
+      "exact": false,
+      "installed": null,
+      "required": "1.26.0"
+    },
+    "psutil": {
+      "exact": true,
+      "installed": "6.1.1",
+      "required": "6.1.1"
+    },
+    "pyarrow": {
+      "exact": false,
+      "installed": null,
+      "required": "19.0.1"
+    },
+    "pydantic": {
+      "exact": false,
+      "installed": "2.14.1",
+      "required": "2.10.6"
+    },
+    "python-dotenv": {
+      "exact": false,
+      "installed": null,
+      "required": "1.0.1"
+    },
+    "scikit-learn": {
+      "exact": true,
+      "installed": "1.5.2",
+      "required": "1.5.2"
+    },
+    "scipy": {
+      "exact": true,
+      "installed": "1.12.0",
+      "required": "1.12.0"
+    },
+    "seaborn": {
+      "exact": true,
+      "installed": "0.13.2",
+      "required": "0.13.2"
+    },
+    "setuptools": {
+      "exact": true,
+      "installed": "80.9.0",
+      "required": "80.9.0"
+    },
+    "statsmodels": {
+      "exact": true,
+      "installed": "0.14.0",
+      "required": "0.14.0"
+    },
+    "tenacity": {
+      "exact": false,
+      "installed": null,
+      "required": "9.0.0"
+    },
+    "threadpoolctl": {
+      "exact": true,
+      "installed": "3.6.0",
+      "required": "3.6.0"
+    },
+    "torch": {
+      "exact": true,
+      "installed": "2.5.1+cpu",
+      "required": "2.5.1"
+    },
+    "tqdm": {
+      "exact": true,
+      "installed": "4.67.1",
+      "required": "4.67.1"
+    },
+    "xgboost": {
+      "exact": true,
+      "installed": "2.1.4",
+      "required": "2.1.4"
+    }
+  },
+  "llm_api_calls": 0,
+  "logical_cpus": 16,
+  "new_packages_installed": 0,
+  "os": "Linux",
+  "per_guard_sampled_memory_available": true,
+  "physical_cpus": 8,
+  "private_paths_or_host_account_names_published": false,
+  "python": "3.12.14",
+  "schema": 1,
+  "selected_runtime": "existing_exact_pin_cpu_environment_no_install",
+  "total_memory_mib": 15306.078125,
+  "whole_campaign_cpu_or_memory_peak_independently_measured": false,
+  "windows_native_execution_proven": false,
+  "worker_id": "remote-worker-f7dd39e0"
+}

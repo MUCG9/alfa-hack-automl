@@ -1,0 +1,62 @@
+{
+  "experiments": [
+    {
+      "budget": {
+        "api_calls": 0,
+        "fits": 0,
+        "wall_seconds": 1800
+      },
+      "control": "Existing immutable five partitions and original manifest; no new seeds/casts/sorting",
+      "fact": "All ten input hashes match. Three regression NPZ hashes match only under a read-only Windows creator-byte diagnostic; class hashes remain unexplained.",
+      "factor": "Only cross-host split identity/serialization contract, not rows or splitter. Primary publishes original class dtype/shape/ordered array and NPY-member SHA before a new job.",
+      "id": "portable-cut-contract-followup",
+      "kind": "source_only",
+      "metric": null,
+      "reject_if": "Any original ordered row payload or membership differs; do not accept a new split as the old one."
+    },
+    {
+      "budget": {
+        "api_calls": 0,
+        "fits": 0,
+        "wall_seconds": 180
+      },
+      "control": "Same pure callable/list/joblib version/n_jobs2 under original Unicode temp",
+      "fact": "Pure n_jobs2 joblib probe failed with Unicode temp and passed with owned ASCII temp on Linux; no estimator fitted.",
+      "factor": "Only child-process temp environment set before interpreter startup; no global settings or model source change.",
+      "id": "native-windows-ascii-probe",
+      "kind": "source_only",
+      "metric": null,
+      "reject_if": "Native Windows probe still fails, cleanup unconfirmed or actual memory/deadline caps exceed."
+    },
+    {
+      "budget": {
+        "api_calls": 0,
+        "audit_seconds": 900,
+        "child_seconds": 450,
+        "cleanup_seconds": 300,
+        "common_seconds": 10800,
+        "cpu_threads": 2,
+        "max_learner_fits_upper_bound": 28,
+        "parent_seconds": 480,
+        "sequential_worker_jobs": 15,
+        "setup_seconds": 900,
+        "spare_seconds": 1500,
+        "whole_tree_memory_mib": 2048,
+        "worker_memory_mib": 1536,
+        "workers_seconds": 7200
+      },
+      "control": "Exact protected SINGLE and matched linear recipes; not whole-agent references",
+      "fact": "Pinned profiles differ only identity vs128-dimensional seeded RBF map; both use the same fixed head and fitting-only preparation. No remote model score exists.",
+      "factor": "RBF mapping only for representation contrast; separate package-vs-strong-control contrast. Same original cuts.",
+      "id": "approved-rbf-vs-matched-linear-screen",
+      "kind": "bounded_experiment_after_primary_approval",
+      "metrics": {
+        "classification": "macro_f1 higher with supported/ex-rarest gates",
+        "regression": "rmse lower"
+      },
+      "reject_if": "Any declared cut missing/worse or lifecycle/resource/pin gate fails; no posthoc pruning/reseed/blend."
+    }
+  ],
+  "schema": 1,
+  "status": "proposals_only_not_authorized_jobs"
+}

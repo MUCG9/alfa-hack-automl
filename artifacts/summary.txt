@@ -1,0 +1,9 @@
+REMOTE-PORT-01: BLOCKED, no model fits or LLM API calls.
+
+Verified70 frozen members and10 original public inputs. Built a source-only harness and14 passing pure contracts, with real owned timeout/cleanup, lock, retained clocks, strict partition and independent auditor checks. No algorithm ZIP changes.
+
+NPZ gate is NOT passed: raw bytes differ on all5 cuts. For regression offsets0/1/2, changing only ZIP central-directory creator-system bytes IN MEMORY gives exactly the declared Windows hash. Original files/array payload were not rewritten. Classification42/43 do NOT match under that diagnostic; original expected ordered-array/dtype/member fingerprints are required from primary. No cast/sort/new seed/alternative rows attempted.
+
+Pure joblib n_jobs2 Unicode-temp failure reproduced on Linux; owned ASCII child temp succeeds, final cleanup/source guards pass. This is not native Windows proof or a model quality improvement. The patch only adds a wrapper; frozen model/seed/weights/preparation stay unchanged.
+
+First source launch failed because the venv interpreter symlink was dereferenced to base Python; fixed by preserving sys.executable, within original claim clock. NPZ mismatch and Unicode/secondary shutdown failures retained. Metrics remain null, no complete source capability approval, no model/default/release/official submission. Request next immutable source-only repair job; do not edit remote-port-01 or advance to fitting.

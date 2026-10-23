@@ -1,3 +1,0 @@
-SOURCE-ONLY minimal R3 repairs; R2 preserved. No data/runtimeimports/tests/fixtures/build/fits/API/clock.
-Read r2-to-r3.patch, implementation-plan-r3.json and prospective-evaluator-plan-r3.json. Dummy values are now verified, delimiter/roles/indexSHA explicit, canonical ref conflicts rejected and per-task nonnull judge plan schema instantiated separately from combined template. Hash-inventory success never authorizes label access.
-Operational driver/semantic derived-inner and fixedcontrol iteration verifier/once-only numericjudge still absent. Trusted algorithm-facing source/IO invariants with meaningful fixtures suffice; no OS/ACL security or new userpermission requirement. Same exactly10800 caps unchanged. Future work only after actualT7terminal/freshclosure.

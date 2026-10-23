@@ -1,0 +1,57 @@
+{
+  "status": "independently_verified_completed_regression_task_of_active_t5",
+  "metric": "RMSE",
+  "direction": "lower",
+  "selected_two_cut_mean": 34.86622087872278,
+  "fresh_same_cut_control_mean": 35.44723155783769,
+  "delta": -0.581010679114911,
+  "relative_reduction_percent": 1.6390861953969562,
+  "cuts": {
+    "primary": {
+      "selected": 37.988491672517135,
+      "protected_control": 38.902803731334785
+    },
+    "confirmation": {
+      "selected": 31.743950084928418,
+      "protected_control": 31.991659384340597
+    }
+  },
+  "both_cuts_improve": true,
+  "full_refit_and_submission_integrity_verified": true,
+  "completed_HPO_trials": 8,
+  "guided_HPO_successes": 5,
+  "HPO_vs_equal_cap_random_compared": false,
+  "TPE_alone_improvement_attributed": false,
+  "selected_engine": "lightgbm",
+  "selected_feature_family": "missing",
+  "history_asof": true,
+  "task_seconds_reported": 295.438,
+  "task_wall_time_is_parent_reported": true,
+  "API": {
+    "independently_read_closed_ledger": true,
+    "gateway_calls": 2,
+    "http_attempts_reported": 2,
+    "prompt_tokens_reported": 18288,
+    "completion_tokens_reported": 1645,
+    "usage_complete": true
+  },
+  "independent_audit_actual_exit_code": 0,
+  "audit_seconds": 3.875,
+  "failed_frozen_R3_audit_preserved": true,
+  "R3_failure": "Archive member extension assertion incorrectly rejected mandatory requirements.txt before metrics",
+  "R4_fix": "Allow only exact SHA-bound original requirements.txt alongside flat Python members; all metric and integrity assertions unchanged",
+  "audit_sha256": "91a7c91b6f48f59485dd7ccb720b0793d6069f1c9b437696bd2323771669ca59",
+  "verifier_sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+  "runtime_archive_sha256": "cfd5ff3b44f77227b15b130c16762e6c8349ac53f02a53462883680aad436459",
+  "manifest_sha256": "ac28e6da826809e3fe334a6096229ad6410500d7f91a65071987f37ac80ce716",
+  "original_start_unix": 1792750977.2275486,
+  "original_deadline_unix": 1792761777.2275486,
+  "clock_reset": false,
+  "classification": "still_running",
+  "whole_campaign_qualification": "pending",
+  "decision": "Keep verified regression candidate for full campaign assessment; no default promotion before both tasks and terminal audit",
+  "official_score": null,
+  "reused_public_validation": true,
+  "promotion": false,
+  "submit": false
+}

@@ -1,0 +1,42 @@
+{
+  "binding_changed_fields": [
+    "binding_builder_proof",
+    "coordinator_publication_receipt",
+    "coordinator_publication_receipt_sha256",
+    "required_before_prepare",
+    "status",
+    "terminal_readiness_receipts",
+    "tm1_completion"
+  ],
+  "immutable_files_verified": 395,
+  "arms": {
+    "a": {
+      "source_files": 172,
+      "python_inventory": 153,
+      "archive_members": 68,
+      "registry_scripts": 46,
+      "expected_checks": 451,
+      "archive_sha256": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0"
+    },
+    "b": {
+      "source_files": 174,
+      "python_inventory": 155,
+      "archive_members": 68,
+      "registry_scripts": 48,
+      "expected_checks": 468,
+      "archive_sha256": "d5144685e682654bfed3a0e216ecec4f2ada4868b7df0e0d9779aba9f79d77bc"
+    }
+  },
+  "changed_flat_files": [
+    "automl_execution_feature_views.py",
+    "automl_policy.py",
+    "automl_runner.py",
+    "automl_worker.py"
+  ],
+  "terminal_readiness_refs_verified": 9,
+  "dependency_metadata_distributions_verified": 11,
+  "recorded_builder_tracked_count": 136,
+  "fresh_ownership_scan_by_this_reviewer": false,
+  "actual_gates_or_fits_or_API": 0,
+  "output_f3_exists": false
+}

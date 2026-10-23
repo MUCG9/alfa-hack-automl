@@ -1,0 +1,204 @@
+{
+  "status": "no_open_blocker_in_actual_binding_manifest_static_scope_for_root_review_before_Stage0",
+  "binding": {
+    "path": "fullagent-cv-launch-binding-r1.json",
+    "sha256": "ef4bbcaf1958f769c2c1254387710770c61a5f0313ed2549a816ee398b62e991"
+  },
+  "manifest": {
+    "path": "fullagent-cv-launch-r1/manifest.json",
+    "sha256": "910b2705c66d9175e11cd392e33a3be2083a20d29cb595102711f7303b5200a5"
+  },
+  "static_checks": {
+    "path": "fullagent-cv-actual-manifest-static-checks-r1.json",
+    "sha256": "17342dd8a4b5d7bd3de5a995df9a5fd4cda65e59183e0e40647e43775b32db37"
+  },
+  "reviewed_sources": {
+    "coordinator_sha256": "45dd8bc9e56b4874e43e051cf279f0497c0b82f628d5c1db7cb6ec2e2bad8a24",
+    "builder_sha256": "84a519c3f6a916c82c568be1944f5c9e0fac6409b5ac50f8fbafac2a7398b5ff",
+    "independent_verifier_sha256": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519",
+    "R3_protocol_sha256": "5b2164c3721c84b8e6eb85c0dec7571474316b2e956d6ecdeee235d0193addcb",
+    "outer_fold_manifest_sha256": "f8a0b9ad5b3e9e403aa9a567234ba203c8537c19eee78dd6257d9d8259bb4910"
+  },
+  "verified": {
+    "binding_template_changed_fields_only_declared": [
+      "binding_builder_proof",
+      "coordinator_publication_receipt",
+      "coordinator_publication_receipt_sha256",
+      "required_before_prepare",
+      "status",
+      "terminal_readiness_receipts",
+      "tm1_completion"
+    ],
+    "binding_tm1_paths_source_factors_folds_arms_unchanged": true,
+    "immutable_files_sha256_verified": 395,
+    "actual_arm_source_files_and_python_inventory_verified": {
+      "a": {
+        "source_files": 172,
+        "python_inventory": 153,
+        "archive_members": 68,
+        "registry_scripts": 46,
+        "expected_checks": 451,
+        "archive_sha256": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0"
+      },
+      "b": {
+        "source_files": 174,
+        "python_inventory": 155,
+        "archive_members": 68,
+        "registry_scripts": 48,
+        "expected_checks": 468,
+        "archive_sha256": "d5144685e682654bfed3a0e216ecec4f2ada4868b7df0e0d9779aba9f79d77bc"
+      }
+    },
+    "actual_source_registry_dicts_match_AST": true,
+    "archive_members_each": 68,
+    "changed_flat_members_only_declared4": [
+      "automl_execution_feature_views.py",
+      "automl_policy.py",
+      "automl_runner.py",
+      "automl_worker.py"
+    ],
+    "actual_packet_library_copies_byte_equal": {
+      "ownership.py": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+      "awake.py": "8d4bd4212867787552b7785e8ec6d33a8025ca315f018c1d2d4c39616982d27a",
+      "processes.py": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d",
+      "research_lock.py": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45",
+      "verification.py": "c5ba4e65be7b0d75bca13b224b8901b491efd23ac33c6031ddf724e47602ee9f",
+      "independent_verifier.py": "33f98e1bdb44743b8b55e7e694459c2dc2c19dd5db8359c51747cc5c62274519"
+    },
+    "packet_source_binding_byte_equal_actual_binding": true,
+    "terminal_readiness_refs_current_sha256_verified": 9,
+    "terminal_closure_campaign_launcher_task_supervisor_guard_summary_audit_lineage_verified": true,
+    "preserved_regression_c9f_unchanged_no_known_denied_ledger_retry": true,
+    "recorded_builder_strict_tracked_count": 136,
+    "python_executable_and_stdlib_tempfile_sha256_verified": true,
+    "dependency_versions_and_distribution_METADATA_RECORD_verified": 11,
+    "runtime_path_derived_upper_bound_characters": {
+      "file": 193,
+      "directory": 156
+    },
+    "source_unpacked_fixture_path_upper_bound_characters": {
+      "file": 241,
+      "directory": 212
+    },
+    "path_graph_combinations": 47724,
+    "path_violations": []
+  },
+  "protocol_contracts": {
+    "actual_A": "exact88dac original source archive; not changed-backend-OFF mock",
+    "actual_B": "d514 fixed four-leaf backend+one ordinary default last-slot insertion; no other source factor",
+    "slots": [
+      {
+        "fold": 0,
+        "arm": "a",
+        "directory": "0a"
+      },
+      {
+        "fold": 0,
+        "arm": "b",
+        "directory": "0b"
+      },
+      {
+        "fold": 1,
+        "arm": "b",
+        "directory": "1b"
+      },
+      {
+        "fold": 1,
+        "arm": "a",
+        "directory": "1a"
+      },
+      {
+        "fold": 2,
+        "arm": "a",
+        "directory": "2a"
+      },
+      {
+        "fold": 2,
+        "arm": "b",
+        "directory": "2b"
+      }
+    ],
+    "CLI": [
+      "-u",
+      "solution.py",
+      "task.md",
+      "--offline",
+      "--max-llm-calls",
+      "0"
+    ],
+    "limits": {
+      "stage0": 3600,
+      "stage1": 64800,
+      "parent": 10200,
+      "solver": 9900,
+      "arm_audit": 120,
+      "final_audit": 1200
+    },
+    "stage0_gate_order": [
+      "a_source",
+      "b_source",
+      "a_exact",
+      "b_exact"
+    ],
+    "stage0_caps": {
+      "a_source": 900,
+      "b_source": 900,
+      "a_exact": 480,
+      "b_exact": 480
+    },
+    "Stage0_budget_identity": "900+900+480+480+300+540=3600",
+    "Stage1_budget_identity": "6*10200+1200+2400=64800; parent10200=solver9900+setup_cleanup180+arm_audit120",
+    "gateway_API_limit": 0,
+    "private_environment_forwarded": false,
+    "private_closed_ledger_or_provider_proof_claimed": false,
+    "future_clock_not_assigned": true,
+    "no_prepare_time_relabelled_as_ML_gain_or_completed_gate": true,
+    "no_Stage2_or_promotion_authority": true
+  },
+  "counts_are_expected_not_actual_tests": {
+    "A": {
+      "expected_checks": 451,
+      "registry_scripts": 46
+    },
+    "B": {
+      "expected_checks": 468,
+      "registry_scripts": 48
+    }
+  },
+  "scope_limits": [
+    "This receipt statically rehashed current files and read JSON provenance; it did not execute/import coordinator, builder, test modules or worker code, start a gate or fit, or assign a clock.",
+    "Recorded136 fresh absence under lock is the actual builder proof/source bound here; this reviewer did not independently perform a new live PID/orphan/lock scan. Reviewed controller must repeat fresh ownership checks at admission.",
+    "All9 terminal readiness reference files currently match binding. Their SHA map is frozen via source-binding.json; direct manifest immutable entries additionally cover critical tm1 closure/campaign. Other posthoc readiness files remain historical/root-checkpoint provenance, not a new positive quality/API gate.",
+    "Dependency proof binds versions and distribution metadata/RECORD, not an asserted hash of every installed DLL or library implementation file.",
+    "Derived path bounds are static source coverage, not an actual Windows gate receipt. No actual source451/B468 or exact-unpacked gate has passed in this prospective campaign.",
+    "Actual preparation5.47s/new_children0 is root-observed source preparation; static metadata/source-path review does not claim ML execution or quality."
+  ],
+  "remaining_before_Stage0": [
+    "Root review/publication of this exact binding+manifest and explicit launch review receipt",
+    "Fresh original3600 absolute/monotonic root-assigned clock",
+    "Fresh exact ownership/orphan/lock checks by reviewed controller at actual admission"
+  ],
+  "remaining_before_Stage1": [
+    "All4 actual A/B full-source and exact-unpacked gates, zero skips/source unchanged/cleanup evidence",
+    "Separate original64800 clock assigned only after actual Stage0 terminal cleanup and lock release",
+    "No source/inputs/archive/manifest mutation or repair in place"
+  ],
+  "own_actions": {
+    "actual_helper_execution": false,
+    "gates": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "fresh_process_scan": false,
+    "lock_acquired": false,
+    "quality_metrics_recomputed": false,
+    "private_ledger_read_or_stat": false,
+    "STATE_or_Git_modified": false
+  },
+  "launch_authorized": false,
+  "deadline_assigned": false,
+  "Stage0_pass": false,
+  "Stage1_CV_pass": false,
+  "promotion": false,
+  "official_score": null
+}

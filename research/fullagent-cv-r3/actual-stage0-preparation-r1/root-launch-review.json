@@ -1,0 +1,19 @@
+{
+  "status": "root_exact_manifest_review_for_prospective_Stage0_only",
+  "recorded_epoch": 1792734301.280459,
+  "source_sha256": "45dd8bc9e56b4874e43e051cf279f0497c0b82f628d5c1db7cb6ec2e2bad8a24",
+  "manifest_sha256": "910b2705c66d9175e11cd392e33a3be2083a20d29cb595102711f7303b5200a5",
+  "binding_sha256": "ef4bbcaf1958f769c2c1254387710770c61a5f0313ed2549a816ee398b62e991",
+  "root_launch_reviewed": true,
+  "authorized_stage": "stage0",
+  "stage0_seconds": 3600,
+  "immutable_files_rehashed": 395,
+  "independent_review_sha256": "df60ad967836de5c67ca4a4620d487780004dada2b577129f0d6892762dc9fcf",
+  "clock_assigned": false,
+  "fresh_ownership_and_lock_required_at_admission": true,
+  "source_and_unpacked_gates_actually_completed": false,
+  "Stage1_requires_actual_Stage0_pass_and_cleanup_and_new_root_clock_review": true,
+  "fits_or_API_started_by_this_review": 0,
+  "promotion": false,
+  "official_submission": false
+}

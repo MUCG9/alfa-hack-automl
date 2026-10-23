@@ -1,17 +1,30 @@
 # Актуальное дополнение23октября2026
-Продолжить разрешённые реализацию и local fits Qwen MVP, затем анализ/итерации.
-Ветка work/qwen-optuna-mvp-20261022, исходный checkpoint f3c8aba. Прочитать
-AGENTS.md, docs/handoff/START_HERE.md и docs/experiments/hpo01_protocol_20261022.md.
-343 source checks,23 exact-unpacked и полный настоящий Qwen live-smoke PASS.
-Сначала проверить owned campaign public-mvp-attempt2 (identity receipt рядом),
-не запускать параллельное обучение. Процессы вне sandbox не видны из sandbox;
-проверять их в escalated context. Старый public-mvp прерван без завершённых fits,
-его JSON сохранён. Трёхчасовой общий deadline перенесён без обнуления.
-Ключи в private env/временном auth-файле, не выводить и не коммитить.
-Public push рабочей ветки с кодом/отчётами явно разрешён, remote4886ecd проверен;
-main/submit/extra agents/paid resources не разрешены. Отрицательные результаты
-сохранять, selector/Optuna не включать default без заявленных gates.
-Старый текст ниже — предыдущий checkpoint, а не текущий запрет fits.
+
+Продолжить ночные Qwen autoresearch experiments без вопросов, ветка
+`work/qwen-optuna-mvp-20261022`. Сначала AGENTS.md и docs/handoff/START_HERE.md.
+Полный MVP COMPLETE и отрицателен: F1 .654484535/RMSE36.024692560;
+qualified V11/V16 .659317843/35.447231558 сохранён. PID33136 exited, не перезапускать.
+
+Очередь PID37960/create_time1792705065.83 выполняет class HPO/HAR;
+FE-02 PID49264/create_time1792709589.83 уже ждёт. Проверять receipts/identities/
+descendants/training lock, не дублировать fits. Source freeze до конца обоих
+и prepared BLEND-01 CV. Replay одной смеси.9V16+.1MVP прошёл оба gates,
+meanF1 .6600536197705544,0fits; это не qualified release. Протокол
+`docs/experiments/blend01_cv_protocol_20261023.md`, driver`tools/run_blend_cv.py`.
+CV пока НЕ запущен, только после predecessor completion; gate не ослаблять.
+
+Karpathy-based `skills/autoresearch-ml/SKILL.md` создан и installed independent copy,
+validation PASS. Полный разбор: `docs/experiments/research_conclusions_20261023.md`.
+Source343+unpacked23 ранее PASS; новый no-fit HPO-anchor test RED для sparse
+missing defaults, explicit measured controls PASS. Узкий fix отложен до окончания
+всех frozen jobs/CV, затем required tests/build/exact-unpacked. Без ненужных refits.
+
+Public push кода/отчётов рабочей ветки разрешён, SHA проверять через Git/ignored
+receipt. Делать логические commits. Keys/env/raw/predictions/weights не коммитить.
+Private env создание/использование авторизовано, не спрашивать ключ повторно.
+Main/submit/extra agents/paid resources/force push не разрешены. Пятичасовая
+квота не показана; actual observation4% относится к недельному окну10080min.
+Ниже исторический промпт, не текущий запрет реализации/обучения.
 
 ---
 

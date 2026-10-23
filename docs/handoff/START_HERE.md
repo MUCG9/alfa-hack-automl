@@ -1,29 +1,45 @@
 # Единственная точка входа нового чата
 
-**Текущий этап: Qwen MVP, 23октября2026.** Капитан новым прямым запросом разрешил
-реализацию и локальные fits четырёх этапов, затем анализ и итерации autoresearch.
-Ветка `work/qwen-optuna-mvp-20261022` от `f3c8aba`. Сначала
-[новый протокол](../experiments/hpo01_protocol_20261022.md) и
-[локальная история/откат](../experiments/qwen_mvp_history_20261022.md).
-Код bc51d88: **343source+23repeated exact-unpacked PASS**;
-[receipt](../experiments/mvp_verification_20261023.json). Optuna/selector OFF
-по умолчанию, включаются явно для экспериментального MVP. Ключ в приватном
-игнорируемом env, его создание капитан отдельно разрешил; не выводить содержимое.
+Промежуточный checkpoint23Oct: продолжать разрешённую ночную работу автономно,
+без вопросов. Ветка `work/qwen-optuna-mvp-20261022`, base`f3c8aba`. Сначала
+[AGENTS.md](../../AGENTS.md), [разбор](../experiments/research_conclusions_20261023.md),
+[протокол](../experiments/hpo01_protocol_20261022.md) и
+[история/откат](../experiments/qwen_mvp_history_20261022.md).
 
-Запущен один последовательный координатор: live-smoke полного пути, затем две
-публичные задачи. Проверить `test-runs/qwen-optuna-20261022/live-four-stage/`
-и `public-mvp/campaign.json`, а также owned processes, прежде чем запускать fits.
-Live-smoke уже PASS: roles/planner HTTP, Optuna4 и активный selector, refit/CSV.
-Первый public attempt прерван без завершённых экспериментов. Текущий —
-`public-mvp-attempt2`, PID33136/create_time1792703529.8; receipt
-`detached-mvp-attempt2.json`. Сохранён первоначальный общий трёхчасовой deadline.
-**Sandbox не видит процессы, запущенные вне него:** проверять owned PIDs также
-в escalated context, не начинать второй fit по пустому sandbox process list.
-Капитан отдельно разрешил публичную публикацию ветки; push4886ecd и remote SHA
-подтверждены. Main и official submit не менялись.
-Нового gain полного агента пока не заявлено. Сильный контроль V11/V16 сохранён.
-Новых submit/extra agents/paid resources/main merge не разрешено. Исторические
-запреты fits ниже относятся к предыдущему checkpoint и заменены этим поручением.
+**Полный MVP завершён**: refits/CSV/integrity и actual partitions проверены.
+MacroF1 .6544845346080569, RMSE36.02469255996805 уступают qualified V11/V16
+(.6593178433614652/35.44723155783769). Coordinator33136 уже exited;
+не запускать MVP повторно. Первый interrupted attempt сохранён, общий10800s
+campaign deadline не обнулялся. Live four-stage Qwen smoke также PASS.
+
+Активная последовательная очередь PID37960/create_time1792705065.83;
+`test-runs/qwen-optuna-20261022/overnight-20261023/queue.json` — текущие стадии.
+FE-02 followup PID49264/create_time1792709589.83 ждёт её завершения, уже запланирован.
+Не запускать ручные дубли. Проверять actual process identity/descendants и lock.
+Source freeze охватывает также следующий prepared BLEND-01 CV.
+
+**BLEND-01 replay положителен**, fixed.9complete-control+.1MVP: meanF1
+.6600536197705544, оба paired/support gates PASS,0fits. Это не release/private
+score. [CV protocol](../experiments/blend01_cv_protocol_20261023.md),
+`tools/run_blend_cv.py` — подготовлен, НЕ запущен. Он откажет при активном
+predecessor/lock. Запускать только после queue+FE-02 и всех descendants.
+Все completed regression FE/HPO/HAR screens отрицательны; class FE-01 тоже
+не прошёл paired gate. Class HPO уже проиграл первый cut, второй ещё идёт.
+
+Contest source343 и exact-unpacked23 checks PASS на frozen code. Отдельный
+новый no-fit `test_hpo_anchor.py` пока RED: sparse adapter-default drift;
+explicit measured controls PASS. Исправить узко только ПОСЛЕ всех frozen fits/CV,
+затем новые code/archive gates. Не менять defaults selector/Optuna без qualification.
+
+[Karpathy-based skill](../../skills/autoresearch-ml/SKILL.md) создан/установлен
+независимой копией в `~/.codex/skills/autoresearch-ml`, validation PASS.
+Public branch push разрешён; actual verified remote читать из ignored
+`git-push-verification-current.json` и Git. Private .env отдельно авторизован,
+mode600/ignored; содержимое не выводить. Main/force-push/official submit,
+extra Codex agents и paid resources не разрешены. Weekly usage observation4%,
+window10080min; five-hour window не предоставлен, не подменять одно другим.
+
+Ниже исторический checkpoint. Его STOP/PID/ветки не являются текущим поручением.
 
 ---
 

@@ -1,3 +1,16 @@
+# Ночное продолжение23Oct — текущий checkpoint
+
+[START_HERE.md](START_HERE.md) и [research conclusions](../experiments/research_conclusions_20261023.md)
+содержат актуальный статус. MVP завершён и отрицателен; qualified V11/V16 сохранён.
+Очередь37960 и followup49264 активны/ожидают, source frozen. Fixed BLEND-01 replay
+положителен (.660053620), CV подготовлен, ещё НЕ запущен. Сначала проверить
+actual ignored receipts/process identities/lock. Следующий HPO sparse-default
+fix отложен до конца всех frozen fits и CV. Новых uploads/main merge нет.
+
+Ниже историческое состояние V16, сохранённое для provenance.
+
+---
+
 # Актуальное состояние
 
 Полная компактная сводка — [START_HERE.md](START_HERE.md).

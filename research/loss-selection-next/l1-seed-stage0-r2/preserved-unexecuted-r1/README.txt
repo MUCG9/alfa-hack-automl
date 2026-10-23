@@ -1,0 +1,6 @@
+SOURCE ONLY: thin Stage0 for fixedL1 agent seed. Does not mutate testedloss00.
+prepare_source.py clones base694 from actualLOSS manifest319d and onlyoverlays2scheduler files+6newtest/fixture paths, dynamically checks actualunion andregistry499. Source lsdev/archive ls-stage0-packet/receipts ls0.
+Before actuallaunch root mustbind actualpreparedmanifest, sourcepublication and actualfuturekern0 closureSHA/session/exit0 after terminal, fresh known/preparer absence before/under canonical lock. No proof guessed andno signals/globalPIDadoption.
+900 Stage0 clock onlyactual--launch:600setup/source,180exactdefault23 plus SAMEflatLOSS16+seed12=28 in one unittestdiscover child,120final/root incl10reserved/closer30. No retry/reset/reinvestment. Materializer hasseparate60s source-onlycap.
+Import-only projectnames/ROOT/worker+runner aliases; CP1fixtures importedthrough flats with explicit namespaceSHAmetadata rebind. All28methodAST/assertions compared unchanged; originalLOSS fixturemeta remainsindependent.
+Source/gatespreparedonly, imports/tests/fits/API0; existingtechnicalfixturefitsfuture are not publicmodelquality. Expected499/51, default23+flat28 are not observed. Rootpublication/actualpreparation/independentreview/freshclock required beforeexecution.

@@ -1,0 +1,59 @@
+{
+  "status": "frozen_R2_narrow_source_only_unexecuted",
+  "base_manifest_sha256": "319d6035162f46e6a1272a833d5f8668c731294b443eeae2dd8fc8c897dabfdc",
+  "overlay_handoff_sha256": "00a41c5c9d9bb4363e58e7c5a98ebd6356b86bbf107a23065249c2958edf2086",
+  "outputs": {
+    "source": "lsdev",
+    "packet": "ls-stage0-packet",
+    "stage0": "ls0"
+  },
+  "dynamic_expected_source_union": 700,
+  "source_copy_or_prepare_executed": false,
+  "source_checks_expected": 499,
+  "source_scripts_expected": 51,
+  "exact_repeated_expected": 23,
+  "flat_LOSS16_plus_seed12_expected": 28,
+  "common_seconds": 900,
+  "source_exact_final_seconds": [
+    600,
+    180,
+    120
+  ],
+  "actual_start": null,
+  "actual_deadline": null,
+  "future_KERN00_parent_binding": "Required actualclosureSHA/session/exit0 CLI after terminal; no guessed proof",
+  "actual_runtime_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "API_calls": 0,
+  "STATE_Git_edits": false,
+  "quality_metric": null,
+  "promotion": false,
+  "files_sha256": {
+    "close_stage0.py": "6f54f62f1806ef33320ff9dd5ea58c00f07c8e2dd492ccd07fa3250f6dc442d8",
+    "close_stage0.py.patch": "b0cc6c0649959871fc673d81eee6f01f56a389400289a6ad253bed5fee4c3a75",
+    "prepare_source.py": "a38afa862c6a0bf222317694074aadb1d943891c4852c03f4a5b72cf4fac5d85",
+    "protocol.json": "aaa1195bb7c0fdc313d43845d37a7e32204b667a9479b97f2e011bdad7f8c3a0",
+    "protocol.json.patch": "7a6b2cd8906eac2788b28e727bb283581da0a5712ac1a3930a12cc46477c846a",
+    "README.txt": "9fd9b859a1f6321ca111ee74473abb6d70d62314489c66ea91933c38569087c1",
+    "run_stage0.py": "5d441c459ed28fa6e56003c3fe16be9df865f73923724414f3e5effc648fe82f",
+    "run_stage0.py.patch": "0a24e4427b58432a89732a6e6d351a1161eb418fb84ce4ce0b6b64f63a3e05b9",
+    "static-proof.json": "f6376611933960f522a6e78f0731bedad9be1e3ba976c0908b56fd6469f7c857"
+  },
+  "revision": "R2 two prelaunch defects fixed, no runtime/model/gate/clock changes",
+  "preserved_R1": {
+    "path": "source-evidence/frozen-r1/source-handoff.json",
+    "sha256": "5bf94b2968a478c2d01a3f5ff3dc5b317dff260f3aabbe93efba81acc8013a20"
+  },
+  "required_prep_recovery": {
+    "path": "kern-prep-r2-exec/terminal-root-closure.json",
+    "sha256": "2042c250fefd526acee4ac40cd4d68fc3690220f6d3021bc691b885b5e3ae37e",
+    "session": 56393,
+    "exit": 0
+  },
+  "driver_all_function_AST_unchanged": true,
+  "actual_preparation": 0,
+  "actual_gates": 0,
+  "runtime_imports": 0,
+  "clock_assigned": false
+}

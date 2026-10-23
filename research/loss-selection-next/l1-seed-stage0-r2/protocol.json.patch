@@ -1,0 +1,36 @@
+--- R1/protocol.json
++++ R2/protocol.json
+@@ -22,7 +22,7 @@
+     "fixture_namespace": "Six new paths are disjoint from base694; originalLOSS sidecar remains unchanged"
+   },
+   "preparation": {
+-    "source": "loss-seed-stage0-next-dev/prepare_source.py",
++    "source": "loss-seed-stage0-r2-next-dev/prepare_source.py",
+     "sha256": "a38afa862c6a0bf222317694074aadb1d943891c4852c03f4a5b72cf4fac5d85",
+     "output_source": "lsdev",
+     "output_packet": "ls-stage0-packet",
+@@ -80,7 +80,15 @@
+       "source_skipped": 0,
+       "exact_default_repeated": 23,
+       "exact_flat_same_KERN_contracts": 12
+-    }
++    },
++    "required_source_preparation_recovery": {
++      "path": "kern-prep-r2-exec/terminal-root-closure.json",
++      "sha256": "2042c250fefd526acee4ac40cd4d68fc3690220f6d3021bc691b885b5e3ae37e",
++      "actual_exec_session": 56393,
++      "actual_exec_exit_code_observed_by_root": 0,
++      "fresh_known_and_preparer_union": "Required constant TERMINAL member; before/under lock and final checks via unchanged absence()."
++    },
++    "current_KERN01": "Future root supplies actual closed KERN01 proof through existing --extra-terminal-receipt after observed terminal; no guessed hash/session and no positive-ML gate."
+   },
+   "root_closure": "Root actual exec+source/flat inventory and allknownID/preparer absence, new closure30s inside original900. Original failures retain exactexit/nullsession. No signals/globalPPIDadoption/STATE/Git by helpers",
+   "paths": "lsdev andls0 roots shorter than testedloss00/loss0. Same inherited fixturegraphs; new no-fit mocked runner only temporary automl_runs/mock-loss-seed snapshots, no deeper realworker descendants. Actual source/flat paths still checked by guarded rootpreparation",
+@@ -94,5 +102,6 @@
+     "STATE_Git_edits": false
+   },
+   "quality_metric": null,
+-  "promotion": false
++  "promotion": false,
++  "revision": "R2 narrow prelaunch correction only; R1 entire packet preserved byte-for-byte in source-evidence/frozen-r1."
+ }

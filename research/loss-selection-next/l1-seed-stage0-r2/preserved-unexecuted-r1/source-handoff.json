@@ -1,0 +1,42 @@
+{
+  "status": "frozen_source_only_thin_Stage0_review_pending_not_executed",
+  "files_sha256": {
+    "close_stage0.py": "9c4d6c465d7e470214b01efa5020673d92844b0cbf31e4cc0b00373069eee385",
+    "close_stage0.py.patch": "9911d34a6ef0757233da02d1eb317e0d50613ec339a7a508f8c2525666f2b221",
+    "prepare_source.py": "a38afa862c6a0bf222317694074aadb1d943891c4852c03f4a5b72cf4fac5d85",
+    "protocol.json": "b0c5f0081e3c2876bec5b70ccbf14b2d067fa60c423b0d9e3929a2a7f49d534d",
+    "README.txt": "c4188292512421c5909ad5f7e9767369bdcfb7360f7e6914e5ed656042708c15",
+    "run_stage0.py": "354253aa7cbadd6c077ab08812c03fe9e2f200cd8f4bf8cb3e1b1139fc9caa2d",
+    "run_stage0.py.patch": "9b8216d64535c705f6da70f886015359e48fc76e023705e3ba4d358c33f40e09",
+    "static-proof.json": "859c1f761b29312961ccc529555091044836e685793a881e7e4d4515238845ff"
+  },
+  "base_manifest_sha256": "319d6035162f46e6a1272a833d5f8668c731294b443eeae2dd8fc8c897dabfdc",
+  "overlay_handoff_sha256": "00a41c5c9d9bb4363e58e7c5a98ebd6356b86bbf107a23065249c2958edf2086",
+  "outputs": {
+    "source": "lsdev",
+    "packet": "ls-stage0-packet",
+    "stage0": "ls0"
+  },
+  "dynamic_expected_source_union": 700,
+  "source_copy_or_prepare_executed": false,
+  "source_checks_expected": 499,
+  "source_scripts_expected": 51,
+  "exact_repeated_expected": 23,
+  "flat_LOSS16_plus_seed12_expected": 28,
+  "common_seconds": 900,
+  "source_exact_final_seconds": [
+    600,
+    180,
+    120
+  ],
+  "actual_start": null,
+  "actual_deadline": null,
+  "future_KERN00_parent_binding": "Required actualclosureSHA/session/exit0 CLI after terminal; no guessed proof",
+  "actual_runtime_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "API_calls": 0,
+  "STATE_Git_edits": false,
+  "quality_metric": null,
+  "promotion": false
+}

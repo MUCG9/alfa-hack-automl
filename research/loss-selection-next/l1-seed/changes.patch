@@ -1,0 +1,452 @@
+--- a/src/automl/contracts/messages.py
++++ b/src/automl/contracts/messages.py
+@@ -2,6 +2,52 @@
+ from dataclasses import dataclass,field,asdict
+ import hashlib,json,math
+ SCHEMA_VERSION='1.0'
++
++@dataclass(frozen=True)
++class LossProfile:
++    """Fixed backend profile metadata; never a changed evaluation metric."""
++    loss_profile_id:str
++    engine:str
++    kind:str
++    objective:str
++    alpha:float|None=None
++    def parameters(self):
++        result={'objective':self.objective}
++        if self.alpha is not None: result['alpha']=self.alpha
++        return result
++    def to_dict(self): return asdict(self)
++
++LOSS_PROFILES=(
++    LossProfile('lgbm_l2_v1','lightgbm','regression','regression'),
++    LossProfile('lgbm_l1_v1','lightgbm','regression','regression_l1'),
++    LossProfile('lgbm_huber_a09_v1','lightgbm','regression','huber',.9),
++)
++
++def loss_profile_catalog(engine=None,kind=None):
++    """Separate opt-in backend catalog; legacy planner capabilities stay unchanged."""
++    return tuple(profile.to_dict() for profile in LOSS_PROFILES
++                 if (engine is None or profile.engine==engine) and (kind is None or profile.kind==kind))
++
++def resolve_loss_profile(engine,params,kind=None):
++    if 'loss_profile_id' not in params: return None
++    value=params['loss_profile_id']
++    if not isinstance(value,str): raise ValueError('loss_profile_id must be a supported string ID')
++    profile=next((profile for profile in LOSS_PROFILES if profile.loss_profile_id==value),None)
++    if profile is None: raise ValueError('Unsupported loss_profile_id')
++    if engine!=profile.engine or (kind is not None and kind!=profile.kind):
++        raise ValueError('Loss profile is incompatible with the learner or task kind')
++    if any(key in params for key in ('objective','objective_type','application','app','loss','alpha')):
++        raise ValueError('Fixed loss profile cannot combine raw objective/loss/alpha aliases')
++    if params.get('early_metric','primary')!='primary':
++        raise ValueError('Loss profile requires unchanged primary-metric early stopping')
++    return profile
++
++def validate_loss_profiles(recipe,kind=None):
++    """Validate before filtering and before any child model fit; no model imports."""
++    if 'loss_profile_id' in recipe: raise ValueError('loss_profile_id belongs in recipe.params')
++    resolve_loss_profile(recipe.get('engine'),recipe.get('params',{}),kind)
++    if recipe.get('engine')=='ensemble':
++        for child in recipe.get('components',[]): validate_loss_profiles(child,kind)
+ 
+ @dataclass(frozen=True)
+ class DataPolicy:
+@@ -87,6 +133,7 @@
+     def validate(self):
+         if self.schema_version!=SCHEMA_VERSION or not 1<=self.threads<=8 or not self.experiment_id: raise ValueError('Invalid experiment request')
+         if self.recipe.get('engine')!='ensemble': DataPolicy.parse(self.recipe.get('data_policy'))
++        validate_loss_profiles(self.recipe)
+ 
+ @dataclass(frozen=True)
+ class EvaluationResult:
+--- a/src/automl/execution/model_adapters/registry.py
++++ b/src/automl/execution/model_adapters/registry.py
+@@ -2,9 +2,10 @@
+ from automl.execution.model_adapters import lightgbm,xgboost,catboost,extra_trees
+ from automl.execution.weighting.classes import number
+ from automl.evaluation.api import lgbm_metric
++from automl.contracts.messages import loss_profile_catalog,resolve_loss_profile,validate_loss_profiles
+ COMMON_PARAMETERS={'iterations','learning_rate','seed','class_weight_power','class_weights','generic_features','log_target','early_metric','nested_stopping','min_iterations','categorical_from_dictionary','calibrate','calibration_folds','target_encoding','target_encoding_groups','target_encoding_smoothing','target_encoding_auto_groups','target_encoding_refine_groups','target_encoding_counts','target_encoding_half_life','target_encoding_hierarchical','history_asof','history_min_periods','decision_optimizer','target_smearing','target_smearing_method','feature_selection_top_k','feature_selection_protect_original'}
+ MODEL_PARAMETERS={
+- 'lightgbm':{'max_depth','depth','num_leaves','min_child_samples','reg_lambda','reg_alpha','subsample','subsample_freq','colsample_bytree','calibrate','multiclass_strategy','pair_refinement','feature_views'},
++ 'lightgbm':{'max_depth','depth','num_leaves','min_child_samples','reg_lambda','reg_alpha','subsample','subsample_freq','colsample_bytree','calibrate','multiclass_strategy','pair_refinement','feature_views','loss_profile_id'},
+  'xgboost':{'depth','max_depth','min_child_weight','subsample','colsample_bytree','reg_lambda','reg_alpha','gamma','max_bin'},
+  'catboost':{'depth','l2_leaf_reg','random_strength'},
+  'extra_trees':{'max_depth','min_samples_leaf','max_features'},
+@@ -13,15 +14,19 @@
+ CAPABILITIES={name:{'kinds':['regression','classification'],'nested_stopping':name!='extra_trees'} for name in ADAPTERS}
+ CAPABILITIES['linear_text']={'kinds':['regression','classification'],'nested_stopping':False,'mode':'text'}
+ for name in CAPABILITIES:
+-    CAPABILITIES[name]['parameters']=sorted(COMMON_PARAMETERS|MODEL_PARAMETERS[name])
++    # Backend-only key: ordinary planner capabilities remain byte-for-byte data equivalent.
++    CAPABILITIES[name]['parameters']=sorted((COMMON_PARAMETERS|MODEL_PARAMETERS[name])-{'loss_profile_id'})
+     CAPABILITIES[name]['category_strategy']='pandas' if name in {'lightgbm','xgboost'} else 'frequency' if name=='extra_trees' else 'native'
+     CAPABILITIES[name]['macro_f1_calibration']=name in ADAPTERS
+ def make_model(recipe,kind,threads,iterations):
++    validate_loss_profiles(recipe,kind)
+     try: adapter=ADAPTERS[recipe['engine']]
+     except KeyError: raise ValueError('Unknown recipe engine')
+     return adapter.create_model(recipe,kind,threads,iterations)
+ 
+ def effective_parameters(engine,params):
++    # Reject before filtering: another engine must not silently drop this key.
++    resolve_loss_profile(engine,params)
+     result={k:v for k,v in params.items() if k in COMMON_PARAMETERS|MODEL_PARAMETERS[engine]}
+     if result.get('target_smearing') is True and result.get('target_smearing_method')=='duan':
+         result.pop('target_smearing_method')
+@@ -37,3 +42,8 @@
+ 
+ def selected_iterations(engine,model):
+     return getattr(model,'tree_count_',None) if engine=='catboost' else getattr(model,'best_iteration_',None)
++
++def loss_profile_fit_receipt(recipe,kind,model):
++    profile=resolve_loss_profile(recipe.get('engine'),recipe.get('params',{}),kind)
++    if profile is None: return None
++    return lightgbm.loss_profile_fit_receipt(recipe,kind,model)
+--- a/src/automl/execution/model_adapters/lightgbm.py
++++ b/src/automl/execution/model_adapters/lightgbm.py
+@@ -1,8 +1,10 @@
+ import numpy as np
+ from automl.evaluation.api import lgbm_metric
+ from automl.execution.weighting.classes import number
++from automl.contracts.messages import resolve_loss_profile
+ 
+ def fit_options(spec,recipe,x,y,validation_rows,categorical,target_log):
++    resolve_loss_profile(recipe.get('engine','lightgbm'),recipe.get('params',{}),spec['kind'])
+     if validation_rows is None: return {}
+     from lightgbm import early_stopping,log_evaluation
+     options={'eval_set':[(x.iloc[validation_rows],y.iloc[validation_rows])],
+@@ -11,6 +13,7 @@
+     return options
+ def create_model(recipe,kind,threads,iterations):
+     params=recipe.get('params',{})
++    loss_profile=resolve_loss_profile(recipe.get('engine','lightgbm'),params,kind)
+     depth=number(params,'depth',6,4,10,True)
+     learning_rate=number(params,'learning_rate',.06,.01,.2)
+     weighted=bool(params.get('class_weights',False)) and 'class_weight_power' not in params and kind=='classification'
+@@ -28,6 +31,8 @@
+                 min_child_samples=number(params,'min_child_samples',30,5,150,True))
+     if params.get('early_metric','primary')=='primary':
+         common['metric']='None'
++    if loss_profile is not None:
++        common.update(loss_profile.parameters())
+     if kind=='regression': return LGBMRegressor(**common)
+     strategy=params.get('multiclass_strategy','softmax')
+     if strategy not in {'softmax','ova'}: raise ValueError('Unsupported multiclass strategy')
+@@ -37,3 +42,35 @@
+         from automl.execution.model_adapters.specialists import PairSpecialists
+         model=PairSpecialists(model)
+     return model
++
++def loss_profile_fit_receipt(recipe,kind,model):
++    """Certify actual post-fit Booster params; no constructor/default fallback."""
++    profile=resolve_loss_profile(recipe.get('engine','lightgbm'),recipe.get('params',{}),kind)
++    if profile is None: return None
++    booster=getattr(model,'booster_',None)
++    actual=getattr(booster,'params',None)
++    if not isinstance(actual,dict): raise ValueError('Fitted Booster params are unavailable for loss-profile verification')
++    objective=actual.get('objective')
++    metric=actual.get('metric')
++    if isinstance(metric,str):
++        effective_metric=metric
++        metric_values=[metric]
++    elif isinstance(metric,list) and all(isinstance(item,str) for item in metric):
++        effective_metric=list(metric)
++        metric_values=metric
++    else:
++        raise ValueError('Fitted Booster metric is unavailable or not JSON-safe')
++    if not metric_values or any(item.lower() not in {'none','na','null','custom'} for item in metric_values):
++        raise ValueError('Fitted Booster default loss metric was not disabled')
++    alpha=actual.get('alpha')
++    if alpha is not None:
++        if isinstance(alpha,bool) or not isinstance(alpha,(int,float)) or not np.isfinite(alpha):
++            raise ValueError('Fitted Booster alpha is unavailable or nonfinite')
++        alpha=float(alpha)
++    if objective!=profile.objective or (profile.alpha is not None and alpha!=profile.alpha):
++        raise ValueError('Fitted Booster loss does not match requested fixed profile')
++    from lightgbm import __version__
++    return {'loss_profile_id':profile.loss_profile_id,'requested_objective':profile.objective,
++            'requested_alpha':profile.alpha,'effective_objective':objective,'effective_alpha':alpha,
++            'requested_metric':'None','effective_metric':effective_metric,
++            'evidence_source':'fitted_booster.params','verified':True,'library':'lightgbm','library_version':__version__}
+--- a/src/automl/execution/api.py
++++ b/src/automl/execution/api.py
+@@ -1,5 +1,5 @@
+ """Public capabilities; training runs through the isolated worker entry point."""
+-from automl.execution.model_adapters.registry import CAPABILITIES,effective_parameters
++from automl.execution.model_adapters.registry import CAPABILITIES,effective_parameters,loss_profile_catalog
+ from automl.execution.ensembles import read_cache,combine,materialize
+ from automl.execution.feature_views import validate_feature_view
+ from automl.execution.postprocessing.targets import validate_target_smearing
+--- a/src/automl/execution/worker.py
++++ b/src/automl/execution/worker.py
+@@ -17,7 +17,7 @@
+ from automl.infrastructure.tables import read_input_table,read_task_sample
+ from automl.evaluation.api import evaluate,make_split,make_folds,metric_context
+ from automl.publishing.api import save_submission,read_submission_values,positive_class_index
+-from automl.execution.model_adapters.registry import make_model,fit_options,selected_iterations,CAPABILITIES
++from automl.execution.model_adapters.registry import make_model,fit_options,selected_iterations,CAPABILITIES,loss_profile_fit_receipt
+ from automl.execution.weighting.classes import sample_weights,number
+ from automl.evaluation.api import lgbm_metric,tune_class_factors,adjusted_probabilities
+ from automl.execution.feature_engineering.transforms import feature_transform,generic_features
+@@ -26,7 +26,7 @@
+ from automl.execution.preprocessing.target_encoding import target_encode_frames,infer_history_groups
+ from automl.execution.preprocessing.history import add_history_features,validate_history_groups
+ from automl.execution.model_adapters.linear_text import linear_text_fit
+-from automl.contracts.messages import DataPolicy,SplitPlan,PredictionBundle
++from automl.contracts.messages import DataPolicy,SplitPlan,PredictionBundle,resolve_loss_profile,validate_loss_profiles
+ from dataclasses import asdict
+ from automl.execution.sampling.policies import prepare_training
+ from automl.execution.feature_views import validate_feature_view,feature_view_components,validate_fit_iterations
+@@ -129,6 +129,8 @@
+     start=time.monotonic()
+     spec=job['spec']
+     recipe=job['recipe']
++    validate_loss_profiles(recipe,spec['kind'])
++    loss_profile=resolve_loss_profile(recipe.get('engine'),recipe.get('params',{}),spec['kind'])
+     selection_size=validate_selection(recipe.get('params',{}))
+     if selection_size and recipe['engine']=='linear_text':
+         raise ValueError('Feature selection is unsupported for text recipes')
+@@ -265,6 +267,13 @@
+                 def ranking_loss(truth,predictions): return 1-evaluator(truth,predictions)[1]
+                 kwargs['eval_metric']=ranking_loss
+         estimator.fit(fit_x,targets,**kwargs)
++        if loss_profile is not None:
++            receipt=loss_profile_fit_receipt(recipe,spec['kind'],estimator)
++            receipt.update(fit_index=len(policy_records),model_scope='full_refit' if full and estimator is model
++                else 'outer_fitting' if estimator is model else 'inner_fitting',
++                validation_used_for_stopping=validation_rows is not None,
++                primary_metric=spec['metric'],target_scale='log1p' if target_log else 'original')
++            policy_record['loss_profile']=receipt
+         return prepared_x,prepared_test
+     class_factors={}
+     decision_diagnostics=None
+@@ -390,6 +399,9 @@
+             'peak_rss_mb':round(peak_rss_mb(),1),
+             'validation_predictions':str(validation_path) if validation_path else None,
+             'submission':str(output_dir/'submission.csv')}
++    if loss_profile is not None:
++        record['loss_profile_id']=loss_profile.loss_profile_id
++        record['effective_loss_profile']=policy_records[-1]['loss_profile']
+     atomic_json(output_dir/'result.json',record)
+     print(json.dumps({k:v for k,v in record.items() if k not in {'recipe','feature_names'}},ensure_ascii=False),flush=True)
+ 
+--- a/src/automl/search/policy.py
++++ b/src/automl/search/policy.py
+@@ -1,7 +1,7 @@
+ """Task-independent search policy, planner validation and deterministic fallbacks."""
+ from __future__ import annotations
+ import hashlib,json
+-from automl.contracts.messages import DataPolicy
++from automl.contracts.messages import DataPolicy,validate_loss_profiles
+ from automl.execution.api import effective_parameters,CAPABILITIES,validate_feature_view,validate_target_smearing
+ from automl.evaluation.api import validate_decision_optimizer
+ 
+@@ -11,7 +11,10 @@
+  'subsample','subsample_freq','colsample_bytree','seed','log_target','generic_features','calibrate',
+  'min_samples_leaf','max_features','text_alpha','text_char_features','text_svd_components','text_classifier','text_C','min_iterations','min_child_weight','gamma','max_bin','categorical_from_dictionary','multiclass_strategy','target_encoding','calibration_folds','target_encoding_groups','target_encoding_smoothing','target_encoding_auto_groups','target_encoding_refine_groups','target_encoding_counts','target_encoding_half_life','target_encoding_hierarchical','pair_refinement','history_asof','history_min_periods','feature_selection_top_k','feature_selection_protect_original'}
+ 
++PARAMETERS.add('loss_profile_id')
++
+ def signature(recipe):
++    validate_loss_profiles(recipe)
+     actual={k:recipe.get(k) for k in ['engine','params','feature_code','components','weights','data_policy'] if k in recipe}
+     if recipe.get('engine') in CAPABILITIES: actual['params']=effective_parameters(recipe['engine'],recipe.get('params',{}))
+     policy=DataPolicy.parse(recipe.get('data_policy'))
+@@ -31,6 +34,7 @@
+         raise ValueError('Unsupported planner recipe')
+     params=candidate.get('params',{})
+     if not isinstance(params,dict): raise ValueError('params must be an object')
++    validate_loss_profiles(candidate)
+     if 'feature_views' in params and candidate['engine']!='lightgbm':
+         raise ValueError('Unsupported feature-view learner')
+     if 'history_asof' in params and not isinstance(params['history_asof'],bool):
+@@ -40,6 +44,8 @@
+             raise ValueError('Hierarchical contexts require automatic groups')
+         params=dict(params,target_encoding_auto_groups=True)
+     inherited=best.get('params',{}).copy() if best and best['engine']==candidate['engine'] else {}
++    if 'loss_profile_id' in inherited or 'loss_profile_id' in params:
++        validate_loss_profiles(dict(candidate,params={**inherited,**params}))
+     inherited.update({k:v for k,v in params.items() if k in PARAMETERS})
+     if 'feature_views' in params and params['feature_views'] is None:
+         inherited.pop('feature_views',None)
+--- a/src/automl/search/stages.py
++++ b/src/automl/search/stages.py
+@@ -10,6 +10,7 @@
+ 
+ from automl.execution.api import CAPABILITIES, validate_feature_view, validate_target_smearing
+ from automl.search.policy import normalize, signature
++from automl.contracts.messages import validate_loss_profiles
+ 
+ 
+ def initial_assessment_status(content, call):
+@@ -153,13 +154,51 @@
+                     'authority': 'recipe_only; external provenance claims are not trusted'}
+ 
+ 
++LOSS_SEED_PROFILE_ID = 'lgbm_l1_v1'
++
++
++def make_loss_seed_l1_recipe(spec, control):
++    """Copy the protected raw SINGLE, changing only its fixed loss profile ID.
++
++    This constructor reads no external candidate file or provenance claims.
++    Normalization validates a copy only; the measured raw package is retained.
++    """
++    if (not isinstance(spec, dict) or spec.get('kind') != 'regression'
++            or spec.get('metric') != 'rmse' or spec.get('text_features')
++            or spec.get('task_family') == 'pointwise_ranking'):
++        raise ValueError('Fixed L1 seed requires nontext ordinary RMSE regression')
++    if (not isinstance(control, dict) or control.get('engine') != 'ensemble'
++            or not isinstance(control.get('components'), list) or not control['components']):
++        raise ValueError('Fixed L1 seed requires the preserved complete control')
++    anchor = control['components'][0]
++    if (not isinstance(anchor, dict) or anchor.get('engine') != 'lightgbm'
++            or not isinstance(anchor.get('params'), dict)):
++        raise ValueError('Fixed L1 seed requires the protected LightGBM SINGLE')
++    params = anchor['params']
++    if ('loss_profile_id' in params or params.get('early_metric') != 'primary'
++            or params.get('nested_stopping') is not True):
++        raise ValueError('Fixed L1 seed requires unchanged unprofiled primary nested control')
++    validate_champion_recipe(deepcopy(anchor), spec)
++    seed = deepcopy(anchor)
++    seed['params']['loss_profile_id'] = LOSS_SEED_PROFILE_ID
++    validate_loss_profiles(seed, 'regression')
++    normalized = normalize(deepcopy(seed))
++    if signature(seed) != signature(normalized):
++        raise ValueError('L1 seed normalization would change the measured executable package')
++    return seed
++
++
+ def prepare_preserved_four_stage_recipes(spec, base_recipes, proposals, control,
+-                                         top_k=32, maximum_initial=7, champion=None):
++                                         top_k=32, maximum_initial=7, champion=None, loss_seed_l1=False):
+     """Keep the saved complete control and its first SINGLE component intact.
+ 
+     Only one explicit FE candidate receives broad expansion and the selector.
+     This avoids imposing an unverified transform on every model comparison.
+     """
++    if type(loss_seed_l1) is not bool:
++        raise ValueError('loss_seed_l1 must be a boolean')
++    if loss_seed_l1 and (champion is None or maximum_initial != 7):
++        raise ValueError('L1 seed requires prior champion and exactly seven initial slots')
+     if not isinstance(control,dict) or control.get('engine')!='ensemble':
+         raise ValueError('Preserved complete control must be an ensemble recipe')
+     components=control.get('components',[])
+@@ -212,6 +251,21 @@
+                 'status': 'duplicate', 'signature': key,
+                 'queue_index': next(i for i, r in enumerate(queue) if signature(r) == key),
+                 'reason': 'Executable signature is already a required seed'})
++    if loss_seed_l1:
++        if len(queue) != 6 or signature(queue[5]) != signature(champion):
++            raise ValueError('L1 seed requires a distinct prior champion preserved in slot5')
++        seed = make_loss_seed_l1_recipe(spec, control)
++        if not {'lightgbm', 'catboost', 'xgboost'} <= {r['engine'] for r in queue}:
++            raise ValueError('L1 seed cannot displace required model-family coverage')
++        key = signature(seed)
++        if add(seed, 'fixed_regression_loss_seed'):
++            receipts[-1]['queue_index'] = len(queue) - 1
++            receipts[-1]['loss_profile_id'] = LOSS_SEED_PROFILE_ID
++        else:
++            receipts.append({'source': 'fixed_regression_loss_seed', 'engine': 'lightgbm',
++                'status': 'duplicate', 'signature': key, 'loss_profile_id': LOSS_SEED_PROFILE_ID,
++                'queue_index': next(i for i, r in enumerate(queue) if signature(r) == key),
++                'reason': 'Fixed L1 executable signature is already a required seed'})
+     for i,candidate in enumerate(proposals[:2]):
+         try:
+             candidate=normalize(deepcopy(candidate)); validate_feature_view(candidate,spec)
+--- a/src/automl/search/runner.py
++++ b/src/automl/search/runner.py
+@@ -235,6 +235,7 @@
+     parser.add_argument('--preserve-anchor',action='store_true',help='Keep an explicit complete control and isolate exploratory feature selection')
+     parser.add_argument('--control-recipe',type=Path,help='Frozen selector-free complete control JSON for preserved four-stage mode')
+     parser.add_argument('--champion-recipe',type=Path,help='Opt-in bounded SINGLE recipe seed alongside the preserved complete control')
++    parser.add_argument('--loss-seed-l1',action='store_true',help='Opt-in fixed L1 copy of protected regression SINGLE; consumes one optional initial Qwen slot')
+     parser.add_argument('--validation-strategy',choices=['legacy','auto'],default='auto')
+     parser.add_argument('--run-name',default='run-v2')
+     args=parser.parse_args()
+@@ -249,6 +250,10 @@
+         parser.error('Preserved anchor requires --four-stage and --control-recipe')
+     if args.champion_recipe is not None and (not args.preserve_anchor or not args.four_stage or args.max_experiments < 9 or args.max_planner_calls < 2):
+         parser.error('Champion requires preserved four-stage mode, at least9 experiments and two planner calls')
++    if args.loss_seed_l1 and (not args.preserve_anchor or not args.four_stage
++            or args.max_experiments != 9 or args.hpo_trials != 8
++            or args.max_planner_calls < 2 or args.champion_recipe is None):
++        parser.error('L1 seed requires preserved four-stage mode, max9, HPO8, two planner calls and prior champion')
+     total_calls=max(0,min(8,args.max_planner_calls))+2 if args.max_llm_calls is None else args.max_llm_calls
+     with RunBudget(args.time_budget,total_calls,args.task.resolve().parent):
+         loaded=load_inputs(args.task,allow_llm=not args.offline)
+@@ -289,11 +294,29 @@
+         protected_paths['champion_recipe']=str(Path(champion_path).absolute())
+         snapshot=runs/'champion_recipe.json'; atomic_json(snapshot,champion_recipe)
+         protected_paths['champion_recipe_snapshot']=str(snapshot)
++    loss_seed_recipe=None; loss_seed_receipt=None
++    if getattr(args,'loss_seed_l1',False):
++        if (not preserve_anchor or not getattr(args,'four_stage',False)
++                or args.max_experiments != 9 or getattr(args,'hpo_trials',0) != 8
++                or args.max_planner_calls < 2 or champion_recipe is None):
++            raise ValueError('L1 seed requires unchanged complete control, prior champion, max9 and HPO8')
++        from automl.search.stages import make_loss_seed_l1_recipe,LOSS_SEED_PROFILE_ID
++        loss_seed_recipe=make_loss_seed_l1_recipe(spec,protected_control)
++        loss_seed_receipt={'status':'constructed_fixed_recipe','loss_profile_id':LOSS_SEED_PROFILE_ID,
++            'recipe_signature':signature(loss_seed_recipe),
++            'source_single_signature':signature(protected_control['components'][0]),
++            'changed_parameters':['loss_profile_id'],'metric':None,'measurement_status':'not_run',
++            'authority':'fixed_source_constructor_only; no external recipe claims read'}
++        snapshot=runs/'loss_seed_recipe.json'; atomic_json(snapshot,loss_seed_recipe)
++        protected_paths['loss_seed_recipe_snapshot']=str(snapshot)
+     fingerprints=file_fingerprints(protected_paths)
+     if champion_recipe is not None:
+         if fingerprints['champion_recipe']!=champion_receipt['input_sha256']:
+             raise ValueError('Champion input changed before provenance freeze')
+         atomic_json(runs/'champion-seed.json',champion_receipt)
++    if loss_seed_recipe is not None:
++        loss_seed_receipt['snapshot_sha256']=fingerprints['loss_seed_recipe_snapshot']
++        atomic_json(runs/'loss-seed.json',loss_seed_receipt)
+     atomic_json(runs/'provenance.json',{'sha256':fingerprints,'scope':'Fixed evaluator/source, input files and task; output artifacts excluded'})
+     initial=dummy_predictions(spec,train,len(test))
+     save_submission(spec,sample,test,initial,output); save_submission(spec,sample,test,initial,runs/'fallback_submission.csv')
+@@ -336,13 +359,18 @@
+     seeds=portfolio(spec)
+     if four_stage and preserve_anchor:
+         from automl.search.stages import prepare_preserved_four_stage_recipes
+-        if champion_recipe is None:
+-            queue,stage_receipts,single_anchor=prepare_preserved_four_stage_recipes(
+-                spec,seeds,initial_plans,protected_control,selection_size,maximum_initial=7)
+-        else:
++        if loss_seed_recipe is not None:
+             queue,stage_receipts,single_anchor=prepare_preserved_four_stage_recipes(
+                 spec,seeds,initial_plans,protected_control,selection_size,
+-                maximum_initial=min(7,limit-2),champion=champion_recipe)
++                maximum_initial=min(7,limit-2),champion=champion_recipe,loss_seed_l1=True)
++        else:
++            if champion_recipe is None:
++                queue,stage_receipts,single_anchor=prepare_preserved_four_stage_recipes(
++                    spec,seeds,initial_plans,protected_control,selection_size,maximum_initial=7)
++            else:
++                queue,stage_receipts,single_anchor=prepare_preserved_four_stage_recipes(
++                    spec,seeds,initial_plans,protected_control,selection_size,
++                    maximum_initial=min(7,limit-2),champion=champion_recipe)
+         initial_rejections=[]
+     elif four_stage:
+         from automl.search.stages import prepare_four_stage_recipes
+@@ -499,6 +527,17 @@
+         report['champion_measurements']={
+             'primary':next((r for r in records if signature(r['recipe'])==champion_key),None),
+             'confirmation':next((r for r in confirmations if signature(r['recipe'])==champion_key),None)}
++    if loss_seed_recipe is not None:
++        report['pipeline']['loss_seed']=dict(loss_seed_receipt,
++            placement='after_required_first5_and_prior_champion_before_initial_qwen',
++            maximum_initial=min(7,limit-2),hpo_anchor_unchanged=True,
++            admission_tradeoff='consumes_one_optional_initial_qwen_slot_under_max9',
++            measurement_status='see_actual_records')
++        report['loss_seed_recipe']=loss_seed_recipe
++        loss_seed_key=signature(loss_seed_recipe)
++        report['loss_seed_measurements']={
++            'primary':next((r for r in records if signature(r['recipe'])==loss_seed_key),None),
++            'confirmation':next((r for r in confirmations if signature(r['recipe'])==loss_seed_key),None)}
+     atomic_json(runs/'report.json',report)
+     if not integrity_ok: raise RuntimeError('Protected inputs or evaluator/source changed during the run; do not trust its metrics')
+     print(json.dumps({k:v for k,v in report.items() if k in {'version','best_validation','final_fit_status','elapsed_seconds','submission_sha256'}},ensure_ascii=False,indent=2),flush=True)

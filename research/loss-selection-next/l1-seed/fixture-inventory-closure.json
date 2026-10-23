@@ -1,0 +1,23 @@
+{
+  "status": "static_new_test_fixture_paths_disjoint_from_testedLOSS694",
+  "base_manifest_sha256": "319d6035162f46e6a1272a833d5f8668c731294b443eeae2dd8fc8c897dabfdc",
+  "existing_source_files": 694,
+  "new_test_fixture_sha256": {
+    "tests/test_loss_seed.py": "5ecaf144a615989073ba34cf6b5b37cd57c4c402d65cbd1e7bf190ccf8624d4b",
+    "tests/fixtures/cp1_champion_regression.json": "914880505ed751da9fd0a38d7f1724dd860c20d98456ff3efd16a195a0709ad4",
+    "tests/fixtures/cp1_stages.py": "d8e79f0cb36612849e0d48b2e486c20e773c09696c2d6e788832f19bee509133",
+    "tests/fixtures/fixed_l1_seed_template.json": "be704f101ae26938a786f4b8989b39dd2fe92258131a3e923b8fc48df4a9e2e5",
+    "tests/fixtures/loss_seed_cp1_fixture_sha.json": "0a107f2f7bec9a32a93b081f61c0aea61e3cfc1c4cc0692fef7b5017011eb46b",
+    "tests/fixtures/protected_control_regression.json": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b"
+  },
+  "path_intersection": [],
+  "preserved_existing_sidecar": {
+    "path": "tests/fixtures/cp1_fixture_sha.json",
+    "sha256": "66eb79f6f9d00418c127f4bbb3d1324e084e1236d97ad625902da4a2ac8e8848",
+    "role": "OriginalLOSS16 LightGBMbaseline; never overwritten"
+  },
+  "full_source_materialization_performed": false,
+  "tests": 0,
+  "fits": 0,
+  "API_calls": 0
+}

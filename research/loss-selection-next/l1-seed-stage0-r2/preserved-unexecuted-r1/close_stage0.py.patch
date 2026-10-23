@@ -1,0 +1,109 @@
+--- a/close_stage0.py
++++ b/close_stage0.py
+@@ -1,4 +1,4 @@
+-"""Future root-only loss0 terminal closure, bounded30s inside original900.
++"""Future root-only ls0 terminal closure, bounded30s inside original900.
+ Run only after root observes the actual Stage0 terminal exec. No STATE, public
+ report, model, API, clock reset, signals or arbitrary process scan occurs here.
+ """
+@@ -20,25 +20,26 @@
+     ap=argparse.ArgumentParser(description=__doc__)
+     ap.add_argument('--self-sha256',required=True)
+     ap.add_argument('--prepared-manifest-sha256',required=True)
+-    ap.add_argument('--actual-exec-session',type=int,required=True)
++    ap.add_argument('--actual-exec-session',type=int,default=None)
+     ap.add_argument('--actual-exit-code',type=int,required=True)
+     ap.add_argument('--actual-tool-evidence',required=True)
+     a=ap.parse_args();begin=time.monotonic()
+     assert __debug__ and sha(Path(__file__))==a.self_sha256
+-    root=WORK/'loss0';c=read(root/'campaign.json')
++    root=WORK/'ls0';c=read(root/'campaign.json')
+     assert all(type(c.get(n)) in (int,float) and math.isfinite(c[n]) for n in
+         ['start_unix','start_monotonic','absolute_deadline_unix','common_deadline_monotonic',
+          'finished_unix','finished_monotonic'])
+     assert c['absolute_deadline_unix']-c['start_unix']==900
+     assert abs(c['common_deadline_monotonic']-c['start_monotonic']-900)<1e-6
+     out=root/'terminal-root-closure.json';assert not out.exists()
+-    manifest=WORK/'loss-stage0-packet/manifest.json'
++    manifest=WORK/'ls-stage0-packet/manifest.json'
+     assert sha(manifest)==a.prepared_manifest_sha256==c['prepared_manifest_sha256']
+     prepared=read(manifest)
+-    assert prepared['source_root']=='loss00' and prepared['source_expected_checks']==487
+-    assert sum(prepared['registry'].values())==487 and len(prepared['compiled_sha256'])==68
++    assert prepared['source_root']=='ls00' and prepared['source_expected_checks']==499
++    assert sum(prepared['registry'].values())==499 and len(prepared['compiled_sha256'])==68
+     assert prepared['exact_repeated_expected_checks']==23
+-    assert prepared['exact_flat_loss_checks']==16
++    assert prepared['exact_flat_loss_checks']==16 and prepared['exact_flat_seed_checks']==12
++    assert prepared['exact_flat_combined_checks']==28
+     def check():
+         assert time.monotonic()-begin<30,'Root closure30s exceeded'
+         assert time.time()<c['absolute_deadline_unix'] and time.monotonic()<c['common_deadline_monotonic'],'Original Stage0 deadline'
+@@ -69,12 +70,15 @@
+     if c.get('technical_checks_passed') is True:
+         expected=set(prepared['compiled_sha256'])|{
+             'tests/test_loss_profiles.py','tests/fixtures/cp1_capabilities.json',
+-            'tests/fixtures/cp1_fixture_sha.json','tests/fixtures/cp1_lightgbm.py'}
++            'tests/fixtures/cp1_fixture_sha.json','tests/fixtures/cp1_lightgbm.py',
++            'tests/test_loss_seed.py','tests/fixtures/cp1_stages.py','tests/fixtures/loss_seed_cp1_fixture_sha.json',
++            'tests/fixtures/cp1_champion_regression.json','tests/fixtures/fixed_l1_seed_template.json',
++            'tests/fixtures/protected_control_regression.json'}
+         if {p.relative_to(flat).as_posix() for p in flat.rglob('*') if p.is_file()}!=expected:flat_bad.append('inventory')
+         for name,digest in prepared['compiled_sha256'].items():
+             if sha(flat/name,check)!=digest:flat_bad.append(name)
+         deployed=c.get('flat_deployment_sha256',{})
+-        if set(deployed)!={'loss0/flat/'+name for name in expected}:flat_bad.append('deployment_inventory')
++        if set(deployed)!={'ls0/flat/'+name for name in expected}:flat_bad.append('deployment_inventory')
+         for name,digest in deployed.items():
+             if sha(local(name),check)!=digest:flat_bad.append(name)
+         adaptation=c.get('flat_loss_adaptation',{})
+@@ -83,24 +87,33 @@
+         def test_bodies(path):
+             return {n.name:ast.dump(n,include_attributes=False) for cls in ast.parse(path.read_text('utf-8')).body
+                 if isinstance(cls,ast.ClassDef) for n in cls.body if isinstance(n,ast.FunctionDef) and n.name.startswith('test_')}
+-        original=test_bodies(WORK/'loss00/tests/test_loss_profiles.py');adapted=test_bodies(flat/'tests/test_loss_profiles.py')
++        original=test_bodies(WORK/'lsdev/tests/test_loss_profiles.py');adapted=test_bodies(flat/'tests/test_loss_profiles.py')
+         if len(original)!=16 or original!=adapted:flat_bad.append('test_bodies')
+-        if sha(flat/'tests/fixtures/cp1_capabilities.json',check)!=sha(WORK/'loss00/tests/fixtures/cp1_capabilities.json',check):flat_bad.append('capabilities')
++        if sha(flat/'tests/fixtures/cp1_capabilities.json',check)!=sha(WORK/'lsdev/tests/fixtures/cp1_capabilities.json',check):flat_bad.append('capabilities')
+         if read(flat/'tests/fixtures/cp1_fixture_sha.json')!={'lightgbm':sha(flat/'tests/fixtures/cp1_lightgbm.py',check)}:flat_bad.append('fixture_metadata')
++        seed_adaptation=c.get('flat_seed_adaptation',{})
++        if (seed_adaptation.get('assertion_changes')!=0 or seed_adaptation.get('test_bodies_AST_equal') is not True
++                or seed_adaptation.get('test_methods')!=12):flat_bad.append('seed_adaptation_contract')
++        seed_original=test_bodies(WORK/'lsdev/tests/test_loss_seed.py');seed_adapted=test_bodies(flat/'tests/test_loss_seed.py')
++        if len(seed_original)!=12 or seed_original!=seed_adapted:flat_bad.append('seed_test_bodies')
++        if read(flat/'tests/fixtures/loss_seed_cp1_fixture_sha.json')!={'stages':sha(flat/'tests/fixtures/cp1_stages.py',check)}:
++            flat_bad.append('seed_fixture_metadata')
++        for name in ['cp1_champion_regression.json','fixed_l1_seed_template.json','protected_control_regression.json']:
++            if sha(flat/'tests/fixtures'/name,check)!=sha(WORK/'lsdev/tests/fixtures'/name,check):flat_bad.append(name)
+     counts={g['name']:g['checks'] for g in c.get('gates',[])}
+     for gate in c.get('gates',[]):
+         name=gate.get('result',gate.get('log'));assert name and sha(local(name),check)==gate['sha256']
+     source_counts_ok=False
+     if (root/'source/results.json').exists():
+         src=read(root/'source/results.json')
+-        source_counts_ok=(src.get('passed') is True and src.get('unique_checks_passed')==487
++        source_counts_ok=(src.get('passed') is True and src.get('unique_checks_passed')==499
+             and src.get('unique_checks_skipped')==0 and src.get('source_sha256')==prepared['compiled_sha256'])
+     live,uncertain=observe();source_ok=not bad and not flat_bad;cleanup_ok=not live and not uncertain
+     passed=(a.actual_exit_code==0 and c.get('technical_checks_passed') is True
+         and c.get('cleanup_confirmed') is True and c.get('source_unchanged') is True
+         and not c.get('error_history') and c.get('awake_guard',{}).get('release_API_verified') is True
+         and supervisors_ok and source_ok and cleanup_ok and source_counts_ok
+-        and counts=={'source':487,'exact-default':23,'exact-optin':16})
++        and counts=={'source':499,'exact-default':23,'exact-optin':28})
+     me=psutil.Process();preparers=[dict(pid=me.pid,create_time=me.create_time())];parent=me.parent()
+     while parent is not None:
+         birth=parent.create_time()
+@@ -116,8 +129,9 @@
+         raw_parent_elapsed_seconds=c['elapsed_common_seconds'],raw_parent_status=c['status'],
+         raw_parent_first_failure=c.get('first_failure'),raw_parent_error_history=c.get('error_history',[]),
+         immutable_refs_rehashed=len(c.get('immutable_files',{})),changed_source=bad,changed_flat=flat_bad,
+-        source_checks=487 if passed else None,source_skipped=0 if passed else None,
+-        exact_default_repeated=23 if passed else None,exact_flat_same_LOSS_contracts=16 if passed else None,source_compilation_matches_prepared_archive=source_counts_ok,
++        source_checks=499 if passed else None,source_skipped=0 if passed else None,
++        exact_default_repeated=23 if passed else None,exact_flat_same_LOSS_contracts=16 if passed else None,exact_flat_seed_contracts=12 if passed else None,
++        exact_flat_combined_contracts=28 if passed else None,source_compilation_matches_prepared_archive=source_counts_ok,
+         technical_procedure_passed=passed,ML_quality_metric=None,promotion=False,submit=False,
+         root_exporter_actual_exit_and_fresh_preparer_absence_required=True,root_new_fits=0,root_API_calls=0)
+     check()

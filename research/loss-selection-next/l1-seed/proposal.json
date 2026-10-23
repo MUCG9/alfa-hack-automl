@@ -1,0 +1,118 @@
+{
+  "status": "prospective_source_only_review_pending_not_launch_ready",
+  "factor": "regression fixedL1 seeded-initial-policy under fixedmax9; admissiontradeoff, not freeextra model",
+  "base": {
+    "CP1_B_archive_sha256": "52627ac5b9da5ee47d8d40951f84edf9b9dede28cca4b4f90504be6bb4e672b8",
+    "tested_LOSS_R3_archive_sha256": "037f88de1d547a18ff63e300c81b4ecd9e36935d2ddc32a0ba3fe304b105439d",
+    "two_scheduler_modules_modified": [
+      "src/automl/search/stages.py",
+      "src/automl/search/runner.py"
+    ],
+    "six_tested_backend_modules_byteexact": [
+      "src/automl/contracts/messages.py",
+      "src/automl/execution/model_adapters/registry.py",
+      "src/automl/execution/model_adapters/lightgbm.py",
+      "src/automl/execution/api.py",
+      "src/automl/execution/worker.py",
+      "src/automl/search/policy.py"
+    ],
+    "kernel_classblend_cache_context_combined": false
+  },
+  "surface": {
+    "CLI": "--loss-seed-l1 boolean, defaultFalse",
+    "gate": "Preservedfourstage/nontextRMSE regression, max9/effectiveHPO8, >=2planner calls, existingchampion input required and distinctin slot5",
+    "constructor": "deepcopy(protected_control.components[0]); add only params.loss_profile_id=lgbm_l1_v1; preserve allraw fields including hypothesis",
+    "validation": "Validate originalSINGLE using trusted champion validator; typedloss validation then normalize(copy); require normalized/raw executable signatures equal or fail. Return originalrawcopy, no silent defaults rewrite",
+    "input_authority": "No arbitrary newrecipefile/sidecarloader. Existing CP1control/champion paths, copying/symlink/reparse/byteguards unchanged. Template/lineage review-only."
+  },
+  "queue": {
+    "first5": "Unchanged completeV16, unprofiledSINGLE, separatebroad+CatBoost32/protected, CatBoost, XGBoost",
+    "slot5": "Existing exact CP1champion914880, mandatorydistinct underflag",
+    "slot6": "FixedL1 copy replaces remaining optionalinitialQwen",
+    "maximum_initial": 7,
+    "maximum_experiments": 9,
+    "remaining2": "Existing protectedSINGLE HPO/followup slots, actualtime/statusadmission unchanged",
+    "dedup": "Loss-aware signatures; initialfixedseed<=1; duplicate/capacity receipts retained",
+    "tradeoff": "Both initialQwenproposals may be unscheduled atcapacity; previousCP1 normally admitted1 afterchampion. Samecold Qwenstage stillruns/costscharged."
+  },
+  "HPO": {
+    "anchor": "Protected unprofiled control.components[0], exactsame runner signature lookup; L1 not selected as HPOanchor",
+    "trials": 8,
+    "sampler_seed_budget": "Sameexisting tpe/137/900s tobe frozen by futurewrapper",
+    "loss_search": "No loss-profile HPO; LOSS02 deferred"
+  },
+  "downstream": {
+    "ordinary_planner": "SYSTEM/STAGED/CAPABILITIES/4stage logic unchanged; no loss skill/tool/inner-factbuilder",
+    "inheritance": "If L1 becomesincumbent, old best_recipe feedback andsameengineinheritance can carry profile tofollowuprecipes; globalensemble/refit canfitmultipleL1 models. Initialseed<=1 doesnotmean1totalL1fit ornewQwenlossselectiongain",
+    "limitation": "Existing outersearch/confirmation feedback plus adaptive reusedpublicprior; no unbiased privategeneralization claim"
+  },
+  "provenance": {
+    "snapshot": "loss_seed_recipe.json SHA frozen in protectedprovenance beforeEDA/firstfit",
+    "receipt": "loss-seed.json fixedprofileID/sourceSINGLEsignature/seed signature/snapshotSHA/changedparameter, metricnull/not_run",
+    "report": "pipeline.loss_seed, loss_seed_recipe, loss_seed_measurements primary+optionalconfirmation exactsignature recordornull",
+    "actual_telemetry": "Independent auditor must validate testedLOSSR3 booster objective/alpha/metric/split/targetlog/row lineage for every selected L1 inner/outer/fullfit leaf, no constructor-onlyevidence"
+  },
+  "future_AB": {
+    "unit": "Wholeagent BOTHtasks,4stages/8HPO/selection/confirmation/fullrefit/finalCSV/R4",
+    "recommended_source": "Botharms same new candidatearchive; AflagOFF/BregflagON; classflagOFFboth. ThisisolatesCLIadmissionfactor; exactarchiveSHA pendingfuturematerialization",
+    "champion": "Exactsame CP1regchampion914880 inbotharms, neverreplace strongcompletecontrol",
+    "class": "Identicalclassflags/inputs/caps/splits; requirematchedparity/support/exrarest; no classlossprofile",
+    "budget": {
+      "common_seconds": null,
+      "each_regression_task_seconds": null,
+      "each_classification_task_seconds": null,
+      "setup_audit_cleanup": null,
+      "actual_start": null,
+      "actual_deadline": null,
+      "formula": "2*Treg+2*Tclass+setup+independent_audit+cleanup; equalallinclusive task/API/threads/resourcecaps A/B",
+      "reason": "Root mustreview adequatetime/costs beforeactualclock; noneassigned byauthor"
+    },
+    "mandatory": "Rootclosed predecessors/actualresourceabsence; source/input/orderedNPZ/argv/libs/equaldeadlineguards; actualEDA/separatebroadCatBoost32protected success/3families/protectedHPO8; independentboth selectedprimary+confirmation/fullrefit/CSV/ID/row/probability/recurseL1proof. ComparematchedA/B andretainedV16/strongCP1 floors. Failed/null/missingactualmeasurements neverzero orfakeconfirmation. No extra retries/reinvestment/postscore repair.",
+    "promotion": false,
+    "readiness": "New source499/51, exact23+flat12+defaultOFFparity actualgates/rootreview/publication +pairedcoordinator/evaluator/realbudgets stillfuture; userauthorizationexists, nonewpermissionquestion"
+  },
+  "testing": {
+    "prepared_methods": 12,
+    "actual_tests": 0,
+    "actual_model_fits": 0,
+    "API_calls": 0,
+    "scope": "Pure scheduler/contracts and one mocked failedrunner. All run_worker/request_json/llm_plan tripwired; no public data",
+    "methods": [
+      "test_default_OFF_regression_matches_frozen_CP1_champion_scheduler",
+      "test_default_OFF_classification_scheduler_unchanged",
+      "test_raw_constructor_changes_only_fixed_profile_and_preserves_narrative",
+      "test_actual_measured_template_equals_raw_constructor_with_no_other_parameters",
+      "test_slot6_preserves_first6_and_replaces_optional_initial_Qwen",
+      "test_profile_duplicate_proposal_never_consumes_another_fit_slot",
+      "test_unprofiled_HPO_anchor_and_separate_protected_broad_branch_remain",
+      "test_seed_queue_copies_do_not_alias_control_champion_or_prior_inputs",
+      "test_incompatible_kind_scope_control_or_partial_budget_rejected",
+      "test_normalizer_cannot_silently_change_raw_executable_package",
+      "test_CLI_invalid_admission_fails_before_RunBudget_and_IO",
+      "test_mocked_failed_seed_keeps_snapshot_signature_and_null_measurements"
+    ],
+    "future_command": "PYTHON -B -X utf8 WORK/loss_seed00/tests/test_loss_seed.py",
+    "prospective_registry": {
+      "prior": 487,
+      "prior_scripts": 50,
+      "additional": 12,
+      "total": 499,
+      "scripts": 51,
+      "status": "expectedonly, registry/fullgatesnotrun"
+    },
+    "flat": "Explicitimportmap; adapt CP1fixtureimportsonly+metadataexpectedSHA, preserve12testmethodAST/assertions"
+  },
+  "performed": {
+    "runtime_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "data_predictions_read": 0,
+    "closed_metadata_source_hashes_only": true,
+    "clock_assigned": false,
+    "canonical_frozen_STATE_Git_edits": false
+  },
+  "metrics": null,
+  "promotion": false,
+  "revision": "R2 only newfixture metadata renamed into loss_seed namespace; existing487tests/fixtures untouched. R1 exactsource snapshot preserved."
+}

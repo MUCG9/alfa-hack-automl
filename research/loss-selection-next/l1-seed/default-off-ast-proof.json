@@ -1,0 +1,36 @@
+{
+  "status": "scheduler2wholemodules_default_OFF_AST_equal_exactCP1_and_backend6byteexact_testedLOSSR3",
+  "files": [
+    {
+      "path": "src/automl/search/stages.py",
+      "base_CP1_sha256": "d8e79f0cb36612849e0d48b2e486c20e773c09696c2d6e788832f19bee509133",
+      "candidate_sha256": "333c8a880713753aa3c33ecf95c77ab993598d5ad15922c03660037d0b082faa",
+      "default_OFF_projected_AST_equal": true,
+      "base_AST_sha256": "503402844c7ced82e61d51f7115a374fd86017aba382e58c8520ec0a6c4c5aef",
+      "projected_AST_sha256": "503402844c7ced82e61d51f7115a374fd86017aba382e58c8520ec0a6c4c5aef"
+    },
+    {
+      "path": "src/automl/search/runner.py",
+      "base_CP1_sha256": "4807ba7609009e24899fcc5213fe44db4e2f6ad3d63e57ed2af3e20acdedad2f",
+      "candidate_sha256": "40d4eae5365a7941fe270eb0cdfe0093019a1bd1c0298b780c16f86d49f32fca",
+      "default_OFF_projected_AST_equal": true,
+      "base_AST_sha256": "3dd590447fe2ed282efd0d9008655f10056993a38d84a47756e47b438effd107",
+      "projected_AST_sha256": "3dd590447fe2ed282efd0d9008655f10056993a38d84a47756e47b438effd107"
+    }
+  ],
+  "backend6": {
+    "src/automl/contracts/messages.py": "2da59a8467632748d021d4169ddb3e3af4eac01a48a8dc2ab9207c4c7701652d",
+    "src/automl/execution/model_adapters/registry.py": "75b885e822186ab8c235e6638ee888ecaa918a50f7662dc8fc2892682d761045",
+    "src/automl/execution/model_adapters/lightgbm.py": "cc773c5329a06a99c5d9567cf8c978f4fb0b21818ef21cd9ac1ba46bcd949856",
+    "src/automl/execution/api.py": "1f07d02b386d1fdc348cce67d66b864d6b743191d2ca802cf58f7d9725fdbe17",
+    "src/automl/execution/worker.py": "abce233662708f43bc36fa7395a00b9e4f705d54eff1cd26d3769b68244d9510",
+    "src/automl/search/policy.py": "056654922bb8a10a2f65ba5410005ed0e9ad69a2f2580b6bffb80a9177ef7770"
+  },
+  "tested_LOSS_archive_sha256": "037f88de1d547a18ff63e300c81b4ecd9e36935d2ddc32a0ba3fe304b105439d",
+  "backend_legacy_default_parity": "Existing LOSS R3 default-OFF proof and actualLOSS00 roottechnical evidence are references, not rerun by author",
+  "projection": "Remove fixedL1 constructor/import/constant/optionalbool and guarded CLI/snapshot/scheduling/report additions, choose unchanged old champion scheduling branch. Existing HPO/confirmation/final refit/planner bodies remain structurally equal.",
+  "runtime_imports": 0,
+  "tests": 0,
+  "fits": 0,
+  "API_calls": 0
+}

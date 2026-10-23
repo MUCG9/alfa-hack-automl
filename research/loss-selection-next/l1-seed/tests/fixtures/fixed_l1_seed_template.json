@@ -1,0 +1,28 @@
+{
+  "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
+  "engine": "lightgbm",
+  "params": {
+    "iterations": 1600,
+    "learning_rate": 0.035,
+    "num_leaves": 127,
+    "max_depth": -1,
+    "min_child_samples": 25,
+    "reg_lambda": 8,
+    "subsample": 1,
+    "colsample_bytree": 0.9,
+    "generic_features": "missing",
+    "subsample_freq": 0,
+    "min_iterations": 100,
+    "target_encoding": true,
+    "target_encoding_auto_groups": true,
+    "target_encoding_smoothing": 2,
+    "log_target": true,
+    "target_encoding_hierarchical": true,
+    "history_asof": true,
+    "history_min_periods": 3,
+    "early_metric": "primary",
+    "nested_stopping": true,
+    "loss_profile_id": "lgbm_l1_v1"
+  },
+  "feature_code": ""
+}

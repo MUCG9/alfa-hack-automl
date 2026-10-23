@@ -1,0 +1,45 @@
+{
+  "status": "root_attested_positive_component_prior_not_rescored_by_author",
+  "source_refs_sha256": {
+    "loss-stage0-packet/manifest.json": "319d6035162f46e6a1272a833d5f8668c731294b443eeae2dd8fc8c897dabfdc",
+    "loss-stage0-packet/loss-source.zip": "037f88de1d547a18ff63e300c81b4ecd9e36935d2ddc32a0ba3fe304b105439d",
+    "cs-stage0-packet/champion-source.zip": "52627ac5b9da5ee47d8d40951f84edf9b9dede28cca4b4f90504be6bb4e672b8",
+    "loss01/terminal-root-closure.json": "ce6accf1ec6b6f1e0c14dbb0c8913b55538f6a460450cbb2705ae36a37d3bcf3",
+    "loss01/independent-audit.json": "04a9a32a6d48f1811353070038ced4273f30855804119350b2502a738ececd13",
+    "loss01/manifest.json": "7ce38fa77a94e35748b147fc7a4d6766e05cadb2817e73786c132f4d2e6ca8cc",
+    "loss01/verification-plan.json": "76118566f64b380b756d21418941b8d52264111fe33bcfa840ab29c69e2a900c",
+    "m2packet/control-r.json": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b",
+    "champion-seed-next-dev/champion-t5-regression.json": "914880505ed751da9fd0a38d7f1724dd860c20d98456ff3efd16a195a0709ad4",
+    "loss-selection-next-dev/source-handoff.json": "d17be204be34fa53ecbabe40eef819db214ca6ab03929f3a0ce3e52e99e9417c"
+  },
+  "skill_sha256": "7c33320f7ad51edc5498f82123505d051243d98faa4f3e0b1071eecb7fbdd149",
+  "fixed_seed_template_sha256": "be704f101ae26938a786f4b8989b39dd2fe92258131a3e923b8fc48df4a9e2e5",
+  "expected_policy_signature_static_formula": "f06008802b5f6d3cfd130e4cd4c921781404560afac3cf3ddcbb58b1509295e4",
+  "root_attested_LOSS01": {
+    "actual_exec_session": 68631,
+    "actual_exit": 0,
+    "elapsed_seconds": 106.906,
+    "fresh_L2_cuts": [
+      39.0516781696,
+      31.846185167,
+      50.9246695132
+    ],
+    "fresh_L2_mean": 40.6075109499,
+    "L1_cuts": [
+      37.1588677324,
+      31.2959251397,
+      50.762890094
+    ],
+    "L1_mean": 39.7392276554,
+    "all3improve": true,
+    "Huber": "fails2cuts",
+    "scope": "Reused-public SINGLE component only; not whole-agent/private/official gain"
+  },
+  "strongest_retained": {
+    "CP1_B_regression_wholeagent_mean": 34.8662208787,
+    "unit_boundary": "Component39.739 is not a new strongest full-agent score"
+  },
+  "author_outcome_files_parsed": false,
+  "data_predictions_read": false,
+  "runtime_authority": "Card/templates are not consumed by constructor. Fixed compiled flag and provided protectedcontrol alone determine new seed."
+}

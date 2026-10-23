@@ -1,0 +1,11 @@
+--- R1/close_stage0.py
++++ R2/close_stage0.py
+@@ -35,7 +35,7 @@
+     manifest=WORK/'ls-stage0-packet/manifest.json'
+     assert sha(manifest)==a.prepared_manifest_sha256==c['prepared_manifest_sha256']
+     prepared=read(manifest)
+-    assert prepared['source_root']=='ls00' and prepared['source_expected_checks']==499
++    assert prepared['source_root']=='lsdev' and prepared['source_expected_checks']==499
+     assert sum(prepared['registry'].values())==499 and len(prepared['compiled_sha256'])==68
+     assert prepared['exact_repeated_expected_checks']==23
+     assert prepared['exact_flat_loss_checks']==16 and prepared['exact_flat_seed_checks']==12

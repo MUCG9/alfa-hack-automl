@@ -1,0 +1,427 @@
+{
+  "status": "independently_verified_complete_component_screen",
+  "utc": "2026-10-23T02:40:23.600760+00:00",
+  "complete_six_workers": true,
+  "expected_records": 6,
+  "observed_records": 6,
+  "records": [
+    {
+      "name": "control_historical",
+      "cut": 42,
+      "status": "verified_ok",
+      "macro_f1": 0.6558634659956402,
+      "per_class_f1": {
+        "Analysis": 0.3375796178343949,
+        "Backdoor": 0.2146341463414634,
+        "DoS": 0.4978365996436752,
+        "Exploits": 0.6790680874119559,
+        "Fuzzers": 0.7555448408871746,
+        "Generic": 0.9878147847278635,
+        "Normal": 0.915273556231003,
+        "Reconnaissance": 0.8223615464994776,
+        "Shellcode": 0.6643109540636042,
+        "Worms": 0.6842105263157895
+      },
+      "independent_fitting_groups_per_class": {
+        "Analysis": 695,
+        "Backdoor": 666,
+        "DoS": 2032,
+        "Exploits": 8833,
+        "Fuzzers": 6767,
+        "Generic": 2829,
+        "Normal": 21177,
+        "Reconnaissance": 3202,
+        "Shellcode": 440,
+        "Worms": 46
+      },
+      "fitting_rows": 70529,
+      "validation_rows": 17141,
+      "split_positions_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+      "prediction_sha256": "f3803745a6e1a2e2a00e046f61854cdf350949a63d315712353e4af2fa653f20",
+      "probability_sha256": "6c9e2457e8f0c077e623b4738c5a0c23259091f2d2313e6c9d998b67f49677e0",
+      "equal_weight_components_verified": true,
+      "pristine_truth_groups_and_row_order_verified": true,
+      "test_probability_submission_schema_ids_and_order_verified": true,
+      "historical_control_prediction_bytes_equal_2e": true,
+      "worker_seconds": 77.672
+    },
+    {
+      "name": "control_historical",
+      "cut": 43,
+      "status": "verified_ok",
+      "macro_f1": 0.653724307666515,
+      "per_class_f1": {
+        "Analysis": 0.2733812949640288,
+        "Backdoor": 0.21374045801526717,
+        "DoS": 0.4831251660908849,
+        "Exploits": 0.6828217555196554,
+        "Fuzzers": 0.7510184519530314,
+        "Generic": 0.9897619657025851,
+        "Normal": 0.9150819054791941,
+        "Reconnaissance": 0.842159916926272,
+        "Shellcode": 0.7432950191570882,
+        "Worms": 0.6428571428571429
+      },
+      "independent_fitting_groups_per_class": {
+        "Analysis": 705,
+        "Backdoor": 664,
+        "DoS": 2061,
+        "Exploits": 8882,
+        "Fuzzers": 6765,
+        "Generic": 2828,
+        "Normal": 21095,
+        "Reconnaissance": 3206,
+        "Shellcode": 446,
+        "Worms": 54
+      },
+      "fitting_rows": 70321,
+      "validation_rows": 17349,
+      "split_positions_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "prediction_sha256": "212d2c1c68fa3c68ba0acb4e6cfeb7f8e6cb17d66a048546345bd53136f665eb",
+      "probability_sha256": "eb204fbd6462e5513a65d05dda70cdbd63e42749cc758aaf4070b969e7d1f33b",
+      "equal_weight_components_verified": true,
+      "pristine_truth_groups_and_row_order_verified": true,
+      "test_probability_submission_schema_ids_and_order_verified": true,
+      "historical_control_prediction_bytes_equal_2e": true,
+      "worker_seconds": 76.594
+    },
+    {
+      "name": "old-proposal",
+      "cut": 42,
+      "status": "verified_ok",
+      "macro_f1": 0.648979518847684,
+      "per_class_f1": {
+        "Analysis": 0.304635761589404,
+        "Backdoor": 0.19753086419753085,
+        "DoS": 0.4961051606621227,
+        "Exploits": 0.6709844559585493,
+        "Fuzzers": 0.758247168882324,
+        "Generic": 0.9876710472835659,
+        "Normal": 0.9168084704102855,
+        "Reconnaissance": 0.8230322239830956,
+        "Shellcode": 0.6861313868613139,
+        "Worms": 0.6486486486486487
+      },
+      "independent_fitting_groups_per_class": {
+        "Analysis": 695,
+        "Backdoor": 666,
+        "DoS": 2032,
+        "Exploits": 8833,
+        "Fuzzers": 6767,
+        "Generic": 2829,
+        "Normal": 21177,
+        "Reconnaissance": 3202,
+        "Shellcode": 440,
+        "Worms": 46
+      },
+      "fitting_rows": 70529,
+      "validation_rows": 17141,
+      "split_positions_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+      "prediction_sha256": "062c90fafe8a9007a97877adb2941198bb8421686c3f2f3a21cfb8cef122f735",
+      "probability_sha256": "370cec6129dd6fa063a1e752c183cc86d26268f6da0efa96970e3e416242c435",
+      "equal_weight_components_verified": true,
+      "pristine_truth_groups_and_row_order_verified": true,
+      "test_probability_submission_schema_ids_and_order_verified": true,
+      "historical_control_prediction_bytes_equal_2e": null,
+      "worker_seconds": 111.25
+    },
+    {
+      "name": "old-proposal",
+      "cut": 43,
+      "status": "verified_ok",
+      "macro_f1": 0.6530567961878008,
+      "per_class_f1": {
+        "Analysis": 0.2787456445993031,
+        "Backdoor": 0.25,
+        "DoS": 0.491263105341987,
+        "Exploits": 0.6754013655656025,
+        "Fuzzers": 0.7552447552447552,
+        "Generic": 0.9897567221510883,
+        "Normal": 0.9198209957113556,
+        "Reconnaissance": 0.8429319371727748,
+        "Shellcode": 0.7067137809187279,
+        "Worms": 0.6206896551724138
+      },
+      "independent_fitting_groups_per_class": {
+        "Analysis": 705,
+        "Backdoor": 664,
+        "DoS": 2061,
+        "Exploits": 8882,
+        "Fuzzers": 6765,
+        "Generic": 2828,
+        "Normal": 21095,
+        "Reconnaissance": 3206,
+        "Shellcode": 446,
+        "Worms": 54
+      },
+      "fitting_rows": 70321,
+      "validation_rows": 17349,
+      "split_positions_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "prediction_sha256": "22bab8c3ba71a6d2dd0f5b04154a1adcaa46b9f29b1ac65cf054399be78d23d2",
+      "probability_sha256": "30697b79762c880bf6e3130502e0c7befc82b675c120c69128873327f00510e8",
+      "equal_weight_components_verified": true,
+      "pristine_truth_groups_and_row_order_verified": true,
+      "test_probability_submission_schema_ids_and_order_verified": true,
+      "historical_control_prediction_bytes_equal_2e": null,
+      "worker_seconds": 84.531
+    },
+    {
+      "name": "support-proposal",
+      "cut": 42,
+      "status": "verified_ok",
+      "macro_f1": 0.6573408337327423,
+      "per_class_f1": {
+        "Analysis": 0.33650793650793653,
+        "Backdoor": 0.21568627450980393,
+        "DoS": 0.492827868852459,
+        "Exploits": 0.6787055247630968,
+        "Fuzzers": 0.7560321715817694,
+        "Generic": 0.9876777251184834,
+        "Normal": 0.9170685579196217,
+        "Reconnaissance": 0.8195329087048833,
+        "Shellcode": 0.6666666666666666,
+        "Worms": 0.7027027027027027
+      },
+      "independent_fitting_groups_per_class": {
+        "Analysis": 695,
+        "Backdoor": 666,
+        "DoS": 2032,
+        "Exploits": 8833,
+        "Fuzzers": 6767,
+        "Generic": 2829,
+        "Normal": 21177,
+        "Reconnaissance": 3202,
+        "Shellcode": 440,
+        "Worms": 46
+      },
+      "fitting_rows": 70529,
+      "validation_rows": 17141,
+      "split_positions_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+      "prediction_sha256": "7c73551e938d9fbc9b1ff881b93e20e126d72a785b827bebfe9f379b47944974",
+      "probability_sha256": "99a38184ba6cf3a19302e807ffb86eb84d64d15ac524df5141fef1cfc7b2cc7b",
+      "equal_weight_components_verified": true,
+      "pristine_truth_groups_and_row_order_verified": true,
+      "test_probability_submission_schema_ids_and_order_verified": true,
+      "historical_control_prediction_bytes_equal_2e": null,
+      "worker_seconds": 87.719
+    },
+    {
+      "name": "support-proposal",
+      "cut": 43,
+      "status": "verified_ok",
+      "macro_f1": 0.6551811880215769,
+      "per_class_f1": {
+        "Analysis": 0.2727272727272727,
+        "Backdoor": 0.21774193548387097,
+        "DoS": 0.4720068906115418,
+        "Exploits": 0.7001680672268907,
+        "Fuzzers": 0.7588565844124114,
+        "Generic": 0.990395697272378,
+        "Normal": 0.9209519365375641,
+        "Reconnaissance": 0.8453276047261009,
+        "Shellcode": 0.7649402390438247,
+        "Worms": 0.6086956521739131
+      },
+      "independent_fitting_groups_per_class": {
+        "Analysis": 705,
+        "Backdoor": 664,
+        "DoS": 2061,
+        "Exploits": 8882,
+        "Fuzzers": 6765,
+        "Generic": 2828,
+        "Normal": 21095,
+        "Reconnaissance": 3206,
+        "Shellcode": 446,
+        "Worms": 54
+      },
+      "fitting_rows": 70321,
+      "validation_rows": 17349,
+      "split_positions_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+      "prediction_sha256": "5b7c426aff15cfbb62fc57335bbdbe02d2365ed2a44c59f072d608ca988b1125",
+      "probability_sha256": "0fd63fa2f3385f4857738fd116ab9c09ef0eb4d8eb3442ec105c099d4a46ee38",
+      "equal_weight_components_verified": true,
+      "pristine_truth_groups_and_row_order_verified": true,
+      "test_probability_submission_schema_ids_and_order_verified": true,
+      "historical_control_prediction_bytes_equal_2e": null,
+      "worker_seconds": 139.687
+    }
+  ],
+  "comparisons": [
+    {
+      "control": "control_historical",
+      "candidate": "old-proposal",
+      "cuts": [
+        {
+          "cut": 42,
+          "status": "verified_ok",
+          "macro_f1_delta": -0.006883947147956149,
+          "per_class_f1_delta": {
+            "Analysis": -0.03294385624499091,
+            "Backdoor": -0.017103282143932558,
+            "DoS": -0.0017314389815525355,
+            "Exploits": -0.008083631453406626,
+            "Fuzzers": 0.002702327995149467,
+            "Generic": -0.00014373744429763136,
+            "Normal": 0.0015349141792824206,
+            "Reconnaissance": 0.0006706774836180429,
+            "Shellcode": 0.021820432797709732,
+            "Worms": -0.03556187766714081
+          },
+          "ex_rarest_macro_f1_delta": -0.0036975104236022884,
+          "rarest_fitting_class": "Worms",
+          "supported_class_losses_over_001": {
+            "Analysis": -0.03294385624499091,
+            "Backdoor": -0.017103282143932558
+          },
+          "gate_passed": false
+        },
+        {
+          "cut": 43,
+          "status": "verified_ok",
+          "macro_f1_delta": -0.0006675114787142444,
+          "per_class_f1_delta": {
+            "Analysis": 0.005364349635274324,
+            "Backdoor": 0.03625954198473283,
+            "DoS": 0.008137939251102122,
+            "Exploits": -0.0074203899540529195,
+            "Fuzzers": 0.004226303291723799,
+            "Generic": -5.243551496780796e-06,
+            "Normal": 0.004739090232161458,
+            "Reconnaissance": 0.0007720202465028025,
+            "Shellcode": -0.036581238238360236,
+            "Worms": -0.022167487684729092
+          },
+          "ex_rarest_macro_f1_delta": 0.0017213747663985997,
+          "rarest_fitting_class": "Worms",
+          "supported_class_losses_over_001": {
+            "Shellcode": -0.036581238238360236
+          },
+          "gate_passed": false
+        }
+      ],
+      "both_cut_gate_passed": false
+    },
+    {
+      "control": "control_historical",
+      "candidate": "support-proposal",
+      "cuts": [
+        {
+          "cut": 42,
+          "status": "verified_ok",
+          "macro_f1_delta": 0.0014773677371021643,
+          "per_class_f1_delta": {
+            "Analysis": -0.0010716813264583513,
+            "Backdoor": 0.0010521281683405215,
+            "DoS": -0.0050087307912162204,
+            "Exploits": -0.0003625626488591438,
+            "Fuzzers": 0.00048733069459483414,
+            "Generic": -0.00013705960938015238,
+            "Normal": 0.0017950016886186804,
+            "Reconnaissance": -0.002828637794594302,
+            "Shellcode": 0.002355712603062443,
+            "Worms": 0.01849217638691325
+          },
+          "ex_rarest_macro_f1_delta": -0.000413166557321299,
+          "rarest_fitting_class": "Worms",
+          "supported_class_losses_over_001": {},
+          "gate_passed": false
+        },
+        {
+          "cut": 43,
+          "status": "verified_ok",
+          "macro_f1_delta": 0.0014568803550618625,
+          "per_class_f1_delta": {
+            "Analysis": -0.0006540222367560911,
+            "Backdoor": 0.004001477468603798,
+            "DoS": -0.011118275479343132,
+            "Exploits": 0.01734631170723533,
+            "Fuzzers": 0.007838132459380032,
+            "Generic": 0.0006337315697928503,
+            "Normal": 0.005870031058370029,
+            "Reconnaissance": 0.0031676877998289,
+            "Shellcode": 0.02164521988673651,
+            "Worms": -0.03416149068322982
+          },
+          "ex_rarest_macro_f1_delta": 0.005414477137094247,
+          "rarest_fitting_class": "Worms",
+          "supported_class_losses_over_001": {
+            "DoS": -0.011118275479343132
+          },
+          "gate_passed": false
+        }
+      ],
+      "both_cut_gate_passed": false
+    },
+    {
+      "control": "old-proposal",
+      "candidate": "support-proposal",
+      "cuts": [
+        {
+          "cut": 42,
+          "status": "verified_ok",
+          "macro_f1_delta": 0.008361314885058313,
+          "per_class_f1_delta": {
+            "Analysis": 0.03187217491853256,
+            "Backdoor": 0.01815541031227308,
+            "DoS": -0.003277291809663685,
+            "Exploits": 0.007721068804547482,
+            "Fuzzers": -0.002214997300554633,
+            "Generic": 6.677834917478975e-06,
+            "Normal": 0.0002600875093362598,
+            "Reconnaissance": -0.003499315278212345,
+            "Shellcode": -0.01946472019464729,
+            "Worms": 0.05405405405405406
+          },
+          "ex_rarest_macro_f1_delta": 0.0032843438662809895,
+          "rarest_fitting_class": "Worms",
+          "supported_class_losses_over_001": {
+            "Shellcode": -0.01946472019464729
+          },
+          "gate_passed": false
+        },
+        {
+          "cut": 43,
+          "status": "verified_ok",
+          "macro_f1_delta": 0.002124391833776107,
+          "per_class_f1_delta": {
+            "Analysis": -0.006018371872030415,
+            "Backdoor": -0.03225806451612903,
+            "DoS": -0.019256214730445254,
+            "Exploits": 0.02476670166128825,
+            "Fuzzers": 0.003611829167656233,
+            "Generic": 0.0006389751212896311,
+            "Normal": 0.0011309408262085707,
+            "Reconnaissance": 0.0023956675533260974,
+            "Shellcode": 0.05822645812509675,
+            "Worms": -0.01199400299850073
+          },
+          "ex_rarest_macro_f1_delta": 0.0036931023706956475,
+          "rarest_fitting_class": "Worms",
+          "supported_class_losses_over_001": {
+            "Backdoor": -0.03225806451612903,
+            "DoS": -0.019256214730445254
+          },
+          "gate_passed": false
+        }
+      ],
+      "both_cut_gate_passed": false
+    }
+  ],
+  "support_vs_old_claim_gate": false,
+  "manifest_sha256": "97233bd7e32b72c7d19ed0e8c1d2e100708ff30f5c06a8b84bba6d38e849bb86",
+  "protocol_sha256": "539ab85769b2ea5a2bc12a12b95152ef0e3521a84578915f47284e9a1dd6bcbf",
+  "supervisor_receipt_sha256": "b62de645df1819b3b14934a84dc9e4dc76d2bd55ab029c24215aaa920d4fa60e",
+  "ledger_sha256": "24fd9dab57aaddf8903810b6444b323ec130fc1614a3a6bd6a22393290653d04",
+  "pristine_train_sha256": "171a8915070b7575b729a32f70a45d1ad7b6f43c65b4ce12a0a68af30d5cb4e0",
+  "archive_sha256": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0",
+  "source_entries": 68,
+  "immutable_files_verified": 263,
+  "new_model_fits": 0,
+  "api_calls": 0,
+  "tests_run": 0,
+  "canonical_or_result_edits": false,
+  "scope": "One reused-public paired fixed-recipe component screen; no whole-agent, private, official score or general prompt-superiority claim",
+  "artifact_verification_boundary": "Parent job/spec/recipe/threads and child validation/test probability mixture are checked directly; exact frozen runtime is relied on for child recipe dispatch. This script does not reconstruct or refit any child transform/model.",
+  "failed_metrics_zero_imputed": false,
+  "promotion": false
+}

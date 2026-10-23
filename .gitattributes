@@ -26,3 +26,8 @@ research/hpo-admission/README.md -text
 research/hpo-admission/preparation-receipt-r2.json -text
 research/hpo-admission/independent-review-r2.json -text
 research/support-context/independent-review.json -text
+
+docs/experiments/native_support_context_sc1_20261023.json -text
+docs/experiments/native_support_context_sc1_20261023.txt -text
+docs/experiments/native_mvp_scope_audit_20261023.json -text
+docs/experiments/native_mvp_scope_correction_20261023.json -text

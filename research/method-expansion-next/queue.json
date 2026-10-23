@@ -138,7 +138,7 @@
     {
       "id": "METH-03",
       "name": "Fixed weak-model blend contribution",
-      "status": "wait_for_METH01_or_METH02_closed_prediction_artifacts",
+      "status": "completed_class_promising_regression_rejected",
       "hypothesis": "A different family can improve the strong ensemble through complementary predictions, despite a weaker standalone metric.",
       "fixed_weight": {
         "strong_control": 0.9,
@@ -149,12 +149,31 @@
       "model_fits": 0,
       "requires": "Independently verified same-partition/source/row/class aligned component caches and pristine labels. Examine every declared cut/support gate. Positive component result still needs later real full refits and whole-agent qualification.",
       "actual_command": null,
-      "actual_metric": null,
-      "clock_start": null,
+      "actual_metric": {
+        "regression": {
+          "required_cuts": 3,
+          "complete": true,
+          "control_mean": 40.60751094989404,
+          "fixed_90_10_blend_mean": 40.4162092042995
+        },
+        "classification": {
+          "required_cuts": 2,
+          "complete": true,
+          "control_mean": 0.6547938868310776,
+          "fixed_90_10_blend_mean": 0.655672382644217
+        }
+      },
+      "clock_start": 1792779010.977141,
       "control_unit": "Exact METH01 first protected SINGLE component percut, not the whole V11/V16 ensemble; preserve distinct component vs complete-agent claims.",
       "fixed_formula": "0.9 * aligned METH01 control predictions/probabilities + 0.1 * aligned METH01 ExtraTrees predictions/probabilities on every one of the5 declared cuts.",
       "scope_clarified_before_outcome_consumption_epoch": 1792778047.7589145,
-      "full_refit_or_promotion": false
+      "full_refit_or_promotion": false,
+      "actual_exit_code": 0,
+      "exec_session": 33253,
+      "absolute_deadline": 1792779730.977141,
+      "source_packet": "research/method-expansion-next/cache-blend-r1",
+      "root_closure_sha256": "901f3c928d95d992800aef808ff70f84768a456bc23235e0ae63fd539fe159bf",
+      "decision": "Classification fixed blend passes both primary/support/ex-rarest component cuts: advance only to separately preregistered whole-agent/refit qualification. Regression rejects: two of three cuts worse, despite mean gain. Preserve strong controls."
     },
     {
       "id": "METH-04",
@@ -217,8 +236,8 @@
       "clock_start": null
     }
   ],
-  "next_action": "METH01 closed negative. Next fixed90/10 METH03 on independently verified saved caches; then existing linear_text METH02, source-review and fresh closure required.",
-  "new_experiments_started": 1,
+  "next_action": "METH03 closed class component positive/regression negative. Next METH02 existing linear_text contracts+component screen; separately prepare whole-agent class fixedblend qualification.",
+  "new_experiments_started": 2,
   "promotion": false,
   "official_score": null
 }

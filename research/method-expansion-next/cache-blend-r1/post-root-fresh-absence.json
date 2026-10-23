@@ -1,0 +1,36 @@
+{
+  "observed_unix": 1792779149.2547224,
+  "identities": [
+    {
+      "pid": 12116,
+      "create_time": 1792779016.427112
+    },
+    {
+      "pid": 16940,
+      "create_time": 1792779010.910646
+    },
+    {
+      "pid": 21564,
+      "create_time": 1792779010.892732
+    },
+    {
+      "pid": 24768,
+      "create_time": 1792779016.4095776
+    },
+    {
+      "pid": 14700,
+      "create_time": 1792779039.9733105
+    },
+    {
+      "pid": 11752,
+      "create_time": 1792779039.9575293
+    }
+  ],
+  "all_same_identities_absent": true,
+  "root_helper_actual_exit_code": 0,
+  "root_helper_actual_tool": "6731da",
+  "root_preparers_observation_tool": "4f8693",
+  "actual_parent_session": 33253,
+  "actual_parent_exit_code": 0,
+  "actual_parent_terminal_tool": "939863"
+}

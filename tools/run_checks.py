@@ -1,6 +1,6 @@
 """Run the complete offline suite sequentially with auditable counts and ownership."""
 from pathlib import Path
-import argparse,hashlib,json,os,re,subprocess,sys,time
+import argparse,hashlib,json,os,re,subprocess,sys,tempfile,time
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src'))
 from automl.infrastructure.atomic import atomic_json
@@ -30,15 +30,12 @@ def source_hashes():
     return {n:hashlib.sha256(b).hexdigest() for n,b in build_files().items()}
 
 
-def main():
-    parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output',type=Path,required=True)
-    args=parser.parse_args(); root=args.output.resolve(); root.mkdir(parents=True,exist_ok=False)
-    for name in ['tmp','mpl']: (root/name).mkdir()
+def run_checks(root,fixture_root):
+    """Keep real fixture trees shallow enough for Windows child processes."""
     before=source_hashes(); started=time.monotonic(); results=[]
     env={k:v for k,v in os.environ.items() if not any(s in k.upper() for s in ['KEY','TOKEN','SECRET','AUTH','PASSWORD','PROXY'])}
     env.update(AUTOML_THREADS='1',OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',
-               TMPDIR=str(root/'tmp'),MPLCONFIGDIR=str(root/'mpl'),PYTHONUTF8='1',PYTHONIOENCODING='utf-8')
+               TMPDIR=str(fixture_root),MPLCONFIGDIR=str(root/'mpl'),PYTHONUTF8='1',PYTHONIOENCODING='utf-8')
     for script,expected in CHECKS.items():
         log=root/(script+'.log'); tick=time.monotonic()
         with log.open('w') as stream:
@@ -60,10 +57,26 @@ def main():
         atomic_json(root/'progress.json',{'checks':results})
     result={'python':sys.version,'source_sha256':before,'source_unchanged':source_hashes()==before,
             'test_script_sha256':{s:hashlib.sha256((ROOT/'tests'/s).read_bytes()).hexdigest() for s in CHECKS},
+            'fixture_root':str(fixture_root),'fixture_path_policy':'Unique owned shallow workspace fixture root; original test assertions/counts unchanged',
             'checks':results,'unique_checks_passed':sum(r['observed_checks'] or 0 for r in results if r['passed']),
             'unique_checks_skipped':sum(r['skipped_checks'] for r in results),
             'seconds':round(time.monotonic()-started,3),'passed':all(r['passed'] for r in results)}
     result['passed']=result['passed'] and result['source_unchanged']
+    return result
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output',type=Path,required=True)
+    args=parser.parse_args(); root=args.output.resolve(); root.mkdir(parents=True,exist_ok=False)
+    (root/'mpl').mkdir()
+    # A gate's output path can already be long. Multi-target/reporting fixtures
+    # add nested directories, exceeding Windows MAX_PATH before any fit. Keep
+    # temporary fixtures local and unique, independently of log/output nesting.
+    fixture_parent=ROOT/'test-runs'/'t'; fixture_parent.mkdir(parents=True,exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='ck-',dir=fixture_parent) as fixture:
+        result=run_checks(root,Path(fixture))
+    result['fixture_cleanup_confirmed']=True
     atomic_json(root/'results.json',result)
     if not result['passed']: raise SystemExit(1)
 

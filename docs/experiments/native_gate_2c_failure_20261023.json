@@ -1,0 +1,92 @@
+{
+  "scope": "Actual2c technical gate and no-fit diagnosis; no component screens or promotion",
+  "archive_sha256": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0",
+  "queue_status": "technical_gate_failed",
+  "cleanup_confirmed": true,
+  "expected_checks": 451,
+  "scripts": 46,
+  "observed_checks": 451,
+  "unique_checks_passed_under_script_level_counting": 422,
+  "skipped_checks": 0,
+  "seconds": 225.859,
+  "failed_scripts": [
+    {
+      "script": "test_multitarget.py",
+      "status": 1,
+      "observed_checks": 13,
+      "expected_checks": 13
+    },
+    {
+      "script": "test_error_preparation.py",
+      "status": 1,
+      "observed_checks": 16,
+      "expected_checks": 16
+    }
+  ],
+  "cause": "Windows nested temporary fixture paths exceed directory/file path length limits before model workers",
+  "diagnostic": {
+    "model_fits": 0,
+    "api_calls": 0,
+    "comparison": [
+      {
+        "mode": "deep",
+        "fixture_root_length": 183,
+        "worker_callbacks": 0,
+        "children": [
+          {
+            "status": "error_preserve_checkpoint",
+            "exception_type": "FileNotFoundError",
+            "final_fit_status": null,
+            "trained": null
+          },
+          {
+            "status": "error_preserve_checkpoint",
+            "exception_type": "FileNotFoundError",
+            "final_fit_status": null,
+            "trained": null
+          }
+        ],
+        "exceptions": [
+          {
+            "type": "FileNotFoundError",
+            "errno": 2,
+            "winerror": 206,
+            "filename_length": 250
+          },
+          {
+            "type": "FileNotFoundError",
+            "errno": 2,
+            "winerror": 206,
+            "filename_length": 250
+          }
+        ]
+      },
+      {
+        "mode": "short",
+        "fixture_root_length": 106,
+        "worker_callbacks": 4,
+        "children": [
+          {
+            "status": "completed",
+            "exception_type": null,
+            "final_fit_status": "ok",
+            "trained": true
+          },
+          {
+            "status": "completed",
+            "exception_type": null,
+            "final_fit_status": "ok",
+            "trained": true
+          }
+        ],
+        "exceptions": []
+      }
+    ]
+  },
+  "repair": "Only tools/run_checks.py fixture location changed to a unique shallow workspace TemporaryDirectory; original451 assertions and zero-skip requirement retained",
+  "compiled_runtime_68_files_bitwise_equal_to_2c": true,
+  "new_full_source_unpacked_live_and_ml_gates": "pending",
+  "common_deadline_unix_unchanged": 1792734357.105974,
+  "default_promotion": false,
+  "official_submission": false
+}

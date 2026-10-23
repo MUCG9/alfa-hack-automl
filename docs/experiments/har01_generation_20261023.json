@@ -1,0 +1,153 @@
+{
+  "scope": "One real Qwen call per prompt mode and task on matched context; schema acceptance and novelty are distinct from ML quality",
+  "tasks": {
+    "regression": {
+      "modes": {
+        "baseline": {
+          "raw_candidates": 2,
+          "raw_supported_proposals": 2,
+          "distinct_candidates": 2,
+          "diagnostics": {
+            "status": "decoded",
+            "raw_candidates": 2,
+            "candidates": [
+              {
+                "proposal": 1,
+                "status": "supported"
+              },
+              {
+                "proposal": 2,
+                "status": "supported"
+              }
+            ]
+          },
+          "accepted_recipe_sha256": [
+            "b4aa0fe6e7030ef997bb7d6e1a31a9e4249b47b59b294aecbfdb95c35940608a",
+            "811a060056b27f809a9368dc2273b187e1f784fd2d36f7bd51da83b790e0ff4e"
+          ],
+          "call": {
+            "status": "ok",
+            "wall_seconds": 7.748,
+            "attempts": 1,
+            "usage_complete": true
+          },
+          "usage": {
+            "prompt_tokens": 9321,
+            "completion_tokens": 344,
+            "total_tokens": 9665
+          }
+        },
+        "staged": {
+          "raw_candidates": 2,
+          "raw_supported_proposals": 2,
+          "distinct_candidates": 2,
+          "diagnostics": {
+            "status": "decoded",
+            "raw_candidates": 2,
+            "candidates": [
+              {
+                "proposal": 1,
+                "status": "supported"
+              },
+              {
+                "proposal": 2,
+                "status": "supported"
+              }
+            ]
+          },
+          "accepted_recipe_sha256": [
+            "7d57bc82ffd6f17de9b632b3e6bbdb796a5bce42de1800dda5278bc1addd1edf",
+            "4fb3d1f9f74bacea1b1f095a7c0b3a78658f0f98b08ec4078da35d0010df2b18"
+          ],
+          "call": {
+            "status": "ok",
+            "wall_seconds": 7.423,
+            "attempts": 1,
+            "usage_complete": true
+          },
+          "usage": {
+            "prompt_tokens": 9477,
+            "completion_tokens": 359,
+            "total_tokens": 9836
+          }
+        }
+      },
+      "cross_mode_accepted_overlap": []
+    },
+    "classification": {
+      "modes": {
+        "baseline": {
+          "raw_candidates": 2,
+          "raw_supported_proposals": 1,
+          "distinct_candidates": 1,
+          "diagnostics": {
+            "status": "decoded",
+            "raw_candidates": 2,
+            "candidates": [
+              {
+                "proposal": 1,
+                "status": "supported"
+              },
+              {
+                "proposal": 2,
+                "status": "rejected",
+                "reason": "Feature views require unchanged features and noop data policy"
+              }
+            ]
+          },
+          "accepted_recipe_sha256": [
+            "a1730d3fc1a17802b7e9e8ccf7c5683e38086b433ddc0180ba4451057f9b157b"
+          ],
+          "call": {
+            "status": "ok",
+            "wall_seconds": 4.025,
+            "attempts": 1,
+            "usage_complete": true
+          },
+          "usage": {
+            "prompt_tokens": 7963,
+            "completion_tokens": 374,
+            "total_tokens": 8337
+          }
+        },
+        "staged": {
+          "raw_candidates": 2,
+          "raw_supported_proposals": 1,
+          "distinct_candidates": 1,
+          "diagnostics": {
+            "status": "decoded",
+            "raw_candidates": 2,
+            "candidates": [
+              {
+                "proposal": 1,
+                "status": "supported"
+              },
+              {
+                "proposal": 2,
+                "status": "rejected",
+                "reason": "Feature views require unchanged features and noop data policy"
+              }
+            ]
+          },
+          "accepted_recipe_sha256": [
+            "a1730d3fc1a17802b7e9e8ccf7c5683e38086b433ddc0180ba4451057f9b157b"
+          ],
+          "call": {
+            "status": "ok",
+            "wall_seconds": 4.928,
+            "attempts": 1,
+            "usage_complete": true
+          },
+          "usage": {
+            "prompt_tokens": 8119,
+            "completion_tokens": 374,
+            "total_tokens": 8493
+          }
+        }
+      },
+      "cross_mode_accepted_overlap": [
+        "a1730d3fc1a17802b7e9e8ccf7c5683e38086b433ddc0180ba4451057f9b157b"
+      ]
+    }
+  }
+}

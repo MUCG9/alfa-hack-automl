@@ -1,8 +1,8 @@
 # Qwen MVP и autoresearch: проверенные результаты и следующие решения
 
 Статус на промежуточном checkpoint23Oct: полный MVP завершён; независимые
-regression screens и classification FE-01 завершены. Classification HPO/HAR-01
-и отдельный FE-02 followup ещё выполняются/ожидают; их результатов здесь пока нет.
+regression screens и classification FE-01/HPO-01 завершены. Classification
+HAR-01 и отдельный FE-02 followup ещё выполняются/ожидают; их результатов здесь пока нет.
 Отдельный fixed BLEND-01 replay прошёл оба cuts; его grouped CV подготовлен,
 ещё не запущен. Replay не меняет qualified status.
 Лучший qualified полный агент остаётся V11/V16. Official uploads не делались.
@@ -83,16 +83,28 @@ predictions и дорогие model fits; включать FE/HPO только �
 |Regression TPE8|40.60751094989404|40.502667267123364|FAIL: один cut хуже, хотя mean лучше random|
 |Regression typed feature DSL|40.60751094989404|41.03555398191205|FAIL: все3cuts хуже|
 |Classification CatBoost top32|.6547938868310776|.654200887190105|FAIL: cut42 хуже, cut43 лучше|
+|Classification Random8|.6547938868310776|.6512720038256385|FAIL: оба cuts хуже|
+|Classification TPE8|.6547938868310776|.6470992370165256|FAIL: оба cuts хуже, mean хуже random|
 
-Classification HPO пока проверен на первом cut:8complete trials у каждого
-sampler, одинаковые inner partitions,5successful trials after startup. Inner
+Classification HPO COMPLETE:8complete trials у каждого sampler на каждом cut,
+все4studies/32objectives независимо verified, одинаковые inner partitions.
+У каждого TPE5successful trials after startup. На cut42 inner
 TPE .6298975660→.6443637404, но outer .6558634660→.6406114277; random outer
-.6521687684. Этот cut уже исключает advance по исходному all-cuts gate; второй
-cut ещё выполняется. В inner objective Worms имеет11validation groups, его
-F1 изменился .64→.69565; улучшения были также у других классов. Это повод
-исследовать устойчивость inner objective, но не доказательство причины loss:
-Analysis улучшился внутри и заметно ухудшился снаружи. Receipt:
+.6521687684. На cut43 оба метода тоже хуже control. В inner objective Worms
+имеет11validation groups, его F1 .64→.69565; улучшения были также у других
+классов. Это повод исследовать устойчивость inner objective, не доказательство
+причины loss: Analysis улучшился внутри и заметно ухудшился снаружи. Receipt:
 [class_hpo_inner_support_20261023.json](class_hpo_inner_support_20261023.json).
+
+HAR-01 classification generation: по2raw proposals у baseline/staged, по1valid.
+Второй у обоих отклонён из-за `feature_views` с изменёнными features. Оба valid
+recipes идентичны по signature: тот же two-view control с class_weight_power1.0.
+[Generation receipt](har01_generation_20261023.json). Промпты не дали разных
+исполнимых идей в этом matched случае. В текущем протоколе ML fits повторяются;
+будущий cache по полному source/input/recipe/split fingerprint мог бы избежать
+повторного обучения при одинаковом recipe. Пока это гипотеза экономии времени,
+не измеренный scheduler gain. Feature-view/typed-row-feature bridge должен
+сначала пройти zero-feature parity, затем отдельный feature bundle screen.
 
 HAR-01 regression: baseline и staged получили одинаковый measured feedback,
 по два distinct valid предложения. Ни один из четырёх рецептов не улучшил все

@@ -1,0 +1,23 @@
+{
+  "status": "no_blocker_in_declared_source_only_scope",
+  "bindings": {
+    "handoff_sha256": "524e0c364e118ea59b7838bd47faefe8698c5de5f38e34a96f8beef225f66352",
+    "driver_sha256": "e5e2d7a6b28d3de57d8c03eeca08171761c24f945d1f9d413368ac47993cc79f",
+    "protocol_sha256": "7f9c37fddcb58ab38a575592495bc6873cb81cd7e15483be9769985cac383436",
+    "root_closer_sha256": "1c698d1a5aa4270b0f9e8baacff2c8224c9b5efb90f639b47587987604ece14d",
+    "preexisting_registration_sha256": "9aab605b11d8d7abf1f060f7af33eea66616a6683e486d5e47aa994733906ebd",
+    "required_METH02b_root_sha256": "fe00067cb099fdd4fdcd036861f5c3d55cd1c9ee0ee75bcddf488cfc035fe7f7",
+    "original_failed_root_sha256": "220e7c93f56eaa4a9c2e09ce70aa3ba406d864686cc68520bf69eace4ed75361"
+  },
+  "confirmed": [
+    "The adaptation retains the reviewed dd9240 fixed-blend logic. It uses the preregistered same protected SINGLE0.9 plus fixed linear_text0.1 on regression0/1/2 and classification42/43, with no weight/cut selection or quality-based exclusion of ordinary negative parents.",
+    "bound_method_audit83-103 authenticates the root-certified audit ref against actual METH02b manifest/plan hashes, manual R4 source, pinned recovery auditor and original parent clock. Original failure history107-118 requires matching campaign/manifest/root references, pinned original failed campaign, null original session and exit1; the historical FAIL is explicitly carried forward rather than upgraded.",
+    "The child verifies ten exact ordered component jobs using the pinned recovery schema, unchanged runtime archive, pristine source/copy bytes, five split hashes, protected first SINGLE and fixed recipes. Classification adds only logistic/text_C1/class_weight_power0.5. Saved supervisors, row/class order and complete pre-label core seals remain mandatory; missing/failed/unqualified parents remain null and cannot yield complete procedure success.",
+    "Manual R4 RMSE, all-class F1, forward/group diagnostics, supported-class and ex-rarest gates, exact0.9/0.1 probability/value combination, CSV/NPZ roundtrip and final generated-artifact hashes are unchanged. All five cuts are retained; kind means require every corresponding cut. Validation-cache evidence does not qualify a whole agent or a fresh full-data refit.",
+    "The future single720-second envelope remains90 setup+570 evaluator parent including540 child/30 cleanup+60 final. Existing supervisor receives solver_seconds=None, strips API environment and enforces the same identity/resource/cleanup guards. Root proof/HISTORY known+preparer unions are freshly checked before/under the lock and after the child.",
+    "The copied closer differs only in isolated meth03l scope/outputs, exact parent root reference and optional actual session=None. It preserves original720 clock, actual exit evidence, immutable/generated/supervisor rehashes, technical-versus-quality separation, fresh known identity absence and the requirement for its own actual exit plus subsequent fresh preparer absence."
+  ],
+  "performed": {"candidate_imports": 0,"tests": 0,"fits": 0,"API_calls": 0,"outcome_values_read_or_scored": false,"clock_assigned": false,"source_STATE_Git_edits": false},
+  "boundary": "Exact-source review only. Actual launch/publication/fresh ownership, future no-fit audit completion, actual parent/closer exits and terminal closure remain root checkpoints. No independent numeric result or promotion is claimed here.",
+  "promotion": false
+}

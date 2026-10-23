@@ -1,0 +1,33 @@
+{
+  "status": "source_only_generation_plan_not_execution_ready",
+  "experiment": "METH-04",
+  "bindings": {
+    "historical_overlay_handoff_sha256": "dea905de3616df802c4083aad8ce0e928c680f83178271ea5a2a7a265b138971",
+    "method_skills_source_sha256": "6b2d45eb5f2ad5cac869889733278444e73d6ca67baab5e0a16d167b319040d9",
+    "overlay_runner_sha256": "a5636b50e6c76e0bcc996db9aadd3304871b636e20d94f970501bfc72d82b1e3",
+    "pure_test_source_sha256": "823c09f5ddfe0db3d55185f08a2a1ea4bf7ca79b28e25caf91a039d4e55c5f1d",
+    "actual_six_contract_result_sha256": "b3ce6ddaec75d89ee1c0262d122a66447fb2a1cd737417b8527d32103829be55",
+    "gateway_sha256": "31e45ff7c44e26a1451089c535ba9090aea9d6d35f7ac810bc157c5bda7e2aba",
+    "full_train_profile_source_sha256": "8d5ee8225e7be13f9bd99c257eeeb6d98094d16476b1f69a1e3221ea340a9e44",
+    "CP1_champion_runner_sha256": "4807ba7609009e24899fcc5213fe44db4e2f6ad3d63e57ed2af3e20acdedad2f",
+    "reusable_bounded_messages_source_sha256": "1f6b27debfdf2609e03641beae8235ad1a034bd97450b61156bd991cc588a93c",
+    "flat_builder_sha256": "8bda307675a952b2e4dc9d53ea8d738be05f8ca15a0e85d79c566e42cf95a6b6"
+  },
+  "existing_evidence": "Six pure helper contracts actually passed with zero fits/API, exit0 and clean owned closure. They cover bounded retrieval and context preservation, not runner integration, standalone release, Qwen generation or ML gain. The cards correctly expose existing ExtraTrees and no-text Ridge/LogisticRegression through actual registry engine names; they do not add portfolio slots or make unimplemented tools ready.",
+  "blocking_readiness_gaps": [
+    "Rebase only the one CLI flag and two request-site injections onto the strong CP1 source. Replacing its runner with the old a5636b overlay would lose the later champion policy. Preserve protected controls, regression champion, first-five seeds, HPO anchor, models, splits and caps identically in OFF/ON. The flat builder auto-discovers Python modules; verify the new module is included and collision-free rather than inventing a new module-map framework.",
+    "Build the SAME new trusted fitting-only context for both arms. task_understanding/service.py183-190 computes raw T7 profile feature statistics, target_summary and class_counts on full train; runner75-97 forwards that profile. Existing saved T7 initial/planner profiles therefore cannot be relabelled fitting-only or blind. Historical artifacts remain untouched. Static dictionary/spec/source/input/split hashes may be reused, but fit-row-derived summaries require explicit train/split/ordered fitting-row provenance. No eligible fitting-only snapshot is certified by this source review.",
+    "The8192-byte skill packet limit does not bound the entire request. Freeze and preflight BOTH complete messages before either API call, including the exact SYSTEM+STAGED text and gateway user JSON. Apply the same finite-standard-JSON shape/depth, serialization time/IO/RSS and65536 UTF8 message cap to both, plus8192 packet/6-card cap. Existing bounded_messages can be reused. Never silently truncate one arm or change its base context."
+  ],
+  "generation600": {
+    "unit": "One predeclared task/context OFF/ON pair, in fixed order; the registered one logical call each does not authorize an extra per-task matrix.",
+    "context": "Freeze one fitting-only context and pre-call remaining/reserve snapshot; removing only method_skills from ON must reproduce OFF. No best-of-past-outcomes selection, extra feedback, raw T7 target statistics or holdout labels. Context construction, input reading, hashes, both preflights and source/config capture consume the SAME new600-second clock; no precomputed label statistics outside it are reported as free preparation.",
+    "envelopes": "Reuse two sequential150-second request parents, each containing one120-second logical gateway request and cleanup. Reserve60 seconds for terminal closure; preparation/import/parse/audit/export consume the remaining common allocation. One thread and512MiB owned-parent/tree cap are sufficient prospective bounds, not measured completion promises. No extra requests, retries outside the gateway, fits or worker launches.",
+    "identity": "Same pinned gateway/source, exact model string and observed response model, endpoint identity hash, temperature0.4, response_format and max_output8192. Explicit reasoning=off in both. The gateway disables SDK retries but permits at most3 HTTP attempts inside one120-second logical call; record compatibility fallback and backend reasoning uncertainty honestly.",
+    "receipts": "Save raw response and call receipt before parsing, complete-message hashes/bytes, source/context/fitting-row/input/split/config hashes, actual logical/HTTP attempt counts, tokens/time/status/cleanup and all candidate rows. Admit at most2 normalized unique trusted recipes per arm. Preserve malformed/unsupported/duplicate/empty/timeout results and unknown retry usage as explicit failures/null, never zero metrics.8192 is per HTTP attempt, not an input or total logical-token bound.",
+    "readout": "Proposal validity, tool appropriateness, duplicate/unsupported rate and generation cost only. This single pair cannot establish general skills or reasoning superiority and computes no ML objective."
+  },
+  "later_whole_pair21600": "Only after a separately reviewed generation result and prospective full-agent protocol: same strong complete baseline/source in both arms, only method_skills OFF/ON. Equal10800-second all-inclusive arm envelopes must contain their allocated setup/tasks/HPO/confirmation/refit/CSV/audit/cleanup; do not add outer overhead beyond common21600 or silently treat10800 as solver-only. Both tasks, selected primary/confirmation metrics, complete fresh refit CSV/probability/ID/source/ownership evidence and retained V11/V16 floors remain required. Valid generated recipes alone are not ML gain or promotion.",
+  "performed": {"runtime_imports": 0,"tests": 0,"fits": 0,"API_calls": 0,"active_METH02b_artifact_reads": false,"T7_context_or_prediction_values_scored": false,"clock_assigned": false,"source_STATE_Git_edits": false},
+  "promotion": false
+}

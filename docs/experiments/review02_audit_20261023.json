@@ -1,0 +1,26 @@
+{
+  "scope": "Two sequential Qwen review-interface trials, not an isolated A/B or ML quality improvement",
+  "same_frozen_facts": true,
+  "same_skill_sha256": true,
+  "review01": {
+    "http_status": "ok",
+    "wall_seconds": 6.712,
+    "tokens": 16481,
+    "envelope_accepted": true,
+    "manual_factual_correction_required": true
+  },
+  "review02": {
+    "http_status": "ok",
+    "wall_seconds": 5.691,
+    "tokens": 14158,
+    "prompt_tokens": 14155,
+    "completion_tokens": 3,
+    "returned_empty_json": true,
+    "schema_accepted": false,
+    "reason": "Invalid review envelope"
+  },
+  "gateway_inspection": "Existing gateway uses JSON-object mode, without a restrictive response schema. Empty output cause unknown; one response cannot identify a mechanism.",
+  "automatic_actions_applied": false,
+  "model_fits": 0,
+  "interpretation": "No improvement in usable review established. Tool-derived gates and typed validation are protection against invalid output, not proof of model reliability. No automatic retry beyond the one-call protocol."
+}

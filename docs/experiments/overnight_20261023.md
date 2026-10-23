@@ -163,3 +163,16 @@ REVIEW-02 preregistered: те же frozen facts/skill, явные contracts и e
 код вычисляет gates; ответы только гипотезы, не automatic actions. Три no-fit
 проверки ID/control/gate/resource bounds PASS. Это interface iteration, не
 изолированный A/B или ML gain.
+
+
+REVIEW-02 выполнен live на тех же frozen фактах и том же skillSHA:5.691s,
+14158tokens (14155prompt/3completion),1attempt. HTTP ok, но returned `{}`;
+схема отклонена, без retry/actions/fits. Причина пустого ответа неизвестна:
+общий gateway использует json_object без ограничительной schema. Ни улучшение
+review, ни ML gain не установлены. Аудит:review02_audit_20261023.json.
+В skill добавлен проверенный operational lesson: локальные ссылки не загружаются
+plain API, critical contracts нужны в контексте, числовые gates/валидация — код.
+Installed copy синхронизирована с guard против чужих изменений; validation PASS.
+FE-01 classification также COMPLETE: .6547938868310776→.654200887190105 mean
+сильного SINGLE control/selector. Cut42 хуже (.655863→.650262),cut43 лучше
+(.653724→.658140); paired gate FAIL. Это не mean полного V11 ансамбля.

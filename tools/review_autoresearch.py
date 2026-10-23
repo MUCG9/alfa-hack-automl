@@ -127,7 +127,14 @@ falsifiable and change one factor at a time. Research skill:\n'''+skill_payload.
         raise RuntimeError('Research reviewer unavailable; inspect redacted receipt')
     document = json.loads(content)
     if args.mode == 'evidence_cards':
-        validate_review(document, context)
+        try:
+            validate_review(document, context)
+        except ValueError as exc:
+            atomic_json(output/'validation.json', {'status': 'rejected', 'reason': str(exc),
+                        'automatic_application': False, 'model_fits': 0})
+            raise
+        atomic_json(output/'validation.json', {'status': 'accepted', 'evidence_ids_verified': True,
+                    'automatic_application': False, 'model_fits': 0})
         atomic_json(output/'analysis.json', document)
         print(json.dumps({'status': 'review_generated', 'hypotheses': len(document['hypotheses']),
                           'next_experiments': len(document['next_experiments']),

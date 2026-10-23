@@ -1,0 +1,36 @@
+{
+  "status": "prepared_independent_saved_artifact_verifier",
+  "execution_manifest_sha256": "a9cabbff77f0cc795c12ee0cb9afed71f330cdd4c803536ea0be3a2ce73a7e94",
+  "original_absolute_deadline_unix": 1792735776.7207654,
+  "verifier_source_sha256": "161a55202d7824f21f954d66455e8449de4056d24fb5912c79a316ac7dca6355",
+  "baseline_reports": {
+    "regression": {
+      "v16-mean1": {
+        "path": "alfa-hack-automl/release/v16-mean1/regression-report.json",
+        "sha256": "a431c5de3f02ae362ffb8d083f9b075af9c8020d52c0adafa72c24d575bee309"
+      }
+    },
+    "classification": {
+      "v11-featureviews1": {
+        "path": "alfa-hack-automl/release/v11-featureviews1/classification-report.json",
+        "sha256": "4ede975b795192dabd26b20b164c2c7351d41a73b2f36e00f30ff322fbd9fab5"
+      },
+      "v16-mean1": {
+        "path": "alfa-hack-automl/release/v16-mean1/classification-report.json",
+        "sha256": "2905c32aa98270fb5b76f6ca1a4e664c0e76f7b399772864b51d0baf8e08a606"
+      }
+    }
+  },
+  "full_campaign_execution_requires_terminal_cleanup": true,
+  "task_only_execution_requires_that_task_terminal_cleanup": true,
+  "model_fits": 0,
+  "api_calls": 0,
+  "tests_run": 0,
+  "promotion": false,
+  "previous_plan": {
+    "path": "tm1-independent-verification-plan-r2.json",
+    "sha256": "5c2e428ecf641c3d5840a4b735fb018cddd29af626c88d104268f58b60bd4062"
+  },
+  "schema_correction": "Top-level persisted job checked directly; recursive child recipes dispatched from that verified parent are checked against expected child recipe, actual saved result and raw mixtures. Frozen recursive worker does not persist child job files.",
+  "api_ledger_permission_policy": "PermissionError is explicit null independent API evidence and prevents procedure certification; parent-reported usage is separately labelled, no ACL query/bypass."
+}

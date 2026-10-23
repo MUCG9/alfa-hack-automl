@@ -1,0 +1,25 @@
+{
+  "status": "reviewed_source_only_not_executed",
+  "files_sha256": {
+    "close_true_mvp_owned.py": "9e8336f8fe4948cd9b8efe47bd16e88dd4b073c36fe7564c65176ad48bc94c99",
+    "run_tm1_classification_audit.py": "c03c2969aac665abfc9eb065d2bc13ca3e8985a61fb963909dd352b71f38dcc9",
+    "finalize_true_mvp_tm1.py": "a7f5e75f5df2380e23c8d38857e3a7e703a24587beea9dbc536e54f837e3d6a9",
+    "verify_true_mvp_tm1.py": "161a55202d7824f21f954d66455e8449de4056d24fb5912c79a316ac7dca6355",
+    "tm1-independent-verification-plan-r3.json": "662b348fb2b4f04a0ea538615804f7f5e0d8a3ed5c7f8343c623ceddc3093f4c",
+    "tm1-terminal-helpers-independent-review-r2.json": "cfd35b9a28cd612a1d77f041226852fca115838a57a7b2053b8708102735d5cf"
+  },
+  "root_source_reviewed": true,
+  "scope": "After actual tm1 terminal exec/cleanup, classify-only saved-artifact audit then preserved regression reuse after ordinary artifact/source/deployed input rehash. No retry of known-denied regression ledger.",
+  "classification_audit_caps": {
+    "seconds": 300,
+    "memory_MiB": 1024,
+    "threads": 1
+  },
+  "independent_guard_and_summary_review": "cfd35b9a28cd612a1d77f041226852fca115838a57a7b2053b8708102735d5cf",
+  "closure_helper_review": "Root read-only review of frozen owner/source/identity/lock requirements; actual launcher terminal field names must be checked before execution.",
+  "helpers_executed": false,
+  "model_fits": 0,
+  "API_calls": 0,
+  "launch_authorized": false,
+  "promotion": false
+}

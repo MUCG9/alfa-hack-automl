@@ -5,12 +5,16 @@ create and execute the next, and implement considered bug fixes/ideas. This
 supersedes the historical completed-checkpoint/no-new-research stops below.
 Use bounded, preregistered sequential rounds and real organizer Qwen calls.
 Current strong control is qualified PIPE-02, not V16 or a single learner.
-Read docs/experiments/round01_protocol_20261023.md before the next round.
+Read docs/experiments/autoresearch_rounds_20261023.md and actual round receipts.
+ROUND01/02 rejected; ROUND03 narrow dev-cache parity/cost PASS; ROUND04 is ACTIVE
+PID113079/create_time1792735955.46, candidateea0677c. No concurrent fits or edits
+to its frozen canonical source/listed harness. Inspect identity/lock before work.
 Preserve the immutable verified submission archive while testing dev-only tools.
 ONE improved official upload remains pending browser unlock; no lock bypass,
 duplicate upload, extra Codex agents, paid resources, force push or main merge.
-Local commits remain authorized. Latest verified public SHA is2c4bf16; subsequent
-local commits have not been pushed because temporary Git authentication expired.
+Local commits remain authorized. Latest verified public SHA isb38ef3e; later
+commits remain local until next verified push. Temporary private Git auth worked;
+never expose or commit credentials. Main remains unchanged.
 
 # New submission request,23October2026
 

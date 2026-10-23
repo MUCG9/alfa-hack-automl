@@ -1,0 +1,21 @@
+{
+  "source_gate": {
+    "passed": true,
+    "source_unchanged": true,
+    "unique_checks": 426,
+    "seconds": 214.39,
+    "receipt_sha256": "eea98ce386447cd4d3bf475f23d53e00c0f4245b3d1f0dd51baffcf0f9b1345c"
+  },
+  "accepted_archive": {
+    "path": "release/solution-long01-submit2.zip",
+    "sha256": "364f49f62616fc9bddc0d1eeab1146eabfb27dd4ed10a595c88bab29b07d0a7a",
+    "files": 55,
+    "all_current_profile_bytes_match": true,
+    "submission_receipt_sha256": "57055c97f3883ce52f3946ccfa5bae4ffcf898df324f6f5910c8114e8940ce31"
+  },
+  "requirements_sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+  "optional_checks_scope": "Earlier separate exact-pin Torch7,Optuna7,LAMA6 fixtures; not added to426 count",
+  "live_assistants_comparison": "blocked_current_private_configuration_absent",
+  "additional_uploads": 0,
+  "new_quality_promotion": false
+}

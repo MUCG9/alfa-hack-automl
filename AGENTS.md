@@ -1,5 +1,13 @@
 # Development instructions — current checkpoint, 22 October 2026
 
+FINALfinitecampaign checkpoint:read docs/experiments/FINITE_PLAN_results_20261023.md
+and FINITE_PLAN_final_gate_20261023.json FIRST. All426sourcechecksPASS/unchanged,
+accepted55-fileZIP unchanged. BASE/ERRclosed;SEL/HPO/EMB/LAMAdiscarded/OFF.
+AGENT-01 implemented16offlinechecksPASS/defaultOFF;liveequal-budgetcomparison
+BLOCKEDabsentcurrentprivateAPIconfiguration. Noownedfits/suitesremain. Do not
+restart historicalACTIVEjobs or inventnewcampaigns. Noadditionaluploadsauthorized.
+Finite local plancomplete; furtherlivecomparisonrequirescaptainconfiguration.
+
 LAMA-01 completed/DISCARDED:controller30382 exit0,4casesfullrefit/export/sourcePASS,
 fixedmixes failbothcutgate;defaultOFF,noCV/repeat. Latest LAMA-01_progress/results.
 Noactiveownedfits. Last finite stepAGENT-01 offline apphelper contracts;live

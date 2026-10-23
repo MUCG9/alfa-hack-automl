@@ -1,0 +1,229 @@
+{
+  "schema": 1,
+  "original_result_preserved": "7f4cdec88fc2b82e80779e3b0ab27709f6f75101",
+  "original_status": "blocked",
+  "original_claim_sha": "88316062feadfef26c2da8543603400a4646e074",
+  "first_failure": {
+    "stage": "pure preflight require_pins distribution metadata",
+    "code": "PackageNotFoundError",
+    "operation": "importlib.metadata.version(scipy)",
+    "message": "No package metadata was found for scipy",
+    "observed_cause": "Launcher resolved venv Python symlink to base interpreter, losing venv distribution context.",
+    "repair_scope": "Retained original clock; corrected launcher interpreter only; preserved failed receipt.",
+    "exit_code": 1,
+    "raw_log_sha256": "6595fc5915dd0fa170e51666f5132c0b2c052e237e6f7b05f82ea908da25db5d"
+  },
+  "remaining_blocker": {
+    "code": "exact_npz_byte_mismatch",
+    "stage": "fixed-cut serialized-byte admission before any model fit",
+    "all_five_raw_gates_fail": true,
+    "cuts": [
+      {
+        "cut": 0,
+        "diagnostic": {
+          "array_payload_modified": false,
+          "changed_in_memory_bytes": 2,
+          "diagnostic_is_NOT_gate_acceptance": true,
+          "expected_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+          "file_modified": false,
+          "members": [
+            {
+              "crc": 932870514,
+              "creator_system": 3,
+              "name": "train.npy",
+              "uncompressed_member_sha256": "241777fc9bed59aeab4d9ec2d85c024ca6c09b3b93c089d49ae80dc59d5306c0"
+            },
+            {
+              "crc": 2441887328,
+              "creator_system": 3,
+              "name": "validation.npy",
+              "uncompressed_member_sha256": "fef6de0f735e4620437db8c45219e9d8f23d19d7b4eb5b83f4082de5e1a06c2d"
+            }
+          ],
+          "raw_bytes_match": false,
+          "raw_sha256": "cb5cc91326bbe0c4144db3b7bd47bdbb0122cde4aeb32e2597f820c2834549e6",
+          "windows_creator_only_diagnostic_matches": true,
+          "windows_creator_only_diagnostic_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84"
+        },
+        "kind": "regression",
+        "method": "forward_observation_period",
+        "npz_sha256": "cb5cc91326bbe0c4144db3b7bd47bdbb0122cde4aeb32e2597f820c2834549e6",
+        "ordered_indices_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+        "raw_bytes_match": false,
+        "train_rows": 35000,
+        "validation_rows": 18308
+      },
+      {
+        "cut": 1,
+        "diagnostic": {
+          "array_payload_modified": false,
+          "changed_in_memory_bytes": 2,
+          "diagnostic_is_NOT_gate_acceptance": true,
+          "expected_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+          "file_modified": false,
+          "members": [
+            {
+              "crc": 850384669,
+              "creator_system": 3,
+              "name": "train.npy",
+              "uncompressed_member_sha256": "e10f62032776e25400257716fded23e3fa2dc520e9736b5c059f61e66c15e26b"
+            },
+            {
+              "crc": 3482042123,
+              "creator_system": 3,
+              "name": "validation.npy",
+              "uncompressed_member_sha256": "f71dd72e71d16631e5e28d02bb48f22f5be75252f913040575bb6fd5edb1cb49"
+            }
+          ],
+          "raw_bytes_match": false,
+          "raw_sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
+          "windows_creator_only_diagnostic_matches": true,
+          "windows_creator_only_diagnostic_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b"
+        },
+        "kind": "regression",
+        "method": "forward_observation_period",
+        "npz_sha256": "b27c0db950a9bb9577c50c6c5bfd13fe85665727ed3e220d8cb8de5f52728a9a",
+        "ordered_indices_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+        "raw_bytes_match": false,
+        "train_rows": 22054,
+        "validation_rows": 12946
+      },
+      {
+        "cut": 2,
+        "diagnostic": {
+          "array_payload_modified": false,
+          "changed_in_memory_bytes": 2,
+          "diagnostic_is_NOT_gate_acceptance": true,
+          "expected_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc",
+          "file_modified": false,
+          "members": [
+            {
+              "crc": 1637904655,
+              "creator_system": 3,
+              "name": "train.npy",
+              "uncompressed_member_sha256": "8436e9e5f6f06ed243fdcdf4e4a5ecb6eb9a78ae0f82b4800ea66e5bddd74344"
+            },
+            {
+              "crc": 3199601606,
+              "creator_system": 3,
+              "name": "validation.npy",
+              "uncompressed_member_sha256": "81d3667f1eca187d157a0fc43f3a57996656521c58eee4a62c69e078b98e5665"
+            }
+          ],
+          "raw_bytes_match": false,
+          "raw_sha256": "a42ef4152b4dae2627ab1a8ab191600aae1c1337390b48d315b52d6419c2016e",
+          "windows_creator_only_diagnostic_matches": true,
+          "windows_creator_only_diagnostic_sha256": "60ccdf913bfda8c1d7feaed8cd18c104d785caa2a40b8c5372f447d179a53fcc"
+        },
+        "kind": "regression",
+        "method": "forward_observation_period",
+        "npz_sha256": "a42ef4152b4dae2627ab1a8ab191600aae1c1337390b48d315b52d6419c2016e",
+        "ordered_indices_sha256": "c30d5cffda6b60f0e70cb67c12d1bb6ae776ee764c3c39480a255ecb715eed89",
+        "raw_bytes_match": false,
+        "train_rows": 11175,
+        "validation_rows": 10879
+      },
+      {
+        "cut": 42,
+        "diagnostic": {
+          "array_payload_modified": false,
+          "changed_in_memory_bytes": 2,
+          "diagnostic_is_NOT_gate_acceptance": true,
+          "expected_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+          "file_modified": false,
+          "members": [
+            {
+              "crc": 3522671985,
+              "creator_system": 3,
+              "name": "train.npy",
+              "uncompressed_member_sha256": "90a588bda5d6f390975ce8a63ae97a7dd5a958ca269c9f3faf3fd610de392fdb"
+            },
+            {
+              "crc": 3375725508,
+              "creator_system": 3,
+              "name": "validation.npy",
+              "uncompressed_member_sha256": "db0f0c58337804e5ae800b7ff5b7fe990a57c3a4eb45c05c88d644bc44489d74"
+            }
+          ],
+          "raw_bytes_match": false,
+          "raw_sha256": "0daf20f2020a795fa0503deab309959953d814821be7792d53f26e1e467829f7",
+          "windows_creator_only_diagnostic_matches": false,
+          "windows_creator_only_diagnostic_sha256": "796e00d7945a620a1448c4be883c0e146d054c379fe218453e591c2469f4573a"
+        },
+        "kind": "classification",
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "npz_sha256": "0daf20f2020a795fa0503deab309959953d814821be7792d53f26e1e467829f7",
+        "ordered_indices_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+        "raw_bytes_match": false,
+        "train_rows": 70529,
+        "validation_rows": 17141
+      },
+      {
+        "cut": 43,
+        "diagnostic": {
+          "array_payload_modified": false,
+          "changed_in_memory_bytes": 2,
+          "diagnostic_is_NOT_gate_acceptance": true,
+          "expected_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+          "file_modified": false,
+          "members": [
+            {
+              "crc": 4226608759,
+              "creator_system": 3,
+              "name": "train.npy",
+              "uncompressed_member_sha256": "6701d7b2f6e17b1a96df20de8df17c9929fef7d6e25360a5854e7c7bd6228746"
+            },
+            {
+              "crc": 1020352894,
+              "creator_system": 3,
+              "name": "validation.npy",
+              "uncompressed_member_sha256": "a11741eb5674a7df38db856117d88319c7d74b8e56a209ca6bf4531b54d8e361"
+            }
+          ],
+          "raw_bytes_match": false,
+          "raw_sha256": "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a",
+          "windows_creator_only_diagnostic_matches": false,
+          "windows_creator_only_diagnostic_sha256": "1b3295ae658d9af746d98aca1dfbc787b66ea80e3b2bda054f1911917e3b91d5"
+        },
+        "kind": "classification",
+        "method": "stratified_group_feature_hash_5fold_fold0",
+        "npz_sha256": "990ec5f3f9e2e4e2891ef6242edd485276a3976b75bc7bca286ed309d9c5d61a",
+        "ordered_indices_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+        "raw_bytes_match": false,
+        "train_rows": 70321,
+        "validation_rows": 17349
+      }
+    ],
+    "regression_observed": "Three expected SHA reproduced by in-memory creator-system-only ZIP diagnostic; saved files untouched and raw gate still fails.",
+    "classification_observed": "Both expected SHA still fail creator-only diagnostic. Array equivalence has NOT been established.",
+    "classification_possible_causes": [
+      "Host dtype/serialization differences",
+      "Grouping/hash or split payload differences"
+    ],
+    "possible_causes_are_not_proven": true,
+    "normalization_accepted": false
+  },
+  "secondary_probe": {
+    "code": "UnicodeEncodeError",
+    "stage": "pure joblib loky resource tracker ASCII encoding of Unicode temp path",
+    "secondary_code": "ChildProcessError",
+    "linux_observed": true,
+    "native_windows_tested": false,
+    "process_local_ascii_probe": "completed",
+    "exit_code": 0,
+    "cleanup_confirmed": true,
+    "source_unchanged": true,
+    "receipt_hash": "e259704452763bb08f83c28dc32b574163ef45b16851f6695d68591a7b8b9b21"
+  },
+  "not_observed_failures": [
+    "Windows PowerRequestGuard import failure: not imported",
+    "discover called with string: not done",
+    "offline model command: not run",
+    "missing original public input: all ten verified"
+  ],
+  "metrics": {
+    "rmse": null,
+    "macro_f1": null
+  },
+  "no_existing_failed_job_reclassified": true
+}

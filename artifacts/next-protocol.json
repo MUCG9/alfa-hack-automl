@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "proposal_only_not_authorization": true,
+  "one_changed_factor": "Cross-host fixed-cut identity contract only; preserve original model/source/control and original five partitions.",
+  "strong_control": "Unchanged protected-single-controls.json, no parameter/blend/feature changes.",
+  "required_primary_publication": [
+    "Publish exact original ordered array dtype, shape, byte order, payload SHA and uncompressed NPY member SHA for all five saved cuts.",
+    "Resolve class42/class43 disagreement before approving fits; do not use regression ZIP explanation as classification proof.",
+    "If a portable identity contract is chosen, independently review and issue a new immutable source-only READY job; preserve original full-NPZ failure.",
+    "Only later issue separate bounded job with completed same-worker source dependency and primary approval tied to result SHA."
+  ],
+  "linux_preparation": [
+    "Keep existing venv executable path without resolving symlink.",
+    "Load source bundle/queue from pinned dispatch, never claim tree.",
+    "Keep each approved task in isolated task directory with only its own four approved CSVs and pathlib.Path(task.md).",
+    "Use process-local ASCII temp before any joblib import; sanitize provider variables in descendants.",
+    "Use Linux wall/monotonic deadline, sampled RSS and owned PID/create_time cleanup, never Windows PowerRequestGuard.",
+    "Never run --offline as a source-only/no-fit test."
+  ],
+  "existing_exact_critical_versions": {
+    "numpy": {
+      "required": "1.26.4",
+      "installed": "1.26.4",
+      "exact": true
+    },
+    "pandas": {
+      "required": "2.2.3",
+      "installed": "2.2.3",
+      "exact": true
+    },
+    "scipy": {
+      "required": "1.12.0",
+      "installed": "1.12.0",
+      "exact": true
+    },
+    "scikit-learn": {
+      "required": "1.5.2",
+      "installed": "1.5.2",
+      "exact": true
+    },
+    "joblib": {
+      "required": "1.4.2",
+      "installed": "1.4.2",
+      "exact": true
+    },
+    "psutil": {
+      "required": "6.1.1",
+      "installed": "6.1.1",
+      "exact": true
+    },
+    "lightgbm": {
+      "required": "4.6.0",
+      "installed": "4.6.0",
+      "exact": true
+    }
+  },
+  "prospective_source_caps": {
+    "wall_seconds": 900,
+    "cpu_threads": 1,
+    "worker_memory_mib": 1024,
+    "whole_memory_mib": 1536,
+    "max_fits": 0,
+    "max_api_calls": 0
+  },
+  "tests_required_before_any_fit": [
+    "All original source/input hashes",
+    "All five original ordered split identities",
+    "No-fit ASCII temp probe",
+    "Original-clock no-reset and owned-child cleanup",
+    "Independent metric auditing on declared slices"
+  ],
+  "keep_discard": "Keep only a fully matched, independently reviewed portable source contract. Any unresolved cut mismatch remains ml_ready=false, metrics null. No implicit retry or model admission.",
+  "later_model_budget": "Not allocated by this diagnostic job; separately predeclare reserve, actual nested-fit cap, CPU/RSS and matched-control budget."
+}

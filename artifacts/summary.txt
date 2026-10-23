@@ -1,0 +1,11 @@
+Linux diagnosis completed with negative ML readiness; not a model success.
+Dispatch: 952b050d8df049374e405f7cf09d801bbc26b4a6
+Seen notices: nav-20261024-01; research-20261024-02; platform-20261024-03.
+Original remote-port-01 result/status and claim clock preserved; no fits or API in this job.
+Initial actual failure: preflight metadata lookup for scipy on accidentally resolved base Python; launcher corrected, failure retained.
+Current blocker: all five raw saved NPZ byte hashes fail. Regression3 explained by archive creator-system metadata only; classification2 remains unexplained.
+Previously completed source-only diagnostics reused; no new discovery, split generation, joblib workers or contract suite.
+Current checks: five pinned source refs, archive and all70 flat files, ten approved input byte hashes, original process absence, installed metadata, AST/entrypoints.
+Claim tree contains only job/claim/prompt, not model sources. Linux flat resource handling confirmed by inspection; Windows supervisor not imported.
+Need primary original ordered-array/NPY fingerprints and a separately reviewed immutable source job before any later ML admission.
+No package installation, global setting changes, release promotion or official submission.

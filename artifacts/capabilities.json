@@ -1,0 +1,317 @@
+{
+  "schema": 1,
+  "ml_ready": false,
+  "diagnosis_completed": true,
+  "system": "Linux",
+  "architecture": "x86_64",
+  "python": "3.12.14",
+  "logical_cpus_observed": 16,
+  "physical_cpus_observed": 8,
+  "available_ram_mib_observed": 3144.57,
+  "declared_current_limits": {
+    "wall_seconds": 900,
+    "cpu_threads": 1,
+    "worker_memory_mib": 1024,
+    "whole_memory_mib": 1536,
+    "max_fits": 0,
+    "max_api_calls": 0
+  },
+  "installed_allowed_libraries": {
+    "numpy": {
+      "required": "1.26.4",
+      "installed": "1.26.4",
+      "exact": true
+    },
+    "scipy": {
+      "required": "1.12.0",
+      "installed": "1.12.0",
+      "exact": true
+    },
+    "pandas": {
+      "required": "2.2.3",
+      "installed": "2.2.3",
+      "exact": true
+    },
+    "polars": {
+      "required": "1.26.0",
+      "installed": null,
+      "exact": false
+    },
+    "pyarrow": {
+      "required": "19.0.1",
+      "installed": null,
+      "exact": false
+    },
+    "joblib": {
+      "required": "1.4.2",
+      "installed": "1.4.2",
+      "exact": true
+    },
+    "threadpoolctl": {
+      "required": "3.6.0",
+      "installed": "3.6.0",
+      "exact": true
+    },
+    "scikit-learn": {
+      "required": "1.5.2",
+      "installed": "1.5.2",
+      "exact": true
+    },
+    "catboost": {
+      "required": "1.2.8",
+      "installed": "1.2.8",
+      "exact": true
+    },
+    "lightgbm": {
+      "required": "4.6.0",
+      "installed": "4.6.0",
+      "exact": true
+    },
+    "xgboost": {
+      "required": "2.1.4",
+      "installed": "2.1.4",
+      "exact": true
+    },
+    "imbalanced-learn": {
+      "required": "0.12.4",
+      "installed": null,
+      "exact": false
+    },
+    "category-encoders": {
+      "required": "2.6.4",
+      "installed": null,
+      "exact": false
+    },
+    "feature-engine": {
+      "required": "1.8.3",
+      "installed": null,
+      "exact": false
+    },
+    "statsmodels": {
+      "required": "0.14.0",
+      "installed": "0.14.0",
+      "exact": true
+    },
+    "optuna": {
+      "required": "4.2.1",
+      "installed": "4.2.1",
+      "exact": true
+    },
+    "torch": {
+      "required": "2.5.1",
+      "installed": "2.5.1+cpu",
+      "exact": false
+    },
+    "autogluon.tabular": {
+      "required": "1.3.1",
+      "installed": "1.3.1",
+      "exact": true
+    },
+    "lightautoml": {
+      "required": "0.4.2",
+      "installed": "0.4.2",
+      "exact": true
+    },
+    "flaml": {
+      "required": "2.3.6",
+      "installed": null,
+      "exact": false
+    },
+    "openai": {
+      "required": "1.68.2",
+      "installed": "1.68.2",
+      "exact": true
+    },
+    "httpx": {
+      "required": "0.28.1",
+      "installed": "0.28.1",
+      "exact": true
+    },
+    "tenacity": {
+      "required": "9.0.0",
+      "installed": null,
+      "exact": false
+    },
+    "langchain": {
+      "required": "0.3.27",
+      "installed": null,
+      "exact": false
+    },
+    "langchain-openai": {
+      "required": "0.3.23",
+      "installed": null,
+      "exact": false
+    },
+    "langgraph": {
+      "required": "0.6.7",
+      "installed": null,
+      "exact": false
+    },
+    "pydantic": {
+      "required": "2.10.6",
+      "installed": "2.14.1",
+      "exact": false
+    },
+    "python-dotenv": {
+      "required": "1.0.1",
+      "installed": null,
+      "exact": false
+    },
+    "PyYAML": {
+      "required": "6.0.2",
+      "installed": "6.0.2",
+      "exact": true
+    },
+    "orjson": {
+      "required": "3.10.15",
+      "installed": null,
+      "exact": false
+    },
+    "jsonschema": {
+      "required": "4.23.0",
+      "installed": null,
+      "exact": false
+    },
+    "matplotlib": {
+      "required": "3.9.4",
+      "installed": "3.9.4",
+      "exact": true
+    },
+    "seaborn": {
+      "required": "0.13.2",
+      "installed": "0.13.2",
+      "exact": true
+    },
+    "tqdm": {
+      "required": "4.67.1",
+      "installed": "4.67.1",
+      "exact": true
+    },
+    "psutil": {
+      "required": "6.1.1",
+      "installed": "6.1.1",
+      "exact": true
+    },
+    "cloudpickle": {
+      "required": "3.1.1",
+      "installed": "3.1.2",
+      "exact": false
+    },
+    "setuptools": {
+      "required": "80.9.0",
+      "installed": "80.9.0",
+      "exact": true
+    }
+  },
+  "original_requirements_unchanged": true,
+  "source_refs_verified": [
+    {
+      "path": "research/remote-experiments/notices/platform-20261024-03.md",
+      "sha256": "df8b9af4ec278c612bd0fc02e433d64881341b79e3caec2c480eaf143e341898",
+      "match": true
+    },
+    {
+      "path": "research/remote-experiments/sources/source-manifest.json",
+      "sha256": "0ed0e74706b6620ffc1b29216a8f2c00ab40771ef7ebaecb0cc61092f78c4bae",
+      "match": true
+    },
+    {
+      "path": "research/remote-experiments/sources/approved-input-manifest.json",
+      "sha256": "247ecf4d3ce8670be0573ed0808b0cfce9352babb78ca7cc02c9103ca3bee4c7",
+      "match": true
+    },
+    {
+      "path": "research/remote-experiments/sources/fixed-cut-manifest-r2.json",
+      "sha256": "a56b9c3d5909ea4eb4854d3f3b6bd908360dd2cb84b7b19fa86323e3297a6d12",
+      "match": true
+    },
+    {
+      "path": "research/remote-experiments/sources/protected-single-controls.json",
+      "sha256": "118ba895201bef8149fdd6bb88464bb2e02b23985a34629a47d52df5e5536f46",
+      "match": true
+    }
+  ],
+  "source_archive_sha256": "ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c",
+  "flat_files_verified": 70,
+  "input_files_verified": [
+    {
+      "task": "multiclass",
+      "name": "data_dictionary.csv",
+      "sha256": "13d2651c5fe02b7fc30f0e7290af45606aad5de76c2f7b69217abc270dbbcef4",
+      "match": true
+    },
+    {
+      "task": "multiclass",
+      "name": "sample_submission.csv",
+      "sha256": "4d23642fcff01e49b0ef5a9f018b2381c12fad97282fa586285ad49b01e9623e",
+      "match": true
+    },
+    {
+      "task": "multiclass",
+      "name": "task.md",
+      "sha256": "eebb55ebb8deb8257a2c012330ecc015e8d3a0bc3619c40da6c2a6ab200709bf",
+      "match": true
+    },
+    {
+      "task": "multiclass",
+      "name": "test.csv",
+      "sha256": "b825449603931b5f05a8855e3d92b57775221c93ed4730ac6b4c75b9ea608862",
+      "match": true
+    },
+    {
+      "task": "multiclass",
+      "name": "train.csv",
+      "sha256": "171a8915070b7575b729a32f70a45d1ad7b6f43c65b4ce12a0a68af30d5cb4e0",
+      "match": true
+    },
+    {
+      "task": "regression",
+      "name": "data_dictionary.csv",
+      "sha256": "ffd7a8574fa4b203c43915e26a53e4072637c0dce8f1e6e7bcf93374a89a26a3",
+      "match": true
+    },
+    {
+      "task": "regression",
+      "name": "sample_submission.csv",
+      "sha256": "0016b18d58c47bbbe842556b4957ba215b3ad50121c9923260537d936a09eae1",
+      "match": true
+    },
+    {
+      "task": "regression",
+      "name": "task.md",
+      "sha256": "33f743ead4840336856cb9db8e25867f44512231beebff927326e8580e14d9d0",
+      "match": true
+    },
+    {
+      "task": "regression",
+      "name": "test.csv",
+      "sha256": "a7c64db92a07e1a5b1e7f637bdd434da7a5e98a1676c854ec6a645c9e5827095",
+      "match": true
+    },
+    {
+      "task": "regression",
+      "name": "train.csv",
+      "sha256": "096dac951cf44fade5417ddd0465c41beee3009663dbea34e8d464a4d3c7f775",
+      "match": true
+    }
+  ],
+  "claim_tree_files": [
+    "AGENT_PROMPT.txt",
+    "claim.json",
+    "job.json"
+  ],
+  "sources_loaded_from_original_dispatch": "952b050d8df049374e405f7cf09d801bbc26b4a6",
+  "source_not_model_worktree": true,
+  "previous_owned_processes_remaining": 0,
+  "native_automation": {
+    "id": "automl",
+    "interval_minutes": 5,
+    "same_chat": true,
+    "requires_machine_app_running": true
+  },
+  "this_job_new_fits": 0,
+  "this_job_api_calls": 0,
+  "new_partitions_generated": 0,
+  "heavy_library_imports_or_model_commands_executed": false,
+  "limitation": "Distribution metadata is not proof every optional package imports or works. Full requirements not all installed/exact. No new model or split run."
+}

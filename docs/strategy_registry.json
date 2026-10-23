@@ -101,7 +101,9 @@
       "title": "Finite-state machine с ограничениями повторов и остановками.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
-      "task_ids": [],
+      "task_ids": [
+        "UAR-RUN02"
+      ],
       "modules": [],
       "tests": [],
       "implementation_status": "planned",
@@ -137,7 +139,9 @@
       "title": "Контракт действия: данные, ресурсы, измерение, rollback.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
-      "task_ids": [],
+      "task_ids": [
+        "UAR-RUN02"
+      ],
       "modules": [],
       "tests": [],
       "implementation_status": "planned",
@@ -340,7 +344,8 @@
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
-        "UAR-C01"
+        "UAR-C01",
+        "UAR-IO02"
       ],
       "modules": [],
       "tests": [],
@@ -360,7 +365,8 @@
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
-        "UAR-C01"
+        "UAR-C01",
+        "UAR-IO02"
       ],
       "modules": [],
       "tests": [],
@@ -380,7 +386,8 @@
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
-        "UAR-MET01"
+        "UAR-MET01",
+        "UAR-IO02"
       ],
       "modules": [
         "src/automl/contracts/metrics.py",
@@ -390,13 +397,15 @@
         "tests/test_uar_metric_contract.py"
       ],
       "implementation_status": "implemented",
-      "verification_artifacts": [],
+      "verification_artifacts": [
+        "research/universal-agent-next/uar00/results-summary.json"
+      ],
       "default_enabled": false,
       "applicability": "Conditional on TaskSpec, metric, installed allowed adapters and remaining budget; not a promised gain.",
       "quality_evidence": null,
       "blocker": "UAR-MET01: strict opt-in resolver prepared; legacy parser still defaults missing metrics.",
-      "integration_status": "isolated_source_only",
-      "test_status": "meaningful_tests_prepared_not_executed",
+      "integration_status": "library integrated on research branch; strict metric/router/process caller opt-in not wired",
+      "test_status": "12 meaningful unit methods passed under actual serial UAR00; broader integrated source/build checks pending",
       "platform_status": "not_clean_platform_verified"
     },
     {
@@ -465,7 +474,8 @@
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
-        "UAR-C01"
+        "UAR-C01",
+        "UAR-IO02"
       ],
       "modules": [],
       "tests": [],
@@ -485,7 +495,8 @@
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
-        "UAR-C01"
+        "UAR-C01",
+        "UAR-IO02"
       ],
       "modules": [],
       "tests": [],
@@ -1088,7 +1099,8 @@
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
-        "UAR-C01"
+        "UAR-C01",
+        "UAR-IO02"
       ],
       "modules": [],
       "tests": [],
@@ -1337,13 +1349,15 @@
         "tests/test_uar_model_routing.py"
       ],
       "implementation_status": "implemented",
-      "verification_artifacts": [],
+      "verification_artifacts": [
+        "research/universal-agent-next/uar00/results-summary.json"
+      ],
       "default_enabled": false,
       "applicability": "Conditional on TaskSpec, metric, installed allowed adapters and remaining budget; not a promised gain.",
       "quality_evidence": null,
       "blocker": "UAR-M01: pure policy in isolated branch; runtime admission and measured equal-budget comparison pending.",
-      "integration_status": "isolated_source_only",
-      "test_status": "meaningful_tests_prepared_not_executed",
+      "integration_status": "library integrated on research branch; strict metric/router/process caller opt-in not wired",
+      "test_status": "12 meaningful unit methods passed under actual serial UAR00; broader integrated source/build checks pending",
       "platform_status": "not_clean_platform_verified"
     },
     {
@@ -1698,7 +1712,8 @@
       "primary_stage": "03",
       "owner_role": "A04 RUNTIME_OPS",
       "task_ids": [
-        "UAR-E01"
+        "UAR-E01",
+        "UAR-RUN02"
       ],
       "modules": [],
       "tests": [],
@@ -2737,7 +2752,8 @@
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
-        "UAR-C01"
+        "UAR-C01",
+        "UAR-IO02"
       ],
       "modules": [
         "src/automl/publishing/service.py"
@@ -2746,13 +2762,15 @@
         "tests/test_uar_fallback_writer.py"
       ],
       "implementation_status": "implemented",
-      "verification_artifacts": [],
-      "default_enabled": false,
+      "verification_artifacts": [
+        "research/universal-agent-next/uar00/results-summary.json"
+      ],
+      "default_enabled": true,
       "applicability": "Conditional on TaskSpec, metric, installed allowed adapters and remaining budget; not a promised gain.",
       "quality_evidence": null,
       "blocker": "UAR-C01: scoped e638f568 patch, unique sibling temporary files and guarded optional validation; entrypoint ordering still pending.",
-      "integration_status": "isolated_source_only",
-      "test_status": "meaningful_tests_prepared_not_executed",
+      "integration_status": "atomic publication service integrated; earlier invocation and validated runner checkpoint context pending",
+      "test_status": "12 meaningful unit methods passed under actual serial UAR00; broader integrated source/build checks pending",
       "platform_status": "not_clean_platform_verified"
     },
     {
@@ -2761,7 +2779,8 @@
       "primary_stage": "03",
       "owner_role": "A04 RUNTIME_OPS",
       "task_ids": [
-        "UAR-E01"
+        "UAR-E01",
+        "UAR-RUN02"
       ],
       "modules": [
         "src/automl/infrastructure/processes.py"
@@ -2770,13 +2789,15 @@
         "tests/test_uar_process_observation.py"
       ],
       "implementation_status": "implemented",
-      "verification_artifacts": [],
+      "verification_artifacts": [
+        "research/universal-agent-next/uar00/results-summary.json"
+      ],
       "default_enabled": false,
       "applicability": "Conditional on TaskSpec, metric, installed allowed adapters and remaining budget; not a promised gain.",
       "quality_evidence": null,
       "blocker": "UAR-E01: scoped ce5b84d patch, strict observation opt-in; caller resource-denial propagation and tests pending.",
-      "integration_status": "isolated_source_only",
-      "test_status": "meaningful_tests_prepared_not_executed",
+      "integration_status": "library integrated on research branch; strict metric/router/process caller opt-in not wired",
+      "test_status": "12 meaningful unit methods passed under actual serial UAR00; broader integrated source/build checks pending",
       "platform_status": "not_clean_platform_verified"
     },
     {
@@ -2819,5 +2840,6 @@
       "test_status": "not_executed_for_this_contract",
       "platform_status": "not_clean_platform_verified"
     }
-  ]
+  ],
+  "library_source_revision": "108efd4"
 }

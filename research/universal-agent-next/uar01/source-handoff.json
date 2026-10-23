@@ -1,0 +1,23 @@
+{
+  "schema": "uar01-source-handoff-v1",
+  "status": "FROZEN_FOR_ROOT_REVIEW_NOT_EXECUTED",
+  "public_files_sha256": {
+    "run_gate.py": "bf1a694bfcce45471b7686def9ac7fd978e67f74f016dee66fe60cc750ea5771",
+    "close_gate.py": "9a1287beeccfca4b0c39d91dd8415b3a2a04add0f7cbdde0071b4b043cce0eb7",
+    "protocol.json": "018a96110601391e7b6daa9d23772c5f6d71b61494ca8482f3d6c12c73a941c0",
+    "static-proof.json": "50cb149d58525be90229193c8bee174fea9cc28e3947ec28d1a13cfe89e071ec",
+    "source-pins-public.json": "83e78f521762b3f947f1f4fc9ccdd2c1290e30c6280e121c6f4ff9b60477254c",
+    "README.md": "2ce5d89d79b9ee0a67e008738e7c746b64326f038f66abe878440c6add238bf7"
+  },
+  "private_files_DO_NOT_PUBLISH": {
+    "private-manifest.json": "4bbd7e92670e48fac0ebd69e83cc16d1fd2798253ac370bee0091fdaa2bfd9c0"
+  },
+  "expected_checks": 499,
+  "expected_scripts": 50,
+  "all_immutable_refs": 511,
+  "actual_suite_imports_tests_builds_fits_API_process_scans": 0,
+  "clock_assigned": false,
+  "launch_command": "python -B -X utf8 run_gate.py --launch --private-manifest PRIVATE_FILE --private-manifest-sha256 4bbd7e92670e48fac0ebd69e83cc16d1fd2798253ac370bee0091fdaa2bfd9c0 --self-sha256 bf1a694bfcce45471b7686def9ac7fd978e67f74f016dee66fe60cc750ea5771",
+  "closer_command": "python -B -X utf8 close_gate.py --private-manifest PRIVATE_FILE --private-manifest-sha256 4bbd7e92670e48fac0ebd69e83cc16d1fd2798253ac370bee0091fdaa2bfd9c0 --driver-sha256 bf1a694bfcce45471b7686def9ac7fd978e67f74f016dee66fe60cc750ea5771 --self-sha256 9a1287beeccfca4b0c39d91dd8415b3a2a04add0f7cbdde0071b4b043cce0eb7 --actual-exit-code ACTUAL --actual-tool-evidence ACTUAL [--actual-exec-session ACTUAL_IF_NON_NULL]",
+  "remaining": "Root independent source review/publication and serial actual lease. Candidate archive is not release; full independent flat runtime/release integration remains separate. No more author source writes pending a concrete review defect."
+}

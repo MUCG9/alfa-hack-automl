@@ -1,0 +1,80 @@
+{
+  "schema": "UAR01-independent-source-review-v1",
+  "status": "source_reviewed_no_blocker_in_declared_scope",
+  "bindings": {
+    "universal-integration-gate-next-dev/source-handoff.json": "d40e95b26c5cfb1972d42db5b0866e7eb6c55a263ace7dd2343882173c6f01dc",
+    "universal-integration-gate-next-dev/run_gate.py": "bf1a694bfcce45471b7686def9ac7fd978e67f74f016dee66fe60cc750ea5771",
+    "universal-integration-gate-next-dev/close_gate.py": "9a1287beeccfca4b0c39d91dd8415b3a2a04add0f7cbdde0071b4b043cce0eb7",
+    "universal-integration-gate-next-dev/protocol.json": "018a96110601391e7b6daa9d23772c5f6d71b61494ca8482f3d6c12c73a941c0",
+    "universal-integration-gate-next-dev/static-proof.json": "50cb149d58525be90229193c8bee174fea9cc28e3947ec28d1a13cfe89e071ec",
+    "universal-integration-gate-next-dev/source-pins-public.json": "83e78f521762b3f947f1f4fc9ccdd2c1290e30c6280e121c6f4ff9b60477254c",
+    "universal-integration-gate-next-dev/README.md": "2ce5d89d79b9ee0a67e008738e7c746b64326f038f66abe878440c6add238bf7",
+    "universal-integration-gate-next-dev/private-manifest.json": "4bbd7e92670e48fac0ebd69e83cc16d1fd2798253ac370bee0091fdaa2bfd9c0"
+  },
+  "verified_source_contracts": {
+    "common_seconds": 1200,
+    "allocation_seconds": {
+      "source_parent_includes_setup": 850,
+      "source_child": 800,
+      "maximum_setup_inside_source_parent": 30,
+      "build_parent": 120,
+      "build_child": 90,
+      "final_audit_and_finalization": 200,
+      "root_closure": 30
+    },
+    "same_absolute_wall_and_monotonic_deadlines": true,
+    "original_process_guard_separate_from_current_under_test": true,
+    "guard_process_sha256": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d",
+    "under_test_process_sha256": "f621ea725c7b4ae54dfc65cba6b0d75ddf3bc2b1b69ea8e6ecd495d68960a29c",
+    "three_typed_historical_closure_refs": [
+      "UAR00",
+      "LA2_postfailure_audit",
+      "LA2_original"
+    ],
+    "old_LA2_failed_exit_accepted_without_relabelling": true,
+    "prior_known_owned_and_preparer_union_fresh_absence_before_under_and_after_lock": true,
+    "historical_mutable_source_inventory_not_rehashed": true,
+    "current_immutable_refs": 511,
+    "reported_canonical_snapshot_refs": 500,
+    "registry_checks": 499,
+    "registry_scripts": 50,
+    "flat_members": 71,
+    "actual_registry_and_result_field_types_cross_checked": true,
+    "source_result_requires_every_registered_script_exact_count_zero_skips_status0_source_unchanged_and_fixture_removed": true,
+    "build_flat_map_matches_source_gate_snapshot_and_members_original_requirements_root_entrypoint": true,
+    "AST_compile_is_not_import_or_exact_unpacked_runtime_gate": true,
+    "failure_retains_errors_and_disables_qualification": true,
+    "actual_exit0_saved_supervisors_source_artifacts_cleanup_and_power_release_required_at_closure": true,
+    "API_keys_not_forwarded_solver_None": true,
+    "compute_threads": 1,
+    "suite_subtree_sampled_MiB": 1536,
+    "whole_owned_tree_sampled_MiB": 2048,
+    "fixture_fit_count": null,
+    "new_quality_metric": null,
+    "release_qualified": false,
+    "promotion": false,
+    "submit": false
+  },
+  "blocking_findings": [],
+  "limitations": [
+    "Static source/schema review only, not actual499 tests/build PASS.",
+    "Private manifest is local machine configuration and must not be published.",
+    "Actual root exec, same original-clock closer and subsequent fresh closer-preparer absence remain required.",
+    "Existing offline test fixture fits are allowed and not misreported as zero; no new ML-quality result is produced.",
+    "Whole memory/descendant guards retain sampled cooperative and known-owned scope.",
+    "Exact-unpacked runtime and generic standard-CLI integration/release gates remain separate.",
+    "Reviewer verified declared guard source pins and typed config/registry shapes, not a second read of every current source/data/artifact ref."
+  ],
+  "activity": {
+    "candidate_or_guard_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "data_or_prediction_or_metric_reads": 0,
+    "process_scans": 0,
+    "STATE_or_Git_changes": 0
+  },
+  "changed_files": [
+    "work/universal-integration-gate-independent-review-r1.json"
+  ]
+}

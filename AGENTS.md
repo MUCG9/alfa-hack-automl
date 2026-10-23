@@ -20,11 +20,18 @@ cut0 F1 .6632403175 -> .6597688459, rejected; cut1 absent/meanNone, independent
 verification PASS incl60solver objectives/all5leaf fitting lineage. One complete
 inner worker364.498s/839MiB worker+parent; no owned fits. Preserved first attempt
 launched0workers, five focused checks PASS. Do not retune the grid on these rows.
+ROUND07 active coordinator124348/create_time1792741325.72 at1a2c32e:
+fitting-only log-probability stacker, max1800s/1new complete-inner+2meta fits.
+Read round07_protocol_20261023.md and detached-screen.json before fitting.
+Original rich xhigh proposal truncated/looped, no accepted plan or dataset fit;
+separate bounded compact-choice experiment passed (C1,12534thinking tokens,
+92.579s). Tool owns control/gates/fit contracts. Both generation experiments
+preserved; no more repairs. Three meta-provenance/numerical checks PASS.
 New captain steering: verify reasoning. Actual gateway was explicitly OFF;
 REASONING01 real xhigh probe PASS:1014reasoning tokens,14.716s, valid JSON.
 Active dev planners now use explicit xhigh/32768combined output/300s call.
 Read docs/experiments/reasoning01_results_20261023.md. Effective server effort
-is not echoed; do not claim a quality gain. New source has20focused checks PASS;
+is not echoed; do not infer a model-metric gain. New source has20focused checks PASS;
 REASONING02 equal-cap six-call audit COMPLETE: xhigh3/3 structured decisions,
 off1/3, independent verification PASS. Read reasoning02_results_20261023.md;
 only3paired cases, no general-quality/ML-gain or significance claim. All thinking

@@ -1,0 +1,78 @@
+{
+  "status": "frozen_source_only_complete_root_operational_review_pending",
+  "files_sha256": {
+    "changes-from-class-envelope.patch": "17e0747252bcc696e75ddcb4df91b5ba21869b84ec65417c6df0e2cd7bdf98b6",
+    "close_stage0.py": "4b2fe7009ce8e2da704549b51bb0cbc1bc00e3e8e5829f15d9de325b0792cf3c",
+    "prepare_source.py": "4187480fbd50232913cc725f98a6d429972eda280b8bd2c173ddbd2c4021a10e",
+    "protocol.json": "07bc6edff15caf1199c5a62b005ea5d4860f6a7777c51c237efc93db5a823f42",
+    "README.txt": "1352581812e5813827a742ce36a2d1a6e57b2ceb29454855df4a80b891b2e7fe",
+    "run_stage0.py": "a4dad003b1dc06ed15b3fe5a1075cb9b958ce298b5d2e1563863d8a3567aeaad",
+    "static-proof.json": "6ceec12c6423dd401711140a21c8c4ae5f6503ca41f86865e65c23728e018964"
+  },
+  "overlay": {
+    "path": "loss-selection-next-dev/source-handoff.json",
+    "sha256": "d17be204be34fa53ecbabe40eef819db214ca6ab03929f3a0ce3e52e99e9417c",
+    "independent_review_path": "loss-selection-overlay-independent-review-r3.json",
+    "independent_review_sha256": "b28d1af4477025b4cb364c1149cf24df557ef51200cd23cdf4a315e922572a7a"
+  },
+  "source_base": {
+    "path": "cs-stage0-packet/manifest.json",
+    "sha256": "5160562be127dc6130a1f3349a21b552c8aac526ead484048982716b037aa1c1",
+    "archive_sha256": "52627ac5b9da5ee47d8d40951f84edf9b9dede28cca4b4f90504be6bb4e672b8",
+    "class_seed_factor": false
+  },
+  "future": {
+    "source_root": "loss00",
+    "packet": "loss-stage0-packet",
+    "output": "loss0",
+    "source_files": 694,
+    "source_registry": 487,
+    "source_scripts": 50,
+    "archive_members": 68,
+    "changed_runtime_members": 6,
+    "unchanged_members": 62,
+    "source_skips": 0,
+    "exact_repeated": 23,
+    "flat_same_tests": 16,
+    "tiny_LOSS_fit_calls_per_suite": 9,
+    "common_seconds": 900,
+    "setup_source": 600,
+    "exact_all": 180,
+    "final_root": 120,
+    "actual_start_unix": null,
+    "actual_deadline_unix": null,
+    "no_reset_or_retry": true
+  },
+  "verification": {
+    "in_memory_registry_AST": 487,
+    "six_flat_module_AST_hashes_equal_R3": true,
+    "same16test_method_AST": true,
+    "literal_source_input_pins_reconciled": 21,
+    "fixture_metadata_rebase": "Expected SHA only follows import-only flat CP1 adapter; raw source preserved; all16 assertions unchanged",
+    "semantic_author_peer_message": "features_models read4187480f/a4dad003 and found no concrete source integration blocker",
+    "operational_peer": "audit_contract occupied by other root-assigned source review; source bytes frozen for root/peer exact review, no runtimePASS claim"
+  },
+  "latest_predecessor": {
+    "path": "meth03l/terminal-root-closure.json",
+    "sha256": "e02fd31162f1db27342895901ebb52764b140d59f9cd7651c9be447283bd3b9d",
+    "actual_exec_session": 63424,
+    "actual_exec_exit_code_observed_by_root": 0
+  },
+  "performed": {
+    "materialization_or_archive_build": 0,
+    "application_runtime_imports": 0,
+    "tests": 0,
+    "fixtures": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "data_or_outcome_values_read": false,
+    "clock_assigned": false,
+    "STATE_or_Git_edits": false
+  },
+  "source_frozen": true,
+  "no_further_source_writes": true,
+  "remaining": "Root/peer source review and actual full materialization/publication, then ONE serial487/23/16 gate inside newly assigned900 and actual terminal/root fresh closure. No planner/public LOSS01 run beforetechnicalPASS.",
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

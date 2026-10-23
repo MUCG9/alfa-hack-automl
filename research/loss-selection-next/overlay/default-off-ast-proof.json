@@ -1,0 +1,54 @@
+{
+  "status": "all6modules_default_OFF_projected_AST_equal",
+  "files": [
+    {
+      "path": "src/automl/contracts/messages.py",
+      "base_sha256": "d7cb04c29dcae92e08dd25e778153d82171be22b30c373c7999a0c8c60635557",
+      "candidate_sha256": "2da59a8467632748d021d4169ddb3e3af4eac01a48a8dc2ab9207c4c7701652d",
+      "default_OFF_projected_AST_equal": true,
+      "base_AST_sha256": "0b50cd6f2586376e111df718e872b6dd0dfc7b98842ef68b3b25b8faf7269f42"
+    },
+    {
+      "path": "src/automl/execution/model_adapters/registry.py",
+      "base_sha256": "f8451f7b1dbcc58c5f151cfd07a32068ffa4ac533430647d87c9653dba603fab",
+      "candidate_sha256": "75b885e822186ab8c235e6638ee888ecaa918a50f7662dc8fc2892682d761045",
+      "default_OFF_projected_AST_equal": true,
+      "base_AST_sha256": "eb22c05f60f80d7307d8507a8a42ebd607cd47656556044f6bd29af9cc3dd2d1"
+    },
+    {
+      "path": "src/automl/execution/model_adapters/lightgbm.py",
+      "base_sha256": "4b125fcf54d1c7f9b2e45dd07b49a42dd6711bc63c10cefb12b0a1191fbc776f",
+      "candidate_sha256": "cc773c5329a06a99c5d9567cf8c978f4fb0b21818ef21cd9ac1ba46bcd949856",
+      "default_OFF_projected_AST_equal": true,
+      "base_AST_sha256": "4eada9d5b315883c3351aae43c49f7b03052b01a2211ded5610679d34aed9041"
+    },
+    {
+      "path": "src/automl/execution/api.py",
+      "base_sha256": "9145a371f028a56a0cacda156e05fb96333b26e8ff9156e6e363771debc7c861",
+      "candidate_sha256": "1f07d02b386d1fdc348cce67d66b864d6b743191d2ca802cf58f7d9725fdbe17",
+      "default_OFF_projected_AST_equal": true,
+      "base_AST_sha256": "084e1daa73179210f3121d7af9fb640f05593e9a4177ac84e22ecd649328981c"
+    },
+    {
+      "path": "src/automl/execution/worker.py",
+      "base_sha256": "ffa06615a7f59f958f77a24d1f89727dc31fae7d4ba49f30201d77c331887b14",
+      "candidate_sha256": "abce233662708f43bc36fa7395a00b9e4f705d54eff1cd26d3769b68244d9510",
+      "default_OFF_projected_AST_equal": true,
+      "base_AST_sha256": "ea1ba7f6270ced919a4f04ef50b80725af86068722a38573ab3a61fb3b9b324e"
+    },
+    {
+      "path": "src/automl/search/policy.py",
+      "base_sha256": "3f6a8477b8076e83531b62d4ffc383ce935c6cf912a61cccde6201f7f7fd8e61",
+      "candidate_sha256": "056654922bb8a10a2f65ba5410005ed0e9ad69a2f2580b6bffb80a9177ef7770",
+      "default_OFF_projected_AST_equal": true,
+      "base_AST_sha256": "590555d8e1df215ae4698eb637a786494cd3dc68451c8009f45f7f53ecc4e690"
+    }
+  ],
+  "projection": "Remove additive catalog/profile resolver/validation/telemetry and explicit profiled guards; remove internal profile key and restore original advertised CAPABILITIES set. Legacy model creation/callbacks/fit rows/return types remain identical AST.",
+  "legacy_capabilities_fixture_sha256": "515d54e08fedcb4211d9407793618e500417656ffca4430046093169b9b1f467",
+  "runtime_imports": 0,
+  "tests": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "metric_telemetry_delta": "Add actual fitted metric string/list and disabled-default-loss verification only inside removed profile-only receipt function; legacy OFF projection unchanged."
+}

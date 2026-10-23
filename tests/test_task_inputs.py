@@ -7,6 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]; sys.path.insert(0,str(ROOT/'src'))
 from automl.task_understanding.api import discover
 from automl.task_understanding.inputs import resolve_inputs
 from automl.infrastructure.tables import read_input_table
+from path_fixtures import escaping_csv_reference
 
 
 class TaskInputTests(unittest.TestCase):
@@ -63,9 +64,9 @@ class TaskInputTests(unittest.TestCase):
     def test_symlink_outside_task_is_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             base=Path(directory); root=base/'task'; root.mkdir()
-            (base/'outside.csv').write_text('x\n1\n'); (root/'train.csv').symlink_to(base/'outside.csv')
+            reference=escaping_csv_reference(base,root,'x\n1\n')
             with self.assertRaisesRegex(ValueError,'leaves task directory'):
-                resolve_inputs(root,'train.csv')
+                resolve_inputs(root,'`'+reference+'`')
 
     def test_duplicate_headers_are_rejected_before_pandas_mangling(self):
         with tempfile.TemporaryDirectory() as directory:

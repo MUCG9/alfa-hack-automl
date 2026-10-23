@@ -6,6 +6,7 @@ import json
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'src'))
@@ -19,6 +20,32 @@ from test_feature_views import fixture
 
 
 class SelectionTests(unittest.TestCase):
+    def test_worker_split_closes_before_model_construction_and_on_missing_key(self):
+        for missing_key in [False, True]:
+            with self.subTest(missing_key=missing_key), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                spec, _ = fixture(root)
+                if missing_key:
+                    np.savez(root/'split.npz', train=np.arange(288))
+                opened = []
+                original_load = np.load
+                def tracked_load(*args, **kwargs):
+                    value = original_load(*args, **kwargs)
+                    opened.append(value)
+                    return value
+                recipe = normalize({'engine': 'lightgbm', 'params': {}})
+                with patch.object(worker.np, 'load', side_effect=tracked_load), \
+                     patch.object(worker, 'make_model', side_effect=RuntimeError('stop before any model fit')) as create:
+                    with self.assertRaises(KeyError if missing_key else RuntimeError):
+                        worker.run({'spec': spec, 'recipe': recipe, 'output_dir': str(root/'output'),
+                                    'split_path': str(root/'split.npz'), 'threads': 1})
+                self.assertEqual(len(opened), 1)
+                self.assertTrue(all(value.zip is None for value in opened))
+                if missing_key:
+                    create.assert_not_called()
+                else:
+                    create.assert_called_once()
+
     def test_invalid_sizes_and_text_selection_fail_closed(self):
         for size in [-1, True, 2.5, 513, '32']:
             with self.subTest(size=size), self.assertRaises(ValueError):

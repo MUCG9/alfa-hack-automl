@@ -57,13 +57,13 @@ class ContractLifecycleTests(unittest.TestCase):
             if probabilities:
                 self.assertTrue(np.allclose(output.sum(axis=1),1))
                 self.assertTrue(((output>=0)&(output<=1)).all().all())
-            split=np.load(root/'automl_runs/run-v2/split.npz')
-            if grouped:
-                self.assertEqual(report['spec']['validation_strategy'],'group')
-                self.assertFalse(set(train.client.iloc[split['train']])&set(train.client.iloc[split['validation']]))
-            if dated:
-                self.assertEqual(report['spec']['validation_strategy'],'time')
-                self.assertLess(train.observed.iloc[split['train']].max(),train.observed.iloc[split['validation']].min())
+            with np.load(root/'automl_runs/run-v2/split.npz') as split:
+                if grouped:
+                    self.assertEqual(report['spec']['validation_strategy'],'group')
+                    self.assertFalse(set(train.client.iloc[split['train']])&set(train.client.iloc[split['validation']]))
+                if dated:
+                    self.assertEqual(report['spec']['validation_strategy'],'time')
+                    self.assertLess(train.observed.iloc[split['train']].max(),train.observed.iloc[split['validation']].min())
             return report
 
     def test_mape_tsv_without_dictionary_or_identifier(self):

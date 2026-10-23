@@ -1,7 +1,7 @@
 """One coordinator-wide deadline and API ledger, shared across task phases/targets."""
 from contextvars import ContextVar
 from pathlib import Path
-import math,time
+import math,tempfile,time
 from automl.infrastructure.atomic import atomic_json
 
 _CURRENT=ContextVar('automl_run_budget',default=None)
@@ -28,7 +28,7 @@ class RunBudget:
             raise ValueError('Run gateway call limit must be an integer in0..16')
         self.clock=clock or time.monotonic; self.started=self.clock()
         self.deadline=self.started+seconds; self.seconds=seconds; self.max_calls=max_calls
-        self.trace=Path(root)/'automl_runs'/('run-budget-'+str(time.time_ns()))/'report.json'
+        self.trace_root=Path(root)/'automl_runs'; self.trace=None
         self.calls_started=0; self.events=[]; self.status='running'; self.exception_type=None
 
     def remaining(self): return max(0.,self.deadline-self.clock())
@@ -73,7 +73,10 @@ class RunBudget:
     def flush(self): atomic_json(self.trace,self.snapshot())
 
     def __enter__(self):
-        self.trace.parent.mkdir(parents=True,exist_ok=False)
+        self.trace_root.mkdir(parents=True,exist_ok=True)
+        # Wall-clock timestamps can repeat, including between nested contexts
+        # on Windows. mkdtemp reserves each directory atomically and retries.
+        self.trace=Path(tempfile.mkdtemp(prefix='run-budget-',dir=self.trace_root))/'report.json'
         self.token=_CURRENT.set(self); self.flush()
         return self
 

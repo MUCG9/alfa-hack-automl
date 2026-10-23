@@ -146,9 +146,9 @@ def run_worker(spec,recipe,run_dir,split_path,timeout,full_fit=False,fit_iterati
                     break
                 time.sleep(.5)
         if killed: result={'status':killed,'wall_seconds':round(time.monotonic()-started,3)}
-        elif process.returncode==0 and (run_dir/'result.json').exists(): result=json.loads((run_dir/'result.json').read_text())
+        elif process.returncode==0 and (run_dir/'result.json').exists(): result=json.loads((run_dir/'result.json').read_text(encoding='utf-8'))
         elif (run_dir/'result.json').exists():
-            result=json.loads((run_dir/'result.json').read_text())
+            result=json.loads((run_dir/'result.json').read_text(encoding='utf-8'))
             result.update(status='error',exit_code=process.returncode)
         else: result={'status':'error','exit_code':process.returncode}
         result.update(recipe=recipe,output_dir=str(run_dir),observed_process_tree_peak_mb=round(peak/2**20,1),

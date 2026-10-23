@@ -10,6 +10,7 @@ from automl.task_understanding.semantic_inputs import validated_roles
 from automl.task_understanding import semantic_inputs
 from automl.task_understanding import service
 from automl.search import runner
+from path_fixtures import escaping_csv_reference
 
 
 class SemanticInputTests(unittest.TestCase):
@@ -79,7 +80,8 @@ class SemanticInputTests(unittest.TestCase):
     def test_security_rejection_is_not_sent_to_an_llm_for_a_workaround(self):
         with tempfile.TemporaryDirectory() as directory:
             base=Path(directory); root=base/'task'; root.mkdir(); path,_=self.fixture(root)
-            (base/'outside.csv').write_text('private\n1\n'); (root/'train.csv').symlink_to(base/'outside.csv')
+            reference=escaping_csv_reference(base,root,'private\n1\n')
+            path.write_text(path.read_text(encoding='utf-8')+'\nRequired input: `'+reference+'`.',encoding='utf-8')
             with patch('automl.task_understanding.semantic_inputs.request_json',side_effect=AssertionError('must not be called')) as call:
                 with self.assertRaisesRegex(ValueError,'leaves task directory'): discover(path,allow_llm=True)
             self.assertEqual(call.call_count,0)

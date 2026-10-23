@@ -7,11 +7,13 @@ from automl.contracts.error_analysis import AnalysisArtifactRef, ErrorProfile, E
 
 
 def write_json(path, value):
-    content = json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2, allow_nan=False) + '\n'
+    path = Path(path)
+    content = (json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2, allow_nan=False) + '\n').encode('utf-8')
     # Outputs are immutable; the service creates a new directory per invocation.
-    with Path(path).open('x', encoding='utf-8') as stream:
+    # Binary mode preserves the exact UTF-8/LF bytes on Windows as well as POSIX.
+    with path.open('xb') as stream:
         stream.write(content)
-    return AnalysisArtifactRef(str(Path(path).resolve()), hashlib.sha256(content.encode()).hexdigest())
+    return AnalysisArtifactRef(str(path.resolve()), hashlib.sha256(path.read_bytes()).hexdigest())
 
 
 def read_section(profile, name):
@@ -96,5 +98,5 @@ def write_reports(profile):
         lines.append('- ' + label(finding.summary))
     lines.extend(['', '## Limits', ''])
     lines.extend('- ' + label(value) for value in profile.limitations)
-    with (root / 'error_profile.md').open('x', encoding='utf-8') as stream:
-        stream.write('\n'.join(lines) + '\n')
+    with (root / 'error_profile.md').open('xb') as stream:
+        stream.write(('\n'.join(lines) + '\n').encode('utf-8'))

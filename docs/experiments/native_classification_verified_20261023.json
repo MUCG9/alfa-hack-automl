@@ -1,0 +1,26 @@
+{
+  "report_sha256": "84768834e72e0e78b590235fd517885e51e42ef11b71949e25fb3f040f5fc1cc",
+  "kind": "classification",
+  "metric": "macro_f1",
+  "metrics": {
+    "search": {
+      "value": 0.6557068682217162,
+      "rows": 17141,
+      "split_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+      "row_order_verified": true
+    },
+    "confirmation": {
+      "value": 0.6618698250907046,
+      "rows": 17349,
+      "split_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+      "row_order_verified": true
+    }
+  },
+  "cut_mean": 0.6587883466562103,
+  "input_source_integrity_rechecked": true,
+  "final_rows": 41166,
+  "submission_sha256": "6a21e402d64c2a8e800cfca0ff56bcaf6010b35ca5238252ba5e420ac0fcc492",
+  "full_refit": "ok",
+  "elapsed_seconds": 5465.719,
+  "scope": "Independent recomputation on reused public validation, not official/private score"
+}

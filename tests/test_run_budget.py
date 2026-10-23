@@ -30,6 +30,25 @@ class RunBudgetTests(unittest.TestCase):
                 self.assertEqual(saved['status'],'failed'); self.assertEqual(saved['exception_type'],'ValueError')
             self.assertIsNone(current_budget())
 
+    def test_trace_directories_are_unique_with_a_repeating_wall_clock(self):
+        with tempfile.TemporaryDirectory() as directory,patch('automl.infrastructure.run_budget.time.time_ns',return_value=1):
+            traces=[]
+            with RunBudget(100,2,directory,clock=lambda:10.) as outer:
+                traces.append(outer.trace)
+                self.assertEqual(outer.deadline,110.)
+                for _ in range(3):
+                    with RunBudget(20,1,directory,clock=lambda:10.) as inner:
+                        traces.append(inner.trace)
+                        self.assertEqual(inner.deadline,30.)
+                        self.assertIs(current_budget(),inner)
+                    self.assertIs(current_budget(),outer)
+                    self.assertEqual(json.loads(inner.trace.read_text())['status'],'completed')
+                self.assertEqual(json.loads(outer.trace.read_text())['status'],'running')
+            self.assertIsNone(current_budget())
+            self.assertEqual(len(set(traces)),4)
+            self.assertTrue(all(path.is_file() and path.parent.parent==Path(directory)/'automl_runs' for path in traces))
+            self.assertEqual(json.loads(outer.trace.read_text())['status'],'completed')
+
     def test_deadline_is_shared_without_resetting_local_phases(self):
         with tempfile.TemporaryDirectory() as directory:
             ticks=[100.]

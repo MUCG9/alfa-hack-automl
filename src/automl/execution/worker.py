@@ -64,22 +64,23 @@ def run_ensemble(job):
         if isinstance(job.get('fit_iterations'),list): child['fit_iterations']=job['fit_iterations'][index]
         else: child.pop('fit_iterations',None)
         run(child)
-        records.append(json.loads((directory/'result.json').read_text()))
+        records.append(json.loads((directory/'result.json').read_text(encoding='utf-8')))
     train=read_input_table(spec['paths']['train']); test=read_input_table(spec['paths']['test'])
     sample=read_task_sample(spec); full=job.get('full_fit',False)
-    va=np.load(job['split_path'])['validation']
+    with np.load(job['split_path']) as split:
+        va=split['validation'].copy()
     combined=None; val_combined=None
     for index,weight in enumerate(weights):
         directory=output/f'component-{index}'
         if spec['kind']=='classification':
-            stored=np.load(directory/'test_probabilities.npz')
-            classes=stored['classes'].astype(str)
-            order=[list(classes).index(c) for c in spec['classes']]
-            predictions=stored['probabilities'][:,order]
+            with np.load(directory/'test_probabilities.npz') as stored:
+                classes=stored['classes'].astype(str)
+                order=[list(classes).index(c) for c in spec['classes']]
+                predictions=stored['probabilities'][:,order]
             if not full:
-                stored_val=np.load(directory/'validation_probabilities.npz')
-                assert np.array_equal(stored_val['row_position'],va)
-                val_predictions=stored_val['probabilities'][:,order]
+                with np.load(directory/'validation_probabilities.npz') as stored_val:
+                    assert np.array_equal(stored_val['row_position'],va)
+                    val_predictions=stored_val['probabilities'][:,order]
         else:
             predictions=read_submission_values(spec,directory/'submission.csv')
             if not full: val_predictions=pd.read_csv(directory/'validation_predictions.csv')['y_pred'].to_numpy()
@@ -116,7 +117,7 @@ def run_feature_views(job):
     internal=dict(recipe,engine='ensemble',params={},components=components,weights=[.5,.5])
     run_ensemble(dict(job,recipe=internal))
     path=Path(job['output_dir'])/'result.json'
-    record=json.loads(path.read_text())
+    record=json.loads(path.read_text(encoding='utf-8'))
     record['recipe']=recipe
     record['feature_views']={'method':'categorical_te_pair','weights':[.5,.5],
         'groups':components[1]['params']['target_encoding_groups'],
@@ -157,8 +158,8 @@ def run(job):
     # Numeric target and IDs are never passed into generated code.
     if any(column in train_x for column in forbidden):
         raise ValueError('Feature code reintroduced target or ID')
-    split=np.load(job['split_path'])
-    tr,va=split['train'],split['validation']
+    with np.load(job['split_path']) as split:
+        tr,va=split['train'].copy(),split['validation'].copy()
     SplitPlan(tuple(tr.tolist()),tuple(va.tolist())).validate(len(train))
     full=job.get('full_fit',False)
     history_asof=recipe.get('params',{}).get('history_asof',False)

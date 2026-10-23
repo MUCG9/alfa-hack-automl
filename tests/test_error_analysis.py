@@ -15,17 +15,30 @@ sys.path.insert(0, str(ROOT / 'src'))
 from automl.error_analysis.artifacts import load, Guard, AnalysisLimit
 from error_analysis_fixture import PassportFixture, ref, sha
 from automl.error_analysis.api import analyze, summarize, ErrorProfile
-from automl.error_analysis.reporting import read_section
+from automl.error_analysis.reporting import read_section, write_json
 
 
 class ErrorAnalysisTests(unittest.TestCase):
     def setUp(self):
         self.directory = tempfile.TemporaryDirectory()
         self.addCleanup(self.directory.cleanup)
-        self.root = Path(self.directory.name)
+        self.root = Path(self.directory.name).resolve()
 
     def loaded(self, fixture):
         return load(fixture.request, Guard(fixture.request.budget))
+
+    def test_json_artifact_hash_matches_exact_utf8_lf_bytes(self):
+        value = {'label': '\u0414\u0430\u043d\u043d\u044b\u0435 \U0001f3af', 'escaped_lines': 'first\r\nsecond\n'}
+        path = self.root / '\u043e\u0442\u0447\u0451\u0442.json'
+        artifact = write_json(path, value)
+        content = path.read_bytes()
+        expected = (json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2, allow_nan=False) + '\n').encode('utf-8')
+        self.assertEqual(content, expected)
+        self.assertNotIn(b'\r\n', content)
+        self.assertEqual(json.loads(content.decode('utf-8')), value)
+        self.assertEqual(artifact.sha256, sha(path))
+        with self.assertRaises(FileExistsError):
+            write_json(path, {'overwritten': True})
 
     def test_literal_labels_and_original_truth_are_preserved(self):
         data = self.loaded(PassportFixture(self.root))
@@ -301,7 +314,9 @@ class ErrorAnalysisTests(unittest.TestCase):
         fixture = PassportFixture(self.root)
         profile = analyze(fixture.request)
         path = self.root / 'reports/models.json'
-        path.write_text(path.read_text() + '\n')
+        original = path.read_bytes()
+        path.write_bytes(original + b'\n')
+        self.assertEqual(path.stat().st_size, len(original) + 1)
         with self.assertRaisesRegex(ValueError, 'SHA256'):
             summarize(profile)
 
@@ -351,14 +366,16 @@ class ErrorAnalysisTests(unittest.TestCase):
         import subprocess
         sys.path.insert(0, str(ROOT / 'tools'))
         from build_submission import build_files
-        fixture = PassportFixture(self.root)
-        compiled = self.root / 'compiled'
+        fixture_root = self.root / '\u0434\u0430\u043d\u043d\u044b\u0435'
+        fixture_root.mkdir()
+        fixture = PassportFixture(fixture_root)
+        compiled = self.root / '\u043a\u043e\u043c\u043f\u0438\u043b\u044f\u0446\u0438\u044f'
         compiled.mkdir()
         for name, content in build_files().items():
             (compiled / name).write_bytes(content)
         script = "import sys;sys.path.insert(0,sys.argv[1]);from automl_error_analysis_api import ErrorAnalysisRequest,analyze; p=analyze(ErrorAnalysisRequest.from_json(sys.stdin.read()));print(p.status)"
-        result = subprocess.run([sys.executable, '-I', '-B', '-c', script, str(compiled)], input=fixture.request.to_json(),
-                                capture_output=True, text=True, timeout=30, cwd=compiled)
+        result = subprocess.run([sys.executable, '-I', '-X', 'utf8', '-B', '-c', script, str(compiled)], input=fixture.request.to_json(),
+                                capture_output=True, text=True, encoding='utf-8', timeout=30, cwd=compiled)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(result.stdout.strip(), 'complete', result.stderr)
 

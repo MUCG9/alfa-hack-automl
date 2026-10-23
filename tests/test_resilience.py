@@ -80,10 +80,10 @@ class ResilienceTests(unittest.TestCase):
             recipe={'engine':'ensemble','hypothesis':'alignment test','params':{},'components':[component,component],'weights':[.5,.5]}
             result=agent_runner.run_worker(spec,recipe,root/'ensemble',root/'split.npz',120)
             self.assertEqual(result['status'],'ok',result)
-            stored=np.load(root/'ensemble/test_probabilities.npz')
-            positions=[list(stored['classes']).index(c) for c in spec['output_columns']]
-            exported=pd.read_csv(root/'ensemble/submission.csv')[spec['output_columns']].to_numpy()
-            self.assertTrue(np.allclose(exported,stored['probabilities'][:,positions]))
+            with np.load(root/'ensemble/test_probabilities.npz') as stored:
+                positions=[list(stored['classes']).index(c) for c in spec['output_columns']]
+                exported=pd.read_csv(root/'ensemble/submission.csv')[spec['output_columns']].to_numpy()
+                self.assertTrue(np.allclose(exported,stored['probabilities'][:,positions]))
             components=json.loads((root/'ensemble/result.json').read_text())['components']
             caches=[read_cache(spec,component,train) for component in components]
             cached=materialize(spec,caches,[.5,.5],root/'cached-blend',sample,test)

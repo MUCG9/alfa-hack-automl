@@ -141,7 +141,11 @@ class MultiTargetTests(unittest.TestCase):
             self.assertEqual(result.returncode,0,result.stderr[-3000:]+'\n'+result.stdout[-1500:])
             report=json.loads(next((root/'automl_runs').glob('multi-target-*/report.json')).read_text())
             self.assertEqual(len(report['children']),2); self.assertTrue(report['integrity_ok'])
-            self.assertTrue(all(c['final_fit_status']=='ok' and c['trained'] for c in report['children']))
+            details=json.dumps(report['children'],ensure_ascii=True,indent=2)+'\n'+result.stderr[-3000:]+'\n'+result.stdout[-1500:]
+            for child in report['children']:
+                self.assertEqual(child.get('status'),'completed',details)
+                self.assertEqual(child.get('final_fit_status'),'ok',details)
+                self.assertTrue(child.get('trained'),details)
             actual=pd.read_csv(root/'submission.csv'); self.assertEqual(actual.columns.tolist(),sample.columns.tolist())
             self.assertFalse(actual.isna().any().any()); self.assertEqual(len(actual),len(test))
             if not no_id: self.assertEqual(actual.key.tolist(),sample.key.tolist())

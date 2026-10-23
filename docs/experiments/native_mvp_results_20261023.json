@@ -1,0 +1,458 @@
+{
+  "status": "completed_independently_verified_mvp",
+  "scope": "Exploratory whole procedure on reused public cuts, no isolated component/official/private-score claim",
+  "summary_model_fits": 0,
+  "summary_api_calls": 0,
+  "tasks": {
+    "regression": {
+      "kind": "regression",
+      "metric": "rmse",
+      "greater_is_better": false,
+      "cuts": {
+        "search": {
+          "mvp": 39.68401452463683,
+          "qualified_full_agent_control": 38.902803731334785,
+          "delta_mvp_minus_control": 0.7812107933020442,
+          "improves": false,
+          "rows": 18308,
+          "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84"
+        },
+        "confirmation": {
+          "mvp": 31.697010289694845,
+          "qualified_full_agent_control": 31.991659384340597,
+          "delta_mvp_minus_control": -0.2946490946457523,
+          "improves": true,
+          "rows": 12946,
+          "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b"
+        }
+      },
+      "cut_mean": 35.69051240716584,
+      "control_cut_mean": 35.44723155783769,
+      "mean_delta_mvp_minus_control": 0.2432808493281513,
+      "mean_improves": false,
+      "every_cut_improves": false,
+      "control_scope": "Saved qualified V11/V16 complete-agent result; no fresh historical-control refit",
+      "same_primary_split_metadata": true,
+      "historical_confirmation_partition_rechecked_from_raw_arrays": false,
+      "final_refit": "ok",
+      "final_fit_iterations": [
+        170,
+        349
+      ],
+      "csv_rows": 22449,
+      "csv_sha256": "fa9564d938f85540cbc25fef9d50ec08d8331d0030a2d05c362119ec6398e836",
+      "input_source_integrity_rechecked": true,
+      "elapsed_seconds": 328.328,
+      "search_experiments": 14,
+      "search_status_counts": {
+        "ok": 14
+      },
+      "api": {
+        "planner_calls_recorded": 2,
+        "planner_terminal_status_counts": {
+          "ok": 2
+        },
+        "gateway_call_limit": 4,
+        "gateway_calls_started": 2,
+        "http_attempts_reported": 2,
+        "prompt_tokens_reported": 23775,
+        "completion_tokens_reported": 1402,
+        "usage_complete": true,
+        "ledger_status": "completed",
+        "reasoning_requested_false_planner_calls": 2,
+        "scope": "Gateway counts include task-role discovery; planner terminal parsing status is a separate layer. Retry usage can be incomplete."
+      },
+      "hpo": {
+        "status": "ok",
+        "sampler": "tpe",
+        "planned_trials": 8,
+        "attempted_trials": 8,
+        "completed_trials": 8,
+        "failed_trials": 0,
+        "unattempted_trials": 0,
+        "startup_trials": 3,
+        "phase_counts": {
+          "anchor": {
+            "attempted": 1,
+            "completed": 1,
+            "failed": 0
+          },
+          "startup": {
+            "attempted": 2,
+            "completed": 2,
+            "failed": 0
+          },
+          "guided": {
+            "attempted": 5,
+            "completed": 5,
+            "failed": 0
+          },
+          "random": {
+            "attempted": 0,
+            "completed": 0,
+            "failed": 0
+          }
+        },
+        "guided_attempts": 5,
+        "guided_successful_trials": 5,
+        "selected_trial": 7,
+        "selected_phase": "guided",
+        "best_inner_value": 32.06005834414502,
+        "seconds": 59.421,
+        "trials": [
+          {
+            "number": 0,
+            "status": "ok",
+            "phase_reconstructed": "anchor",
+            "objective": 32.06394336569608,
+            "seconds": 6.125,
+            "params": {
+              "num_leaves": 127,
+              "reg_lambda": 8,
+              "colsample_bytree": 0.9
+            }
+          },
+          {
+            "number": 1,
+            "status": "ok",
+            "phase_reconstructed": "startup",
+            "objective": 32.1372206724451,
+            "seconds": 6.0,
+            "params": {
+              "num_leaves": 122,
+              "reg_lambda": 2.4523024037214416,
+              "colsample_bytree": 0.9238427418978695
+            }
+          },
+          {
+            "number": 2,
+            "status": "ok",
+            "phase_reconstructed": "startup",
+            "objective": 32.41117759184218,
+            "seconds": 5.921,
+            "params": {
+              "num_leaves": 98,
+              "reg_lambda": 6.31873788875852,
+              "colsample_bytree": 0.8756757554812158
+            }
+          },
+          {
+            "number": 3,
+            "status": "ok",
+            "phase_reconstructed": "guided",
+            "objective": 32.86868256251069,
+            "seconds": 5.609,
+            "params": {
+              "num_leaves": 38,
+              "reg_lambda": 19.71105652316699,
+              "colsample_bytree": 0.7684165051065378
+            }
+          },
+          {
+            "number": 4,
+            "status": "ok",
+            "phase_reconstructed": "guided",
+            "objective": 32.72532018624386,
+            "seconds": 5.938,
+            "params": {
+              "num_leaves": 125,
+              "reg_lambda": 9.32008234114909,
+              "colsample_bytree": 0.9733037763736829
+            }
+          },
+          {
+            "number": 5,
+            "status": "ok",
+            "phase_reconstructed": "guided",
+            "objective": 32.68973260103836,
+            "seconds": 5.641,
+            "params": {
+              "num_leaves": 65,
+              "reg_lambda": 6.242089723201091,
+              "colsample_bytree": 0.7958906481274062
+            }
+          },
+          {
+            "number": 6,
+            "status": "ok",
+            "phase_reconstructed": "guided",
+            "objective": 32.283818880687704,
+            "seconds": 5.704,
+            "params": {
+              "num_leaves": 86,
+              "reg_lambda": 2.79644599955306,
+              "colsample_bytree": 0.8551971221782733
+            }
+          },
+          {
+            "number": 7,
+            "status": "ok",
+            "phase_reconstructed": "guided",
+            "objective": 32.06005834414502,
+            "seconds": 6.016,
+            "params": {
+              "num_leaves": 104,
+              "reg_lambda": 12.639692527584211,
+              "colsample_bytree": 0.9899657323952007
+            }
+          }
+        ],
+        "scope": "Inner study only; startup winner is not evidence of adaptive TPE superiority"
+      },
+      "evidence_sha256": {
+        "final_report": "738a2540be57ecdb1a822624f542677fc69541df35d8da425cdd8f39ef5ec59f",
+        "independent_verification": "46f09e1500105ce4940b2ccf902d3d2792f1753879c7c4db3634f302be0e4547",
+        "historical_control_report": "a431c5de3f02ae362ffb8d083f9b075af9c8020d52c0adafa72c24d575bee309"
+      }
+    },
+    "classification": {
+      "kind": "classification",
+      "metric": "macro_f1",
+      "greater_is_better": true,
+      "cuts": {
+        "search": {
+          "mvp": 0.6557068682217162,
+          "qualified_full_agent_control": 0.6632403174648631,
+          "delta_mvp_minus_control": -0.007533449243146917,
+          "improves": false,
+          "rows": 17141,
+          "split_file_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0"
+        },
+        "confirmation": {
+          "mvp": 0.6618698250907046,
+          "qualified_full_agent_control": 0.6553953692580672,
+          "delta_mvp_minus_control": 0.0064744558326373935,
+          "improves": true,
+          "rows": 17349,
+          "split_file_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df"
+        }
+      },
+      "cut_mean": 0.6587883466562103,
+      "control_cut_mean": 0.6593178433614652,
+      "mean_delta_mvp_minus_control": -0.0005294967052548172,
+      "mean_improves": false,
+      "every_cut_improves": false,
+      "control_scope": "Saved qualified V11/V16 complete-agent result; no fresh historical-control refit",
+      "same_primary_split_metadata": true,
+      "historical_confirmation_partition_rechecked_from_raw_arrays": false,
+      "final_refit": "ok",
+      "final_fit_iterations": [
+        [
+          294,
+          382
+        ],
+        510
+      ],
+      "csv_rows": 41166,
+      "csv_sha256": "6a21e402d64c2a8e800cfca0ff56bcaf6010b35ca5238252ba5e420ac0fcc492",
+      "input_source_integrity_rechecked": true,
+      "elapsed_seconds": 5465.719,
+      "search_experiments": 14,
+      "search_status_counts": {
+        "ok": 14
+      },
+      "api": {
+        "planner_calls_recorded": 2,
+        "planner_terminal_status_counts": {
+          "error": 1,
+          "ok": 1
+        },
+        "gateway_call_limit": 4,
+        "gateway_calls_started": 2,
+        "http_attempts_reported": 2,
+        "prompt_tokens_reported": 19911,
+        "completion_tokens_reported": 1485,
+        "usage_complete": true,
+        "ledger_status": "completed",
+        "reasoning_requested_false_planner_calls": 2,
+        "scope": "Gateway counts include task-role discovery; planner terminal parsing status is a separate layer. Retry usage can be incomplete."
+      },
+      "hpo": {
+        "status": "ok",
+        "sampler": "tpe",
+        "planned_trials": 8,
+        "attempted_trials": 5,
+        "completed_trials": 4,
+        "failed_trials": 1,
+        "unattempted_trials": 3,
+        "startup_trials": 3,
+        "phase_counts": {
+          "anchor": {
+            "attempted": 1,
+            "completed": 1,
+            "failed": 0
+          },
+          "startup": {
+            "attempted": 2,
+            "completed": 2,
+            "failed": 0
+          },
+          "guided": {
+            "attempted": 2,
+            "completed": 1,
+            "failed": 1
+          },
+          "random": {
+            "attempted": 0,
+            "completed": 0,
+            "failed": 0
+          }
+        },
+        "guided_attempts": 2,
+        "guided_successful_trials": 1,
+        "selected_trial": 2,
+        "selected_phase": "startup",
+        "best_inner_value": 0.6344957005376981,
+        "seconds": 900.157,
+        "trials": [
+          {
+            "number": 0,
+            "status": "ok",
+            "phase_reconstructed": "anchor",
+            "objective": 0.6293967027246721,
+            "seconds": 228.75,
+            "params": {
+              "num_leaves": 63,
+              "reg_lambda": 5,
+              "colsample_bytree": 0.9
+            }
+          },
+          {
+            "number": 1,
+            "status": "ok",
+            "phase_reconstructed": "startup",
+            "objective": 0.6296331435097767,
+            "seconds": 236.688,
+            "params": {
+              "num_leaves": 122,
+              "reg_lambda": 2.4523024037214416,
+              "colsample_bytree": 0.9238427418978695
+            }
+          },
+          {
+            "number": 2,
+            "status": "ok",
+            "phase_reconstructed": "startup",
+            "objective": 0.6344957005376981,
+            "seconds": 206.516,
+            "params": {
+              "num_leaves": 98,
+              "reg_lambda": 6.31873788875852,
+              "colsample_bytree": 0.8756757554812158
+            }
+          },
+          {
+            "number": 3,
+            "status": "ok",
+            "phase_reconstructed": "guided",
+            "objective": 0.631767228353234,
+            "seconds": 196.547,
+            "params": {
+              "num_leaves": 105,
+              "reg_lambda": 19.71105652316699,
+              "colsample_bytree": 0.7626158986068207
+            }
+          },
+          {
+            "number": 4,
+            "status": "timeout",
+            "phase_reconstructed": "guided",
+            "objective": null,
+            "seconds": 19.578,
+            "params": {
+              "num_leaves": 37,
+              "reg_lambda": 9.32008234114909,
+              "colsample_bytree": 0.8050240797300526
+            }
+          }
+        ],
+        "scope": "Inner study only; startup winner is not evidence of adaptive TPE superiority"
+      },
+      "evidence_sha256": {
+        "final_report": "84768834e72e0e78b590235fd517885e51e42ef11b71949e25fb3f040f5fc1cc",
+        "independent_verification": "e0e802bb3c268e27a23df6e37b314b2a4ba3a91c266828d0b9b4e3339e371d83",
+        "historical_control_report": "2905c32aa98270fb5b76f6ca1a4e664c0e76f7b399772864b51d0baf8e08a606"
+      }
+    }
+  },
+  "campaign_lineage": {
+    "regression_archive_sha256": "8dd04d8da7b93f0440dbabea22d9a84aff399f049659200ffd24e5d2b30a935f",
+    "classification_archive_sha256": "efe9392d7c12f28ea1b89e301470e267a67f74ecd45ccf76fa73e69a739f16a2",
+    "changed_flat_modules": [
+      "automl_infrastructure_processes.py"
+    ],
+    "change_scope": "Process identity/cleanup recovery only; ML policy/evaluator sources byte-identical across these two archives",
+    "regression_reused_without_refit_on_resume": true,
+    "original_coordinator_receipt_status": "running",
+    "resumed_campaign_status": "completed",
+    "recovery_status": "completed",
+    "original_common_time_budget_seconds": 10800,
+    "remaining_seconds_at_resume": 10139,
+    "original_deadline_epoch": 1792720814.3533921,
+    "original_deadline_moscow": "2026-10-23T05:00:14.353392+03:00",
+    "recovery_finished_epoch": 1792716130.8521833,
+    "recovery_finished_moscow": "2026-10-23T03:42:10.852183+03:00",
+    "finished_before_declared_original_deadline": true,
+    "elapsed_from_declared_start_seconds": 6116.498791217804,
+    "deadline_evidence_scope": "Original shared deadline retained in recovery receipt; includes interruption/recovery, not a reset budget",
+    "evidence_sha256": {
+      "original_campaign": "9c09f06fe2e2563cdb2dd96cd228b076d27979030b018703ca91f68a4b95229b",
+      "resumed_campaign": "7eacc4224bb2af51bdd3dd6a30edfe5476d3f88d26992e01ac3fefb4201bea0d",
+      "recovery_receipt": "e0d0aff263a25a8807045263e5679c296553113017c332a401aac385e1f656c5"
+    }
+  },
+  "negative_evidence": {
+    "classification_hpo": {
+      "selected_trial": 2,
+      "selected_phase": "startup",
+      "guided_attempts": 2,
+      "guided_successful_trials": 1,
+      "selected_winner_from_guided_phase": false,
+      "limitation": "A startup winner does not establish adaptive TPE superiority over equal-budget random search"
+    },
+    "classification_experiment09_vs02_search_only": {
+      "macro_f1_delta": 0.0103890269586977,
+      "rarest_fitting_class": "Worms",
+      "rarest_independent_fitting_groups": 46,
+      "rarest_validation_rows": 19,
+      "fraction_of_total_gain_from_rarest": 1.0026604712913776,
+      "macro_f1_excluding_rarest_delta": -3.071078663219318e-05,
+      "supported_classes_failing_drop_gate": [
+        "Backdoor",
+        "Exploits",
+        "Shellcode"
+      ],
+      "is_supported_qwen_proposal": false,
+      "exact_fallback_lineage_reconstructed": true,
+      "changed_params_vs_experiment02": {
+        "colsample_bytree": {
+          "control": 0.9,
+          "candidate": 0.8756757554812158
+        },
+        "num_leaves": {
+          "control": 63,
+          "candidate": 98
+        },
+        "reg_lambda": {
+          "control": 5,
+          "candidate": 6.31873788875852
+        },
+        "seed": {
+          "control": null,
+          "candidate": 51
+        }
+      },
+      "scope": "Partial reused-public search comparison, distinct from the final selected complete-agent ensemble"
+    },
+    "evidence_sha256": {
+      "hpo_phase_audit": "dacd30ef3876dc640e876cc323cad3423addb6ee740aeceedb58c20046e62494",
+      "search_seed_audit": "8fd32c3539ffff92be6dbeb1906d14ed1dea02c61df829612a680a00347f80f0"
+    }
+  },
+  "qualified_control_replaced": false,
+  "every_cut_of_both_tasks_improves": false,
+  "official_score": null,
+  "official_score_estimated": false,
+  "metric_aggregation": "Arithmetic mean of two cuts within each task; no aggregation across RMSE and Macro F1",
+  "harness_sha256": "0be7f4482a9df3ec10ec50679bba0a4b281e1e1085c031253d8311b228572779"
+}

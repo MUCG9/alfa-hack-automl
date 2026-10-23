@@ -15,10 +15,10 @@ def read_cache(spec,record,train):
     if spec['kind']=='classification':
         truth=truth.astype(str); aligned=[]
         for name in ['validation_probabilities.npz','test_probabilities.npz']:
-            stored=np.load(root/name)
-            if name.startswith('validation'): assert np.array_equal(stored['row_position'],rows)
-            order=[list(stored['classes'].astype(str)).index(c) for c in spec['classes']]
-            aligned.append(stored['probabilities'][:,order])
+            with np.load(root/name) as stored:
+                if name.startswith('validation'): assert np.array_equal(stored['row_position'],rows)
+                order=[list(stored['classes'].astype(str)).index(c) for c in spec['classes']]
+                aligned.append(stored['probabilities'][:,order])
         val,test=aligned
     else:
         val=validation['y_pred'].to_numpy(dtype=float)

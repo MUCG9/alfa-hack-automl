@@ -21,7 +21,7 @@ class ErrorPreparationTests(unittest.TestCase):
     def setUp(self):
         self.directory = tempfile.TemporaryDirectory()
         self.addCleanup(self.directory.cleanup)
-        self.root = Path(self.directory.name)
+        self.root = Path(self.directory.name).resolve()
 
     def report_fixture(self, kind='classification'):
         fixture = PassportFixture(self.root, kind=kind)

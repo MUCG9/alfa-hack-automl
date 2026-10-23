@@ -1,0 +1,21 @@
+{
+  "failure": "Atomic replacement of exact gate terminal receipt raised PermissionError after all tests passed",
+  "specific_OS_error_code_unavailable_in_old_handler": true,
+  "raw_pending_terminal_record_preserved": true,
+  "parent_actual_exit_code": 1,
+  "completed_source_checks_reused": 458,
+  "completed_exact_checks_reused": 23,
+  "fresh_closure_identities_absent": 2691,
+  "fixed": "At most21 atomic replace attempts separated by50ms; persistent failure still propagates with OS error metadata",
+  "bounded_retry_simulation_passed": true,
+  "auditor_import_preflight_passed": true,
+  "auditor_scope_fix": "Require generic_features equal protected first SINGLE (missing regression, none classification)",
+  "raw_gates_and_model_source_unchanged": true,
+  "original_common_start_unix": 1792750977.2275486,
+  "original_absolute_deadline_unix": 1792761777.2275486,
+  "clock_reset": false,
+  "manifest_sha256": "ac28e6da826809e3fe334a6096229ad6410500d7f91a65071987f37ac80ce716",
+  "closure_sha256": "64fa2af231d6a883a069269218b25f775a14a57b3978e78d734f49c67dfff808",
+  "new_output": "t5",
+  "promotion": false
+}

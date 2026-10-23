@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "start_unix": 1792733008.8997614,
+  "start_monotonic": 6181959.671,
+  "max_seconds": 300,
+  "max_memory_mib": 1024,
+  "threads": 1,
+  "cleanup_confirmed": true,
+  "scope": "Execute classification-only saved-artifact audit, not ML procedure qualification.",
+  "source_sha256": "161a55202d7824f21f954d66455e8449de4056d24fb5912c79a316ac7dca6355",
+  "plan_sha256": "662b348fb2b4f04a0ea538615804f7f5e0d8a3ed5c7f8343c623ceddc3093f4c",
+  "guard_source_sha256": "c03c2969aac665abfc9eb065d2bc13ca3e8985a61fb963909dd352b71f38dcc9",
+  "regression_denied_ledger_retry": false,
+  "new_fits": 0,
+  "API_calls": 0,
+  "owned_root": {
+    "pid": 5296,
+    "create_time": 1792733005.6176755
+  },
+  "child_root": {
+    "pid": 25392,
+    "create_time": 1792733008.9016643
+  },
+  "heartbeat_unix": 1792733017.2680748,
+  "observed_owned_identities": [
+    {
+      "pid": 15096,
+      "create_time": 1792733008.9176357
+    },
+    {
+      "pid": 25392,
+      "create_time": 1792733008.9016643
+    }
+  ],
+  "exit_code": 0,
+  "benchmark_exit_code": 0,
+  "owned_process_identities": [
+    {
+      "pid": 15096,
+      "create_time": 1792733008.9176357
+    },
+    {
+      "pid": 25392,
+      "create_time": 1792733008.9016643
+    }
+  ],
+  "cleanup_observation": {
+    "observed_count": 2,
+    "denial_count": 0,
+    "unresolved": [],
+    "tracked_before_cleanup_count": 2,
+    "tracked_after_cleanup_count": 0
+  },
+  "seconds": 10.110000000335276,
+  "finished_unix": 1792733019.0144603,
+  "peak_owned_rss_mib": 244.37109375,
+  "source_unchanged": true
+}

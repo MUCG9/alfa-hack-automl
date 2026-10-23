@@ -1,0 +1,118 @@
+{
+  "status": "completed_exploratory_pipeline_did_not_improve_saved_qualified_control",
+  "terminal_summary_sha256": "aaa9a22c00647654440dbfb487eca75c73777626448b8d037dfcd398a00c5c92",
+  "classification_audit_sha256": "6635c3f35ecc946cb3c5d0451b92b989d1ea7c540664bc3b8c158a837aa4498c",
+  "original_campaign_elapsed_common_seconds": 7664.906000000425,
+  "original_absolute_deadline_unix": 1792735776.7207654,
+  "campaign_finished_unix": 1792732641.587752,
+  "residual_original_absolute_seconds": 3135.1330132484436,
+  "clock_reset_or_extra_training_to_spend_residual": false,
+  "observed_binding_search_constraint": "Both tasks reached the predeclared14 outer-search slots; no plateau stopping rule or extended study was introduced after observing validation.",
+  "selected_two_cut_means": {
+    "regression": 38.104037903547336,
+    "classification": 0.6499117214697119
+  },
+  "saved_V11_V16_control_means": {
+    "regression_RMSE": 35.44723155783769,
+    "classification_macro_F1": 0.6593178433614652
+  },
+  "classification_primary_F1_delta": -0.013933066977645403,
+  "classification_confirmation_F1_delta": -0.004879176805861141,
+  "classification_supported_class_failure": {
+    "primary": {
+      "losses_over_001": {
+        "Analysis": -0.03335938027571167,
+        "Backdoor": -0.04631731465829508
+      },
+      "ex_rarest_macro_F1_delta": -0.00547117552070696
+    },
+    "confirmation": {
+      "losses_over_001": {
+        "Analysis": -0.018310311596530682,
+        "Backdoor": -0.061849539101992285
+      },
+      "ex_rarest_macro_F1_delta": -0.005421307562067845
+    }
+  },
+  "task_costs": {
+    "regression": {
+      "solver_report_seconds": 449.109,
+      "final_fit_wall_seconds": 37.563,
+      "recorded_selector_seconds_sum": 164.192,
+      "recorded_selector_fraction_of_solver_report": 0.3655949891897068,
+      "actual_teacher_receipts": 52,
+      "outer_search_experiments": 14,
+      "hpo_successful": 8,
+      "hpo_guided_successful": 5,
+      "report_sha256": "e74e62277f9c068b7029d4385606ac11f060af32acff39a12e2748bbb904a787",
+      "final_result_sha256": "0a665f58de196e5a028a3ac2165cc34204561bcf0e3b1b0df129b10b55af9326",
+      "interpretation": "Observational selector function timings, not isolated CatBoost kernel time or measured prospective cache savings."
+    },
+    "classification": {
+      "solver_report_seconds": 7204.438,
+      "final_fit_wall_seconds": 983.766,
+      "recorded_selector_seconds_sum": 4252.255,
+      "recorded_selector_fraction_of_solver_report": 0.5902271627571782,
+      "actual_teacher_receipts": 80,
+      "outer_search_experiments": 14,
+      "hpo_successful": 2,
+      "hpo_guided_successful": 0,
+      "report_sha256": "631d7508494ad466fdf40c9998fe27ec64dc6b499be6fa0f1cc2f371b87ac9a1",
+      "final_result_sha256": "5aed13837242a9c0adaf948e00b4ce147f7996a832fbdc6b52eeb6bea74aebde",
+      "interpretation": "Observational selector function timings, not isolated CatBoost kernel time or measured prospective cache savings."
+    }
+  },
+  "verified_stages": [
+    "pre-fit valid Qwen EDA",
+    "broad features and actual CatBoost selection",
+    "successful LightGBM/CatBoost/XGBoost comparisons",
+    "inner Optuna",
+    "selected two-cut procedure",
+    "fresh full refit, recursive probabilities, CSV and input/source integrity"
+  ],
+  "API_evidence": {
+    "classification": {
+      "independently_read_closed_ledger": true,
+      "gateway_calls": 2,
+      "http_attempts_reported": 2,
+      "prompt_tokens_reported": 16492,
+      "completion_tokens_reported": 1826,
+      "usage_complete": true
+    },
+    "regression": {
+      "independently_read_closed_ledger": false,
+      "gateway_calls": null,
+      "http_attempts_reported": null,
+      "prompt_tokens_reported": null,
+      "completion_tokens_reported": null,
+      "usage_complete": null,
+      "unavailable_reason": "PermissionError",
+      "winerror": null,
+      "acl_bypass_attempted": false,
+      "parent_supervisor_reported_usage": {
+        "gateway_calls": 2,
+        "gateway_calls_reported": 2,
+        "http_attempts_reported": 2,
+        "usage_complete": true,
+        "prompt_tokens_reported": 19302,
+        "completion_tokens_reported": 954
+      },
+      "parent_report_is_independent_ledger_read": false
+    },
+    "regression_known_denial_retried": false,
+    "independently_verified_both_task_total_calls": null
+  },
+  "causal_limits": [
+    "Four-stage MVP changes several pipeline elements; its negative outcome does not isolate the cause.",
+    "These public cuts have been reused; historical raw confirmation predictions are absent and no fresh control refit was run.",
+    "Metadata-identical selector receipts alone cannot prove identical teacher matrices, labels or weights.",
+    "Classification whole-agent result cannot be substituted for the separate positive fixed-half component screen."
+  ],
+  "next": [
+    "Run the already reviewed fixed-half candidate source/unpacked gates and frozen whole-procedure groupedCV.",
+    "Keep selector-cache cost/parity pilot and deferred HPO-admission experiments as separate prospective factors."
+  ],
+  "promotion": false,
+  "official_submission": false,
+  "official_score": null
+}

@@ -76,3 +76,9 @@ research/true-four-stage/audit_inner_hpo_cost_r1.py -text
 research/fullagent-cv-r3/** -text whitespace=cr-at-eol
 
 research/true-four-stage/terminal-audit-r1/** -text whitespace=cr-at-eol
+docs/experiments/true-four-stage-tm1/classification-independent.json -text whitespace=cr-at-eol
+docs/experiments/true-four-stage-tm1/terminal-summary.json -text whitespace=cr-at-eol
+docs/experiments/true-four-stage-tm1/ownership-completion.json -text whitespace=cr-at-eol
+docs/experiments/true-four-stage-tm1/classification-audit-guard.json -text whitespace=cr-at-eol
+docs/experiments/true-four-stage-tm1/terminal-analysis.json -text whitespace=cr-at-eol
+docs/experiments/true-four-stage-tm1/terminal-results.txt -text whitespace=cr-at-eol

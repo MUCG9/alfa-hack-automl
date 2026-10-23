@@ -1,0 +1,711 @@
+{
+  "status": "independently_verified_terminal_task_of_active_campaign",
+  "utc": "2026-10-23T03:28:56.175377+00:00",
+  "tasks": {
+    "regression": {
+      "kind": "regression",
+      "status": "verified_saved_artifacts_unqualified",
+      "procedure_passed": false,
+      "errors": [
+        "closed_api_ledger_independently_unavailable_permission_denied"
+      ],
+      "cuts": {
+        "primary": {
+          "phase": "primary",
+          "metric": "rmse",
+          "value": 38.91902905502106,
+          "fitting_rows": 35000,
+          "validation_rows": 18308,
+          "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+          "training_rows_canonical_sha256": "19c57a5bd216da74acc85210013de28aab33bbc368660143502ac37063c4bb72",
+          "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+          "prediction_sha256": "d9112130a4dbe87bcafeeb0e855459aa75315dd0d894213722e8231840686f05",
+          "mixture_children": 2,
+          "forward_chronology_verified": true,
+          "validation_periods": [
+            5.0
+          ]
+        },
+        "confirmation": {
+          "phase": "confirmation",
+          "metric": "rmse",
+          "value": 37.28904675207362,
+          "fitting_rows": 22054,
+          "validation_rows": 12946,
+          "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+          "training_rows_canonical_sha256": "c626d7a5a5e28e6b1cad8764413da69b24488b20777ca67653f39e549b02bd08",
+          "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+          "prediction_sha256": "b4b7dddc651245ad6b667ab9ddfe55bab736a2bb3cbdd3614bfd4b4e1ba7319a",
+          "mixture_children": 2,
+          "forward_chronology_verified": true,
+          "validation_periods": [
+            4.0
+          ]
+        }
+      },
+      "selected_cut_mean": 38.104037903547336,
+      "mean_definition": "Arithmetic mean of independently verified selected primary and selected confirmation; never proof.metrics/best_validation treated as a mean",
+      "baseline_comparisons": {
+        "v16-mean1": {
+          "baseline_report_sha256": "a431c5de3f02ae362ffb8d083f9b075af9c8020d52c0adafa72c24d575bee309",
+          "cuts": [
+            {
+              "phase": "primary",
+              "current": 38.91902905502106,
+              "preserved_control": 38.902803731334785,
+              "delta_current_minus_control": 0.01622532368627816,
+              "primary_improves": false
+            },
+            {
+              "phase": "confirmation",
+              "current": 37.28904675207362,
+              "preserved_control": 31.991659384340597,
+              "delta_current_minus_control": 5.29738736773302,
+              "primary_improves": false
+            }
+          ],
+          "cut_comparable_by_preserved_protocol_and_matching_training_row_hashes": true,
+          "historical_confirmation_training_rows_rechecked": true,
+          "historical_confirmation_component_training_hash_matches": [
+            true,
+            true
+          ],
+          "actual_selected_two_cut_mean": 38.104037903547336,
+          "preserved_selected_two_cut_mean": 35.44723155783769,
+          "mean_delta_current_minus_control": 2.656806345709647,
+          "each_cut_primary_gate_passed": false,
+          "class_each_cut_gate_passed": true,
+          "fresh_control_refit": false,
+          "historical_control_raw_predictions_recomputed": false,
+          "historical_confirmation_raw_partition_rechecked": false,
+          "scope": "Saved qualified full-procedure V11/V16 control; primary partition fingerprint matches, confirmation follows preserved two-cut protocol. Not a prospective matched rerun."
+        }
+      },
+      "successful_model_families": [
+        "catboost",
+        "lightgbm",
+        "xgboost"
+      ],
+      "actual_teacher_receipts": [
+        {
+          "stage": "confirmation-0",
+          "input_columns": 178,
+          "fitting_rows": 11175,
+          "retained_broad_columns": 21,
+          "selector_seconds": 2.656
+        },
+        {
+          "stage": "confirmation-0",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 18,
+          "selector_seconds": 2.969
+        },
+        {
+          "stage": "confirmation-1",
+          "input_columns": 178,
+          "fitting_rows": 11175,
+          "retained_broad_columns": 20,
+          "selector_seconds": 2.672
+        },
+        {
+          "stage": "confirmation-1",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 20,
+          "selector_seconds": 2.985
+        },
+        {
+          "stage": "confirmation-2",
+          "input_columns": 174,
+          "fitting_rows": 11175,
+          "retained_broad_columns": 25,
+          "selector_seconds": 2.578
+        },
+        {
+          "stage": "confirmation-2",
+          "input_columns": 174,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 25,
+          "selector_seconds": 2.907
+        },
+        {
+          "stage": "experiment-00",
+          "input_columns": 183,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 15,
+          "selector_seconds": 3.125
+        },
+        {
+          "stage": "experiment-00",
+          "input_columns": 183,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 12,
+          "selector_seconds": 3.61
+        },
+        {
+          "stage": "experiment-01",
+          "input_columns": 174,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 25,
+          "selector_seconds": 2.984
+        },
+        {
+          "stage": "experiment-01",
+          "input_columns": 174,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 23,
+          "selector_seconds": 3.438
+        },
+        {
+          "stage": "experiment-02",
+          "input_columns": 174,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 22,
+          "selector_seconds": 3.016
+        },
+        {
+          "stage": "experiment-02",
+          "input_columns": 174,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 20,
+          "selector_seconds": 3.484
+        },
+        {
+          "stage": "experiment-03",
+          "input_columns": 174,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 25,
+          "selector_seconds": 3.062
+        },
+        {
+          "stage": "experiment-03",
+          "input_columns": 174,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 23,
+          "selector_seconds": 3.469
+        },
+        {
+          "stage": "experiment-04",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 22,
+          "selector_seconds": 3.078
+        },
+        {
+          "stage": "experiment-04",
+          "input_columns": 179,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 16,
+          "selector_seconds": 3.625
+        },
+        {
+          "stage": "experiment-05",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 18,
+          "selector_seconds": 3.203
+        },
+        {
+          "stage": "experiment-05",
+          "input_columns": 179,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 16,
+          "selector_seconds": 3.563
+        },
+        {
+          "stage": "experiment-06",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 17,
+          "selector_seconds": 3.156
+        },
+        {
+          "stage": "experiment-06",
+          "input_columns": 179,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 18,
+          "selector_seconds": 3.547
+        },
+        {
+          "stage": "experiment-07",
+          "input_columns": 174,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 25,
+          "selector_seconds": 3.032
+        },
+        {
+          "stage": "experiment-07",
+          "input_columns": 174,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 23,
+          "selector_seconds": 3.469
+        },
+        {
+          "stage": "experiment-08",
+          "input_columns": 174,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 25,
+          "selector_seconds": 3.062
+        },
+        {
+          "stage": "experiment-08",
+          "input_columns": 174,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 23,
+          "selector_seconds": 3.547
+        },
+        {
+          "stage": "experiment-09",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 18,
+          "selector_seconds": 3.204
+        },
+        {
+          "stage": "experiment-09",
+          "input_columns": 179,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 16,
+          "selector_seconds": 3.546
+        },
+        {
+          "stage": "experiment-10",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 18,
+          "selector_seconds": 3.109
+        },
+        {
+          "stage": "experiment-10",
+          "input_columns": 179,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 16,
+          "selector_seconds": 3.5
+        },
+        {
+          "stage": "experiment-11",
+          "input_columns": 182,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 18,
+          "selector_seconds": 3.297
+        },
+        {
+          "stage": "experiment-11",
+          "input_columns": 182,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 16,
+          "selector_seconds": 3.61
+        },
+        {
+          "stage": "experiment-12",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 20,
+          "selector_seconds": 3.156
+        },
+        {
+          "stage": "experiment-12",
+          "input_columns": 179,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 15,
+          "selector_seconds": 3.609
+        },
+        {
+          "stage": "experiment-13",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 20,
+          "selector_seconds": 3.079
+        },
+        {
+          "stage": "experiment-13",
+          "input_columns": 179,
+          "fitting_rows": 35000,
+          "retained_broad_columns": 16,
+          "selector_seconds": 3.531
+        },
+        {
+          "stage": "final-fit",
+          "input_columns": 179,
+          "fitting_rows": 53308,
+          "retained_broad_columns": 16,
+          "selector_seconds": 4.312
+        },
+        {
+          "stage": "final-fit",
+          "input_columns": 174,
+          "fitting_rows": 53308,
+          "retained_broad_columns": 21,
+          "selector_seconds": 4.078
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 178,
+          "fitting_rows": 11175,
+          "retained_broad_columns": 21,
+          "selector_seconds": 2.625
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 18,
+          "selector_seconds": 3.0
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 178,
+          "fitting_rows": 11175,
+          "retained_broad_columns": 21,
+          "selector_seconds": 2.688
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 18,
+          "selector_seconds": 3.047
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 178,
+          "fitting_rows": 11175,
+          "retained_broad_columns": 21,
+          "selector_seconds": 2.766
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 18,
+          "selector_seconds": 3.0
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 178,
+          "fitting_rows": 11175,
+          "retained_broad_columns": 21,
+          "selector_seconds": 2.688
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 18,
+          "selector_seconds": 3.188
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 178,
+          "fitting_rows": 11175,
+          "retained_broad_columns": 21,
+          "selector_seconds": 2.672
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 18,
+          "selector_seconds": 3.172
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 178,
+          "fitting_rows": 11175,
+          "retained_broad_columns": 21,
+          "selector_seconds": 2.688
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 18,
+          "selector_seconds": 2.953
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 178,
+          "fitting_rows": 11175,
+          "retained_broad_columns": 21,
+          "selector_seconds": 2.687
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 18,
+          "selector_seconds": 3.015
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 178,
+          "fitting_rows": 11175,
+          "retained_broad_columns": 21,
+          "selector_seconds": 2.735
+        },
+        {
+          "stage": "inner-hpo",
+          "input_columns": 179,
+          "fitting_rows": 22054,
+          "retained_broad_columns": 18,
+          "selector_seconds": 3.0
+        }
+      ],
+      "hpo_trials": [
+        {
+          "number": 0,
+          "phase": "anchor",
+          "status": "verified_ok",
+          "value": 37.343230482757285
+        },
+        {
+          "number": 1,
+          "phase": "startup",
+          "status": "verified_ok",
+          "value": 38.02020362280502
+        },
+        {
+          "number": 2,
+          "phase": "startup",
+          "status": "verified_ok",
+          "value": 37.34572720372698
+        },
+        {
+          "number": 3,
+          "phase": "guided",
+          "status": "verified_ok",
+          "value": 37.20299149875657
+        },
+        {
+          "number": 4,
+          "phase": "guided",
+          "status": "verified_ok",
+          "value": 37.38343103550126
+        },
+        {
+          "number": 5,
+          "phase": "guided",
+          "status": "verified_ok",
+          "value": 37.412031275885084
+        },
+        {
+          "number": 6,
+          "phase": "guided",
+          "status": "verified_ok",
+          "value": 37.65869629697391
+        },
+        {
+          "number": 7,
+          "phase": "guided",
+          "status": "verified_ok",
+          "value": 38.062420887732316
+        }
+      ],
+      "hpo_completed": 8,
+      "hpo_guided_successful": 5,
+      "job_sha256": {
+        "confirmation-0/job.json": "addb230d69bc84b8524426f5c0fcb9642cedbbde5ea2224c378c404c5b56f0c2",
+        "confirmation-1/job.json": "87a858d1d6b1613a691f6c8de593e890259c697215c43bbf39b353559fa72fc2",
+        "confirmation-2/job.json": "31d6802b3899a186a0ea06af974c2615fa735e9ee460f1223838c039b33ecc6b",
+        "experiment-00/job.json": "a147913774e67482a96e37a8d5e2ebb124ae4f314fadff9886fc03b06ce06547",
+        "experiment-01/job.json": "8f85b1ca52523ccb7be62353e9e8ddfdd87b00f50b815db62b70304bbcfdb648",
+        "experiment-02/job.json": "63279434d319bf126bb9f6d6badfc5687b26b750fde0c62ace1b2cd19ba68284",
+        "experiment-03/job.json": "b0013c95d72e6afffd6901a3b4d699f55ee159dbede801aef2bca28a783df35e",
+        "experiment-04/job.json": "f62572d857939e0d03680e2611386cff568a7c73b28916dcb3c6aa2594124208",
+        "experiment-05/job.json": "ef844c088fb323d1388c28a452c3c10bad3f92a5cb5dc7ccda4df494894d58e1",
+        "experiment-06/job.json": "2b672c569cc4f067104899fafc0922e3afa33ccd12c8f93393ad15c2f59f3fd6",
+        "experiment-07/job.json": "1422237468957911bfa611698965e4997cb34e2ca4053c06c1c22318c79b230b",
+        "experiment-08/job.json": "94e437a7459787af2daf21ce9a1fc0331122eb6cf9c2557925084231650b83a4",
+        "experiment-09/job.json": "b35eb94e15b4516de5599ef6ded3d3640c14677d1c8c031097db7238338f26c2",
+        "experiment-10/job.json": "2995aaebe884cc36a20f7f73614c4b2b62a9c0b9616140e27f95d74c18ee4527",
+        "experiment-11/job.json": "71dae0638d47ae3b4a15a8f8bdab64257915c212fd2caa169e076f758684a310",
+        "experiment-12/job.json": "09fbfe874e18c6cf803367e5fcc9d4a2f4a7cf0ad3b3b0d1763c89e8eeda4614",
+        "experiment-13/job.json": "64a99b2577e299a166d819911d0138949be3ab12d534440358f454a392742bfe",
+        "final-fit/job.json": "41629e7011bbe4158dea06fb20821e8ccc3c0759722138b619361351186dcb35",
+        "inner-hpo/trial-00/job.json": "9e5e06f4bcaa4f557249af3d6be463ae4e20d2f8467ac97ccfd875bd9d576078",
+        "inner-hpo/trial-01/job.json": "3b8ec002d99dc755dcaa501b70ac98769a9f09192ac3b9989fbda1013040f473",
+        "inner-hpo/trial-02/job.json": "57f1a691b839c1c051ffd384f87283863495194e711db197664ac93bd61f3b4f",
+        "inner-hpo/trial-03/job.json": "cef9b57fc37f764db946fd7a1c9123ccaf47e1cac87e09d4eb61866abf240068",
+        "inner-hpo/trial-04/job.json": "c120ddd2d8da09c3f07a54dad8f387111376c92266645f6c36127fac110a2f28",
+        "inner-hpo/trial-05/job.json": "c696e3aca79937e68dfa805e55161893a4896504cd540b80a9614f0a361891e1",
+        "inner-hpo/trial-06/job.json": "c195c360bd3e34c0814e7652eff5efba710b25ea9240cc195b63c1e5ff49b720",
+        "inner-hpo/trial-07/job.json": "bb5f9d7a57b27323065035eb454ea6f6c00af0baa7346e969169be871bd423d2"
+      },
+      "actual_artifact_sha256": {
+        "confirmation_split.json": "f6260ad85855f172cd45b53e0382311aff98df7f8d1312e7c212208ab0ee41bf",
+        "confirmation_split.npz": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+        "fallback_submission.csv": "7b96061cff644bfd2e03894a130b624f25500890822cb8a5bf051c3bc8346be4",
+        "initial-data-assessment.json": "3adbb9795c6a24b4c47fa8b981e658a7a124c4af2431bea91e1076e5de073392",
+        "planner-2.json": "e51e38ac96163b59c3cfe3b6fd2a3185dc4f47687e8c2c78e3cc16cac0eed3cc",
+        "profile.json": "4b1e6f715fc0839d1aec7e56dc072436614b90d16202c480f4b010ec26db5470",
+        "progress.json": "5fa57640bc1c6e66381c2970470c54a51c9f35ba3fdafd30ec297b0f126abae7",
+        "provenance.json": "8ef2432a46b96ec892878896ae223f0633826a32c61209edf1da860b4938133a",
+        "report.json": "e74e62277f9c068b7029d4385606ac11f060af32acff39a12e2748bbb904a787",
+        "split.json": "0e328caf8c99565f8cc177ff6e171f49830448842ab286073e41b43b73cd06c5",
+        "split.npz": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+        "task_spec.json": "3399bbd95728b6434cc5172a5b446e8856cc2a79dc817d64b91b19afd2757477",
+        "confirmation-0/job.json": "addb230d69bc84b8524426f5c0fcb9642cedbbde5ea2224c378c404c5b56f0c2",
+        "confirmation-0/result.json": "857513a06e106127f639aa44732dc0c669adfde6a080b22221aa04ba908c604c",
+        "confirmation-0/submission.csv": "bb0b76d68048eed73e052fe4e86cd76864c4f00ad8bd935e19c5bbbb4083f131",
+        "confirmation-0/validation_predictions.csv": "54acd1ac43eda1e4494cef69677d19b497a0d8c5f97ff3defddcfc10a50f3840",
+        "confirmation-1/job.json": "87a858d1d6b1613a691f6c8de593e890259c697215c43bbf39b353559fa72fc2",
+        "confirmation-1/result.json": "b24830133495f4437f97b21076db54e3c94e97d9a6910abf0893ed1e76388712",
+        "confirmation-1/submission.csv": "f2e6f186c4746f73338f35ac67f5d33b3099da2f27886b24d202b93e20b92f68",
+        "confirmation-1/validation_predictions.csv": "dcd89707adf2ab67afdb61a21a1e612c13ed6e58111493b21ede05d73b88b5df",
+        "confirmation-2/job.json": "31d6802b3899a186a0ea06af974c2615fa735e9ee460f1223838c039b33ecc6b",
+        "confirmation-2/result.json": "942efe3ab480132d80bfca9f3dea70a704dbb1a1abef22a73e9e48456e9b7fc4",
+        "confirmation-2/submission.csv": "11ae4ffe06e16ee405823894901ad42eead0d2ae03160bb1894f4d572b11c638",
+        "confirmation-2/validation_predictions.csv": "5a4077cc08cb31941c6f28d64f8174f19943b55a113353ef87eb882f97f16e99",
+        "ensemble-confirmation/result.json": "cb9dd19d219dbada93d4e0bb20f7abbb472359506b386c43e3d438ba608396f9",
+        "ensemble-confirmation/submission.csv": "c17aba5287c2d6ee008f3c9c03e4b1e2ab59045b9d7359d0157eeee57314b39f",
+        "ensemble-confirmation/validation_predictions.csv": "b4b7dddc651245ad6b667ab9ddfe55bab736a2bb3cbdd3614bfd4b4e1ba7319a",
+        "ensemble-primary/result.json": "d749bd2a7cb85908ae1e9ba393e47d269d0c0dbdb9684f51cdaed78b0d9087b4",
+        "ensemble-primary/submission.csv": "277653e859b12ec20e8129d97ccb95e1b97d0a32c8d8a121d02ec1007d20b7fc",
+        "ensemble-primary/validation_predictions.csv": "d9112130a4dbe87bcafeeb0e855459aa75315dd0d894213722e8231840686f05",
+        "experiment-00/job.json": "a147913774e67482a96e37a8d5e2ebb124ae4f314fadff9886fc03b06ce06547",
+        "experiment-00/result.json": "cdcaa37b2ec58bea82e18a1ed13fbda6811900992079d61c32a73a707e8709f9",
+        "experiment-00/submission.csv": "48db138e7f4ddb1067ee52d99dc7db0fe856c87e5398d5f77d8bc92c829ee4a3",
+        "experiment-00/validation_predictions.csv": "6d669dfdf641234744b80d003b9e96542714f2cae7c03db8f5136d8d1bf41dc4",
+        "experiment-01/job.json": "8f85b1ca52523ccb7be62353e9e8ddfdd87b00f50b815db62b70304bbcfdb648",
+        "experiment-01/result.json": "e2ace1dc7e9292d8f8e107b2ce8b1c3b01bbd4eb0f604f6f388e553dfc0c641e",
+        "experiment-01/submission.csv": "f65cdf5ffd7ee0b407c4ec2f97116eeb8abf5a78ff329912efd0e66eea50ab08",
+        "experiment-01/validation_predictions.csv": "57c26f264865df43580ffc0d5aa0be00bcf639881714bb09a99034a8b704f3cc",
+        "experiment-02/job.json": "63279434d319bf126bb9f6d6badfc5687b26b750fde0c62ace1b2cd19ba68284",
+        "experiment-02/result.json": "45140d370c6a27d627268cb086836d3461685988ae962e37e1ec0d0a4b25539f",
+        "experiment-02/submission.csv": "3ba17c567b043ea5448769e6c509ccb5202f7ac8735118baad5534bf3ea9b274",
+        "experiment-02/validation_predictions.csv": "c73dbd4ba7edcf7e6396dd4a99edb58fbefb01017928055d179a9a4023e9b302",
+        "experiment-03/job.json": "b0013c95d72e6afffd6901a3b4d699f55ee159dbede801aef2bca28a783df35e",
+        "experiment-03/result.json": "737f6be9061b6f4df72f3ca9510df8fabd0ab9c97fcda75a7626487345ca3bb5",
+        "experiment-03/submission.csv": "01e61265415ba6bd58ed875ad64cf0731cbb9338aac376d80fdf0e91d6445af4",
+        "experiment-03/validation_predictions.csv": "7cdbcc22c2aa5a9f9c3d65e0cf927717082d051196e18a922a274408405c3660",
+        "experiment-04/job.json": "f62572d857939e0d03680e2611386cff568a7c73b28916dcb3c6aa2594124208",
+        "experiment-04/result.json": "e3da2e290eb40689339f284840e245efb6de62059bb741566c68ab3b239ab24d",
+        "experiment-04/submission.csv": "2eb4342eb23cad8e7f8378a10f6fa09699989c96ace37075c3a1012b8b4541d3",
+        "experiment-04/validation_predictions.csv": "bb3effdb55fcd8b6b07dc720bbbc49f741ea0914be4da4eb949db1ddc3a1d1b8",
+        "experiment-05/job.json": "ef844c088fb323d1388c28a452c3c10bad3f92a5cb5dc7ccda4df494894d58e1",
+        "experiment-05/result.json": "416d7304856b3e2d9b8f1730a697505b8c7375c8c17ae932c87a999a5b205e9a",
+        "experiment-05/submission.csv": "eb8e123a9de70ebfa14bb34502ab4b436d09823d54a77801ace3cf3e25f1b275",
+        "experiment-05/validation_predictions.csv": "9f6868fe20cba5faf1172d65a383112b812aca885e9e0f4ff2d2632f1f4028d0",
+        "experiment-06/job.json": "2b672c569cc4f067104899fafc0922e3afa33ccd12c8f93393ad15c2f59f3fd6",
+        "experiment-06/result.json": "a517607b71ad5e51762a22ad44745653dc1e3027fd3476c55bda3345fe06f620",
+        "experiment-06/submission.csv": "fca377c4acfefe25c74ad56853cbbd877150b5a99af22b17d073853907feecd3",
+        "experiment-06/validation_predictions.csv": "1d6e1c6356902c1b55655191d1633515616e23af497c846a929084cf3896fe8b",
+        "experiment-07/job.json": "1422237468957911bfa611698965e4997cb34e2ca4053c06c1c22318c79b230b",
+        "experiment-07/result.json": "4778f41ad0dc711b4bf7b2b99d0bc89f1ff1efe56fa1e9822c85c3a59c243c68",
+        "experiment-07/submission.csv": "8dda4462f92a737e18cabc2e6999773eee4668912665033b769de1152db877d1",
+        "experiment-07/validation_predictions.csv": "60edcbf75eb0f191576d3e32e9eb4cd9613d342eb264ac3d9a6f3602cccb0166",
+        "experiment-08/job.json": "94e437a7459787af2daf21ce9a1fc0331122eb6cf9c2557925084231650b83a4",
+        "experiment-08/result.json": "a4efffc62584aadad84cd5b8a186470318f7d9d143881f829a4e5b7c4adde25c",
+        "experiment-08/submission.csv": "e72fe938229eb07ced90019a63506437c36aea47f3587325851623df0e115380",
+        "experiment-08/validation_predictions.csv": "4766aa5af9d9771379374d5115f02cb39b3f2da71ef731960b7149d93392da3a",
+        "experiment-09/job.json": "b35eb94e15b4516de5599ef6ded3d3640c14677d1c8c031097db7238338f26c2",
+        "experiment-09/result.json": "c14e2c340bfdc1e15ef27fce61f37d9cf05e426ccdb1abcd076f7435150f7b1c",
+        "experiment-09/submission.csv": "ce951225ad5f8bb1eee1e13c6993c66be2e8ff179ab973b4d96ff45102c0c699",
+        "experiment-09/validation_predictions.csv": "35eddd3ae41584b99c2111f95b30112dd60a31bf73a66c94842d8ca92231afc7",
+        "experiment-10/job.json": "2995aaebe884cc36a20f7f73614c4b2b62a9c0b9616140e27f95d74c18ee4527",
+        "experiment-10/result.json": "a9be245e0b020d40290062793e2ff2968b405878a582ddf7d1648d307a6cd2be",
+        "experiment-10/submission.csv": "bf873a2a6841566c87d64fc9f0dbdbeca6b4e08048778806f8368c13ed2af3bd",
+        "experiment-10/validation_predictions.csv": "bbd7baf9de025cc7037b7518da85d21b722cd60d4143d3c335968d4dfb5027b6",
+        "experiment-11/job.json": "71dae0638d47ae3b4a15a8f8bdab64257915c212fd2caa169e076f758684a310",
+        "experiment-11/result.json": "93e2a6ca0e4738c39287bd96becf4f5d80ee11f758f350af382e19a43cdaf786",
+        "experiment-11/submission.csv": "35f528d1be0563c6a6a5d984f9608d527f8e70aedc1d157a10b5ab1f75fad9fe",
+        "experiment-11/validation_predictions.csv": "1d06ac0a5e3e75b6e5560a7ae99ed67482989c704c393562ef49977931c22a54",
+        "experiment-12/job.json": "09fbfe874e18c6cf803367e5fcc9d4a2f4a7cf0ad3b3b0d1763c89e8eeda4614",
+        "experiment-12/result.json": "9896e1165b6b26ca32ec111912738ceee254dda5a36409b4cd9e17493eb5ea67",
+        "experiment-12/submission.csv": "7788a2af177783eade1cb56f1d86ae19271d43ebf4b9929c5ba50b203dcc01e5",
+        "experiment-12/validation_predictions.csv": "9a77d158123fd76b199781ad9cddb77abd88622f93a0bc8ecbc58c38bd4bbe23",
+        "experiment-13/job.json": "64a99b2577e299a166d819911d0138949be3ab12d534440358f454a392742bfe",
+        "experiment-13/result.json": "1e07b3c9f918d182ac8e5053daa779ba2d2462d87088c025153bcedd75d50b8b",
+        "experiment-13/submission.csv": "6c16172c3e7f45955bd32390c983c85ed4d241f2c33053bb947e0d9c2f3f857a",
+        "experiment-13/validation_predictions.csv": "efee547970e5c432527af4c357b57c64ba3871a97df5cb79a4dc818398161546",
+        "final-fit/job.json": "41629e7011bbe4158dea06fb20821e8ccc3c0759722138b619361351186dcb35",
+        "final-fit/result.json": "0a665f58de196e5a028a3ac2165cc34204561bcf0e3b1b0df129b10b55af9326",
+        "final-fit/submission.csv": "1209955fc0158904d0517c0cb9a900f674d3f662f35101d77e606a936e5bc556",
+        "inner-hpo/hpo.json": "7e8cf04023302095121bc7d133fced6adbf39e79e8e88d735a06c8e30b36ef65",
+        "inner-hpo/split.npz": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+        "final-fit/component-0/result.json": "ac65944eba06d3a542df895869e66a4b9802624f5b6e935bd625cb642cbbd161",
+        "final-fit/component-0/submission.csv": "1f899cf1647bf14e8e1b40872b054627ec2ccfd90fdcc41a1fa26b16dde5a60d",
+        "final-fit/component-1/result.json": "4c678eda9563e0742531e2a50186eb78b32f93d761aafde92089399776bc41e9",
+        "final-fit/component-1/submission.csv": "731acd5d344a2c1102df11be16bc46ca74bc0092e9742edea3e2c30029477fe2",
+        "inner-hpo/trial-00/job.json": "9e5e06f4bcaa4f557249af3d6be463ae4e20d2f8467ac97ccfd875bd9d576078",
+        "inner-hpo/trial-00/result.json": "e270dee3c2bbacd8a6656832bb042bab6317282b0176ae7f469649254c9d90cc",
+        "inner-hpo/trial-00/submission.csv": "8c25ee9463595f3ecb81e5c57157e5a240f5fa783159768d71016acae79fac3b",
+        "inner-hpo/trial-00/validation_predictions.csv": "d336e53a51e216bd7bbf14481ab522a76e940c1a88e6bd188ad288703f6a9860",
+        "inner-hpo/trial-01/job.json": "3b8ec002d99dc755dcaa501b70ac98769a9f09192ac3b9989fbda1013040f473",
+        "inner-hpo/trial-01/result.json": "047ae0e1df8fc9da4da4c35e631d0b963ec855a5af9a81c62841d80a05830102",
+        "inner-hpo/trial-01/submission.csv": "a56aaff337d888b0ca1013e2ae4e3076cc3128a61df7f4f36e4f15b4d0f2dba4",
+        "inner-hpo/trial-01/validation_predictions.csv": "f826f114f8440b9b4d431c6a880f0fbff7d1a56e335c5ed570fb14908b57f46a",
+        "inner-hpo/trial-02/job.json": "57f1a691b839c1c051ffd384f87283863495194e711db197664ac93bd61f3b4f",
+        "inner-hpo/trial-02/result.json": "95d805bc76555f9996c48add1d864cce619f0e74ea104ac3e0c679287c6d24d6",
+        "inner-hpo/trial-02/submission.csv": "a796e37043b9f846443a85f5b9818ce0cf75abfa2d9612cd463e240b181fd8f8",
+        "inner-hpo/trial-02/validation_predictions.csv": "765be7239e7ea3d1cc0fceb8200570c5498003cef1a2080d0ce1a764ff0f14ef",
+        "inner-hpo/trial-03/job.json": "cef9b57fc37f764db946fd7a1c9123ccaf47e1cac87e09d4eb61866abf240068",
+        "inner-hpo/trial-03/result.json": "22f946d41eb0c760eb8d995db956ea3b2aa8721ac2adb44114cd9b5b3a21424c",
+        "inner-hpo/trial-03/submission.csv": "bb0b76d68048eed73e052fe4e86cd76864c4f00ad8bd935e19c5bbbb4083f131",
+        "inner-hpo/trial-03/validation_predictions.csv": "54acd1ac43eda1e4494cef69677d19b497a0d8c5f97ff3defddcfc10a50f3840",
+        "inner-hpo/trial-04/job.json": "c120ddd2d8da09c3f07a54dad8f387111376c92266645f6c36127fac110a2f28",
+        "inner-hpo/trial-04/result.json": "34cbba8a97180cfa65da54f280e22fa114990a3495abef2228c67cd0a80eb8de",
+        "inner-hpo/trial-04/submission.csv": "7db71471266193e1793a67fe0175e0532e17eb29bc9e742cd471d5d96d0ed144",
+        "inner-hpo/trial-04/validation_predictions.csv": "88135b8549dd995744ee4f7aabc0c97d03ece3c0678797cb743ede9b1782e840",
+        "inner-hpo/trial-05/job.json": "c696e3aca79937e68dfa805e55161893a4896504cd540b80a9614f0a361891e1",
+        "inner-hpo/trial-05/result.json": "e41797b8b8ccdda4f7f9bb225b605dc81cdfd3348e7ccc544dcb2a349a7f5f33",
+        "inner-hpo/trial-05/submission.csv": "ac9257d96bb71b8731881d2dd6ba7f01bfb31d6909a3558a994629ec7492c844",
+        "inner-hpo/trial-05/validation_predictions.csv": "7354b0693c0b08108335fcbd66e7c58df689c6881406459207bd508909e23e2b",
+        "inner-hpo/trial-06/job.json": "c195c360bd3e34c0814e7652eff5efba710b25ea9240cc195b63c1e5ff49b720",
+        "inner-hpo/trial-06/result.json": "cb203f06f30c8751ebefb295c3b031289fcd26c577d8d38c2c9aa44b0aa9350b",
+        "inner-hpo/trial-06/submission.csv": "525c348f6c56c7dbb076074b3969fa2defe86b87d7378ef0dc09768412071b81",
+        "inner-hpo/trial-06/validation_predictions.csv": "62c8043028110bc622b0080f23672802212ff8988f8d25344a87e19016db67cb",
+        "inner-hpo/trial-07/job.json": "bb5f9d7a57b27323065035eb454ea6f6c00af0baa7346e969169be871bd423d2",
+        "inner-hpo/trial-07/result.json": "631235e5db00acfa1629eb2d66c47e145aa983a017217209066176c5a49d8413",
+        "inner-hpo/trial-07/submission.csv": "11da364bf552a739a7122ba8fd3f99e9c5fd3c041009955aa01b5c1175a77d1a",
+        "inner-hpo/trial-07/validation_predictions.csv": "412e70ba51b3e7fff452369faf1eac805c82769cc697ec5479524ac49618ceac"
+      },
+      "stage_hashes": {
+        "report": "e74e62277f9c068b7029d4385606ac11f060af32acff39a12e2748bbb904a787",
+        "initial_assessment": "3adbb9795c6a24b4c47fa8b981e658a7a124c4af2431bea91e1076e5de073392",
+        "supervisor": "18431e75758c229fcf0e0a93cfa77d91a9a1f34eac2d2ae1f874b8d82318e2a8",
+        "hpo": "7e8cf04023302095121bc7d133fced6adbf39e79e8e88d735a06c8e30b36ef65",
+        "api_ledger": null
+      },
+      "api": {
+        "independently_read_closed_ledger": false,
+        "gateway_calls": null,
+        "http_attempts_reported": null,
+        "prompt_tokens_reported": null,
+        "completion_tokens_reported": null,
+        "usage_complete": null,
+        "unavailable_reason": "PermissionError",
+        "winerror": null,
+        "acl_bypass_attempted": false,
+        "parent_supervisor_reported_usage": {
+          "gateway_calls": 2,
+          "gateway_calls_reported": 2,
+          "http_attempts_reported": 2,
+          "usage_complete": true,
+          "prompt_tokens_reported": 19302,
+          "completion_tokens_reported": 954
+        },
+        "parent_report_is_independent_ledger_read": false
+      },
+      "promotion": false
+    }
+  },
+  "manifest_sha256": "a9cabbff77f0cc795c12ee0cb9afed71f330cdd4c803536ea0be3a2ce73a7e94",
+  "campaign_sha256": "26629d2600527c3330d5d117705cf413821efbd835b51ccbd8d62c048b8bf58d",
+  "runtime_archive_sha256": "88dac47a9a815b98b5d00c44e5650518f84db5197c9eac56b79fb1ce465c92a0",
+  "pristine_input_source_hashes_verified": true,
+  "actual_common_deadline_satisfied": null,
+  "actual_elapsed_common_seconds": null,
+  "campaign_still_active_at_task_only_verification": true,
+  "new_model_fits": 0,
+  "api_calls": 0,
+  "tests_run": 0,
+  "canonical_runtime_results_changed": false,
+  "official_score": null,
+  "official_score_estimated": false,
+  "failed_metrics_zero_imputed": false,
+  "promotion": false,
+  "scope": "Independent saved-artifact audit on reused public research cuts; no fresh control, full-agent confirmation CV, private or official score claim",
+  "historical_baseline_limit": "V11/V16 selected complete-procedure report metrics and class confusion matrices are preserved evidence. Their raw confirmation partitions/predictions are not present here and are not claimed independently reverified."
+}

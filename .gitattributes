@@ -51,3 +51,5 @@ docs/experiments/fixed-half-sc1-blend-r1/independent-root-verification.json -tex
 docs/experiments/fixed-half-sc1-blend-r1/result-summary.txt -text
 docs/experiments/fixed-half-sc1-blend-r1/results.json -text
 docs/experiments/fixed-half-sc1-blend-r1/verification-attempt1.json -text
+docs/experiments/true-four-stage-tm1/regression-independent.json -text
+docs/experiments/true-four-stage-tm1/regression-summary.txt -text

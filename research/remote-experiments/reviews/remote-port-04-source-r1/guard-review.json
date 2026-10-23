@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "status": "source_only_two_clock_blockers_before_bounded_ML_execution",
+  "remote_result_sha": "6929ef34a90e4438816d4b2ca653bcb0e3c4a380",
+  "input_artifacts_sha256": {
+    "portable_harness.py": "61d6876c63e4d5a9b48e70719e1fa8c8e6ee570b0be01d7a2ba351e578f7cb84",
+    "pure_contracts.py": "88263f4a14df79e8d6a2f39095cc5e3a97c8a924b80f375454e07095f50c45cf",
+    "protocol.json": "c38db109bd840b3f10577f024a2252c6c3cc6ee3d67041b146ae691f6323511e",
+    "pure-checks.json": "6719641cca594e91ed11f077c0293305c8fee887f6ce3f1fb9396e2d1da00179",
+    "capabilities.json": "ac5fb449c204bbfddc82644787c44a4627b765512e63b18ea7eb09e2d4d1c0fa",
+    "summary.txt": "c9d3afeb025d2c530928ff9aaef47bdf51143244d2515e4efe462cf926ad8e30"
+  },
+  "source_tests_inspected": [
+    "test_environment_ascii_no_credentials",
+    "test_actual_exclusive_lock",
+    "test_lock_identity_replacement",
+    "test_retained_original_clock",
+    "test_gap_clock",
+    "test_full_allocation_no_popen",
+    "test_hash_expiry_before_popen",
+    "test_real_inert_child",
+    "test_late_finalization_downgrade",
+    "test_descendant_rss_not_direct_only",
+    "test_traversal_denial_sticky",
+    "test_final_cleanup_identity_replacement",
+    "test_final_cleanup_denied",
+    "test_source_cli_refuses",
+    "test_source_admission_refuses_before_popen",
+    "test_wrong_worker_or_claim_refused",
+    "test_primary_approval_result_binding",
+    "test_model_driver_lock_is_wired",
+    "test_wrong_job_identity_refused",
+    "test_native_linux_exact",
+    "test_native_tampered_dtype",
+    "test_native_tampered_order_hash",
+    "test_native_tampered_values_digest",
+    "test_native_group_chronology",
+    "test_native_path_role_mapping",
+    "test_r4_leaf_and_diagnostics",
+    "test_r4_probability_width_tamper",
+    "test_r4_probability_csv_mismatch",
+    "test_r4_truth_tamper",
+    "test_r4_validation_positions_tamper",
+    "test_r4_nonfinite_probability",
+    "test_r4_probability_sum",
+    "test_r4_reversed_class_label_tamper",
+    "test_r4_recursive_ensemble_tamper",
+    "test_r4_feature_view_tamper",
+    "test_recursive_iterations_bound",
+    "test_pretruth_inventory_tamper",
+    "test_audit_authority_before_truth",
+    "test_outer_component_audit_synthetic_positive",
+    "test_frozen_linear_representation_receipt",
+    "test_frozen_rbf_representation_receipt",
+    "test_frozen_rbf_gamma_tamper",
+    "test_frozen_representation_fit_scope_tamper"
+  ],
+  "source_test_count": 43,
+  "reported_checks": {
+    "pure_tests_passed": true,
+    "pure_tests_run": 43,
+    "native_cuts_reported": 5,
+    "model_fits_reported": 0,
+    "API_calls_reported": 0,
+    "whole_campaign_peak_rss_mib": null,
+    "whole_campaign_cpu_usage": null,
+    "authority": "Remote-reported only, not independently executed or host-attested by reviewer."
+  },
+  "blockers": [
+    {
+      "id": "G01",
+      "priority": "P1",
+      "file": "portable_harness.py",
+      "line": 192,
+      "code": "completed_exit_accepted_before_child_deadline_check",
+      "evidence": "while loop samples, accepts terminal poll and breaks before need(monotonic<child_end). Zero exit observed at child450.03 after last450minusinterval poll can be completed while parent480/common still valid.",
+      "required_fix": "Check actual child deadline before accepting terminal exit; record actual child start/end/elapsed. Preserve old04 receipts/source unchanged. Add pure mocked terminal-at/after-deadline cases; no model fit needed."
+    },
+    {
+      "id": "G02",
+      "priority": "P1",
+      "file": "portable_harness.py",
+      "line": 260,
+      "code": "driver_context_cleanup_outside_final_clock_qualification",
+      "evidence": "model_driver returns supervise result from inside TemporaryDirectory and host_lock. Both context exits run after supervisor final receipt clockcheck. No gap/common/original480 parent check occurs afterwards, so slow tempfile cleanup/lockrelease can return stale completed state.",
+      "required_fix": "Keep supervisor rawresult, finish both contexts, check original common+saved parent deadline+10s gap, and write/return explicit driver finalization qualification or failure if late. Do not extend clock or add a new guard layer."
+    }
+  ],
+  "positive_source_findings": [
+    "Retained clock uses original claim wall deadline and persisted wall/mono offset; no source-only retry clock reset claimed. Inventory cost charged and full child allocation rechecked before Popen.",
+    "Worker RSS sums fresh exact root+discovered descendant identities, whole sample includes current parent tree; sticky traversal/create_time/cleanup failures never cleared. ParentRSS sampling occurs in monitored child loop; not independent wholecampaignRSS proof.",
+    "Linux affinity caps child subtree to <=2 cores; credential/provider env stripping and ASCII temp are processlocal, no global OS mutation.",
+    "host_lock uses exclusive filecreation and exact release identity, no stale reclaim. It is actual cooperative lock for the selected repo parent path, not a global cross-clone adversarial host mutex.",
+    "queue_admission invokes actual pinned queue read_claim/jobs/bounded_admission, exact worker/job/claim and immutable primary execution-binding source_ref; no naked capability Boolean grants model authorization.",
+    "Main source-only CLI refusing all learner invocation is correct. model_driver is only one exact private-leaf helper; its prospective author did not claim current6slot ML readiness.",
+    "Actual final43 method names/source SHA agree among protocol/purechecks/capabilities; source tests cover meaningful inert/mock negative guards but do not cover G01 or post-context G02."
+  ],
+  "future_six_job_prerequisites": [
+    "New source-only05 repair should freeze G01/G02 fixes and meaningful pure mock boundary contracts; actual checks only run remotely under original declared source-only budget.",
+    "Separate fixed entrypoint for future06 must implement pinned class42/43 x strong/linear/rbf matrix,5400 all-inclusive common clock,16 static learner-fit upper admission/counters,setup/audit/cleanup/spare reserves,perjob480/450 and original claim/primaryapproval/immutable sources/recipe/spec/native gates. Existing single-leaf helper is not that operational driver.",
+    "One canonical selected-repo hostlock path and known own/bootstrap/descendant closure, actual error history and parent terminal source/input/audit gates required; no model source changes or regression replay.",
+    "Do not issue boundedML approval until repairs/entrypoint/auditor independently reviewed and declared source checks actually closed. Existing04completed source result remains completed as reported, not promoted into ML approval."
+  ],
+  "preserved_history": {
+    "first_error": {
+      "code": "ValueError",
+      "detail": "New private native helper initially unpacked two rather than three return values from the frozen splitter; nonzero source-only exit retained. No fits/API. Fixed caller only under unchanged common clock."
+    },
+    "secondary_errors": [
+      {
+        "code": "observation_gap_over_10s",
+        "detail": "Redundant child cooperative check rejected synchronous class splitter after more than10s. Parent continuously monitored every50ms. Corrected private pure child to original wall/monotonic checks; parent cooperative monitoring retained."
+      },
+      {
+        "code": "inventory_changed",
+        "detail": "During native-r3, a test file in the guarded three-file inventory was edited. Guard correctly rejected this attempt and set cleanup_confirmed=false despite child exit0. Original algorithm70 and split arrays were unchanged. Later independent native reread and final tests ran sequentially against unchanged current sources and fresh exact child absence was verified."
+      },
+      {
+        "code": "KeyError",
+        "detail": "Private seal helper initially included identity-only sidecar in its supervisor-record glob. Excluded sidecars before packet generation; no source, metric, clock or immutable result changed."
+      },
+      {
+        "code": "absolute_or_private_path_denied",
+        "detail": "Local packet scanner rejected a literal synthetic Windows path used in a negative test; nothing was published. Test now constructs that synthetic fixture at runtime, without a public absolute-path literal; final source tests rerun. Scanner unchanged."
+      }
+    ],
+    "all_source_attempts_retained_privately": true,
+    "inventory_changed_attempt": "Old attempt remains blocked/cleanupfalse despite childexit0; later final sourcebound phases do not rewrite it.",
+    "native_and_test_scope": "Five source-only native gate reports and43 puretests, not6 public model jobs or quality proof.",
+    "whole_campaign_RSS_and_CPU": "Null retained; sampled phase peaks are not wholecampaign/OSsandbox attestation."
+  },
+  "scope_limits": [
+    "This review is static guard/source and receipt-binding analysis only; another agent reviews R4/component audit semantics.",
+    "Fresh remote process absence, actual host lock state, actual private data/labels and resource measurements were not observed locally.",
+    "Observed descendant union cannot prove no never-observed short-lived descendant; this limitation is explicit and no broader hostsecurity certification is requested."
+  ],
+  "performed": {
+    "source_text_JSON_hash_AST_reads": true,
+    "candidate_runtime_imports": 0,
+    "tests_executed": 0,
+    "model_fits": 0,
+    "API_calls": 0,
+    "process_scans": 0,
+    "data_labels_predictions_reads": 0,
+    "active_LA2_reads": 0,
+    "source_receipt_protocol_mutations": 0,
+    "STATE_Git_mutations": 0
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "schema": "remote04_primary_component_audit_source_review_v1",
+  "status": "source_reviewed_no_execution",
+  "reviewed_result_sha": "6929ef34a90e4438816d4b2ca653bcb0e3c4a380",
+  "artifact_root": "work/remote-incoming/remote-port-04-portability-repair/6929ef34a90e4438816d4b2ca653bcb0e3c4a380/artifacts",
+  "exact_sha256": {
+    "component_audit.py": "befcca2f8e630b9fb8e1bca81ce46b4d08f6f17773c65a38f133a56c277d2ffd",
+    "portable_harness.py": "61d6876c63e4d5a9b48e70719e1fa8c8e6ee570b0be01d7a2ba351e578f7cb84",
+    "pure_contracts.py": "88263f4a14df79e8d6a2f39095cc5e3a97c8a924b80f375454e07095f50c45cf",
+    "protocol.json": "c38db109bd840b3f10577f024a2252c6c3cc6ee3d67041b146ae691f6323511e",
+    "pure-checks.json": "6719641cca594e91ed11f077c0293305c8fee887f6ce3f1fb9396e2d1da00179",
+    "changes.patch": "eb505e3bdbf29c1447ea1c225e1bdccc78f84c4670cd52c825f706a0b5733ac8"
+  },
+  "executed_by_reviewer": {
+    "remote_imports": 0,
+    "tests": 0,
+    "model_fits": 0,
+    "API_calls": 0,
+    "public_data_or_predictions_read": 0,
+    "process_scans": 0,
+    "clock_assignments": 0
+  },
+  "blocking_source_findings": [],
+  "conclusion": "No concrete blocker found in the declared successful-component R4 audit helper. It is sufficient as the saved-artifact audit primitive for a separately primary-pinned exact six-job class execution authority. It does not supply that authority, run the six-job matrix, qualify the process guard, or establish ML readiness.",
+  "source_findings": [
+    {
+      "location": "component_audit.py:60-85",
+      "finding": "Canonical external authority is checked before data reads. The frozen loop checks all pristine role byte hashes, all declared source inventories, all declared core inventories, Linux raw split hashes and saved terminal hashes; closed_core requires top-level exact job spec/recipe/threads2/full_fitFalse and native output/split paths, terminal completion/cleanup/common deadline/resource caps, plus recursive integer iteration-tree shape before pandas reads label-bearing train."
+    },
+    {
+      "location": "component_audit.py:83-105; evaluator.py:125-150,194-300,316-337",
+      "finding": "Both actual library files match their hardcoded SHA. The nonoptimized R4 TaskVerifier/full=False verifies canonical value output contract, classes, sample IDs/order, exact validation positions/truth, finite normalized probability matrices, CSV argmax, manual MacroF1, stored metric parity and recursive ensemble/two-view mixtures. diagnostics verifies raw-feature-group disjointness, fitting-group support, fitting rarest class and ex-rarest F1."
+    },
+    {
+      "location": "component_audit.py:89-105; portable_harness.py:61-90",
+      "finding": "Native identity is conjunctive rawNPZ/memberNPY/header/dtype/shape/ordered-value/concat/range/uniqueness/disjointness plus class-group invariant, with explicit Linux selection. Canonical hashing casts comparison copies only; solver arrays are not rewritten. Every processed core and final return are followed by frozen rehash and shared clock tick."
+    },
+    {
+      "location": "component_audit.py:96-103; audit_components.py:51-102; evaluator.py:167-191",
+      "finding": "Matched-linear/RBF fitting-order/schema/head/gamma/matrix/receipt checks call the exact independent representation library, not its Windows main. Exact primary/confirmation maps call unchanged strict per-cut F1/support/ex-rarest comparison. Negative quality remains explicit comparison false, not fabricated technical success or a zero score."
+    },
+    {
+      "location": "component_audit.py:43-53",
+      "finding": "Noncompleted/missing mandatory core is rejected before truth scoring. The future parent must retain failed/unattempted slots, errors and null metrics separately; this helper is intentionally a successful sealed-core auditor and does not return a qualified partial matrix."
+    }
+  ],
+  "future_primary_binding_requirements": [
+    "A separately pinned authority must fix exactly six unique component keys/output folders, class42/43 native entries from f5ad8c55, all three exact strong/linear/RBF recipes, classification value spec, approved four native data roles and their exact approved byte hashes, complete original70 source map, terminal/core/split seals and common clock. Unique keys/folders avoid ambiguous dictionary overwrite or R4 cache reuse.",
+    "The authority must fix comparisons primary=42/confirmation=43 for RBF-vs-strong, linear-vs-strong and RBF-vs-linear. Generic helper deliberately permits synthetic or differently sized matrices; its external hash is only authoritative if the caller obtains the expected hash independently from the approved immutable execution plan.",
+    "Include reviewed auditor/harness and other execution source inventories in the externally pinned source map, beyond the original algorithm70 map, and independently bind actual queue/job/worker approval, dispatch and terminal guard receipts. Guard/ownership review is a separate responsibility.",
+    "Exact approved task/input/native manifests and protected control pins are caller authority, not inferred merely from a self-consistent arbitrary input hash map. No whole-agent HPO or full-refit requirement is added to this component screen."
+  ],
+  "reported_synthetic_evidence": {
+    "remote_reported_unique_tests": 43,
+    "reviewer_AST_unique_test_methods": 43,
+    "method_names_match_receipt": true,
+    "remote_reported_failures": 0,
+    "remote_reported_errors": 0,
+    "remote_reported_skips": 0,
+    "independently_rerun": false,
+    "three_current_py_hashes_match_protocol_tests_and_both_saved_supervisor_inventories": true,
+    "changes_patch_three_sections_reconstruct_current_source_bytes": true,
+    "coverage": "Synthetic/mocked/inert contracts only. The synthetic outer-audit positive is one core with comparisons empty; R4 two-phase comparison and representation checks have separate synthetic tests. No public predictions or six-job quality outcomes were exercised.",
+    "preserved_errors": [
+      "ValueError in private native caller unpacking",
+      "observation_gap_over_10s in private cooperative splitter check",
+      "inventory_changed intermediate attempt remains rejected",
+      "KeyError in private sidecar inventory helper",
+      "absolute_or_private_path_denied unpublished synthetic path scanner attempt"
+    ],
+    "history_boundary": "Final source-bound reported PASS phases do not relabel the intermediate blocked attempt or remote-port-01 raw-byte/PackageNotFoundError failure. Raw private attempt logs are unavailable to this source reviewer."
+  },
+  "actual_fit_accounting_source_only": {
+    "archive_sha256": "ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c",
+    "static_maximum_learner_fits_for_six_jobs": 16,
+    "successful_strong_method": "For each of the two actual categorical_te_pair leaves, count len(result.data_policy_runs), sum leaves exactly once; do not also count the parent embedded components. Each fit_on_rows appends one policy record and invokes one estimator.fit; no fitting exception is caught before successful result export.",
+    "strong_source_lines": "automl_worker.py:216-275,286-345,383; nested first inner303, optional matching-iteration refit320, outer344; one record per call249 and estimator.fit274.",
+    "strong_expected_successful_leaf_count": "1 if inner split unavailable, otherwise2 or3; repeated identical fitting-scope records still denote separate completed fits. The iteration tree alone cannot distinguish the extra calibration fit.",
+    "successful_kernel_method": "A verified successful typed linear/RBF result dispatches one BoundedTabularModel.fit and exactly one LogisticRegression estimator_.fit. Count1 learner fit each; preprocessing ColumnTransformer.fit_transform and RBF mapper.fit_transform are separate nonlearner fitting operations.",
+    "kernel_source_lines": "automl_worker.py:184-201; automl_execution_model_adapters_kernel_tabular.py:135,146,161,210-228.",
+    "failed_attempt_boundary": "Failed/incomplete worker may have begun or completed fitting without exporting a complete result. Actual attempted/completed fit count remains unknown unless separately trustworthy evidence exists; do not report6 logical jobs or the16 upper bound as actual usage.fits. Future numeric ML publication requiring exact fits should remain null/unqualified when exact accounting is unavailable.",
+    "method_requires": "Fixed approved recipes/source, successful top/recursive sealed results, validated policy record list/types/count bound and representation receipt; no monkeypatch, model refit or new runtime source is needed for these successful fixed jobs."
+  },
+  "limits": [
+    "Guard implementation/operational admission is reviewed separately by ownership reviewer.",
+    "All returned remote lifecycle/metrics remain remote-reported until independently verifiable; hashes alone do not give the primary private prediction access.",
+    "Representation receipt verification reconstructs scope/schema metadata, not a fresh preprocessor refit.",
+    "No ML quality, host capability PASS, official score, default promotion, execution approval or clock is established."
+  ],
+  "ml_ready": false,
+  "execution_ready": false,
+  "promotion": false
+}

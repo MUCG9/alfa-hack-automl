@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "status": "final_source_only_prepublication_review_passed_no_open_blocker",
+  "supersedes_for_publication_only": {
+    "prior_review_path": "remote-port-05-prepublication-review-r1.json",
+    "prior_review_sha256": "f17f9630522c38e6724003ef96698a9e130e2950a02c51ff3e36ce96bf09fccc",
+    "prior_draft_job_sha256": "04b0c7ac3177c3d1aadcf671c885e4b752bc689d1527d136b56f5741a676958c",
+    "prior_draft_manifest_sha256": "e5862f926760a3c31e6439d1cdf3471cd36e0bf65d12c8d9c874f1cbbd4c7793",
+    "history_preserved": true
+  },
+  "final_files_sha256": {
+    "remote-port-05-source-runner-repair.json": "54a07d47870b8c67b43b3b5a64ac293dcaa2d208265056fc9d2e7e036cbfd4f0",
+    "remote-port-05-source-manifest.json": "03b686f8d31c4ec8b35950069e3ed8af49fdb5f3d488255e2ed1870192ce8591",
+    "root-preflight.json": "481bfc55a52556ab017985d9861fe2236c100b7787e05b3d17a9035820ab2f92",
+    "notice-draft.md": "4ad821b0c6296c0eb5201e7c1518e128e8eb9d96cac644701470d4e010091eb4"
+  },
+  "blockers": [],
+  "exact_authorized_delta": {
+    "job": [
+      "readiness draft to ready before firstpublish",
+      "Remove only two direct code library refs; first manifestref points to updated exact manifestSHA;13refs remain."
+    ],
+    "manifest": [
+      "status source_only05_reviewed_repair_assignment_not_ML_approval",
+      "Exact unchanged c08/a752 path+SHA moved into independent_libraries.",
+      "library_loading explicitly requires immutable originaldispatch bytes hashed before import; no mutableHEAD substitution."
+    ],
+    "everything_else": "Objective7970bytes/caps2400s/CPU2/1536worker/2048whole/0fits/API/dependency04/10outputs/G01/G02/future6slot5400 and16upper/actualfitnull remain unchanged."
+  },
+  "source_binding": {
+    "verified13_direct_refs": [
+      {
+        "path": "research/remote-experiments/sources/remote-port-05-source-manifest.json",
+        "sha256": "03b686f8d31c4ec8b35950069e3ed8af49fdb5f3d488255e2ed1870192ce8591"
+      },
+      {
+        "path": "research/remote-experiments/reviews/remote-port-04-source-r1/guard-review.json",
+        "sha256": "03ba8dfedf4d10614a6294c31ff19be7241df440312daf09aac0a3f218333bfd"
+      },
+      {
+        "path": "research/remote-experiments/reviews/remote-port-04-source-r1/audit-review.json",
+        "sha256": "2dd85b5ea5ff6a3439db1f20497869988cc24f34890577ed066c35ad1ad795f6"
+      },
+      {
+        "path": "research/remote-experiments/reviews/remote-port-04-source-r1/primary-summary.json",
+        "sha256": "4ca506f15a87deb22ec56e72fe3acfc80883ea7013f7abe43f9af19f9ca91cd1"
+      },
+      {
+        "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/protocol.json",
+        "sha256": "81cd9df5566f5453600117a5cb902f8ca7d37dbee3c9ee2347ff5100a9baff46"
+      },
+      {
+        "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/fit-count-source-proof.json",
+        "sha256": "7c0a3b1c3888573ab254989bee767a3d49fe4a3c84d1a57a17e647a99c083613"
+      },
+      {
+        "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/independent-source-review.json",
+        "sha256": "06adea0b2d6d3bcf03d1d738659a13c6d92947532f607c8327a90c591929977e"
+      },
+      {
+        "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/source-handoff.json",
+        "sha256": "399fc0346323d64d65114a33f096d7cfa7905d4bee8612c7df140f10649dcd39"
+      },
+      {
+        "path": "research/remote-experiments/sources/source-manifest.json",
+        "sha256": "0ed0e74706b6620ffc1b29216a8f2c00ab40771ef7ebaecb0cc61092f78c4bae"
+      },
+      {
+        "path": "research/remote-experiments/sources/approved-input-manifest.json",
+        "sha256": "247ecf4d3ce8670be0573ed0808b0cfce9352babb78ca7cc02c9103ca3bee4c7"
+      },
+      {
+        "path": "research/remote-experiments/sources/native-cut-contract-v3-r2.json",
+        "sha256": "f5ad8c55aec198b689abf4bd8cf4ed0caf967fcd9f0d9f6db12f70513e1a60e5"
+      },
+      {
+        "path": "research/remote-experiments/sources/derived-linux-npz-fingerprints-r1.json",
+        "sha256": "211e51fa267b58f26e1fb02d5fe3d7b2cddcd95f994f808685150cf6fff5d93d"
+      },
+      {
+        "path": "research/remote-experiments/sources/protected-single-controls.json",
+        "sha256": "118ba895201bef8149fdd6bb88464bb2e02b23985a34629a47d52df5e5536f46"
+      }
+    ],
+    "independent_libraries_verified_unchanged": [
+      {
+        "path": "research/lean-mvp-r2/evaluator.py",
+        "sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+        "use": "TaskVerifier, diagnostics, matched_control_comparison only; never main/verify_task"
+      },
+      {
+        "path": "research/kernel-methods-next/components/audit_components.py",
+        "sha256": "a7528e969cd2f58ef4562c34ab344852acdfde535f223d9fedcf3877fa9cdcdb",
+        "use": "representation_receipt, PROFILES, need only; never old main"
+      }
+    ],
+    "received04_result_sha": "6929ef34a90e4438816d4b2ca653bcb0e3c4a380",
+    "prior9artifact_hashmap_unchanged": true
+  },
+  "transport_correction": {
+    "caught_before_publication": true,
+    "original_draft_source_issue": "Existing legacy auditor source contained content rejected by queue safe_text absolute_or_private_path_denied. Do not mutate trusted library or publish poisoned directref.",
+    "reviewer_scope_correction": "Initial review checked bytepins/schema but did not detect this transport contentfilter issue. Root caught it before publication; oldreview/draft preserved.",
+    "resolution": "Existing manifest-indirection pattern preserves exact library pins+source bytes, with explicit originaldispatch read/hashbeforeimport. Root reported q.validate_job plus all13 refSHA/safe_text passed; reviewer did not import/call queue.",
+    "root_preflight_report_authority": "Local root metadata/sourcepreflight, not tests/modelrun/ML approval."
+  },
+  "publication_scope": "This exact firstREADY05 source-only assignment may be published by root; it authorizes only new2400s claim with0fits/API and bounded pure/mock/inert sourcechecks. It grants no current/future06 learner approval.",
+  "bounded_ML_approval": false,
+  "future06_actual_clock_or_approval": null,
+  "performed": {
+    "static_JSON_text_hash_delta_reads": true,
+    "candidate_runtime_imports": 0,
+    "tests_executed": 0,
+    "model_fits": 0,
+    "API_calls": 0,
+    "process_scans": 0,
+    "data_labels_predictions_reads": 0,
+    "active_LA2_reads": 0,
+    "draft_job_manifest_protocol_edits": 0,
+    "STATE_Git_mutations": 0
+  }
+}

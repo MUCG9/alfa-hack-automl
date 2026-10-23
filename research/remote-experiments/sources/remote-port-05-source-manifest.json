@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "status": "source_only05_reviewed_repair_assignment_not_ML_approval",
+  "purpose": "Two reviewed supervision clock fixes plus a narrow fixed6 classification caller source, tested only with pure mocks/inert probes. No learner invocation or algorithm changes.",
+  "prior_completed": {
+    "job_id": "remote-port-04-portability-repair",
+    "result_ref": "refs/heads/research/remote-results/remote-port-04-portability-repair",
+    "result_sha": "6929ef34a90e4438816d4b2ca653bcb0e3c4a380",
+    "artifacts_sha256": {
+      "capabilities.json": "ac5fb449c204bbfddc82644787c44a4627b765512e63b18ea7eb09e2d4d1c0fa",
+      "changes.patch": "eb505e3bdbf29c1447ea1c225e1bdccc78f84c4670cd52c825f706a0b5733ac8",
+      "component_audit.py": "befcca2f8e630b9fb8e1bca81ce46b4d08f6f17773c65a38f133a56c277d2ffd",
+      "next-hypotheses.json": "5190c6d7e2c4a19b2781586b8ee150373d98b85b2e8e19e489d1412e114e95f6",
+      "portable_harness.py": "61d6876c63e4d5a9b48e70719e1fa8c8e6ee570b0be01d7a2ba351e578f7cb84",
+      "protocol.json": "c38db109bd840b3f10577f024a2252c6c3cc6ee3d67041b146ae691f6323511e",
+      "pure-checks.json": "6719641cca594e91ed11f077c0293305c8fee887f6ce3f1fb9396e2d1da00179",
+      "pure_contracts.py": "88263f4a14df79e8d6a2f39095cc5e3a97c8a924b80f375454e07095f50c45cf",
+      "summary.txt": "c9d3afeb025d2c530928ff9aaef47bdf51143244d2515e4efe462cf926ad8e30"
+    },
+    "authority": "Immutable received review inputs only; completed SOURCE_ONLY04 is not bounded ML approval."
+  },
+  "primary_reviews": [
+    {
+      "path": "research/remote-experiments/reviews/remote-port-04-source-r1/guard-review.json",
+      "sha256": "03ba8dfedf4d10614a6294c31ff19be7241df440312daf09aac0a3f218333bfd"
+    },
+    {
+      "path": "research/remote-experiments/reviews/remote-port-04-source-r1/audit-review.json",
+      "sha256": "2dd85b5ea5ff6a3439db1f20497869988cc24f34890577ed066c35ad1ad795f6"
+    },
+    {
+      "path": "research/remote-experiments/reviews/remote-port-04-source-r1/primary-summary.json",
+      "sha256": "4ca506f15a87deb22ec56e72fe3acfc80883ea7013f7abe43f9af19f9ca91cd1"
+    }
+  ],
+  "required_guard_repairs": [
+    "G01: check actual450s child deadline before accepting terminal poll, at/after expiry cannot completed; record actual child interval.",
+    "G02: finish TemporaryDirectory and host-lock exits, then check original parent480/common wall+mono/gap; do not return a stale success from inside contexts. Preserve original raw supervisor receipt plus separate final driver qualification/errors."
+  ],
+  "fixed_caller_protocol": {
+    "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/protocol.json",
+    "sha256": "81cd9df5566f5453600117a5cb902f8ca7d37dbee3c9ee2347ff5100a9baff46"
+  },
+  "fit_count_source_proof": {
+    "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/fit-count-source-proof.json",
+    "sha256": "7c0a3b1c3888573ab254989bee767a3d49fe4a3c84d1a57a17e647a99c083613"
+  },
+  "fixed_caller_protocol_review": {
+    "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/independent-source-review.json",
+    "sha256": "06adea0b2d6d3bcf03d1d738659a13c6d92947532f607c8327a90c591929977e"
+  },
+  "fixed_caller_protocol_handoff": {
+    "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/source-handoff.json",
+    "sha256": "399fc0346323d64d65114a33f096d7cfa7905d4bee8612c7df140f10649dcd39"
+  },
+  "algorithm_archive_sha256": "ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c",
+  "algorithm_files": 70,
+  "algorithm_must_remain_byte_unchanged": true,
+  "fixed_caller_unit": "cuts42/43 x strong/linear/rbf in the exact6-slot protocol order, one unique output core/folder per key; class-only, full_fitFalse. Source prepared now, real bounded06 only later.",
+  "four_source_inventory": [
+    "portable_harness.py",
+    "component_audit.py",
+    "experiment_driver.py",
+    "pure_contracts.py"
+  ],
+  "freeze_before_final_suite_or_first_inert_Popen": "Freeze/hash ALL4 source files, actual43 inherited+Nnew method names/count and every private test helper before the final sequential suite and any inert child. No self-edit during guarded inventory; new repair attempt remains within05 original claim clock and preserves previous failure.",
+  "source_test_counts": {
+    "old_methods_retained": 43,
+    "new_methods_predeclared_before_final_tests": null,
+    "total_predeclared_before_final_tests": null,
+    "actual05_checks": null,
+    "reported04_43PASS_not_relabelled05": true
+  },
+  "future06": {
+    "kind": "bounded_experiment",
+    "requires_separate_READY_job_and_exact_same_worker_primary_approval": true,
+    "common_seconds": 5400,
+    "setup_seconds": 600,
+    "six_worker_parent_seconds": 480,
+    "worker_child_seconds": 450,
+    "audit_parent_seconds": 600,
+    "audit_child_max_seconds": 570,
+    "cleanup_seconds": 300,
+    "reserved_spare_seconds": 1020,
+    "maximum_learner_fits_upper_bound": 16,
+    "actual_fits": null,
+    "actual_start": null,
+    "actual_deadline": null,
+    "approval": null,
+    "issued": false
+  },
+  "exact_fit_accounting": "Successful strong: sum len(data_policy_runs) on each unique actual two-view leaf once, never also count embedded parent components; validate list/type/count bound. Successful linear/RBF each1. Six logical jobs and upper16 are not actual fit counts. Interrupted/failed exact count unknown -> null/unqualified; queue numeric metrics require complete usage, never fabricate0/16.",
+  "public_artifact_policy": {
+    "expected_outputs": [
+      "portable_harness.py",
+      "component_audit.py",
+      "experiment_driver.py",
+      "pure_contracts.py",
+      "changes.patch",
+      "protocol.json",
+      "capabilities.json",
+      "pure-checks.json",
+      "summary.txt",
+      "next-hypotheses.json"
+    ],
+    "maximum_UTF8_bytes_each": 131072,
+    "maximum_total_artifact_bytes": 262144,
+    "allowed": "Reviewed UTF8 sources/patch and sanitized aggregate/provenance/hash metadata only.",
+    "forbidden": "tables, raw rows/labels/indices, NPZ/predictions/probabilities/models/weights/binaries/credentials/private absolute paths/symlinks"
+  },
+  "preserve_history": "Keep remote01 PackageNotFoundError/raw NPZ failure and ALL remote04 errors including inventory_changed with its original blocked/cleanupfalse disposition. Final05 checks never rewrite those outcomes; actual clocks/first+secondary errors retained.",
+  "new_authorization": false,
+  "ml_ready": false,
+  "execution_ready": false,
+  "API_calls_authorized": 0,
+  "learner_fits_authorized": 0,
+  "independent_libraries": [
+    {
+      "path": "research/lean-mvp-r2/evaluator.py",
+      "sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+      "use": "TaskVerifier, diagnostics, matched_control_comparison only; never main/verify_task"
+    },
+    {
+      "path": "research/kernel-methods-next/components/audit_components.py",
+      "sha256": "a7528e969cd2f58ef4562c34ab344852acdfde535f223d9fedcf3877fa9cdcdb",
+      "use": "representation_receipt, PROFILES, need only; never old main"
+    }
+  ],
+  "library_loading": "Read each immutable source at the job original dispatch SHA and verify the exact listed byte SHA before importing. Library bytes remain unchanged. Manifest indirection uses the established04 transport pattern; it is not permission to skip a library hash or read a mutable HEAD."
+}

@@ -1,8 +1,25 @@
 """Conservative whole-run guard, not an OS security sandbox."""
 from dataclasses import dataclass
 from pathlib import Path
-import os,shutil,time
+import os,shutil,sys,time
 import psutil
+
+try:
+    import resource
+except ImportError:
+    resource=None
+
+
+def peak_rss_mb():
+    """Return this process's lifetime peak resident memory in MiB."""
+    if sys.platform=='win32':
+        return psutil.Process(os.getpid()).memory_info().peak_wset/2**20
+    if resource is None:
+        raise RuntimeError('Peak resident memory requires resource on this platform')
+    # Linux reports KiB; macOS reports bytes.
+    scale=2**20 if sys.platform=='darwin' else 2**10
+    return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/scale
+
 
 @dataclass
 class ResourceBudget:

@@ -126,7 +126,7 @@ def run_worker(spec,recipe,run_dir,split_path,timeout,full_fit=False,fit_iterati
     if fit_iterations is not None: job['fit_iterations']=fit_iterations
     job_path=run_dir/'job.json'; atomic_json(job_path,job)
     env={k:v for k,v in os.environ.items() if not any(s in k.upper() for s in ['KEY','TOKEN','SECRET','PROXY','PASSWORD','PASSWD','AUTH'])}
-    env.update(PYTHONIOENCODING='utf-8',MPLCONFIGDIR=str(run_dir/'mpl-cache'))
+    env.update(PYTHONIOENCODING='utf-8',PYTHONUTF8='1',MPLCONFIGDIR=str(run_dir/'mpl-cache'))
     started=time.monotonic(); killed=None; peak=0; peak_total=0; budget=ResourceBudget(); tree=None
     try:
         with (run_dir/'worker.log').open('w',encoding='utf-8') as log:
@@ -194,14 +194,28 @@ def journal(runs,phase,record,metric,decision):
         if not exists: writer.writeheader()
         writer.writerow(row)
 
-def coordinator_selection(recipe,top_k=0):
+def coordinator_selection(recipe,top_k=0,protect_original=False,broad=False):
     """Only an explicit coordinator option enables the separate FE experiment."""
-    if not top_k and 'feature_selection_top_k' not in recipe.get('params',{}): return recipe
+    if broad and recipe['engine']!='linear_text':
+        recipe=normalize(dict(recipe,params=dict(recipe.get('params',{}),generic_features='broad')))
+    if not top_k and not any(k in recipe.get('params',{}) for k in ['feature_selection_top_k','feature_selection_protect_original']): return recipe
     if not top_k:
         params=dict(recipe.get('params',{})); params.pop('feature_selection_top_k',None)
+        params.pop('feature_selection_protect_original',None)
         return normalize(dict(recipe,params=params))
     if recipe['engine']=='linear_text': raise ValueError('CatBoost feature selection does not support text recipes')
-    return normalize(dict(recipe,params=dict(recipe.get('params',{}),feature_selection_top_k=top_k)))
+    params=dict(recipe.get('params',{}),feature_selection_top_k=top_k)
+    if protect_original: params['feature_selection_protect_original']=True
+    else: params.pop('feature_selection_protect_original',None)
+    return normalize(dict(recipe,params=params))
+
+def coordinator_plans(plans,top_k=0,protect_original=False,broad=False):
+    accepted=[]; rejected=[]
+    for plan in plans:
+        try: accepted.append(coordinator_selection(plan,top_k,protect_original,broad))
+        except (ValueError,TypeError) as exc:
+            rejected.append({'engine':plan.get('engine'),'reason':str(exc)[:300]})
+    return accepted,rejected
 
 def _main():
     parser=argparse.ArgumentParser()
@@ -216,11 +230,18 @@ def _main():
     parser.add_argument('--hpo-sampler',choices=['tpe','random'],default='tpe')
     parser.add_argument('--planner-mode',choices=['baseline','staged'],default='baseline')
     parser.add_argument('--feature-selection-top-k',type=int,default=0,help='Explicit experimental CatBoost selector; 0 disables')
+    parser.add_argument('--protect-original-features',action='store_true',help='Experimental union of original columns and CatBoost top-k')
+    parser.add_argument('--four-stage',action='store_true',help='Experimental Qwen data assessment before broad FE, model selection and nested Optuna')
     parser.add_argument('--validation-strategy',choices=['legacy','auto'],default='auto')
     parser.add_argument('--run-name',default='run-v2')
     args=parser.parse_args()
+    if args.four_stage:
+        args.feature_selection_top_k=args.feature_selection_top_k or 32
+        args.hpo_trials=args.hpo_trials or 8
+        args.planner_mode='staged'
     if not 0<=args.hpo_trials<=32 or args.hpo_budget<5: parser.error('Invalid HPO limits')
     if not 0<=args.feature_selection_top_k<=512: parser.error('Invalid feature selection size')
+    if args.protect_original_features and not args.feature_selection_top_k: parser.error('Protected selection requires positive top-k')
     total_calls=max(0,min(8,args.max_planner_calls))+2 if args.max_llm_calls is None else args.max_llm_calls
     with RunBudget(args.time_budget,total_calls,args.task.resolve().parent):
         loaded=load_inputs(args.task,allow_llm=not args.offline)
@@ -259,17 +280,47 @@ def solve_single(args,task_data=None,output_root=None):
         baseline=evaluate(train[spec['target']].iloc[va].astype(str),np.repeat(spec['classes'][int(prior>=.5)],len(va)),spec['kind'],spec['metric'],probabilities,spec['classes'],**metric_context(spec,train,va))
     else: baseline=evaluate(train[spec['target']].iloc[va],dummy,spec['kind'],spec['metric'],classes=spec['classes'],**metric_context(spec,train,va))
     selection_size=getattr(args,'feature_selection_top_k',0)
-    records=[]; calls=[]; queue=[coordinator_selection(r,selection_size) for r in portfolio(spec)]; seen=set(); best=None
-    hpo_report=None; hpo_attempted=False
+    protect_original=getattr(args,'protect_original_features',False)
+    four_stage=getattr(args,'four_stage',False)
+    # Text tasks keep their applicable sparse representation; a tabular teacher
+    # is not silently claimed to have run on an unsupported text learner.
+    if four_stage and spec.get('text_features'): selection_size=0
+    records=[]; calls=[]; seen=set(); best=None; initial_plans=[]; stage_receipts=[]
+    initial_assessment={'attempted':False,'status':'not_attempted','call_status':None,'assessment_valid':False}
     reserve=min(1200,max(60,args.time_budget*.2)); limit=max(1,min(args.max_experiments,14))
+    if four_stage and not args.offline and args.max_planner_calls>0 and deadline-time.monotonic()>reserve+90:
+        context=planner_context(spec,profile,text,split_info,[],None,deadline-time.monotonic(),1)
+        context['stage']='initial_data_assessment_before_any_model_fit'
+        context['instruction']='Cold start: no model outcomes exist yet. Read statistics, roles, missingness, class support and documented time/group structure. Return JSON with data_assessment object containing validation_risks, feature_hypotheses, model_priorities (each a nonempty string or list of nonempty strings), plus candidates with at most TWO falsifiable initial model recipes. The coordinator will generate at most128 trusted broad row-local features, fit CatBoost top-k inside fitting rows, compare model families, then run inner-only Optuna. Do not invent measured failures or compare inner scores with outer scores. Use the existing recipe schema; target/ID remain forbidden.'
+        content,usage=request_json(SYSTEM_PROMPT+STAGED_PROMPT,context,max_output=8192,
+            timeout=max(5,min(240,deadline-time.monotonic()-reserve-30)))
+        from automl.search.stages import initial_assessment_status
+        initial_assessment=initial_assessment_status(content,usage)
+        if content is not None:
+            try: initial_plans=parse_plans(content)
+            except (ValueError,TypeError) as exc: usage=dict(usage,status='error',parser_error=str(exc)[:300])
+        calls.append(usage)
+        atomic_json(runs/'initial-data-assessment.json',{'context':context,'terminal_response':content,'plans':initial_plans,'call':usage,'assessment':initial_assessment})
+    seeds=portfolio(spec)
+    if four_stage:
+        from automl.search.stages import prepare_four_stage_recipes
+        seeds,stage_receipts=prepare_four_stage_recipes(spec,seeds,initial_plans,maximum_initial=max(1,min(9,limit-3)))
+    queue,initial_rejections=coordinator_plans(seeds,selection_size,protect_original,four_stage)
+    stage_receipts.extend(dict(item,source='initial_coordinator',status='rejected') for item in initial_rejections)
+    hpo_report=None; hpo_attempted=False
     for iteration in range(limit):
         remaining=deadline-time.monotonic()
         if remaining<reserve+30: break
         if not queue and getattr(args,'hpo_trials',0) and not hpo_attempted and best:
             from automl.search.hpo import optimize_recipe
             hpo_attempted=True
-            if best['recipe']['engine'] in {'lightgbm','catboost','xgboost'}:
-                tuned,hpo_report=optimize_recipe(spec,train,hashes,tr,best['recipe'],runs/'inner-hpo',run_worker,
+            hpo_anchor=best
+            if four_stage:
+                from automl.search.stages import choose_hpo_anchor
+                hpo_anchor=choose_hpo_anchor(ordered(records,spec))
+                if hpo_anchor is None: hpo_report={'status':'skipped_no_successful_supported_engine'}
+            if hpo_anchor and hpo_anchor['recipe']['engine'] in {'lightgbm','catboost','xgboost'}:
+                tuned,hpo_report=optimize_recipe(spec,train,hashes,tr,hpo_anchor['recipe'],runs/'inner-hpo',run_worker,
                     min(deadline-reserve-30,time.monotonic()+getattr(args,'hpo_budget',900)),
                     trials=args.hpo_trials,sampler=getattr(args,'hpo_sampler','tpe'))
                 if signature(tuned) not in seen: queue.append(tuned)
@@ -278,10 +329,10 @@ def solve_single(args,task_data=None,output_root=None):
         if not queue and not args.offline and len(calls)<max(0,min(args.max_planner_calls,8)) and remaining>reserve+90:
             context=planner_context(spec,profile,text,split_info,records,best,remaining,len(calls)+1)
             plans,usage=llm_plan(context,runs,timeout=max(5,min(300,remaining-reserve-30)),prompt_mode=getattr(args,'planner_mode','baseline'))
-            calls.append(usage); atomic_json(runs/f'planner-{len(calls)}.json',{'plans':plans,'call':usage,'context':context})
-            plans=[coordinator_selection(p,selection_size) for p in plans]
+            plans,rejections=coordinator_plans(plans,selection_size,protect_original,four_stage)
+            calls.append(usage); atomic_json(runs/f'planner-{len(calls)}.json',{'plans':plans,'rejected_plans':rejections,'call':usage,'context':context})
             queue.extend(p for p in plans if signature(p) not in seen)
-        if not queue: queue.append(coordinator_selection(fallback(spec,iteration,best['recipe'] if best else None),selection_size))
+        if not queue: queue.append(coordinator_selection(fallback(spec,iteration,best['recipe'] if best else None),selection_size,protect_original,four_stage))
         while queue and signature(queue[0]) in seen: queue.pop(0)
         if not queue: continue
         recipe=queue.pop(0); seen.add(signature(recipe))
@@ -366,6 +417,13 @@ def solve_single(args,task_data=None,output_root=None):
     if getattr(args,'hpo_trials',0): report['hpo']=hpo_report or {'status':'not_reached_within_search_budget'}
     if getattr(args,'planner_mode','baseline')!='baseline': report['planner_mode']=args.planner_mode
     if selection_size: report['feature_selection_top_k']=selection_size
+    if four_stage:
+        report['pipeline']={'mode':'four_stage','initial_data_assessment_before_fitting':initial_assessment['assessment_valid'],
+            'initial_data_assessment':initial_assessment,
+            'trusted_feature_family':'broad' if not spec.get('text_features') else 'applicable_sparse_text',
+            'maximum_added_broad_features':128,'initial_queue_receipts':stage_receipts,
+            'catboost_top_k':selection_size,'protected_originals':protect_original,
+            'inner_hpo_status':(hpo_report or {}).get('status','not_reached')}
     atomic_json(runs/'report.json',report)
     if not integrity_ok: raise RuntimeError('Protected inputs or evaluator/source changed during the run; do not trust its metrics')
     print(json.dumps({k:v for k,v in report.items() if k in {'version','best_validation','final_fit_status','elapsed_seconds','submission_sha256'}},ensure_ascii=False,indent=2),flush=True)

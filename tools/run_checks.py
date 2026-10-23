@@ -11,12 +11,19 @@ CHECKS={'test_v2.py':11,'test_resilience.py':7,'smoke.py':5,
         'test_data_policy.py':11,'test_architecture.py':7,'test_quality.py':18,
         'test_task_metrics.py':8,'test_task_inputs.py':8,
         'test_output_contract.py':6,'test_contract_lifecycle.py':6,'test_validation_contract.py':12,
-        'test_multitarget.py':12,'test_ranking.py':13,'test_search_choices.py':8,'test_binary_probability.py':9,
+        'test_multitarget.py':13,'test_ranking.py':13,'test_search_choices.py':8,'test_binary_probability.py':9,
         'test_semantic_inputs.py':16,'test_run_budget.py':14,'test_gateway_http.py':2,
         'test_history.py':13,'test_history_worker.py':8,'test_diversity.py':19,'test_release_verifier.py':3,'test_class_te.py':3,
         'test_feature_views.py':11,'test_postprocessor.py':14,'test_target_smearing.py':14,
         'test_error_analysis_contracts.py':20,'test_error_analysis.py':38,'test_error_preparation.py':16,
-        'test_hpo.py':7,'test_feature_selection.py':4}
+        'test_hpo.py':7,'test_feature_selection.py':4,
+        'test_resource_portability.py':3,'test_reasoning_settings.py':3,
+        'test_planner_isolation.py':1,'test_broad_features.py':8,
+        'test_hpo_anchor.py':14,'test_protected_selector_runtime.py':12,
+        'test_process_identity.py':9,'test_cleanup_failure.py':11,'test_four_stage.py':16,
+        'test_preflight_candidates.py':8,
+        'test_owned_research.py':4,'test_protected_selection.py':3,
+        'test_feature_dsl.py':4,'test_research_summary.py':4,'test_planner_comparison.py':4}
 
 
 def source_hashes():
@@ -31,7 +38,7 @@ def main():
     before=source_hashes(); started=time.monotonic(); results=[]
     env={k:v for k,v in os.environ.items() if not any(s in k.upper() for s in ['KEY','TOKEN','SECRET','AUTH','PASSWORD','PROXY'])}
     env.update(AUTOML_THREADS='1',OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',
-               TMPDIR=str(root/'tmp'),MPLCONFIGDIR=str(root/'mpl'))
+               TMPDIR=str(root/'tmp'),MPLCONFIGDIR=str(root/'mpl'),PYTHONUTF8='1',PYTHONIOENCODING='utf-8')
     for script,expected in CHECKS.items():
         log=root/(script+'.log'); tick=time.monotonic()
         with log.open('w') as stream:
@@ -40,7 +47,7 @@ def main():
             try: status=wait_owned(process,timeout=300,memory_bytes=int(1.2*2**30))
             except subprocess.TimeoutExpired: status='timeout'
             except MemoryError: status='memory_limit'
-        content=log.read_text()
+        content=log.read_text(encoding='utf-8')
         observed=re.findall(r'Ran (\d+) tests? in ',content)
         count=int(observed[-1]) if observed else 5 if script=='smoke.py' and status==0 else None
         passed=status==0 and count==expected

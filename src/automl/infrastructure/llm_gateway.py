@@ -2,6 +2,14 @@
 import json,os,time
 from automl.infrastructure.run_budget import current_budget
 
+def reasoning_settings():
+    """Explicit experimental setting; the qualified fast mode remains default."""
+    mode=os.environ.get('AUTOML_REASONING_EFFORT','off').strip().lower()
+    if mode=='off': return mode,{'extra_body':{'reasoning':{'enabled':False}}}
+    if mode=='default': return mode,{}
+    if mode in {'low','medium','xhigh'}: return mode,{'reasoning_effort':mode}
+    raise ValueError('AUTOML_REASONING_EFFORT must be off/default/low/medium/xhigh')
+
 def request_json(system_prompt,context,max_output=16384,timeout=300,purpose='planner'):
     budget=current_budget()
     configured=all(os.environ.get(k) for k in ['OPENAI_API_KEY','OPENAI_BASE_URL'])
@@ -20,8 +28,9 @@ def request_json(system_prompt,context,max_output=16384,timeout=300,purpose='pla
 def _request_json(system_prompt,context,max_output=16384,timeout=300):
     if not all(os.environ.get(k) for k in ['OPENAI_API_KEY','OPENAI_BASE_URL']): return None,{'status':'unconfigured'}
     from openai import OpenAI,BadRequestError,APIStatusError,APITimeoutError,APIConnectionError
-    start=time.monotonic(); usage={}; finish=None; compatibility=False; attempts=0
+    start=time.monotonic(); usage={}; finish=None; compatibility=False; attempts=0; mode=None
     try:
+        mode,settings=reasoning_settings()
         client=OpenAI(timeout=timeout,max_retries=0)
         request={'model':os.environ.get('OPENAI_MODEL','qwen/qwen3.8-27b'),
                  'messages':[{'role':'system','content':system_prompt},{'role':'user','content':json.dumps(context,ensure_ascii=False,default=str)}],
@@ -33,11 +42,13 @@ def _request_json(system_prompt,context,max_output=16384,timeout=300):
             if remaining<5: raise TimeoutError('Gateway deadline')
             attempts+=1
             try:
-                extra={} if compatibility else {'extra_body':{'reasoning':{'enabled':False}}}
+                extra={} if compatibility else settings
                 response=client.with_options(timeout=remaining).chat.completions.create(**request,**extra)
                 break
             except BadRequestError:
-                if compatibility or retry==2: raise
+                # A rejected explicit effort is an error, never an unlabelled
+                # fallback reported as a successful maximum-effort experiment.
+                if mode!='off' or compatibility or retry==2: raise
                 compatibility=True
             except (APIStatusError,APITimeoutError,APIConnectionError) as exc:
                 status=getattr(exc,'status_code',None)
@@ -49,10 +60,14 @@ def _request_json(system_prompt,context,max_output=16384,timeout=300):
                 if pause: time.sleep(pause)
         usage=response.usage.model_dump() if response.usage else {}; finish=response.choices[0].finish_reason
         return response.choices[0].message.content or '',{'status':'ok','wall_seconds':round(time.monotonic()-start,3),
-            'usage':usage,'finish_reason':finish,'compatibility_retry':compatibility,'reasoning_requested':False,
+            'usage':usage,'finish_reason':finish,'compatibility_retry':compatibility,
+            'reasoning_requested':None if compatibility or mode=='default' else mode!='off',
+            'reasoning_effort_requested':mode,'response_model':getattr(response,'model',None),
+            'reasoning_tokens_reported':(usage.get('completion_tokens_details') or {}).get('reasoning_tokens'),
             'attempts':attempts,'usage_complete':attempts==1 and all(type(usage.get(k)) is int and usage[k]>=0 for k in ['prompt_tokens','completion_tokens'])}
     except Exception as exc:
         message=str(exc).replace(os.environ.get('OPENAI_API_KEY','credential-unset'),'[REDACTED]')[:500]
         return None,{'status':'error','exception_type':type(exc).__name__,'wall_seconds':round(time.monotonic()-start,3),
                      'usage':usage,'finish_reason':finish,'compatibility_retry':compatibility,
+                     'reasoning_effort_requested':mode,
                      'attempts':attempts,'status_code':getattr(exc,'status_code',None),'error_message':message}

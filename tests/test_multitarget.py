@@ -10,6 +10,7 @@ from build_submission import build_files
 from automl.task_understanding.api import discover,load_inputs,MultipleTargets
 from automl.search.multitarget import solve_many
 from automl.publishing.api import save_submission,publish_targets
+from automl.infrastructure.processes import ProcessCleanupError
 
 
 class MultiTargetTests(unittest.TestCase):
@@ -73,6 +74,23 @@ class MultiTargetTests(unittest.TestCase):
             self.assertEqual(actual.key.tolist(),sample.key.tolist())
             self.assertTrue(np.allclose(actual['first'],train['first'].mean())); self.assertTrue(np.allclose(actual.second,9.))
             self.assertEqual(report['children'][0]['status'],'error_preserve_checkpoint'); self.assertTrue(report['integrity_ok'])
+
+    def test_unconfirmed_cleanup_stops_before_next_target_and_preserves_baselines(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory); path,train,*_=self.task(root); calls=[]
+            failure=ProcessCleanupError({'status':'cleanup_unconfirmed','unresolved':[{'pid':123,'create_time':1.}]})
+            def solver(args,task_data,output_root):
+                calls.append(task_data[0]['target'])
+                raise failure
+            with self.assertRaises(ProcessCleanupError) as caught:
+                solve_many(self.args(path),('first','second'),solver)
+            self.assertIs(caught.exception,failure); self.assertEqual(calls,['first'])
+            actual=pd.read_csv(root/'submission.csv')
+            for target in ['first','second']:
+                self.assertTrue(np.allclose(actual[target],train[target].mean()))
+            progress=json.loads(next((root/'automl_runs').glob('multi-target-*/progress.json')).read_text())
+            self.assertEqual(progress['children'][0]['status'],'cleanup_unconfirmed')
+            self.assertEqual(progress['children'][0]['cleanup'],failure.receipt)
 
     def test_invalid_child_publication_reverts_only_that_target(self):
         with tempfile.TemporaryDirectory() as directory:

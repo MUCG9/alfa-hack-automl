@@ -6,6 +6,7 @@ from automl.publishing.api import save_submission,dummy_predictions,publish_targ
 from automl.infrastructure.atomic import atomic_json
 from automl.infrastructure.runtime import source_files
 from automl.infrastructure.run_budget import constrain_deadline,budget_metadata
+from automl.infrastructure.processes import ProcessCleanupError
 
 
 def fingerprints(paths):
@@ -60,6 +61,10 @@ def solve_many(args,targets,solve_single,loaded=None):
                 record.update(status='completed',trained=report['best_validation'] is not None,
                     final_fit_status=report['final_fit_status'],best_validation=report['best_validation'],
                     report=report,score_scope='per-target reused local folds; no aggregate official score is inferred')
+            except ProcessCleanupError as exc:
+                record.update(status='cleanup_unconfirmed',exception_type=type(exc).__name__,cleanup=exc.receipt)
+                children.append(record); atomic_json(runs/'progress.json',{'children':children})
+                raise
             except Exception as exc:
                 record.update(status='error_preserve_checkpoint',exception_type=type(exc).__name__)
         try: publish_targets(parts,sample,output)

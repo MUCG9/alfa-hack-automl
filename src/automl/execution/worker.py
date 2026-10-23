@@ -4,7 +4,6 @@ from __future__ import annotations
 import ast
 import json
 from pathlib import Path
-import resource
 import sys
 import time
 
@@ -14,6 +13,7 @@ from sklearn.model_selection import train_test_split
 from threadpoolctl import threadpool_limits
 
 from automl.infrastructure.atomic import atomic_json
+from automl.infrastructure.resources import peak_rss_mb
 from automl.infrastructure.tables import read_input_table,read_task_sample
 from automl.evaluation.api import evaluate,make_split,make_folds,metric_context
 from automl.publishing.api import save_submission,read_submission_values,positive_class_index
@@ -105,7 +105,7 @@ def run_ensemble(job):
         pd.DataFrame({'row_position':va,'y_true':truth.to_numpy(),'y_pred':val_pred}).to_csv(output/'validation_predictions.csv',index=False)
     atomic_json(output/'result.json',{'status':'ok','recipe':recipe,'metrics':metrics,'full_fit':full,
         'fit_iterations':[r['fit_iterations'] for r in records],'feature_count':sum(r['feature_count'] for r in records),
-        'wall_seconds':round(time.monotonic()-start,3),'peak_rss_mb':round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,1),
+        'wall_seconds':round(time.monotonic()-start,3),'peak_rss_mb':round(peak_rss_mb(),1),
         'submission':str(output/'submission.csv'),'components':records})
 
 
@@ -190,7 +190,7 @@ def run(job):
         record={'status':'ok','recipe':recipe,'metrics':metrics,'full_fit':full,'fit_iterations':1,
                 'feature_count':len(train_x.columns),'feature_names':list(train_x.columns),
                 'wall_seconds':round(time.monotonic()-start,3),
-                'peak_rss_mb':round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,1),
+                'peak_rss_mb':round(peak_rss_mb(),1),
                 'submission':str(output_dir/'submission.csv')}
         atomic_json(output_dir/'result.json',record)
         print(json.dumps({'status':'ok','metrics':metrics,'wall_seconds':record['wall_seconds']}),flush=True)
@@ -234,8 +234,10 @@ def run(job):
         selector_weights=sample_weights(y.iloc[rows],recipe.get('params',{})) if spec['kind']=='classification' else None
         selection_record=None
         if recipe.get('params',{}).get('feature_selection_top_k',0):
+            selection_options=({'protected_columns':spec['features']}
+                if recipe['params'].get('feature_selection_protect_original',False) else {})
             prepared_x,prepared_test,selection_record=select_features(prepared_x,prepared_test,fit_y,rows,
-                spec['kind'],job['threads'],recipe.get('params',{}),selector_weights)
+                spec['kind'],job['threads'],recipe.get('params',{}),selector_weights,**selection_options)
         prepared_x,prepared_test,categorical=prepare_frames(prepared_x,prepared_test,recipe['engine'],rows)
         kwargs={}
         weights=None
@@ -384,7 +386,7 @@ def run(job):
             'important_features':important_features,
             'fit_iterations':int(best_iteration),'feature_count':len(train_x.columns),
             'feature_names':list(train_x.columns),'wall_seconds':round(time.monotonic()-start,3),
-            'peak_rss_mb':round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,1),
+            'peak_rss_mb':round(peak_rss_mb(),1),
             'validation_predictions':str(validation_path) if validation_path else None,
             'submission':str(output_dir/'submission.csv')}
     atomic_json(output_dir/'result.json',record)
@@ -392,7 +394,7 @@ def run(job):
 
 
 if __name__=='__main__':
-    job=json.loads(Path(sys.argv[1]).read_text())
+    job=json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
     try:
         run(job)
     except Exception as exc:

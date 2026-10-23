@@ -5,7 +5,6 @@ The coordinator owns every child and uses an exclusive host/project lock.
 """
 from pathlib import Path
 import argparse
-import fcntl
 import hashlib
 import json
 import os
@@ -21,6 +20,7 @@ import psutil
 from automl.infrastructure.atomic import atomic_json
 from automl.infrastructure.processes import wait_owned
 from build_submission import build_files
+from research_lock import ResearchLock
 
 
 def source_hashes():
@@ -52,16 +52,13 @@ def main():
         parser.error('Research artifacts must stay in ignored test-runs/')
     output.mkdir(parents=True, exist_ok=False)
     lock_path = ROOT/'test-runs/.owned-research.lock'
-    lock = lock_path.open('a+')
+    lock = ResearchLock(lock_path)
     try:
-        fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        lock.acquire()
     except BlockingIOError:
         raise SystemExit('Another owned research queue holds the training lock')
     identity = {'pid': os.getpid(), 'create_time': psutil.Process().create_time()}
-    lock.seek(0)
-    lock.truncate()
-    json.dump(identity, lock)
-    lock.flush()
+    lock.write_identity(identity)
     started = time.monotonic()
     deadline = started+args.max_seconds
     initial = source_hashes()
@@ -183,8 +180,7 @@ def main():
         report.update(seconds=round(time.monotonic()-started, 3), source_unchanged=source_hashes() == initial)
         atomic_json(path, report)
         signal.signal(signal.SIGTERM, previous)
-        fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
-        lock.close()
+        lock.release()
 
 
 if __name__ == '__main__':

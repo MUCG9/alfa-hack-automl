@@ -18,7 +18,7 @@ def validate_feature_view(recipe, spec=None):
         raise ValueError('Feature views require unchanged features and noop data policy')
     if any(k.startswith('target_encoding') or k.startswith('history_') for k in params):
         raise ValueError('Feature views cannot combine explicit encoding/history options')
-    if params.get('generic_features', 'none') != 'none' or params.get('log_target', False):
+    if params.get('generic_features', 'none') not in {'none','broad'} or params.get('log_target', False):
         raise ValueError('Feature views cannot combine generic or target transformations')
     if params.get('calibrate') is not True or params.get('calibration_folds', 1) != 1:
         raise ValueError('Feature views require existing inner-holdout calibration')

@@ -49,6 +49,54 @@ def search_space(engine):
     raise ValueError('HPO supports lightgbm, catboost and xgboost recipes')
 
 
+def _anchor_parameters(recipe):
+    """Match the adapters' effective control values, including sparse recipes.
+
+    These constructor defaults/ranges are checked against actual model
+    constructors without fitting. Search-space bounds remain independent: a
+    valid control outside them must be rejected, never clipped into the study.
+    """
+    params = recipe.get('params', {})
+    controls = {
+        'lightgbm': {'num_leaves': (31, 15, 255, True),
+                     'reg_lambda': (3., 0., 100., False),
+                     'colsample_bytree': (.9, .5, 1., False)},
+        'xgboost': {'max_depth': (params.get('depth', 8), 3, 12, True),
+                    'min_child_weight': (3., 1., 50., False),
+                    'reg_lambda': (8., 0., 100., False)},
+        'catboost': {'depth': (6, 4, 10, True),
+                     'l2_leaf_reg': (5., 1., 100., False),
+                     'random_strength': (1., 0., 10., False)},
+    }
+    anchor = {}
+    for name, (default, low, high, integer) in controls[recipe['engine']].items():
+        value = float(params.get(name, default))
+        if not math.isfinite(value):
+            raise ValueError(f'Non-finite parameter: {name}')
+        value = float(np.clip(value, low, high))
+        anchor[name] = int(value) if integer else value
+    return anchor
+
+
+def _update_trial_counts(report):
+    """Describe actual work; a TPE label alone does not imply guided search."""
+    entries = report['trials']
+    phases = {name: {'attempted': 0, 'completed': 0, 'failed': 0}
+              for name in ('anchor', 'startup', 'guided', 'random')}
+    for entry in entries:
+        counts = phases[entry['sampling_phase']]
+        counts['attempted'] += 1
+        counts['completed' if entry.get('objective_valid', False) else 'failed'] += 1
+    completed = sum(p['completed'] for p in phases.values())
+    report.update(planned_trials=report['maximum_trials'], attempted_trials=len(entries),
+                  completed_trials=completed, failed_trials=len(entries)-completed,
+                  duplicate_trials=sum(e['status'] == 'duplicate' for e in entries),
+                  unattempted_trials=report['maximum_trials']-len(entries),
+                  sampler_startup_trials=report['startup_trials'] if report['sampler'] == 'tpe' else 0,
+                  phase_counts=phases, guided_attempts=phases['guided']['attempted'],
+                  guided_successful_trials=phases['guided']['completed'])
+
+
 def optimize_recipe(spec, train, hashes, fitting_rows, recipe, output, worker,
                     deadline, trials=8, seed=137, sampler='tpe', worker_timeout=600):
     """Return a recipe chosen by inner values, never outer labels or predictions.
@@ -73,6 +121,7 @@ def optimize_recipe(spec, train, hashes, fitting_rows, recipe, output, worker,
     start = time.monotonic()
 
     def finish(status, selected):
+        _update_trial_counts(report)
         report.update(status=status, selected_recipe=selected,
                       seconds=round(time.monotonic()-start, 3))
         atomic_json(path, report)
@@ -97,10 +146,8 @@ def optimize_recipe(spec, train, hashes, fitting_rows, recipe, output, worker,
                if sampler == 'tpe' else optuna.samplers.RandomSampler(seed=seed))
     study = optuna.create_study(direction='maximize' if spec['greater_is_better'] else 'minimize',
                                 sampler=chooser)
-    defaults = {'num_leaves': 63, 'reg_lambda': 5., 'colsample_bytree': .9,
-                'depth': 6, 'l2_leaf_reg': 5., 'random_strength': 1.,
-                'max_depth': 6, 'min_child_weight': 3.}
-    anchor = {k: recipe.get('params', {}).get(k, defaults[k]) for k in space}
+    anchor = _anchor_parameters(recipe)
+    report['anchor_params'] = anchor
     if any(not lo <= anchor[k] <= hi for k, (_, lo, hi) in space.items()):
         report['anchor_error'] = 'Control outside predeclared search space'
         return finish('control_outside_search_space', deepcopy(recipe))
@@ -110,6 +157,9 @@ def optimize_recipe(spec, train, hashes, fitting_rows, recipe, output, worker,
         remaining = deadline-time.monotonic()
         if remaining < 5:
             break
+        completed_before = sum(t.state == optuna.trial.TrialState.COMPLETE for t in study.trials)
+        phase = ('anchor' if number == 0 else 'random' if sampler == 'random'
+                 else 'startup' if completed_before < report['startup_trials'] else 'guided')
         trial = study.ask()
         params = {}
         for name, (kind, low, high) in space.items():
@@ -118,7 +168,8 @@ def optimize_recipe(spec, train, hashes, fitting_rows, recipe, output, worker,
         candidate = normalize(dict(deepcopy(recipe), params=dict(recipe.get('params', {}), **params)))
         fingerprint = signature(candidate)
         entry = {'number': number, 'params': params, 'recipe_sha256': fingerprint,
-                 'recipe': candidate}
+                 'recipe': candidate, 'sampling_phase': phase,
+                 'completed_before_sampling': completed_before, 'objective_valid': False}
         if fingerprint in seen:
             entry['status'] = 'duplicate'
             study.tell(trial, state=optuna.trial.TrialState.FAIL)
@@ -129,6 +180,7 @@ def optimize_recipe(spec, train, hashes, fitting_rows, recipe, output, worker,
             value = (result.get('metrics') or {}).get(spec['metric'])
             valid = result.get('status') == 'ok' and isinstance(value, (int, float)) and math.isfinite(value)
             entry.update(status=result.get('status', 'error'), value=value if valid else None,
+                         objective_valid=valid,
                          seconds=result.get('wall_seconds'),
                          fit_iterations=result.get('fit_iterations'))
             if valid:
@@ -139,6 +191,6 @@ def optimize_recipe(spec, train, hashes, fitting_rows, recipe, output, worker,
                 study.tell(trial, state=optuna.trial.TrialState.FAIL)
         report['trials'].append(entry)
         report.update(best_inner_value=best_value, selected_recipe=selected)
+        _update_trial_counts(report)
         atomic_json(path, report)
-    report['completed_trials'] = sum(t.state == optuna.trial.TrialState.COMPLETE for t in study.trials)
     return finish('ok' if best_value is not None else 'no_successful_trials', selected)

@@ -24,7 +24,12 @@ def main():
     parser.add_argument('--hpo-trials',type=int,default=0)
     parser.add_argument('--selection-top-k',type=int,default=0)
     parser.add_argument('--planner-mode',choices=['baseline','staged'],default='baseline')
+    parser.add_argument('--four-stage',action='store_true')
     args=parser.parse_args()
+    if args.four_stage:
+        args.hpo_trials=args.hpo_trials or 4
+        args.selection_top_k=args.selection_top_k or 1
+        args.planner_mode='staged'
     if not 180<=args.time_budget<=600: raise ValueError('Use a180..600s fixture budget')
     if not 0<=args.hpo_trials<=8 or not 0<=args.selection_top_k<=2: raise ValueError('Invalid fixture MVP options')
     endpoint=urlsplit(args.endpoint)
@@ -70,6 +75,7 @@ def main():
              '--max-planner-calls','1','--time-budget',str(args.time_budget),
              '--hpo-trials',str(args.hpo_trials),'--hpo-budget','60',
              '--feature-selection-top-k',str(args.selection_top_k),'--planner-mode',args.planner_mode]
+    if args.four_stage: command.append('--four-stage')
     started=time.monotonic()
     def interrupted(signum,frame): raise SystemExit(128+signum)
     previous=signal.signal(signal.SIGTERM,interrupted)
@@ -109,9 +115,11 @@ def main():
              'final_fit_status':report.get('final_fit_status'),'integrity_ok':report.get('integrity_ok'),
              'hpo_status':hpo.get('status'),'hpo_completed_trials':hpo.get('completed_trials'),
              'feature_selection_active':selection_active,'planner_mode':args.planner_mode,
+             'four_stage_pipeline':report.get('pipeline'),
              'scope':'Artificial180-row regression fixture; local_mock_http is NOT live Qwen proof. No ML quality or official score claim.',
              'passed':bool(status==0 and semantic_ok and planner_ok and output_ok and unchanged and report.get('final_fit_status')=='ok' and report.get('integrity_ok')
-                           and (not args.hpo_trials or hpo.get('status')=='ok') and (not args.selection_top_k or selection_active))}
+                           and (not args.hpo_trials or hpo.get('status')=='ok') and (not args.selection_top_k or selection_active)
+                           and (not args.four_stage or (report.get('pipeline',{}).get('mode')=='four_stage' and report['pipeline'].get('initial_data_assessment_before_fitting'))))}
     # Do not echo any artifacts if an upstream error unexpectedly included the key.
     credential=env['OPENAI_API_KEY'].encode()
     for path in out.rglob('*'):

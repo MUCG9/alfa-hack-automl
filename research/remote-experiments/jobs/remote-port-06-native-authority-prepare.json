@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "id": "remote-port-06-native-authority-prepare",
+  "kind": "source_only",
+  "readiness": "ready",
+  "objective": "REMOTE-PORT-06 NATIVE AUTHORITY PREPARE ONLY. New SOURCE_ONLY1800s, CPU2, worker1536MiB/whole2048MiB, fits0/API0. Dependency is exact completed05 result64162c8772617d3ae11b34ff9207d015ad8a4a46 by remote-worker-f7dd39e0, not a capability approval. Same worker must read unseen notices and exact new dispatch refs, preserve one actual06 claim wall+monotonic deadline including IO/hash/preparation/checks/cleanup/result. No model Popen, worker import/main, --offline solution shortcut, API, package install, GPU or regression experiment. Do not execute the69-test suite again; it is reported05 history, not new06 tests.\n\nRead remote-port-06-source-manifest.json. Verify every immutable result05 artifact hash before using its reviewed four sources; read original70-member ca8a archive/requirements and exact source manifest, original approved input manifest, native-v3-r2 f5ad and protected controls. Five metadata files are protocol/source/input/native/control. Bind unchanged c08/a752 R4 source bytes by manifest indirection but do not call their scoring mains or parse audit outcomes. Missing/mismatch stays blocked/null. Preserve all prior01/04/05 sources/receipts/errors/clock dispositions.\n\nChoose ONE private ASCII root before constructing anything; retain that actual root for future07, publish only a nonpath alias. Build fresh private layout expected by reviewed experiment_driver: inputs/train.csv,test.csv,sample_submission.csv,data_dictionary.csv,task.md; metadata5; algorithm70; execution4; libraries2; splits/classification-42.npz and -43.npz; jobs and six distinct future cores. Verify approved bytes first. Use only existing multiclass inputs and fixed42/43 Linux cut values; no regression cut generation, targets from external sources, new split/seed/cast/sort/reseed/native try-until-match or dataset-specific recipe tuning. Copies of already verified native cut bytes are acceptable. Do not rewrite arrays to match containers.\n\nDerive the actual complete native task/spec with existing trusted task-contract parsing only if needed, no worker/model/solver import or execution. Task/spec/roles must satisfy exact class value/MacroF1 and output/ID/class mapping. Do not treat a fulltrain discovery profile as fitting-only context and do not retain it for LLM/model selection. Fix six keys/order/three exact recipes from protocol, threads2/full_fitFalse, unique output/job paths and native split entries. No learned transform, label-dependent model choice, fitting, prediction or metric calculation. Prepare all six exact private JSON jobs and original source/input/spec/recipe/split maps; no future timestamps/deadlines fabricated in authority.\n\nFreeze actual private files before structural revalidation. Compute authority canonical SHA and raw authority-file SHA, spec canonical SHA, original source manifest canonical SHA, exact four execution source maps/two libraries/70members/five metadata maps, and SIX actual private job byte hashes. Follow reviewed validate_matrix/verify_prepared under this same source-only06 clock for meaningful exact structural/native raw checks, retaining actual successes or first+secondary failures. Do not call execute/model_driver/audit_child/component_audit.audit, fit_count on fabricated results, generic unit suites or model/inert subprocesses. Do not create a fake future07 claim or reset06 clock to satisfy checks.\n\nReturn prepared-metadata.json with those actual digests, fixed six relative key/job/output/split/native/recipe/spec/threads/full_fit objects, counts and redacted role-path projection. Also return next-bounded-binding.json candidate matching future07 binding schema: proposed job_id remote-port-07-class-kernel-components, same worker, prepared_authority_sha256/spec_canonical_sha256/manifest_canonical_sha256, entrypoint automl_worker.py, execution_sha256 and exact six components including private_job_sha256. It is only a candidate: approved_for_bounded_experiments is not granted, no READY ML job and no07 clock. Do not publish full unredacted authority/spec/jobs with private absolute paths. Compute hashes on true private bytes, never the redacted projection. Future07 must revalidate all immutable artifacts and inputs during its own setup600;06 preparation cost is separately reported, not hidden inside an invented07 elapsed time.\n\nReturn exactly capabilities.json, prepared-metadata.json, next-bounded-binding.json, protocol.json, blockers.json, summary.txt. UTF8 sanitized metadata only,128KiB each/256KiB total. No code/data/row/label/index arrays/NPZ/predictions/probabilities/learned models/binaries/secrets/symlinks/absolute paths in Git. Wholecampaign RSS/CPU remain null unless actually measured; no phase estimate promoted to host attestation. Source-only report metrics null; usage fits0/API0. Missing actual native hashes/schema/paths/clock checks remain honest null/blocked, never placeholders pretending complete. Include actual source-only preparation elapsed, original clock/cleanup/error history and frozen file consistency, with no quality/default/official score claim. All actual learners wait for independent primary review/approval and a separate bounded07.",
+  "caps": {
+    "wall_seconds": 1800,
+    "cpu_threads": 2,
+    "worker_memory_mib": 1536,
+    "whole_memory_mib": 2048,
+    "max_fits": 0,
+    "max_api_calls": 0
+  },
+  "source_refs": [
+    {
+      "path": "research/remote-experiments/sources/remote-port-06-source-manifest.json",
+      "sha256": "adc0c50d8e49cfa973c749fe51566dccb85dcb88975088fa783cc3bfa6df3bf9"
+    },
+    {
+      "path": "research/remote-experiments/reviews/remote-port-05-source-r1/matrix-review.json",
+      "sha256": "d16de9f206770a0966ac90e59c9b9b79b99fe21f61a8517a93e6465568c40b08"
+    },
+    {
+      "path": "research/remote-experiments/sources/remote-port-05-source-manifest.json",
+      "sha256": "03b686f8d31c4ec8b35950069e3ed8af49fdb5f3d488255e2ed1870192ce8591"
+    },
+    {
+      "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/protocol.json",
+      "sha256": "81cd9df5566f5453600117a5cb902f8ca7d37dbee3c9ee2347ff5100a9baff46"
+    },
+    {
+      "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/fit-count-source-proof.json",
+      "sha256": "7c0a3b1c3888573ab254989bee767a3d49fe4a3c84d1a57a17e647a99c083613"
+    },
+    {
+      "path": "research/remote-experiments/sources/source-manifest.json",
+      "sha256": "0ed0e74706b6620ffc1b29216a8f2c00ab40771ef7ebaecb0cc61092f78c4bae"
+    },
+    {
+      "path": "research/remote-experiments/sources/approved-input-manifest.json",
+      "sha256": "247ecf4d3ce8670be0573ed0808b0cfce9352babb78ca7cc02c9103ca3bee4c7"
+    },
+    {
+      "path": "research/remote-experiments/sources/native-cut-contract-v3-r2.json",
+      "sha256": "f5ad8c55aec198b689abf4bd8cf4ed0caf967fcd9f0d9f6db12f70513e1a60e5"
+    },
+    {
+      "path": "research/remote-experiments/sources/protected-single-controls.json",
+      "sha256": "118ba895201bef8149fdd6bb88464bb2e02b23985a34629a47d52df5e5536f46"
+    },
+    {
+      "path": "research/remote-experiments/reviews/remote-port-05-source-r1/guard-review.json",
+      "sha256": "4d68702b9c20b4b7953e27cd95f88a59ebba3750ee9cb46691a0f3c66f1da114"
+    }
+  ],
+  "dependencies": [
+    "remote-port-05-source-runner-repair"
+  ],
+  "expected_outputs": [
+    "capabilities.json",
+    "prepared-metadata.json",
+    "next-bounded-binding.json",
+    "protocol.json",
+    "blockers.json",
+    "summary.txt"
+  ]
+}

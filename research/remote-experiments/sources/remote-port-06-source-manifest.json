@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "status": "PRIMARY_REVIEWED_source_only06_native_authority_preparation_NOT_bounded_approval",
+  "prior_completed": {
+    "job_id": "remote-port-05-source-runner-repair",
+    "worker_id": "remote-worker-f7dd39e0",
+    "result_ref": "refs/heads/research/remote-results/remote-port-05-source-runner-repair",
+    "result_sha": "64162c8772617d3ae11b34ff9207d015ad8a4a46",
+    "artifacts_sha256": {
+      "capabilities.json": "51276b6579ba0fbc4c4f511e4e301337550a8c33899a22dbba4ab6c2b32c115d",
+      "changes.patch": "e87a224c5ac136e459b58bcf3c8289ac788a8f7ee9444d56c6031fa75f9d24f3",
+      "component_audit.py": "befcca2f8e630b9fb8e1bca81ce46b4d08f6f17773c65a38f133a56c277d2ffd",
+      "experiment_driver.py": "ea80bf0d35692a278c490ca953596ac2c0490481560bbf5522158ac8f0586a0d",
+      "next-hypotheses.json": "abadfd5cc0be0e32f7f7c51579206f3996d1781259be2e614b1410c16325b7fe",
+      "portable_harness.py": "0fe8a4ad629e9ce9a39277a9ddc05cdf780c159e32fe396b6254689e2d9173a5",
+      "protocol.json": "2d73c5ea5c3ca5c0da840937c55fc2fb671dcc3007d492150e17614020b0f285",
+      "pure-checks.json": "828b9d1f5876f52c4cbe9fd83a3492327677c97c741b804c0d7ed64ccec18a23",
+      "pure_contracts.py": "783830691e558748b4437a734d27cd4cb332c6731f683c3058cd21ea18597286",
+      "summary.txt": "cdc819cae7c7500a0bcbc026bec28c940f49f2a284d761a48c37e0b461c88adb"
+    }
+  },
+  "primary_semantic_review": {
+    "path": "research/remote-experiments/reviews/remote-port-05-source-r1/matrix-review.json",
+    "sha256": "d16de9f206770a0966ac90e59c9b9b79b99fe21f61a8517a93e6465568c40b08"
+  },
+  "root_guard_review": {
+    "path": "research/remote-experiments/reviews/remote-port-05-source-r1/guard-review.json",
+    "sha256": "4d68702b9c20b4b7953e27cd95f88a59ebba3750ee9cb46691a0f3c66f1da114"
+  },
+  "five_private_metadata_files": {
+    "protocol.json": "81cd9df5566f5453600117a5cb902f8ca7d37dbee3c9ee2347ff5100a9baff46",
+    "source-manifest.json": "0ed0e74706b6620ffc1b29216a8f2c00ab40771ef7ebaecb0cc61092f78c4bae",
+    "approved-input-manifest.json": "247ecf4d3ce8670be0573ed0808b0cfce9352babb78ca7cc02c9103ca3bee4c7",
+    "native-cut-contract-v3-r2.json": "f5ad8c55aec198b689abf4bd8cf4ed0caf967fcd9f0d9f6db12f70513e1a60e5",
+    "protected-single-controls.json": "118ba895201bef8149fdd6bb88464bb2e02b23985a34629a47d52df5e5536f46"
+  },
+  "source05_inventory": {
+    "portable_harness.py": "0fe8a4ad629e9ce9a39277a9ddc05cdf780c159e32fe396b6254689e2d9173a5",
+    "component_audit.py": "befcca2f8e630b9fb8e1bca81ce46b4d08f6f17773c65a38f133a56c277d2ffd",
+    "experiment_driver.py": "ea80bf0d35692a278c490ca953596ac2c0490481560bbf5522158ac8f0586a0d",
+    "pure_contracts.py": "783830691e558748b4437a734d27cd4cb332c6731f683c3058cd21ea18597286"
+  },
+  "original_algorithm_archive": {
+    "path": "research/remote-experiments/sources/kernel-source.zip",
+    "sha256": "ca8a0898af84a4ddb8039343f94edc73aa7360005f215125907a34427a3c6d5c",
+    "members": 70
+  },
+  "independent_libraries": [
+    {
+      "path": "research/lean-mvp-r2/evaluator.py",
+      "sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783"
+    },
+    {
+      "path": "research/kernel-methods-next/components/audit_components.py",
+      "sha256": "a7528e969cd2f58ef4562c34ab344852acdfde535f223d9fedcf3877fa9cdcdb"
+    }
+  ],
+  "library_and_source_loading": "Read exact result05 artifact and immutable dispatch source blobs by listed SHA. Manifest indirection avoids passing raw source/private-path text through source_refs safe_text. Never import worker/model or call the future execute path.",
+  "private_layout_contract": "One private ASCII root chosen before preparation and retained for future07; native input5, metadata5, algorithm70, execution4, libraries2, splits/classification-42.npz and -43.npz, jobs/classification{42,43}-{strong,linear,rbf}.json, six future cores. Public root alias only; actual absolute paths private.",
+  "prepared_outputs_actual": {
+    "authority_canonical_sha256": null,
+    "authority_file_sha256": null,
+    "spec_canonical_sha256": null,
+    "six_private_job_sha256": null,
+    "actual_private_root": null,
+    "source_only06_clock": null
+  },
+  "preparation_checks": "Reviewed validate_matrix and verify_prepared only for the constructed actual private authority/binding under the SAME06 source clock; native entries/rawNPZ must match exact Linux profiles. No new generic suite/inert learner/worker/main/--offline run.",
+  "future_binding_schema": {
+    "job_id": "remote-port-07-class-kernel-components",
+    "worker_id": "remote-worker-f7dd39e0",
+    "prepared_authority_sha256": null,
+    "spec_canonical_sha256": null,
+    "manifest_canonical_sha256": null,
+    "entrypoint": "automl_worker.py",
+    "execution_sha256": null,
+    "components": "Exact six independently frozen relative component objects including actual private_job_sha256 and fixed native/recipe/spec/output fields; no absolute paths."
+  },
+  "public_projection": "Report digests/counts/relative structural fields only. Native role path values redacted; actual spec/authority hashes computed from unredacted private objects. Never substitute redacted objects into private job hashes or publish raw tables/labels/row arrays/NPZ/probabilities/predictions/learned artifacts/credentials/absolute paths.",
+  "future07_only": {
+    "kind": "bounded_experiment",
+    "approval_issued": false,
+    "READY_published": false,
+    "clock_assigned": false,
+    "common_seconds": 5400,
+    "setup": 600,
+    "six_parent480": 2880,
+    "audit": 600,
+    "cleanup": 300,
+    "spare": 1020,
+    "static_fit_upper_bound": 16,
+    "actual_fits": null
+  },
+  "history": "All01/04 failed attempts and05 reported source-only69 retain original disposition. Prior manifest05 names future06 for a bounded screen historically; this NEW06 is preparation only, future ML is07. No historical file or source is rewritten.",
+  "required_before_dispatch": [
+    "Primary source review accepted narrow source-only preparation; no actual claim or clock until worker claims this published job.",
+    "Bounded model permission, exact next approval and future07 clock remain absent."
+  ],
+  "execution_authority": false,
+  "new_model_authorization": false,
+  "fits_authorized": 0,
+  "API_calls_authorized": 0,
+  "new_suites_authorized": 0,
+  "root_may_publish_after_review": true
+}

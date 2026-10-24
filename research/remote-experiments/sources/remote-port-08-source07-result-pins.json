@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "status": "actual_source07_result_pins_NOT_bounded_approval",
+  "source_job_id": "remote-port-07-native-reference-binding",
+  "source_job_sha256": "db7921c078aa68b244d5af4c368d74453c30a6435be7d643b54bf509b9d61fb5",
+  "result_sha": "b069ec971657ece9f4ec6d12b4ceea4247a890c6",
+  "claim_sha": "39d074f9fc39cdc51ec0d1a4a0946397ca0b8bec",
+  "worker_id": "remote-worker-f7dd39e0",
+  "result_json_sha256": "7de0c45104dd6a0ff6ef7599948ec00741ca9435b42ef06101ba3bf5c6903fa9",
+  "source_status": "completed",
+  "source_artifacts_sha256": {
+    "blockers.json": "b7c92ad7c5eeedf6959bb5c357d56698b5bdbd1dc93697e9652f26f4357850ee",
+    "capabilities.json": "0a2a71f697e9ccba8488114a14dd672dd620ef413df3787e51096b1fec711346",
+    "next-bounded-binding.json": "b180fe8bc392f91e8bf277799a7d92caee69fa9e91d6247b2a4658e6c4d0bf17",
+    "prepared-metadata.json": "d714b862f743526c505cc7b9457ac1dceec5d0e72351bd9c2d3cbf551150879e",
+    "protocol.json": "959f394ee563142419fc519dff16dca74e8d662cc2a219ed28212c1f491d1e00",
+    "pure-checks.json": "aedbffaaa517f59bdb00e1e7b0177ba013588b6357832664b34e8a0105067956",
+    "summary.txt": "df356d886ce53bb41dd26949ebcc2360d371e6851e68bc93578aaa1d74f06f9c"
+  },
+  "compact_binding_file_sha256": "b180fe8bc392f91e8bf277799a7d92caee69fa9e91d6247b2a4658e6c4d0bf17",
+  "compact_binding_canonical_sha256": "8bdb0744db1c9f3964616e816b385870730bd73316fd3a8a79da4e604dea9d00",
+  "expanded_binding_canonical_sha256": "a01666056c23ac8234ca8095147f8169dffc3ef49c4221e3c20623e82a20f97f",
+  "authority_file_sha256": "65a0c05dff4e7441ac2db0b0040dd530e2d315cd3adbe96c7d2f43e9c200ce13",
+  "authority_canonical_sha256": "8039be0c6a9f8b034b25de1d8ab9dbf3ccb6f2a6e7400853f2c35e6cf5c93739",
+  "authority_relative": "prepared-authority-r1.json",
+  "manifest_canonical_sha256": "35f714dd94158519730ecff4f020ab8215060c1ba07e2a6fd7be836ac456c8d7",
+  "spec_canonical_sha256": "1c587ab5f49104270b43248941cebe45b51509ed19a6cef1ba1577009fb3519d",
+  "execution_sha256": {
+    "component_audit.py": "befcca2f8e630b9fb8e1bca81ce46b4d08f6f17773c65a38f133a56c277d2ffd",
+    "experiment_driver.py": "ea80bf0d35692a278c490ca953596ac2c0490481560bbf5522158ac8f0586a0d",
+    "portable_harness.py": "8b14a7c9db4a37623fac0555e7989a79f94971f2768aebaf5752488f2b540342",
+    "pure_contracts.py": "783830691e558748b4437a734d27cd4cb332c6731f683c3058cd21ea18597286"
+  },
+  "source07_observed_usage": {
+    "api_calls": 0,
+    "cpu_threads": null,
+    "fits": 0,
+    "wall_seconds": 64.3704776763916,
+    "whole_memory_mib": null,
+    "worker_memory_mib": null
+  },
+  "resource_caps_are_not_observations": true,
+  "primary_independent_source07_result_review_pending": true,
+  "historical26e6_not_execution_authority": true,
+  "promotion": false
+}

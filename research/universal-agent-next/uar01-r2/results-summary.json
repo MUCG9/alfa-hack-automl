@@ -1,0 +1,31 @@
+{
+  "schema": "uar01-r2-public-summary-v1",
+  "status": "technical_PASS_not_release",
+  "actual_exec_session": 8705,
+  "actual_exec_exit_code": 0,
+  "actual_tool_evidence": "f0dc9d",
+  "closer_actual_exit_code": 0,
+  "closer_tool": "8df29a",
+  "root_closure_sha256": "a750111f4b88ba6317b09625791b75f0e173ddd224499c3e5a7792f9c01268be",
+  "fresh_absence_tool": "809e97",
+  "known_owned_and_preparers_absent": 5044,
+  "source_checks": 499,
+  "source_scripts": 50,
+  "archive_sha256": "a78989db7fa8aeba2eef09044d92456fdafb081e5e6a778840cc12675ee566cd",
+  "original_start_unix": 1792798524.6611674,
+  "original_deadline_unix": 1792799724.6611674,
+  "elapsed_common_seconds": 964.4060000000027,
+  "API_calls": 0,
+  "model_quality": null,
+  "release_qualified": false,
+  "first_attempt_FAIL_preserved": true,
+  "first_attempt": {
+    "status": "FAIL_preserved",
+    "actual_exec_session": 25916,
+    "actual_exec_exit_code": 1,
+    "first_error": "legacy_refresh_hook_bypassed_before_identity_recheck"
+  },
+  "recovery_change": "Restore legacy public refresh hook for opt-out ProcessTree; strict opt-in unchanged",
+  "resource_scope": "50 scripts/499 source checks and 71-member flattened build; no Qwen API calls; fixture fit count not independently enumerated",
+  "source_review_sha256": "02561f11996fe35bc6583c6202bdf917274578bad43d612e49bf14a3de518e2d"
+}

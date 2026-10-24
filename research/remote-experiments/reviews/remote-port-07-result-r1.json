@@ -1,0 +1,42 @@
+{
+  "schema": "primary-remote07-result-review-v1",
+  "job_id": "remote-port-07-native-reference-binding",
+  "result_sha": "b069ec971657ece9f4ec6d12b4ceea4247a890c6",
+  "worker_id": "remote-worker-f7dd39e0",
+  "source_peer_review_sha256": "3e6919418255e52ae98ed553a4cee668c1058a07f92d5a3271cf4af9d3e0bd91",
+  "independent_reconstruction": {
+    "schema": "remote07-primary-reconstruction-v1",
+    "result_sha": "b069ec971657ece9f4ec6d12b4ceea4247a890c6",
+    "worker_id": "remote-worker-f7dd39e0",
+    "compact_binding_canonical_sha256": "8bdb0744db1c9f3964616e816b385870730bd73316fd3a8a79da4e604dea9d00",
+    "expanded_binding_canonical_sha256": "a01666056c23ac8234ca8095147f8169dffc3ef49c4221e3c20623e82a20f97f",
+    "authority_canonical_sha256": "8039be0c6a9f8b034b25de1d8ab9dbf3ccb6f2a6e7400853f2c35e6cf5c93739",
+    "primary_reconstruction_matches_report": true,
+    "source_inventory_original_algorithm70_preserved": true,
+    "original_execution4_preserved": true,
+    "inputs_task_spec_unchanged": true,
+    "private_authority_bytes_available_locally": false,
+    "limitation": "Native paths, whole-campaign resources and private preparation are remote-reported; runtime must enforce the pinned authority and caps before fits.",
+    "model_quality": null
+  },
+  "decision": "Source and public authority bindings accepted for a separate bounded six-job component experiment; no model quality promotion",
+  "actual_source_tests_reported": 4,
+  "actual_source_fits": 0,
+  "actual_source_API_calls": 0,
+  "whole_campaign_CPU_seconds": null,
+  "whole_campaign_peak_RSS_MiB": null,
+  "limitations": {
+    "actual_pure_tests": "4 actual PASS per SHA-bound remote receipts; reviewer did not execute them. Existing claim/approval paths are mocked in one isolated new unit test, not a live bounded approval test.",
+    "authority": "Private authority file itself is not transferred; its native paths/raw data remain private. Public metadata is consistent and reviewed original verify_prepared reports pass. Future actual run must recheck that exact private authority/job/spec/source inventory and public native hashes before fits.",
+    "old06": "Original BLOCKED and FileNotFoundError/json_structure_cap errors preserved, not requalified. Existing old source files and six job hashes remain unchanged in reported inventory.",
+    "resource": "Only sampled phase peaks reported: whole52.77734375MiB, worker26.99609375MiB; wholecampaignCPU/RSS and result cpu/memory usage are null. No invented total resource proof.",
+    "whole_campaign_CPU_seconds": null,
+    "whole_campaign_peak_RSS_MiB": null,
+    "future08": "Use execution-r1/experiment_driver.py plus prepared-authority-r1.json; require separate READY bounded08 with actual5400 clock,2CPU/1536worker/2048whole,16actualfit/0API caps and all original6slot/R4/cleanup gates. Same-worker primary approval binds this exact completed07 result and caps; this peer receipt is not that approval."
+  },
+  "original06_blocked_preserved": true,
+  "original07_clock_preserved": true,
+  "private_artifacts_not_transferred": true,
+  "promotion": false,
+  "auto_submit": false
+}

@@ -13,7 +13,7 @@ original failure remains recorded; V11/V16 classification is retained.
 | Process observation | E01 strict observation patch, constructor-cost and survivor repairs integrated | 12 mocked failure tests passed; caller opt-in and denial propagation pending |
 | Idea registry | Exactly 150 source IDs, root-owned | Per-idea implementation and evidence; registry presence is not implementation |
 | Parallel development | Four actual native agent slots, three isolated branches/worktrees | Cross-review and serial resource-leased execution |
-| Linux coordination | Source packet 05 received and reviewed; no model fits yet | Exact private authority/job bindings, then separately bounded six-job class experiment |
+| Linux coordination | Source packets 05 and 07 received; four native-reference checks reported PASS, no model fits yet | Independent exact packet review and same-worker approval, then separately bounded six-job class experiment |
 | Platform release | Historical V11/V16 retained | New generic ZIP, both standard CLI tasks, refit/CSV and clean-platform gates |
 
 The registry currently has 144 planned, four library implementations, one deferred
@@ -23,8 +23,12 @@ denying that historical mechanisms exist. No new feature is enabled by the regis
 UAR00 actually passed all **48 tests** in 6.375 seconds under one serial 600-second
 lease. Root exit, closure and fresh absence of 4,398 known identities were verified.
 The three scoped patches are now integrated as libraries on the research branch;
-strict caller hooks and full source/build qualification remain pending. These unit
-results do not establish ML improvement.
+strict caller hooks remain pending. UAR01's initial full source gate failed one
+legacy process-identity test. Its single recovery preserved the original clock,
+passed all 499 checks across 50 scripts and built the 71-member flat archive.
+Actual exit, root closure and fresh absence of 5,044 known identities were verified.
+The first failure remains recorded. These technical results do not establish ML
+improvement or a standard-CLI release.
 
 Automatic submissions are disabled by the latest user specification. Existing
 authorization to publish checked research and dispatch changes remains in effect.

@@ -1,15 +1,15 @@
 # Dependency-driven next steps
 
-1. Observe LA2's actual session exit, execute its already frozen closer within the
-   original deadline and verify fresh exact owned/preparer absence. Collect actual
-   four-stage/Qwen/HPO/refit/CSV/R4 evidence and report quality separately.
-2. Receive and independently review Linux packet 05. Prepare exact private native
-   authority and six job fingerprints in a separate zero-fit task. Only then pin a
-   same-worker primary approval and claim a separate bounded six-job class screen.
-   Keep all previous failures and original clocks.
-3. Cross-review the three isolated developer patches and strict metric contract.
-   Repair concrete defects in new commits; preserve failed evidence. Once LA2
-   releases resources, run meaningful tests serially under one explicit lease.
+1. Preserve LA2's original failure and separately verified saved-artifact result:
+   regression RMSE34.1550233948; classification below historical V11/V16. No
+   repeated training or closer is needed for the closed experiment.
+2. Independently review Linux packet 07's exact authority/binding and actual four
+   focused checks. Pin a same-worker primary approval and a separate bounded
+   six-job class screen; retain blocked packets 01/06 and their original clocks.
+3. The three library patches and metric contract passed UAR00 and UAR01 recovery
+   source/build gates. Next review IO02's bounded early projections and RUN02's
+   strict-runtime caller hooks. Execute only reviewed tests under a fresh serial
+   lease, preserving the completed gate's immutable evidence.
 4. Integrate the tested atomic writer and strict process/metric hooks into a small
    opt-in vertical path. Obtain early format-correct fallback before profiling or
    Qwen. Verify normal `solution.py task.md` for both tasks before model expansion.

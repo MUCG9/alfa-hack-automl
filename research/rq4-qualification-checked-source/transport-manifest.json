@@ -1,0 +1,34 @@
+{
+  "status": "SOURCE_REVIEWED_RUNTIME_NOT_EXECUTED",
+  "exact_public_transport": {
+    "qualifier/artifact_audit.py": "0e773993a6aed60963dc50021c2bc91e38831608144a4683acf39cd9a75a5302",
+    "qualifier/close_child.ps1": "0442246bbded296357112d3f7442bc6ccb677ca4bb71e25f5db95e7706f7d2a0",
+    "qualifier/close_controller.py": "37f157b8be8928628b3e4eca1354b5a07f2462b559170085173d63e3092a7c71",
+    "qualifier/framed_reader.py.txt": "eb59db67bb19677ec04906aaf867931ddfa84901e7dd34a7391ce481e847fcf6",
+    "qualifier/prepare_source.py": "e17bebcfc3ab744a12a8b894e963a2e4d6c03ca7b6a53d444107e30a29f2db64",
+    "qualifier/protocol.json": "23b84be695fdbb029f3b766af5073260e55fb7de0f89c490e26eb7e89514e2ae",
+    "qualifier/README.txt": "f927c9f366cfdc6ec8a25b92f359557a91c0ccda1f628d7607f04bdd8c3c0203",
+    "qualifier/run_root.py": "fb11f413b1cd3f14563b46958cdba3844efc35fb25bb70178f6a5d8728efc444",
+    "qualifier/technical_entry.py": "fcd3633698bc2b93964727ddaf2c8f1378feab2d70a2cc9e5bcc158e88b156d5",
+    "qualifier/test_atomic_root.py": "8551015ea16ce127a9e9fdef5e28781b40b8e6e93595f5548befe4dae17dc93a",
+    "qualifier/test_controller_contracts.py": "90c74f4c70e9712364ecd0b51233b01489c5be953806720f8d4230d7df53d34a",
+    "qualifier/test_observation_reader.py": "3b1b1e3c9de79fabc7afccad172ec94f75d42116f1b8f8b9508c4e01763c38e3",
+    "root-helpers/bind_atomic.py": "d4f6a634221292113a89cc2265be81ee902af9418a857f23d8f59c1227d4570f",
+    "root-helpers/confirm_post_tool.py": "3d4563ecbe37205571a1ba900c1ca9d5d95ed3a7521783065a0e9b2749d3a19d",
+    "root-helpers/helper_policy.py": "7f434726a57846c76feffaf989bb45874fc96f6732640b5bd18d9cb55801cdaa",
+    "root-helpers/launch_atomic.ps1": "c8ab9664efe2c1926f5376f983f6a51aadb9960a28c929f0637601ef94ffdd3c",
+    "root-helpers/protocol.json": "aad517b412eccc9d8d9f976232f8c04fcb4000a6608e85a4135d8b6fdc1aabc2",
+    "root-helpers/README.txt": "03a02be2d29169165005426ab31482f617727669971ecdf8cb594099bce28950",
+    "root-helpers/test_helpers.py": "82767e3b4fe5419dfadbeb6e3b63ebf7589f2697fda729868b9991e6227f7a1c"
+  },
+  "private_operational_controller_source_sha256": {
+    "qualifier/run_controller.py": "66a17b7a959435608292646bf6e3145338fbec8bd4e977ce03e56cbba6b15028"
+  },
+  "private_sources_retained_locally": "Exact private operational path bindings are not published; their hashes and source reviews are recorded.",
+  "qualifier_handoff_sha256": "ef045d94e5fb31777a80daa1e4d91b80e261837877bb1b9b976f687fff185d78",
+  "qualifier_peer_sha256": "4e67e31c0ac070aa5a7a725dddf5564f45f99d4e51bb590f9206c413fff6ed24",
+  "root_helpers_handoff_sha256": "f758f7befa8285ae43eb8fe9f427460a7f224448caa44ef71f7412653f1ff7d4",
+  "root_helpers_peer_sha256": "561a14d8117f7a824611d7ab797d286d803407b00e738b4cc5156ebcf4646b86",
+  "prepared_contracts": 110,
+  "actual_tests_models_metrics_READY_clock": null
+}

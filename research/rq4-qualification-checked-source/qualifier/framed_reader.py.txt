@@ -1,0 +1,29 @@
+def framed_observation(path,check=lambda:None):
+    """Independent bounded journal validation; no candidate codec import.
+
+    Validate every complete record, retain the latest complete record only when
+    the final append is incomplete. Existing freshness/nonce/identity/cap
+    predicates below remain mandatory; truncation never creates a fresh sample.
+    """
+    path=Path(path);check()
+    need(not path.is_symlink() and path.is_file() and 0<path.stat().st_size<=1024**3,'CLASS_observation_regular_bounded_journal')
+    latest=None;pending=b'';maximum=262144
+    with path.open('rb') as stream:
+        while True:
+            check();block=stream.read(65536)
+            if not block:break
+            pending+=block
+            while b'\n' in pending:
+                line,pending=pending.split(b'\n',1);check()
+                need(77<len(line)<=maximum+77 and line[:5]==b'OBS1 ' and line[11:12]==b' '
+                    and line[76:77]==b' ','CLASS_complete_observation_frame_header')
+                length,digest_hex,payload=line[5:11],line[12:76],line[77:]
+                need(all(v in b'0123456789abcdef' for v in length+digest_hex)
+                    and 0<int(length,16)<=maximum and len(payload)==int(length,16)
+                    and hashlib.sha256(payload).hexdigest().encode('ascii')==digest_hex,'CLASS_complete_observation_frame_integrity')
+                value=json.loads(payload.decode('utf-8'),parse_constant=lambda value:need(False,'CLASS_nonfinite_observation_JSON'))
+                need(type(value) is dict,'CLASS_complete_observation_frame_object');latest=value
+            need(len(pending)<=maximum+80,'CLASS_unbounded_incomplete_observation_tail')
+    check();need(latest is not None,'CLASS_no_complete_observation_record')
+    return latest
+

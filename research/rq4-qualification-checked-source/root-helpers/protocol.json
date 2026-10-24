@@ -1,0 +1,30 @@
+{
+  "schema": "rq4-root-helpers-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "scope": [
+    "Metadata-only binding of exact future RQ4 qualifier/private source; original RQ3 helpers remain unchanged.",
+    "RQH01: existing pins must match both original map and current bytes; explicit additions cannot override existing keys.",
+    "RQH02: all own positive helper role flags/READY are revoked on late check/stdout failure; primary and safe secondary exception types retained.",
+    "PS binder -> frozen atomic invocation only after actual root-observed driver exit0; post-tool confirmation is separate and requires actual wrapper tool exit0.",
+    "RQH03: two post-tool schema literals now match the independently pinned outer consumer; one source AST cross-schema contract appended.",
+    "Root authorized one PACKET literal to separately frozen qualifier -r4-r2; OUT rq4 and all clocks unchanged."
+  ],
+  "common_seconds": 6000,
+  "driver_final_seconds": 240,
+  "atomic_root_seconds": 60,
+  "posttool_max_seconds": 30,
+  "new_campaign_clock": false,
+  "prepared_test_methods": 11,
+  "actual_test_executions": 0,
+  "model_calls": 0,
+  "API_calls": 0,
+  "original_root_rewrites": false,
+  "storage_failure_limit": "If storage also prevents revocation, primary failure and safe secondary type produce actual exit1; positive JSON alone is never sufficient. Actual helper tool exit0 remains required.",
+  "actual_qualifier_handoff": null,
+  "actual_private_manifest": null,
+  "actual_clock": null,
+  "actual_metrics": null,
+  "promotion": false,
+  "submit": false,
+  "source_revision": "RQH03_R3_new_qualifier_packet"
+}

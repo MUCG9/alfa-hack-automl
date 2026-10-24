@@ -99,7 +99,7 @@
     "zip_sha256": "dda94ac5073327140870a2f29550e50e9b841ea2937b3a9b8317b7037470aba8",
     "url": "https://changellenge.com/personal/championships/stage/927270/",
     "observed_date_msk": "2026-10-21",
-    "visible_status": "Решение находится на проверке",
+    "visible_status": "\u0420\u0435\u0448\u0435\u043d\u0438\u0435 \u043d\u0430\u0445\u043e\u0434\u0438\u0442\u0441\u044f \u043d\u0430 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0435",
     "attempts_remaining_today": 2,
     "score": null,
     "submission_authorized_by_user": true
@@ -350,5 +350,59 @@
     "historical_strong_CLASS_F1": 0.6593178433614652,
     "official_score": null,
     "submitted": false
+  },
+  "UAR07_composite_qualification": {
+    "schema": "uar07-composite-results-v1",
+    "status": "independent_saved_artifact_audit_PASS_original_closer_FAIL",
+    "source_archive_sha256": "86b074f6c1117e6d16e57e03c7ec1db3a9d0b18adf1a781f74899ce638a43d3f",
+    "driver": {
+      "actual_session": 78888,
+      "actual_exit": 0,
+      "actual_tool": "8a9663",
+      "elapsed_seconds": 14.843999999997322
+    },
+    "original_closer": {
+      "actual_session": 19230,
+      "actual_exit": 1,
+      "actual_tool": "617a23",
+      "first_error": "root_closure30_cap",
+      "receipt_created": false,
+      "retroqualified": false
+    },
+    "independent_audit": {
+      "actual_session": null,
+      "actual_exit": 0,
+      "actual_tool": "1a0cf6",
+      "root_receipt_sha256": "03b9f83e4a3658e8728375b61bafb697428b772b585064c853726bba90b97615",
+      "root_confirmation_sha256": "6e7b0848a04538cf1e84d91e588c2b15251b5521115ab496b76729fffd0cd384",
+      "elapsed_to_before_save_seconds": 1.3440000000118744,
+      "root_sample_peak_rss_mib": 38.23046875,
+      "maximum_gap_seconds": 0.40700000000651926,
+      "current_cleanup_confirmed": true,
+      "source_unchanged": true
+    },
+    "original_common_seconds": 600,
+    "start_unix": 1792825378.045702,
+    "deadline_unix": 1792825978.045702,
+    "elapsed_through_root_confirmation_seconds": 367.29540491104126,
+    "fresh_known_count": 6200,
+    "fresh_live": 0,
+    "fresh_uncertain": 0,
+    "reused_source_scripts": 57,
+    "reused_source_checks": 604,
+    "reused_build_members": 73,
+    "reused_exact_checks": 23,
+    "new_parser_checks": 16,
+    "new_mapped_checks": 75,
+    "original_UAR06": "FAIL_PERMANENT",
+    "original_full_UAR07_procedure_passed": false,
+    "current_composite_artifact_qualification": true,
+    "fixture_fit_total": null,
+    "external_API_total": null,
+    "public_experiment_fits": 0,
+    "quality_metric": null,
+    "official_default_ready": false,
+    "promotion": false,
+    "submit": false
   }
 }

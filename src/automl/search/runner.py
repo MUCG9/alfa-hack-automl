@@ -870,6 +870,14 @@ def solve_single(args,task_data=None,output_root=None):
             'catboost_top_k':selection_size,'protected_originals':protect_original,
             'inner_hpo_status':(hpo_report or {}).get('status','not_reached')}
     if retention is not None:
+        report['pipeline'].update(preserved_control=True,protected_originals=True,
+            exploratory_selector_scope='separate_candidates_only',
+            hpo_single_anchor_signature=signature(single_anchor))
+        report['protected_control_recipe']=retention['control']
+        report['protected_control']={
+            'primary':next((r for r in records if signature(r['recipe'])==signature(retention['control'])),None),
+            'confirmation':next((r for r in confirmations if signature(r['recipe'])==signature(retention['control'])),None)}
+        report['retained_recipe']=retention['retained']
         report['research_retention']={**retention['receipt'],
             'input_fingerprint':fingerprints['strong_retention_input'],
             'control_signature':signature(retention['control']),

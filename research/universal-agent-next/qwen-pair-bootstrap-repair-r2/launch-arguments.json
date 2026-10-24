@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "status": "SOURCE_ONLY_ROOT_FILL_NOT_EXECUTED",
+  "launch_argv": [
+    "work/venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "work/uar-qwen-pair-bootstrap-repair-next-dev/launcher.py",
+    "--launch",
+    "--self-sha256",
+    "7a6e090894144315e9361bc69f27519f7104d59d58a5e3c5d864be310fdbec46",
+    "--coordinator-sha256",
+    "f438b8be25236c8db04b343e1b891c6a17d73cc53f372fb26c5c0bd05bc654ef",
+    "--auditor-sha256",
+    "d004d777670807d59d8998c6bc7c4c84cf5a177c68144cdc71aceebaa937bd22",
+    "--closer-sha256",
+    "078051c7741acfec8f552fa052f0025166a5db880daab8dc08498b6428a36f91",
+    "--r4-adapter-sha256",
+    "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+    "--expected-commit",
+    "ACTUAL_ROOT_PUBLISHED_COMMIT",
+    "--published-root",
+    "ACTUAL_ROOT_RESEARCH_PREFIX",
+    "--",
+    "--binding",
+    "uar-qwen-pair-bootstrap-repair-next-dev/binding.ready-root.json",
+    "--binding-sha256",
+    "ACTUAL_NEW_READY_BINDING_SHA"
+  ],
+  "original_clock": [
+    1792826068.8239975,
+    85073.953,
+    1792836868.8239975,
+    95873.953
+  ],
+  "root_closer_argv": [
+    "work/venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "work/uar-qwen-pair-bootstrap-repair-next-dev/close_pair.py",
+    "--self-sha256",
+    "078051c7741acfec8f552fa052f0025166a5db880daab8dc08498b6428a36f91",
+    "--actual-exit-code",
+    "ACTUAL_EXIT",
+    "--actual-tool-evidence",
+    "ACTUAL_TERMINAL_TOOL"
+  ],
+  "actual_session": "Add --actual-exec-session only if actualinteger exists; genuine directexec omit",
+  "critical": [
+    "Do not pass any origin/clock args; launcher inherits exact originaltuple fromUQ1 evidence.",
+    "Do not add rawuq1 negative proof as --extra-terminal-receipt: it is handled by exacttypedbootstrapnegative branch and latercloser namedbranch, not positive-predecessor grant.",
+    "No input/archive/recipe/model/evaluator changes; existingreadybindingcontent can be root-approvedcopied to a NEWbindingpath after source review.",
+    "Failclosed afteroriginalsetup deadline1792826968.8239975; allfailure/fix/review/publication/copying charged."
+  ]
+}

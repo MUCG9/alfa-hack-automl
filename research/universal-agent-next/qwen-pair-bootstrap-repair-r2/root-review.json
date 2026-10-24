@@ -1,0 +1,17 @@
+{
+  "schema": "uq2-root-source-publication-review-v1",
+  "handoff_sha256": "24e897489abbb4abb84bf25781ca0fe55ef8865d06f7d444870b74b642749295",
+  "peer_review_sha256": "de3664ef5cb902e32dbc2dcd8c1f41ad11dafbb249dd450cd7d48de2970a270d",
+  "original_clock": [
+    1792826068.8239975,
+    85073.953,
+    1792836868.8239975,
+    95873.953
+  ],
+  "ready_binding_sha256": "fa8df18b80d49930bf7cace3faff2f3863d41d538fb64c2f31aa5a96b966f3ce",
+  "status": "SOURCE_REVIEWED_ONE_BOOTSTRAP_RECOVERY_ONLY",
+  "old_UQ1_failure_preserved": true,
+  "runtime_executed": false,
+  "quality_metric": null,
+  "Linux_paused": true
+}

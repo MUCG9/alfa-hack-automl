@@ -1,0 +1,17 @@
+{
+  "schema": "uq2-bootstrap-source-proof-v2",
+  "prelaunch_R1_handoff_sha256": "538d011498728caa24f52c12f63701ee672914ccfba55b360caea3545fb69bef",
+  "prelaunch_R1_preserved": "source-evidence/prelaunch-r1",
+  "source_proof_R1_sha256": "0146d7f155107d72b24cbb3c584e650a6bca67c5a4ea2916bd930f67e4e92307",
+  "correction": "Source-only self-review found generic root closer would reject the intentionally retained UQ1 negative proof. Added exact named SHA/oldfalse/firsterror/bootstrapmetadata branch only; no runtime attempt used R1.",
+  "closer_delta": [
+    "Only exactuq1/c880 negative has explicit historical failure handling; allotherrootproof positive guards unchanged",
+    "Known IDs/preparers still enter same fresh root observer",
+    "Positive UQ2 predicate unchanged; bootstrap metadata copied into output"
+  ],
+  "caller_coordinator_dependency_trace": "Only caller chooses cfg.helpers.processes historical module. Invoked predecessor/supervise/materialize/task_proof/core_seal/child_errors/cooperative_checkpoint/identities/relative/save have no LIBS access; supervise uses passed processes.ProcessTree and cleanup_owned constructor. coor.main never called.",
+  "legacy_base_manifest_raw_unchanged": true,
+  "only_named_pin_relocation": "canonical processes.py oldfac3 -> exactcfg historicalfac3, canonical qualified9f retained",
+  "all_models_metrics_source_archive_R4_unchanged": true,
+  "actual_imports_tests_fits_API_scans": 0
+}

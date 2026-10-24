@@ -1,0 +1,50 @@
+{
+  "schema": "uq2-bootstrap-recovery-source-proof-v1",
+  "base_controller_sha256": "4b91d8d2f1da611c4fba8b8e41747d90860b5c1f2ac90fb1352e0f2980ac91ed",
+  "base_handoff_sha256": "b5a11bb65f87aaab8c15f6b8af8aa5750848312cb1bf1c20f01e81af2c3c1617",
+  "original_clock": [
+    1792826068.8239975,
+    85073.953,
+    1792836868.8239975,
+    95873.953
+  ],
+  "only_preAPI_recovery": true,
+  "all_failure_evidence_sha256": {
+    "uq1/campaign.json": "365dc8f0cccab4091193d75ddcbf1819c3d1a762e29113a66dac58878275bd04",
+    "uq1/terminal-root-closure.json": "c880e6625dfa1a52af9aab9847adbb9c1c519493e3e3d678d591237266bded15",
+    "uq1/root-preparer-identity.json": "c8da7c953f6f3dfa536fb4a192a8333e9c2753d55a4d6d1315f5c60248f5d399",
+    "uq1-current-known-observation-r1.json": "ff874842f05dcf2ffb1426d346d43e99a7a3f7ac5902a3eed285eec22cc2d817",
+    "uar-qwen-pair-composite-next-dev/source-handoff-r3.json": "b5a11bb65f87aaab8c15f6b8af8aa5750848312cb1bf1c20f01e81af2c3c1617",
+    "uar-qwen-pair-composite-next-dev/binding.ready-root-r1.json": "fa8df18b80d49930bf7cace3faff2f3863d41d538fb64c2f31aa5a96b966f3ce"
+  },
+  "one_base_collision": {
+    "alfa-hack-automl/src/automl/infrastructure/processes.py": [
+      "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d",
+      "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3"
+    ]
+  },
+  "called_coordinator_functions_without_LIBS_dependency": [
+    "predecessor",
+    "supervise",
+    "materialize",
+    "task_proof",
+    "core_seal",
+    "child_errors",
+    "cooperative_checkpoint",
+    "identities",
+    "relative",
+    "save"
+  ],
+  "supervisor_uses_explicit_passed_ProcessTree": true,
+  "coordinator_main_not_called": true,
+  "auditor_closer_wholeAST_exact_after_only_uq2_to_uq1_projection": true,
+  "R4_adapter_byte_exact": true,
+  "unchanged": [
+    "73member algorithm/model recipes/folds/tasks/metrics/HPO/API/10800 allocations",
+    "all4seals before truth/realHTTP/refitCSV/R4 formulas",
+    "legacybaseSHA itself and allotherimmutable collisions failclosed",
+    "historicalfac3guard and canonical9f runtime source remain distinct pins"
+  ],
+  "scope": "root-authorized single preAPI recovery; no temp/thread/sourcefactor changes",
+  "actual_candidate_imports_tests_fits_API_scans": 0
+}

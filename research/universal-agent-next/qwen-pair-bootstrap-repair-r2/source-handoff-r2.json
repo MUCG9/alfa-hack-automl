@@ -1,0 +1,56 @@
+{
+  "schema": "uq2-bootstrap-recovery-source-handoff-v2",
+  "status": "FROZEN_SOURCE_ONLY_NOT_READY_NO_EXECUTION",
+  "base_handoff": {
+    "path": "uar-qwen-pair-composite-next-dev/source-handoff-r3.json",
+    "sha256": "b5a11bb65f87aaab8c15f6b8af8aa5750848312cb1bf1c20f01e81af2c3c1617"
+  },
+  "prior_prelaunch_R1_preserved": "source-evidence/prelaunch-r1",
+  "runtime_sources": [
+    "run_pair.py",
+    "audit_pair.py",
+    "close_pair.py",
+    "launcher.py",
+    "r4_adapter.py"
+  ],
+  "runtime_sha256": {
+    "run_pair.py": "f438b8be25236c8db04b343e1b891c6a17d73cc53f372fb26c5c0bd05bc654ef",
+    "audit_pair.py": "d004d777670807d59d8998c6bc7c4c84cf5a177c68144cdc71aceebaa937bd22",
+    "close_pair.py": "078051c7741acfec8f552fa052f0025166a5db880daab8dc08498b6428a36f91",
+    "launcher.py": "7a6e090894144315e9361bc69f27519f7104d59d58a5e3c5d864be310fdbec46",
+    "r4_adapter.py": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd"
+  },
+  "files_sha256": {
+    "audit_pair.py": "d004d777670807d59d8998c6bc7c4c84cf5a177c68144cdc71aceebaa937bd22",
+    "audit_pair.py.patch": "3e171fb7c9b3d76ccd94fe287fbc45c36fcde3249591721055e3f7e1e9dfeb3f",
+    "binding.pending-root.json": "751134c06c7f52092848ad9f5f8764fc3ed424443358e023af6424eed22e8685",
+    "close_pair.py": "078051c7741acfec8f552fa052f0025166a5db880daab8dc08498b6428a36f91",
+    "close_pair.py.patch": "9c10c5db28c618470cf75b390d037aad02d96f21bcd576bbab65a511c89cc15b",
+    "closer-negative-branch-r2.patch": "52609cb22f16f347fcd293cb623588c011b9040db44c8ce25f43fa160450e75b",
+    "launch-arguments.json": "5c71ca777df3e95b8cfece5699d6b6fb7a72c6f254db33fda8da21b963a17253",
+    "launcher.py": "7a6e090894144315e9361bc69f27519f7104d59d58a5e3c5d864be310fdbec46",
+    "launcher.py.patch": "4968a1b3bf8e81cb75e3dfcc8431f7ea71f656f071b27185f23411eb01d63200",
+    "r4_adapter.py": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+    "r4_adapter.py.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "README.txt": "e640a71519754294652a43c31120c316e430f5c049d968d09ee6d7562f601c1b",
+    "run_pair.py": "f438b8be25236c8db04b343e1b891c6a17d73cc53f372fb26c5c0bd05bc654ef",
+    "run_pair.py.patch": "7439a2aff398633b8eaeeabd3800dfa437d9ad48bcfa4014106ce2a76dc79118",
+    "source-handoff.json": "538d011498728caa24f52c12f63701ee672914ccfba55b360caea3545fb69bef",
+    "source-proof-r2.json": "89358d654e1a5d0bb1fb3a34e8f38948be4bf8485682486cb3c626896a1e7340",
+    "source-proof.json": "0146d7f155107d72b24cbb3c584e650a6bca67c5a4ea2916bd930f67e4e92307"
+  },
+  "original_clock": [
+    1792826068.8239975,
+    85073.953,
+    1792836868.8239975,
+    95873.953
+  ],
+  "original_setup_deadline_unix": 1792826968.8239975,
+  "original_UQ1_failure_preserved": true,
+  "one_preAPI_bootstrap_recovery_only": true,
+  "newclock": false,
+  "imports_tests_fits_API_scans": 0,
+  "materialization": false,
+  "promotion": false,
+  "submit": false
+}

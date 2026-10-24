@@ -1,0 +1,76 @@
+{
+  "schema": "uq2-bootstrap-recovery-independent-source-review-v2",
+  "status": "SOURCE_REVIEWED_NO_SCOPED_BLOCKER_NOT_EXECUTED",
+  "scope": "Root-authorized single pre-API recovery: exact UQ1 failure/current-known evidence, same clock, one historical process-pin relocation and uq2 caller/output routing",
+  "handoff": {
+    "path": "uar-qwen-pair-bootstrap-repair-next-dev/source-handoff-r2.json",
+    "sha256": "24e897489abbb4abb84bf25781ca0fe55ef8865d06f7d444870b74b642749295"
+  },
+  "runtime_sha256": {
+    "run_pair.py": "f438b8be25236c8db04b343e1b891c6a17d73cc53f372fb26c5c0bd05bc654ef",
+    "audit_pair.py": "d004d777670807d59d8998c6bc7c4c84cf5a177c68144cdc71aceebaa937bd22",
+    "close_pair.py": "078051c7741acfec8f552fa052f0025166a5db880daab8dc08498b6428a36f91",
+    "launcher.py": "7a6e090894144315e9361bc69f27519f7104d59d58a5e3c5d864be310fdbec46",
+    "r4_adapter.py": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd"
+  },
+  "all17_current_pins_exact": true,
+  "all13_prelaunch_R1_pins_preserved": true,
+  "independently_checked": [
+    "Launcher and controller bootstrap_failure functions are AST-identical. Exact immutable campaign/negative/preparers/current observation/old handoff/old binding hashes are mandatory before new provider/API work.",
+    "Recovery requires exact conflicting_input_pin pre-arm failure: no arms, supervisors, actual arm argv, manifest, verification plan, independent audit or model slot attempts. Only the exact6203 current-known union is admitted; old cleanup/source=false and unknown uncaptured launcher bootstrap remain unqualified.",
+    "Both entrypoints inherit the exact original tuple1792826068.8239975/85073.953/1792836868.8239975/95873.953; setup remains originalstart+900 with failure/fix/review/publication/copies charged. No new10800 is constructed and uq2 must be absent.",
+    "Only m4 base canonical processes.py fac3 pin is projected to the exact already-frozen historical cfg.helpers.processes path. The qualified canonical9f pin is required separately and all other merges retain conflict rejection. Raw base manifest/hash is unchanged.",
+    "Independent AST dependency closure of invoked coordinator functions includes environment/clock/hash/cleanup helpers but has no LIBS read and excludes coor.main. The outer supervisor uses the passed historical ProcessTree module; source/runtime canonical9f is not replaced.",
+    "Auditor whole AST restores exactly to previous source after sole uq2-to-uq1 root literal projection. R4 adapter is byte-identical. Other routing updates are fixed new packet/output paths and matching launch/auditor/closer hashes.",
+    "The root closer special case is restricted to exact named uq1/c880 negative proof, exact false flags, original first error and bootstrap metadata. Its known identities/preparers enter the same fresh observer; every other predecessor still requires positive cleanup/source. Positive UQ2 passed predicate is AST-identical to the previous reviewed closer.",
+    "All inherited models/recipes/splits/archive/metrics/HPO/API/10800/four-arm/seal-before-truth/refitCSV contracts remain unchanged by this source delta. Original UQ1 FAIL remains in separate pinned evidence and recovery metadata."
+  ],
+  "findings": [],
+  "source_AST": {
+    "launcher_controller_failure_validator_exact": true,
+    "auditor_only_root_literal": true,
+    "root_positive_predicate_exact": true,
+    "R4_byte_exact": true,
+    "coordinator_no_LIBS_transitive_closure": [
+      "child_errors",
+      "clock",
+      "cooperative_checkpoint",
+      "core_seal",
+      "environment",
+      "error",
+      "identities",
+      "load",
+      "local",
+      "materialize",
+      "need",
+      "predecessor",
+      "pulse",
+      "relative",
+      "save",
+      "sha",
+      "supervise",
+      "task_proof"
+    ]
+  },
+  "limitations": [
+    "Remaining actual original setup/common time is not observed or granted by this source-only review; actual launcher must refuse if exhausted.",
+    "Root still must publish exact five sources, instantiate new actual ready binding/provider/predecessor checks and observe actual execution/terminal cleanup. This review does not establish real HTTP/HPO/quality results or official-default qualification.",
+    "The historical UQ1 negative remains unqualified. Exact known absence is not retroactive proof of an unknown uncaptured shell-parent identity."
+  ],
+  "operations": {
+    "stdlib_source_SHA_JSON_AST_only": true,
+    "candidate_or_project_imports": 0,
+    "tests": 0,
+    "builds": 0,
+    "fits": 0,
+    "API": 0,
+    "data_labels_predictions": 0,
+    "private_config_reads": 0,
+    "PID_scans": 0,
+    "clock_assigned": false,
+    "canonical_STATE_Git_author_source_edits": 0
+  },
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

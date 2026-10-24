@@ -28,3 +28,6 @@ developer branches have exclusive worktrees. Linux changes and policy updates ar
 communicated through append-only Git notices; active published job bytes never
 change. A five-minute heartbeat continues the existing task overnight. Automatic
 submission is disabled; release ZIP preparation and source/quality checks continue.
+
+
+UAR03 preregistration: default-OFF explicit declaration/strict task caller is source-integrated and independently reviewed, including both prepublication source repairs. Exact28 focused contracts are prepared and not yet run; see research/universal-agent-next/uar03-r1. No new ML score, full updated source/build/flat gate or default release is claimed. Linux10 is a separate claimed zero-fit clock-plumbing repair; original08/09 failures remain.

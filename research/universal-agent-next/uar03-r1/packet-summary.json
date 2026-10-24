@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "run_id": "UAR03",
+  "status": "EXACT_PRIVATE_PACKET_FROZEN_PENDING_INDEPENDENT_REVIEW_PUBLICATION_NO_LAUNCH",
+  "private_manifest_sha256": "589fa0f55b275bbaade4a96501de95752c7166163d5f5419323c253a2802234d",
+  "gate_driver_sha256": "c3e87a486e0b4bdd9a2189dd6151e6871d838923f04efde1f884cf0fda7d9ae3",
+  "entry_sha256": "06ac9cbf877bd79f3e6c400933df8557b02bcbe091e2e7cf20c193b84a26850f",
+  "closer_sha256": "0de476ba6a2b334dd7e92a7076495757e917a2a510e741239d89e9fcb4dce9a0",
+  "canonical_binding_sha256": "c0be4d88ddd6e9ed252c7fd4ce0cbc1cf85260f4b910e5503cf682982de0b2e9",
+  "canonical_source_count": 81,
+  "frozen_files": 110,
+  "prepared_tests": 28,
+  "actual_tests": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "clock_assigned": false,
+  "canonical_commit": "a199ccb18f9d26c0800e137740c57fa0a7236009",
+  "source_unchanged_from_reviewed_git_blobs": true,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

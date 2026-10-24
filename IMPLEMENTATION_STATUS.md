@@ -45,3 +45,6 @@ models are part of this work.
 
 See [contract](docs/contract.md), [validation protocol](docs/validation_protocol.md),
 [measured results](docs/experiment_report.md) and [next steps](docs/next_steps.md).
+
+
+UAR03 preregistration: default-OFF explicit declaration/strict task caller is source-integrated and independently reviewed, including both prepublication source repairs. Exact28 focused contracts are prepared and not yet run; see research/universal-agent-next/uar03-r1. No new ML score, full updated source/build/flat gate or default release is claimed. Linux10 is a separate claimed zero-fit clock-plumbing repair; original08/09 failures remain.

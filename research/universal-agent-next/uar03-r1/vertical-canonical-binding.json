@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "source_only": true,
+  "reviewed_commit": "4ba0ae32d1d4560bc7f06cc78846d4a316878667",
+  "root_cherry_picks": [
+    "f6d0206",
+    "ff029e6",
+    "a199ccb"
+  ],
+  "independent_review_sha256": "a288833727ac2f86ebbbe2f68119c1b9a24325bcea9cbe46c1494ebd7fd09985",
+  "files": {
+    "src/automl/search/runner.py": {
+      "canonical_raw_sha256": "7a692848eabfc33cb867645578953b66b7df36cced3bfd271925150f7d31685c",
+      "reviewed_git_blob_sha256": "8c520e5a2e5f5f7731df56411403ab5e59292928bc27d42454cf49e441f6d862",
+      "newline_normalized_equal": true
+    },
+    "src/automl/task_understanding/service.py": {
+      "canonical_raw_sha256": "4ff94c9e7a706d28f4e3ddbc8c9c1d49806fffe09dd3d30ab0041064e74e94ef",
+      "reviewed_git_blob_sha256": "3a3a15c335d73eb8b479746facbbcebc36cd520e461966cea8a30858b8ed2279",
+      "newline_normalized_equal": true
+    },
+    "tests/test_uar_vertical_contract.py": {
+      "canonical_raw_sha256": "019ba9eae86f4df01e9e8456f4ce107cf12bf27c9b79dac7468fb09c8c99b023",
+      "reviewed_git_blob_sha256": "e694d68d248d99dd763dd3ecde9c2e60351702a86f57333230b6764768e2d4a0",
+      "newline_normalized_equal": true
+    }
+  },
+  "actual_tests": 0,
+  "fits": 0,
+  "API": 0,
+  "clock_assigned": false
+}

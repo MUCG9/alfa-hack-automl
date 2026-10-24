@@ -1,0 +1,22 @@
+{
+  "schema": "last-submission-repair-qualification-public-source-v1",
+  "handoff_sha256": "73632000088ab248ea7e65a510f05ed1d7535dc1eca03981fa31c111a9d3a049",
+  "independent_peer_sha256": "133cafdbaa589c1988ddb252f66b7af40af93fa6e9dcc221bb9fa70d77693f07",
+  "exact_source_files_sha256": {
+    "research/last-submission-repair-qualification-r1/run_controller.py": "d3e76f1acfccd9fdf17c72ef367109f52d3cf56cecb1c2c5f6dfa38b9abfc9c3",
+    "research/last-submission-repair-qualification-r1/artifact_audit.py": "2fb6c2105b0ecc18354ce2b10eb2bbeb527319b43f2ed9b7522b055dc4633e9a",
+    "research/last-submission-repair-qualification-r1/close_controller.py": "0a4eb45a070e800d33a90b7a253e8ac889e8cc411bf9055333fdcf723f2f09cd",
+    "research/last-submission-repair-qualification-r1/run_root.py": "817cddba26158bd4d6287c583ce08fcff45876df5a9b498b9d73414ba46f6c3d",
+    "research/last-submission-repair-qualification-r1/close_child.ps1": "de032ba27868f07b0583f7de83af22e1a3178b2f87ff4c3435c80fad1fafea65",
+    "research/last-submission-repair-qualification-r1/test_controller_contracts.py": "90c74f4c70e9712364ecd0b51233b01489c5be953806720f8d4230d7df53d34a",
+    "research/last-submission-repair-qualification-r1/test_atomic_root.py": "77edd14c545b4c59899c64dd02e3a4a45c5ac5f3259c33c2b8e2dbad18ca5a5b",
+    "research/last-submission-repair-qualification-r1/README.txt": "09285cd5a8ce46e6bbb570f2cc038fcaccc842e6f5886c300d95fd4dd8e1bc00",
+    "research/last-submission-repair-qualification-r1/protocol.json": "5368495a9b0881a9ef41ec674f374ea3428aba6d8c53f3a9bc484d1a0e73b7c1"
+  },
+  "prepared_contract_executions": 80,
+  "actual_contract_executions": 0,
+  "actual_standard_model_calls": 0,
+  "actual_clock": null,
+  "submission_ready": false,
+  "private_templates_and_READY_excluded": true
+}

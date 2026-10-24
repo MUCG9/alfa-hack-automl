@@ -24,3 +24,6 @@ Current: repaired standard archive eb85 is independently qualified and delivered
 Крупные сырые данные, predictions, веса, приватные конфигурации и локальные environments сюда не публикуются. Замороженные источники активного опыта не редактируются. Новая реализация создаётся отдельно и получает собственные pins.
 
 Для изменений навигации предлагаются append-only [remote notices](remote-experiments/notices/). Они не изменяют действующий job, caps, sources или исходный clock. Пока этот путь не опубликован и не добавлен в стартовую инструкцию, queue CLI сам его не опрашивает.
+
+<!-- CURRENT_UAR_OBSERVATION -->
+QH1 is CLOSED FAIL before model/API execution because its immutable union omitted the development worker entrypoint. All 66 startup contracts passed; the failure remains. QH2 uses a reviewed four-literal output relocation and the exact missing worker pin; two targeted entrypoint metadata contracts passed. The two-task 10800-second research campaign is prospective until its actual launcher. The repaired class-fix archive remains independently qualified at REG RMSE 34.155023394837 / CLASS MacroF1 0.6557438740449282, below historical CLASS 0.6593178433614652; no upload or default promotion.

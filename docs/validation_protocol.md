@@ -62,3 +62,6 @@ absent were verified inside the original 1,200 seconds. No new ML metric or rele
 qualification. The failure remains preserved; a new shallow harness and generic
 primary-metric contrast repair require one fresh full gate before the Qwen pair.
 Original task authority bytes and the best measured models remain unchanged.
+
+<!-- CURRENT_UAR_OBSERVATION -->
+QH1 is CLOSED FAIL before model/API execution because its immutable union omitted the development worker entrypoint. All 66 startup contracts passed; the failure remains. QH2 uses a reviewed four-literal output relocation and the exact missing worker pin; two targeted entrypoint metadata contracts passed. The two-task 10800-second research campaign is prospective until its actual launcher. The repaired class-fix archive remains independently qualified at REG RMSE 34.155023394837 / CLASS MacroF1 0.6557438740449282, below historical CLASS 0.6593178433614652; no upload or default promotion.

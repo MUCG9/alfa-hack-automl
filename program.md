@@ -50,3 +50,6 @@ Current: repaired standard archive eb85 is independently qualified and delivered
 - `tests/`, `scripts/`, `docs/`: проверка, воспроизводимость и передача капитану.
 
 `results.tsv`, JSON-отчёты и `provenance.json` создаёт агент для каждого запуска. Запись организаторов обработана целиком; ответы, таймкоды, оговорки и последствия — `docs/webinar_20261021.md`. Новые уточнения сначала фиксируются с источником, затем превращаются в отдельную проверяемую правку. Обещанное «уточним в чате» не является подтверждённым правилом.
+
+<!-- CURRENT_UAR_OBSERVATION -->
+QH1 is CLOSED FAIL before model/API execution because its immutable union omitted the development worker entrypoint. All 66 startup contracts passed; the failure remains. QH2 uses a reviewed four-literal output relocation and the exact missing worker pin; two targeted entrypoint metadata contracts passed. The two-task 10800-second research campaign is prospective until its actual launcher. The repaired class-fix archive remains independently qualified at REG RMSE 34.155023394837 / CLASS MacroF1 0.6557438740449282, below historical CLASS 0.6593178433614652; no upload or default promotion.

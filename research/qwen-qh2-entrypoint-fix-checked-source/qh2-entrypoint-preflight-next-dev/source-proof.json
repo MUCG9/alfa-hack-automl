@@ -1,0 +1,38 @@
+{
+  "schema": "QH2-entrypoint-exact-source-projection-proof-v1",
+  "status": "SOURCE_ONLY_NOT_EXECUTED",
+  "exact_task_guard_AST_sha256": "0a2852591aee42eb4d1c3ff00ae426efc6d5ddf37ac0e2459ea654eb11254642",
+  "exact_helper_loop_AST_sha256": "5e4f2a8236088bb5c2ad08a481d7e1d0814c1bfebe88e33384ca883a44a0119a",
+  "exact_worker_entrypoint_AST_sha256": "687819d8bde1a0ad0bd35f473a269973a1a0b5adc1ea1074dc1f0813333c6018",
+  "exact_outer_parent_to_task_assignment_AST_sha256": "f00c9da2a7448b19c43c4dd8193ae7d7f037bf141f1b685bddeadb13c7b7b4ff",
+  "projection": "Select exact source nodes from full SHA-bound files; no predicate rewrite/candidate-module import/algorithm/clock/guard changes.",
+  "entry_wrapper_source_sha256": "d4cde2ce88ed3ac44da5fe17010079690d5c2eff02305902b9b62046d7b529f3",
+  "current_processes_sha256": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3",
+  "historical_guard_fac3_separate": true,
+  "prepared_method_count": 2,
+  "prepared_method_AST_sha256": {
+    "EntrypointMetadataContracts.test_missing_wrapper_rejects_even_when_current_and_historical_process_roles_are_correct": "f31189166b4da43ebc744fcc7fcb20c7b5c3374437f6f4679be9ae49bbe0295e",
+    "EntrypointMetadataContracts.test_exact_wrapper_is_accepted_and_parent_task_maps_are_distinct_complete_copies": "510b3a06af2a27145a9d850e01bb95063e5c8e8451df8e0a154a3f020954e9a1"
+  },
+  "actual_methods": 0,
+  "not_added_to_outer66": true,
+  "scope_limit": "Only current/historical helper binding, actual wrapper source and parent-to-task immutable propagation. Existing full config/predecessor/hash preflight remains independently mandatory.",
+  "followthrough": {
+    "actual_private_sha256": "bed0c3c0fb5d44d996883c54fc2956c7ed1ee5110c8ef702152355a55a29d6a6",
+    "actual_leaf_manifest_sha256": "86ac1e9c0f2134e8d0862520e7d1e715f8402ed3b57fd825cc108b5e7d6b7fb6",
+    "post114_shared_authority_flags_and_feature_roles_match": true,
+    "strong_ref_and_compiler_ref_bound": true,
+    "REG_and_CLASS_two_cuts_bound": true,
+    "CLASS_class_order_and_both_protection_fields_present": true,
+    "runtime_dispatch": "r5_worker_runtime._run_worker_strict -> infrastructure.runtime.worker_entrypoint -> current canonical agent_worker.py; fac3 is coordinator-only.",
+    "remaining_concrete_source_metadata_mismatch": null,
+    "limitations": "Native import/runtime/model applicability remains unexecuted; no proof of model success or organizer results."
+  },
+  "actual_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API": 0,
+  "actual_data_array_truth_prediction_metric_reads": 0,
+  "actual_PID_scans": 0,
+  "actual_new_clock": null
+}

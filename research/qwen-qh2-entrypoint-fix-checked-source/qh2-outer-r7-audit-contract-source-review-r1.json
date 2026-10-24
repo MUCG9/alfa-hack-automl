@@ -1,0 +1,79 @@
+{
+  "schema": "qh2-outer-r7-literal-only-independent-source-review-v1",
+  "result": "NO_SCOPED_SOURCE_BLOCKER",
+  "reviewed_handoff": {
+    "path": "work/qwen-three-hour-outer-next-dev-r7/source-handoff.json",
+    "sha256": "67545c95299adfb6ad02148e2e1e56882e0bbb595a40b7750ceba69cdb339d28"
+  },
+  "reviewed_base": {
+    "path": "work/qwen-three-hour-outer-next-dev-r6/source-handoff-final.json",
+    "sha256": "d033a8d186a0fd2c1c1a10f407366995d87d256df37660039b6d76a41fae43d9"
+  },
+  "evidence": {
+    "local_pins_raw_hash_checked": 21,
+    "external_pins": 637,
+    "external_source_metadata_raw_hash_checked": 526,
+    "external_sealed_data_binary_refs_metadata_only": 111,
+    "changed_runtime_files": [
+      "run_campaign.py",
+      "close_controller.py",
+      "run_root.py",
+      "confirm_post_tool.py"
+    ],
+    "sole_runtime_delta": "One OUT=WORK/qh1 to OUT=WORK/qh2 assignment literal per file",
+    "inverse_recovers_entire_original_raw_bytes": true,
+    "all_function_and_class_ASTs_exact": true,
+    "close_child_PS_and_both_outer_test_files_raw_exact": true,
+    "core_R7_and_auditor_R4_source_refs_unchanged": true,
+    "contract_method_counts": [
+      2,
+      1,
+      4,
+      18,
+      4,
+      25,
+      2,
+      4,
+      6
+    ],
+    "contracts_prepared": 66,
+    "contract_parent_maxima_sum": 270,
+    "contract_child_maximum_each": 20,
+    "common_seconds": 10800,
+    "caps": {
+      "setup": 300,
+      "regression": [
+        4800,
+        4770
+      ],
+      "classification": [
+        4800,
+        4770
+      ],
+      "audit": [
+        600,
+        570
+      ],
+      "final": 240,
+      "root": 60
+    },
+    "template_NOT_READY": true,
+    "template_output": null,
+    "expected_output_work_relative": "qh2",
+    "actual_experiment_clock": null,
+    "QH1_FAIL_preserved": true,
+    "new_predecessor_runtime_branch": false,
+    "existing_launch_receipt_ABI_preserved": true
+  },
+  "applicability_conditions": [
+    "Future private immutable union must add exact canonical agent_worker.py d4cde2ce88ed3ac44da5fe17010079690d5c2eff02305902b9b62046d7b529f3",
+    "Root-hosted identity projection must bind actual QH1 negative/post tools and exact postknown union postobserver identities under unchanged launch receipt ABI",
+    "Actual private source and closure identities must receive independent binding review and exact config/predecessor plus entrypoint applicability before future launch"
+  ],
+  "limits": {
+    "source_only": true,
+    "imports_tests_models_API_arrays_PIDs_Git_canonical_writes": 0,
+    "runtime_qualification_or_ML_success_claimed": false,
+    "full_source_or_prior_metric_gate_repeated": false
+  }
+}

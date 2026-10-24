@@ -1,0 +1,31 @@
+{
+  "unit": "QH1",
+  "status": "CLOSED_FAIL_MISSING_WORKER_ENTRYPOINT_BINDING",
+  "actual_session": 97195,
+  "actual_launch_tool": "e1c455",
+  "actual_exit_code": 1,
+  "actual_terminal_tool": "9c48e1",
+  "actual_closer_exit_code": 1,
+  "actual_closer_tool": "31ed65",
+  "campaign_sha256": "b497770cec159265889c9ddf6bb865beabf7eceae116e6222cbf05f33a3c47bd",
+  "root_sha256": "7d1678fc0cca72ef289b62f8f53e0f2ecda85a6d22363b31d2abf779d156dbbd",
+  "technical_procedure_passed": false,
+  "source_cleanup_temp": true,
+  "actual_contracts_passed": 66,
+  "completed_tasks": 0,
+  "new_metrics": null,
+  "failure_code": "agent_worker_entrypoint_missing_from_immutable_union",
+  "current_processes_9f_and_historical_fac3_exact": true,
+  "new_Qwen_HTTP_before_failure": false,
+  "first_failure": {
+    "code": "child_nonzero_exit",
+    "phase": "child_exit",
+    "unix": 1792881462.1014824,
+    "monotonic": 140467.484,
+    "exception_type": null,
+    "errno": null,
+    "winerror": null,
+    "child_kind": "regression"
+  },
+  "next": "separate_current_negative_then_new_metadata_corrected_prospective_QH2_no_old_reset"
+}

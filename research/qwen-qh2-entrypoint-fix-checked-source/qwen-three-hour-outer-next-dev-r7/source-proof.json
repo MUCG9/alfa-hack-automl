@@ -1,0 +1,106 @@
+{
+  "schema": "qwen-QH2-literal-output-relocation-source-proof-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "source_R6_final_sha256": "d033a8d186a0fd2c1c1a10f407366995d87d256df37660039b6d76a41fae43d9",
+  "four_runtime_OUT_literal_raw_inverse_exact": {
+    "run_campaign.py": true,
+    "close_controller.py": true,
+    "run_root.py": true,
+    "confirm_post_tool.py": true
+  },
+  "all_existing_function_AST_sha256": {
+    "run_campaign.py": {
+      "need": "159d9d323f4faad09ba0b001b03123990c9b476c5ef982baa948aeb3b8111056",
+      "read": "43377dc7a834255aeb87edf18f1893c185742d5f1b84331f4486f7124d8d75e7",
+      "save": "4b57f3533f4e168399e85d6492ada09722133c679d9c3fd6a88a2a4d12ae99d0",
+      "sha": "1265c7c6f596719559db6f27257124ae58ef9a50c6cec60c461c22693dbd6cda",
+      "imported": "7929d0bddfc04856ec58bb3177425992740ee629ba3fde29f9b5648a65865f61",
+      "methods": "4bf692e7d1e1eb4c2fd739e07f2f977c4b8995fdd66fbe8769e8401e2a1f0347",
+      "capture": "9588cc03f86aa0356ca5da5c06c745e6ef1a13f91c1aad93aded4edad64e6c2b",
+      "qualified": "c80544758caf702a04b1c587b72fcb3aa0c6e0a0c0ec0e454e933277d5a83ca5",
+      "ids": "397a7fb84135a55abc1edcaa4602b44617bc5124ab4a80f6e70a5c5172be9e54",
+      "guard": "18add8fa10f8468815d757592bcd2a24ed606e4dfb3d90b334b61e25688ff557",
+      "absent": "d9f8bd39ede079c0ed2827bbf0701cd7617996217a6d3f03a5595da48f66468b",
+      "trusted_broker_environment": "d4f249541dcdf42b0ed7da853608a59bda74e8ef460ce024fc0decc84718d1bf",
+      "task_clock": "5c1d2e5fe67ad095b73e3ac50e09674222cc9a3cfb542a85400c2910e27132f8",
+      "strong_authority": "eebf3626379266e64d0ff41bc08db03496a4a3d0d5615ea3c30620fc1adde21d",
+      "config": "3acc47fe77092b4166fba0006e580a433575eca2a389227918737c7533163034",
+      "postfailure_qualification": "3a0230f4f6fc542d7e2951d3803ecc8db0c8026a4858092d9fd1fe60dffcf44e",
+      "predecessor": "195ae7e00b878e96772d5b46eb9011139b7248c7c05ce3103e9214266e5f9c34",
+      "main": "70d4d2a71b4f6c904a76aeeaa2607db4ae1414c21a15f74c7e7a52c3061e720d"
+    },
+    "close_controller.py": {
+      "need": "159d9d323f4faad09ba0b001b03123990c9b476c5ef982baa948aeb3b8111056",
+      "load": "14cc00b128b4c60d8083e71d3f99ee026fd18e049f89463aad06543fba1933bc",
+      "sha": "f43200c2ab9413b67d32fb0f879a9b25c7d90b843e57a584062f8efed5e604e9",
+      "imported": "25407990557fc6195caed1382eef96280264f12bc66ac84ba52e3fc723ae2eb9",
+      "capture": "9588cc03f86aa0356ca5da5c06c745e6ef1a13f91c1aad93aded4edad64e6c2b",
+      "main": "4c7fded14c2b223efee2eb738a7f0a2971ed02e12838436b00ac3457e9997f44"
+    },
+    "run_root.py": {
+      "need": "159d9d323f4faad09ba0b001b03123990c9b476c5ef982baa948aeb3b8111056",
+      "read": "31974407e086b95b84cb892c4d2096291fbafb64b2b7d9f11f77517375b787d8",
+      "sha": "1265c7c6f596719559db6f27257124ae58ef9a50c6cec60c461c22693dbd6cda",
+      "save": "6666bedc56f66118552666a05ad47dcf30eed4b039107217ddd351d0e2cb7b59",
+      "imported": "3a407c7d1c9ff340ea433694ec87ecdb0b57505b34291748be45cc0f26e816ba",
+      "capture": "9588cc03f86aa0356ca5da5c06c745e6ef1a13f91c1aad93aded4edad64e6c2b",
+      "bounds": "0fb8f99667c45bab3a1c6835c4a8a1c4be3df7e8220454af8502df33cfc9a861",
+      "child_command": "06eac83372db774daea399e7e9557492741c2bb9282f0fdff329ae3939a5227f",
+      "native_shell_verified": "dcbcc542e369e2f51d590e782ab8234de9f168858070f05ab0ca8fd49b42b648",
+      "postexit": "d49a6660ccb9ffdeb9a875898316fcfccb3bf99780c76abb975f228ab568c357",
+      "main": "91a66217e1a2592af68cfff47ceca2e52e962432aeb9321c8701ad17b2fee5d7"
+    },
+    "confirm_post_tool.py": {
+      "need": "159d9d323f4faad09ba0b001b03123990c9b476c5ef982baa948aeb3b8111056",
+      "read": "31974407e086b95b84cb892c4d2096291fbafb64b2b7d9f11f77517375b787d8",
+      "sha": "1265c7c6f596719559db6f27257124ae58ef9a50c6cec60c461c22693dbd6cda",
+      "imported": "7929d0bddfc04856ec58bb3177425992740ee629ba3fde29f9b5648a65865f61",
+      "exact_union": "85ba3fde589b0ae66fb0d0e6d3e879da351d71356ffed60857d0dd09e2ce9565",
+      "window": "049bdf414467423bc978466aa343aba74acf2445a591cb1ada14b91a72961b9f",
+      "actual_wrapper": "3705c7a1e72658fbf220667346c857abc7c6da8d64ae0f6a9a97327d609e7501",
+      "full_known_union": "57ddd0d9741f0cbfeb1bedcdd8c0b20f28032590c0136e45951d6d9c35191e84",
+      "revoked": "75f48e02ed5a13ee91578d82fe884a4c3816a0ea16657e6f500622fbd2d3bc8a",
+      "publish_checked": "3ee0e45761c6896678baf4a0af4726a1ba20d232a4503cf07dffa0909161364d",
+      "save_json": "63dc1ff7a71597aeaf0c0a70756ad5d8770e410e648be3dfa85f82692d96ba0d",
+      "main": "83ca27ce9e9ed20a2fb9eb7714fdc512689ac49a7d4b6a9444432e24ba4d75ad"
+    }
+  },
+  "all_function_ASTs_unchanged": true,
+  "PSchild_raw_exact": true,
+  "both_outer_testfiles_raw_exact": true,
+  "prepared_counts": [
+    2,
+    1,
+    4,
+    18,
+    4,
+    25,
+    2,
+    4,
+    6
+  ],
+  "prepared_total": 66,
+  "caps_unchanged": {
+    "setup": 300,
+    "regression": [
+      4800,
+      4770
+    ],
+    "classification": [
+      4800,
+      4770
+    ],
+    "audit": [
+      600,
+      570
+    ],
+    "final": 240,
+    "root": 60
+  },
+  "original_QH1_FAIL_preserved": true,
+  "new_QH2_original_clock": null,
+  "actual_tests": 0,
+  "actual_models": 0,
+  "actual_API": 0,
+  "current_predecessor": "Root-approved hosted hash-pinned identities projection of actual QH1post.known_identities plus post.observer_preparer_identities (8112), original proof/tool lineage; existing launch_preparer_receipts ABI only, no new runtime branch or invented writer PID."
+}

@@ -1,0 +1,11 @@
+--- frozenR4/post
++++ R5/post
+@@ -147,7 +147,7 @@
+         def check():
+             window(state,time.time(),time.monotonic(),begin=begin,closer_birth=fresh['actual_closer_birth']);pulse()
+         pulse(force=True);check();known=full_known_union(fresh,root,preparers,base.ids)
+-        driver_ref=binding['driver'];need(sha(driver_ref['path'])==driver_ref['sha256'],'frozen_main_source_changed')
++        driver_ref=binding['driver'];need(pins.get(driver_ref['path'])==driver_ref['sha256'] and sha(driver_ref['path'])==driver_ref['sha256'],'frozen_main_source_changed')
+         need(Path(driver_ref['path'])==PACKET/'run_campaign.py','fixed_current_outer_driver_required')
+         driver=imported('_qh1_post_source_driver',driver_ref['path']);inherited=driver.predecessor(cfg,check)
+         need(inherited<=known,'complete_inherited_and_later_preparer_union_required')

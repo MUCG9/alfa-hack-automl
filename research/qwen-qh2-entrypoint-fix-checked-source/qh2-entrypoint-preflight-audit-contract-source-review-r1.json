@@ -1,0 +1,42 @@
+{
+  "schema": "qh2-entrypoint-preflight-independent-source-review-v1",
+  "result": "NO_SCOPED_SOURCE_BLOCKER",
+  "reviewed_handoff": {
+    "path": "work/qh2-entrypoint-preflight-next-dev/source-handoff.json",
+    "sha256": "293b5d39374276d52215c26e57b04ca76ba90f9b5e5f11a09898d2bf545b6092"
+  },
+  "entry_sha256": "8ef8e40df204683f1f51f38694d225a9424e284db75af7dc0e70ae011f8da426",
+  "evidence": {
+    "all_local_raw_pins": 4,
+    "all_external_raw_pins": 10,
+    "task_entry_guard_and_helper_loop_exact_source_nodes": true,
+    "infrastructure_worker_entrypoint_exact_source_function": true,
+    "full_outer_task_cfg_assignment_exact_source_node": true,
+    "task_cfg_assignment_AST_identical_in_R6_and_reviewed_R7": true,
+    "parent_and_task_maps_distinct_complete_copies": true,
+    "agent_worker_exact_d4_source_pin_and_bytes_required": true,
+    "current9f_and_historicalfac3_roles_separate": true,
+    "prepared_methods": {
+      "EntrypointMetadataContracts.test_missing_wrapper_rejects_even_when_current_and_historical_process_roles_are_correct": "f31189166b4da43ebc744fcc7fcb20c7b5c3374437f6f4679be9ae49bbe0295e",
+      "EntrypointMetadataContracts.test_exact_wrapper_is_accepted_and_parent_task_maps_are_distinct_complete_copies": "510b3a06af2a27145a9d850e01bb95063e5c8e8451df8e0a154a3f020954e9a1"
+    },
+    "prepared_count": 2,
+    "root_bounded_metadata_execution_required": true,
+    "outer66_unchanged": true
+  },
+  "cases_source_reviewed": [
+    "missing wrapper with otherwise correct9f/fac3 rejects at exact original predicate",
+    "exact wrapper validates parent and both projected tasks without mutation",
+    "projected task has independent map and missing wrapper rejects",
+    "wrong wrapper SHA, swapped historical guard and wrong currentprocess hash reject"
+  ],
+  "limits": {
+    "tests_executed": 0,
+    "candidate_or_controller_imports": 0,
+    "models_API_data_arrays_PID_scans_Git_canonical_writes": 0,
+    "experiment_clock_assigned": false,
+    "runtime_admission_or_ML_success_claimed": false,
+    "existing_exact_config_and_predecessor_preflight_still_required": true,
+    "own30seconds_resource_enforcement_is_existing_root_metadata_caller_responsibility": true
+  }
+}

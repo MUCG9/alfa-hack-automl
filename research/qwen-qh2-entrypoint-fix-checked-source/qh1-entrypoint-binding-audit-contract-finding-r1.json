@@ -1,0 +1,54 @@
+{
+  "schema": "qh1-bootstrap-entrypoint-binding-source-finding-v1",
+  "result": "CONCRETE_PRE_MODEL_METADATA_BINDING_BLOCKER",
+  "finding_id": "QHBOOT01",
+  "parent_manifest": {
+    "path": "work/private/qh1-manifest.ready-r2.json",
+    "sha256": "bed0c3c0fb5d44d996883c54fc2956c7ed1ee5110c8ef702152355a55a29d6a6"
+  },
+  "actual_task_manifest": {
+    "path": "work/qh1/regression-task-manifest.json",
+    "sha256": "86ac1e9c0f2134e8d0862520e7d1e715f8402ed3b57fd825cc108b5e7d6b7fb6"
+  },
+  "source_entry": {
+    "path": "work/qwen-three-hour-autoresearch-next-dev-r7/task_entry.py",
+    "sha256": "4660711d1e7b8b45d972ed35ce7d361530c612dd6f4e73f26b83858c38cce312"
+  },
+  "predicate_lines": [
+    114,
+    115,
+    116
+  ],
+  "root_cause": "The conjunct requiring canonical agent_worker.py in immutable_files is false. The current processes9f conjunct is true; the historicalfac3 helper is separately exact. The emitted error label does not identify which conjunct failed.",
+  "predicate_evidence": {
+    "agent_worker_exists": true,
+    "agent_worker_actual_sha256": "d4cde2ce88ed3ac44da5fe17010079690d5c2eff02305902b9b62046d7b529f3",
+    "parent_agent_worker_pin": null,
+    "task_agent_worker_pin": null,
+    "parent_current_processes_pin": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3",
+    "task_current_processes_pin": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3",
+    "current_processes_actual_sha256": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3",
+    "historical_processes_sha256": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d",
+    "worker_processes_field_absent_and_not_required_by_source": true
+  },
+  "source_trace": {
+    "r5_worker_runtime_Popen_line": 179,
+    "r5_worker_runtime_process_import_line": 13,
+    "selected_entrypoint": "infrastructure.runtime.worker_entrypoint chooses canonical agent_worker.py whenever src/automl exists",
+    "provider_guard": "task_entry152 imports pinned historicalfac3 and passes that object to coordinator supervise; this is distinct from worker process9f"
+  },
+  "minimum_prospective_fix": "Add the existing exact canonical agent_worker.py raw SHA to future parent/task immutable union, preserving9f/fac3 and the strict task_entry predicate. Add bounded pure metadata omitted-entrypoint/complete-entrypoint applicability coverage before future experiment clock; do not replay old QH1 or claim it succeeded.",
+  "actual_limits": {
+    "reported_by_root": {
+      "session": 97195,
+      "exit_code": 1,
+      "tool": "9c48e1",
+      "contracts_passed": 66,
+      "before_REG_task_or_model_or_API": true
+    },
+    "actual_three_hour_research_success": false,
+    "source_only": true,
+    "candidate_imports_tests_models_API_PIDs_data_arrays": 0,
+    "no_source_or_existing_proof_mutation": true
+  }
+}

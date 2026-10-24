@@ -1,0 +1,32 @@
+{
+  "schema": "QH2-entrypoint-preflight-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_PENDING_INDEPENDENT_REVIEW",
+  "files_sha256": {
+    "preflight.py": "8ef8e40df204683f1f51f38694d225a9424e284db75af7dc0e70ae011f8da426",
+    "README.txt": "0bf8d2def965957d107f70af4e71e3bdf7dd045f4f8a8e6e97f99ce5fe9791e2",
+    "source-proof.json": "6a6118fa5aa92cf7260b2da26301290e96c77469e404785f75ec61e45d173ec3",
+    "test_entrypoint_metadata.py": "c53e3a6f23e2e2eb574d1c20df651e2c27702cd5da91a74c55f71b2792a8d1d0"
+  },
+  "external_refs_sha256": {
+    "qwen-three-hour-autoresearch-next-dev-r7/task_entry.py": "4660711d1e7b8b45d972ed35ce7d361530c612dd6f4e73f26b83858c38cce312",
+    "alfa-hack-automl/src/automl/infrastructure/runtime.py": "c450ef040bd04e55c295c51ff1037147b938afb8e239617cb936bcfc2a9047d8",
+    "qwen-three-hour-outer-next-dev-r6/run_campaign.py": "714c83160cc0bdb625b6f294f4b76a4f40cc91cc0d4b9683b71ec9d20431823e",
+    "qwen-three-hour-outer-next-dev-r6/source-handoff-final.json": "d033a8d186a0fd2c1c1a10f407366995d87d256df37660039b6d76a41fae43d9",
+    "alfa-hack-automl/agent_worker.py": "d4cde2ce88ed3ac44da5fe17010079690d5c2eff02305902b9b62046d7b529f3",
+    "alfa-hack-automl/src/automl/infrastructure/processes.py": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3",
+    "qh1-worker-entrypoint-binding-diagnosis-next-dev/evidence-r1.json": "7ff7190fc44a3d4713cf8b5cd5e1f272dd367ff6e7b77bc7e6e51cfe58a95a2f",
+    "qh1-current-negative-fm-independent-source-review-r1.json": "b12579b65c67b8dce1156deddd734a6f2ae17060aca3ecf84da81e1d3b2730ca",
+    "private/qh1-manifest.ready-r2.json": "bed0c3c0fb5d44d996883c54fc2956c7ed1ee5110c8ef702152355a55a29d6a6",
+    "qh1/regression-task-manifest.json": "86ac1e9c0f2134e8d0862520e7d1e715f8402ed3b57fd825cc108b5e7d6b7fb6"
+  },
+  "prepared_source_contracts": 2,
+  "outer_contracts_unchanged66": true,
+  "actual_tests": 0,
+  "actual_runtime": 0,
+  "actual_models": 0,
+  "actual_API": 0,
+  "actual_data_reads": 0,
+  "actual_PID_scans": 0,
+  "actual_clock": null,
+  "actual_future_private": null
+}

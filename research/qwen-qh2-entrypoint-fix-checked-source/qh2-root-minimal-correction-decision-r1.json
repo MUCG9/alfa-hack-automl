@@ -1,0 +1,41 @@
+{
+  "schema": "qh2-root-prospective-minimal-bootstrap-correction-v1",
+  "human_goal": "Repair last submitted solution and run Qwen research across both tasks with equal nominal shares of a real 10800-second campaign.",
+  "previous_unit": "QH1",
+  "previous_status": "CLOSED_FAIL",
+  "previous_actual": {
+    "session": 97195,
+    "exit_code": 1,
+    "tool": "9c48e1",
+    "closer_exit_code": 1,
+    "closer_tool": "31ed65"
+  },
+  "failure": "Missing exact development worker entrypoint immutable pin; current9f and historicalfac3 source hashes were correct.",
+  "scope": [
+    "Add exact canonical agent_worker.py SHA d4cde2ce88ed3ac44da5fe17010079690d5c2eff02305902b9b62046d7b529f3 to immutable parent and propagated task union.",
+    "New outer packet: relocate four hardcoded OUT literals from qh1 to exclusive qh2; preserve clocks, caps, quality predicates, coreR7 and auditorR4.",
+    "Bind actual QH1 current-negative/post source and complete 8112 identity projection using existing launch_preparer_receipts ABI.",
+    "One pure prelaunch entrypoint binding contract set; independent source/private review; existing exact metadata config/predecessor preflight before admission."
+  ],
+  "runtime_authorized": false,
+  "ready_manifest": null,
+  "actual_clock": null,
+  "prospective_common_seconds": 10800,
+  "task_research_seconds": {
+    "regression": 4800,
+    "classification": 4800
+  },
+  "shared_overhead_cap_seconds": 1200,
+  "equal_nominal_total_share_per_task": 5400,
+  "claim_exact_three_hours_before_measurement": false,
+  "idle_padding_forbidden": true,
+  "old_clock_reset": false,
+  "old_unit_rerun": false,
+  "old_source_rewritten": false,
+  "old_FAILURE_requalified": false,
+  "model_source_or_numerical_changes": false,
+  "source_peer_required": true,
+  "freeze_before_execution": true,
+  "archive_qualification_and_delivery_unchanged": true,
+  "upload": false
+}

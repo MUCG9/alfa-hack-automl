@@ -1,0 +1,98 @@
+{
+  "schema": "qh2-output-predecessor-source-applicability-plan-v1",
+  "result": "METADATA_ONLY_NEW_OUTPUT_NOT_APPLICABLE_TO_FROZEN_OUTER_R6",
+  "reviewed_outer_handoff": {
+    "path": "work/qwen-three-hour-outer-next-dev-r6/source-handoff-final.json",
+    "sha256": "d033a8d186a0fd2c1c1a10f407366995d87d256df37660039b6d76a41fae43d9"
+  },
+  "reviewed_runtime_sha256": {
+    "run_campaign.py": "714c83160cc0bdb625b6f294f4b76a4f40cc91cc0d4b9683b71ec9d20431823e",
+    "close_controller.py": "9668c2bd13beecdbd60951a1557c048c8d8cd4ba1ad430d4fa7d3b341811f145",
+    "run_root.py": "6cb580c7fb0600c091eab3ef267c8ab20e845abda4e62d71402c604a4e19c64a",
+    "confirm_post_tool.py": "ea2d8e6c15ae407c005cc246180cb28bb53a45f26a68d9791a91520a2510fb0b",
+    "close_child.ps1": "605594aa5e3f9395a339c28915541402305d60b0b27d7e21b3073c5b05d32778"
+  },
+  "findings": [
+    {
+      "id": "QH2PATH01",
+      "fact": "OUT is fixed to WORK/qh1 in four scripts. Metadata output qh2 is rejected and cleanup would still target qh1.",
+      "sites": {
+        "run_campaign.py": [
+          "OUT line8",
+          "config exact output line179",
+          "task output line448"
+        ],
+        "close_controller.py": [
+          "OUT line7",
+          "root output line162"
+        ],
+        "run_root.py": [
+          "OUT line7",
+          "output line137",
+          "closer.OUT line150"
+        ],
+        "confirm_post_tool.py": [
+          "OUT line11",
+          "atomic binding output line117"
+        ]
+      },
+      "minimum_new_source_scope": "New packet at same WORK depth with only these four OUT assignment literals qh1 to qh2 changed; copy all remaining runtime/test scripts byte-exact and update source/ref/test-map paths. Whole-module inverse should recover frozen R6 AST; coreR7/audR4 remain unchanged."
+    },
+    {
+      "id": "QHBOOT01",
+      "fact": "Strict task_entry requires canonical agent_worker.py pin. Existing file raw SHA d4cde2ce88ed3ac44da5fe17010079690d5c2eff02305902b9b62046d7b529f3 is absent from QH1 parent/task maps;9f andfac3 are already exact.",
+      "minimum_metadata_fix": "Add that one existing exact wrapper ref to future immutable union; never change the strict predicate, numerical worker orprocess guards."
+    },
+    {
+      "id": "QH2PREV01",
+      "fact": "Existing predecessor accepts launch_preparer_receipts entries of exact shape path/sha256/actual_tool with exit0/nonemptytool, then unions receipt.identities. QH1negative/post have known_identities andobserver_preparer_identities instead ofidentities.",
+      "metadata_only_admission_option": "Root-produced bound identity receipt may carry identities exactly equal to actual QH1 post known_identities union post observer_preparer_identities. Its producer must independently verify actual negative/post SHA, observed exit0 tools, original QH1 FAIL preservation, current source/temp/cleanup and no live/uncertain; include all refs/pins/provenance. Existing finite observer then checks complete identities before/under lock.",
+      "runtime_typed_admission_alternative": "If runtime itself must inspect typed QH1 failure flags, authorize one narrow predecessor helper in the NEW packet. Do not append unsupported negative/post directly or coerce False to True.",
+      "prospective_source_counts": {
+        "negative": 8106,
+        "post": 8109,
+        "post_plus_own_preparers": 8112
+      },
+      "actual_negative_post_refs": null
+    }
+  ],
+  "future_binding_requirements": {
+    "output": "absolute WORK/qh2,exclusive and absent",
+    "expected_output_work_relative": "qh2",
+    "canonical_root_python_lock": "same exact absolute reviewed operational paths",
+    "immutable_union": "all unchanged pins plus new packet/source peer plus exact agent_worker.py plus actual QH1 negative/post/provenance identities plus actual new metadata preparers; conflicts fail closed",
+    "source_qualification": "retain exact actual RA2 archive/root/atomic/post/manifest and oldRQ6 failure lineage; QH1negative grants no MLqualification",
+    "helpers_core_auditor": "same exact source refs and caps; coreR7/audR4 output parameters already dynamic",
+    "contract_census": "66 unchanged if only four literals and metadata binding; any new entrypoint metadata-only fixtures must remain separately honest unless root explicitly updates gate",
+    "clock": "NULL until one future actual new campaign; old QH1 clock andFAIL immutable",
+    "caps": {
+      "common": 10800,
+      "setup": 300,
+      "regression": [
+        4800,
+        4770
+      ],
+      "classification": [
+        4800,
+        4770
+      ],
+      "audit": [
+        600,
+        570
+      ],
+      "final": 240,
+      "root": 60
+    }
+  },
+  "coordination": {
+    "negative_source_peer": "FM owns frozen2b05067; no duplicate independent observer review",
+    "entrypoint_preflight": "FM authors separate exact guard projection and2 pure metadata fixtures; future independent peer assigned to AC"
+  },
+  "limits": {
+    "source_only": true,
+    "imports_tests_models_API_arrays_PIDs_Git_canonical": 0,
+    "new_controller_code_authored": false,
+    "actual_QH1_research_success_claimed": false,
+    "actual_negative_or_post_run_by_reviewer": false
+  }
+}

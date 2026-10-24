@@ -1,0 +1,21 @@
+SOURCE ONLY. No imports/tests/arrays/fits/API/PID scans/clock were run by this author.
+
+Scope is ONE fixed no-fit CLASS cache comparison; REG and delivered ZIP stay unchanged.
+audit_cache.py exposes the exact CLI:
+  python -B -X utf8 audit_cache.py --manifest ABS --manifest-sha256 SHA --self-sha256 SHA --output ABS
+The only output is WORK/cx1/independent-cache-audit.json, exclusive at first write.
+Source and binding are NOT_READY until independent peer/root caller review and actual original600 admission.
+The runtime binding must use the template keys. source_files contains absolute reviewed caller/auditor/review pins.
+expected_inventory.path is the absolute path to THIS expected-inventory.json; its SHA is fixed in source.
+reviewed_caller path and review_path must both be present in source_files with their exact hashes.
+The caller supplies the nine actual retained clock keys; no new clock is created here.
+
+Future prepared pure/mock command (root lease only, not executed):
+  python -B -X utf8 -m unittest discover -s work/class-xgb-contribution-audit-next-dev/tests -p test_audit_cache.py -v
+12 methods; stdlib mocks and tiny synthetic values/opaque files only, no NumPy, pandas or model imports in these tests.
+The production source imports frozen NumPy/Pandas R4 only after complete source/input/core/closure byte barrier.
+Both full3 control cuts must reproduce the saved independently audited aggregate before either comparative score.
+Actual cached arrays are opened only by a later reviewed guarded launch; no missing model/cache is reconstructed.
+Current class support/ex-rarest rules come from unchanged R4, plus explicit bothcut and mean strict improvement.
+Valid negative quality remains a complete technical comparison. Any binding/eligibility failure nulls comparative metrics.
+No cache result qualifies a candidate refit/submission/archive or implies a hidden-test gain. Release work is deferred.

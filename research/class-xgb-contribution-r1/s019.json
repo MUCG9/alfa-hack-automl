@@ -1,0 +1,90 @@
+{
+  "schema": "class-xgb-contribution-independent-auditor-source-review-v1",
+  "status": "SOURCE_REVIEWED_NO_SCOPED_BLOCKER_NO_RUNTIME_READY_CLAIM",
+  "handoff": {
+    "path": "work/class-xgb-contribution-audit-next-dev/source-handoff.json",
+    "sha256": "b1ac1930c19aca8e405a5ea361ca6ca0755f6a799194c577f3259f765d4026fd"
+  },
+  "files_sha256": {
+    "audit_cache.py": "0fe46e3f4e95456910aa62c6e8694d620df84f6cda92c661e68cd4c0ec318bcc",
+    "tests/test_audit_cache.py": "6fd00a8c11104e9ebe9e166698509304322490df4c52eeae6164ab87d5b22631",
+    "expected-inventory.json": "0a6fd55a64ddf885aac05a427d9b62857b0fc3bd67bac2977d6b040571f95fb8",
+    "binding.template.NOT_READY.json": "46002cdca8de91e42899e2c9bf2096423ae412e8928f07199986a415d24487c1",
+    "protocol.json": "f2ce4f8d716229eccd29cabd35ad22598d33755f0d8796ab75d1daee062ec7b4",
+    "README.txt": "539fd2b9eb9a7f7938a2326b9e9efe81da7187904c1762c7325bbafd8329b8e5",
+    "source-proof.json": "236c049f2672282fc34f414429984066643b34af9887bbbec2d56c225b08cef5"
+  },
+  "external_source_refs": {
+    "reviewed_R4_adapter": {
+      "path": "work/uq3-cadence-hpo-next-dev/candidate/r4_adapter.py",
+      "sha256": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd"
+    },
+    "reviewed_fixed_auditor": {
+      "path": "work/br-standard-release-qualification-next-dev/controller-r5/artifact_audit.py",
+      "sha256": "39678926216dd7ea45305f02efc86989f9bdea63b3f8b163ebe6ad0ff8490c64"
+    },
+    "independent_predicate_eligibility": {
+      "path": "work/class-xgb-contribution-independent-review-next-dev/decision-and-reuse-eligibility.json",
+      "sha256": "c52594cd9eeeb23edd15a20f428fa0fcac844990a3e24f203380e05dc86dc4e9"
+    },
+    "closed_fit_diagnosis": {
+      "path": "work/brq3-class-lineage-diagnosis-next-dev/source-handoff.json",
+      "sha256": "fbd2346e0e6ba0ee4cb353faf2b5acae1598d42619694ce9a5e30c6004ad3a6e"
+    }
+  },
+  "independent_predicate_sha256": "c52594cd9eeeb23edd15a20f428fa0fcac844990a3e24f203380e05dc86dc4e9",
+  "source_checks": {
+    "all7local_and4externalpins_exact": true,
+    "both_controls_before_any_candidate": true,
+    "raw_control_full3_and_candidate_exact_retained0_1_halfweights": true,
+    "pretruth676inventory_barrier_before_numpy_pandas_and_pristinelabels": true,
+    "metadata_only_expected_map_reconstruction": {
+      "original_private_refs": 354,
+      "prior_independent_audit_refs": 317,
+      "both_complete_core_seals": true,
+      "normalized_conflict_free_union_refs": 670,
+      "all_union_refs_present_exact_in_expected676": true,
+      "additional6_closed_campaign_audit_root_fresh_and_supervisorlog_refs": true,
+      "all12outer_probability_refs_exact_classseal": true,
+      "arrays_opened_by_reviewer": 0
+    },
+    "retained_R4_TaskVerifier_delta": "Pinned823d alreadyreviewed adapter; differs from c08 ONLY submissionCSV IDstr converter. No new TaskVerifier implementation or wholeASTsamec08claim. diagnostics/f1/matched_control_comparison AST exactc08.",
+    "retained_C5_lexical_and_verified_terminal_helpers": "Exact396789 pinned and originalfull3 terminal/cleanup/provenance required",
+    "control_equivalence": "Recursive pristineR4 verify every currentchild, class/rows/probabilities/source expectedrecipe; full3 blend reproduces matrix within existing1e-10 rtol/atol AND argmax exactly; exactsavedmetadata plus fixedclose metrics; BOTHcontrols thencandidate",
+    "support_exrarest_protections": "Calls exactc08; >=100unique fittingfeaturehash groups, losses<-0.01-1e-12 forbidden, same canonical fittingrarest tiehandling, strict exrarestdelta>0 eachcut",
+    "strict_both_cuts_plus_mean": true,
+    "failed_missing_binding_clears_comparative_metrics_NULL_STOP": true,
+    "ordinary_complete_negative_can_be_technicalpass_qualityfalse": true,
+    "no_candidate_prediction_CSV_refit_release_or_promotion": true,
+    "original600_audit120_child90_final300_retained_clock_checks": "Exact supplied origins/deadlines, finite/rollback/drift/sticky10gap, digestcheckchunks; externalcaller actualRSS/cleanup/90sec obligations pending independentpeer",
+    "prepared_12_methods_AST_recomputed_exact": true
+  },
+  "prepared_methods_AST_sha256": {
+    "CacheAuditContracts.test_retained_components_exact_deep_copy_and_control_unchanged": "9836c057d38e9373ac042aef6866c347cfa1a91b6f7dd7de90d5c133f275cbfc",
+    "CacheAuditContracts.test_wrong_component_weight_or_family_is_stop": "b12843244f058fd9c81af14512eb1798ed9b1aaa07b0d69d7f068bd2f6e3d141",
+    "CacheAuditContracts.test_both_control_cuts_complete_before_any_candidate": "c23d8e624ac3b86513449ccba999a65b138dfe5f80297ddc6a1cf98d8c2d7ed2",
+    "CacheAuditContracts.test_second_control_failure_prevents_all_comparative_scores": "2291ef31e97954e2d1da7096f4c293cf1ba12a5f7452c9d909a14f9894dd5c61",
+    "CacheAuditContracts.test_fixed_weight_mixture_normalizes_without_input_mutation": "a109c81827cf91716a136da203f88abac4001d3f240d7f1b6d8edba9c7b77a9b",
+    "CacheAuditContracts.test_original_clock_assignment_and_successful_checkpoint": "a1bef2f55a8b80e50cd8e57a2027ede63b4202ea78c16d60275951b8a01bc3b3",
+    "CacheAuditContracts.test_gap_failure_sticks_and_never_advances_to_recover": "4a2eea9302a0b89197287ca8ed574e0fc32f9244eb4ffbeeb36c261193ff69f4",
+    "CacheAuditContracts.test_deadline_rollback_nonfinite_and_drift_stop_on_same_origin": "b173bd8469535650a0ee1bbad2c433471dca405f1695b6b340101c61b1b9ed34",
+    "CacheAuditContracts.test_saved_control_requires_same_positions_classes_support_and_metrics": "b4d1d5426d5e38c3d0f1e585127c4d24017e026bacd1d52947653a3988397eed",
+    "CacheAuditContracts.test_quality_requires_both_cut_and_mean_improvement_and_existing_class_gates": "c781880e92b5eb05c4e77a4af9ebd5ce4fe4b050f811b909903546a751da38ea",
+    "CacheAuditContracts.test_missing_or_changed_cache_has_no_fit_or_reconstruction_route": "ff7dd83b1ded41d44335264db6780aaa2951bbc85ebaec4e6c44edf7fd46140a",
+    "CacheAuditContracts.test_failure_result_clears_comparative_metrics_and_preserves_first_error": "899402b7d714b616ed1b251968c4456f364c5362aaaa8bd3aedf04d6fe01444e"
+  },
+  "concrete_blocking_defects": [],
+  "remaining": [
+    "EO caller exactsource independentreview, actual source/clock/RSS/strictownership/fullinventory/qualifiedBRQ3 predecessor binding and rootactualREADY",
+    "All12contracts unexecuted; no PASS inferred from source or count",
+    "Realprivatearray/controltruth/candidateaudit only rootadmitted original600; no newmodel fit/API; actualcomparison unavailable",
+    "No archive/deployment/promotion authority from this analysis"
+  ],
+  "performed": {
+    "candidate_imports_or_calls": 0,
+    "tests": 0,
+    "arrays_truth_predictions_data": 0,
+    "fits_API_PIDscans_clock": 0,
+    "author_or_canonical_Git_edits": 0
+  }
+}

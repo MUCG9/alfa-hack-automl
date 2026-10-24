@@ -1,0 +1,10 @@
+{
+  "schema": "class-xgb-contribution-independent-prospective-contract-handoff-v1",
+  "status": "SOURCE_ONLY_NOT_RUNTIME_READY",
+  "files_sha256": {
+    "decision-and-reuse-eligibility.json": "c52594cd9eeeb23edd15a20f428fa0fcac844990a3e24f203380e05dc86dc4e9"
+  },
+  "peer_reviews_pending": true,
+  "no_promotion": true,
+  "actual_execution": null
+}

@@ -1,0 +1,19 @@
+{
+  "schema":"class-xgb-contribution-cache-protocol-v1",
+  "idea_id":"CLASS-XGB-CONTRIBUTION-01",
+  "status":"FROZEN_SOURCE_ONLY_NOT_READY",
+  "control":"Closed BRQ3 full3 equal mixture; reproduce BOTH primary and confirmation from exact same sealed outer child0/1/2 probabilities and verify against closed independent R4 audit before any candidate score.",
+  "candidate":"Exact unchanged raw outer LGBM components0+1 at weights[0.5,0.5]. Existing implicit two-view children remain intact. No component refit, seed/transform/stopping change, weightsweep or XGB reconstruction.",
+  "evidence":"Expected inventory676 refs merges original354 immutable pins, closed independent audit317 refs, BOTH complete core seals and original closure/fresh/campaign/barrier. Twelve outer test/validation probability cache hashes are copied from sealed metadata; arrays have not been opened during preparation.",
+  "pretruth":"Rehash all expected source/input/split/core/closure bytes and new reviewed caller/auditor sources; require actual qualified BRQ3 session37018exit0 and original closer0/d1005d/current7305absence. Validate original task/recipe/caps/jobs before R4 import or pristine truth. Reuse exact R4 adapter823d and fixed C5 lexical/terminal helpers396789. Missing cache, row/class mismatch or control non-equivalence => typed STOP, comparative metricsNULL, fits0.",
+  "metrics":"Reuse R4 TaskVerifier/diagnostics/f1/matched_control_comparison. Both cuts strictly improve MacroF1; strict mean improvement; supported unique-fitting-featurehash groups>=100 cannot lose over0.01+1e-12 F1; positive delta excluding SAME canonical-order fitting-rarest class on eachcut. No new thresholds.",
+  "result":"class-xgb-contribution-audit-v1. Valid complete negative comparison may artifact_procedure_passed=true and quality_gate_passed=false. Binding/eligibility/clock failure has statusSTOP, artifact false, quality/cuts/comparisonNULL, first+secondary errors retained. Candidate prediction_sha256 isNULL because no candidate CSV is written.",
+  "prospective_budget":{"common_seconds":600,"setup_and_contracts_seconds":180,"audit_parent_seconds":120,"audit_child_seconds":90,"final_total_seconds":300,"driver_final_seconds":240,"root_inside_final_seconds":60,"actual_clock":null,"resources":{"CPU":2,"technical_threads":1,"BLAS_threads":1,"worker_RSS_MiB":1536,"whole_RSS_MiB":2048,"API":0,"new_fits":0}},
+  "clock":"Future reviewed caller assigns one original600 clock before setup. Actual audit admission precedes forced successful existing resource observation, manifest save and Popen; its genuine prior checkpoint and original clock fields are forwarded. Auditor never creates/rebases an allowance. Every cooperative checkpoint checks original common/audit deadlines, rollback/drift/10gap; external reviewed parent owns continuous actual RSS/child90/cleanup guards.",
+  "history":"Historical BRQ3 compute remains charged/not free. This new bounded cache analysis has its own prospective600 cost; no original clock/failure is rewritten.",
+  "outputs":"One aggregate JSON only. No candidate matrix, predictions CSV, submission, model, archive, refit, release qualification, promotion or upload.",
+  "future_work":"Research result only; any next modelling experiment requires a separate root decision. Archive/release work is deferred by current human steering.",
+  "actual_source_test_methods_prepared":12,
+  "actual_tests_executed":0,
+  "new_metrics":null
+}

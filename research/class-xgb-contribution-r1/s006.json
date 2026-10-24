@@ -1,0 +1,28 @@
+{
+  "schema": "class-xgb-contribution-source-proof-v1",
+  "source_AST_valid": {
+    "audit_cache.py": true,
+    "tests/test_audit_cache.py": true
+  },
+  "test_method_count": 12,
+  "test_methods_SHA256": {
+    "CacheAuditContracts.test_retained_components_exact_deep_copy_and_control_unchanged": "9836c057d38e9373ac042aef6866c347cfa1a91b6f7dd7de90d5c133f275cbfc",
+    "CacheAuditContracts.test_wrong_component_weight_or_family_is_stop": "b12843244f058fd9c81af14512eb1798ed9b1aaa07b0d69d7f068bd2f6e3d141",
+    "CacheAuditContracts.test_both_control_cuts_complete_before_any_candidate": "c23d8e624ac3b86513449ccba999a65b138dfe5f80297ddc6a1cf98d8c2d7ed2",
+    "CacheAuditContracts.test_second_control_failure_prevents_all_comparative_scores": "2291ef31e97954e2d1da7096f4c293cf1ba12a5f7452c9d909a14f9894dd5c61",
+    "CacheAuditContracts.test_fixed_weight_mixture_normalizes_without_input_mutation": "a109c81827cf91716a136da203f88abac4001d3f240d7f1b6d8edba9c7b77a9b",
+    "CacheAuditContracts.test_original_clock_assignment_and_successful_checkpoint": "a1bef2f55a8b80e50cd8e57a2027ede63b4202ea78c16d60275951b8a01bc3b3",
+    "CacheAuditContracts.test_gap_failure_sticks_and_never_advances_to_recover": "4a2eea9302a0b89197287ca8ed574e0fc32f9244eb4ffbeeb36c261193ff69f4",
+    "CacheAuditContracts.test_deadline_rollback_nonfinite_and_drift_stop_on_same_origin": "b173bd8469535650a0ee1bbad2c433471dca405f1695b6b340101c61b1b9ed34",
+    "CacheAuditContracts.test_saved_control_requires_same_positions_classes_support_and_metrics": "b4d1d5426d5e38c3d0f1e585127c4d24017e026bacd1d52947653a3988397eed",
+    "CacheAuditContracts.test_quality_requires_both_cut_and_mean_improvement_and_existing_class_gates": "c781880e92b5eb05c4e77a4af9ebd5ce4fe4b050f811b909903546a751da38ea",
+    "CacheAuditContracts.test_missing_or_changed_cache_has_no_fit_or_reconstruction_route": "ff7dd83b1ded41d44335264db6780aaa2951bbc85ebaec4e6c44edf7fd46140a",
+    "CacheAuditContracts.test_failure_result_clears_comparative_metrics_and_preserves_first_error": "899402b7d714b616ed1b251968c4456f364c5362aaaa8bd3aedf04d6fe01444e"
+  },
+  "R4_matched_control_comparison_AST_exact_c08": true,
+  "expected_inventory_SHA256": "0a6fd55a64ddf885aac05a427d9b62857b0fc3bd67bac2977d6b040571f95fb8",
+  "expected_inventory_refs": 676,
+  "outer_child_probability_cache_refs": 12,
+  "source_only_authoring_correction": "An unexecuted test-source multiline-with syntax was corrected during AST-only authoring; no test/run/clock existed.",
+  "actual_candidate_imports_tests_models_API_arrays_PIDscans_clock": 0
+}

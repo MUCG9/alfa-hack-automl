@@ -1,0 +1,18 @@
+{
+  "schema": "class-xgb-auditor-root-static-review-v1",
+  "status": "SOURCE_STATIC_REVIEW_COMPLETE_INDEPENDENT_PEER_PENDING_NOT_READY",
+  "source_handoff_sha256": "b1ac1930c19aca8e405a5ea361ca6ca0755f6a799194c577f3259f765d4026fd",
+  "verified_source_pin_count": 11,
+  "AST_compile_only_files": 2,
+  "prepared_method_count": 12,
+  "executed_tests": 0,
+  "inventory_pinned_refs": 676,
+  "gate_contract_sha256": "c52594cd9eeeb23edd15a20f428fa0fcac844990a3e24f203380e05dc86dc4e9",
+  "root_findings": [],
+  "scope": "Review exact source barrier/control-first ordering/fixed weight factor/retained clock/no-fit failure/null behavior. No arrays, truth, candidate import or runtime.",
+  "source_publication_commit": null,
+  "READY": null,
+  "clock": null,
+  "new_metric": null,
+  "created_unix": 1792852069.4961967
+}

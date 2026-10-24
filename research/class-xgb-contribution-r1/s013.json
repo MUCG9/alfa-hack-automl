@@ -1,0 +1,89 @@
+{
+  "schema": "class-xgb-cache-caller-private-v1",
+  "readiness": "NOT_READY",
+  "missing_bindings": [
+    "root_private_absolute_pin_binding",
+    "independent_caller_review",
+    "independent_auditor_review",
+    "fresh_full7305_plus_new_preparers",
+    "root_publication_and_actual_launch"
+  ],
+  "output": "cx1",
+  "python": null,
+  "common_seconds": 600,
+  "caps": {
+    "setup": 180,
+    "audit": [
+      120,
+      90
+    ],
+    "final": 240,
+    "root": 60
+  },
+  "lock": "alfa-hack-automl/test-runs/.owned-research.lock",
+  "immutable_files": {},
+  "auditor": {
+    "path": "class-xgb-contribution-audit-next-dev/audit_cache.py",
+    "sha256": "0fe46e3f4e95456910aa62c6e8694d620df84f6cda92c661e68cd4c0ec318bcc"
+  },
+  "auditor_test": {
+    "path": "class-xgb-contribution-audit-next-dev/tests/test_audit_cache.py",
+    "sha256": "6fd00a8c11104e9ebe9e166698509304322490df4c52eeae6164ab87d5b22631",
+    "count": 12,
+    "methods": {
+      "CacheAuditContracts.test_retained_components_exact_deep_copy_and_control_unchanged": "9836c057d38e9373ac042aef6866c347cfa1a91b6f7dd7de90d5c133f275cbfc",
+      "CacheAuditContracts.test_wrong_component_weight_or_family_is_stop": "b12843244f058fd9c81af14512eb1798ed9b1aaa07b0d69d7f068bd2f6e3d141",
+      "CacheAuditContracts.test_both_control_cuts_complete_before_any_candidate": "c23d8e624ac3b86513449ccba999a65b138dfe5f80297ddc6a1cf98d8c2d7ed2",
+      "CacheAuditContracts.test_second_control_failure_prevents_all_comparative_scores": "2291ef31e97954e2d1da7096f4c293cf1ba12a5f7452c9d909a14f9894dd5c61",
+      "CacheAuditContracts.test_fixed_weight_mixture_normalizes_without_input_mutation": "a109c81827cf91716a136da203f88abac4001d3f240d7f1b6d8edba9c7b77a9b",
+      "CacheAuditContracts.test_original_clock_assignment_and_successful_checkpoint": "a1bef2f55a8b80e50cd8e57a2027ede63b4202ea78c16d60275951b8a01bc3b3",
+      "CacheAuditContracts.test_gap_failure_sticks_and_never_advances_to_recover": "4a2eea9302a0b89197287ca8ed574e0fc32f9244eb4ffbeeb36c261193ff69f4",
+      "CacheAuditContracts.test_deadline_rollback_nonfinite_and_drift_stop_on_same_origin": "b173bd8469535650a0ee1bbad2c433471dca405f1695b6b340101c61b1b9ed34",
+      "CacheAuditContracts.test_saved_control_requires_same_positions_classes_support_and_metrics": "b4d1d5426d5e38c3d0f1e585127c4d24017e026bacd1d52947653a3988397eed",
+      "CacheAuditContracts.test_quality_requires_both_cut_and_mean_improvement_and_existing_class_gates": "c781880e92b5eb05c4e77a4af9ebd5ce4fe4b050f811b909903546a751da38ea",
+      "CacheAuditContracts.test_missing_or_changed_cache_has_no_fit_or_reconstruction_route": "ff7dd83b1ded41d44335264db6780aaa2951bbc85ebaec4e6c44edf7fd46140a",
+      "CacheAuditContracts.test_failure_result_clears_comparative_metrics_and_preserves_first_error": "899402b7d714b616ed1b251968c4456f364c5362aaaa8bd3aedf04d6fe01444e"
+    }
+  },
+  "caller_test": {
+    "path": "class-xgb-contribution-caller-next-dev/test_caller.py",
+    "count": 4,
+    "methods": {
+      "CacheCallerContracts.test_valid_negative_quality_is_technical_success_but_unbound_or_partial_result_is_not": "58f14660f2ce66e7aa68f3d245e708e7309bffbd9b0b93c5f18f5434b2f36da1",
+      "CacheCallerContracts.test_original600_and_parent120_assignments_keep_all_final_reserve": "5c4b2a270ac6995358cbf0b1fa4ed0e89b10c8c23eecdb0ae1e9d71f9d73aef0",
+      "CacheCallerContracts.test_only_fixed_auditor_argv_accepts_absolute_paths_no_payload_or_fit": "9bd6b8bc509af100098288928ef199f13d3d58076a43f19c5f46a76bf8b2bcae",
+      "CacheCallerContracts.test_failed_false_or_unconfirmed_predecessor_never_admits_cache_reader": "3c4b879e273c4624cb8184dcc45c9b50b5da3aa091844aa28a293abd19d93ad1"
+    }
+  },
+  "counts": {
+    "path": "uar-count-parser-next-dev/counts.py",
+    "sha256": "bc320fd4723476c8a73404ed17a7bdec0cd4c69b1b1d41b321e370549c8cf4d3"
+  },
+  "caller_source_review": {
+    "path": null,
+    "sha256": null
+  },
+  "audit_payload": null,
+  "additional_preparer_receipts": [],
+  "brq3": {
+    "root": {
+      "path": "brq3/terminal-root-closure.json",
+      "sha256": "7578f3ea5f4d3b14e9925bec5705a3169ab17ae77de5a45cfc7583edeaedf42d"
+    },
+    "fresh": {
+      "path": "brq3/root-confirmation.json",
+      "sha256": "85a00effb05fa5cb7218e1021c446855a84a508f1c9f68c01b6d83eee440fdd0"
+    },
+    "timing": {
+      "path": "brq3/root-fresh-timing-addendum.json",
+      "sha256": "d2436badbad18f75b2f67feafede7b3ee5b91da840344b2aba4b4154c264b2c8"
+    }
+  },
+  "actual_clock": null,
+  "actual_metrics": null,
+  "models": 0,
+  "API": 0,
+  "promotion": false,
+  "submit": false,
+  "release_or_archive_work": false
+}

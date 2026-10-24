@@ -1,0 +1,91 @@
+{
+  "schema": "class-xgb-contribution-independent-caller-source-review-v1",
+  "status": "SOURCE_REVIEWED_NO_SCOPED_BLOCKER_NOT_READY_NO_EXECUTION",
+  "handoff": {
+    "path": "work/class-xgb-contribution-caller-next-dev/source-handoff.json",
+    "sha256": "a5c8c5e75a687a661974bf5e8c70c67b0d1a56933c953b57244e469c47a89ae1"
+  },
+  "files_sha256": {
+    "run_audit.py": "7b46f1ded8c2cb979b1cfe8e8ea2b213e395972197afff294e5feb554c231419",
+    "close_audit.py": "1790a82d2f26f8489edb744e79d2b22a3d817073744dd89fe8969606defc263e",
+    "test_caller.py": "24d073f58fcbc579a19b009d584705d89c93da936bcf660f9ead6184742d7dee",
+    "prepare_source.py": "14cbc87cdb7be4311e186294acec09b4ccc1e65a0957d3a0990c28edd445308d",
+    "source-proof.json": "db4d0b950aca9b262c6a5c533c1da85ecfc0abba1c3b6fea6e0f3fa52b246d6d",
+    "binding.template.NOT_READY.json": "e184fc2f01b93b45364cf589ac0c3c38c0614cca2560eb8c14c87b326cbf0bc4",
+    "protocol.json": "6f67ab5b38adf065d27abd8f923ffa02d3f70f7668422c8ddd1075fe9701d769",
+    "README.txt": "cf8b25729b293a9c47885f3b1a3a0542e78e9317800b695f0bb84bd837fdff2a"
+  },
+  "external_refs": {
+    "auditor_handoff": {
+      "path": "class-xgb-contribution-audit-next-dev/source-handoff.json",
+      "sha256": "b1ac1930c19aca8e405a5ea361ca6ca0755f6a799194c577f3259f765d4026fd"
+    },
+    "base_C5": {
+      "path": "br-standard-release-qualification-next-dev/controller-r5/run_controller.py",
+      "sha256": "d5f41cad6de2168cd520e442223428285dd3714854079d9305dd1b34938abd7d"
+    },
+    "auditor_source": {
+      "path": "class-xgb-contribution-audit-next-dev/audit_cache.py",
+      "sha256": "0fe46e3f4e95456910aa62c6e8694d620df84f6cda92c661e68cd4c0ec318bcc"
+    }
+  },
+  "actual_predecessor_metadata_refs": {
+    "ROOT_REF": {
+      "path": "brq3/terminal-root-closure.json",
+      "sha256": "7578f3ea5f4d3b14e9925bec5705a3169ab17ae77de5a45cfc7583edeaedf42d"
+    },
+    "FRESH_REF": {
+      "path": "brq3/root-confirmation.json",
+      "sha256": "85a00effb05fa5cb7218e1021c446855a84a508f1c9f68c01b6d83eee440fdd0"
+    },
+    "TIMING_REF": {
+      "path": "brq3/root-fresh-timing-addendum.json",
+      "sha256": "d2436badbad18f75b2f67feafede7b3ee5b91da840344b2aba4b4154c264b2c8"
+    }
+  },
+  "auditor_peer": {
+    "path": "work/class-xgb-contribution-independent-review-next-dev/auditor-source-review-r1.json",
+    "sha256": "24424dc64fa879baaca71a36e1152bc97e80850aab7df947a30194f5d724bded"
+  },
+  "checks": {
+    "all8local3external_and3predecessor_ref_hashes_exact": true,
+    "driver_closer_capture_AST_exact_already_qualified_C5": true,
+    "frozen_C5_verifiedsampler_coorR2_owner_fac3_lock_Power_reused_nohelperedits": true,
+    "one_original600_futurelaunch_origin_before_setup": true,
+    "budget": "setup180 two60/45 contractchildren; audit120/90 originaladmission capturedBEFOREforcedRSS; driverfinal240+root60 withinremaining300/common600",
+    "auditor_RetainedClock9key_interface_matches": true,
+    "absolute_forwarded_audit_manifest_and_output": true,
+    "complete_positive_BRQ3_root_driver37018_closer0_fresh7305_timing_binding": true,
+    "known_union": "fresh7305 includesrootowned+closurepreps; addexactpinnedpreparerreceipts, actualnewsupervisors/rootbootstrap, fresh before+under canonicalResearchLock andatclosure; rootownpreps excluded untilrootactualexit/freshconfirmation",
+    "source_and_core": "Typedabsolute immutablepins plussealednewreceipts, pre/posthashing callbacks throughstickyC5guard; audithashescomplete676beforetruth childauthority",
+    "strict_child_uncertainty_retained": "Actualreceipt cleanup/denials/unresolved, missingreceiptsticky; errors copiedbeforetemp removal; cannot qualify from freshabsence alone",
+    "temporary_scope": "Onlyresolved work/t/cx-* exactownedroot, everyentryno reparse/symlink, boundedinventory beforetree removal; logs+JSONcopiedfirst",
+    "actual_RSS_and_deadlines": "ReusedsuccessfulsamplingC5guard .25/sticky10 withwholeparent caps; no backgroundheartbeat; root60insideoriginalcommon andpowerrelease verification",
+    "technical_quality_separate": "result_qualified accepts onlycompleteboolquality; qualityFalse can technicalpass; missingbinding/failedcut givesnullcomparisons; no newfits/API/refit/release/promote",
+    "actualrootqualification": "Actualdriverexit/source/cleanup/2actualcontractslots/qualifiedaudit andsavedterminals required; closerpositivealsoactualtool+actualsource; ownactualexit+freshcompletepreparerconfirmation stillrequired",
+    "fourprepared_caller_methods_AST_exact": true,
+    "twelveauditor_method_ASTpins_match_frozenpacket": true,
+    "NOT_READYtemplate_no_clock": true
+  },
+  "prepared_caller_methods_AST_sha256": {
+    "CacheCallerContracts.test_valid_negative_quality_is_technical_success_but_unbound_or_partial_result_is_not": "58f14660f2ce66e7aa68f3d245e708e7309bffbd9b0b93c5f18f5434b2f36da1",
+    "CacheCallerContracts.test_original600_and_parent120_assignments_keep_all_final_reserve": "5c4b2a270ac6995358cbf0b1fa4ed0e89b10c8c23eecdb0ae1e9d71f9d73aef0",
+    "CacheCallerContracts.test_only_fixed_auditor_argv_accepts_absolute_paths_no_payload_or_fit": "9bd6b8bc509af100098288928ef199f13d3d58076a43f19c5f46a76bf8b2bcae",
+    "CacheCallerContracts.test_failed_false_or_unconfirmed_predecessor_never_admits_cache_reader": "3c4b879e273c4624cb8184dcc45c9b50b5da3aa091844aa28a293abd19d93ad1"
+  },
+  "nonblocking_documentary_notes": [
+    "test_caller module docstring and one errorcode still saythree whileactual4methods are explicitlybound/derived; runtimeassert4/proof4 agree. No assertion/count weakening needed."
+  ],
+  "concrete_blocking_defects": [],
+  "remaining": [
+    "Root instantiate boundedabsolute READY pins afterbothsourcepeerreceipts; includeallnewactualprepareridentities andsourcepublication; no authorselfapproval",
+    "Actual16contracts andprivateauditunrun; no technicalPASS orMLgain fromsource",
+    "Actualdriverexit,actualrootcloserexit andfreshfullknown/preparerabsence beforeoriginal600/root60 required"
+  ],
+  "performed": {
+    "candidate_imports_calls_tests": 0,
+    "data_arrays_predictions_truth": 0,
+    "fits_API_PIDscans_clock": 0,
+    "canonical_frozen_Git_STATE_edits": 0
+  }
+}

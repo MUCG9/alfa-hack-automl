@@ -1,0 +1,35 @@
+{
+  "schema": "class-xgb-cache-caller-source-handoff-v1",
+  "readiness": "FROZEN_SOURCE_ONLY_NOT_READY",
+  "files_sha256": {
+    "run_audit.py": "7b46f1ded8c2cb979b1cfe8e8ea2b213e395972197afff294e5feb554c231419",
+    "close_audit.py": "1790a82d2f26f8489edb744e79d2b22a3d817073744dd89fe8969606defc263e",
+    "test_caller.py": "24d073f58fcbc579a19b009d584705d89c93da936bcf660f9ead6184742d7dee",
+    "prepare_source.py": "14cbc87cdb7be4311e186294acec09b4ccc1e65a0957d3a0990c28edd445308d",
+    "source-proof.json": "db4d0b950aca9b262c6a5c533c1da85ecfc0abba1c3b6fea6e0f3fa52b246d6d",
+    "binding.template.NOT_READY.json": "e184fc2f01b93b45364cf589ac0c3c38c0614cca2560eb8c14c87b326cbf0bc4",
+    "protocol.json": "6f67ab5b38adf065d27abd8f923ffa02d3f70f7668422c8ddd1075fe9701d769",
+    "README.txt": "cf8b25729b293a9c47885f3b1a3a0542e78e9317800b695f0bb84bd837fdff2a"
+  },
+  "external_refs": {
+    "auditor_handoff": {
+      "path": "class-xgb-contribution-audit-next-dev/source-handoff.json",
+      "sha256": "b1ac1930c19aca8e405a5ea361ca6ca0755f6a799194c577f3259f765d4026fd"
+    },
+    "base_C5": {
+      "path": "br-standard-release-qualification-next-dev/controller-r5/run_controller.py",
+      "sha256": "d5f41cad6de2168cd520e442223428285dd3714854079d9305dd1b34938abd7d"
+    },
+    "auditor_source": {
+      "path": "class-xgb-contribution-audit-next-dev/audit_cache.py",
+      "sha256": "0fe46e3f4e95456910aa62c6e8694d620df84f6cda92c661e68cd4c0ec318bcc"
+    }
+  },
+  "prepared_changed_contracts": 16,
+  "actual_imports_tests_arrays_PIDs_fits_API_clock": 0,
+  "private_READY": null,
+  "actualclock": null,
+  "newresults": null,
+  "promotion": false,
+  "submit": false
+}

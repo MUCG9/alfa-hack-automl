@@ -1,0 +1,24 @@
+{
+  "schema": "class-xgb-no-fit-root-source-acceptance-v1",
+  "status": "INDEPENDENT_SOURCE_PEERS_AND_ROOT_ACCEPTED_RUNTIME_NOT_READY",
+  "auditor_handoff_sha256": "b1ac1930c19aca8e405a5ea361ca6ca0755f6a799194c577f3259f765d4026fd",
+  "caller_handoff_sha256": "a5c8c5e75a687a661974bf5e8c70c67b0d1a56933c953b57244e469c47a89ae1",
+  "auditor_peer_sha256": "24424dc64fa879baaca71a36e1152bc97e80850aab7df947a30194f5d724bded",
+  "caller_peer_sha256": "722776e8ec131d83e1302444bbf1d8fa70c10e4d4ba81887b3d223516fd9ea3f",
+  "predicate_sha256": "c52594cd9eeeb23edd15a20f428fa0fcac844990a3e24f203380e05dc86dc4e9",
+  "prepared_methods": {
+    "test_audit_cache.py": 12,
+    "test_caller.py": 4
+  },
+  "prepared_total": 16,
+  "actual_tests": 0,
+  "new_fits": 0,
+  "actualclock": null,
+  "READY": null,
+  "new_metric": null,
+  "source_publication": null,
+  "root_findings": [],
+  "quality_and_technical_success_separate": true,
+  "archive_work_deferred": true,
+  "created_unix": 1792852397.3304234
+}

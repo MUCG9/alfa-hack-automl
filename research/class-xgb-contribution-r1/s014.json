@@ -1,0 +1,33 @@
+{
+  "schema": "CLASS-XGB-CONTRIBUTION-01-caller-protocol-v1",
+  "readiness": "SOURCE_ONLY_NOT_READY",
+  "only_hypothesis": "Drop outerXGB; same retained twoLGBM fixed .5/.5; reproducefull3 control on BOTH42/43 first.",
+  "common600": {
+    "setup_contracts": 180,
+    "audit_parent": 120,
+    "audit_child": 90,
+    "driver_final": 240,
+    "root": 60
+  },
+  "newfits": 0,
+  "API": 0,
+  "missing_cache_STOP": true,
+  "strictserial": true,
+  "technicalthreads": 1,
+  "worker_RSS_MiB": 1536,
+  "whole_RSS_MiB": 2048,
+  "inheritance": "All7305 prior known identities plus pinned extra preparer receipts, fresh before/underlock and atclosure; unknownhistoricalPID not adopted.",
+  "original_clock_reset": false,
+  "actual_clock": null,
+  "actual_results": null,
+  "prepared_changed_contracts": {
+    "auditor": 12,
+    "caller": 4,
+    "total": 16
+  },
+  "quality_false_is_not_technical_failure": true,
+  "REG_and_deliveredarchive_unchanged": true,
+  "archive_release_qualification_DEFERRED": true,
+  "promotion": false,
+  "submit": false
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "class-xgb-contribution-auditor-source-handoff-v1",
+  "readiness": "FROZEN_SOURCE_ONLY_PENDING_PEER_NOT_READY",
+  "files_sha256": {
+    "audit_cache.py": "0fe46e3f4e95456910aa62c6e8694d620df84f6cda92c661e68cd4c0ec318bcc",
+    "tests/test_audit_cache.py": "6fd00a8c11104e9ebe9e166698509304322490df4c52eeae6164ab87d5b22631",
+    "expected-inventory.json": "0a6fd55a64ddf885aac05a427d9b62857b0fc3bd67bac2977d6b040571f95fb8",
+    "binding.template.NOT_READY.json": "46002cdca8de91e42899e2c9bf2096423ae412e8928f07199986a415d24487c1",
+    "protocol.json": "f2ce4f8d716229eccd29cabd35ad22598d33755f0d8796ab75d1daee062ec7b4",
+    "README.txt": "539fd2b9eb9a7f7938a2326b9e9efe81da7187904c1762c7325bbafd8329b8e5",
+    "source-proof.json": "236c049f2672282fc34f414429984066643b34af9887bbbec2d56c225b08cef5"
+  },
+  "exact_external_source_refs": {
+    "reviewed_R4_adapter": {
+      "path": "work/uq3-cadence-hpo-next-dev/candidate/r4_adapter.py",
+      "sha256": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd"
+    },
+    "reviewed_fixed_auditor": {
+      "path": "work/br-standard-release-qualification-next-dev/controller-r5/artifact_audit.py",
+      "sha256": "39678926216dd7ea45305f02efc86989f9bdea63b3f8b163ebe6ad0ff8490c64"
+    },
+    "independent_predicate_eligibility": {
+      "path": "work/class-xgb-contribution-independent-review-next-dev/decision-and-reuse-eligibility.json",
+      "sha256": "c52594cd9eeeb23edd15a20f428fa0fcac844990a3e24f203380e05dc86dc4e9"
+    },
+    "closed_fit_diagnosis": {
+      "path": "work/brq3-class-lineage-diagnosis-next-dev/source-handoff.json",
+      "sha256": "fbd2346e0e6ba0ee4cb353faf2b5acae1598d42619694ce9a5e30c6004ad3a6e"
+    }
+  },
+  "prepared_pure_mock_methods": 12,
+  "actual_tests_executed": 0,
+  "actual_imports_fits_API_arrays_PIDscans_clock": 0,
+  "new_metrics": null,
+  "actual_runtime_binding": null,
+  "actual_caller_peer": null,
+  "clock": null,
+  "promotion": false,
+  "submit": false,
+  "archive_release_work_deferred": true
+}

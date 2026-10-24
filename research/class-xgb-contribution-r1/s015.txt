@@ -1,0 +1,10 @@
+SOURCE ONLY / NOT_READY. Fixed no-fit cache experiment, no archive or release action.
+One600 origin before materialization/import: setup/contracts180 + audit120(parent)/90(child) + driverfinal240 + root60.
+Changedsource tests only: auditor12+caller4, two fixed60/45 slots. No81-suite/model replay.
+Reuses frozen C5guard/clock-onlyhook+coorR2+owner/fac3/ResearchLock/PowerGuard/envfalse. Capture AST exactC5 in both scripts.
+Both controls reproduced before one candidate; missingcache STOP, no fallbackfit. Valid negativequality remains technicalsuccess.
+Root must instantiate exact absolute immutable inventory/template, reviewed-caller bindings and newpreparer union, independentlyreview/publish, then launch once.
+Forwarded manifest/output paths alwaysabsolute. Output work/cx1. Ownshallowtemp work/t/cx-* only; copyterminalreceipts before exactcleanup.
+NOT RUN: python -B -X utf8 run_audit.py --launch --manifest <ABS_READY> --manifest-sha256 <SHA> --self-sha256 <SHA> --launch-parent-pid <SHELL_PID> --launch-parent-create-time <ACTUAL_SHELL_UNIX_BIRTH>
+AfterACTUALwholeexit ONLY: python -B -X utf8 close_audit.py --manifest <ABS_READY> --manifest-sha256 <SHA> --self-sha256 <CLOSER_SHA> --driver-sha256 <DRIVER_SHA> --campaign-sha256 <ACTUAL_SHA> --actual-exit-code <ACTUAL> --actual-tool-evidence <ACTUAL_TOOL> [--actual-exec-session <ACTUAL_SESSION>] --launch-parent-pid <SHELL_PID> --launch-parent-create-time <ACTUAL_SHELL_UNIX_BIRTH>
+Actualcloserexit/freshcompletepreparerabsence mustfinishroot60/common600; oldBRQ3clockclosed, neverreopened.

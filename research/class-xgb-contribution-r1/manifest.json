@@ -1,0 +1,143 @@
+{
+  "schema": "checked-class-xgb-no-fit-source-transport-v1",
+  "files": [
+    {
+      "original_work_relative": "class-xgb-contribution-audit-next-dev/audit_cache.py",
+      "transport": "s001.py",
+      "sha256": "0fe46e3f4e95456910aa62c6e8694d620df84f6cda92c661e68cd4c0ec318bcc",
+      "bytes": 20474
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-audit-next-dev/tests/test_audit_cache.py",
+      "transport": "s002.py",
+      "sha256": "6fd00a8c11104e9ebe9e166698509304322490df4c52eeae6164ab87d5b22631",
+      "bytes": 9161
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-audit-next-dev/binding.template.NOT_READY.json",
+      "transport": "s003.json",
+      "sha256": "46002cdca8de91e42899e2c9bf2096423ae412e8928f07199986a415d24487c1",
+      "bytes": 1001
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-audit-next-dev/protocol.json",
+      "transport": "s004.json",
+      "sha256": "f2ce4f8d716229eccd29cabd35ad22598d33755f0d8796ab75d1daee062ec7b4",
+      "bytes": 3448
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-audit-next-dev/README.txt",
+      "transport": "s005.txt",
+      "sha256": "539fd2b9eb9a7f7938a2326b9e9efe81da7187904c1762c7325bbafd8329b8e5",
+      "bytes": 1922
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-audit-next-dev/source-proof.json",
+      "transport": "s006.json",
+      "sha256": "236c049f2672282fc34f414429984066643b34af9887bbbec2d56c225b08cef5",
+      "bytes": 2553
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-audit-next-dev/source-handoff.json",
+      "transport": "s007.json",
+      "sha256": "b1ac1930c19aca8e405a5ea361ca6ca0755f6a799194c577f3259f765d4026fd",
+      "bytes": 2011
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-caller-next-dev/run_audit.py",
+      "transport": "s008.py",
+      "sha256": "7b46f1ded8c2cb979b1cfe8e8ea2b213e395972197afff294e5feb554c231419",
+      "bytes": 26391
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-caller-next-dev/close_audit.py",
+      "transport": "s009.py",
+      "sha256": "1790a82d2f26f8489edb744e79d2b22a3d817073744dd89fe8969606defc263e",
+      "bytes": 11966
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-caller-next-dev/test_caller.py",
+      "transport": "s010.py",
+      "sha256": "24d073f58fcbc579a19b009d584705d89c93da936bcf660f9ead6184742d7dee",
+      "bytes": 5352
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-caller-next-dev/prepare_source.py",
+      "transport": "s011.py",
+      "sha256": "14cbc87cdb7be4311e186294acec09b4ccc1e65a0957d3a0990c28edd445308d",
+      "bytes": 8825
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-caller-next-dev/source-proof.json",
+      "transport": "s012.json",
+      "sha256": "db4d0b950aca9b262c6a5c533c1da85ecfc0abba1c3b6fea6e0f3fa52b246d6d",
+      "bytes": 3247
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-caller-next-dev/binding.template.NOT_READY.json",
+      "transport": "s013.json",
+      "sha256": "e184fc2f01b93b45364cf589ac0c3c38c0614cca2560eb8c14c87b326cbf0bc4",
+      "bytes": 4679
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-caller-next-dev/protocol.json",
+      "transport": "s014.json",
+      "sha256": "6f67ab5b38adf065d27abd8f923ffa02d3f70f7668422c8ddd1075fe9701d769",
+      "bytes": 1070
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-caller-next-dev/README.txt",
+      "transport": "s015.txt",
+      "sha256": "cf8b25729b293a9c47885f3b1a3a0542e78e9317800b695f0bb84bd837fdff2a",
+      "bytes": 1563
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-caller-next-dev/source-handoff.json",
+      "transport": "s016.json",
+      "sha256": "a5c8c5e75a687a661974bf5e8c70c67b0d1a56933c953b57244e469c47a89ae1",
+      "bytes": 1702
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-independent-review-next-dev/decision-and-reuse-eligibility.json",
+      "transport": "s017.json",
+      "sha256": "c52594cd9eeeb23edd15a20f428fa0fcac844990a3e24f203380e05dc86dc4e9",
+      "bytes": 7221
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-independent-review-next-dev/predicate-handoff.json",
+      "transport": "s018.json",
+      "sha256": "8ed3b3cdb65c6829d42f2bdf3b751f32fb21a7fb40a375f33779b9f4893233f4",
+      "bytes": 359
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-independent-review-next-dev/auditor-source-review-r1.json",
+      "transport": "s019.json",
+      "sha256": "24424dc64fa879baaca71a36e1152bc97e80850aab7df947a30194f5d724bded",
+      "bytes": 6824
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-independent-review-next-dev/caller-source-review-r1.json",
+      "transport": "s020.json",
+      "sha256": "722776e8ec131d83e1302444bbf1d8fa70c10e4d4ba81887b3d223516fd9ea3f",
+      "bytes": 6233
+    },
+    {
+      "original_work_relative": "class-xgb-no-fit-root-source-acceptance-r1.json",
+      "transport": "s021.json",
+      "sha256": "b1178550097d02dc13a37f271e920ab1d84f038098dabeef1c2fd34e45b46bdb",
+      "bytes": 985
+    },
+    {
+      "original_work_relative": "class-xgb-contribution-auditor-root-static-review-r1.json",
+      "transport": "s022.json",
+      "sha256": "bb24a269a688b173a85667bd7aa1042ff6fff4b150f40e4bc9449f6a82321394",
+      "bytes": 810
+    }
+  ],
+  "private_expected_inventory_and_READY_not_transported": true,
+  "source_only_not_runtime_or_metric": true,
+  "changed_contracts_prepared": 16,
+  "executed": 0,
+  "promotion": false,
+  "archive_work_deferred": true
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "class-xgb-contribution-audit-private-v1",
+  "readiness": "NOT_READY",
+  "missing_bindings": ["actual original600 clock and audit120 admission", "reviewed caller sources/review pins", "absolute output and source paths"],
+  "output": null,
+  "expected_inventory": {"path": null, "sha256": "0a6fd55a64ddf885aac05a427d9b62857b0fc3bd67bac2977d6b040571f95fb8"},
+  "source_files": {},
+  "reviewed_caller": {"path": null, "sha256": null, "review_path": null, "review_sha256": null},
+  "guard_caps": {"parent_seconds":120,"child_seconds":90,"worker_RSS_MiB":1536,"whole_RSS_MiB":2048,"technical_threads":1,"BLAS_threads":1,"API_calls":0},
+  "clock": null,
+  "clock_required_keys": ["start_unix","start_monotonic","absolute_deadline_unix","common_deadline_monotonic","audit_start_unix","audit_start_monotonic","audit_deadline_unix","audit_deadline_monotonic","prior_checkpoint_monotonic"],
+  "actual_new_imports_tests_fits_API_arrays_PIDscans_clock": 0,
+  "promotion": false,
+  "submit": false
+}

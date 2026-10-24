@@ -1,0 +1,131 @@
+{
+  "schema": "qwen-three-hour-whole-campaign-prospective-protocol-v1",
+  "status": "FROZEN_SOURCE_NOT_READY",
+  "common_seconds": 10800,
+  "setup_seconds": 300,
+  "REG_seconds": 4800,
+  "CLASS_seconds": 4800,
+  "independent_audit_seconds": 600,
+  "cleanup_seconds": 300,
+  "atomic_root_seconds_inside_cleanup": 60,
+  "nominal_equal_task_seconds_including_half_shared_overheads": 5400,
+  "shared_overhead_seconds_per_task": 600,
+  "unused_task_compute_not_reinvested_in_other_task": true,
+  "each_task_internal_reserves": "Anytime complete checkpoints: fresh strong-control cuts then fresh confirmation/full median refit; continue with measured admission margin+seal60, retain only last fully completed checkpoint.",
+  "per_cut_callback_seconds_upper": 900,
+  "gateway_calls_per_task_upper": 4800,
+  "HTTP_attempts_per_gateway_upper": 3,
+  "HTTP_attempts_per_task_reported_upper_if_all_attempt_counts_known": 14400,
+  "models_and_nested_fit_count": null,
+  "fit_count_scope": "actual worker callbacks reported separately; nested stopping/calibration can fit multiple learners, so logical job count is never actual fit count",
+  "iteration": "real Qwen proposal -> one normalized recipe/approved DSL leaf delta ->both fixed42/43 strict workers ->bounded real feedback ->keep/discard",
+  "stop_conditions": [
+    "Original time admission/reserve exhausted after completing task time intent.",
+    "Resource/clock/source/ownership/provider/unknown or typed fatal failure.",
+    "Any finite counter/file/report bound hit early: INCOMPLETE/nonqualifying, never normal successful three-hour proof."
+  ],
+  "ordinary_failed_trial": "record NULL metrics and attempted slot; no fake0, no stale checkpoint, no synthetic success; permit next genuine hypothesis within same reserves",
+  "selection": "strict improvement on BOTH cuts vs current complete incumbent; CLASS also BOTH-cut strong-control support>=100 loss tolerance.01 and ex-rarest delta>0",
+  "confirmation": "fresh selected43 within task reserve, use actual42+fresh43 recursive median tree for full refit; no historical iteration override",
+  "independent_audit_barrier": "both task terminal cores/source-input-split-prediction hashes sealed before any pristine independent label audit",
+  "quality_scope": "adaptive reused public validation, not blind/official; keep/discard never default promotion/upload",
+  "CPU_threads_per_learner": 2,
+  "worker_RSS_MiB": 1536,
+  "whole_RSS_MiB": 2048,
+  "no_arbitrary_generated_Python": true,
+  "approved_DSL_only": true,
+  "context_flag": false,
+  "selector_cache_flag": false,
+  "actual_clocks": null,
+  "strong_authority_refs_after_archive_repair": null,
+  "actual_metrics": null,
+  "promotion": false,
+  "submit": false,
+  "provider_environment": "existing authorized creds copied ONLY into fixed gateway child technical environment; no solver_seconds trick; no credential to worker/auditor/prompts/logs; requested reasoning is not backend attestation",
+  "worker_parent_origin": "Trusted callback scopes existing additive R5 parent provenance; resource/observation/cleanup/unknown/missing origin STOP before ordinary failed-pair handling. Confirmed ordinary timeout may remain NULL and continue under same reserves.",
+  "parent_callback_ledger": "Every actually returned strict parent callback is saved separately in worker-N/parent-result.json with original manifest/source/spec/recipe/cut/raw-job/raw-result bindings; report retains full ledger refs and actual initial strong_control_cuts. No model/clock/process semantics change.",
+  "task_parent_seconds": 4800,
+  "task_child_seconds": 4770,
+  "setup_contracts_parent_seconds": 270,
+  "prepared_contract_executions": 66,
+  "exact_contracts": [
+    {
+      "name": "core-parent-ledger",
+      "expected": 2,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "core-provider-environment",
+      "expected": 1,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "core-worker-consumer",
+      "expected": 4,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "core-iterative-policy",
+      "expected": 18,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "core-resource-origin",
+      "expected": 4,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "independent-audit-contracts",
+      "expected": 25,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "audit-CSV-role-contracts",
+      "expected": 2,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "outer-broker-authority-contracts",
+      "expected": 4,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "outer-atomic-contracts",
+      "expected": 6,
+      "parent": 30,
+      "child": 20
+    }
+  ],
+  "initial_provider_preflight": "Local existing credential/host/thread mapping validation only, inside setup300; zero preflight network. Actual first API remains fixed broker under same original task/common.",
+  "actual_budget_entitlement": "MIN original10800, original task4800, outer supervisor child4770 and all remaining reserves. No child/worker intrinsic clock expands parent entitlement.",
+  "strong_authority": "Actual newly qualified selected CLASS raw recipe or REG recipe/spec, fixed42/43 rows all in qualified independently audited artifact map. Recursive fit_iterations forbidden in cut raw recipes. Full refit only this loop actual42 plus fresh43 recursive median.",
+  "actual_source_qualification": null,
+  "actual_clock": null,
+  "actual_model_fit_count": null,
+  "initial_private_READY": false,
+  "imports_tests_fits_API_data_PID_clock_by_author": 0,
+  "source_revision": "R6_TYPED_POSTFAILURE_SAVED_ARTIFACT_ADMISSION_WITH_R7_AND_AUDITOR_R4",
+  "parent_callback_ledger_semantic_upper": 19204,
+  "finite_physical_bounds": {
+    "whole_RSS_MiB": 2048,
+    "worker_RSS_MiB": 1536,
+    "report_bytes": 33554432,
+    "core_output_file_count": 20000,
+    "artifact_disk_capacity_bytes": null
+  },
+  "physical_bound_scope": "2GiB is whole-process RSS, never a disk allowance. Semantic gateway/parent ceilings do not authorize enlarging report/files/resource bounds.",
+  "completion_time_intent": "Each task actual elapsed>=4715 and report remaining<=85 with actual supervisor end>=task deadline-85; source-defined incomplete cap/early exit cannot qualify.",
+  "post_tool": "After actual wrapper tool EXIT0 run frozen confirm_post_tool.py immediately; same closer-birth60/original10800/savedfinal240 and own30, no new budget.",
+  "source_qualification_mode": "Normal positive standard route unchanged OR exact separately qualified saved artifacts with original RQ6 and RA1 FAIL preserved.",
+  "qualification_paths": "Actual qualified_manifest.output under WORK with exact root/fresh/post roles; no fixed RA1 output.",
+  "historical_time_semantics": "Validate recorded old600/6000 proof clocks and flags only. NEW QH original10800 is independent; no present-wall comparison to old deadlines.",
+  "current_caller_link": "repair_context.current_caller_manifest equals actual qualification_manifest ref."
+}

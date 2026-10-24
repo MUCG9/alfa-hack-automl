@@ -1,0 +1,48 @@
+{
+  "schema": "repaired-standard-solution-delivery-v1",
+  "archive": "solution-br-rmse34.15502-class-fix.zip",
+  "sha256": "eb85becbff8da0be93b97a8dafff108e426cdbed07476ed4f1dc0fb95e73c6fc",
+  "bytes": 173790,
+  "members": 81,
+  "entry": "python3 solution.py task.md",
+  "metrics": {
+    "regression": 34.155023394837,
+    "classification": 0.6557438740449282
+  },
+  "metrics_scope": "Independently recomputed reused public primary and confirmation cuts; not official hidden-test score",
+  "both_standard_solver_exit0": true,
+  "standard_model_calls": 2,
+  "validation_cuts": 4,
+  "full_refit_CSV": 2,
+  "original_119_contracts_passed": true,
+  "additional_no_fit_contracts": 26,
+  "new_audit_model_fits": 0,
+  "source_cleanup_temp": true,
+  "root_sha256": "750f2195266b6b5f87492bed95a6ad1b27fac58c18cfb1b80361e3fa8f974982",
+  "fresh_sha256": "3ef9a0ddf7faa11509f83a381da98f458b3a80cd10a27b39812ba7e09bd9359a",
+  "post_sha256": "3f1daf1780d9115fe3c3d4babc5c49c48dbdf059da54def349b3b3fc185d389b",
+  "actual_driver": {
+    "session": 46536,
+    "exit_code": 0,
+    "tool": "524167"
+  },
+  "actual_wrapper": {
+    "exit_code": 0,
+    "tool": "1efed4"
+  },
+  "actual_post": {
+    "exit_code": 0,
+    "tool": "bf9346"
+  },
+  "qualified_known_post": 8068,
+  "post_preparers": 3,
+  "next_known_union": 8071,
+  "original_RQ6_FAIL_preserved": true,
+  "original_RA1_FAIL_preserved": true,
+  "organizer_original_trace_unavailable": true,
+  "organizer_exact_original_cause_unknown": true,
+  "historical_CLASS_best": 0.6593178433614652,
+  "historical_CLASS_best_retained": false,
+  "upload_performed": false,
+  "default_promotion": false
+}

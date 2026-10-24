@@ -1,0 +1,78 @@
+{
+  "schema": "qwen-binding-preparation-R3-metadata-corrections-source-proof-v1",
+  "status": "SOURCE_ONLY_NOT_EXECUTED",
+  "signature_nodes_AST_sha256": {
+    "SCHEMA_VERSION": "6f371401e6ac33ec477ab298414fd9e799258f8067add45b709c5312104e85d9",
+    "LossProfile": "6bdd9eb7f91e317df0d0505921e2f401387abc5d066d3346b3a5621f36bf9447",
+    "LOSS_PROFILES": "bb01a55b388a3829632a6bb51f1c37a5120a66975cae25df058d04e07360bb4d",
+    "resolve_loss_profile": "2020fea2b28cc291a2b7790b9ebff9b79307a84c632fcd76e615e52069c86bb9",
+    "validate_loss_profiles": "bfeb57816cd8535602ffe8c0c4837d970b98e4bb60b53a9ba8a90c8e0d3c285d",
+    "DataPolicy": "1cb2789e65deade7caf59dc9ed9ba8e090d3d2e12e3b9bb1fa824538898a2a4a",
+    "COMMON_PARAMETERS": "c3e6d25736d48f57d416c01740ccee5ee7c2707d04c5474f38ef743c12c510fc",
+    "MODEL_PARAMETERS": "531ebcae5318300b6b0699515313ea836a060298de341b3b71ebc9f2a0e7e587",
+    "effective_parameters": "4c6b671ea0aed5b2f9fd3d0ff3f702a693a9c7861e35f50e22c0258fa9f93750",
+    "signature": "88fc6b6a799da5bace089d6e5523bab81b648e6a4e193bbf3323a00fff91f24d"
+  },
+  "outer_validator_nodes_AST_sha256": {
+    "need": "159d9d323f4faad09ba0b001b03123990c9b476c5ef982baa948aeb3b8111056",
+    "read": "43377dc7a834255aeb87edf18f1893c185742d5f1b84331f4486f7124d8d75e7",
+    "sha": "1265c7c6f596719559db6f27257124ae58ef9a50c6cec60c461c22693dbd6cda",
+    "imported": "7929d0bddfc04856ec58bb3177425992740ee629ba3fde29f9b5648a65865f61",
+    "qualified": "c80544758caf702a04b1c587b72fcb3aa0c6e0a0c0ec0e454e933277d5a83ca5",
+    "strong_authority": "eebf3626379266e64d0ff41bc08db03496a4a3d0d5615ea3c30620fc1adde21d",
+    "postfailure_qualification": "3a0230f4f6fc542d7e2951d3803ecc8db0c8026a4858092d9fd1fe60dffcf44e",
+    "predecessor": "195ae7e00b878e96772d5b46eb9011139b7248c7c05ce3103e9214266e5f9c34"
+  },
+  "CAPABILITIES_membership_keys": [
+    "catboost",
+    "extra_trees",
+    "lightgbm",
+    "linear_text",
+    "xgboost"
+  ],
+  "CAPABILITIES_membership_equals_registry_ADAPTERS_plus_linear_text": true,
+  "signature_source_closure_exact": true,
+  "validator_functions_whole_AST_exact": true,
+  "signature_JSON": "json.dumps(actual,sort_keys=True,default=str) defaults; NOT canonical compact metadata JSON",
+  "numeric_witness": "exact declared feature/numeric dictionary metadata; unknown or binary omitted",
+  "actual_source_qualification": null,
+  "actual_outer_final_source": null,
+  "actual_clock": null,
+  "execution_imports_tests_fits_API_data_PID_observations": 0,
+  "previous_handoff_sha256": "1e284b0f4f845a2684e07c469a08e8963fc9c03ca57d028f89e3a3d782794dae",
+  "non_main_producer_functions_AST_exact": true,
+  "signature_module_raw_exact_R1": true,
+  "final_outer_handoff": {
+    "path": "qwen-three-hour-outer-next-dev-r6/source-handoff-final.json",
+    "sha256": "d033a8d186a0fd2c1c1a10f407366995d87d256df37660039b6d76a41fae43d9"
+  },
+  "new_mode": "postfailure_saved_standard_artifacts_v1",
+  "original_report_recipe_spec_authority": "Original failed RQ6 campaign and manifest; new qualified root/audit is separate authority. No historical fit_iterations transfer.",
+  "dynamic_qualified_output_and_current_caller_link": true,
+  "historical_deadline_not_current_QH_admission": true,
+  "actual_qualification": null,
+  "actual_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API": 0,
+  "actual_data_NPZ_prediction_truth_reads": 0,
+  "actual_PID_scans": 0,
+  "previous_R2_handoff": {
+    "path": "qwen-three-hour-binding-preparation-next-dev-r2/source-handoff.json",
+    "sha256": "7875b93d9da70460acf39a4879e598ede619cd45835609c3216708617325f856"
+  },
+  "whole_R2_producer_AST_inverse_after_only_CLASS_metadata_forwarding_exact": true,
+  "REG_cut_record_keys_unchanged": [
+    "seed",
+    "path",
+    "sha256"
+  ],
+  "new_CLASS_cut_record_keys": [
+    "independent_fitting_groups",
+    "rarest_fitting_class"
+  ],
+  "metadata_source": "Exact qualified audit.tasks.classification.cuts[phase], same phase/metric/split_file_sha256 and canonical class order/tie; no probability/label/data reads.",
+  "new_pure_fixture_methods_prepared": 2,
+  "new_pure_fixture_methods_executed": 0,
+  "outer_contract_count_unchanged66": true
+}

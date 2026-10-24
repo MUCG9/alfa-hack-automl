@@ -1,0 +1,40 @@
+{
+  "schema": "qwen-three-hour-binding-input-v1",
+  "readiness": "NOT_READY",
+  "missing_bindings": [
+    "Actual new RA1 positive driver/root/fresh/post and exit0 tool evidence; original RQ6 FAIL retained.",
+    "Final outerR6 plus auditorR4 handoffs and independent source peers.",
+    "Root-resolved absolute references, actual original report/spec/cuts and provider request; no campaign clock."
+  ],
+  "reviewed_outer": null,
+  "outer_source_review": null,
+  "qualified_manifest": null,
+  "campaign": null,
+  "source_qualification": {
+    "archive": null,
+    "root": null,
+    "confirmation": null,
+    "post_tool": null,
+    "driver_actual": null,
+    "wrapper_actual": null,
+    "post_tool_actual": null,
+    "mode": "postfailure_saved_standard_artifacts_v1",
+    "original_rq6": {
+      "manifest": null,
+      "campaign": null,
+      "root": null,
+      "negative": null,
+      "post": null,
+      "barrier": null,
+      "regression_seal": null,
+      "classification_seal": null,
+      "old_auditor": null
+    },
+    "qualification_manifest": null
+  },
+  "additional_preparer_receipts": [],
+  "requested_model": null,
+  "reasoning_effort": null,
+  "actual_clock": null,
+  "actual_metrics": null
+}

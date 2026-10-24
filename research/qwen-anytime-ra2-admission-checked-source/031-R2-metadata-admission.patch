@@ -1,0 +1,84 @@
+--- R1/prepare_binding.py
++++ R2/prepare_binding.py
+@@ -1,4 +1,4 @@
+-"""Root-only metadata preparation after the actual positive RQ6 closure.
++"""Root-only metadata preparation after actual positive standard or separate RA1 saved-artifact qualification.
+ 
+ SOURCE ONLY until reviewed. Never starts the 10800 clock, a candidate, API or fit.
+ Only the qualified capture helper and the local stdlib metadata projections load.
+@@ -125,7 +125,7 @@
+     for rel,h in source['external_refs_sha256'].items():pin(WORK/rel,h)
+     pin(PACKET/'source-handoff.json',sha(PACKET/'source-handoff.json'))
+     plan=read(args.plan)
+-    need(plan.get('schema')=='qwen-three-hour-binding-input-v1' and plan.get('readiness')=='ACTUAL_RQ6_METADATA_BOUND'
++    need(plan.get('schema')=='qwen-three-hour-binding-input-v1' and plan.get('readiness') in {'ACTUAL_RQ6_METADATA_BOUND','ACTUAL_RA1_METADATA_BOUND'}
+          and plan.get('missing_bindings')==[],'future_actual_RQ6_metadata_required')
+     need(plan.get('actual_clock') is None and plan.get('actual_metrics') is None,'preparation_must_not_create_experiment_clock_or_metric')
+     for name in ('requested_model','reasoning_effort'):
+@@ -146,17 +146,44 @@
+     for key,value in dict(output=str(WORK/'qh1'),python=str(WORK/'venv/Scripts/python.exe'),
+         canonical_root=str(WORK/'alfa-hack-automl'),lock=str(WORK/'alfa-hack-automl/test-runs/.owned-research.lock')).items():cfg[key]=value
+     refs=plan['source_qualification']
+-    need(set(refs)=={'archive','root','confirmation','post_tool','driver_actual','wrapper_actual','post_tool_actual'},'exact_qualification_roles_required')
++    ra1=refs.get('mode')=='postfailure_saved_standard_artifacts_v1'
++    need(plan.get('readiness')==('ACTUAL_RA1_METADATA_BOUND' if ra1 else 'ACTUAL_RQ6_METADATA_BOUND'),'typed_actual_qualification_mode_required')
++    roles={'archive','root','confirmation','post_tool','driver_actual','wrapper_actual','post_tool_actual'}
++    need(set(refs)==(roles|{'mode','original_rq6','qualification_manifest'} if ra1 else roles),'exact_qualification_roles_required')
+     for name in ('archive','root','confirmation','post_tool'):
+         ref=exact_ref(refs[name]);pin(ref['path'],ref['sha256'])
+     need(refs['archive']['sha256']==ARCHIVE_SHA,'exact_RQ6_candidate_archive_required')
+     root,fresh,post=(checked_json(refs[key]) for key in ('root','confirmation','post_tool'))
+     qualified_manifest=checked_json(plan['qualified_manifest']);campaign=checked_json(plan['campaign'])
+-    need(Path(plan['campaign']['path'])==WORK/'rq6/campaign.json'
+-         and Path(refs['root']['path'])==WORK/'rq6/terminal-root-closure.json','fixed_actual_RQ6_roles_required')
+-    need(campaign.get('manifest_sha256')==root.get('manifest_sha256')==plan['qualified_manifest']['sha256']
+-         and campaign.get('status')=='completed_pending_root' and campaign.get('error_history')==[],
+-         'actual_campaign_manifest_and_positive_terminal_required')
++    need(Path(plan['campaign']['path'])==WORK/'rq6/campaign.json','fixed_original_RQ6_campaign_required')
++    if ra1:
++        need(refs['original_rq6'].get('manifest')==plan['qualified_manifest']
++             and refs['original_rq6'].get('campaign')==plan['campaign']
++             and campaign.get('status')=='failed' and campaign.get('manifest_sha256')==plan['qualified_manifest']['sha256'],
++             'RA1_uses_original_failed_campaign_without_relabel')
++        qualification_manifest=checked_json(refs['qualification_manifest'])
++        need(root.get('schema')=='postfailure-standard-artifact-qualification-root-v1'
++             and root.get('manifest_sha256')==refs['qualification_manifest']['sha256']
++             and qualification_manifest.get('readiness')=='READY_REVIEWED_FROZEN'
++             and Path(qualification_manifest.get('output','')).is_absolute()
++             and Path(qualification_manifest['output']).resolve()==Path(qualification_manifest['output'])
++             and Path(qualification_manifest['output'])!=WORK and Path(qualification_manifest['output']).is_relative_to(WORK)
++             and Path(refs['root']['path'])==Path(qualification_manifest['output'])/'terminal-root-closure.json'
++             and Path(refs['confirmation']['path'])==Path(qualification_manifest['output'])/'root-confirmation.json'
++             and Path(refs['post_tool']['path'])==Path(qualification_manifest['output'])/'actual-wrapper-exit-confirmation.json',
++             'actual_RA1_private_root_binding_required')
++        pin(refs['qualification_manifest']['path'],refs['qualification_manifest']['sha256'])
++        for path,h in qualification_manifest['immutable_files'].items():pin(path,h,verify=False)
++        for ref in refs['original_rq6'].values():
++            exact_ref(ref);pin(ref['path'],ref['sha256'])
++        for row in campaign['supervisors']:
++            pin(absolute(row['path']),row['sha256'])
++        context_ref=exact_ref(root['repair_context']);pin(context_ref['path'],context_ref['sha256'])
++    else:
++        need(Path(refs['root']['path'])==WORK/'rq6/terminal-root-closure.json'
++             and campaign.get('manifest_sha256')==root.get('manifest_sha256')==plan['qualified_manifest']['sha256']
++             and campaign.get('status')=='completed_pending_root' and campaign.get('error_history')==[],
++             'actual_campaign_manifest_and_positive_terminal_required')
+     for ref in (plan['qualified_manifest'],plan['campaign']):pin(ref['path'],ref['sha256'])
+     need(qualified_manifest.get('readiness')=='READY_REVIEWED_FROZEN'
+          and qualified_manifest.get('output')==str(WORK/'rq6')
+@@ -168,9 +195,14 @@
+     # producer schema and project only the existing path/SHA for a typed ref.
+     audit_ref=exact_ref({key:root['independent_audit'][key] for key in ('path','sha256')})
+     audit=checked_json(audit_ref);pin(audit_ref['path'],audit_ref['sha256'])
+-    need(audit.get('schema')=='standard-repair-artifact-audit-v1' and audit.get('artifact_procedure_passed') is True
++    need(audit.get('schema')==('postfailure-standard-artifact-audit-v1' if ra1 else 'standard-repair-artifact-audit-v1') and audit.get('artifact_procedure_passed') is True
+          and audit.get('archive_sha256')==ARCHIVE_SHA and audit.get('manifest_sha256')==plan['qualified_manifest']['sha256']
+          and audit.get('audit_within_original_common_clock') is True,'actual_independent_archive_artifact_qualification_required')
++    if ra1:
++        need(audit.get('repair_context_sha256')==root['repair_context']['sha256']
++             and audit.get('audit_within_repair_clock') is True
++             and audit.get('original_RQ6_procedure_requalified') is False and audit.get('original_failure_preserved') is True,
++             'actual_new_RA1_audit_preserves_old_FAIL')
+     actual=audit['actual_artifact_sha256'];need(type(actual) is dict,'actual_artifact_map_required')
+     cfg['source_qualification']=refs
+     # Exact copied outer predecessor/strong-authority functions; no outer import.

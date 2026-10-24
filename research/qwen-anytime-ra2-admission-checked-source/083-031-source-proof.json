@@ -1,0 +1,67 @@
+{
+  "schema": "qwen-three-hour-auditor-Q3A01-R2-source-proof-v1",
+  "status": "SOURCE_ONLY_NOT_EXECUTED",
+  "changed_existing_definitions": [
+    "LiteralCSV",
+    "verify_task"
+  ],
+  "new_definition": "exact_csv_roles",
+  "whole_module_inverse_to_R1_AST_exact": true,
+  "R1_AST_sha256": "19c27515db97b7ae707b038200bca03b5af841fea1e86e47c6600a564299eb2b",
+  "source_AST": {
+    "audit_final.py": {
+      "sha256": "2f5ccf71530a16c4dc62219c5f64b42d96b1ef8f7d9a3f02736abc422e0639e5",
+      "AST_sha256": "a66b34eb90c67b660e390a64386327c82272bdc3bf9d72c8c27a74bea0d8f1da"
+    },
+    "freeze_r2.py": {
+      "sha256": "fd675839af7ac945e74d8e72ec8242c5292398b1d4b134743558e7f09f5f8110",
+      "AST_sha256": "929ef07c6849c6a5ca1186612a8c2ecee0fc769f1c19c00594d99965eb54267a"
+    },
+    "r4_primitives.py": {
+      "sha256": "d89a8024539eedb6daae9777ae3bd6a4f826da54265df4828a73caf10e94b371",
+      "AST_sha256": "b2db669ddb3da0286f63cf63f5bf48f61fdefdb98a11115686351539e66f6162"
+    },
+    "test_audit_contracts.py": {
+      "sha256": "4a71a1a76ca92ef2d2aaa696616cb7fe6349ef0afbd03d2088820134ba066132",
+      "AST_sha256": "0d5dd25eb4f9162254584a67e4919be761038f4849595651db1924257d33d028"
+    },
+    "test_csv_role_contracts.py": {
+      "sha256": "d2905f8bcddaad53f0fb25c8efaf64aec8fa6c0822b64b17bf23c7ba4ecabe07",
+      "AST_sha256": "e7ea622ceb22f2d7d24d6022dee85853c7c288e1e218032161440819f1f8d15b"
+    }
+  },
+  "primitive_bytes_and_all_R4_formulas_assertions_exact": true,
+  "old15_test_source_bytes_and_methods_AST_exact": true,
+  "prepared_method_count": 17,
+  "methods_AST_sha256": {
+    "IndependentAuditContracts.test_both_complete_seals_before_any_numerical_import": "d0fd411315851f02b8c2958cb09da32d5adab77e58696ab9a84a758e6a118313",
+    "IndependentAuditContracts.test_unsealed_extra_file_or_swapped_terminal_rejected": "92ee11c7771f3d76132d90ea94ce9fb9d4b8f9e4412a69bc69e4aeaf4bf40ccb",
+    "IndependentAuditContracts.test_JSON_duplicate_nonfinite_and_bounded_size_fail_closed": "7724c7d3222ef5c775c2559ca0abc045594736b308602239969c641704711904",
+    "IndependentAuditContracts.test_callback_count_never_becomes_learner_fit_count": "1f6c0507c9e0406086b4cfbf61ef7673d19e81719df5fc7d800c41a8a096f205",
+    "IndependentAuditContracts.test_late_timeout_resource_origin_stays_technical_STOP": "4d0285db16596579dbe135bad98448795ae125cab27fd527df80cb48c22b3db3",
+    "IndependentAuditContracts.test_success_requires_actual_raw_roles_exit_and_terminal": "3ed1054c0ad014fc8ca74821aa7fd2043e60e5220fabe73a088230aa9fb8c204",
+    "IndependentAuditContracts.test_parent_source_union_duplicate_and_output_roles_rejected": "79e881a86ce33caa73031eeceab426a65c889048659ed6907122b860c127c2f2",
+    "IndependentAuditContracts.test_failed_timeout_NULL_duplicate_and_actual_attempts_separate": "8737177ed8477aee1ed41d44ed964a5fc2921bc8955f1eb32280809ffc4a9893",
+    "IndependentAuditContracts.test_invalid_proposal_cannot_claim_callback_or_completed_score": "fcaae661adc4ac074030435f5d503435804924645579383d6450299929f365cf",
+    "IndependentAuditContracts.test_actual_HTTP_usage_complete_and_reasoning_not_attested": "3cc72003f3bd9e4a14e62ca92c852a265a292fa022928358b253668831909ddf",
+    "IndependentAuditContracts.test_incomplete_usage_and_reported_counter_mismatch_STOP": "39e93e039fc5109bf42320f58f74ca775c2b56203056345754cf0ad6157830a4",
+    "IndependentAuditContracts.test_original_clock_reserves_rollback_and_no_reset": "53f06208ca084b0af1ecce812386843c37324e93608d0e1968baea6fe91c84a0",
+    "IndependentAuditContracts.test_qualification_requires_final_posttool_not_pending_atomic": "e47c8e12ae6d6200d1478c14990950488bcf8f4d9ba64c3d6ab24374671658f4",
+    "IndependentAuditContracts.test_pretruth_failure_emits_NULL_without_numerical_import": "cd54b1a676351d3b7c68aaa0dc68dc4648f998508a4d50d784cbbcfc6fe489ae",
+    "IndependentAuditContracts.test_reused_R4_requires_both_cuts_and_supported_class_protection": "3ea195973f38f9bf9cee98addcd921133db5ca59e2972212f3b3bf904a8a6234",
+    "CSVRoleContracts.test_native_numeric_prediction_name_collisions_and_lexical_labels": "a99702c98e02f905a67453b11577a169b6c7fa2f1a4d3e2a951ee38e6efc0bf7",
+    "CSVRoleContracts.test_mock_exact_path_role_controls_converters_not_filename_or_column_name": "dd1517035a5145863fdf0084b728124753c31f633256ccc674a54aa714c2e294"
+  },
+  "correction": "exact resolved path+role converter map; pristine CLASS train target+ID only, test/sample ID only; sealed worker prediction roles get output or y_true/y_pred literals",
+  "new_fixtures": [
+    "native pandas numeric y_true/y_pred/output collision unchanged vs native baseline; lexical001/NA train/submission/validation preserved; numeric REG output remains native",
+    "mock unknown same-basename path rejected before parse; exact role converter set and extraneous numeric-predictor converter rejected"
+  ],
+  "actual_tests_executed": 0,
+  "actual_candidate_imports": 0,
+  "actual_data_or_array_reads": 0,
+  "actual_fits": 0,
+  "actual_API_calls": 0,
+  "source_preparation": "stdlib metadata/hash/AST/compile-as-text only",
+  "actual_ready_clock_root_archive": null
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "QHPR01-producer-external-path-correction-v1",
+  "old_handoff_sha256": "7875b93d9da70460acf39a4879e598ede619cd45835609c3216708617325f856",
+  "changes": [
+    {
+      "old": "work/qwen-three-hour-independent-audit-next-dev-r3/source-handoff.json",
+      "new": "qwen-three-hour-independent-audit-next-dev-r3/source-handoff.json",
+      "sha256": "cc220ce9242b8b97a4e014dd29e62bc88c66623729caf31ad24c775a02ff72f1"
+    },
+    {
+      "old": "work/qwen-three-hour-independent-audit-next-dev-r3/audit_final.py",
+      "new": "qwen-three-hour-independent-audit-next-dev-r3/audit_final.py",
+      "sha256": "d2496c1b4c751f75a50324cee820c7b2d29b447d40294108320c18fa6ae9a129"
+    },
+    {
+      "old": "work/qwen-three-hour-independent-audit-source-review-r3.json",
+      "new": "qwen-three-hour-independent-audit-source-review-r3.json",
+      "sha256": "ab30e5cfb39b8a04935553fe628373e8aabe5fcdf9bbfdfe3888d9451c90e4f1"
+    },
+    {
+      "old": "work/rq6-saved-artifact-qualification-next-dev-r2/source-handoff.json",
+      "new": "rq6-saved-artifact-qualification-next-dev-r2/source-handoff.json",
+      "sha256": "2b024a6327cb86004f026dd973cc9222182b6c72915d004e3f945e13e4d5c7a1"
+    },
+    {
+      "old": "work/ra1-caller-audit-contract-source-review-r2.json",
+      "new": "ra1-caller-audit-contract-source-review-r2.json",
+      "sha256": "eca488e7884b534f1042bfa25165954cb3f6c79e7c02df9f65e033cf17e0a422"
+    },
+    {
+      "old": "work/rq6-no-fit-audit-repair-next-dev/source-handoff.json",
+      "new": "rq6-no-fit-audit-repair-next-dev/source-handoff.json",
+      "sha256": "9d71e51c509eb9119381c22500b5b0470e4d2703616f1271deac6df9c6eddfdc"
+    },
+    {
+      "old": "work/rq6-no-fit-audit-repair-fm-independent-review-r1.json",
+      "new": "rq6-no-fit-audit-repair-fm-independent-review-r1.json",
+      "sha256": "d50cdc35a956269542745d0212f2ccab1d4e667b61e4c6127db353a2f5339ef7"
+    }
+  ],
+  "main_code_delta_only_CLASS_protection_metadata_forwarding": true,
+  "default_runtime_clocks_caps_signature_formulas_unchanged": true,
+  "actual_execution": 0
+}

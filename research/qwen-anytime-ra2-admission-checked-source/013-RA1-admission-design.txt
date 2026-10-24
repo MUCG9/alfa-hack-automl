@@ -1,0 +1,1 @@
+SOURCE ONLY. New typed RA1 saved-artifact qualification; original RQ6 FAIL unchanged. Original positive predecessor and strong_authority are retained. CoreR7/model/evaluator/provider/caps/clocks unchanged. No actual RA1 values are fabricated.

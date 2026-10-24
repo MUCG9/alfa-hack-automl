@@ -1,0 +1,77 @@
+{
+  "schema": "qwen-three-hour-independent-artifact-audit-protocol-v1",
+  "status": "FROZEN_R3_SOURCE_ONLY_NOT_READY",
+  "common_seconds": 10800,
+  "audit_parent_seconds": 600,
+  "auditor_child_seconds": 570,
+  "cleanup_reserve_seconds": 300,
+  "root60_inside_cleanup300": true,
+  "task_order": [
+    "regression",
+    "classification"
+  ],
+  "actual_clock": null,
+  "task_row_fields": [
+    "kind",
+    "task_manifest",
+    "spec",
+    "output",
+    "report",
+    "terminal",
+    "supervisor",
+    "seal"
+  ],
+  "core_seal_schema": "qwen-three-hour-task-core-seal-v1",
+  "core_seal_fields": [
+    "schema",
+    "kind",
+    "task_manifest",
+    "output",
+    "files_sha256",
+    "immutable_files_sha256"
+  ],
+  "parent_result_schema": "qwen-three-hour-parent-result-v1",
+  "actual_parent_callback_count_separate_from_actual_learner_fit_count": true,
+  "all_immutable_sources_inputs_two_task_manifests_and_both_complete_output_trees_before_truth": true,
+  "independent_cut_audit": "selected and actual initial strong control on SAME fixed42/43; fresh selected43; recursive median of actual42+fresh43 then fullrefit CSV",
+  "cut_jobs_fit_iterations": null,
+  "legacy_R4_formulas_unchanged": true,
+  "class_gates": "strict MacroF1 improvement on BOTH cuts; inherited support>=100 loss tolerance0.01 and positive ex-rarest delta on BOTH",
+  "regression_gate": "strict RMSE improvement on BOTH cuts; no mean-selected exception",
+  "quality_global_AND_is_conservative_summary_only": true,
+  "per_task_comparisons_retained": true,
+  "technical_success_does_not_require_quality_improvement": true,
+  "requested_reasoning_is_backend_attestation": false,
+  "complete_actual_HTTP_attempts_and_token_usage_required": true,
+  "failures_and_missing_bindings": "STOP; all comparative/quality metrics NULL",
+  "API_calls": 0,
+  "new_model_fits": 0,
+  "promotion": false,
+  "submit": false,
+  "resource_scope": "actual parent/supervisor sampled stable known RSS; not OS lifetime peak or complete external measurement",
+  "adaptive_validation": "inner-loop feedback and final cuts reuse public validation; independent final rescore is not blind/official",
+  "actual_runtime_result": null,
+  "actual_archive_qualification": null,
+  "prepared_contracts": 25,
+  "actual_contracts_executed": 0,
+  "Q3A01": "exact path and role only; no blanket output/y_true/y_pred converters on pristine predictors",
+  "producer_report_schema": "qwen-iterative-task-v2-anytime",
+  "producer_core": {
+    "path": "work/qwen-three-hour-autoresearch-next-dev-r6/source-handoff-final.json",
+    "sha256": "226a4100ed0ca4c51d857b64f5e77f3dad38e7dde6fe5b386d5c83a42a4021b6"
+  },
+  "producer_core_review": {
+    "path": "work/qwen-three-hour-autoresearch-independent-review-r6.json",
+    "sha256": "51f7a7e16429f647c4710b0d6298e4527702d7f4de9d7d6ed9daaaa10d065179"
+  },
+  "semantic_bounds": {
+    "gateway": 4800,
+    "parent_callback": 19204
+  },
+  "core_file_limit": 20000,
+  "selected_rule": "Exact last completed current-run checkpoint; all primary/freshconfirmation/median/full refs match actual parent ledgers.",
+  "unfinalized_rule": "Ordinary confirmed timeout/invalid/quality/budget leaves previous complete selection; scoresNULL and every actualcallback accounted.",
+  "time_goal": "Actual original task admission margin<=85s and elapsed>=4715, plus observed task supervisor end>=original task deadline-85.",
+  "actual_total_disk_capacity_qualified": null,
+  "actual_learner_fits": null
+}

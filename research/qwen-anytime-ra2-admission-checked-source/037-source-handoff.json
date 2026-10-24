@@ -1,0 +1,36 @@
+{
+  "schema": "qwen-exact-metadata-preflight-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_PENDING_INDEPENDENT_PEER",
+  "files_sha256": {
+    "preflight.py": "a830f4b24f655795ad30b73298eb469abdabdc724ff05f1a691d6b1a334161a0",
+    "README.txt": "98a14138052951bbcb26517eae85c2a2dc9daa6b169e07b9612221034fa08120",
+    "source-proof.json": "44de89f72fbdf8d99645813e11b132289151027a012bf6009a2e5751d306b0a5"
+  },
+  "external_refs_sha256": {
+    "qwen-three-hour-outer-next-dev-r5/run_campaign.py": "283b92ddbcc474c734aa4ce84b083ed09e7eca04e110d680c046ea3a2db50130",
+    "qwen-three-hour-outer-next-dev-r5/source-handoff.json": "f19d42fbc9c641a7a055b085dafce66f9f089ca5d895f935f9128397bace8b69",
+    "qualification-metadata-preflight-r4.py": "05b0701e0c2c9bc74c1ac7e4f211c1fad06884005cb1bc4d0b3c0df8de437a7f",
+    "br-standard-release-qualification-next-dev/controller-r5/run_controller.py": "d5f41cad6de2168cd520e442223428285dd3714854079d9305dd1b34938abd7d",
+    "qwen-three-hour-outer-next-dev-r6/source-handoff-final.json": "d033a8d186a0fd2c1c1a10f407366995d87d256df37660039b6d76a41fae43d9",
+    "qwen-three-hour-outer-next-dev-r6/run_campaign.py": "714c83160cc0bdb625b6f294f4b76a4f40cc91cc0d4b9683b71ec9d20431823e",
+    "qwen-three-hour-metadata-preflight-next-dev/source-handoff.json": "8214a3d001f62dc2c36d2bddc96a49595bf21968a0119cfc4d63e30192c65753",
+    "qh-outer-producer-audit-contract-source-review-r2.json": "d53c1c2e7bb360e082a83c67fccaefba78210be2d3074b43180462d64678b31f",
+    "qwen-three-hour-metadata-preflight-next-dev/preflight.py": "62b3b5fd2296d7ddf1841020aeffdba35c5426bf649e8893d48221b58b68a53f",
+    "qwen-three-hour-metadata-preflight-next-dev/source-proof.json": "c9d3e28910670b169e2837e7a6dc8d49e678a35959dc609d9df2605a4a4e202f",
+    "qwen-three-hour-metadata-preflight-next-dev/README.txt": "58e7ab0adf4f07522c6c8c3639f1da3c1cc6c94c606a5ad23484ee32833fae22",
+    "qh-metadata-preflight-fm-independent-review-r1.json": "2d804366f9e8a3ffdc4b2ff08642a6640624fa0e9893cfab20c7329967855bbe",
+    "prepare-qh-metadata-utility-r2.py": "71430435f64b9b2cdade1ac342bfd055cdca6591e09672c75c609ea6311027b6",
+    "finalize-qh-metadata-utility-r2.py": "07887f3162c334a3c0fa791259bc1321e22847f4be02cae715b1e7ac84874529"
+  },
+  "prepared_utility_executions": 0,
+  "actual_utility_executions": 0,
+  "actual_experiment_clock": null,
+  "actual_private_READY": null,
+  "author_candidate_controller_imports_tests_fits_API_data_PID_clock": 0,
+  "reviewed_handoff": {
+    "path": "work/qwen-three-hour-outer-next-dev-r6/source-handoff-final.json",
+    "sha256": "d033a8d186a0fd2c1c1a10f407366995d87d256df37660039b6d76a41fae43d9"
+  },
+  "projected_function_count": 9,
+  "projected_global_assignment_count": 14
+}

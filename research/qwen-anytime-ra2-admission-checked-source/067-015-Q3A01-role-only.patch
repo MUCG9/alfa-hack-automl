@@ -1,0 +1,83 @@
+--- frozen-r1/audit_final.py
++++ r2/audit_final.py
+@@ -115,17 +115,26 @@
+ 
+ class LiteralCSV:
+     """Preserve independent labels/IDs; leave all numeric predictor parsing alone."""
+-    def __init__(self,pandas,spec):self.pandas=pandas;self.spec=spec
++    def __init__(self,pandas,spec,csv_roles):
++        self.pandas=pandas;self.spec=spec;self.csv_roles=dict(csv_roles)
+     def __getattr__(self,name):return getattr(self.pandas,name)
+     def read_csv(self,path,*args,**kwargs):
+-        converters=dict(kwargs.get('converters') or {})
++        role=self.csv_roles.get(str(Path(path).resolve()))
++        need(role in {'train','test','sample_submission','submission','validation_predictions'},
++             'exact_CSV_path_and_role_required')
++        literal=set()
+         identifier=self.spec.get('id')
+-        if identifier is not None:converters[identifier]=str
++        if identifier is not None and role!='validation_predictions':literal.add(identifier)
+         if self.spec['kind']=='classification':
+-            for name in ('y_true','y_pred',*self.spec['output_columns']):converters[name]=str
+-        kwargs['converters']=converters
++            if role=='train':literal.add(self.spec['target'])
++            elif role=='submission':literal.update(self.spec['output_columns'])
++            elif role=='validation_predictions':literal.update(('y_true','y_pred'))
++        requested=dict(kwargs.get('converters') or {})
++        need(all((name in literal or name is None and identifier is None) and converter is str
++             for name,converter in requested.items()),'CSV_converter_outside_exact_declared_role')
++        kwargs['converters']={name:str for name in literal}
+         frame=self.pandas.read_csv(path,*args,**kwargs)
+-        declared=[name for name in converters if name in frame]
++        declared=[name for name in literal if name in frame]
+         if declared:
+             with Path(path).open(encoding='utf-8-sig',newline='') as stream:
+                 reader=csv.DictReader(stream)
+@@ -137,6 +146,26 @@
+                     for name in declared:witness[name].append(row[name])
+             need(all(frame[name].tolist()==witness[name] for name in declared),'literal_class_or_ID_drift')
+         return frame
++
++
++def exact_csv_roles(spec,parents,seal):
++    """Bind pristine roles and sealed worker-result sibling prediction paths."""
++    roles={}
++    def add(path,role):
++        resolved=str(Path(path).resolve())
++        need(Path(path).is_absolute() and (resolved not in roles or roles[resolved]==role),
++             'CSV_role_paths_must_be_absolute_and_nonconflicting')
++        roles[resolved]=role
++    for role in ('train','test','sample_submission'):add(spec['paths'][role],role)
++    roots={Path(parent['result']['output_dir']).resolve() for parent in parents}
++    for path in seal['files_sha256']:
++        result=Path(path)
++        if result.name!='result.json' or not roots.intersection(result.resolve().parents):continue
++        folder=result.parent
++        for name,role in [('submission.csv','submission'),('validation_predictions.csv','validation_predictions')]:
++            prediction=str(folder/name)
++            if prediction in seal['files_sha256']:add(prediction,role)
++    return roles
+ 
+ 
+ def parent_records(row,report,taskcfg,seal,check,terminal_check):
+@@ -326,14 +355,13 @@
+     roles=spec['paths'];required={'train','test','sample_submission'}
+     need(required<=set(roles),'explicit_input_roles_required')
+     for role in required:need(roles[role] in cfg['immutable_files'],'independent_truth_role_not_pretruth_bound')
+-    converters={spec['id']:str} if spec.get('id') is not None else {}
+-    if spec['kind']=='classification':converters[spec['target']]=str
+-    parser=LiteralCSV(r4.pd,spec)
+-    train=parser.read_csv(roles['train'],converters=converters)
+-    test=parser.read_csv(roles['test'],converters=converters)
+-    sample=parser.read_csv(roles['sample_submission'],converters=converters)
++    csv_roles=exact_csv_roles(spec,parents,seal)
++    parser=LiteralCSV(r4.pd,spec,csv_roles)
++    train=parser.read_csv(roles['train'])
++    test=parser.read_csv(roles['test'])
++    sample=parser.read_csv(roles['sample_submission'])
+     if spec['kind']=='classification':need(all(value!='' for value in train[spec['target']]),'empty_class_not_supported')
+-    check();actual_pd=r4.pd;r4.pd=LiteralCSV(actual_pd,spec)
++    check();actual_pd=r4.pd;r4.pd=parser
+     try:
+         verifier=r4.TaskVerifier(Path(row['output']),dict(spec=spec),train,test,sample)
+         cuts={};controls={}

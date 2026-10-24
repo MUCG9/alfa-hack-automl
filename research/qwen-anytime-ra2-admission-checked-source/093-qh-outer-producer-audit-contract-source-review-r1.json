@@ -1,0 +1,60 @@
+{
+  "schema": "QH-outer-and-producer-independent-source-review-v1",
+  "result": "BLOCKED_ONE_METADATA_HANDOFF_PATH_FINDING",
+  "reviewed_handoff": {
+    "path": "work\\qwen-three-hour-outer-next-dev-r6\\source-handoff.json",
+    "sha256": "ed15b9eeb78b91badccc91bad0fa6a61cbd9ca534504dbe4c3fbdd39a331cf12"
+  },
+  "reviewed_producer_handoff": {
+    "path": "work/qwen-three-hour-binding-preparation-next-dev-r2/source-handoff.json",
+    "sha256": "7875b93d9da70460acf39a4879e598ede619cd45835609c3216708617325f856"
+  },
+  "all_raw_pins_exact_when_reference_origins_respected": {
+    "outer_local": 20,
+    "outer_external": 612,
+    "producer_local": 9,
+    "producer_external": 645
+  },
+  "outer_whole_R5_AST_inverse_exact": true,
+  "other4_runtime_raw_exact_R5": true,
+  "producer_all_nonmain_definitions_AST_exact_R1": true,
+  "producer_8_metadata_validator_functions_whole_AST_exact_outer": true,
+  "old3_broker_AST_and_old6_atomic_raw_exact": true,
+  "new_broker_meaningful_current_proof_rejections": true,
+  "all9_contract_AST_maps_exact": true,
+  "prepared_counts": [
+    2,
+    1,
+    4,
+    18,
+    4,
+    25,
+    2,
+    4,
+    6
+  ],
+  "prepared_total": 66,
+  "serial_parent_maxima270": true,
+  "findings": [
+    {
+      "id": "QHPR01",
+      "kind": "preparer_source_metadata_path_applicability",
+      "severity": "P1",
+      "detail": "Both issued handoff external maps contain7 workspace-relative work/... keys; producer main lines125 and276 unconditionally prepend WORK and therefore request nonexistent WORK/work/... paths. All referenced actual files have the expected raw hashes at their correct origin. No preparer ran.",
+      "minimum_repair": "Preserve issued freezes; append-only corrected outer final handoff with exactly7 keys normalized to WORK-relative. Producer own hardcoded source-handoff.json requires a NEW producer directory with rawidentical runtime and normalized metadata handoff/dependency cascade. No recipe/model/controller policy change needed."
+    }
+  ],
+  "other_scoped_blockers": [],
+  "reviewed_safety": [
+    "Original standard positive admission route exact and separate from typed postfailure route.",
+    "OriginalRQ6 fixed9refs/failed119+bothsuccessfulsealedtasks/negative8016 lineage preserved; newqualifiedroot/privatecontext/currentcaller/actualdriver/atomic/postfullunion bound.",
+    "Qualified output is exact resolved ABS WORKsubtree with matching root/fresh/post filenames; supports RA2 without fakeRA1PASS.",
+    "Historical600/6000 bound flags checked only as saved qualification proof; no current QH admission against expired historical clocks.",
+    "10800 equal task4800+4800/setup300/audit600/final240/root60 and provider/research/core/auditor caps unchanged.",
+    "Current role/spec/rawstrongrecipe/hash witnesses originate from actual originalreport/cuts; no historical fit_iterations transfer.",
+    "Signature/source closure remains exact; no Qwen/generated authority or sourceclock/ownership fiction."
+  ],
+  "actual_qualification": null,
+  "actual_clock": null,
+  "actual_candidate_imports_tests_fits_API_data_arrays_truth_metrics_PIDscans": 0
+}

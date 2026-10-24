@@ -1,0 +1,25 @@
+{
+  "schema": "QH-source-interface-finding-addendum-v1",
+  "prior_review_sha256": "dd158be0636cdfd49246a00d1a51771be99ac3d17f08d7bde01507ddad26c2e0",
+  "new_finding": {
+    "id": "QHPR02",
+    "severity": "P1",
+    "kind": "producer_to_core_missing_typed_CLASS_cut_authority",
+    "producer_cut_fields_AST_derived": [
+      [
+        "seed",
+        "path",
+        "sha256"
+      ]
+    ],
+    "core_protected_CLASS_cut_keys_AST_derived": [
+      "independent_fitting_groups",
+      "rarest_fitting_class"
+    ],
+    "trigger": "An improving CLASS pair that reaches keep_candidate protected-class loop accesses missing keys; zero improvement can avoid that branch.",
+    "minimum_root_authorized_repair": "New producerR3 copies both fields for CLASS cuts only from already-qualified independent audit diagnostics, validates exact class keyset, nonnegative int counts and rarest class membership with phase/cut binding; REG and model/space/caps unchanged.",
+    "root_reports_qualified_both_cut_diagnostics_present": true,
+    "independent_actual_values_or_metrics_read": false
+  },
+  "actual_imports_tests_fits_API_arrays_truth_PIDscans": 0
+}

@@ -1,0 +1,37 @@
+--- R2/prepare_binding.py
++++ R3/prepare_binding.py
+@@ -94,6 +94,20 @@
+     return numeric,dict(schema='explicit-dictionary-numeric-witness-v1',source=dict(path=str(path),sha256=sha(path)),
+         rule='role exactly feature AND dtype exactly numeric; intersection in qualified spec.features order',
+         numeric_features=numeric,unresolved_or_non_numeric=[name for name in features if name not in numeric])
++
++
++def class_cut_protection(diagnostic,classes,phase,split_sha256):
++    """Copy only protection authority from the exact qualified same-cut audit."""
++    need(type(classes) is list and len(classes)>1 and len(classes)==len(set(classes))
++         and all(type(c) is str for c in classes),'qualified_canonical_CLASS_order_required')
++    support=diagnostic.get('independent_fitting_groups');rarest=diagnostic.get('rarest_fitting_class')
++    need(diagnostic.get('phase')==phase and phase in ('primary','confirmation')
++         and diagnostic.get('metric')=='macro_f1' and diagnostic.get('split_file_sha256')==split_sha256
++         and diagnostic.get('feature_groups_disjoint') is True
++         and type(support) is dict and set(support)==set(classes)
++         and all(type(support[c]) is int and support[c]>=0 for c in classes)
++         and rarest==min(classes,key=lambda c:support[c]),'exact_qualified_CLASS_cut_protection_required')
++    return dict(independent_fitting_groups=dict(support),rarest_fitting_class=rarest)
+ 
+ 
+ def main():
+@@ -246,9 +260,11 @@
+             recipe_signature=signer.signature(recipe),qualified_root_sha256=refs['root']['sha256'],source_report=report_ref,
+             numeric_feature_witness=witness,scope='Actual qualified raw selected recipe; deployment iteration trees never transferred.')
+         cuts=[]
+-        for seed,name in zip((42,43),('primary-split.npz','confirmation-split.npz') if kind=='regression' else ('split.npz','confirmation_split.npz')):
++        for seed,name,phase in zip((42,43),('primary-split.npz','confirmation-split.npz') if kind=='regression' else ('split.npz','confirmation_split.npz'),('primary','confirmation')):
+             path=str(Path(report_path).parent/name);h=actual.get(path);need(valid_sha(h),'actual_qualified_split_metadata_required')
+-            pin(path,h,verify=False);cuts.append(dict(seed=seed,path=path,sha256=h))
++            pin(path,h,verify=False);cut=dict(seed=seed,path=path,sha256=h)
++            if kind=='classification':cut.update(class_cut_protection(audit['tasks'][kind]['cuts'][phase],spec['classes'],phase,h))
++            cuts.append(cut)
+         task=dict(kind=kind,metric=spec['metric'],greater_is_better=spec['greater_is_better'],features=list(features),
+             numeric_features=numeric,forbidden_columns=forbidden,strong_recipe=recipe,cuts=cuts,
+             source_unchanged=True,authority_resolved=True,context_flag=False,selector_cache_flag=False)

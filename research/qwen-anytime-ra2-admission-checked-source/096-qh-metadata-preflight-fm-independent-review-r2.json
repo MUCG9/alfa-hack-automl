@@ -1,0 +1,46 @@
+{
+  "schema": "qwen-exact-metadata-preflight-R2-FM-independent-source-review-v1",
+  "result": "NO_SCOPED_SOURCE_BLOCKER",
+  "reviewed_handoff": {
+    "path": "work/qwen-three-hour-metadata-preflight-next-dev-r2/source-handoff.json",
+    "sha256": "64695251a1cf03cf3aae74b0436fe6237bb3a39d43b931fd60283ba386442ad6"
+  },
+  "utility_sha256": "a830f4b24f655795ad30b73298eb469abdabdc724ff05f1a691d6b1a334161a0",
+  "verified_local_pins": 3,
+  "verified_external_pins": 14,
+  "pin_mismatches": [],
+  "whole_R1_utility_inverse_raw_bytes_exact": true,
+  "exact_projected_function_count": 9,
+  "exact_transitive_assignment_count": 14,
+  "entire_function_AST_hashes_reproduced": true,
+  "entire_global_AST_hashes_reproduced": true,
+  "source_node_order_AST_hash_reproduced": true,
+  "actual_source": {
+    "path": "work/qwen-three-hour-outer-next-dev-r6/run_campaign.py",
+    "sha256": "714c83160cc0bdb625b6f294f4b76a4f40cc91cc0d4b9683b71ec9d20431823e",
+    "final_handoff_sha256": "d033a8d186a0fd2c1c1a10f407366995d87d256df37660039b6d76a41fae43d9",
+    "peer_sha256": "d53c1c2e7bb360e082a83c67fccaefba78210be2d3074b43180462d64678b31f"
+  },
+  "io_boundary": "Exact immutable allowlist opaque SHA streams <=1MiB; only pinned JSON/Python decoded <=32MiB, direct payload reads denied; same own30 metadata interval with rollback checks.",
+  "import_boundary": "No controller/candidate import. Only exact hash-bound C5 metadata helper and ids function, unchanged from R1.",
+  "time_boundary": "Projects unchanged exact config/predecessor including typed saved RA2 qualification. Stored historical600/6000 proofs never become current NEW QH10800 admission deadlines; no campaign clock assigned.",
+  "cli": [
+    "ABS_controller.py",
+    "ABS_private_READY.json",
+    "controller_sha256",
+    "private_sha256"
+  ],
+  "limitations": [
+    "SOURCE review only; utility not invoked by reviewer.",
+    "Root must pin actual utility/controller/private bytes and observe actual exit0 before QH admission.",
+    "No models, metric inheritance, ready status or experiment admission from this source review."
+  ],
+  "actual_utility_executions": 0,
+  "actual_candidate_controller_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API": 0,
+  "actual_data_array_truth_prediction_reads": 0,
+  "actual_PID_observations": 0,
+  "actual_experiment_clock": null
+}

@@ -1,0 +1,123 @@
+def qualification_ids(rows):
+    need(type(rows) is list and len(rows)<=30000,'typed_bounded_qualification_known_required')
+    keys=[]
+    for row in rows:
+        need(type(row) is dict and type(row.get('pid')) is int and row['pid']>0
+             and type(row.get('create_time')) in (int,float) and math.isfinite(row['create_time'])
+             and row['create_time']>0,'finite_exact_qualification_identity_required')
+        keys.append((row['pid'],row['create_time']))
+    need(len(keys)==len(set(keys)),'unique_qualification_known_required')
+    return set(keys)
+
+
+def postfailure_archive_source(cfg,qualification,root,check):
+    """New saved-artifact qualification only; original RQ6 always remains FAIL."""
+    pins=cfg['immutable_files'];work=Path(__file__).resolve().parent.parent
+    expected={k:dict(path=str(work/relative),sha256=h) for k,(relative,h) in RA1_ORIGINAL_REFS.items()}
+    need(root.get('original_rq6')==expected,'exact_original_failed_RQ6_refs_required')
+    def bound(ref,decode=True):
+        path=ref_check(ref,check,pins)
+        return load(path,check) if decode else None
+    old={key:bound(ref,key!='old_auditor') for key,ref in expected.items()}
+    need(root.get('schema')=='postfailure-standard-artifact-qualification-root-v1'
+         and root.get('archive_sha256')==qualification['archive']['sha256']
+         and root.get('original_RQ6_FAIL_preserved') is True and root.get('original_RQ6_procedure_requalified') is False
+         and root.get('original_failed_driver')==dict(session=49569,exit_code=1,tool='dbc6a1')
+         and root.get('original_failed_frozen_closer')==dict(exit_code=1,tool='fb3841')
+         and type(root.get('actual_exec_exit_code_observed_by_root')) is int and root['actual_exec_exit_code_observed_by_root']==0
+         and type(root.get('actual_tool_evidence')) is str and root['actual_tool_evidence']
+         and all(root.get(k) is True for k in ('technical_procedure_passed','source_unchanged','cleanup_confirmed',
+             'temporary_cleanup_confirmed','inside_inherited_RQ6_common6000'))
+         and root.get('active_owned_processes')==root.get('uncertain_owned')==root.get('changed_source_or_core')==[],
+         'new_RA1_actual_clean_root_required')
+    campaign,failed,manifest=old['campaign'],old['root'],old['manifest']
+    need(manifest.get('readiness')=='READY_REVIEWED_FROZEN' and manifest['executor']['archive']==qualification['archive']
+         and all(pins.get(path)==h for path,h in manifest['immutable_files'].items()),'same_original_archive_source_union_required')
+    need(campaign.get('status')=='failed' and campaign.get('manifest_sha256')==expected['manifest']['sha256']
+         and campaign.get('independent_audit') is None and campaign.get('first_failure',{}).get('child_kind')=='independent-audit'
+         and len(campaign.get('contracts',[]))==9 and sum(row['expected'] for row in campaign['contracts'])==119
+         and [row['kind'] for row in campaign.get('tasks',[])]==['regression','classification']
+         and failed.get('technical_procedure_passed') is False and failed.get('independent_audit') is None
+         and failed.get('actual_exec_session')==49569 and failed.get('actual_exec_exit_code_observed_by_root')==1
+         and failed.get('actual_tool_evidence')=='dbc6a1' and failed.get('qualified_ML_metrics') is None,
+         'original_failed_procedure_never_relabelled')
+    inherited={k:campaign[k] for k in ('start_unix','start_monotonic','absolute_deadline_unix','common_deadline_monotonic')}
+    need(root.get('inherited_original_clock')==inherited and root.get('original_common_seconds')==600
+         and root['original_deadline_unix']==root['original_start_unix']+600
+         and root['original_end_monotonic']==root['original_start_monotonic']+600
+         and inherited['absolute_deadline_unix']==inherited['start_unix']+6000
+         and inherited['common_deadline_monotonic']==inherited['start_monotonic']+6000,
+         'separate_RA1_and_original_RQ6_clocks_required')
+    negative,prior_post=old['negative'],old['post']
+    for value,schema,count in [(negative,'rq6-separate-current-negative-closure-v1',8010),
+            (prior_post,'rq6-current-negative-post-tool-confirmation-v1',8013)]:
+        need(value.get('schema')==schema and value.get('technical_procedure_passed') is False
+             and value.get('original_RQ6_FAIL_preserved') is True and value.get('root60_requalified') is False
+             and value.get('original_negative_root_sha256')==expected['root']['sha256']
+             and value.get('original_manifest_sha256')==expected['manifest']['sha256']
+             and all(value.get(k) is True for k in ('current_source_unchanged','current_cleanup_confirmed',
+                 'current_temporary_absent','inside_original6000'))
+             and value.get('known_exact_live')==value.get('uncertain')==[]
+             and len(qualification_ids(value['known_identities']))==value.get('known_count')==count,
+             'actual_old_negative_current_proofs_required')
+    oldknown=qualification_ids(prior_post['known_identities'])|qualification_ids(prior_post['observer_preparer_identities'])
+    need(qualification_ids(negative['known_identities'])|qualification_ids(negative['observer_preparer_identities'])
+             ==qualification_ids(prior_post['known_identities']) and len(oldknown)==8016
+         and prior_post.get('negative_closure_sha256')==expected['negative']['sha256']
+         and prior_post.get('actual_negative_observer')==dict(exit_code=0,tool='b449e3'),
+         'complete_original8016_current_scope_required')
+    context=bound(root['repair_context']);audit_ref={k:root['independent_audit'][k] for k in ('path','sha256')};audit=bound(audit_ref)
+    need(context.get('schema')=='rq6-saved-terminal-audit-repair-private-v1'
+         and context.get('original_failure_preserved') is True and context.get('original_RQ6_procedure_requalified') is False
+         and all(context.get(k)==expected[v] for k,v in [('original_manifest','manifest'),('original_campaign','campaign'),
+             ('original_root','root'),('original_auditor','old_auditor'),('current_negative','negative'),('post_tool_confirmation','post')])
+         and audit.get('schema')=='postfailure-standard-artifact-audit-v1' and audit.get('artifact_procedure_passed') is True
+         and audit.get('manifest_sha256')==expected['manifest']['sha256']
+         and audit.get('repair_context_sha256')==root['repair_context']['sha256']
+         and audit.get('archive_sha256')==qualification['archive']['sha256']
+         and audit.get('original_failure_preserved') is True and audit.get('original_RQ6_procedure_requalified') is False
+         and audit.get('audit_within_original_common_clock') is True and audit.get('audit_within_repair_clock') is True
+         and audit.get('new_model_fits')==0 and audit.get('reported_API_calls')==0,'actual_new_no_fit_audit_required')
+    timing=context['clock']
+    need(all(type(v) in (int,float) and math.isfinite(v) and v>0 for v in timing.values())
+         and all(timing[k]==root[v] for k,v in [('start_unix','original_start_unix'),('start_monotonic','original_start_monotonic'),
+             ('absolute_deadline_unix','original_deadline_unix'),('common_deadline_monotonic','original_end_monotonic')])
+         and timing['audit_deadline_unix']==timing['audit_start_unix']+120
+         and timing['audit_deadline_monotonic']==timing['audit_start_monotonic']+120
+         and timing['start_unix']<=timing['audit_start_unix']<timing['audit_deadline_unix']<=timing['absolute_deadline_unix']
+         and timing['start_monotonic']<=timing['audit_start_monotonic']<timing['audit_deadline_monotonic']<=timing['common_deadline_monotonic'],
+         'new_audit_context_clock_matches_actual_root')
+    artifacts=audit.get('actual_artifact_sha256')
+    need(type(artifacts) is dict and all(artifacts.get(ref['path'])==ref['sha256'] for key,ref in expected.items()
+        if key in ('manifest','campaign','root','negative','post','old_auditor'))
+        and artifacts.get(root['repair_context']['path'])==root['repair_context']['sha256'],
+        'new_audit_must_bind_original_and_repair_artifacts')
+    post=bound(qualification['confirmation'])
+    need(post.get('schema')=='postfailure-standard-artifact-actual-wrapper-exit-confirmation-v1'
+         and post.get('root_sha256')==qualification['root']['sha256'],'actual_RA1_posttool_root_required')
+    fresh_ref=dict(path=str(Path(qualification['root']['path']).with_name('root-confirmation.json')),
+        sha256=post.get('root_confirmation_sha256'));fresh=bound(fresh_ref)
+    actual={'session':root.get('actual_exec_session'),'exit_code':0,'tool':root['actual_tool_evidence']}
+    need((actual['session'] is None or type(actual['session']) is int and actual['session']>0)
+         and fresh.get('schema')=='postfailure-standard-artifact-atomic-root-confirmation-v1'
+         and fresh.get('root_sha256')==qualification['root']['sha256'] and fresh.get('actual_driver')==actual
+         and type(fresh.get('actual_closer_exit')) is int and fresh['actual_closer_exit']==0
+         and fresh.get('known_exact_live')==fresh.get('uncertain')==fresh.get('errors')==[],
+         'actual_RA1_atomic_exit_and_fresh_required')
+    for value in (fresh,post):
+        need(all(value.get(k) is True for k in ('source_unchanged','current_temporary_absent','current_cleanup_confirmed',
+            'inside_actual_closer_birth60','inside_original600','inside_inherited_RQ6_common6000'))
+            and value.get('known_exact_live')==value.get('uncertain')==[],'actual_RA1_historical_bounds_and_current_cleanup_required')
+    need(fresh.get('technical_procedure_passed') is True and fresh.get('inside_existing_driver_final240') is True
+         and post.get('inside_saved_driver_final240') is True and post.get('post_tool_confirmed') is True
+         and post.get('actual_driver')==actual and type(post.get('actual_wrapper',{}).get('exit_code')) is int
+         and post['actual_wrapper']['exit_code']==0 and type(post['actual_wrapper'].get('tool')) is str
+         and post['actual_wrapper']['tool'],'actual_RA1_whole_wrapper_exit_required')
+    fresh_known=qualification_ids(fresh['known_identities']);known=fresh_known|qualification_ids(fresh['wrapper_preparer_identities'])
+    need(len(fresh_known)==fresh.get('known_count') and oldknown<=known
+         and qualification_ids(root['owned_identities']+root['closure_preparer_identities'])<=fresh_known
+         and qualification_ids(post['known_identities'])==known and len(known)==post.get('known_count')
+         and len(qualification_ids(post['post_tool_preparer_identities']))>0
+         and not qualification_ids(post['post_tool_preparer_identities'])&known,
+         'complete_RA1_owned_closer_wrapper_and_old_scope_required')
+    return qualification

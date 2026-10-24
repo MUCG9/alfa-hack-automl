@@ -1,0 +1,64 @@
+{
+  "schema": "qwen-exact-metadata-preflight-source-proof-v1",
+  "status": "SOURCE_ONLY_UNEXECUTED",
+  "utility_sha256": "a830f4b24f655795ad30b73298eb469abdabdc724ff05f1a691d6b1a334161a0",
+  "reviewed_controller": {
+    "path": "work/qwen-three-hour-outer-next-dev-r6/run_campaign.py",
+    "sha256": "714c83160cc0bdb625b6f294f4b76a4f40cc91cc0d4b9683b71ec9d20431823e"
+  },
+  "original_utility05b_sha256": "05b0701e0c2c9bc74c1ac7e4f211c1fad06884005cb1bc4d0b3c0df8de437a7f",
+  "why05b_not_applicable": [
+    "Mandatory previous_admission function is absent from QH outer.",
+    "QH config calls strong_authority and predecessor calls qualified; both missing from old projection.",
+    "QH CORE/AUDITOR/SOURCE_REVIEWS and transitive assignment dependencies differ."
+  ],
+  "entire_function_AST_sha256": {
+    "config": "3acc47fe77092b4166fba0006e580a433575eca2a389227918737c7533163034",
+    "methods": "4bf692e7d1e1eb4c2fd739e07f2f977c4b8995fdd66fbe8769e8401e2a1f0347",
+    "need": "159d9d323f4faad09ba0b001b03123990c9b476c5ef982baa948aeb3b8111056",
+    "postfailure_qualification": "3a0230f4f6fc542d7e2951d3803ecc8db0c8026a4858092d9fd1fe60dffcf44e",
+    "predecessor": "195ae7e00b878e96772d5b46eb9011139b7248c7c05ce3103e9214266e5f9c34",
+    "qualified": "c80544758caf702a04b1c587b72fcb3aa0c6e0a0c0ec0e454e933277d5a83ca5",
+    "read": "43377dc7a834255aeb87edf18f1893c185742d5f1b84331f4486f7124d8d75e7",
+    "sha": "1265c7c6f596719559db6f27257124ae58ef9a50c6cec60c461c22693dbd6cda",
+    "strong_authority": "eebf3626379266e64d0ff41bc08db03496a4a3d0d5615ea3c30620fc1adde21d"
+  },
+  "entire_global_assignment_AST_sha256": {
+    "AUDITOR": "cbbc589d31a1c6c8b0b1ca6c0509e0ad756065d4d364dae760a133e219aa061b",
+    "AUDITOR_HANDOFF_SHA": "6c7975bed5e90ec93f4dbe604a4792eccc45908f54aba5dd58e2214a42bbfce2",
+    "BASE": "2ac8a2ef099481bf75d174b1a74bb567b2423dc13390465d57cd00f3d26d634a",
+    "BASE_SHA": "8f3215d1eb6bd1f7ca059dedc0964a78ee2be36d0ab80a380d6b25376d4d5842",
+    "CORE": "587a9be073a02f943328488a214fcba5cbf967eedfba123817353fd63144b6b6",
+    "CORE_SHA": "bdbc1a0cc763939b27319465a9aaaef4d9a33a3834d00741519190a7540235a8",
+    "HELPERS": "29f702f105292052123f3fbe4101f62cc3284e3a6dd8879a496f5f6ebec9846c",
+    "LAUNCHER_PATH": "75e6a5dc9e487cc6b80047acec4447977bed657a9fa65d31636da8a1b218fffa",
+    "LAUNCHER_SHA": "76190415989c1e4c835961cb445312e919020a2936fb6a0ce362027e7c1bbfe6",
+    "OUT": "51ccd46a45e20f16b2f1679a713bec1b07610cb81ca7d22040ad5a7f36255337",
+    "PACKET": "a34e1f804c5645aa7e85357babb79c396442935d96b58ce4ccb08ed5b19118a0",
+    "RA1_ORIGINAL_REFS": "4a7e04ab611b75d5b1862f4b3f05f786c3ed21c99def5e01a9d83d6b3c90fa7a",
+    "SOURCE_REVIEWS": "e88617cbc4bdebdf0c9f9580d2878b248d170306f89ee0c2841ade959cfa1da8",
+    "WORK": "0cad96398ee6a78fa87116987c1fe42f291ca12494d72a1f98098fc3e54fc55c"
+  },
+  "source_node_order_projection_AST_sha256": "bdcd4395de72e5e901e09618448b53699fac3a983e111ddd25a6121c83b79a91",
+  "functions_copied_without_AST_rewriting": true,
+  "global_assignment_closure_complete_for_reviewed_source": true,
+  "opaque_raw_SHA_streaming_exact_pinned_allowlist_only": true,
+  "JSON_and_Python_text_only_no_payload_decoding": true,
+  "only_C5_module_import_by_exact_path_and_SHA": true,
+  "metadata_seconds": 30,
+  "actual_utility_executions": 0,
+  "candidate_or_controller_imports_tests_fits_API_data_PID_clock": 0,
+  "reviewed_handoff": {
+    "path": "work/qwen-three-hour-outer-next-dev-r6/source-handoff-final.json",
+    "sha256": "d033a8d186a0fd2c1c1a10f407366995d87d256df37660039b6d76a41fae43d9"
+  },
+  "independent_outer_source_review": {
+    "path": "work/qh-outer-producer-audit-contract-source-review-r2.json",
+    "sha256": "d53c1c2e7bb360e082a83c67fccaefba78210be2d3074b43180462d64678b31f"
+  },
+  "previous_utility_sha256": "62b3b5fd2296d7ddf1841020aeffdba35c5426bf649e8893d48221b58b68a53f",
+  "whole_utility_inverse_raw_bytes_exact": true,
+  "only_executable_delta": "Add postfailure_qualification whole function to projection closure; RA1_ORIGINAL_REFS is original transitive assignment.",
+  "projected_function_count": 9,
+  "projected_global_assignment_count": 14
+}

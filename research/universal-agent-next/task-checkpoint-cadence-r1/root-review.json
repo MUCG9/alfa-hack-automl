@@ -1,0 +1,15 @@
+{
+  "schema": "cadence-root-source-review-v1",
+  "status": "SOURCE_REVIEWED_NOT_EXECUTED_NOT_INTEGRATED",
+  "handoff_sha256": "a7261757add60b39366fbfcb245f88699ca5a8f86570b85e09bc7ecac61fed3e",
+  "peer_review_sha256": "490f9695124c759d53677eb1162b7250b527370b1c30a4b9d4518b0dcbe7b87f",
+  "prepared_tests": 12,
+  "executed_tests": 0,
+  "only_strict_flow_and_new_local_callable_changed": true,
+  "legacy_OFF_AST_preserved": true,
+  "actual_savings": null,
+  "active_UQ2_unchanged": true,
+  "requires_actual_UQ2_terminal_and_fresh_root_closure_before_execution": true,
+  "new_clock": null,
+  "quality_metric": null
+}

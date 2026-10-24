@@ -1,0 +1,144 @@
+--- base/src/automl/search/runner.py
++++ candidate/src/automl/search/runner.py
+@@ -370,6 +370,61 @@
+     if budget.clock()>=budget.deadline: raise TimeoutError('task_contract_deadline')
+ 
+ 
++
++class _TaskContractCheckpoint:
++    """Per-flow observations on the ORIGINAL caller clock; no background work."""
++    CADENCE_SECONDS=0.25
++    MAXIMUM_GAP_SECONDS=10.0
++
++    def __init__(self,budget,resources,root):
++        if (not callable(getattr(budget,'clock',None)) or not callable(getattr(resources,'inspect',None))
++                or type(getattr(budget,'deadline',None)) not in (int,float)
++                or not -float('inf')<budget.deadline<float('inf')):
++            raise ValueError('Trusted original budget and resource inspector required')
++        self.budget,self.resources,self.root=budget,resources,root
++        self._last_seen=self._last_sample=self._created=None
++        self._failure=None
++        self._created=self._now()
++
++    def _unconfirmed(self,code):
++        raise ProcessObservationError({'status':'task_contract_observation_unconfirmed','actions':[],
++            'unresolved':[{'pid':os.getpid(),'create_time':None,'action':code,'error':'Unconfirmed'}]})
++
++    def _gap(self,now):
++        previous=self._last_sample if self._last_sample is not None else self._created
++        if previous is not None and now-previous>self.MAXIMUM_GAP_SECONDS:
++            self._unconfirmed('task_contract_observation_gap_over10s')
++
++    def _now(self,check_gap=True):
++        now=self.budget.clock()
++        if type(now) not in (int,float) or not -float('inf')<now<float('inf'):
++            self._unconfirmed('task_contract_invalid_clock')
++        if self._last_seen is not None and now<self._last_seen:
++            self._unconfirmed('task_contract_clock_rollback')
++        if now>=self.budget.deadline: raise TimeoutError('task_contract_deadline')
++        self._last_seen=now
++        if check_gap:self._gap(now)
++        return now
++
++    def __call__(self,*,force=False):
++        if self._failure is not None:raise self._failure
++        try:
++            if type(force) is not bool:raise ValueError('Typed resource boundary flag required')
++            started=self._now()
++            if (force or self._last_sample is None or started-self._last_sample>=self.CADENCE_SECONDS):
++                # Preserve raw denial/limit propagation of the existing inspector.
++                _task_contract_checkpoint(self.budget,self.resources,self.root)
++                finished=self._now(check_gap=False)
++                if finished-started>self.MAXIMUM_GAP_SECONDS:
++                    self._unconfirmed('task_contract_inspection_duration_over10s')
++                self._gap(finished)
++                # Only a fully successful actual inspection may move this timestamp.
++                self._last_sample=finished
++        except Exception as exc:
++            self._failure=exc
++            raise
++
++
+ def _contract_fingerprints(paths,check):
+     from automl.task_understanding.api import StrictTaskContractError
+     values={}
+@@ -445,7 +500,7 @@
+     from automl.task_understanding.api import prepare_early_output
+     from automl.task_understanding.api import StrictTaskContractError,validate_declared_inputs,strict_objective as _strict_objective
+     root=args.task.resolve().parent; resources=ResourceBudget(); declaration_limits=DeclarationLimits()
+-    check=lambda:_task_contract_checkpoint(budget,resources,root)
++    check=_TaskContractCheckpoint(budget,resources,root)
+     receipt_path=budget.trace.parent/'task-contract.json'
+     receipt={'schema':'strict-task-contract-v1','status':'preparing','output_produced':False,
+         'objective_resolved':False,'quality_metric':None,'best_validation':None,
+@@ -454,9 +509,10 @@
+         'scope':'Explicit ordinary single target; output target is not fitting-only context'}
+     def record(**updates):
+         receipt.update(updates); atomic_json(receipt_path,receipt)
+-    check(); record()
++    check(force=True); record()
+     try:
+         declared=bootstrap_early_declaration(args.task,checkpoint=check,limits=declaration_limits)
++        check(force=True)
+     except (ValueError,OSError) as exc:
+         if isinstance(exc,TimeoutError): raise
+         record(status='format_contract_invalid',error_type=type(exc).__name__)
+@@ -472,8 +528,10 @@
+         record(status='format_contract_unresolved',reason=str(exc),final_fit_status='not_attempted_task_contract')
+         raise
+     try:
++        check(force=True)
+         early=prepare_early_output(root,declared.paths,declared.declaration,
+             declared.task_text,checkpoint=check)
++        check(force=True)
+     except (ValueError,OSError) as exc:
+         if isinstance(exc,TimeoutError): raise
+         record(status='format_projection_invalid',error_type=type(exc).__name__)
+@@ -486,9 +544,11 @@
+     check()
+     try:
+         _validate_early_output_binding(root,args.task,declared,early,declaration_limits,check)
++        check(force=True)
+         values=dummy_predictions(early.writer_spec,early.target_frame,len(early.test_ids))
+-        check(); _check_contract_destination(root,args.task,declared,check)
++        check(force=True); _check_contract_destination(root,args.task,declared,check)
+         save_submission(early.writer_spec,early.sample,early.test_ids,values,output)
++        check(force=True)
+     except ValueError as exc:
+         record(status='fallback_publication_invalid',error_type=type(exc).__name__)
+         raise StrictTaskContractError('fallback_publication_invalid') from exc
+@@ -507,7 +567,9 @@
+         dictionary=(declared.receipt or {}).get('dictionary_path')
+         if dictionary is not None: paths['input:data_dictionary']=root/dictionary
+         for index,path in enumerate(source_files()): paths['source:'+str(index)+':'+path.name]=path
++        check(force=True)
+         fingerprints=_contract_fingerprints(paths,check)
++        check(force=True)
+         if fingerprints['task']!=declared.receipt['task_text_sha256']:
+             record(status='protected_source_drift')
+             raise StrictTaskContractError('task_changed_after_bootstrap')
+@@ -519,11 +581,15 @@
+             if _contract_fingerprints(paths,check)!=fingerprints:
+                 raise StrictTaskContractError('protected_input_or_source_changed')
+         unchanged()
++        check(force=True)
+         loaded=load_inputs(args.task,allow_llm=False,declared=declared,checkpoint=check)
++        check(force=True)
+         loaded=validate_declared_inputs(loaded,declared,early,checkpoint=check)
++        check(force=True)
+         unchanged()
+         task_data=discover(args.task,loaded=loaded,resolved_metric=early.metric_spec,
+             task_kind=early.writer_spec['kind'],output_contract=early.writer_spec)
++        check(force=True)
+         spec=task_data[0]
+         for name in ['target','id','kind','metric','greater_is_better','prediction_type','output_columns','classes']:
+             if spec.get(name)!=early.writer_spec.get(name):
+@@ -545,7 +611,7 @@
+            full_load_lexical_projections_verified=True,final_fit_status='pending_existing_solver')
+     spec['strict_task_contract']={'metric_spec':early.metric_spec.to_dict(),
+         'receipt':str(receipt_path),'full_input_provenance_verified':True}
+-    check(); return solve_single(args,task_data)
++    check(force=True); return solve_single(args,task_data)
+ 
+ 
+ def _main():

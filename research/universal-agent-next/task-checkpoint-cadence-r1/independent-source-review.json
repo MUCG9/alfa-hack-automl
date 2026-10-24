@@ -1,0 +1,65 @@
+{
+  "schema": "task-contract-checkpoint-cadence-independent-source-review-v1",
+  "status": "SOURCE_REVIEWED_NO_SCOPED_BLOCKER_PREPARED_TESTS_NOT_EXECUTED",
+  "handoff": {
+    "path": "uar-task-checkpoint-cadence-next-dev/source-handoff.json",
+    "sha256": "a7261757add60b39366fbfcb245f88699ca5a8f86570b85e09bc7ecac61fed3e"
+  },
+  "all5pins_exact": true,
+  "base_source_sha256": "6822a58ec6cf89e3344340edec7f79f218ca02cc19fafd236f15d099755135b2",
+  "candidate_source_sha256": "425bf395417afbc359fc7400f8dd038060d640642733e4deaad90830a0c481eb",
+  "test_source_sha256": "7a31398a5a64ac9f80983f419e19d7e318ba4345603b31e396aa7bfe8102c286",
+  "independent_AST": {
+    "only_changed_existing_definition": "_strict_task_flow",
+    "only_added_definition": "_TaskContractCheckpoint",
+    "removing_only_class_and_restoring_strict_flow_recovers_exact_whole_base_module": true,
+    "original_direct_task_contract_checkpoint_AST_exact": true,
+    "default_OFF_main_and_all_other_definitions_exact": true
+  },
+  "reviewed_source_predicates": [
+    "Per-instance adapter retains the same trusted budget.clock and deadline; it constructs no new allowance/deadline/timer/thread. Every callback evaluates the original finite clock, rollback, deadline and stale actual-resource-sample gap before possible cadence skip.",
+    "First call, explicit typed force boundary and due >=0.25s perform the unchanged existing resource inspector. Skipped callbacks do not advance _last_sample; only a fully successful before/after inspection advances it.",
+    "Both inspection duration and cumulative gap since the last completed actual sample are checked after inspection and before sample commit; a quick inspection starting at9.9s cannot launder a10.1s total gap.",
+    "Clock/deadline/nonfinite/rollback/resource-limit/denial/gap exceptions become sticky per-flow and rethrow the original exception object. Existing raw AccessDenied/NoSuchProcess/PermissionError conversion remains unchanged and no unknown identities are signalled.",
+    "Strict flow forces observations at initial, IO03/IO02, fallback allocation/publication, source fingerprint, full loader/validation/discovery and final solver handoff boundaries. Existing parser/IO byte bounds, MetricSpec unknown refusal, early-output order, schema/provenance and strong-model policy are unchanged.",
+    "The original direct helper still performs resource inspection on every direct call; default OFF does not instantiate the new class. The whole-module AST projection confirms no unrelated body/import/constant/default changes."
+  ],
+  "prepared_methods": [
+    "TaskContractCadenceTests.test_burst_checks_original_clock_but_only_first_resource_sample",
+    "TaskContractCadenceTests.test_exact_cadence_boundary_samples_and_skips_do_not_move_last_sample",
+    "TaskContractCadenceTests.test_phase_force_really_inspects_even_inside_cadence",
+    "TaskContractCadenceTests.test_deadline_on_otherwise_skipped_callback_is_sticky",
+    "TaskContractCadenceTests.test_inspection_crossing_original_deadline_cannot_commit_sample",
+    "TaskContractCadenceTests.test_slow_inspection_duration_over10_is_sticky",
+    "TaskContractCadenceTests.test_gap_includes_due_inspection_duration_and_cannot_be_laundered",
+    "TaskContractCadenceTests.test_presample_gap_over10_rejects_before_any_new_inspection",
+    "TaskContractCadenceTests.test_raw_denials_are_fatal_sticky_and_do_not_advance_last_sample",
+    "TaskContractCadenceTests.test_resource_limit_failure_is_sticky_and_never_becomes_cached_pass",
+    "TaskContractCadenceTests.test_rollback_or_nonfinite_clock_fails_before_resource_and_stays_sticky",
+    "TaskContractCadenceTests.test_flow_state_is_local_original_helper_still_inspects_every_direct_call"
+  ],
+  "prepared_count": 12,
+  "actual_tests": 0,
+  "findings": [],
+  "limitations": [
+    "This intentionally changes strict-mode resource observation cadence; it is not equivalent to inspection on every CSV row and is not an OS hard sampler/preemptor. Cadence is enforced when callbacks occur; blocking work is judged at the next boundary.",
+    "The existing ResourceBudget accounting (including its known own-process counting behavior) and caps are preserved; no independent actual RSS/performance/quality gain was measured.",
+    "Packet is a delta overlay, not a standalone runnable package. Root must wait for UQ2 terminal/fresh closure, then lease/materialize/review actual12 contracts and broader integration before qualification.",
+    "Trusted caller budget/resource objects are not mutable untrusted JSON authority; source review does not sandbox arbitrary adversarial Python object side effects."
+  ],
+  "operations": {
+    "stdlib_source_SHA_JSON_AST_only": true,
+    "candidate_or_project_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API": 0,
+    "data_labels_predictions": 0,
+    "active_UQ2_output_reads": 0,
+    "PID_scans": 0,
+    "clock_assigned": false,
+    "canonical_STATE_Git_author_source_edits": 0
+  },
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

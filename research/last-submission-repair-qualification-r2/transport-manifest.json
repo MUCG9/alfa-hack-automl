@@ -1,0 +1,25 @@
+{
+  "schema": "last-submission-repair-qualification-r2-public-source-v1",
+  "source_handoff_sha256": "8f9e4201b16d9c7d454688e475b66d17714f0fdb8df1e24c6a9a2e309835cb3b",
+  "independent_peer_sha256": "ce031186c9ad8f64696eaecb6f26024d802311aa324dc8fbd300d854514e09ff",
+  "exact_source_files_sha256": {
+    "research/last-submission-repair-qualification-r2/run_controller.py": "d0d69b886f2edd3e2ecff0756e613a9cf79cee70f47ba167a0d18bb49b6a99ce",
+    "research/last-submission-repair-qualification-r2/artifact_audit.py": "c29b385a55c30a02ed987c14fb62ab079724fd958ace6ee30319ba7101648e9d",
+    "research/last-submission-repair-qualification-r2/close_controller.py": "2a17edb8bc4d71d96f456533f6e0bcf060f938621fd19d861ab9bc5fd7c6d50f",
+    "research/last-submission-repair-qualification-r2/run_root.py": "35b82f3457806961957ef9b0a75976ce4675b0014d079d457e9db9e7ff4c324c",
+    "research/last-submission-repair-qualification-r2/close_child.ps1": "de032ba27868f07b0583f7de83af22e1a3178b2f87ff4c3435c80fad1fafea65",
+    "research/last-submission-repair-qualification-r2/test_controller_contracts.py": "90c74f4c70e9712364ecd0b51233b01489c5be953806720f8d4230d7df53d34a",
+    "research/last-submission-repair-qualification-r2/test_atomic_root.py": "77edd14c545b4c59899c64dd02e3a4a45c5ac5f3259c33c2b8e2dbad18ca5a5b",
+    "research/last-submission-repair-qualification-r2/technical_entry.py": "f4acc44ad718d476287e2ad8d5ceac0521332565e153aee569c8f5e91fde3cf5",
+    "research/last-submission-repair-qualification-r2/README.txt": "ae67074c6caa7f6c9ed4f3b15aeb561f633892520b2d160534c785d567ab4c72",
+    "research/last-submission-repair-qualification-r2/protocol.json": "3edb0da48e19f859d8ca45ca4813878862d477737943b24dfd3d7d0ac878dc27",
+    "research/last-submission-repair-qualification-r2/rq1-pre-model-failure.json": "1c8e8d38a945b657620d1f3a01f7943ef119fc43ef0a7687f2919f79e4bd8943"
+  },
+  "prepared_contract_executions": 80,
+  "actual_rq2_contract_executions": 0,
+  "actual_standard_model_calls": 0,
+  "new_metrics": null,
+  "old_RQ1_FAIL_preserved": true,
+  "submission_ready": false,
+  "private_templates_READY_and_raw_receipts_excluded": true
+}

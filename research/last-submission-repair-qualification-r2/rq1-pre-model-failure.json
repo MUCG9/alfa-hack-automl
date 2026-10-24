@@ -1,0 +1,37 @@
+{
+  "schema": "standard-repair-rq1-pre-model-failure-v1",
+  "actual_driver": {
+    "session": null,
+    "exit_code": 1,
+    "tool": "3754fa"
+  },
+  "actual_frozen_closer": {
+    "exit_code": 1,
+    "tool": "81b95d"
+  },
+  "root_sha256": "750834001513669f72e29ad7c044e495aa99cfdcd20c31f19a3f8509f062acdb",
+  "current_negative_sha256": "16e4c55a5d2fa918036bf9ffa12025bd59d794c0d44ad7e8a49efaa777d93d45",
+  "current_negative_actual": {
+    "exit_code": 0,
+    "tool": "5b80c8"
+  },
+  "technical_procedure_passed": false,
+  "actual_source_contracts_executed": 16,
+  "actual_source_contracts_passed": 13,
+  "actual_source_contracts_failed": 3,
+  "actual_standard_model_tasks": 0,
+  "learner_fits": 0,
+  "API_calls": 0,
+  "first_error": "Per-test Popen tripwire intercepted NumPy import-time CPU metadata subprocess in three late-import contracts. Candidate model execution never began.",
+  "source_candidate_unchanged_sha256": "9bb8fe6e4c9a5d86e381e5412e4fa895b219d206415f2590a10ec071a69d78c1",
+  "current_known_absent": 7828,
+  "current_union_including_negative_observer": 7831,
+  "current_uncertain": 0,
+  "current_source_pins": 287,
+  "current_temporary_absent": true,
+  "original_failure_preserved": true,
+  "old_clock_closed": true,
+  "new_metrics": null,
+  "organizer_cause": null,
+  "next": "New narrow rq2 qualifier with dependency-only technical bootstrap, all old test methods/assertions and candidate81 preserved."
+}

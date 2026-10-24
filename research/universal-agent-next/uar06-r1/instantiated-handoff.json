@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "status": "INSTANTIATED_SOURCE_PACKET_FROZEN_ROOT_REVIEW_AND_PUBLICATION_PENDING_NOT_EXECUTED",
+  "canonical_commit": "47a69340367245531438755a3d39d4065e083ba7",
+  "files_sha256": {
+    "private-manifest-uar06-r1.json": "7e03ea7d378bde3496e9906fc68870792ed8d5ce152653f7b668113686dbd222",
+    "public-manifest.json": "1a1e1af1836a509545e63cce60cd1e2c73e48c8515acfe23f958421e74fd9d38",
+    "public-protocol.json": "db6a5c354fbccd31628cefd9dd697e40dc7af5b5df5121abcbdc963be55f8ce5",
+    "packet-summary.json": "986bbbde341ddf308cab92290beabc3e63ae0d40f6f62d46532bad8eb1f37f31",
+    "instantiate_packet_r1.py": "0b6b09fbbe6e348cbad89ed9c16c39b10be9c4839a97f3c140f2b710c8911368",
+    "READY-command.private.txt": "3158c531500bbd689a765f212fe5d5c70c8adeb0806a320f3dbe69fffd854a63"
+  },
+  "public_files": [
+    "public-manifest.json",
+    "public-protocol.json",
+    "packet-summary.json"
+  ],
+  "private_do_not_publish": [
+    "private-manifest-uar06-r1.json",
+    "READY-command.private.txt"
+  ],
+  "source_handoff_sha256": "4ed4a15fb82b6a677f9c8ff870af946ea961ff1de3a0652fc5dca2af142a42bb",
+  "source_review_sha256": "29a15cdf2e92546fd3f8ded540b0f6cda8146a3800d9dd77d1c1d4a8373660f4",
+  "immutable_source_input_pins_rechecked": 235,
+  "canonical_python": 169,
+  "known_previous_identity_union": 5776,
+  "old_UAR05_UAR04_FAIL_permanent": true,
+  "new_UAR06_independent_clock": null,
+  "actual_gate": null,
+  "executed_candidate_imports_tests_builds_fits_API_scans": 0,
+  "canonical_STATE_Git_writes": 0,
+  "NOT_READY_template_and_original_handoff_unchanged": true,
+  "metadata_preparation_error_retained_in_packet_summary": true,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

@@ -1,0 +1,142 @@
+{
+  "schema": "UAR06-independent-source-review-v1",
+  "status": "NO_OPEN_BLOCKER_IN_NARROW_SOURCE_SCOPE_NOT_EXECUTED",
+  "handoff": {
+    "path": "uar06-full-next-dev/source-handoff.json",
+    "sha256": "4ed4a15fb82b6a677f9c8ff870af946ea961ff1de3a0652fc5dca2af142a42bb"
+  },
+  "bound_files_sha256": {
+    "run_gate.py": "25ac7aa5704820242d75c828d3b99bf572715e150849c1ca953e606ef7522db3",
+    "technical_entry.py": "e5004acdd13f7e69b7a92c94f4b5b032cae6521451bb2eba1db242188b4f7c8d",
+    "contracts.py": "7d3d469f63e2acddabe33aa6385522dcf8508b01aee6cf5f59d9208989ac5f1f",
+    "close_gate.py": "424cf816847f0f5b8acf3b2d9ad732780627db544d5bb96942869e35baaed1fe",
+    "private-manifest.template.json": "168a20813dbca78036a8ea06580e58dad2cd90eee53030e3073a578d09f58118",
+    "protocol.json": "b32b8fb79eeaba59fd996efed8aaf41624cac41a74a61ad22c29c935e3b16cc9",
+    "static-proof.json": "32bfd59c396bc02f0d953932344582018a1aa88ca65b07e4aab9b1c83a09a43d",
+    "test-strategy.json": "55ffb4984c1e69ab8b290dd4217bd37486262712fd1ef62b1d2624c79a3315b0",
+    "README.txt": "4e1d44fb1756e4ff6d07156e044c44d3400a03291a9fa00fb111bba6edb79638",
+    "changes.patch": "d74047055137257235f9de62b2d57a4241029100bd7ab946fab9fe27699b1d28",
+    "prepare_source_r1.py": "81edadaab0bdfec0d1b644b385e8b23d3fda9ccac65a3ab996eec8663d692230"
+  },
+  "scope": "UAR05 reviewed base delta only: exclusive shallow per-attempt temporary environment, cleanup/negative uncertainty, actual f6 predecessor, mandatory metric16 map; no private manifest/lease review",
+  "checks": [
+    {
+      "id": "TEMP_ROOT",
+      "result": "Source creates exclusive tempfile.mkdtemp prefixu6 under exact WORK/t after fresh union and canonical lock; root is resolved/no-link/regex-bound, recorded and forwarded absolute through technical,mapped,one-mapped invocations. TMP/TEMP/TMPDIR/MPLCONFIGDIR assigned before candidate/project imports, inherited by fixed leaf commands."
+    },
+    {
+      "id": "TEMP_CLEANUP",
+      "result": "Exact root path revalidated inside WORK/t before rmtree, only after exact owned absence and saved leaf/supervisor cleanup. Before/after original/final clocks and actual10s cleanup bound; missing/failed/denied cleanup receipt leaves negative uncertainty and prevents final positive root qualification."
+    },
+    {
+      "id": "NO_WEAKENING",
+      "result": "Existing source/archive/mapped assertion adapter, source registry/count, skip/null, full source freeze, flat no-sidecars, exact23, leaf sticky-cleanup contracts remain AST-exact. No tools or existing test bytes changed by gate preparation; independent6 tool/test hashes match."
+    },
+    {
+      "id": "COUNTS",
+      "result": "Registry literal AST57 scripts/604 declared checks; mandatory fifth metric suite all16, original4 suites unchanged:14+14+16+15+16=75 mapped. Sole LOSS modular source AST exclusion preserved. These are source-derived expected counts, never observed PASS."
+    },
+    {
+      "id": "CLOCK",
+      "result": "Same one future1200 origin; parent900 includes setup<=60 and child840, future remaining>=1140 on both clocks, actual final<=180 and root60 within original deadline. New per-leaf clocks are not reset; terminal acceptance still follows inherited clock and cleanup checks."
+    },
+    {
+      "id": "PRIOR_FAIL",
+      "result": "Source requires exact UAR05 f6beea... root/session21393/exit1/tool6f3ad1 as ownership lineage; negative failure remains permanent, UAR03/retained unions preserved, old unknown a1d203 not adopted. Fresh actual checks belong to future root launch, not this review."
+    },
+    {
+      "id": "CANDIDATE_GUARD",
+      "result": "fac3 historical trusted guard remains separately pinned from candidate9f84; no process implementation replaced."
+    },
+    {
+      "id": "TEMPLATE",
+      "result": "NOT_READY/null private pins and no actual clock are deliberate. Runtime config fails closed; private instantiation/publication/actual lease remain root checkpoints."
+    }
+  ],
+  "definition_AST_delta": {
+    "run_gate.py": {
+      "unchanged_definitions": [
+        "need",
+        "read",
+        "digest",
+        "imported",
+        "own_bootstraps"
+      ],
+      "changed_definitions": [
+        "config",
+        "main"
+      ],
+      "new_definitions": []
+    },
+    "technical_entry.py": {
+      "unchanged_definitions": [
+        "need",
+        "sha",
+        "imported"
+      ],
+      "changed_definitions": [
+        "main"
+      ],
+      "new_definitions": []
+    },
+    "contracts.py": {
+      "unchanged_definitions": [
+        "need",
+        "read",
+        "sha",
+        "methods",
+        "registry",
+        "mapping",
+        "flat_names",
+        "FlatTestImports",
+        "adapted_test",
+        "frozen",
+        "archive",
+        "counts",
+        "cleanup_status"
+      ],
+      "changed_definitions": [
+        "artifact_checks"
+      ],
+      "new_definitions": [
+        "temporary_binding",
+        "temporary_status"
+      ]
+    },
+    "close_gate.py": {
+      "unchanged_definitions": [
+        "need",
+        "imported"
+      ],
+      "changed_definitions": [
+        "main"
+      ],
+      "new_definitions": []
+    }
+  },
+  "source_counts": {
+    "registry_scripts": 57,
+    "registry_declared_checks": 604,
+    "mapped_expected": 75,
+    "exact_expected": 23,
+    "archive_expected": 73,
+    "metric_methods_AST": 16
+  },
+  "findings": [],
+  "limitations": [
+    "No runtime/import/source-gate/build/flat fixture/smoke/temporary cleanup execution here; the new temp layout needs actual gate evidence",
+    "No private instantiated manifest/hash inventory or live PID/lease state was read/confirmed",
+    "Observed Windows path failure is addressed by shallower parent-owned temp geometry; no arbitrary long-path/OS policy guarantee"
+  ],
+  "reviewer_actual": {
+    "candidate_imports": 0,
+    "tests": 0,
+    "builds": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "data_labels_predictions_read": 0,
+    "PID_scans": 0,
+    "clock_created": false,
+    "canonical_STATE_Git_changes": false
+  }
+}

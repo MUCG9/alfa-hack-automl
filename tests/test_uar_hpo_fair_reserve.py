@@ -65,8 +65,80 @@ def origin(prior='ok', killed=None, primary=None):
         coordinator_killed=killed, primary_exception_type=primary, prior_result_status=prior)
 
 
+def _composed_runner_off(tree):
+    """Normalize exact reviewed independent layers before the OLD golden proof.
+
+    Work on a private AST; validate every consumed shape/count before returning.
+    A modified same-name helper/If/args/hook cannot be silently discarded.
+    Unrelated nodes remain for the unchanged independent old witness to reject.
+    """
+    markers={'_fitting_context_initial_options', 'prepared_fitting', '_selector_cache_job', '_SELECTOR_IMPORTANCE_CACHE', '_FITTING_INITIAL_AUTHORITY'}
+    def names(node):
+        return {v for n in ast.walk(node) for v in ([n.id] if isinstance(n,ast.Name)
+            else [n.name] if isinstance(n,(ast.FunctionDef,ast.ClassDef,ast.alias))
+            else [n.arg] if isinstance(n,(ast.arg,ast.keyword)) else [])}
+    if not names(tree)&markers:return tree
+    class _Recorded(ast.NodeTransformer):
+        def __init__(self):self.consumed={}
+        def record(self,node):
+            key=hashlib.sha256(ast.dump(node,include_attributes=False).encode()).hexdigest()
+            self.consumed[key]=self.consumed.get(key,0)+1
+        def visit(self,node):
+            before=ast.parse(ast.unparse(node)).body[0] if isinstance(node,ast.stmt) else node
+            key=hashlib.sha256(ast.dump(before,include_attributes=False).encode()).hexdigest()
+            result=super().visit(node)
+            if result is None or type(result) is list:self.consumed[key]=self.consumed.get(key,0)+1
+            return result
+
+    class _Selector(_Recorded):
+        def visit_FunctionDef(self,node):
+            if node.name=='_selector_cache_job':return None
+            return self.generic_visit(node)
+        def visit_Assign(self,node):
+            if any(isinstance(n,ast.Name) and n.id in {'_SELECTOR_IMPORTANCE_CACHE','cache_token'} for n in node.targets):return None
+            return self.generic_visit(node)
+        def visit_Expr(self,node):
+            call=node.value
+            if isinstance(call,ast.Call):
+                if isinstance(call.func,ast.Name) and call.func.id=='_selector_cache_job':return None
+                if isinstance(call.func,ast.Attribute):
+                    if isinstance(call.func.value,ast.Name) and call.func.value.id=='_SELECTOR_IMPORTANCE_CACHE' and call.func.attr=='reset':return None
+                    if call.func.attr=='add_argument' and call.args and isinstance(call.args[0],ast.Constant) and call.args[0].value=='--selector-importance-cache':return None
+            return self.generic_visit(node)
+
+    class ContextOff(ast.NodeTransformer):
+        def visit_FunctionDef(self,node):
+            if node.name=='_fitting_context_initial_options':return None
+            return self.generic_visit(node)
+        def visit_Assign(self,node):
+            if any(isinstance(n,ast.Name) and n.id in ('_FITTING_INITIAL_AUTHORITY','prepared_fitting') for n in node.targets):return None
+            return node
+        def visit_Expr(self,node):
+            call=node.value
+            if isinstance(call,ast.Call):
+                if isinstance(call.func,ast.Name) and call.func.id=='_fitting_context_initial_options':return None
+                if isinstance(call.func,ast.Attribute) and call.func.attr=='add_argument' and call.args and isinstance(call.args[0],ast.Constant) and call.args[0].value=='--fitting-context-initial':return None
+            return node
+        def visit_If(self,node):
+            if any(isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id=='getattr' and len(n.args)>1 and isinstance(n.args[1],ast.Constant) and n.args[1].value=='fitting_context_initial' for n in ast.walk(node.test)):
+                return [self.visit(n) for n in node.orelse]
+            if isinstance(node.test,ast.Compare) and isinstance(node.test.left,ast.Name) and node.test.left.id=='prepared_fitting':
+                if isinstance(node.test.ops[0],ast.Is):return [self.visit(n) for n in node.body]
+                if isinstance(node.test.ops[0],ast.IsNot):return []
+            return self.generic_visit(node)
+    class _Context(_Recorded,ContextOff):pass
+
+    result=ast.parse(ast.unparse(tree))
+    selector=_Selector();result=selector.visit(result)
+    context=_Context();result=context.visit(result);counts={'selector':selector.consumed,'context':context.consumed}
+    if counts!={'selector': {'469f844e78e10a2563cc642e8e95179a5ccca0c8c3d5f6f84715bd4e9cc9dc36': 1, '1e2e4465e1fc5c4223257471ac24ec7c88ce76bad3828ce7147022ec428d6cb0': 1, '0c487b8d34d9688e6d3f2b58caf56ef46d37af4a7af41f0813c112a806001006': 2, 'dda23977686372768ca2ae9aadcc33c0b727c07efd59131eab009972ed78cfda': 1, '1a6833e0bc8f60acc7c1a75877e157e0a79f4cec86518c4d2057af3b9518b238': 1, 'e02b9e009b9bf386a0b022df7b80959bda000665fa00aa2ab18f02114e59e0cb': 1}, 'context': {'2bbaa9c0c97981a8d370af665fceac0f28a3f42781cef6c365dfca88f52592ae': 1, 'e65eb4b219b8ced3009c12f0d05063a1acfe14c997f8e8ba25bcc0c5c9cc4354': 1, 'cfad4af02bdaef8b3dcf735a88733355404ff4dfb164c864811660c78cd9e431': 1, '2c98c34812cfd885f481b7f3e76780b8053fb971c59f6462e06734bc5c716d16': 1, 'e80036dce796ae0eaba42ba35fd4609fbef85cc2caf5aab262d92cd1fe891320': 1, '2314fa1c2eaae4ed80b9d9d0365e953f68f79d70af3208e463dcb448deba863f': 1, 'a74fcd0fe2f9af231b7ea0496d79bb4c7850e8d6e025349e425f0f092a91ee4d': 1, '56e9f2cd2b672f9a1be920ea3ee01a5f1388899e8025ba305588c9a976b645b5': 1, '3a6a9301d09c75e87f657fa8b4fa49671495f258fe206c4cb1c54eb4b9c6ec5c': 1, '088a3a867f35a73244b09820b749372f26c6e6b29b29c0923816a1ff433e5a46': 2}}:raise ValueError('reviewed_composed_AST_shape_or_count_changed')
+    if names(result)&markers:raise ValueError('unreviewed_or_duplicate_composed_AST_scaffold')
+    return result
+
+
 def projected_ast(text, is_runner):
     tree = ast.parse(text)
+    if is_runner:tree = _composed_runner_off(tree)
     hpo_new = {'HPOFairReserveStop', 'validate_fair_reserve_configuration', '_fair_share',
         '_FairReserveClock', '_fair_technical_result', '_optimize_recipe_fair_reserve'}
     runner_new = {'_hpo_fair_reserve_options', '_run_hpo_fair_reserve_worker'}

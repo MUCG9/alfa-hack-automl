@@ -1,0 +1,81 @@
+{
+  "schema": "composed-legacy-test-helper-source-proof-v1",
+  "status": "SOURCE_ONLY_NOT_EXECUTED",
+  "projections": {
+    "composed_runner_off": {
+      "base_path": "fit-context-gateway-next-dev/source-evidence/base/runner.py",
+      "base_sha256": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+      "current_sha256": "7f98647af4dc720f3895fb551edc25efb6f18ab53c4b87bd0d7f854c09a4af96",
+      "strict_consumed_AST_shape_counts": {
+        "selector": {
+          "469f844e78e10a2563cc642e8e95179a5ccca0c8c3d5f6f84715bd4e9cc9dc36": 1,
+          "1e2e4465e1fc5c4223257471ac24ec7c88ce76bad3828ce7147022ec428d6cb0": 1,
+          "0c487b8d34d9688e6d3f2b58caf56ef46d37af4a7af41f0813c112a806001006": 2,
+          "dda23977686372768ca2ae9aadcc33c0b727c07efd59131eab009972ed78cfda": 1,
+          "1a6833e0bc8f60acc7c1a75877e157e0a79f4cec86518c4d2057af3b9518b238": 1,
+          "e02b9e009b9bf386a0b022df7b80959bda000665fa00aa2ab18f02114e59e0cb": 1
+        },
+        "context": {
+          "2bbaa9c0c97981a8d370af665fceac0f28a3f42781cef6c365dfca88f52592ae": 1,
+          "e65eb4b219b8ced3009c12f0d05063a1acfe14c997f8e8ba25bcc0c5c9cc4354": 1,
+          "cfad4af02bdaef8b3dcf735a88733355404ff4dfb164c864811660c78cd9e431": 1,
+          "2c98c34812cfd885f481b7f3e76780b8053fb971c59f6462e06734bc5c716d16": 1,
+          "e80036dce796ae0eaba42ba35fd4609fbef85cc2caf5aab262d92cd1fe891320": 1,
+          "2314fa1c2eaae4ed80b9d9d0365e953f68f79d70af3208e463dcb448deba863f": 1,
+          "a74fcd0fe2f9af231b7ea0496d79bb4c7850e8d6e025349e425f0f092a91ee4d": 1,
+          "56e9f2cd2b672f9a1be920ea3ee01a5f1388899e8025ba305588c9a976b645b5": 1,
+          "3a6a9301d09c75e87f657fa8b4fa49671495f258fe206c4cb1c54eb4b9c6ec5c": 1,
+          "088a3a867f35a73244b09820b749372f26c6e6b29b29c0923816a1ff433e5a46": 2
+        }
+      },
+      "whole_module_AST_restores_original": true,
+      "original_base_unchanged": true,
+      "numerical_functions_not_replaced": true,
+      "private_AST_only_until_all_shapes_validated": true,
+      "negative_source_metadata_fixtures": [
+        "modified_recognized_scaffold_rejected",
+        "duplicate_scaffold_rejected",
+        "partial_scaffold_rejected",
+        "unknown_addition_not_hidden_from_old_witness",
+        "numerical_change_not_hidden_from_old_witness"
+      ]
+    },
+    "composed_worker_off": {
+      "base_path": "fitting-context-selector-root-integration-r1/before/src/automl/execution/worker.py",
+      "base_sha256": "de75742f1cdbe18bf1a1280d16637116cdf76f53a12cab53496df75f3fefb477",
+      "current_sha256": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac",
+      "strict_consumed_AST_shape_counts": {
+        "selector": {
+          "e6d8b2787a5c186e2e4c28aa0891a5f745bdb92241f652c6272ede40ae993e75": 1,
+          "c908f5b746686ad6cc9a8726361340060bdab36690e3b21990fda1392462ea8d": 1,
+          "63985938ce9ce6754cebdea084a6c89bd87489343459d9f47df3c3c76f0e4492": 1,
+          "1fb96211d047aa20043649fbc9fcfabed49877ce48d70b72662aff7ce159665f": 1,
+          "e905eca78c43d41d9eb6bb85e329a7a74c9e45800f030df855023dd135551d6c": 1,
+          "dd40f56cb5953335b2bdb3ff05a6044b4b77c42e5f8f1c8244be133c8693a1d1": 1,
+          "01dcab852a213b848ba639b57a5589fe8c02b6e119369f84ebbae3efaf1e5a4d": 2,
+          "75baaf138095eded62a14182b1aff4643a03898cd1a0b44eae7b0419486d0d69": 1,
+          "eb84e40486e2d18955bcf664975fe22c773b519c399112b04f16dc7a4581c9db": 1,
+          "aee6ac6abcc58516ba998a08ca415467ba37f5eddcd0f76102e34808b7cd02f8": 1
+        }
+      },
+      "whole_module_AST_restores_original": true,
+      "original_base_unchanged": true,
+      "numerical_functions_not_replaced": true,
+      "private_AST_only_until_all_shapes_validated": true,
+      "negative_source_metadata_fixtures": [
+        "modified_recognized_scaffold_rejected",
+        "duplicate_scaffold_rejected",
+        "partial_scaffold_rejected",
+        "unknown_addition_not_hidden_from_old_witness",
+        "numerical_change_not_hidden_from_old_witness"
+      ]
+    }
+  },
+  "ContextOff_body_exact_reviewed_cf8": true,
+  "pure_AST_metadata_evaluation_only": true,
+  "unittest_methods_executed": 0,
+  "candidate_imports": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "data_arrays_PID_Git_clock": 0
+}

@@ -1,0 +1,68 @@
+--- tests/test_uar_loss_backend.py
++++ tests/test_uar_loss_backend.py
+@@ -34,9 +34,65 @@
+ DEFAULT_OFF_AST_SHA256={'src/automl/contracts/messages.py': '0b50cd6f2586376e111df718e872b6dd0dfc7b98842ef68b3b25b8faf7269f42', 'src/automl/execution/api.py': '2f5a5a753da784e3c2ea30c4629e0427ca41743ba86b16b591c7ad1e02317fab', 'src/automl/execution/worker.py': 'ea1ba7f6270ced919a4f04ef50b80725af86068722a38573ab3a61fb3b9b324e', 'src/automl/search/policy.py': 'e38eeb0f02fd1f7cb135f2fde0ecdb7783fa5ce7f83813d662bb1750fc851ba7', 'src/automl/execution/model_adapters/lightgbm.py': '4eada9d5b315883c3351aae43c49f7b03052b01a2211ded5610679d34aed9041', 'src/automl/execution/model_adapters/registry.py': 'eb22c05f60f80d7307d8507a8a42ebd607cd47656556044f6bd29af9cc3dd2d1'}
+ LEGACY_CAPABILITIES_SHA256='956827b308970db4f31a0827e203c4fd86c3ebbd24453d2f9f605d690a907249'
+ 
++def _composed_worker_off(tree):
++    """Normalize exact reviewed independent layers before the OLD golden proof.
++
++    Work on a private AST; validate every consumed shape/count before returning.
++    A modified same-name helper/If/args/hook cannot be silently discarded.
++    Unrelated nodes remain for the unchanged independent old witness to reject.
++    """
++    markers={'TeacherImportanceCache', 'cache_scope', 'cache_enabled', 'importance_cache'}
++    def names(node):
++        return {v for n in ast.walk(node) for v in ([n.id] if isinstance(n,ast.Name)
++            else [n.name] if isinstance(n,(ast.FunctionDef,ast.ClassDef,ast.alias))
++            else [n.arg] if isinstance(n,(ast.arg,ast.keyword)) else [])}
++    if not names(tree)&markers:return tree
++    class _Recorded(ast.NodeTransformer):
++        def __init__(self):self.consumed={}
++        def record(self,node):
++            key=hashlib.sha256(ast.dump(node,include_attributes=False).encode()).hexdigest()
++            self.consumed[key]=self.consumed.get(key,0)+1
++        def visit(self,node):
++            before=ast.parse(ast.unparse(node)).body[0] if isinstance(node,ast.stmt) else node
++            key=hashlib.sha256(ast.dump(before,include_attributes=False).encode()).hexdigest()
++            result=super().visit(node)
++            if result is None or type(result) is list:self.consumed[key]=self.consumed.get(key,0)+1
++            return result
++
++    class _Selector(_Recorded):
++        def visit_ImportFrom(self,node):
++            if node.module=='automl.execution.feature_engineering.importance_cache':return None
++            return self.generic_visit(node)
++        def visit_Assign(self,node):
++            if any(isinstance(n,ast.Name) and n.id in {'cache_enabled','importance_cache'} for n in node.targets):return None
++            return self.generic_visit(node)
++        def visit_If(self,node):
++            if ast.unparse(node.test) in {'type(cache_enabled) is not bool','importance_cache is not None'}:return None
++            return self.generic_visit(node)
++        def visit_FunctionDef(self,node):
++            if node.name=='fit_on_rows' and node.args.args and node.args.args[-1].arg=='cache_scope':
++                self.record(node.args)
++                node.args.args.pop();node.args.defaults.pop()
++            return self.generic_visit(node)
++        def visit_Call(self,node):
++            if isinstance(node.func,ast.Name) and node.func.id=='fit_on_rows':
++                for keyword in list(node.keywords):
++                    if keyword.arg=='cache_scope':self.record(keyword);node.keywords.remove(keyword)
++            return self.generic_visit(node)
++
++    result=ast.parse(ast.unparse(tree))
++    selector=_Selector();result=selector.visit(result)
++    counts={'selector':selector.consumed}
++    if counts!={'selector': {'e6d8b2787a5c186e2e4c28aa0891a5f745bdb92241f652c6272ede40ae993e75': 1, 'c908f5b746686ad6cc9a8726361340060bdab36690e3b21990fda1392462ea8d': 1, '63985938ce9ce6754cebdea084a6c89bd87489343459d9f47df3c3c76f0e4492': 1, '1fb96211d047aa20043649fbc9fcfabed49877ce48d70b72662aff7ce159665f': 1, 'e905eca78c43d41d9eb6bb85e329a7a74c9e45800f030df855023dd135551d6c': 1, 'dd40f56cb5953335b2bdb3ff05a6044b4b77c42e5f8f1c8244be133c8693a1d1': 1, '01dcab852a213b848ba639b57a5589fe8c02b6e119369f84ebbae3efaf1e5a4d': 2, '75baaf138095eded62a14182b1aff4643a03898cd1a0b44eae7b0419486d0d69': 1, 'eb84e40486e2d18955bcf664975fe22c773b519c399112b04f16dc7a4581c9db': 1, 'aee6ac6abcc58516ba998a08ca415467ba37f5eddcd0f76102e34808b7cd02f8': 1}}:raise ValueError('reviewed_composed_AST_shape_or_count_changed')
++    if names(result)&markers:raise ValueError('unreviewed_or_duplicate_composed_AST_scaffold')
++    return result
++
++
+ class LegacyOffProjection(ast.NodeTransformer):
+     loss_names={'LossProfile','LOSS_PROFILES','loss_profile_catalog','resolve_loss_profile',
+                 'validate_loss_profiles','loss_profile_fit_receipt'}
++    def visit_Module(self,node):
++        return self.generic_visit(_composed_worker_off(node))
+     def visit_ImportFrom(self,node):
+         node.names=[v for v in node.names if v.name not in self.loss_names]
+         return node if node.names else None

@@ -1,0 +1,10 @@
+{
+  "phase": "pure_AST_metadata_generation",
+  "tool": "437e99",
+  "exit": 1,
+  "error": "strict_source_alignment_refused_1_to_2_statement_expansion",
+  "source_sha256": "f25feac9c44ccf3520b2ff5adb8988c15469a4fa8c11635e0a5cccd2c667698f",
+  "runtime_attempt": false,
+  "unittest_imports_fits_API_data_PID_clock": 0,
+  "preparer_identity": null
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "uar10-exact-two-test-overlay-source-proof-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "base_handoff_sha256": "26e0a7dd31291c2ab23ae79af76f1dbb0149a5861fb198fefb69b791b355017c",
+  "overlay_handoff_sha256": "83dcc7a5e69b7896339e6b5a4ddcd30b122af32ae32698090dd3b1a4d5f2699b",
+  "whole_driver_AST_inverse_exact": true,
+  "changed_function_only": "config",
+  "three_fixed_overlay_constants_only": true,
+  "five_other_runtime_modules_byte_exact": {
+    "technical_entry.py": "8682cb78c3ebeec5ce8cb13e67365c3167e7fd9ba6cd95d7a5c9de9e1d381bb2",
+    "contracts.py": "a929205198e5a0649c26129f6c366bb4b6965550f1982925f85cb398e443306b",
+    "close_gate.py": "568a32c3b485b11abef32d01574aeba852abb920e3fc6c67b65b5852f5a244cf",
+    "run_root.py": "d7b6332a38f2e6f61182f7531761aa9a9519a770b80c35b30c48fb213daf1f66",
+    "close_child.ps1": "f3e0a749c9da33d3c8d0e0ac3b323bf35d1de219912441d8d8a97b22140f68d7"
+  },
+  "all_non_config_driver_functions_and_predicates_AST_exact": true,
+  "whitelist_changed_rows": [
+    "tests/test_uar_loss_backend.py",
+    "tests/test_uar_hpo_fair_reserve.py"
+  ],
+  "whitelist_changed_fields_only": [
+    "source_test_sha256",
+    "source_review_sha256"
+  ],
+  "other12_rows_and_all14_method_lists_exact": true,
+  "counts_unchanged": {
+    "source_scripts": 66,
+    "source_checks": 704,
+    "canonical_python": 183,
+    "runtime_modules": 72,
+    "flat_members": 78,
+    "exact": 23,
+    "mapped": 174,
+    "suites": 14,
+    "gate_contracts_separate": 6
+  },
+  "actual_runtime_config_import_tests_build_fits_API_data_PID_Git_clock": 0,
+  "clock": null,
+  "private_READY": null
+}

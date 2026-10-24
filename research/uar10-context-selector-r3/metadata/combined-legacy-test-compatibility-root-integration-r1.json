@@ -1,0 +1,17 @@
+{
+  "schema": "combined-two-test-helper-root-integration-v1",
+  "status": "SOURCE_INTEGRATED_NO_RUNTIME",
+  "handoff_sha256": "83dcc7a5e69b7896339e6b5a4ddcd30b122af32ae32698090dd3b1a4d5f2699b",
+  "peer_sha256": "0c96d47bfa0117ff61b7f084cef9f1ec9f6e6d1ac174dea49c39049c786db85a",
+  "changed_canonical_files": [
+    "tests/test_uar_hpo_fair_reserve.py",
+    "tests/test_uar_loss_backend.py"
+  ],
+  "all_other_composition_files_unchanged": true,
+  "verified_candidate_pins": 192,
+  "runtime_changes": 0,
+  "old_test_methods_and_assertions_unchanged": true,
+  "new_clock": null,
+  "source_tests_executed": 0,
+  "actual_unix": 1792860638.4408035
+}

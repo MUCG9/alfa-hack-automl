@@ -1,0 +1,67 @@
+{
+  "schema": "uar10-exact-two-test-overlay-independent-rebind-v1",
+  "status": "SOURCE_REVIEWED_NO_SCOPED_BLOCKER_PRIVATE_READY_STILL_REQUIRED",
+  "handoff": {
+    "path": "work/uar10-context-selector-gate-next-dev-r3/source-handoff.json",
+    "sha256": "f0b70effd26d6e2b891c4bb01b7c7109b545dced6dd11fa9e79570b19fb60dc1"
+  },
+  "driver_sha256": "a07eae5ed915a1fed6dfc6d8f777c38edd5743631dc1fe1669c57024568a207d",
+  "verified_pins": {
+    "local": 15,
+    "external": 30,
+    "mismatches": 0
+  },
+  "all_R2_local30_unchanged": true,
+  "source_scope": {
+    "only_config_and_three_compat_constants_changed": true,
+    "whole_module_inverse_exact_R2": true,
+    "other_five_runtime_byteexact": true,
+    "U10P1_schema_fix_preserved": true,
+    "clock_resource_capture_cleanup_atomic_passed_predicates_unchanged": true
+  },
+  "exact_compatibility_admission": {
+    "handoff": "83dcc7a5e69b7896339e6b5a4ddcd30b122af32ae32698090dd3b1a4d5f2699b",
+    "independent_peer": "0c96d47bfa0117ff61b7f084cef9f1ec9f6e6d1ac174dea49c39049c786db85a",
+    "canonical_replacements": {
+      "tests/test_uar_hpo_fair_reserve.py": {
+        "before_sha256": "8bfe59fa6bd0114c3867e1ef426f1f155cd83fbe3ba90709a332046b903d5643",
+        "after_sha256": "b51ce05a2533515647ec04f521828c6c23e223bf3d4dbbfc287191f05eaa7252",
+        "candidate_path": "candidate/tests/test_uar_hpo_fair_reserve.py"
+      },
+      "tests/test_uar_loss_backend.py": {
+        "before_sha256": "b882f673692ef758f3505c456a98d5883d25a37a2d75f3e611c3958b9aa58a7f",
+        "after_sha256": "2240cef09e932130cd3d5350b02e2f5260b90f5b54259168695aa0936cced787",
+        "candidate_path": "candidate/tests/test_uar_loss_backend.py"
+      }
+    },
+    "allowed_path_keys_exactly_two": true,
+    "before_hash_bound_to_original1e08": true,
+    "after_hash_bound_to_frozen_overlay_candidate_and_actual_canonical": true,
+    "all_other_candidate_runtime_tests_tools_files_stay_original1e08": true,
+    "no_generic_override_or_witness_substitution": true
+  },
+  "method_whitelist": {
+    "exact_two_source_hash_and_review_pairs_changed": true,
+    "other12rows_exact": true,
+    "all14methodlists_and_exclusions_exact": true,
+    "source": [
+      66,
+      704
+    ],
+    "canonical_python": 183,
+    "flat_members": 78,
+    "exact": 23,
+    "mapped": 174,
+    "separate_harness": 6
+  },
+  "new_scoped_findings": [],
+  "remaining": [
+    "Root exact two-test canonical integration/publication and private READY metadata instantiation/review.",
+    "Root actual current known/preparer absence and one fresh authorized1200 launch. Actual driver/closer/wrapper exits and source/temp/cleanup/proof still required."
+  ],
+  "candidate_imports_config_tests_build_fits_API_data_arrays_PID_Git_clock": 0,
+  "actual_clock": null,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

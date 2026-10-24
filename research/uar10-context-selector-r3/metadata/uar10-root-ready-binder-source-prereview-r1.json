@@ -1,0 +1,42 @@
+{
+  "schema": "uar10-root-metadata-binder-source-prereview-v1",
+  "status": "PROPOSED_SOURCE_REVIEWED_FINAL_OVERLAY_AND_GATE_PINS_PENDING",
+  "binder": {
+    "path": "work/uar10-root-ready-bind-r1.py",
+    "sha256": "7c5951403bf73cd8e6c5f83d43586dac778a40bbabf67cf3ad8eb995994d67fb"
+  },
+  "generator_proposed": {
+    "path": "work/combined-legacy-test-compatibility-next-dev/prepare_source.py",
+    "sha256": "618c931d70e2822a05952dfe62ce6d28f0214b5dde67dca619741147658e6c60"
+  },
+  "fixed_before_execution": [
+    {
+      "id": "READYB01",
+      "problem": "mapped suite source_review_ref was a string; gate requires exact path+sha256 object.",
+      "latest_source": "source_review_ref=ref(source_review)",
+      "resolution": "source_fixed_before_any_binder_execution"
+    }
+  ],
+  "reviewed_contracts": [
+    "Exactly2 canonical test replacement paths and before/after hashes checked against composition1e08; other canonical183 source bytes retained, old noncanonical pins rechecked.",
+    "Prospective R3 packet/private templates required, all actual source/review/helper pins frozen, canonical publication explicit40hex rather than inheritedoldcommit.",
+    "Typed source_review_ref latestcode matches gate schema; exact fixed whitelist method counts/exclusions read from reviewed newpacket.",
+    "Metadata preparation has no candidate/config imports or model/provider calls; records own preparers for future known union; no campaign clock assigned.",
+    "Atomic stage requires observed actualdriverexit0 and cleanterminalsource/temp flags, retains original common/final remaining, pins manifest/campaign/closer/PowerShell/venv rather than arbitrary command payload. Actual wrapper/closer own guards still enforce deadlines."
+  ],
+  "generator_strictness_prereview": [
+    "Fixed patches generated from independently pinned12091->7f986 andde757->e662 pairs only.",
+    "Every original path+full node AST fingerprint validated BEFORE rewrite; unknown scaffold edits cannot be silently discarded.",
+    "Existing definitions descended rather than replaced as whole bodies; all other nodes remain for original literal witness to reject.",
+    "Modified/partial/duplicate/unknown and preexisting numerical AST metadata negative cases are distinct from unittest execution. Existing35 methods/witnesses intended unchanged, finalartifact equality stilltoverify."
+  ],
+  "remaining": [
+    "Frozen compatibility handoff and UAR10R3 exact runtime/source/testhash rebind + independentpeer.",
+    "Root canonical integration/publication/privateREADY exact instantiation independentlychecked later; this pre-read grants no execution."
+  ],
+  "new_scoped_source_blockers_found_after_READYB01_fix": [],
+  "candidate_imports_unittest_methods_fits_API_data_PID_Git_clock": 0,
+  "actual_ready_manifest": null,
+  "actual_runtime": null,
+  "promotion": false
+}

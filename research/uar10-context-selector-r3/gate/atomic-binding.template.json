@@ -1,0 +1,21 @@
+{
+  "schema": "uar10-atomic-root-private-v1",
+  "readiness": "NOT_READY",
+  "missing_bindings": [
+    "Actual whole driver exit and terminal campaign SHA",
+    "Exact published gate/helper/private/interpreter/PowerShell pins and independent reviews",
+    "Actual launch-parent tuple supplied by root"
+  ],
+  "immutable_files": null,
+  "output": null,
+  "driver": null,
+  "closer": null,
+  "manifest": null,
+  "campaign": null,
+  "python": null,
+  "powershell": null,
+  "independent_source_review": null,
+  "future_UAR10_source_review": null,
+  "child_script_sha256": null,
+  "actual_clock": null
+}

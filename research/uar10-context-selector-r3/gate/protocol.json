@@ -1,0 +1,100 @@
+{
+  "schema": "uar10-prospective-full-technical-gate-v1",
+  "status": "NOT_READY_SOURCE_REVIEW_REQUIRED",
+  "source_revision": "R3_EXACT_TWO_TEST_HELPER_OVERLAY",
+  "common_seconds": 1200,
+  "parent_seconds": 900,
+  "child_seconds": 840,
+  "setup_max_seconds": 60,
+  "actual_final_seconds": 180,
+  "root_seconds": 60,
+  "mandatory_remaining_before_child_both_clocks": 1140,
+  "actual_clock": null,
+  "readiness": null,
+  "actual_root": null,
+  "sequence": [
+    "gate_plumbing6",
+    "fullsource66/704",
+    "build78",
+    "default_exact23",
+    "mapped14suites/174",
+    "source/temp/owned cleanup+posthash",
+    "atomic closer+fresh inside actualbirth60/final180/common1200",
+    "root actual wrapper exit confirmation"
+  ],
+  "no_old_clock_reset": true,
+  "new_experience_only_after_source_peers_root_private_review_publication_fresh_admission": true,
+  "source_publication_reported_by_root": "4607734706eccb31105f9c517bfdf7f38548cd9a",
+  "source_snapshot": "fitting-context-selector-combined-next-dev/source-handoff.json1e08",
+  "preserved_default_OFF_proofs": true,
+  "separate_context_and_cache_scientific_flags": true,
+  "source_checks": 704,
+  "flat_assertion_methods": 174,
+  "exact_checks": 23,
+  "separate_harness_checks": 6,
+  "exclusions": "Only existing exact LOSS/HPO modular-source-AST methods; all70 new methods run source+flat.",
+  "fixture_deployment": "Fixed unrun adapted test_feature_views and all14 adapted tests written before running any mapped suite; no src sidecars/no extra helper-test credit.",
+  "predecessor": {
+    "id": "cx2",
+    "driver_session": 72141,
+    "driver_exit": 0,
+    "driver_tool": "ea9a27",
+    "atomic_wrapper_exit": 0,
+    "atomic_wrapper_tool": "ea00b8",
+    "root_post_tool_confirmation_tool": "180656",
+    "known_count": 7343,
+    "technical_pass": true,
+    "quality_gate_pass": false,
+    "old_CX1_FAIL_unchanged": true
+  },
+  "source_only_semantic_limits": [
+    "No new real-Qwen/ML experiment",
+    "Legacy full-source fixtures can fit tiny learners/local mock HTTP; aggregate fit/API instrumentation NULL, not zero.",
+    "Power API acquire/release is checked; no forced-sleep prevention or continuous OS sandbox claim.",
+    "No public archive release or model promotion."
+  ],
+  "worker_RSS_MiB": 1536,
+  "whole_RSS_MiB": 2048,
+  "technical_threads": 1,
+  "BLAS_threads": 1,
+  "external_API_actual": null,
+  "fixture_learner_fits": null,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false,
+  "metadata_source_preparation_failures": [
+    {
+      "tool": "657bbb",
+      "exit": 1,
+      "preserved": "source-evidence/preparation-r1",
+      "runtime_attempt": false
+    },
+    {
+      "tool": "51b5cc",
+      "exit": 1,
+      "preserved": "source-evidence/preparation-r2",
+      "runtime_attempt": false,
+      "reason": "missing five canonical alias entries detected before freeze; root copied exact9395 under f447 addendum"
+    }
+  ],
+  "two_test_overlay": {
+    "handoff_sha256": "83dcc7a5e69b7896339e6b5a4ddcd30b122af32ae32698090dd3b1a4d5f2699b",
+    "independent_review_sha256": "0c96d47bfa0117ff61b7f084cef9f1ec9f6e6d1ac174dea49c39049c786db85a",
+    "canonical_replacements": {
+      "tests/test_uar_hpo_fair_reserve.py": {
+        "before_sha256": "8bfe59fa6bd0114c3867e1ef426f1f155cd83fbe3ba90709a332046b903d5643",
+        "after_sha256": "b51ce05a2533515647ec04f521828c6c23e223bf3d4dbbfc287191f05eaa7252",
+        "candidate_path": "candidate/tests/test_uar_hpo_fair_reserve.py"
+      },
+      "tests/test_uar_loss_backend.py": {
+        "before_sha256": "b882f673692ef758f3505c456a98d5883d25a37a2d75f3e611c3958b9aa58a7f",
+        "after_sha256": "2240cef09e932130cd3d5350b02e2f5260b90f5b54259168695aa0936cced787",
+        "candidate_path": "candidate/tests/test_uar_loss_backend.py"
+      }
+    },
+    "all_other_composition_pins_exact": true,
+    "runtime_unchanged": true,
+    "old_35_test_methods_assertions_literals_unchanged": true,
+    "actual_root_integration_and_PRIVATE_READY_pending": true
+  }
+}

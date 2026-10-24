@@ -1,0 +1,53 @@
+{
+  "schema": "combined-legacy-test-compatibility-source-handoff-v1",
+  "status": "SOURCE_ONLY_FROZEN_NOT_READY",
+  "canonical_replacements": {
+    "tests/test_uar_hpo_fair_reserve.py": {
+      "before_sha256": "8bfe59fa6bd0114c3867e1ef426f1f155cd83fbe3ba90709a332046b903d5643",
+      "after_sha256": "b51ce05a2533515647ec04f521828c6c23e223bf3d4dbbfc287191f05eaa7252",
+      "candidate_path": "candidate/tests/test_uar_hpo_fair_reserve.py"
+    },
+    "tests/test_uar_loss_backend.py": {
+      "before_sha256": "b882f673692ef758f3505c456a98d5883d25a37a2d75f3e611c3958b9aa58a7f",
+      "after_sha256": "2240cef09e932130cd3d5350b02e2f5260b90f5b54259168695aa0936cced787",
+      "candidate_path": "candidate/tests/test_uar_loss_backend.py"
+    }
+  },
+  "files_sha256": {
+    "candidate/tests/test_uar_hpo_fair_reserve.py": "b51ce05a2533515647ec04f521828c6c23e223bf3d4dbbfc287191f05eaa7252",
+    "candidate/tests/test_uar_loss_backend.py": "2240cef09e932130cd3d5350b02e2f5260b90f5b54259168695aa0936cced787",
+    "freeze_source.py": "383bde25cd3b4164eb7bcf1b7bc67ff429b1d16bc753ce7cc322211e7ce85509",
+    "normalizer-source-proof.json": "573390771c2916450bd5688b842e2fdd0e25b6daec8f81da8a464a41ce49c40b",
+    "prepare_source.py": "618c931d70e2822a05952dfe62ce6d28f0214b5dde67dca619741147658e6c60",
+    "protocol.json": "d5157e0913d2e951c895f1f67b84245bb02b5fdf14549c680650bd5c3eb3da06",
+    "README.txt": "6dd9a79c8b59360db360645cf501861282ac187cda6de411016f59d64881b7cb",
+    "source-evidence/base/test_uar_hpo_fair_reserve.py": "8bfe59fa6bd0114c3867e1ef426f1f155cd83fbe3ba90709a332046b903d5643",
+    "source-evidence/base/test_uar_loss_backend.py": "b882f673692ef758f3505c456a98d5883d25a37a2d75f3e611c3958b9aa58a7f",
+    "source-evidence/preparation-r1/failure.json": "524e90f047fa0a36eac286458f77b060f486098cb29cd12ec1cd757e389d6b52",
+    "source-evidence/preparation-r1/prepare_source.py": "f25feac9c44ccf3520b2ff5adb8988c15469a4fa8c11635e0a5cccd2c667698f",
+    "source-evidence/preparation-r2/failure.json": "1437ffafc496480659649f44143b55e9a2db75de8fe910d12c2a04e2c067180f",
+    "source-evidence/preparation-r2/prepare_source.py": "2e1ffdab211ed7704d7104364aa338a58c01e98f011e9b7ec63342e59b7d5fe1",
+    "source-proof.json": "f8855acb6e7302e0bcacb8d23ba7c986fdf295838f1282e3f13d0b11d85c4f36",
+    "test_uar_hpo_fair_reserve.py.patch": "a9484495c3e5d13c16b89572da1eec110137470247e7ff657b16bb8ea72c8d5c",
+    "test_uar_loss_backend.py.patch": "dfd8c70a3a9bf78930d13d940c7c7d3202b4dd4a5d510a3c0a07a6e885f53836"
+  },
+  "external_refs_sha256": {
+    "fitting-context-selector-combined-next-dev/source-handoff.json": "1e08cd7915e067dc264fce5bcbe46ca2a770760b04843479f74511df5a263acf",
+    "fitting-context-selector-combined-independent-review-r1.json": "94b29ff1f4370f7167ffda71d27ec5316e85ee6698a88b2a41726088963c0961",
+    "fitting-context-selector-combined-next-dev/prepare_source.py": "cf8cdb8761607310d4194924258ee48f55ca02a25b818c0a80ee560646720878",
+    "fitting-context-selector-combined-next-dev/composition-proof.json": "06a6cde6190af06a9dc43beecaf9c95e156cdb61ccf67d4b1dd634da93e7c357",
+    "selector-cache-current-port-next-dev/prepare_source.py": "c49a4e4403b00ef0430a1266c35ea25ae4e33461387d6a8d48f70d409fd21652",
+    "selector-cache-current-port-next-dev/source-delta-proof.json": "87f9c5a99ac95f2c6ad7ffd3871e78298af70995b6e4f08ff16c040488db544c",
+    "fit-context-gateway-next-dev/source-evidence/base/runner.py": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+    "fitting-context-selector-root-integration-r1/before/src/automl/execution/worker.py": "de75742f1cdbe18bf1a1280d16637116cdf76f53a12cab53496df75f3fefb477",
+    "combined-source-legacy-AST-compatibility-finding-r1.json": "edb3e5678598baee92c0ceada16d53f3e1ea3f4f422405b5d5db6e7533957839",
+    "combined-source-legacy-AST-independent-confirmation-r1.json": "721bae0131377db24e455c88d405adb71a28be822e7d25c40df3cd1eb7b8d675",
+    "uar10-context-selector-gate-next-dev-r2/source-handoff.json": "26e0a7dd31291c2ab23ae79af76f1dbb0149a5861fb198fefb69b791b355017c",
+    "uar10-context-selector-gate-independent-review-r2.json": "fb98f06f187eeda572be0466336020178c45326395cfc931b6148faf0d3a4c41"
+  },
+  "runtime_changes": 0,
+  "prepared_methods": 35,
+  "unittest_methods_executed": 0,
+  "new_clock": null,
+  "no_READY_grant": true
+}

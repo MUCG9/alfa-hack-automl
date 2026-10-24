@@ -1,0 +1,10 @@
+{
+  "phase": "pure_AST_metadata_generation",
+  "tool": "e751f7",
+  "exit": 1,
+  "source_sha256": "2e1ffdab211ed7704d7104364aa338a58c01e98f011e9b7ec63342e59b7d5fe1",
+  "reason": "generic strict list alignment refused reviewed4to3 context wrapper; replaced by exact reviewed visitors with strict consumed-node fingerprints",
+  "runtime_attempt": false,
+  "unittest_imports_fits_API_data_PID_clock": 0,
+  "preparer_identity": null
+}

@@ -17,7 +17,7 @@ from automl.infrastructure.resources import peak_rss_mb
 from automl.infrastructure.tables import read_input_table,read_task_sample
 from automl.evaluation.api import evaluate,make_split,make_folds,metric_context
 from automl.publishing.api import save_submission,read_submission_values,positive_class_index
-from automl.execution.model_adapters.registry import make_model,fit_options,selected_iterations,CAPABILITIES
+from automl.execution.model_adapters.registry import make_model,fit_options,selected_iterations,CAPABILITIES,loss_profile_fit_receipt
 from automl.execution.weighting.classes import sample_weights,number
 from automl.evaluation.api import lgbm_metric,tune_class_factors,adjusted_probabilities
 from automl.execution.feature_engineering.transforms import feature_transform,generic_features
@@ -26,7 +26,7 @@ from automl.execution.preprocessing.frames import prepare_frames
 from automl.execution.preprocessing.target_encoding import target_encode_frames,infer_history_groups
 from automl.execution.preprocessing.history import add_history_features,validate_history_groups
 from automl.execution.model_adapters.linear_text import linear_text_fit
-from automl.contracts.messages import DataPolicy,SplitPlan,PredictionBundle
+from automl.contracts.messages import DataPolicy,SplitPlan,PredictionBundle,resolve_loss_profile,validate_loss_profiles
 from dataclasses import asdict
 from automl.execution.sampling.policies import prepare_training
 from automl.execution.feature_views import validate_feature_view,feature_view_components,validate_fit_iterations
@@ -129,6 +129,8 @@ def run(job):
     start=time.monotonic()
     spec=job['spec']
     recipe=job['recipe']
+    validate_loss_profiles(recipe,spec['kind'])
+    loss_profile=resolve_loss_profile(recipe.get('engine'),recipe.get('params',{}),spec['kind'])
     selection_size=validate_selection(recipe.get('params',{}))
     if selection_size and recipe['engine']=='linear_text':
         raise ValueError('Feature selection is unsupported for text recipes')
@@ -265,6 +267,13 @@ def run(job):
                 def ranking_loss(truth,predictions): return 1-evaluator(truth,predictions)[1]
                 kwargs['eval_metric']=ranking_loss
         estimator.fit(fit_x,targets,**kwargs)
+        if loss_profile is not None:
+            receipt=loss_profile_fit_receipt(recipe,spec['kind'],estimator)
+            receipt.update(fit_index=len(policy_records),model_scope='full_refit' if full and estimator is model
+                else 'outer_fitting' if estimator is model else 'inner_fitting',
+                validation_used_for_stopping=validation_rows is not None,
+                primary_metric=spec['metric'],target_scale='log1p' if target_log else 'original')
+            policy_record['loss_profile']=receipt
         return prepared_x,prepared_test
     class_factors={}
     decision_diagnostics=None
@@ -390,6 +399,9 @@ def run(job):
             'peak_rss_mb':round(peak_rss_mb(),1),
             'validation_predictions':str(validation_path) if validation_path else None,
             'submission':str(output_dir/'submission.csv')}
+    if loss_profile is not None:
+        record['loss_profile_id']=loss_profile.loss_profile_id
+        record['effective_loss_profile']=policy_records[-1]['loss_profile']
     atomic_json(output_dir/'result.json',record)
     print(json.dumps({k:v for k,v in record.items() if k not in {'recipe','feature_names'}},ensure_ascii=False),flush=True)
 

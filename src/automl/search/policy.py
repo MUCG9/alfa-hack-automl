@@ -1,7 +1,7 @@
 """Task-independent search policy, planner validation and deterministic fallbacks."""
 from __future__ import annotations
 import hashlib,json
-from automl.contracts.messages import DataPolicy
+from automl.contracts.messages import DataPolicy,validate_loss_profiles
 from automl.execution.api import effective_parameters,CAPABILITIES,validate_feature_view,validate_target_smearing
 from automl.evaluation.api import validate_decision_optimizer
 
@@ -11,7 +11,10 @@ PARAMETERS={'iterations','depth','max_depth','learning_rate','num_leaves','min_c
  'subsample','subsample_freq','colsample_bytree','seed','log_target','generic_features','calibrate',
  'min_samples_leaf','max_features','text_alpha','text_char_features','text_svd_components','text_classifier','text_C','min_iterations','min_child_weight','gamma','max_bin','categorical_from_dictionary','multiclass_strategy','target_encoding','calibration_folds','target_encoding_groups','target_encoding_smoothing','target_encoding_auto_groups','target_encoding_refine_groups','target_encoding_counts','target_encoding_half_life','target_encoding_hierarchical','pair_refinement','history_asof','history_min_periods','feature_selection_top_k','feature_selection_protect_original'}
 
+PARAMETERS.add('loss_profile_id')
+
 def signature(recipe):
+    validate_loss_profiles(recipe)
     actual={k:recipe.get(k) for k in ['engine','params','feature_code','components','weights','data_policy'] if k in recipe}
     if recipe.get('engine') in CAPABILITIES: actual['params']=effective_parameters(recipe['engine'],recipe.get('params',{}))
     policy=DataPolicy.parse(recipe.get('data_policy'))
@@ -24,6 +27,7 @@ def normalize(candidate,best=None):
         raise ValueError('Unsupported planner recipe')
     params=candidate.get('params',{})
     if not isinstance(params,dict): raise ValueError('params must be an object')
+    validate_loss_profiles(candidate)
     if 'feature_views' in params and candidate['engine']!='lightgbm':
         raise ValueError('Unsupported feature-view learner')
     if 'history_asof' in params and not isinstance(params['history_asof'],bool):
@@ -33,6 +37,8 @@ def normalize(candidate,best=None):
             raise ValueError('Hierarchical contexts require automatic groups')
         params=dict(params,target_encoding_auto_groups=True)
     inherited=best.get('params',{}).copy() if best and best['engine']==candidate['engine'] else {}
+    if 'loss_profile_id' in inherited or 'loss_profile_id' in params:
+        validate_loss_profiles(dict(candidate,params={**inherited,**params}))
     inherited.update({k:v for k,v in params.items() if k in PARAMETERS})
     if 'feature_views' in params and params['feature_views'] is None:
         inherited.pop('feature_views',None)

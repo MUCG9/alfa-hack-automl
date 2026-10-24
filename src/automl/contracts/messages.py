@@ -4,6 +4,52 @@ import hashlib,json,math
 SCHEMA_VERSION='1.0'
 
 @dataclass(frozen=True)
+class LossProfile:
+    """Fixed backend profile metadata; never a changed evaluation metric."""
+    loss_profile_id:str
+    engine:str
+    kind:str
+    objective:str
+    alpha:float|None=None
+    def parameters(self):
+        result={'objective':self.objective}
+        if self.alpha is not None: result['alpha']=self.alpha
+        return result
+    def to_dict(self): return asdict(self)
+
+LOSS_PROFILES=(
+    LossProfile('lgbm_l2_v1','lightgbm','regression','regression'),
+    LossProfile('lgbm_l1_v1','lightgbm','regression','regression_l1'),
+    LossProfile('lgbm_huber_a09_v1','lightgbm','regression','huber',.9),
+)
+
+def loss_profile_catalog(engine=None,kind=None):
+    """Separate opt-in backend catalog; legacy planner capabilities stay unchanged."""
+    return tuple(profile.to_dict() for profile in LOSS_PROFILES
+                 if (engine is None or profile.engine==engine) and (kind is None or profile.kind==kind))
+
+def resolve_loss_profile(engine,params,kind=None):
+    if 'loss_profile_id' not in params: return None
+    value=params['loss_profile_id']
+    if not isinstance(value,str): raise ValueError('loss_profile_id must be a supported string ID')
+    profile=next((profile for profile in LOSS_PROFILES if profile.loss_profile_id==value),None)
+    if profile is None: raise ValueError('Unsupported loss_profile_id')
+    if engine!=profile.engine or (kind is not None and kind!=profile.kind):
+        raise ValueError('Loss profile is incompatible with the learner or task kind')
+    if any(key in params for key in ('objective','objective_type','application','app','loss','alpha')):
+        raise ValueError('Fixed loss profile cannot combine raw objective/loss/alpha aliases')
+    if params.get('early_metric','primary')!='primary':
+        raise ValueError('Loss profile requires unchanged primary-metric early stopping')
+    return profile
+
+def validate_loss_profiles(recipe,kind=None):
+    """Validate before filtering and before any child model fit; no model imports."""
+    if 'loss_profile_id' in recipe: raise ValueError('loss_profile_id belongs in recipe.params')
+    resolve_loss_profile(recipe.get('engine'),recipe.get('params',{}),kind)
+    if recipe.get('engine')=='ensemble':
+        for child in recipe.get('components',[]): validate_loss_profiles(child,kind)
+
+@dataclass(frozen=True)
 class DataPolicy:
     schema_version:str=SCHEMA_VERSION
     sampling:str='identity'
@@ -87,6 +133,7 @@ class ExperimentRequest:
     def validate(self):
         if self.schema_version!=SCHEMA_VERSION or not 1<=self.threads<=8 or not self.experiment_id: raise ValueError('Invalid experiment request')
         if self.recipe.get('engine')!='ensemble': DataPolicy.parse(self.recipe.get('data_policy'))
+        validate_loss_profiles(self.recipe)
 
 @dataclass(frozen=True)
 class EvaluationResult:

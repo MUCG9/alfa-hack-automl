@@ -1,0 +1,137 @@
+{
+  "schema": "UAR-Qwen-pair-prospective-v1",
+  "status": "NOT_READY_SOURCE_ONLY",
+  "budget_assigned": false,
+  "start_unix": null,
+  "absolute_deadline_unix": null,
+  "actual_common_source_archive_sha256": null,
+  "proposed_common_seconds": 10800,
+  "allocations": {
+    "setup": 900,
+    "Ar": 900,
+    "Br": 900,
+    "Ac": 3600,
+    "Bc": 3600,
+    "independent_audit": 600,
+    "cleanup_including_root": 300
+  },
+  "caps": {
+    "regression": {
+      "parent": 900,
+      "child": 870,
+      "solver": 810,
+      "hpo": 300
+    },
+    "classification": {
+      "parent": 3600,
+      "child": 3570,
+      "solver": 3510,
+      "hpo": 900
+    }
+  },
+  "order": [
+    "Ar",
+    "Br",
+    "Ac",
+    "Bc"
+  ],
+  "only_factor": "B appends --strict-task-contract; strict-runtime both; common fixed strong retention source/input/slots/parameters unchanged",
+  "common_policy": {
+    "regression": "first5+CP1+.75L1firstSINGLE/.25CP1, exactly7 required primary slots",
+    "classification": "complete V16 control first5; no artificial seven-slot claim",
+    "max_experiments": 9,
+    "HPO_attempts": 8,
+    "HPO_seed": 137,
+    "HPO_startup": 3,
+    "hpo_anchor": "exact raw successful unprofiled first SINGLE",
+    "gateway_call_limit": 4,
+    "max_planner_calls": 2,
+    "requested_model": "qwen/qwen3.8-27b",
+    "requested_reasoning_effort": "off",
+    "effective_reasoning_effort_attested": null,
+    "threads": 2,
+    "worker_GiB": 1.5,
+    "whole_GiB": 2
+  },
+  "reserve_inequality": {
+    "regression": {
+      "reserve": 162,
+      "HPO": 300,
+      "margin": 30,
+      "minimum_remaining_at_admission": 492,
+      "initial_allowance_within_solver": 318
+    },
+    "classification": {
+      "reserve": 702,
+      "HPO": 900,
+      "margin": 30,
+      "minimum_remaining_at_admission": 1632,
+      "initial_allowance_within_solver": 1878
+    }
+  },
+  "real_evidence_required": [
+    "actual complete source/full-flat/exact gate for same archive including metric contrast repair",
+    "reviewed exact authority and retention packets same bytes both arms",
+    "genuine successful Qwen initial call before first worker; actual calls/HTTP attempts/reported usage, unknown remains null",
+    "eight actual HPO attempts separately counted from successes; full configured window, no clipping",
+    "all4 complete terminal/core/code/input/usage seals before independent pristine scoring",
+    "recursive model probabilities, class order, rows, pristine RMSE/MacroF1 and fullrefit/finalCSV",
+    "root-observed actual exit, fresh exact union/preparer absence, full cleanup and postexit hashes"
+  ],
+  "quality": {
+    "new_gain_claim": null,
+    "descriptive_only": true,
+    "selected_primary_confirmation_arithmetic_mean": true,
+    "historical_strong_controls_preserved": true,
+    "negative_scores_or_gain_do_not_rewrite_prior_results": true,
+    "official_default_ready": false,
+    "promotion": false,
+    "submit": false
+  },
+  "pending_checks": [
+    {
+      "id": "P0_METRIC",
+      "status": "blocked",
+      "reason": "Current frozen authority CLASS contrast is ambiguous under current strict resolver; generic source repair and qualification required, no source/task bypass"
+    },
+    {
+      "id": "P0_COMMON_GATE",
+      "status": "pending",
+      "archive_sha256": null
+    },
+    {
+      "id": "P0_SOURCE_REVIEW",
+      "status": "pending"
+    },
+    {
+      "id": "P0_ACTUAL_PAIR",
+      "status": "not_launched"
+    }
+  ],
+  "author_actual": {
+    "candidate_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "data_or_prediction_reads": 0,
+    "process_scans": 0,
+    "materialization": false,
+    "clocks": 0,
+    "Git_STATE_writes": 0
+  },
+  "setup_authority_checkpoint": {
+    "status": "IMPLEMENTED_SOURCE_ONLY_NOT_EXECUTED",
+    "all4_materialized_in_shared_setup_before_first_API": true,
+    "task_bytes_unchanged": true,
+    "same_original_checkpoint": true,
+    "IO03_header_text_and_MetricSpec_both_tasks": true,
+    "closed_spec_metadata_for_raw_retention_compatibility_only": true,
+    "no_feature_or_target_rows_parsed": true,
+    "receipt_byte_cap": 16384,
+    "receipt_all4_identical_before_first_API": true,
+    "actual_validation_result": null,
+    "actual_elapsed": null,
+    "actual_memory": null,
+    "materialization_cost_shift": "All4 code/input/packet copies charged to shared setup900; parents remain900/3600 with same complete child/solver limits. No cap extension or spare reinvestment."
+  }
+}

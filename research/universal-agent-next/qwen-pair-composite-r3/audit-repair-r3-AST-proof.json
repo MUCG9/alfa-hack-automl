@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "base_handoff_r2_sha256": "02bf5443606f70fc5ed5f29cd6765c0c1cd339c17152ac85322d0b8a4070535d",
+  "base_controller_sha256": "82cf8e7c78daa9dd6f7ef5463ef8d000a37190b96f16b58f5134bdc296446194",
+  "candidate_controller_sha256": "4b91d8d2f1da611c4fba8b8e41747d90860b5c1f2ac90fb1352e0f2980ac91ed",
+  "changed_definitions": [
+    "main"
+  ],
+  "whole_AST_reverts_exactly_after_restoring_gateproof_region": true,
+  "all_other_runtime_bytes_exact": {
+    "audit_pair.py": true,
+    "r4_adapter.py": true,
+    "launcher.py": true,
+    "close_pair.py": true
+  },
+  "unchanged": [
+    "both previous explicit admission modes and their schema-specific predicates",
+    "same recomputed604/73/23+fresh16/75/archive checks applied also to new explicit mode",
+    "all research/10800/4arms/Qwen/API/HPO/R4/metrics/seal-beforetruth/closure paths"
+  ],
+  "producer_handoff": {
+    "path": "uar07-audit-close-repair-r1/source-handoff.json",
+    "sha256": "3d92d685176bcc86afdabc5c1fdd7afccdefe90cc7adff7086beee9f49b23bd3"
+  },
+  "root_confirmation_schema": "uar07-independent-audit-root-confirmation-v1",
+  "candidate_imports_tests_fits_API_scans": 0
+}

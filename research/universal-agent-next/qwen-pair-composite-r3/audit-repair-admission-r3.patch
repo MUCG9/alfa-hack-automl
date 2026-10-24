@@ -1,0 +1,140 @@
+--- R2/run_pair.py
++++ R3/run_pair.py
+@@ -335,7 +335,7 @@
+         stage=binding['source_gate'];cfg_ref=stage['private_manifest'];cfg=bind(cfg_ref)
+         # Explicit disjoint admission modes: composite evidence is never a full-gate fallback.
+         gate_mode=stage.get('mode')
+-        need(gate_mode in ('full_gate_v1','uar07_composite_v1'),'explicit_source_gate_mode_required')
++        need(gate_mode in ('full_gate_v1','uar07_composite_v1','uar07_composite_audit_repair_v1'),'explicit_source_gate_mode_required')
+         need(type(stage['actual_tool_evidence']) is str and bool(stage['actual_tool_evidence'].strip())
+              and (stage['actual_exec_session'] is None or type(stage['actual_exec_session']) is int
+                   and stage['actual_exec_session']>0),'actual_root_observed_gate_tool_and_session_required')
+@@ -348,14 +348,98 @@
+              and stage0_proof.get('cleanup_confirmed') is True and stage0_proof.get('source_unchanged') is True
+              and stage0_proof.get('active_owned_processes')==[] and stage0_proof.get('uncertain_owned')==[],
+              'actual_UAR05_root_PASS_not_prospective_counts_required')
+-        if gate_mode=='uar07_composite_v1':
+-            need(stage0_proof.get('schema')=='uar-composite-root-closure-v1'
++        if gate_mode in ('uar07_composite_v1','uar07_composite_audit_repair_v1'):
++            need(stage0_proof.get('schema')==('uar-composite-audit-repair-root-closure-v1'
++                 if gate_mode=='uar07_composite_audit_repair_v1' else 'uar-composite-root-closure-v1')
+                  and cfg.get('schema')=='uar-composite-private-manifest-v1',
+                  'typed_UAR07_composite_proof_and_manifest_required')
+         else:
+             need(stage0_proof.get('schema')=='uar-full-root-closure-v1'
+                  and cfg.get('schema')=='uar-full-private-manifest-v1',
+                  'typed_full_gate_proof_and_manifest_required')
++        if gate_mode=='uar07_composite_audit_repair_v1':
++            # This is a new audit-only qualification, NEVER the failed closer PASS.
++            repair=stage.get('audit_repair')
++            need(type(repair) is dict and set(repair)=={'helper','original_failure_binding','root_confirmation'},
++                 'typed_separate_audit_repair_binding_required')
++            helper=repair['helper']
++            need(type(helper) is dict and set(helper)=={'path','sha256'}
++                 and sha(local(helper['path']),check)==helper['sha256'],'separate_auditor_source_changed')
++            merge(pins,helper['path'],helper['sha256'])
++            failure=bind(repair['original_failure_binding']);confirmation=bind(repair['root_confirmation'])
++            original_pins=stage0_proof.get('external_auditor_original_pins')
++            need(type(original_pins) is dict and set(original_pins)=={
++                'original_driver','original_closer','private_manifest','campaign','failed_preparer_receipt'}
++                 and original_pins['original_driver']==stage['driver']['sha256']
++                 and original_pins['private_manifest']==cfg_ref['sha256']
++                 and original_pins['campaign']==stage['campaign']['sha256']
++                 and original_pins['original_closer']=='1b3bfc4091426febdc49665e99cc6da2c98e06efd804ef7dc86648eb9bd3bfc5'
++                 and original_pins['failed_preparer_receipt']=='0d79d0d94f5a51c98fbe06643f5ab8d33d0b7cc589341bcb42e2c6b60f81c79e',
++                 'original_driver_failed_closer_manifest_campaign_pins_required')
++            need(failure.get('schema')==1 and failure.get('original_pins')==original_pins
++                 and failure.get('original_driver_actual')==dict(session=78888,exit_code=0,tool='8a9663')
++                 and failure.get('original_closer_actual')==dict(session=19230,exit_code=1,tool='617a23',
++                     failure='root_closure30_cap',source_line=177,raw_trace_file=None)
++                 and failure.get('original_closer_retroqualified') is False and failure.get('actual_new_audit') is None
++                 and failure.get('clock_reset') is False
++                 and failure.get('original_clock')==dict(start_unix=1792825378.045702,deadline_unix=1792825978.045702,
++                     start_monotonic=84383.171,deadline_monotonic=84983.171),
++                 'original_failed_closer_actual_evidence_and_clock_must_remain_failed')
++            need(stage['actual_exec_session']==78888 and stage['actual_tool_evidence']=='8a9663'
++                 and stage0_proof.get('qualification_scope')=='separate_saved_artifact_audit_only'
++                 and stage0_proof.get('original_closer_status')=='FAILED_root_closure30_cap'
++                 and stage0_proof.get('original_closer_exec_session')==19230
++                 and stage0_proof.get('original_closer_actual_exit_code')==1
++                 and stage0_proof.get('original_closer_actual_tool_evidence')=='617a23'
++                 and stage0_proof.get('original_closer_source_sha256')==original_pins['original_closer']
++                 and stage0_proof.get('original_closer_preparer_receipt_sha256')==original_pins['failed_preparer_receipt']
++                 and stage0_proof.get('original_closer_retroqualified') is False
++                 and stage0_proof.get('original_full_procedure_passed') is False
++                 and stage0_proof.get('original_closer_raw_trace_saved') is False
++                 and stage0_proof.get('original_closer_failure_evidence_scope')==
++                     'root_observed_exit_and_source_line177_no_synthetic_trace'
++                 and stage0_proof.get('external_auditor_source_sha256')==helper['sha256']
++                 and stage0_proof.get('separate_audit_actual_exec_confirmation_pending') is True
++                 and stage0_proof.get('own_actual_exec_exit_and_fresh_preparer_absence_required') is True,
++                 'distinct_driver_closer_and_new_audit_provenance_required')
++            failed_path=local(stage['driver']['path']).parent/'preparer-identity.json'
++            failed_ref=dict(path=failed_path.relative_to(WORK).as_posix(),sha256=original_pins['failed_preparer_receipt'])
++            failed_preparers=bind(failed_ref)
++            need(failed_preparers.get('schema')==1 and failed_preparers.get('identities')==[
++                dict(pid=27264,create_time=1792825407.5485268),dict(pid=26980,create_time=1792825407.5320556)]
++                 and stage0_proof.get('technical_artifact_refs',{}).get(str(failed_path))==failed_ref['sha256']
++                 and all(v in stage0_proof['owned_identities'] for v in failed_preparers['identities']),
++                 'failed_original_closer_preparers_must_be_sealed_and_observed')
++            need(type(confirmation) is dict and set(confirmation)=={
++                'schema','audit_receipt_sha256','helper_sha256','original_failure_binding_sha256',
++                'actual_exec_session','actual_exit_code','actual_tool_evidence','checked_unix',
++                'original_common_deadline_unix','known_count','known_exact_live','uncertain','preparer_identities',
++                'original_closer_retroqualified','original_full_procedure_passed'}
++                 and confirmation['schema']=='uar07-independent-audit-root-confirmation-v1'
++                 and confirmation['audit_receipt_sha256']==stage['root_closure']['sha256']
++                 and confirmation['helper_sha256']==helper['sha256']
++                 and confirmation['original_failure_binding_sha256']==repair['original_failure_binding']['sha256']
++                 and (confirmation['actual_exec_session'] is None or type(confirmation['actual_exec_session']) is int
++                      and confirmation['actual_exec_session']>0)
++                 and type(confirmation['actual_exit_code']) is int and confirmation['actual_exit_code']==0
++                 and type(confirmation['actual_tool_evidence']) is str and bool(confirmation['actual_tool_evidence'].strip())
++                 and type(confirmation['checked_unix']) in (int,float) and math.isfinite(confirmation['checked_unix'])
++                 and confirmation['original_common_deadline_unix']==1792825978.045702==stage0['absolute_deadline_unix']
++                 and stage0['finished_unix']<=confirmation['checked_unix']<confirmation['original_common_deadline_unix']
++                 and type(confirmation['known_count']) is int and confirmation['known_count']>0
++                 and confirmation['known_exact_live']==[] and confirmation['uncertain']==[]
++                 and confirmation['original_closer_retroqualified'] is False
++                 and confirmation['original_full_procedure_passed'] is False,
++                 'actual_separate_audit_exit0_and_original_deadline_fresh_root_confirmation_required')
++            confirmed=confirmation['preparer_identities']
++            need(type(confirmed) is list and bool(confirmed) and all(type(v) is dict and set(v)=={'pid','create_time'}
++                and type(v['pid']) is int and v['pid']>0 and type(v['create_time']) in (int,float)
++                and math.isfinite(v['create_time']) and v['create_time']>0 for v in confirmed)
++                 and all(v in confirmed for v in stage0_proof['closure_preparer_identities'])
++                 and confirmation['known_count']>=len({(v['pid'],v['create_time'])
++                     for v in stage0_proof['owned_identities']+stage0_proof['closure_preparer_identities']}),
++                 'actual_audit_preparers_must_be_in_root_confirmed_known_union')
++            known.update((v['pid'],v['create_time']) for v in confirmed)
+         gate_driver=bind_source(stage['driver'],pins,check)
+         cfg=gate_driver.config(str(local(cfg_ref['path'])),cfg_ref['sha256'],stage['driver']['sha256'])
+         need(sha(Path(cfg['contracts']),check)==cfg['files_sha256'][cfg['contracts']],'gate_contract_changed')
+@@ -364,7 +448,7 @@
+         need(stage0_proof['qualified_checks']==gate_summary and stage0.get('technical_procedure_passed') is True
+              and stage0.get('cleanup_confirmed') is True and stage0.get('source_unchanged') is True
+              and not stage0.get('error_history'),'actual_complete_UAR05_artifacts_required')
+-        if gate_mode=='uar07_composite_v1':
++        if gate_mode in ('uar07_composite_v1','uar07_composite_audit_repair_v1'):
+             # Recompute from actual sealed artifacts through the SHA-pinned producer,
+             # then independently constrain the meaning of its composite summary.
+             need(type(gate_summary) is dict and set(gate_summary)=={
+@@ -409,7 +493,8 @@
+                  and all(type(r['checks']) is int for r in gate_summary['new_phases']),
+                  'fresh_parser16_mapped75_not_reused_required')
+             need(stage0.get('qualified_checks')==gate_summary and stage0.get('original_UAR06_status')=='FAIL_PERMANENT'
+-                 and stage0_proof.get('status')=='technical_pass' and not stage0_proof.get('error_history')
++                 and stage0_proof.get('status')==('separate_saved_artifact_audit_pass_pending_root_exec'
++                 if gate_mode=='uar07_composite_audit_repair_v1' else 'technical_pass') and not stage0_proof.get('error_history')
+                  and stage0_proof.get('original_UAR06_status')=='FAIL_PERMANENT'
+                  and stage0_proof.get('original_UAR06_retroqualified') is False
+                  and stage0_proof.get('original_common_seconds')==600
+@@ -461,7 +546,7 @@
+             for n,h in compiled.items():
+                 need(Path(n).name==n and (n.endswith('.py') or n=='requirements.txt')
+                      and hashlib.sha256(archive.read(n)).hexdigest()==h,'pair_flat_archive_member_changed');check()
+-        if gate_mode=='uar07_composite_v1':
++        if gate_mode in ('uar07_composite_v1','uar07_composite_audit_repair_v1'):
+             need(len(compiled)==73 and gate_summary['archive_sha256']==archive_ref['sha256']
+                  and load(Path(cfg['output'])/'candidate.manifest.json')['sha256']==archive_ref['sha256'],
+                  'same_exact_qualified_73_member_archive_for_all_future_arms_required')

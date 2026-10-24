@@ -1,0 +1,65 @@
+{
+  "schema": "uar-qwen-pair-composite-source-handoff-v3",
+  "status": "FROZEN_SOURCE_ONLY_NOT_READY_NO_EXECUTION",
+  "prior_handoff_r2_sha256": "02bf5443606f70fc5ed5f29cd6765c0c1cd339c17152ac85322d0b8a4070535d",
+  "prior_r2_preserved": "source-evidence/r2",
+  "runtime_sources": [
+    "run_pair.py",
+    "audit_pair.py",
+    "r4_adapter.py",
+    "launcher.py",
+    "close_pair.py"
+  ],
+  "runtime_sha256": {
+    "run_pair.py": "4b91d8d2f1da611c4fba8b8e41747d90860b5c1f2ac90fb1352e0f2980ac91ed",
+    "audit_pair.py": "daf342b64c99c7e69843942407e913aadf8ee02e47a16d690a703dfb42330bf4",
+    "r4_adapter.py": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+    "launcher.py": "f6aa10377f47f0285672656f46c2de870b5edc0b725af2d01793246eaa601803",
+    "close_pair.py": "d7dd102796a31529101f378e4ecf7320ca728f5c6cf89b648c1a3b344661b1c8"
+  },
+  "files_sha256": {
+    "audit-repair-admission-r3.patch": "2625788ac00cead092e3758a875cc20f0e224f79836c2f154c7390ff62464d84",
+    "audit-repair-r3-AST-proof.json": "3e23f8dd1e924c06c967a7220be3e56d646d373c4d75b9ed4acacdf1a24d628c",
+    "audit_pair.py": "daf342b64c99c7e69843942407e913aadf8ee02e47a16d690a703dfb42330bf4",
+    "binding.pending-audit-repair-r3.json": "f0f6104e1024333abf1e66daf625e510a0ccb85b22d024c5d39340ad57b9de92",
+    "binding.pending-uar07-r2.json": "a545be860865b871137bcaf8cb7dac437057d58ed9d783e6850b416780995a16",
+    "binding.template.json": "8f089fdff8aca656dcfaaa30aea92278ed243d2aaf60ec0b188d88c07a1cd69e",
+    "close_pair.py": "d7dd102796a31529101f378e4ecf7320ca728f5c6cf89b648c1a3b344661b1c8",
+    "controller-only.patch": "34806965a6c9471f7f316423c17d4e718792a5d0c2b8432baf4b87c7663725e8",
+    "launch-arguments-plan-r2.json": "7f57317ab88795c20155dea1a84cf3648effbda1c7e486fd04c3a917f8cdfbe5",
+    "launch-arguments-plan-r3.json": "ab18563e254207f8b8f28b685eece8c532121fffa7df4aa3450d05946715a348",
+    "launcher-r2-AST-proof.json": "6fef2fc3b4051e8aafecbeafc8679de7b9ea21f928e3bd1f46b16882cfa24889",
+    "launcher-r2.patch": "083fdbeb398c310f3ddafc727759a4d6c28d6982720e1a66f630560740c83fa5",
+    "launcher.py": "f6aa10377f47f0285672656f46c2de870b5edc0b725af2d01793246eaa601803",
+    "materialization-launch-plan-r2.json": "bfbb1acac1ac6c6003c3bf04610a625dd9f069df3bf7b58c43a26c859b2ae296",
+    "postcloser-admission-proposal-r1.json": "6b87ba42b8e265d24c414f6edc436f132f9619dd92a3346a4cdced654b0bcd4d",
+    "r1-preservation.json": "970e5f73ae6a9c67712afb8a440f9242d9503e50952f3235ab76af67521f011e",
+    "r2-preservation.json": "ce8252079a9bd70931c93a368d681b2abd8f83dd246be3cd3b683fad566de2d4",
+    "r4_adapter.py": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+    "README-r2.md": "8389ba7cebc561f6c02c51085b733c4a04741126b674d6fd79c9a2381e12bbab",
+    "README-r3.md": "48606b7ce2ea8f1f5f16566be96340f80715dfc91123fddf08497a16f7c06547",
+    "README.md": "4b11cd8ba09327b0b99f1760264e7580a80613b9f633df226c2a50f566110b38",
+    "run_pair.py": "4b91d8d2f1da611c4fba8b8e41747d90860b5c1f2ac90fb1352e0f2980ac91ed",
+    "source-delta-proof.json": "24898d0dee46c435f65e32591138e10ed26a95118eb3c13c0227b6bf857b53ed",
+    "source-handoff-r2.json": "02bf5443606f70fc5ed5f29cd6765c0c1cd339c17152ac85322d0b8a4070535d",
+    "source-handoff.json": "b51d221d956bd0fc6c148bc04ebeb81cf7119125a7b3afe26b6f387d78813fd0"
+  },
+  "changed_runtime_sources": [
+    "run_pair.py"
+  ],
+  "approved_proposal_sha256": "6b87ba42b8e265d24c414f6edc436f132f9619dd92a3346a4cdced654b0bcd4d",
+  "producer_handoff": {
+    "path": "uar07-audit-close-repair-r1/source-handoff.json",
+    "sha256": "3d92d685176bcc86afdabc5c1fdd7afccdefe90cc7adff7086beee9f49b23bd3"
+  },
+  "actual_separate_audit_receipt_sha256": null,
+  "actual_separate_audit_root_confirmation_sha256": null,
+  "source_common_archive_sha256": null,
+  "actual_source_gate_root_sha256": null,
+  "actual_imports_tests_fits_API_scans": 0,
+  "task_data_materialization": false,
+  "clock_assigned": false,
+  "official_default_ready": false,
+  "promotion": false,
+  "submit": false
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "uar-qwen-pair-composite-independent-source-review-v3",
+  "status": "SOURCE_REVIEWED_NO_SCOPED_BLOCKER_NOT_EXECUTED",
+  "scope": "Narrow R2-to-R3 explicit typed independent-audit-repair admission only",
+  "handoff": {
+    "path": "uar-qwen-pair-composite-next-dev/source-handoff-r3.json",
+    "sha256": "b5a11bb65f87aaab8c15f6b8af8aa5750848312cb1bf1c20f01e81af2c3c1617"
+  },
+  "runtime_sha256": {
+    "run_pair.py": "4b91d8d2f1da611c4fba8b8e41747d90860b5c1f2ac90fb1352e0f2980ac91ed",
+    "audit_pair.py": "daf342b64c99c7e69843942407e913aadf8ee02e47a16d690a703dfb42330bf4",
+    "r4_adapter.py": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+    "launcher.py": "f6aa10377f47f0285672656f46c2de870b5edc0b725af2d01793246eaa601803",
+    "close_pair.py": "d7dd102796a31529101f378e4ecf7320ca728f5c6cf89b648c1a3b344661b1c8"
+  },
+  "matched_source_handoff_files": 25,
+  "preserved_R2_files_verified": 17,
+  "independent_AST": {
+    "only_main_changed": true,
+    "projecting_away_only_new_explicit_mode_branch_and_its_condition_extensions_recovers_exact_whole_R2_module_AST": true,
+    "old_full_gate_and_composite_modes_semantically_unchanged": true,
+    "other_four_runtime_sources_byte_exact_R2": true
+  },
+  "reviewed_source_facts": [
+    "Only explicit uar07_composite_audit_repair_v1 accepts the new schema; older full_gate_v1 and uar07_composite_v1 retain their previous schemas and criteria. No schema alias/fallback is introduced.",
+    "Source_gate actual execution remains original driver78888/exit0/tool8a9663, tied to campaign/private manifest. Original closer19230/exit1/tool617a23/root_closure30_cap/source1b3/preparers0d79 remains failed, with original_full_procedure_passed=false and original_closer_retroqualified=false.",
+    "The helper source, new receipt, immutable failure binding and separate root-confirmation bytes are coupled by SHA. A genuinely direct NEW audit session can be null, but its own exit0 and actual tool evidence are mandatory in the separate confirmation.",
+    "The confirmation has an exact typed schema, original600 deadline1792825978.045702, checked timestamp before that deadline, no live/uncertain identities and explicit false historical-qualification flags. It includes the saved new auditor preparers; these are added to the subsequent reviewed known-identity absence path.",
+    "The failed original closer preparer receipt is independently hashed and its exact saved identities must occur in the new audit owned union. The proof itself and its closure-preparer identities also enter the inherited fresh absence checks before API/workers and under the lock.",
+    "Actual qualified summary is recomputed via pinned UAR07 config/contracts. Existing reused source604/build73/exact23, new parser16/mapped75, oldU6 false flags/fe4f/7a9a, same archive/member73/current source/cleanup checks remain unchanged.",
+    "All source changes are in gate-proof admission; research factors,10800/4arms,Qwen/HTTP,HPO8,retention,all4 seals before R4 truth,metric/refitCSV and pair-closer logic remain exact R2.",
+    "R3 launch-argument metadata updates only the coordinator hash and retains the corrected f6aa composite launcher plus original identical auditor/closer/R4 dependencies. Pending source-only binding remains NOT_READY with null actual source/archive/root/publication references."
+  ],
+  "findings": [],
+  "supporting_metadata_refs": {
+    "producer_handoff_sha256": "3d92d685176bcc86afdabc5c1fdd7afccdefe90cc7adff7086beee9f49b23bd3",
+    "producer_review_sha256": "66d2414b31da180bb4e928e8630c5a5a2dc38df5a6c37aad46a5a56fe76d8468",
+    "actual_root_confirmation_sha256": "6e7b0848a04538cf1e84d91e588c2b15251b5521115ab496b76729fffd0cd384"
+  },
+  "limitations": [
+    "Actual root-owned source/binding sanity is separately recorded by the author; this review did not rerun any gate or helper or import candidate code.",
+    "Root must freeze and publish actual ready binding/publication/provider/preflight/predecessor facts. No source review alone establishes real Qwen/HPO/quality/refit/cleanup success or official-default release readiness."
+  ],
+  "operations": {
+    "stdlib_source_JSON_SHA_AST_only": true,
+    "candidate_imports": 0,
+    "tests": 0,
+    "builds": 0,
+    "fits": 0,
+    "API": 0,
+    "data_labels_predictions": 0,
+    "private_config_reads": 0,
+    "PID_scans": 0,
+    "clock_assigned": false,
+    "canonical_STATE_Git_author_source_edits": 0
+  },
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

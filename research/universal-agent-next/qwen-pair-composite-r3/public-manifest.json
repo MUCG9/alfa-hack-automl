@@ -1,0 +1,24 @@
+{
+  "schema": "uar-qwen-public-source-v1",
+  "files_sha256": {
+    "actual-source-binding-review-r3.json": "bf0266f20728a328ce1d9df6919d1dee125928cae5872ec6459bee02c4ff452a",
+    "audit-repair-admission-r3.patch": "2625788ac00cead092e3758a875cc20f0e224f79836c2f154c7390ff62464d84",
+    "audit-repair-r3-AST-proof.json": "3e23f8dd1e924c06c967a7220be3e56d646d373c4d75b9ed4acacdf1a24d628c",
+    "audit_pair.py": "daf342b64c99c7e69843942407e913aadf8ee02e47a16d690a703dfb42330bf4",
+    "binding.pending-audit-repair-r3.json": "f0f6104e1024333abf1e66daf625e510a0ccb85b22d024c5d39340ad57b9de92",
+    "close_pair.py": "d7dd102796a31529101f378e4ecf7320ca728f5c6cf89b648c1a3b344661b1c8",
+    "independent-review-r3.json": "d39ef88553b37b8881a967ab9789cb89959fab406f0f61ab09221c6445d2545a",
+    "launch-arguments-plan-r3.json": "ab18563e254207f8b8f28b685eece8c532121fffa7df4aa3450d05946715a348",
+    "launcher.py": "f6aa10377f47f0285672656f46c2de870b5edc0b725af2d01793246eaa601803",
+    "protocol-r4.json": "cdbc445ca60e22a6db1e87bc730136ce9ab5bfb22b8999118996da087ac46f07",
+    "r4_adapter.py": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+    "README-r3.md": "48606b7ce2ea8f1f5f16566be96340f80715dfc91123fddf08497a16f7c06547",
+    "root-authority-source-qualification.json": "71f8539ba3f3a7b5a0b3d448fe8fc968a328303b3d46237fd3367eeb3ec25ca2",
+    "run_pair.py": "4b91d8d2f1da611c4fba8b8e41747d90860b5c1f2ac90fb1352e0f2980ac91ed",
+    "source-handoff-r3.json": "b5a11bb65f87aaab8c15f6b8af8aa5750848312cb1bf1c20f01e81af2c3c1617"
+  },
+  "clock": null,
+  "actual_runtime": null,
+  "private_ready_binding_sha256": "fa8df18b80d49930bf7cace3faff2f3863d41d538fb64c2f31aa5a96b966f3ce",
+  "notes": "Current five runtime files plus exact reviews; omitted historical handoff payloads remain local archived evidence. No private ready binding/data included."
+}

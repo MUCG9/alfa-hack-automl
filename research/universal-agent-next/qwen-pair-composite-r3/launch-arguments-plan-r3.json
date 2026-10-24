@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "status": "SOURCE_ONLY_R3_PLACEHOLDER_ARGUMENT_PLAN_DO_NOT_EXECUTE",
+  "workdir": "original task workspace; all launcher args private values absent",
+  "launch_argv": [
+    "work/venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "work/uar-qwen-pair-composite-next-dev/launcher.py",
+    "--launch",
+    "--self-sha256",
+    "f6aa10377f47f0285672656f46c2de870b5edc0b725af2d01793246eaa601803",
+    "--coordinator-sha256",
+    "4b91d8d2f1da611c4fba8b8e41747d90860b5c1f2ac90fb1352e0f2980ac91ed",
+    "--auditor-sha256",
+    "daf342b64c99c7e69843942407e913aadf8ee02e47a16d690a703dfb42330bf4",
+    "--closer-sha256",
+    "d7dd102796a31529101f378e4ecf7320ca728f5c6cf89b648c1a3b344661b1c8",
+    "--r4-adapter-sha256",
+    "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+    "--expected-commit",
+    "ROOT_VERIFIED_PUBLISHED_COMMIT",
+    "--published-root",
+    "ROOT_VERIFIED_RESEARCH_PREFIX",
+    "--",
+    "--binding",
+    "WORK_REL_READY_BINDING_JSON",
+    "--binding-sha256",
+    "ACTUAL_READY_BINDING_BYTE_SHA256"
+  ],
+  "additional_latest_terminal_receipts": {
+    "flag": "--extra-terminal-receipt",
+    "repeat": true,
+    "value": "WORK_REL_TERMINAL_PROOF_JSON=ACTUAL_BYTE_SHA256",
+    "required": "Root must add every actual post-UAR07 helper/preparer closure needed beyond auto-bound gate/history; proof must match existing clean terminal schema, never invent from an inline scan."
+  },
+  "root_closure_argv": [
+    "work/venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "work/uar-qwen-pair-composite-next-dev/close_pair.py",
+    "--self-sha256",
+    "d7dd102796a31529101f378e4ecf7320ca728f5c6cf89b648c1a3b344661b1c8",
+    "--actual-exit-code",
+    "ACTUAL_CALLER_EXIT",
+    "--actual-tool-evidence",
+    "ACTUAL_CALLER_TERMINAL_TOOL"
+  ],
+  "actual_session": {
+    "flag": "--actual-exec-session",
+    "value": null,
+    "rule": "Add only actual integer session when tool returned one; omit for genuine directexec null."
+  },
+  "publication": {
+    "actual_commit": null,
+    "actual_research_prefix": null,
+    "requires_exact_fivefiles": true,
+    "launcher_assigns_clock_before_Git_provider": true
+  },
+  "same_process_origin": {
+    "start_unix": null,
+    "start_monotonic": null,
+    "deadline_unix": null,
+    "deadline_monotonic": null,
+    "computed_only_by_launch": true
+  },
+  "noncommands": [
+    "Do not invoke run_pair.py directly with a new clock.",
+    "Do not pass reserved flags after launcher --: --launch/self/auditor/closer/bootstrap/clock args are assigned by launcher.",
+    "Do not invoke old R4 launcher from composite directory: current R2 DIRECTORY literal routes composite source.",
+    "Do not pass unsupported --manifest/--pair-root arguments to closer; it reads fixed uq1/campaign.json.",
+    "Do not require root proof merely actual exit0; inspect technical_procedure_passed, cleanup/source/uncertainty and fresh preparers after helper."
+  ]
+}

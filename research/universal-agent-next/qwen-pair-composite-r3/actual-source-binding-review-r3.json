@@ -1,0 +1,89 @@
+{
+  "schema": "uar-qwen-composite-actual-source-binding-review-v1",
+  "status": "ACTUAL_SOURCE_PROOF_CHAIN_HASH_CONSISTENT_NOT_PAIR_READY_NOT_MODEL_RESULT",
+  "adapter_handoff_sha256": "b5a11bb65f87aaab8c15f6b8af8aa5750848312cb1bf1c20f01e81af2c3c1617",
+  "adapter_controller_sha256": "4b91d8d2f1da611c4fba8b8e41747d90860b5c1f2ac90fb1352e0f2980ac91ed",
+  "actual_gate": {
+    "driver": {
+      "path": "uar07-composite-next-dev/run_gate.py",
+      "sha256": "fe2f6cae227d7b0ab8345aad460905c2fa87a4d88622cfa2eb785e5147d4bb81"
+    },
+    "private_manifest": {
+      "path": "uar07-composite-next-dev/private-manifest-uar07-r1.json",
+      "sha256": "b8dae322501349622326313f94430042729e2cb1310ecdd32d09796812cf797d"
+    },
+    "campaign": {
+      "path": "uar07-composite-next-dev/attempt-uar07-r1/campaign.json",
+      "sha256": "6ce7a1723b7b8a8edf7c895522ad90a24f601eda48f862e2f008b82ead1aa2c1"
+    },
+    "separate_audit": {
+      "path": "uar07-audit-close-repair-r1/terminal-audit-root-closure.json",
+      "sha256": "03b9f83e4a3658e8728375b61bafb697428b772b585064c853726bba90b97615"
+    },
+    "separate_helper": {
+      "path": "uar07-audit-close-repair-r1/close_gate.py",
+      "sha256": "e2395e1154296e420ce5d608a013d852a7c2d274eed8be158ba0f019a4b8f1da"
+    },
+    "original_failure_binding": {
+      "path": "uar07-audit-close-repair-r1/original-failure-binding.json",
+      "sha256": "c03bc2fee3d16fdfd061b4271d939db9a93a1f6c1bb612d174ed91d5682fc995"
+    },
+    "root_confirmation": {
+      "path": "uar07-audit-close-repair-r1/root-confirmation.json",
+      "sha256": "6e7b0848a04538cf1e84d91e588c2b15251b5521115ab496b76729fffd0cd384"
+    },
+    "original_failed_closer_source": {
+      "path": "uar07-composite-next-dev/close_gate.py",
+      "sha256": "1b3bfc4091426febdc49665e99cc6da2c98e06efd804ef7dc86648eb9bd3bfc5"
+    },
+    "original_failed_preparers": {
+      "path": "uar07-composite-next-dev/preparer-identity.json",
+      "sha256": "0d79d0d94f5a51c98fbe06643f5ab8d33d0b7cc589341bcb42e2c6b60f81c79e"
+    },
+    "archive": {
+      "path": "uar07-composite-next-dev/attempt-uar07-r1/candidate.zip",
+      "sha256": "86b074f6c1117e6d16e57e03c7ec1db3a9d0b18adf1a781f74899ce638a43d3f"
+    },
+    "archive_manifest": {
+      "path": "uar07-composite-next-dev/attempt-uar07-r1/candidate.manifest.json",
+      "sha256": "393555cf23fe949ab48386ee6ba8d34edb4d8a76f944ad206276dc45ce46ed72"
+    }
+  },
+  "checks": {
+    "driver78888_exit0_distinct_from_closer19230_exit1": true,
+    "new_audit_actual_directexit0_tool1a0cf6_rootconfirmed": true,
+    "root_confirmation_before_original600": true,
+    "root_reported6200_absent_uncertain_empty": true,
+    "actual_audit_preparers_exactly_match_confirmation": true,
+    "old_closerFAIL_retroqualifiedFalse_preserved": true,
+    "all_cfg_source_pin_bytes_verified": 257,
+    "all_audit_artifact_pin_bytes_verified": 40,
+    "archive_members_verified": 73,
+    "source57_604_build73_exact23_reused": true,
+    "parser16_mapped75_new": true,
+    "qualified_summary_equals_actual_campaign": true
+  },
+  "independent_observation_boundary": "SHA/JSON/source member consistency independently verified here. Actual helper exit and fresh process absence come from root-confirmation, not an author PID scan. Producer artifact_checks is NOT imported/re-executed here; future pair recomputes through pinned producer before Qwen.",
+  "future_ready_binding": {
+    "path": "uar-qwen-pair-composite-next-dev/binding.actual-source-pending-root-r3.json",
+    "sha256": "100023a177b7727e0278f65c57b350c87e95ae4a0a938af9a79895e2bac7523e",
+    "readiness": "NOT_READY",
+    "unknown": [
+      "root final authority qualification note/metric-source boolean",
+      "pair publication commit+prefix/source review",
+      "private provider runtime availability/realHTTP and actualpair clock"
+    ]
+  },
+  "actual_task_header_metric_runtime_resolution": null,
+  "operations": {
+    "candidate_or_gate_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API": 0,
+    "data_array_or_prediction_reads": 0,
+    "process_scans": 0,
+    "task_materialization": false,
+    "actual_clock": false,
+    "canonical_Git_STATE_writes": false
+  }
+}

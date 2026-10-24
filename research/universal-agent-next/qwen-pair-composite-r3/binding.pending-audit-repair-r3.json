@@ -1,0 +1,69 @@
+{
+  "schema": "uar-qwen-pair-binding-v1",
+  "readiness": "NOT_READY",
+  "missing_bindings": [
+    "Actual separate UAR07 audit receipt + independent NEW helper actualexit0/fresh root confirmation before original600 deadline; originalcloserFAIL unchanged",
+    "Actual reviewed source/archive/driver/private/campaign/metric qualification and root source publication",
+    "Root reviewed ready binding/private environment/latest closed predecessor union"
+  ],
+  "source_archive": {
+    "path": null,
+    "sha256": null
+  },
+  "r4_adapter_sha256": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+  "source_gate": {
+    "driver": {
+      "path": null,
+      "sha256": null
+    },
+    "private_manifest": {
+      "path": null,
+      "sha256": null
+    },
+    "campaign": {
+      "path": null,
+      "sha256": null
+    },
+    "root_closure": {
+      "path": null,
+      "sha256": null
+    },
+    "actual_exec_session": null,
+    "actual_tool_evidence": null,
+    "mode": "uar07_composite_audit_repair_v1",
+    "audit_repair": {
+      "helper": {
+        "path": null,
+        "sha256": null
+      },
+      "original_failure_binding": {
+        "path": null,
+        "sha256": null
+      },
+      "root_confirmation": {
+        "path": null,
+        "sha256": null
+      }
+    }
+  },
+  "authority": {
+    "handoff": {
+      "path": "uar-qwen-authority-next-dev/source-handoff.json",
+      "sha256": "2a2145d87d6ac08e0ad72927608509e715e0e5a83d11d86341de15afc0a5e8e3"
+    },
+    "independent_review": {
+      "path": null,
+      "sha256": null
+    },
+    "metric_contrast_fixed_source_qualified": null,
+    "qualified_metric_source": {
+      "flat_member": null,
+      "sha256": null
+    }
+  },
+  "clock_assigned": false,
+  "actual_imports_tests_fits_API_scans": 0,
+  "official_default_ready": false,
+  "promotion": false,
+  "submit": false
+}

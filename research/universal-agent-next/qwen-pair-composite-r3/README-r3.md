@@ -1,0 +1,9 @@
+# Explicit separate audit-repair admission R3 — source only
+
+R2 all17pins +handoff preserved in source-evidence/r2; R2runtime/controller not retroactively changed. Only main gate-proof region adds explicit mode uar07_composite_audit_repair_v1. Original full_gate_v1 and uar07_composite_v1 remain separate, no fallback/schema alias. Source R2 launcher routes actual composite packet unchanged.
+
+The actual driver stays78888/exit0/tool8a9663. Originalcloser19230/exit1/tool617a23/root_closure30_cap/source1b3b/preparers0d79 remain failed forever. New EO receipt uses distinct uar-composite-audit-repair-root-closure-v1, qualification_scope separate_saved_artifact_audit_only; original_full_procedure_passed=false and original_closer_retroqualified=false. It is not relabelled as the missing original root proof.
+
+The new private binding additionally pins exact helper source, original-failure-binding JSON and separate root confirmation. Confirmation must be actual root-owned uar07-independent-audit-root-confirmation-v1 after NEWhelperexit0 with exact receipt/source/failure hashes and fresh full known/preparer absence, before exact original600deadline1792825978.045702. Missing/late/uncertain confirmation rejects. New audit preparers join pair's fresh owned-absence union before Qwen. Historical failed-closer preparer receipt is independently hashed and retained in the new audit known union.
+
+Same recomputed604/73/23 reused +16/75fresh, oldU6false fe4f/7a9a, same73archive/source/current cleanup criteria remain. No change to research factor, tasks/models/API/HPO,10800/4arms/clock/ownership, seal-before-truth, R4 formulas/refit/CSV/metrics or pair closer predicates. All actual new-helper/confirmation/archive/root/private binding refs remain null/NOT_READY until root supplies real evidence. No test/import/API/materialization/processscan/clock or canonical/STATE/Git write occurred.

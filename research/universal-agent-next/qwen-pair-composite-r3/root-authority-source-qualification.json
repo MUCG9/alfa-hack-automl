@@ -1,0 +1,30 @@
+{
+  "schema": "uar-qwen-root-authority-source-qualification-v1",
+  "status": "source_and_saved_artifact_qualification_ready_for_guarded_runtime_checkpoint",
+  "binding_sha256": "fa8df18b80d49930bf7cace3faff2f3863d41d538fb64c2f31aa5a96b966f3ce",
+  "adapter_handoff_sha256": "b5a11bb65f87aaab8c15f6b8af8aa5750848312cb1bf1c20f01e81af2c3c1617",
+  "adapter_independent_review_sha256": "d39ef88553b37b8881a967ab9789cb89959fab406f0f61ab09221c6445d2545a",
+  "authority_independent_source_chain_review_sha256": "bf0266f20728a328ce1d9df6919d1dee125928cae5872ec6459bee02c4ff452a",
+  "authority_handoff_sha256": "2a2145d87d6ac08e0ad72927608509e715e0e5a83d11d86341de15afc0a5e8e3",
+  "same_73_member_metric_source": {
+    "flat_member": "automl_task_understanding_metric_contract.py",
+    "sha256": "121f13aa7efea0241abab1fc6a2c88bf89b94f4d3c63b705e0eaf99ead234668"
+  },
+  "generic_metric_contrast_source_and_flat_tests_qualified": true,
+  "original_organizer_task_bytes_unchanged": true,
+  "task_rewrite_for_metric": false,
+  "actual_enriched_task_IO03_MetricSpec_retention_runtime_resolution": null,
+  "required_runtime_checkpoint": "All four copied task/source/retention inputs share originalclock; both tasks must resolve before first Qwen/model, fail closed otherwise",
+  "provider_file_exists": true,
+  "provider_contents_or_credentials_emitted": false,
+  "actual_provider_API_readiness": null,
+  "all_materialization_and_API_charged_to_future_one10800": true,
+  "actual_clock": null,
+  "candidate_imports": 0,
+  "new_fits": 0,
+  "new_API_calls": 0,
+  "original_UAR07_closer_FAILED_preserved": true,
+  "official_default_ready": false,
+  "promotion": false,
+  "submit": false
+}

@@ -565,6 +565,8 @@ def _main():
     parser.add_argument('--feature-selection-top-k',type=int,default=0,help='Explicit experimental CatBoost selector; 0 disables')
     parser.add_argument('--protect-original-features',action='store_true',help='Experimental union of original columns and CatBoost top-k')
     parser.add_argument('--four-stage',action='store_true',help='Experimental Qwen data assessment before broad FE, model selection and nested Optuna')
+    parser.add_argument('--strong-retention',type=Path,default=None,help='Research-only trusted recipe authority JSON; no default or planner activation')
+    parser.add_argument('--strong-retention-sha256',default=None,help='Exact trusted byte SHA256 of --strong-retention')
     parser.add_argument('--validation-strategy',choices=['legacy','auto'],default='auto')
     parser.add_argument('--run-name',default='run-v2')
     args=parser.parse_args()
@@ -575,6 +577,10 @@ def _main():
     if not 0<=args.hpo_trials<=32 or args.hpo_budget<5: parser.error('Invalid HPO limits')
     if not 0<=args.feature_selection_top_k<=512: parser.error('Invalid feature selection size')
     if args.protect_original_features and not args.feature_selection_top_k: parser.error('Protected selection requires positive top-k')
+    if args.strong_retention is not None:
+        _retention_options(args)
+    elif args.strong_retention_sha256 is not None:
+        parser.error('Retention SHA requires the explicit research recipe path')
     total_calls=max(0,min(8,args.max_planner_calls))+2 if args.max_llm_calls is None else args.max_llm_calls
     token=_STRICT_RUNTIME.set(args.strict_runtime)
     task_token=_STRICT_TASK_CONTRACT.set(args.strict_task_contract)
@@ -592,6 +598,16 @@ def _main():
         _STRICT_RUNTIME.reset(token)
 
 
+def _retention_options(args):
+    """Only explicit trusted CLI enrollment selects the new common policy."""
+    from automl.search.stages import _retention_sha
+    _retention_sha(getattr(args,'strong_retention_sha256',None))
+    if (not getattr(args,'four_stage',False) or args.max_experiments!=9
+            or getattr(args,'hpo_trials',0)!=8 or args.max_planner_calls<2
+            or getattr(args,'feature_selection_top_k',0)!=32):
+        raise ValueError('Research retention requires four-stage, max9, HPO8, two planner calls and isolated top32')
+
+
 def solve_single(args,task_data=None,output_root=None):
     started=time.monotonic(); deadline=constrain_deadline(started+args.time_budget)
     spec,profile,train,test,sample,text,hashes=discover(args.task) if task_data is None else task_data
@@ -604,7 +620,36 @@ def solve_single(args,task_data=None,output_root=None):
     runs.mkdir(parents=True,exist_ok=True); output=root/'submission.csv'
     protected_paths={**{'input:'+name:path for name,path in spec['paths'].items()},'task':spec['task_path'],
         **{'source:'+str(path):str(path) for path in source_files()}}
+    retention=None
+    if getattr(args,'strong_retention',None) is not None:
+        _retention_options(args)
+        from automl.search.stages import load_retention_packet,prepare_retention_recipes,retention_worker_timeout
+        retention=load_retention_packet(args.strong_retention,spec,args.strong_retention_sha256)
+        # Required matrix and structural costs are validated before any API or
+        # learner. Minimum slices are not predictions of actual fitting cost.
+        initial_queue,initial_receipts,single_anchor=prepare_retention_recipes(
+            spec,portfolio(spec),[],retention,args.feature_selection_top_k)
+        retention_worker_timeout(deadline-time.monotonic(),min(1200,max(60,args.time_budget*.2)),
+            args.hpo_budget,len(initial_queue)-1,True)
+        retention['single_anchor']=single_anchor
+        retention['initial_required_count']=len(initial_queue)
+        retention['preflight_fit_costs']=initial_receipts
+        protected_paths['strong_retention_input']=str(Path(args.strong_retention).absolute())
+        snapshot=runs/'strong-retention-recipes.json'; atomic_json(snapshot,retention)
+        protected_paths['strong_retention_snapshot']=str(snapshot)
     fingerprints=file_fingerprints(protected_paths)
+    if retention is not None:
+        if fingerprints['strong_retention_input']!=retention['receipt']['input_sha256']:
+            raise ValueError('Retention input changed before source freeze')
+        atomic_json(runs/'strong-retention-admission.json',{
+            'research_only':True,'mode':retention['mode'],'max_initial':7,'max_experiments':9,
+            'reserved_outer_slots':{'hpo_result':1,'qwen_followup':1},
+            'standalone_l1_candidate':False,
+            'matrix':'first5+champion+composite' if retention['mode']=='l1_composite' else 'protected_first5_then_retained_seeds',
+            'not_exact_la2_superset':retention['mode']=='l1_composite',
+            'minimum_worker_slice_seconds':5,'hpo_reserved_seconds':args.hpo_budget,
+            'refit_reserve_seconds':min(1200,max(60,args.time_budget*.2)),
+            'fit_costs':retention['preflight_fit_costs'],'cost_scope':'structural upper bounds; actual counts/statuses come from workers'})
     atomic_json(runs/'provenance.json',{'sha256':fingerprints,'scope':'Fixed evaluator/source, input files and task; output artifacts excluded'})
     initial=dummy_predictions(spec,train,len(test))
     save_submission(spec,sample,test,initial,output); save_submission(spec,sample,test,initial,runs/'fallback_submission.csv')
@@ -632,8 +677,16 @@ def solve_single(args,task_data=None,output_root=None):
         context=planner_context(spec,profile,text,split_info,[],None,deadline-time.monotonic(),1)
         context['stage']='initial_data_assessment_before_any_model_fit'
         context['instruction']='Cold start: no model outcomes exist yet. Read statistics, roles, missingness, class support and documented time/group structure. Return JSON with data_assessment object containing validation_risks, feature_hypotheses, model_priorities (each a nonempty string or list of nonempty strings), plus candidates with at most TWO falsifiable initial model recipes. The coordinator will generate at most128 trusted broad row-local features, fit CatBoost top-k inside fitting rows, compare model families, then run inner-only Optuna. Do not invent measured failures or compare inner scores with outer scores. Use the existing recipe schema; target/ID remain forbidden.'
-        content,usage=request_json(SYSTEM_PROMPT+STAGED_PROMPT,context,max_output=8192,
-            timeout=max(5,min(240,deadline-time.monotonic()-reserve-30)))
+        if retention is not None:
+            eda_available=deadline-time.monotonic()-reserve-args.hpo_budget-60-5*retention['initial_required_count']
+            if eda_available<5: raise TimeoutError('Retention cannot admit initial EDA plus reserved fitting phases')
+            context['research_retention']={'mode':retention['mode'],'control_signature':signature(retention['control']),
+                'initial_required_slots':retention['initial_required_count'],
+                'selector_scope':'isolated_FE_only','initial_proposals_may_be_omitted_for_protected_capacity':True}
+            content,usage=request_json(SYSTEM_PROMPT+STAGED_PROMPT,context,max_output=8192,timeout=min(240,eda_available))
+        else:
+            content,usage=request_json(SYSTEM_PROMPT+STAGED_PROMPT,context,max_output=8192,
+                timeout=max(5,min(240,deadline-time.monotonic()-reserve-30)))
         from automl.search.stages import initial_assessment_status
         initial_assessment=initial_assessment_status(content,usage)
         if content is not None:
@@ -642,10 +695,16 @@ def solve_single(args,task_data=None,output_root=None):
         calls.append(usage)
         atomic_json(runs/'initial-data-assessment.json',{'context':context,'terminal_response':content,'plans':initial_plans,'call':usage,'assessment':initial_assessment})
     seeds=portfolio(spec)
-    if four_stage:
-        from automl.search.stages import prepare_four_stage_recipes
-        seeds,stage_receipts=prepare_four_stage_recipes(spec,seeds,initial_plans,maximum_initial=max(1,min(9,limit-3)))
-    queue,initial_rejections=coordinator_plans(seeds,selection_size,protect_original,four_stage)
+    if retention is not None:
+        queue,stage_receipts,single_anchor=prepare_retention_recipes(
+            spec,seeds,initial_plans,retention,selection_size)
+        retention['initial_scheduled_count']=len(queue)
+        initial_rejections=[]
+    else:
+        if four_stage:
+            from automl.search.stages import prepare_four_stage_recipes
+            seeds,stage_receipts=prepare_four_stage_recipes(spec,seeds,initial_plans,maximum_initial=max(1,min(9,limit-3)))
+        queue,initial_rejections=coordinator_plans(seeds,selection_size,protect_original,four_stage)
     stage_receipts.extend(dict(item,source='initial_coordinator',status='rejected') for item in initial_rejections)
     hpo_report=None; hpo_attempted=False
     for iteration in range(limit):
@@ -657,27 +716,56 @@ def solve_single(args,task_data=None,output_root=None):
             hpo_anchor=best
             if four_stage:
                 from automl.search.stages import choose_hpo_anchor
-                hpo_anchor=choose_hpo_anchor(ordered(records,spec))
+                if retention is not None:
+                    from automl.search.stages import choose_retention_hpo_anchor
+                    hpo_anchor=choose_retention_hpo_anchor(ordered(records,spec),single_anchor)
+                else:
+                    hpo_anchor=choose_hpo_anchor(ordered(records,spec))
                 if hpo_anchor is None: hpo_report={'status':'skipped_no_successful_supported_engine'}
             if hpo_anchor and hpo_anchor['recipe']['engine'] in {'lightgbm','catboost','xgboost'}:
-                tuned,hpo_report=optimize_recipe(spec,train,hashes,tr,hpo_anchor['recipe'],runs/'inner-hpo',run_worker,
-                    min(deadline-reserve-30,time.monotonic()+getattr(args,'hpo_budget',900)),
-                    trials=args.hpo_trials,sampler=getattr(args,'hpo_sampler','tpe'))
+                if retention is not None:
+                    hpo_start=time.monotonic()
+                    if deadline-hpo_start<reserve+args.hpo_budget+30:
+                        raise TimeoutError('Retention refuses a truncated reserved HPO window')
+                    hpo_deadline=hpo_start+args.hpo_budget
+                    retention['hpo_admission']={'admitted_at_monotonic':hpo_start,
+                        'deadline_monotonic':hpo_deadline,'task_deadline_monotonic':deadline,
+                        'configured_seconds':args.hpo_budget,'requested_attempts':args.hpo_trials,
+                        'reserve_seconds':reserve,'anchor_signature':signature(single_anchor)}
+                    atomic_json(runs/'retention-hpo-admission.json',retention['hpo_admission'])
+                    tuned,hpo_report=optimize_recipe(spec,train,hashes,tr,hpo_anchor['recipe'],runs/'inner-hpo',run_worker,
+                        hpo_deadline,trials=args.hpo_trials,sampler=getattr(args,'hpo_sampler','tpe'))
+                else:
+                    tuned,hpo_report=optimize_recipe(spec,train,hashes,tr,hpo_anchor['recipe'],runs/'inner-hpo',run_worker,
+                        min(deadline-reserve-30,time.monotonic()+getattr(args,'hpo_budget',900)),
+                        trials=args.hpo_trials,sampler=getattr(args,'hpo_sampler','tpe'))
                 if signature(tuned) not in seen: queue.append(tuned)
             remaining=deadline-time.monotonic()
             if remaining<reserve+30: break
         if not queue and not args.offline and len(calls)<max(0,min(args.max_planner_calls,8)) and remaining>reserve+90:
             context=planner_context(spec,profile,text,split_info,records,best,remaining,len(calls)+1)
             plans,usage=llm_plan(context,runs,timeout=max(5,min(300,remaining-reserve-30)),prompt_mode=getattr(args,'planner_mode','baseline'))
-            plans,rejections=coordinator_plans(plans,selection_size,protect_original,four_stage)
+            if retention is not None:
+                plans,rejections=coordinator_plans(plans,0,False,False)
+            else:
+                plans,rejections=coordinator_plans(plans,selection_size,protect_original,four_stage)
             calls.append(usage); atomic_json(runs/f'planner-{len(calls)}.json',{'plans':plans,'rejected_plans':rejections,'call':usage,'context':context})
             queue.extend(p for p in plans if signature(p) not in seen)
-        if not queue: queue.append(coordinator_selection(fallback(spec,iteration,best['recipe'] if best else None),selection_size,protect_original,four_stage))
+        if retention is not None:
+            if not queue:
+                queue.append(coordinator_selection(fallback(spec,iteration,single_anchor),0,False,False))
+        else:
+            if not queue: queue.append(coordinator_selection(fallback(spec,iteration,best['recipe'] if best else None),selection_size,protect_original,four_stage))
         while queue and signature(queue[0]) in seen: queue.pop(0)
         if not queue: continue
         recipe=queue.pop(0); seen.add(signature(recipe))
         print(f'Experiment {iteration}: {recipe["engine"]}: {recipe["hypothesis"]}',flush=True)
-        result=run_worker(spec,recipe,runs/f'experiment-{iteration:02d}',split,min(900,max(5,deadline-time.monotonic()-reserve)))
+        if retention is not None:
+            worker_timeout=retention_worker_timeout(deadline-time.monotonic(),reserve,args.hpo_budget,
+                max(0,retention['initial_scheduled_count']-iteration-1),not hpo_attempted)
+            result=run_worker(spec,recipe,runs/f'experiment-{iteration:02d}',split,worker_timeout)
+        else:
+            result=run_worker(spec,recipe,runs/f'experiment-{iteration:02d}',split,min(900,max(5,deadline-time.monotonic()-reserve)))
         result['experiment_index']=iteration; records.append(result)
         ranked=ordered(records,spec)
         journal(runs,'search',result,spec['metric'],'keep_search_incumbent' if ranked and ranked[0]['output_dir']==result['output_dir'] else 'discard' if result['status']=='ok' else 'failed')
@@ -701,6 +789,15 @@ def solve_single(args,task_data=None,output_root=None):
             families={r['recipe']['engine'] for r in confirm_candidates}
             extra=next((r for r in ranked[2:] if r['recipe']['engine'] not in families),ranked[2]) if len(families)==1 else ranked[2]
             confirm_candidates.append(extra)
+        if retention is not None:
+            # Both complete controls and the retained strongest seed get an
+            # explicit second-cut opportunity when their primary worker passed.
+            keys=[signature(retention['control'])]
+            if retention['retained'] is not None: keys.append(signature(retention['retained']))
+            mandatory=[next((r for r in ranked if signature(r['recipe'])==key),None) for key in keys]
+            confirm_candidates=[r for r in mandatory if r is not None]+[
+                r for r in confirm_candidates if signature(r['recipe']) not in keys]
+            confirm_candidates=confirm_candidates[:3]
         for index,candidate in enumerate(confirm_candidates if confirmation_split is not None else []):
             if deadline-time.monotonic()<reserve+30: break
             result=run_worker(spec,candidate['recipe'],runs/f'confirmation-{index}',confirmation_split,min(900,max(5,deadline-time.monotonic()-reserve)))
@@ -713,14 +810,20 @@ def solve_single(args,task_data=None,output_root=None):
             selection.sort(key=lambda r:r['mean'],reverse=spec['greater_is_better'])
             chosen=selection[0]['candidate']; fit_iterations=selection[0]['fit_iterations']; _publish_task_checkpoint(chosen,output,spec,sample,test)
     ensemble_result=None; blend_trials=[]
-    if len(selection)>=2 and deadline-time.monotonic()>reserve+30:
+    if retention is not None:
+        # Existing worker accepts no nested global ensembles. Retained complete
+        # controls/composites remain selectable intact, never flattened or swept.
+        blend_selection=[s for s in selection if s['candidate']['recipe']['engine']!='ensemble']
+    else:
+        blend_selection=selection
+    if len(blend_selection)>=2 and deadline-time.monotonic()>reserve+30:
         try:
-            primary_caches=[read_cache(spec,s['candidate'],train) for s in selection]
-            confirm_caches=[read_cache(spec,s['confirmation'],train) for s in selection]
+            primary_caches=[read_cache(spec,s['candidate'],train) for s in blend_selection]
+            confirm_caches=[read_cache(spec,s['confirmation'],train) for s in blend_selection]
             configurations=[]
-            for pair in itertools.combinations(range(len(selection)),2):
+            for pair in itertools.combinations(range(len(blend_selection)),2):
                 for weight in [.5,.25,.75,.1,.9]: configurations.append((list(pair),[weight,1-weight]))
-            if len(selection)==3:
+            if len(blend_selection)==3:
                 configurations.extend([([0,1,2],[1/3]*3),([0,1,2],[.5,.25,.25]),([0,1,2],[.25,.5,.25]),([0,1,2],[.25,.25,.5])])
             winning=None; winning_mean=selection[0]['mean']
             for indices,weights in configurations:
@@ -766,6 +869,19 @@ def solve_single(args,task_data=None,output_root=None):
             'maximum_added_broad_features':128,'initial_queue_receipts':stage_receipts,
             'catboost_top_k':selection_size,'protected_originals':protect_original,
             'inner_hpo_status':(hpo_report or {}).get('status','not_reached')}
+    if retention is not None:
+        report['research_retention']={**retention['receipt'],
+            'input_fingerprint':fingerprints['strong_retention_input'],
+            'control_signature':signature(retention['control']),
+            'hpo_anchor_signature':signature(single_anchor),
+            'retained_signature':signature(retention['retained']) if retention['retained'] is not None else None,
+            'hpo_admission':retention.get('hpo_admission'),
+            'blend_selection_signatures':[signature(s['candidate']['recipe']) for s in blend_selection],
+            'maximum_initial':7,'maximum_experiments':9,'isolated_selector':True,
+            'required_primary_statuses':[{k:r.get(k) for k in ('source','signature','queue_index')}|{
+                'status':next((x['status'] for x in records if signature(x['recipe'])==r['signature']),'not_attempted')}
+                for r in retention['preflight_fit_costs']],
+            'qualification':'research input and attempted records only; no default/promotion/whole-procedure PASS inferred'}
     atomic_json(runs/'report.json',report)
     if not integrity_ok: raise RuntimeError('Protected inputs or evaluator/source changed during the run; do not trust its metrics')
     print(json.dumps({k:v for k,v in report.items() if k in {'version','best_validation','final_fit_status','elapsed_seconds','submission_sha256'}},ensure_ascii=False,indent=2),flush=True)

@@ -142,7 +142,7 @@ class VerticalContractTests(unittest.TestCase):
     def test_unknown_format_and_multitarget_preserve_prior_bytes_without_fake_CSV(self):
         for text in ('The arbitrary prose says regression.','Targets: ["outcome", "other"]'):
             with case() as c,patch.object(runner,'load_inputs',side_effect=AssertionError('full load')):
-                c.task.write_text(text if text.startswith('The') else c.task.read_text()+'\n'+text,encoding='utf-8')
+                c.task.write_text(text if text.startswith('The') else c.task.read_text().replace('Target: outcome',text),encoding='utf-8')
                 output=c.root/'submission.csv';output.write_bytes(b'last-good-unvalidated-prior')
                 with self.assertRaises(service.StrictTaskContractError):c.call()
                 self.assertEqual(output.read_bytes(),b'last-good-unvalidated-prior');self.assertFalse(c.report()['output_produced'])

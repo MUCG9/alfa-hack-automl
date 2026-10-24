@@ -1,0 +1,44 @@
+--- rq5-r2/bind_atomic.py
++++ rq6/bind_atomic.py
+@@ -11,8 +11,8 @@
+ sys.dont_write_bytecode = True
+ HERE = Path(__file__).resolve().parent
+ WORK = HERE.parent
+-PACKET = WORK / 'last-submission-repair-qualification-next-dev-r5-r2'
+-OUT = WORK / 'rq5'
++PACKET = WORK / 'last-submission-repair-qualification-next-dev-r6'
++OUT = WORK / 'rq6'
+ BASE = WORK / 'br-standard-release-qualification-next-dev/controller-r5/run_controller.py'
+ BASE_SHA = 'd5f41cad6de2168cd520e442223428285dd3714854079d9305dd1b34938abd7d'
+ PYTHON = WORK / 'venv/Scripts/python.exe'
+@@ -111,7 +111,7 @@
+         ref(item['path'])
+     ref(args.authority); binding['binding_preparer_receipt'] = ref(prep)
+     binding.update(immutable_files=pins, readiness='READY_REVIEWED_FROZEN', missing_bindings=[])
+-    destination = WORK / 'private/rq5-atomic-binding.ready-r1.json'
++    destination = WORK / 'private/rq6-atomic-binding.ready-r1.json'
+     def terminal():
+         for path, expected in pins.items():
+             check(); need(sha(path) == expected, 'terminal_frozen_pin_changed')
+--- rq5-r2/confirm_post_tool.py
++++ rq6/confirm_post_tool.py
+@@ -24,7 +24,7 @@
+         auth = authority(args.authority, args.authority_sha256)
+         need(args.wrapper_exit_code == 0 and bool(args.wrapper_tool), 'actual_wrapper_exit0_required')
+         manifest = Path(auth['manifest']['path']); cfg = read(manifest)
+-        binding_path = WORK / 'private/rq5-atomic-binding.ready-r1.json'
++        binding_path = WORK / 'private/rq6-atomic-binding.ready-r1.json'
+         need(sha(binding_path) == args.binding_sha256, 'atomic_binding_changed')
+         binding = read(binding_path)
+         need(binding.get('readiness') == 'READY_REVIEWED_FROZEN' and binding.get('missing_bindings') == [],
+--- rq5-r2/launch_atomic.ps1
++++ rq6/launch_atomic.ps1
+@@ -33,7 +33,7 @@
+ if ($ActualSession -ne '') { $common += @('--actual-session', $ActualSession) }
+ & $Python '-B' '-X' 'utf8' $auth.refs.binder.path @common
+ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+-$binding = Join-Path (Split-Path -Parent $auth.output) 'private/rq5-atomic-binding.ready-r1.json'
++$binding = Join-Path (Split-Path -Parent $auth.output) 'private/rq6-atomic-binding.ready-r1.json'
+ $bindingSha = (Get-FileHash -LiteralPath $binding -Algorithm SHA256).Hash.ToLowerInvariant()
+ $atomicArgs = @('--binding', $binding, '--binding-sha256', $bindingSha,
+     '--self-sha256', $auth.refs.atomic_source.sha256,

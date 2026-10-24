@@ -1,0 +1,81 @@
+{
+  "schema": "rq6-root-helpers-source-proof-v1",
+  "base_handoff_sha256": "34431bd211878be0c385112af1b82a1f3daa6eacfb1c88cdc3ae39231d20fc2f",
+  "runtime_inverse": {
+    "bind_atomic.py": {
+      "base_sha256": "93eb7685aab0be576c1df0828cc0c5cb60b514c67276a5d647561b616d5a382a",
+      "candidate_sha256": "1efd54f1c29978263a128a9553373b9d2376999d81bca461c8da338bb9034ff1",
+      "literal_replacements": [
+        [
+          "PACKET = WORK / 'last-submission-repair-qualification-next-dev-r5-r2'",
+          "PACKET = WORK / 'last-submission-repair-qualification-next-dev-r6'"
+        ],
+        [
+          "OUT = WORK / 'rq5'",
+          "OUT = WORK / 'rq6'"
+        ],
+        [
+          "private/rq5-atomic-binding.ready-r1.json",
+          "private/rq6-atomic-binding.ready-r1.json"
+        ]
+      ],
+      "inverse_source_exact": true
+    },
+    "confirm_post_tool.py": {
+      "base_sha256": "042140d8fda6aa8b2912a1d41743c344496c692a6a0456c540c618a494972825",
+      "candidate_sha256": "1a948bd28cc0b8a7c435b0be652e1ac5bb5195767368ad08f552f449b62bd015",
+      "literal_replacements": [
+        [
+          "private/rq5-atomic-binding.ready-r1.json",
+          "private/rq6-atomic-binding.ready-r1.json"
+        ]
+      ],
+      "inverse_source_exact": true
+    },
+    "launch_atomic.ps1": {
+      "base_sha256": "4a649ecaeda946a8ada4a9fec45c3b911a03d283c543065a5c7465f310f672a2",
+      "candidate_sha256": "aa99384a8081c500a2b1ee89996edc37827f6b856c73e09e3e9294756019f638",
+      "literal_replacements": [
+        [
+          "private/rq5-atomic-binding.ready-r1.json",
+          "private/rq6-atomic-binding.ready-r1.json"
+        ]
+      ],
+      "inverse_source_exact": true
+    },
+    "helper_policy.py": {
+      "base_sha256": "7f434726a57846c76feffaf989bb45874fc96f6732640b5bd18d9cb55801cdaa",
+      "candidate_sha256": "7f434726a57846c76feffaf989bb45874fc96f6732640b5bd18d9cb55801cdaa",
+      "literal_replacements": [],
+      "inverse_source_exact": true
+    },
+    "test_helpers.py": {
+      "base_sha256": "82767e3b4fe5419dfadbeb6e3b63ebf7589f2697fda729868b9991e6227f7a1c",
+      "candidate_sha256": "82767e3b4fe5419dfadbeb6e3b63ebf7589f2697fda729868b9991e6227f7a1c",
+      "literal_replacements": [],
+      "inverse_source_exact": true
+    }
+  },
+  "all11_test_bytes_and_method_AST_exact": true,
+  "method_AST_sha256": {
+    "RootHelperContracts.test_posttool_schema_matches_exact_pinned_outer_consumer_without_importing_it": "61d3c72eb7e1f14d00de9fb144e767546317f83035828894d9ff4fbce730a851",
+    "RootHelperContracts.test_existing_pin_cannot_be_silently_replaced_after_initial_hash_scan": "4de64d04bb20299c1df0df78303f3607014ad83f97bdffe904242be6f81d4a5b",
+    "RootHelperContracts.test_new_pin_requires_exact_separate_allowlist_and_never_overrides_original": "bde5f3380fecdb0686333bfbbc9559040c037660158ddfcbdaf76abb330d5474",
+    "RootHelperContracts.test_posttool_union_rejects_missing_or_changed_original_pin": "dd6cd7bad3d43befaa5ddcf9a7e6e9806a7aa435d6c7fbc147a3ed8a3f1b6795",
+    "RootHelperContracts.test_original6000_final240_and_closer_birth60_never_rebase": "e9dd0458ada78780fb9fa0f0de23a953f9f6597f0085f0c38af9b954e37e69f9",
+    "RootHelperContracts.test_late_failure_revokes_all_positive_role_flags_and_quality": "25000f22843c767d5b79ff77eabcbc2bba7d76dff51a05dc132126aa25b4ee0b",
+    "RootHelperContracts.test_late_metadata_failure_revokes_READY_without_changing_root_or_clock": "15bc2786eec1add24210a904bbf268e5792cdff6c51e2ed4dfa3e10e45ed9577",
+    "RootHelperContracts.test_failed_revocation_preserves_original_exception_and_safe_secondary_type": "4aa832223eddd6a8fe9b07f5434aa4f6e6bf2eaed80b5fee59d2f3f9c21998fb",
+    "RootHelperContracts.test_successful_publication_requires_pre_and_post_check_without_revocation": "a8d381e8ce09cf3b9670605f2fccf4a519faf58234a3471c3bc3b5ee5eee83a6",
+    "RootHelperContracts.test_launcher_invokes_only_fixed_binder_and_frozen_atomic_without_private_flags": "f1a5501d81ed9a566a2fae24311fb1331a715d3e319d0c4c313e9f58f5d77e74",
+    "RootHelperContracts.test_no_helper_assigns_a_replacement_campaign_origin_or_calls_candidate_main": "e4b2d914b091a654b92a325965461901fd9887459b9f44ede66f773933e033a7"
+  },
+  "prepared_test_methods": 11,
+  "actual_tests": 0,
+  "preserved_base_files": 76,
+  "snapshot_index": "source-evidence/base-index.json",
+  "prior_partial_copy_is_preparation_evidence_only": true,
+  "actual_clock": null,
+  "actual_metrics": null,
+  "source_author_imports_tests_fits_API_data_PID_Git_clock": 0
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "rq6-root-helpers-independent-source-review-v1",
+  "status": "source_review_closed_no_scoped_blocker",
+  "handoff": {"path": "work/rq6-root-helpers-next-dev/source-handoff.json", "sha256": "f8ec9820be1491c96afbba29a3f521e004c835a56e21db9b82a0945246f4d7ce"},
+  "base_handoff_sha256": "34431bd211878be0c385112af1b82a1f3daa6eacfb1c88cdc3ae39231d20fc2f",
+  "checks": {
+    "local_raw_pins_exact": 162,
+    "external_raw_pins_exact": 13,
+    "flat_index_exactly_covers_prior_files_plus_handoff": 76,
+    "all_prior_snapshot_raw_hashes_exact": true,
+    "runtime_literal_changes": 5,
+    "independently_reproduced_exact_raw_inverse": {
+      "bind_atomic.py": 3,
+      "confirm_post_tool.py": 1,
+      "launch_atomic.ps1": 1
+    },
+    "helper_policy_raw_exact": true,
+    "test_helpers_raw_exact": true,
+    "all_11_method_AST_hashes_exact": true,
+    "fresh_known_shared_shell_partition_and_later_full_posttool_union_unchanged": true,
+    "schemas_caps_actual_exit_before_fresh_and_original_clocks_unchanged": true,
+    "exact_prospective_packet": "work/last-submission-repair-qualification-next-dev-r6",
+    "exact_prospective_output": "work/rq6",
+    "exact_prospective_atomic_binding": "work/private/rq6-atomic-binding.ready-r1.json"
+  },
+  "concrete_blockers": [],
+  "prepared_contracts": 11,
+  "actual_contract_executions": 0,
+  "remaining": "Final qualifier and private metadata bindings require their own exact rebind; this helper-only source review grants no runtime or historical cleanup qualification.",
+  "actual_qualifier_handoff": null,
+  "actual_private_manifest": null,
+  "actual_clock": null,
+  "actual_metrics": null,
+  "reviewer_candidate_imports_tests_fits_API_data_arrays_PID_Git_clock": 0,
+  "history": "The prior helper packet and all failed RQ1 through RQ5 campaigns remain immutable. Preparation-only partial-copy evidence is not an executed experiment."
+}

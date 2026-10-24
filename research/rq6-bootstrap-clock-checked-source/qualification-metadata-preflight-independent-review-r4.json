@@ -1,0 +1,26 @@
+{
+  "schema": "qualification-metadata-preflight-independent-source-review-v4",
+  "status": "source_review_closed_no_scoped_blocker",
+  "source": {"path": "work/qualification-metadata-preflight-r4.py", "sha256": "05b0701e0c2c9bc74c1ac7e4f211c1fad06884005cb1bc4d0b3c0df8de437a7f"},
+  "independent_base": {"path": "work/rq5-metadata-preflight-r3.py", "sha256": "55971ae9ce68ef06eadf94db327b4c622954f18443f1510d78c8024826a623dd"},
+  "checks": {
+    "whole_module_AST_inverse_after_only_predecessor_selection_block": true,
+    "exact_reviewed_config_read_sha_methods_bodies_preserved": true,
+    "additional_historical_admissions_selected_by_exact_prior_name_pattern": true,
+    "RQn_constants_and_function_referenced_top_assignments_selected_from_same_hash_checked_source": true,
+    "no_path_normalization_or_predicate_rewriting": true,
+    "missing_dependencies_fail_before_admission": true,
+    "no_projected_module_imports_or_runtime_entrypoint": true,
+    "runtime_call_denylist_preserved": true,
+    "two_exact_hash_pinned_stdlib_top_level_metadata_helpers_only": true,
+    "qualified_helper_allowlist_and_injection_unchanged": true,
+    "actual_controller_and_manifest_SHA_checked_before_projection": true,
+    "metadata_only_30_second_bound_preserved": true,
+    "no_new_campaign_clock_or_runtime_grant": true
+  },
+  "concrete_blockers": [],
+  "applicability": "The utility is for exact independently reviewed controller source and actual hash-bound private JSON. It is not an arbitrary Python sandbox. The final controller's selected dependency closure must be checked in the subsequent source rebind; a missing global must fail the exact metadata preflight rather than be supplied by guesswork.",
+  "required_actual_result": "Root must observe exit0 from BOTH config and predecessor on the final controller/private hashes before experiment origin; source review does not substitute for this result.",
+  "reviewer_utility_execution": false,
+  "reviewer_candidate_imports_tests_fits_API_data_arrays_PID_Git_clock": 0
+}

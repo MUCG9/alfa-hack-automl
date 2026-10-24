@@ -1,0 +1,62 @@
+{
+  "schema": "rq5-technical-bootstrap-failure-preserved-v1",
+  "actual_driver": {
+    "session": 12539,
+    "exit_code": 1,
+    "launch_tool": "9134d5",
+    "terminal_tool": "9c4f4d"
+  },
+  "actual_frozen_closer": {
+    "exit_code": 1,
+    "tool": "1f0b7d"
+  },
+  "whole_technical_pass": false,
+  "actual_tests_executed": 0,
+  "new_model_fits": 0,
+  "API_calls": 0,
+  "first_failure": {
+    "code": "child_nonzero_exit",
+    "phase": "child_exit",
+    "unix": 1792872870.6243389,
+    "monotonic": 131876.0,
+    "exception_type": null,
+    "errno": null,
+    "winerror": null,
+    "child_kind": "repair-source-contracts"
+  },
+  "error_history": [
+    {
+      "code": "child_nonzero_exit",
+      "phase": "child_exit",
+      "unix": 1792872870.6243389,
+      "monotonic": 131876.0,
+      "exception_type": null,
+      "errno": null,
+      "winerror": null,
+      "child_kind": "repair-source-contracts"
+    },
+    {
+      "code": "mandatory_child_failed",
+      "phase": "qualification",
+      "exception_type": "RuntimeError",
+      "errno": null,
+      "winerror": null
+    }
+  ],
+  "observed_child_error": "dependency_initialization_observation_gap10",
+  "source_defects": [
+    "technical_bootstrap_reads_previous_rq4_campaign",
+    "technical_child_callback_gap_conflicts_with_independent_parent_observation_during_native_imports"
+  ],
+  "root_sha256": "15d2cdeb8d21d7d94d654988915ba9be0414dee5e734ba9f9ce51d252d40f0a4",
+  "root_flags": {
+    "technical_procedure_passed": false,
+    "source_unchanged": true,
+    "cleanup_confirmed": true,
+    "temporary_cleanup_confirmed": true
+  },
+  "new_metrics": null,
+  "candidate_archive_qualified": false,
+  "organizer_exact_cause_unknown": true,
+  "retry_of_frozen_unit_forbidden": true
+}

@@ -1,0 +1,39 @@
+{
+  "schema": "rq6-private-producer-source-applicability-review-v1",
+  "status": "SOURCE_REVIEWED_NO_SCOPED_PREPARATION_BLOCKER",
+  "producer": {
+    "path": "work/prepare-rq6-private.py",
+    "sha256": "0bcbe81742318a66fb98695a025359b0d56d8f99c6758ad81c0ab2b4529bcd5b"
+  },
+  "qualifier_handoff_sha256": "ce829991b547d90d1511fce7fed9f9f68c2b372ccdda4ccba4c691e703a2074b",
+  "helper_handoff_sha256": "f8ec9820be1491c96afbba29a3f521e004c835a56e21db9b82a0945246f4d7ce",
+  "old_actual_private_sha256": "96c11a04f49cfbd7eb5ff1bdea2e1fb74b649143259b9627202f8dd6e35c35f1",
+  "checks": {
+    "final_technical_entry34c3_matches_fullpin": true,
+    "actual_original_two_tasks_fiveinputhashes_bound": true,
+    "operational_refs_normalized_absolute": true,
+    "bootstrap_contract_refs_and_rq5_previous_absolute": true,
+    "typed_reference_closed_walk_preserves_actual_tool_extras": true,
+    "WORK_relative_split_refs_preserved": true,
+    "no_metadata_pin_collisions": true,
+    "projected_pin_union_before_extra_root_refs": 1014,
+    "typed_ref_count": 41,
+    "only_remaining_NULLs_are_legitimate_direct_sessions": [
+      "lc1.actual_execution.session",
+      "rq1_previous.driver_actual.session",
+      "rq4_previous.driver_actual.session"
+    ],
+    "rq3_exact_fixed_dictionary_equal": true,
+    "actual_post_known7937": true,
+    "NOT_READY_and_actual_metadata_exit_pending_preserved": true
+  },
+  "limits": "Source/JSON/AST projection only; producer/config/predecessor/candidate not executed. Actual root once-exec/tool evidence/private peer/preflight/fresh admission remain mandatory.",
+  "producer_executions": 0,
+  "candidate_imports": 0,
+  "tests": 0,
+  "models": 0,
+  "API_calls": 0,
+  "PID_observations": 0,
+  "raw_NPZ_CSV_reads": 0,
+  "actual_clock": null
+}

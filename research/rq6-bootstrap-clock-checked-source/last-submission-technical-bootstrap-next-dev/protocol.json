@@ -1,0 +1,64 @@
+{
+  "schema": "standard-repair-technical-bootstrap-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "scope": "Absolute cfg.output/current manifest-bound parent campaign + original CLOCK-ONLY child checks across dependency imports. Enclosing qualified coordinator alone owns resource/sticky-gap checks. No candidate/test/model changes.",
+  "role_choices": [
+    "source",
+    "unpacked"
+  ],
+  "CLI": [
+    "--role",
+    "--test",
+    "--manifest",
+    "--manifest-sha256",
+    "--self-sha256"
+  ],
+  "original_common_seconds": 6000,
+  "outer_contract_parent_child_seconds": [
+    90,
+    60
+  ],
+  "new_clock": false,
+  "clock_checks": [
+    "finite",
+    "monotonic rollback",
+    "same original assignment",
+    "wall/mono agreement<=5",
+    "both absolute deadlines"
+  ],
+  "resource_authority": {
+    "enclosing_coordinator_sha256": "bd864b13460d31176d57e1dbddbe179ad8e6911163b117e3f9698228c5540f76",
+    "full_parent_observation_gap_seconds": 10,
+    "parent_sampling_cadence_seconds": 0.25,
+    "child_callback_scope": "clock-only; no parent lastsample updates; no child RSS success claim",
+    "parent_actual_supervisor_exit_resource_and_owned_cleanup_required": true
+  },
+  "campaign_binding": [
+    "ABS resolved direct WORK child cfg.output",
+    "READY manifest same6000",
+    "campaign schema/status setup/manifest_sha256 exact",
+    "typed actual owner and verified launch parent metadata",
+    "pinned actual coor source in immutable union"
+  ],
+  "preload_only": [
+    "numpy",
+    "numpy.testing",
+    "scipy",
+    "scipy.sparse",
+    "sklearn",
+    "sklearn.metrics",
+    "sklearn.model_selection"
+  ],
+  "network_tripwire_before_preload": true,
+  "old_test_SHA256": "afb77e68bd87003ff33068744b9411d6fc8fa40c44d9e3d853f033f7f754bad1",
+  "old_test_methods_unchanged": 24,
+  "prepared_bootstrap_contract_methods": 7,
+  "actual_executions": 0,
+  "actual_models": 0,
+  "API": 0,
+  "actual_private_manifest": null,
+  "actual_clock": null,
+  "actual_metrics": null,
+  "promotion": false,
+  "submit": false
+}

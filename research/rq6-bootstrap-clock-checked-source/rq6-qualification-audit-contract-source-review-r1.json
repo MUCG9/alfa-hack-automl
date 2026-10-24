@@ -1,0 +1,72 @@
+{
+  "schema": "rq6-qualification-audit-contract-independent-source-review-v1",
+  "status": "source_review_closed_no_scoped_blocker",
+  "handoff": {"path": "work/last-submission-repair-qualification-next-dev-r6/source-handoff.json", "sha256": "ce829991b547d90d1511fce7fed9f9f68c2b372ccdda4ccba4c691e703a2074b"},
+  "base_handoff_sha256": "2fe9502dcf38d16591a89b062831a16a45c7bcdf2f691db889d3fd80098055b6",
+  "checks": {
+    "local_pins": 17,
+    "external_pins": 975,
+    "all_raw_source_metadata_pins_exact_after_metadata_receipt_restoration": 990,
+    "legacy_NPZ_hashes_compared_only_to_frozen_prior_metadata": 2,
+    "entire_controller_AST_inverse_to_independent_base_reproduced": true,
+    "inverse_scope": "Only OUT/helper binding constants and paths, new exact bootstrap config guards, appended seven-contract slot, old predecessor renamed without body change and new explicit typed RQ5 negative admission.",
+    "renamed_prior_RQ4_admission_body_AST_exact_old_predecessor": true,
+    "closer_AST_inverse_after_only_OUT_and_appended_exact_contract_tuple": true,
+    "artifact_auditor_and_atomic_wrapper_OUT_only_raw_inverse": true,
+    "four_old_contract_and_child_PS_files_raw_exact": true,
+    "copied_technical_entry_raw_exact_reviewed_34c3": true,
+    "bootstrap_handoff_and_independent_peer_exact": true,
+    "helper_handoff_f8ec_and_pinned_root_peer_68ff_exact": true,
+    "candidate_handoff_30db_and_81_member_archive_eb85_unchanged": true,
+    "parent_C5_coordinator_sampling_resource_caps_unchanged": true,
+    "no_new_skips_exclusions_or_assertion_changes": true
+  },
+  "source_bindings": {
+    "bootstrap_handoff_sha256": "32ee1c71fc88257cb9bb06521d1c1535cb25f1931561fb3f010f61e70c74e9ea",
+    "bootstrap_independent_peer_sha256": "ef1ea6ee5392e9b04817ae19735a59a92d60dccb4fb86fc763a215552f6fc1f9",
+    "helper_handoff_sha256": "f8ec9820be1491c96afbba29a3f521e004c835a56e21db9b82a0945246f4d7ce",
+    "pinned_root_helper_peer_sha256": "68ff5b8cad8e83195dc0f2a5248129f41c296617b24f53b48c71785e48ccd716",
+    "additional_author_independent_helper_peer_path": "work/rq6-root-helpers-independent-source-review-r2.json",
+    "additional_author_independent_helper_peer_sha256": "38a5ef3ddb41c386d3e32ce6b85f567fac3f22b84a470734fa7682eb6aa8291c"
+  },
+  "contract_census": {
+    "slots": [24,24,18,12,16,5,2,11,7],
+    "prepared_executions": 119,
+    "sum_serial_parent_caps_seconds": 540,
+    "existing_setup_cap_seconds": 600,
+    "actual_test_executions": 0
+  },
+  "negative_predecessor": {
+    "original_driver_actual": {"session": 12539, "exit_code": 1, "tool": "9c4f4d"},
+    "original_frozen_closer_actual": {"exit_code": 1, "tool": "1f0b7d"},
+    "current_negative_sha256": "31f4634deaf32c0d2b66a31d9af5bfee37133761244c532ac0bf78cabdf7436c",
+    "post_tool_sha256": "9695f051adb79b4f49ca3f09703f10981972c077ff1793981cdb2b09c54c66d5",
+    "negative_known": 7931,
+    "negative_observers": 3,
+    "post_known_exact_union": 7934,
+    "post_observers": 3,
+    "next_complete_known_union_before_new_metadata_preparers": 7937,
+    "all_identity_tuples_finite_unique": true,
+    "root_owned_preparers_and_campaign_owned_subset_observed": true,
+    "old_technical_failure_and_NULL_quality_preserved": true,
+    "current_source_temp_cleanup_only_not_retroqualification": true,
+    "future_fresh_absence_before_and_under_lock_required": true
+  },
+  "preparation_receipt_collision": {
+    "finding": "The reviewer inadvertently wrote its helper receipt to the already pinned root receipt filename. No runtime source or test changed.",
+    "reviewer_38a5_bytes_preserved_at_unique_r2_path": true,
+    "root_original_68ff_bytes_restored_exactly": true,
+    "all_frozen_external_hashes_rechecked_after_restoration": true,
+    "handoff_repins_or_candidate_changes": false
+  },
+  "concrete_blockers": [],
+  "remaining": [
+    "Actual private JSON must use exact ABS operational paths, all refs including enriched actual_tool refs in the immutable map, current bootstrap/helper source and full actual preparer union.",
+    "Root must observe exact config AND complete predecessor metadata predicates on final private/controller hashes before assigning the new original clock.",
+    "Actual 119 contracts, two standard calls, independent sealed-artifact audit and complete actual root/posttool closure remain unexecuted and unqualified."
+  ],
+  "actual_private_manifest": null,
+  "actual_clock": null,
+  "actual_metrics": null,
+  "reviewer_candidate_config_imports_tests_fits_API_data_arrays_PID_Git_clock": 0
+}

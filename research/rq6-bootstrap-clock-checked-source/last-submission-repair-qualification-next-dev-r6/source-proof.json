@@ -1,0 +1,30 @@
+{
+  "schema": "RQ6-clock-only-bootstrap-source-proof-v1",
+  "previous_handoff_sha256": "2fe9502dcf38d16591a89b062831a16a45c7bcdf2f691db889d3fd80098055b6",
+  "previous_source_preserved": true,
+  "driver_whole_inverse_only_OUT_helper_refs_typedRQ5negative_new7slot_config": true,
+  "artifact_and_atomic_only_OUT_AST_inverse": true,
+  "closer_only_OUT_and_new7_count_inverse": true,
+  "all_old112_assertion_AST_unchanged": true,
+  "all_four_existing_test_files_raw_exact": true,
+  "technical_entry_raw_exact_reviewed_bootstrap": true,
+  "qualified_parent_resource_guard_coordinator_sampler_raw_unchanged": true,
+  "prepared_counts": [
+    24,
+    24,
+    18,
+    12,
+    16,
+    5,
+    2,
+    11,
+    7
+  ],
+  "prepared_executions": 119,
+  "actual_tests": 0,
+  "source_bootstrap": "32ee1c71fc88257cb9bb06521d1c1535cb25f1931561fb3f010f61e70c74e9ea",
+  "helper_source": "f8ec9820be1491c96afbba29a3f521e004c835a56e21db9b82a0945246f4d7ce",
+  "actual_clock": null,
+  "numerical_archive81_bytes_unchanged": true,
+  "NPZ_data_reads": 0
+}

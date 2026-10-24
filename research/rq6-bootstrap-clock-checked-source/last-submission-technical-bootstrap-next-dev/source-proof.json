@@ -1,0 +1,27 @@
+{
+  "schema": "technical-bootstrap-source-proof-v1",
+  "base_source_sha256": "fcd3633698bc2b93964727ddaf2c8f1378feab2d70a2cc9e5bcc158e88b156d5",
+  "candidate_source_sha256": "34c3cfd4149bd505644dfadebf5c59201f2ddff9302123f8a6f22174a79c4480",
+  "whole_inverse_raw_source_and_AST_exact": true,
+  "new_definitions": [
+    "current_campaign",
+    "clock_only_checkpoint"
+  ],
+  "existing_changed_definition": "main (current campaign lookup and original clock-only check closure only)",
+  "old24_test_bytes_sha256": "afb77e68bd87003ff33068744b9411d6fc8fa40c44d9e3d853f033f7f754bad1",
+  "old24_method_count": 24,
+  "methods_AST_sha256": {
+    "TechnicalBootstrapContracts.test_current_campaign_is_read_only_from_exact_absolute_bound_output": "6559df39929e78a3e4be07af8d49be6a673c1287aab70be254ecf4073b601fb1",
+    "TechnicalBootstrapContracts.test_relative_output_and_wrong_campaign_manifest_never_gain_authority": "c2085cae8274528cfc1d902ee58584e0f7fe6e4c8587c8c4b6f20cf84e469257",
+    "TechnicalBootstrapContracts.test_parent_supervision_source_authority_is_required_without_new_resource_claim": "08d5abf4a936110ee7de54bb53148c3f05eeace60485fb811a335495ccb7e203",
+    "TechnicalBootstrapContracts.test_long_native_import_interval_is_covered_by_independent_parent_samples": "d5d4897524afe75cc41d8bb9c5e35590853d2a933c5c393fbd5cf739b9440e9d",
+    "TechnicalBootstrapContracts.test_long_import_does_not_extend_original_deadline": "84ac4012965cb649cf2a7d0c5b3e8df71050e166677c4c8784f4b63d45c65023",
+    "TechnicalBootstrapContracts.test_rollback_nonfinite_assignment_and_wall_drift_still_STOP": "d01750d68cb113fb849d8ba6ba597d7a9883118188d960dd07e3ee52c34ef798",
+    "TechnicalBootstrapContracts.test_existing24_bytes_network_tripwire_and_dependency_only_preload_remain": "699204da6ceae22b1d1dc1f0798b2c005c2338d845af7ca21f5a69501a6bc153"
+  },
+  "prepared": 7,
+  "actual_tests": 0,
+  "no_native_or_candidate_imports_by_author": true,
+  "parent_coordinator_full_guard_bytes_unchanged": true,
+  "preserved_failure": "Actual RQ5 session12539/exit1/tool9c4f4d and old fcd bootstrap remain immutable; no original clock reset or retroqualification."
+}

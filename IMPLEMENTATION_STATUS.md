@@ -1,11 +1,8 @@
 # Universal AutoResearch: UAR-v1
 
 <!-- CURRENT_UAR_OBSERVATION_BEGIN -->
-RQ4 remains a preserved preflight FAIL (c518d7 exit1, frozen closer1f08cd exit1, no original root). Separate current-negative observation d1e89d and post-tool75a734 both exited0: current581pins/source/temp/cleanup confirmed, finite7917 identities absent plus3 observer preparers for next admission. This does not requalify RQ4.
-
-RQ5 final prospective SOURCE 2fe9502d, peer5c6ae3c3, preserves candidate81-member ZIP eb85becb and all existing numerical/model behavior.112 targeted contracts and exactly two standard calls are prepared,0 executed. Root must bind all operational absolute paths, actual input authority and exact final hashes, then run the reviewed exact config-and-predecessor metadata preflight before assigning any new clock.
-
-The time-driven Qwen coreR6(226a4100/51f7a7e1), independent auditorR3(cc220ce9/ab30e5cf) and outerR3(0c46fe73/751e2734) have closed SOURCE reviews. No new Qwen campaign or archive metrics exist yet. The next10800-second campaign requires a positive actually qualified repaired archive; task budgets are equal, with real hypothesis/evaluation/feedback/keep-discard loops and completed checkpoints. Physical caps remain unchanged. Linux remains paused; upload is not authorized.
+Current repair: RQ5 is closed FAIL before contracts/models (dependency bootstrap callback falsely treated native import time as an observation gap; technical child also bound previous output). Actual terminal 9c4f4d exit1, negative closer 1f0b7d exit1; current-negative observer f0a7ad and post3423df both exit0, finite next union7937, source/temp/cleanup true, technical false. No new metrics.
+RQ6 source ce829991 independently reviewed34cb7aae: current output binding plus clock-only technical-child callback under independently sampled parent full guard, unchanged strict resource/gap caps.119 prepared contracts,0 executed. New6000 clock unassigned, repaired archive not ready. Qwen time-driven R6 source/outer reviewed; new10800 actual campaign not yet launched. Linux remains human-paused; no upload authorization.
 <!-- CURRENT_UAR_OBSERVATION_END -->
 
 The new specification is being integrated into the existing pipeline. LA2 completed

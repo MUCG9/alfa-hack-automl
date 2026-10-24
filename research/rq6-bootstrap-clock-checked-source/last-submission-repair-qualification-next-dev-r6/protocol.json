@@ -1,0 +1,129 @@
+{
+  "schema": "standard-repair-qualification-RQ5-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "clock": null,
+  "common6000": {
+    "setup600": 600,
+    "REG_parent_child": [
+      900,
+      870
+    ],
+    "CLASS_parent_child": [
+      3600,
+      3570
+    ],
+    "audit_parent_child": [
+      600,
+      570
+    ],
+    "final300": {
+      "driver240": 240,
+      "root60": 60
+    }
+  },
+  "setup_slots": [
+    [
+      "repair-source-contracts",
+      24,
+      90,
+      60
+    ],
+    [
+      "repair-unpacked-contracts",
+      24,
+      90,
+      60
+    ],
+    [
+      "REG-common-unpacked-contracts",
+      18,
+      90,
+      60
+    ],
+    [
+      "corrected-cases-source-contracts",
+      12,
+      90,
+      60
+    ],
+    [
+      "caller-contracts",
+      16,
+      60,
+      45
+    ],
+    [
+      "atomic-contracts",
+      5,
+      30,
+      20
+    ],
+    [
+      "framed-observation-reader-contracts",
+      2,
+      30,
+      20
+    ],
+    [
+      "root-helper-contracts",
+      11,
+      30,
+      20
+    ],
+    [
+      "clock-only-bootstrap-contracts",
+      7,
+      30,
+      20
+    ]
+  ],
+  "future_contract_executions": 119,
+  "unique_method_bodies": 95,
+  "scope": "Exactly two plain solution.py task.md calls; no duplicate four-cut model jobs. All cores sealed before pristine independent R4 audit.",
+  "REG": "Unchanged fixed .75L1/.25CP1 cuts without iteration override, fresh median full refit.",
+  "CLASS": "Existing V16 offline portfolio/search/confirmation/cache blends/full refit; selected matching confirmation mandatory or STOP/null. No Qwen/HPO/four-stage claim.",
+  "entitlement": "MIN actual outer common/parent/child bounds. Archive intrinsic9900 or CLASS9870 execution clock never expands outer entitlement.",
+  "threads": "Outer launch facade AUTOML_THREADS2/native pool environment1; inherited models/worker runtime may set native pools2. Actual model CPU<=2; technical and audit1. No end-to-end BLAS1 claim.",
+  "retention": "CLASS strength is measured, not assumed from historical selected outcomes; no automatic promotion/upload.",
+  "CLASS_full_terminal": "Raw full-fit job/result/median/CSV independently checked. Full per-worker strict telemetry not serialized by inherited V16 report. Actual source-bound clean CLASS parent subtree/child complete diagnostic required; do not invent missing receipt.",
+  "predecessor": "Mandatory actual UAR10 root/fresh/post and all explicit preparations plus typed current LC1 negative proof; LC1 permanent FAIL/0 tests is not relabeled.",
+  "atomic": "Actual driver exit evidence first. Wrapper launches one child PowerShell, pinned venv/closer; saves actual child exit before fresh full union. Wrapper enclosing60 AND actual closer birth60 AND original6000 AND saved driverfinal240; no reset.",
+  "actual_tests_fits_API_runtime": 0,
+  "actual_metrics": null,
+  "actual_model_fit_count": null,
+  "API_external_measurement": null,
+  "source_revision": "RQ6_CURRENT_PARENT_CLOCK_ONLY_BOOTSTRAP",
+  "output": "rq4",
+  "previous_RQ1": "PermanentFAIL/3754fa; frozencloser81b95d exit1; separate currentnegative16e4/helper5b80 exit0 only source/temp/currentknown cleanup,7828+observer3=7831.",
+  "technical_import_policy": "Before each unchanged16 suite: network tripwire, actual81/source hashes, NumPy/numpy.testing/SciPy sparse/sklearn metrics/model_selection initialization under existing outer technical1 ownership/resource/common guards. Native CPU metadata Popen is permitted during dependency initialization; no fit/candidate import. Original test-method Popen learner-denial unchanged.",
+  "bootstrap_contract_credit": 0,
+  "previous_RQ2": "PermanentFAIL actual2272/1/962ee0; original closer1/0b9302; separate currentnegative b313 helper0/aab701 supplies current source308/temp/cleanup and7848+observer3=7851 only.",
+  "corrected_case_binding": "Root-authored45408/test622e/independent9caf; synthetic known={own} only, all12 assertions unchanged.",
+  "corrected_candidate_handoff": "30dbdd9c9a06c513bb6e27c82580509b900426ccb8733078b52bcbc2264e2237",
+  "candidate_peer": "31adf57f1b06c8c56ca1a4a9f9815e33b8b03a8d037a562ebb18a6d763c2682d",
+  "archive_sha256": "eb85becbff8da0be93b97a8dafff108e426cdbed07476ed4f1dc0fb95e73c6fc",
+  "planned_contract_executions": 119,
+  "prepared_contracts_by_slot": [
+    24,
+    24,
+    18,
+    12,
+    16,
+    5,
+    2,
+    11,
+    7
+  ],
+  "setup_max_parent_seconds": 510,
+  "observation_adapter": "Independent bounded64KiB streaming journal validates every complete frame; incomplete final append retains only prior complete value; unchanged freshness/identity/nonce/cap predicates remain required. No candidate codec import/numerical change.",
+  "previous_RQ3": "Whole driver8788exit1/14217b; final240 missed, no frozencloser. Separate currentnegative98e093 actual89278c0 and poste619 actual1b37a80 current7887+observer3=7890, plus actual late metadata3/tool1a52b1. Allcurrentonly/globalFAILforever.",
+  "root_helper_handoff_sha256": "12fc97e349d36657659016b1c347d3f2424dd85a11decd6334b2029313c6a61f",
+  "actual_contract_executions": 0,
+  "root_helper_source_review_sha256": "0551010599c2e2e011e9501a756889df2fe0f64672fed7f8c635e9dfba2d896c",
+  "previous_RQ4": "Original relative-output preflight failure and failed R2 observer remain FAIL. Current negative/post source+absence is ownership admission only; no old root60 requalification.",
+  "operational_template_output": null,
+  "root_must_assign_absolute_output": true,
+  "binding_preparers": "Exact pinned actual binder3. Intersection with current verified wrapper chain must be exactly one shared full-PID/birth observed shell in BOTH verified chains; exclusive Python/shim absence checked before/under lock. Shared shell remains resource-accounted wrapper preparer and must be absent at post-tool, never represented as absent while observing.",
+  "actual_clock": null,
+  "bootstrap": "Exact source34c3 rawcopy to local sameWORKdepth; actual cfg.output/current manifest campaign required; clock-only child, unchanged qualified parent RSS/sticky10 observer remains authoritative."
+}

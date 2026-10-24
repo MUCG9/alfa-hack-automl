@@ -1,0 +1,11 @@
+{
+  "refs": {
+    "alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/split.npz": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+    "alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/confirmation_split.npz": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df"
+  },
+  "raw_data_reads": 0,
+  "authority": {
+    "path": "last-submission-repair-qualification-next-dev-r5-r2/source-handoff.json",
+    "sha256": "2fe9502dcf38d16591a89b062831a16a45c7bcdf2f691db889d3fd80098055b6"
+  }
+}

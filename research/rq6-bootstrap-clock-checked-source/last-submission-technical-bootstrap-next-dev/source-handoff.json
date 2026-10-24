@@ -1,0 +1,30 @@
+{
+  "schema": "standard-repair-technical-bootstrap-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_NOT_READY_PENDING_PEER",
+  "files_sha256": {
+    "changes.patch": "a271897fad9e2fc6ed8f8ed72367394c19def182bb648dc0c17420c2bec879dc",
+    "protocol.json": "6ea3510d4da5b021a2ad180fde899f104615df9d69f5ef0227615f48163f227c",
+    "README.txt": "bc402f37ff327370beaaabda6704b8fa4c806e921cd765a6fd575596ec96ce89",
+    "source-evidence/rq5-r2/source-handoff.json": "2fe9502dcf38d16591a89b062831a16a45c7bcdf2f691db889d3fd80098055b6",
+    "source-evidence/rq5-r2/technical_entry.py": "fcd3633698bc2b93964727ddaf2c8f1378feab2d70a2cc9e5bcc158e88b156d5",
+    "source-proof.json": "b72e2de1136e34bdcc35ecbe037ea1b4cc6631a40b3e411191943a2edc9cc12b",
+    "technical_entry.py": "34c3cfd4149bd505644dfadebf5c59201f2ddff9302123f8a6f22174a79c4480",
+    "test_bootstrap.py": "18f24712de43763a798e00fcace121bc99e61f123dac12c5b30c65ec75367b5f"
+  },
+  "external_refs_sha256": {
+    "last-submission-repair-qualification-next-dev-r5-r2/source-handoff.json": "2fe9502dcf38d16591a89b062831a16a45c7bcdf2f691db889d3fd80098055b6",
+    "last-submission-repair-qualification-next-dev-r5-r2/technical_entry.py": "fcd3633698bc2b93964727ddaf2c8f1378feab2d70a2cc9e5bcc158e88b156d5",
+    "last-submission-repair-qualification-next-dev-r5-r2/run_controller.py": "6aec5d8f939e439e368a57c4667a5c199fd0583a76c8c22dd075fe86c6028d18",
+    "verified-supervision-next-dev-r2/coordinator.py": "bd864b13460d31176d57e1dbddbe179ad8e6911163b117e3f9698228c5540f76",
+    "br-standard-release-qualification-next-dev/controller-r5/run_controller.py": "d5f41cad6de2168cd520e442223428285dd3714854079d9305dd1b34938abd7d",
+    "last-submission-repair-next-dev-r4/tests/test_supervised_class_release.py": "afb77e68bd87003ff33068744b9411d6fc8fa40c44d9e3d853f033f7f754bad1"
+  },
+  "prepared_contract_methods": 7,
+  "actual_contract_executions": 0,
+  "existing24_test_bytes_unchanged": true,
+  "parent_supervision_resource_clock_caps_unchanged": true,
+  "actual_private_manifest": null,
+  "actual_clock": null,
+  "actual_metrics": null,
+  "source_author_imports_tests_fits_API_data_PID_Git": 0
+}

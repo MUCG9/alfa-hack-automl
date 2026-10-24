@@ -1,0 +1,10 @@
+{
+  "schema": "source-evidence-copy-preparation-incident-v1",
+  "status": "SOURCE_ONLY_NO_RUNTIME",
+  "first_error_type": "FileNotFoundError",
+  "cause": "Windows path-length limit while recursively nesting historical evidence copy. No immutable base or runtime edited.",
+  "unissued_partial_copy_preserved": "source-evidence/rq5-r2",
+  "cleanup_attempt": "Automatic approval review blocked removal of unissued partial evidence; no deletion occurred and no retry.",
+  "resolution": "Complete76 original files preserved byte-exact in short flat base-files with explicit relativepath/hash index.",
+  "actual_imports_tests_models_API_PIDs_clock": 0
+}

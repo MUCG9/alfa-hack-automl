@@ -1,0 +1,17 @@
+{
+  "schema": "rq6-root-helper-independent-root-source-review-v1",
+  "status": "SOURCE_ACCEPTED",
+  "handoff_sha256": "f8ec9820be1491c96afbba29a3f521e004c835a56e21db9b82a0945246f4d7ce",
+  "pins_verified": 175,
+  "exact_path_literal_replacements": 5,
+  "changed_runtime_files": [
+    "bind_atomic.py",
+    "confirm_post_tool.py",
+    "launch_atomic.ps1"
+  ],
+  "raw_inverse_exact": true,
+  "all11_test_bytes_preserved": true,
+  "no_runtime": true,
+  "no_clock": true,
+  "new_metrics": null
+}

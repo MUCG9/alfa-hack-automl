@@ -1,7 +1,7 @@
 # Universal AutoResearch: UAR-v1
 
 <!-- CURRENT_UAR_OBSERVATION_BEGIN -->
-Current observation: UQ2 remains running under its original10800-second clock. Ar is sealed with8 successful HPO attempts and2 real Qwen calls. Br exited1 after exhausting its810-second solver budget in IO02 output projection before models/HPO/API; component cleanup and current two known identities are confirmed absent. Regression A/B quality is unqualified. The frozen campaign continues classification; prospective cadence correction is source-reviewed with12 prepared, unexecuted tests and is not integrated. Prior verified Br research RMSE34.155023394837 and historical classification MacroF1.6593178433614652 remain unchanged. Linux remains paused by the user.
+Current observation: UQ2 remains active under its original10800-second clock; Bc is running. Ar completed8 HPO attempts. Br failed before model search at its810-second IO02 deadline. Ac solver exited0 with cleanup confirmed, but HPO attempted6 of8 trials:5 successful,1 timeout,2 unattempted; no complete paired quality is qualified. The predeclared8-valid-trial optional audit is therefore withheld for both tasks, and its unfinished caller is preserved NOT_READY without execution. All original failures, clocks and criteria remain unchanged. Prior verified research RMSE34.155023394837 and historical classification MacroF1.6593178433614652 remain retained. Linux stays paused.
 <!-- CURRENT_UAR_OBSERVATION_END -->
 
 The new specification is being integrated into the existing pipeline. LA2 completed

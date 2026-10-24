@@ -3148,5 +3148,107 @@
     "active_frozen_source_unchanged": true,
     "new_cadence_code_not_applied": true,
     "Linux_paused": true
+  },
+  "UQ2_Ac_incomplete_HPO": {
+    "schema": "uq2-Ac-incomplete-HPO-event-v1",
+    "checked_unix": 1792830858.1161697,
+    "actual_campaign_session": 3588,
+    "campaign_terminal_exit": null,
+    "classification_component_terminal_exit": null,
+    "current_component": "Ac",
+    "HPO_stage_report_status": "ok",
+    "actual_phase_seconds": 900.187,
+    "declared_phase_budget_seconds": 900,
+    "actual_accounting": {
+      "planned_trials": 8,
+      "attempted_trials": 6,
+      "completed_trials": 5,
+      "failed_trials": 1,
+      "duplicate_trials": 0,
+      "unattempted_trials": 2,
+      "guided_attempts": 3,
+      "guided_successful_trials": 2,
+      "phase_counts": {
+        "anchor": {
+          "attempted": 1,
+          "completed": 1,
+          "failed": 0
+        },
+        "startup": {
+          "attempted": 2,
+          "completed": 2,
+          "failed": 0
+        },
+        "guided": {
+          "attempted": 3,
+          "completed": 2,
+          "failed": 1
+        },
+        "random": {
+          "attempted": 0,
+          "completed": 0,
+          "failed": 0
+        }
+      }
+    },
+    "trial_statuses": [
+      {
+        "number": 0,
+        "status": "ok",
+        "objective_valid": true,
+        "seconds": 78.157,
+        "sampling_phase": "anchor"
+      },
+      {
+        "number": 1,
+        "status": "ok",
+        "objective_valid": true,
+        "seconds": 89.156,
+        "sampling_phase": "startup"
+      },
+      {
+        "number": 2,
+        "status": "ok",
+        "objective_valid": true,
+        "seconds": 82.797,
+        "sampling_phase": "startup"
+      },
+      {
+        "number": 3,
+        "status": "ok",
+        "objective_valid": true,
+        "seconds": 124.985,
+        "sampling_phase": "guided"
+      },
+      {
+        "number": 4,
+        "status": "ok",
+        "objective_valid": true,
+        "seconds": 330.828,
+        "sampling_phase": "guided"
+      },
+      {
+        "number": 5,
+        "status": "timeout",
+        "objective_valid": false,
+        "seconds": 186.907,
+        "sampling_phase": "guided"
+      }
+    ],
+    "HPO_file_sha256": "e066ead04615dd5434287661ec3051f47be22f9619dd3e9e129ce68075e30be9",
+    "quality_metric": null,
+    "current_frozen_HPO8_requirement_satisfied": false,
+    "preregistered_complete8valid_classification_pair_possible": false,
+    "regression_pair_already_unqualified": true,
+    "conditional_120s_audit_decision": "Do not launch. Preserve fixed preregistration/auditor and stop unfinished prospective caller. No eligibility downgrade or hindsight metric selection.",
+    "models_or_API_started_by_this_observation": 0,
+    "strong_control_comparison": "No independently scored matched A/B quality available; prior strong classification reference is retained.",
+    "retained_historical_classification_MacroF1": 0.6593178433614652,
+    "retained_verified_research_regression_RMSE": 34.155023394837,
+    "active_UQ2_model_processes_not_interrupted": true,
+    "original_common_clock_preserved": true,
+    "promotion": false,
+    "official_score": null,
+    "submit": false
   }
 }

@@ -38,3 +38,13 @@ UAR03 completed:28 focused contracts passed, actual direct exit0 (0a5cff), close
 Current priority after the reviewed LOSS6/retention integration: close the narrow UAR04 mandatory-suite coverage repair, freeze exact56/588 source and flat mappings, then execute one serial combined gate under a fresh real1200-second lease. After that, bind identical enriched task authority and strong anchors for genuine bounded Qwen qualification; original task prose remains unchanged and unqualified for strict mode. In parallel, Linux11 prepares new private execution-r3 authority/six absent class folders only; exact source/result/worker approval and separate bounded12 must precede any new Linux fit. Keep all08/09/source10 failed attempts and costs. No automatic submit.
 
 UAR04 is closed FAIL with negative root closure cd6c4e73bc0f5f6145ec11dbdd36160f96ba6f39dad09027496b177b60f0b10b and fresh5408 absence. API boundary/mock-target repair is integrated source-only. Review the affected static default-OFF API baseline against an independently constructed approved base, then prepare a new UAR05 full gate with the corrected generic clock comparison and latest ownership union. After its actual source/build/flat success, qualify the prepared identical enriched tasks/strong retention packets in a real Qwen pair. Linux11 is published ready; wait for actual claim/result and independently review new authority before bounded12.
+
+
+UAR05 closed FAIL: all 588 source checks in 56 scripts and the 73-member build passed;
+18 exact-unpacked checks passed before smoke failed creating a fallback temporary CSV
+at a 274-character path on Windows. Mapped checks were not attempted. Actual exit1,
+expected negative closer exit1, source invariance and 5,776 fresh known identities
+absent were verified inside the original 1,200 seconds. No new ML metric or release
+qualification. The failure remains preserved; a new shallow harness and generic
+primary-metric contrast repair require one fresh full gate before the Qwen pair.
+Original task authority bytes and the best measured models remain unchanged.

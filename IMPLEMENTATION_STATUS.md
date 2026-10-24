@@ -55,3 +55,13 @@ UAR03 completed:28 focused contracts passed, actual direct exit0 (0a5cff), close
 Current source integration (24 October): LOSS6 and strong-retention ports are independently source-reviewed and canonical-integrated. Registry56scripts/588expected checks is derived from AST; the new17+15 contracts are unrun. UAR03 retains its closed28-pass snapshot only. One combined source/build/exact/unpacked gate is being prepared after a narrow fail-closed coverage repair; no current full-suite PASS, new Qwen run, ML gain or release qualification is claimed. Linux10 source review permits fresh source-only authority preparation11, not fitting. Automatic submission remains disabled.
 
 UAR04 closed FAIL: actual66061 exit1;55/56 source suites passed (581 checks in passing suites), including LOSS17 and retention15. The7-test architecture suite found one failed assertion covering seven private cross-domain imports. Build/exact/mapped did not start. Original frozen closer failed an exact floating subtraction check; a separately reviewed audit-only closer retained the original deadline, forced negative qualification, sealed known cleanup and exited1 as expected. Fresh5408 known identities/preparers were absent. The first closer PID was not recorded and remains explicitly unqualified. A reviewed five-file API import/mock-target correction is now source-integrated after closure; current runtime validation is pending. No new ML score or release.
+
+
+UAR05 closed FAIL: all 588 source checks in 56 scripts and the 73-member build passed;
+18 exact-unpacked checks passed before smoke failed creating a fallback temporary CSV
+at a 274-character path on Windows. Mapped checks were not attempted. Actual exit1,
+expected negative closer exit1, source invariance and 5,776 fresh known identities
+absent were verified inside the original 1,200 seconds. No new ML metric or release
+qualification. The failure remains preserved; a new shallow harness and generic
+primary-metric contrast repair require one fresh full gate before the Qwen pair.
+Original task authority bytes and the best measured models remain unchanged.

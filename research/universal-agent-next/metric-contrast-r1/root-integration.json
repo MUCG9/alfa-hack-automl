@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "status": "SOURCE_INTEGRATED_REVIEWED_UNEXECUTED",
+  "handoff_sha256": "fff1f0a3c2385c07041dba90355bf38ae60dc738c7033d7187bedca97d546d1a",
+  "review_sha256": "c3928199975a991522cf3acef130de71b0555fbbacd1f0faa0050b4bf78a7d6d",
+  "integrated": {
+    "src/automl/task_understanding/metric_contract.py": "033ee07f0014d8dceae8fe24e0dbbdfb2a19a04c385422b3c67e41c4ddcf30a8",
+    "tests/test_uar_metric_contrast.py": "3c0c2f70fe6f0923c2ebc8a49c1cb1156b995014463c068d0510f1869e101e2c",
+    "tools/run_checks.py": "6530c5e01ba1f61354670c3d97e4fd9b02e144b60d8b017ebea60a3023c6d537"
+  },
+  "registry_scripts": 57,
+  "expected_checks": 604,
+  "imports_tests_fits_API": 0,
+  "task_authority_rewrite": false,
+  "clock_assigned": false
+}

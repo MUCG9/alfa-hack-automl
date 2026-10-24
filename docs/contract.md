@@ -43,3 +43,13 @@ Existing frozen experiments keep their originally assigned clocks and inventorie
 The trusted strong-retention research opt-in preserves the complete control and raw unprofiled HPO SINGLE. Eligible regression uses seven initial slots: protected first5, the prior champion and the fixed .75 L1 SINGLE/.25 champion composite. It has no separate L1 candidate and is a declared admission tradeoff under max9, not free capacity or an exact old-search superset. Classification accepts control mode only. Both future paired arms must use the same task-specific admission policy; the normal CLI defaults remain unchanged.
 
 Cross-domain implementation imports use the public neighbor api module. The UAR04 failure exposed seven violations; the reviewed correction reexports the same functions and changes import targets, preserving runtime bodies and model policy. The vertical drift fixture patches that public export while retaining its drift effect and assertions. Source compatibility and current full technical qualification still need actual execution.
+
+
+UAR05 closed FAIL: all 588 source checks in 56 scripts and the 73-member build passed;
+18 exact-unpacked checks passed before smoke failed creating a fallback temporary CSV
+at a 274-character path on Windows. Mapped checks were not attempted. Actual exit1,
+expected negative closer exit1, source invariance and 5,776 fresh known identities
+absent were verified inside the original 1,200 seconds. No new ML metric or release
+qualification. The failure remains preserved; a new shallow harness and generic
+primary-metric contrast repair require one fresh full gate before the Qwen pair.
+Original task authority bytes and the best measured models remain unchanged.

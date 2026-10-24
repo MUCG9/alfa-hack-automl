@@ -48,3 +48,13 @@ cases until actual guarded execution and cleanup are recorded.
 The next combined technical gate must include all56registered source scripts/588expected checks, exact default23 repeated checks and explicit flat method mappings. LOSS has17source methods and16flat methods, prospectively excluding only the modular-source AST proof; retention requires all15 in both representations. No suite may disappear from the manifest and still qualify. Legacy synthetic fixtures may fit learners or contact local mock HTTP; total fixture-fit/API counts remain null unless instrumented. Technical counts, repeated counts, source equality and new ML metrics are recorded separately.
 
 UAR04 first failure and secondary closer error are preserved separately. Its later negative audit retains the same1200-second deadline and cannot promote the original gate. A new gate is required for the changed API source; it is a distinct preregistered experiment, not a restarted UAR04 clock. Full source/flat baselines and fixture mock bindings must be reviewed before that new lease. No skipped or weakened drift assertions are authorized.
+
+
+UAR05 closed FAIL: all 588 source checks in 56 scripts and the 73-member build passed;
+18 exact-unpacked checks passed before smoke failed creating a fallback temporary CSV
+at a 274-character path on Windows. Mapped checks were not attempted. Actual exit1,
+expected negative closer exit1, source invariance and 5,776 fresh known identities
+absent were verified inside the original 1,200 seconds. No new ML metric or release
+qualification. The failure remains preserved; a new shallow harness and generic
+primary-metric contrast repair require one fresh full gate before the Qwen pair.
+Original task authority bytes and the best measured models remain unchanged.

@@ -2843,25 +2843,11 @@
   ],
   "library_source_revision": "108efd4",
   "current_UAR_source_snapshot": {
-    "schema": 1,
-    "status": "SOURCE_ARCHITECTURE_FIX_INTEGRATED_CURRENT_FULL_GATE_PENDING",
-    "registry_scripts": 56,
-    "registry_expected_checks": 588,
-    "registry_sha256": "cb009124a54d1e57ed50aa26833f7106214cb9911bc5515894dc90809c1898c8",
-    "whole_snapshot_tested": false,
-    "LOSS_prepared": 17,
-    "retention_prepared": 15,
-    "new_port_tests_executed": 0,
-    "new_port_actual_fits": 0,
-    "new_external_API_calls": 0,
-    "canonical_binding_sha256": "90a1e22d97ab3516d3cf9aa5dbb96e639c968c250d13035a87f7d275cd5769ad",
-    "retention_review_sha256": "5816d6aeaf03ab1846c59bc6fe9b74593009e5480f367d1f54969f38cde01ded",
-    "Linux10_source_review_sha256": "8a3a47fba2c8be6897aa1a1cc447f4ef4e1717c15b7c2612b4470356ae6c7120",
-    "Linux10_fitting_approval": false,
-    "automatic_submission": false,
-    "new_quality_metric": null,
-    "promotion": false,
-    "historical_LOSS17_retention15_source_PASS_in_failed_UAR04": true
+    "registered_scripts": 57,
+    "registered_checks": 604,
+    "new_contrast_tests_prepared": 16,
+    "new_contrast_tests_executed": 0,
+    "full_current_source_PASS": false
   },
   "UAR04_closed_technical_failure": {
     "schema": 1,
@@ -2931,5 +2917,36 @@
     "promotion": false,
     "submit": false,
     "decision": "Preserve FAIL; independently reviewed API-boundary repair before a separate new source/build/flat gate; no Qwen rerun before technical readiness."
+  },
+  "UAR05_closed_technical_failure": {
+    "status": "FAIL",
+    "summary": "research/universal-agent-next/uar05-r1/results-summary.json",
+    "summary_sha256": "da0c6bef819c6e5e2ea1cb81a1854b4e0a750ac82d088efc9442912923844547",
+    "source588_PASS": true,
+    "build73_PASS": true,
+    "exact18_PASS_then_smoke_IO_FAIL": true,
+    "mapped_not_attempted": true,
+    "new_ML_metric": null
+  },
+  "prior_UAR_source_snapshot_before_metric_contrast": {
+    "schema": 1,
+    "status": "SOURCE_ARCHITECTURE_FIX_INTEGRATED_CURRENT_FULL_GATE_PENDING",
+    "registry_scripts": 56,
+    "registry_expected_checks": 588,
+    "registry_sha256": "cb009124a54d1e57ed50aa26833f7106214cb9911bc5515894dc90809c1898c8",
+    "whole_snapshot_tested": false,
+    "LOSS_prepared": 17,
+    "retention_prepared": 15,
+    "new_port_tests_executed": 0,
+    "new_port_actual_fits": 0,
+    "new_external_API_calls": 0,
+    "canonical_binding_sha256": "90a1e22d97ab3516d3cf9aa5dbb96e639c968c250d13035a87f7d275cd5769ad",
+    "retention_review_sha256": "5816d6aeaf03ab1846c59bc6fe9b74593009e5480f367d1f54969f38cde01ded",
+    "Linux10_source_review_sha256": "8a3a47fba2c8be6897aa1a1cc447f4ef4e1717c15b7c2612b4470356ae6c7120",
+    "Linux10_fitting_approval": false,
+    "automatic_submission": false,
+    "new_quality_metric": null,
+    "promotion": false,
+    "historical_LOSS17_retention15_source_PASS_in_failed_UAR04": true
   }
 }

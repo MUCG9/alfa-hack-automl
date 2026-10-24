@@ -41,3 +41,13 @@ denial remains binding independently of this policy.
 The two new source ports have exact canonical normalized-byte and AST bindings to independently reviewed sources. Declared recipe source hashes are lineage fields, not independent proof of quality. Source-based minimum slices and structural fit upper bounds do not guarantee eight HPO attempts, successful confirmation, refit or a valid final CSV. Linux10 focused simulated/inert tests establish no live-network latency measurement; whole-campaign CPU/RSS remain unknown.
 
 Stored floating-point clock differences can round below an integer duration even when the saved deadline equals the exact original start-plus-duration operation. Closure checks reconstruct the assigned operation; no tolerance or deadline extension is introduced. Original technical and first-closer failures remain failures. The first failed closer has no persisted PID/create_time proof; actual terminal exit and exact source-prefix limitations are retained rather than retroactively inventing identity.
+
+
+UAR05 closed FAIL: all 588 source checks in 56 scripts and the 73-member build passed;
+18 exact-unpacked checks passed before smoke failed creating a fallback temporary CSV
+at a 274-character path on Windows. Mapped checks were not attempted. Actual exit1,
+expected negative closer exit1, source invariance and 5,776 fresh known identities
+absent were verified inside the original 1,200 seconds. No new ML metric or release
+qualification. The failure remains preserved; a new shallow harness and generic
+primary-metric contrast repair require one fresh full gate before the Qwen pair.
+Original task authority bytes and the best measured models remain unchanged.

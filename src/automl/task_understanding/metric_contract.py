@@ -7,6 +7,7 @@ from automl.task_understanding.metrics import CLASSIFICATION, REGRESSION
 PRIMARY = r'(?:primary|main|основн\w*)\s+(?:metric|метрик\w*)\s*[:=—–-]?\s*'
 GENERAL = r'(?:\bmetric\b|метрика(?:\s+оценки)?)\s*[:=—–-]\s*'
 DIAGNOSTIC = r'(?:diagnostic|auxiliary|secondary|вспомогательн\w*|диагностическ\w*)\s*$'
+CONTRAST_NEGATION = r'(?:\bnot|\brather\s+than|\binstead\s+of|\bа\s+не)\s+$'
 
 
 def _matches(text, patterns):
@@ -20,6 +21,34 @@ def _matches(text, patterns):
             if not any(other_start <= start and end <= other_end
                        and (other_start < start or end < other_end)
                        for other_start, other_end, _ in matches)}
+
+
+def _primary_matches(text, patterns):
+    """Separate only direct contrast-negated aliases in a primary clause.
+
+    This is not general natural-language negation. In particular, "not only X
+    but also Y" keeps both names, and a list after one negator is not expanded.
+    Retaining uncertain mentions makes them conflict rather than selecting an
+    objective by guessing. Multiple adjacent negators remain contradictory.
+    """
+    matches = [(match.start(), match.end(), name)
+               for name, pattern in patterns.items()
+               for match in re.finditer(pattern, text)]
+    mentions = [(start, end, name) for start, end, name in matches
+                if not any(other_start <= start and end <= other_end
+                           and (other_start < start or end < other_end)
+                           for other_start, other_end, _ in matches)]
+    affirmed, negated = set(), set()
+    for start, _, name in mentions:
+        prefix = text[:start]
+        contrast = re.search(CONTRAST_NEGATION, prefix)
+        if contrast is None:
+            affirmed.add(name)
+        else:
+            negated.add(name)
+            if re.search(CONTRAST_NEGATION, prefix[:contrast.start()]):
+                affirmed.add(name)
+    return affirmed, negated
 
 
 def _result(names, source, evidence, class_count, kind):
@@ -68,6 +97,7 @@ def resolve_metric_spec(text, kind, *, source='task_description', class_count=No
     for declaration, label in [(PRIMARY, 'primary_declaration'),
                                (GENERAL, 'metric_declaration')]:
         names = set()
+        negated_names = set()
         evidence = []
         found_declaration = False
         for match in re.finditer(declaration, normalized):
@@ -76,7 +106,11 @@ def resolve_metric_spec(text, kind, *, source='task_description', class_count=No
                 continue
             found_declaration = True
             clause = re.split(r'[\n;]|\.\s', normalized[match.end():], maxsplit=1)[0][:250]
-            recognized = _matches(clause, patterns)
+            if label == 'primary_declaration':
+                recognized, negated = _primary_matches(clause, patterns)
+                negated_names.update(negated)
+            else:
+                recognized = _matches(clause, patterns)
             evidence.append(clause)
             if len(evidence) > 8:
                 return MetricSpec(None, None, None, 'ambiguous', source,
@@ -86,6 +120,10 @@ def resolve_metric_spec(text, kind, *, source='task_description', class_count=No
                                   tuple(evidence), 'Explicit objective is not supported')
             names.update(recognized)
         if found_declaration:
+            if names & negated_names:
+                return MetricSpec(None, None, None, 'ambiguous', source,
+                                  tuple(evidence),
+                                  'Affirmed and negated objective declarations conflict')
             return _result(names, source + ':' + label, evidence, class_count, kind)
     # Unlabelled diagnostic mentions are not an objective specification.
     if re.search(r'diagnostic|auxiliary|secondary|вспомогательн|диагностическ', normalized):

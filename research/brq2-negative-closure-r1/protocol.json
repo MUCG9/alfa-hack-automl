@@ -1,0 +1,55 @@
+{
+  "schema": "brq2-negative-current-audit-protocol-v1",
+  "readiness": "SOURCE_ONLY_NOT_READY",
+  "fixed_campaign": "brq2",
+  "new_output": "brq2-negative-closure-r1",
+  "fixed_temp": "t/bq-vsv0eprp",
+  "original_common_seconds": 6000,
+  "original_clock_tuple": {
+    "start_unix": 1792845810.4945142,
+    "start_monotonic": 104815.765,
+    "absolute_deadline_unix": 1792851810.4945142,
+    "common_deadline_monotonic": 110815.765
+  },
+  "new_common_assigned": false,
+  "own_helper_seconds": 60,
+  "audit_parent_seconds": 90,
+  "root_actual_exit_and_fresh_reserve_seconds": 30,
+  "requires_full90_original_remaining_before_actual_start": true,
+  "original_actual_driver": {
+    "session": null,
+    "exit_code": 1,
+    "tool": "199da9"
+  },
+  "original_actual_closer": {
+    "session": null,
+    "exit_code": 1,
+    "tool": "306e5d"
+  },
+  "original_source_runtime_ML_procedure_permanently_FAILED": true,
+  "technical_procedure_passed_always": false,
+  "qualified_ML_metrics_always": null,
+  "current_scope": "Fresh exact known identities +130source hashes before/after +actual terminal evidence preservation +exact receipt-owned temp cleanup only",
+  "source_and_evidence_only": true,
+  "observes_no_unknown_host_processes": true,
+  "signals_to_parent_or_unknown_processes": false,
+  "identity_capture": "Reviewed R4 direct shell/one pinned venv launcher only; same exact actual births and separately declared shell",
+  "resources": {
+    "technical_threads": 1,
+    "whole_MiB": 2048,
+    "sticky_real_observation_gap_seconds": 10,
+    "successful_sample_cadence_seconds": 0.25,
+    "original_old_resource_failure_retroqualified": false
+  },
+  "paths": "Strict WORK/t/bq-vsv0eprp resolved/lstat no symlink/junction/reparse; sole rmtree constant only after allknown absence and copied evidence; <=20000files",
+  "old_state_root_mutation": false,
+  "models": 0,
+  "provider_API": 0,
+  "tests": 0,
+  "score_reads": 0,
+  "actual_clock": null,
+  "actual_helper_result": null,
+  "prerequisite_review_and_publication": true,
+  "root_only_execution": true,
+  "automatic_next_gate_or_promotion": false
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "brq2-separate-current-negative-root-source-acceptance-r1",
+  "handoff_sha256": "41569325c1e9debc5632bdbee0c4220ff7131febc25e0638f963af68ac0ed54c",
+  "independent_peer_sha256": "42f5003450bc3cd3647475c2a0f474354d1a16570cd25dbed2ff8df8d9cc4a9a",
+  "all4_local_and15_external_pins_exact": true,
+  "AST_compile_only": true,
+  "root_source_review": "Accepted sole receipt-owned shallow temp deletion after evidence copy, strict no-reparse containment, fresh known absence, old130 source pins before/after; actual result remains required.",
+  "original_BRQ2_permanently_FAILED": true,
+  "old_source_cleanup_temp_false_flags_preserved": true,
+  "technical_procedure_passed": false,
+  "new_metrics": null,
+  "runtime_started": false,
+  "source_publication_required_before_runtime": true,
+  "own60_plus_fresh30_within_original_BRQ2_6000_required": true
+}

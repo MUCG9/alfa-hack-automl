@@ -1,0 +1,67 @@
+{
+  "schema": "brq2-negative-closure-static-proof-v1",
+  "source_only": true,
+  "compiled_not_imported": true,
+  "helper_sha256": "c7d2d32fc78b5b4120c58d2d2e7340f8e306dcb4694e1be00f7c52fcdeb2a58b",
+  "capture_AST_exact_frozen_R4": true,
+  "one_recursive_delete_argument": "TEMP exact t/bq-vsv0eprp",
+  "no_subprocess_model_test_network_or_exec_calls": true,
+  "private_manifest_sha256": "ce61c1dd2498fa162aa1b7d3089e4c5120e33070fe32cf2011a25aeb1610a74f",
+  "original_immutable_pin_count": 130,
+  "immutable_pin_map_canonical_sha256": "90aa3b02aeddc6fa146f85e5fb3c186787e066d98519dd7986b2e6749a88b6fb",
+  "author_did_not_rehash_original_CSV_NPZ_or_prediction_arrays": true,
+  "known_saved_identity_scope_count": 7264,
+  "all_saved_original_root_supervisor_preparers_subset": true,
+  "original_false_driver_flags": {
+    "cleanup_confirmed": false,
+    "source_unchanged": false,
+    "temporary_cleanup_confirmed": false
+  },
+  "original_root_false_flags": {
+    "technical_procedure_passed": false,
+    "cleanup_confirmed": false,
+    "source_unchanged": false
+  },
+  "original_clock_tuple": {
+    "start_unix": 1792845810.4945142,
+    "start_monotonic": 104815.765,
+    "absolute_deadline_unix": 1792851810.4945142,
+    "common_deadline_monotonic": 110815.765
+  },
+  "saved_supervisor_status": "technical_failure",
+  "saved_child_exit": 0,
+  "saved_supervisor_cleanup": true,
+  "old_first_failure": {
+    "code": "supervisor_operation_failed",
+    "phase": "supervisor",
+    "unix": 1792845813.4273715,
+    "monotonic": 104818.703,
+    "exception_type": "NoSuchProcess",
+    "errno": null,
+    "winerror": null,
+    "child_kind": "source-contracts"
+  },
+  "external_refs": {
+    "brq2/campaign.json": "fd85c8317ff187ffc37986613ea5169c4dbd1e9512545e51127469750416ae24",
+    "brq2/terminal-root-closure.json": "2d259e647a64f2f1e48d06e450f6fd877d4dc07bac3363df9743d78fecb890a0",
+    "brq2/preparer-identity.json": "8b22ce8b267f07608ba9723eebd620b81888eec886c2f9099835d013de13f07a",
+    "brq2/root-preparer-identity.json": "b93d8c27b6a22a70632e1d5e64cde20a15f44c43da050be880ce250812916d61",
+    "brq2-post-failure-identities-r1.json": "2a4c861b17354efe007b72de31e10d57a2dbd6bc13f2febb104ad0fe2d9906af",
+    "t/bq-vsv0eprp/source-contracts.json": "0307ffaf89992535da470b947c1f45fc4538495fd458d3f9fec41a604e9c512b",
+    "t/bq-vsv0eprp/source-contracts.log": "475d65be1069ddbe3bc5e17a572699dfde09e4ee6f8a1deaa8d6b30f010b83bd",
+    "br-standard-release-qualification-next-dev/controller-r4/run_controller.py": "975d28e52c62a0b00834e898edbfc46c35eedec683cbd9e1e9a5337ca5d26470",
+    "private/brq2-manifest.ready.json": "ce61c1dd2498fa162aa1b7d3089e4c5120e33070fe32cf2011a25aeb1610a74f",
+    "br-standard-release-controller-independent-review-r4.json": "181b05d038e5572c913d9e6b685840d76c346b20198d07afbb0ba69b0c35015e",
+    "run_lean_mvp_r2.py": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "support_component_coordinator.py": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "historical-runtime-support/fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d.py": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d",
+    "alfa-hack-automl/tools/research_lock.py": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45",
+    "awake-next-dev/awake_guard.py": "9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b"
+  },
+  "actual_helper_execution": null,
+  "actual_cleanup": null,
+  "actual_resource_observation": null,
+  "clock_assigned": false,
+  "candidate_imports_tests_fits_API_data_array_reads_PIDscans": 0,
+  "canonical_STATE_Git_changes": 0
+}

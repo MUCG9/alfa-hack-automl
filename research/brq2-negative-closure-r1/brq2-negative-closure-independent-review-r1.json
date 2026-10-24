@@ -1,0 +1,56 @@
+{
+  "schema": "brq2-current-negative-helper-independent-source-review-v1",
+  "scope": "Fixed separate current-known ownership/source/temp negative closure only; no original qualification repair",
+  "source_handoff": {
+    "path": "work/brq2-negative-closure-next-dev/source-handoff.json",
+    "sha256": "41569325c1e9debc5632bdbee0c4220ff7131febc25e0638f963af68ac0ed54c"
+  },
+  "helper_sha256": "c7d2d32fc78b5b4120c58d2d2e7340f8e306dcb4694e1be00f7c52fcdeb2a58b",
+  "independent_static_checks": {
+    "all4_local_pins_exact": true,
+    "all15_external_source_evidence_pins_exact": true,
+    "capture_AST_exact_frozen_controller_R4": true,
+    "old_private_manifest_sha256": "ce61c1dd2498fa162aa1b7d3089e4c5120e33070fe32cf2011a25aeb1610a74f",
+    "old_immutable_source_input_pin_map_count": 130,
+    "saved_unique_known_identity_count": 7264,
+    "UQ3_prior_BRQ2_driver_root_supervisor_and_both_early_preparer_unions_covered": true,
+    "saved_current_observation_live_and_uncertain_empty": true,
+    "old_driver_and_root_false_flags_match_exact_source_preconditions": true,
+    "old_campaign_has_no_model_task_records": true,
+    "one_actual_source_contract_supervisor_exit0_cleanup_true_status_technical_failure": true,
+    "fixed_temp_matches_actual_campaign_receipt": true,
+    "only_recursive_delete_AST_call": "shutil.rmtree(TEMP)",
+    "original6000_end_is_exact_start_plus6000_in_both_clocks": true
+  },
+  "source_judgment": [
+    "The helper captures its exact bounded self/direct/shell chain and saves early preparers before validation. It starts no model, test, child process or provider request.",
+    "The entry-derived own60 and audit-parent90 must fit inside the exact original BRQ2 common6000. Every guarded check retains the prior observation, sticky ten-second gap, sampled resource bound and both original deadlines. A further thirty seconds remain reserved for actual root exit/fresh confirmation; no new common allowance is created.",
+    "Admission requires exact hashes of the failed campaign, old negative root, early preparer receipts, current known observation, actual supervisor and log. All original false cleanup/source/temp/technical flags and the exact failed direct execution tuples are checked, rather than replaced.",
+    "Known absence is checked before and under the canonical lease, immediately before the fixed deletion and after cleanup. Denied, live or unresolved known identities stop the operation. The separate helper does not reinterpret the old NoSuchProcess/resource failure as a historical PASS.",
+    "All seven fixed actual terminal/failure artifacts are copied and verified in the new output before deletion. Both source and copied SHA values must match, and retained original non-temp artifacts are rehashed afterward.",
+    "The sole deletion target is the fixed receipt-owned work/t/bq-vsv0eprp. Resolved boundary, lstat regular type and symlink/junction/reparse checks apply before bounded inventory and again immediately before deletion. No task, input, archive, original gate output or unrelated directory is an allowed target.",
+    "All130 original immutable source/input files are rehashed before and after the cleanup under the same guard. New helper and old manifest hashes are checked again after the current operation.",
+    "The new typed result always has technical_procedure_passed=false and qualified_ML_metrics=null. Only the separately named current_negative_audit_completed and current source/temp/known-cleanup fields may become true. Old failure flags, errors and costs are preserved, and no promotion/default readiness/submit flag becomes true."
+  ],
+  "permanent_original_failure": {
+    "campaign_sha256": "fd85c8317ff187ffc37986613ea5169c4dbd1e9512545e51127469750416ae24",
+    "root_sha256": "2d259e647a64f2f1e48d06e450f6fd877d4dc07bac3363df9743d78fecb890a0",
+    "actual_driver_execution": {"session": null, "exit_code": 1, "tool": "199da9"},
+    "actual_closer_execution": {"session": null, "exit_code": 1, "tool": "306e5d"},
+    "technical_source_cleanup_temp_false_flags_preserved": true,
+    "original_gate_relabelled_or_retroqualified": false
+  },
+  "findings": [],
+  "conclusion": "No concrete source blocker in the assigned fixed nonqualifying current-negative closure scope",
+  "mandatory_actual_boundary": "Root must separately observe the actual helper exit and full old plus new preparer absence before both audit-parent90 and the original common deadline. A future gate must use an explicit typed root decision; this source review itself grants no cleanup, source or runtime PASS.",
+  "reviewer_activity": {
+    "candidate_controller_guard_imports": 0,
+    "tests_models_fits_API_PID_scans": 0,
+    "data_target_prediction_truth_or_NPZ_array_reads": 0,
+    "metadata_and_explicit_file_hashes_only": true,
+    "temporary_files_deleted": 0,
+    "canonical_or_frozen_files_changed": false,
+    "clock_assigned": false,
+    "actual_current_negative_completion": null
+  }
+}

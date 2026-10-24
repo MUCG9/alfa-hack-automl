@@ -1,0 +1,57 @@
+{
+  "schema": "class-xgb-contribution-CX1-closed-failure-v1",
+  "status": "CLOSED_FAIL_ROOT_FRESH60_MISSED_CURRENT_SOURCE_TEMP_KNOWN_CLEAN",
+  "hypothesis": "CLASS-XGB-CONTRIBUTION-01",
+  "actual_driver": {
+    "session": 77390,
+    "exit_code": 0,
+    "tool": "7b23cf",
+    "launch_tool": "b96590"
+  },
+  "actual_closer": {
+    "session": null,
+    "exit_code": 0,
+    "tool": "4566fc"
+  },
+  "actual_first_fresh_check": {
+    "exit_code": 1,
+    "tool": "4ce534",
+    "first_error": "actual_closer_birth_root60_expired"
+  },
+  "root_written_technical_flag": true,
+  "whole_qualification": false,
+  "root_sha256": "e90488e1c421290ef03daad7fa34f4650ab99d41c3b4ab9fa89b1ec791895da4",
+  "campaign_sha256": "592ed695c14b54d796735b0309cc8bfd8aa51d5a32a866e1bffa8e976c38125f",
+  "independent_comparison_artifact_sha256": "a90e7338d590b801a1e750f743c7bd3f47faa29a0ceebe0aba19a05defbf5ab6",
+  "comparative_metrics": null,
+  "quality_gate_qualified": null,
+  "actual_contracts": 16,
+  "new_model_fits": 0,
+  "API_calls": 0,
+  "original_clock": {
+    "start_unix": 1792853103.4073217,
+    "start_monotonic": 112108.687,
+    "absolute_deadline_unix": 1792853703.4073217,
+    "common_deadline_monotonic": 112708.687,
+    "common_seconds": 600
+  },
+  "original_clock_now_closed": true,
+  "clock_reset": false,
+  "current_negative_receipt_sha256": "d5ff26e11a0cf26d5dc9f84328c14c42cce6f7af57a54d8b087028dbdacd0d25",
+  "current_negative_source_peer_sha256": "42f8e7120aa731960c15223a16b6e9013a73d482edee052eb391c0a55b6d3eb7",
+  "current_negative_actual_helper_tool": "473af3",
+  "current_negative_execution_confirmation_sha256": "07ec62bd0e3b6e1f5c2bdec9748090eda0586f9eab9fedabf892b2424906239a",
+  "current_known_count": 7320,
+  "current_known_alive": 0,
+  "current_known_uncertain": 0,
+  "current_source_pins": 703,
+  "current_source_unchanged": true,
+  "current_temporary_absent": true,
+  "current_known_cleanup_confirmed": true,
+  "current_negative_helper_parent_elapsed": 0.75,
+  "new_archive": false,
+  "promotion": false,
+  "upload": false,
+  "decision": "Preserve original CX1 failure; do not credit comparison metrics. New source-reviewed atomic closer/fresh orchestration is required for a separately admitted future unit. No rerun of CX1/old closer/old clock.",
+  "created_unix": 1792853772.925336
+}

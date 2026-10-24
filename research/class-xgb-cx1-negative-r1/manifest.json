@@ -1,0 +1,10 @@
+{
+  "schema": "checked-current-negative-metadata-source-v1",
+  "source_sha256": "dbafe88b7fd02731669cc4210e1cf00b6ccf3e24d628c7a7ed4c84dd17a746de",
+  "source_peer_sha256": "42f8e7120aa731960c15223a16b6e9013a73d482edee052eb391c0a55b6d3eb7",
+  "actual_exit_code": 0,
+  "actual_tool": "473af3",
+  "scope": "Current negative source/temp/known closure only; original CX1 FAIL/root60 miss retained, metrics null.",
+  "no_arrays_fits_API_or_clock_reset": true,
+  "RSS_attestation": null
+}

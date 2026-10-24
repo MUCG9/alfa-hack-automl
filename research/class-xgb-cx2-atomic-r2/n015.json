@@ -1,0 +1,13 @@
+{
+  "schema": "class-cache-atomic-root-r2-source-proof-v1",
+  "status": "SOURCE_ONLY_NOT_EXECUTED",
+  "whole_AST_inverse_R1": true,
+  "scope": "AR01 native exactdeclared transport + repeated exactobserved identity; capture/childPS/clocks/guard unchanged",
+  "prepared_methods": {
+    "AtomicRootContracts.test_child_birth_cannot_reset_enclosing60_common600_or_existing_final": "8075ab41e3c9a0f6e9d6d921160ccb4215da14f5f42783605bdb790c78bb71a2",
+    "AtomicRootContracts.test_actual_exit_is_saved_before_fresh_and_late_or_failed_exit_never_qualifies": "edaa65757bb0e8c8413e546061438f3c6b4aeddf8e10d8f2f017f9986568275e",
+    "AtomicRootContracts.test_fixed_child_shell_argv_has_no_payload_and_requires_absolute_typed_evidence": "b65dc10ba485f480209ed03f39ad2cc5091c482abe81379e4101269defa71bdd"
+  },
+  "actual_imports_tests_PIDs_clock": 0,
+  "preserved_R1_sha256": "55c2ed964af5ff0b1be85c26b50cb674cd3e67a40518bfd2b21ed5dfbe26de33"
+}

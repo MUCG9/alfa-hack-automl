@@ -1,0 +1,102 @@
+{
+  "schema": "class-xgb-cx2-independent-source-review-v1",
+  "status": "SOURCE_REVIEWED_NO_SCOPED_BLOCKER_NOT_READY",
+  "handoff": {
+    "path": "work/class-xgb-cx2-next-dev/source-handoff.json",
+    "sha256": "7baff9cc257afb2aa2a41b9d0741831cae9c87a5e427a70c8089ebfd00b0316e"
+  },
+  "local_refs_verified": {
+    "audit-binding.template.NOT_READY.json": "f2cf2d4fd36778fab261338f788f959dcbb4694b17b3d6de687811f44ffcfb11",
+    "audit_cache.py": "a5f07f03d50b51e5a87721052646d1a8270774885465cbd329dd2665eebe8ec0",
+    "binding.template.NOT_READY.json": "28449099fb0d21c6e8defffa97843bd2a7d021235b673173197c8cd44ba68b30",
+    "close_audit.py": "eb25324be971073a953a6691269a54963e091575fb179c66ea923c073e6dbbcb",
+    "cx1-current-negative-preparer-projection.json": "87d6370d5750676bd904a456f0da137bbc957585b0bae48584dc6e8b5b789dfe",
+    "expected-inventory.json": "0a6fd55a64ddf885aac05a427d9b62857b0fc3bd67bac2977d6b040571f95fb8",
+    "prepare_source.py": "7bbeb31bd76595a780ef7a84d81d42684d9f3a25a5210b435d87085db60fec44",
+    "protocol.json": "d2c3a3dfc276ac49f8f3c179f4c404314349fa281f0de41d7ce3bbe181ef0110",
+    "README.txt": "dbdc2434c37266d88002927281ae0b49dbd80df92ca0b9d2d92184cc5ccfed6a",
+    "run_audit.py": "abf1cef2df47cddc021ffc1da1a5c2e2d30f9df5457161e9c70938d22e89d67a",
+    "source-proof.json": "43de65fe29363be960fe6a94c48cd1ce83f4189999a0baa59bc63f6aa812db4f",
+    "test_caller.py": "24d073f58fcbc579a19b009d584705d89c93da936bcf660f9ead6184742d7dee",
+    "tests/test_audit_cache.py": "6fd00a8c11104e9ebe9e166698509304322490df4c52eeae6164ab87d5b22631"
+  },
+  "external_refs_verified": {
+    "class-xgb-contribution-caller-next-dev\\source-handoff.json": "a5c8c5e75a687a661974bf5e8c70c67b0d1a56933c953b57244e469c47a89ae1",
+    "class-xgb-contribution-audit-next-dev\\source-handoff.json": "b1ac1930c19aca8e405a5ea361ca6ca0755f6a799194c577f3259f765d4026fd",
+    "class-cache-atomic-root-next-dev-r2\\source-handoff.json": "b3f208c475e0b220d1c15aeae593ad33c2466518e8ada5ea0e8d236fe18473dd",
+    "class-cache-atomic-root-independent-review-r2.json": "01d5c29fea09d03792c33871797331862d4f434cfa83c2fa09d14f2ab192d599",
+    "cx1\\current-negative-closure.json": "d5ff26e11a0cf26d5dc9f84328c14c42cce6f7af57a54d8b087028dbdacd0d25",
+    "cx1\\current-negative-exec-confirmation.json": "07ec62bd0e3b6e1f5c2bdec9748090eda0586f9eab9fedabf892b2424906239a"
+  },
+  "prior_atomic_review": {
+    "path": "work/class-cache-atomic-root-independent-review-r2.json",
+    "sha256": "01d5c29fea09d03792c33871797331862d4f434cfa83c2fa09d14f2ab192d599"
+  },
+  "findings": [],
+  "independent_source_proofs": {
+    "local_refs": 13,
+    "external_refs": 6,
+    "complete_numerical_auditor_AST_inverse_after_OUTPUT_literal_only": true,
+    "complete_closer_AST_inverse_after_OUT_and_exact_three_contract_count_only": true,
+    "complete_caller_AST_inverse_after_declared_routes_hashes_atomic_config_projection_and_third_slot_only": true,
+    "auditor_12_test_bytes_exact_CX1": true,
+    "caller_4_test_bytes_exact_CX1": true,
+    "inventory_676_bytes_exact": true,
+    "atomic_3_method_ASTs_exact_reviewed_R2": true,
+    "prepared_total": 19,
+    "actual_contract_runs": 0,
+    "actual_new_cache_audits": 0
+  },
+  "predecessor_binding": {
+    "projection_sha256": "87d6370d5750676bd904a456f0da137bbc957585b0bae48584dc6e8b5b789dfe",
+    "saved_negative_sha256": "d5ff26e11a0cf26d5dc9f84328c14c42cce6f7af57a54d8b087028dbdacd0d25",
+    "actual_negative_confirmation_sha256": "07ec62bd0e3b6e1f5c2bdec9748090eda0586f9eab9fedabf892b2424906239a",
+    "saved_known_unique": 7320,
+    "actual_helper_observer_unique": 3,
+    "exact_projected_union_unique": 7323,
+    "typed_positive_finite_saved_identities_verified": true,
+    "current_negative_source_temp_cleanup_true": true,
+    "original_CX1_technical_false_root60_requalified_false_preserved": true,
+    "actual_helper_exit": 0,
+    "actual_helper_tool": "473af3",
+    "runtime_authority": "Mandatory fixed-hash projection only supplies known identities. Existing before/under-lock and final fresh absence checks remain. Negative evidence does not grant ownership, old timing success or quality qualification."
+  },
+  "scope_conclusions": [
+    "Same full3 control is independently reproduced on both cuts before the same fixed .5/.5 LGBM0+1 candidate. All R4/source/cache/core barriers, row/class/support/ex-rarest and strict both-cut/mean quality predicates are numerically unchanged.",
+    "New actual future600 remains unassigned. Setup180 contains three sequential parent60/child45 contract slots, with the existing remaining-slot admission guard; audit120/90, final240 and root60 are unchanged. No allowance reset or model/API work is introduced.",
+    "Technical validity stays separate from a valid negative quality outcome. Failure or incomplete/bad bindings clear comparative metrics and stop. CX1 remains permanently failed with old clocks and false qualification flags.",
+    "The future close route points to the reviewed atomic R2 wrapper and the new literal-rebound CX2 closer. Its actual exit/fresh outer preparers still require root confirmation within existing bounds."
+  ],
+  "prepared_method_ASTs": {
+    "auditor": {
+      "CacheAuditContracts.test_retained_components_exact_deep_copy_and_control_unchanged": "9836c057d38e9373ac042aef6866c347cfa1a91b6f7dd7de90d5c133f275cbfc",
+      "CacheAuditContracts.test_wrong_component_weight_or_family_is_stop": "b12843244f058fd9c81af14512eb1798ed9b1aaa07b0d69d7f068bd2f6e3d141",
+      "CacheAuditContracts.test_both_control_cuts_complete_before_any_candidate": "c23d8e624ac3b86513449ccba999a65b138dfe5f80297ddc6a1cf98d8c2d7ed2",
+      "CacheAuditContracts.test_second_control_failure_prevents_all_comparative_scores": "2291ef31e97954e2d1da7096f4c293cf1ba12a5f7452c9d909a14f9894dd5c61",
+      "CacheAuditContracts.test_fixed_weight_mixture_normalizes_without_input_mutation": "a109c81827cf91716a136da203f88abac4001d3f240d7f1b6d8edba9c7b77a9b",
+      "CacheAuditContracts.test_original_clock_assignment_and_successful_checkpoint": "a1bef2f55a8b80e50cd8e57a2027ede63b4202ea78c16d60275951b8a01bc3b3",
+      "CacheAuditContracts.test_gap_failure_sticks_and_never_advances_to_recover": "4a2eea9302a0b89197287ca8ed574e0fc32f9244eb4ffbeeb36c261193ff69f4",
+      "CacheAuditContracts.test_deadline_rollback_nonfinite_and_drift_stop_on_same_origin": "b173bd8469535650a0ee1bbad2c433471dca405f1695b6b340101c61b1b9ed34",
+      "CacheAuditContracts.test_saved_control_requires_same_positions_classes_support_and_metrics": "b4d1d5426d5e38c3d0f1e585127c4d24017e026bacd1d52947653a3988397eed",
+      "CacheAuditContracts.test_quality_requires_both_cut_and_mean_improvement_and_existing_class_gates": "c781880e92b5eb05c4e77a4af9ebd5ce4fe4b050f811b909903546a751da38ea",
+      "CacheAuditContracts.test_missing_or_changed_cache_has_no_fit_or_reconstruction_route": "ff7dd83b1ded41d44335264db6780aaa2951bbc85ebaec4e6c44edf7fd46140a",
+      "CacheAuditContracts.test_failure_result_clears_comparative_metrics_and_preserves_first_error": "899402b7d714b616ed1b251968c4456f364c5362aaaa8bd3aedf04d6fe01444e"
+    },
+    "caller": {
+      "CacheCallerContracts.test_valid_negative_quality_is_technical_success_but_unbound_or_partial_result_is_not": "58f14660f2ce66e7aa68f3d245e708e7309bffbd9b0b93c5f18f5434b2f36da1",
+      "CacheCallerContracts.test_original600_and_parent120_assignments_keep_all_final_reserve": "5c4b2a270ac6995358cbf0b1fa4ed0e89b10c8c23eecdb0ae1e9d71f9d73aef0",
+      "CacheCallerContracts.test_only_fixed_auditor_argv_accepts_absolute_paths_no_payload_or_fit": "9bd6b8bc509af100098288928ef199f13d3d58076a43f19c5f46a76bf8b2bcae",
+      "CacheCallerContracts.test_failed_false_or_unconfirmed_predecessor_never_admits_cache_reader": "3c4b879e273c4624cb8184dcc45c9b50b5da3aa091844aa28a293abd19d93ad1"
+    },
+    "atomic_external": {
+      "AtomicRootContracts.test_child_birth_cannot_reset_enclosing60_common600_or_existing_final": "8075ab41e3c9a0f6e9d6d921160ccb4215da14f5f42783605bdb790c78bb71a2",
+      "AtomicRootContracts.test_actual_exit_is_saved_before_fresh_and_late_or_failed_exit_never_qualifies": "edaa65757bb0e8c8413e546061438f3c6b4aeddf8e10d8f2f017f9986568275e",
+      "AtomicRootContracts.test_fixed_child_shell_argv_has_no_payload_and_requires_absolute_typed_evidence": "b65dc10ba485f480209ed03f39ad2cc5091c482abe81379e4101269defa71bdd"
+    }
+  },
+  "remaining_before_runtime": [
+    "Root must supply a reviewed READY private manifest with all exact CX2, atomic-wrapper/child/test/dependency, source/input/cache676/preparer/review pins and absolute paths.",
+    "Actual new campaign clock, terminal driver evidence and permitted pinned child shell remain absent; this source packet grants no launch or ML result."
+  ],
+  "candidate_imports_tests_fits_API_data_PID_clock_Git_canonical_edits": 0
+}

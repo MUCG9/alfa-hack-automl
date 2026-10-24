@@ -1,0 +1,104 @@
+{
+  "schema": "checked-exact-source-transport-v1",
+  "entries": [
+    {
+      "source": "class-xgb-cx2-next-dev/audit_cache.py",
+      "member": "n001.py",
+      "sha256": "a5f07f03d50b51e5a87721052646d1a8270774885465cbd329dd2665eebe8ec0"
+    },
+    {
+      "source": "class-xgb-cx2-next-dev/run_audit.py",
+      "member": "n002.py",
+      "sha256": "abf1cef2df47cddc021ffc1da1a5c2e2d30f9df5457161e9c70938d22e89d67a"
+    },
+    {
+      "source": "class-xgb-cx2-next-dev/close_audit.py",
+      "member": "n003.py",
+      "sha256": "eb25324be971073a953a6691269a54963e091575fb179c66ea923c073e6dbbcb"
+    },
+    {
+      "source": "class-xgb-cx2-next-dev/test_caller.py",
+      "member": "n004.py",
+      "sha256": "24d073f58fcbc579a19b009d584705d89c93da936bcf660f9ead6184742d7dee"
+    },
+    {
+      "source": "class-xgb-cx2-next-dev/tests/test_audit_cache.py",
+      "member": "n005.py",
+      "sha256": "6fd00a8c11104e9ebe9e166698509304322490df4c52eeae6164ab87d5b22631"
+    },
+    {
+      "source": "class-xgb-cx2-next-dev/protocol.json",
+      "member": "n006.json",
+      "sha256": "d2c3a3dfc276ac49f8f3c179f4c404314349fa281f0de41d7ce3bbe181ef0110"
+    },
+    {
+      "source": "class-xgb-cx2-next-dev/README.txt",
+      "member": "n007.txt",
+      "sha256": "dbdc2434c37266d88002927281ae0b49dbd80df92ca0b9d2d92184cc5ccfed6a"
+    },
+    {
+      "source": "class-xgb-cx2-next-dev/source-proof.json",
+      "member": "n008.json",
+      "sha256": "43de65fe29363be960fe6a94c48cd1ce83f4189999a0baa59bc63f6aa812db4f"
+    },
+    {
+      "source": "class-xgb-cx2-next-dev/source-handoff.json",
+      "member": "n009.json",
+      "sha256": "7baff9cc257afb2aa2a41b9d0741831cae9c87a5e427a70c8089ebfd00b0316e"
+    },
+    {
+      "source": "class-cache-atomic-root-next-dev-r2/run_root.py",
+      "member": "n010.py",
+      "sha256": "468bed12ef63b1b28c75620af57f606a42f7c4abad7e7ac80151b73367946321"
+    },
+    {
+      "source": "class-cache-atomic-root-next-dev-r2/close_child.ps1",
+      "member": "n011.ps1",
+      "sha256": "2c773eff71fc1691bad50ac401bb68bffe75900fef35da656de78527678f3f0e"
+    },
+    {
+      "source": "class-cache-atomic-root-next-dev-r2/test_atomic_root.py",
+      "member": "n012.py",
+      "sha256": "1c0a9e14eead77c2db7e38ade64a07c49040a5d42c85b8de2f69f7b1911b191d"
+    },
+    {
+      "source": "class-cache-atomic-root-next-dev-r2/protocol.json",
+      "member": "n013.json",
+      "sha256": "2a1a40d99ad5a6bdb020bc3b59efb5eaf4b2a51cec7e22372e90e38994b6a20b"
+    },
+    {
+      "source": "class-cache-atomic-root-next-dev-r2/README.txt",
+      "member": "n014.txt",
+      "sha256": "3c44eee73dce7ff187233d40462a89e460c3206b25425bf42dfd651c4fb097d1"
+    },
+    {
+      "source": "class-cache-atomic-root-next-dev-r2/source-proof.json",
+      "member": "n015.json",
+      "sha256": "eb91b6844813b0ec51df18d474033522e4c1c5176044cbb4a50075b8c01a9c7c"
+    },
+    {
+      "source": "class-cache-atomic-root-next-dev-r2/source-handoff.json",
+      "member": "n016.json",
+      "sha256": "b3f208c475e0b220d1c15aeae593ad33c2466518e8ada5ea0e8d236fe18473dd"
+    },
+    {
+      "source": "class-xgb-cx2-independent-review-r1.json",
+      "member": "n017.json",
+      "sha256": "e796c875a3f64e03bfbef99e99f7501bbd977201b2ad5fb61fec764dd5002b85"
+    },
+    {
+      "source": "class-cache-atomic-root-independent-review-r2.json",
+      "member": "n018.json",
+      "sha256": "01d5c29fea09d03792c33871797331862d4f434cfa83c2fa09d14f2ab192d599"
+    },
+    {
+      "source": "class-xgb-cx2-root-source-acceptance-r1.json",
+      "member": "n019.json",
+      "sha256": "e147b089ab3d7d305dec5656169caae577311d9a0194b616157d8b460eb7d1a2"
+    }
+  ],
+  "private_inventory_READY_arrays_process_births_included": false,
+  "actual_runtime": false,
+  "metrics": null,
+  "original_CX1_FAIL_retained": true
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "CX2-source-literal-and-contract-rebind-proof-v1",
+  "status": "SOURCE_ONLY_NOT_EXECUTED",
+  "inverse_AST_exact": {
+    "auditor_single_OUTPUT_literal": true,
+    "caller_only_declared_paths_hashes_atomic_config_third_slot": true,
+    "closer_OUT_and_exact3contracts": true
+  },
+  "auditor_twelve_test_bytes_exact": true,
+  "caller_four_test_bytes_exact": true,
+  "inventory676_bytes_exact": true,
+  "tests": {
+    "auditor": {
+      "CacheAuditContracts.test_retained_components_exact_deep_copy_and_control_unchanged": "9836c057d38e9373ac042aef6866c347cfa1a91b6f7dd7de90d5c133f275cbfc",
+      "CacheAuditContracts.test_wrong_component_weight_or_family_is_stop": "b12843244f058fd9c81af14512eb1798ed9b1aaa07b0d69d7f068bd2f6e3d141",
+      "CacheAuditContracts.test_both_control_cuts_complete_before_any_candidate": "c23d8e624ac3b86513449ccba999a65b138dfe5f80297ddc6a1cf98d8c2d7ed2",
+      "CacheAuditContracts.test_second_control_failure_prevents_all_comparative_scores": "2291ef31e97954e2d1da7096f4c293cf1ba12a5f7452c9d909a14f9894dd5c61",
+      "CacheAuditContracts.test_fixed_weight_mixture_normalizes_without_input_mutation": "a109c81827cf91716a136da203f88abac4001d3f240d7f1b6d8edba9c7b77a9b",
+      "CacheAuditContracts.test_original_clock_assignment_and_successful_checkpoint": "a1bef2f55a8b80e50cd8e57a2027ede63b4202ea78c16d60275951b8a01bc3b3",
+      "CacheAuditContracts.test_gap_failure_sticks_and_never_advances_to_recover": "4a2eea9302a0b89197287ca8ed574e0fc32f9244eb4ffbeeb36c261193ff69f4",
+      "CacheAuditContracts.test_deadline_rollback_nonfinite_and_drift_stop_on_same_origin": "b173bd8469535650a0ee1bbad2c433471dca405f1695b6b340101c61b1b9ed34",
+      "CacheAuditContracts.test_saved_control_requires_same_positions_classes_support_and_metrics": "b4d1d5426d5e38c3d0f1e585127c4d24017e026bacd1d52947653a3988397eed",
+      "CacheAuditContracts.test_quality_requires_both_cut_and_mean_improvement_and_existing_class_gates": "c781880e92b5eb05c4e77a4af9ebd5ce4fe4b050f811b909903546a751da38ea",
+      "CacheAuditContracts.test_missing_or_changed_cache_has_no_fit_or_reconstruction_route": "ff7dd83b1ded41d44335264db6780aaa2951bbc85ebaec4e6c44edf7fd46140a",
+      "CacheAuditContracts.test_failure_result_clears_comparative_metrics_and_preserves_first_error": "899402b7d714b616ed1b251968c4456f364c5362aaaa8bd3aedf04d6fe01444e"
+    },
+    "caller": {
+      "CacheCallerContracts.test_valid_negative_quality_is_technical_success_but_unbound_or_partial_result_is_not": "58f14660f2ce66e7aa68f3d245e708e7309bffbd9b0b93c5f18f5434b2f36da1",
+      "CacheCallerContracts.test_original600_and_parent120_assignments_keep_all_final_reserve": "5c4b2a270ac6995358cbf0b1fa4ed0e89b10c8c23eecdb0ae1e9d71f9d73aef0",
+      "CacheCallerContracts.test_only_fixed_auditor_argv_accepts_absolute_paths_no_payload_or_fit": "9bd6b8bc509af100098288928ef199f13d3d58076a43f19c5f46a76bf8b2bcae",
+      "CacheCallerContracts.test_failed_false_or_unconfirmed_predecessor_never_admits_cache_reader": "3c4b879e273c4624cb8184dcc45c9b50b5da3aa091844aa28a293abd19d93ad1"
+    },
+    "atomic_external": {
+      "AtomicRootContracts.test_child_birth_cannot_reset_enclosing60_common600_or_existing_final": "8075ab41e3c9a0f6e9d6d921160ccb4215da14f5f42783605bdb790c78bb71a2",
+      "AtomicRootContracts.test_actual_exit_is_saved_before_fresh_and_late_or_failed_exit_never_qualifies": "edaa65757bb0e8c8413e546061438f3c6b4aeddf8e10d8f2f017f9986568275e",
+      "AtomicRootContracts.test_fixed_child_shell_argv_has_no_payload_and_requires_absolute_typed_evidence": "b65dc10ba485f480209ed03f39ad2cc5091c482abe81379e4101269defa71bdd"
+    }
+  },
+  "prepared_total": 19,
+  "setup_contract_slots": [
+    [
+      60,
+      45
+    ],
+    [
+      60,
+      45
+    ],
+    [
+      60,
+      45
+    ]
+  ],
+  "original_caps": [
+    600,
+    180,
+    120,
+    90,
+    240,
+    60
+  ],
+  "CX1_new_current_union_projection_count": 7323,
+  "old_CX1_status": "FAIL_ROOT_FRESH60_MISSED",
+  "actual_imports_tests_fits_API_data_PID_clock": 0
+}

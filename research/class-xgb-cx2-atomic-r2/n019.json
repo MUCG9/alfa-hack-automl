@@ -1,0 +1,19 @@
+{
+  "schema": "class-xgb-CX2-root-source-acceptance-v1",
+  "status": "SOURCE_ACCEPTED_PRIVATE_READY_PENDING_INDEPENDENT_REVIEW_AND_PUBLICATION",
+  "CX2_handoff_sha256": "7baff9cc257afb2aa2a41b9d0741831cae9c87a5e427a70c8089ebfd00b0316e",
+  "atomic_R2_handoff_sha256": "b3f208c475e0b220d1c15aeae593ad33c2466518e8ada5ea0e8d236fe18473dd",
+  "CX2_peer_sha256": "e796c875a3f64e03bfbef99e99f7501bbd977201b2ad5fb61fec764dd5002b85",
+  "atomic_peer_sha256": "01d5c29fea09d03792c33871797331862d4f434cfa83c2fa09d14f2ab192d599",
+  "contracts": 19,
+  "source_pins_current": 740,
+  "auditor_source_pins": 71,
+  "original_CX1_status": "FAIL_ROOT_FRESH60_MISSED",
+  "old_CX1_requalified": false,
+  "prior_current_negative_sha256": "d5ff26e11a0cf26d5dc9f84328c14c42cce6f7af57a54d8b087028dbdacd0d25",
+  "no_candidate_imports_tests_fits_API_arrays": true,
+  "actual_clock": null,
+  "comparative_metrics": null,
+  "promotion": false,
+  "created_unix": 1792855213.3687606
+}

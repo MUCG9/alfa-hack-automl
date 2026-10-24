@@ -1,0 +1,4 @@
+SOURCE ONLY NOT READY. Future CX2 is a distinct fixed cache experiment; CX1 failure and clocks remain closed.
+Same numerical auditor and676inventory; only output/source routes and hashes rebound.
+Prepared19 contracts = unchanged12auditor + unchanged4caller + frozen3atomicR2, all inside setup180. No tests/imports/metrics/data/PID/clock execution.
+Use root-reviewed atomicR2 after actual whole driver exit; root must supply new READY/source publication/current complete known union and actual tool evidence.

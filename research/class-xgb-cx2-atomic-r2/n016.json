@@ -1,0 +1,40 @@
+{
+  "schema": "class-cache-atomic-root-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_NOT_READY_R2",
+  "files_sha256": {
+    "binding.template.NOT_READY.json": "53ecd4a6c4b0ed5c9185dc9b5dc076c9825806d368d373dc68a870a2d2d14ec8",
+    "close_child.ps1": "2c773eff71fc1691bad50ac401bb68bffe75900fef35da656de78527678f3f0e",
+    "protocol.json": "2a1a40d99ad5a6bdb020bc3b59efb5eaf4b2a51cec7e22372e90e38994b6a20b",
+    "README.txt": "3c44eee73dce7ff187233d40462a89e460c3206b25425bf42dfd651c4fb097d1",
+    "run_root.py": "468bed12ef63b1b28c75620af57f606a42f7c4abad7e7ac80151b73367946321",
+    "source-proof.json": "eb91b6844813b0ec51df18d474033522e4c1c5176044cbb4a50075b8c01a9c7c",
+    "test_atomic_root.py": "1c0a9e14eead77c2db7e38ade64a07c49040a5d42c85b8de2f69f7b1911b191d",
+    "source-evidence/r1/binding.template.NOT_READY.json": "53ecd4a6c4b0ed5c9185dc9b5dc076c9825806d368d373dc68a870a2d2d14ec8",
+    "source-evidence/r1/close_child.ps1": "2c773eff71fc1691bad50ac401bb68bffe75900fef35da656de78527678f3f0e",
+    "source-evidence/r1/protocol.json": "1d46f7a57fe1360cc276612a030125856a0b8e2010cf8cc7e119b735d315f039",
+    "source-evidence/r1/README.txt": "e1996b119c346faa9fdb07119c53d08db88197a5c3be9c5a1ea6ed06ca2bc3e5",
+    "source-evidence/r1/run_root.py": "365b0ac265f04b032fa4feabfde21f94fe537add2d5eb82c2901bb3cae77f0b5",
+    "source-evidence/r1/source-proof.json": "d2990388367b573003d7ef21d9f93c210bc398944436d22843edd89d8d29d702",
+    "source-evidence/r1/test_atomic_root.py": "9a17b53bd279b7aa33641fb150dc955d373b07867ecf2eda2b211ec5b1c27e33"
+  },
+  "external_refs_sha256": {
+    "work/class-xgb-contribution-caller-next-dev/source-handoff.json": "a5c8c5e75a687a661974bf5e8c70c67b0d1a56933c953b57244e469c47a89ae1",
+    "work/class-xgb-contribution-caller-next-dev/close_audit.py": "1790a82d2f26f8489edb744e79d2b22a3d817073744dd89fe8969606defc263e",
+    "work/class-xgb-contribution-caller-next-dev/run_audit.py": "7b46f1ded8c2cb979b1cfe8e8ea2b213e395972197afff294e5feb554c231419",
+    "work/class-xgb-contribution-independent-review-next-dev/caller-source-review-r1.json": "722776e8ec131d83e1302444bbf1d8fa70c10e4d4ba81887b3d223516fd9ea3f",
+    "work/br-standard-release-qualification-next-dev/controller-r5/run_controller.py": "d5f41cad6de2168cd520e442223428285dd3714854079d9305dd1b34938abd7d",
+    "work/verified-supervision-next-dev-r2/coordinator.py": "bd864b13460d31176d57e1dbddbe179ad8e6911163b117e3f9698228c5540f76",
+    "work/support_component_coordinator.py": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "work/historical-runtime-support/fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d.py": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d",
+    "work/verified-resource-sampling-next-dev/verified_sampling.py": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+    "work/class-xgb-cx1-current-negative-helper-review-r1.json": "42f8e7120aa731960c15223a16b6e9013a73d482edee052eb391c0a55b6d3eb7",
+    "work/class-cache-atomic-root-independent-review-r1.json": "b818caeb16d14d1c5350b774c84f38e27cc437b4468ca59ab627175479e16371"
+  },
+  "prepared_test_methods": 3,
+  "actual_imports_tests_fits_API_data_PID_clock": 0,
+  "future_CX2_rebind": null,
+  "READY": null,
+  "old_CX1_global_status": "FAIL_ROOT_FRESH60_MISSED",
+  "old_CX1_requalified": false,
+  "R1_handoff_sha256": "55c2ed964af5ff0b1be85c26b50cb674cd3e67a40518bfd2b21ed5dfbe26de33"
+}

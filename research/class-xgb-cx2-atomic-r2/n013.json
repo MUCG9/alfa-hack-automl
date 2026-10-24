@@ -1,0 +1,37 @@
+{
+  "schema": "class-cache-atomic-root-prospective-protocol-v1",
+  "status": "FROZEN_SOURCE_ONLY_NOT_READY",
+  "applies_only": "Future distinct CX2 after actual CX1 separate current-negative proof and root review. Current CX1 remains FAIL_ROOT_FRESH60_MISSED; no old closer/rerun/reset.",
+  "scope": "Fixed wrapper -> fixed child PowerShell -> pinned venv launcher -> reviewed future cache closer; root preparers all exit before atomic fresh. No candidate scoring/fits/API/tests automatically performed.",
+  "clock": "No new600 or60 assigned. Uses future already-running cache campaign original600 and final240. Wrapper enclosing60 is an additional tighter bound; fresh/save/release/lease all complete <=actualcloserbirth60 as well. Checks before terminal poll; original wall/mono/gap10/resource2GiB preserved.",
+  "atomic_order": [
+    "early wrapper self/direct/shell sidecar",
+    "all actual terminal/pins/source preflight",
+    "child PowerShell actualidentity capture + actualnativecloser exit sidecar",
+    "wait actual childPS exit + identity-safe known cleanup",
+    "save childexit receipt",
+    "same-call fresh fullclosedroot/preparers/source/temp under researchlock",
+    "PowerGuard release + postlease checks + confirmation save within unchanged bounds",
+    "root separately records actualwrappertool exit and closes its observer/preparers; no clockreset"
+  ],
+  "ownership": "Target root closure known+all3closerpreparers+actualchildchain must be absent. Their set must not overlap still-live wrapper/outerchain; no live observer is silently excluded. Wrapper prep IDs are recorded for later root actualexit/fresh closure.",
+  "applicability": "Original frozencloser hardcodes cx1. New root must first review a separate CX2 literal/source rebind; current packet does not alter it. Futuredriver/closer/manifest/campaign/python/powershell/childscript/peer pins remain null. No generic arbitrary command payload.",
+  "host_preflight": "Fixed -NoProfile -NonInteractive -File invocation has no execution-policy override. Root must confirm that the pinned script is permitted by actual Windows policy before admitting future gate; missing policy/denial fails closed.",
+  "source_contracts": {
+    "count": 3,
+    "methods": {
+      "AtomicRootContracts.test_child_birth_cannot_reset_enclosing60_common600_or_existing_final": "8075ab41e3c9a0f6e9d6d921160ccb4215da14f5f42783605bdb790c78bb71a2",
+      "AtomicRootContracts.test_actual_exit_is_saved_before_fresh_and_late_or_failed_exit_never_qualifies": "edaa65757bb0e8c8413e546061438f3c6b4aeddf8e10d8f2f017f9986568275e",
+      "AtomicRootContracts.test_fixed_child_shell_argv_has_no_payload_and_requires_absolute_typed_evidence": "b65dc10ba485f480209ed03f39ad2cc5091c482abe81379e4101269defa71bdd"
+    },
+    "actual_executions": 0
+  },
+  "actual_clock": null,
+  "private_READY": null,
+  "old_CX1_requalified": false,
+  "new_metrics": null,
+  "fits": 0,
+  "API_calls": 0,
+  "promotion": false,
+  "AR01": "Native shell equals already verified declaredtransport exactly; actual observed-shell PID/birth stays exact. No widened tolerance."
+}

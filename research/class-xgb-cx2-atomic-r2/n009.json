@@ -1,0 +1,34 @@
+{
+  "schema": "CX2-cache-research-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_NOT_READY",
+  "files_sha256": {
+    "audit-binding.template.NOT_READY.json": "f2cf2d4fd36778fab261338f788f959dcbb4694b17b3d6de687811f44ffcfb11",
+    "audit_cache.py": "a5f07f03d50b51e5a87721052646d1a8270774885465cbd329dd2665eebe8ec0",
+    "binding.template.NOT_READY.json": "28449099fb0d21c6e8defffa97843bd2a7d021235b673173197c8cd44ba68b30",
+    "close_audit.py": "eb25324be971073a953a6691269a54963e091575fb179c66ea923c073e6dbbcb",
+    "cx1-current-negative-preparer-projection.json": "87d6370d5750676bd904a456f0da137bbc957585b0bae48584dc6e8b5b789dfe",
+    "expected-inventory.json": "0a6fd55a64ddf885aac05a427d9b62857b0fc3bd67bac2977d6b040571f95fb8",
+    "prepare_source.py": "7bbeb31bd76595a780ef7a84d81d42684d9f3a25a5210b435d87085db60fec44",
+    "protocol.json": "d2c3a3dfc276ac49f8f3c179f4c404314349fa281f0de41d7ce3bbe181ef0110",
+    "README.txt": "dbdc2434c37266d88002927281ae0b49dbd80df92ca0b9d2d92184cc5ccfed6a",
+    "run_audit.py": "abf1cef2df47cddc021ffc1da1a5c2e2d30f9df5457161e9c70938d22e89d67a",
+    "source-proof.json": "43de65fe29363be960fe6a94c48cd1ce83f4189999a0baa59bc63f6aa812db4f",
+    "test_caller.py": "24d073f58fcbc579a19b009d584705d89c93da936bcf660f9ead6184742d7dee",
+    "tests/test_audit_cache.py": "6fd00a8c11104e9ebe9e166698509304322490df4c52eeae6164ab87d5b22631"
+  },
+  "external_refs_sha256": {
+    "class-xgb-contribution-caller-next-dev\\source-handoff.json": "a5c8c5e75a687a661974bf5e8c70c67b0d1a56933c953b57244e469c47a89ae1",
+    "class-xgb-contribution-audit-next-dev\\source-handoff.json": "b1ac1930c19aca8e405a5ea361ca6ca0755f6a799194c577f3259f765d4026fd",
+    "class-cache-atomic-root-next-dev-r2\\source-handoff.json": "b3f208c475e0b220d1c15aeae593ad33c2466518e8ada5ea0e8d236fe18473dd",
+    "class-cache-atomic-root-independent-review-r2.json": "01d5c29fea09d03792c33871797331862d4f434cfa83c2fa09d14f2ab192d599",
+    "cx1\\current-negative-closure.json": "d5ff26e11a0cf26d5dc9f84328c14c42cce6f7af57a54d8b087028dbdacd0d25",
+    "cx1\\current-negative-exec-confirmation.json": "07ec62bd0e3b6e1f5c2bdec9748090eda0586f9eab9fedabf892b2424906239a"
+  },
+  "prepared_contracts": 19,
+  "actual_imports_tests_fits_API_data_PID_clock": 0,
+  "READY": null,
+  "actual_clock": null,
+  "old_CX1_global_status": "FAIL_ROOT_FRESH60_MISSED",
+  "old_CX1_requalified": false,
+  "promotion": false
+}

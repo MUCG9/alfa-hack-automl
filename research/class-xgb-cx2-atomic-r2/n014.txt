@@ -1,0 +1,8 @@
+SOURCE ONLY / NOT READY. Do not run against CX1.
+Future CX2 requires separately reviewed driver/closer/output literal rebind and actual clean predecessor/source/private pins.
+CLI: python -B -X utf8 run_root.py --binding ABS --binding-sha256 SHA --self-sha256 SHA --actual-exit-code ACTUAL --actual-tool-evidence TOOL [--actual-exec-session SESSION] --launch-parent-pid SHELL --launch-parent-create-time BIRTH
+The wrapper invokes only frozen close_child.ps1, which forwards exact fixedcloser flags and its actual shell tuple. No -Command payload or execution-policy override.
+Current CX1FAIL and all expired clocks remain unchanged. Atomic observation is not complete until actualwrappertool exit and its preparer closure are independently recorded; no extra60.
+Three prepared synthetic clock/order/argv contracts; no tests, psutil/runtime/candidate imports or PowerShell execution by author.
+
+R2 resolves AR01 only: native shell matches exact verified declared transport, not rounded-to-psutil equality. Exact observed identity remains required. R1 preserved.

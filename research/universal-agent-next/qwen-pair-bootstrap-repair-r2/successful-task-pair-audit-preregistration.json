@@ -1,0 +1,44 @@
+{
+  "schema": "uq2-prospective-successful-task-pair-audit-protocol-v1",
+  "status": "PREREGISTERED_NOT_READY_NOT_EXECUTED",
+  "registered_unix": 1792829211.4286268,
+  "campaign_actual_session": 3588,
+  "observed_slot_status_before_Bc_launch": {
+    "Ar": "sealed",
+    "Br": "sealed",
+    "Ac": "admitted",
+    "Bc": "not_attempted"
+  },
+  "selection_rule": "For each of the two fixed tasks, qualify only a complete successful A/B pair by technical evidence before any scoring; never select a task or arm by metric. Incomplete or failed pair remains null.",
+  "barrier": [
+    "ALL4 actual closed core seals, including failed-slot immutable partial inventory preserved strictly as failure evidence",
+    "Whole actual exec exit and actual saved root closure with current source/cleanup and independently fresh owned/preparer absence",
+    "Rehash every code/input/core before reading pristine truth; preserve original ordering and no models/API",
+    "Both arms of a selected task require successful solver/refit/CSV, exact four stages,8 actual valid HPO attempts, exact equal caps/common policy and source/data/task/split/recipe bindings",
+    "Use unchanged pinned per-task R4 verifier, independent probability/recursive iteration/CSV checks, then posthash and actual terminal cleanup"
+  ],
+  "original_clock": [
+    1792826068.8239975,
+    85073.953,
+    1792836868.8239975,
+    95873.953
+  ],
+  "new_common_clock": false,
+  "maximum_separate_audit_seconds": 120,
+  "time_admission": "Only actual remaining original10800, combined original audit600 allocation and remaining cleanup/root reserve; all earlier failure/recovery/audit costs charged. If insufficient or unconfirmed, stop unqualified without resetting.",
+  "required_original_global_status": "FAIL retained; a separate per-task audit cannot relabel global procedure",
+  "known_regression_pair_status": "Br failed before model search, so regression A/B quality null; Ar alone is not a matched improvement",
+  "classification_pair_status": "Unknown and not inspected for metrics at registration; depends only on future complete successful Ac and Bc evidence",
+  "no_early_truth_or_prediction_reads": true,
+  "new_model_fits": 0,
+  "new_API_calls": 0,
+  "actual_source_packet": null,
+  "actual_approval": null,
+  "actual_start": null,
+  "actual_result": null,
+  "quality_metric": null,
+  "promotion": false,
+  "official_default_ready": false,
+  "submit": false,
+  "scope": "Research reused-public per-task evidence only; confirmation overlaps inner HPO, not blind or official."
+}

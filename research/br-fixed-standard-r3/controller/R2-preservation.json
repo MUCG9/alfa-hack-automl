@@ -1,0 +1,20 @@
+{
+  "schema": "br-controller-R2-preservation-v1",
+  "R2_handoff_sha256": "c27a1f46782e1a692bfe19b3b9a479771483ca4e75efdaa0a951d939a490f95d",
+  "R2_files_sha256": {
+    "artifact_audit.py": "79f06069e130a9395888dbdb0de6777dc89bbde0932022f3e114925b55942757",
+    "binding.template.NOT_READY.json": "88cfb0f8fffc76147da0a1643dbc057343edb20045a5733903e84eb6e0143995",
+    "close_controller.py": "c18941f523a3aa25956e0a63efa592fe1f73af8aac7e27087ea3ed2d1d5a2b23",
+    "protocol.json": "6f6f366c98f89aaf64f3902e481041c27f1cc7047ddddd7faedb65b8e7a2fbdb",
+    "R1-preservation.json": "39505148b77fabf573391c25dfdfbaee023186a3a12bf383611dcd0a0222d11c",
+    "R1-to-R2.patch": "f814703e2904d8ecf09f77eb1d7defdf11ca3d10bf71bbf3cce13ddf9de5a969",
+    "README.txt": "b27c25dcee8cc905314ebc15b393d8c70b54ac279548094a705f7e1d1017687d",
+    "run_controller.py": "15f7bf6c828ca5123c0009004556873fbe7c7100887a6107f233c1d5061b8a1d",
+    "source-handoff.R1-history.json": "8d4c259ddbf0a56a1366e25cc60ed4ada4f111dd10acdf1f0b911c2bd55b4249",
+    "source-proof.json": "21315f609578011bee8cf0e1d839dc9d8182c7ede719d6ca47f013d37471edfd",
+    "test_controller_contracts.py": "ce75c8b52e2619d11916a01d6f7ceb0351a76894b27327b5f12eb2a8615a8a58",
+    "uq3-current-observation.template.NOT_READY.json": "6dd987cf63d00cd7bcc41362a1f8079514f9da8266f50a5ea193f6c84eb33220"
+  },
+  "R2_actual_qualification_execution": false,
+  "R2_direct_shell_assumption_actual_applicability": false
+}

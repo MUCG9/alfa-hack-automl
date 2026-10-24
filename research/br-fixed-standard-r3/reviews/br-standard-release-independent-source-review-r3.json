@@ -1,0 +1,51 @@
+{
+  "schema": "br-standard-release-independent-source-review-r3",
+  "scope": "One existing mocked fixed-flow test's stdout capture and parsed receipt assertion only",
+  "source_handoff": {
+    "path": "work/br-standard-release-next-dev-r3/source-handoff.json",
+    "sha256": "df44ca63160d64d52ade5a04553f4189ca79101c6cc17af25b9526d55d52ead5"
+  },
+  "test_sha256": "53c3d8dc823cbaf74dc05ae4681457bd0e9459c1f686fb4a024df0d018c5b515",
+  "focused_proof_sha256": "4096f7d177763880b097dee571e36cd5b9042dd3a1e6281d58d00ecc5e1a3dfc",
+  "independent_static_checks": {
+    "all88_R3_handoff_file_hashes_exact": true,
+    "all84_R2_handoff_file_hashes_preserved": true,
+    "runtime73_files_byte_exact_R2": true,
+    "archive_byte_exact_R2": true,
+    "archive_sha256": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a",
+    "ZIP73_unique_member_hashes_and_CRC_exact": true,
+    "method_count_unchanged": 18,
+    "only_changed_method": "FixedReleaseContracts.test_actual_cut_iterations_not_historical_tree_feed_only_full_refit",
+    "other17_method_ASTs_exact": true,
+    "whole_test_module_AST_inverse_exact_R2": true,
+    "all72_original_assertion_call_ASTs_retained": true,
+    "new_assertion_calls": 1,
+    "strict_counter_sha256_unchanged": "bc320fd4723476c8a73404ed17a7bdec0cd4c69b1b1d41b321e370549c8cf4d3"
+  },
+  "source_judgment": [
+    "StringIO and redirect_stdout are local to the existing mocked execute fixture; the production executor, publisher and log parser are unchanged.",
+    "The new assertion parses the entire captured stdout as one JSON value and compares the full expected completion payload, including fixed policy, null quality, two cuts, one refit and zero Qwen/API calls. Unexpected additional stdout is not silently discarded as success.",
+    "All original calls, exception subcases, iteration-tree checks and assertions remain. The mocked successful call no longer leaks its delayed buffered JSON into the harness's terminal unittest log.",
+    "No models, learner adapters, recipes, feature transforms, strict guards, requirements or source/archive members changed. No runtime metric inheritance is implied."
+  ],
+  "preserved_actual_history": {
+    "BRQ1": "PERMANENT_TECHNICAL_FAIL_BEFORE_MODEL_CALLS",
+    "actual_exec_session": 20231,
+    "actual_exit_code": 1,
+    "actual_tool_evidence": "2d82ac",
+    "negative_root_sha256": "243782d116baa00df12e87ec6ff99e2f48e611bef1b77f24ec1227b9284b8db6",
+    "old_clock_resumed_or_reset": false,
+    "old_test_or_root_result_relabelled": false
+  },
+  "findings": [],
+  "conclusion": "No concrete source blocker in the authorized fixture-only R3 delta",
+  "remaining_boundary": "A separately reviewed controller binding and distinct prospective qualification are still required; prepared tests and unchanged archive are not a runtime PASS",
+  "reviewer_activity": {
+    "candidate_or_guard_imports": 0,
+    "tests_models_fits_API_PID_scans_data_or_prediction_parsing": 0,
+    "source_only_AST_and_hash_checks": true,
+    "clock_assigned": false,
+    "canonical_or_frozen_files_changed": false,
+    "new_metrics_or_runtime_qualification": null
+  }
+}

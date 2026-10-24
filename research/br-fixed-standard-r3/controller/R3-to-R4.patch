@@ -1,0 +1,51 @@
+--- controller-r3/run_controller.py
++++ controller-r4/run_controller.py
+@@ -5,7 +5,7 @@
+ 
+ PACKET=Path(__file__).resolve().parent
+ WORK=PACKET.parents[1]
+-OUT=WORK/'brq1'
++OUT=WORK/'brq2'
+ COMMON,SETUP,AUDIT,FINAL,ROOT_CLOSE=6000,600,600,240,60
+ CAPS={'regression':(900,870),'classification':(3600,3570)}
+ HELPERS={
+@@ -14,7 +14,7 @@
+  'processes':('historical-runtime-support/fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d.py','fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d'),
+  'lock':('alfa-hack-automl/tools/research_lock.py','78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45'),
+  'awake':('awake-next-dev/awake_guard.py','9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b')}
+-EXECUTOR_HANDOFF_SHA='64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09'
++EXECUTOR_HANDOFF_SHA='df44ca63160d64d52ade5a04553f4189ca79101c6cc17af25b9526d55d52ead5'
+ ARCHIVE_SHA='6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a'
+ COUNTS_SHA='bc320fd4723476c8a73404ed17a7bdec0cd4c69b1b1d41b321e370549c8cf4d3'
+ LAUNCHER_PATH=WORK/'venv/Scripts/python.exe'
+@@ -158,7 +158,7 @@
+         and handoff['archive']['sha256']==ARCHIVE_SHA
+         and {Path(k).name:h for k,h in handoff['files_sha256'].items() if k.startswith('candidate/')}==executor['members_sha256'],
+         'exact_frozen_R2_member_binding_required')
+-    executor_root=WORK/'br-standard-release-next-dev-r2'
++    executor_root=WORK/'br-standard-release-next-dev-r3'
+     for key,relative in [('handoff','source-handoff.json'),('archive','solution-br-fixed-candidate.zip')]:
+         need(executor[key]['path']==str(executor_root/relative),'fixed_reviewed_executor_reference_required')
+     for key,relative in [('test','tests/test_fixed_release.py'),('recipe_fixture','tests/fixtures/recipes.json'),('base_inventory','base-inventory.json')]:
+--- controller-r3/artifact_audit.py
++++ controller-r4/artifact_audit.py
+@@ -4,7 +4,7 @@
+ 
+ PACKET=Path(__file__).resolve().parent
+ WORK=PACKET.parents[1]
+-OUT=WORK/'brq1'
++OUT=WORK/'brq2'
+ R4=('uq3-cadence-hpo-next-dev/candidate/r4_adapter.py','823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd')
+ LOSS=('uq3-cadence-hpo-next-dev/candidate/audit_pair.py','f58a17c218ca89461c3c97c3498d197fa105b5a8ea0b240b26b232b12badf7ff')
+ 
+--- controller-r3/close_controller.py
++++ controller-r4/close_controller.py
+@@ -4,7 +4,7 @@
+ 
+ PACKET=Path(__file__).resolve().parent
+ WORK=PACKET.parents[1]
+-OUT=WORK/'brq1'
++OUT=WORK/'brq2'
+ LAUNCHER_PATH=WORK/'venv/Scripts/python.exe'
+ LAUNCHER_SHA='d59c9a894b319828d023f3aa83d9a3488d2339f9e27e60e49b02abb0d53cf538'
+ 

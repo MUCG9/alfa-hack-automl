@@ -1,0 +1,17 @@
+{
+  "schema": "br-controller-R1-preservation-v1",
+  "R1_handoff_sha256": "8d4c259ddbf0a56a1366e25cc60ed4ada4f111dd10acdf1f0b911c2bd55b4249",
+  "R1_files_sha256": {
+    "artifact_audit.py": "9b81acc3f67a3b2879b26c119a5cf2c8973b6c1e06fbed19306d7e2a54a3dcaf",
+    "binding.template.NOT_READY.json": "656a44f38acd27df457c14590266cea5b98f150291b12dfb1e01aac2e1c58640",
+    "close_controller.py": "84626eddba20911fbe3520a002edd79788b429bfdf74a01ce4429f9c107d68fb",
+    "protocol.json": "7f91ecc0ca92f12e13131fb0ec587d0f1880d89eec69ca35d480545aafc85488",
+    "README.txt": "33c0ad1fe95039e2789650ff3855917f17ae60e68019b42bfdb6e4ed63a9ba08",
+    "run_controller.py": "3770ddf310190864471e7445760fc45b5c670c14b5ba2930df095da863a83486",
+    "source-proof.json": "19b9afc928215ec73db58bb141e491f8e238909451e0e1d8806c7f94e65b1842",
+    "test_controller_contracts.py": "e44539301f03771645ec8241c1a5bbc45ed25ff0f1472d9d6fa87550cd6ba961",
+    "uq3-current-observation.template.NOT_READY.json": "6dd987cf63d00cd7bcc41362a1f8079514f9da8266f50a5ea193f6c84eb33220"
+  },
+  "actual_R1_execution": false,
+  "R2_status": "DRAFT_NOT_READY_NOT_FROZEN"
+}

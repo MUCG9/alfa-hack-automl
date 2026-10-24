@@ -1,0 +1,15 @@
+{
+  "schema": "distinct_changed-source-qualification-root-decision-r1",
+  "status": "AUTHORIZE_ONE_FUTURE_REVIEWED_BRQ2_NO_CURRENT_LAUNCH",
+  "basis": "Human instruction to prepare target standard archive and fix problems; BRQ1 closed technical FAIL before models, due buffered mock stdout after unittest OK in merged log. Candidate R3 captures and separately asserts exactly that mock JSON, all old assertions/runtime73/archive/counter unchanged. A new frozen controller source version and separate prospective validation are required; no original run is resumed, relabelled, repaired in place or reset.",
+  "BRQ1_root_sha256": "243782d116baa00df12e87ec6ff99e2f48e611bef1b77f24ec1227b9284b8db6",
+  "BRQ1_fresh_sha256": "49b5317d7822ae45c5ec4df5585e7f9301e0c15a0d77c5f1f6293f91e4707f4b",
+  "original_BRQ1_clock_status": "CLOSED_FAIL_PRESERVED_UNCHANGED",
+  "new_clock": null,
+  "prospective_common_seconds": 6000,
+  "same_original_caps": true,
+  "source_peer_required_before_new_gate": true,
+  "required_full_predecessor_union": "UQ3 root+all BRQ1 owned/preparers/current source/cleanup proof; typed live0 uncertain0",
+  "no_model_retry_or_changed_recipe": true,
+  "ready_archive": null
+}

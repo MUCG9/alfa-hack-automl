@@ -1,0 +1,32 @@
+{
+  "status": "FULL_TECHNICAL_PROCEDURE_PASS",
+  "actual_session": 18415,
+  "actual_exit_code": 0,
+  "actual_exec_tool": "a9f8da",
+  "closer_actual_exit_code": 0,
+  "closer_tool": "515751",
+  "root_sha256": "b7e6e00b2ee2fdd682a4de3377f80f6aed12e33f7c8ff476a6387d21c1581d03",
+  "fresh_confirmation_sha256": "f6720eb9266ac1960250b9de1feb20a5eddacd0ad61a5409b90e526a11f59f20",
+  "known_absent": 7248,
+  "source_unchanged": true,
+  "cleanup_confirmed": true,
+  "original_common_seconds": 10800,
+  "elapsed_common_driver_seconds": 6443.765,
+  "elapsed_through_fresh": 6631.043360948563,
+  "independently_verified_metrics": {
+    "Ar": 34.155023394837,
+    "Br": 34.155023394837,
+    "Ac": 0.6547938868310776,
+    "Bc": 0.6569242332626644
+  },
+  "historical_best_reference": {
+    "regression_RMSE": 34.155023394837,
+    "classification_MacroF1": 0.6593178433614652
+  },
+  "A_B_regression_difference": 0.0,
+  "classification_decision": "both below historical strongest CLASS; preserve it for fixed release",
+  "official_default_ready": false,
+  "promotion": false,
+  "submit": false,
+  "scope": "Reused public primary+confirmation cuts; no blind/official score. Fixed standard archive still requires its own two-call validation."
+}

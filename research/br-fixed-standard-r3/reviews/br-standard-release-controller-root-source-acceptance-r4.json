@@ -1,0 +1,21 @@
+{
+  "schema": "root-controller-source-acceptance-r4",
+  "status": "SOURCE_ACCEPTED_RUNTIME_NOT_READY",
+  "checked_unix": 1792845497.7705557,
+  "handoff_sha256": "027a20423d733716155ca93d5fc1eaedcb16e3a5f52a2483b995b9b31bf37ad3",
+  "independent_peer_sha256": "181b05d038e5572c913d9e6b685840d76c346b20198d07afbb0ba69b0c35015e",
+  "static_evidence": "efc69d",
+  "local_pins": 18,
+  "external_pins": 16,
+  "mismatches": [],
+  "permitted_runtime_literal_changes": 5,
+  "whole_module_AST_inverse_restores_R3": 4,
+  "caller_contracts_byte_exact": 10,
+  "strict_counter_unchanged": true,
+  "executor_archive_unchanged_sha256": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a",
+  "prepared_total_test_executions": 46,
+  "actual_R4_tests_models_executed": 0,
+  "BRQ1_original_FAIL_preserved": true,
+  "new_clock": null,
+  "ready_archive": null
+}

@@ -1,0 +1,108 @@
+{
+  "schema": "br-standard-controller-source-handoff-v4",
+  "readiness": "FROZEN_SOURCE_ONLY_NOT_READY",
+  "files_sha256": {
+    "artifact_audit.py": "005e63e36c1458140221b0d551ee2c67cd3819d8912123706b88fa4f6093614e",
+    "binding.template.NOT_READY.json": "7bb473f7b30b333b8cd0a663f1836104b63c44e035f2826674f92662e0c1afd3",
+    "close_controller.py": "35fda4f41718d0e0be50ec0da1682f7ccfaf32b66fd93b122c70f67a680a2a48",
+    "protocol.json": "4117c98ef2997b1f63e270c5a6d340e8bda06be59dac6a93da6c3e1afb175e90",
+    "R1-preservation.json": "39505148b77fabf573391c25dfdfbaee023186a3a12bf383611dcd0a0222d11c",
+    "R1-to-R2.patch": "f814703e2904d8ecf09f77eb1d7defdf11ca3d10bf71bbf3cce13ddf9de5a969",
+    "R2-preservation.json": "badd15fec67fe2b1d27c39089b3b25305bbab20b4b58c121e14a51163c04fb94",
+    "R2-to-R3.patch": "bfa4f29ea05a28bb5f32401c8558212469f0a5dbea6010f5826873ca16b41a32",
+    "R3-preservation.json": "728252d8e59e7c9198671475339fa65e601083fc201686f2c5bbd41b0de2e672",
+    "R3-to-R4.patch": "48f6219e57d6292edf30efcc02bcbf9ce295f3fc53207daa49cd164256d3302b",
+    "README.txt": "72ccdd8ad5eb5e232254f094d0c4748b8c1e3e76a0ef15d9a90bb12af63819fd",
+    "run_controller.py": "975d28e52c62a0b00834e898edbfc46c35eedec683cbd9e1e9a5337ca5d26470",
+    "source-handoff.R1-history.json": "8d4c259ddbf0a56a1366e25cc60ed4ada4f111dd10acdf1f0b911c2bd55b4249",
+    "source-handoff.R2-history.json": "c27a1f46782e1a692bfe19b3b9a479771483ca4e75efdaa0a951d939a490f95d",
+    "source-handoff.R3-history.json": "b189f70e586234bf9ac8e4ed99d88772e5cdcfde00c02007636cf87585153a25",
+    "source-proof.json": "c5ed2ead586fe15702b41db821ba7a096eae479fa2f04336bbcddb3fcd2de9bb",
+    "test_controller_contracts.py": "6e062df82e25f181e9b1d2c30545851f3f4c7d3e26be15c08b84c4c79a9b6d1e",
+    "uq3-current-observation.template.NOT_READY.json": "6dd987cf63d00cd7bcc41362a1f8079514f9da8266f50a5ea193f6c84eb33220"
+  },
+  "external_source_refs": {
+    "executor_handoff": {
+      "path": "br-standard-release-next-dev-r3/source-handoff.json",
+      "sha256": "df44ca63160d64d52ade5a04553f4189ca79101c6cc17af25b9526d55d52ead5"
+    },
+    "qualification_plan": {
+      "path": "br-standard-release-qualification-next-dev/qualification-plan.json",
+      "sha256": "7fc521651c9567921b69af6837671acad07656c615538820fd57f8b0861030f5"
+    },
+    "manual_R4": {
+      "path": "uq3-cadence-hpo-next-dev/candidate/r4_adapter.py",
+      "sha256": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd"
+    },
+    "loss_receipts": {
+      "path": "uq3-cadence-hpo-next-dev/candidate/audit_pair.py",
+      "sha256": "f58a17c218ca89461c3c97c3498d197fa105b5a8ea0b240b26b232b12badf7ff"
+    },
+    "counts": {
+      "path": "uar-count-parser-next-dev/counts.py",
+      "sha256": "bc320fd4723476c8a73404ed17a7bdec0cd4c69b1b1d41b321e370549c8cf4d3"
+    },
+    "coordinator": {
+      "path": "run_lean_mvp_r2.py",
+      "sha256": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818"
+    },
+    "owner": {
+      "path": "support_component_coordinator.py",
+      "sha256": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8"
+    },
+    "processes": {
+      "path": "historical-runtime-support/fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d.py",
+      "sha256": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d"
+    },
+    "lock": {
+      "path": "alfa-hack-automl/tools/research_lock.py",
+      "sha256": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45"
+    },
+    "awake": {
+      "path": "awake-next-dev/awake_guard.py",
+      "sha256": "9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b"
+    },
+    "candidate_R2_peer": {
+      "path": "br-standard-release-independent-source-review-r2.json",
+      "sha256": "88a19482855ebb068f9ee11ef0889bd078cf10fbc4b18743e8bc086b33db11ec"
+    },
+    "root_R3_scope": {
+      "path": "br-standard-release-controller-root-scope-r3.json",
+      "sha256": "2841333d9a4a5c2e4bc01c85a16128c0517c3bcc1aa9969100802221ffeb37f7"
+    },
+    "root_actual_launch_chain_metadata": {
+      "path": "br-standard-controller-launch-chain-observation-r1.json",
+      "sha256": "bffd82fed38719da00746ba6c71cc8ff4cd3f22aca6329cc81c29655ea71e29c"
+    },
+    "expected_venv_launcher": {
+      "path": "venv/Scripts/python.exe",
+      "sha256": "d59c9a894b319828d023f3aa83d9a3488d2339f9e27e60e49b02abb0d53cf538"
+    },
+    "candidate_R3_peer": {
+      "path": "br-standard-release-independent-source-review-r3.json",
+      "sha256": "3196db1e1cf1e5eb0272e6056abd2110f1134d0b9082ef66a7ffdfa0372dbde9"
+    },
+    "BRQ1_permanent_negative_root": {
+      "path": "brq1/terminal-root-closure.json",
+      "sha256": "243782d116baa00df12e87ec6ff99e2f48e611bef1b77f24ec1227b9284b8db6"
+    }
+  },
+  "R1_handoff_sha256": "8d4c259ddbf0a56a1366e25cc60ed4ada4f111dd10acdf1f0b911c2bd55b4249",
+  "R2_handoff_sha256": "c27a1f46782e1a692bfe19b3b9a479771483ca4e75efdaa0a951d939a490f95d",
+  "R3_handoff_sha256": "b189f70e586234bf9ac8e4ed99d88772e5cdcfde00c02007636cf87585153a25",
+  "source_delta": "executor source root R2->R3, handoffdf44/peer3196; stdoutfixture-only candidate revision, unchanged archive6af/runtime73; OUTbrq1->brq2; all parser/caps/bootstrap/model functions preserved",
+  "executor_source_handoff_sha256": "df44ca63160d64d52ade5a04553f4189ca79101c6cc17af25b9526d55d52ead5",
+  "executor_archive_sha256": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a",
+  "prepared_executor_source_methods": 18,
+  "prepared_executor_unpacked_same_methods": 18,
+  "prepared_caller_methods": 10,
+  "expected_total_test_executions": 46,
+  "controller_publication_and_peer_required": true,
+  "UQ3_plus_BRQ1_actual_fresh_bindings": null,
+  "actual_private_manifest": null,
+  "actual_clock": null,
+  "actual_tests_models_API_metrics": null,
+  "actual_candidate_imports_tests_fits_API_data_NPZ_predictions_truth_PIDscans": 0,
+  "automatic_promotion": false,
+  "automatic_submit": false
+}

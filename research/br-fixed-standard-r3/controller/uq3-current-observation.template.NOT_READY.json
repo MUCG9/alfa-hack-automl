@@ -1,0 +1,24 @@
+{
+  "schema": "br-release-predecessor-current-observation-v1",
+  "readiness": "NOT_READY_NOT_AN_OBSERVATION",
+  "predecessor_root_sha256": null,
+  "predecessor_actual_execution": {
+    "session": 18415,
+    "exit_code": null,
+    "tool": null
+  },
+  "root_actual_execution": {
+    "session": null,
+    "exit_code": null,
+    "tool": null
+  },
+  "known_identities": null,
+  "known_count": null,
+  "known_exact_live": null,
+  "uncertain": null,
+  "root_and_preparer_union_included": null,
+  "source_unchanged": null,
+  "cleanup_confirmed": null,
+  "old_global_failure_preserved": true,
+  "unknown_historical_identities_not_adopted": true
+}

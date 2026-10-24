@@ -1,0 +1,18 @@
+{
+  "schema": "br-fixed-source-root-acceptance-r3",
+  "status": "TEST_ONLY_SOURCE_ACCEPTED_RUNTIME_NOT_READY",
+  "checked_unix": 1792845183.02028,
+  "handoff_sha256": "df44ca63160d64d52ade5a04553f4189ca79101c6cc17af25b9526d55d52ead5",
+  "peer_sha256": "3196db1e1cf1e5eb0272e6056abd2110f1134d0b9082ef66a7ffdfa0372dbde9",
+  "source_pins_checked": 88,
+  "mismatches": [],
+  "prior_assert_calls_preserved": 72,
+  "new_assert_calls": 1,
+  "runtime_archive_byte_exact_unchanged": true,
+  "runtime_archive_sha256": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a",
+  "test_methods": 18,
+  "original_BRQ1_FAIL_preserved": true,
+  "actual_standard_model_calls": 0,
+  "new_standard_metrics": null,
+  "submission_ready": false
+}

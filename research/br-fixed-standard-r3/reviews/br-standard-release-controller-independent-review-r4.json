@@ -1,0 +1,60 @@
+{
+  "schema": "br-standard-controller-independent-source-review-v4",
+  "scope": "Five authorized literal rebinding lines for a distinct prospective BRQ2 qualification only",
+  "source_handoff": {
+    "path": "work/br-standard-release-qualification-next-dev/controller-r4/source-handoff.json",
+    "sha256": "027a20423d733716155ca93d5fc1eaedcb16e3a5f52a2483b995b9b31bf37ad3"
+  },
+  "source_sha256": {
+    "run_controller.py": "975d28e52c62a0b00834e898edbfc46c35eedec683cbd9e1e9a5337ca5d26470",
+    "artifact_audit.py": "005e63e36c1458140221b0d551ee2c67cd3819d8912123706b88fa4f6093614e",
+    "close_controller.py": "35fda4f41718d0e0be50ec0da1682f7ccfaf32b66fd93b122c70f67a680a2a48"
+  },
+  "independent_static_checks": {
+    "all18_local_pins_exact": true,
+    "all16_external_source_refs_exact": true,
+    "all15_R3_files_preserved_byte_exact": true,
+    "controller_auditor_closer_and_test_whole_module_AST_inverse_exact_R3": true,
+    "literal_changes": [
+      "OUT work/brq1 to work/brq2 in three runtime files",
+      "Controller EXECUTOR_HANDOFF_SHA to reviewed fixture-only R3 df44ca63160d64d52ade5a04553f4189ca79101c6cc17af25b9526d55d52ead5",
+      "Controller executor_root to br-standard-release-next-dev-r3"
+    ],
+    "caller_test_bytes_exact_R3": true,
+    "caller_methods_unchanged": 10,
+    "executor_source_and_unpacked_methods_each": 18,
+    "future_total_test_executions": 46,
+    "strict_counter_source_unchanged": true,
+    "bootstrap_resource_clock_cleanup_and_R4_logic_unchanged": true,
+    "archive_sha256_unchanged": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a"
+  },
+  "new_source_binding": {
+    "candidate_R3_test_sha256": "53c3d8dc823cbaf74dc05ae4681457bd0e9459c1f686fb4a024df0d018c5b515",
+    "candidate_R3_peer_sha256": "3196db1e1cf1e5eb0272e6056abd2110f1134d0b9082ef66a7ffdfa0372dbde9",
+    "template_candidate_review_pin_matches_R3": true,
+    "template_readiness": "NOT_READY",
+    "actual_clock": null,
+    "actual_runtime_metrics": null
+  },
+  "permanent_BRQ1_history": {
+    "negative_root_sha256": "243782d116baa00df12e87ec6ff99e2f48e611bef1b77f24ec1227b9284b8db6",
+    "actual_execution": {"session": 20231, "exit_code": 1, "tool": "2d82ac"},
+    "technical_procedure_passed": false,
+    "cleanup_confirmed": true,
+    "source_unchanged": true,
+    "qualified_ML_metrics": null,
+    "root_decision_sha256": "e88cb6576dcc2d988baada7af74784a735180e9759b02b7cd9fef7f3e52fd9ac",
+    "old_clock_or_failure_relabelled": false,
+    "positive_BRQ1_qualification_granted": false
+  },
+  "future_instantiation_requirement": "Bind the actual complete fresh UQ3 plus BRQ1 owned/preparer superset and exact negative root/fresh metadata pins. The unchanged predecessor verifier may observe a larger known set without converting BRQ1's technical failure into a positive procedure. Root must separately review the final binding before assigning the one distinct prospective BRQ2 clock.",
+  "findings": [],
+  "conclusion": "No concrete source blocker in the authorized narrow R4 rebinding scope",
+  "reviewer_activity": {
+    "candidate_controller_guard_imports": 0,
+    "tests_models_fits_API_PID_scans_data_prediction_truth_parsing": 0,
+    "clock_assigned": false,
+    "canonical_or_frozen_sources_modified": false,
+    "runtime_PASS_or_new_metric_claimed": false
+  }
+}

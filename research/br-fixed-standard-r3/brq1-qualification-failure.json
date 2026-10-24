@@ -1,0 +1,32 @@
+{
+  "schema": "brq1-qualification-first-failure-v1",
+  "status": "CLOSED_TECHNICAL_FAIL_BEFORE_STANDARD_MODEL_CALLS",
+  "actual_execution": {
+    "session": 20231,
+    "exit_code": 1,
+    "tool": "2d82ac"
+  },
+  "actual_root_execution": {
+    "session": null,
+    "exit_code": 1,
+    "tool": "c344cb"
+  },
+  "root_sha256": "243782d116baa00df12e87ec6ff99e2f48e611bef1b77f24ec1227b9284b8db6",
+  "fresh_confirmation_sha256": "49b5317d7822ae45c5ec4df5585e7f9301e0c15a0d77c5f1f6293f91e4707f4b",
+  "source_unchanged": true,
+  "cleanup_confirmed": true,
+  "first_error": "contract_count_or_skip_failed",
+  "source_contract_supervisor_exit": 0,
+  "actual_source_unittest_run_count": 18,
+  "actual_source_unittest_passed_count": 18,
+  "strict_whole_log_counter_accepted": false,
+  "exact_cause": "Mocked fixed-flow test prints service JSON on stdout after terminal unittest OK; frozen strict whole-log parser correctly rejects trailing record",
+  "source_log_sha256": "e31ade2ed02e745f69fb95e32520317a45839a602557b093ab265d9aec6fe389",
+  "flat_contracts": "NOT_ATTEMPTED",
+  "caller_contracts": "NOT_ATTEMPTED",
+  "actual_standard_model_calls": 0,
+  "uninstrumented_recursive_learner_fits": null,
+  "new_standard_release_metrics": null,
+  "archive_ready": false,
+  "next_scope": "New test-only source copy captures mock stdout with assertions retained; one separately reviewed future qualification. BRQ1 failure and original6000 remain closed/unchanged, no retry/reset."
+}

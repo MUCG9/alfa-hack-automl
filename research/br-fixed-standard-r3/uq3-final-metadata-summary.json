@@ -1,0 +1,1147 @@
+{
+  "schema": "uq3-final-readonly-metadata-summary-v1",
+  "scope": "Metadata/hash summary of already closed root-qualified UQ3; no new scoring, source/runtime qualification, array reads or execution",
+  "exact_root_refs": {
+    "campaign.json": {
+      "path": "uq3/campaign.json",
+      "sha256": "fe94998b5531d4033b359bed4b908eb1381c45b769edc80afd4a4d66c5351cdd"
+    },
+    "manifest.json": {
+      "path": "uq3/manifest.json",
+      "sha256": "bb16a29992df1bc713f90859f067122f4853b461bb0d7f6a09e9af92a32ceb17"
+    },
+    "verification-plan.json": {
+      "path": "uq3/verification-plan.json",
+      "sha256": "381e46a72af3ad18c8ea05ecc47200065479e95d76ddf32a5331eb2666c0aea8"
+    },
+    "authority-checkpoint.json": {
+      "path": "uq3/authority-checkpoint.json",
+      "sha256": "59e66ab71e6e57c8eff6f72a08e0e4571956e983a36769b6f64b7307a749d091"
+    },
+    "independent-audit.json": {
+      "path": "uq3/independent-audit.json",
+      "sha256": "77706b66da1bda03b033c21e482ab8a1d0cddaa496a3d408b0c9bca8f7c0e678"
+    },
+    "terminal-root-closure.json": {
+      "path": "uq3/terminal-root-closure.json",
+      "sha256": "b7e6e00b2ee2fdd682a4de3377f80f6aed12e33f7c8ff476a6387d21c1581d03"
+    },
+    "root-confirmation.json": {
+      "path": "uq3/root-confirmation.json",
+      "sha256": "f6720eb9266ac1960250b9de1feb20a5eddacd0ad61a5409b90e526a11f59f20"
+    },
+    "root-preparer-identity.json": {
+      "path": "uq3/root-preparer-identity.json",
+      "sha256": "b8ef4f08ac8eccfb552b2db3e27a2c73e8c3e24f6e2693f66d5bb418bb14200e"
+    }
+  },
+  "actual_exec": {
+    "session": 18415,
+    "exit_code": 0,
+    "tool": "a9f8da"
+  },
+  "actual_closer": {
+    "exit_code": 0,
+    "tool": "515751"
+  },
+  "technical": {
+    "root_procedure_passed": true,
+    "source_unchanged": true,
+    "cleanup_confirmed": true,
+    "all_four_pretruth_seals_verified_from_saved_metadata": true,
+    "fresh_inside_original10800": true,
+    "known_scope_count": 7248,
+    "identity_counts": {
+      "absent": 7142,
+      "reused_pid_original_absent": 106,
+      "alive_same_identity": 0,
+      "uncertain": 0
+    },
+    "original_start_unix": 1792837591.5212412,
+    "original_deadline_unix": 1792848391.5212412,
+    "original_start_monotonic": 96596.781,
+    "original_end_monotonic": 107396.781,
+    "actual_parent_elapsed_seconds": 6443.764999999999,
+    "elapsed_through_root_fresh_seconds": 6631.043360948563,
+    "first_failure": null,
+    "error_history": []
+  },
+  "slots": {
+    "Ar": {
+      "kind": "regression",
+      "arm": "A",
+      "procedure_passed": true,
+      "metadata_refs": {
+        "report": {
+          "path": "uq3/A/r/automl_runs/repair4/report.json",
+          "sha256": "31f9bcff8c7ced6871748c125614e4de33b299e4dacac12d9e2bf8ec6a595e3b"
+        },
+        "supervisor": {
+          "path": "uq3/A/r/supervisor.json",
+          "sha256": "a6e04b79451122d0da55496f6ee18bd4243e62c87156a1a1271908f7070c349a"
+        },
+        "seal": {
+          "path": "uq3/Ar-seal.json",
+          "sha256": "297bca253699264a6b387ef1a43dd4ddcb4b2abb4971f485adfc3e0b2ba102fd"
+        },
+        "usage_ledger": {
+          "path": "uq3/A/r/automl_runs/run-budget-17ru6s0m/report.json",
+          "sha256": "bd34859f5373d487770e4a4a025990f9da4519dce347582f7e46e9b1a03b801b"
+        }
+      },
+      "parent_caps": {
+        "parent": 900,
+        "child": 870,
+        "solver": 810,
+        "observed_seconds": 332.70299999999406,
+        "peak_owned_tree_RSS_MiB": 819.84375,
+        "maximum_observed_concurrent_worker_jobs": 1
+      },
+      "four_stage_evidence": {
+        "mode": "four_stage",
+        "initial_assessment_before_fitting": true,
+        "initial_assessment": {
+          "status": "ok",
+          "attempted": true,
+          "call_status": "ok",
+          "assessment_valid": true,
+          "error": null
+        },
+        "initial_queue_receipt_count": 9,
+        "initial_queue_sources": [
+          "protected_complete_control",
+          "unprofiled_hpo_single",
+          "isolated_feature_engineering",
+          "required_catboost",
+          "required_xgboost",
+          "prior_champion",
+          "fixed_l1_composite",
+          "qwen_initial",
+          "qwen_initial"
+        ],
+        "protected_originals": true,
+        "catboost_top_k": 32,
+        "actual_teacher_receipts_count": 2,
+        "successful_model_families": [
+          "catboost",
+          "lightgbm",
+          "xgboost"
+        ],
+        "stage_hashes": {
+          "report": "31f9bcff8c7ced6871748c125614e4de33b299e4dacac12d9e2bf8ec6a595e3b",
+          "initial_assessment": "28182398f40e1d4be800ea32c16467b73a35b036fc84f8a90ae66f25d45fbb12",
+          "supervisor": "a6e04b79451122d0da55496f6ee18bd4243e62c87156a1a1271908f7070c349a",
+          "hpo": "5a040c989dcdf0db942847ff33116e721ed9c5d89d8a6082824bed7c6f23ffc4",
+          "api_ledger": "bd34859f5373d487770e4a4a025990f9da4519dce347582f7e46e9b1a03b801b"
+        }
+      },
+      "component_counts": {
+        "outer_experiment_records": 9,
+        "outer_status_counts": {
+          "ok": 9
+        },
+        "confirmation_records": 3,
+        "observed_logical_worker_roots": 21,
+        "selected_engine": "ensemble",
+        "selected_explicit_outer_components": 2,
+        "actual_total_learner_fits": null,
+        "count_scope": "Experiment records, observed logical roots and recipe component counts differ from process-start/recursive learner-fit counts; recursive total remains null."
+      },
+      "HPO": {
+        "status": "ok",
+        "maximum_trials": 8,
+        "planned_trials": 8,
+        "attempted_trials": 8,
+        "completed_trials": 8,
+        "failed_trials": 0,
+        "duplicate_trials": 0,
+        "unattempted_trials": 0,
+        "guided_attempts": 5,
+        "guided_successful_trials": 5,
+        "seconds": 35.313
+      },
+      "fair_policy": {
+        "mode": null,
+        "worker_callback_invocations": null,
+        "actual_learner_fits": null
+      },
+      "API": {
+        "gateway_calls": 2,
+        "HTTP_attempts": 2,
+        "prompt_tokens": 18977,
+        "completion_tokens": 1714,
+        "usage_complete": true,
+        "followup_observed": true,
+        "requested_reasoning_effort": "off",
+        "effective_reasoning_effort_certified": false,
+        "response_models": [
+          "qwen/qwen3.8-27b"
+        ]
+      },
+      "strict_caller": {
+        "enabled": false,
+        "format_and_lexical_receipt_verified": null,
+        "planner_full_train_statistics_not_fitting_only": null
+      },
+      "independent_cut_metrics": {
+        "primary": {
+          "metric": "rmse",
+          "value": 37.12053178698236,
+          "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+          "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+          "prediction_sha256": "99ad854da9ef2dfe693da97f5759be7ba31dcee5e4fdd55ebb447d1197ff0581",
+          "mixture_children": 2
+        },
+        "confirmation": {
+          "metric": "rmse",
+          "value": 31.189515002691635,
+          "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+          "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+          "prediction_sha256": "60c506b5dc187a25435d1415eb2d73597cf706725be68fe25533693e09179a7e",
+          "mixture_children": 2
+        }
+      },
+      "independent_two_cut_mean": 34.155023394837,
+      "matched_fresh_control": {
+        "recipe_sha256": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b",
+        "measurements": {
+          "primary": {
+            "metric": "rmse",
+            "value": 38.902803731334785,
+            "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+            "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+            "prediction_sha256": "7715ac9ab576c17d8b01db7d80cb2485d2564d75ac18838de9c53fa15131c4c9",
+            "mixture_children": 2
+          },
+          "confirmation": {
+            "metric": "rmse",
+            "value": 31.991659384340597,
+            "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+            "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+            "prediction_sha256": "ec2bb1b95a5e70fad605deffcf69c2f8077261d7809243debe7b0b99be1b4c3a",
+            "mixture_children": 2
+          }
+        },
+        "decision": {
+          "each_cut_primary_gate_passed": true,
+          "class_each_cut_gate_passed": true,
+          "matched_saved_primary_and_confirmation_independently_recomputed": true,
+          "fresh_protected_control_full_refit": false,
+          "scope": "Exact preserved control recipe rerun on the same two fitting/validation partitions; final refit audited only for the selected procedure",
+          "cuts": [
+            {
+              "phase": "primary",
+              "current": 37.12053178698236,
+              "delta_current_minus_control": -1.7822719443524235,
+              "primary_improves": true
+            },
+            {
+              "phase": "confirmation",
+              "current": 31.189515002691635,
+              "delta_current_minus_control": -0.8021443816489615,
+              "primary_improves": true
+            }
+          ]
+        }
+      },
+      "historical_control_comparisons": {
+        "v16-mean1": {
+          "baseline_report_sha256": "a431c5de3f02ae362ffb8d083f9b075af9c8020d52c0adafa72c24d575bee309",
+          "cut_comparable_by_preserved_protocol_and_matching_training_row_hashes": true,
+          "historical_confirmation_training_rows_rechecked": true,
+          "actual_selected_two_cut_mean": 34.155023394837,
+          "preserved_selected_two_cut_mean": 35.44723155783769,
+          "mean_delta_current_minus_control": -1.2922081630006872,
+          "each_cut_primary_gate_passed": true,
+          "class_each_cut_gate_passed": true,
+          "fresh_control_refit": false,
+          "historical_control_raw_predictions_recomputed": false,
+          "historical_confirmation_raw_partition_rechecked": false,
+          "scope": "Saved qualified full-procedure V11/V16 control; primary partition fingerprint matches, confirmation follows preserved two-cut protocol. Not a prospective matched rerun.",
+          "cuts": [
+            {
+              "phase": "primary",
+              "current": 37.12053178698236,
+              "preserved_control": 38.902803731334785,
+              "delta_current_minus_control": -1.7822719443524235,
+              "primary_improves": true
+            },
+            {
+              "phase": "confirmation",
+              "current": 31.189515002691635,
+              "preserved_control": 31.991659384340597,
+              "delta_current_minus_control": -0.8021443816489615,
+              "primary_improves": true
+            }
+          ]
+        }
+      },
+      "full_refit": {
+        "status": "ok",
+        "actual_iteration_tree": [
+          474,
+          109
+        ],
+        "submission_sha256": "6f248d5f00373ec340776ba717cdb64511062a7b8c3a380cb2b1b01aaa1c45a1",
+        "integrity_ok": true
+      }
+    },
+    "Br": {
+      "kind": "regression",
+      "arm": "B",
+      "procedure_passed": true,
+      "metadata_refs": {
+        "report": {
+          "path": "uq3/B/r/automl_runs/repair4/report.json",
+          "sha256": "6b9ff57012f318f597a73c1ff97d55e89683febf3bbe99ac2d7efcc53db14a0e"
+        },
+        "supervisor": {
+          "path": "uq3/B/r/supervisor.json",
+          "sha256": "0b434aa7a68d10358da73ccf75d5352fc14f4b957d12ad4a22b98df1b65264f8"
+        },
+        "seal": {
+          "path": "uq3/Br-seal.json",
+          "sha256": "c4ab7b8fb26fe0a9644d917ad3599b4ccf7e74cc9596afff37d65a442b32c9e6"
+        },
+        "usage_ledger": {
+          "path": "uq3/B/r/automl_runs/run-budget-3lt_1ehb/report.json",
+          "sha256": "5b0a597a67ec15bf3a9ef0bbf779ffeacf1020322c2818461516a0f349c34afc"
+        }
+      },
+      "parent_caps": {
+        "parent": 900,
+        "child": 870,
+        "solver": 810,
+        "observed_seconds": 237.0,
+        "peak_owned_tree_RSS_MiB": 831.90625,
+        "maximum_observed_concurrent_worker_jobs": 1
+      },
+      "four_stage_evidence": {
+        "mode": "four_stage",
+        "initial_assessment_before_fitting": true,
+        "initial_assessment": {
+          "status": "ok",
+          "attempted": true,
+          "call_status": "ok",
+          "assessment_valid": true,
+          "error": null
+        },
+        "initial_queue_receipt_count": 9,
+        "initial_queue_sources": [
+          "protected_complete_control",
+          "unprofiled_hpo_single",
+          "isolated_feature_engineering",
+          "required_catboost",
+          "required_xgboost",
+          "prior_champion",
+          "fixed_l1_composite",
+          "qwen_initial",
+          "qwen_initial"
+        ],
+        "protected_originals": true,
+        "catboost_top_k": 32,
+        "actual_teacher_receipts_count": 2,
+        "successful_model_families": [
+          "catboost",
+          "lightgbm",
+          "xgboost"
+        ],
+        "stage_hashes": {
+          "report": "6b9ff57012f318f597a73c1ff97d55e89683febf3bbe99ac2d7efcc53db14a0e",
+          "initial_assessment": "d71f035f38bcab31dec7a6cd128ba2860d33104b4751cd0454030fabef3c896b",
+          "supervisor": "0b434aa7a68d10358da73ccf75d5352fc14f4b957d12ad4a22b98df1b65264f8",
+          "hpo": "81979178910ed971274aac5dfa873e2cceb8a058615fcc3c7cb9f206d05058a7",
+          "api_ledger": "5b0a597a67ec15bf3a9ef0bbf779ffeacf1020322c2818461516a0f349c34afc"
+        }
+      },
+      "component_counts": {
+        "outer_experiment_records": 9,
+        "outer_status_counts": {
+          "ok": 9
+        },
+        "confirmation_records": 3,
+        "observed_logical_worker_roots": 21,
+        "selected_engine": "ensemble",
+        "selected_explicit_outer_components": 2,
+        "actual_total_learner_fits": null,
+        "count_scope": "Experiment records, observed logical roots and recipe component counts differ from process-start/recursive learner-fit counts; recursive total remains null."
+      },
+      "HPO": {
+        "status": "ok",
+        "maximum_trials": 8,
+        "planned_trials": 8,
+        "attempted_trials": 8,
+        "completed_trials": 8,
+        "failed_trials": 0,
+        "duplicate_trials": 0,
+        "unattempted_trials": 0,
+        "guided_attempts": 5,
+        "guided_successful_trials": 5,
+        "seconds": 35.297
+      },
+      "fair_policy": {
+        "mode": null,
+        "worker_callback_invocations": null,
+        "actual_learner_fits": null
+      },
+      "API": {
+        "gateway_calls": 2,
+        "HTTP_attempts": 2,
+        "prompt_tokens": 18974,
+        "completion_tokens": 1766,
+        "usage_complete": true,
+        "followup_observed": true,
+        "requested_reasoning_effort": "off",
+        "effective_reasoning_effort_certified": false,
+        "response_models": [
+          "qwen/qwen3.8-27b"
+        ]
+      },
+      "strict_caller": {
+        "enabled": true,
+        "format_and_lexical_receipt_verified": true,
+        "planner_full_train_statistics_not_fitting_only": true
+      },
+      "independent_cut_metrics": {
+        "primary": {
+          "metric": "rmse",
+          "value": 37.12053178698236,
+          "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+          "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+          "prediction_sha256": "99ad854da9ef2dfe693da97f5759be7ba31dcee5e4fdd55ebb447d1197ff0581",
+          "mixture_children": 2
+        },
+        "confirmation": {
+          "metric": "rmse",
+          "value": 31.189515002691635,
+          "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+          "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+          "prediction_sha256": "60c506b5dc187a25435d1415eb2d73597cf706725be68fe25533693e09179a7e",
+          "mixture_children": 2
+        }
+      },
+      "independent_two_cut_mean": 34.155023394837,
+      "matched_fresh_control": {
+        "recipe_sha256": "0480d5e60c6aa42be4a78e300c3baf7a0346d431707ce79cb6850c73d84adf1b",
+        "measurements": {
+          "primary": {
+            "metric": "rmse",
+            "value": 38.902803731334785,
+            "positions_sha256": "b100c39b972408f31e7e91c5e8f1d9b14cdc0fc70a115e3046324bef0db08859",
+            "split_file_sha256": "5c72db2a788262cfe52ba9c0c51a8b3a20e90875279e39cb96101c052cc40c84",
+            "prediction_sha256": "7715ac9ab576c17d8b01db7d80cb2485d2564d75ac18838de9c53fa15131c4c9",
+            "mixture_children": 2
+          },
+          "confirmation": {
+            "metric": "rmse",
+            "value": 31.991659384340597,
+            "positions_sha256": "b6e178688ecba78449a394c5f007bda106ea66ff956b7d1e3308ae775cb44f97",
+            "split_file_sha256": "e877869cb58f530a7bc73ad1e4cbc7d941fbb8bf6e7b42415f1a73608378fc8b",
+            "prediction_sha256": "ec2bb1b95a5e70fad605deffcf69c2f8077261d7809243debe7b0b99be1b4c3a",
+            "mixture_children": 2
+          }
+        },
+        "decision": {
+          "each_cut_primary_gate_passed": true,
+          "class_each_cut_gate_passed": true,
+          "matched_saved_primary_and_confirmation_independently_recomputed": true,
+          "fresh_protected_control_full_refit": false,
+          "scope": "Exact preserved control recipe rerun on the same two fitting/validation partitions; final refit audited only for the selected procedure",
+          "cuts": [
+            {
+              "phase": "primary",
+              "current": 37.12053178698236,
+              "delta_current_minus_control": -1.7822719443524235,
+              "primary_improves": true
+            },
+            {
+              "phase": "confirmation",
+              "current": 31.189515002691635,
+              "delta_current_minus_control": -0.8021443816489615,
+              "primary_improves": true
+            }
+          ]
+        }
+      },
+      "historical_control_comparisons": {
+        "v16-mean1": {
+          "baseline_report_sha256": "a431c5de3f02ae362ffb8d083f9b075af9c8020d52c0adafa72c24d575bee309",
+          "cut_comparable_by_preserved_protocol_and_matching_training_row_hashes": true,
+          "historical_confirmation_training_rows_rechecked": true,
+          "actual_selected_two_cut_mean": 34.155023394837,
+          "preserved_selected_two_cut_mean": 35.44723155783769,
+          "mean_delta_current_minus_control": -1.2922081630006872,
+          "each_cut_primary_gate_passed": true,
+          "class_each_cut_gate_passed": true,
+          "fresh_control_refit": false,
+          "historical_control_raw_predictions_recomputed": false,
+          "historical_confirmation_raw_partition_rechecked": false,
+          "scope": "Saved qualified full-procedure V11/V16 control; primary partition fingerprint matches, confirmation follows preserved two-cut protocol. Not a prospective matched rerun.",
+          "cuts": [
+            {
+              "phase": "primary",
+              "current": 37.12053178698236,
+              "preserved_control": 38.902803731334785,
+              "delta_current_minus_control": -1.7822719443524235,
+              "primary_improves": true
+            },
+            {
+              "phase": "confirmation",
+              "current": 31.189515002691635,
+              "preserved_control": 31.991659384340597,
+              "delta_current_minus_control": -0.8021443816489615,
+              "primary_improves": true
+            }
+          ]
+        }
+      },
+      "full_refit": {
+        "status": "ok",
+        "actual_iteration_tree": [
+          474,
+          109
+        ],
+        "submission_sha256": "6f248d5f00373ec340776ba717cdb64511062a7b8c3a380cb2b1b01aaa1c45a1",
+        "integrity_ok": true
+      }
+    },
+    "Ac": {
+      "kind": "classification",
+      "arm": "A",
+      "procedure_passed": true,
+      "metadata_refs": {
+        "report": {
+          "path": "uq3/A/c/automl_runs/repair4/report.json",
+          "sha256": "d4f3e92a271c1bc9ddffcaa2cab6eb5ee57889be9b61e42b82c216eb685a4bec"
+        },
+        "supervisor": {
+          "path": "uq3/A/c/supervisor.json",
+          "sha256": "c03e0a64c658a7b73dfd87797b1a957c8962b8d059502df4ee4f53e903583efd"
+        },
+        "seal": {
+          "path": "uq3/Ac-seal.json",
+          "sha256": "123054af5bc64408f0746c8709c1dd8b4aa39eb0a7ed8554924c4745109407d7"
+        },
+        "usage_ledger": {
+          "path": "uq3/A/c/automl_runs/run-budget-g6td1uzg/report.json",
+          "sha256": "088475733a6b2bd0620b3fb7a6a9a5fbbbc28e7c908a6d96c6e9660415d1a3c8"
+        }
+      },
+      "parent_caps": {
+        "parent": 3600,
+        "child": 3570,
+        "solver": 3510,
+        "observed_seconds": 2882.578999999998,
+        "peak_owned_tree_RSS_MiB": 1410.0,
+        "maximum_observed_concurrent_worker_jobs": 1
+      },
+      "four_stage_evidence": {
+        "mode": "four_stage",
+        "initial_assessment_before_fitting": true,
+        "initial_assessment": {
+          "status": "ok",
+          "attempted": true,
+          "call_status": "ok",
+          "assessment_valid": true,
+          "error": null
+        },
+        "initial_queue_receipt_count": 7,
+        "initial_queue_sources": [
+          "protected_complete_control",
+          "unprofiled_hpo_single",
+          "isolated_feature_engineering",
+          "required_catboost",
+          "required_xgboost",
+          "qwen_initial",
+          "qwen_initial"
+        ],
+        "protected_originals": true,
+        "catboost_top_k": 32,
+        "actual_teacher_receipts_count": 6,
+        "successful_model_families": [
+          "catboost",
+          "lightgbm",
+          "xgboost"
+        ],
+        "stage_hashes": {
+          "report": "d4f3e92a271c1bc9ddffcaa2cab6eb5ee57889be9b61e42b82c216eb685a4bec",
+          "initial_assessment": "ddb7d31eb5f2ace171f80fa1f973675492c77e1ed114f563cefec9443986694b",
+          "supervisor": "c03e0a64c658a7b73dfd87797b1a957c8962b8d059502df4ee4f53e903583efd",
+          "hpo": "4ff2cc1c8868d229a336312bd2714784d387552ed2cf3f5b4f8bd7d286aa135a",
+          "api_ledger": "088475733a6b2bd0620b3fb7a6a9a5fbbbc28e7c908a6d96c6e9660415d1a3c8"
+        }
+      },
+      "component_counts": {
+        "outer_experiment_records": 9,
+        "outer_status_counts": {
+          "ok": 9
+        },
+        "confirmation_records": 3,
+        "observed_logical_worker_roots": 21,
+        "selected_engine": "lightgbm",
+        "selected_explicit_outer_components": 0,
+        "actual_total_learner_fits": null,
+        "count_scope": "Experiment records, observed logical roots and recipe component counts differ from process-start/recursive learner-fit counts; recursive total remains null."
+      },
+      "HPO": {
+        "status": "ok",
+        "maximum_trials": 8,
+        "planned_trials": 8,
+        "attempted_trials": 8,
+        "completed_trials": 8,
+        "failed_trials": 0,
+        "duplicate_trials": 0,
+        "unattempted_trials": 0,
+        "guided_attempts": 5,
+        "guided_successful_trials": 5,
+        "seconds": 621.312
+      },
+      "fair_policy": {
+        "mode": "hpo_fair_reserve_v1",
+        "actual_trial_entries": 8,
+        "worker_callback_invocations": 8,
+        "valid_objectives": 8,
+        "failed_objectives": 0,
+        "duplicates": 0,
+        "unattempted": 0,
+        "guided_attempts": 5,
+        "guided_successes": 5,
+        "actual_model_process_launches": null,
+        "actual_learner_fits": null,
+        "original_phase_seconds": 900,
+        "source_and_callback_receipts_verified": true,
+        "guaranteed_eight_valid": false
+      },
+      "API": {
+        "gateway_calls": 2,
+        "HTTP_attempts": 2,
+        "prompt_tokens": 16723,
+        "completion_tokens": 1291,
+        "usage_complete": true,
+        "followup_observed": true,
+        "requested_reasoning_effort": "off",
+        "effective_reasoning_effort_certified": false,
+        "response_models": [
+          "qwen/qwen3.8-27b"
+        ]
+      },
+      "strict_caller": {
+        "enabled": false,
+        "format_and_lexical_receipt_verified": null,
+        "planner_full_train_statistics_not_fitting_only": null
+      },
+      "independent_cut_metrics": {
+        "primary": {
+          "metric": "macro_f1",
+          "value": 0.6558634659956402,
+          "positions_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+          "split_file_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+          "prediction_sha256": "f3803745a6e1a2e2a00e046f61854cdf350949a63d315712353e4af2fa653f20",
+          "mixture_children": 2
+        },
+        "confirmation": {
+          "metric": "macro_f1",
+          "value": 0.653724307666515,
+          "positions_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+          "split_file_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+          "prediction_sha256": "212d2c1c68fa3c68ba0acb4e6cfeb7f8e6cb17d66a048546345bd53136f665eb",
+          "mixture_children": 2
+        }
+      },
+      "independent_two_cut_mean": 0.6547938868310776,
+      "matched_fresh_control": {
+        "recipe_sha256": "56c0e2204df33ebc733034ad5ed835d902874862c71bbb4a16a043c3a99781a9",
+        "measurements": {
+          "primary": {
+            "metric": "macro_f1",
+            "value": 0.6560462962524971,
+            "positions_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "split_file_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+            "prediction_sha256": "f822612170a9964f37d899d6b40ed185323b9dfbc746b7541431ce2101cefa6f",
+            "mixture_children": 3
+          },
+          "confirmation": {
+            "metric": "macro_f1",
+            "value": 0.6499634975227442,
+            "positions_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "split_file_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+            "prediction_sha256": "c92ce2bf6c4bb38c2dc9bc20f50cce48058626804c400301acecf0bf24370e33",
+            "mixture_children": 3
+          }
+        },
+        "decision": {
+          "each_cut_primary_gate_passed": false,
+          "class_each_cut_gate_passed": false,
+          "matched_saved_primary_and_confirmation_independently_recomputed": true,
+          "fresh_protected_control_full_refit": false,
+          "scope": "Exact preserved control recipe rerun on the same two fitting/validation partitions; final refit audited only for the selected procedure",
+          "cuts": [
+            {
+              "phase": "primary",
+              "current": 0.6558634659956402,
+              "delta_current_minus_control": -0.00018283025685694732,
+              "primary_improves": false,
+              "supported_class_losses_over_001": {},
+              "ex_rarest_macro_f1_delta": -3.606035223035425e-05,
+              "all_class_gates_passed": false
+            },
+            {
+              "phase": "confirmation",
+              "current": 0.653724307666515,
+              "delta_current_minus_control": 0.003760810143770832,
+              "primary_improves": true,
+              "supported_class_losses_over_001": {
+                "Backdoor": -0.01115914037830712
+              },
+              "ex_rarest_macro_f1_delta": 0.0017156237503308154,
+              "all_class_gates_passed": false
+            }
+          ]
+        }
+      },
+      "historical_control_comparisons": {
+        "v11-featureviews1": {
+          "baseline_report_sha256": "4ede975b795192dabd26b20b164c2c7351d41a73b2f36e00f30ff322fbd9fab5",
+          "cut_comparable_by_preserved_protocol_and_matching_training_row_hashes": true,
+          "historical_confirmation_training_rows_rechecked": true,
+          "actual_selected_two_cut_mean": 0.6547938868310776,
+          "preserved_selected_two_cut_mean": 0.6593178433614652,
+          "mean_delta_current_minus_control": -0.004523956530387507,
+          "each_cut_primary_gate_passed": false,
+          "class_each_cut_gate_passed": false,
+          "fresh_control_refit": false,
+          "historical_control_raw_predictions_recomputed": false,
+          "historical_confirmation_raw_partition_rechecked": false,
+          "scope": "Saved qualified full-procedure V11/V16 control; primary partition fingerprint matches, confirmation follows preserved two-cut protocol. Not a prospective matched rerun.",
+          "cuts": [
+            {
+              "phase": "primary",
+              "current": 0.6558634659956402,
+              "preserved_control": 0.6632403174648631,
+              "delta_current_minus_control": -0.007376851469222956,
+              "primary_improves": false,
+              "supported_class_losses_over_001": {},
+              "ex_rarest_macro_f1_delta": -0.00013580936125130573,
+              "all_class_gates_passed": false
+            },
+            {
+              "phase": "confirmation",
+              "current": 0.653724307666515,
+              "preserved_control": 0.6553953692580672,
+              "delta_current_minus_control": -0.0016710615915521698,
+              "primary_improves": false,
+              "supported_class_losses_over_001": {
+                "Backdoor": -0.023547677577953174
+              },
+              "ex_rarest_macro_f1_delta": -0.0018567351017245344,
+              "all_class_gates_passed": false
+            }
+          ]
+        },
+        "v16-mean1": {
+          "baseline_report_sha256": "2905c32aa98270fb5b76f6ca1a4e664c0e76f7b399772864b51d0baf8e08a606",
+          "cut_comparable_by_preserved_protocol_and_matching_training_row_hashes": true,
+          "historical_confirmation_training_rows_rechecked": true,
+          "actual_selected_two_cut_mean": 0.6547938868310776,
+          "preserved_selected_two_cut_mean": 0.6593178433614652,
+          "mean_delta_current_minus_control": -0.004523956530387507,
+          "each_cut_primary_gate_passed": false,
+          "class_each_cut_gate_passed": false,
+          "fresh_control_refit": false,
+          "historical_control_raw_predictions_recomputed": false,
+          "historical_confirmation_raw_partition_rechecked": false,
+          "scope": "Saved qualified full-procedure V11/V16 control; primary partition fingerprint matches, confirmation follows preserved two-cut protocol. Not a prospective matched rerun.",
+          "cuts": [
+            {
+              "phase": "primary",
+              "current": 0.6558634659956402,
+              "preserved_control": 0.6632403174648631,
+              "delta_current_minus_control": -0.007376851469222956,
+              "primary_improves": false,
+              "supported_class_losses_over_001": {},
+              "ex_rarest_macro_f1_delta": -0.00013580936125130573,
+              "all_class_gates_passed": false
+            },
+            {
+              "phase": "confirmation",
+              "current": 0.653724307666515,
+              "preserved_control": 0.6553953692580672,
+              "delta_current_minus_control": -0.0016710615915521698,
+              "primary_improves": false,
+              "supported_class_losses_over_001": {
+                "Backdoor": -0.023547677577953174
+              },
+              "ex_rarest_macro_f1_delta": -0.0018567351017245344,
+              "all_class_gates_passed": false
+            }
+          ]
+        }
+      },
+      "full_refit": {
+        "status": "ok",
+        "actual_iteration_tree": [
+          100,
+          111
+        ],
+        "submission_sha256": "1f48b6dff8906f3e1e783ae5c9aedd3d0b6fdf87f468c60fe71236402b77d6e0",
+        "integrity_ok": true
+      }
+    },
+    "Bc": {
+      "kind": "classification",
+      "arm": "B",
+      "procedure_passed": true,
+      "metadata_refs": {
+        "report": {
+          "path": "uq3/B/c/automl_runs/repair4/report.json",
+          "sha256": "cd3fc66b45400dd6d69111911cbc61def0a544d3d3adeddf9f1390b9d8f94694"
+        },
+        "supervisor": {
+          "path": "uq3/B/c/supervisor.json",
+          "sha256": "e9ac479c72c11ce0c13ff4985ee23f8711d84e3c4494f8c17f007fe95609c1b0"
+        },
+        "seal": {
+          "path": "uq3/Bc-seal.json",
+          "sha256": "e7e195ce0e22d1e7b304939813fba655bb045d73de27b008cd0f982f32a0f374"
+        },
+        "usage_ledger": {
+          "path": "uq3/B/c/automl_runs/run-budget-ldnj8eab/report.json",
+          "sha256": "ee9c3011a9e56a653b2f03747ce177a3d09ce5ae241a2a02db3277ad12185977"
+        }
+      },
+      "parent_caps": {
+        "parent": 3600,
+        "child": 3570,
+        "solver": 3510,
+        "observed_seconds": 2903.2969999999914,
+        "peak_owned_tree_RSS_MiB": 1371.796875,
+        "maximum_observed_concurrent_worker_jobs": 1
+      },
+      "four_stage_evidence": {
+        "mode": "four_stage",
+        "initial_assessment_before_fitting": true,
+        "initial_assessment": {
+          "status": "ok",
+          "attempted": true,
+          "call_status": "ok",
+          "assessment_valid": true,
+          "error": null
+        },
+        "initial_queue_receipt_count": 7,
+        "initial_queue_sources": [
+          "protected_complete_control",
+          "unprofiled_hpo_single",
+          "isolated_feature_engineering",
+          "required_catboost",
+          "required_xgboost",
+          "qwen_initial",
+          "qwen_initial"
+        ],
+        "protected_originals": true,
+        "catboost_top_k": 32,
+        "actual_teacher_receipts_count": 6,
+        "successful_model_families": [
+          "catboost",
+          "lightgbm",
+          "xgboost"
+        ],
+        "stage_hashes": {
+          "report": "cd3fc66b45400dd6d69111911cbc61def0a544d3d3adeddf9f1390b9d8f94694",
+          "initial_assessment": "7b925a313407abc5a5d18cbbe21852f38aa6c4ef3cc9578bd328cb6c70755678",
+          "supervisor": "e9ac479c72c11ce0c13ff4985ee23f8711d84e3c4494f8c17f007fe95609c1b0",
+          "hpo": "7601394ad9879e6ab35b85e15b8a49a11c488ed07c7aa633c8bfb8641a753aae",
+          "api_ledger": "ee9c3011a9e56a653b2f03747ce177a3d09ce5ae241a2a02db3277ad12185977"
+        }
+      },
+      "component_counts": {
+        "outer_experiment_records": 9,
+        "outer_status_counts": {
+          "ok": 9
+        },
+        "confirmation_records": 3,
+        "observed_logical_worker_roots": 21,
+        "selected_engine": "ensemble",
+        "selected_explicit_outer_components": 2,
+        "actual_total_learner_fits": null,
+        "count_scope": "Experiment records, observed logical roots and recipe component counts differ from process-start/recursive learner-fit counts; recursive total remains null."
+      },
+      "HPO": {
+        "status": "ok",
+        "maximum_trials": 8,
+        "planned_trials": 8,
+        "attempted_trials": 8,
+        "completed_trials": 8,
+        "failed_trials": 0,
+        "duplicate_trials": 0,
+        "unattempted_trials": 0,
+        "guided_attempts": 5,
+        "guided_successful_trials": 5,
+        "seconds": 631.547
+      },
+      "fair_policy": {
+        "mode": "hpo_fair_reserve_v1",
+        "actual_trial_entries": 8,
+        "worker_callback_invocations": 8,
+        "valid_objectives": 8,
+        "failed_objectives": 0,
+        "duplicates": 0,
+        "unattempted": 0,
+        "guided_attempts": 5,
+        "guided_successes": 5,
+        "actual_model_process_launches": null,
+        "actual_learner_fits": null,
+        "original_phase_seconds": 900,
+        "source_and_callback_receipts_verified": true,
+        "guaranteed_eight_valid": false
+      },
+      "API": {
+        "gateway_calls": 2,
+        "HTTP_attempts": 2,
+        "prompt_tokens": 16777,
+        "completion_tokens": 1401,
+        "usage_complete": true,
+        "followup_observed": true,
+        "requested_reasoning_effort": "off",
+        "effective_reasoning_effort_certified": false,
+        "response_models": [
+          "qwen/qwen3.8-27b"
+        ]
+      },
+      "strict_caller": {
+        "enabled": true,
+        "format_and_lexical_receipt_verified": true,
+        "planner_full_train_statistics_not_fitting_only": true
+      },
+      "independent_cut_metrics": {
+        "primary": {
+          "metric": "macro_f1",
+          "value": 0.6585368043724131,
+          "positions_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+          "split_file_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+          "prediction_sha256": "e11c10bb8be7adb071e0d820b937c4ca6e55945028fe7d6e613622b3cac28ee0",
+          "mixture_children": 2
+        },
+        "confirmation": {
+          "metric": "macro_f1",
+          "value": 0.6553116621529156,
+          "positions_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+          "split_file_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+          "prediction_sha256": "8cd2bed7121e4b075df8457cf72c00a7c53eceef501fb858014fdf3cb18292af",
+          "mixture_children": 2
+        }
+      },
+      "independent_two_cut_mean": 0.6569242332626644,
+      "matched_fresh_control": {
+        "recipe_sha256": "56c0e2204df33ebc733034ad5ed835d902874862c71bbb4a16a043c3a99781a9",
+        "measurements": {
+          "primary": {
+            "metric": "macro_f1",
+            "value": 0.6560462962524971,
+            "positions_sha256": "377ac83db6ae82c2945ecae16c192c51aaeba6759f0fe1d4486bc58d6c0b471f",
+            "split_file_sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+            "prediction_sha256": "f822612170a9964f37d899d6b40ed185323b9dfbc746b7541431ce2101cefa6f",
+            "mixture_children": 3
+          },
+          "confirmation": {
+            "metric": "macro_f1",
+            "value": 0.6499634975227442,
+            "positions_sha256": "2405c8413992c96b69c282f6e070394f0e42e7d098778f686e3ae3194750c12c",
+            "split_file_sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+            "prediction_sha256": "c92ce2bf6c4bb38c2dc9bc20f50cce48058626804c400301acecf0bf24370e33",
+            "mixture_children": 3
+          }
+        },
+        "decision": {
+          "each_cut_primary_gate_passed": true,
+          "class_each_cut_gate_passed": false,
+          "matched_saved_primary_and_confirmation_independently_recomputed": true,
+          "fresh_protected_control_full_refit": false,
+          "scope": "Exact preserved control recipe rerun on the same two fitting/validation partitions; final refit audited only for the selected procedure",
+          "cuts": [
+            {
+              "phase": "primary",
+              "current": 0.6585368043724131,
+              "delta_current_minus_control": 0.002490508119916024,
+              "primary_improves": true,
+              "supported_class_losses_over_001": {
+                "Analysis": -0.018881626724763956,
+                "Backdoor": -0.010930442637759719
+              },
+              "ex_rarest_macro_f1_delta": -0.0012892061454196388,
+              "all_class_gates_passed": false
+            },
+            {
+              "phase": "confirmation",
+              "current": 0.6553116621529156,
+              "delta_current_minus_control": 0.005348164630171404,
+              "primary_improves": true,
+              "supported_class_losses_over_001": {},
+              "ex_rarest_macro_f1_delta": 0.0034793509574425185,
+              "all_class_gates_passed": true
+            }
+          ]
+        }
+      },
+      "historical_control_comparisons": {
+        "v11-featureviews1": {
+          "baseline_report_sha256": "4ede975b795192dabd26b20b164c2c7351d41a73b2f36e00f30ff322fbd9fab5",
+          "cut_comparable_by_preserved_protocol_and_matching_training_row_hashes": true,
+          "historical_confirmation_training_rows_rechecked": true,
+          "actual_selected_two_cut_mean": 0.6569242332626644,
+          "preserved_selected_two_cut_mean": 0.6593178433614652,
+          "mean_delta_current_minus_control": -0.0023936100988007913,
+          "each_cut_primary_gate_passed": false,
+          "class_each_cut_gate_passed": false,
+          "fresh_control_refit": false,
+          "historical_control_raw_predictions_recomputed": false,
+          "historical_confirmation_raw_partition_rechecked": false,
+          "scope": "Saved qualified full-procedure V11/V16 control; primary partition fingerprint matches, confirmation follows preserved two-cut protocol. Not a prospective matched rerun.",
+          "cuts": [
+            {
+              "phase": "primary",
+              "current": 0.6585368043724131,
+              "preserved_control": 0.6632403174648631,
+              "delta_current_minus_control": -0.004703513092449985,
+              "primary_improves": false,
+              "supported_class_losses_over_001": {
+                "Analysis": -0.015710259639023783,
+                "Backdoor": -0.010930442637759719
+              },
+              "ex_rarest_macro_f1_delta": -0.0013889551544405904,
+              "all_class_gates_passed": false
+            },
+            {
+              "phase": "confirmation",
+              "current": 0.6553116621529156,
+              "preserved_control": 0.6553953692580672,
+              "delta_current_minus_control": -8.370710515159807e-05,
+              "primary_improves": false,
+              "supported_class_losses_over_001": {
+                "Backdoor": -0.019546200109349376
+              },
+              "ex_rarest_macro_f1_delta": -9.300789461283123e-05,
+              "all_class_gates_passed": false
+            }
+          ]
+        },
+        "v16-mean1": {
+          "baseline_report_sha256": "2905c32aa98270fb5b76f6ca1a4e664c0e76f7b399772864b51d0baf8e08a606",
+          "cut_comparable_by_preserved_protocol_and_matching_training_row_hashes": true,
+          "historical_confirmation_training_rows_rechecked": true,
+          "actual_selected_two_cut_mean": 0.6569242332626644,
+          "preserved_selected_two_cut_mean": 0.6593178433614652,
+          "mean_delta_current_minus_control": -0.0023936100988007913,
+          "each_cut_primary_gate_passed": false,
+          "class_each_cut_gate_passed": false,
+          "fresh_control_refit": false,
+          "historical_control_raw_predictions_recomputed": false,
+          "historical_confirmation_raw_partition_rechecked": false,
+          "scope": "Saved qualified full-procedure V11/V16 control; primary partition fingerprint matches, confirmation follows preserved two-cut protocol. Not a prospective matched rerun.",
+          "cuts": [
+            {
+              "phase": "primary",
+              "current": 0.6585368043724131,
+              "preserved_control": 0.6632403174648631,
+              "delta_current_minus_control": -0.004703513092449985,
+              "primary_improves": false,
+              "supported_class_losses_over_001": {
+                "Analysis": -0.015710259639023783,
+                "Backdoor": -0.010930442637759719
+              },
+              "ex_rarest_macro_f1_delta": -0.0013889551544405904,
+              "all_class_gates_passed": false
+            },
+            {
+              "phase": "confirmation",
+              "current": 0.6553116621529156,
+              "preserved_control": 0.6553953692580672,
+              "delta_current_minus_control": -8.370710515159807e-05,
+              "primary_improves": false,
+              "supported_class_losses_over_001": {
+                "Backdoor": -0.019546200109349376
+              },
+              "ex_rarest_macro_f1_delta": -9.300789461283123e-05,
+              "all_class_gates_passed": false
+            }
+          ]
+        }
+      },
+      "full_refit": {
+        "status": "ok",
+        "actual_iteration_tree": [
+          [
+            100,
+            111
+          ],
+          [
+            447,
+            321
+          ]
+        ],
+        "submission_sha256": "8b3cbf530dfcdf5fd6204beb58426d2eec633666bd68ede625a980b3ba05684b",
+        "integrity_ok": true
+      }
+    }
+  },
+  "totals": {
+    "gateway_calls": 8,
+    "HTTP_attempts": 8,
+    "prompt_tokens": 71451,
+    "completion_tokens": 6172,
+    "HPO_planned": 32,
+    "HPO_attempted": 32,
+    "HPO_completed": 32,
+    "HPO_failed": 0,
+    "HPO_guided_attempts": 20,
+    "HPO_guided_successful": 20,
+    "outer_experiment_records": 36,
+    "outer_successful_records": 36,
+    "confirmation_records": 12
+  },
+  "independent_pair_comparison": {
+    "regression": {
+      "A": 34.155023394837,
+      "B": 34.155023394837,
+      "delta_B_minus_A": 0.0,
+      "higher_is_better": false
+    },
+    "classification": {
+      "A": 0.6547938868310776,
+      "B": 0.6569242332626644,
+      "delta_B_minus_A": 0.002130346431586716,
+      "higher_is_better": true
+    }
+  },
+  "conclusions": {
+    "regression": "Both A and B exactly remeasure mean RMSE34.155023394837; delta0. Both beat fresh preserved control on both cuts. No A/B quality gain attributable to strict caller.",
+    "classification": "B improves over A by0.002130346431586716, but neither beats historical full V16 mean0.6593178433614652. B passes fresh-control primary-metric comparisons but fails supported-class/ex-rarest quality gates; A fails primary/class gates. No promotion.",
+    "technical_pass_is_separate_from_quality_gates": true,
+    "standard_positional_release_qualified": false,
+    "descriptive_retention_win": null,
+    "official_default_ready": false,
+    "promotion": false,
+    "submit": false,
+    "hidden_test_score": null
+  },
+  "limitations": [
+    "Reused-public cuts; not unseen researcher/official hidden test.",
+    "Full-training planner summaries are not fitting-only and remain a limitation.",
+    "Genuine Qwen/HTTP+returned usage are verified from sealed ledger metadata; requested reasoning off is not effective-reasoning certification.",
+    "No causal A/B improvement claim; equal-budget stochastic procedures with same retention and only strict-caller difference.",
+    "Historical control comparisons are saved-evidence comparisons; fresh matched control cuts are separately identified, without a fresh protected-control full refit.",
+    "HPO callback/trial/worker/recipe counts are different; total recursive learner fits remain null.",
+    "This summary trusts closed independent R4/root qualifications; it does not re-open predictions/pristine arrays or rerun audit.",
+    "No automatic promotion or submission; fixed standard executor still needs its separate two-call qualification."
+  ],
+  "this_summary_operations": {
+    "stdlib_JSON_and_SHA_only": true,
+    "new_model_fits": 0,
+    "API_calls": 0,
+    "candidate_imports": 0,
+    "tests": 0,
+    "data_CSV_NPZ_predictions_pristine_truth_reads": 0,
+    "process_scans": 0,
+    "clock_assigned": false,
+    "STATE_canonical_Git_writes": 0
+  }
+}

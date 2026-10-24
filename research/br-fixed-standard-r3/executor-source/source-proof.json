@@ -1,0 +1,114 @@
+{
+  "schema": "br-fixed-standard-source-proof-r3",
+  "original_R1_handoff_sha256": "601a627cb7b1664858e5a5324dce9a5f0ec598152810adf1f46e7ce81be872ab",
+  "original_R1_archive_sha256": "01a6170b1e001fca7a8132e2d1db0b51e70506401b7f1b4b8690c88a65a5c527",
+  "all_original83_pins_preserved": true,
+  "reviewed_R1_findings": {
+    "path": "br-standard-release-independent-source-review-r1.json",
+    "sha256": "37a487bb38025273f666ca9677cc3c01f56bcef036e8aa0b23e4ffedcd3ba3c0"
+  },
+  "scope_only": [
+    "BR01 internalworker1536/combined2048 caps, terminalresourcecheck/receipts/conservativeparentlabel",
+    "BR02 explicitrole membership and postdiscovery target/ID equality",
+    "BR03 protectedoutput resolved/samefile/symlink guard preworker andprepublication"
+  ],
+  "changed_runtime_members_vs_R1": {
+    "automl_fixed_release.py": "fe8a08f193db5c05c60a637c9fa83814fb86651d2315338b2d588a3abd740bf7",
+    "automl_release_runtime.py": "eab5c87d017610dbd2a31fba4a2f6ad70249aaa28117b835cd45675f4706c23d"
+  },
+  "unchanged_runtime_members_vs_R1": 71,
+  "all_recipe_constants_worker_IO_adapters_transforms_metricports_process9f_exact_R1": true,
+  "same_original_requirements_sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+  "source_AST_parse_only": true,
+  "all16_original_methods_assertions_preserved": true,
+  "new_meaningful_methods": [
+    "FixedReleaseContracts.test_publication_alias_preflight_preserves_protected_files",
+    "FixedReleaseContracts.test_terminal_memory_caps_boundary_and_denial_are_not_success"
+  ],
+  "methods": [
+    {
+      "method": "FixedReleaseContracts.test_exact_embedded_raw_recipes_and_outer_component_geometry",
+      "AST_sha256": "6de9fda270a7d46a56da3cbbe5597463255b729d13d20ed88487f04c33bac8be"
+    },
+    {
+      "method": "FixedReleaseContracts.test_routing_uses_only_supported_kind_metric_not_schema_names",
+      "AST_sha256": "1ad10b75df9b921a08cfee48eeabe5743ca045049097afecb3563a5c6a2b415f"
+    },
+    {
+      "method": "FixedReleaseContracts.test_unknown_incompatible_metric_and_text_do_not_get_wrong_recipe",
+      "AST_sha256": "18c87fc4b341f89a38d19afbef64067e24c8b61ebf858d1472576eb550368bb9"
+    },
+    {
+      "method": "FixedReleaseContracts.test_fixed_recipe_returns_independent_copies",
+      "AST_sha256": "5f9df044504358796a96d26aef9c5ea1bfc45ff415bcada9e0ad15319e2a04e2"
+    },
+    {
+      "method": "FixedReleaseContracts.test_actual_cut_iterations_not_historical_tree_feed_only_full_refit",
+      "AST_sha256": "c15063d679071a61f9e0067c38a83c12e4fd1f8c9db0504d5e23862ca64561d2"
+    },
+    {
+      "method": "FixedReleaseContracts.test_recursive_actual_median_and_malformed_trees",
+      "AST_sha256": "333754d596d89b5fbd39ddaf4914a32eb5e2210795c421abb8b45d5b51204be0"
+    },
+    {
+      "method": "FixedReleaseContracts.test_lexical_ID_preserves_numeric_regression_target_and_predictor_parsing",
+      "AST_sha256": "4a8c98ba91843f0c34fd8fb7f3addf95e2388a6a1d2f8a442ae322f3cdc8be0d"
+    },
+    {
+      "method": "FixedReleaseContracts.test_worker_lexical_class_labels_and_sample_IDs",
+      "AST_sha256": "6e278d95607f7e8d9a8d8a1e725258dba2e80cb43176c42831822702979a2fc8"
+    },
+    {
+      "method": "FixedReleaseContracts.test_missing_declared_target_role_stops_before_discovery_or_fit",
+      "AST_sha256": "eeeaa7b2cb5bf1042dec7923eb376ac0b31d6c27bc4bcf7bb9cf8ae5c03d3172"
+    },
+    {
+      "method": "FixedReleaseContracts.test_renamed_paths_and_lexical_sample_order_use_declared_roles",
+      "AST_sha256": "3fe0bc77a97cb0f3431a42eb140ce2a57e0be13afb224d9e5bb07f1e29e7fbcd"
+    },
+    {
+      "method": "FixedReleaseContracts.test_strict_original_metric_contrast_unknown_and_conflicts",
+      "AST_sha256": "56294e7d373cd6d744062582ee51e378583c92749f60c601a414384f4bf2caf4"
+    },
+    {
+      "method": "FixedReleaseContracts.test_publication_preserves_lexical_IDs_canonical_labels_and_sample_order",
+      "AST_sha256": "abd1917f8041c09b3c410161462cd78d0618260aae36c553b71d07f61a018d55"
+    },
+    {
+      "method": "FixedReleaseContracts.test_bad_probability_order_and_nonfinite_values_cannot_publish",
+      "AST_sha256": "495ed46a41cde30b509d75e7d7e12ef9ef89e7465e12b9fe169fdb9a0b3419f7"
+    },
+    {
+      "method": "FixedReleaseContracts.test_strict_adapter_preserves_primary_failure_and_restores_caller_scope",
+      "AST_sha256": "e990cc50e7274584bd08e966383a5ef1f5fb219e30658f68f806558c47c06d46"
+    },
+    {
+      "method": "FixedReleaseContracts.test_clock_actual_sample_cadence_and_sticky_denial",
+      "AST_sha256": "c5055e1d4be4a331ac9805acdcf334658e66a4b9b4076c107b2bafea0bf0b59e"
+    },
+    {
+      "method": "FixedReleaseContracts.test_terminal_memory_caps_boundary_and_denial_are_not_success",
+      "AST_sha256": "03a8d5710161339227cdc4e41a01e4be1503b63e1261a1896d34de13a9f33d7c"
+    },
+    {
+      "method": "FixedReleaseContracts.test_publication_alias_preflight_preserves_protected_files",
+      "AST_sha256": "86d528e04cff6772d0e13cdb1630c6f21c1c54df3992f895a371e17d0a54c479"
+    },
+    {
+      "method": "FixedReleaseContracts.test_source_base_requirements_and_numerical_adapter_bytes_preserved",
+      "AST_sha256": "547a629e19bef318f0eadf41a3f15da14f17233b4191df818f45b199db78dcf7"
+    }
+  ],
+  "prepared_methods": 18,
+  "actual_tests_imports_fits_API_data_PID_scans": 0,
+  "clock_assigned": false,
+  "runtime_qualified": false,
+  "R2_fixture_only_stdout_change": {
+    "prior_handoff_sha256": "64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09",
+    "whole_module_inverse_exact_R2": true,
+    "all_runtime73_byte_exact_R2": true,
+    "archive_byte_exact_R2": true,
+    "other17_methods_AST_exact": true,
+    "prepared18_actual0": true
+  }
+}

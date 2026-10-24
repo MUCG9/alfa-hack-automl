@@ -1,0 +1,224 @@
+--- controller-r2/run_controller.py
++++ controller-r3/run_controller.py
+@@ -17,6 +17,8 @@
+ EXECUTOR_HANDOFF_SHA='64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09'
+ ARCHIVE_SHA='6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a'
+ COUNTS_SHA='bc320fd4723476c8a73404ed17a7bdec0cd4c69b1b1d41b321e370549c8cf4d3'
++LAUNCHER_PATH=WORK/'venv/Scripts/python.exe'
++LAUNCHER_SHA='d59c9a894b319828d023f3aa83d9a3488d2339f9e27e60e49b02abb0d53cf538'
+ 
+ def need(value,code):
+     if not value:raise RuntimeError(code)
+@@ -60,26 +62,39 @@
+     return {(v['pid'],v['create_time']) for v in rows}
+ 
+ def capture(psutil,parent_pid,parent_birth):
+-    """Observe self+DIRECT declared parent; never inspect argv or adopt ancestors.
++    """Observe self/direct/shell; allow only direct or ONE pinned venv launcher.
+ 
+     One microsecond absolute tolerance is ONLY for Get-Process ticks/Unix float
+     transport. Saved identities always contain the exact observed psutil birth.
+-    PID and fresh direct OS relationship must match independently of tolerance.
++    Shell PID and fresh bounded OS relationships must match independently.
+     """
+     transported=parent_birth if type(parent_birth) in (int,float) and math.isfinite(parent_birth) else None
+     rows=[];record=dict(declared=dict(pid=parent_pid,create_time=transported),
+         declared_birth_invalid=transported is None,
+-        observed_parent=None,verified=False,transport_absolute_tolerance_seconds=1e-6)
++        observed_parent=None,observed_shell=None,verified=False,transport_absolute_tolerance_seconds=1e-6)
+     try:
+         me=psutil.Process();own_birth=me.create_time();rows.append(dict(pid=me.pid,create_time=own_birth))
+         parent=me.parent();need(parent is not None,'direct_launch_parent_missing')
+         birth=parent.create_time();observed=dict(pid=parent.pid,create_time=birth);record['observed_parent']=observed
+         need(type(parent_pid) is int and parent_pid>0 and type(parent_birth) in (int,float)
+             and math.isfinite(parent_birth) and parent_birth>0,'typed_launch_parent_required')
+-        need(parent.pid==parent_pid and abs(birth-parent_birth)<=1e-6,'direct_launch_parent_transport_mismatch')
++        shell=parent;record['mode']='direct_declared_shell'
++        if parent.pid!=parent_pid:
++            exe=Path(parent.exe())
++            need(not exe.is_symlink() and os.path.normcase(os.path.abspath(exe))==os.path.normcase(os.path.abspath(LAUNCHER_PATH))
++                and sha(exe)==LAUNCHER_SHA,'exact_pinned_venv_launcher_required')
++            shell=parent.parent();need(shell is not None,'declared_shell_missing_after_one_launcher')
++            record['mode']='one_pinned_venv_launcher';record['launcher_executable_sha256']=LAUNCHER_SHA
++        shell_birth=shell.create_time();shell_row=dict(pid=shell.pid,create_time=shell_birth);record['observed_shell']=shell_row
++        need(shell.pid==parent_pid and abs(shell_birth-parent_birth)<=1e-6,'declared_shell_transport_or_extra_hop_mismatch')
+         need(me.ppid()==parent.pid and me.create_time()==own_birth and parent.create_time()==birth,
+             'direct_launch_parent_relationship_or_identity_changed')
+-        rows.append(observed);record['verified']=True
++        if shell.pid!=parent.pid:
++            need(parent.ppid()==shell.pid and shell.create_time()==shell_birth,'launcher_shell_relationship_or_identity_changed')
++        else:need(shell.create_time()==shell_birth,'declared_shell_identity_changed')
++        rows.append(observed)
++        if shell.pid!=parent.pid:rows.append(shell_row)
++        record['verified']=True
+     except BaseException as exc:
+         record['error']=str(exc) if isinstance(exc,RuntimeError) else 'launch_parent_observation_unconfirmed'
+         record['exception_type']=type(exc).__name__
+@@ -132,6 +147,7 @@
+         and cfg['caps']==dict(setup=SETUP,regression=[900,870],classification=[3600,3570],audit=[600,570],final=FINAL,root=ROOT_CLOSE),
+         'fixed_output_and_prospective_caps_required')
+     need(Path(cfg['python']).resolve()==Path(sys.executable).resolve() and cfg['python'] in pins,'interpreter_pin_required')
++    need(pins.get(str(LAUNCHER_PATH))==LAUNCHER_SHA,'pinned_expected_venv_launcher_required')
+     need(cfg['lock']==str(WORK/'alfa-hack-automl/test-runs/.owned-research.lock'),'canonical_lock_required')
+     executor=cfg['executor'];need(executor['archive']['sha256']==ARCHIVE_SHA
+         and len(executor['members_sha256'])==73 and executor['test_count']==18
+@@ -150,7 +166,7 @@
+             'byte_exact_reviewed_executor_contract_required')
+     need(cfg['counts']==dict(path=str(WORK/'uar-count-parser-next-dev/counts.py'),sha256=COUNTS_SHA)
+         and pins.get(cfg['counts']['path'])==COUNTS_SHA
+-        and cfg['caller_contract_count']==8 and len(cfg['caller_test_methods'])==8
++        and cfg['caller_contract_count']==10 and len(cfg['caller_test_methods'])==10
+         and methods(PACKET/'test_controller_contracts.py')==cfg['caller_test_methods'], 'fixed_caller_and_count_contracts_required')
+     for ref in (executor['handoff'],executor['archive'],cfg['candidate_source_review'],cfg['uq3']['root'],cfg['uq3']['fresh']):
+         need(type(ref) is dict and Path(ref['path']).is_absolute() and pins.get(ref['path'])==ref['sha256'],'mandatory_reference_pin_required')
+@@ -238,7 +254,8 @@
+ def main():
+     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--launch',action='store_true',required=True)
+     for n in ('manifest','manifest-sha256','self-sha256'):p.add_argument('--'+n,required=True)
+-    p.add_argument('--launch-parent-pid',type=int,required=True);p.add_argument('--launch-parent-create-time',type=float,required=True)
++    p.add_argument('--launch-parent-pid',type=int,required=True,help='Actual declared PowerShell shell PID, direct or one pinned venv launcher above')
++    p.add_argument('--launch-parent-create-time',type=float,required=True,help='Actual declared shell Unix birth, invariant float serialization')
+     args=p.parse_args();start,begin=time.time(),time.monotonic();wall,end=start+COMMON,begin+COMMON
+     import psutil
+     preparers,parent_observation=capture(psutil,args.launch_parent_pid,args.launch_parent_create_time)
+--- controller-r2/close_controller.py
++++ controller-r3/close_controller.py
+@@ -1,10 +1,12 @@
+ """Prospective root audit: own60 inside the same original6000; no fitting."""
+ from pathlib import Path
+-import argparse, hashlib, importlib.util, json, math, time
++import argparse, hashlib, importlib.util, json, math, os, time
+ 
+ PACKET=Path(__file__).resolve().parent
+ WORK=PACKET.parents[1]
+ OUT=WORK/'brq1'
++LAUNCHER_PATH=WORK/'venv/Scripts/python.exe'
++LAUNCHER_SHA='d59c9a894b319828d023f3aa83d9a3488d2339f9e27e60e49b02abb0d53cf538'
+ 
+ def need(value,code):
+     if not value:raise RuntimeError(code)
+@@ -18,26 +20,39 @@
+     spec.loader.exec_module(value);return value
+ 
+ def capture(psutil,parent_pid,parent_birth):
+-    """Observe self+DIRECT declared parent; never inspect argv or adopt ancestors.
++    """Observe self/direct/shell; allow only direct or ONE pinned venv launcher.
+ 
+     One microsecond absolute tolerance is ONLY for Get-Process ticks/Unix float
+     transport. Saved identities always contain the exact observed psutil birth.
+-    PID and fresh direct OS relationship must match independently of tolerance.
++    Shell PID and fresh bounded OS relationships must match independently.
+     """
+     transported=parent_birth if type(parent_birth) in (int,float) and math.isfinite(parent_birth) else None
+     rows=[];record=dict(declared=dict(pid=parent_pid,create_time=transported),
+         declared_birth_invalid=transported is None,
+-        observed_parent=None,verified=False,transport_absolute_tolerance_seconds=1e-6)
++        observed_parent=None,observed_shell=None,verified=False,transport_absolute_tolerance_seconds=1e-6)
+     try:
+         me=psutil.Process();own_birth=me.create_time();rows.append(dict(pid=me.pid,create_time=own_birth))
+         parent=me.parent();need(parent is not None,'direct_launch_parent_missing')
+         birth=parent.create_time();observed=dict(pid=parent.pid,create_time=birth);record['observed_parent']=observed
+         need(type(parent_pid) is int and parent_pid>0 and type(parent_birth) in (int,float)
+             and math.isfinite(parent_birth) and parent_birth>0,'typed_launch_parent_required')
+-        need(parent.pid==parent_pid and abs(birth-parent_birth)<=1e-6,'direct_launch_parent_transport_mismatch')
++        shell=parent;record['mode']='direct_declared_shell'
++        if parent.pid!=parent_pid:
++            exe=Path(parent.exe())
++            need(not exe.is_symlink() and os.path.normcase(os.path.abspath(exe))==os.path.normcase(os.path.abspath(LAUNCHER_PATH))
++                and sha(exe)==LAUNCHER_SHA,'exact_pinned_venv_launcher_required')
++            shell=parent.parent();need(shell is not None,'declared_shell_missing_after_one_launcher')
++            record['mode']='one_pinned_venv_launcher';record['launcher_executable_sha256']=LAUNCHER_SHA
++        shell_birth=shell.create_time();shell_row=dict(pid=shell.pid,create_time=shell_birth);record['observed_shell']=shell_row
++        need(shell.pid==parent_pid and abs(shell_birth-parent_birth)<=1e-6,'declared_shell_transport_or_extra_hop_mismatch')
+         need(me.ppid()==parent.pid and me.create_time()==own_birth and parent.create_time()==birth,
+             'direct_launch_parent_relationship_or_identity_changed')
+-        rows.append(observed);record['verified']=True
++        if shell.pid!=parent.pid:
++            need(parent.ppid()==shell.pid and shell.create_time()==shell_birth,'launcher_shell_relationship_or_identity_changed')
++        else:need(shell.create_time()==shell_birth,'declared_shell_identity_changed')
++        rows.append(observed)
++        if shell.pid!=parent.pid:rows.append(shell_row)
++        record['verified']=True
+     except BaseException as exc:
+         record['error']=str(exc) if isinstance(exc,RuntimeError) else 'launch_parent_observation_unconfirmed'
+         record['exception_type']=type(exc).__name__
+@@ -49,7 +64,8 @@
+         p.add_argument('--'+key,required=True)
+     p.add_argument('--actual-exec-session',type=int,default=None)
+     p.add_argument('--actual-exit-code',type=int,required=True)
+-    p.add_argument('--launch-parent-pid',type=int,required=True);p.add_argument('--launch-parent-create-time',type=float,required=True)
++    p.add_argument('--launch-parent-pid',type=int,required=True,help='Actual declared PowerShell shell PID, direct or one pinned venv launcher above')
++    p.add_argument('--launch-parent-create-time',type=float,required=True,help='Actual declared shell Unix birth, invariant float serialization')
+     a=p.parse_args();own_unix,own_mono=time.time(),time.monotonic()
+     import psutil
+     # Capture this actual helper/bootstrap before source, manifest or campaign validation.
+--- controller-r2/test_controller_contracts.py
++++ controller-r3/test_controller_contracts.py
+@@ -1,6 +1,7 @@
+ """Prepared no-fit mock/CSV contracts; not executed during source preparation."""
+ from pathlib import Path
+-import csv, importlib.util, tempfile, types, unittest
++import csv, hashlib, importlib.util, tempfile, types, unittest
++from unittest.mock import patch
+ 
+ ROOT=Path(__file__).resolve().parent
+ def module(name,path):
+@@ -10,6 +11,58 @@
+ closer=module('_brq_contract_closer',ROOT/'close_controller.py')
+ 
+ class LaunchParentContracts(unittest.TestCase):
++    def _two_hop_fixture(self,directory,mode='normal'):
++        exe=Path(directory)/'python.exe';exe.write_bytes(b'fixture-launcher-not-a-real-executable')
++        class Shell:
++            pid=10 if mode!='extra_hop' else 11
++            def __init__(self):self.samples=0
++            def create_time(self):
++                self.samples+=1
++                return 1700000000.0+(1 if mode=='shell_reuse' and self.samples>1 else 0)
++            def parent(self):raise AssertionError('Must never traverse beyond one launcher')
++        shell=Shell()
++        class Launcher:
++            pid=20
++            def __init__(self):self.samples=0
++            def create_time(self):
++                self.samples+=1
++                return 1700000000.43+(1 if mode=='launcher_reuse' and self.samples>1 else 0)
++            def exe(self):
++                if mode=='denied':raise PermissionError('fixture')
++                return str(Path(directory)/'other.exe') if mode=='other_exe' else str(exe)
++            def parent(self):return None if mode=='missing_shell' else shell
++            def ppid(self):return 99 if mode=='reparent' else shell.pid
++            def cmdline(self):raise AssertionError('No argv inspection')
++        launcher=Launcher()
++        class Me:
++            pid=21
++            def create_time(self):return 1700000001.0
++            def parent(self):return launcher
++            def ppid(self):return 99 if mode=='self_reparent' else 20
++        return types.SimpleNamespace(Process=Me),exe,hashlib.sha256(exe.read_bytes()).hexdigest()
++
++    def test_one_exact_pinned_launcher_binds_actual_direct_and_separate_declared_shell(self):
++        for implementation in (controller,closer):
++            with self.subTest(implementation=implementation.__name__),tempfile.TemporaryDirectory() as d:
++                fake,exe,expected=self._two_hop_fixture(d)
++                with patch.object(implementation,'LAUNCHER_PATH',exe),patch.object(implementation,'LAUNCHER_SHA',expected):
++                    rows,receipt=implementation.capture(fake,10,1700000000.0)
++                self.assertTrue(receipt['verified']);self.assertEqual(receipt['mode'],'one_pinned_venv_launcher')
++                self.assertEqual(rows,[{'pid':21,'create_time':1700000001.0},
++                    {'pid':20,'create_time':1700000000.43},{'pid':10,'create_time':1700000000.0}])
++                self.assertEqual(receipt['observed_parent'],rows[1]);self.assertEqual(receipt['observed_shell'],rows[2])
++                self.assertEqual(receipt['declared'],{'pid':10,'create_time':1700000000.0})
++    def test_launcher_path_hash_extra_hop_reparent_reuse_or_denial_never_grant_parent(self):
++        for implementation in (controller,closer):
++            for mode in ('other_exe','wrong_hash','extra_hop','missing_shell','reparent','self_reparent','launcher_reuse','shell_reuse','denied'):
++                with self.subTest(implementation=implementation.__name__,mode=mode),tempfile.TemporaryDirectory() as d:
++                    fake,exe,expected=self._two_hop_fixture(d,mode)
++                    if mode=='wrong_hash':expected='0'*64
++                    with patch.object(implementation,'LAUNCHER_PATH',exe),patch.object(implementation,'LAUNCHER_SHA',expected):
++                        rows,receipt=implementation.capture(fake,10,1700000000.0)
++                    self.assertFalse(receipt['verified']);self.assertIn('error',receipt)
++                    self.assertEqual(rows,[{'pid':21,'create_time':1700000001.0}])
++
+     def test_actual_direct_parent_and_full_birth_saved_without_argv_parsing(self):
+         class Parent:
+             pid=20

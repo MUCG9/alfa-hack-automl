@@ -1,7 +1,7 @@
 # Evidence and open assumptions
 
 <!-- CURRENT_UAR_OBSERVATION_BEGIN -->
-Current observation: UAR09 completed a fresh full qualification: all 59 source suites/634 checks, 23 exact checks, 104 mapped checks and the 73-member archive passed. Driver and root closer exited0; source integrity, temporary cleanup and 7,066 known local identities absent were confirmed under the original1200-second clock. The one-line R3 diagnostic import fix preserves every HPO assertion. UQ2 and UAR08 remain closed FAIL. Actual UQ3 source/authority/archive binding and provider preflight are ready for one new measured Qwen run; its clock and models are not started yet. No new ML quality result or promotion is available. Retained references: research RMSE34.155023394837 and historical classification MacroF1.6593178433614652. Linux remains paused.
+Current observation: UAR09 passed all 634 source, 23 exact and 104 mapped checks, with73 flat files and separately confirmed source/temporary/owned-process cleanup. The real UQ3 campaign is now running under one original10800-second clock; Ar is admitted. The shared authority checkpoint was validated before Qwen. The current Ar ledger reports 2 real gateway calls/2 HTTP attempts with complete usage (18977 input/1714 output tokens); these are intermediate counters. No new independently qualified ML quality is available. Prior research RMSE34.155023394837 and historical classification MacroF1.6593178433614652 remain retained. Earlier UQ2/UAR08 failures remain closed, Linux stays paused, and automatic submission stays forbidden.
 <!-- CURRENT_UAR_OBSERVATION_END -->
 
 The organizer baseline, case and requirements were inspected by C01. Source hashes:

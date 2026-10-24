@@ -1,0 +1,121 @@
+{
+  "schema": "uar07-source-proof-v1",
+  "source_only": true,
+  "base_source_handoff_sha256": "4ed4a15fb82b6a677f9c8ff870af946ea961ff1de3a0652fc5dca2af142a42bb",
+  "base_driver_sha256": "25ac7aa5704820242d75c828d3b99bf572715e150849c1ca953e606ef7522db3",
+  "base_contract_sha256": "7d3d469f63e2acddabe33aa6385522dcf8508b01aee6cf5f59d9208989ac5f1f",
+  "base_entry_sha256": "e5004acdd13f7e69b7a92c94f4b5b032cae6521451bb2eba1db242188b4f7c8d",
+  "base_closer_sha256": "424cf816847f0f5b8acf3b2d9ad732780627db544d5bb96942869e35baaed1fe",
+  "assessment_sha256": "f4e930a7ab67f3e1629b6c543e9127f58c411a216324f8efd3287b5d949c2f3c",
+  "parser_review_sha256": "6024f4237d4cd4bc38b12684e514a20f3cd827d62efcf31cdbe2438a8f8ef44e",
+  "unchanged_contract_definitions_AST": [
+    "need",
+    "read",
+    "sha",
+    "methods",
+    "registry",
+    "mapping",
+    "flat_names",
+    "FlatTestImports",
+    "adapted_test",
+    "frozen",
+    "archive",
+    "temporary_status"
+  ],
+  "changed_contract_definitions": [
+    "counts",
+    "temporary_binding",
+    "cleanup_status",
+    "artifact_checks"
+  ],
+  "added_contract_definitions": [
+    "reuse_checks",
+    "negative_checks",
+    "negative_union"
+  ],
+  "mapped_assertion_mapper_AST_exact": true,
+  "mapped_method_extractor_AST_exact": true,
+  "archive_validation_AST_exact": true,
+  "frozen_inventory_validator_AST_exact": true,
+  "entry_leaf_ownership_cleanup_clock_AST_exact": true,
+  "entry_exclusive_save_AST_exact": true,
+  "driver_inherited_helper_definitions_AST_exact": [
+    "need",
+    "read",
+    "digest",
+    "imported",
+    "own_bootstraps"
+  ],
+  "parser_and_tests_bytes_exact_to_reviewed_packet": true,
+  "parser_function_AST_equals_contract": true,
+  "prepared_parser_method_count": 16,
+  "prepared_parser_methods": [
+    "CountParserTests.test_actual_regression_telemetry_skipped_null_is_not_unit_skip",
+    "CountParserTests.test_zero_and_skip_words_inside_JSON_are_not_unit_status",
+    "CountParserTests.test_ordinary_singular_plural_and_explicit_zero_skip_summary",
+    "CountParserTests.test_real_verbose_skip_rejected_even_if_forged_plain_OK",
+    "CountParserTests.test_real_doc_description_skip_line_is_rejected",
+    "CountParserTests.test_nonzero_skip_summary_is_rejected",
+    "CountParserTests.test_actual_fail_error_detail_or_progress_is_rejected",
+    "CountParserTests.test_failed_status_followed_by_fake_OK_is_rejected",
+    "CountParserTests.test_missing_or_nonterminal_OK_is_rejected",
+    "CountParserTests.test_fake_unanchored_or_JSON_summary_is_not_counted",
+    "CountParserTests.test_multiple_real_summaries_are_ambiguous_even_same_count",
+    "CountParserTests.test_wrong_count_or_nonstandard_summary_is_rejected",
+    "CountParserTests.test_expected_failure_and_unexpected_success_are_not_full_PASS",
+    "CountParserTests.test_CRLF_and_trailing_whitespace_are_valid",
+    "CountParserTests.test_invalid_input_types_and_no_zero_test_success",
+    "CountParserTests.test_noisy_JSON_failure_error_and_summary_strings_are_ignored"
+  ],
+  "expected_mapped75_unchanged": true,
+  "actual_tests": 0,
+  "candidate_imports": 0,
+  "builds": 0,
+  "fits": 0,
+  "API": 0,
+  "PID_scans": 0,
+  "clock_assigned": false,
+  "canonical_or_STATE_or_Git_changes": 0,
+  "old_frozen_source_changes": 0,
+  "revision": 3,
+  "preserved_R1_handoff_sha256": "982daca5554edceed21b97b22b042cc1c21dcb9205c89bb026473a917958cd4a",
+  "R2_scope": [
+    "Replace unimplemented standard-negative-root placeholder with actual exact typed fe4f/root-fresh7a9a facts",
+    "Normal predecessor source_union remains same reviewed helper; append only reviewed identity-parsed6178 union",
+    "Preserve old false cleanup/source flags, FAIL, unknown old preparer and no deadline extension",
+    "No parser/mapped code/assertion/cap/archival/source criteria change"
+  ],
+  "normal_predecessor_helper_sha256": "c3e87a486e0b4bdd9a2189dd6151e6871d838923f04efde1f884cf0fda7d9ae3",
+  "technical_entry_R1_byte_exact": true,
+  "parser_test_source_R1_byte_exact": true,
+  "actual_negative_receipt_pins": {
+    "late-negative-audit.json": "fe4fbbbc58ca31bfecad23bf4eed912ccd69cc3e94cfbe2e53bddb15f0c64153",
+    "root-fresh-absence.json": "7a9a4ed0e8ea5d82f68efc375d59733b834f6457c4363008ded66ec17cfc3897"
+  },
+  "preserved_R2_handoff_sha256": "057fb4b384b8eae4615281b8701743cd79da868ec103679f9edcb12e70591280",
+  "R2_independent_findings_receipt_sha256": "2f7a908ff725c4b59843326d8232618d48bfb17ce1f254c99dca6ff8b954e899",
+  "R3_source_scope": {
+    "run_gate.py": [
+      "main"
+    ],
+    "close_gate.py": [
+      "main"
+    ]
+  },
+  "R3_other_functions_AST_exact": true,
+  "R3_unchanged_files_byte_exact": [
+    "technical_entry.py",
+    "contracts.py",
+    "counts.py",
+    "test_counts.py",
+    "reuse-evidence.json",
+    "private-manifest.template.json",
+    "pair-admission-proposal-r2.json"
+  ],
+  "R3_changes": [
+    "Extend same PowerRequestGuard lifetime across entire final work and unconditional release",
+    "Final cleanup/posthash/digests and terminal-save invoke same sticky prior-sample gap/RSS pulse; no sample reset",
+    "Closer sticky10/gap/RSS2048 before/after checks within unchanged30/common600; exact self/bootstrap/owned identities",
+    "Positive qualification explicitly excludes sticky guard errors and unverified power release"
+  ]
+}

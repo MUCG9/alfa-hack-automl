@@ -1,0 +1,23 @@
+{
+  "schema": "uar07-reuse-evidence-v1",
+  "source": "uar06-full-next-dev/attempt-uar06-r1",
+  "files_sha256": {
+    "campaign.json": "ee62c6a5dda7277b7a9ac39769c0e0d717336e7b0892e8dab572dd2a2ba5dff0",
+    "technical.json": "0be0eccfd5eade4c5bfa296026d98c42e3a5b7397a6b9db9675c24d31d81bbe9",
+    "technical-results.json": "e069375193f093167bfafc7a1e980c5d0d61d6aff56d4d6185e646f5d8fadf9f",
+    "mapped-results.json": "c50321e150f31393578aafe0099c1cd67b51958039e1977dad47e5818280c2bb",
+    "source/results.json": "5989610bc0d61fe2d77fc1da3f322f5c8561396ca8cb1b01b6ac46e13ef03d45",
+    "exact.json": "35628e207b847b85d754b4cc34a5b2535d2bcccf575cb7fa8ccdb92013be2035",
+    "candidate.zip": "86b074f6c1117e6d16e57e03c7ec1db3a9d0b18adf1a781f74899ce638a43d3f",
+    "candidate.manifest.json": "393555cf23fe949ab48386ee6ba8d34edb4d8a76f944ad206276dc45ce46ed72",
+    "technical.log": "493be863df451fef4e3aa870e7859763d379d83af756f10a0156dc4e28e9da76",
+    "source.log": "e076376032c257e9f6b0eb591564430fc75cf1d704459fe8adf43737de20fd94",
+    "build.log": "bdd15b79f11724f01ae90784917598555b7f796326915bdb9ce9244a855a7f54",
+    "exact.log": "c6773512d7bcea672efd09f4a3e1b916048997b9d298eb58070bc8a807adc2cd",
+    "mapped.log": "1eb8b65dab5defe68ae5b9b0a83bbeceb1cba94d8be7a5bb53854eac8f374a29"
+  },
+  "old_parent_status": "FAIL_PERMANENT",
+  "original_common_seconds": 1200,
+  "per_phase_monotonic_timestamps": null,
+  "phase_clock_evidence": "saved parent clocks plus ordered verified leaf birth bounds; not invented per-phase samples"
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "uar-qwen-composite-admission-proposal-v1",
+  "status": "PROPOSAL_ONLY_NOT_IMPLEMENTED",
+  "target_source": "uar-qwen-pair-next-dev/run_pair.py",
+  "target_source_sha256": "515aba64781ba885dba0b726d3e67fcd47ed52084f87ab151118b6f189d58491",
+  "source_locations": {
+    "gate_proof": "335-355",
+    "archive": "358-369"
+  },
+  "proposed_binding": {
+    "source_gate_mode": "uar07_composite_v1",
+    "driver_sha256": null,
+    "private_manifest_sha256": null,
+    "campaign_sha256": null,
+    "root_closure_sha256": null,
+    "source_archive_sha256": null,
+    "UAR06_late_observation_sha256": "fe4fbbbc58ca31bfecad23bf4eed912ccd69cc3e94cfbe2e53bddb15f0c64153",
+    "UAR06_root_fresh_absence_sha256": "7a9a4ed0e8ea5d82f68efc375d59733b834f6457c4363008ded66ec17cfc3897"
+  },
+  "minimal_change": [
+    "Require explicit source_gate.mode uar07_composite_v1 (no implicit old/full fallback).",
+    "Use SHA-bound UAR07 driver.config and contracts.artifact_checks already through existing source-gate interface; independently require proof schema uar-composite-root-closure-v1 and summary schema uar-composite-qualified-checks-v1.",
+    "Require qualified_checks exact equality to recomputed artifact_checks, qualification_mode explicit_composite, reused phases IDs source/build/exact with exit0/cleanuptrue and source604/build73/exact23; fresh IDs parser/mapped with16/75; newly source/build/exact0.",
+    "Require actual new UAR07 root exec0/current cleanup/source/empty active and uncertainty; exact typed late-negative fe4f/root-fresh7a9a bound separately, old U6 FAIL and old cleanup/source=false unchanged; same archive hash/member73 as all future solver copies.",
+    "Freeze all new/ref reused hashes in existing pair inventory before Qwen; retain four task source/core seals before any R4 truth and all current metrics/row/class/HPO/usage/refit gates."
+  ],
+  "unchanged": [
+    "Pair research factor, 10800 budgets, same tasks/retention and strict-runtime both arms",
+    "All R4 formulas/labels ordering and qualification predicates",
+    "Original UAR06 files and FAIL"
+  ],
+  "no_adapter_source_written": true,
+  "required_before_implementation": "Independent peer review + explicit root integration approval; no candidate imports/execution in this preparation",
+  "revision": 2
+}

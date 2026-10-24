@@ -1,0 +1,130 @@
+{
+  "schema": "uar07-composite-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY_NO_CLOCK",
+  "run_id": "UAR07",
+  "common_seconds": 600,
+  "actual_clock": null,
+  "actual_execution": null,
+  "budget_seconds": {
+    "setup_reuse_integrity": 90,
+    "parser_parent": 60,
+    "parser_child": 45,
+    "all_mapped_parent": 300,
+    "all_mapped_child": 270,
+    "final_integrity_cleanup": 120,
+    "root_close": 30
+  },
+  "serial_order": [
+    "setup/reused evidence audit and exact archive copy",
+    "parser16",
+    "all mapped75",
+    "final source/artifact/cleanup audit",
+    "root closure"
+  ],
+  "reused": {
+    "source_scripts": 57,
+    "source_checks": 604,
+    "build_flat_members": 73,
+    "exact_checks": 23,
+    "new_executions": 0,
+    "archive_sha256": "86b074f6c1117e6d16e57e03c7ec1db3a9d0b18adf1a781f74899ce638a43d3f",
+    "original_private_manifest_sha256": "7e03ea7d378bde3496e9906fc68870792ed8d5ce152653f7b668113686dbd222",
+    "canonical_python_files": 169,
+    "original_pins": 235,
+    "immutable_evidence_manifest_sha256": "9f830c94e5a90af53bb7d9b0465615d4fafc915f92fdb1e0e8775f33af6e7eff",
+    "phase_clock": "Saved900parent/840child clocks plus ordered actual leaf birth bounds; exact per-phase monotonic timestamps unavailable/null",
+    "leaf_exit_cleanup": "Every source/build/exact saved leaf exit0/statuspassed/cleanuptrue/denial0/unresolvedempty required",
+    "old_parent": "UAR06 FAIL stays permanent; later root cleanup/source observation never retroqualifies the expired parent"
+  },
+  "fresh": {
+    "parser_methods": 16,
+    "mapped_methods": 75,
+    "mapped_counts": {
+      "io03": 14,
+      "vertical": 14,
+      "loss": 16,
+      "retention": 15,
+      "metric_contrast": 16
+    },
+    "LOSS_exclusion": [
+      "LossContractTests.test_default_OFF_all_six_modules_preserve_base_UAR_AST"
+    ],
+    "all_source_test_assertions_unchanged": true,
+    "no_modular_source_sidecars": true
+  },
+  "resources": {
+    "technical_threads": 1,
+    "child_tree_mib": 1536,
+    "whole_mib": 2048,
+    "serial": true,
+    "main_thread_guard_gap_seconds": 10,
+    "external_API_intended": 0,
+    "public_experiment_fits": 0,
+    "parser_fits": 0,
+    "declared_mapped_tiny_learner_fits": 9,
+    "actual_aggregate_fixture_fits": null,
+    "actual_external_API_usage": null
+  },
+  "temporary_layout": {
+    "root": "WORK/t/u7-<exclusive8>",
+    "same_depth_as_UAR06": true,
+    "propagation": "Absolute TMP/TEMP/TMPDIR/MPLCONFIGDIR before any project import; descendants inherit",
+    "cleanup": "Resolved own root only after exact owned absence; before/after clock and10s deletion gap bound; sticky uncertainty"
+  },
+  "inherited_guard": {
+    "coordinator": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "owner": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "trusted_processes": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d",
+    "candidate_processes": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3",
+    "lock": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45",
+    "awake": "9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b",
+    "fresh_absence": "Unchanged normal predecessor validation plus exact typed late-negative fe4f/root-fresh7a9a; reviewed identities6178 before/inside lock and terminal close"
+  },
+  "clocks": "Both wall and monotonic start only at a future actual driver launch; assigned addition600, no reset; setup90 and complete later reserves enforced",
+  "source_change_policy": "Any changed old runtime/test/tool/helper/input/map/requirements pin invalidates reuse; stop instead of broad rerun or silent adaptation",
+  "qualification": "New compositional archive technical qualification only, never old full PASS, model score, official default release or promotion",
+  "pair_admission": "Separate typed adapter proposal only; current pair source is unchanged and cannot silently treat this as a full1200 gate",
+  "pending_actual_negative_root_sha256": null,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false,
+  "revision": 3,
+  "negative_predecessor": {
+    "schema": "uar06_exact_late_negative_predecessor_v1",
+    "late_observation_sha256": "fe4fbbbc58ca31bfecad23bf4eed912ccd69cc3e94cfbe2e53bddb15f0c64153",
+    "root_fresh_absence_sha256": "7a9a4ed0e8ea5d82f68efc375d59733b834f6457c4363008ded66ec17cfc3897",
+    "late_audit_actual_exec_session": 79044,
+    "late_audit_actual_exit_code": 0,
+    "late_audit_actual_tool": "5a1aee",
+    "root_fresh_actual_tool": "c6de38",
+    "known_and_preparer_union": 6178,
+    "old_UAR06_actual_exec_session": 36525,
+    "old_UAR06_actual_exit_code": 1,
+    "old_UAR06_actual_tool": "48e37c",
+    "old_cleanup_confirmed": false,
+    "old_source_unchanged": false,
+    "late_observation_only": true,
+    "normal_predecessor_validation_unchanged": true,
+    "new_launch_rechecks_exact_absence": true,
+    "source_pin_match_observation": 235,
+    "root_path_binding": "private future absolute path; no credentials/data"
+  },
+  "remaining_readiness": "Root final source review, absolute ready manifest/publication and future actual one600 clock; no actual UAR07 execution yet",
+  "final_guard": {
+    "power_request_lifecycle": "one enter before reuse/setup; remains active through successful or failed final cleanup/posthash; close attempted in unconditional nested finally",
+    "heartbeat": "same original prior sample across phases/imports/final cleanup/hash chunks/release/terminal-write; sticky gap>10/resource denial/clock failure; no background or reset",
+    "post_release": "check original prior sample +RSS+original final/common clocks before terminal success without calling inactive power API",
+    "qualification": "positive procedure requires no sticky error and verified request release within original final120/common600"
+  },
+  "root_closer_guard": {
+    "origin": "original function-entry monotonic sample before psutil/bootstrap setup, never reset",
+    "budget_seconds": 30,
+    "common_seconds": 600,
+    "gap_seconds": 10,
+    "own_and_exact_script_bootstrap_observed_subtree_mib": 2048,
+    "identity": "before/after birth-time check, reviewed StrictOwnedObserver once source-pinned owner loads; denials sticky",
+    "sampling": "before/after resources and every hash chunk; advance only after prior gap/resources/both clocks pass",
+    "preparer_receipt": "exclusive current preparers receipt before first validation checkpoint",
+    "positive_predicate": "sticky_error is None explicitly mandatory"
+  }
+}

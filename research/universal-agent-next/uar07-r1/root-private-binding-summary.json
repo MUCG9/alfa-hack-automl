@@ -1,0 +1,23 @@
+{
+  "schema": "uar07-root-private-instantiation-v1",
+  "status": "SOURCE_METADATA_BOUND_NOT_LAUNCHED",
+  "manifest_sha256": "b8dae322501349622326313f94430042729e2cb1310ecdd32d09796812cf797d",
+  "handoff_sha256": "2b0d0e3161c359772f750bee2c9bb23f933be4945a0b99b6132fd705145125d2",
+  "independent_source_review_sha256": "de53767dee8feac95da810275d94702c29cf422b13c6c415806e362aa972a1dc",
+  "source_pins": 257,
+  "preserved_old_pins": 235,
+  "canonical_python": 169,
+  "registry_scripts": 57,
+  "reused_source_checks": 604,
+  "reused_archive_members": 73,
+  "reused_exact": 23,
+  "new_parser": 16,
+  "new_mapped": 75,
+  "actual_clock": null,
+  "runtime_imports": 0,
+  "tests": 0,
+  "fits": 0,
+  "API": 0,
+  "quality_metric": null,
+  "prior_UAR06": "FAIL_PERMANENT"
+}

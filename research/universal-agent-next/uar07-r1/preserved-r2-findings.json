@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "status": "SOURCE_REVIEW_R2_BLOCKED_TWO_NARROW_FINAL_GUARD_GAPS_NOT_EXECUTED",
+  "source_handoff_sha256": "057fb4b384b8eae4615281b8701743cd79da868ec103679f9edcb12e70591280",
+  "all15_source_pins_exact": true,
+  "runtime_source_sha256": {
+    "run_gate.py": "11eceb2492b81949a871db5b94dd7eba453deffabab8932b86b4c662464d00a7",
+    "technical_entry.py": "30d603b16f7741cf8b4e541703762ef9956f77411339112af665d430554cd240",
+    "contracts.py": "5cad0d95a2f292a7833da28599c466e531d4887d4fd15f4e14f56794fa856028",
+    "close_gate.py": "768207533623cd9b899725d4dd34c7c08077f12646e0ccc7005356d43182682a"
+  },
+  "findings": [
+    {
+      "id": "UAR07-R2-FINAL-GUARD",
+      "priority": "P1",
+      "path": "run_gate.py",
+      "problem": "PowerRequestGuard context exits before outer finally. Final cleanup/private/source rehash use clock() only; that checks deadline/drift but not continuous10s sampling or parent/owned RSS. A11s pause within remaining final/common time can escape the declared10gap contract, and no power request covers this promised final phase.",
+      "minimal_fix": "Keep the same original awake context active through final cleanup/posthash; use original pulse/checkpoint before/after actions and inside hash chunks. Guaranteed release after final work, verify release and final/common boundary before terminal PASS; do not reset prior sample or old clocks."
+    },
+    {
+      "id": "UAR07-R2-CLOSER-GUARD",
+      "priority": "P1",
+      "path": "close_gate.py",
+      "problem": "Closer check() enforces own30/common/drift only; its audit part has neither sticky10s previous-sample observation nor actual audit-self/bootstrap/owned-tree RSS2048MiB enforcement.",
+      "minimal_fix": "Use true prior mono anchored to begin, before/after owned resource sample; sticky gap/denial/RSS error, no phase reset. Preserve own30 and original600, early preparers, exclusive receipt and all postwrite checks. Reuse existing late-auditR2 resource pattern, no newframework."
+    }
+  ],
+  "otherwise_reviewed": {
+    "typed_late_predecessor": "Exact fe4f late-only current observation and7a9a actual79044exit0/rootfresh6178; originalU6cleanup/source false, oldFAIL andunknownpreparer remain unchanged.",
+    "normal_ownership": "Existing focused source_union helper unchanged; extra6178 only via reviewed typed identities and exact Strict observer before/underlock/terminal.",
+    "reuse": "Exact original235pins/169Python and same169/current inventory/test/map/helper/input bindings mandatory; source57/604 and archive73/exact23 phase exits/cleanup/counts and saved900/840parent/orderedleafbirth bounds verified. Exact per-phase monotonic timestamps remain null.",
+    "fresh_work": "Fresh parser16 and all75mapped unchanged selected methods/AST mapper; no source sidecars; retained soleLOSS exclusion. Newsource/build/exact counts0, explicit reused phases and oldFAIL preservation.",
+    "budget": "Fresh600 with setup90+parserparent60/child45+mappedparent300/child270+final120/root30; reserve510/450 admissions, no reused-time reinvestment or oldclock continuation.",
+    "nulls": "Root qualified_checks only if actualexit0/allcurrentartifact/cleanup/source/clock; main clears qualified summary after finalfailure. OldU6 never retrospectivelyPASS.",
+    "pair": "Typed composite-admission file is proposal only; existing pair notmodified by this packet. Futureadapter must explicitly require mode/schema/reused604-73-23/new16-75 and actualnewrootPASS."
+  },
+  "scope": "Review of frozenR2 source/metadata only; authorROOTrequested narrowR3 preservesR2 then changes only final/closer guards.",
+  "operations": {
+    "stdlib_SHA_JSON_AST_only": true,
+    "candidate_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API": 0,
+    "private_input_data_reads": 0,
+    "PID_scans": 0,
+    "clock_assigned": false,
+    "source_edits": 0,
+    "canonical_STATE_Git_writes": 0
+  },
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

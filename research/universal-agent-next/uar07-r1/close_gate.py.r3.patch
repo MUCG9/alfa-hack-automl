@@ -1,0 +1,112 @@
+--- R2/close_gate.py
++++ R3/close_gate.py
+@@ -19,36 +19,72 @@
+         if not any(Path(v).resolve()==Path(__file__).resolve() for v in parent.cmdline() if v and not v.startswith('-')):break
+         need(parent.create_time()==birth,'early_closer_bootstrap_identity_changed')
+         preparers.append(dict(pid=parent.pid,create_time=birth));parent=parent.parent()
++    audit_observer=None;last_sample=begin;maximum_gap=0.;peak_rss=0;sticky_error=None;c=None
++    def check():
++        nonlocal last_sample,maximum_gap,peak_rss,sticky_error
++        if sticky_error is not None:raise RuntimeError(sticky_error)
++        try:
++            observed=time.monotonic();maximum_gap=max(maximum_gap,observed-last_sample)
++            need(observed-last_sample<=10,'root_closer_observation_gap10')
++            need(observed-begin<30,'root_closure30_cap')
++            if c is not None:
++                need(time.time()<c['absolute_deadline_unix'] and observed<c['common_deadline_monotonic'],
++                     'original600_exhausted')
++            if audit_observer is None:
++                live={}
++                for saved in preparers:
++                    try:
++                        obj=psutil.Process(saved['pid'])
++                        if obj.create_time()==saved['create_time']:live[(saved['pid'],saved['create_time'])]=obj
++                    except psutil.NoSuchProcess:pass
++                need((preparers[0]['pid'],preparers[0]['create_time']) in live,'root_closer_self_identity_unconfirmed')
++            else:
++                live=audit_observer.observe();need(not audit_observer.denials,'root_closer_resource_observation_denied')
++            rss=0
++            for identity,obj in live.items():
++                try:
++                    need(obj.create_time()==identity[1],'root_closer_resource_identity_changed')
++                    amount=obj.memory_info().rss
++                    need(obj.create_time()==identity[1],'root_closer_resource_identity_changed');rss+=amount
++                except psutil.NoSuchProcess:pass
++            peak_rss=max(peak_rss,rss);need(rss<=2048*2**20,'root_closer_owned_memory_limit')
++            sampled=time.monotonic();maximum_gap=max(maximum_gap,sampled-last_sample)
++            need(sampled-last_sample<=10,'root_closer_observation_gap10')
++            need(sampled-begin<30,'root_closure30_cap')
++            if c is not None:
++                need(time.time()<c['absolute_deadline_unix'] and sampled<c['common_deadline_monotonic'],
++                     'original600_exhausted')
++                need(abs((c['absolute_deadline_unix']-time.time())-(c['common_deadline_monotonic']-sampled))<=5,
++                     'clock_disagreement')
++            last_sample=sampled
++        except Exception as exc:
++            sticky_error=str(exc) if isinstance(exc,RuntimeError) else 'root_closer_resource_observation_unconfirmed'
++            raise RuntimeError(sticky_error) from exc
+     early=Path(__file__).with_name('preparer-identity.json')
+     with early.open('x',encoding='utf-8') as stream:
+         json.dump(dict(schema=1,identities=preparers,scope='new_UAR07_root_closer_only',
+             captured_unix=time.time(),own_start_monotonic=begin),stream,indent=2,allow_nan=False)
++    check()
+     p=argparse.ArgumentParser(description=__doc__)
+     for key in ('private-manifest','private-manifest-sha256','driver-sha256','self-sha256','actual-tool-evidence'):
+         p.add_argument('--'+key,required=True)
+     p.add_argument('--actual-exec-session',type=int,default=None)
+     p.add_argument('--actual-exit-code',type=int,required=True)
+     a=p.parse_args();a.private_manifest=str(Path(a.private_manifest).resolve())
+-    need(__debug__ and a.actual_tool_evidence.strip(),'actual_root_exit_evidence_required')
++    check();need(__debug__ and a.actual_tool_evidence.strip(),'actual_root_exit_evidence_required')
+     path=Path(__file__).with_name('run_gate.py')
+-    need(hashlib.sha256(path.read_bytes()).hexdigest()==a.driver_sha256,'driver_changed')
++    check();need(hashlib.sha256(path.read_bytes()).hexdigest()==a.driver_sha256,'driver_changed');check()
+     driver=imported('_uar04_closure_driver',path)
+-    cfg=driver.config(a.private_manifest,a.private_manifest_sha256,a.driver_sha256)
++    cfg=driver.config(a.private_manifest,a.private_manifest_sha256,a.driver_sha256);check()
+     need(cfg['files_sha256'].get(str(Path(__file__).resolve()))==a.self_sha256
+-         and driver.digest(__file__)==a.self_sha256,'closer_source_changed')
+-    out=Path(cfg['output']);c=driver.read(out/'campaign.json');campaign_sha=driver.digest(out/'campaign.json')
++         and driver.digest(__file__,check)==a.self_sha256,'closer_source_changed')
++    out=Path(cfg['output']);c=driver.read(out/'campaign.json');check();campaign_sha=driver.digest(out/'campaign.json',check)
+     dest=out/'terminal-root-closure.json';need(not dest.exists(),'exclusive_terminal_proof_no_rewrite')
+     fields=('start_unix','start_monotonic','absolute_deadline_unix','common_deadline_monotonic','finished_unix','finished_monotonic')
+     need(all(type(c.get(k)) in (int,float) and math.isfinite(c[k]) for k in fields),'actual_terminal_clocks_required')
+     # Repeat the exact assigned operation: no epsilon or extension from subtraction.
+     need(c['common_seconds']==600 and c['absolute_deadline_unix']==c['start_unix']+600
+          and c['common_deadline_monotonic']==c['start_monotonic']+600,'same_assigned_original600_required')
+-    def check():
+-        need(time.monotonic()-begin<30,'root_closure30_cap')
+-        need(time.time()<c['absolute_deadline_unix'] and time.monotonic()<c['common_deadline_monotonic'],
+-             'original600_exhausted')
+-        need(abs((c['absolute_deadline_unix']-time.time())-
+-                 (c['common_deadline_monotonic']-time.monotonic()))<=5,'clock_disagreement')
+     check()
+     for key in ('contracts','focused_helper'):
+         need(driver.digest(cfg[key],check)==cfg['files_sha256'][cfg[key]],'standalone_helper_changed')
+@@ -58,6 +94,7 @@
+         need(driver.digest(cfg['helpers'][name]['path'],check)==expected,'proven_guard_changed')
+     modules={n:driver.imported('_uar04_close_'+n,cfg['helpers'][n]['path']) for n in driver.HELPERS}
+     coor,owner=modules['coordinator'],modules['owner']
++    audit_observer=owner.StrictOwnedObserver();audit_observer.remember(coor.identities(preparers));check()
+     known=base.source_union(cfg,coor,check)|contract.negative_union(cfg,coor,check)
+     known |= coor.identities([c['owned_root']]+c['coordinator_bootstrap_identities']+c.get('owned_process_identities',[]))
+     refs=c.get('supervisors',[]);artifacts={str(early):driver.digest(early,check)}
+@@ -104,7 +141,7 @@
+         need(driver.digest(a.private_manifest,check)==a.private_manifest_sha256==c['private_manifest_sha256'],
+              'private_manifest_changed')
+         for name,expected in artifacts.items():need(driver.digest(name,check)==expected,'sealed_artifact_changed')
+-        passed=(a.actual_exit_code==0 and c.get('status')=='technical_completed_pending_root'
++        passed=(sticky_error is None and a.actual_exit_code==0 and c.get('status')=='technical_completed_pending_root'
+             and c.get('technical_procedure_passed') is True and c.get('source_unchanged') is True and cleanup_ok
+             and not c.get('error_history') and c.get('active_supervisor') is None and sup_ok and technical_ok
+             and c.get('awake_guard',{}).get('release_API_verified') is True
+@@ -134,6 +171,8 @@
+             error_history=c.get('error_history',[]),fixture_learner_fits=None,external_API_calls=None,
+             counter_limit='legacy_fixture_fit_and_external_API_usage_uninstrumented_not_zero',
+             public_experiment_fits=0,quality_metric=None,promotion=False,submit=False,
++            root_guard_sticky_error=sticky_error,root_maximum_observed_gap_seconds=maximum_gap,
++            root_peak_owned_rss_mib=peak_rss/2**20,root_resource_limit_mib=2048,
+             own_actual_exec_exit_and_fresh_preparer_absence_required=True)
+         base.absence(owner,known);check();coor.save(dest,result,True);base.absence(owner,known);check()
+     check();print(json.dumps(dict(status=result['status'],technical_procedure_passed=bool(passed),

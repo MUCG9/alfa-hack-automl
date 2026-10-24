@@ -1,0 +1,333 @@
+--- R2/run_gate.py
++++ R3/run_gate.py
+@@ -193,96 +193,110 @@
+         fixture_learner_fits=None,external_API_calls=None,public_experiment_fits=0,quality_metric=None,
+         root_actual_exec_confirmation_pending=True,promotion=False,submit=False,_manifest={},
+         temporary_root=None,temporary_cleanup_confirmed=False)
+-    known=children=set();suite_ob=owner.StrictOwnedObserver();awake=None;temporary_root=None
++    known=children=set();suite_ob=owner.StrictOwnedObserver();awake=None;temporary_root=None;power_released=False
+     def persist():coor.save(out/'campaign.json',{k:v for k,v in state.items() if not k.startswith('_')})
++    pulse_previous=mono;pulse_maximum_gap=0.;pulse_sticky_error=None
+     def pulse():
+-        coor.cooperative_checkpoint(awake,end,unix);clock()
+-        rss=psutil.Process().memory_info().rss
+-        for saved in boot:
+-            try:
+-                obj=psutil.Process(saved['pid'])
+-                if obj.create_time()==saved['create_time']:rss+=obj.memory_info().rss
+-            except psutil.NoSuchProcess:pass
+-        need(rss<=2048*2**20,'parent_bootstrap_memory_limit')
+-        active=state.get('active_supervisor')
+-        if active:
+-            record=read(Path(cfg['work_root'])/active)
+-            if record.get('owned_root'):suite_ob.remember(coor.identities([record['owned_root']]))
+-            live=suite_ob.observe();need(not suite_ob.denials,'technical_tree_observation_denied');rss=0
+-            for identity,obj in live.items():
+-                try:need(obj.create_time()==identity[1],'technical_identity_changed');rss+=obj.memory_info().rss
++        nonlocal pulse_previous,pulse_maximum_gap,pulse_sticky_error
++        if pulse_sticky_error is not None:raise RuntimeError(pulse_sticky_error)
++        try:
++            observed=time.monotonic();pulse_maximum_gap=max(pulse_maximum_gap,observed-pulse_previous)
++            need(observed-pulse_previous<=10,'parent_observation_gap10')
++            if not power_released:coor.cooperative_checkpoint(awake,end,unix)
++            clock()
++            rss=psutil.Process().memory_info().rss
++            for saved in boot:
++                try:
++                    obj=psutil.Process(saved['pid'])
++                    if obj.create_time()==saved['create_time']:rss+=obj.memory_info().rss
+                 except psutil.NoSuchProcess:pass
+-            children.update(suite_ob.seen);need(rss<=1536*2**20,'technical_child_tree_memory_limit')
+-            state['peak_technical_tree_rss_mib']=max(state.get('peak_technical_tree_rss_mib',0.),rss/2**20)
++            need(rss<=2048*2**20,'parent_bootstrap_memory_limit')
++            active=state.get('active_supervisor')
++            if active:
++                record=read(Path(cfg['work_root'])/active)
++                if record.get('owned_root'):suite_ob.remember(coor.identities([record['owned_root']]))
++                live=suite_ob.observe();need(not suite_ob.denials,'technical_tree_observation_denied');rss=0
++                for identity,obj in live.items():
++                    try:need(obj.create_time()==identity[1],'technical_identity_changed');rss+=obj.memory_info().rss
++                    except psutil.NoSuchProcess:pass
++                children.update(suite_ob.seen);need(rss<=1536*2**20,'technical_child_tree_memory_limit')
++                state['peak_technical_tree_rss_mib']=max(state.get('peak_technical_tree_rss_mib',0.),rss/2**20)
++            sampled=time.monotonic();pulse_maximum_gap=max(pulse_maximum_gap,sampled-pulse_previous)
++            need(sampled-pulse_previous<=10,'parent_observation_gap10');clock()
++            pulse_previous=sampled
++        except Exception as exc:
++            pulse_sticky_error=str(exc) if isinstance(exc,RuntimeError) else 'parent_resource_observation_unconfirmed'
++            raise RuntimeError(pulse_sticky_error) from exc
+     def guard(parent_end=None,code='parent_cap_exhausted'):
+         coor.cooperative_checkpoint(awake,end,unix,parent_end,code);clock()
+         need(digest(a.private_manifest,pulse)==a.private_manifest_sha256,'private_manifest_changed');contract.frozen(cfg,pulse)
+     state['_pulse']=pulse
+     try:
+         need(time.monotonic()-mono<10,'pre_power_guard_setup_gap')
+-        with modules['awake'].PowerRequestGuard('UAR07 compositional serial technical fixtures',10) as awake:
+-            guard();known=base.source_union(cfg,coor,pulse)|contract.negative_union(cfg,coor,pulse)
+-            base.absence(owner,known)
+-            with modules['lock'].ResearchLock(cfg['lock_path']) as lease:
+-                lease.write_identity(root);base.absence(owner,known);persist();guard()
+-                need(unix-time.time()>=MINIMUM_REMAINING and end-time.monotonic()>=MINIMUM_REMAINING,
+-                     'mandatory_remaining510_unavailable')
+-                need(time.monotonic()<mono+90,'setup90_exhausted')
+-                temporary_base=Path(cfg['work_root'])/'t'
+-                need(not temporary_base.is_symlink() and temporary_base.resolve()==temporary_base,
+-                     'temporary_base_symlink_or_junction_denied')
+-                temporary_base.mkdir(exist_ok=True)
+-                temporary_root=Path(tempfile.mkdtemp(prefix='u7-',dir=temporary_base)).resolve()
+-                need(temporary_root.parent==temporary_base.resolve() and not temporary_root.is_symlink(),
+-                     'exclusive_shallow_temporary_root_required')
+-                (temporary_root/'m').mkdir()
+-                state['temporary_root']=str(temporary_root)
+-                coor.save(out/'temporary-root.json',dict(schema=1,root=str(temporary_root),
+-                    owner=root,run_id='UAR07',scope='exclusive_shallow_leaf_environment'),True)
+-                persist();guard()
+-
+-                reused,reused_refs=contract.reuse_checks(cfg,pulse)
+-                old_cfg=read(cfg['reuse']['private_manifest']['path']);old_out=Path(old_cfg['output'])
+-                for name in ('candidate.zip','candidate.manifest.json'):
+-                    pulse()
+-                    with (out/name).open('xb') as target,(old_out/name).open('rb') as stream:
+-                        while True:
+-                            pulse();block=stream.read(2**20)
+-                            if not block:break
+-                            target.write(block)
+-                    pulse()
+-                contract.archive(cfg,out,pulse)
+-                state.update(reused_phases=reused['phases'],original_UAR06_status='FAIL_PERMANENT',
+-                             reused_artifacts=reused_refs,newly_executed_source_checks=0,
+-                             newly_executed_builds=0,newly_executed_exact_checks=0)
+-                guard(mono+90,'setup90_exhausted')
+-                for phase,parent_cap,child_cap,reserve in (('parser',60,45,510),('mapped',300,270,450)):
+-                    tick=time.monotonic();need(end-tick>=reserve and unix-time.time()>=reserve,
+-                                              'complete_remaining_phase_and_final_reserve_required')
+-                    child_end=tick+child_cap
+-                    command=[cfg['python'],'-B','-X','utf8',cfg['technical_entry'],
+-                        '--private-manifest',a.private_manifest,'--private-manifest-sha256',a.private_manifest_sha256,
+-                        '--deadline-monotonic',str(child_end),'--deadline-unix',str(start+child_end-mono),
+-                        '--temporary-root',str(temporary_root),'--'+phase]
+-                    sup=coor.supervise(command,Path(cfg['work_root']),out/(phase+'-supervisor.json'),phase,
+-                        tick,parent_cap,child_cap,end,unix,reserve,state,persist,guard,owner,proc,boot)
+-                    coor.child_errors(state,sup);children.update(coor.identities(sup.get('owned_process_identities',[])))
+-                    if sup.get('owned_root'):children.update(coor.identities([sup['owned_root']]))
+-                    if (out/(phase+'-results.json')).exists():
+-                        raw=read(out/(phase+'-results.json'));state[phase+'_first_failure']=raw.get('first_failure')
+-                        for row in raw.get('leaves',[]):
+-                            if row.get('owned_root'):children.update(coor.identities([row['owned_root']]))
+-                            children.update(coor.identities(row.get('owned_process_identities',[])))
+-                    persist();base.absence(owner,known|children)
+-                    need(sup['status']=='ok' and sup['exit_code']==0 and sup['cleanup_confirmed'] is True
+-                         and not sup.get('error_history'),'mandatory_fresh_'+phase+'_child_failed')
+-                final_start=time.monotonic();final_end=min(final_start+FINAL,end-ROOT_CLOSE)
+-                state.update(final_start_monotonic=final_start,final_deadline_monotonic=final_end)
+-                summary,artifacts=contract.artifact_checks(cfg,out,pulse);state['qualified_checks']=summary
+-                state['technical_artifacts']=artifacts;guard();base.absence(owner,known|children)
+-                state.update(status='technical_completed_pending_root',technical_procedure_passed=True,
+-                    cleanup_confirmed=True,source_unchanged=True);persist();guard()
+-        state['awake_guard']=awake.record;need(awake.record.get('release_API_verified') is True,'power_request_cleanup_unconfirmed')
++        awake=modules['awake'].PowerRequestGuard('UAR07 compositional serial technical fixtures',10)
++        awake.__enter__();pulse()
++        guard();known=base.source_union(cfg,coor,pulse)|contract.negative_union(cfg,coor,pulse)
++        base.absence(owner,known)
++        with modules['lock'].ResearchLock(cfg['lock_path']) as lease:
++            lease.write_identity(root);base.absence(owner,known);persist();guard()
++            need(unix-time.time()>=MINIMUM_REMAINING and end-time.monotonic()>=MINIMUM_REMAINING,
++                 'mandatory_remaining510_unavailable')
++            need(time.monotonic()<mono+90,'setup90_exhausted')
++            temporary_base=Path(cfg['work_root'])/'t'
++            need(not temporary_base.is_symlink() and temporary_base.resolve()==temporary_base,
++                 'temporary_base_symlink_or_junction_denied')
++            temporary_base.mkdir(exist_ok=True)
++            temporary_root=Path(tempfile.mkdtemp(prefix='u7-',dir=temporary_base)).resolve()
++            need(temporary_root.parent==temporary_base.resolve() and not temporary_root.is_symlink(),
++                 'exclusive_shallow_temporary_root_required')
++            (temporary_root/'m').mkdir()
++            state['temporary_root']=str(temporary_root)
++            coor.save(out/'temporary-root.json',dict(schema=1,root=str(temporary_root),
++                owner=root,run_id='UAR07',scope='exclusive_shallow_leaf_environment'),True)
++            persist();guard()
++
++            reused,reused_refs=contract.reuse_checks(cfg,pulse)
++            old_cfg=read(cfg['reuse']['private_manifest']['path']);old_out=Path(old_cfg['output'])
++            for name in ('candidate.zip','candidate.manifest.json'):
++                pulse()
++                with (out/name).open('xb') as target,(old_out/name).open('rb') as stream:
++                    while True:
++                        pulse();block=stream.read(2**20)
++                        if not block:break
++                        target.write(block)
++                pulse()
++            contract.archive(cfg,out,pulse)
++            state.update(reused_phases=reused['phases'],original_UAR06_status='FAIL_PERMANENT',
++                         reused_artifacts=reused_refs,newly_executed_source_checks=0,
++                         newly_executed_builds=0,newly_executed_exact_checks=0)
++            guard(mono+90,'setup90_exhausted')
++            for phase,parent_cap,child_cap,reserve in (('parser',60,45,510),('mapped',300,270,450)):
++                tick=time.monotonic();need(end-tick>=reserve and unix-time.time()>=reserve,
++                                          'complete_remaining_phase_and_final_reserve_required')
++                child_end=tick+child_cap
++                command=[cfg['python'],'-B','-X','utf8',cfg['technical_entry'],
++                    '--private-manifest',a.private_manifest,'--private-manifest-sha256',a.private_manifest_sha256,
++                    '--deadline-monotonic',str(child_end),'--deadline-unix',str(start+child_end-mono),
++                    '--temporary-root',str(temporary_root),'--'+phase]
++                sup=coor.supervise(command,Path(cfg['work_root']),out/(phase+'-supervisor.json'),phase,
++                    tick,parent_cap,child_cap,end,unix,reserve,state,persist,guard,owner,proc,boot)
++                coor.child_errors(state,sup);children.update(coor.identities(sup.get('owned_process_identities',[])))
++                if sup.get('owned_root'):children.update(coor.identities([sup['owned_root']]))
++                if (out/(phase+'-results.json')).exists():
++                    raw=read(out/(phase+'-results.json'));state[phase+'_first_failure']=raw.get('first_failure')
++                    for row in raw.get('leaves',[]):
++                        if row.get('owned_root'):children.update(coor.identities([row['owned_root']]))
++                        children.update(coor.identities(row.get('owned_process_identities',[])))
++                persist();base.absence(owner,known|children)
++                need(sup['status']=='ok' and sup['exit_code']==0 and sup['cleanup_confirmed'] is True
++                     and not sup.get('error_history'),'mandatory_fresh_'+phase+'_child_failed')
++            final_start=time.monotonic();final_end=min(final_start+FINAL,end-ROOT_CLOSE)
++            state.update(final_start_monotonic=final_start,final_deadline_monotonic=final_end)
++            summary,artifacts=contract.artifact_checks(cfg,out,pulse);state['qualified_checks']=summary
++            state['technical_artifacts']=artifacts;guard();base.absence(owner,known|children)
++            state.update(status='technical_completed_pending_root',technical_procedure_passed=True,
++                cleanup_confirmed=True,source_unchanged=True);persist();guard()
++
+     except BaseException as exc:
+         coor.error(state,str(exc) if isinstance(exc,RuntimeError) else 'full_gate_operation_failed','full_gate',exc)
+         state.update(status='technical_failure',technical_procedure_passed=False)
+@@ -290,64 +304,89 @@
+         if final_end is None:
+             now=time.monotonic();final_end=min(now+FINAL,mono+PARENT+FINAL,end-ROOT_CLOSE)
+             state.update(final_start_monotonic=now,final_deadline_monotonic=final_end)
+-        if awake is not None:state['awake_guard']=awake.record
+-        state['owned_process_identities']=[dict(pid=p,create_time=b) for p,b in sorted(children)]
+-        state.update(cleanup_confirmed=False,source_unchanged=False)
+         try:
+-            started=False
+-            for phase in ('parser','mapped'):
+-                path=out/(phase+'-supervisor.json');record=read(path) if path.exists() else {}
+-                started|=bool(record.get('owned_root'))
+-                if record.get('owned_root'):children.update(coor.identities([record['owned_root']]))
+-                children.update(coor.identities(record.get('owned_process_identities',[])))
+-                raw=read(out/(phase+'-results.json')) if (out/(phase+'-results.json')).exists() else {}
+-                for row in raw.get('leaves',[]):
+-                    if row.get('owned_root'):children.update(coor.identities([row['owned_root']]))
+-                    children.update(coor.identities(row.get('owned_process_identities',[])))
+             state['owned_process_identities']=[dict(pid=p,create_time=b) for p,b in sorted(children)]
+-            leaf_ok,uncertain=contract.cleanup_status(cfg,out,started)
+-            state.update(leaf_cleanup_confirmed=leaf_ok,leaf_cleanup_uncertainty=uncertain)
+-            base.absence(owner,known|children)
+-            need(state.get('active_supervisor') is None and all(r.get('cleanup_confirmed') is True
+-                 for r in state['supervisors']) and leaf_ok,'saved_leaf_or_supervisor_cleanup_unconfirmed')
+-            # Delete only our exclusive shallow tree, after exact owned absence.
+-            clock();cleanup_start=time.monotonic()
+-            if temporary_root is not None:
+-                expected_base=(Path(cfg['work_root'])/'t').resolve()
+-                need(temporary_root.parent==expected_base and temporary_root.resolve()==temporary_root
+-                     and not temporary_root.is_symlink()
+-                     and re.fullmatch(r'u7-[a-z0-9_]{8}',temporary_root.name),
+-                     'temporary_cleanup_path_or_identity_changed')
+-                shutil.rmtree(temporary_root)
+-                need(not temporary_root.exists(),'temporary_root_remains_after_cleanup')
+-            clock();need(time.monotonic()-cleanup_start<10,'temporary_cleanup_gap10_exhausted')
+-            coor.save(out/'temporary-cleanup.json',dict(schema=1,root=str(temporary_root) if temporary_root else None,
+-                created=temporary_root is not None,cleanup_confirmed=True,
+-                elapsed_seconds=time.monotonic()-cleanup_start),True)
+-            temp_ok,temp_uncertain=contract.temporary_status(cfg,out,state['temporary_root'])
+-            state.update(temporary_cleanup_confirmed=temp_ok,temporary_cleanup_uncertainty=temp_uncertain)
+-            need(temp_ok,'saved_temporary_cleanup_unconfirmed');clock()
+-            state['cleanup_confirmed']=True
+-        except BaseException as exc:
+-            coor.error(state,'final_owned_cleanup_unconfirmed','final_cleanup',exc)
+-            state.update(status='technical_failure',technical_procedure_passed=False)
+-        try:
+-            contract.frozen(cfg,clock);need(digest(a.private_manifest,clock)==a.private_manifest_sha256,'private_manifest_changed')
+-            state['source_unchanged']=True;clock()
+-        except BaseException as exc:
+-            coor.error(state,str(exc) if isinstance(exc,RuntimeError) else 'final_guard_failed','final',exc)
+-            state.update(status='technical_failure',technical_procedure_passed=False)
++            state.update(cleanup_confirmed=False,source_unchanged=False)
++            try:
++                started=False
++                for phase in ('parser','mapped'):
++                    pulse();path=out/(phase+'-supervisor.json');record=read(path) if path.exists() else {}
++                    started|=bool(record.get('owned_root'))
++                    if record.get('owned_root'):children.update(coor.identities([record['owned_root']]))
++                    children.update(coor.identities(record.get('owned_process_identities',[])))
++                    raw=read(out/(phase+'-results.json')) if (out/(phase+'-results.json')).exists() else {}
++                    for row in raw.get('leaves',[]):
++                        if row.get('owned_root'):children.update(coor.identities([row['owned_root']]))
++                        children.update(coor.identities(row.get('owned_process_identities',[])))
++                state['owned_process_identities']=[dict(pid=p,create_time=b) for p,b in sorted(children)]
++                leaf_ok,uncertain=contract.cleanup_status(cfg,out,started)
++                state.update(leaf_cleanup_confirmed=leaf_ok,leaf_cleanup_uncertainty=uncertain)
++                pulse();base.absence(owner,known|children);pulse()
++                need(state.get('active_supervisor') is None and all(r.get('cleanup_confirmed') is True
++                     for r in state['supervisors']) and leaf_ok,'saved_leaf_or_supervisor_cleanup_unconfirmed')
++                # Delete only our exclusive shallow tree, after exact owned absence.
++                pulse();cleanup_start=time.monotonic()
++                if temporary_root is not None:
++                    expected_base=(Path(cfg['work_root'])/'t').resolve()
++                    need(temporary_root.parent==expected_base and temporary_root.resolve()==temporary_root
++                         and not temporary_root.is_symlink()
++                         and re.fullmatch(r'u7-[a-z0-9_]{8}',temporary_root.name),
++                         'temporary_cleanup_path_or_identity_changed')
++                    shutil.rmtree(temporary_root)
++                    need(not temporary_root.exists(),'temporary_root_remains_after_cleanup')
++                pulse();need(time.monotonic()-cleanup_start<10,'temporary_cleanup_gap10_exhausted')
++                coor.save(out/'temporary-cleanup.json',dict(schema=1,root=str(temporary_root) if temporary_root else None,
++                    created=temporary_root is not None,cleanup_confirmed=True,
++                    elapsed_seconds=time.monotonic()-cleanup_start),True)
++                temp_ok,temp_uncertain=contract.temporary_status(cfg,out,state['temporary_root'])
++                state.update(temporary_cleanup_confirmed=temp_ok,temporary_cleanup_uncertainty=temp_uncertain)
++                need(temp_ok,'saved_temporary_cleanup_unconfirmed');pulse()
++                state['cleanup_confirmed']=True
++            except BaseException as exc:
++                coor.error(state,'final_owned_cleanup_unconfirmed','final_cleanup',exc)
++                state.update(status='technical_failure',technical_procedure_passed=False)
++            try:
++                pulse();contract.frozen(cfg,pulse);need(digest(a.private_manifest,pulse)==a.private_manifest_sha256,'private_manifest_changed')
++                state['source_unchanged']=True;pulse()
++            except BaseException as exc:
++                coor.error(state,str(exc) if isinstance(exc,RuntimeError) else 'final_guard_failed','final',exc)
++                state.update(status='technical_failure',technical_procedure_passed=False)
++        finally:
++            # A prior gap/denial stays sticky; release is attempted even if its pulse fails.
++            try:pulse()
++            except BaseException as exc:
++                coor.error(state,str(exc) if isinstance(exc,RuntimeError) else 'final_pulse_unconfirmed','final_guard',exc)
++                state.update(status='technical_failure',technical_procedure_passed=False)
++            finally:
++                try:
++                    if awake is not None:awake.close()
++                except BaseException as exc:
++                    coor.error(state,'power_request_cleanup_unconfirmed','power_release',exc)
++                    state.update(status='technical_failure',technical_procedure_passed=False)
++                finally:
++                    power_released=True
++                    if awake is not None:state['awake_guard']=awake.record
++            try:
++                pulse()
++                need(awake is not None and awake.record.get('release_API_verified') is True,
++                     'power_request_cleanup_unconfirmed')
++            except BaseException as exc:
++                coor.error(state,str(exc) if isinstance(exc,RuntimeError) else 'released_guard_unconfirmed','power_release',exc)
++                state.update(status='technical_failure',technical_procedure_passed=False)
++        state.update(parent_guard_sticky_error=pulse_sticky_error,parent_maximum_observed_gap_seconds=pulse_maximum_gap)
+         if state.get('technical_procedure_passed') is not True and state.get('qualified_checks') is not None:
+             state['unqualified_completed_checks']=state['qualified_checks'];state['qualified_checks']=None
+         state.update(finished_unix=time.time(),finished_monotonic=time.monotonic(),elapsed_common_seconds=time.monotonic()-mono)
+         persist()
+-        if time.time()>=unix or time.monotonic()>=final_end:
+-            coor.error(state,'terminal_write_exhausted_final_or_original_clock','terminal_save')
+-            state.update(status='technical_failure',technical_procedure_passed=False)
++        try:pulse()
++        except BaseException as exc:
++            coor.error(state,str(exc) if isinstance(exc,RuntimeError) else 'terminal_guard_unconfirmed','terminal_save',exc)
++            state.update(status='technical_failure',technical_procedure_passed=False,
++                parent_guard_sticky_error=pulse_sticky_error,parent_maximum_observed_gap_seconds=pulse_maximum_gap)
+             if state.get('qualified_checks') is not None:
+                 state['unqualified_completed_checks']=state['qualified_checks'];state['qualified_checks']=None
+             persist()
+-    passed=state.get('technical_procedure_passed') is True and not state['error_history'] and state['cleanup_confirmed'] and state['source_unchanged']
++    passed=state.get('technical_procedure_passed') is True and not state['error_history'] and state['cleanup_confirmed'] and state['source_unchanged'] and pulse_sticky_error is None and state.get('awake_guard',{}).get('release_API_verified') is True
+     print(json.dumps({k:state.get(k) for k in ('status','qualified_checks',
+         'original_UAR06_status','technical_procedure_passed','cleanup_confirmed','source_unchanged')},allow_nan=False))
+     return 0 if passed else 1

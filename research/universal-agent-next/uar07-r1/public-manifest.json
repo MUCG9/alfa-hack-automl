@@ -1,0 +1,31 @@
+{
+  "schema": "uar07-public-source-v1",
+  "status": "reviewed_source_not_runtime",
+  "files_sha256": {
+    "close_gate.py": "1b3bfc4091426febdc49665e99cc6da2c98e06efd804ef7dc86648eb9bd3bfc5",
+    "close_gate.py.r3.patch": "9aabdb104062f29d02ec65fa6041e1aba33d8892d4d760a9c5dbdb6c6c05f211",
+    "contracts.py": "5cad0d95a2f292a7833da28599c466e531d4887d4fd15f4e14f56794fa856028",
+    "counts.py": "bc320fd4723476c8a73404ed17a7bdec0cd4c69b1b1d41b321e370549c8cf4d3",
+    "independent-source-review.json": "de53767dee8feac95da810275d94702c29cf422b13c6c415806e362aa972a1dc",
+    "pair-admission-proposal-r2.json": "9693c764677b9c9554c539e2cd27ad435f76fb041d916905902b07f7eba9396b",
+    "preserved-r2-findings.json": "2f7a908ff725c4b59843326d8232618d48bfb17ce1f254c99dca6ff8b954e899",
+    "private-manifest.template.json": "7fdd0d450da28af53c9a9da5eae50973b017dbf2c883195ab5c40da0da2b40bb",
+    "protocol-r3.json": "3c38402c69f596e4cd917fd76a1a50e9ba91f183dd01678bebb9aba8994e9036",
+    "README-r3.txt": "80928ea124022a72b4c6d2155ef297d4292a438d4a6c545159cc17675c8e3316",
+    "reuse-evidence.json": "9f830c94e5a90af53bb7d9b0465615d4fafc915f92fdb1e0e8775f33af6e7eff",
+    "root-private-binding-summary.json": "0a4ab9ec304b2e25c9406df83c1465a9fe2938b5a89dfb338d2bbb61e5f83ffa",
+    "run_gate.py": "fe2f6cae227d7b0ab8345aad460905c2fa87a4d88622cfa2eb785e5147d4bb81",
+    "run_gate.py.r3.patch": "24e024af709af2f205ef278a13e5b97013b4f7f23fff69886c098fad861c785d",
+    "source-handoff-r3.json": "2b0d0e3161c359772f750bee2c9bb23f933be4945a0b99b6132fd705145125d2",
+    "source-proof-r3.json": "9626e27edab294a326023f7b29097bed014e4e82cfc990430dc23f5f32b184b7",
+    "technical_entry.py": "30d603b16f7741cf8b4e541703762ef9956f77411339112af665d430554cd240",
+    "test_counts.py": "9743d5d2da350277431b116c0b1c6c007b7592fbd00622c6dd2dc67515554980"
+  },
+  "omitted_private_files": [
+    "private-manifest-uar07-r1.json"
+  ],
+  "omitted_authoring_helper": "prepare_r3_sources.py (not runtime)",
+  "actual_clock": null,
+  "quality_metric": null,
+  "prior_UAR06": "FAIL_PERMANENT"
+}

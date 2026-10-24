@@ -1,0 +1,149 @@
+{
+  "schema": "unimplemented-prior-ideas-current-backlog-v1",
+  "created_unix": 1792851643.3469384,
+  "human_request": "Не задумывайся об архиве сейчас, направь все ресурсы на все улучшения, гипотезы, идеи, которые еще не были реализованы и были даны тебе ранее",
+  "priority_policy": "Research/model and agent improvements first. Archive building, packaging and new release qualification are deferred. One empirical factor per comparison; source work parallel root+3, all fits/fixtures/heavy audits serial.",
+  "status": "ACTUAL_PRIOR_RECEIPT_RECONCILIATION_ACTIVE_NO_NEW_RUNTIME_OR_SCORE",
+  "source_refs": {
+    "outputs/brq3-completed-results.json": "de5b2d8224f4b0fa89477a4a094db2ae8528663c93e27af762d2c8b91ef813b6",
+    "outputs/uq3-completed-results.json": "626c681fd68b2dbdcfc3fa3a763b1f63e070ee8c8cc419459007a1e13c22cf57",
+    "outputs/cache-pilot-results.json": "7f688f1293991851af899ad67db86e3f2f9ccf790a3f0340280071bd2deb2b9d",
+    "outputs/kernel-component-results.json": "ff84ec77362f9442c40cd3e196f0e47e6e8677a70a9fe99182d2845a048d9354",
+    "outputs/loss-selection-results.json": "87bba67376463d36301bf3aec94a5bb5ef19a4739b875e99f0dd95fcce91cec2",
+    "work/class-blend-seed-next-dev/proposal.json": "b4e1e97d61903ab02e5310101e2a3b4b516e150212e6144f96c84ccd308bf35a",
+    "work/fit-context-next-dev-r2/next-delta-proposal-r1.json": "aeea9dee43a6b5b594aff488ae66ddd1f0a6b2cb7af16670f6cdf4e145aa558f",
+    "work/loss-selection-program/experiments.json": "71f72c906e22a3d754e460b8cc5bbb6d4902650cb9c4e1de73e701207ff2f59e",
+    "work/kernel-methods-program/experiments.json": "3f6c411e4cb3125407cabd698c35d46827d1171c0a1023506b5b84beff6df186"
+  },
+  "items": [
+    {
+      "id": "CLASS-XGB-CONTRIBUTION-01",
+      "priority": 0,
+      "status": "SOURCE_IMPLEMENTATION_ACTIVE",
+      "action": "One fixed two-LGBM vs current full3 saved-probability comparison, bothcuts, no new fits; exact eligibility and inherited class gates.",
+      "owner": "features_models + audit_contract peer + ownership_temporal caller"
+    },
+    {
+      "id": "FIT-CONTEXT-EXTRACTOR-INTEGRATION",
+      "priority": 1,
+      "status": "FROZEN_PROTOTYPE_UNEXECUTED_NATIVE_FIXTURES_AND_TRUSTED_LOADER_GATEWAY_MISSING",
+      "action": "Finish trusted fitting-row/native scalar extraction, original-budget forwarding, poisoned unselected-row fixtures, exact message-byte preflight and cold-start gateway binding; keep outer feedback claims distinct.",
+      "owner": "audit_contract backlog evidence now; next source lease after current peer"
+    },
+    {
+      "id": "SELECTOR-CACHE-INTEGRATION",
+      "priority": 1,
+      "status": "ISOLATED_K1_SIX_CALLBACK_PILOT_MEASURED_DEFAULT_OFF_NOT_INTEGRATED",
+      "action": "Review integration against current source using exact semantic/cache identities and parity; K1 descriptive85.97s is not future/stable/full-agent gain.",
+      "owner": "root + independent source review"
+    },
+    {
+      "id": "HPO-MEMORY-CACHE",
+      "priority": 1,
+      "status": "PLAN_ONLY_NO_CURRENT_IMPLEMENTATION_OR_REALIZED_SAVINGS",
+      "action": "Reuse only exact completed compatible trial artifacts under pinned rows/features/recipe/stopping/threads/backend/source identities; verify boundaries and truthful attempted/reused/fitted counters. No clock expansion.",
+      "depends_on": [
+        "current source census",
+        "selector cache evidence review"
+      ]
+    },
+    {
+      "id": "LOSS-QWEN-ADVICE",
+      "priority": 2,
+      "status": "LOSS03_UNIMPLEMENTED_FITTING_CONTEXT_AND_CATALOG_ADMISSION_REQUIRED",
+      "action": "Matched current agent vs bounded catalog enumeration vs real Qwen choice under equal total budget; no outer validation statistics in fitting-only input.",
+      "depends_on": [
+        "FIT-CONTEXT-EXTRACTOR-INTEGRATION"
+      ]
+    },
+    {
+      "id": "LOSS-EQUAL-HPO-L1",
+      "priority": 2,
+      "status": "LOSS01_L1_COMPONENT_WIN_AND_L1_AGENT_SEED_ALREADY_MEASURED_LOSS02_SEPARATE_CATALOG_COMPARISON_PENDING",
+      "action": "Only a separately defined equal-inner-HPO loss factor if not already covered by exact LA2/UQ3 evidence; do not repeat completed L1 admission or fixed Huber negative.",
+      "depends_on": [
+        "exact current source and actual prior experiment mapping"
+      ]
+    },
+    {
+      "id": "CLASS-BLEND-SEED-ADMISSION",
+      "priority": 2,
+      "status": "REVIEWED_12_TEST_SOURCE_UNEXECUTED_ON_OLD_BASE",
+      "action": "Reconcile exact 0.9SINGLE+0.1ET admission proposal with prior fixedET negative and current portfolio; only new admission mechanism with protected first5/max9, no unchanged ET rerun.",
+      "depends_on": [
+        "current CLASS comparison",
+        "prior mechanism overlap review"
+      ]
+    },
+    {
+      "id": "KERN-POLY2",
+      "priority": 3,
+      "status": "KERN02_DEFERRED_NEW_REPRESENTATION_NOT_IMPLEMENTED",
+      "action": "Fitting-only bounded numeric degree2 admission and exact matrix cost gate before any fit; no replay of failed/worse fixed linear/RBF regression."
+    },
+    {
+      "id": "KERN-NYSTROEM-EXACT-SVM",
+      "priority": 3,
+      "status": "KERN03_DEFERRED_FEASIBILITY_UNIMPLEMENTED",
+      "action": "Strict separate cost-only feasibility with matrix/time/calibration caps before any quality claim; use measured scale, not uncontrolled full expansion."
+    },
+    {
+      "id": "KERN-CLASS-NONASCII-FAILURE",
+      "priority": 3,
+      "status": "KERN01_CLASS_FITS_TECHNICALLY_FAILED_NO_CANDIDATE_CLASS_METRIC",
+      "action": "New isolated fix for actual joblib temporary-path encoding problem would be a changed mechanism; no retry of closed KERN01 or needless REG repeats."
+    },
+    {
+      "id": "KERN-QWEN-ADVICE",
+      "priority": 3,
+      "status": "KERN04_UNIMPLEMENTED_DEPENDS_ON_CATALOG_AND_FITTING_CONTEXT",
+      "action": "Fair real-Qwen bounded representation advice comparison only after adapter/catalog cost readiness.",
+      "depends_on": [
+        "FIT-CONTEXT-EXTRACTOR-INTEGRATION",
+        "bounded kernel cost evidence"
+      ]
+    },
+    {
+      "id": "CLASS-LOSS-CATALOG",
+      "priority": 3,
+      "status": "MULTICLASS_LOSS_PROFILES_DEFERRED_NO_SOURCE_READINESS",
+      "action": "Source-supported softmax/OVA profile feasibility and exact original metric/stopping invariants before any measured quality hypothesis."
+    },
+    {
+      "id": "CONVEYOR-ENROLLMENT",
+      "priority": 4,
+      "status": "MINIMAL_CLI12_TESTS_PASS_NO_LIVE_ENROLLMENT",
+      "action": "Only enroll proven local units if it removes observed manual overhead; no new background service, agent launcher or clock/requeue reset."
+    }
+  ],
+  "already_completed_not_to_repeat": [
+    "UAR09 combined technical59/634 +23exact+104mapped+73flat",
+    "Cadence and fair-reserve HPO already qualified in UQ3 with32actual valid HPO attempts",
+    "Loss L1 component screen and L1 admission leading REG34.155023394837",
+    "BRQ3 two standard calls/81contracts/current metrics and delivered archive",
+    "K1 isolated selector-cache six-callback parity/pilot; not current HPO-cache integration"
+  ],
+  "negative_or_failed_preserved": [
+    "Fixed Huber candidate worse on2/3 component cuts",
+    "Fixed linear/RBF regression worse on all3 cuts; original KERN01 FAIL/classcandidate metricsNULL",
+    "Historical fixedET/linear/regkernel negatives not repeated without new mechanism",
+    "All closed clocks and original failure proofs remain closed"
+  ],
+  "active_work": {
+    "FM": "one CLASS cache ablation auditor",
+    "AC": "exact predicate/peer; fitting-context/cache backlog evidence while awaiting sourcefreeze",
+    "EO": "thin no-fit caller; queued workflow idea evidence afterfreeze",
+    "root": "reconcile prior programs, integrate/review/freeze and allocate serial runtime"
+  },
+  "capacity": {
+    "root": 1,
+    "native_subagents": 3,
+    "local_heavy_limit": 1
+  },
+  "current_local_heavy": null,
+  "new_experiment_clock": null,
+  "new_metrics": null,
+  "upload": false,
+  "Linux": "HUMAN_PAUSED",
+  "scope_limit": "This catalog covers inspected STATE and original loss/kernel/class/cache programs. Remaining prior-agent ideas will be merged by exact evidence; the list is not a claim that all historical prose was exhaustively audited."
+}

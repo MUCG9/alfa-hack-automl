@@ -1,0 +1,136 @@
+{
+  "schema": "class-xgb-contribution-independent-decision-eligibility-v1",
+  "status": "FROZEN_PROSPECTIVE_SOURCE_CONTRACT_ONLY_NO_EXECUTION",
+  "hypothesis_id": "CLASS-XGB-CONTRIBUTION-01",
+  "source_refs": [
+    {
+      "path": "work/repaired-mvp-r1-dev/evaluator_r4.py",
+      "sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783"
+    },
+    {
+      "path": "work/method-component-next-dev/audit_components.py",
+      "sha256": "bf3526023c265fd102531426a2c35472686be84104500e703eb82d18f9456973"
+    },
+    {
+      "path": "work/brq3/terminal-root-closure.json",
+      "sha256": "7578f3ea5f4d3b14e9925bec5705a3169ab17ae77de5a45cfc7583edeaedf42d"
+    },
+    {
+      "path": "work/brq3/independent-audit.json",
+      "sha256": "c5757f966e79b2e25ccb5b069860dfbb2c4246d310d4a5dd20d51c4fbd039ca4"
+    },
+    {
+      "path": "work/br-standard-release-next-dev-r5/source-handoff.json",
+      "sha256": "92cfd41804ca162ba5ec4aeff53a3cb45e6b0c798b93e0c36c1cbb969fdfef08"
+    },
+    {
+      "path": "work/class-strong-standard-control-next-dev/source-handoff.json",
+      "sha256": "afd6968647dae15fd3bb4347a5418d5c20734d776d1af04652a07c4053c9b544"
+    },
+    {
+      "path": "work/brq3-class-lineage-diagnosis-next-dev/source-handoff.json",
+      "sha256": "fbd2346e0e6ba0ee4cb353faf2b5acae1598d42619694ce9a5e30c6004ad3a6e"
+    }
+  ],
+  "existing_gate_functions": [
+    {
+      "definition": "f1",
+      "line": 63,
+      "end_line": 68,
+      "AST_sha256": "a67b0e7d0134fd2c46f38959f6621c206ec20df4a3021aaa4b16ac31106f9786"
+    },
+    {
+      "definition": "f1_counts",
+      "line": 71,
+      "end_line": 75,
+      "AST_sha256": "061b569c401e8db8db10aef9192b7e662d549f5f9862d17e16e80dfc6357c4a9"
+    },
+    {
+      "definition": "matched_control_comparison",
+      "line": 167,
+      "end_line": 191,
+      "AST_sha256": "69811efe8fd6bbb1806e9f994f7eaa720fc5c74f8cc22fe73cb9bc5d5e12fe37"
+    },
+    {
+      "definition": "diagnostics",
+      "line": 316,
+      "end_line": 337,
+      "AST_sha256": "b7d9c5d55779d81911b8f3455d5e558ff516b532b0a7f04d7f0bbf8ee692684d"
+    }
+  ],
+  "control": {
+    "identity": "Exact BRQ3 sealed full3 current R5 recipe, all3 positive equal weights normalized, same canonicalclass order and ordered fitting/validation rows",
+    "archive_sha256": "c7b54a8996e36dfaaf582b104d1f38ecca71d91d4f38362ed50775381f42f930",
+    "actual_reference_class_mean": 0.6530048968876206,
+    "historical_V16_not_matched_control": true
+  },
+  "candidate": {
+    "only_change": "Retain outercomponents0+1; dropouter2 XGB; fixed outerweights[.5,.5]",
+    "internal_feature_views_unchanged": true,
+    "no_sweep": true,
+    "no_new_fits": true,
+    "no_REG_change": true
+  },
+  "reuse_eligibility_before_comparative_metrics": [
+    "Pin actual closed BRQ3 root proof, independent audit, manifest, code/archive, bothclass task/spec, current full3 recipe and exact source/input/core inventories; root exit0/cleanup/source/fresh confirmation required by caller.",
+    "Independently bind actual current original42/43 native split files and ordered canonical row identities, fullclass order and rawrecipe/component tree to immutable manifest and recorded audit metadata.",
+    "All required control and candidate child validation probability/prediction/result/recipe artifacts and input sources complete and unchanged; exact primary/confirmation class order and row positions; no substitute failed/missing paths.",
+    "Verify control full3 independently for bothcuts first using existing manualR4 pristine actuallabels and current sealedchild probabilities; require reproduction of savedcontrol macro/perclass/support/rarest metrics to frozen established numeric tolerances, not a new tolerance.",
+    "Candidate uses ONLY same stored leaf-adjusted component0/1 probabilities and exact .5/.5 weights, no recalibration/refit/newtransform or postscore repair.",
+    "Fitting feature-hash groups must be disjoint from validation; support/rarest derived solely from fittingrows through pinnedR4 diagnostics, samecut support andrarest incontrol/candidate.",
+    "All sources/inputs/core artifacts sealed before truth parse and rehashed after audit under original caller600 clock; any mismatch/denial/deadline/uncertain=>STOP."
+  ],
+  "metrics_failure_policy": {
+    "any_failed_or_missing_eligibility_binding": "comparative metrics null; quality_decision null/unqualified; STOP, preserve firstfailure and secondary, no partialmean/zeroimputation",
+    "ordinary_complete_negative": "technical audit maypass, qualityfalse retained; do not conflate technical andpositiveML",
+    "failed_or_missing_cut_gate": false
+  },
+  "exact_existing_class_protection": {
+    "source_authority": "c08e9f0b matched_control_comparison and diagnostics; bf352602 registered component policy uses same fixed constants",
+    "per_cut_macro_F1": "candidate.value-control.value >0 strictly, noepsilon",
+    "support_definition": "len(unique fitting featurehashes for each declared class), not raw row count or validation support",
+    "supported_group_minimum": 100,
+    "supported_class_drop_forbidden_if": "per_class_delta < -0.01 - 1e-12; equality at bound allowed",
+    "rarest_definition": "min(canonical declared classes,key=independent_fitting_groups); preserve class-order tie handling",
+    "ex_rarest_delta": "arithmetic mean of class F1 deltas excluding exactly that fitting-rarest class >0 strictly",
+    "comparability": "same positions_sha256, same independent_fitting_groups and same rarest_fitting_class percut"
+  },
+  "no_promotion_decision_predicate": {
+    "eligibility": true,
+    "bothcuts": [
+      42,
+      43
+    ],
+    "required_conditions": [
+      "All comparative scalars finite and bothcuts complete",
+      "Strict MacroF1 improvement on42 AND43",
+      "Arithmetic two-cut mean(candidate MacroF1)>arithmetic two-cut mean(control MacroF1), strict",
+      "For EACHcut, no supportedclass losses below inherited -.01-1e-12 and strict exrarestdelta>0"
+    ],
+    "candidate_qualification": "AND of every above condition; retain percut outcomes so mean cannot hide a loss",
+    "automatic_promotion": false,
+    "standard_archive_change": false,
+    "regression_change": false,
+    "automatic_submit": false,
+    "interpretation": "One adaptive ablation on reusedpublic folds; no unbiased/private/platformgain claim; positive no-fit audit alone doesnotqualify standard refit/CSV/release."
+  },
+  "prospective_caller_budget": {
+    "common_seconds": 600,
+    "setup_and_contracts_parent_seconds": 180,
+    "audit_parent_seconds": 120,
+    "final_including_root_seconds": 300,
+    "root_closure_seconds_inside_final": 60,
+    "actual_clock": null,
+    "clockreset": false,
+    "technical_model_fits": 0,
+    "API_calls": 0
+  },
+  "pending_independent_peers": {
+    "FM_auditor_source_and_prepared_contracts": "awaiting exact frozen handoff",
+    "EO_thin_caller": "after FMfreeze/source review; no execution by reviewer"
+  },
+  "actions": {
+    "candidate_imports_tests_arrays_truth_fits_API_PID_scans_Git_canonical": 0,
+    "actual_approval_or_READY": null
+  }
+}

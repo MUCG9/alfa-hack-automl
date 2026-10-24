@@ -1,0 +1,59 @@
+{
+  "schema": "class-xgb-contribution-root-source-decision-v1",
+  "human_request": "Какой текущий пайплайн и сколько ты выполнил задач? Нужно ускоряться. Подключи необходимое количество субагентов.",
+  "status": "ONE_HYPOTHESIS_SELECTED_SOURCE_AUTHORING_AUTHORIZED_RUNTIME_NOT_READY",
+  "selected_hypothesis": "CLASS-XGB-CONTRIBUTION-01",
+  "source_evidence": {
+    "FM": {
+      "path": "work/brq3-class-lineage-diagnosis-next-dev/source-handoff.json",
+      "sha256": "fbd2346e0e6ba0ee4cb353faf2b5acae1598d42619694ce9a5e30c6004ad3a6e"
+    },
+    "AC": {
+      "path": "work/class-strong-standard-control-next-dev/source-handoff.json",
+      "sha256": "afd6968647dae15fd3bb4347a5418d5c20734d776d1af04652a07c4053c9b544"
+    },
+    "EO": {
+      "path": "work/class-next-hypothesis-protocol-next-dev/source-handoff.json",
+      "sha256": "4e6d389ae6d53a4778eb233f603d31d222a37b11f77086d3512aafe91531db40"
+    }
+  },
+  "factor": "Remove only current XGB outer contribution: same retained LGBM outer components 0 and 1 at fixed equal weights 0.5/0.5 versus exact current full3 equal blend.",
+  "initial_scope": "Private independent saved-probability cache comparison on BOTH exact BRQ3 cuts42/43; reproduce sealed full3 control first. No new fits, API, weight sweep, or REG changes.",
+  "reuse_eligibility": "Exact current source/archive/inputs/tasks/rows/splits/classes/complete child cores/probabilities/caps/actual-exit/independent metric/closure bindings are mandatory before pristine truth. Missing cache or mismatch means STOP, not fallback fit.",
+  "quality_rule": "Strict MacroF1 improvement on BOTH cuts and mean plus preserved preregistered supported-class/ex-rarest protections. Independent peer must pin exact existing gate predicates and thresholds before any new candidate score. No mean-only promotion.",
+  "later_release": "A successful cache comparison is only a hypothesis result; new archive standard full-refit/CSV/source/root qualification remains mandatory.",
+  "prospective_budget_seconds": {
+    "total": 600,
+    "setup_and_changed_contracts": 180,
+    "audit": 120,
+    "final": 300,
+    "driver_final": 240,
+    "root_inside_final": 60
+  },
+  "technical_threads": 1,
+  "worker_memory_mib": 1536,
+  "whole_owned_memory_mib": 2048,
+  "sticky_gap_seconds": 10,
+  "actual_clock": null,
+  "private_READY": null,
+  "actual_execution": null,
+  "new_metrics": null,
+  "parallel_agents": {
+    "features_models": "minimal private cache auditor plus meaningful pure/mock test source",
+    "audit_contract": "exact eligibility/quality predicate and independent source peers after freeze",
+    "ownership_temporal": "thin reviewed executable caller/closer and prospective protocol"
+  },
+  "runtime_admission": "Freeze final source/tests; independent peer; root review; checked source publication; actual fresh full7305 plus new preparer identities union; one new reviewed launcher clock. No closed launcher/closer/clock reuse.",
+  "protected_archive": {
+    "path": "outputs/solution-br-rmse34.15502.zip",
+    "sha256": "c7b54a8996e36dfaaf582b104d1f38ecca71d91d4f38362ed50775381f42f930",
+    "regression_RMSE": 34.155023394837,
+    "classification_MacroF1": 0.6530048968876206,
+    "changed": false
+  },
+  "historical_best_CLASS": 0.6593178433614652,
+  "upstream_native_cause_proven": false,
+  "Linux": "HUMAN_PAUSED",
+  "automatic_submit": false,
+  "created_unix": 1792851282.5356283
+}

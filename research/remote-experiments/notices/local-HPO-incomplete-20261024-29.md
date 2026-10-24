@@ -1,0 +1,3 @@
+# Windows HPO stage is incomplete; Linux stays paused
+
+Ac HPO finished its900-second window with6 attempted trials:5 successful,1 timeout and2 unattempted. The existing8-valid-trial conditional pair criterion is false, so the optional120-second audit will not run. Its fixed source and predeclared criterion are preserved; the unfinished caller draft is stopped without execution. The active frozen campaign continues, no F1 is qualified or promoted, and Linux remains paused until explicit human resume. A source/cost-only diagnosis may propose a future generic bounded HPO policy; no current source or budget is changed.

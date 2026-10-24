@@ -1,0 +1,28 @@
+{
+  "scope": "one CLASS observation transport correction after real RQ3 PermissionError13 at observation read",
+  "authority_unchanged": [
+    "nonce",
+    "freshness10",
+    "identity/fullbirth/PPID",
+    "source",
+    "caps1536/2048",
+    "wall/mono original deadlines",
+    "sequence monotonicity",
+    "sticky failure"
+  ],
+  "framing": {
+    "max_payload": 262144,
+    "header": "OBS1 six-hex-length SHA256 JSON newline",
+    "tail_bytes": 524448,
+    "seek_cut_initial_fragment_discarded": true,
+    "unterminated_final_fragment_only_ignored": true,
+    "invalid_complete_frame": "STOP",
+    "all_access_denials": "immediate sticky STOP",
+    "first_full_frame_before_authority": true,
+    "append_only_actual_new_sequence": true
+  },
+  "organizer_cause_unknown": true,
+  "RQ3_FAIL_preserved": true,
+  "new_archive_metrics": null,
+  "qualified": false
+}

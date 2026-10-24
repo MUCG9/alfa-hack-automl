@@ -1,0 +1,1 @@
+SOURCE ONLY. CLASS framed append observation transport; REG unchanged. 24 prospective contracts include native Windows concurrent synthetic append/read. No permission retry or cached fallback. Old16 assertion ASTs retained. All clocks/resource/nonce/freshness checks retained. RQ3 failure remains permanent.

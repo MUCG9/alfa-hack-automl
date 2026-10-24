@@ -1,0 +1,38 @@
+{
+  "unit": "RQ3",
+  "status": "CLOSED_FAIL_RUNTIME_CLASS_OBSERVATION_PERMISSION_ERROR",
+  "actual_session": 8788,
+  "actual_exit_code": 1,
+  "actual_terminal_tool": "14217b",
+  "technical_contracts_passed": 80,
+  "classification_error": {
+    "type": "PermissionError",
+    "errno": 13,
+    "winerror": null,
+    "phase": "lexical_projection_parent_resource_observation",
+    "learner_dispatch_reached": false
+  },
+  "organizer_exact_cause_unknown": true,
+  "archive_metrics": null,
+  "submission_ready": false,
+  "regression_core_sealed_but_not_independently_scored": true,
+  "frozen_closer_executed": false,
+  "saved_final240_expired": true,
+  "current_negative_observer": {
+    "actual_exit_code": 0,
+    "tool": "89278c",
+    "sha256": "98e09319004a4115030f847976c2abed48d3bdbe64588c8a759cf0abdb88c4f2"
+  },
+  "post_tool_confirmation": {
+    "actual_exit_code": 0,
+    "tool": "1b37a8",
+    "sha256": "e619877ddf705dd8846ac218e53f0b38e6658dcccbb691613330a424070f7c3d",
+    "known_absent": 7887,
+    "uncertain": 0,
+    "source_pins_checked": 367,
+    "temporary_absent": true
+  },
+  "old_failure_preserved": true,
+  "new_clock": null,
+  "next": "reviewed_framed_observation_repair_R4_then_new_RQ4_standard_qualification_then_actual_Qwen10800"
+}

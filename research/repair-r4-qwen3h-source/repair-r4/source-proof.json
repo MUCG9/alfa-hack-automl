@@ -1,0 +1,20 @@
+{
+  "schema": "repair-r4-boundary-aligned-frame-source-proof",
+  "old_contracts": 16,
+  "new_contracts": 8,
+  "total_prepared": 24,
+  "old_assert_AST_unchanged": true,
+  "only_runtime_changed": [
+    "automl_release_supervision.py"
+  ],
+  "regression_entry_recipe_worker_evaluator_requirements_byte_unchanged": true,
+  "source_only": true,
+  "executed_tests": 0,
+  "actual_models": 0,
+  "actual_metrics": null,
+  "pre_freeze_retry_WIP_retained_unexecuted": true,
+  "transport": "bounded-append-framed-latest-complete-no-permission-retry",
+  "native_concurrent_test_prepared": true,
+  "complete_boundary_bad_frame_checked": true,
+  "prior_r3_preserved": true
+}

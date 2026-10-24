@@ -1,0 +1,113 @@
+{
+  "schema": "uq3-thin-harness-source-proof-v1",
+  "definitions": {
+    "run_pair.py": {
+      "base_sha256": "515aba64781ba885dba0b726d3e67fcd47ed52084f87ab151118b6f189d58491",
+      "candidate_sha256": "464305881ab1661fdf2f7b7f4a443aeec59b4bb4664f6d3f18dece2c204d25dd",
+      "unchanged_definitions": [
+        "need",
+        "local",
+        "sha",
+        "load",
+        "imported",
+        "merge",
+        "launch_origin",
+        "complete_core_seal",
+        "bind_source",
+        "authority_checkpoint"
+      ],
+      "changed_definitions": [
+        "solver_argv",
+        "main"
+      ],
+      "new_definitions": [
+        "historical_failure_evidence"
+      ]
+    },
+    "launcher.py": {
+      "base_sha256": "cdeb64e24f95d9d3afe659f4f15938db0af6841b501f33da782fe1de885c0d78",
+      "candidate_sha256": "c6d0dfa82939160200b39a4b176a9a462a1f6530e6089a9f5445dfd5850d76a5",
+      "unchanged_definitions": [
+        "need",
+        "sha",
+        "provider_environment",
+        "preflight_metadata"
+      ],
+      "changed_definitions": [
+        "main"
+      ],
+      "new_definitions": []
+    },
+    "audit_pair.py": {
+      "base_sha256": "daf342b64c99c7e69843942407e913aadf8ee02e47a16d690a703dfb42330bf4",
+      "candidate_sha256": "f58a17c218ca89461c3c97c3498d197fa105b5a8ea0b240b26b232b12badf7ff",
+      "unchanged_definitions": [
+        "need",
+        "load",
+        "digest",
+        "hpo_counts",
+        "loss_telemetry",
+        "raw_records",
+        "retention_proof",
+        "strict_proof"
+      ],
+      "changed_definitions": [
+        "main"
+      ],
+      "new_definitions": [
+        "fair_policy_proof"
+      ]
+    },
+    "close_pair.py": {
+      "base_sha256": "d7dd102796a31529101f378e4ecf7320ca728f5c6cf89b648c1a3b344661b1c8",
+      "candidate_sha256": "81292f982a6cdf235905940c977115ae11ef3745626f4a28069841a291cfb462",
+      "unchanged_definitions": [
+        "read",
+        "local",
+        "imported"
+      ],
+      "changed_definitions": [
+        "main"
+      ],
+      "new_definitions": [
+        "need",
+        "assertion",
+        "historical_failure_evidence"
+      ]
+    }
+  },
+  "R4_adapter_byte_exact": true,
+  "manual_R4_sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+  "UQ2_one_key_historical_fac3_projection_byte_exact": true,
+  "closer_positive_predicate_AST_exact_original_R4": true,
+  "closer_successful_resource_sampler_AST_exact_reviewed_EO_R3": true,
+  "preserved_auditor_helpers": [
+    "hpo_counts",
+    "loss_telemetry",
+    "raw_records",
+    "retention_proof",
+    "strict_proof"
+  ],
+  "callback_count_is_not_model_Popen_or_recursive_fit_count": true,
+  "prepared_contract_methods": [
+    "UQ3BootstrapTests.test_fresh_origin_has_no_UQ1_tuple_and_rejects_reset_or_short_setup",
+    "UQ3BootstrapTests.test_class_common_flag_is_before_B_suffix_REG_unchanged",
+    "UQ3BootstrapTests.test_launcher_origin_precedes_source_publication_provider_and_runpy",
+    "UQ3BootstrapTests.test_exact_historical_failure_is_evidence_only_no_false_flag_repair",
+    "UQ3BootstrapTests.test_only_exact_historical_guard_projection_keeps_candidate_pin",
+    "UQ3BootstrapTests.test_template_cannot_grant_gate_or_clock_and_no_optional_8VALID_salvage"
+  ],
+  "prepared_contract_count": 6,
+  "tests_registered": false,
+  "original_proposal_sha256": "7a5174efe6685e72f3f3bb5feeaccddaa94c9bf803d9d586ed026c2e4103f0d2",
+  "preparation_only": {
+    "candidate_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API": 0,
+    "clock_assigned": false,
+    "PID_scans": 0,
+    "canonical_STATE_Git_writes": 0,
+    "materialization": false
+  }
+}

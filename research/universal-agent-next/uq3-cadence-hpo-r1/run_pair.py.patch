@@ -1,0 +1,320 @@
+--- reviewed_R4/run_pair.py
++++ prospective_UQ3/run_pair.py
+@@ -17,8 +17,8 @@
+ import zipfile
+ 
+ sys.dont_write_bytecode = True
+-WORK = Path(__file__).resolve().parents[1]
+-OUTPUT = WORK/'uq1'
++WORK = Path(__file__).resolve().parents[2]
++OUTPUT = WORK/'uq3'
+ BASE, BASE_SHA = 'm4packet/manifest.json', '8faf33cd81c0e864bcf338828c34447000111eda85bc719b8f43312d2babae9a'
+ COORDINATOR, COORDINATOR_SHA = 'run_lean_mvp_r2.py', '43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818'
+ R4, R4_SHA = 'repaired-mvp-r1-dev/evaluator_r4.py', 'c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783'
+@@ -78,6 +78,38 @@
+     pins[name] = digest
+ 
+ 
++
++HISTORICAL_FAILURES = {
++    'uar02-next-dev/attempt-r1/terminal-root-closure.json': '87f691b5774ed6f604069d952041bdd6af6a6022f9ea1268ac77a8364180a106',
++    'uq1/terminal-root-closure.json': 'c880e6625dfa1a52af9aab9847adbb9c1c519493e3e3d678d591237266bded15'}
++
++
++def historical_failure_evidence(name, digest, proof):
++    """Exact immutable negatives only; return no adopted/current ownership IDs."""
++    if name not in HISTORICAL_FAILURES:return False
++    need(digest==HISTORICAL_FAILURES[name] and proof.get('technical_procedure_passed') is False
++         and proof.get('cleanup_confirmed') is False and proof.get('active_owned_processes')==[],
++         'exact_historical_negative_evidence_required')
++    if name.startswith('uar02-'):
++        need(proof.get('schema')=='uar02-root-closure-v1' and proof.get('source_unchanged') is True
++             and proof.get('actual_exec_session') is None and proof.get('actual_exec_exit_code_observed_by_root')==1
++             and proof.get('actual_tool_evidence')=='ae1308' and proof.get('qualified_checks') is None
++             and proof.get('leaf_cleanup_confirmed') is False
++             and proof.get('uncertain_owned')==proof.get('leaf_cleanup_uncertainty')==[
++                 dict(action='leaf_cleanup_receipts',reason='missing_after_entry_started')]
++             and proof.get('first_failure')==proof['error_history'][0]
++             and [v['code'] for v in proof['error_history']]==[
++                 'child_nonzero_exit','mandatory_focused_child_failed','final_owned_cleanup_unconfirmed'],
++             'historical87_uncertainty_must_stay_unqualified')
++    else:
++        need(proof.get('source_unchanged') is False and proof.get('actual_exec_session') is None
++             and proof.get('actual_exec_exit_code_observed_by_root')==1 and proof.get('actual_tool_evidence')=='94cc24'
++             and proof.get('first_failure',{}).get('code')=='conflicting_input_pin'
++             and proof.get('changed_source_or_core')==['missing-pair-manifest']
++             and proof.get('uncertain_owned')==[dict(scope='campaign',reason='saved_cleanup_not_confirmed')],
++             'historical_UQ1_false_flags_must_stay_unqualified')
++    return True
++
+ def solver_argv(arm,kind,retention_sha256):
+     cfg=CAPS[kind]
+     argv=[sys.executable,'-B','-X','utf8','-u','solution.py','task.md',
+@@ -87,6 +119,7 @@
+         '--hpo-trials','8','--hpo-budget',str(cfg['hpo']),'--hpo-sampler','tpe',
+         '--validation-strategy','auto','--feature-selection-top-k','32',
+         '--planner-mode','staged','--run-name','repair4','--time-budget',str(cfg['solver'])]
++    if kind=='classification':argv+=['--hpo-fair-reserve']
+     if arm=='B':argv+=['--strict-task-contract']
+     return argv
+ 
+@@ -258,8 +291,8 @@
+         official_default_ready=False,scope='Real stochastic Qwen; strict-task-contract OFF/ON with strict-runtime BOTH and identical common retention policy. Reused public; no official-default qualification.')
+     pins,deployment,known,finished={},{},set(),set()
+     coor=owner=processes=awake=None;final_end=None
+-    auditor='uar-qwen-pair-next-dev/audit_pair.py'
+-    closer='uar-qwen-pair-next-dev/close_pair.py'
++    auditor='uq3-cadence-hpo-next-dev/candidate/audit_pair.py'
++    closer='uq3-cadence-hpo-next-dev/candidate/close_pair.py'
+     manifest_path,plan_path=OUTPUT/'manifest.json',OUTPUT/'verification-plan.json'
+     def persist():
+         data = {k: v for k, v in state.items() if not k.startswith('_')}
+@@ -318,21 +351,23 @@
+         check=lambda:checkpoint(setup_end,'pair_setup_cap_exhausted')
+         explicit={BASE:BASE_SHA,COORDINATOR:COORDINATOR_SHA,R4:R4_SHA,
+             LINEAGE:LINEAGE_SHA,auditor:args.auditor_sha256,closer:args.closer_sha256,
+-            'uar-qwen-pair-next-dev/r4_adapter.py':None,
++            'uq3-cadence-hpo-next-dev/candidate/r4_adapter.py':None,
+             Path(__file__).resolve().relative_to(WORK).as_posix():args.self_sha256,
+             args.binding:args.binding_sha256,args.bootstrap_launcher:args.bootstrap_launcher_sha256}
+         need(sha(local(args.binding),check)==args.binding_sha256,'launch_binding_changed')
+         binding=load(local(args.binding))
+         need(binding.get('schema')=='uar-qwen-pair-binding-v1' and binding.get('readiness')=='READY_REVIEWED_SOURCE_AND_AUTHORITY'
+              and binding.get('missing_bindings')==[],'NOT_READY_actual_UAR05_and_reviewed_authority_required')
+-        explicit['uar-qwen-pair-next-dev/r4_adapter.py']=binding['r4_adapter_sha256']
++        explicit['uq3-cadence-hpo-next-dev/candidate/r4_adapter.py']=binding['r4_adapter_sha256']
+         def bind(ref):
+             need(type(ref) is dict and set(ref)=={'path','sha256'},'typed_exact_reference_required')
+             need(sha(local(ref['path']),check)==ref['sha256'],'explicit_reference_changed')
+             merge(pins,ref['path'],ref['sha256']);return load(local(ref['path']))
+         for name,digest in explicit.items():
+             need(sha(local(name),check)==digest,'pair_explicit_source_binding_failed');merge(pins,name,digest)
+-        stage=binding['source_gate'];cfg_ref=stage['private_manifest'];cfg=bind(cfg_ref)
++        stage=binding['source_gate']
++        need(stage.get('mode')=='full_gate_v1','NEW_combined_full_gate_only_no_old_composite_qualification')
++        cfg_ref=stage['private_manifest'];cfg=bind(cfg_ref)
+         need(type(stage['actual_tool_evidence']) is str and bool(stage['actual_tool_evidence'].strip())
+              and (stage['actual_exec_session'] is None or type(stage['actual_exec_session']) is int
+                   and stage['actual_exec_session']>0),'actual_root_observed_gate_tool_and_session_required')
+@@ -345,14 +380,87 @@
+              and stage0_proof.get('cleanup_confirmed') is True and stage0_proof.get('source_unchanged') is True
+              and stage0_proof.get('active_owned_processes')==[] and stage0_proof.get('uncertain_owned')==[],
+              'actual_UAR05_root_PASS_not_prospective_counts_required')
++        need(stage0_proof.get('schema')=='uar-full-root-closure-v1'
++             and stage0_proof.get('leaf_cleanup_confirmed') is True
++             and stage0_proof.get('leaf_cleanup_uncertainty')==[]
++             and stage0_proof.get('temporary_cleanup_confirmed') is True
++             and stage0_proof.get('temporary_cleanup_uncertainty')==[],
++             'actual_full_gate_leaf_and_temporary_cleanup_required')
++        confirmation=bind(stage['root_confirmation'])
++        need(confirmation.get('schema')=='uar-full-gate-root-exec-confirmation-v1'
++             and confirmation.get('root_closure')==stage['root_closure']
++             and confirmation.get('private_manifest')==cfg_ref
++             and confirmation.get('campaign')==stage['campaign']
++             and confirmation.get('closer_source')==stage['closer']
++             and confirmation.get('gate_actual_exec')==dict(session=stage['actual_exec_session'],
++                 exit_code=0,tool=stage['actual_tool_evidence'])
++             and confirmation.get('root_and_closure_preparer_union_included') is True
++             and confirmation.get('known_exact_live')==[] and confirmation.get('uncertain')==[]
++             and confirmation.get('common_seconds')==1200,
++             'actual_full_gate_helper_exit_and_fresh_preparers_required')
++        need(all(type(confirmation.get(k)) in (int,float) and math.isfinite(confirmation[k]) for k in
++             ('checked_unix','checked_monotonic','original_start_unix','original_deadline_unix',
++              'original_start_monotonic','original_deadline_monotonic')),
++             'finite_actual_gate_confirmation_clocks_required')
++        need(confirmation['original_start_unix']==stage0['start_unix']
++             and confirmation['original_start_monotonic']==stage0['start_monotonic']
++             and confirmation['original_deadline_unix']==stage0['absolute_deadline_unix']==stage0['start_unix']+1200
++             and confirmation['original_deadline_monotonic']==stage0['common_deadline_monotonic']==stage0['start_monotonic']+1200
++             and stage0['finished_unix']<=confirmation['checked_unix']<stage0['absolute_deadline_unix']
++             and stage0['finished_monotonic']<=confirmation['checked_monotonic']<stage0['common_deadline_monotonic']
++             and confirmation['checked_unix']<=start_unix and confirmation['checked_monotonic']<=start_mono,
++             'gate_confirmation_must_use_original_both_clocks')
++        closer_actual=confirmation.get('closer_actual_exec')
++        need(type(closer_actual) is dict and set(closer_actual)=={'session','exit_code','tool'}
++             and (closer_actual['session'] is None or type(closer_actual['session']) is int and closer_actual['session']>0)
++             and closer_actual['exit_code']==0 and type(closer_actual['tool']) is str
++             and bool(closer_actual['tool'].strip()),'actual_observed_gate_closer_exit_required')
++        confirmed_ids=confirmation.get('known_identities')
++        need(type(confirmed_ids) is list and type(confirmation.get('known_count')) is int
++             and len(confirmed_ids)==confirmation['known_count']>0
++             and all(type(v) is dict and set(v)=={'pid','create_time'} and type(v['pid']) is int
++                 and v['pid']>0 and type(v['create_time']) in (int,float)
++                 and math.isfinite(v['create_time']) and v['create_time']>0 for v in confirmed_ids)
++             and len({(v['pid'],v['create_time']) for v in confirmed_ids})==len(confirmed_ids)
++             and all(v in confirmed_ids for v in stage0_proof['owned_identities']+stage0_proof['closure_preparer_identities']),
++             'exact_confirmed_gate_root_and_preparer_ID_union_required')
++        need(type(stage['closer']) is dict and set(stage['closer'])=={'path','sha256'}
++             and sha(local(stage['closer']['path']),check)==stage['closer']['sha256'],
++             'actual_gate_closer_source_changed')
++        merge(pins,stage['closer']['path'],stage['closer']['sha256'])
+         gate_driver=bind_source(stage['driver'],pins,check)
+         cfg=gate_driver.config(str(local(cfg_ref['path'])),cfg_ref['sha256'],stage['driver']['sha256'])
+         need(sha(Path(cfg['contracts']),check)==cfg['files_sha256'][cfg['contracts']],'gate_contract_changed')
++        need(cfg['files_sha256'].get(str(local(stage['closer']['path'])))==stage['closer']['sha256'],
++             'gate_closer_must_be_in_actual_frozen_full_source_inventory')
+         gate_contract=imported('_UAR05_artifact_contract',Path(cfg['contracts']))
+         gate_summary,gate_refs=gate_contract.artifact_checks(cfg,Path(cfg['output']),check)
+         need(stage0_proof['qualified_checks']==gate_summary and stage0.get('technical_procedure_passed') is True
+              and stage0.get('cleanup_confirmed') is True and stage0.get('source_unchanged') is True
+              and not stage0.get('error_history'),'actual_complete_UAR05_artifacts_required')
++        need(stage0.get('qualified_checks')==gate_summary==stage['expected_checks']
++             and {k:gate_summary.get(k) for k in ('source_scripts','source_unique_checks',
++                 'exact_repeated_checks','mapped_repeated_checks','flat_members')}==dict(
++                 source_scripts=59,source_unique_checks=634,exact_repeated_checks=23,
++                 mapped_repeated_checks=104,flat_members=73)
++             and gate_summary.get('public_experiment_fits')==0 and gate_summary.get('quality_metric') is None,
++             'NEW_exact_combined_full_gate_summary_required')
++        need(type(binding.get('policy_sources')) is dict and set(binding['policy_sources'])=={'hpo','runner'}
++             and type(binding.get('latest_terminal')) is dict,
++             'actual_policy_sources_and_latest_UQ2_root_required')
++        latest=bind(binding['latest_terminal'])
++        need(latest.get('schema')=='uq2-clean-negative-audit-root-closure-v1'
++             and latest.get('technical_procedure_passed') is False
++             and latest.get('original_full_procedure_passed') is False
++             and latest.get('cleanup_confirmed') is True and latest.get('source_unchanged') is True
++             and latest.get('actual_exec_session')==3588
++             and latest.get('actual_exec_exit_code_observed_by_root')==1
++             and latest.get('active_owned_processes')==[] and latest.get('uncertain_owned')==[]
++             and latest.get('first_failure',{}).get('code')=='child_nonzero_exit',
++             'actual_clean_negative_UQ2_terminal_required_not_quality_PASS')
++        need(any(r.get('id')=='uq2' and r.get('sha256')==binding['latest_terminal']['sha256']
++             and Path(r['path']).resolve()==local(binding['latest_terminal']['path']) for r in cfg['predecessors']),
++             'latest_UQ2_must_be_the_actual_combined_gate_predecessor')
+         for absolute,digest in {**cfg['files_sha256'],**gate_refs}.items():
+             merge(pins,Path(absolute).resolve().relative_to(WORK).as_posix(),digest)
+         archive_ref=binding['source_archive'];bind_archive=local(archive_ref['path'])
+@@ -361,6 +469,10 @@
+         merge(pins,archive_ref['path'],archive_ref['sha256'])
+         compiled=load(Path(cfg['output'])/'candidate.manifest.json')['files']
+         need(set(compiled)==set(cfg['flat_inventory']) and len(compiled)==gate_summary['flat_members'],'actual_flat_inventory_required')
++        for key,module in [('hpo','automl.search.hpo'),('runner','automl.search.runner')]:
++            ref=binding['policy_sources'][key];member=gate_contract.mapping(cfg['canonical_root'])[module]+'.py'
++            need(type(ref) is dict and set(ref)=={'flat_member','sha256'} and ref['flat_member']==member
++                 and compiled.get(member)==ref['sha256'],'actual_same_archive_cadence_and_fair_policy_sources_required')
+         with zipfile.ZipFile(bind_archive) as archive:
+             need(len(archive.namelist())==len(set(archive.namelist()))==len(compiled)
+                  and set(archive.namelist())==set(compiled),'pair_archive_inventory_changed')
+@@ -370,10 +482,21 @@
+         source_archive,source_archive_sha256=archive_ref['path'],archive_ref['sha256']
+         coor=imported('_UAR_pair_proven_coordinator',local(COORDINATOR));FAILURE_TYPE=coor.TechnicalFailure
+         base,lineage=load(local(BASE)),load(local(LINEAGE))
+-        for name,digest in base['immutable_files'].items():merge(pins,name,digest)
++        process_key='alfa-hack-automl/src/automl/infrastructure/processes.py'
++        historical_process=cfg['helpers']['processes'];historical_path=Path(historical_process['path']).resolve()
++        historical_relative=historical_path.relative_to(WORK).as_posix()
++        need(base['immutable_files'].get(process_key)=='fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d'
++             and pins.get(process_key)==cfg['candidate_process_sha256']=='9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3'
++             and historical_process['sha256']==base['immutable_files'][process_key]
++             and cfg['files_sha256'].get(str(historical_path))==historical_process['sha256']
++             and sha(historical_path,check)==historical_process['sha256'],
++             'exact_one_historical_guard_relocation_and_current_candidate_pin_required')
++        for name,digest in base['immutable_files'].items():
++            if name==process_key:merge(pins,historical_relative,digest)
++            else:merge(pins,name,digest)
+         for name in [*coor.LIBS.values(),coor.AWAKE]:need(name in pins,'pair_runtime_dependency_unbound')
+         owner=imported('_UAR_pair_owner',local(coor.LIBS['owner']))
+-        processes=imported('_UAR_pair_processes',local(coor.LIBS['processes']))
++        processes=imported('_UAR_pair_processes',historical_path)
+         locker=imported('_UAR_pair_lock',local(coor.LIBS['lock']))
+         awake=imported('_UAR_pair_awake',local(coor.AWAKE)).PowerRequestGuard('UAR paired agent pid'+str(os.getpid()),10)
+         parent=psutil.Process().parent();own_paths={Path(__file__).resolve(),local(args.bootstrap_launcher)}
+@@ -382,7 +505,9 @@
+             if not any(Path(v).resolve() in own_paths for v in parent.cmdline() if not v.startswith('-')):break
+             need(parent.create_time()==birth,'pair_bootstrap_identity_changed')
+             state['coordinator_bootstrap_identities'].append(dict(pid=parent.pid,create_time=birth));parent=parent.parent()
+-        refs=[(stage['root_closure']['path'],stage['root_closure']['sha256'],stage['actual_exec_session'],0)]
++        known.update(coor.identities(confirmed_ids))
++        refs=[(stage['root_closure']['path'],stage['root_closure']['sha256'],stage['actual_exec_session'],0),
++              (binding['latest_terminal']['path'],binding['latest_terminal']['sha256'],3588,1)]
+         refs += [(n,h,s,e) for n,(h,s,e) in RETAINED_TERMINAL.items()]
+         refs += [('la2/terminal-root-closure.json','3ae50a32e3931f214e59343eee99654c37b77bf66b1b8ec233d416586d6cfd8b',12413,1),
+                  ('la2-audit-repair-r1/terminal-root-closure.json','9b6de5609bd18ca9a31356b96af375f62ec131cf173658142247a39701a2dcbc','saved',None)]
+@@ -391,12 +516,22 @@
+             n,h=value.rsplit('=',1);refs.append((n,h,'saved',None))
+         for name,digest,sess,exitcode in refs:
+             proof=bind(dict(path=name,sha256=digest))
++            if historical_failure_evidence(name,digest,proof):
++                state.setdefault('historical_failure_evidence',[]).append(dict(path=name,sha256=digest,
++                    evidence_only_not_current_ownership_authority=True,old_flags_preserved=True))
++                continue
+             need(proof.get('cleanup_confirmed') is True and proof.get('source_unchanged') is True
+                  and proof.get('active_owned_processes',[])==[] and proof.get('uncertain_owned',[])==[]
+                  and proof.get('owned_identities') and proof.get('closure_preparer_identities'),'complete_terminal_closure_required')
+             if sess!='saved':need(proof.get('actual_exec_session')==sess
+                 and proof.get('actual_exec_exit_code_observed_by_root')==exitcode,'actual_predecessor_exec_lineage_changed')
+             known.update(coor.identities(proof['owned_identities']+proof['closure_preparer_identities']))
++        # Both exact negatives are retained as evidence, never as process authority.
++        for name,digest in HISTORICAL_FAILURES.items():
++            proof=bind(dict(path=name,sha256=digest))
++            need(historical_failure_evidence(name,digest,proof),'historical_failure_evidence_changed')
++            need(coor.identities(proof['owned_identities']+proof['closure_preparer_identities'])<=known,
++                 'old_recorded_IDs_must_be_covered_by_independently_clean_current_union')
+         # Authority SHA pins and independently reviewed semantics are mandatory.
+         authority_ref=binding['authority']['handoff'];authority=bind(authority_ref)
+         bind(binding['authority']['independent_review'])
+@@ -428,21 +563,26 @@
+             need(ref['mode']==('l1_composite' if kind=='regression' else 'control'),'fixed_REG7_CLASS5_modes_required')
+         arms={a:dict(archive=source_archive,archive_sha256=source_archive_sha256,compiled_sha256=compiled,tasks=tasks) for a in ['A','B']}
+         slots={a+c:dict(arm=a,kind=k,code=c,argv=solver_argv(a,k,next(t for t in tasks if t['kind']==k)['retention']['sha256']),caps=CAPS[k]) for a,k,c in ORDER}
+-        manifest=dict(schema='UAR-Qwen-pair-v1',output_root='uq1',immutable_files=pins,arms=arms,tasks=tasks,slots=slots,
++        manifest=dict(schema='UAR-Qwen-pair-v1',output_root='uq3',immutable_files=pins,arms=arms,tasks=tasks,slots=slots,
+             archive=source_archive,archive_sha256=source_archive_sha256,compiled_sha256=compiled,
+             common_seconds=COMMON,caps=CAPS,order=[a+c for a,k,c in ORDER],maximum_experiments=9,hpo_trials=8,
++            common_hpo_policy=dict(classification='hpo_fair_reserve_v1',regression=None),
++            policy_sources=binding['policy_sources'],latest_terminal=binding['latest_terminal'],
+             authority=dict(handoff=authority_ref,independent_review=binding['authority']['independent_review']),
+             launch_binding=dict(path=args.binding,sha256=args.binding_sha256),
+             stage0_root_closure=stage['root_closure'],stage0_private_manifest=cfg_ref,
++            stage0_root_confirmation=stage['root_confirmation'],
+             r4_adapter_sha256=binding['r4_adapter_sha256'],max_planner_calls=2,gateway_call_limit=4,
+             threads=2,worker_memory_GiB=1.5,whole_tree_memory_GiB=2,
+             interpreter_path=sys.executable,interpreter_sha256=sha(sys.executable,check),interpreter_version=sys.version,
+             requested_model=base['requested_model'],reasoning_effort=base['reasoning_effort'],official_default_ready=False)
+         plan=copy.deepcopy(base['verification_plan_template'])
+         plan.update(verifier_source_sha256=args.auditor_sha256,manual_metric_verifier_path=R4,manual_metric_verifier_sha256=R4_SHA,
+-            r4_adapter_path='uar-qwen-pair-next-dev/r4_adapter.py',r4_adapter_sha256=binding['r4_adapter_sha256'],
++            r4_adapter_path='uq3-cadence-hpo-next-dev/candidate/r4_adapter.py',r4_adapter_sha256=binding['r4_adapter_sha256'],
+             original_common_start_unix=start_unix,original_absolute_deadline_unix=unix,common_seconds=COMMON,
+             hpo_requested_budget_seconds={k:v['hpo'] for k,v in CAPS.items()},
++            common_hpo_policy=dict(classification='hpo_fair_reserve_v1',regression=None),
++            policy_sources=binding['policy_sources'],
+             expected_regression_splits=copy.deepcopy(lineage['split_fingerprints']),
+             reproduction_absolute_tolerance=1e-9,pair_order=[a+c for a,k,c in ORDER],official_default_ready=False)
+         # Pin the actual generic metric repair as part of the SAME gated runtime,
+@@ -526,10 +666,10 @@
+                     tick=time.monotonic();need(deadline-tick>=AUDIT+CLEANUP,'audit_cleanup_reserve_unavailable')
+                     absence();frozen();state.update(status='verifying',cleanup_confirmed=True,source_unchanged=True);persist()
+                     audit_argv=[sys.executable,'-B','-X','utf8',str(local(auditor)),
+-                        '--work-root',str(WORK),'--pair-root','uq1','--manifest','uq1/manifest.json',
+-                        '--manifest-sha256',state['manifest_sha256'],'--plan','uq1/verification-plan.json',
++                        '--work-root',str(WORK),'--pair-root','uq3','--manifest','uq3/manifest.json',
++                        '--manifest-sha256',state['manifest_sha256'],'--plan','uq3/verification-plan.json',
+                         '--plan-sha256',state['verification_plan_sha256'],'--self-sha256',args.auditor_sha256,
+-                        '--output','uq1/independent-audit.json']
++                        '--output','uq3/independent-audit.json']
+                     sup=coor.supervise(audit_argv,WORK,OUTPUT/'audit-supervisor.json','pair-audit',tick,AUDIT,AUDIT-30,
+                         deadline,unix,AUDIT+CLEANUP,state,persist,frozen,owner,processes,state['coordinator_bootstrap_identities'])
+                     coor.child_errors(state,sup);finished.update(coor.identities(sup.get('owned_process_identities',[])))
+@@ -544,7 +684,7 @@
+                 except BaseException as exc:
+                     error(exc, 'pair_procedure')
+                 finally:
+-                    final_end = min(time.monotonic()+CLEANUP, deadline-10)
++                    final_end = min(time.monotonic()+CLEANUP, deadline-60)
+                     state['finalization_deadline_monotonic'] = final_end
+                     try:
+                         frozen(final_end, 'pair_final_cleanup_cap_exhausted')
+@@ -579,10 +719,10 @@
+         state.update(finished_unix=time.time(), finished_monotonic=time.monotonic(),
+             elapsed_common_seconds=time.monotonic()-start_mono,
+             owned_process_identities=[dict(pid=pid, create_time=birth) for pid, birth in sorted(finished)])
+-        if time.monotonic() >= min(deadline-10, final_end if final_end is not None else deadline) or time.time() >= unix-10:
++        if time.monotonic() >= min(deadline-60, final_end if final_end is not None else deadline) or time.time() >= unix-60:
+             error(RuntimeError('pair_terminal_export_over_cap'), 'pair_terminal_export')
+         persist()
+-        if time.monotonic() >= min(deadline-10, final_end if final_end is not None else deadline):
++        if time.monotonic() >= min(deadline-60, final_end if final_end is not None else deadline):
+             error(RuntimeError('pair_terminal_receipt_write_over_cap'), 'pair_terminal_export')
+             persist()
+     print(json.dumps({k: state[k] for k in ['status', 'qualification', 'pair_artifact_checks_passed',

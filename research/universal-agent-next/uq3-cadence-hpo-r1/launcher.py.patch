@@ -1,0 +1,41 @@
+--- reviewed_R4/launcher.py
++++ prospective_UQ3/launcher.py
+@@ -12,8 +12,8 @@
+ import sys
+ import time
+ 
+-WORK = Path(__file__).resolve().parents[1]
+-DIRECTORY = WORK/'uar-qwen-pair-next-dev'
++WORK = Path(__file__).resolve().parents[2]
++DIRECTORY = WORK/'uq3-cadence-hpo-next-dev/candidate'
+ BASE_URL = 'https://changellenge.up.railway.app/v1'
+ RESERVED = {'--launch','--self-sha256','--auditor-sha256','--closer-sha256',
+             '--bootstrap-launcher','--bootstrap-launcher-sha256','--start-unix','--start-monotonic',
+@@ -81,6 +81,9 @@
+     parser.add_argument('coordinator_args',nargs=argparse.REMAINDER,
+                         help='Actual coordinator bindings after --; no secrets')
+     args = parser.parse_args()
++    if args.launch:
++        start_unix,start_monotonic=time.time(),time.monotonic()
++        absolute_deadline_unix,common_deadline_monotonic=start_unix+10800,start_monotonic+10800
+     if args.self_sha256 is not None:
+         need(sha(__file__)==args.self_sha256,'launcher_source_changed')
+     if args.preflight_env:
+@@ -95,8 +98,6 @@
+             preflight_metadata(args.metadata_output,ready)
+         print(json.dumps({'authorized_private_environment_ready':ready,'API_calls':0}))
+         return 0 if ready else 1
+-    start_unix,start_monotonic=time.time(),time.monotonic()
+-    absolute_deadline_unix,common_deadline_monotonic=start_unix+10800,start_monotonic+10800
+     need(args.metadata_output is None,'metadata_output_is_preflight_only')
+     need(all(getattr(args,n.replace('-','_')) for n in
+          ['self-sha256','coordinator-sha256','auditor-sha256','closer-sha256',
+@@ -128,7 +129,7 @@
+         passthrough=passthrough[1:]
+     need(bool(passthrough) and not any(v.split('=',1)[0] in RESERVED for v in passthrough),
+          'reserved_or_missing_coordinator_arguments')
+-    need(not (WORK/'uq1').exists(),'new_prospective_output_required_no_resume')
++    need(not (WORK/'uq3').exists(),'new_prospective_output_required_no_resume')
+     provider_environment()
+     bootstrap = Path(__file__).resolve().relative_to(WORK).as_posix()
+     sys.argv = [str(coordinator),'--launch','--self-sha256',args.coordinator_sha256,

@@ -1,0 +1,139 @@
+{
+  "schema": "uar-full-technical-protocol-v1",
+  "run_id": "UAR08",
+  "status": "PRIVATE_FROZEN_PENDING_ROOT_REVIEW_PUBLICATION_AND_ACTUAL_LAUNCH",
+  "unit": "ONE future combined cadence plus default-OFF HPO fair-reserve technical gate; prior experiments permanently closed, no clock until root launch",
+  "budget_seconds": {
+    "fresh_common_at_actual_future_launch": 1200,
+    "parent_including_setup": 900,
+    "setup_max": 60,
+    "actual_final": 180,
+    "root_closer": 60,
+    "mandatory_remaining_both_clocks": 1140,
+    "phase_reset": false,
+    "one_shared_child_all4_phases": 840
+  },
+  "source_counts": {
+    "actual_literal_registry_source_scripts": 59,
+    "actual_literal_registry_expected_checks": 634,
+    "registry_sha256": "98607a6db9073b91b7e3e868d61db559b77d0081dd35d81e2fcf3c875a477011",
+    "canonical_python_files": 171,
+    "source_checks_executed": null
+  },
+  "flat_counts": {
+    "current_transitive_runtime_modules": 67,
+    "mapped": {
+      "io03": 14,
+      "vertical": 14,
+      "loss": 16,
+      "retention": 15,
+      "metric_contrast": 16,
+      "cadence": 12,
+      "hpo_fair_reserve": 17
+    },
+    "sole_exclusion": "LossContractTests.test_default_OFF_all_six_modules_preserve_base_UAR_AST",
+    "actual_final_inventory": null,
+    "prospective_members": 73,
+    "exact_repeated": 23,
+    "mapped_repeated": 104,
+    "pending_HPO_mapped": null,
+    "actual_postintegration_mapping_members": 73,
+    "HPO_source_methods": 18,
+    "HPO_flat_methods": 17
+  },
+  "root_guard": {
+    "resource_sampling_seconds": 0.25,
+    "clocks_and_sticky10_every_callback": true,
+    "last_sample_successful_actual_observation_only": true,
+    "forced_initial_observer_init_final": true,
+    "own60_original1200": true,
+    "OS_preemption_claimed": false
+  },
+  "parent_final": {
+    "PowerGuard_active_through_cleanup_hashes": true,
+    "unconditional_release": true,
+    "postrelease_and_terminal_save_sticky_pulse": true,
+    "verified_release_required": true
+  },
+  "temporary_layout": {
+    "path": "WORK/t/u8-<exclusive8>",
+    "absolute_all_leaf_environment_before_imports": true,
+    "contained_resolved_path_cleanup_after_known_absence": true,
+    "final180_and_common1200": true,
+    "sticky_uncertainty": true
+  },
+  "resources": {
+    "technical_library_threads": 1,
+    "worker_mib": 1536,
+    "whole_mib": 2048,
+    "serial": true,
+    "no_external_API_intended": true,
+    "local_mock_HTTP_allowed": true
+  },
+  "prerequisite": {
+    "whole_UQ2_actual_session": 3588,
+    "terminal_root_sha256": "5c9bfc7f8f4f9c5d760e52963f89a4983172144698b7dd334d252a5dce18eabd",
+    "actual_exit": 1,
+    "actual_tool": "d7f40a",
+    "fresh_owned_preparer_union": {
+      "confirmation_sha256": "ec6ee6b4e4e0452d787f69a8735edc4ea56da8d782fe1fd62210fbd1a222997e",
+      "known_count": 6300,
+      "recorded_absent": true,
+      "must_recheck_current_before_and_under_new_lock": true
+    },
+    "normal_clean_ownership_required_or_STOP_for_separately_reviewed_typed_negative": true,
+    "old_UQ2_technical_global_FAILURE_retained": true,
+    "actual_helper_exit": 0,
+    "actual_helper_tool": "1d6371",
+    "original_failed_closer_exit": 1,
+    "original_failed_closer_tool": "80def1",
+    "old_uq2_terminal_root_absent_never_fabricated": true
+  },
+  "fixture_counts": {
+    "public_experiment_fits": 0,
+    "aggregate_actual_fixture_learner_fits": null,
+    "aggregate_external_API_usage": null,
+    "reason": "Broad fixtures can fit synthetic learners; aggregate actual counts uninstrumented. Cadence12 only fake clock/resources."
+  },
+  "canonical_commit": "4cc3b7e6d9cb54ebb7ce2342cd2050fb438b1530",
+  "private_READY_manifest": null,
+  "actual_clock": null,
+  "actual_run": null,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false,
+  "HPO_policy_scope": "Reviewed R2 defaultOFF; CLASS900 future optin pilot, REG300 unchanged/OFF; technical gate does not certify 8 valid trials, guided success, savings or ML gain.",
+  "pending_final_source_review": false,
+  "root_authorized_exact_HPO_exception": {
+    "test_relative_path": "tests/test_uar_hpo_fair_reserve.py",
+    "excluded_methods": [
+      "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases"
+    ],
+    "exclusion_reason": "modular_source_AST_assertion_covered_by_full_source_not_flat",
+    "full_source_method_still_mandatory": true,
+    "all_other_final_HPO_methods_flat_mandatory": true,
+    "assertions_calls_unchanged": true,
+    "no_src_sidecars": true,
+    "root_authorization": "Root explicit prospective instruction before outcomes; source36dc29 and independent original AST witnesses46c3a8. No new methods or outcomes executed."
+  },
+  "HPO_R2_source_handoff_sha256": "50112ae7469194afa167bb655b3b6caf4f2d1600af7cb41714f5dd82c9b5c995",
+  "HPO_R2_source_review_sha256": "d7bdcb553893d8f864bbdc5028a12b8b7a58e302a247f6ae47406d0816d12b3b",
+  "private_READY_manifest_sha256": "4a1030bb2b987a746870fe99709d151ad6cd3d9f00abb7592a249194524c6141",
+  "public_manifest_sha256": "a64702abf09e8805cd91c10bfcf10b2b21f84c82d1bd93a02e13fbb1e346c452",
+  "approved_source_only_flat_exclusions": [
+    {
+      "suite": "loss",
+      "methods": [
+        "LossContractTests.test_default_OFF_all_six_modules_preserve_base_UAR_AST"
+      ],
+      "reason": "modular_source_AST_assertion_covered_by_full_source_not_flat"
+    },
+    {
+      "suite": "hpo_fair_reserve",
+      "methods": [
+        "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases"
+      ],
+      "reason": "modular_source_AST_assertion_covered_by_full_source_not_flat"
+    }
+  ]
+}

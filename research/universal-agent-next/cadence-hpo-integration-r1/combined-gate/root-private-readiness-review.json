@@ -1,0 +1,24 @@
+{
+  "schema": "root-private-UAR08-readiness-review-v1",
+  "status": "ROOT_APPROVED_FOR_ONE_NEW_FULL_GATE_AFTER_PUBLICATION_AND_FRESH_KNOWN_UNION",
+  "private_manifest_sha256": "4a1030bb2b987a746870fe99709d151ad6cd3d9f00abb7592a249194524c6141",
+  "private_manifest_not_public": true,
+  "source_read_tool": "550bb1",
+  "metadata_actual_tool": "a0627b",
+  "metadata_actual_exit": 0,
+  "metadata_own_preparer_identity_receipt_sha256": "28fd8cb862ca0ba98e95fa41a3b01582fb123385b44034eec882eb70bc30227f",
+  "root_private_read_tool": "8edfdf",
+  "all231pins_current": true,
+  "canonical171pins_current": true,
+  "source_registry": [
+    59,
+    634
+  ],
+  "flat_members": 73,
+  "exact": 23,
+  "mapped": 104,
+  "full_technical_current_PASS": false,
+  "new_clock": null,
+  "checked_unix": 1792835606.0735896,
+  "global_UQ2_FAIL_unchanged": true
+}

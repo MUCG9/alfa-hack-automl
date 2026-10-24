@@ -1,0 +1,96 @@
+{
+  "schema": "uq3-common-cadence-fair-reserve-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "immutable_proposal": {
+    "path": "uq3-cadence-hpo-next-dev/proposal.json",
+    "sha256": "7a5174efe6685e72f3f3bb5feeaccddaa94c9bf803d9d586ed026c2e4103f0d2"
+  },
+  "output": "uq3",
+  "same_archive_both": true,
+  "new_origin_only_actual_launch": true,
+  "common_seconds": 10800,
+  "allocations": {
+    "setup": 900,
+    "Ar": 900,
+    "Br": 900,
+    "Ac": 3600,
+    "Bc": 3600,
+    "audit": 600,
+    "cleanup": 300
+  },
+  "root_close_seconds_inside_cleanup": 60,
+  "class_policy": {
+    "mode": "hpo_fair_reserve_v1",
+    "flag": "--hpo-fair-reserve",
+    "phase_seconds": 900,
+    "both_arms": true,
+    "exact_anchor_timeout_seconds": 600,
+    "original_templates_and_space": true,
+    "soft_reservations_not_guarantees": true,
+    "required_actual_enumerated_trials": 8,
+    "required_worker_callback_invocations": 8,
+    "valid_objectives_minimum": 1,
+    "actual_model_process_launches": null,
+    "actual_recursive_learner_fits": null
+  },
+  "regression_policy": {
+    "hpo_seconds": 300,
+    "fair_policy_enabled": false
+  },
+  "only_pair_factor": {
+    "A_strict_task_contract": false,
+    "B_strict_task_contract": true,
+    "strict_runtime_both": true
+  },
+  "unchanged": {
+    "tasks_authority_sha256": "2a2145d87d6ac08e0ad72927608509e715e0e5a83d11d86341de15afc0a5e8e3",
+    "max_experiments": 9,
+    "planner_calls": 2,
+    "gateway_calls": 4,
+    "HPO_requested_trials": 8,
+    "learner_threads": 2,
+    "worker_mib": 1536,
+    "whole_mib": 2048,
+    "retention_REG7_CLASS5": true,
+    "four_stage_Qwen_required": true,
+    "genuine_HTTP_usage_required": true,
+    "refit_CSV_required": true
+  },
+  "source_gate_mode": "full_gate_v1",
+  "old_UAR07_not_qualification_for_changed_code": true,
+  "exact_gate_counts": {
+    "source_scripts": 59,
+    "source_unique_checks": 634,
+    "exact_repeated_checks": 23,
+    "mapped_repeated_checks": 104,
+    "flat_members": 73
+  },
+  "all4_code_input_core_usage_seals_before_fair_or_R4_truth": true,
+  "fullaudit_no_partial_pair_salvage": true,
+  "old_UQ1_UQ2_failures_and_optional8VALID_prereg_immutable": true,
+  "historical_false_proofs_are_not_current_ownership_grants": true,
+  "root_confirmation_schema": "uar-full-gate-root-exec-confirmation-v1",
+  "requested_reasoning_off_not_attested": true,
+  "planner_full_train_statistics_not_fitting_only": true,
+  "future_actual_bindings": {
+    "archive": null,
+    "compiled": null,
+    "full_gate_root": null,
+    "full_gate_fresh_confirmation": null,
+    "current_UQ2_root": null,
+    "publication_commit": null,
+    "actual_start_unix": null,
+    "actual_start_monotonic": null,
+    "actual_deadline_unix": null,
+    "actual_deadline_monotonic": null
+  },
+  "tests_prepared": 6,
+  "tests_executed": 0,
+  "API_calls": 0,
+  "model_fits": 0,
+  "metric_results": null,
+  "quality_gain": null,
+  "official_default_ready": false,
+  "promotion": false,
+  "submit": false
+}

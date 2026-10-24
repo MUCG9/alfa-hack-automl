@@ -1,0 +1,83 @@
+{
+  "schema": "uar-qwen-pair-binding-v1",
+  "readiness": "NOT_READY",
+  "missing_bindings": [
+    "Actual new combined full59/634, exact23, mapped104, flat73 PASS and same archive/member pins",
+    "Actual full gate root helper exit0/fresh confirmation under its original1200",
+    "Actual independently clean negative UQ2 root and fresh closure union",
+    "Root reviewed final exact source/authority/publication and future launch approval"
+  ],
+  "source_archive": {
+    "path": null,
+    "sha256": null
+  },
+  "r4_adapter_sha256": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+  "source_gate": {
+    "mode": "full_gate_v1",
+    "driver": {
+      "path": null,
+      "sha256": null
+    },
+    "closer": {
+      "path": null,
+      "sha256": null
+    },
+    "private_manifest": {
+      "path": null,
+      "sha256": null
+    },
+    "campaign": {
+      "path": null,
+      "sha256": null
+    },
+    "root_closure": {
+      "path": null,
+      "sha256": null
+    },
+    "root_confirmation": {
+      "path": null,
+      "sha256": null
+    },
+    "actual_exec_session": null,
+    "actual_tool_evidence": null,
+    "expected_checks": null
+  },
+  "latest_terminal": {
+    "path": null,
+    "sha256": null
+  },
+  "policy_sources": {
+    "hpo": {
+      "flat_member": null,
+      "sha256": null
+    },
+    "runner": {
+      "flat_member": null,
+      "sha256": null
+    }
+  },
+  "authority": {
+    "handoff": {
+      "path": "uar-qwen-authority-next-dev/source-handoff.json",
+      "sha256": "2a2145d87d6ac08e0ad72927608509e715e0e5a83d11d86341de15afc0a5e8e3"
+    },
+    "independent_review": {
+      "path": null,
+      "sha256": null
+    },
+    "metric_contrast_fixed_source_qualified": null,
+    "qualified_metric_source": {
+      "flat_member": null,
+      "sha256": null
+    }
+  },
+  "clock_assigned": false,
+  "actual_start_unix": null,
+  "actual_start_monotonic": null,
+  "actual_deadline_unix": null,
+  "actual_deadline_monotonic": null,
+  "actual_imports_tests_fits_API_scans": 0,
+  "official_default_ready": false,
+  "promotion": false,
+  "submit": false
+}

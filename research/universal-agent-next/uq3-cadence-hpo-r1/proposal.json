@@ -1,0 +1,201 @@
+{
+  "schema": "uq3-prospective-fresh-cadence-HPO-real-Qwen-source-delta-v1",
+  "status": "SOURCE_ONLY_PROPOSAL_NOT_READY_NOT_IMPLEMENTED",
+  "source_bindings": {
+    "reviewed_original_R4_handoff": {
+      "path": "uar-qwen-pair-next-dev/source-handoff-r4.json",
+      "sha256": "8edfe9dae15cf98082d7e17218ff3630c02500d8ee879af7f06a0b2ca98ccd1b"
+    },
+    "original_R4_controller": {
+      "path": "uar-qwen-pair-next-dev/run_pair.py",
+      "sha256": "515aba64781ba885dba0b726d3e67fcd47ed52084f87ab151118b6f189d58491"
+    },
+    "original_R4_launcher": {
+      "path": "uar-qwen-pair-next-dev/launcher.py",
+      "sha256": "cdeb64e24f95d9d3afe659f4f15938db0af6841b501f33da782fe1de885c0d78"
+    },
+    "UQ2_reviewed_handoff": {
+      "path": "uar-qwen-pair-bootstrap-repair-next-dev/source-handoff-r2.json",
+      "sha256": "24e897489abbb4abb84bf25781ca0fe55ef8865d06f7d444870b74b642749295"
+    },
+    "UQ2_controller": {
+      "path": "uar-qwen-pair-bootstrap-repair-next-dev/run_pair.py",
+      "sha256": "f438b8be25236c8db04b343e1b891c6a17d73cc53f372fb26c5c0bd05bc654ef"
+    },
+    "UQ2_launcher": {
+      "path": "uar-qwen-pair-bootstrap-repair-next-dev/launcher.py",
+      "sha256": "7a6e090894144315e9361bc69f27519f7104d59d58a5e3c5d864be310fdbec46"
+    },
+    "UQ2_auditor": {
+      "path": "uar-qwen-pair-bootstrap-repair-next-dev/audit_pair.py",
+      "sha256": "d004d777670807d59d8998c6bc7c4c84cf5a177c68144cdc71aceebaa937bd22"
+    },
+    "UQ2_closer": {
+      "path": "uar-qwen-pair-bootstrap-repair-next-dev/close_pair.py",
+      "sha256": "078051c7741acfec8f552fa052f0025166a5db880daab8dc08498b6428a36f91"
+    },
+    "unchanged_R4_adapter": {
+      "path": "uar-qwen-pair-bootstrap-repair-next-dev/r4_adapter.py",
+      "sha256": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd"
+    },
+    "manual_R4": {
+      "path": "repaired-mvp-r1-dev/evaluator_r4.py",
+      "sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783"
+    },
+    "same_authority_handoff": {
+      "path": "uar-qwen-authority-next-dev/source-handoff.json",
+      "sha256": "2a2145d87d6ac08e0ad72927608509e715e0e5a83d11d86341de15afc0a5e8e3"
+    },
+    "accepted_HPO_R3_proposal": {
+      "path": "hpo-cost-admission-next-dev/proposal-r3.json",
+      "sha256": "aa180d2c7cbf534b3c4497d61bd190b93e979fa88dafbe149ad59c32b69e63bc"
+    },
+    "final_HPO_overlay_handoff_pending_peer": {
+      "path": "uar-hpo-fair-reserve-next-dev/source-handoff.json",
+      "sha256": "7091a9d9866f71ae6d9918c596affdf25e169e56dae7baf509a1b9caab1e18ce"
+    },
+    "combined_guard_update_plan": {
+      "path": "uar08-cadence-gate-next-dev/combined-hpo-update-plan-r1.json",
+      "sha256": "748617d18fc61b8e1a7d7e5db0e1d7daa7bc3ced702faa87e0166a8a2fbd394d"
+    }
+  },
+  "unit": "A completely NEW real-Qwen equal-budget four-arm experience after actual UQ2 terminal/fresh closure and the new combined full technical PASS. Never resume/recover/reset/relabel UQ1/UQ2.",
+  "future_output": "uq3",
+  "fresh_common_seconds": 10800,
+  "clock_rule": "One launcher assigns wall+monotonic origin on actual --launch before publication checks, private provider-env read, materialization or network. All actual launch/preflight/setup/fits/API/audit/final/root/publication qualification costs must meet its original deadlines; no retry/reset/reclaimed old time.",
+  "allocations": {
+    "setup": 900,
+    "A_regression": 900,
+    "B_regression": 900,
+    "A_classification": 3600,
+    "B_classification": 3600,
+    "audit": 600,
+    "cleanup": 300
+  },
+  "per_task_caps": {
+    "regression": {
+      "parent": 900,
+      "child": 870,
+      "solver": 810,
+      "HPO": 300
+    },
+    "classification": {
+      "parent": 3600,
+      "child": 3570,
+      "solver": 3510,
+      "HPO": 900
+    }
+  },
+  "common_limits": {
+    "max_experiments": 9,
+    "HPO_requested_trials": 8,
+    "planner_calls": 2,
+    "gateway_calls": 4,
+    "learner_threads": 2,
+    "worker_mib": 1536,
+    "whole_mib": 2048,
+    "strict_serial": true
+  },
+  "same_factor_design": {
+    "A": "strict-task-contract OFF",
+    "B": "strict-task-contract ON",
+    "both": "same strict-runtime, unchanged enriched task/control/retention and identical qualified archive; only A/B strict-caller factor differs",
+    "CLASS_common_HPO_policy": "Exact independently reviewed hpo_fair_reserve_v1 optin in BOTH CLASS arms with full900 phase. Insert the actual frozen flag before B strict suffix; no task/file-name heuristic.",
+    "REG_HPO_policy": "Unchanged300/OFF in BOTH arms",
+    "actual_optin_flag": null,
+    "scope_limit": "Cadence and fair reserve are common changed infrastructure relative to UQ2. Same seed/space does not imply identical TPE trajectories/recipes/completions; do not claim isolated HPO gain or compare partial old UQ2 as an equal complete pair."
+  },
+  "minimum_source_deltas": [
+    {
+      "source": "launcher",
+      "base": "Use reviewed original R4 cdeb fresh same-process launcher clock behavior, not UQ2 inherited-origin bootstrap_failure()",
+      "delta": "Route to NEW sources/uq3. Remove RECOVERY_ORIGIN/FAILED_PINS/bootstrap recovery requirement. Retain exact public HEAD/blob/self/runtime pins, reserved-clock-arg rejection, existing runtime-only private env and same-process runpy; never put credentials in argv/receipts. Preflight-env remains no-clock/API0. Actual fresh --launch captures origin before all publication/provider work."
+    },
+    {
+      "source": "controller",
+      "base": "UQ2 f438 + originalR4 launch_origin",
+      "delta": "Change output/source routes to uq3; restore finite fresh assigned10800 original-R4 launch_origin and new clock-origin label. Remove only UQ1-specific bootstrap_failure/current6203/FAILED_PINS authority and inherited bootstrap_recovery object. Retain them only as immutable historical failure evidence, never force their oldfalse flags true. Seed fresh known scope from actual latest UQ2 root+combined gate root/preparers plus retained unions."
+    },
+    {
+      "source": "controller gate admission",
+      "base": "Existing f438 full_gate_v1 main gate-proof/archive block",
+      "delta": "Select full_gate_v1 for actual new combined full gate; SHA-pin producer driver/config/contracts/campaign/root and recompute artifact_checks. Require actual complete technical PASS/actual exit0/cleanup/source/rootfresh and exact actual source/mapped/flat/default summary. Do not accept old UAR07 composite as qualification for changed runtime. Final counts/archive/member map/root refs remain null until actual new gate result."
+    },
+    {
+      "source": "controller guard pin projection",
+      "base": "f438 lines630-643",
+      "delta": "Retain exact one-key historical relocation: m4 base canonical processesfac3 resolves to its byte-exact historical helper path while final canonical candidate9f84 remains separately pinned. Use historical ProcessTree only for guard; do not mutate coor.LIBS, remove broader pins, or re-adopt canonical fac3. Preserve explicit assertion that no conflicting old/new input pin survives."
+    },
+    {
+      "source": "controller solver argv + plans/seals",
+      "base": "solver_argv/authority_checkpoint/complete_core_seal unchanged bodies except fixed policy wiring",
+      "delta": "Append only reviewed exact fair-policy flag for both CLASS arms before B strict suffix, REG unchanged; record policy/version/effective900/actual callbacks/costs as common metadata. Keep ALL4 materialization and identical authority checkpoint before first Qwen, source/raw-signature/task bytes/control/retention/closed-spec verification, actual Qwen usage, all4 opaque core and ledger seals before truth, fixed Ar/Br/Ac/Bc order and all original caps."
+    },
+    {
+      "source": "auditor",
+      "base": "Frozen UQ2 audit d004 and R4adapter823/manualc08",
+      "delta": "New uq3 routes and own new plan/self hash only; keep full-four-success/error-history/ALL4 pretruth barrier and unchanged per-task numerical R4/retention/strict/HPO accounting helpers. Add only exact optin policy receipt/source/version checks for both CLASS, REG OFF, original same900 deadline and honest actual per-trial timeout/cleanup/null accounting. No optional task-pair salvage criteria in this full audit."
+    },
+    {
+      "source": "closer",
+      "base": "Frozen UQ2 close078 and reviewed bounded closer observation lesson",
+      "delta": "New uq3 root/early preparer paths; bind actual new exec/exit/tool, current source/core/seals/all-owned+preparer absence under canonical lock, preserve first/secondary failures and actual terminal clock. Remove UQ1-specific negative-bootstrap acceptance as current authority; historical false proofs remain evidence-only. Keep exact assigned-addition10800 check, normal root field schema, actual root-helper exit/fresh confirmation pending until root. If existing closer inspection needs .25 sampling, use reviewed existing semantics only: every callback clocks/sticky10, sample advances only successful actual RSS, force initial/final, full unchanged root budget."
+    }
+  ],
+  "independent_qualification": {
+    "all4_success_required": true,
+    "four_stages_and_full_refit_CSV": true,
+    "HPO_actual_attempt_entries_required": 8,
+    "HPO_valid_objectives_required": "original full verifier completed>0 with every valid saved result independently checked; failures null and exact phase/guided/duplicate/unattempted accounting",
+    "not_retroactive_optional8VALID_relaxation": "Optional UQ2 task-pair preregistration8valid remains unchanged and both pairs stay unqualified. UQ3 explicitly uses the original full-auditor8actual/valid>0 rule before outcomes; no guaranteed8attempt/8valid/guided success.",
+    "counts_distinct": [
+      "declared max8",
+      "8actual trial entries/worker attempts",
+      "valid objectives",
+      "guided attempts/successes",
+      "recursive completed learner-fit callbacks",
+      "actual total learner fits can remain unknown"
+    ],
+    "same_partition_pristine_manual_metric_proof": true,
+    "all4_pretruth_code_input_inventory_seals": true,
+    "no_default_promotion": true
+  },
+  "required_future_actual_bindings": {
+    "UQ2_actual_session": 3588,
+    "UQ2_actual_exit": null,
+    "UQ2_actual_tool": null,
+    "UQ2_terminal_root_sha256": null,
+    "UQ2_fresh_union": null,
+    "combined_full_guard_source_handoff": null,
+    "combined_full_actual_exec": null,
+    "combined_full_root_PASS_sha256": null,
+    "combined_full_fresh_preparers": null,
+    "combined_archive_sha256": null,
+    "compiled_member_hashes": null,
+    "final_policy_source_review": null,
+    "actual_flags": null,
+    "new_controller_launcher_audit_closer_sha256": null,
+    "same_tasks_retention_source_pins": null,
+    "final_binding_source_and_publication_approval": null,
+    "actual_start_unix": null,
+    "actual_start_monotonic": null,
+    "actual_deadline_unix": null,
+    "actual_deadline_monotonic": null
+  },
+  "execution": {
+    "implementation_written": false,
+    "candidate_imports": 0,
+    "tests_fixtures_builds": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "data_predictions_truth_metrics_read": 0,
+    "PID_scans": 0,
+    "Git_STATE_canonical_writes": 0,
+    "new_clock_assigned": false
+  },
+  "quality_metric": null,
+  "promotion": false,
+  "official_default_ready": false,
+  "submit": false,
+  "next_step": "Root reads this proposal; prioritize exact final combined guard after AC source freeze/FM review/root integration. No UQ3 implementation or runtime until separately authorized."
+}

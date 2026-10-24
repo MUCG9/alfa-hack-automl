@@ -1,0 +1,104 @@
+--- reviewed_R4/audit_pair.py
++++ prospective_UQ3/audit_pair.py
+@@ -219,6 +219,64 @@
+         format_and_lexical_receipt_verified=True,planner_full_train_statistics_not_fitting_only=True)
+ 
+ 
++
++def fair_policy_proof(directory,kind,manifest,plan):
++    """Saved scheduling/callback receipts only; never equate callbacks with fits."""
++    need(manifest['common_hpo_policy']==plan['common_hpo_policy']==dict(
++        classification='hpo_fair_reserve_v1',regression=None),'common_class_only_HPO_policy_changed')
++    need(manifest['policy_sources']==plan['policy_sources'],'actual_HPO_source_binding_changed')
++    for ref in manifest['policy_sources'].values():
++        need(manifest['compiled_sha256'].get(ref['flat_member'])==ref['sha256']
++             and digest(directory/ref['flat_member'])==ref['sha256'],'qualified_policy_source_changed')
++    runs=directory/'automl_runs/repair4';hpo=load(runs/'inner-hpo/hpo.json')
++    if kind=='regression':
++        need('fair_reserve' not in hpo,'REG300_must_remain_legacy_OFF')
++        return dict(mode=None,worker_callback_invocations=None,actual_learner_fits=None)
++    report=load(runs/'report.json');admission=load(runs/'retention-hpo-admission.json')
++    need(report['hpo']==hpo,'saved_HPO_report_must_match_final_aggregate')
++    replay=hpo_counts(hpo);policy=hpo.get('fair_reserve')
++    need(type(policy) is dict and policy.get('mode')=='hpo_fair_reserve_v1'
++         and policy.get('phase_seconds')==900 and policy.get('overhead_reserve_seconds')==45
++         and policy.get('minimum_slice_seconds')==5
++         and policy.get('soft_reservations_not_wall_guarantees') is True
++         and policy.get('original_deadline_monotonic')==admission['deadline_monotonic']
++         ==admission['admitted_at_monotonic']+900
++         and hpo.get('status')=='ok' and replay['completed_trials']>0
++         and policy.get('worker_callback_invocations')==8
++         and policy.get('actual_model_process_launches') is None
++         and policy.get('actual_recursive_learner_fits') is None
++         and not policy.get('stop_reason'),'exact_complete_fair_reserve_receipt_required')
++    rows=policy.get('allocations');need(type(rows) is list and len(rows)==8
++        and [r.get('number') for r in rows]==list(range(8)),'eight_actual_callback_allocations_required')
++    last=admission['admitted_at_monotonic'];deadline=policy['original_deadline_monotonic']
++    for index,(row,trial) in enumerate(zip(rows,hpo['trials'])):
++        need(row.get('recipe_sha256')==trial['recipe_sha256']
++             and row.get('sampling_phase')==trial['sampling_phase']
++             and row.get('remaining_slots_including_current')==8-index
++             and row.get('proposal_sampled') is True and row.get('worker_callback_invoked') is True
++             and row.get('status')=='worker_callback_returned' and row.get('returned_status')==trial['status']
++             and row.get('actual_model_process_launched') is None
++             and row.get('original_deadline_monotonic')==deadline
++             and row.get('overhead_reserve_seconds')==45
++             and trial['status']!='duplicate' and not trial.get('technical_stop_reason'),
++             'enumerated_proposal_is_not_necessarily_actual_callback')
++        fields=('prepared_monotonic','admitted_monotonic','returned_monotonic','passed_timeout_seconds')
++        need(all(type(row.get(k)) in (int,float) and math.isfinite(row[k]) for k in fields),
++             'finite_actual_callback_timing_required')
++        prepared,admitted,returned=(row[k] for k in fields[:3]);timeout=row['passed_timeout_seconds']
++        need(last<=prepared<=admitted<=returned<deadline,'original_phase_and_serial_callback_clock_required')
++        expected=600 if index==0 else min(600,(deadline-admitted-45)/(8-index))
++        need(timeout==expected and timeout>=5 and (index!=0 or deadline-admitted>=600+7*5+45),
++             'fresh_prelaunch_soft_share_or_unchanged_anchor_mismatch')
++        need(trial['objective_valid'] is True or trial.get('value') is None,'failed_HPO_objective_must_remain_null')
++        last=returned
++    return dict(mode='hpo_fair_reserve_v1',actual_trial_entries=8,worker_callback_invocations=8,
++        valid_objectives=replay['completed_trials'],failed_objectives=replay['failed_trials'],
++        duplicates=replay['duplicate_trials'],unattempted=replay['unattempted_trials'],
++        guided_attempts=replay['guided_attempts'],guided_successes=replay['guided_successful_trials'],
++        actual_model_process_launches=None,actual_learner_fits=None,original_phase_seconds=900,
++        source_and_callback_receipts_verified=True,guaranteed_eight_valid=False)
++
+ def main():
+     p=argparse.ArgumentParser(description=__doc__)
+     for n in ['work-root','pair-root','manifest','manifest-sha256','plan','plan-sha256','self-sha256','output']:p.add_argument('--'+n,required=True)
+@@ -226,7 +284,7 @@
+     def local(n):
+         q=(work/n).resolve();need(not Path(n).is_absolute() and q.is_relative_to(work),'audit_reference_outside_work');return q
+     root,output=local(args.pair_root),local(args.output)
+-    need(root==work/'uq1' and output==root/'independent-audit.json' and not output.exists(),'exclusive_new_pair_output_required')
++    need(root==work/'uq3' and output==root/'independent-audit.json' and not output.exists(),'exclusive_new_pair_output_required')
+     need(digest(__file__)==args.self_sha256 and digest(local(args.manifest))==args.manifest_sha256
+          and digest(local(args.plan))==args.plan_sha256,'explicit_audit_pins_required')
+     manifest,plan,campaign=load(local(args.manifest)),load(local(args.plan)),load(root/'campaign.json')
+@@ -270,6 +328,8 @@
+         key=arm+code;entry=entries[key];cfg=CAPS[kind];directory=root/arm/code;meta=manifest['arms'][arm]
+         need(campaign['actual_arm_argv'][key]==manifest['slots'][key]['argv'],'actual_frozen_argv_changed')
+         argv=manifest['slots'][key]['argv'];need('--strict-runtime' in argv and '--offline' not in argv,'real_API_and_strict_runtime_both_required')
++        need(argv.count('--hpo-fair-reserve')==(1 if kind=='classification' else 0),
++             'fair_flag_BOTH_CLASS_only_REG_OFF_required')
+         need(entry['task_allocation_seconds']==entry['parent_cap_seconds']==cfg['parent']
+              and entry['child_cap_seconds']==cfg['child'] and entry['solver_budget_seconds']==cfg['solver']
+              and entry['requested_hpo_budget_seconds']==cfg['hpo'],'same_declared_task_caps_required')
+@@ -313,6 +373,9 @@
+              and authority['metric']['status']=='resolved' and authority['metric']['name']==('rmse' if kind=='regression' else 'macro_f1')
+              and authority['feature_or_target_rows_parsed'] is False and authority['input_bytes_hashed'] is True,
+              'checkpoint_task_metric_retention_binding_changed')
++    frozen()
++    # ALL FOUR complete seals first. Scheduling proof is independent of metrics/truth.
++    fair={a+c:fair_policy_proof(root/a/c,k,manifest,plan) for a,k,c in ORDER}
+     frozen()
+     # All FOUR complete code/source/core/usage seals validated before NumPy/R4/truth.
+     spec=importlib.util.spec_from_file_location('_frozen_UAR_R4_adapter',local(plan['r4_adapter_path']))
+@@ -360,7 +423,7 @@
+         need(digest(directory/'authority-checkpoint.json')==digest(local(checkpoint_ref['path']))==checkpoint_ref['sha256'],
+              'late_authority_checkpoint_changed')
+     clock();result=dict(schema='UAR-Qwen-pair-audit-v1',status='four_slots_verified_pending_root' if passed else 'four_slots_unqualified',
+-        slots=rows,artifact_procedure_checks_passed=passed,audit_within_original_common_clock=True,
++        slots=rows,common_fair_policy_proofs=fair,artifact_procedure_checks_passed=passed,audit_within_original_common_clock=True,
+         parent_exec_terminal_qualification_required=True,campaign_terminal_confirmed=False,
+         manifest_sha256=args.manifest_sha256,verification_plan_sha256=args.plan_sha256,manual_metric_source_sha256=R4_SHA,
+         r4_adapter_sha256=plan['r4_adapter_sha256'],comparison=comparison,descriptive_retention_win=None,

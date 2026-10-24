@@ -1,0 +1,35 @@
+{
+  "schema": "uar08-fixed-metadata-instantiator-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_NOT_EXECUTED_ROOT_REVIEW_REQUIRED",
+  "source": {
+    "path": "instantiate_packet_r1.py",
+    "sha256": "f92b0e530546aed335ec41403e86c6a178711f252e2bf877acf9dc491632dd1e"
+  },
+  "frozen_gate_handoff_sha256": "4fb7fe138ffde1875f6520e0d7198a3100dabbc5e7f76c702128957fa517b72d",
+  "gate_peer_sha256": "d58700176d1d753f12cb8eadce36759ecee0ac0602112515fd2663264dd5f5cc",
+  "root_reported_publication_commit": "4cc3b7e6d9cb54ebb7ce2342cd2050fb438b1530",
+  "static_source_compile_only": true,
+  "actual_script_execution": false,
+  "actual_config_import": false,
+  "private_packet_materialized": false,
+  "actual_clock": null,
+  "counts_to_revalidate": {
+    "source_scripts": 59,
+    "expected_source_checks": 634,
+    "canonical_python": 171,
+    "flat_members": 73,
+    "default_exact": 23,
+    "mapped": 104,
+    "saved_identity_union": 6300
+  },
+  "mutations_if_later_authorized": [
+    "NEW exclusive private-manifest-uar08-r1.json",
+    "NEW public-manifest.json",
+    "NEW public-protocol.json",
+    "NEW packet-summary.json"
+  ],
+  "historical_private_metadata_role": "Only opaque input pins and predecessor paths; old nested canonical source maps are not revalidated after legitimate integration.",
+  "metadata_identity_limit": "No identity captured during preparation; instantiator source does not spawn children. No invented process identity.",
+  "not_run_command": "work/venv/Scripts/python.exe work/uar08-combined-gate-next-dev/instantiate_packet_r1.py --root-reviewed --canonical-commit 4cc3b7e6d9cb54ebb7ce2342cd2050fb438b1530 --self-sha256 f92b0e530546aed335ec41403e86c6a178711f252e2bf877acf9dc491632dd1e",
+  "runtime_tests_builds_fits_API_PID_scans_Git_writes": 0
+}

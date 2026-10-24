@@ -1,0 +1,22 @@
+{
+  "schema": "rq5-exact-metadata-preflight-source-peer-v1",
+  "status": "SOURCE_REVIEWED_NO_SCOPED_BLOCKER",
+  "source": {
+    "path": "work/rq5-metadata-preflight.py",
+    "sha256": "aa26be83de9004d52764fae167da3747ceb165ae29fcc1af8733219376278320"
+  },
+  "scope": [
+    "Exact frozen controller config/need/read/sha/methods AST nodes and12declared constants selected without body rewrites.",
+    "Controller+manifest byte hashes checked; namespace __file__ is exact controller path and sys.executable remains actual metadata interpreter.",
+    "Source absolute output/executor/fixture/helper/ref/pin comparisons remain unchanged; explicit source-relative split refs remain unchanged.",
+    "Projection excludes imports and runtime entrypoint; selected fixed source contains no Popen/model/API/ownership or clock assignment.",
+    "Own30s is metadata elapsed bound after completion, not an experiment clock or runtime admission.",
+    "Safe token-only exception output; no private paths or raw exception messages."
+  ],
+  "conditions": [
+    "Run only exact reviewed controller SHA under the pinned interpreter.",
+    "Private manifest and publication/ref hashes must remain unchanged after successful preflight; actual launcher must recheck the same hash.",
+    "This helper is an exact trusted-source metadata projection, not a general sandbox and not a model/runtime qualification."
+  ],
+  "candidate_or_test_execution_by_reviewer": 0
+}

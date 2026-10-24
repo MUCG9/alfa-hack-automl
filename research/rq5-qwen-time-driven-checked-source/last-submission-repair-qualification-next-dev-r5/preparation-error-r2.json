@@ -1,0 +1,17 @@
+{
+  "schema": "source-only-preparation-error-v1",
+  "phase": "SOURCE_FREEZE_METADATA_ONLY",
+  "actual_exit_code": 1,
+  "error_type": "AssertionError",
+  "source_line": 98,
+  "source_prefix": "technical_entry.py raw-byte equality",
+  "source_snapshot": "freeze_source.failed-entry-raw-r1.py.txt",
+  "source_snapshot_sha256": "00b241e7cb94b162d9a3a80d0510201e42a9ae887c1a29c93ef550680d9bf27a",
+  "cause": "WIP copy normalized line endings of unchanged technical_entry; AST unchanged; raw bytes restored from frozen base.",
+  "actual_pid": null,
+  "actual_create_time": null,
+  "actual_tests": 0,
+  "actual_models": 0,
+  "API_calls": 0,
+  "actual_clock": null
+}

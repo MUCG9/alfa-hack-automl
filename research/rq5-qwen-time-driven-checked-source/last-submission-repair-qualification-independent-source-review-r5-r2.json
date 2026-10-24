@@ -1,0 +1,83 @@
+{
+  "schema": "RQ5R2-crossproducer-independent-source-review-v1",
+  "status": "SOURCE_REVIEWED_NO_REMAINING_SCOPED_BLOCKER_PENDING_PRIVATE",
+  "qualifier": {
+    "path": "work/last-submission-repair-qualification-next-dev-r5-r2/source-handoff.json",
+    "sha256": "2fe9502dcf38d16591a89b062831a16a45c7bcdf2f691db889d3fd80098055b6"
+  },
+  "helper": {
+    "path": "work/rq5-root-helpers-next-dev-r2/source-handoff.json",
+    "sha256": "34431bd211878be0c385112af1b82a1f3daa6eacfb1c88cdc3ae39231d20fc2f"
+  },
+  "prior_qualifier_review": {
+    "path": "work/last-submission-repair-qualification-independent-source-review-r5.json",
+    "sha256": "1ccb1b8b2bd78cb8f769744bba77892d3820d189ca772733e038f03ca8815e81"
+  },
+  "qualifier_pin_verification": {
+    "local": 17,
+    "external_source_metadata_bytes": 758,
+    "legacy_NPZ_refs_compared_to_frozen_metadata_not_opened": 2
+  },
+  "helper_pin_verification": {
+    "local": 75,
+    "external": 12
+  },
+  "AST_evidence": [
+    "Entire qualifier driver and closer restore exact453844 module AST after only helper path/SHA and atomic4-to5 count inverses.",
+    "Entire atomic module restores exact453844 after removing the one fresh_known_union helper, restoring its original three union/overlap statements, and removing one returned partition expansion.",
+    "Other six qualifier files raw exact453844 including numerical artifact auditor, technical bootstrap, childPS, old16caller tests and independent observation reader.",
+    "All four old atomic method ASTs unchanged; one meaningful new synthetic method covers valid exact shared shell, full post union and bad pin/driver/chain/overlap cases.",
+    "Helper binder restores exact12fc source by one PACKETliteral inverse; four other runtime/test files raw exact and all11tests unchanged."
+  ],
+  "shared_shell_producer_contract": [
+    "Receipt exact OUT/atomic-binding-preparer-identity.json absolute path, immutable SHA and current file hash.",
+    "Actual producer has exactly identities/launch_parent_observation/actual_driver; no invented schema field.",
+    "Receipt actualdriver equals actual observed driver tuple; binder and wrapper chains both verified.",
+    "Exactly three unique typed actual binder identities; their overlap with current wrapper preparers is exactly one full PID/birth tuple equal to BOTH observed_shell dictionaries.",
+    "Only two exclusive binder Python/shim identities enter absence targets. The current shared shell remains in recorded wrapper preparers and sampled resource scope; full binder identities and exact partition are saved.",
+    "Original root/closer/child cleanup targets are checked disjoint from all current wrapper preparers BEFORE this partition; they cannot be excluded or relabeled.",
+    "Fresh complete targets checked before/underlock; original6000/final240/actualcloser60/enclosing60 and sticky resource/source/Power/cleanup checks unchanged."
+  ],
+  "crossconsumer_set_identity": "New atomic known K includes binder-exclusive identities; K union wrapper preparers already contains FULL binder set. Unchanged posthelper adds the same full binder set idempotently, so outer exact postknown count remains valid. Shared observer is required absent only after actual wrapper exit, never claimed absent while live.",
+  "prepared_slots": [
+    24,
+    24,
+    18,
+    12,
+    16,
+    5,
+    2,
+    11
+  ],
+  "prepared_executions": 112,
+  "actual_executions_by_reviewer": 0,
+  "common_caps_unchanged": {
+    "common": 6000,
+    "setup": 600,
+    "setup_maxima": 510,
+    "REG": [
+      900,
+      870
+    ],
+    "CLASS": [
+      3600,
+      3570
+    ],
+    "audit": [
+      600,
+      570
+    ],
+    "final_driver": 240,
+    "root": 60
+  },
+  "candidate_archive_sha256_unchanged": "eb85becbff8da0be93b97a8dafff108e426cdbed07476ed4f1dc0fb95e73c6fc",
+  "remaining_required_private_actions": [
+    "All exact absolute operational fields and final technical_entry SHA fcd363 from frozenhandoff.",
+    "Final current helper34431, atomic5 method map and112counts, current source/peer metadata pins.",
+    "Exact reviewed metadata config AND predecessor projection must pass on final private bytes before actual experiment origin.",
+    "Actual root/child/wrapper exits, complete fresh ownership and unchanged source/temp/clock requirements remain runtime-only."
+  ],
+  "old_RQ4_FAIL_and_separate_negative_current_proof_preserved": true,
+  "actual_clock_READY_metrics": null,
+  "reviewer_imports_configexecution_tests_fits_API_data_arrays_PID_Git_canonical": 0
+}

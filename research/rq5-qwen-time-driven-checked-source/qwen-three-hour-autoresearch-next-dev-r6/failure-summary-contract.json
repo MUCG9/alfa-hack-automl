@@ -1,0 +1,24 @@
+{
+  "schema": "qwen-negative-summary-contract-v1",
+  "status": "SOURCE_ONLY",
+  "exact_positive_path_inverse_R5": true,
+  "producer_schema": "qwen-iterative-task-failure-summary-v1",
+  "global_status": "failed",
+  "quality_qualified": false,
+  "metrics": null,
+  "quality_metric": null,
+  "complete_ledger_qualification": false,
+  "preserved": [
+    "first_failure",
+    "all observed secondary failure types",
+    "actual scalar counters",
+    "ordered callbackref array when bounded",
+    "canonical count+hash descriptors for all ledger/records/checkpoints/usage",
+    "diagnostic-only last-completed recipe/ref descriptors, never scores"
+  ],
+  "oversized_refs": "Inline array omitted only if it cannot fit existing32MiB. Exact count/hash plus deterministic ordered worker-N/parent-result.json recovery scope retained; raw files unchanged; this is NOT a complete-ledger qualification.",
+  "storage_failure": "First diagnostic error appended as secondary, retry once with bounded summary. Further failure types attached safely to original primary; bare primary raise preserved. No oversized full-state fallback.",
+  "nonfinite_values": "Allowed only in descriptor hash encoding, never emitted numerical fields or qualified scores.",
+  "old_test_rebase": "Only synthetic report cap32BYTES ->4096. Required typed diagnostic/counts cannot fit32. Other23old method ASTs exact,2newmeaningful tests appended; R5all87+handoff immutable.",
+  "actual_execution": 0
+}

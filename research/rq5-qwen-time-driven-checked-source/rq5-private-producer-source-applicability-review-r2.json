@@ -1,0 +1,31 @@
+{
+  "schema": "rq5-private-producer-narrow-source-review-v2",
+  "status": "SOURCE_REVIEWED_NO_SCOPED_PREPARATION_BLOCKER",
+  "producer": {
+    "path": "work/prepare-rq5-private.py",
+    "sha256": "980dd2a576a25d9e11a527f91e24f7ed8c85f24ecdb90903f6f29165e40cbd35"
+  },
+  "prior_review": {
+    "path": "work/rq5-private-producer-source-applicability-review-r1.json",
+    "sha256": "98e140563c83948ae44bcd16c9c8d1886a92983c6df940ffc5c2ff55e87fb1e0"
+  },
+  "only_three_path_literal_inverse_raw_sha256": "c28db2755154f0d86c96655d3e4beef0babdfd734ea669a7cbced719ce88bc20",
+  "qualifier_handoff_sha256": "2fe9502dcf38d16591a89b062831a16a45c7bcdf2f691db889d3fd80098055b6",
+  "helper_handoff_sha256": "34431bd211878be0c385112af1b82a1f3daa6eacfb1c88cdc3ae39231d20fc2f",
+  "helper_peer_sha256": "30df2be04462b4ea1bd0d435001e5da61597c6736ec938906e24d68c849aea80",
+  "technical_entry_fcd_exact": true,
+  "old_approved_task_bindings_preserved": true,
+  "all_ABS_keymaps_and_WORK_relative_splits_unchanged": true,
+  "metadata_union_no_collisions": true,
+  "pin_union_before_extra_rootrefs": 794,
+  "prepared_contracts": 112,
+  "actual_tests": 0,
+  "producer_executed_by_reviewer": false,
+  "candidate_imports_models_API_data_PID_clock": 0,
+  "limits": "Actual root once-exec/final source publication/private config+predecessor projection/actual metadata exit and admission remain required. No READY assertion.",
+  "snapshot_transport": {
+    "path": "work/prepare-rq5-private-reviewed-r1.py.txt",
+    "sha256": "5dfc4236a2a4e5de9f0f0ff29e84d209de54e35a1c6ad3b50684dfa098b3a639",
+    "CRLF_only_difference_from_exact_raw_inverse": true
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schema": "rq5-root-helpers-independent-root-source-review-r2",
+  "status": "SOURCE_ACCEPTED",
+  "handoff_sha256": "34431bd211878be0c385112af1b82a1f3daa6eacfb1c88cdc3ae39231d20fc2f",
+  "pins_verified": 87,
+  "only_PACKET_literal_changed": true,
+  "all11_test_bytes_preserved": true,
+  "runtime_executed": false,
+  "ready": false,
+  "metrics": null
+}

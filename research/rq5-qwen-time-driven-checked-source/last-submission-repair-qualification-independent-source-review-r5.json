@@ -1,0 +1,100 @@
+{
+  "schema": "standard-repair-qualification-RQ5-independent-source-review-v1",
+  "status": "SOURCE_REVIEWED_PENDING_ACTUAL_PRIVATE_BINDING_NO_RUNTIME",
+  "handoff": {
+    "path": "work/last-submission-repair-qualification-next-dev-r5/source-handoff.json",
+    "sha256": "453844ce7a70d1c730b1fa6f123f62a651a4fb6bcdac00ba76e2a4eddfeda1e0"
+  },
+  "local_pins_verified": 23,
+  "external_source_metadata_pin_bytes_verified": 658,
+  "legacy_npz_refs_compared_to_frozen_RQ4_metadata_only": 2,
+  "whole_driver_inverse_to_frozen_RQ4_AST_exact": true,
+  "whole_audit_closer_atomic_inverse_exact": true,
+  "numerical_artifact_formulas_candidate_and_caps_unchanged": true,
+  "raw_exact_RQ4": [
+    "technical_entry.py",
+    "close_child.ps1",
+    "test_atomic_root.py",
+    "test_observation_reader.py"
+  ],
+  "old15_caller_method_AST_and_all_old110_assertions_preserved": true,
+  "new_caller_contract": "Real config rejects relative/None/wrong absolute output before candidate imports; correct exact output advances to pinned interpreter predicate.",
+  "prepared_slots": [
+    24,
+    24,
+    18,
+    12,
+    16,
+    4,
+    2,
+    11
+  ],
+  "prepared_executions": 111,
+  "actual_tests_executed_by_reviewer": 0,
+  "caps": {
+    "common": 6000,
+    "setup": 600,
+    "setup_slot_maxima": 510,
+    "REG": [
+      900,
+      870
+    ],
+    "CLASS": [
+      3600,
+      3570
+    ],
+    "audit": [
+      600,
+      570
+    ],
+    "final_driver": 240,
+    "root_inside_final300": 60
+  },
+  "new_predecessor": {
+    "negative_sha256": "2eb84c226b997ed9f8dcd21604b0bcfe67a65af837a875221744e3b64befd846",
+    "post_sha256": "a10de471d11466b5790dbc27ef723c93cfd63d0478efaa8c8d0b9b77a0c1cd47",
+    "negative_actual_tool": "d1e89d",
+    "post_actual_tool": "75a734",
+    "negative_known": 7914,
+    "negative_observers": 3,
+    "post_known": 7917,
+    "post_observers": 3,
+    "complete_before_new_preparers": 7920,
+    "finite_positive_unique_pid_birth_pairs": true,
+    "negative_technical_false_oldFAIL_root60_missed_preserved": true,
+    "current_only_source_cleanup_temp_true": true,
+    "fresh_new_complete_union_before_and_under_lock_still_required": true
+  },
+  "required_actual_binding_corrections": [
+    {
+      "field": "output",
+      "requirement": "Exact absolute str(WORK/rq5); template NULL is NOT_READY."
+    },
+    {
+      "field": "technical_entry.sha256",
+      "template_stale_sha256": "18f92c900735147fd631b3fab32ef7586de761d6b36c96d5d5cbbd788f90aa0e",
+      "required_frozen_sha256": "fcd3633698bc2b93964727ddaf2c8f1378feab2d70a2cc9e5bcc158e88b156d5",
+      "requirement": "Root producer explicitly derives this from final handoff and same immutable pin before exact config preflight."
+    },
+    {
+      "field": "all operational refs/lock/executor/fixtures/helpers/predecessors",
+      "requirement": "Use exact absolute keys expected by config and predecessor; do not treat descriptive path_resolution as normalization."
+    },
+    {
+      "field": "verification_plan.expected_classification_splits.*.path",
+      "requirement": "Preserve source WORK-relative reference semantics; basename member/input/method keys are not operational path fields."
+    }
+  ],
+  "nonoperative_documentation_limitation": "Copied protocol.output is historical rq4; authoritative runtime OUT is rq5, README and operational_template_output NULL explicitly require root absolute binding.",
+  "metadata_preflight_source_review": {
+    "path": "work/rq5-metadata-preflight-independent-review-r3.json",
+    "sha256": "e438bb402d72ef5760e8f783afcd4904ce440b4d38ef599165a0ad57b7dab0ee"
+  },
+  "remaining_scoped_runtime_source_blockers": [],
+  "not_granted": [
+    "Actual private READY eligibility (must separately pass exact config AND predecessor metadata projection).",
+    "Actual source/cleanup/root/metrics or model qualification."
+  ],
+  "actual_clock_metrics_READY": null,
+  "reviewer_imports_configexecution_tests_fits_API_data_arrays_PID_Git_canonical": 0
+}

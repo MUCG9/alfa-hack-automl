@@ -1,7 +1,11 @@
 # Карта исследований
 
 <!-- CURRENT_UAR_OBSERVATION_BEGIN -->
-RQ3 is closed FAIL: 80 technical contracts passed; REG core sealed, CLASS stopped before learner dispatch on PermissionError errno13 while reading the owned parent observation. No qualified new metrics or ready archive. Actual driver exit1 (session8788/tool14217b). Separate current-negative observation and post-tool confirmation exited0; 7887 known identities absent, 367 source pins current, temporary tree absent. Final240 expired before collection; no old closer run or reset. Root R4 framed append transport preserves all resource, clock, nonce, identity and freshness checks; 24 contracts prepared, source peer and new standard qualification precede delivery. Three-hour Qwen outer R2 source review closes its CLI mismatch; 48 contracts prepared, runtime/READY/clock remain null until the corrected standard archive qualifies. Linux remains paused; no upload.
+RQ4 remains a preserved preflight FAIL (c518d7 exit1, frozen closer1f08cd exit1, no original root). Separate current-negative observation d1e89d and post-tool75a734 both exited0: current581pins/source/temp/cleanup confirmed, finite7917 identities absent plus3 observer preparers for next admission. This does not requalify RQ4.
+
+RQ5 final prospective SOURCE 2fe9502d, peer5c6ae3c3, preserves candidate81-member ZIP eb85becb and all existing numerical/model behavior.112 targeted contracts and exactly two standard calls are prepared,0 executed. Root must bind all operational absolute paths, actual input authority and exact final hashes, then run the reviewed exact config-and-predecessor metadata preflight before assigning any new clock.
+
+The time-driven Qwen coreR6(226a4100/51f7a7e1), independent auditorR3(cc220ce9/ab30e5cf) and outerR3(0c46fe73/751e2734) have closed SOURCE reviews. No new Qwen campaign or archive metrics exist yet. The next10800-second campaign requires a positive actually qualified repaired archive; task budgets are equal, with real hypothesis/evaluation/feedback/keep-discard loops and completed checkpoints. Physical caps remain unchanged. Linux remains paused; upload is not authorized.
 <!-- CURRENT_UAR_OBSERVATION_END -->
 
 Начните с нужного направления. Исходные пути, manifests, receipts, имена веток и ZIP не переименовываются: они участвуют в SHA-привязках. Суффикс `next` означает название каталога, а не подтверждение готовности или запуска.

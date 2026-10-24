@@ -1,0 +1,22 @@
+{
+  "schema": "rq5-exact-metadata-preflight-R3-source-peer-v1",
+  "status": "SOURCE_REVIEWED_NO_SCOPED_BLOCKER",
+  "source": {
+    "path": "work/rq5-metadata-preflight-r3.py",
+    "sha256": "55971ae9ce68ef06eadf94db327b4c622954f18443f1510d78c8024826a623dd"
+  },
+  "prior_R2_source": {
+    "path": "work/rq5-metadata-preflight-r2.py",
+    "sha256": "d3dce9f5b1d8f0c087e73c8278acc34d2230df40d2e1c8193ddccb4a2243971c"
+  },
+  "R2_finding": "Optional predecessor projection rejected imported before trusted helper wrapper could apply.",
+  "narrow_fix": "Only in predecessor mode, permit imported resolved to the injected exact two previously qualified helper paths+SHA allowlist.",
+  "inverse_to_R2_AST_exact": true,
+  "reviewed_boundary": [
+    "Exact config/ids/prior/predecessor AST selected without path/predicate rewriting.",
+    "Injected importer permits only exact run_cases e3f348 and C5d5f41 source modules; both top levels are stdlib metadata declarations, guarded main not called.",
+    "No candidate/model/provider imports or PID observation; helper predecessor reads only saved metadata/identities.",
+    "30s metadata elapsed callback is not an experiment origin or runtime admission; original actual tool/cleanup/absence requirements remain."
+  ],
+  "reviewer_execution_imports_tests_PIDs_data_arrays_API": 0
+}

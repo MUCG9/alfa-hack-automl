@@ -1,0 +1,39 @@
+{
+  "schema": "rq5-root-helpers-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "scope": "Only five fixed deployment path literals from frozen RQ4 helper R3; no runtime guard, role, counter, source-pin, predecessor, eligibility or assertion changes.",
+  "packet": "last-submission-repair-qualification-next-dev-r5",
+  "output": "rq5",
+  "atomic_binding": "private/rq5-atomic-binding.ready-r1.json",
+  "base": {
+    "path": "work/rq4-root-helpers-next-dev-r3/source-handoff-final.json",
+    "sha256": "f758f7befa8285ae43eb8fe9f427460a7f224448caa44ef71f7412653f1ff7d4"
+  },
+  "compatibility_schemas_unchanged": {
+    "authority": "rq4-root-helper-authority-v1",
+    "native_exit": "rq4-root-launch-native-exit-v1",
+    "post_tool": "standard-repair-actual-wrapper-exit-confirmation-v1"
+  },
+  "legacy_schema_tags": "Historical protocol tags intentionally unchanged; actual fixed absolute PACKET/OUT/reference paths and all hashes enforce the new deployment.",
+  "common_seconds": 6000,
+  "driver_final_seconds": 240,
+  "atomic_root_seconds": 60,
+  "posttool_max_seconds": 30,
+  "new_campaign_clock": false,
+  "prepared_test_methods": 11,
+  "actual_test_executions": 0,
+  "model_calls": 0,
+  "API_calls": 0,
+  "all11_test_bytes_exact_base": true,
+  "actual_qualifier_handoff": null,
+  "actual_private_manifest": null,
+  "actual_clock": null,
+  "actual_metrics": null,
+  "preserve_RQ4_FAIL": "Original RQ4 failure/clock untouched. Future new prospective RQ5 authority must bind independently reviewed typed predecessor; no old qualification is inferred.",
+  "root_owned_next_steps": [
+    "Freeze new qualifier and peer, then root creates separate absolute authority/private JSON with all final pins; template remains NOT_READY.",
+    "Root independently reviews metadata, then launches only on a new explicit prospective lease; author has not assigned a clock."
+  ],
+  "promotion": false,
+  "submit": false
+}

@@ -1,0 +1,9 @@
+{
+  "schema": "source-metadata-only-old-data-pin-projection-v1",
+  "refs": {},
+  "authority": {
+    "path": "qwen-three-hour-outer-next-dev-r2/source-handoff.json",
+    "sha256": "602f65f4c5fef8090df0cb9a0b552837b3f6b59a1257dd8578043bb0e6a52171"
+  },
+  "raw_data_files_read": 0
+}

@@ -1,0 +1,82 @@
+{
+  "schema": "qwen-three-hour-outer-independent-source-review-v1",
+  "revision": "R3_FINAL_CORE_R6_AUDITOR_R3_REBIND",
+  "review_kind": "INDEPENDENT_SOURCE_ONLY",
+  "result": "NO_SCOPED_SOURCE_BLOCKER",
+  "reviewed_handoff": {
+    "path": "work/qwen-three-hour-outer-next-dev-r3/source-handoff.json",
+    "sha256": "0c46fe7316be1808b1d62a341cc95772863b22c14b5226afae31bc9db8e465ab"
+  },
+  "reviewed_driver": {
+    "path": "work/qwen-three-hour-outer-next-dev-r3/run_campaign.py",
+    "sha256": "e621e6459a7a6685b9403bb655adb49ba0f6fceb4462a141b9b5faa686541f9e"
+  },
+  "previous_accepted_handoff_sha256": "602f65f4c5fef8090df0cb9a0b552837b3f6b59a1257dd8578043bb0e6a52171",
+  "local_pins_verified": 18,
+  "external_pins_verified": 315,
+  "raw_data_or_NPZ_reads": 0,
+  "independent_proofs": {
+    "exact_string_literal_changes": 8,
+    "whole_driver_AST_inverse_to_accepted_R2_exact": true,
+    "all_other5_runtime_test_files_raw_exact_R2": [
+      "close_controller.py",
+      "run_root.py",
+      "close_child.ps1",
+      "test_broker_contracts.py",
+      "test_atomic_root.py"
+    ],
+    "new_code_definitions": 0,
+    "method_AST_census_matches_source_proof_and_binding_template": true,
+    "method_counts": [
+      2,
+      1,
+      1,
+      18,
+      4,
+      23,
+      2,
+      3,
+      4
+    ],
+    "prepared_method_executions": 58,
+    "contract_entrypoint_slots": 9,
+    "setup_serial_parent_caps_sum_seconds": 270,
+    "original_setup_seconds": 300
+  },
+  "final_dependencies": {
+    "core": {
+      "handoff": "work/qwen-three-hour-autoresearch-next-dev-r6/source-handoff-final.json",
+      "sha256": "226a4100ed0ca4c51d857b64f5e77f3dad38e7dde6fe5b386d5c83a42a4021b6",
+      "peer_sha256": "51f7a7e16429f647c4710b0d6298e4527702d7f4de9d7d6ed9daaaa10d065179"
+    },
+    "auditor": {
+      "handoff": "work/qwen-three-hour-independent-audit-next-dev-r3/source-handoff.json",
+      "sha256": "cc220ce9242b8b97a4e014dd29e62bc88c66623729caf31ad24c775a02ff72f1",
+      "peer_sha256": "ab30e5cfb39b8a04935553fe628373e8aabe5fcdf9bbfdfe3888d9451c90e4f1"
+    }
+  },
+  "checked_source_interfaces": [
+    "config exact final source_handoff-final core path, source-handoff auditor path, independent peer paths/hashes and full local immutable maps; same contracts whitelist/method hashes/strict structural counts.",
+    "Trusted provider facade pins final CORE task_entry; requested provider credentials remain only fixed gateway child scope, old environment/capture/strict callbacks unchanged.",
+    "Original10800 origin is retained before setup, two task4800 assignments, supervisor parent4800/child4770, independent audit600/570, final240/root60. No new origin or unused-time transfer.",
+    "Both task whole cores seal before independent auditor truth; R6 anytime completed-checkpoint semantics and R3 actual timegoal can flow unchanged through same task report/terminal/core interface.",
+    "Atomic child PowerShell CLI fix and real source-parser contract remain raw-exact accepted R2; actual driver exit/root/fresh/actual post-tool source qualification requirements unchanged.",
+    "Semantic gateway4800/callback19204 are early-hit INCOMPLETE bounds. Actual report32MiB/core20k/worker1536/whole2048MiB and all guard/cleanup checks unchanged."
+  ],
+  "findings": [],
+  "pending_root_materialization": [
+    "Templates intentionally NOT_READY; runtime private must use exact absolute WORK output/interpreter/lock/canonical/ref paths, never directly reuse relative template placeholders.",
+    "Actual archive/root/final post-tool qualification, selected raw recipe authorities, fixed cuts/inputs, explicit provider/model settings and fresh complete predecessor union must be independently bound before runtime.",
+    "Actual58 technical contracts, actual task elapsed/resource/HTTP/worker evidence, all-core independent audit and terminal finite closure remain unexecuted future qualification."
+  ],
+  "actual_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API_calls": 0,
+  "actual_PID_scans": 0,
+  "actual_clock": null,
+  "actual_metrics": null,
+  "READY": false,
+  "promotion": false,
+  "submit": false
+}

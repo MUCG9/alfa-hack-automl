@@ -1,0 +1,52 @@
+{
+  "schema": "qwen-anytime-research-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "source_base_handoff_sha256": "ef50adf134d67967ad177c75632376889e87dd67d926d75c83838dc8ef6d9544",
+  "common_seconds": 10800,
+  "setup": 300,
+  "task_seconds_each": 4800,
+  "audit": 600,
+  "cleanup": 300,
+  "mandatory_task_seal_margin": 60,
+  "minimum_new_round_admission": 25,
+  "semantic_gateway_upper": 4800,
+  "semantic_parent_callback_upper": 19204,
+  "safety_upper_early_hit": "INCOMPLETE/technicalFAIL, never successful time goal",
+  "hard_physical_caps": {
+    "worker_RSS_MiB": 1536,
+    "whole_RSS_MiB": 2048,
+    "core_files": 20000,
+    "report_JSON_bytes": 33554432,
+    "parent_JSON_bytes": 33554432,
+    "gateway_request_bytes": 131072,
+    "gateway_response_bytes": 65536
+  },
+  "soft_checkpoint_leases": {
+    "confirmation": "min(600,(original_remaining-60-10)/2), minimum5",
+    "refit": "min(900,original_remaining-60-10) after actualcharged confirmation, minimum5"
+  },
+  "checkpoint_rule": "Selected fields change only after fresh confirmation passes same gates, recursive median and fullrefit complete. Timeout partialcheckpoint never replaces selected.",
+  "normal_stop": "Only original remaining time cannot admit a provider+two-cut round plus mandatory seal/overhead margin. No padding/clock reset/unused-task-time transfer.",
+  "failure_rule": "Confirmed ordinary timeout retains NULL failed data and last completed checkpoint; resource/unknown/cleanup/source/parent-origin failures escape immediately and unqualify all metrics.",
+  "reused_functions_AST_exact": [
+    "mutate_recipe",
+    "require_worker_origin",
+    "score_pair",
+    "keep_candidate",
+    "feedback",
+    "median_iterations",
+    "task_window"
+  ],
+  "primitive_models_provider_runtime_unchanged": true,
+  "prepared_contract_methods": 24,
+  "actual_contract_executions": 0,
+  "old_R4_tests": "Immutable source-evidence only. No obsolete64-cap/final-only assertion is claimed current PASS.",
+  "actual_archive": null,
+  "actual_source_qualification": null,
+  "actual_outer": null,
+  "actual_auditor_R3": null,
+  "actual_clock": null,
+  "actual_metrics": null,
+  "promotion": false,
+  "submit": false
+}

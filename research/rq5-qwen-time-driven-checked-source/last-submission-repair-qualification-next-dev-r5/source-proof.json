@@ -1,0 +1,33 @@
+{
+  "schema": "RQ5-narrow-source-proof-v1",
+  "previous_handoff_sha256": "ef045d94e5fb31777a80daa1e4d91b80e261837877bb1b9b976f687fff185d78",
+  "old_frozen_source_preserved": true,
+  "whole_driver_inverse_exact": true,
+  "whole_audit_closer_atomic_inverse_exact": true,
+  "whole_old15caller_test_AST_exact": true,
+  "old110_assertions_preserved": true,
+  "added_one_meaningful_real_config_prelaunch_output_contract": true,
+  "prepared_executions": 111,
+  "prepared_method_counts": [
+    24,
+    24,
+    18,
+    12,
+    16,
+    4,
+    2,
+    11
+  ],
+  "actual_tests": 0,
+  "actual_clock": null,
+  "changed_boundaries": [
+    "OUT rq5",
+    "fixed helper five path literals and exact handoff/peer",
+    "typed RQ4 negative+post finite ownership only",
+    "caller15 to16 method whitelist/count",
+    "one real config absolute-output contract"
+  ],
+  "numerical_worker_evaluator_candidate_bytes_unchanged": true,
+  "candidate_archive_sha256": "eb85becbff8da0be93b97a8dafff108e426cdbed07476ed4f1dc0fb95e73c6fc",
+  "imports_tests_models_API_data_PID_clock": 0
+}

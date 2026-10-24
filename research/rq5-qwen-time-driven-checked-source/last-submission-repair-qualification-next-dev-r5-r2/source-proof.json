@@ -1,0 +1,24 @@
+{
+  "schema": "RQ5R2-binder-union-source-proof-v1",
+  "previous_handoff_sha256": "453844ce7a70d1c730b1fa6f123f62a651a4fb6bcdac00ba76e2a4eddfeda1e0",
+  "previous_frozen_source_preserved": true,
+  "whole_driver_inverse_helper_refs_atomic4to5_only": true,
+  "whole_closer_inverse_atomic4to5_only": true,
+  "whole_atomic_inverse_only_fixed_partition_helper_and_one_call_metadata": true,
+  "allold111_method_assertions_preserved": true,
+  "old4atomic_method_AST_exact": true,
+  "one_new_meaningful_union_and_negative_overlap_contract": true,
+  "prepared_executions": 112,
+  "actual_tests": 0,
+  "untouched_raw_files": [
+    "artifact_audit.py",
+    "close_child.ps1",
+    "technical_entry.py",
+    "test_controller_contracts.py",
+    "test_observation_reader.py",
+    "framed_reader.py.txt"
+  ],
+  "original_caps_and_clocks_numerical_predicates_unchanged": true,
+  "actual_clock": null,
+  "NPZ_data_reads": 0
+}

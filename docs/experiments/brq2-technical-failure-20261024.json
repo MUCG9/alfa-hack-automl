@@ -1,0 +1,108 @@
+{
+  "schema": "BRQ2-technical-terminal-resource-race-failure-v1",
+  "status": "FAIL_BEFORE_STANDARD_MODEL_CALLS_CURRENT_TEMP_CLOSURE_PENDING",
+  "actual_driver_execution": {
+    "session": null,
+    "exit_code": 1,
+    "tool": "199da9"
+  },
+  "actual_root_execution": {
+    "session": null,
+    "exit_code": 1,
+    "tool": "306e5d"
+  },
+  "root_sha256": "2d259e647a64f2f1e48d06e450f6fd877d4dc07bac3363df9743d78fecb890a0",
+  "campaign_sha256": "fd85c8317ff187ffc37986613ea5169c4dbd1e9512545e51127469750416ae24",
+  "original_clock": {
+    "start_unix": 1792845810.4945142,
+    "start_monotonic": 104815.765,
+    "absolute_deadline_unix": 1792851810.4945142,
+    "common_deadline_monotonic": 110815.765,
+    "common_seconds": 6000
+  },
+  "first_and_secondary_errors": [
+    {
+      "code": "supervisor_operation_failed",
+      "phase": "supervisor",
+      "unix": 1792845813.4273715,
+      "monotonic": 104818.703,
+      "exception_type": "NoSuchProcess",
+      "errno": null,
+      "winerror": null,
+      "child_kind": "source-contracts"
+    },
+    {
+      "code": "terminal_supervision_failed",
+      "phase": "supervisor_terminal",
+      "unix": 1792845813.4273715,
+      "monotonic": 104818.703,
+      "exception_type": "RuntimeError",
+      "errno": null,
+      "winerror": null,
+      "child_kind": "source-contracts"
+    },
+    {
+      "code": "resource_observation_unconfirmed",
+      "phase": "qualification",
+      "exception_type": "RuntimeError",
+      "errno": null,
+      "winerror": null
+    },
+    {
+      "code": "resource_observation_unconfirmed",
+      "phase": "final_cleanup",
+      "exception_type": "RuntimeError",
+      "errno": null,
+      "winerror": null
+    },
+    {
+      "code": "resource_observation_unconfirmed",
+      "phase": "power_release",
+      "exception_type": "RuntimeError",
+      "errno": null,
+      "winerror": null
+    },
+    {
+      "code": "resource_observation_unconfirmed",
+      "phase": "terminal_save",
+      "exception_type": "RuntimeError",
+      "errno": null,
+      "winerror": null
+    },
+    {
+      "code": "resource_observation_unconfirmed",
+      "phase": "postlease",
+      "exception_type": "RuntimeError",
+      "errno": null,
+      "winerror": null
+    }
+  ],
+  "driver_flags": {
+    "cleanup_confirmed": false,
+    "source_unchanged": false,
+    "temporary_cleanup_confirmed": false
+  },
+  "root_flags": {
+    "cleanup_confirmed": false,
+    "source_unchanged": false,
+    "technical_procedure_passed": false
+  },
+  "root_errors": [
+    {
+      "phase": "root_audit",
+      "exception_type": "RuntimeError",
+      "code": "owned_shallow_temp_not_removed"
+    }
+  ],
+  "actual_source_unittest_count": 18,
+  "actual_source_unittest_status": "OK_clean_terminal_footer",
+  "source_contract_supervisor_exit": 0,
+  "source_contract_supervisor_status": "technical_failure",
+  "standard_model_calls": 0,
+  "new_standard_metrics": null,
+  "ready_archive": null,
+  "current_owned_only_observation_sha256": "2a4c861b17354efe007b72de31e10d57a2dbd6bc13f2febb104ad0fe2d9906af",
+  "all7264_current_exact_absent": true,
+  "current_source_and_temporary_cleanup_qualified": false,
+  "decision": "STOP successor runtime until independently reviewed bounded nonqualifying current source/owned-temp closure audit. Preserve original FAIL/false flags; source-only diagnosis for known process exit between identity and RSS sampling, no blanket ignore or weaker caps."
+}

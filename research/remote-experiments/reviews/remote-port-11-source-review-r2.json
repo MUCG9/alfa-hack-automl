@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "status": "R2_SOURCE_ONLY_NO_REMAINING_SCOPED_BLOCKER_ROOT_PREFLIGHT_PUBLICATION_PENDING_NOT_ML_APPROVAL",
+  "source_handoff_sha256": "4ece48fe07ae83f5965b4e6edd56fdb7ab7b1bf3e0d8e82d6499c416d9b7ed80",
+  "files_sha256": {
+    "job.json": "d8a800fcfef42bc5707a2dfff14fecadabd1d694b9ab8051155bc000391ae280",
+    "notice-draft.md": "8674c29e9530a88923cea3b0760c29d88e95caa2227da0eff3e646d9bbaa8106",
+    "publication-map.json": "054abb92eeae80379f8a69338014888d4cfe4f7ef4cdc924c739d59b10cf6099",
+    "r2-rebind-proof.json": "e83bce926af30e337f7c99f896a2d0f112984a55c62a33cd46ff1e747f27317a",
+    "review-checklist.md": "f534cda14292e8670c435b4710341f8ce021fde0bc2ccdb4f22c4222fe372f03",
+    "source-manifest.json": "db9b08a439fc23a0c9f8e5dd59f947f5470f3bd0e279581ff7a9b9fa42022aa1"
+  },
+  "R1_review_sha256": "9844995a773c1725470af2dcddf60079313081f76d494a6c50cd3d6dbad27e08",
+  "R1_handoff_sha256": "ff9fe95bac8a24672b15af6174e144a4e31de8177f622690145c66c866b1c6ae",
+  "R1_bytes_preserved": true,
+  "resolved_finding": {
+    "id": "REMOTE11-R1-SCANNER",
+    "original_review_sha256": "8a3a47fba2c8be6897aa1a1cc447f4ef4e1717c15b7c2612b4470356ae6c7120",
+    "transport_projection_sha256": "9a0d1c28e5678a8b49d66d3605169aaad8589013f27ef7edea33c6cf3fdd527c",
+    "only_changed_review_payload_fields": [
+      "independent_AST_delta.portable.base_path",
+      "independent_AST_delta.driver.base_path"
+    ],
+    "all_remaining_review_payload_identical": true,
+    "safe_relative_not_private_absolute_values_verified": true,
+    "queue_scanner_original_bytes_unchanged": true
+  },
+  "R2_job_delta": "Only direct review pointer/hash and source11 manifest hash cascade; objective/caps/dependency/all other job fields byte-for-value unchanged.",
+  "R2_manifest_delta": [
+    "R2 draft status label",
+    "completed_dependency.primary_source_review pointer/hash now projection",
+    "original_source_review_immutable_evidence preserves8a3",
+    "added exact transport projection lineage"
+  ],
+  "all17_source_ref_SHA_match": true,
+  "manual_unchanged_scanner_pattern_check_all_refs": "PASS_static_only_no_queue_function_called",
+  "JSON_static_bounds": {
+    "job.json": {
+      "nodes": 75,
+      "max_depth": 3
+    },
+    "source-manifest.json": {
+      "nodes": 238,
+      "max_depth": 4
+    },
+    "publication-map.json": {
+      "nodes": 65,
+      "max_depth": 3
+    }
+  },
+  "source_only_caps": {
+    "wall_seconds": 1800,
+    "cpu_threads": 2,
+    "worker_memory_mib": 1536,
+    "whole_memory_mib": 2048,
+    "max_fits": 0,
+    "max_api_calls": 0
+  },
+  "same_worker": "remote-worker-f7dd39e0",
+  "completed_dependency10_result_sha": "57a7a24fab7ff006d0c7e3c0510ea411647b31e1",
+  "exact_execution_r3_sha256": {
+    "portable_harness.py": "ceec298c13f6f91621f5abafd257d64de02b8590a105a3620c50186a7e5f633e",
+    "experiment_driver.py": "e0b0458cd6aeb7bdb7fe00dd29e248d7c7605c179c69ef5b6ca27340ba3c63f3",
+    "component_audit.py": "befcca2f8e630b9fb8e1bca81ce46b4d08f6f17773c65a38f133a56c277d2ffd",
+    "pure_contracts.py": "783830691e558748b4437a734d27cd4cb332c6731f683c3058cd21ea18597286"
+  },
+  "future_binding_algorithm_manifest_canonical_sha256": "35f714dd94158519730ecff4f020ab8215060c1ba07e2a6fd7be836ac456c8d7",
+  "future12_READY_approval_claim_clock": null,
+  "blockers": [],
+  "remaining": [
+    "Root protected queue/source-ref/scanner preflight and immutable publication required.",
+    "Actual source-only11 native preparation/private authority remains future and remote-reported.",
+    "Separate primary review and NEW same-worker bounded12 approval/READY job/claim/clock required. Old8039/8bdb/07approval remains ineligible."
+  ],
+  "review_operations": {
+    "candidate_or_queue_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API": 0,
+    "data_arrays_labels_predictions": 0,
+    "process_scans": 0,
+    "clock_assigned": false,
+    "Git_writes": 0,
+    "canonical_STATE_edits": 0,
+    "stdlib_metadata_only": true
+  },
+  "preparation_note": "Initial strict manifest whole-object comparison also detected expected R2 status and completed-review pointer changes; these exact transport-only changes were independently enumerated and normalized before final comparison, no received code/test ran.",
+  "quality_metric": null,
+  "approval_for_models": false,
+  "promotion": false,
+  "submit": false
+}

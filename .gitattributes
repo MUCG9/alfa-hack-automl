@@ -130,3 +130,7 @@ research/remote-experiments/reviews/remote-port-10-source-r1.json -text
 research/universal-agent-next/combined-ports-r1/** -text
 research/universal-agent-next/uar04-r1/** -text
 research/remote-experiments/reviews/remote-port-10-source-transport-r1.json -text
+research/remote-experiments/jobs/remote-port-11-execution-authority-prepare.json -text
+research/remote-experiments/sources/remote-port-11-source-manifest.json -text
+research/remote-experiments/reviews/remote-port-11-source-review-*.json -text
+research/remote-experiments/notices/remote11-native-r3-prepare.md -text

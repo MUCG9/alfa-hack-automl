@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "status": "R1_SOURCE_DRAFT_BLOCKED_DIRECT_REVIEW_TRANSPORT_SCANNER_ONLY",
+  "source_handoff_sha256": "ff9fe95bac8a24672b15af6174e144a4e31de8177f622690145c66c866b1c6ae",
+  "files_sha256": {
+    "job.json": "5a056a2efac5e8d84e4d40f748321b161ba1c31e3fa20a6c289572dce5ebcdce",
+    "notice-draft.md": "043fcdf6cb7ac70f2470f31b9b594e322437fe0a98ff48003d90c44332a5e71a",
+    "publication-map.json": "422a62e091acbd319fd6de0ed0a5a06e2690cadd2d8f9e3f0218be9d7aaa12f2",
+    "review-checklist.md": "76075dc792d1b8fbd18ee268046f05a42a2a53bd7a9801eb542f40f2782be765",
+    "source-manifest.json": "29716873010bc6774418915d818ca3caeb9e9d6cd8c0922a2870f588c9f02712"
+  },
+  "job_id": "remote-port-11-execution-authority-prepare",
+  "job_kind": "source_only",
+  "caps": {
+    "wall_seconds": 1800,
+    "cpu_threads": 2,
+    "worker_memory_mib": 1536,
+    "whole_memory_mib": 2048,
+    "max_fits": 0,
+    "max_api_calls": 0
+  },
+  "same_worker": "remote-worker-f7dd39e0",
+  "completed_dependency10_result_sha": "57a7a24fab7ff006d0c7e3c0510ea411647b31e1",
+  "all17_source_ref_SHA_match": true,
+  "source_refs": [
+    {
+      "path": "research/remote-experiments/sources/remote-port-11-source-manifest.json",
+      "sha256": "29716873010bc6774418915d818ca3caeb9e9d6cd8c0922a2870f588c9f02712"
+    },
+    {
+      "path": "research/remote-experiments/reviews/remote-port-10-source-r1.json",
+      "sha256": "8a3a47fba2c8be6897aa1a1cc447f4ef4e1717c15b7c2612b4470356ae6c7120"
+    },
+    {
+      "path": "research/remote-experiments/sources/execution-r3-reviewed10/portable_harness.py",
+      "sha256": "ceec298c13f6f91621f5abafd257d64de02b8590a105a3620c50186a7e5f633e"
+    },
+    {
+      "path": "research/remote-experiments/sources/execution-r3-reviewed10/experiment_driver.py",
+      "sha256": "e0b0458cd6aeb7bdb7fe00dd29e248d7c7605c179c69ef5b6ca27340ba3c63f3"
+    },
+    {
+      "path": "research/remote-experiments/sources/execution-r3-reviewed10/component_audit.py",
+      "sha256": "befcca2f8e630b9fb8e1bca81ce46b4d08f6f17773c65a38f133a56c277d2ffd"
+    },
+    {
+      "path": "research/remote-experiments/sources/execution-r3-reviewed10/pure_contracts.py",
+      "sha256": "783830691e558748b4437a734d27cd4cb332c6731f683c3058cd21ea18597286"
+    },
+    {
+      "path": "research/remote-experiments/sources/execution-r3-reviewed10/fixedcaller.py",
+      "sha256": "438ca9d55cded5092d6c7137cfd4529996d08f9fee32f138184b290d489b20fa"
+    },
+    {
+      "path": "research/remote-experiments/sources/execution-r3-reviewed10/pure_cooperative_contracts.py",
+      "sha256": "f1ba138fe42ace91048b0ead74aefbb6526bfef8815566020615efec2e301642"
+    },
+    {
+      "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/protocol.json",
+      "sha256": "81cd9df5566f5453600117a5cb902f8ca7d37dbee3c9ee2347ff5100a9baff46"
+    },
+    {
+      "path": "research/remote-experiments/sources/source-manifest.json",
+      "sha256": "0ed0e74706b6620ffc1b29216a8f2c00ab40771ef7ebaecb0cc61092f78c4bae"
+    },
+    {
+      "path": "research/remote-experiments/sources/approved-input-manifest.json",
+      "sha256": "247ecf4d3ce8670be0573ed0808b0cfce9352babb78ca7cc02c9103ca3bee4c7"
+    },
+    {
+      "path": "research/remote-experiments/sources/native-cut-contract-v3-r2.json",
+      "sha256": "f5ad8c55aec198b689abf4bd8cf4ed0caf967fcd9f0d9f6db12f70513e1a60e5"
+    },
+    {
+      "path": "research/remote-experiments/sources/protected-single-controls.json",
+      "sha256": "118ba895201bef8149fdd6bb88464bb2e02b23985a34629a47d52df5e5536f46"
+    },
+    {
+      "path": "research/remote-experiments/sources/remote-port-06-source-manifest.json",
+      "sha256": "adc0c50d8e49cfa973c749fe51566dccb85dcb88975088fa783cc3bfa6df3bf9"
+    },
+    {
+      "path": "research/remote-experiments/sources/remote-port-07-source-manifest.json",
+      "sha256": "3c92638b9facd6aafdc8623688b6532afbb2ba42b2e33ceee9eadea89a64e19c"
+    },
+    {
+      "path": "research/remote-experiments/reviews/remote-port-07-result-r1.json",
+      "sha256": "46b571b4d3400f946b6d9206345413e90b4f57cca0c00c3249827bdde93483c6"
+    },
+    {
+      "path": "research/remote-experiments/protocols/class-kernel-six-jobs-r1/fit-count-source-proof.json",
+      "sha256": "7c0a3b1c3888573ab254989bee767a3d49fe4a3c84d1a57a17e647a99c083613"
+    }
+  ],
+  "JSON_static_bounds": {
+    "job.json": {
+      "nodes": 75,
+      "max_depth": 3,
+      "bytes": 10421
+    },
+    "source-manifest.json": {
+      "nodes": 216,
+      "max_depth": 4,
+      "bytes": 12575
+    },
+    "publication-map.json": {
+      "nodes": 65,
+      "max_depth": 3,
+      "bytes": 4110
+    }
+  },
+  "objective_UTF8_bytes": 6526,
+  "blockers": [
+    {
+      "id": "REMOTE11-R1-SCANNER",
+      "severity": "P1_prepublication_transport",
+      "path": "research/remote-experiments/reviews/remote-port-10-source-r1.json",
+      "sha256": "8a3a47fba2c8be6897aa1a1cc447f4ef4e1717c15b7c2612b4470356ae6c7120",
+      "detail": "Direct source_ref contains JSON-escaped Windows relative AST comparison base_path values; unchanged protected safe_text UNC/absolute regex matches them. This is not an exposed absolute private path, but q.jobs would refuse the declared reference and block polling. Immutable original review/queue/source10 must remain unchanged. Root chose a separately named relative-slash sanitized projection with semantic binding to original8a3 and R2 job/manifest hashcascade.",
+      "resolution": "pending_root_projection_and_R2_source_review",
+      "executed_counterexample": false
+    }
+  ],
+  "source_scope_checks": {
+    "source_only1800_no_fit_API": true,
+    "same_worker_dependency10_declared": true,
+    "fresh_private_ASCII_root_and_exact_execution4_plus_auxiliary_sources": true,
+    "six_core_folders_absent_during_preparation": true,
+    "approved_algorithm70_metadata5_inputs_native_cuts_and_libraries_unchanged": true,
+    "spec_only_closed_path_fields_rebased": true,
+    "private_authority_and_sixjobs_unredacted_hashes_not_public_redacted_substitute": true,
+    "compact_native_reference_depth8_no_JSON_in_string": true,
+    "queue_original_bytes_not_direct_payload": true,
+    "manifest_canonical_is_algorithm_source_object_SHA": "35f714dd94158519730ecff4f020ab8215060c1ba07e2a6fd7be836ac456c8d7",
+    "future12_static_cap16_not_actual_fits_or_READY": true,
+    "old08_09_failure_and_source10_attempts_preserved": true
+  },
+  "limits": [
+    "Job schema has no dedicated worker-lock field; same-worker-only is an explicit trusted-agent assignment and must be verified against actual completed11 claim/result before future approval.",
+    "These are source/schema/metadata observations; actual private preparation/native checks and future authority remain unperformed/remote-pending.",
+    "No12 ML approval, READY job, claim, clock, model execution or metric qualification is issued by this receipt.",
+    "Official protected queue/source-ref/scanner preflight and root publication still required after R2 correction."
+  ],
+  "review_operations": {
+    "candidate_or_queue_imports": 0,
+    "tests": 0,
+    "models_or_fits": 0,
+    "API_calls": 0,
+    "process_scans": 0,
+    "data_arrays_labels_or_predictions_loaded": 0,
+    "clock_assigned": false,
+    "Git_writes": 0,
+    "STATE_or_canonical_edits": 0,
+    "stdlib_SHA_JSON_depth_and_static_regex_reads_only": true
+  },
+  "quality_metric": null,
+  "approval_for_models": false,
+  "promotion": false,
+  "submit": false
+}

@@ -1,0 +1,109 @@
+{
+  "schema": "class-blend-seed-current-reconciliation-independent-source-review-v1",
+  "status": "SOURCE_METADATA_REVIEWED_NO_SCOPED_PROPOSAL_BLOCKER_NOT_RUNTIME_READY",
+  "handoff": {
+    "path": "work/class-blend-seed-current-reconciliation-next-dev/source-handoff.json",
+    "sha256": "d415aa07b987adce996d705af0db0af2e92255fad2f32799cc7203e2eedb9a7c"
+  },
+  "local_refs_verified": {
+    "evidence.json": "cd7bfd8d78ad1cbbbb797d7ad10bf32dcf612896c2b238d03089e8ece637628c",
+    "proposal.json": "0c7984e457c8cb6d21f9aadd79c65b3295d030f8383740362e9a25b2dc926365",
+    "summary.txt": "3334cf72fcf480797095b88da8e5a5c63a1a6d1e2e31468993b354bf96d40378"
+  },
+  "evidence_refs_sha256_verified": {
+    "work/alfa-hack-automl/src/automl/execution/model_adapters/extra_trees.py": "0a6a1093cd6f329ad69cddc7f3965067f7b539835312d2c16029deec47b5692a",
+    "work/alfa-hack-automl/src/automl/execution/model_adapters/registry.py": "75b885e822186ab8c235e6638ee888ecaa918a50f7662dc8fc2892682d761045",
+    "work/alfa-hack-automl/src/automl/execution/worker.py": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac",
+    "work/alfa-hack-automl/src/automl/search/hpo.py": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+    "work/alfa-hack-automl/src/automl/search/policy.py": "8faf616caff90f7cdea4de9c4b5033ad22bd4ed1ac0dad3f0ca1d721f0759549",
+    "work/alfa-hack-automl/src/automl/search/runner.py": "7f98647af4dc720f3895fb551edc25efb6f18ab53c4b87bd0d7f854c09a4af96",
+    "work/alfa-hack-automl/src/automl/search/stages.py": "a1d2adb4b548afe71ecc1d9b161c30f49125998eb4314bc6efd04c42e7962a31",
+    "work/brq3/classification/automl_runs/fixed-release-1792849599825030400/report.json": "4d2278893ef5b7b462527ded3ba9ab71fb923b5927e38500def2db00682960d7",
+    "work/brq3/independent-audit.json": "c5757f966e79b2e25ccb5b069860dfbb2c4246d310d4a5dd20d51c4fbd039ca4",
+    "work/brq3/terminal-root-closure.json": "7578f3ea5f4d3b14e9925bec5705a3169ab17ae77de5a45cfc7583edeaedf42d",
+    "work/class-blend-current-next-dev/protocol.json": "c28c211a3ab61947fb56e24799b8739e2a2d6e334cf4756f03bb932a0091abd2",
+    "work/class-blend-current-next-dev/source-handoff.json": "9ef8e636ff9c54500ae23752ae71099bb7ca74923a77509041072efeea1c4eae",
+    "work/class-blend-current-source-review-r1.json": "011225d40724c19d3130b8df1c4d27c0114a226f3ed9ff7d3d9def0bf21218e4",
+    "work/class-blend-seed-independent-review-r1.json": "36a59d5e02a7315f739cee05981641eb5519c34f4e79d243b1f5f88e283a3546",
+    "work/class-blend-seed-next-dev/class-blend-seed.json": "4109f7b7f4e1e5f8458890e89926c16072a2058f564c767cb9cc360efb363d92",
+    "work/class-blend-seed-next-dev/proposal.json": "b4e1e97d61903ab02e5310101e2a3b4b516e150212e6144f96c84ccd308bf35a",
+    "work/class-blend-seed-next-dev/source-handoff.json": "53487804712c239c2240f577233b1c65e82f7523b2f38d8b828a3bf93a048462",
+    "work/cx2/independent-cache-audit.json": "85e131d7ba5e97f76185743134bbf63383df37a48a9e1d5aca50f51d260dbca0",
+    "work/cx2/root-confirmation.json": "b9f5cd2c86ad150cb710c45f3fbc097b802d2f1ab6974a2fc1640ad3d772ac47",
+    "work/cx2/terminal-root-closure.json": "9525e4eb4a90a50c7eab4894b00080f032c782455cd360f39a7777f32fffb131",
+    "work/kern01/independent-audit.json": "adc697cc9f1368efa5046e946b5e02d745a108a58204da9858277faf0647b85f",
+    "work/kern01/terminal-root-closure.json": "ba402fef7aca74715e9e557e911498a054f99f18597b0d7f8b45431d87684782",
+    "work/loss01/independent-audit.json": "04a9a32a6d48f1811353070038ced4273f30855804119350b2502a738ececd13",
+    "work/loss01/terminal-root-closure.json": "ce6accf1ec6b6f1e0c14dbb0c8913b55538f6a460450cbb2705ae36a37d3bcf3",
+    "work/meth01/independent-audit.json": "3004f8b5fef76006a856162ac2224b7875df6dd02540bd68c1b8160d7f9ba646",
+    "work/meth01/manifest.json": "2f24df6cc0eeeb9a4cbb5593dcae8de457dae235239890e766bdd70ac69077bc",
+    "work/meth01/sources/automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+    "work/meth01/supervisors/classification42-candidate.json": "8a2f925d84825b307812aee3e626be8cc0315ecf6be9b8753c0f8ed4558ffc71",
+    "work/meth01/supervisors/classification42-control.json": "f041e91cf39002f319280e7c0832888e0bda586555ee402909a2b478e4c88584",
+    "work/meth01/supervisors/classification43-candidate.json": "88f045f085dfc9f057d2f749ccf96a085b6dfa9ed42282674b36f8f882dff061",
+    "work/meth01/supervisors/classification43-control.json": "a098bd66147ec5fd0a4d8531bf098f3521e84f5b4364f18379b2b64a43ed95bb",
+    "work/meth01/terminal-root-closure.json": "2c67361da8f95875b35d124ac6c19d6cccba28c899f1e20dada88f3bec4ea283",
+    "work/meth03/independent-audit.json": "2fa371a80d7cbaa3c40ad2e4d4acb0589e90e486efe8bc469b8e8c0834594cdc",
+    "work/meth03/terminal-root-closure.json": "901f3c928d95d992800aef808ff70f84768a456bc23235e0ae63fd539fe159bf",
+    "work/uar-qwen-authority-next-dev/retention/classification.json": "b5cb5cb0c8ebbaaca597b70e97963f00b1de492270b2489e1bff8ea8bc135689",
+    "work/uq3-cadence-hpo-next-dev/candidate/run_pair.py": "464305881ab1661fdf2f7b7f4a443aeec59b4bb4664f6d3f18dece2c204d25dd",
+    "work/uq3-final-metadata-summary-r1.json": "c8340a56ef79260c70663d12b4dd5883f8ae26455b8c724556f76533e37ca52a",
+    "work/uq3/A/c/automl_runs/repair4/report.json": "d4f3e92a271c1bc9ddffcaa2cab6eb5ee57889be9b61e42b82c216eb685a4bec",
+    "work/uq3/B/c/automl_runs/repair4/report.json": "cd3fc66b45400dd6d69111911cbc61def0a544d3d3adeddf9f1390b9d8f94694",
+    "work/uq3/terminal-root-closure.json": "b7e6e00b2ee2fdd682a4de3377f80f6aed12e33f7c8ff476a6387d21c1581d03"
+  },
+  "findings": [],
+  "independently_reconstructed": {
+    "local_refs": 3,
+    "closed_source_metadata_refs": 40,
+    "raw_seed_sha256": "4109f7b7f4e1e5f8458890e89926c16072a2058f564c767cb9cc360efb363d92",
+    "raw_seed_ensemble_signature_without_candidate_import": "1a9924246cac17a7071f5361c89002f2afa8cf7899717f5425dcdfaa3b335083",
+    "raw_first_child_equals_current_full_control_first": true,
+    "both_child_raw_recipes_equal_METH01_class42_and43_jobs": true,
+    "current_ET_create_model_and_fit_options_AST_equal_METH01": true,
+    "UQ3_A_and_B_each_nine_outer_records_no_ET": true,
+    "UQ3_each_queue_first5_then_two_Qwen_initial_indices5_6": true,
+    "current_complete_control_raw_unchanged_in_UQ3": true,
+    "proposal9000_arithmetic": 9000,
+    "class3510_refit_reserve": 702.0,
+    "HPO900_admission_minimum": 1632.0
+  },
+  "coverage_reconciliation": [
+    "METH01 already measures standalone fixed ET and is negative; no new standalone ET or weight sweep is justified by this proposal.",
+    "METH03 already measures the fixed90/10 validation-cache mixture and has both CLASS cuts/support/ex-rarest gates positive against SINGLE only. Its overall both-task gate remains false because REG cuts fail. This is not a fresh complete-control or whole-agent result.",
+    "CX2 rejects a different retained two-LGBM ablation against full3. It neither proves nor disproves this fixed ET seed-admission treatment.",
+    "UQ3 measures the whole procedure without ET in either CLASS arm. The remaining unmeasured treatment is required enrollment at index5 that displaces one optional Qwen proposal and changes downstream search/selection opportunity, not a new component or isolated ET causal gain."
+  ],
+  "matched_pair_requirements": [
+    "A and B must be fresh current complete procedures from the SAME actually gated archive/source, requirements/runtime, task authority/data, native42/43 splits and seeds. Historical reports cannot be substituted for A or its fresh full3 control.",
+    "Both retain identical protected first5: complete full3, exact unprofiled SINGLE HPO anchor, isolated FE, CatBoost and XGBoost. B adds only the fixed seed at zero-based5; maxinitial7/maxouter9 remain, with at mostone optional Qwen candidate versus at mosttwo in A. No extra candidate/free fit, duplicate padding or planner call.",
+    "The new ensemble is independently selectable but excluded from the existing global ensemble-of-leaves blend. Existing raw HPO SINGLE and fair CLASS900/HPO8 scheduling remain exact; do not tune the seed or use it as HPO anchor.",
+    "Both arms use identical frozen context/cache/strict/four-stage settings and actual Qwen configuration/call caps. A/B differences in later proposals, sampler trajectory or selection are treatment consequences and cannot be attributed purely to ET.",
+    "REG receives no learner run in this narrower CLASS-only pair; strongest retained REG configuration and shared default-OFF/source parity remain protected. This is not a both-task release qualification."
+  ],
+  "budget_and_accounting": [
+    "9000=setup900+twoCLASSparent3600+audit600+cleanup300(root60inside). Per-arm child3570/solver3510, fair900, CPU2 and worker1536/whole2048MiB are proposed caps, not assigned time or runtime guarantee.",
+    "Reserve702+HPO900+30=1632; existing minimum slices/guard checks charge preparation, fresh seed fits, hash/IO/API, cleanup and actual overruns. No reset, borrow or retry; failure stays null/unqualified.",
+    "Seed has two explicit non-ensemble children, with the existing two-view SINGLE internally expanding to three model leaves total. Existing recursive structural upper bounds are conservative; outer jobs/callbacks are not actual learner fit totals. Actual cost/savings/learner count remain null until observed.",
+    "Require actual eight enumerated HPO proposals/callback evidence and truthful valid/fail/timeout/guided/duplicate/unattempted counts under the newly preregistered criterion. Requested8 is not eight valid learner fits; old optional8VALID protocols remain unchanged."
+  ],
+  "quality_decision_requirements": [
+    "Before outcomes, freeze strict B-vs-A MacroF1 improvement on both matched cuts and mean, together with existing supported-class>=100 loss floor-.01 (existing tolerance only), canonical fitting-rarest exclusion strict improvement and fresh complete-control safety.",
+    "Full source/input/core/usage seals for both arms must precede independent truth audit. Any incomplete source, row/class, status, control, seal or metric binding gives null comparative qualification, never zero or skipped success.",
+    "Historical.6593178433614652 stays a separate strong saved reference. Source equality, old cached class mean or prospective mean-only improvement cannot establish current best quality or promotion."
+  ],
+  "remaining_before_implementation_or_ML": [
+    "Root source selection and exact candidate ownership; this review itself authorizes no implementation.",
+    "Minimal current stages/runner optin port with separate bounded trusted seed authority, no class retention-schema relaxation, unchanged REG branch and full composed hook/OFF AST proofs.",
+    "Meaningful current modular and actual-flat contracts plus independent candidate source review and a root technical gate.",
+    "Root separately approves/finalizes9000orother actual caps, source/tasks/context/API policy and fresh predecessor union before any new clock or learner/API work."
+  ],
+  "candidate_source_imports_tests_fits_API_data_arrays_predictions_truth_PID_Git_STATE_canonical_clock": 0,
+  "new_ML_gain": null,
+  "causal_effect": null,
+  "savings": null,
+  "READY": null,
+  "runtime_budget_approved": false,
+  "promotion": false,
+  "upload": false
+}

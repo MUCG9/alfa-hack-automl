@@ -1,0 +1,23 @@
+{
+  "schema": "fitting-context-selector-root-map-integration-addendum-v1",
+  "status": "SOURCE_MAPPING_CORRECTED_NOT_RUNTIME_QUALIFIED",
+  "prior_integration_receipt_unchanged": "43ce32a609773e2d07b8d6e1306251c8c8cf966e3c330841c53808b65a855706",
+  "cause": "Root copied Python delta but omitted the frozen non-Python tools/module_map.json. EO source-only census refused mismatch before runtime.",
+  "before_sha256": "f989a9177958b6d0c539b6e3bc9b0a4f8a686c5dea8801af8a94a3ee7aa4ab8e",
+  "after_sha256": "9395e14a650379a9ac14e5512d000607c4fd47ac20781182f6350bd901eedc0b",
+  "source_handoff_sha256": "1e08cd7915e067dc264fce5bcbe46ca2a770760b04843479f74511df5a263acf",
+  "independent_source_peer_sha256": "94b29ff1f4370f7167ffda71d27ec5316e85ee6698a88b2a41726088963c0961",
+  "explicit_alias_entries": 26,
+  "resolved_runtime_modules": 72,
+  "explicit_new_modules": 5,
+  "canonical_python183_unchanged": true,
+  "source66_704_unchanged": true,
+  "prospective_flat78_unchanged": true,
+  "failed_metadata_only_tool": "406d46",
+  "failed_metadata_reason": "Compared explicit alias JSON to full automatically resolved72-module census after copying; source file itself was correct. No candidate runtime was attempted.",
+  "actual_copy_confirmed": true,
+  "actual_runtime": 0,
+  "actual_clock": null,
+  "ML_metric": null,
+  "created_unix": 1792857495.3341198
+}

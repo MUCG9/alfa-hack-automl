@@ -179,3 +179,5 @@ research/class-xgb-cx1-negative-r1/** -text
 /tests/test_uar_fitting_extractor.py -text
 /tests/test_uar_fitting_frame.py -text
 /tests/test_uar_fitting_selector_combined.py -text
+
+/tools/module_map.json -text

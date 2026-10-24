@@ -1,0 +1,34 @@
+{
+  "schema": "checked-source-metadata-transport-v1",
+  "entries": [
+    {
+      "source": "fitting-context-selector-root-integration-r1/module-map-addendum.json",
+      "member": "n001.json",
+      "sha256": "f447badac7e7655887d3971f5a59c647fa751c66e77e0f629a6bdb187dd13183"
+    },
+    {
+      "source": "class-blend-seed-current-root-source-scope-r1.json",
+      "member": "n002.json",
+      "sha256": "b19e8301dc79d6145868d024dc3ae3492dcb1fe61f677a25c86a46ad9b525649"
+    },
+    {
+      "source": "class-blend-seed-current-reconciliation-next-dev/source-handoff.json",
+      "member": "n003.json",
+      "sha256": "d415aa07b987adce996d705af0db0af2e92255fad2f32799cc7203e2eedb9a7c"
+    },
+    {
+      "source": "class-blend-seed-current-reconciliation-next-dev/proposal.json",
+      "member": "n004.json",
+      "sha256": "0c7984e457c8cb6d21f9aadd79c65b3295d030f8383740362e9a25b2dc926365"
+    },
+    {
+      "source": "class-blend-seed-current-reconciliation-independent-review-r1.json",
+      "member": "n005.json",
+      "sha256": "6323611a1e973278515c3666bd25ec33e83c62218ebb07d9e046e859ba0e4e29"
+    }
+  ],
+  "canonical_map_sha256": "9395e14a650379a9ac14e5512d000607c4fd47ac20781182f6350bd901eedc0b",
+  "actual_candidate_runtime": false,
+  "actual_clock": null,
+  "new_ML_metrics": null
+}

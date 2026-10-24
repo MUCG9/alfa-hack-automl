@@ -1,0 +1,18 @@
+{
+  "schema": "class-blend-seed-current-reconciliation-handoff-v1",
+  "status": "FROZEN_PROPOSAL_ONLY_PENDING_ROOT_SELECTION",
+  "files_sha256": {
+    "evidence.json": "cd7bfd8d78ad1cbbbb797d7ad10bf32dcf612896c2b238d03089e8ece637628c",
+    "proposal.json": "0c7984e457c8cb6d21f9aadd79c65b3295d030f8383740362e9a25b2dc926365",
+    "summary.txt": "3334cf72fcf480797095b88da8e5a5c63a1a6d1e2e31468993b354bf96d40378"
+  },
+  "source_refs": 40,
+  "single_hypothesis": "CLASS-BLEND-SEED-ADMISSION-01",
+  "measured_overlap_rejected": false,
+  "standalone_ET_or_weight_sweep_not_requested": true,
+  "implementation_authorized": false,
+  "runtime_authorized": false,
+  "clock": null,
+  "actual_new_imports_tests_fits_API_data_arrays_PID_Git_STATE_canonical": 0,
+  "archive_release_promotion": false
+}

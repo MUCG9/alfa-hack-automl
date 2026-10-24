@@ -19,5 +19,10 @@
   "automl.search.runner": "automl_runner",
   "automl.infrastructure.runtime": "automl_runtime",
   "automl.compat.core": "agent_core",
-  "automl.compat.models": "model_utils"
+  "automl.compat.models": "model_utils",
+  "automl.execution.feature_engineering.importance_cache": "automl_execution_feature_engineering_importance_cache",
+  "automl.search.fit_context_gateway": "automl_fit_context_gateway",
+  "automl.search.fitting_extractor": "automl_fitting_extractor",
+  "automl.search.fitting_context": "automl_fitting_context",
+  "automl.search.fitting_bounds": "automl_fitting_bounds"
 }

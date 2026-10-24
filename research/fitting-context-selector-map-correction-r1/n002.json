@@ -1,0 +1,41 @@
+{
+  "schema": "class-blend-seed-current-root-source-scope-v1",
+  "status": "ISOLATED_SOURCE_IMPLEMENTATION_ONLY_NOT_RUNTIME_ADMISSION",
+  "human_priority": "Prior unimplemented improvements; archive work deferred",
+  "proposal_handoff_sha256": "d415aa07b987adce996d705af0db0af2e92255fad2f32799cc7203e2eedb9a7c",
+  "author": "/root/features_models",
+  "independent_peer": "/root/audit_contract",
+  "isolated_scope": "work/class-blend-seed-current-next-dev",
+  "base_combined_handoff_sha256": "1e08cd7915e067dc264fce5bcbe46ca2a770760b04843479f74511df5a263acf",
+  "base_source_publication": "4607734706eccb31105f9c517bfdf7f38548cd9a",
+  "factor": "Force exact .9 raw protected SINGLE + .1 exact ET at CLASS index5, displacing one optional initial Qwen slot",
+  "immutable_policy": [
+    "Protected first5",
+    "max initial7 / total9",
+    "8 exact HPO attempts with truthful failures",
+    "unprofiled rawS anchor",
+    "fair CLASS900 same recipe/caps",
+    "REG all definitions unchanged",
+    "current initial fitting-context and selector hooks unchanged and futurebothOFF",
+    "no displaced-slot restoration elsewhere",
+    "no historical fit_iterations/arrays/predictions as model input"
+  ],
+  "trusted_research_CLI_only": true,
+  "no_standard_archive_claim": true,
+  "source_requirements": [
+    "default-OFF whole AST inverse",
+    "paired explicit SHA for any trusted recipe policy path",
+    "read source/policy and capture before any EDA/model/API",
+    "old12 assertion calls retained or exact applicability differences recorded",
+    "current APIs and meaningful source/flat tests",
+    "exact current source/test census freeze before peer"
+  ],
+  "runtime": null,
+  "actual_clock": null,
+  "final_budget_admission": null,
+  "quality_metrics": null,
+  "API_calls": 0,
+  "source_imports_tests_fits_data_PID_Git_canonical_for_author": 0,
+  "archive_work": false,
+  "created_unix": 1792856809.6946845
+}

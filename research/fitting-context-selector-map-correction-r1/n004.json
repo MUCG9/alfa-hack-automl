@@ -1,0 +1,145 @@
+{
+  "schema": "class-blend-seed-current-reconciliation-v1",
+  "status": "PROPOSAL_ONLY_NOT_SELECTED_NOT_IMPLEMENTED_NOT_READY",
+  "hypothesis_id": "CLASS-BLEND-SEED-ADMISSION-01",
+  "recommendation": "One genuinely unmeasured whole-agent admission factor remains worth root selection AFTER the common context/selector technical gate. Do not rerun standalone ET or sweep weights.",
+  "single_factor": "Force exactly one raw .9 protected first SINGLE +.1 fixed ET candidate at zero-based5 / one-based6, replacing one optional initial Qwen proposal, under unchanged maxinitial7/maxouter9.",
+  "not_claimed": [
+    "New algorithm/family or isolated component gain",
+    "A free additional fit",
+    "A fitting-only whole feedback pipeline",
+    "Historical metric inheritance or blind holdout result",
+    "Release/archive/promotion readiness"
+  ],
+  "measured_reason": {
+    "standalone_ET_mean": 0.6325094503906941,
+    "SINGLE_mean": 0.6547938868310776,
+    "cached_90_10_mean": 0.655672382644217,
+    "cached_class_delta": 0.0008784958131393687,
+    "both_cached_class_cuts_and_safety_gates_positive": true,
+    "current_fullV16_mean": 0.6530048968876206,
+    "historical_V16_mean": 0.6593178433614652,
+    "warning": "Different references/procedures: do not rank the old cached component mean as a new current whole-agent score."
+  },
+  "raw_candidate": {
+    "source": "work/class-blend-seed-next-dev/class-blend-seed.json",
+    "sha256": "4109f7b7f4e1e5f8458890e89926c16072a2058f564c767cb9cc360efb363d92",
+    "signature": "1a9924246cac17a7071f5361c89002f2afa8cf7899717f5425dcdfaa3b335083",
+    "weights": [
+      0.9,
+      0.1
+    ],
+    "S": "Exact current protected control.components[0], original two feature views/calibration/nested stopping/weights untouched.",
+    "ET": {
+      "engine": "extra_trees",
+      "feature_code": "",
+      "params": {
+        "iterations": 128,
+        "max_depth": 16,
+        "min_samples_leaf": 4,
+        "max_features": 0.9,
+        "seed": 42,
+        "generic_features": "none",
+        "class_weight_power": 0.5
+      }
+    },
+    "iteration_tree": "[[fresh_view0,fresh_view1],ET]; old final deployment iteration trees never enter validation cuts.",
+    "engine_change": false,
+    "explicit_nested_ensemble": false,
+    "flatten_fullV16_plus_ET": false
+  },
+  "exact_matched_control": {
+    "A": "Fresh current common whole-agent CLASS mode=control: same complete full3 protected V16, exact raw HPO SINGLE, separate broad/protected32, CatBoost, XGBoost; up to2 actual unique initial Qwen proposals.",
+    "B": "Exactly same first5 and subsequent rules; fixed90/10 candidate is required at index5; at most1 actual unique initial Qwen proposal at index6. No padding/filler or extra planner call.",
+    "same_both_arms": [
+      "Actual future gated source and requirements/library environment",
+      "Same strict-task/runtime/four-stage and frozen common fitting-context/selector settings",
+      "Same exact original/enriched research task authority chosen before outcomes, input/split42/43/provenance and model seeds",
+      "Same retained raw full3 and unprofiled HPO SINGLE signatures",
+      "Same max9/HPO8/TPE/fairCLASS900, worker caps and allinclusive time",
+      "Same real Qwen configuration/API caps/HTTP/usage receipts; no mock or reused response as new Qwen"
+    ],
+    "REG": "Keep strongest .75L1S+.25CP1 configuration unchanged; no regression learner run is needed for this narrower CLASS-only research pair. Shared-regression source/default-OFF parity is mandatory. This narrows the old both-task release-style protocol and requires root selection.",
+    "historical_runs_not_prospective_control": true
+  },
+  "queue_and_cost": {
+    "A_required_first5": 5,
+    "A_optional_initial_Qwen_upper": 2,
+    "B_required_first5_plus_seed": 6,
+    "B_optional_initial_Qwen_upper": 1,
+    "max_initial": 7,
+    "max_outer": 9,
+    "reserved_outer_slots": [
+      "existing HPO result",
+      "existing followup"
+    ],
+    "HPO_anchor": "Only actual successful exact unprofiled first SINGLE; never the new ensemble.",
+    "global_cache_blend": "Existing ensemble exclusion remains; new seed is independently selectable but never nested into a global mixture.",
+    "internal_model_leaves": 3,
+    "fresh_training": "Existing run_ensemble calls each child anew; do not reuse SINGLE/ET caches or claim free learning.",
+    "actual_learner_fits": null,
+    "actual_seconds": null,
+    "actual_savings": null,
+    "fit_cost_receipts": "Use existing retention_fit_cost structural upper bounds plus actual recursive receipts; callback/worker/outer counts are not learner counts.",
+    "Qwen_tradeoff": "Same initial assessment request still occurs; losing one usable proposal opportunity is part of the admission treatment. Later Qwen feedback/selection/TPE trajectory may differ."
+  },
+  "prospective_caps_NOT_AUTHORIZED": {
+    "unit": "Two serial CLASS whole-agent runs; no duplicate four-cut standalone jobs. Each procedure already contains primary/confirmation/fresh selected fullrefit.",
+    "common_seconds_proposed": 9000,
+    "formula": "setup900 +2*CLASSparent3600 +independent_audit600 +cleanup300(root60 inside)",
+    "per_arm": {
+      "solver": 3510,
+      "parent": 3600,
+      "child": 3570,
+      "HPO_window": 900,
+      "HPO_requested": 8,
+      "CPU_threads": 2,
+      "BLAS_threads": 1,
+      "worker_RSS_MiB": 1536,
+      "whole_RSS_MiB": 2048,
+      "max_planner_calls": 2,
+      "max_gateway_calls": 4
+    },
+    "refit_reserve_from_current_formula_seconds": 702,
+    "HPO_admission_remaining_minimum_seconds": 1632,
+    "reserve_formula": "702+900+30; existing worker admission also reserves5 seconds for each remaining initial candidate. Fair shares are soft, actual overrun charged; no reset/borrow/retry.",
+    "actual8_evidence": "Keep current full-procedure auditor actual8 entries/callbacks and honest attempted/completed/failed/timeouts/nulls; requested8 never proves8 valid fits. No change to any past immutable8VALID protocol.",
+    "actual_clock": null,
+    "actual_budget_authorization": null,
+    "actual_archive_root_source_binding": null
+  },
+  "minimum_patch_if_root_selects": [
+    "Rebase only old raw seed validator/bounded loader onto exact future combined source; no old runner/supervisor wholesale copy. Current retention validator rejects extra class modes/fields, so preserve its class control schema and use a separate trusted fixed-seed optin byte/SHA binding.",
+    "Surgical optional class_seed argument to current prepare_retention_recipes: add after unchanged first5 before proposals. Preserve current REG7 branch, HPO chooser/cost/reserve logic and max7/9. No engine, registry, model, metric or planner capability change.",
+    "Runner trusted CLI preflight/input SHA/snapshot before first EDA/model; preserve current strict authority, checkpoint/context/selector hooks, source provenance and gateway budgets. Explicit placement/dedup/displacement/null measurements receipts.",
+    "Reuse the12 historical source cases only as prior specification; update exact current modular/flat/default-OFF/REG/anchor/capacity/raw parameter contracts after source review. No test currently counted PASS.",
+    "Small current R4 report binding for actual seed bytes/signature/index5 and actual primary/confirmation/refit tree; do not weaken any metric/source/ownership gates or copy obsolete16be auditors."
+  ],
+  "qualification_before_any_ML": [
+    "Root select hypothesis and exact common source/context/selector settings after technical gate",
+    "Independent narrow source + meaningfully updated modular/flat tests under one root lease",
+    "Freeze one prospective pair manifest/caps/actual API policy and current predecessor union",
+    "All both-arm code/input/core seals before independent truth audit; full protected control on both42/43 in each arm",
+    "Independent paired B-vs-A per-cut strict MacroF1+mean; preserve existing support>=100 loss floor -.01 (existing tolerance only), same canonical fitting-rarest exclusion strict improvement, and fresh complete-control safety. Any incomplete failure gives NULL quality, not zero/skip.",
+    "Historical .6593178433614652 remains a separate saved strong reference; no best-quality claim from seed source, a mean-only improvement or one procedure."
+  ],
+  "remaining_limits": [
+    "Reused public cuts, one stochastic paired procedure; procedural admission effect includes displaced Qwen/search path, not isolated ET causality.",
+    "Old METH03 is cached component evidence on another earlier procedure; no promise current fresh-fit equivalence.",
+    "Archive/release/refit-for-submission/promotion work stays deferred; selected fullrefit only belongs to the ordinary research procedure."
+  ],
+  "actual_new_operations": {
+    "candidate_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API": 0,
+    "CSV_NPZ_predictions_truth_reads": 0,
+    "PID_scans": 0,
+    "clock": null,
+    "Git_canonical_STATE_changes": 0,
+    "implementation_files": 0
+  },
+  "quality_gain": null,
+  "promotion": false,
+  "submit": false
+}

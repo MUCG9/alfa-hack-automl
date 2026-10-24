@@ -1,0 +1,22 @@
+{
+  "schema": "exact-root-metadata-source-transport-v1",
+  "entries": [
+    {
+      "source": "class-xgb-cx2-atomic-binding-materialize-r1.py",
+      "member": "n001.py",
+      "sha256": "bd47c626e8962703284bdff1ff448bf36a2c62540106f83cef60558150c2dee4"
+    },
+    {
+      "source": "class-xgb-cx2-wrapper-exit-confirm-r1.py",
+      "member": "n002.py",
+      "sha256": "04594cc78814bebcfd1ef442c551156bc88cceb89c8dc602790726c4b9e3b5d3"
+    },
+    {
+      "source": "class-xgb-cx2-ready-binding-review-r1.json",
+      "member": "n003.json",
+      "sha256": "9b3d27d828a2dfaa6fb76fe25dcd03cf9e6a1add76184f345b71ea0493484f92"
+    }
+  ],
+  "execution": false,
+  "metrics": null
+}

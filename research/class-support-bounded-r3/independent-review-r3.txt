@@ -1,4 +1,0 @@
-Independent SOURCE-ONLY R3 review: no critical source blocker found.
-R2 P2 fixed: native top/count/list type+cardinality checks precede traversal; bounded16KiB JSON precedes copies and semantic sum/set/any. Screen validates before sum; common validator used by helper and screen. Runner is byte-identical to R2; objective/ranking/models/HPO/refit/defaultOFF unchanged. Incrementalpatch independently equals source diff;19oldtests verbatim plus5new=24prepared,0executed.
-Optionalshared budget preserves prior start+IO; local-only receipt scope is honest. Future30s/512MiBparent and600spair/APIcaps are NOT implemented here. PerHTTP8192x<=3 andlogical120s are correctly distinguished; no usage/gain evidence.
-Actualfuture technicalgates/matchedharness and T7terminal65008/source733 freshclosure/lock still needed. This review creates no additional userpermission or OS-security requirement. No runtimeimports/tests/fits/API/data/T7outputs/clock/STATE/Git.

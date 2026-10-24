@@ -1,7 +1,0 @@
-{
-  "schema": "uar01-r2-independent-review-projection-v1",
-  "source_review_sha256": "02561f11996fe35bc6583c6202bdf917274578bad43d612e49bf14a3de518e2d",
-  "decision": "No concrete source blocker; original clocks and FINAL500 caps checked independently before launch",
-  "execution_performed_by_reviewer": false,
-  "limitations": "Source-only review; actual gate result recorded separately"
-}

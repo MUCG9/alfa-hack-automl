@@ -1,6 +1,0 @@
-METH03 fixed90/10: технический PASS, classification component promising, regression rejected.
-Классификация MacroF1: контроль0.654793886831 -> смесь0.655672382644; group42 0.655863465996 ->0.656892592242, group43 0.653724307667 ->0.654452173047. Support/ex-rarest gates PASS обоих cuts.
-Регрессия RMSE: среднее40.607510949894 ->40.416209204300, однако cut0 39.051678169565 ->38.282322035679, cut1 31.846185166958 ->31.963789719931, cut2 50.924669513160 ->51.002515857289. Два ухудшения, strict gate FAIL.
-12.703с/исходные720с, fits0/API0. Все метрики из сохранённых aligned predictions и pristine labels; новых test/submission/refit нет.
-Class blend следует проверить в полном агенте отдельным опытом. Это смесь SINGLE+ET; не whole V16 ensemble. Strong CP1/B RMSE34.8662208787 и V11/V16 MacroF1 0.6593178434 сохранены.
-Reused-public, не official score; default promotion и submit отсутствуют.

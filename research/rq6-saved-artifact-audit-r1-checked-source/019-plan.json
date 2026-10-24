@@ -1,0 +1,87 @@
+{
+  "schema": "rq6-saved-artifact-no-fit-qualification-plan-v1",
+  "status": "SOURCE_PLAN_ONLY_NOT_READY",
+  "experience": "RA1",
+  "purpose": "Independently qualify the already sealed two standard-task outputs after the RQ6 audit adapter failure; preserve original RQ6 FAIL.",
+  "original_failure": {
+    "driver": {"session": 49569, "exit_code": 1, "tool": "dbc6a1"},
+    "frozen_closer": {"exit_code": 1, "tool": "fb3841"},
+    "root": {"path": "rq6/terminal-root-closure.json", "sha256": "f9e26b3a9e9223fc903909aafd3172dbd0b4242b142d9d29cf8593a3379d9810"},
+    "manifest": {"path": "private/rq6-manifest.ready-r1.json", "sha256": "f4eb5dca1e3560de66206c76937d0314a790047436bd80f218422c9324afd65a"},
+    "source_handoff": {"path": "last-submission-repair-qualification-next-dev-r6/source-handoff.json", "sha256": "ce829991b547d90d1511fce7fed9f9f68c2b372ccdda4ccba4c691e703a2074b"},
+    "qualification_preserved_false": true,
+    "both_model_supervisors_exit_code": 0,
+    "original_contracts_passed": 119,
+    "original_source_cleanup_temporary_flags": true,
+    "original_independent_audit_output": null
+  },
+  "prerequisites": {
+    "current_negative": null,
+    "current_negative_actual_exit_tool": null,
+    "negative_post_tool_confirmation": null,
+    "negative_post_actual_exit_tool": null,
+    "future_complete_finite_known": 8016,
+    "known_scope": "negative8010 + negative-observer3 = post8013; post-observer3 retained for future fresh union; add every later exact actual preparer receipt without guessed identities",
+    "adapter_final_source_and_peer": null,
+    "caller_final_source_and_peer": null,
+    "private_binding_publication_root_admission": null
+  },
+  "budget": {
+    "new_common_seconds": 600,
+    "setup_seconds": 180,
+    "audit_parent_seconds": 120,
+    "audit_child_seconds": 90,
+    "final_all_seconds": 300,
+    "driver_final_seconds": 240,
+    "root_seconds_inside_final": 60,
+    "post_tool_own_seconds": 30,
+    "every_check_also_inside_original_RQ6_common6000": true,
+    "effective_deadline": "MIN inherited RQ6 absolute wall/mono end, new actual RA1 common600, active phase and saved final/root windows",
+    "actual_clock": null,
+    "old_clock_reset_or_extension": false
+  },
+  "smallest_source_reuse": {
+    "thin_main_pattern": "class-xgb-cx2-next-dev/run_audit.py",
+    "capture_resource_guard": "br-standard-release-qualification-next-dev/controller-r5/run_controller.py",
+    "coordinator": "verified-supervision-next-dev-r2/coordinator.py",
+    "sampler": "verified-resource-sampling-next-dev/verified_sampling.py",
+    "atomic_and_post_patterns": "qualified CX2 atomic exit-before-fresh plus source-reviewed qwen-three-hour-outer-next-dev-r5 finite-post full-union/revocation mechanics",
+    "allowed_main_delta": "fixed OUT/manifest/source/typed-negative predecessor; replace CLASS cache-factor predicate with one exact saved-standard-artifact adapter and exact changed contract whitelist",
+    "allowed_closer_delta": "typed RA1 root schema and actual new driver/audit facts plus original RQ6 failed evidence; unchanged source/current cleanup/resource/clock predicates",
+    "no_new_framework": true
+  },
+  "adapter_context": {
+    "schema": "rq6-saved-terminal-audit-repair-private-v1",
+    "refs": ["original_manifest", "original_campaign", "original_root", "original_auditor", "current_negative", "post_tool_confirmation"],
+    "actuals": "original failed driver/closer and actual current-negative/post EXIT0 tools; no false old PASS",
+    "clock": "original common four fields plus actual new RA1 common600 and audit phase deadline wall/mono; all MIN bounds enforced",
+    "CLI": "original --manifest ABS --manifest-sha256 SHA --self-sha256 SHA plus --repair-context ABS --repair-context-sha256 SHA --output NEW_EXCLUSIVE_ABS",
+    "new_result_schema": "postfailure-standard-artifact-audit-v1",
+    "terminal_NONE_admission": "Exact source-bound branch only; last verified root/self sample and actual worker exit0/remaining cleanup, both tuples inside actual CLASS supervisor owned scope AND current-negative confirmed known; absent or uncertain metadata STOP",
+    "old_R4_formulas_rows_ID_classes_metric_probabilities_median_CSV_checks": "unchanged",
+    "new_model_fits": 0,
+    "API_calls": 0
+  },
+  "sequence": [
+    "Bind original actual manifest/campaign/root, both actual task supervisor exit0 receipts and both exact core-seal JSON inventories; read task rows by kind from actual campaign LIST.",
+    "After reviewed actual current-negative/post exits, fresh complete prior/preparer scope before and under existing ResearchLock; early actual self/direct/shell capture, Power guard, scrubbed technical1 environment, shallow owned temporary root.",
+    "Run only meaningful changed adapter/caller/atomic contracts with exact final AST method maps inside setup180; derive counts after freeze. Do not replay119 unchanged source/unpacked/model contracts.",
+    "Rehash all immutable source/input and both saved core inventories before first numerical/R4/truth import. Missing/changed artifact STOP; no fit/cache reconstruction fallback.",
+    "Run one bounded independent saved-artifact audit covering four cut outputs and two fullrefit CSVs, unchanged fitting-only stopping/two-cut median/row/class/ID/metric formulas.",
+    "Persist actual child result/exit and all source/core hashes, clean owned temporary root and full finite known scope inside final240.",
+    "After actual RA1 main exit, atomic closer plus fresh under actual closer-birth60 and all old/new bounds, then immediate post-tool confirmation; retain observer preparers and actual tool exits separately."
+  ],
+  "new_root_schema": "postfailure-standard-artifact-qualification-root-v1",
+  "new_root_required_facts": [
+    "original RQ6 FAIL/driver dbc6a1/closer fb3841/root f9e26/manifest f4eb remain explicit immutable evidence",
+    "both original model supervisor actual exit0 receipts and exact core seal hashes",
+    "new RA1 actual driver exit0/tool, new independent audit result/ref, source/temp/cleanup/full-known absence",
+    "actual new and inherited old bounds, no retroqualification or source/metric override"
+  ],
+  "future_Qwen_binding_delta": "Only after actual RA1 positive root/atomic/post: explicit reviewed typed RA1 admission branch in NEW producer/outer, preserving original positive-RQ6 branch and original failed RQ6 flags. No fake standard-repair-qualification-root schema or changed old campaign status.",
+  "actual_tests": 0,
+  "actual_clock": null,
+  "actual_metrics": null,
+  "promotion": false,
+  "submit": false
+}

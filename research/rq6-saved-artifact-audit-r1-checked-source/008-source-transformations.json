@@ -1,0 +1,54 @@
+[
+  [
+    "def verified_terminal(record):",
+    "def verified_terminal(record,*,repair=None,owned=(),intrinsic=None):"
+  ],
+  [
+    "    terminal=record.get('terminal_resource_observation',{})\n",
+    "    terminal=record.get('terminal_resource_observation',{})\n    if terminal is None:return saved_terminal_bridge(record,repair,owned,intrinsic)\n    if type(terminal) is not dict:return False\n"
+  ],
+  [
+    "for name in ('manifest','manifest-sha256','self-sha256'):",
+    "for name in ('manifest','manifest-sha256','self-sha256','repair-context','repair-context-sha256','output'):"
+  ],
+  [
+    "a=p.parse_args();need(__debug__ and Path(a.manifest).is_absolute(),'bounded_explicit_audit_manifest')",
+    "a=p.parse_args();need(__debug__ and all(Path(v).is_absolute() for v in (a.manifest,a.repair_context,a.output)),'bounded_explicit_audit_manifest')"
+  ],
+  [
+    "need(digest(a.manifest)==a.manifest_sha256 and digest(__file__)==a.self_sha256,'audit_source_or_manifest_changed')",
+    "need(digest(a.manifest)==a.manifest_sha256 and digest(__file__)==a.self_sha256\n        and digest(a.repair_context)==a.repair_context_sha256,'audit_source_or_manifest_changed')"
+  ],
+  [
+    "barrier=load(barrier_ref['path']);clock=barrier['clock']",
+    "barrier=load(barrier_ref['path']);clock=barrier['clock'];repair_context=load(a.repair_context)"
+  ],
+  [
+    "            'original_release_qualification_deadline')",
+    "            'original_release_qualification_deadline')\n        repair_deadlines(repair_context,time.time(),time.monotonic())"
+  ],
+  [
+    "    # ALL task cores and both saved terminal supervisors are rehashed before numerical/data imports.",
+    "    check();repair=validate_repair_context(repair_context,a.manifest,a.manifest_sha256,cfg,campaign,clock,a.output,check)\n    # ALL task cores and both saved terminal supervisors are rehashed before numerical/data imports."
+  ],
+  [
+    "            barrier_ref['path']:barrier_ref['sha256']}",
+    "            barrier_ref['path']:barrier_ref['sha256'],str(Path(a.repair_context).resolve()):a.repair_context_sha256}\n    actual.update({v['path']:v['sha256'] for v in repair_context.values() if type(v) is dict and set(v)=={'path','sha256'}})"
+  ],
+  [
+    "        for record in strict_records:\n",
+    "        saved_owned=identity_inventory(sup['owned_process_identities'])\n        if sup.get('owned_root'):saved_owned.add(exact_identity(sup['owned_root']))\n        for record in strict_records:\n"
+  ],
+  [
+    "and verified_terminal(record)",
+    "and verified_terminal(record,repair=repair if kind=='classification' else None,owned=saved_owned,intrinsic=intrinsic)"
+  ],
+  [
+    "result=dict(schema='standard-repair-artifact-audit-v1',artifact_procedure_passed=True,",
+    "result=dict(schema='postfailure-standard-artifact-audit-v1',artifact_procedure_passed=True,\n        repair_context_sha256=a.repair_context_sha256,audit_within_repair_clock=True,\n        original_RQ6_procedure_requalified=False,original_failure_preserved=True,\n        saved_None_terminal_qualification='source_ordered_stable_sample_then_observed_exit_and_strict_cleanup',\n        saved_None_terminal_timestamp=None,saved_terminal_records_mutated=False,"
+  ],
+  [
+    "output=OUT/'independent-audit.json';need(not output.exists(),'exclusive_audit_output');check()",
+    "output=Path(a.output);need(not output.exists(),'exclusive_audit_output');check()"
+  ]
+]

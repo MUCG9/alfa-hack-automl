@@ -1,0 +1,41 @@
+{
+  "schema": "RA1-caller-independent-source-review-r2-v1",
+  "status": "NO_REMAINING_SCOPED_SOURCE_BLOCKER",
+  "handoff": {
+    "path": "work\\rq6-saved-artifact-qualification-next-dev-r2\\source-handoff.json",
+    "sha256": "2b024a6327cb86004f026dd973cc9222182b6c72915d004e3f945e13e4d5c7a1"
+  },
+  "pins_raw_exact": {
+    "local": 16,
+    "external": 76
+  },
+  "prior_review": {
+    "path": "work/ra1-caller-audit-contract-source-review-r1.json",
+    "sha256": "65dddef205f7ada75b60b5e3f9a3d38c47750f87af57be525562a5b44732eeb4"
+  },
+  "finding_RA1C01": "SOURCE_FIXED_BEFORE_ANY_EXECUTION",
+  "only_two_basename_literals_inverse_raw_exact": true,
+  "all_old_assertion_AST_exact": true,
+  "production_raw_exact_R1": {
+    "run_audit.py": true,
+    "close_audit.py": true,
+    "run_root.py": true,
+    "close_child.ps1": true,
+    "confirm_post_tool.py": true
+  },
+  "actual_closer_fixture_target_exists": true,
+  "prepared_counts": [
+    12,
+    4,
+    6
+  ],
+  "actual_contracts": 0,
+  "source_safety_scope_inherits_prior_review": true,
+  "actual_runtime_source_quality_not_qualified": true,
+  "private_binding_and_actual_clocks_pending": true,
+  "actual_candidate_imports": 0,
+  "actual_model_fits": 0,
+  "actual_API_calls": 0,
+  "actual_data_truth_reads": 0,
+  "actual_PID_scans": 0
+}

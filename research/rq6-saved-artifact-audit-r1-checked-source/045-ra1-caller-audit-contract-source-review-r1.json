@@ -1,0 +1,74 @@
+{
+  "schema": "RA1-caller-independent-source-review-v1",
+  "status": "BLOCKED_ONE_CONCRETE_PREFLIGHT_FIXTURE_FINDING",
+  "handoff": {
+    "path": "work\\rq6-saved-artifact-qualification-next-dev\\source-handoff.json",
+    "sha256": "837dad237049331e7f32ee0b59cad5b754b9719ab0d02d1ac371653f62402538"
+  },
+  "review_scope": "Caller/control/atomic/current-negative/caps/metadata import boundaries only; own adapter not re-reviewed",
+  "pins_verified": {
+    "local": 16,
+    "external": 57,
+    "all_raw_exact": true
+  },
+  "capture_AST_exact_qualified_CX2": {
+    "run_audit.py": true,
+    "close_audit.py": true,
+    "run_root.py": true
+  },
+  "method_AST_maps_exact": {
+    "rq6-no-fit-audit-repair-next-dev/test_saved_terminal_bridge.py": true,
+    "rq6-saved-artifact-qualification-next-dev/test_caller.py": true,
+    "rq6-saved-artifact-qualification-next-dev/test_atomic_root.py": true
+  },
+  "prepared_counts": [
+    12,
+    4,
+    6
+  ],
+  "prepared_total": 22,
+  "actual_contracts": 0,
+  "findings": [
+    {
+      "id": "RA1C01",
+      "severity": "P1",
+      "kind": "source_only_fixture_deployment_path",
+      "path": "work\\rq6-saved-artifact-qualification-next-dev\\test_atomic_root.py",
+      "method": "AtomicRootContracts.test_real_child_script_argv_is_accepted_by_exact_closer_parser_without_starting_it",
+      "problem": "Reads sibling close_controller.py but the final packet contains only close_audit.py; both this read target and its synthetic Closer literal retain the old basename.",
+      "consequence": "Future atomic contract slot would fail before parsing; no actual test was run.",
+      "minimal_fix": "New immutable revision, rebind exactly both fixture basename literals to close_audit.py; retain method/assertion AST except these path constants, count22/runtime unchanged."
+    }
+  ],
+  "other_scoped_blockers": [],
+  "reviewed_properties": {
+    "new_common600_setup180_audit120_90_final240_root60": true,
+    "original_RQ6_common6000_MIN_main_closer_atomic_post": true,
+    "clock_origin_before_source_imports_capture_and_setup": true,
+    "original_failed_driver_and_closer_preserved": true,
+    "actual_negative8010_post8013_plus_postpreparers3_8016_complete": true,
+    "optional_actual_preparer_receipts_pinned_no_invented_writer_IDs": true,
+    "fresh_absence_before_and_under_lock": true,
+    "original_core_seals_hash_before_audit_and_during_closure": true,
+    "adapter9d71_peer_d50_bound": true,
+    "new_artifact_result_context_manifest_roles_distinct": true,
+    "no119_or_models_replayed": true,
+    "atomic_actual_exit_saved_before_fresh": true,
+    "atomic_root_closer_wrapper_identity_union_no_live_wrapper_exclusion": true,
+    "posttool_original_clock_actual_exit_source_temp_checks": true,
+    "resource_sampler_clock_only_original_guard_reuse": true,
+    "metadata_config_predecessor_import_only_qualified_C5_stdlib_top": true
+  },
+  "limitations": [
+    "NOT_READY templates deliberately contain relative/null operational fields; root must produce ABS private bindings and run exact config+predecessor metadata preflight before the unit clock.",
+    "Root/atomic checks are conservatively inside the saved driver-final240 and common600 plus inherited6000; no extra clock is granted.",
+    "This source review does not qualify runtime, current processes, artifacts or ML metrics."
+  ],
+  "actual_candidate_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API_calls": 0,
+  "actual_data_truth_prediction_reads": 0,
+  "actual_PID_scans": 0,
+  "actual_experiment_clock": null
+}

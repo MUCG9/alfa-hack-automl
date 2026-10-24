@@ -1,0 +1,40 @@
+{
+  "schema": "rq6-saved-terminal-audit-source-proof-v1",
+  "old_auditor_sha256": "910f8c5374b147c1d665ed01cb93f9b492f17d5cee330621f0f23685854b7209",
+  "new_auditor_sha256": "39530e417e5504f416c4e833d1c25ede6f6fc6a5a4a7aed7d73193bf896a9093",
+  "whole_old_AST_after_only_declared_inverse_exact": true,
+  "unchanged_original_definitions": [
+    "need",
+    "load",
+    "framed_observation",
+    "digest",
+    "imported",
+    "lexical_witness",
+    "DeclaredClassCSV"
+  ],
+  "manual_metric_R4_formulas_changed": false,
+  "original_departed_branch_AST_preserved": true,
+  "old_None_and_sample_timestamp_unchanged": true,
+  "method_count": 12,
+  "methods": [
+    "SavedTerminalTests.test_stable_sample_then_exit_preserves_original_None_and_unknown_timestamp",
+    "SavedTerminalTests.test_None_without_qualified_source_or_exact_proof_stops",
+    "SavedTerminalTests.test_missing_denied_or_unconfirmed_strict_receipts_stop",
+    "SavedTerminalTests.test_wrong_birth_or_missing_self_root_is_not_zero_RSS",
+    "SavedTerminalTests.test_duplicate_departed_and_invalid_RSS_samples_stop",
+    "SavedTerminalTests.test_worker_whole_caps_and_underreported_peaks_stop",
+    "SavedTerminalTests.test_original_clock_or_actual_sample_receipt_mismatch_stops",
+    "SavedTerminalTests.test_original_two_terminal_branches_remain_separate_and_malformed_stops",
+    "SavedTerminalTests.test_current_negative_exact_union_never_changes_old_FAIL",
+    "SavedTerminalTests.test_negative_post_actual_exit_and_current_identity_gaps_stop",
+    "SavedTerminalTests.test_new_phase_and_common_clocks_are_both_original_and_finite",
+    "SavedTerminalTests.test_all_cores_and_repair_proofs_precede_first_manual_verifier_import"
+  ],
+  "actual_tests": 0,
+  "actual_candidate_imports": 0,
+  "actual_model_fits": 0,
+  "actual_API_calls": 0,
+  "actual_data_or_truth_reads": 0,
+  "actual_PID_scans": 0,
+  "actual_new_experiment_clocks": 0
+}

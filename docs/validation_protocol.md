@@ -1,8 +1,7 @@
 # Validation and acceptance protocol
 
 <!-- CURRENT_UAR_OBSERVATION_BEGIN -->
-RQ6 actual ONE6000 running: session49569 launch6e955d.119 contracts PASS; REG solverexit0/cleanup true/sealed; CLASS active, no campaign error at last observation. Whole root/independent metrics/ready repaired archive still pending. Original c7b54 delivered ZIP remains immutable. RQ5FAIL/current-negative proofs retained.
-Next Qwen ONE10800: final coreR7 9aa24859 peer2c5957d6 fixes first real child sample handoff while retaining original clock, parent resource/gap caps and subsequent sticky10. OuterR5 f19d42fb peerac37c614 adds original-pin-before-import guard and finite post-tool confirmation;63 prepared contracts/9 slots270,0 actual. Producer1e284b peere96bd51a; exact metadata utility8214a3d0 peer2d804366. All source accepted; actual strong authority/READY/new10800 clock remain NULL until positive repaired-standard root+fresh+actual post. Equal nominal5400/task includes shared overhead; no promised metric gain/exact duration or backend reasoning attestation. No duplicate running unit, reset, upload, or Linux resume.
+Current: RQ6 both standard tasks completed solver exit 0, all 119 technical contracts passed. Its original procedure remains FAIL because independent artifact audit accessed terminal_resource_observation=None. Current negative source/cleanup proof and post-tool observation confirmed; no models need to be repeated. A separate no-fit RA1 audit source and caller R2 are independently reviewed; 22 changed contracts are prepared, not executed. READY, actual RA1 clock and new qualified metrics remain pending. Qwen core R7 is reviewed; typed postfailure admission source is being finished before one actual 10800-second iterative run. No new archive delivered or upload performed.
 <!-- CURRENT_UAR_OBSERVATION_END -->
 
 Before fitting, freeze the task/metric contract, control and candidate source,

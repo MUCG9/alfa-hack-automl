@@ -1,0 +1,47 @@
+{
+  "schema": "postfailure-standard-artifact-atomic-root-private-v1",
+  "readiness": "NOT_READY",
+  "missing_bindings": [
+    "Actual RA1 main exit before root.",
+    "Root hosted ABS binding/source pins/terminal campaign SHA/current source peers."
+  ],
+  "output": null,
+  "immutable_files": {},
+  "child_script_sha256": "d9aaf1420ce44b074a9bfbd51c7c4fcabcefefa02a05702db8d2af8f94a81f4e",
+  "driver": {
+    "path": "rq6-saved-artifact-qualification-next-dev/run_audit.py",
+    "sha256": "02d9a102919d5c07c0fe38c837fb2bfe7681e47def690cedc98cf53c1a9890d9"
+  },
+  "closer": {
+    "path": "rq6-saved-artifact-qualification-next-dev/close_audit.py",
+    "sha256": "2b97348a0b8cd5004af0cd1330744a7f9a4dbbffe00561da4759b7eba7e3893b"
+  },
+  "post_tool": {
+    "path": "rq6-saved-artifact-qualification-next-dev/confirm_post_tool.py",
+    "sha256": "0c54a566abadd7d8c9a8c0cf091029f8835403d5f7a6aab81bbc7ae364f0e9ff"
+  },
+  "manifest": {
+    "path": null,
+    "sha256": null
+  },
+  "campaign": {
+    "path": null,
+    "sha256": null
+  },
+  "python": {
+    "path": null,
+    "sha256": null
+  },
+  "powershell": {
+    "path": null,
+    "sha256": null
+  },
+  "independent_source_review": {
+    "path": null,
+    "sha256": null
+  },
+  "qualification_source_review": {
+    "path": null,
+    "sha256": null
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "RA1-prospective-no-fit-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "common600": true,
+  "inherited_original_RQ6_common6000_also_required": true,
+  "setup180": true,
+  "audit_parent120_child90": true,
+  "final300_driver240_root60": true,
+  "post_own30_no_extension": true,
+  "changed_contract_counts": [
+    12,
+    4,
+    6
+  ],
+  "prepared_executions": 22,
+  "setup_serial_parent_maxima180": true,
+  "old119_not_replayed": true,
+  "old_two_models_not_repeated": true,
+  "new_model_fits": 0,
+  "API_calls": 0,
+  "root_schema": "postfailure-standard-artifact-qualification-root-v1",
+  "fresh_schema": "postfailure-standard-artifact-atomic-root-confirmation-v1",
+  "post_schema": "postfailure-standard-artifact-actual-wrapper-exit-confirmation-v1",
+  "old_RQ6_FAIL_preserved": true,
+  "original_RQ6_procedure_requalified": false,
+  "actual_clocks": null,
+  "actual_metrics": null
+}

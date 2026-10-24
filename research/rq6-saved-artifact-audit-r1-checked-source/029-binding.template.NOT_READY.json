@@ -1,0 +1,180 @@
+{
+  "schema": "postfailure-standard-artifact-qualification-private-v1",
+  "readiness": "NOT_READY",
+  "missing_bindings": [
+    "Root ABS operational binding and complete immutable old/new source/input/core map.",
+    "Independent caller source/private review, publication and actual finite current absence.",
+    "One NEW600 clock at actual main entry, MIN inherited RQ6 original6000."
+  ],
+  "output": null,
+  "python": null,
+  "lock": null,
+  "immutable_files": null,
+  "common_seconds": 600,
+  "caps": {
+    "setup": 180,
+    "audit": [
+      120,
+      90
+    ],
+    "final": 240,
+    "root": 60
+  },
+  "rq6": {
+    "manifest": {
+      "path": "private/rq6-manifest.ready-r1.json",
+      "sha256": "f4eb5dca1e3560de66206c76937d0314a790047436bd80f218422c9324afd65a"
+    },
+    "campaign": {
+      "path": "rq6/campaign.json",
+      "sha256": "60afb434d1e6f943d05be02c0761cdb255745fe3e543961ed407e559eaf38725"
+    },
+    "root": {
+      "path": "rq6/terminal-root-closure.json",
+      "sha256": "f9e26b3a9e9223fc903909aafd3172dbd0b4242b142d9d29cf8593a3379d9810"
+    },
+    "negative": {
+      "path": "rq6/current-negative-closure.json",
+      "sha256": "fe8941210806633144b53f2f1345daa3922f7099dc81148637da7240592ce0bc"
+    },
+    "post": {
+      "path": "rq6/current-negative-post-tool-confirmation.json",
+      "sha256": "9ad55350293113fbf7c026762979e06cc40a350b948718c39b998b8dea316fdc"
+    },
+    "barrier": {
+      "path": "rq6/pretruth-barrier.json",
+      "sha256": "1a1c52f62d0badc5e579437e3f90b376e6f3e8440ca6948afbc92e45c1d79781"
+    },
+    "regression_seal": {
+      "path": "rq6/regression-core-seal.json",
+      "sha256": "53c6dde06429214624ad071349b6365e0ddd5f73f8a8f5080c8b0dfa81cc7a9d"
+    },
+    "classification_seal": {
+      "path": "rq6/classification-core-seal.json",
+      "sha256": "6d9345942bcb8e3752cdf66ba35f13292ed3f0f3da64481c3418f63bea1652fd"
+    },
+    "old_auditor": {
+      "path": "last-submission-repair-qualification-next-dev-r6/artifact_audit.py",
+      "sha256": "910f8c5374b147c1d665ed01cb93f9b492f17d5cee330621f0f23685854b7209"
+    }
+  },
+  "negative_actual": {
+    "exit_code": 0,
+    "tool": "b449e3"
+  },
+  "post_actual": {
+    "exit_code": 0,
+    "tool": "317ee6"
+  },
+  "launch_preparer_receipts": [],
+  "auditor": {
+    "path": "rq6-no-fit-audit-repair-next-dev/artifact_audit.py",
+    "sha256": "39530e417e5504f416c4e833d1c25ede6f6fc6a5a4a7aed7d73193bf896a9093"
+  },
+  "auditor_handoff": {
+    "path": "rq6-no-fit-audit-repair-next-dev/source-handoff.json",
+    "sha256": "9d71e51c509eb9119381c22500b5b0470e4d2703616f1271deac6df9c6eddfdc"
+  },
+  "auditor_source_review": {
+    "path": "rq6-no-fit-audit-repair-fm-independent-review-r1.json",
+    "sha256": "d50cdc35a956269542745d0212f2ccab1d4e667b61e4c6127db353a2f5339ef7"
+  },
+  "counts": {
+    "path": "uar-count-parser-next-dev/counts.py",
+    "sha256": "bc320fd4723476c8a73404ed17a7bdec0cd4c69b1b1d41b321e370549c8cf4d3"
+  },
+  "contracts": [
+    {
+      "path": "rq6-no-fit-audit-repair-next-dev/test_saved_terminal_bridge.py",
+      "sha256": "024642ae96640b5641c72cd6c485d5c28b9dfa0bf5f6cadcd01df5ec37320745",
+      "methods": {
+        "SavedTerminalTests.test_stable_sample_then_exit_preserves_original_None_and_unknown_timestamp": "5cea1a7d196cef14d784941143fc2be516c4fc883dbc4e26e10b90f3866395f7",
+        "SavedTerminalTests.test_None_without_qualified_source_or_exact_proof_stops": "56c30d4880072bd33a40f2a138d148df128275562b6627aab47fce0f0e579f4c",
+        "SavedTerminalTests.test_missing_denied_or_unconfirmed_strict_receipts_stop": "d2cce5aff2b34c14d6f4a5c13dabb6bd5834622e0eabd7795a89afaef9e3ba80",
+        "SavedTerminalTests.test_wrong_birth_or_missing_self_root_is_not_zero_RSS": "19de28636f37c3990b387e6a72db8845f0427c24b89592b96ca9f8d3d94abe03",
+        "SavedTerminalTests.test_duplicate_departed_and_invalid_RSS_samples_stop": "063da51e641080a778d34e6ad630951622c697010a6e2edadbe773471b0d9cb7",
+        "SavedTerminalTests.test_worker_whole_caps_and_underreported_peaks_stop": "5ad433cb415fdcbc1a31576f2983f46e8d79bfca27da51219d823fac4c545525",
+        "SavedTerminalTests.test_original_clock_or_actual_sample_receipt_mismatch_stops": "30ae78b9a27711cb69dcd8671dabd9d83fae9c48ef475e16e30740b09729ce19",
+        "SavedTerminalTests.test_original_two_terminal_branches_remain_separate_and_malformed_stops": "2530fdede3da38fe0a9b8ab2dacba62df5b3737ba159decbacaa8f6b342293a7",
+        "SavedTerminalTests.test_current_negative_exact_union_never_changes_old_FAIL": "d0d733495a0fbeb1aef811f3dd2067c83b7526940b765dfa1d579b7b8775ca87",
+        "SavedTerminalTests.test_negative_post_actual_exit_and_current_identity_gaps_stop": "e687dd7fb6d9791d794dba194de584554282be61dd09943107af4c2fab51ecd5",
+        "SavedTerminalTests.test_new_phase_and_common_clocks_are_both_original_and_finite": "4c013913eb57d80e56d092541e3478c2565a8b6b15948fc32a09926feaf85d48",
+        "SavedTerminalTests.test_all_cores_and_repair_proofs_precede_first_manual_verifier_import": "92478ed16c84b1f817d48578e0d1d9a78999cc511f761bf348cd32a341d9d008"
+      },
+      "count": 12,
+      "parent": 60,
+      "child": 45
+    },
+    {
+      "path": "rq6-saved-artifact-qualification-next-dev-r2/test_caller.py",
+      "sha256": "939877a03b50d6dce1632664a6c4e6323a8afd75c869f677915a1ba291709235",
+      "methods": {
+        "SavedArtifactCallerContracts.test_new_artifact_qualification_keeps_old_failure_and_exact_independent_binding": "299132fe63410dfd7065359cab8ac6785258e83f7c427ad0160d0785a7cc8569",
+        "SavedArtifactCallerContracts.test_actual_new600_audit120_preserves_final300_and_never_rebases_origin": "47fe063efe97142ea8c18b535d3f0687b85cfe3afd2348fb48ba08a780783468",
+        "SavedArtifactCallerContracts.test_fixed_no_fit_argv_keeps_original_manifest_and_new_context_roles_distinct": "efdb6802a53d7115bbebe1f671448fe563138496eda23f887100a39cf415cac3",
+        "SavedArtifactCallerContracts.test_current_clean_negative_admission_preserves_failed_root_and_full8016_scope": "9f7b5990b7f052ec16c5314b8381dba15a888c0f24e3ccb1426f900fad099669"
+      },
+      "count": 4,
+      "parent": 60,
+      "child": 45
+    },
+    {
+      "path": "rq6-saved-artifact-qualification-next-dev-r2/test_atomic_root.py",
+      "sha256": "df37c2e6e3e45da47bf992ad7545c66414e58c463ff972a0bbe2a4d97d48401d",
+      "methods": {
+        "AtomicRootContracts.test_child_birth_cannot_reset_enclosing60_common600_or_existing_final": "0fe5b2227c71edf0436457eadb3739063b7174393ac89f6cf3a7539d463b4b82",
+        "AtomicRootContracts.test_actual_exit_is_saved_before_fresh_and_late_or_failed_exit_never_qualifies": "edaa65757bb0e8c8413e546061438f3c6b4aeddf8e10d8f2f017f9986568275e",
+        "AtomicRootContracts.test_fixed_child_shell_argv_has_no_payload_and_requires_absolute_typed_evidence": "b65dc10ba485f480209ed03f39ad2cc5091c482abe81379e4101269defa71bdd",
+        "AtomicRootContracts.test_real_child_script_argv_is_accepted_by_exact_closer_parser_without_starting_it": "b08e0bdd15c592afa7972071bfc0929e7d2cc0d5e74fae1cd9d8109ae1203a62",
+        "PostToolContracts.test_actual_tool_original_windows_and_late_publication_revoke_all_positive_roles": "146264429fb12d338c28261652f0a946123b648fb134f46f2db4427c06e962a9",
+        "PostToolContracts.test_full_known_union_keeps_wrapper_and_closer_preparers_and_denies_missing_or_live_scope": "5ab16c1d204e33ef85118c392df7cf4aba8b83a997bdbea31a23b1d44e145746"
+      },
+      "count": 6,
+      "parent": 60,
+      "child": 45
+    }
+  ],
+  "repair_payload": {
+    "schema": "rq6-saved-terminal-audit-repair-private-v1",
+    "clock": null,
+    "output": "ra1/independent-artifact-audit.json",
+    "original_manifest": {
+      "path": "private/rq6-manifest.ready-r1.json",
+      "sha256": "f4eb5dca1e3560de66206c76937d0314a790047436bd80f218422c9324afd65a"
+    },
+    "original_campaign": {
+      "path": "rq6/campaign.json",
+      "sha256": "60afb434d1e6f943d05be02c0761cdb255745fe3e543961ed407e559eaf38725"
+    },
+    "original_root": {
+      "path": "rq6/terminal-root-closure.json",
+      "sha256": "f9e26b3a9e9223fc903909aafd3172dbd0b4242b142d9d29cf8593a3379d9810"
+    },
+    "original_auditor": {
+      "path": "last-submission-repair-qualification-next-dev-r6/artifact_audit.py",
+      "sha256": "910f8c5374b147c1d665ed01cb93f9b492f17d5cee330621f0f23685854b7209"
+    },
+    "current_negative": {
+      "path": "rq6/current-negative-closure.json",
+      "sha256": "fe8941210806633144b53f2f1345daa3922f7099dc81148637da7240592ce0bc"
+    },
+    "post_tool_confirmation": {
+      "path": "rq6/current-negative-post-tool-confirmation.json",
+      "sha256": "9ad55350293113fbf7c026762979e06cc40a350b948718c39b998b8dea316fdc"
+    },
+    "executor_runtime_sha256": "db277eefd3f94a62785d28c0c1d09c25c94ca55012c9a69bc06996482378ee82",
+    "actual_current_negative_observer": {
+      "exit_code": 0,
+      "tool": "b449e3"
+    },
+    "actual_post_tool_observer": {
+      "exit_code": 0,
+      "tool": "317ee6"
+    }
+  },
+  "caller_source_review": null,
+  "actual_clock": null,
+  "actual_metrics": null,
+  "promotion": false,
+  "submit": false
+}

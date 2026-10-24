@@ -1,9 +1,0 @@
-R3: минимальная source-only ревизия class-support R2.
-
-Один общий validate_support_packet проверяет native type и cardinality до sum/set/any/копирования; screen и helper используют его. Валидный packet и OFF/ON view-building сохранены. Runner R2 byte-identical, default OFF AST соответствует actual m3.
-
-Screen принимает optional shared PreparationBudget: при переданном budget сохраняет прежние время/IO, без него receipt честно помечает screen-entry-only и требует отдельного учёта prior support/capture в том же будущем30s preparation /600s parent.
-
-8192 max_tokens — на HTTP attempt, максимум3 attempts в одном120s logical window; возможный nominal completion cap24576/arm. Unknown retry usage остаётся неизвестным. Будущий screen harness обязан сам обеспечить1logical call/arm,8192/120/max2candidates; runtime flag имеет иные inherited defaults. Harness не реализован и clock не назначен.
-
-Все19 прежних методов сохранены verbatim; добавлены5 unexecuted методов на malformed/overcap pre-enumeration и shared budget без reset. Итого24 подготовлено,0 запусков/imports/fits/API. Новые gates/counts не заявляются как пройденные. R2/reviews/T7/STATE/Git не менялись; active T7 data/outcomes не читались. До будущего запуска нужна реальная свежая terminal closure current T7exec65008/source733, не старый T6.

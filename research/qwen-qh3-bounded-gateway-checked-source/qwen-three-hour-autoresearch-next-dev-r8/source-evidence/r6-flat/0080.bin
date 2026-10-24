@@ -1,0 +1,26 @@
+{
+  "schema": "three-hour-R5-worker-import-port-v1",
+  "status": "SOURCE_ONLY_NOT_EXECUTED",
+  "R5_handoff_sha256": "92cfd41804ca162ba5ec4aeff53a3cb45e6b0c798b93e0c36c1cbb969fdfef08",
+  "R5_runtime_sha256": "ad6087fc12ca1c57c7b7764fe1033fc737ca8c067426578262b860a51c973fe4",
+  "only_six_import_paths_changed": {
+    "from automl_atomic import atomic_json": "from automl.infrastructure.atomic import atomic_json",
+    "from automl_contracts_messages import ExperimentRequest": "from automl.contracts.messages import ExperimentRequest",
+    "from automl_infrastructure_resources import ResourceBudget": "from r5_resources import ResourceBudget",
+    "from automl_infrastructure_processes import ProcessTree, ProcessCleanupError, ProcessObservationError": "from automl.infrastructure.processes import ProcessTree, ProcessCleanupError, ProcessObservationError",
+    "from automl_runtime import worker_entrypoint": "from automl.infrastructure.runtime import worker_entrypoint",
+    "from automl_verified_resource_sampling import VerifiedResourceSampler, ResourceSamplingError": "from verified_sampling import VerifiedResourceSampler, ResourceSamplingError"
+  },
+  "entire_AST_inverse_exact": true,
+  "ReleaseClock_and_all_worker_cleanup_resource_function_ASTs_unchanged": true,
+  "worker_entrypoint": "existing canonical automl.infrastructure.runtime.worker_entrypoint",
+  "resources_byte_exact_R5": "fab3b49c0640738983f92d59f977584de9f9001cbace59e985e36a7802a69d15",
+  "sampler_byte_exact_d65": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+  "R5_consumer_fixture_import_path_only": {
+    "original_sha256": "48ca97b75ae3c178255fb87d8d5b87fed85dc6cd07bdddd52b412fcac0e81657",
+    "candidate_sha256": "d683c21de3e0b413cdc6414f50cadf277ebfa0f8c477e70bce96d81a647fb26f",
+    "sole_test_method_AST_exact": true
+  },
+  "future_transitive_canonical_process_messages_atomic_runtime_worker_model_evaluator_pins": null,
+  "new_clocks_imports_tests_fits_API_data_PIDscans_Git": 0
+}

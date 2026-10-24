@@ -1,0 +1,13 @@
+{
+  "schema": "qwen-three-hour-strong-recipe-authority-v1",
+  "kind": null,
+  "metric": null,
+  "recipe": null,
+  "recipe_signature": null,
+  "qualified_root_sha256": null,
+  "source_report": {
+    "path": null,
+    "sha256": null
+  },
+  "scope": "Future actual selected raw recipe from new qualified standard report; never transferred deployment fit_iterations."
+}

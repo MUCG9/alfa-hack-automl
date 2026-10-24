@@ -1,0 +1,136 @@
+--- preserved-R5/research_loop.py
++++ bounded-negative-R6/research_loop.py
+@@ -5,6 +5,7 @@
+ clock, subprocess, API client, split, evaluator or model implementation.
+ """
+ from copy import deepcopy
++import hashlib
+ import json
+ import math
+ 
+@@ -178,6 +179,52 @@
+         return [median_iterations(a,b) for a,b in zip(first,second)]
+     need(type(first) is int and type(second) is int and min(first,second)>0,'actual_cut_tree_counts_required')
+     return max(30,(first+second)//2)
++
++
++def failure_summary(state):
++    """Negative-only bounded evidence, never a complete-ledger qualification."""
++    def descriptor(value):
++        try:
++            digest=hashlib.sha256()
++            # Nonfinite values are permitted ONLY in a hashed diagnostic encoding,
++            # never in the summary JSON, a score, or a qualification predicate.
++            encoder=json.JSONEncoder(sort_keys=True,ensure_ascii=False,allow_nan=True,separators=(',',':'))
++            for chunk in encoder.iterencode(value):digest.update(chunk.encode('utf-8'))
++            return dict(count=len(value) if isinstance(value,(list,dict)) else None,
++                sha256=digest.hexdigest(),encoding='canonical diagnostic JSON; allow_nan for digest only')
++        except BaseException as exc:
++            return dict(count=len(value) if isinstance(value,(list,dict)) else None,sha256=None,
++                hash_error_type=type(exc).__name__)
++    refs=state.get('callback_ledger_refs',[]);full=state.get('full_refit')
++    answer=dict(schema='qwen-iterative-task-failure-summary-v1',status='failed',kind=state.get('kind'),
++        first_failure=deepcopy(state.get('first_failure')),secondary_failures=deepcopy(state.get('secondary_failures',[])),
++        quality_qualified=False,metrics=None,quality_metric=None,promotion=False,official_score_claim=False,
++        selected_recipe=deepcopy(state.get('selected_recipe')),selected_recipe_diagnostic_only=True,
++        selected_cuts=None,final_confirmation=None,
++        full_refit=(dict(diagnostic_only=True,parent_callback_receipt=deepcopy(full.get('parent_callback_receipt')),
++            record_descriptor=descriptor(full)) if isinstance(full,dict) else None),selected_checkpoint=None,
++        last_completed_checkpoint_index=state.get('selected_checkpoint'),actual_learner_fit_calls=None,
++        last_completed_recipe_descriptor=descriptor(state.get('selected_recipe')),
++        last_worker_final_status=state.get('last_worker_final_status'),
++        last_worker_parent_origin=deepcopy(state.get('last_worker_parent_origin')),
++        callback_ledger_refs=deepcopy(refs),callback_ledger_refs_inlined=True,
++        ledger_descriptor=descriptor(refs),records_descriptor=descriptor(state.get('records',[])),
++        checkpoints_descriptor=descriptor(state.get('checkpoints',[])),usage_descriptor=descriptor(state.get('usage',[])),
++        complete_ledger_qualification=False,failed_diagnostic_only=True)
++    for key in ('gateway_calls','http_attempts_reported','http_attempts_complete','usage_complete',
++                'worker_calls_attempted','worker_calls_succeeded','executed_Qwen_candidates'):
++        answer[key]=state.get(key)
++    def size():return len(json.dumps(answer,ensure_ascii=False,allow_nan=False,indent=2).encode('utf-8'))
++    if size()>REPORT_BYTES_LIMIT:
++        # Raw ordered worker-N/parent-result.json files remain unchanged on disk.
++        # Their complete ref-array hash/count is retained rather than an oversized
++        # inline list; this is explicitly NOT a positive complete-ledger receipt.
++        answer.update(callback_ledger_refs=None,callback_ledger_refs_inlined=False,
++            ledger_recovery='Retained ordered worker-N/parent-result.json files; verify every ref against ledger_descriptor before any future use')
++    if size()>REPORT_BYTES_LIMIT:
++        answer['selected_recipe']=None
++    need(size()<=REPORT_BYTES_LIMIT,'bounded_failure_summary_cannot_be_persisted')
++    return answer
+ 
+ 
+ def run_task(task,clock,gateway,worker,normalize,signature,compile_features,persist):
+@@ -335,7 +382,13 @@
+             time_accounting_scope='through admission stop; terminal save/seal costs remain charged to original clock')
+     except BaseException as exc:
+         fail(exc);state['status']='failed';state['quality_qualified']=False
+-        try:persist(deepcopy(state))
+-        except BaseException as secondary:fail(secondary)
++        try:persist(failure_summary(state))
++        except BaseException as secondary:
++            fail(secondary)
++            try:persist(failure_summary(state))
++            except BaseException as final_secondary:
++                fail(final_secondary)
++                try:exc.qwen_secondary_failure_types=[row['type'] for row in state['secondary_failures']]
++                except BaseException:pass
+         raise
+     save();return state
+--- preserved-R5/test_research_loop.py
++++ bounded-negative-R6/test_research_loop.py
+@@ -211,7 +211,7 @@
+ 
+     def test_actual_report_byte_bound_stops_instead_of_claiming_truncated_evidence(self):
+         clock,gateway,worker,calls,gcalls,saved=self.harness()
+-        with patch.object(R,'REPORT_BYTES_LIMIT',32),self.assertRaisesRegex(R.ResearchStop,'JSON_bound_INCOMPLETE'):
++        with patch.object(R,'REPORT_BYTES_LIMIT',4096),self.assertRaisesRegex(R.ResearchStop,'JSON_bound_INCOMPLETE'):
+             R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+         self.assertEqual(saved[-1]['status'],'failed');self.assertIsNone(saved[-1]['actual_learner_fit_calls'])
+ 
+@@ -223,5 +223,45 @@
+         self.assertGreater(result['remaining_task_seconds_at_stop'],0)
+         self.assertNotIn('measured_three_hours',result)
+ 
++    def test_oversized_failure_state_is_bounded_with_exact_counts_refs_and_hashes(self):
++        refs=[dict(path='owned/worker-1/parent-result.json',sha256='a'*64)]
++        state=dict(kind='regression',first_failure=dict(type='ResearchStop',code='actual_report_JSON_bound_INCOMPLETE'),
++            secondary_failures=[],callback_ledger_refs=refs,records=[{'payload':'x'*20000}],checkpoints=[],usage=[],
++            gateway_calls=7,http_attempts_reported=8,http_attempts_complete=True,usage_complete=True,
++            worker_calls_attempted=1,worker_calls_succeeded=1,executed_Qwen_candidates=1)
++        before=deepcopy(state)
++        with patch.object(R,'REPORT_BYTES_LIMIT',4096):summary=R.failure_summary(state)
++        self.assertEqual(state,before);self.assertLessEqual(len(json.dumps(summary,ensure_ascii=False,indent=2).encode()),4096)
++        self.assertEqual(summary['status'],'failed');self.assertFalse(summary['complete_ledger_qualification'])
++        self.assertEqual(summary['first_failure'],state['first_failure']);self.assertEqual(summary['callback_ledger_refs'],refs)
++        self.assertEqual(summary['gateway_calls'],7);self.assertEqual(summary['http_attempts_reported'],8)
++        self.assertEqual(len(summary['ledger_descriptor']['sha256']),64)
++        self.assertEqual(len(summary['records_descriptor']['sha256']),64)
++        self.assertIsNone(summary['metrics']);self.assertIsNone(summary['quality_metric'])
++        # If refs alone overflow, preserve their exact hash/count and raw-file
++        # recovery scope rather than writing another oversized negative state.
++        state['callback_ledger_refs']=[dict(path='owned/'+str(i)+'x'*200,sha256='a'*64) for i in range(100)]
++        with patch.object(R,'REPORT_BYTES_LIMIT',4096):bounded=R.failure_summary(state)
++        self.assertIsNone(bounded['callback_ledger_refs']);self.assertFalse(bounded['callback_ledger_refs_inlined'])
++        self.assertEqual(bounded['ledger_descriptor']['count'],100)
++        self.assertLessEqual(len(json.dumps(bounded,ensure_ascii=False,indent=2).encode()),4096)
++
++    def test_failure_persist_secondary_is_saved_without_replacing_original_primary(self):
++        clock,gateway,worker,calls,gcalls,saved=self.harness();primary=R.ResearchStop('synthetic_primary')
++        def broken_worker(*args,**kwargs):raise primary
++        writes=[0]
++        def persist(row):
++            writes[0]+=1
++            if writes[0]==1:raise PermissionError('synthetic_secondary')
++            saved.append(deepcopy(row))
++        with self.assertRaises(R.ResearchStop) as caught:
++            R.run_task(task(),clock,gateway,broken_worker,normalizer,signature,compiler,persist)
++        self.assertIs(caught.exception,primary);self.assertEqual(writes[0],2)
++        self.assertEqual(saved[-1]['schema'],'qwen-iterative-task-failure-summary-v1')
++        self.assertEqual(saved[-1]['first_failure']['code'],'synthetic_primary')
++        self.assertEqual(saved[-1]['secondary_failures'][0]['type'],'PermissionError')
++        self.assertEqual(saved[-1]['worker_calls_attempted'],1)
++        self.assertFalse(saved[-1]['quality_qualified']);self.assertIsNone(saved[-1]['quality_metric'])
++
+ 
+ if __name__=='__main__':unittest.main(verbosity=2)

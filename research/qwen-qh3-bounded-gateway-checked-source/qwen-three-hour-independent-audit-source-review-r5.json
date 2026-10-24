@@ -1,0 +1,33 @@
+{
+  "schema": "Qwen-independent-auditor-R5-FM-source-review-v1",
+  "result": "NO_SCOPED_SOURCE_BLOCKER",
+  "reviewed_handoff": {
+    "path": "work/qwen-three-hour-independent-audit-next-dev-r5/source-handoff.json",
+    "sha256": "9b125b77d9bab42b32cda96f42ac3379968dfdd80f0e7e59a153942024d217f8"
+  },
+  "runtime_sha256": "1d882d01078a40f02a0229ea5498c3c295e0f7df9b2b232a7a6b3f93997c0d96",
+  "verified_local_pins": 105,
+  "verified_external_pins": 18,
+  "pin_mismatches": [],
+  "external_refs_WORK_relative_no_legacy_work_prefix": true,
+  "whole_R4_module_AST_inverse_exact": true,
+  "old27_method_AST_exact": true,
+  "prepared_methods": 29,
+  "same2_fixture_entrypoints": true,
+  "primitive_and_CSV_fixture_raw_exact": true,
+  "exact_five_source_closure_AST_matches_coreR8": true,
+  "source_semantics": "Independent exact five-path reconstruction from full task immutable source/input map; sealed request equals it exactly. Unknown/missing/changed/old-history source map rejects before usage aggregation; no subset or ignored source fallback.",
+  "unchanged_scope": "Full source/core pretruth/posttruth barriers, clocks/caps/HTTP accounting/ANYTIME and all mathematical R4 formulas preserved.",
+  "fixture_scope": "Pure typed-map closure case plus actual verify_usage with synthetic sealed request/result/supervisor. usage_summary patched only downstream; negative source shapes reject before aggregation.",
+  "limitations": [
+    "SOURCE review only;29 prepared methods not executed.",
+    "Root must bind R8 core/peers and new parent five-source pins before actual admission."
+  ],
+  "actual_candidate_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API": 0,
+  "actual_data_array_truth_prediction_metric_reads": 0,
+  "actual_PID_scans": 0,
+  "actual_clock": null
+}

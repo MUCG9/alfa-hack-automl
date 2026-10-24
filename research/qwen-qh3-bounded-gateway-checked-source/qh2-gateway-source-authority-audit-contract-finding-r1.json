@@ -1,0 +1,66 @@
+{
+  "schema": "qh2-gateway-source-authority-independent-source-finding-v1",
+  "result": "CONCRETE_PRE_HTTP_GATEWAY_METADATA_SIZE_BLOCKER",
+  "finding_id": "QHGATE01",
+  "source_sha256": {
+    "task_entry.py": "4660711d1e7b8b45d972ed35ce7d361530c612dd6f4e73f26b83858c38cce312",
+    "gateway_child.py": "3e10be821bb7daa4188434e5201c182301f801f734f1b32cbfdcf30a644c1686",
+    "provider_environment.py": "e96b92389f33a0612c9c1c4a18fc5a5cee45ef9edc9164185c3cbe19ca33605d",
+    "research_loop.py": "5405d7e0a734897d2251f0ad15d10d12854654ada63c022a99aba1deb0f53af8"
+  },
+  "evidence": {
+    "task_entry_map_line": 176,
+    "request_guard_line": 178,
+    "parent_py_source_pins": 963,
+    "source_map_JSON_bytes_compact_asciiFalse": 247925,
+    "source_map_JSON_bytes_indent2_asciiFalse": 249853,
+    "request_UTF8_bound": 131072,
+    "source_map_alone_exceeds_request_bound": true,
+    "actual_prompt_context_or_request_data_not_read": true
+  },
+  "gateway_child_ABI": {
+    "request_ref": "absolute request path/rawSHA, CLI selfsource rawSHA",
+    "schema": "qwen-three-hour-single-gateway-v1",
+    "call_number": "int1..4800",
+    "source_files": "nonempty absolute-path SHA map, each checked before local imports",
+    "explicit_mandatory_paths": [
+      "canonical/src/automl/infrastructure/llm_gateway.py",
+      "canonical/src/automl/infrastructure/run_budget.py"
+    ],
+    "local_import_closure_source_sha256": {
+      "automl/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "automl/infrastructure/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "automl/infrastructure/llm_gateway.py": "31e45ff7c44e26a1451089c535ba9090aea9d6d35f7ac810bc157c5bda7e2aba",
+      "automl/infrastructure/run_budget.py": "f16fa52a4f051eac331d4411c3ae7e10c81c8f44efed7caefa872e0ad3774b49",
+      "automl/infrastructure/atomic.py": "2c4cee1f1b2714d1c5b14d7e05400a597c961398788eb622478518a461c52388"
+    },
+    "child_source": "independently rawSHA bound by CLI self-sha256 and parent immutablemap",
+    "external_SDK": "OpenAI package imported by llm_gateway; existing qualified environment unchanged, not a newsource redesign",
+    "data_capability_limit": "source_files is integrity verification metadata, not an OS filesystem sandbox. Trusted child source has no table/label/prediction/model loader. It reads exact request and referenced source bytes, imports only reviewed gateway/budget/atomic code plus unchanged SDK, and writes one exclusive bounded result.",
+    "original_clock": "same common10800/task4800/provider<=180 checks, no child-created RunBudget",
+    "current_budget": "must remain None before request_json"
+  },
+  "unchanged_payload_limits": {
+    "context_compact_UTF8": 49152,
+    "prompt_plus_context_UTF8": 65536,
+    "gateway_request_file": 131072,
+    "max_output_tokens": 8192,
+    "provider_content_UTF8": 32768,
+    "gateway_result_file": 65536,
+    "metadata_feedback": "last12 scalar records; validation-informed feedback is not blind"
+  },
+  "minimum_prospective_scope": "Build source_files from exact reviewed local gateway import-closure refs already in fullparentpins (plus own child ref if explicit). Require all expectedrefs present/correct, preserve fullparent immutable source proof and frozen pre/post/coordinator checks. Keep request/message/output caps and clocks unchanged; missing authority or oversized actual envelope STOP. No cached fallback/source weakening/cap increase.",
+  "meaningful_source_contracts": [
+    "963 unrelated historical .py refs are excluded from child map while fullparentmap remains unchanged",
+    "each required localdependency missing/wrong pin rejects before gateway child or HTTP",
+    "child exact local imports and CLIselfsource remain bound",
+    "actual UTF8 serialization respects original131072 cap; multibyte/overbound data fails honestly, no truncation or allowance reset"
+  ],
+  "limits": {
+    "source_metadata_only": true,
+    "candidate_or_controller_imports_tests_models_API_arrays_truth_predictions_PID_scans_Git_canonical_writes": 0,
+    "actual_QH2_failure_observed_by_root": "e2e80a1; negative2837a81; four baseline callbacks before first HTTP attempt (reported)",
+    "QH2_research_success_claimed": false,
+    "old_clock_or_campaign_requalified": false
+  }
+}

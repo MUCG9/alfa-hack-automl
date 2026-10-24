@@ -1,0 +1,64 @@
+{
+  "schema": "qwen-three-hour-source-preparation-proof-v1",
+  "status": "SOURCE_ONLY_NOT_EXECUTED",
+  "prepared_contracts": {
+    "test_research_loop.py": {
+      "sha256": "4c74a16485b0a1695a0c61246c8280f4417d2abec9c5e6cc69562da5c00d1c6d",
+      "prepared_method_count": 16,
+      "methods_AST_sha256": {
+        "ThreeHourResearchContracts.test_one10800_and_equal4800_leave_exact_shared_reserves_without_borrow": "df8fdf3e118814ddb51f57e177e144426c67bd271070140c22180480bacec1b1",
+        "ThreeHourResearchContracts.test_early_finish_never_increases_other_task4800_or_rebases_common": "64837392af6194a504c5bae23d80597d97dee51579f9c33b1e0e44816d1b1b97",
+        "ThreeHourResearchContracts.test_single_leaf_parameter_edit_preserves_full_strong_siblings_and_weights": "f181529678a062599a3bed08119aced1e8fdfd1ee64ccb54d97ca7fc0708e97a",
+        "ThreeHourResearchContracts.test_raw_generated_Python_execution_fields_and_nonexisting_component_reject": "2d1c3fc0dbac73143c15cd37355e695845f2f2a59c828c2d9d132986a7993120",
+        "ThreeHourResearchContracts.test_feature_factor_uses_only_trusted_DSL_compiler_and_declared_predictors": "117d2ba499c8c5809503400e408145b819dd3bbffd2cab203d5e1889ba8dd30e",
+        "ThreeHourResearchContracts.test_failed_timeout_nonfinite_or_wrong_split_is_never_objective_zero": "314fe160b8882bf8e624ff4b2c011b54fdb93c905528921f9878c26b692ff6c6",
+        "ThreeHourResearchContracts.test_regression_requires_each_cut_not_just_better_average": "f0bf3f45f49a3b1fa9f6669649a8f0210e60cbe46173e7d2678d2a32d5a80249",
+        "ThreeHourResearchContracts.test_classification_supported_loss_and_ex_rarest_guard_are_not_relaxed": "fc400f007ab25e57fd8edaaa736b344f7f5de4c1c720fc6512744a1e0ce143eb",
+        "ThreeHourResearchContracts.test_real_iterative_loop_exceeds_old14_rounds_and_caps64_gateway_only": "913a0745438788c5bd0b811ef0a7b6f7c825f72bfad87a4854552d5b298cde20",
+        "ThreeHourResearchContracts.test_duplicates_do_not_refit_or_reuse_failed_recipe_as_a_new_attempt": "2dfd5219f7035100b754b1b5bd6e6385e9c67ab7207c92118bdf528a49c9cdf6",
+        "ThreeHourResearchContracts.test_provider_failure_stops_and_retains_null_quality_and_actual_HTTP_attempts": "8be136e72bf8ec1d8a88e1f9b6bc139cc8877b85188fbbbdd1a86366d60673ec",
+        "ThreeHourResearchContracts.test_unknown_HTTP_accounting_is_not_silently_counted_as_zero": "ce889a824f6ecbad4b4209bf0c76edfb480f5fa60172326d5bc255c4f3c11d05",
+        "ThreeHourResearchContracts.test_cleanup_uncertainty_is_fatal_not_a_discarded_proposal": "40950e276baebb13d94e829912767d7fba2aaf162fa9c71651a3c3efcf913756",
+        "ThreeHourResearchContracts.test_actual_resources_and_remaining_common_task_seconds_are_in_every_prompt": "c79d117eb94ed9778b9dcf25e7731ee9c0f7681929e2cf6e1721d128030c9cd7",
+        "ThreeHourResearchContracts.test_raw_worker_failure_is_recorded_NULL_and_does_not_terminate_valid_later_rounds": "01ea48ad349987b4fb8a06caa98982de23f1913be77ae9020bded96f189e01ac",
+        "ThreeHourResearchContracts.test_median_requires_fresh_matching_tree_and_never_historical_iterations": "13ac2be1fe649fa407ab5cf6cee38109526ead6b8766fdeab7601081724c07f6"
+      },
+      "actual_executed": 0
+    },
+    "test_r5_worker_consumer.py": {
+      "sha256": "d683c21de3e0b413cdc6414f50cadf277ebfa0f8c477e70bce96d81a647fb26f",
+      "prepared_method_count": 1,
+      "methods_AST_sha256": {
+        "SamplingCheckpointConsumerContracts.test_unfinished_worker_resource_round_uses_only_original_clock_hook": "8a22442c46ceffc45a0c387ee4fca725c6d83ff7cf110ac467f6dc17be1601e9"
+      },
+      "actual_executed": 0
+    },
+    "test_provider_environment.py": {
+      "sha256": "e45cc6076e8a5ccf19278742a9d1762e259fa214ec206b415895aa411f4fa956",
+      "prepared_method_count": 1,
+      "methods_AST_sha256": {
+        "ProviderEnvironmentContracts.test_technical_copy_provider_only_and_exact_function_restored_after_failure": "83f4b3d3aaf6429f7f762e59a3d25b28e93f9cf202a55b8de74b20694f49e14d"
+      },
+      "actual_executed": 0
+    }
+  },
+  "new_policy_test_methods": 16,
+  "preserved_R5_consumer_method_AST": 1,
+  "worker_port_proof": "worker-port-source-proof.json",
+  "compile_only": "all new Python sources compiled as text; none imported",
+  "no_candidate_or_test_imports": true,
+  "tests_executed": 0,
+  "fits": 0,
+  "API_calls": 0,
+  "data_arrays_PIDs_Git_canonical_clock": 0,
+  "root_launch_remaining": true,
+  "provider_facade_R2": {
+    "8019_blocker_preserved": "solver_seconds was incorrectly nonNone solely for provider credentials",
+    "fixed": "technical coor.environment(False) copy plus authorized provider-only facade, solver_seconds=None, restore original function in finally",
+    "inverse_complete_task_entry_AST_exact": true,
+    "all_other_old_runtime_sources_byte_exact": true,
+    "new_environment_mock_methods": 1,
+    "total_prepared_methods": 18,
+    "actual_executed": 0
+  }
+}

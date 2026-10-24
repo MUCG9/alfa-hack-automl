@@ -1,0 +1,38 @@
+{
+  "schema": "qh2-gateway-source-authority-auditor-compatibility-source-addendum-v1",
+  "result": "CONCRETE_PROSPECTIVE_R8_AUDITOR_R4_INTEROP_BLOCKER",
+  "finding_id": "QHGATE02",
+  "primary_finding": {
+    "path": "work/qh2-gateway-source-authority-audit-contract-finding-r1.json",
+    "sha256": "b2806fefb4d17b471aaeddaeeaf591e81764412e3ddf274512d69be0baf6dad3"
+  },
+  "auditor": {
+    "path": "work/qwen-three-hour-independent-audit-next-dev-r4/audit_final.py",
+    "sha256": "67245755950f1bc5af67cc78b0ec2668e3411cb72785249b95921a06932ce9e5",
+    "function": "verify_usage",
+    "function_AST_sha256": "9aaa06c8e9c4d584c7a1cf733b8a3447612b438c6a43999c35f199059a725038",
+    "lines": [
+      452,
+      453
+    ]
+  },
+  "predicate": "req.source_files must equal every .py entry in taskcfg.immutable_files; a corrected bounded gateway closure necessarily differs.",
+  "other_version_binding_findings": {
+    "hardcoded_coreR7_source_SHA_or_core_directory_in_audit_runtime": false,
+    "taskmanifest_and_all_source_union_checked_dynamically": true,
+    "report_schema_anytime_API_parentledger_and_result_fields_unchanged_expected": true,
+    "manual_R4_metric_formulas_and_saved_source_qualification_unchanged": true
+  },
+  "minimum_required_source_scope": "New isolated auditor revision replacing only this source_files equality with an independently reconstructed EXACT reviewed gateway-local closure map. Retain complete taskcfg immutable union membership, all pretruth seals/source hashes, actual HTTP usage/parent cleanup/original clocks/output/UTF8 bounds, schemas and metric/quality formulas. No subset fallback, unknown keys, ignored authorities or request cap increase.",
+  "prepared_contract_recommendations": [
+    "exact new closure accepted only when every dependency equals fullparentpin",
+    "missing or changed localdependency and unexpected source key reject",
+    "full all-.py historical map rejected rather than silently normalized",
+    "all original usage/clock/source/result/assertion contracts preserved"
+  ],
+  "limits": {
+    "source_only": true,
+    "candidate_or_auditor_imports_tests_models_API_data_arrays_PID_scans_Git_canonical_writes": 0,
+    "no_runtime_or_ML_success_claim": true
+  }
+}

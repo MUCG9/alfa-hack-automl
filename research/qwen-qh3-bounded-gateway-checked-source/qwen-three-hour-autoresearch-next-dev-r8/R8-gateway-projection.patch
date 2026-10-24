@@ -1,0 +1,104 @@
+--- R7/task_entry.py
++++ R8/task_entry.py
+@@ -20,6 +20,14 @@
+ COOR_SHA='bd864b13460d31176d57e1dbddbe179ad8e6911163b117e3f9698228c5540f76'
+ OWNER_SHA='8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8'
+ PROCESS_SHA='fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d'
++
++GATEWAY_SOURCE_RELATIVE=(
++    'src/automl/__init__.py',
++    'src/automl/infrastructure/__init__.py',
++    'src/automl/infrastructure/llm_gateway.py',
++    'src/automl/infrastructure/run_budget.py',
++    'src/automl/infrastructure/atomic.py',
++)
+ 
+ 
+ def need(value,code):
+@@ -79,6 +87,17 @@
+          'parent_callback_JSON_bound_INCOMPLETE')
+     target=folder/'parent-result.json';check();save(target,record);check()
+     return dict(path=str(target),sha256=sha(target,check))
++
++
++def gateway_source_projection(pins,root):
++    """Only the exact canonical local gateway import closure crosses the request."""
++    root=Path(root)
++    need(type(pins) is dict and root.is_absolute(),'typed_gateway_source_parent_required')
++    paths=[str(root/relative) for relative in GATEWAY_SOURCE_RELATIVE]
++    need(all(path in pins and type(pins[path]) is str and len(pins[path])==64
++        and all(c in '0123456789abcdef' for c in pins[path]) for path in paths),
++        'complete_exact_gateway_source_closure_required_before_models')
++    return {path:pins[path] for path in paths}
+ 
+ 
+ def run(a):
+@@ -114,6 +133,7 @@
+     need(pins.get(str(root/'agent_worker.py')) is not None
+          and pins.get(str(root/'src/automl/infrastructure/processes.py'))=='9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3',
+          'candidate_current_processes_distinct_from_historical_guard')
++    gateway_code=gateway_source_projection(pins,root)
+     need(cfg['task']['source_unchanged'] is True and cfg['task']['authority_resolved'] is True
+          and cfg['task']['context_flag'] is False and cfg['task']['selector_cache_flag'] is False,
+          'explicit_qualified_strong_task_authority_and_factors_required')
+@@ -173,7 +193,7 @@
+         provider_clock={k:timing[k] for k in ('start_unix','start_monotonic','absolute_deadline_unix','common_deadline_monotonic','task_deadline_monotonic')}
+         provider_clock['provider_deadline_monotonic']=start+timeout
+         save(request,dict(schema='qwen-three-hour-single-gateway-v1',call_number=provider_count,
+-            clock=provider_clock,source_files={p:h for p,h in pins.items() if Path(p).suffix=='.py'},
++            clock=provider_clock,source_files=dict(gateway_code),
+             canonical_root=str(root),output=str(result),timeout=timeout,prompt=prompt,context=context))
+         need(request.stat().st_size<=131072,'gateway_request_JSON_bound_INCOMPLETE')
+         request_sha=sha(request,view.check)
+--- R7/gateway_child.py
++++ R8/gateway_child.py
+@@ -12,11 +12,34 @@
+ import time
+ 
+ 
++GATEWAY_SOURCE_RELATIVE=(
++    'src/automl/__init__.py',
++    'src/automl/infrastructure/__init__.py',
++    'src/automl/infrastructure/llm_gateway.py',
++    'src/automl/infrastructure/run_budget.py',
++    'src/automl/infrastructure/atomic.py',
++)
++
++
+ def need(value,code):
+     if not value:raise RuntimeError(code)
+ 
+ 
+ def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
++
++
++def verified_gateway_sources(cfg,check):
++    """Require the exact five-file local import closure, all actual bytes bound."""
++    root=Path(cfg['canonical_root']);sources=cfg.get('source_files')
++    need(root.is_absolute(),'absolute_bound_canonical_source_required')
++    paths={str(root/relative) for relative in GATEWAY_SOURCE_RELATIVE}
++    need(type(sources) is dict and set(sources)==paths,'exact_gateway_source_closure_required')
++    for path,expected in sources.items():
++        need(Path(path).is_absolute() and type(expected) is str and len(expected)==64
++            and all(c in '0123456789abcdef' for c in expected) and sha(path)==expected,
++            'gateway_dependency_changed')
++        check()
++    return dict(sources)
+ 
+ 
+ def run(a):
+@@ -34,12 +57,8 @@
+         need(now<min(clock['common_deadline_monotonic'],clock['task_deadline_monotonic'],clock['provider_deadline_monotonic'])
+              and wall<clock['absolute_deadline_unix'],'original_provider_task_common_deadline')
+     check()
+-    need(type(cfg['source_files']) is dict and cfg['source_files'],'pinned_gateway_dependencies_required')
+-    for path,expected in cfg['source_files'].items():
+-        need(Path(path).is_absolute() and sha(path)==expected,'gateway_dependency_changed');check()
+-    root=Path(cfg['canonical_root']);need(root.is_absolute(),'absolute_bound_canonical_source_required')
+-    need(str(root/'src/automl/infrastructure/llm_gateway.py') in cfg['source_files']
+-         and str(root/'src/automl/infrastructure/run_budget.py') in cfg['source_files'],'gateway_and_legacy_budget_sources_bound')
++    verified_gateway_sources(cfg,check)
++    root=Path(cfg['canonical_root'])
+     output=Path(cfg['output']);need(output.is_absolute() and not output.exists(),'one_exclusive_gateway_output_required')
+     sys.dont_write_bytecode=True;sys.path.insert(0,str(root/'src'))
+     from automl.infrastructure.run_budget import current_budget

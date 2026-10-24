@@ -1,0 +1,23 @@
+{
+  "schema": "QH-auditor-R4-typed-saved-qualification-source-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "projection_roles": [
+    "archive",
+    "root",
+    "confirmation"
+  ],
+  "confirmation_is": "final_post_tool_proof",
+  "old_positive_schema_preserved": "standard-repair-qualification-root-closure-v1",
+  "new_positive_schema": "postfailure-standard-artifact-qualification-root-v1",
+  "original_RQ6_procedure_requalified": false,
+  "new_models": 0,
+  "sourceonly27_prepared_0run": true,
+  "actual_qualified_archive_root_refs": null,
+  "actual_READY": null,
+  "actual_clock": null,
+  "revision": "R5 exact provider-source closure only",
+  "prepared_method_count": 29,
+  "actual_tests": 0,
+  "actual_experiment_clock": null,
+  "notes": "Historical copied source evidence remains immutable; current AST-derived census is29, same2entrypoints. Full parent immutable union and metric formulas unchanged."
+}

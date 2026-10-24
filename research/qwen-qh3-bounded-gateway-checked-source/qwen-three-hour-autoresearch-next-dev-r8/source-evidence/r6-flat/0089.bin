@@ -1,0 +1,187 @@
+"""Prepared pure synthetic contracts. Source author has executed zero tests."""
+from copy import deepcopy
+import hashlib
+import json
+from pathlib import Path
+import sys
+import unittest
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+import research_loop as R
+
+
+class Clock:
+    def __init__(self):self.left=4800.;self.checks=0;self.failure=None
+    def check(self):
+        self.checks+=1
+        if self.failure:raise self.failure
+        if self.left<=0:raise RuntimeError('original_task_deadline')
+    def remaining(self):self.check();return self.left
+    def common_remaining(self):self.check();return self.left+900
+
+
+def normalizer(candidate,prior):
+    result=deepcopy(prior);result['hypothesis']=candidate['hypothesis']
+    result['engine']=candidate['engine'];result.setdefault('params',{}).update(candidate['params'])
+    if 'feature_code' in candidate:result['feature_code']=candidate['feature_code']
+    return result
+
+
+def signature(recipe):
+    value=deepcopy(recipe);value.pop('hypothesis',None)
+    return hashlib.sha256(json.dumps(value,sort_keys=True).encode()).hexdigest()
+
+
+def compiler(features,numeric,original):
+    if any(not set(row['columns'])<=set(numeric) for row in features):raise ValueError('undeclared')
+    return 'trusted_compiler_output:'+json.dumps(features,sort_keys=True)
+
+
+def task():
+    return dict(kind='regression',metric='rmse',greater_is_better=False,
+        cuts=[dict(seed=42,sha256='a'*64),dict(seed=43,sha256='b'*64)],
+        context_flag=False,selector_cache_flag=False,features=['x'],numeric_features=['x'],
+        forbidden_columns=['target','ID'],strong_recipe=dict(engine='lightgbm',params={'v':0},feature_code=''))
+
+
+def proposal(value=1):
+    return dict(hypothesis='One measured parameter factor',discard_rule='Reject either cut loss',component_path=[],params={'v':value})
+
+
+class ThreeHourResearchContracts(unittest.TestCase):
+    def harness(self,provider=None,worker_override=None):
+        clock=Clock();calls=[];saved=[];gateway_calls=[]
+        def gateway(prompt,context,timeout):
+            gateway_calls.append((prompt,deepcopy(context),timeout));clock.left-=1
+            if provider:return provider(len(gateway_calls))
+            return json.dumps(proposal(min(len(gateway_calls),20))),dict(status='ok',attempts=1,usage_complete=True,usage={'prompt_tokens':11,'completion_tokens':7})
+        def worker(recipe,cut,timeout,phase,fit_iterations=None):
+            clock.left-=1;calls.append((deepcopy(recipe),cut['seed'],timeout,phase,fit_iterations))
+            if worker_override:return worker_override(recipe,cut,phase,fit_iterations)
+            return dict(status='ok',cleanup_confirmed=True,split_sha256=cut['sha256'],metrics={'rmse':10-recipe['params']['v']*.01},
+                fit_iterations=101 if cut['seed']==42 else 205,full_fit=phase=='full-refit',submission='owned/final.csv',recipe=deepcopy(recipe),
+                hpo_fair_reserve_provenance=dict(schema='hpo-fair-reserve-worker-origin-v1',cleanup_confirmed=True,
+                    coordinator_killed=None,primary_exception_type=None,prior_result_status='ok'),
+                parent_callback_receipt=dict(path='synthetic-owned/worker-'+str(len(calls))+'/parent-result.json',
+                    sha256=hashlib.sha256(str(len(calls)).encode()).hexdigest()))
+        return clock,gateway,worker,calls,gateway_calls,saved
+
+    def test_one10800_and_equal4800_leave_exact_shared_reserves_without_borrow(self):
+        self.assertEqual(R.task_window(10.,10810.,310.,'regression'),5110.)
+        self.assertEqual(R.task_window(10.,10810.,5110.,'classification'),9910.)
+        self.assertEqual(300+4800+4800+600+300,10800)
+        self.assertEqual(4800+(300+600+300)//2,5400)
+
+    def test_early_finish_never_increases_other_task4800_or_rebases_common(self):
+        reg=R.task_window(10.,10810.,110.,'regression')
+        cls=R.task_window(10.,10810.,reg,'classification')
+        self.assertEqual(reg-110,4800);self.assertEqual(cls-reg,4800)
+        with self.assertRaises(R.ResearchStop):R.task_window(10.,10810.,312.,'regression')
+        with self.assertRaises(R.ResearchStop):R.task_window(10.,10811.,310.,'regression')
+
+    def test_single_leaf_parameter_edit_preserves_full_strong_siblings_and_weights(self):
+        leaf=task()['strong_recipe'];seed=dict(engine='ensemble',components=[leaf,deepcopy(leaf)],weights=[.75,.25],params={})
+        before=deepcopy(seed);p=proposal(3);p['component_path']=[1]
+        result=R.mutate_recipe(p,seed,['x'],['x'],normalizer,compiler)
+        self.assertEqual(seed,before);self.assertEqual(result['components'][0],seed['components'][0])
+        self.assertEqual(result['weights'],[.75,.25]);self.assertEqual(result['components'][1]['params']['v'],3)
+
+    def test_raw_generated_Python_execution_fields_and_nonexisting_component_reject(self):
+        for delta in [dict(feature_code='import os'),dict(component_path=[0]),dict(params={'threads':8}),dict(features=[],params={})]:
+            p=proposal();p.update(delta)
+            with self.subTest(delta=delta),self.assertRaises(R.ResearchStop):
+                R.mutate_recipe(p,task()['strong_recipe'],['x'],['x'],normalizer,compiler)
+
+    def test_feature_factor_uses_only_trusted_DSL_compiler_and_declared_predictors(self):
+        p=proposal();p.pop('params');p['features']=[dict(op='missing',columns=['x'],reason='measured missingness')]
+        actual=R.mutate_recipe(p,task()['strong_recipe'],['x'],['x'],normalizer,compiler)
+        self.assertTrue(actual['feature_code'].startswith('trusted_compiler_output:'))
+        p['features'][0]['columns']=['target']
+        with self.assertRaises(ValueError):R.mutate_recipe(p,task()['strong_recipe'],['x'],['x'],normalizer,compiler)
+
+    def test_failed_timeout_nonfinite_or_wrong_split_is_never_objective_zero(self):
+        base=[dict(status='ok',cleanup_confirmed=True,split_sha256=c['sha256'],metrics={'rmse':2.}) for c in task()['cuts']]
+        for key,value in [('status','timeout'),('split_sha256','wrong')]:
+            rows=deepcopy(base);rows[1][key]=value
+            with self.subTest(key=key),self.assertRaises(R.ResearchStop):R.score_pair(rows,task())
+        rows=deepcopy(base);rows[0]['metrics']['rmse']=float('nan')
+        with self.assertRaises(R.ResearchStop):R.score_pair(rows,task())
+
+    def test_regression_requires_each_cut_not_just_better_average(self):
+        rows=lambda x:[dict(status='ok',cleanup_confirmed=True,split_sha256=c['sha256'],metrics={'rmse':v}) for c,v in zip(task()['cuts'],x)]
+        self.assertFalse(R.keep_candidate(rows([8,10.1]),rows([10,10]),rows([10,10]),task()))
+        self.assertTrue(R.keep_candidate(rows([9,9]),rows([10,10]),rows([10,10]),task()))
+
+    def test_classification_supported_loss_and_ex_rarest_guard_are_not_relaxed(self):
+        t=task();t.update(kind='classification',metric='macro_f1',greater_is_better=True,classes=['NA','001','rare'],
+            independent_fitting_groups={'NA':100,'001':200,'rare':1},rarest_fitting_class='rare')
+        for cut in t['cuts']:cut.update(independent_fitting_groups=t['independent_fitting_groups'],rarest_fitting_class=t['rarest_fitting_class'])
+        def rows(values):return [dict(status='ok',cleanup_confirmed=True,split_sha256=c['sha256'],
+            metrics={'macro_f1':mean,'per_class_f1':dict(zip(t['classes'],values))}) for c in t['cuts'] for mean in [sum(values)/3]]
+        baseline=rows([.5,.5,.2]);self.assertTrue(R.keep_candidate(rows([.52,.52,.3]),baseline,baseline,t))
+        self.assertFalse(R.keep_candidate(rows([.47,.55,.4]),baseline,baseline,t))
+        self.assertFalse(R.keep_candidate(rows([.5,.5,.8]),baseline,baseline,t))
+
+    def test_real_iterative_loop_exceeds_old14_rounds_and_caps64_gateway_only(self):
+        clock,gateway,worker,calls,gcalls,saved=self.harness()
+        result=R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+        self.assertEqual(len(gcalls),64);self.assertEqual(result['executed_Qwen_candidates'],20)
+        self.assertEqual(result['http_attempts_reported'],64);self.assertIsNone(result['actual_learner_fit_calls'])
+        self.assertEqual(result['stop_reason'],'gateway64_cap');self.assertFalse(result['quality_qualified'])
+        self.assertEqual(len(calls),2+40+2);self.assertTrue(all(row[4] is None for row in calls[:-1]))
+        self.assertEqual(calls[-1][4],153);self.assertEqual(result['full_refit']['full_fit'],True)
+
+    def test_duplicates_do_not_refit_or_reuse_failed_recipe_as_a_new_attempt(self):
+        provider=lambda n:(json.dumps(proposal()),dict(status='ok',attempts=1,usage_complete=True))
+        clock,gateway,worker,calls,gcalls,saved=self.harness(provider)
+        result=R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+        self.assertEqual(result['executed_Qwen_candidates'],1);self.assertEqual(len(calls),6)
+        self.assertEqual(sum(row['status']=='duplicate' for row in result['records']),63)
+
+    def test_provider_failure_stops_and_retains_null_quality_and_actual_HTTP_attempts(self):
+        provider=lambda n:(None,dict(status='error',attempts=3,usage_complete=False))
+        clock,gateway,worker,calls,gcalls,saved=self.harness(provider)
+        with self.assertRaises(R.ResearchStop):R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+        self.assertEqual(len(calls),2);self.assertEqual(saved[-1]['http_attempts_reported'],3)
+        self.assertFalse(saved[-1]['usage_complete']);self.assertFalse(saved[-1]['quality_qualified'])
+        self.assertIsNone(saved[-1]['full_refit'])
+
+    def test_unknown_HTTP_accounting_is_not_silently_counted_as_zero(self):
+        provider=lambda n:(json.dumps(proposal()),dict(status='ok',attempts=None,usage_complete=False))
+        clock,gateway,worker,calls,gcalls,saved=self.harness(provider)
+        with self.assertRaises(R.ResearchStop):R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+        self.assertFalse(saved[-1]['http_attempts_complete']);self.assertFalse(saved[-1]['usage_complete'])
+        self.assertEqual(len(calls),2)
+
+    def test_cleanup_uncertainty_is_fatal_not_a_discarded_proposal(self):
+        def bad(recipe,cut,phase,iterations):
+            return dict(status='ok',cleanup_confirmed=False,split_sha256=cut['sha256'],metrics={'rmse':1})
+        clock,gateway,worker,calls,gcalls,saved=self.harness(worker_override=bad)
+        with self.assertRaisesRegex(R.ResearchStop,'cleanup'):R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+        self.assertEqual(len(gcalls),0);self.assertEqual(len(calls),1);self.assertEqual(saved[-1]['status'],'failed')
+
+    def test_actual_resources_and_remaining_common_task_seconds_are_in_every_prompt(self):
+        clock,gateway,worker,calls,gcalls,saved=self.harness()
+        R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+        for prompt,context,timeout in gcalls:
+            self.assertIn('2 CPU',prompt);self.assertNotIn('8 CPU',prompt);self.assertNotIn('32GB',prompt)
+            self.assertEqual(context['actual_resources']['worker_RSS_MiB'],1536)
+            self.assertGreater(context['remaining_common_seconds'],context['remaining_task_seconds'])
+            self.assertLessEqual(timeout,180);self.assertLessEqual(len(R.safe_json(context,49152).encode()),49152)
+
+    def test_raw_worker_failure_is_recorded_NULL_and_does_not_terminate_valid_later_rounds(self):
+        clock,gateway,default,calls,gcalls,saved=self.harness()
+        def worker(recipe,cut,timeout,phase,fit_iterations=None):
+            result=default(recipe,cut,timeout,phase,fit_iterations)
+            if recipe['params']['v']==1:result.update(status='timeout',metrics=None)
+            return result
+        result=R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+        failed=next(row for row in result['records'] if row['status']=='failed')
+        self.assertIsNone(failed['scores']);self.assertGreater(result['executed_Qwen_candidates'],14)
+
+    def test_median_requires_fresh_matching_tree_and_never_historical_iterations(self):
+        self.assertEqual(R.median_iterations([101,205],[203,307]),[152,256])
+        for first,second in [([100],100),([100],[100,200]),(None,100),(True,100),(0,100)]:
+            with self.subTest(values=(first,second)),self.assertRaises(R.ResearchStop):R.median_iterations(first,second)
+
+
+if __name__=='__main__':unittest.main()

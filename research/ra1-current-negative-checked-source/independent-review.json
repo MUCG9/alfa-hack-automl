@@ -1,0 +1,71 @@
+{
+  "schema": "ra1-current-negative-independent-source-applicability-review-v1",
+  "result": "NO_SCOPED_SOURCE_BLOCKER",
+  "reviewed_handoff": {
+    "path": "work/ra1-current-negative-audit-next-dev/source-handoff.json",
+    "sha256": "0de43afa73cfd8d3419d6f2be16b80e64de8922e853f37a50b277f5c3d99a140"
+  },
+  "reviewed_sources": {
+    "observer": "0a38c6f20f103a3a997d287041d5ba6a8f5a814e2c0a33164127f2301d101b16",
+    "post": "9a94f3b806cda2b8677c3911e0479aebb14ccb24de5cbb27db00fb07904958ee"
+  },
+  "all_pins_verified": {
+    "local": 4,
+    "external": 33,
+    "mismatches": []
+  },
+  "actual_applicability": {
+    "private_source_pins": 1560,
+    "all_paths_absolute": true,
+    "RA1_original600_and_inherited_RQ6_6000_exact": true,
+    "actual_driver": [
+      25644,
+      1,
+      "19905f"
+    ],
+    "actual_frozen_closer": [
+      1,
+      "8efa0b"
+    ],
+    "contracts": 22,
+    "contract_slots": 3,
+    "supervisors": 4,
+    "first_three_exit0_last_audit_exit1": true,
+    "all_supervisors_cleanup_true_no_denials_zero_model_workers": true,
+    "root_and_campaign_failed_with_NULL_quality": true,
+    "source_cleanup_temporary_true": true,
+    "original_RQ6_FAIL_preserved": true,
+    "original8016_known": true,
+    "actual_collectors": 3,
+    "collector_tool_refs_exact": [
+      "731cd5",
+      "b50ff7",
+      "20089d"
+    ],
+    "union_after_collectors": 8025,
+    "current_full_known": 8039,
+    "future_post_with_observer": 8042,
+    "future_post_own_preparers": 3,
+    "exact_owned_temporary_absolute_and_absent": true,
+    "cfg_pin_collision": false
+  },
+  "source_boundaries": [
+    "Qualified C5 capture/guard+sticky10/.25 sampling/whole2048/Power/ABS lock lifecycle unchanged from prior negative pattern.",
+    "Every operational path derives from resolved source WORK; cfg contains only absolute immutable paths and typed launchpreparer refs; no relative cfg lock dependency.",
+    "Own30 is MIN original RA1600/inheritedRQ66000; root60_requalified=False, no reset or qualification, no deletion.",
+    "Post requires actual negative hash/tool, original8039+exact observer3, full8042 freshabsence; post own3 retained for later proof.",
+    "Failure after output forces current flags false; old root/campaign/source/model artifacts unchanged."
+  ],
+  "findings": [],
+  "actual_execution": 0,
+  "actual_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API_calls": 0,
+  "actual_PID_scans": 0,
+  "data_array_NPZ_truth_reads": 0,
+  "metric_values_read_or_reported": false,
+  "actual_clock": null,
+  "original_RA1_and_RQ6_FAIL_preserved": true,
+  "READY": false
+}

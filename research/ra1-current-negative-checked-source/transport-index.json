@@ -1,0 +1,30 @@
+{
+  "source_only": true,
+  "original_RA1_FAIL_preserved": true,
+  "files": [
+    {
+      "file": "source-handoff.json",
+      "sha256": "0de43afa73cfd8d3419d6f2be16b80e64de8922e853f37a50b277f5c3d99a140"
+    },
+    {
+      "file": "confirm_current.py",
+      "sha256": "9a94f3b806cda2b8677c3911e0479aebb14ccb24de5cbb27db00fb07904958ee"
+    },
+    {
+      "file": "observe_current.py",
+      "sha256": "0a38c6f20f103a3a997d287041d5ba6a8f5a814e2c0a33164127f2301d101b16"
+    },
+    {
+      "file": "README.txt",
+      "sha256": "2e947838594850cc3ec9fee0a74fb06436beb113f22875a64b848e3e0d7d523f"
+    },
+    {
+      "file": "source-proof.json",
+      "sha256": "309c1b33101c7b96d4b912ad4c44fa2548b2091f65ac53995295aedbaad781b7"
+    },
+    {
+      "file": "independent-review.json",
+      "sha256": "3c98a9be528e48c6905766e8816c884107d4e0f173fa5206d763b4fa5ef6b1ac"
+    }
+  ]
+}

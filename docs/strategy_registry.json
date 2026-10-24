@@ -2841,5 +2841,25 @@
       "platform_status": "not_clean_platform_verified"
     }
   ],
-  "library_source_revision": "108efd4"
+  "library_source_revision": "108efd4",
+  "current_UAR_source_snapshot": {
+    "schema": 1,
+    "status": "SOURCE_INTEGRATED_REVIEWED_RUNTIME_GATES_PENDING",
+    "registry_scripts": 56,
+    "registry_expected_checks": 588,
+    "registry_sha256": "cb009124a54d1e57ed50aa26833f7106214cb9911bc5515894dc90809c1898c8",
+    "whole_snapshot_tested": false,
+    "LOSS_prepared": 17,
+    "retention_prepared": 15,
+    "new_port_tests_executed": 0,
+    "new_port_actual_fits": 0,
+    "new_external_API_calls": 0,
+    "canonical_binding_sha256": "90a1e22d97ab3516d3cf9aa5dbb96e639c968c250d13035a87f7d275cd5769ad",
+    "retention_review_sha256": "5816d6aeaf03ab1846c59bc6fe9b74593009e5480f367d1f54969f38cde01ded",
+    "Linux10_source_review_sha256": "8a3a47fba2c8be6897aa1a1cc447f4ef4e1717c15b7c2612b4470356ae6c7120",
+    "Linux10_fitting_approval": false,
+    "automatic_submission": false,
+    "new_quality_metric": null,
+    "promotion": false
+  }
 }

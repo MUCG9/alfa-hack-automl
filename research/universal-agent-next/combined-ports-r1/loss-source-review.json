@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "status": "SOURCE_ONLY_NO_REMAINING_SCOPED_BLOCKER_RUNTIME_GATES_PENDING",
+  "source_handoff_sha256": "22bc42fd196557b1b65e47c177f0e8d73ef2dbac7fded659880e81dc30dfc363",
+  "commit": "423376f1ecb1be15ee461639f565266dbfdd1db8",
+  "base_commit": "3ca3f7a63cd107527ab6b7b1ead2af651407d109",
+  "source_bindings": [
+    {
+      "path": "src/automl/contracts/messages.py",
+      "raw_sha256": "2da59a8467632748d021d4169ddb3e3af4eac01a48a8dc2ab9207c4c7701652d",
+      "reviewed_bytes_match_handoff": true,
+      "default_OFF_projection_equals_current_canonical_AST": true,
+      "entire_AST_equals_verified_LOSS": true
+    },
+    {
+      "path": "src/automl/execution/api.py",
+      "raw_sha256": "1f07d02b386d1fdc348cce67d66b864d6b743191d2ca802cf58f7d9725fdbe17",
+      "reviewed_bytes_match_handoff": true,
+      "default_OFF_projection_equals_current_canonical_AST": true,
+      "entire_AST_equals_verified_LOSS": true
+    },
+    {
+      "path": "src/automl/execution/model_adapters/lightgbm.py",
+      "raw_sha256": "cc773c5329a06a99c5d9567cf8c978f4fb0b21818ef21cd9ac1ba46bcd949856",
+      "reviewed_bytes_match_handoff": true,
+      "default_OFF_projection_equals_current_canonical_AST": true,
+      "entire_AST_equals_verified_LOSS": true
+    },
+    {
+      "path": "src/automl/execution/model_adapters/registry.py",
+      "raw_sha256": "75b885e822186ab8c235e6638ee888ecaa918a50f7662dc8fc2892682d761045",
+      "reviewed_bytes_match_handoff": true,
+      "default_OFF_projection_equals_current_canonical_AST": true,
+      "entire_AST_equals_verified_LOSS": true
+    },
+    {
+      "path": "src/automl/execution/worker.py",
+      "raw_sha256": "de75742f1cdbe18bf1a1280d16637116cdf76f53a12cab53496df75f3fefb477",
+      "reviewed_bytes_match_handoff": true,
+      "default_OFF_projection_equals_current_canonical_AST": true,
+      "entire_AST_equals_verified_LOSS": true
+    },
+    {
+      "path": "src/automl/search/policy.py",
+      "raw_sha256": "8faf616caff90f7cdea4de9c4b5033ad22bd4ed1ac0dad3f0ca1d721f0759549",
+      "reviewed_bytes_match_handoff": true,
+      "default_OFF_projection_equals_current_canonical_AST": true,
+      "entire_AST_equals_verified_LOSS": false
+    },
+    {
+      "path": "tests/test_uar_loss_backend.py",
+      "raw_sha256": "527df3c37f629dce2455af0221f5f186ce2507f42a5f4da7ad78a695d50f40eb",
+      "reviewed_bytes_match_handoff": true
+    }
+  ],
+  "packet_bindings": {
+    "changes.patch": "6025c8315b904d036b837f0e737635fee9220fd5a183e6676ff700e359866e22",
+    "default-off-ast-proof.json": "30d666515b65fe696d31f5710e314606c9b08fb2bd6cadf0dcfbbf52131d15d0",
+    "policy-unrelated-source-difference.patch": "5b976a839eef1b22bd4fee6041a81b935c58ca5d633330cd8bc827c75f6e01eb",
+    "protocol.json": "269c49131a752a1a4b294a971aba0a95d2b930fe2b53856f9a144643a19fd04f",
+    "README.txt": "e2e9693e42ea3e052fbd01d8c2523b2c958977ee6289d16a58dc9cb80a2d21a9",
+    "semantic-port-proof.json": "1ae04ce9a588660a67dfaf728adb8f1d0ee0253b14cc26e7d2d90391133ebbee",
+    "test-source-inventory.json": "cf6c344896ec9713ebec0ce377ed16db0a64fb17478cbf5296948ec0cc37c6bb"
+  },
+  "blockers": [],
+  "findings": [
+    {
+      "id": "LOSS6-OFF",
+      "severity": "evidence",
+      "detail": "Independent stdlib AST projection of each of six candidate modules matches the current canonical base. This is source-delta preservation for valid default-OFF recipes, not measured runtime parity."
+    },
+    {
+      "id": "LOSS6-LINEAGE",
+      "severity": "evidence",
+      "detail": "Five complete module ASTs match the verified LOSS source. policy differs only by retaining current UAR signature JSON numeric handling instead of importing historical integral-float canonicalization; typed loss admission/key/signature deltas are present."
+    },
+    {
+      "id": "LOSS6-ADMISSION",
+      "severity": "evidence",
+      "detail": "Only fixed LightGBM regression L2/L1/Huber(alpha .9) IDs are admitted. Explicit null/unknown IDs, wrong engines/kind, raw objective/loss/alpha aliases and non-primary stopping reject. Worker validates recursively before IO/ensemble dispatch; internal key retained by effective_parameters. Ordinary CAPABILITIES excludes the new key; catalog exposure is separate and opt-in."
+    },
+    {
+      "id": "LOSS6-TELEMETRY",
+      "severity": "evidence",
+      "detail": "Every successful fit_on_rows for an opted-in leaf verifies fitted booster_.params objective/finite alpha/nonempty disabled default metric, then records actual scope/index/stopping/primary metric/target scale. Parent ensemble preserves actual child records. Callback, row preprocessing, target inversion and original-scale evaluation paths are unchanged."
+    },
+    {
+      "id": "LOSS6-TINY",
+      "severity": "prepared_not_run",
+      "detail": "17 unique prepared methods: 11 pure/mock/constructor and 6 tiny-real. Complete tiny run invokes 9 actual learner fits: 3 fixed profile singles + 2 explicit/implicit L2 + 1 Huber stop + worker nested2/full1. Synthetic80-row frames,1thread,20/30 iterations. Source and mapped repetition would imply18 such fits if both fully complete; broad suite total remains uninstrumented/null."
+    }
+  ],
+  "prepared_test_methods": {
+    "LossContractTests": [
+      "test_catalog_fixed_regression_only_and_returned_metadata_independent",
+      "test_normalization_effective_parameters_and_signature_retain_typed_ID",
+      "test_unknown_incompatible_and_misplaced_profile_reject_before_filter",
+      "test_raw_alias_conflicts_and_inherited_profile_reject_without_mutation",
+      "test_process_contract_rejects_bad_profile_in_any_ensemble_child",
+      "test_ordinary_advertised_capabilities_equal_base_UAR",
+      "test_nonprimary_early_stopping_and_direct_classification_are_rejected",
+      "test_telemetry_requires_actual_fitted_booster_not_constructor_claim",
+      "test_worker_rejects_wrong_kind_before_IO_or_any_ensemble_child",
+      "test_default_OFF_all_six_modules_preserve_base_UAR_AST",
+      "test_ensemble_inventory_retains_leaf_loss_receipts_and_iteration_tree"
+    ],
+    "LossRealEstimatorTests": [
+      "test_real_l2_booster_parameters_and_finite_outputs",
+      "test_real_l1_booster_parameters_and_finite_outputs",
+      "test_real_huber_booster_parameters_and_fixed_alpha",
+      "test_real_explicit_l2_matches_implicit_legacy_loss",
+      "test_real_huber_stops_only_on_unchanged_original_scale_RMSE",
+      "test_tiny_worker_nested_and_full_refit_record_actual_booster_scopes"
+    ]
+  },
+  "expected_future_tiny_learner_fits_per_complete_suite": 9,
+  "actual_test_execution": 0,
+  "actual_candidate_imports": 0,
+  "actual_model_fits": 0,
+  "actual_API_calls": 0,
+  "actual_data_or_predictions_reads": 0,
+  "actual_process_scans": 0,
+  "actual_clock_assigned": false,
+  "remaining": [
+    "Root integration/source registration and exact current source freeze remain pending.",
+    "Full source/build/exact-flat contracts, including telemetry against installed libraries and tiny real worker/refit, have not run for this port.",
+    "No automatic planner enrollment, Qwen loss prompt/routing, HPO change, quality gain, promotion or release is established."
+  ],
+  "quality_metric": null,
+  "promotion": false,
+  "automatic_submission": false,
+  "review_operations": "Read source/metadata, compute SHA256 and independently project/compare AST with Python stdlib only; did not import candidate/project, invoke tests/fixtures/build/model/API/Git or edit canonical sources."
+}

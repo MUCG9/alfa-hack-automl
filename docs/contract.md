@@ -39,3 +39,5 @@ All-inclusive wall and monotonic deadlines begin at invocation. Refit, final CSV
 verification and cleanup have explicit reserves. Unknown ownership, inaccessible
 process traversal, exceeded budgets and missing artifacts cannot become success.
 Existing frozen experiments keep their originally assigned clocks and inventories.
+
+The trusted strong-retention research opt-in preserves the complete control and raw unprofiled HPO SINGLE. Eligible regression uses seven initial slots: protected first5, the prior champion and the fixed .75 L1 SINGLE/.25 champion composite. It has no separate L1 candidate and is a declared admission tradeoff under max9, not free capacity or an exact old-search superset. Classification accepts control mode only. Both future paired arms must use the same task-specific admission policy; the normal CLI defaults remain unchanged.

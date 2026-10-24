@@ -37,3 +37,5 @@ sorted or rewritten to make a gate pass.
 Latest human instructions disable automatic submissions. Earlier separate checked
 research/dispatch Git publication authorization persists. Browser-origin access
 denial remains binding independently of this policy.
+
+The two new source ports have exact canonical normalized-byte and AST bindings to independently reviewed sources. Declared recipe source hashes are lineage fields, not independent proof of quality. Source-based minimum slices and structural fit upper bounds do not guarantee eight HPO attempts, successful confirmation, refit or a valid final CSV. Linux10 focused simulated/inert tests establish no live-network latency measurement; whole-campaign CPU/RSS remain unknown.

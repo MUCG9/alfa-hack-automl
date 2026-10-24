@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "status": "SOURCE_PORTS_CANONICAL_BOUND_NOT_RUNTIME_TESTED",
+  "entries": {
+    "LOSS6": {
+      "handoff_sha256": "22bc42fd196557b1b65e47c177f0e8d73ef2dbac7fded659880e81dc30dfc363",
+      "files": {
+        "src/automl/contracts/messages.py": {
+          "reviewed_original_raw_sha256": "2da59a8467632748d021d4169ddb3e3af4eac01a48a8dc2ab9207c4c7701652d",
+          "canonical_raw_sha256": "2da59a8467632748d021d4169ddb3e3af4eac01a48a8dc2ab9207c4c7701652d",
+          "normalized_bytes_equal": true,
+          "AST_equal": true
+        },
+        "src/automl/execution/api.py": {
+          "reviewed_original_raw_sha256": "1f07d02b386d1fdc348cce67d66b864d6b743191d2ca802cf58f7d9725fdbe17",
+          "canonical_raw_sha256": "1f07d02b386d1fdc348cce67d66b864d6b743191d2ca802cf58f7d9725fdbe17",
+          "normalized_bytes_equal": true,
+          "AST_equal": true
+        },
+        "src/automl/execution/model_adapters/lightgbm.py": {
+          "reviewed_original_raw_sha256": "cc773c5329a06a99c5d9567cf8c978f4fb0b21818ef21cd9ac1ba46bcd949856",
+          "canonical_raw_sha256": "cc773c5329a06a99c5d9567cf8c978f4fb0b21818ef21cd9ac1ba46bcd949856",
+          "normalized_bytes_equal": true,
+          "AST_equal": true
+        },
+        "src/automl/execution/model_adapters/registry.py": {
+          "reviewed_original_raw_sha256": "75b885e822186ab8c235e6638ee888ecaa918a50f7662dc8fc2892682d761045",
+          "canonical_raw_sha256": "75b885e822186ab8c235e6638ee888ecaa918a50f7662dc8fc2892682d761045",
+          "normalized_bytes_equal": true,
+          "AST_equal": true
+        },
+        "src/automl/execution/worker.py": {
+          "reviewed_original_raw_sha256": "de75742f1cdbe18bf1a1280d16637116cdf76f53a12cab53496df75f3fefb477",
+          "canonical_raw_sha256": "de75742f1cdbe18bf1a1280d16637116cdf76f53a12cab53496df75f3fefb477",
+          "normalized_bytes_equal": true,
+          "AST_equal": true
+        },
+        "src/automl/search/policy.py": {
+          "reviewed_original_raw_sha256": "8faf616caff90f7cdea4de9c4b5033ad22bd4ed1ac0dad3f0ca1d721f0759549",
+          "canonical_raw_sha256": "8faf616caff90f7cdea4de9c4b5033ad22bd4ed1ac0dad3f0ca1d721f0759549",
+          "normalized_bytes_equal": true,
+          "AST_equal": true
+        },
+        "tests/test_uar_loss_backend.py": {
+          "reviewed_original_raw_sha256": "527df3c37f629dce2455af0221f5f186ce2507f42a5f4da7ad78a695d50f40eb",
+          "canonical_raw_sha256": "6ebc360d737423625ab8edd230002dc6284bf018a961e8a53dc4624e8e0c3bb4",
+          "normalized_bytes_equal": true,
+          "AST_equal": true
+        }
+      },
+      "actual_tests": 0,
+      "fits": 0,
+      "API": 0
+    },
+    "retention": {
+      "handoff_sha256": "cf052647bfebd86605908f63cc789a0886630561f77a64b3af93cf40edfa3226",
+      "files": {
+        "src/automl/search/stages.py": {
+          "reviewed_original_raw_sha256": "9b3cd3e44d552b0426b286e515b0019970a211cf31f6b3d7ccf99e16e65480ad",
+          "canonical_raw_sha256": "9b3cd3e44d552b0426b286e515b0019970a211cf31f6b3d7ccf99e16e65480ad",
+          "normalized_bytes_equal": true,
+          "AST_equal": true
+        },
+        "src/automl/search/runner.py": {
+          "reviewed_original_raw_sha256": "63118d12c47cf3ca06cc1d6ac977d7804c3710276e52032e152013b6edb7be51",
+          "canonical_raw_sha256": "63118d12c47cf3ca06cc1d6ac977d7804c3710276e52032e152013b6edb7be51",
+          "normalized_bytes_equal": true,
+          "AST_equal": true
+        },
+        "tests/test_uar_strong_retention.py": {
+          "reviewed_original_raw_sha256": "fa141e4fb8d60585f86dde83c9bfca8c3bcc4325a8f90593bc7d55378d7ba6e8",
+          "canonical_raw_sha256": "fa141e4fb8d60585f86dde83c9bfca8c3bcc4325a8f90593bc7d55378d7ba6e8",
+          "normalized_bytes_equal": true,
+          "AST_equal": true
+        }
+      },
+      "actual_tests": 0,
+      "fits": 0,
+      "API": 0
+    }
+  },
+  "registry": {
+    "scripts": 56,
+    "expected_checks": 588,
+    "whole_suite_executed": false,
+    "registry_sha256": "cb009124a54d1e57ed50aa26833f7106214cb9911bc5515894dc90809c1898c8"
+  },
+  "canonical_retention_cherry_picks": [
+    "de77259",
+    "0801836"
+  ],
+  "actual_imports": 0,
+  "actual_tests": 0,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

@@ -44,3 +44,5 @@ failed atomic writes preserving the last result, malformed checkpoint schema,
 missing capabilities, strict process traversal denial, PID reuse and terminal or
 cleanup observations after the original deadline. Prepared cases are not passed
 cases until actual guarded execution and cleanup are recorded.
+
+The next combined technical gate must include all56registered source scripts/588expected checks, exact default23 repeated checks and explicit flat method mappings. LOSS has17source methods and16flat methods, prospectively excluding only the modular-source AST proof; retention requires all15 in both representations. No suite may disappear from the manifest and still qualify. Legacy synthetic fixtures may fit learners or contact local mock HTTP; total fixture-fit/API counts remain null unless instrumented. Technical counts, repeated counts, source equality and new ML metrics are recorded separately.

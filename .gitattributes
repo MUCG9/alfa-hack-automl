@@ -125,3 +125,6 @@ research/remote-experiments/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-a
 # Frozen focused-gate archives retain their recorded byte hashes.
 research/universal-agent-next/focused-gate-r1/** -text
 research/universal-agent-next/uar03-r1/** -text
+research/remote-experiments/sources/execution-r3-reviewed10/** -text
+research/remote-experiments/reviews/remote-port-10-source-r1.json -text
+research/universal-agent-next/combined-ports-r1/** -text

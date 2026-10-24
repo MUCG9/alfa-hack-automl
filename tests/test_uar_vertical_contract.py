@@ -123,6 +123,21 @@ class VerticalContractTests(unittest.TestCase):
                 self.assertTrue((c.root/'submission.csv').is_file());self.assertFalse(c.solve.called)
                 receipt=c.report();self.assertIsNone(receipt['metric_spec']['name']);self.assertIsNone(receipt['quality_metric'])
                 self.assertEqual(receipt['status'],'format_only_metric_unresolved');self.assertEqual(receipt['model_planner_API_calls'],0)
+        for changed in ['sample_header','task_metadata','dictionary_metadata']:
+            with self.subTest(prepublication_drift=changed),case(metric=None,dictionary=True) as c,patch.object(runner,'load_inputs',side_effect=AssertionError('full load')):
+                from automl.task_understanding import early_output
+                original=early_output.prepare_early_output
+                def drift(*args,**kwargs):
+                    if changed=='sample_header':
+                        rows(c.root/'answer-layout.csv',[['entity','other'],['a','0'],['b','0']])
+                    else:
+                        path=c.task if changed=='task_metadata' else c.root/'explicit-role-map.csv'
+                        path.write_text(path.read_text()+'\n',encoding='utf-8')
+                    return original(*args,**kwargs)
+                with patch.object(early_output,'prepare_early_output',side_effect=drift):
+                    with self.assertRaises(service.StrictTaskContractError):c.call()
+                self.assertFalse((c.root/'submission.csv').exists());self.assertFalse(c.solve.called)
+                self.assertFalse(c.report()['output_produced'])
 
     def test_unknown_format_and_multitarget_preserve_prior_bytes_without_fake_CSV(self):
         for text in ('The arbitrary prose says regression.','Targets: ["outcome", "other"]'):
@@ -132,6 +147,22 @@ class VerticalContractTests(unittest.TestCase):
                 with self.assertRaises(service.StrictTaskContractError):c.call()
                 self.assertEqual(output.read_bytes(),b'last-good-unvalidated-prior');self.assertFalse(c.report()['output_produced'])
                 self.assertIn(c.report()['format_status'],['unknown','ambiguous','multitarget']);self.assertFalse(c.solve.called)
+        for role,name in [('train','renamed-fit.csv'),('test','renamed-eval.csv'),
+                          ('sample','answer-layout.csv'),('dictionary','explicit-role-map.csv'),('task','task.md')]:
+            with self.subTest(overlap=role),case(dictionary=True) as c:
+                output=c.root/'submission.csv';(c.root/name).rename(output)
+                if role=='task':c.args.task=output
+                else:c.task.write_text(c.task.read_text().replace(name,'submission.csv'),encoding='utf-8')
+                protected=output.read_bytes()
+                with self.assertRaisesRegex(service.StrictTaskContractError,'publication_overlaps_declared_source'):c.call()
+                self.assertEqual(output.read_bytes(),protected);self.assertFalse(c.report()['output_produced']);self.assertFalse(c.solve.called)
+        with case() as c,patch.object(runner.os.path,'samestat',return_value=True):
+            output=c.root/'submission.csv';output.write_bytes(b'prior-output-distinct-path-same-filesystem-identity')
+            with self.assertRaisesRegex(service.StrictTaskContractError,'publication_overlaps_declared_source'):c.call()
+            self.assertEqual(output.read_bytes(),b'prior-output-distinct-path-same-filesystem-identity')
+        with case() as c,patch.object(Path,'is_symlink',lambda path:path.name=='submission.csv'):
+            with self.assertRaisesRegex(service.StrictTaskContractError,'publication_output_symlink'):c.call()
+            self.assertFalse((c.root/'submission.csv').exists());self.assertFalse(c.solve.called)
 
     def test_resolved_hooks_bypass_legacy_kind_and_metric_guesses(self):
         with case(metric='RMSE',extra_text='classification is only a diagnostic word here') as c:

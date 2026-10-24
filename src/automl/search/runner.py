@@ -394,6 +394,46 @@ def _publish_task_checkpoint(record,output,spec,sample,test):
     return checkpoint(record,output)
 
 
+def _check_contract_destination(root,task_path,declared,check):
+    from automl.task_understanding.service import StrictTaskContractError
+    check(); output=Path(root)/'submission.csv'
+    if output.is_symlink(): raise StrictTaskContractError('publication_output_symlink')
+    try: existing=output.stat()
+    except FileNotFoundError: existing=None
+    paths=[Path(task_path),*(Path(root)/p for p in declared.paths.values())]
+    dictionary=(declared.receipt or {}).get('dictionary_path')
+    if dictionary is not None: paths.append(Path(root)/dictionary)
+    for source in paths:
+        check(); source=source.resolve(strict=True)
+        if (output.resolve()==source or (existing is not None
+                and os.path.samestat(existing,source.stat()))):
+            raise StrictTaskContractError('publication_overlaps_declared_source')
+    check(); return output
+
+
+def _validate_early_output_binding(root,task_path,declared,early,limits,check):
+    from automl.task_understanding.service import StrictTaskContractError
+    check()
+    sample_sha=hashlib.sha256(json.dumps(list(early.sample.columns),ensure_ascii=False,
+        separators=(',',':')).encode('utf-8')).hexdigest()
+    if (sample_sha!=(declared.receipt or {}).get('header_sha256',{}).get('sample_submission')
+            or early.receipt.get('input_roles')!=declared.paths):
+        raise StrictTaskContractError('early_output_header_or_role_drift')
+    paths={'task':Path(task_path)}
+    expected={'task':declared.receipt['task_text_sha256']}
+    if paths['task'].stat().st_size>limits.max_task_bytes:
+        raise StrictTaskContractError('early_task_bytes_drift')
+    dictionary=declared.receipt.get('dictionary_path')
+    if dictionary is not None:
+        paths['dictionary']=Path(root)/dictionary
+        expected['dictionary']=declared.receipt['dictionary_metadata_sha256']
+        if paths['dictionary'].stat().st_size>limits.max_metadata_bytes:
+            raise StrictTaskContractError('early_dictionary_bytes_drift')
+    if _contract_fingerprints(paths,check)!=expected:
+        raise StrictTaskContractError('early_task_or_dictionary_drift')
+    check()
+
+
 def _strict_task_flow(args,budget):
     """Vertical explicit single-target contract, before legacy discovery/API work.
 
@@ -401,10 +441,10 @@ def _strict_task_flow(args,budget):
     existing later planner profile a fitting-only context. Unstructured prose,
     ranking and multitarget are deliberately not guessed into supported tasks.
     """
-    from automl.task_understanding.early_declaration import bootstrap_early_declaration
+    from automl.task_understanding.early_declaration import bootstrap_early_declaration,DeclarationLimits
     from automl.task_understanding.early_output import prepare_early_output
     from automl.task_understanding.service import StrictTaskContractError,validate_declared_inputs,_strict_objective
-    root=args.task.resolve().parent; resources=ResourceBudget()
+    root=args.task.resolve().parent; resources=ResourceBudget(); declaration_limits=DeclarationLimits()
     check=lambda:_task_contract_checkpoint(budget,resources,root)
     receipt_path=budget.trace.parent/'task-contract.json'
     receipt={'schema':'strict-task-contract-v1','status':'preparing','output_produced':False,
@@ -416,7 +456,7 @@ def _strict_task_flow(args,budget):
         receipt.update(updates); atomic_json(receipt_path,receipt)
     check(); record()
     try:
-        declared=bootstrap_early_declaration(args.task,checkpoint=check)
+        declared=bootstrap_early_declaration(args.task,checkpoint=check,limits=declaration_limits)
     except (ValueError,OSError) as exc:
         if isinstance(exc,TimeoutError): raise
         record(status='format_contract_invalid',error_type=type(exc).__name__)
@@ -426,6 +466,11 @@ def _strict_task_flow(args,budget):
         record(status='format_contract_unresolved',reason=declared.reason,
                final_fit_status='not_attempted_task_contract')
         raise StrictTaskContractError(declared.reason)
+    try:
+        output=_check_contract_destination(root,args.task,declared,check)
+    except ValueError as exc:
+        record(status='format_contract_unresolved',reason=str(exc),final_fit_status='not_attempted_task_contract')
+        raise
     try:
         early=prepare_early_output(root,declared.paths,declared.declaration,
             declared.task_text,checkpoint=check)
@@ -440,8 +485,10 @@ def _strict_task_flow(args,budget):
         raise StrictTaskContractError(early.reason)
     check()
     try:
+        _validate_early_output_binding(root,args.task,declared,early,declaration_limits,check)
         values=dummy_predictions(early.writer_spec,early.target_frame,len(early.test_ids))
-        check(); save_submission(early.writer_spec,early.sample,early.test_ids,values,root/'submission.csv')
+        check(); _check_contract_destination(root,args.task,declared,check)
+        save_submission(early.writer_spec,early.sample,early.test_ids,values,output)
     except ValueError as exc:
         record(status='fallback_publication_invalid',error_type=type(exc).__name__)
         raise StrictTaskContractError('fallback_publication_invalid') from exc

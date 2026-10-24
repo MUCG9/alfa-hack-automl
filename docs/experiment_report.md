@@ -43,6 +43,14 @@ original prepared files. Its exact compact binding was independently reconstruct
 on the primary host; private path/resource facts remain remote-reported. No Linux
 quality improvement has been measured yet.
 
+Linux bounded08 actually completed cut42 strong/linear/RBF and cut43 strong before
+the fifth slot hit `observation_gap_over_10s` during admission. The driver then hit
+the same check during finalization. Four completed slots report 12 successful
+learner calls; total fits remain unknown. The matrix and independent audit are
+incomplete, so all aggregate metrics remain null. Preserve the blocked attempt
+and sealed private artifacts. Synchronous Git admission without clock checkpoints
+is the source-supported hypothesis; network latency itself was not measured.
+
 UAR-v1 metric, publication, router and process patches passed 48 meaningful unit
 methods under one serial guarded lease. They are integrated as libraries; caller
 hooks remain pending. UAR01's initial full gate failed one legacy PID-identity test;
@@ -51,3 +59,8 @@ and the 71-member flat build inside the original 1,200-second clock. Root exit,
 closure and 5,044 fresh absences were verified; the original FAIL is preserved.
 No ML quality is attributed to those technical results. HPO cache is not integrated and
 measured savings remain zero.
+
+UAR02 focused IO/runtime tests passed 29/29 in one bootstrap recovery inside the
+original 600-second budget. Its initial relative-manifest launch failure remains
+FAIL. Exact source, exits and fresh cleanup were independently checked; no model
+fit or API call occurred. This is contract evidence, not new ML quality.

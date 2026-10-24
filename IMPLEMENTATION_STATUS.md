@@ -8,12 +8,12 @@ original failure remains recorded; V11/V16 classification is retained.
 | Work item | Actual state | Qualification still required |
 |---|---|---|
 | Task/metric contract | Strict opt-in `MetricSpec` and objective resolver prepared | 12 unit tests passed; module packaging and entrypoint wiring pending |
-| Publication | C01 commit `e638f568`: metric-aware fallback, unique atomic temporary files, optional validated checkpoint | 12 unit tests passed; earlier fallback ordering in entrypoint pending |
+| Publication | C01 atomic writer and IO02 bounded output projections | 12 writer tests and 15 projection tests passed; trusted declaration/bootstrap and earlier entrypoint ordering pending |
 | Model portfolio | M01 commit `978bf40e`: typed pure family router | 12 unit tests passed; opt-in wiring and matched ML experiment pending |
-| Process observation | E01 strict observation patch, constructor-cost and survivor repairs integrated | 12 mocked failure tests passed; caller opt-in and denial propagation pending |
+| Process observation | E01 library and RUN02 trusted CLI opt-in, default OFF | 12 observation tests and 14 caller contracts passed; real task/CLI qualification pending |
 | Idea registry | Exactly 150 source IDs, root-owned | Per-idea implementation and evidence; registry presence is not implementation |
 | Parallel development | Four actual native agent slots, three isolated branches/worktrees | Cross-review and serial resource-leased execution |
-| Linux coordination | Source packets 05 and 07 received; four native-reference checks reported PASS, no model fits yet | Independent exact packet review and same-worker approval, then separately bounded six-job class experiment |
+| Linux coordination | Bounded08 completed four slots, then failed a clock-gap check before slot five; no qualified metrics | Preserve all artifacts/errors and independently review a narrow cooperative Git-admission repair |
 | Platform release | Historical V11/V16 retained | New generic ZIP, both standard CLI tasks, refit/CSV and clean-platform gates |
 
 The registry currently has 144 planned, four library implementations, one deferred
@@ -29,6 +29,14 @@ passed all 499 checks across 50 scripts and built the 71-member flat archive.
 Actual exit, root closure and fresh absence of 5,044 known identities were verified.
 The first failure remains recorded. These technical results do not establish ML
 improvement or a standard-CLI release.
+
+UAR02's first launch failed before any candidate test because a relative manifest
+was forwarded into a different child working directory. One bootstrap recovery
+passed all **29** IO02/RUN02 contracts in 4.015 seconds, inside the original
+600-second clock including the failure, repair and publication. Root exit, closure
+and 5,060 fresh absences were verified; the original FAIL remains recorded. The full
+registry now contains 528 checks across 52 scripts; that whole updated set has not
+yet been run together.
 
 Automatic submissions are disabled by the latest user specification. Existing
 authorization to publish checked research and dispatch changes remains in effect.

@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "receipt_sha256": "4d3e23389dca8ce737936f2091836dbc0f98da23c52dcaf282fa421fc698f891",
+  "status": "Source-only task review accepted; future code/ML approval remains separate",
+  "actual_reviewer_execution": {
+    "imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API": 0
+  },
+  "original08_failed_preserved": true,
+  "quality_promotion": false
+}

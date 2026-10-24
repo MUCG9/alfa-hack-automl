@@ -1,0 +1,89 @@
+{
+  "schema": "BRQ3-standard-archive-technical-contracts-admission-v1",
+  "status": "RUNNING_STANDARD_REGRESSION_AFTER_ALL81_CONTRACTS",
+  "actual_session": 37018,
+  "actual_launch_tool": "1c3d04",
+  "actual_last_poll_tool": "af5557",
+  "actual_whole_exit": null,
+  "original_clock": {
+    "start_unix": 1792849529.7788615,
+    "start_monotonic": 108535.046,
+    "absolute_deadline_unix": 1792855529.7788615,
+    "common_deadline_monotonic": 114535.046
+  },
+  "original_common_seconds": 6000,
+  "contracts": [
+    {
+      "name": "source-contracts",
+      "actual_unittest_count": 18,
+      "actual_exit_code": 0,
+      "status": "ok",
+      "cleanup_confirmed": true,
+      "supervisor_sha256": "21942e4a76eb7ea31ae658a57a3b3e4b155c4d73e9d7a36e8a62af6f72e4cbcd",
+      "seconds": 2.3910000000032596
+    },
+    {
+      "name": "flat-contracts",
+      "actual_unittest_count": 18,
+      "actual_exit_code": 0,
+      "status": "ok",
+      "cleanup_confirmed": true,
+      "supervisor_sha256": "5fb30ab9e14402d056d5cfc88d46629036df339ccf6309c57e680461b886566b",
+      "seconds": 2.125
+    },
+    {
+      "name": "caller-contracts",
+      "actual_unittest_count": 15,
+      "actual_exit_code": 0,
+      "status": "ok",
+      "cleanup_confirmed": true,
+      "supervisor_sha256": "f8d42cdab2395e1d42c8d599f22698889df686cb186a002e4fb2acf54ff339f0",
+      "seconds": 1.5310000000026776
+    },
+    {
+      "name": "sampler-source-contracts",
+      "actual_unittest_count": 14,
+      "actual_exit_code": 0,
+      "status": "ok",
+      "cleanup_confirmed": true,
+      "supervisor_sha256": "b96285f2a985f62ee4d541a3b2ad57984b5067642a8c414f0e8587f2bf8cb984",
+      "seconds": 0.7810000000026776
+    },
+    {
+      "name": "sampler-flat-contracts",
+      "actual_unittest_count": 14,
+      "actual_exit_code": 0,
+      "status": "ok",
+      "cleanup_confirmed": true,
+      "supervisor_sha256": "9b3b32c2342721f0c20dbd3bc24f4a6d0a98454fd450f48444bd649bf871adff",
+      "seconds": 0.7970000000059372
+    },
+    {
+      "name": "consumer-source-contracts",
+      "actual_unittest_count": 1,
+      "actual_exit_code": 0,
+      "status": "ok",
+      "cleanup_confirmed": true,
+      "supervisor_sha256": "1c4032e4b790dbe6b9b5c910a484598de9dfa17177ec863a2d6413ddb7446990",
+      "seconds": 0.9539999999979045
+    },
+    {
+      "name": "consumer-flat-contracts",
+      "actual_unittest_count": 1,
+      "actual_exit_code": 0,
+      "status": "ok",
+      "cleanup_confirmed": true,
+      "supervisor_sha256": "7fdd22e054b5685064292d2d3aa66cdc19bc3ca94c07bdd17a504ce7994cf13a",
+      "seconds": 0.9850000000005821
+    }
+  ],
+  "actual_contract_executions": 81,
+  "archive_sha256": "c7b54a8996e36dfaaf582b104d1f38ecca71d91d4f38362ed50775381f42f930",
+  "archive_members": 74,
+  "manifest_sha256": "3ee656535bfb61813ce9f288d4ddf45eaa2bc9b2a3433ae23b0c3182215f611e",
+  "source_publication": "eb915696c57e339409d285d75abb112e06c64a06",
+  "new_independent_archive_metrics": null,
+  "ready_archive": null,
+  "limits": "Technical contracts PASS do not qualify ML metrics or archive readiness. Whole actual exit, fixed artifact audit, frozen closer and fresh root/source/temp cleanup remain required.",
+  "old_failures_preserved": true
+}

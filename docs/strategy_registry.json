@@ -2843,15 +2843,14 @@
   ],
   "library_source_revision": "108efd4",
   "current_UAR_source_snapshot": {
-    "status": "R3_CANONICAL_INTEGRATED_NEW_FULL_GATE_PENDING",
-    "hpo_sha256": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
-    "scripts": 59,
-    "expected_source_checks": 634,
-    "expected_flat": 73,
-    "expected_exact": 23,
-    "expected_mapped": 104,
-    "actual_R3_runtime_tests": 0,
-    "current_full_PASS": false
+    "status": "CURRENT_FULL_PASS_UAR09",
+    "source_scripts": 59,
+    "source_unique_checks": 634,
+    "exact_repeated_checks": 23,
+    "mapped_repeated_checks": 104,
+    "flat_members": 73,
+    "root_sha256": "74e2c87c7f6cfb421bd6f62ac366f3a9d9fb3418504960f36549fe249f356e59",
+    "quality_metric": null
   },
   "UAR04_closed_technical_failure": {
     "schema": 1,
@@ -3692,5 +3691,96 @@
       "tests_byte_unchanged": true,
       "new_full_gate_pending": true
     }
+  },
+  "UAR09_current_full_qualification": {
+    "schema": "uar09-current-full-qualification-public-summary-v1",
+    "status": "PASS",
+    "actual_gate_exec": {
+      "session": 45314,
+      "exit_code": 0,
+      "tool": "325fe5"
+    },
+    "actual_closer_exec": {
+      "session": null,
+      "exit_code": 0,
+      "tool": "339541"
+    },
+    "source_handoff_sha256": "6c0a98aa916a66a7f76af91eb47647b99efceec4d6dc49bec19c922276feaf29",
+    "private_manifest_sha256": "ac801e25c84719e7966290327d3c905c9f9e8491ce1326c30c2925a56ef90cab",
+    "campaign_sha256": "782d78ca9561743ad1d53932443db1d885c69d269a84095d07837f280584df7b",
+    "root_sha256": "74e2c87c7f6cfb421bd6f62ac366f3a9d9fb3418504960f36549fe249f356e59",
+    "root_confirmation_sha256": "7a7707b2ba2e3ad6568152e718f12d4e1264e32238d72ed8584db43118cd0a87",
+    "fresh_confirmation_actual_tool": "e7b72c",
+    "source_archive_sha256": "efcce84cd0ce0648c73e1d0f152fc1073a22b8f1ca0b4e24fafd70fb6cca2737",
+    "candidate_manifest_sha256": "02dd7e7a75feedabeb4d5dba177a8671c10e36f5d2e1749fc036a11e791e2ca9",
+    "qualified_checks": {
+      "source_scripts": 59,
+      "source_unique_checks": 634,
+      "exact_repeated_checks": 23,
+      "mapped_repeated_checks": 104,
+      "flat_members": 73,
+      "fixture_learner_fits": null,
+      "fixture_fit_count_reason": "broad_legacy_fixtures_uninstrumented_not_zero",
+      "external_API_calls": null,
+      "external_API_usage_reason": "no_external_calls_intended_not_independently_instrumented",
+      "local_mock_HTTP_permitted": true,
+      "public_experiment_fits": 0,
+      "quality_metric": null
+    },
+    "original_clock": {
+      "start_unix": 1792836816.9709184,
+      "start_monotonic": 95822.234,
+      "absolute_deadline_unix": 1792838016.9709184,
+      "common_deadline_monotonic": 97022.234,
+      "common_seconds": 1200
+    },
+    "actual_campaign_seconds": 388.89100000000326,
+    "elapsed_through_fresh_seconds": 490.93404483795166,
+    "cleanup_confirmed": true,
+    "source_unchanged": true,
+    "temporary_cleanup_confirmed": true,
+    "known_identity_count": 7066,
+    "known_exact_live": 0,
+    "known_uncertain": 0,
+    "first_failure": null,
+    "quality_metric": null,
+    "ML_quality_qualified": false,
+    "promotion": false,
+    "submit": false,
+    "historical_UAR08_UQ2_FAILURES_UNCHANGED": true,
+    "fixture_recursive_fit_count": null,
+    "fixture_external_API_count": null,
+    "public_experiment_fits": 0,
+    "limits": "Technical fixture qualification; no new ML metric or demonstrated scheduling savings. Uninstrumented broad fixture fit/API totals remain unknown, not zero."
+  },
+  "UQ3_actual_ready": {
+    "schema": "uq3-root-actual-ready-review-v1",
+    "status": "ROOT_READY_FOR_ONE_NEW_COMMON10800_REAL_QWEN_LAUNCH_AFTER_PUBLICATION_AND_FRESH_UNION",
+    "binding_sha256": "a03bfd696bf9a1fbfcd015d3fa351312ab22b535c2395161fda31e76b2c73128",
+    "builder_source_sha256": "c323ef4b793960b94f0fff1db83525dfe85b9bb91aaf703093b4758160520581",
+    "builder_source_peer_sha256": "7a830766e91a77602c054482c352b6276e61570ddc6874cc04c3e85605d4b613",
+    "root_source_review_tools": [
+      "16af03",
+      "339a3f"
+    ],
+    "metadata_actual_exit": 0,
+    "metadata_actual_tool": "c70885",
+    "metadata_preparer_identity": null,
+    "metadata_preparer_limit": "Not captured for this stdlib-only, child-free binding write; observed direct exit0 is retained without retroactive identity qualification.",
+    "root_binding_read_tool": "60e195",
+    "source_gate_root_sha256": "74e2c87c7f6cfb421bd6f62ac366f3a9d9fb3418504960f36549fe249f356e59",
+    "source_gate_fresh_confirmation_sha256": "7a7707b2ba2e3ad6568152e718f12d4e1264e32238d72ed8584db43118cd0a87",
+    "authority_handoff_sha256": "2a2145d87d6ac08e0ad72927608509e715e0e5a83d11d86341de15afc0a5e8e3",
+    "source_archive_sha256": "efcce84cd0ce0648c73e1d0f152fc1073a22b8f1ca0b4e24fafd70fb6cca2737",
+    "provider_preflight_actual_tool": "77b4e2",
+    "provider_preflight_ready": true,
+    "preflight_API_calls": 0,
+    "clock": null,
+    "actual_run": null,
+    "prepared_inert_contracts": 6,
+    "inert_contracts_executed": 0,
+    "quality_metric": null,
+    "promotion": false,
+    "submit": false
   }
 }

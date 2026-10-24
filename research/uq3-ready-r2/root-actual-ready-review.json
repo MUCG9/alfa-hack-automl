@@ -1,0 +1,30 @@
+{
+  "schema": "uq3-root-actual-ready-review-v1",
+  "status": "ROOT_READY_FOR_ONE_NEW_COMMON10800_REAL_QWEN_LAUNCH_AFTER_PUBLICATION_AND_FRESH_UNION",
+  "binding_sha256": "a03bfd696bf9a1fbfcd015d3fa351312ab22b535c2395161fda31e76b2c73128",
+  "builder_source_sha256": "c323ef4b793960b94f0fff1db83525dfe85b9bb91aaf703093b4758160520581",
+  "builder_source_peer_sha256": "7a830766e91a77602c054482c352b6276e61570ddc6874cc04c3e85605d4b613",
+  "root_source_review_tools": [
+    "16af03",
+    "339a3f"
+  ],
+  "metadata_actual_exit": 0,
+  "metadata_actual_tool": "c70885",
+  "metadata_preparer_identity": null,
+  "metadata_preparer_limit": "Not captured for this stdlib-only, child-free binding write; observed direct exit0 is retained without retroactive identity qualification.",
+  "root_binding_read_tool": "60e195",
+  "source_gate_root_sha256": "74e2c87c7f6cfb421bd6f62ac366f3a9d9fb3418504960f36549fe249f356e59",
+  "source_gate_fresh_confirmation_sha256": "7a7707b2ba2e3ad6568152e718f12d4e1264e32238d72ed8584db43118cd0a87",
+  "authority_handoff_sha256": "2a2145d87d6ac08e0ad72927608509e715e0e5a83d11d86341de15afc0a5e8e3",
+  "source_archive_sha256": "efcce84cd0ce0648c73e1d0f152fc1073a22b8f1ca0b4e24fafd70fb6cca2737",
+  "provider_preflight_actual_tool": "77b4e2",
+  "provider_preflight_ready": true,
+  "preflight_API_calls": 0,
+  "clock": null,
+  "actual_run": null,
+  "prepared_inert_contracts": 6,
+  "inert_contracts_executed": 0,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

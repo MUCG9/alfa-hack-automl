@@ -1,7 +1,7 @@
 # UAR-v1 contract
 
 <!-- CURRENT_UAR_OBSERVATION_BEGIN -->
-Current observation: UQ2 remains closed FAIL with separately confirmed current cleanup. UAR08 executed all 59 source suites/634 checks: 58 suites/616 checks passed; the new HPO suite executed 18 tests with 17 passing and one error. It correctly found a missing local json import in the guarded diagnostic branch. The run and closer completed negative with current cleanup/source confirmed and 6,649 known identities absent. Build, exact and mapped stages were not attempted. Reviewed R3 adds that one import while retaining every test and assertion; a new complete UAR09 gate is required for the changed runtime. No new ML score or promotion is available. Prior research RMSE 34.155023394837 and historical classification MacroF1 0.6593178433614652 remain retained. Linux stays paused.
+Current observation: UAR09 completed a fresh full qualification: all 59 source suites/634 checks, 23 exact checks, 104 mapped checks and the 73-member archive passed. Driver and root closer exited0; source integrity, temporary cleanup and 7,066 known local identities absent were confirmed under the original1200-second clock. The one-line R3 diagnostic import fix preserves every HPO assertion. UQ2 and UAR08 remain closed FAIL. Actual UQ3 source/authority/archive binding and provider preflight are ready for one new measured Qwen run; its clock and models are not started yet. No new ML quality result or promotion is available. Retained references: research RMSE34.155023394837 and historical classification MacroF1.6593178433614652. Linux remains paused.
 <!-- CURRENT_UAR_OBSERVATION_END -->
 
 This is the target contract for the new integration, not an attestation that every

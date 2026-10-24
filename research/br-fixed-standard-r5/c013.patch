@@ -1,0 +1,77 @@
+--- frozen-controller-r4/artifact_audit.py
++++ controller-r5/artifact_audit.py
+@@ -4,7 +4,7 @@
+ 
+ PACKET=Path(__file__).resolve().parent
+ WORK=PACKET.parents[1]
+-OUT=WORK/'brq2'
++OUT=WORK/'brq3'
+ R4=('uq3-cadence-hpo-next-dev/candidate/r4_adapter.py','823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd')
+ LOSS=('uq3-cadence-hpo-next-dev/candidate/audit_pair.py','f58a17c218ca89461c3c97c3498d197fa105b5a8ea0b240b26b232b12badf7ff')
+ 
+@@ -48,6 +48,56 @@
+             witness=lexical_witness(path,columns)
+             need(all(frame[c].tolist()==witness[c] for c in columns),'declared_class_lexical_drift')
+         return frame
++
++def verified_terminal(record):
++    """Only the new exact-known departure variant needs this typed bridge.
++
++    Original two statuses retain their existing predicate. The new branch is
++    bound to parent-captured worker/self identities and completed strict cleanup.
++    A departed old identity has unknown RSS, never a measured zero.
++    """
++    terminal=record.get('terminal_resource_observation',{})
++    if terminal.get('status') in {'sampled_before_terminal_acceptance','root_absent_after_observed_exit'}:return True
++    if terminal.get('status')!='fresh_known_root_departed_after_observed_exit':return False
++    def identity(row):
++        if (type(row) is not dict or type(row.get('pid')) is not int or row['pid']<=0
++            or type(row.get('create_time')) not in (int,float) or not math.isfinite(row['create_time'])
++            or row['create_time']<=0):return None
++        return row['pid'],row['create_time']
++    sample=record.get('verified_resource_sample');root=identity(record.get('worker_resource_root'));own=identity(record.get('worker_resource_self'))
++    if (root is None or own is None or root==own or type(sample) is not dict
++        or sample.get('schema')!='verified-known-resource-sample-v1'
++        or type(sample.get('sampled')) is not list or type(sample.get('departed')) is not list
++        or len(sample['sampled'])+len(sample['departed'])>30000
++        or type(sample.get('required_count')) is not int or sample['required_count']!=1
++        or type(sample.get('sampled_count')) is not int or sample['sampled_count']!=len(sample['sampled'])
++        or type(sample.get('known_count')) is not int or sample['known_count']<len(sample['sampled'])+len(sample['departed'])
++        or sample.get('scope')!='sampled_stable_known_RSS_not_OS_lifetime_peak'
++        or record.get('parent_observed_worker_exit_code')!=0 or type(record.get('parent_observed_worker_exit_code')) is not int
++        or record.get('cleanup_confirmed') is not True
++        or terminal.get('worker_root_rss_bytes') is not None
++        or terminal.get('remaining_owned_cleanup_still_required') is not True
++        or terminal.get('departed')!=sample['departed']):return False
++    sampled={};departed={}
++    for row in sample['sampled']:
++        key=identity(row)
++        if key is None or key in sampled or type(row.get('rss_bytes')) is not int or row['rss_bytes']<0:return False
++        sampled[key]=row['rss_bytes']
++    for row in sample['departed']:
++        key=identity(row)
++        if key is None or key in departed or key in sampled or row.get('rss_bytes') is not None:return False
++        replacement=row.get('replacement_create_time')
++        if row.get('state')=='fresh_confirmed_absent':
++            if replacement is not None:return False
++        elif row.get('state')=='fresh_confirmed_reused':
++            if type(replacement) not in (int,float) or not math.isfinite(replacement) or replacement<=0 or replacement==key[1]:return False
++        else:return False
++        departed[key]=row
++    if root not in departed or root in sampled or own not in sampled:return False
++    worker_rss=sum(value for key,value in sampled.items() if key!=own)
++    return (type(terminal.get('sampled_known_worker_rss_bytes')) is int
++        and terminal['sampled_known_worker_rss_bytes']==worker_rss
++        and worker_rss<=1536*2**20 and worker_rss+sampled[own]<=2048*2**20)
+ 
+ def main():
+     p=argparse.ArgumentParser(description=__doc__)
+@@ -161,7 +211,7 @@
+                 and record.get('whole_memory_limit_bytes')==2048*2**20
+                 and record.get('observed_worker_tree_peak_bytes',float('inf'))<=1536*2**20
+                 and record.get('observed_combined_peak_bytes',float('inf'))<=2048*2**20
+-                and terminal.get('status') in {'sampled_before_terminal_acceptance','root_absent_after_observed_exit'}
++                and verified_terminal(record)
+                 and all(receipt.get(key)==intrinsic[key] for key in
+                     ('start_unix','start_monotonic','deadline_unix','deadline_monotonic'))
+                 and receipt.get('actual_failure_type') is None,'strict_worker_terminal_caps_cleanup_or_original_clock_failed')

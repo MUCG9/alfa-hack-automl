@@ -1,0 +1,39 @@
+Fixed standard candidate R4 — SOURCE ONLY / NOT READY
+
+Only root-authorized verified resource observation integration from exact R3.
+Runtime74 flat code/requirements members; two old members changed (resources,
+release runtime), one new pure verified sampler; other71 byte-exact R3. Numerical
+worker/adapters/features/recipes/cuts/refit/metric/lexical data semantics and original
+requirements are unchanged. Archive/hash are NEW and inherit no6af qualification
+or historical Br/V16 metric. Original BRQ1/BRQ2 failures and old clocks remain.
+
+Plain future command remains python3 solution.py task.md, no external JSON or
+research flags; no Qwen/HPO/search claim. Fresh two cut trees, then recursive median
+full refit, canonical CSV and protected paths remain the same reviewed procedure.
+
+Portable sampler is byte-exact separately frozen verified-resource-sampling-next-dev.
+It has14 prepared mock methods,0run. Existing executor18 test bytes (including R3
+stdout capture and complete JSON assertion) are exact. No assertions/counter loosened.
+All14 sampler methods are flat-applicable with only the import alias rewrite.
+
+ResourceBudget.inspect default branch remains the exact original AST; ONLY fixed
+caller and strictworker instances configure the verified branch. Fresh before/after
+PID birth + RSS and original clock-only callbacks bound every observation/confirmation.
+A known NoSuchProcess is excluded only after NEW absent/different-birth confirmation;
+same identity still present, denial, unknown metadata or clock failure is sticky STOP.
+Self is mandatory. Departed current RSS staysNULL, history/prior peaks retained.
+Caller .25 actual-success cadence and sticky10s gap/original wall+mono deadline never
+advance on skipped/failing samples. Child also checks original local deadline.
+Caps1536MiB worker/2048MiB combined unchanged; inherited caller self double-count
+remains explicitly conservative, not exact OS lifetime or whole-campaign RSS.
+
+Resource-observed exact owned descendants are retained by existing strict ProcessTree
+before finally cleanup, with sampler self excluded; every signal still requires its
+original fresh birth verification. No shared process helper/guard is modified.
+
+No candidate imports/tests/fixtures/fits/API/data/PID scan/clock/Git/canonical edits
+were performed by author. Actual standard calls, independent R4 metrics, final root
+closure and READY remainNULL. Root must review all final sources and actual closed
+predecessor, admit a NEW prospective guarded qualifier, run14+18 meaningful technical
+contracts, then two standard calls and independent saved-artifact audit. No automatic
+upload/submit. A separate current negative closure never relabels old BRQ2 flags.

@@ -1,0 +1,88 @@
+--- immutable43be
++++ verified-copy
+@@ -22,7 +22,9 @@
+ import zipfile
+ 
+ sys.dont_write_bytecode = True
+-WORK = Path(__file__).resolve().parent
++WORK = Path(__file__).resolve().parent.parent
++RESOURCE_SAMPLER = 'verified-resource-sampling-next-dev/verified_sampling.py'
++RESOURCE_SAMPLER_SHA = 'd65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0'
+ COMMON, FINAL, TASK_AUDIT, CLEANUP = 10800, 300, 60, 30
+ CLASS_MIN, CLASS_MAX, REG_PARENT = 6000, 8200, 2100
+ PRIOR = 'm2packet/t5-terminal-closure.json'
+@@ -235,6 +237,10 @@
+     observer = owner.StrictOwnedObserver()
+     verified = False
+     end = parent_start+parent_seconds
++    def resource_checkpoint():
++        # Existing caller observation history/common/parent clocks, never reset.
++        state['_pulse'](); clock(deadline, unix)
++        need(time.monotonic() < end, 'parent_cap_exhausted')
+     record = dict(status='starting', kind=name, start_unix=time.time(),
+         start_monotonic=parent_start, parent_cap_seconds=parent_seconds,
+         solver_budget_seconds=solver_seconds, child_cap_seconds=child_seconds,
+@@ -248,6 +254,12 @@
+     last = last_guard = time.monotonic()
+     try:
+         frozen(end, 'parent_cap_exhausted'); clock(deadline, unix)
++        need(sha(local(RESOURCE_SAMPLER), resource_checkpoint) == RESOURCE_SAMPLER_SHA,
++             'verified_resource_sampler_source_changed')
++        sampling = imported('_verified_supervision_sampling', local(RESOURCE_SAMPLER))
++        resource_sampler = sampling.VerifiedResourceSampler()
++        me = psutil.Process(); self_identity = (me.pid, me.create_time())
++        bootstrap_identities = identities(bootstraps)
+         env = environment(receipt.parent/('env-'+name), solver_seconds is not None, state['_manifest'])
+         need(deadline-time.monotonic() >= reserve-(time.monotonic()-parent_start),
+              'full_remaining_common_reserve_unavailable')
+@@ -273,19 +285,29 @@
+                 state['_pulse']()
+                 live = observer.observe(); tree.members.update(live)
+                 need(not observer.denials, 'owned_identity_or_traversal_denied')
+-                parents, memory, roles = {}, {}, {}
++                sample = resource_sampler.sample(set(live) | bootstrap_identities | {self_identity},
++                    required=[self_identity], checkpoint=resource_checkpoint)
++                stable_rss = {(row['pid'], row['create_time']): row['rss_bytes'] for row in sample['sampled']}
++                parents, memory, roles = {}, {i:stable_rss[i] for i in live if i in stable_rss}, {}
+                 for identity, process in live.items():
++                    if identity not in stable_rss: continue  # Explicit freshly confirmed departed identity.
+                     try:
++                        resource_checkpoint()
+                         need(process.create_time() == identity[1], 'owned_identity_changed')
+-                        memory[identity] = process.memory_info().rss
+                         parents[identity[0]] = process.ppid()
+                         argv = process.cmdline()  # Only exact owned processes; never saved.
++                        need(process.create_time() == identity[1], 'owned_identity_changed')
++                        resource_checkpoint()
+                         if any(Path(x).name in {'automl_worker.py', 'agent_worker.py'} for x in argv):
+                             job = Path(argv[-1]).resolve()
+                             need(job.is_relative_to(WORK), 'owned_worker_job_outside_work')
+                             roles[identity] = job
+                     except psutil.NoSuchProcess:
++                        resource_sampler.confirm_departed(identity, checkpoint=resource_checkpoint)
++                        # Keep already verified RSS/PPID conservatively, as the original loop did.
+                         continue
++                record['verified_resource_sample'] = sample
++                record['departed_known_resource_identities'] = list(resource_sampler.departed)
+                 logical = []
+                 for identity, job in roles.items():
+                     ancestors, cursor = set(), parents.get(identity[0])
+@@ -325,13 +347,11 @@
+                                 hpo_full_budget_observed=window >= reserve_export+requested_hpo+30,
+                                 hpo_usable_remaining_lower_bound_seconds=max(0., window-reserve_export-30),
+                                 hpo_window_definition='Raw remaining solver clock at first observed HPO worker; compare with actual export reserve plus requested HPO plus30')
+-                total = psutil.Process().memory_info().rss+sum(memory.values())
+-                for saved in bootstraps:
+-                    try:
+-                        p = psutil.Process(saved['pid'])
+-                        if p.create_time() == saved['create_time']: total += p.memory_info().rss
+-                    except psutil.NoSuchProcess:
+-                        pass
++                # Preserve the original conservative self + tree + bootstrap sum,
++                # including any overlap; departed rows are provenance, never invented RSS0.
++                total = stable_rss[self_identity]+sum(memory.values())
++                for identity in bootstrap_identities:
++                    if identity in stable_rss: total += stable_rss[identity]
+                 need(total <= 2*2**30, 'whole_owned_tree_memory_limit')
+                 record['peak_owned_tree_rss_mib'] = max(record['peak_owned_tree_rss_mib'], total/2**20)
+                 now = time.monotonic(); clock(deadline, unix)

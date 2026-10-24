@@ -1,0 +1,108 @@
+{
+  "schema": "br-fixed-standard-verified-sampling-source-proof-v4",
+  "root_scope_sha256": "a00ea96ff2455ad80d640f20f7da071288dffd7f18401058a6f14e35d4458f0e",
+  "sampler_handoff_sha256": "86859fe9596d672373e76edc56d6fc89c88c956952c2ed88ded15a6ea7e0076c",
+  "sampler_source_sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+  "primitive_flat_member_byte_exact_separately_frozen_source": true,
+  "all_original_R3_88_files_and_handoff_unchanged": true,
+  "changed_existing_runtime_members": [
+    "automl_infrastructure_resources.py",
+    "automl_release_runtime.py"
+  ],
+  "new_runtime_members": [
+    "automl_verified_resource_sampling.py"
+  ],
+  "other71_R3_members_byte_exact": true,
+  "archive_members": 74,
+  "ResourceBudget_default_OFF_entire_module_AST_inverse_exact_R3": true,
+  "strict_cleanup_AST_exact_R3": true,
+  "model_worker_tables_recipes_transforms_metric_modules_requirements_byte_exact_R3": true,
+  "source18_test_bytes_exact_R3": true,
+  "stdout_capture_fix_exact_R3": true,
+  "resource_scope_only": [
+    "Original ResourceBudget.inspect remains default and AST-identical after removing verified opt-in branch/new method",
+    "Fixed ReleaseClock configures only verified sampling; original clock-only checks wrap discovery/fresh confirmation without sampling recursion or last-success timestamp reset",
+    "Strict worker configures same primitive with exact tracked root + original caller self and local/common clock checkpoints; typed uncertainty propagates through owned cleanup",
+    "Exact resource-observed owned descendants retained in existing strict ProcessTree for fresh birth-checked cleanup; sampler self excluded",
+    "Caps1536/2048, conservative self double-count and sampled-memory scope retained; current departed root RSS nullable, not fabricated0"
+  ],
+  "prepared_executor_methods18": [
+    {
+      "method": "FixedReleaseContracts.test_exact_embedded_raw_recipes_and_outer_component_geometry",
+      "AST_sha256": "6de9fda270a7d46a56da3cbbe5597463255b729d13d20ed88487f04c33bac8be"
+    },
+    {
+      "method": "FixedReleaseContracts.test_routing_uses_only_supported_kind_metric_not_schema_names",
+      "AST_sha256": "1ad10b75df9b921a08cfee48eeabe5743ca045049097afecb3563a5c6a2b415f"
+    },
+    {
+      "method": "FixedReleaseContracts.test_unknown_incompatible_metric_and_text_do_not_get_wrong_recipe",
+      "AST_sha256": "18c87fc4b341f89a38d19afbef64067e24c8b61ebf858d1472576eb550368bb9"
+    },
+    {
+      "method": "FixedReleaseContracts.test_fixed_recipe_returns_independent_copies",
+      "AST_sha256": "5f9df044504358796a96d26aef9c5ea1bfc45ff415bcada9e0ad15319e2a04e2"
+    },
+    {
+      "method": "FixedReleaseContracts.test_actual_cut_iterations_not_historical_tree_feed_only_full_refit",
+      "AST_sha256": "c15063d679071a61f9e0067c38a83c12e4fd1f8c9db0504d5e23862ca64561d2"
+    },
+    {
+      "method": "FixedReleaseContracts.test_recursive_actual_median_and_malformed_trees",
+      "AST_sha256": "333754d596d89b5fbd39ddaf4914a32eb5e2210795c421abb8b45d5b51204be0"
+    },
+    {
+      "method": "FixedReleaseContracts.test_lexical_ID_preserves_numeric_regression_target_and_predictor_parsing",
+      "AST_sha256": "4a8c98ba91843f0c34fd8fb7f3addf95e2388a6a1d2f8a442ae322f3cdc8be0d"
+    },
+    {
+      "method": "FixedReleaseContracts.test_worker_lexical_class_labels_and_sample_IDs",
+      "AST_sha256": "6e278d95607f7e8d9a8d8a1e725258dba2e80cb43176c42831822702979a2fc8"
+    },
+    {
+      "method": "FixedReleaseContracts.test_missing_declared_target_role_stops_before_discovery_or_fit",
+      "AST_sha256": "eeeaa7b2cb5bf1042dec7923eb376ac0b31d6c27bc4bcf7bb9cf8ae5c03d3172"
+    },
+    {
+      "method": "FixedReleaseContracts.test_renamed_paths_and_lexical_sample_order_use_declared_roles",
+      "AST_sha256": "3fe0bc77a97cb0f3431a42eb140ce2a57e0be13afb224d9e5bb07f1e29e7fbcd"
+    },
+    {
+      "method": "FixedReleaseContracts.test_strict_original_metric_contrast_unknown_and_conflicts",
+      "AST_sha256": "56294e7d373cd6d744062582ee51e378583c92749f60c601a414384f4bf2caf4"
+    },
+    {
+      "method": "FixedReleaseContracts.test_publication_preserves_lexical_IDs_canonical_labels_and_sample_order",
+      "AST_sha256": "abd1917f8041c09b3c410161462cd78d0618260aae36c553b71d07f61a018d55"
+    },
+    {
+      "method": "FixedReleaseContracts.test_bad_probability_order_and_nonfinite_values_cannot_publish",
+      "AST_sha256": "495ed46a41cde30b509d75e7d7e12ef9ef89e7465e12b9fe169fdb9a0b3419f7"
+    },
+    {
+      "method": "FixedReleaseContracts.test_strict_adapter_preserves_primary_failure_and_restores_caller_scope",
+      "AST_sha256": "e990cc50e7274584bd08e966383a5ef1f5fb219e30658f68f806558c47c06d46"
+    },
+    {
+      "method": "FixedReleaseContracts.test_clock_actual_sample_cadence_and_sticky_denial",
+      "AST_sha256": "c5055e1d4be4a331ac9805acdcf334658e66a4b9b4076c107b2bafea0bf0b59e"
+    },
+    {
+      "method": "FixedReleaseContracts.test_terminal_memory_caps_boundary_and_denial_are_not_success",
+      "AST_sha256": "03a8d5710161339227cdc4e41a01e4be1503b63e1261a1896d34de13a9f33d7c"
+    },
+    {
+      "method": "FixedReleaseContracts.test_publication_alias_preflight_preserves_protected_files",
+      "AST_sha256": "86d528e04cff6772d0e13cdb1630c6f21c1c54df3992f895a371e17d0a54c479"
+    },
+    {
+      "method": "FixedReleaseContracts.test_source_base_requirements_and_numerical_adapter_bytes_preserved",
+      "AST_sha256": "547a629e19bef318f0eadf41a3f15da14f17233b4191df818f45b199db78dcf7"
+    }
+  ],
+  "prepared_primitive_methods14": "separately frozen exact source handoff",
+  "AST_parse_only": true,
+  "actual_imports_tests_fits_API_data_PIDscans_clock": 0,
+  "old_metrics_inherited": false,
+  "new_metrics": null
+}

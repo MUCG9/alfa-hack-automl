@@ -1,0 +1,38 @@
+{
+  "schema": "verified-supervision-source-handoff-v1",
+  "readiness": "FROZEN_SOURCE_ONLY_PENDING_PEER",
+  "files_sha256": {
+    "coordinator.py": "52d1cf5154d845888392be60dcaa55a2e82bb7ada6dc08441efafce2278565ba",
+    "base-to-copy.patch": "f756ad6989d644e317ac28d3e1ccf3f98ae9090a4efefec5699b3bf5c157d495",
+    "source-proof.json": "ad0f4e164738a4d78241252cb2e0c6faac400f11b067fb4f5d7077bf707a6108",
+    "protocol.json": "d32b7e45a830c4cb777f4e85aabe0ac3ba1bf6d0c84d5c276a8da079d934823d",
+    "README.txt": "c380c9d8e589a377046a9d8e7e27d7d480dfe7696ca75e05fc2b1468acb071d5",
+    "prepare_source.py": "94558f5f3adbaacf3943c52d157282af4f2c6981e8d5caf0b8850562aa8cd1b5",
+    "R1-preservation.json": "0be97e2ad380d047d8c2a212c12e6a928a9be7df106e1210af4412129fb491e6"
+  },
+  "external_source_refs": {
+    "immutable43be": {
+      "path": "run_lean_mvp_r2.py",
+      "sha256": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818"
+    },
+    "sampler": {
+      "path": "verified-resource-sampling-next-dev/verified_sampling.py",
+      "sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0"
+    },
+    "sampler_handoff": {
+      "path": "verified-resource-sampling-next-dev/source-handoff.json",
+      "sha256": "86859fe9596d672373e76edc56d6fc89c88c956952c2ed88ded15a6ea7e0076c"
+    },
+    "sampler_peer": {
+      "path": "verified-resource-sampling-independent-review-r1.json",
+      "sha256": "c61e4f028b7a06c0e6b17e02f8a567d08fd31804554e1a908e1dffb49bb418d6"
+    },
+    "root_scope": {
+      "path": "brq2-verified-sampling-batch-root-scope-r1.json",
+      "sha256": "a00ea96ff2455ad80d640f20f7da071288dffd7f18401058a6f14e35d4458f0e"
+    }
+  },
+  "source_inverse_proof": true,
+  "actual_imports_tests_fits_API_data_PIDscans_clock": 0,
+  "qualification": null
+}

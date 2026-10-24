@@ -1,0 +1,32 @@
+{
+  "schema": "verified-supervision-consumer-protocol-v1",
+  "readiness": "FROZEN_SOURCE_ONLY_NOT_EXECUTED",
+  "allowed_entrypoints": [
+    "supervise",
+    "child_errors",
+    "environment",
+    "sha",
+    "save",
+    "relative",
+    "identities"
+  ],
+  "forbidden_entrypoints": [
+    "main",
+    "run"
+  ],
+  "original43be_immutable": true,
+  "sampler": {
+    "path": "verified-resource-sampling-next-dev/verified_sampling.py",
+    "sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0"
+  },
+  "caps_changed": false,
+  "model_API_environment_changed": false,
+  "worker_roles_changed": false,
+  "known_only": true,
+  "RSS": "Stable exact self + owned tree + captured bootstraps; original conservative overlap retained",
+  "NoSuch": "Fresh same-birth-present/denial/unknown STOP; absent/new birth only recorded departed, never adopted or RSS0",
+  "clocks": "Existing state._pulse history + original common/parent before/after primitive operations; no reset",
+  "new_clock": null,
+  "actual_runtime": null,
+  "metrics": null
+}

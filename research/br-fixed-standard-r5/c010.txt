@@ -1,0 +1,12 @@
+SOURCE ONLY / NOT_READY. New C5, output work/brq3.
+Original C4/BRQ2 and all source/history hashes remain unchanged; neither old failure is requalified.
+Same two standard calls and6000=600+900+3600+600+240+60; source+flat tests all inside setup600.
+Frozen candidateR5 archive74; old18 executor contracts remain exact. Shared14 contracts run source+actual-unpacked with one import alias only.
+New worker consumer1 is byte-exact source+actual-unpacked. Caller15 are old10 AST-exact plus5 meaningful consumer/admission mocks.
+Clock-only state._resource_checkpoint never advances successful sampling; outer state._pulse keeps full guard, resources and Power.
+New departed-root receipt requires exact captured root, fresh absent/reused nullRSS, stable mandatoryself, parentexit0 and full strict cleanup.
+Mandatory positive UQ3 and BRQ1/BRQ2 failed histories plus typed current-negative0a2f/fresha5f5 all7267 identities remain freshly checked before/under lock.
+No tests/build/imports/models/data/API/PID observations or actual clocks executed by this author.
+Root must instantiate private absolute paths/current fresh binding, inspect and publish frozen pins before one new launch.
+NOT RUN command: python -B -X utf8 run_controller.py --launch --manifest <ABSOLUTE_READY> --manifest-sha256 <SHA> --self-sha256 <DRIVER_SHA> --launch-parent-pid <SHELL_PID> --launch-parent-create-time <ACTUAL_SHELL_UNIX_BIRTH>
+NOT RUN closer: python -B -X utf8 close_controller.py --manifest <ABSOLUTE_READY> --manifest-sha256 <SHA> --self-sha256 <CLOSER_SHA> --driver-sha256 <DRIVER_SHA> --campaign-sha256 <ACTUAL_CAMPAIGN_SHA> --actual-exit-code <ACTUAL> --actual-tool-evidence <ACTUAL_TOOL> [--actual-exec-session <ACTUAL_SESSION>] --launch-parent-pid <SHELL_PID> --launch-parent-create-time <ACTUAL_SHELL_UNIX_BIRTH>

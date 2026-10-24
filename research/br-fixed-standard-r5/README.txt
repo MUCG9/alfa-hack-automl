@@ -1,0 +1,1 @@
+Reviewed fixed standard candidate R5 and controller C5 SOURCE transport. Names are flattened; manifest.json binds every original WORK-relative source and SHA256. No runtime validation, new metric, ready archive, upload or Linux job is claimed. Historical failures remain.

@@ -1,0 +1,27 @@
+{
+  "schema": "verified-resource-consumer-root-scope-r2",
+  "base_authorization_sha256": "a00ea96ff2455ad80d640f20f7da071288dffd7f18401058a6f14e35d4458f0e",
+  "coordinator_R1_source_sha256": "52d1cf5154d845888392be60dcaa55a2e82bb7ada6dc08441efafce2278565ba",
+  "coordinator_R1_rejection_sha256": "81d54ba923773341cc25d4b5d190bc97104bbabfe68541e08b7cb1cfd89a917c",
+  "candidate_R4_handoff_sha256": "33cbaec611532ff2d21660d0e6a9865d2083d74bd7429388125c6ecf864abb32",
+  "candidate_R4_rejection_sha256": "2a99d7bc14ffd570ee85aa22303ca958090a1c958566593c35f48ef7f9fad10a",
+  "finding": "Both consumer callbacks invoke a full resource guard, violating clock-only API and permitting nested sample timestamp advancement.",
+  "minimal_new_source_correction": [
+    "New coordinator R2 requires separate original-origin clock-only state hook; outer full pulse unchanged",
+    "New candidate R5 worker uses existing original caller._resource_checkpoint only; outer full checks unchanged",
+    "C5 binds original clock-only hook before supervise; wall/mono/common/rollback/prior-gap history unchanged",
+    "Focused mock consumer contracts exercise unfinished resource sampling; old assertions retained"
+  ],
+  "authorized_additive_resource_provenance": [
+    "worker_resource_root: existing captured Popen PID and exact birth, or null",
+    "worker_resource_self: existing captured sampler parent PID and exact birth",
+    "parent_observed_worker_exit_code: existing Popen.returncode after cleanup"
+  ],
+  "auditor_delta": "For fresh_known_root_departed_after_observed_exit require typed exact root departure absent/reused with null RSS, root absent from sampled rows, actual required self sampled, actual exit0, full cleanup and unchanged caps. No enum-only acceptance or metric changes. Prepare wrong-root/missing/uncertain/live-root rejection contracts.",
+  "immutable_history": "Preserve frozen R4/coordinator R1 source and findings; old BRQ1/BRQ2 FAIL and false flags unchanged",
+  "limits": "No new Popen/retry/model/feature/recipe/HPO/parser/cap changes. No runtime imports/tests/fits/API/data/PIDscan until final freeze/peer/root/new READY.",
+  "runtime_tests_executed": 0,
+  "new_metrics": null,
+  "new_qualification_clock": null,
+  "ready_archive": null
+}

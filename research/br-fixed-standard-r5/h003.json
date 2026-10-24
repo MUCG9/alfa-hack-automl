@@ -1,0 +1,35 @@
+{
+  "schema": "verified-supervision-source-proof-v1",
+  "base": {
+    "path": "run_lean_mvp_r2.py",
+    "sha256": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818"
+  },
+  "effective_WORK_unchanged": true,
+  "only_changed_existing_function": "supervise",
+  "all_other_functions_and_classes_AST_equal": true,
+  "exact_whole_source_inverse": true,
+  "replacements": [
+    {
+      "before": "WORK = Path(__file__).resolve().parent",
+      "after": "WORK = Path(__file__).resolve().parent.parent\nRESOURCE_SAMPLER = 'verified-resource-sampling-next-dev/verified_sampling.py'\nRESOURCE_SAMPLER_SHA = 'd65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0'"
+    },
+    {
+      "before": "    end = parent_start+parent_seconds\n    record = dict(status='starting'",
+      "after": "    end = parent_start+parent_seconds\n    def resource_checkpoint():\n        # Existing caller observation history/common/parent clocks, never reset.\n        state['_pulse'](); clock(deadline, unix)\n        need(time.monotonic() < end, 'parent_cap_exhausted')\n    record = dict(status='starting'"
+    },
+    {
+      "before": "        frozen(end, 'parent_cap_exhausted'); clock(deadline, unix)\n        env = environment",
+      "after": "        frozen(end, 'parent_cap_exhausted'); clock(deadline, unix)\n        need(sha(local(RESOURCE_SAMPLER), resource_checkpoint) == RESOURCE_SAMPLER_SHA,\n             'verified_resource_sampler_source_changed')\n        sampling = imported('_verified_supervision_sampling', local(RESOURCE_SAMPLER))\n        resource_sampler = sampling.VerifiedResourceSampler()\n        me = psutil.Process(); self_identity = (me.pid, me.create_time())\n        bootstrap_identities = identities(bootstraps)\n        env = environment"
+    },
+    {
+      "before": "                parents, memory, roles = {}, {}, {}\n                for identity, process in live.items():\n                    try:\n                        need(process.create_time() == identity[1], 'owned_identity_changed')\n                        memory[identity] = process.memory_info().rss\n                        parents[identity[0]] = process.ppid()\n                        argv = process.cmdline()  # Only exact owned processes; never saved.\n                        if any(Path(x).name in {'automl_worker.py', 'agent_worker.py'} for x in argv):\n                            job = Path(argv[-1]).resolve()\n                            need(job.is_relative_to(WORK), 'owned_worker_job_outside_work')\n                            roles[identity] = job\n                    except psutil.NoSuchProcess:\n                        continue",
+      "after": "                sample = resource_sampler.sample(set(live) | bootstrap_identities | {self_identity},\n                    required=[self_identity], checkpoint=resource_checkpoint)\n                stable_rss = {(row['pid'], row['create_time']): row['rss_bytes'] for row in sample['sampled']}\n                parents, memory, roles = {}, {i:stable_rss[i] for i in live if i in stable_rss}, {}\n                for identity, process in live.items():\n                    if identity not in stable_rss: continue  # Explicit freshly confirmed departed identity.\n                    try:\n                        resource_checkpoint()\n                        need(process.create_time() == identity[1], 'owned_identity_changed')\n                        parents[identity[0]] = process.ppid()\n                        argv = process.cmdline()  # Only exact owned processes; never saved.\n                        need(process.create_time() == identity[1], 'owned_identity_changed')\n                        resource_checkpoint()\n                        if any(Path(x).name in {'automl_worker.py', 'agent_worker.py'} for x in argv):\n                            job = Path(argv[-1]).resolve()\n                            need(job.is_relative_to(WORK), 'owned_worker_job_outside_work')\n                            roles[identity] = job\n                    except psutil.NoSuchProcess:\n                        resource_sampler.confirm_departed(identity, checkpoint=resource_checkpoint)\n                        # Keep already verified RSS/PPID conservatively, as the original loop did.\n                        continue\n                record['verified_resource_sample'] = sample\n                record['departed_known_resource_identities'] = list(resource_sampler.departed)"
+    },
+    {
+      "before": "                total = psutil.Process().memory_info().rss+sum(memory.values())\n                for saved in bootstraps:\n                    try:\n                        p = psutil.Process(saved['pid'])\n                        if p.create_time() == saved['create_time']: total += p.memory_info().rss\n                    except psutil.NoSuchProcess:\n                        pass",
+      "after": "                # Preserve the original conservative self + tree + bootstrap sum,\n                # including any overlap; departed rows are provenance, never invented RSS0.\n                total = stable_rss[self_identity]+sum(memory.values())\n                for identity in bootstrap_identities:\n                    if identity in stable_rss: total += stable_rss[identity]"
+    }
+  ],
+  "compiled_source_only": true,
+  "actual_runtime_imports_tests_fits_API_PIDscans_clock": 0
+}

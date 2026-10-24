@@ -1,0 +1,15 @@
+{
+  "schema": "br-standard-controller-root-source-acceptance-r5",
+  "handoff_sha256": "b1bc42c822dfbc424b810094c759dbff18b74152c0e3ba11861faed2bed87e3c",
+  "independent_peer_sha256": "e7c58e8e59c983bad25431f4bb5fe91daabc864c9819f9671ac26fb4d904fd0a",
+  "root_static_review_sha256": "45d3a3e323b8e03f113cac35bab1a427187c08ab191e5abe5768f69761b2862f",
+  "source_scope_accepted": true,
+  "prepared_source_flat_caller_executions": 81,
+  "old10_caller_AST_preserved": true,
+  "same_common_setup_model_audit_final_caps": true,
+  "actual_current_negative_BRQ2_proof_required": true,
+  "qualified_standard_archive": null,
+  "new_metrics": null,
+  "runtime_tests": 0,
+  "next": "Root exact private binding and independent metadata review; checked source publication and fresh complete prerequisite union before one new prospective guarded gate."
+}

@@ -1,0 +1,11 @@
+--- frozen52d1
++++ clock-only-hook
+@@ -239,7 +239,7 @@
+     end = parent_start+parent_seconds
+     def resource_checkpoint():
+         # Existing caller observation history/common/parent clocks, never reset.
+-        state['_pulse'](); clock(deadline, unix)
++        state['_resource_checkpoint'](); clock(deadline, unix)
+         need(time.monotonic() < end, 'parent_cap_exhausted')
+     record = dict(status='starting', kind=name, start_unix=time.time(),
+         start_monotonic=parent_start, parent_cap_seconds=parent_seconds,

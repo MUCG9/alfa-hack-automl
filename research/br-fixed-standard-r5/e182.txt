@@ -1,0 +1,212 @@
+def _strict_worker_cleanup(process,tree,primary):
+    """Cleanup owned handles even when initial observation failed; never hide it."""
+    if tree is not None:
+        try:
+            tree.terminate()
+        except ProcessCleanupError as exc:
+            if primary is not None:
+                raise ProcessCleanupError(dict(exc.receipt,
+                    prior_failure_type=type(primary).__name__)) from primary
+            raise
+        except BaseException as exc:
+            # Unexpected cleanup errors also leave death unverified. Export
+            # only safe failure types, never exception argv or credential text.
+            raise ProcessCleanupError({'status':'cleanup_unconfirmed',
+                'unresolved':[{'pid':process.pid,'create_time':None,
+                    'action':'terminate_owned_tree','error':type(exc).__name__}],
+                'actions':[],'prior_failure_type':type(primary).__name__ if primary is not None else None}) from exc
+        return
+    if process is None:
+        return
+    # Only the Popen-owned root handle remains after a constructor failure.
+    # Never signal an unverified descendant or claim verified tree cleanup.
+    receipt={'status':'observation_unconfirmed','unresolved':[{
+        'pid':process.pid,'create_time':None,'action':'construct_owned_tree',
+        'error':'TreeConstructionFailed'}],'actions':[]}
+    try:
+        if process.poll() is None:
+            process.terminate()
+        try:
+            process.wait(timeout=3)
+        except subprocess.TimeoutExpired:
+            if process.poll() is None:
+                process.kill()
+            process.wait(timeout=3)
+    except BaseException as exc:
+        raise ProcessCleanupError(dict(receipt,
+            cleanup_failure_type=type(exc).__name__,
+            prior_failure_type=type(primary).__name__ if primary is not None else None)) from exc
+    raise ProcessObservationError(receipt) from primary
+
+def _run_worker_strict(spec,recipe,run_dir,split_path,timeout,full_fit=False,fit_iterations=None):
+    """Same worker contract; one deadline includes discovery and final cleanup."""
+    if type(timeout) not in (int,float) or not np.isfinite(timeout) or timeout<=0:
+        raise ValueError('Strict worker timeout must be finite and positive')
+    release_checkpoint()
+    started=time.monotonic(); deadline=started+float(timeout)
+    run_dir=Path(run_dir); run_dir.mkdir(parents=True,exist_ok=True)
+    if (run_dir/'result.json').exists():
+        return {'status':'error','error':'Existing result refused to prevent stale-checkpoint reuse',
+                'recipe':recipe,'output_dir':str(run_dir),'strict_runtime':True}
+    job={'spec':spec,'recipe':recipe,'output_dir':str(run_dir),'split_path':str(split_path),
+         'threads':THREADS,'full_fit':full_fit}
+    ExperimentRequest(run_dir.name,str(run_dir),str(split_path),recipe,THREADS).validate()
+    if fit_iterations is not None: job['fit_iterations']=fit_iterations
+    job_path=run_dir/'job.json'; atomic_json(job_path,job)
+    release_checkpoint()
+    env={k:v for k,v in os.environ.items() if not any(s in k.upper()
+         for s in ['KEY','TOKEN','SECRET','PROXY','PASSWORD','PASSWD','AUTH'])}
+    env.update(PYTHONIOENCODING='utf-8',PYTHONUTF8='1',MPLCONFIGDIR=str(run_dir/'mpl-cache'))
+    process=tree=None; primary=None; killed=None; peak=peak_total=0; sampling_root=None
+    budget=ResourceBudget(memory_limit=WHOLE_MEMORY_LIMIT_BYTES)
+    parent=psutil.Process(os.getpid());sampling_self=(parent.pid,parent.create_time())
+    sampling_previous=started
+    def sampling_checkpoint():
+        nonlocal sampling_previous
+        caller=_CALLER_CLOCK.get()
+        if type(caller) is not ReleaseClock:
+            raise RuntimeError('Original typed release clock-only checkpoint required')
+        caller._resource_checkpoint();now=time.monotonic()
+        if not math.isfinite(now) or now<sampling_previous:
+            raise RuntimeError('release_worker_resource_clock_rollback')
+        sampling_previous=now
+        if now>=deadline:raise TimeoutError('release_worker_resource_deadline')
+    terminal_resource_observation=None
+    result=None
+    try:
+        with (run_dir/'worker.log').open('w',encoding='utf-8') as log:
+            if time.monotonic()>=deadline:
+                killed='timeout'
+            else:
+                process=subprocess.Popen([sys.executable,'-u',str(worker_entrypoint()),str(job_path)],
+                    cwd=spec['root'],env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+                tree=ProcessTree(process,strict_observation=True)
+                roots=[identity for identity in tree.members if identity[0]==process.pid]
+                if len(roots)!=1:
+                    raise ProcessObservationError({'status':'resource_observation_unconfirmed',
+                        'unresolved':[{'pid':process.pid,'create_time':None,
+                            'action':'bind_resource_root','error':'KnownRootIdentityRequired'}],'actions':[]})
+                sampling_root=roots[0]
+                budget._verified_sampling=dict(sampler=VerifiedResourceSampler(),
+                    self_identity=sampling_self,root_identity=sampling_root,
+                    known_provider=lambda:list(tree.members),checkpoint=sampling_checkpoint)
+                while True:
+                    release_checkpoint()
+                    tree.refresh()
+                    # Terminal observation is charged to the original deadline.
+                    if time.monotonic()>=deadline:
+                        killed='timeout'; break
+                    terminal_before_sample=process.poll() is not None
+                    try:
+                        limit,rss,total=budget.inspect(process.pid,run_dir)
+                        release_checkpoint()
+                        peak=max(peak,rss); peak_total=max(peak_total,total)
+                        observed=getattr(budget,'last_verified_sample',None)
+                        if type(observed) is dict and not any((r['pid'],r['create_time'])==sampling_root for r in observed['sampled']):
+                            if process.poll() is None:
+                                raise ProcessObservationError({'status':'resource_observation_unconfirmed',
+                                    'unresolved':[{'pid':process.pid,'create_time':sampling_root[1],
+                                        'action':'verified_resource_root','error':'AbsentWithLivePopen'}],'actions':[]})
+                            terminal_resource_observation=dict(status='fresh_known_root_departed_after_observed_exit',
+                                worker_root_rss_bytes=None,sampled_known_worker_rss_bytes=rss,
+                                departed=observed['departed'],remaining_owned_cleanup_still_required=True)
+                        if terminal_before_sample:
+                            if terminal_resource_observation is None:
+                                terminal_resource_observation=dict(status='sampled_before_terminal_acceptance',
+                                    worker_tree_rss_bytes=rss,combined_observed_bytes=total)
+                        if limit: killed=limit
+                        if total>WHOLE_MEMORY_LIMIT_BYTES:killed='whole_memory_limit'
+                        if rss>WORKER_MEMORY_LIMIT_BYTES:killed='worker_memory_limit'
+                    except ResourceSamplingError as exc:
+                        raise ProcessObservationError({'status':'resource_observation_unconfirmed',
+                            'unresolved':[{'pid':process.pid,'create_time':sampling_root[1],
+                                'action':'verified_resource_sampling','error':exc.receipt['code']}],
+                            'verified_sampling_failure':exc.receipt,'actions':[]}) from exc
+                    except psutil.AccessDenied:
+                        births=[c for pid,c in tree.members if pid==process.pid]
+                        raise ProcessObservationError({'status':'resource_observation_unconfirmed',
+                            'unresolved':[{'pid':process.pid,'create_time':births[0] if births else None,
+                            'action':'inspect_resources','error':'AccessDenied'}],'actions':[]})
+                    except psutil.NoSuchProcess:
+                        # A vanished child is not evidence of an RSS=0 live
+                        # tree. Only an already-terminal root resolves it.
+                        tree.refresh()
+                        if process.poll() is None:
+                            raise ProcessObservationError({'status':'resource_observation_unconfirmed',
+                                'unresolved':[{'pid':process.pid,'create_time':None,
+                                'action':'inspect_resources','error':'NoSuchProcessWithLiveRoot'}],
+                                'actions':[]})
+                        terminal_resource_observation=dict(status='root_absent_after_observed_exit',
+                            worker_tree_rss_bytes=None,combined_observed_bytes=None,
+                            remaining_owned_cleanup_still_required=True)
+                        break
+                    if killed: break
+                    if process.poll() is not None:break
+                    time.sleep(.5)
+        if killed:
+            result={'status':killed}
+        elif process.returncode==0 and (run_dir/'result.json').exists():
+            result=json.loads((run_dir/'result.json').read_text(encoding='utf-8'))
+        elif (run_dir/'result.json').exists():
+            result=json.loads((run_dir/'result.json').read_text(encoding='utf-8'))
+            result.update(status='error',exit_code=process.returncode)
+        else:
+            result={'status':'error','exit_code':process.returncode}
+        try:
+            result['artifact_bytes']=budget.inspect_artifacts(run_dir)
+        except (psutil.AccessDenied,PermissionError) as exc:
+            raise ProcessObservationError({'status':'resource_observation_unconfirmed',
+                'unresolved':[{'pid':process.pid if process is not None else None,'create_time':None,
+                    'action':'inspect_artifacts','error':type(exc).__name__}],'actions':[]}) from exc
+    except ProcessCleanupError as exc:
+        primary=exc
+        raise
+    except Exception as exc:
+        primary=exc
+        result={'status':'error','exception_type':type(exc).__name__}
+    finally:
+        # Keep exact resource-observed descendants available to the existing
+        # strict cleanup tracker if a short-lived root has already departed.
+        # Every eventual action still goes through ProcessTree's fresh birth
+        # checks.  The caller itself is never adopted into a child cleanup.
+        if tree is not None:
+            caller_resources=getattr(_CALLER_CLOCK.get(),'resources',None)
+            configurations=[getattr(budget,'_verified_sampling',None),
+                getattr(caller_resources,'_verified_sampling',None)]
+            for configuration in configurations:
+                if type(configuration) is dict:
+                    sampler=configuration.get('sampler')
+                    for identity in getattr(sampler,'known',()):
+                        if identity[0]!=sampling_self[0]:tree.members.setdefault(identity,None)
+        cleanup_primary=primary
+        if cleanup_primary is None and killed=='timeout':
+            cleanup_primary=subprocess.TimeoutExpired('owned_worker',timeout)
+        _strict_worker_cleanup(process,tree,cleanup_primary)
+    # Cleanup, closing and result parsing cannot extend the worker allocation.
+    if _HPO_FAIR_RESERVE_PROVENANCE.get():
+        # Parent-owned control-plane facts, captured only AFTER confirmed cleanup.
+        # Preserve the old late-timeout classification; do not launder its origin.
+        fair_origin={'schema':'hpo-fair-reserve-worker-origin-v1','cleanup_confirmed':True,
+            'coordinator_killed':killed,
+            'primary_exception_type':type(primary).__name__ if primary is not None else None,
+            'prior_result_status':result.get('status') if isinstance(result,dict) else None}
+    finished=time.monotonic()
+    if finished>=deadline:
+        result={'status':'timeout'}
+    if _HPO_FAIR_RESERVE_PROVENANCE.get():
+        result['hpo_fair_reserve_provenance']=fair_origin
+    result.update(recipe=recipe,output_dir=str(run_dir),strict_runtime=True,
+        wall_seconds=round(finished-started,3),
+        observed_process_tree_peak_mb=round(peak/2**20,1),
+        observed_total_peak_mb=round(peak_total/2**20,1),
+        observed_worker_tree_peak_bytes=peak,observed_combined_peak_bytes=peak_total,
+        worker_memory_limit_bytes=WORKER_MEMORY_LIMIT_BYTES,
+        whole_memory_limit_bytes=WHOLE_MEMORY_LIMIT_BYTES,
+        worker_resource_root=(dict(pid=sampling_root[0],create_time=sampling_root[1])
+            if sampling_root is not None else None),
+        worker_resource_self=dict(pid=sampling_self[0],create_time=sampling_self[1]),
+        parent_observed_worker_exit_code=(process.returncode if process is not None else None),
+        verified_resource_sample=(budget.last_verified_sample
+            if type(getattr(budget,'last_verified_sample',None)) is dict else None),
+        terminal_resource_observation=terminal_resource_observation)
+    return result

@@ -1,0 +1,5 @@
+SOURCE ONLY; do not execute main/run.
+Same exact43be inverse as R1, plus resource_checkpoint now requires state["_resource_checkpoint"].
+Caller C5 must install its original clock-only gap/rollback/common checkpoint there.
+Existing state["_pulse"] still executes outside primitive resource operations.
+Original43be and frozen R1 remain unchanged. No clocks or tests have been run.

@@ -1,0 +1,116 @@
+{
+  "schema": "br-fixed-standard-candidate-protocol-v4",
+  "status": "SOURCE_PREPARATION_ONLY_RUNTIME_NULL",
+  "entrypoint": "python3 solution.py task.md",
+  "required_external_recipe_JSON": false,
+  "required_research_CLI": false,
+  "base_archive": {
+    "path": "ls-stage0-packet/loss-seed-source.zip",
+    "sha256": "16be73e1a8493f64b752231cf8f333856197e43ba3939b243496bc7da6cc5f04"
+  },
+  "policy": "fixed typed raw recipe per explicit supported kind/metric; no optimization/LLM/HPO",
+  "routing_authority": [
+    "strict supported task metric on ORIGINAL task bytes (generic contrast parser)",
+    "explicit target/ID dictionary roles",
+    "kind/metric consistency with existing discovery and nontext tabular support"
+  ],
+  "forbidden_routing_authority": [
+    "dataset name",
+    "target literal",
+    "file basename",
+    "input hash",
+    "observed model score"
+  ],
+  "regression_recipe": "exact raw .75 L1 protected first LightGBM SINGLE + .25 exact CP1 SINGLE",
+  "classification_recipe": "exact historical three-outer-component V16 ensemble, two implicit feature views retained; no flattening",
+  "validation_call_order": [
+    "primary make_time_split offset0 or make_split seed42",
+    "confirmation make_time_split offset1 or make_split seed43",
+    "full_refit with recursive median of NEW successful cut-local iteration trees"
+  ],
+  "validation_fit_iterations_override": "ABSENT on both calls",
+  "historical_final_fit_trees": "provenance ONLY; REG[474,109], CLASS[[100,111],[100,138],339] never passed to cut jobs or used instead of fresh median",
+  "per_task_model_jobs": 3,
+  "actual_recursive_learner_fit_count": null,
+  "both_task_standard_calls": 2,
+  "independent_audit_reuses_new_cut_predictions_no_duplicate_model_jobs": true,
+  "source_or_input_mutation_policy": "fingerprint before any cut, after refit and after publication; actual independent post-exit root seal required",
+  "lexical_cells": "declared IDs; classification target justified by explicit MacroF1 family only; predictor and numeric-regression parsing identical",
+  "class_output": "full-refit test_probabilities canonical spec order; finite/sum checks; sample row permutation preserved",
+  "submission_publication": "existing save_submission into fresh run-owned path, then os.replace; C01 fsync guarantees NOT claimed",
+  "resource_scope": {
+    "CPU_threads_cap": 2,
+    "original_common_seconds_default": 9900,
+    "origin": "solution.py captures wall+mono before heavy import; same caller clock passed all stages; no restart",
+    "sampling": "caller resource sample successful .25 cadence with sticky10 gap/denial/deadline; strict child ProcessTree9f and raw RSS denial handling",
+    "memory_soft_guard_bytes": 2147483648,
+    "memory_scope": "Internal RSS sampling: worker<=1536MiB and combined<=2048MiB; inspect(self) doublecounts caller in returnedtotal, documented conservative bound, not exact OS-owned whole. No OS sandbox claim.",
+    "worker_allocations": "share original remaining time across remaining fixed model jobs, final30 reserved; each cleanup and post-check charged",
+    "worker_tree_rss_limit_bytes": 1610612736,
+    "whole_conservative_observed_limit_bytes": 2147483648,
+    "terminal_resource_observation": "Attempt rawRSS before accepting terminal Popen; AccessDenied sticky; rootalreadyabsent=>nullRSS with confirmedownedcleanup stillrequired; never inventzero.",
+    "identity_and_RSS": "fresh exact identity before/after RSS; departed oldidentity explicit+RSSnull; original clocks through confirmation; retain prior peaks and known for strict cleanup"
+  },
+  "prepared_contract_methods": 18,
+  "prepared_contract_actual_fits_expected": 0,
+  "prepared_contract_API_calls_expected": 0,
+  "actual_contract_runs": 0,
+  "actual_standard_runs": null,
+  "actual_independent_metrics": null,
+  "actual_root_closure": null,
+  "future_qualification_common_seconds_proposal": 6000,
+  "future_qualification_clock_assigned": false,
+  "future_qualification": [
+    "Independent source peer and dependency review",
+    "Root-bounded focused16 synthetic contracts, fit/network tripwires; author does not execute",
+    "Exact final archive standard positional calls REG and CLASS serial under root guarded original common budget",
+    "Four new cut roots + two new fullrefit roots, source/input/code seals before independent pristine R4 truth",
+    "Manual RMSE/MacroF1/probability/class/rows/lexicalID/refit/cleanup verification; preserve any failed slot as null",
+    "Only then decide release qualification; historical Br34.155/V16.6593 are NOT inherited by repackaging"
+  ],
+  "closed_source_lineage_sha256": {
+    "best-submission-preparation-source-review-r1.json": "f1e94e04fe78b05a4f3360d2937c331bb575732eb31d2a93e2655c6359abd1d5",
+    "la2/B/r/automl_runs/repair4/report.json": "f6993f5fcf2a462fe2a3209c3a6b28c9f6ee2abf388fa3026c531e118f8388af",
+    "m2packet/control-c.json": "56c0e2204df33ebc733034ad5ed835d902874862c71bbb4a16a043c3a99781a9",
+    "alfa-hack-automl/release/v16-mean1/classification-report.json": "2905c32aa98270fb5b76f6ca1a4e664c0e76f7b399772864b51d0baf8e08a606",
+    "la2-audit-repair-r1/independent-audit.json": "75fa29c2f3cc0bb183f6849c984203b986070e6833e111e2d5a2382a6c4bd47e",
+    "la2-audit-repair-r1/terminal-root-closure.json": "9b6de5609bd18ca9a31356b96af375f62ec131cf173658142247a39701a2dcbc",
+    "br-standard-release-audit-next-dev/source-handoff.json": "c1aa2aa6fb4028c39eb5112f36f6d9f298e2dc9125ea70349a2f14288b93d50d"
+  },
+  "old_LA2_FAIL_preserved": true,
+  "current_UQ3_untouched": true,
+  "new_source_quality_gain_claim": false,
+  "automatic_submit": false,
+  "role_preconditions": [
+    "exactlyone nonempty declaredtarget name inTRAIN andnotTEST",
+    "declaredID ifany valid/distinct andpresentTRAIN/TEST/SAMPLE",
+    "postdiscover exacttarget/id equality; no legacyfallback authority",
+    "outputname neednot equal target; preserve existing label/probabilityschema"
+  ],
+  "publication_preconditions": [
+    "destination notsymlink",
+    "destinationresolved unequal allinput/task/source/requirements paths",
+    "existingdest samefile alias forbidden",
+    "checkbefore workers and immediately before save/replace"
+  ],
+  "R1_source_findings_preserved": {
+    "path": "br-standard-release-independent-source-review-r1.json",
+    "sha256": "37a487bb38025273f666ca9677cc3c01f56bcef036e8aa0b23e4ffedcd3ba3c0"
+  },
+  "original_R1_handoff_sha256": "601a627cb7b1664858e5a5324dce9a5f0ec598152810adf1f46e7ce81be872ab",
+  "archive_sha256": "b56e8a96523a7d96655e3e9f548a904281b4c6a60582f345a2ecc5ec11e2d3d8",
+  "archive_members": 74,
+  "verified_sampling": {
+    "handoff": {
+      "path": "verified-resource-sampling-next-dev/source-handoff.json",
+      "sha256": "86859fe9596d672373e76edc56d6fc89c88c956952c2ed88ded15a6ea7e0076c"
+    },
+    "source_sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+    "root_scope_sha256": "a00ea96ff2455ad80d640f20f7da071288dffd7f18401058a6f14e35d4458f0e",
+    "known_NoSuch": "benign only NEW PID lookup absent/reused; samebirth/denied/unknown sticky STOP",
+    "mandatory_self": true,
+    "primitive_clock_created": false,
+    "source14_prepared_actual0": true,
+    "resource_budget_default_OFF_preserved": true
+  }
+}

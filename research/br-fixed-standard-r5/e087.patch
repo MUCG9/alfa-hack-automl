@@ -1,0 +1,32 @@
+--- R4/candidate/automl_release_runtime.py
++++ R5/candidate/automl_release_runtime.py
+@@ -155,13 +155,16 @@
+     env={k:v for k,v in os.environ.items() if not any(s in k.upper()
+          for s in ['KEY','TOKEN','SECRET','PROXY','PASSWORD','PASSWD','AUTH'])}
+     env.update(PYTHONIOENCODING='utf-8',PYTHONUTF8='1',MPLCONFIGDIR=str(run_dir/'mpl-cache'))
+-    process=tree=None; primary=None; killed=None; peak=peak_total=0
++    process=tree=None; primary=None; killed=None; peak=peak_total=0; sampling_root=None
+     budget=ResourceBudget(memory_limit=WHOLE_MEMORY_LIMIT_BYTES)
+     parent=psutil.Process(os.getpid());sampling_self=(parent.pid,parent.create_time())
+     sampling_previous=started
+     def sampling_checkpoint():
+         nonlocal sampling_previous
+-        release_checkpoint();now=time.monotonic()
++        caller=_CALLER_CLOCK.get()
++        if type(caller) is not ReleaseClock:
++            raise RuntimeError('Original typed release clock-only checkpoint required')
++        caller._resource_checkpoint();now=time.monotonic()
+         if not math.isfinite(now) or now<sampling_previous:
+             raise RuntimeError('release_worker_resource_clock_rollback')
+         sampling_previous=now
+@@ -297,6 +300,10 @@
+         observed_worker_tree_peak_bytes=peak,observed_combined_peak_bytes=peak_total,
+         worker_memory_limit_bytes=WORKER_MEMORY_LIMIT_BYTES,
+         whole_memory_limit_bytes=WHOLE_MEMORY_LIMIT_BYTES,
++        worker_resource_root=(dict(pid=sampling_root[0],create_time=sampling_root[1])
++            if sampling_root is not None else None),
++        worker_resource_self=dict(pid=sampling_self[0],create_time=sampling_self[1]),
++        parent_observed_worker_exit_code=(process.returncode if process is not None else None),
+         verified_resource_sample=(budget.last_verified_sample
+             if type(getattr(budget,'last_verified_sample',None)) is dict else None),
+         terminal_resource_observation=terminal_resource_observation)

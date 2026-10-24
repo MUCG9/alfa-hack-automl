@@ -1,0 +1,81 @@
+{
+  "schema": "br-C5-verified-sampling-source-proof-v1",
+  "compiled_AST_only": true,
+  "changed_existing_or_added_functions": {
+    "run_controller.py": [
+      "guard",
+      "config",
+      "predecessor",
+      "main"
+    ],
+    "artifact_audit.py": [
+      "verified_terminal",
+      "main"
+    ],
+    "close_controller.py": [
+      "main"
+    ]
+  },
+  "whole_AST_reversible_to_frozen_R4": true,
+  "capture_all_function_AST_unchanged": true,
+  "old10caller_methods_AST_exact": true,
+  "executor18methods_source_and_actual_unpacked": true,
+  "sampler14method_assertion_AST_exact_under_single_import_alias": true,
+  "worker_consumer_fixture_source_and_actual_unpacked_byte_exact": true,
+  "root_approved_terminal_bridge_only": true,
+  "registry_derived": {
+    "executor": 18,
+    "sampler": 14,
+    "worker_consumer": 1,
+    "caller": 15,
+    "actual_flat_members": 74,
+    "future_unique_methods": 48,
+    "future_test_executions": 81
+  },
+  "contract_slots": [
+    [
+      "source-contracts",
+      18,
+      150,
+      120
+    ],
+    [
+      "flat-contracts",
+      18,
+      150,
+      120
+    ],
+    [
+      "caller-contracts",
+      15,
+      60,
+      45
+    ],
+    [
+      "sampler-source-contracts",
+      14,
+      45,
+      30
+    ],
+    [
+      "sampler-flat-contracts",
+      14,
+      45,
+      30
+    ],
+    [
+      "consumer-source-contracts",
+      1,
+      30,
+      20
+    ],
+    [
+      "consumer-flat-contracts",
+      1,
+      30,
+      20
+    ]
+  ],
+  "all_other_runtime_caps_helpers_parser_model_and_numerical_logic_unchanged": true,
+  "actual_imports_tests_fits_API_PIDscans_clock": 0
+}

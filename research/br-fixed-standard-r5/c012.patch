@@ -1,0 +1,222 @@
+--- frozen-controller-r4/run_controller.py
++++ controller-r5/run_controller.py
+@@ -5,20 +5,27 @@
+ 
+ PACKET=Path(__file__).resolve().parent
+ WORK=PACKET.parents[1]
+-OUT=WORK/'brq2'
++OUT=WORK/'brq3'
+ COMMON,SETUP,AUDIT,FINAL,ROOT_CLOSE=6000,600,600,240,60
+ CAPS={'regression':(900,870),'classification':(3600,3570)}
+ HELPERS={
+- 'coordinator':('run_lean_mvp_r2.py','43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818'),
++ 'coordinator':('verified-supervision-next-dev-r2/coordinator.py','bd864b13460d31176d57e1dbddbe179ad8e6911163b117e3f9698228c5540f76'),
++ 'sampling':('verified-resource-sampling-next-dev/verified_sampling.py','d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0'),
+  'owner':('support_component_coordinator.py','8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8'),
+  'processes':('historical-runtime-support/fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d.py','fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d'),
+  'lock':('alfa-hack-automl/tools/research_lock.py','78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45'),
+  'awake':('awake-next-dev/awake_guard.py','9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b')}
+-EXECUTOR_HANDOFF_SHA='df44ca63160d64d52ade5a04553f4189ca79101c6cc17af25b9526d55d52ead5'
+-ARCHIVE_SHA='6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a'
++EXECUTOR_HANDOFF_SHA='92cfd41804ca162ba5ec4aeff53a3cb45e6b0c798b93e0c36c1cbb969fdfef08'
++ARCHIVE_SHA='c7b54a8996e36dfaaf582b104d1f38ecca71d91d4f38362ed50775381f42f930'
+ COUNTS_SHA='bc320fd4723476c8a73404ed17a7bdec0cd4c69b1b1d41b321e370549c8cf4d3'
+ LAUNCHER_PATH=WORK/'venv/Scripts/python.exe'
+ LAUNCHER_SHA='d59c9a894b319828d023f3aa83d9a3488d2339f9e27e60e49b02abb0d53cf538'
++NEGATIVE_CURRENT={
++ 'BRQ1':('brq1/terminal-root-closure.json','243782d116baa00df12e87ec6ff99e2f48e611bef1b77f24ec1227b9284b8db6'),
++ 'BRQ2':('brq2/terminal-root-closure.json','2d259e647a64f2f1e48d06e450f6fd877d4dc07bac3363df9743d78fecb890a0'),
++ 'campaign':('brq2/campaign.json','fd85c8317ff187ffc37986613ea5169c4dbd1e9512545e51127469750416ae24'),
++ 'current_root':('brq2-negative-closure-r1/terminal-root-closure.json','0a2f2dae7962892a596a98b7d51d1135f1017358a6326abe31ff2e986b7b5ade'),
++ 'fresh':('brq2-negative-closure-r1/root-confirmation.json','a5f5d57f7137ea6159db0cb43e760cbae8cb7674172624199e3479b399eed325')}
+ 
+ def need(value,code):
+     if not value:raise RuntimeError(code)
+@@ -100,9 +107,10 @@
+         record['exception_type']=type(exc).__name__
+     return rows,record
+ 
+-def guard(begin,deadline,wall,owner,preparers,state,awake=None):
++def guard(begin,deadline,wall,owner,preparers,state,awake=None,sampling=None):
+     ob=owner.StrictOwnedObserver();ob.remember(ids(preparers));last=begin;previous=begin;sticky=None
+-    def pulse(force=False):
++    required=(preparers[0]['pid'],preparers[0]['create_time'])
++    def clock_only():
+         nonlocal last,previous,sticky
+         if sticky is not None:raise RuntimeError(sticky)
+         try:
+@@ -112,20 +120,37 @@
+             need(now-last<=10,'actual_observation_gap10')
+             need(now<deadline and w<wall,'original_common_or_phase_deadline')
+             need(abs((deadline-now)-(wall-w))<=5,'wall_monotonic_disagreement')
++            return now
++        except BaseException as exc:
++            sticky=str(exc) if isinstance(exc,RuntimeError) else 'resource_observation_unconfirmed'
++            state['guard_sticky_error']=sticky;raise
++    # The coordinator primitive receives ONLY this original clock/gap closure.
++    # Reading time never advances the last successful resource observation.
++    state['_resource_checkpoint']=clock_only
++    if sampling is None:
++        relative,h=HELPERS['sampling'];clock_only()
++        need(sha(WORK/relative,clock_only)==h,'verified_resource_sampler_source_changed')
++        sampling=imported('_brq_verified_guard_sampling',WORK/relative);clock_only()
++    sampler=sampling.VerifiedResourceSampler()
++    def pulse(force=False):
++        nonlocal last,sticky
++        if sticky is not None:raise RuntimeError(sticky)
++        try:
++            now=clock_only()
+             if not force and now-last<.25:return
+             live=ob.observe();need(not ob.denials,'self_bootstrap_resource_denied')
+-            need((preparers[0]['pid'],preparers[0]['create_time']) in live,'self_identity_unconfirmed')
+-            rss=0
+-            for identity,obj in live.items():
+-                need(obj.create_time()==identity[1],'resource_identity_reused');rss+=obj.memory_info().rss
+-                need(obj.create_time()==identity[1],'resource_identity_reused')
++            need(required in live,'self_identity_unconfirmed')
++            receipt=sampler.sample(set(ob.seen)|set(live)|{required},required=[required],checkpoint=clock_only)
++            rss=sum(row['rss_bytes'] for row in receipt['sampled'])
+             need(rss<=2048*2**20,'parent_bootstrap_memory_limit')
+             state['peak_parent_bootstrap_mib']=max(state.get('peak_parent_bootstrap_mib',0),rss/2**20)
+-            after=time.monotonic();need(after-last<=10 and after<deadline and time.time()<wall,'late_resource_observation')
++            clock_only()
+             current_awake=state.get('_awake',awake)
+             if current_awake is not None and current_awake.handle is not None:
+                 sample=current_awake.heartbeat();need(not sample['scheduling_gap_exceeded'],'power_observation_gap10')
+-            after=time.monotonic();need(after-last<=10 and after<deadline and time.time()<wall,'late_power_or_resource_observation')
++            after=clock_only()
++            state['verified_resource_sample']=receipt
++            state['departed_known_resource_identities']=list(sampler.departed)
+             last=after;state['actual_resource_samples']=state.get('actual_resource_samples',0)+1
+         except BaseException as exc:
+             sticky=str(exc) if isinstance(exc,RuntimeError) else 'resource_observation_unconfirmed'
+@@ -150,15 +175,15 @@
+     need(pins.get(str(LAUNCHER_PATH))==LAUNCHER_SHA,'pinned_expected_venv_launcher_required')
+     need(cfg['lock']==str(WORK/'alfa-hack-automl/test-runs/.owned-research.lock'),'canonical_lock_required')
+     executor=cfg['executor'];need(executor['archive']['sha256']==ARCHIVE_SHA
+-        and len(executor['members_sha256'])==73 and executor['test_count']==18
++        and len(executor['members_sha256'])==74 and executor['test_count']==18
+         and len(executor['test_methods'])==18 and methods(executor['test'])==executor['test_methods'],
+-        'exact_R2_archive_and_18_contract_methods_required')
++        'exact_R5_archive_and_18_contract_methods_required')
+     handoff=read(executor['handoff']['path'])
+     need(sha(executor['handoff']['path'])==EXECUTOR_HANDOFF_SHA
+         and handoff['archive']['sha256']==ARCHIVE_SHA
+         and {Path(k).name:h for k,h in handoff['files_sha256'].items() if k.startswith('candidate/')}==executor['members_sha256'],
+-        'exact_frozen_R2_member_binding_required')
+-    executor_root=WORK/'br-standard-release-next-dev-r3'
++        'exact_frozen_R5_member_binding_required')
++    executor_root=WORK/'br-standard-release-next-dev-r5'
+     for key,relative in [('handoff','source-handoff.json'),('archive','solution-br-fixed-candidate.zip')]:
+         need(executor[key]['path']==str(executor_root/relative),'fixed_reviewed_executor_reference_required')
+     for key,relative in [('test','tests/test_fixed_release.py'),('recipe_fixture','tests/fixtures/recipes.json'),('base_inventory','base-inventory.json')]:
+@@ -166,8 +191,21 @@
+             'byte_exact_reviewed_executor_contract_required')
+     need(cfg['counts']==dict(path=str(WORK/'uar-count-parser-next-dev/counts.py'),sha256=COUNTS_SHA)
+         and pins.get(cfg['counts']['path'])==COUNTS_SHA
+-        and cfg['caller_contract_count']==10 and len(cfg['caller_test_methods'])==10
++        and cfg['caller_contract_count']==15 and len(cfg['caller_test_methods'])==15
+         and methods(PACKET/'test_controller_contracts.py')==cfg['caller_test_methods'], 'fixed_caller_and_count_contracts_required')
++    sampling=cfg['sampler_contracts'];sampling_root=WORK/'verified-resource-sampling-next-dev'
++    need(sampling['test']==str(sampling_root/'test_verified_sampling.py')
++        and sampling['source_sha256']=='da898950c63727c65bd67c8a87121fcb9b4730b2aec51ca5cad02dad7c76478b'
++        and pins.get(sampling['test'])==sampling['source_sha256']
++        and sampling['count']==len(sampling['methods'])==14 and methods(sampling['test'])==sampling['methods']
++        and sampling['flat_module']=='automl_verified_resource_sampling'
++        and executor['members_sha256'].get(sampling['flat_module']+'.py')==HELPERS['sampling'][1],
++        'all_frozen14_sampler_contracts_source_and_actual_flat_required')
++    consumer=cfg['consumer_contracts']
++    need(consumer['test']==str(executor_root/'tests/test_sampling_checkpoint_consumer.py')
++        and pins.get(consumer['test'])==handoff['files_sha256']['tests/test_sampling_checkpoint_consumer.py']
++        and consumer['count']==len(consumer['methods'])==1 and methods(consumer['test'])==consumer['methods'],
++        'frozen_actual_worker_clock_only_consumer_fixture_required_source_and_flat')
+     for ref in (executor['handoff'],executor['archive'],cfg['candidate_source_review'],cfg['uq3']['root'],cfg['uq3']['fresh']):
+         need(type(ref) is dict and Path(ref['path']).is_absolute() and pins.get(ref['path'])==ref['sha256'],'mandatory_reference_pin_required')
+     for path in (executor['test'],executor['recipe_fixture'],executor['base_inventory'],
+@@ -175,6 +213,9 @@
+         need(path in pins,'mandatory_contract_or_audit_pin_required')
+     for key,(relative,h) in HELPERS.items():
+         need(cfg['helpers'][key]==dict(path=str(WORK/relative),sha256=h) and pins.get(str(WORK/relative))==h,'proven_helper_changed')
++    for key,(relative,h) in NEGATIVE_CURRENT.items():
++        need(cfg['brq2_negative_current'][key]==dict(path=str(WORK/relative),sha256=h)
++            and pins.get(str(WORK/relative))==h,'exact_negative_history_and_current_proof_required')
+     need([t['kind'] for t in cfg['tasks']]==['regression','classification'],'exact_two_task_order')
+     for task in cfg['tasks']:
+         need(Path(task['source']).is_absolute() and set(task['files'])==
+@@ -210,6 +251,48 @@
+     known=ids(confirmation['known_identities'])
+     need(len(known)==len(confirmation['known_identities'])==confirmation['known_count']
+         and ids(proof['owned_identities']+proof['closure_preparer_identities'])<=known,'complete_UQ3_known_union_required')
++    negative={}
++    for key,ref in cfg['brq2_negative_current'].items():
++        need(sha(ref['path'],check)==ref['sha256'],'negative_history_or_current_proof_changed')
++        negative[key]=read(ref['path'])
++    first,second,old,current,fresh=(negative[k] for k in ('BRQ1','BRQ2','campaign','current_root','fresh'))
++    need(first.get('technical_procedure_passed') is False and first.get('cleanup_confirmed') is True
++        and first.get('source_unchanged') is True and first.get('qualified_ML_metrics') is None,
++        'BRQ1_permanent_failed_history_required')
++    need(second.get('technical_procedure_passed') is False and second.get('cleanup_confirmed') is False
++        and second.get('source_unchanged') is False and second.get('qualified_ML_metrics') is None
++        and all(old.get(k) is False for k in ('cleanup_confirmed','source_unchanged','temporary_cleanup_confirmed')),
++        'BRQ2_original_false_flags_must_remain_false')
++    need(current.get('schema')=='brq2-current-negative-source-temp-closure-v1'
++        and current.get('technical_procedure_passed') is False and current.get('qualified_ML_metrics') is None
++        and current.get('original_gate_remains_FAILED') is True and current.get('current_negative_audit_completed') is True
++        and current.get('cleanup_confirmed') is True and current.get('source_unchanged') is True
++        and current.get('temporary_cleanup_confirmed') is True and current.get('active_owned_processes')==[]
++        and current.get('uncertain_owned')==[] and current.get('current_audit_errors')==[]
++        and current.get('original_driver_flags')=={k:old[k] for k in ('cleanup_confirmed','source_unchanged','temporary_cleanup_confirmed')}
++        and current.get('original_root_flags')=={k:second[k] for k in ('technical_procedure_passed','cleanup_confirmed','source_unchanged')}
++        and current.get('original_first_failure')==old.get('first_failure')
++        and current.get('original_error_history')==old.get('error_history')
++        and current.get('original_root_errors')==second.get('root_errors')
++        and current.get('original_driver_actual_execution')==dict(session=None,exit_code=1,tool='199da9')
++        and current.get('original_closer_actual_execution')==dict(session=None,exit_code=1,tool='306e5d')
++        and current.get('current_known_scope_only') is True,'separate_current_negative_scope_not_retroqualification')
++    need(fresh.get('schema')=='brq2-separate-current-negative-root-confirmation-r1'
++        and fresh.get('current_negative_root_sha256')==cfg['brq2_negative_current']['current_root']['sha256']
++        and fresh.get('actual_helper_execution')==dict(session=None,exit_code=0,tool='48e5ce')
++        and fresh.get('fresh_same_identity_alive')==[] and fresh.get('uncertain')==[]
++        and fresh.get('inside_parent90_and_original_common') is True
++        and fresh.get('current_source_cleanup_temp_confirmed') is True
++        and fresh.get('original_BRQ2_FAIL_and_false_flags_preserved') is True
++        and fresh.get('technical_procedure_passed') is False and fresh.get('new_metrics') is None,
++        'actual_separate_negative_audit_exit_and_fresh_scope_required')
++    current_known=ids(fresh['known_identities'])
++    need(len(current_known)==len(fresh['known_identities'])==fresh['known_count']==7267
++        and ids(current['owned_identities']+current['closure_preparer_identities'])<=current_known
++        and ids(proof['owned_identities']+proof['closure_preparer_identities'])<=current_known
++        and ids(first['owned_identities']+first['closure_preparer_identities'])<=current_known,
++        'complete_current_negative_root_preparer_and_positive_UQ3_union_required')
++    known|=current_known
+     return known
+ 
+ def absent(owner,known,check=lambda:None):
+@@ -329,11 +412,26 @@
+         for source,dest in [(cfg['executor']['test'],flat/'tests/test_fixed_release.py'),
+             (cfg['executor']['recipe_fixture'],flat/'tests/fixtures/recipes.json'),
+             (cfg['executor']['base_inventory'],flat/'base-inventory.json')]:shutil.copyfile(source,dest)
++        # Same14 assertions against the ACTUAL unpacked archive member. The
++        # single import alias is the only projection; no source sidecar module.
++        source=Path(cfg['sampler_contracts']['test']);raw=source.read_text('utf-8')
++        original_import='from verified_sampling import ResourceSamplingError, VerifiedResourceSampler'
++        flat_import='from automl_verified_resource_sampling import ResourceSamplingError, VerifiedResourceSampler'
++        need(raw.count(original_import)==1,'sampler_import_projection_exact')
++        mapped=flat/'candidate/test_verified_sampling.py';mapped.write_text(raw.replace(original_import,flat_import),encoding='utf-8',newline='\n')
++        need(methods(mapped)==cfg['sampler_contracts']['methods'],'sampler_flat_assertion_AST_changed')
++        consumer=flat/'tests/test_sampling_checkpoint_consumer.py';shutil.copyfile(cfg['consumer_contracts']['test'],consumer)
++        need(sha(consumer)==cfg['immutable_files'][cfg['consumer_contracts']['test']]
++            and methods(consumer)==cfg['consumer_contracts']['methods'],'byte_exact_actual_flat_consumer_fixture_required')
+         deployment.update(seal(flat,lambda:check(setup_end)))
+         counter=imported('_brq_counts',cfg['counts']['path'])
+         for name,test,parent,child,count in [('source-contracts',Path(cfg['executor']['test']),150,120,cfg['executor']['test_count']),
+             ('flat-contracts',flat/'tests/test_fixed_release.py',150,120,cfg['executor']['test_count']),
+-            ('caller-contracts',PACKET/'test_controller_contracts.py',60,45,cfg['caller_contract_count'])]:
++            ('caller-contracts',PACKET/'test_controller_contracts.py',60,45,cfg['caller_contract_count']),
++            ('sampler-source-contracts',Path(cfg['sampler_contracts']['test']),45,30,cfg['sampler_contracts']['count']),
++            ('sampler-flat-contracts',mapped,45,30,cfg['sampler_contracts']['count']),
++            ('consumer-source-contracts',Path(cfg['consumer_contracts']['test']),30,20,cfg['consumer_contracts']['count']),
++            ('consumer-flat-contracts',consumer,30,20,cfg['consumer_contracts']['count'])]:
+             check(setup_end);need(setup_end-time.monotonic()>=parent,'setup_full_contract_slot_unavailable')
+             ref=run([cfg['python'],'-B','-X','utf8',str(test),'-v'],test.parent,name,parent,child,
+                 parent+4500+AUDIT+300)

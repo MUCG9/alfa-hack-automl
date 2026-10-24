@@ -1,0 +1,37 @@
+{
+  "schema": "verified-resource-sampling-source-handoff-v1",
+  "readiness": "FROZEN_SOURCE_ONLY_PENDING_INDEPENDENT_PEER",
+  "files_sha256": {
+    "verified_sampling.py": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+    "test_verified_sampling.py": "da898950c63727c65bd67c8a87121fcb9b4730b2aec51ca5cad02dad7c76478b",
+    "README.txt": "fdadb766afe71697c4b4218cb982b0ec972ef80e7327e22745d46a85282785d9",
+    "source-proof.json": "a839f8622fdcfda54507e8ed0f07a230c0cccf4d216f63a04fb68b1f9d88d72e"
+  },
+  "root_scope": {
+    "path": "brq2-verified-sampling-batch-root-scope-r1.json",
+    "sha256": "a00ea96ff2455ad80d640f20f7da071288dffd7f18401058a6f14e35d4458f0e"
+  },
+  "source_finding": {
+    "path": "brq2-terminal-resource-race-source-finding-r1.json",
+    "sha256": "3490fc2bddaa7c731030f3a791a3a6cfeeabf5f2621d472e3fce0747a5173735"
+  },
+  "API": {
+    "class_name": "VerifiedResourceSampler",
+    "error": "ResourceSamplingError",
+    "sample_schema": "verified-known-resource-sample-v1",
+    "methods": [
+      "remember",
+      "sample",
+      "confirm_departed",
+      "discover_owned_tree"
+    ],
+    "required": "typed actual self + original non-reentrant clock-only checkpoint"
+  },
+  "prepared_methods": 14,
+  "flat_methods": 14,
+  "actual_imports_tests_fixtures_fits_API_data_PIDscans_clock": 0,
+  "canonical_STATE_Git_writes": 0,
+  "actual_current_qualification": null,
+  "model_metrics": null,
+  "automatic_submit": false
+}

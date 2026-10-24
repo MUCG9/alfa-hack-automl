@@ -1,0 +1,11 @@
+{
+  "schema": "C5-source-only-prepeer-metadata-preservation-v1",
+  "runtime_unchanged": true,
+  "files_sha256": {
+    "source-handoff.prepeer.json": "d6314131e53a2316058df22c8b95e628d6baf44eb670722d650ad7ca5668b7d1",
+    "binding.template.prepeer.json": "9d0eeb4c3afccb43ccc2572baf5161eef2b67dfd7b3c3043137bb6329d908508",
+    "prepare_metadata.prepeer.py": "64f19c9782366e75882330d44480fe17a12bd10e2ce79071c01eaf2021f670a1"
+  },
+  "prior_source_only_handoff_sha256": "d6314131e53a2316058df22c8b95e628d6baf44eb670722d650ad7ca5668b7d1",
+  "delta": "CandidateR5 independent peer exact reference filled; no runtime changes or execution."
+}

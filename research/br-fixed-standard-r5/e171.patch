@@ -1,0 +1,32 @@
+--- frozen_R2/tests/test_fixed_release.py
++++ R3/tests/test_fixed_release.py
+@@ -3,6 +3,8 @@
+ """
+ from pathlib import Path
+ from unittest.mock import patch
++from contextlib import redirect_stdout
++import io
+ import csv
+ import hashlib
+ import json
+@@ -82,7 +84,8 @@
+             calls.append(kwargs)
+             return dict(status='ok',cleanup_confirmed=True,output_dir=str(directory),full_fit=kwargs.get('full_fit',False),
+                 fit_iterations=[50,70] if len(calls)==1 else [70,90])
+-        with patch.object(release,'ReleaseClock',return_value=self.clock()),patch.object(release,'load_fixed_inputs',return_value=loaded),\
++        captured_stdout=io.StringIO()
++        with redirect_stdout(captured_stdout),patch.object(release,'ReleaseClock',return_value=self.clock()),patch.object(release,'load_fixed_inputs',return_value=loaded),\
+              patch.object(release,'discover',return_value=(spec,{},loaded['train'],loaded['test'],loaded['sample'],'',np.arange(9))),\
+              patch.object(release,'choose_validation',side_effect=lambda s,*a:s),patch.object(release,'source_files',return_value=[]),\
+              patch.object(release,'fingerprints',side_effect=lambda paths,check:{k:'bound' for k in paths}),\
+@@ -94,6 +97,10 @@
+                      self.assertRaises(ValueError):release.execute(task)
+             with patch.object(release,'validate_output_identity',side_effect=ValueError('protected output alias')),\
+                  self.assertRaises(ValueError):release.execute(task)
++        self.assertEqual(json.loads(captured_stdout.getvalue()),{
++            'status':'completed_pending_independent_qualification',
++            'policy':'fixed_typed_recipe_two_cut_median_full_refit','quality_metric':None,
++            'actual_primary_and_confirmation':2,'actual_full_refit':1,'Qwen_calls':0,'API_calls':0})
+         self.assertEqual(len(calls),3)
+         self.assertNotIn('fit_iterations',calls[0]);self.assertNotIn('fit_iterations',calls[1])
+         self.assertEqual(calls[2]['fit_iterations'],[60,80]);self.assertTrue(calls[2]['full_fit'])

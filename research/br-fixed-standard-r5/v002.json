@@ -1,0 +1,17 @@
+{
+  "schema": "verified-supervision-clock-only-hook-proof-v2",
+  "previous_handoff_sha256": "ae471f6e6b17e8f7b462ee7bd6edce60f6888c98c3304904080918f2874fd645",
+  "previous_source_sha256": "52d1cf5154d845888392be60dcaa55a2e82bb7ada6dc08441efafce2278565ba",
+  "previous_SOURCE_ONLY_preserved": true,
+  "exact_delta": {
+    "before": "        state['_pulse'](); clock(deadline, unix)",
+    "after": "        state['_resource_checkpoint'](); clock(deadline, unix)"
+  },
+  "inverse_equals_previous_whole_source": true,
+  "inverse_previous_replacements_equals_original43be": true,
+  "prior_finding": "state._pulse was full resource guard, not the required clock-only callback",
+  "corrected_contract": "state._resource_checkpoint is required clock-only original gap/rollback/common observation; existing _pulse remains full outer observation",
+  "no_clock_reset": true,
+  "compiled_source_only": true,
+  "actual_imports_tests_fits_API_PIDscans_clock": 0
+}

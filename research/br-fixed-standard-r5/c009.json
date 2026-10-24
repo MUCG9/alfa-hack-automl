@@ -1,0 +1,93 @@
+{
+  "schema": "br-C5-verified-resource-qualification-protocol-v1",
+  "readiness": "SOURCE_ONLY_NOT_READY",
+  "common_seconds": 6000,
+  "caps": {
+    "setup": 600,
+    "regression": [
+      900,
+      870
+    ],
+    "classification": [
+      3600,
+      3570
+    ],
+    "audit": [
+      600,
+      570
+    ],
+    "final": 240,
+    "root": 60
+  },
+  "strict_serial": true,
+  "technical_threads": 1,
+  "learner_threads": 2,
+  "BLAS_launcher_threads": 1,
+  "worker_memory_mib": 1536,
+  "whole_memory_mib": 2048,
+  "new_archive": {
+    "sha256": "c7b54a8996e36dfaaf582b104d1f38ecca71d91d4f38362ed50775381f42f930",
+    "members": 74,
+    "prior_metrics_inherited": false
+  },
+  "source_contract_executions": [
+    [
+      "source-contracts",
+      18,
+      150,
+      120
+    ],
+    [
+      "flat-contracts",
+      18,
+      150,
+      120
+    ],
+    [
+      "caller-contracts",
+      15,
+      60,
+      45
+    ],
+    [
+      "sampler-source-contracts",
+      14,
+      45,
+      30
+    ],
+    [
+      "sampler-flat-contracts",
+      14,
+      45,
+      30
+    ],
+    [
+      "consumer-source-contracts",
+      1,
+      30,
+      20
+    ],
+    [
+      "consumer-flat-contracts",
+      1,
+      30,
+      20
+    ]
+  ],
+  "expected_test_executions": 81,
+  "all_counts_AST_derived": true,
+  "samplers_source14_and_actual_flat14_required": true,
+  "consumer_source1_and_actual_flat1_required": true,
+  "old10caller_assertion_AST_preserved": true,
+  "caller_prepared_count": 15,
+  "actual_candidate_imports_tests_fits_API_data_PIDscans": 0,
+  "actual_new_clock": null,
+  "actual_new_metrics": null,
+  "actual_ready": null,
+  "original_BRQ1_BRQ2_FAIL_and_false_flags_retained": true,
+  "mandatory_UQ3_positive_and_separate_current_negative": true,
+  "new_grant_scope": "Current complete known identity absence/source/temp only; neither old gate becomes PASS",
+  "root_only_PRIVATE_READY_publication_fresh_actual_launch_required": true,
+  "promotion": false,
+  "submit": false
+}

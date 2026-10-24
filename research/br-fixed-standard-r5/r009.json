@@ -1,0 +1,66 @@
+{
+  "schema": "br-standard-release-independent-source-review-r5",
+  "scope": "Frozen candidate R5 original clock-only worker sampler callback and additive existing provenance only",
+  "source_handoff": {
+    "path": "work/br-standard-release-next-dev-r5/source-handoff.json",
+    "sha256": "92cfd41804ca162ba5ec4aeff53a3cb45e6b0c798b93e0c36c1cbb969fdfef08"
+  },
+  "runtime_sha256": "ad6087fc12ca1c57c7b7764fe1033fc737ca8c067426578262b860a51c973fe4",
+  "archive": {
+    "sha256": "c7b54a8996e36dfaaf582b104d1f38ecca71d91d4f38362ed50775381f42f930",
+    "flat_members": 74,
+    "bytes": 150751
+  },
+  "independent_static_checks": {
+    "all190_handoff_file_pins_exact": true,
+    "all92_original_R4_files_preserved": true,
+    "whole_runtime_module_AST_inverse_exact_R4": true,
+    "ReleaseClock_entire_class_AST_exact_R4": true,
+    "strict_cleanup_function_unchanged": true,
+    "only_existing_runtime_member_changed": "automl_release_runtime.py",
+    "other73_runtime_members_byte_exact_R4": true,
+    "ResourceBudget_and_reviewed_sampler_byte_exact_R4": true,
+    "ZIP74_unique_member_hashes_and_CRC_exact": true,
+    "all_old18_test_bytes_exact": true,
+    "old18_method_count": 18,
+    "new_consumer_method_count": 1,
+    "new_consumer_test_sha256": "48ca97b75ae3c178255fb87d8d5b87fed85dc6cd07bdddd52b412fcac0e81657"
+  },
+  "resolved_finding": {
+    "id": "BRS04",
+    "status": "RESOLVED_IN_SOURCE",
+    "prior_finding_receipt_sha256": "2a99d7bc14ffd570ee85aa22303ca958090a1c958566593c35f48ef7f9fad10a",
+    "evidence": "The installed worker sampler callback requires the existing exact ReleaseClock type, calls only caller._resource_checkpoint and retains the original worker-local rollback/deadline checks. It does not call release_checkpoint or caller.check and cannot fall back to a new clock. All outer full resource checks remain unchanged."
+  },
+  "source_judgment": [
+    "The ReleaseClock parent sampler already uses its clock-only _resource_checkpoint. The worker sampler now follows the same original-origin contract; neither callback performs RSS work or advances the prior successful resource sample timestamp.",
+    "Both verified resource configurations require their actual captured sampler SELF identity. Known departed identities, null departed RSS and conservative existing memory scopes remain unchanged from the separately reviewed primitive and support port.",
+    "The new consumer mock invokes the real callback installed by _run_worker_strict while a fake worker resource round is unfinished. A nested full check raises; only the original clock hook is accepted, while outer full checks before and after the round, confirmed cleanup and ContextVar restoration are asserted. This is a meaningful regression counterexample to R4, not a replacement implementation test.",
+    "The three additive receipt fields derive only from the already captured worker root tuple, actual parent tuple and existing Popen returncode after strict cleanup. An unavailable root remains null. They introduce no new observation, model or fit count and allow later independent terminal-receipt validation.",
+    "The standard entry, raw Br/CLASS recipes, numerical workers/adapters, requirements, cut/refit/median behavior, parser and all old18 assertions remain unchanged. The new archive cannot inherit any prior archive qualification or metric."
+  ],
+  "prepared_contract_inventory": {
+    "candidate_source_methods": 19,
+    "candidate_flat_methods": 19,
+    "separately_frozen_primitive_source_methods": 14,
+    "separately_frozen_primitive_flat_methods": 14,
+    "source_group_expected": 33,
+    "flat_group_expected": 33,
+    "flat_exclusions": [],
+    "actual_test_executions": 0
+  },
+  "findings": [],
+  "conclusion": "No remaining concrete candidate source blocker in the authorized R5 correction scope",
+  "remaining_boundaries": [
+    "Final C5/coordinator binding and new terminal-receipt audit checks require their separately frozen consumer review.",
+    "Actual source/unpacked contracts, standard calls, independent R4 scoring, cleanup and final root receipts remain pending a separately assigned qualification.",
+    "Original BRQ1 and BRQ2 FAIL histories, false flags and clocks are unchanged."
+  ],
+  "reviewer_activity": {
+    "candidate_controller_guard_imports": 0,
+    "tests_models_fits_API_PID_scans_data_prediction_truth_reads": 0,
+    "clock_assigned": false,
+    "frozen_or_canonical_files_changed": false,
+    "actual_new_qualification_or_metrics": null
+  }
+}

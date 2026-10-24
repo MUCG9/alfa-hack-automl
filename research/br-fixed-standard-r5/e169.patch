@@ -1,0 +1,323 @@
+--- frozen_R1/automl_fixed_release.py
++++ R2/automl_fixed_release.py
+@@ -86,6 +86,12 @@
+     if len(targets)!=1 or len(identifiers)>1 or len(set(targets+identifiers))!=len(targets+identifiers):
+         raise ValueError('Ambiguous or multiple protected target/ID roles')
+     target=targets[0];identifier=identifiers[0] if identifiers else None
++    if any(not isinstance(value,str) or not value.strip() for value in targets+identifiers):
++        raise ValueError('Explicit protected roles need nonempty column names')
++    if target not in tables['train'] or target in tables['test']:
++        raise ValueError('Declared target must exist in fitting data and not in test')
++    if identifier is not None and any(identifier not in tables[key] for key in ('train','test','sample')):
++        raise ValueError('Declared ID must exist in fitting/test/sample tables')
+     for role,key in [('train','train'),('test','test'),('sample_submission','sample')]:
+         columns=[]
+         if identifier is not None and identifier in tables[key]:columns.append(identifier)
+@@ -102,6 +108,7 @@
+     if kind=='classification' and any(value=='' for value in tables['train'][target]):
+         raise ValueError('Empty literal classification labels are unsupported')
+     return dict(root=root,task_path=task,text=text,paths=paths,**tables,
++        declared_target=target,declared_identifier=identifier,
+         file_role_resolution=dict(method='existing_deterministic_no_LLM_explicit_dictionary_roles',API_calls=0))
+ 
+ 
+@@ -133,9 +140,21 @@
+     return remaining/remaining_workers
+ 
+ 
++def validate_output_identity(output, protected):
++    """Reject input/task/code aliases before any worker and before publication."""
++    output=Path(output)
++    if output.is_symlink():raise ValueError('Submission destination cannot be a symlink')
++    resolved=output.resolve()
++    for value in protected.values():
++        path=Path(value)
++        if resolved==path.resolve() or (output.exists() and path.exists() and output.samefile(path)):
++            raise ValueError('Submission destination aliases protected input/task/source')
++
++
+ def publish_fresh_result(spec, loaded, full, output, run_dir, clock):
+     """Publish only a fresh actual full-fit result, with lexical sample/test IDs."""
+-    clock.check();folder=Path(full['output_dir'])
++    clock.check();validate_output_identity(output,loaded['protected_files'])
++    folder=Path(full['output_dir'])
+     if folder.resolve()!=(run_dir/'final-fit').resolve() or full.get('status')!='ok' or full.get('full_fit') is not True:
+         raise ValueError('Actual successful full-refit receipt required')
+     if spec['kind']=='classification':
+@@ -157,7 +176,8 @@
+     clock.check();temporary=run_dir/'validated-submission.csv'
+     if temporary.exists():raise ValueError('Exclusive publication path required')
+     save_submission(spec,loaded['sample'],loaded['test'],values,temporary)
+-    clock.check();os.replace(temporary,output);clock.check()
++    clock.check();validate_output_identity(output,loaded['protected_files'])
++    os.replace(temporary,output);clock.check()
+ 
+ 
+ def execute(task, *, seconds=9900, origin=None):
+@@ -168,6 +188,8 @@
+         text=task.read_text(encoding='utf-8-sig');kind,metric=resolved_policy(text);clock.check()
+         loaded=load_fixed_inputs(task,kind,clock)
+         spec,unused_profile,train,test,sample,unused_text,hashes=discover(task,loaded=loaded,allow_llm=False)
++        if spec['target']!=loaded['declared_target'] or spec.get('id')!=loaded['declared_identifier']:
++            raise ValueError('Discovery cannot replace explicit target/ID role authority')
+         if spec['kind']!=kind or spec['metric']!=metric.name:
+             raise ValueError('Task discovery disagrees with explicit strict objective')
+         recipe=fixed_recipe(kind,metric.name,text_features=spec.get('text_features',()))
+@@ -175,11 +197,13 @@
+             raise ValueError('Positive-class probability objective is outside fixed MacroF1 release')
+         TaskSpec.from_legacy(spec);validate_loss_profiles(recipe,kind)
+         spec=choose_validation(spec,train,'auto');clock.check()
+-        base=task.parent/'automl_runs';base.mkdir(exist_ok=True)
+-        run_dir=base/('fixed-release-'+str(time.time_ns()));run_dir.mkdir()
+         protected={**{'input:'+k:v for k,v in loaded['paths'].items()},'task':task,
+                    **{'source:'+p.name:p for p in source_files()}}
+         protected['source:requirements.txt']=Path(__file__).with_name('requirements.txt')
++        validate_output_identity(task.parent/'submission.csv',protected)
++        loaded['protected_files']=protected
++        base=task.parent/'automl_runs';base.mkdir(exist_ok=True)
++        run_dir=base/('fixed-release-'+str(time.time_ns()));run_dir.mkdir()
+         before=fingerprints(protected,clock.check)
+         report=dict(schema='fixed-recipe-standard-release-v1',status='running',
+             policy='fixed_typed_recipe_two_cut_median_full_refit',spec=spec,metric=metric.to_dict(),
+--- frozen_R1/automl_release_runtime.py
++++ R2/automl_release_runtime.py
+@@ -14,6 +14,8 @@
+ from automl_runtime import worker_entrypoint
+ 
+ THREADS = min(2, max(1, int(os.environ.get('AUTOML_THREADS', '2'))))
++WORKER_MEMORY_LIMIT_BYTES = 1536 * 2**20
++WHOLE_MEMORY_LIMIT_BYTES = 2048 * 2**20
+ for name in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS'):
+     os.environ[name] = str(THREADS)
+ _HPO_FAIR_RESERVE_PROVENANCE = ContextVar('release_no_HPO_provenance', default=False)
+@@ -32,7 +34,8 @@
+         self.start_unix,self.start_monotonic=origin
+         self.deadline_unix=self.start_unix+seconds;self.deadline_monotonic=self.start_monotonic+seconds
+         self.root=Path(root);self.last=self.start_monotonic;self.previous=self.start_monotonic
+-        self.failure=None;self.resources=ResourceBudget();self.samples=0;self.peak=0
++        self.failure=None;self.resources=ResourceBudget(memory_limit=WHOLE_MEMORY_LIMIT_BYTES)
++        self.samples=0;self.peak=0;self.peak_tree=0;self.last_resource_observation=None
+         self.check(force=True)
+     def check(self, force=False):
+         if self.failure is not None:raise self.failure
+@@ -46,13 +49,17 @@
+             if abs((self.deadline_unix-wall)-(self.deadline_monotonic-now))>5:raise RuntimeError('release_clock_disagreement')
+             if not force and now-self.last<.25:return
+             limit,rss,total=self.resources.inspect(os.getpid(),self.root)
++            self.last_resource_observation=dict(parent_tree_rss_bytes=rss,conservative_combined_bytes=total)
++            self.peak=max(self.peak,total);self.peak_tree=max(self.peak_tree,rss)
++            if total>WHOLE_MEMORY_LIMIT_BYTES:raise RuntimeError('release_whole_memory_limit')
+             if limit:raise RuntimeError('release_'+limit)
+             after=time.monotonic();wall_after=time.time()
+             if not math.isfinite(after) or not math.isfinite(wall_after):raise RuntimeError('release_nonfinite_resource_observation')
+             if after<now or after-self.last>10:raise RuntimeError('release_resource_inspection_gap_or_rollback')
+             if after>=self.deadline_monotonic or wall_after>=self.deadline_unix:raise RuntimeError('release_original_common_deadline')
+             if abs((self.deadline_unix-wall_after)-(self.deadline_monotonic-after))>5:raise RuntimeError('release_clock_disagreement')
+-            self.last=after;self.previous=after;self.samples+=1;self.peak=max(self.peak,total)
++            self.last=after;self.previous=after;self.samples+=1
++            self.peak=max(self.peak,total);self.peak_tree=max(self.peak_tree,rss)
+         except BaseException as exc:
+             self.failure=exc;raise
+     def remaining(self):
+@@ -60,7 +67,11 @@
+     def receipt(self):
+         return dict(start_unix=self.start_unix,start_monotonic=self.start_monotonic,
+             deadline_unix=self.deadline_unix,deadline_monotonic=self.deadline_monotonic,
+-            actual_resource_samples=self.samples,observed_parent_peak_bytes=self.peak,
++            actual_resource_samples=self.samples,
++            observed_parent_tree_rss_peak_bytes=self.peak_tree,
++            observed_parent_conservative_total_peak_bytes=self.peak,
++            last_actual_resource_observation=self.last_resource_observation,
++            parent_total_scope='inherited inspect(self) adds caller RSS twice; conservative, not exact OS-owned whole',
+             observation_gap_limit_seconds=10,resource_sample_cadence_seconds=.25,
+             resource_limit_bytes=self.resources.memory_limit,
+             actual_failure_type=type(self.failure).__name__ if self.failure is not None else None)
+@@ -130,7 +141,9 @@
+     env={k:v for k,v in os.environ.items() if not any(s in k.upper()
+          for s in ['KEY','TOKEN','SECRET','PROXY','PASSWORD','PASSWD','AUTH'])}
+     env.update(PYTHONIOENCODING='utf-8',PYTHONUTF8='1',MPLCONFIGDIR=str(run_dir/'mpl-cache'))
+-    process=tree=None; primary=None; killed=None; peak=peak_total=0; budget=ResourceBudget()
++    process=tree=None; primary=None; killed=None; peak=peak_total=0
++    budget=ResourceBudget(memory_limit=WHOLE_MEMORY_LIMIT_BYTES)
++    terminal_resource_observation=None
+     result=None
+     try:
+         with (run_dir/'worker.log').open('w',encoding='utf-8') as log:
+@@ -146,13 +159,17 @@
+                     # Terminal observation is charged to the original deadline.
+                     if time.monotonic()>=deadline:
+                         killed='timeout'; break
+-                    if process.poll() is not None:
+-                        break
++                    terminal_before_sample=process.poll() is not None
+                     try:
+                         limit,rss,total=budget.inspect(process.pid,run_dir)
+                         release_checkpoint()
+                         peak=max(peak,rss); peak_total=max(peak_total,total)
++                        if terminal_before_sample:
++                            terminal_resource_observation=dict(status='sampled_before_terminal_acceptance',
++                                worker_tree_rss_bytes=rss,combined_observed_bytes=total)
+                         if limit: killed=limit
++                        if total>WHOLE_MEMORY_LIMIT_BYTES:killed='whole_memory_limit'
++                        if rss>WORKER_MEMORY_LIMIT_BYTES:killed='worker_memory_limit'
+                     except psutil.AccessDenied:
+                         births=[c for pid,c in tree.members if pid==process.pid]
+                         raise ProcessObservationError({'status':'resource_observation_unconfirmed',
+@@ -167,8 +184,12 @@
+                                 'unresolved':[{'pid':process.pid,'create_time':None,
+                                 'action':'inspect_resources','error':'NoSuchProcessWithLiveRoot'}],
+                                 'actions':[]})
+-                        continue
++                        terminal_resource_observation=dict(status='root_absent_after_observed_exit',
++                            worker_tree_rss_bytes=None,combined_observed_bytes=None,
++                            remaining_owned_cleanup_still_required=True)
++                        break
+                     if killed: break
++                    if process.poll() is not None:break
+                     time.sleep(.5)
+         if killed:
+             result={'status':killed}
+@@ -212,7 +233,11 @@
+     result.update(recipe=recipe,output_dir=str(run_dir),strict_runtime=True,
+         wall_seconds=round(finished-started,3),
+         observed_process_tree_peak_mb=round(peak/2**20,1),
+-        observed_total_peak_mb=round(peak_total/2**20,1))
++        observed_total_peak_mb=round(peak_total/2**20,1),
++        observed_worker_tree_peak_bytes=peak,observed_combined_peak_bytes=peak_total,
++        worker_memory_limit_bytes=WORKER_MEMORY_LIMIT_BYTES,
++        whole_memory_limit_bytes=WHOLE_MEMORY_LIMIT_BYTES,
++        terminal_resource_observation=terminal_resource_observation)
+     return result
+ 
+ def run_release_worker(spec, recipe, run_dir, split_path, timeout, *, clock, full_fit=False, fit_iterations=None):
+--- frozen_R1/tests/test_fixed_release.py
++++ R2/tests/test_fixed_release.py
+@@ -71,7 +71,8 @@
+         self.assertEqual(recipes.fixed_recipe('regression','rmse')['components'][0]['params']['iterations'],1600)
+ 
+     def test_actual_cut_iterations_not_historical_tree_feed_only_full_refit(self):
+-        task,paths=self.fixture();loaded={'paths':paths,'train':pd.DataFrame({'sensor':range(9),'answer':range(9)}),
++        task,paths=self.fixture();loaded={'paths':paths,'declared_target':'answer','declared_identifier':'ticket',
++            'train':pd.DataFrame({'sensor':range(9),'answer':range(9)}),
+             'test':pd.DataFrame({'ticket':['001','NA'],'sensor':[1,2]}),'sample':pd.DataFrame({'ticket':['NA','001'],'answer':[0,0]})}
+         spec={'root':str(self.root),'paths':{k:str(v) for k,v in paths.items()},'target':'answer','id':'ticket',
+             'features':['sensor'],'kind':'regression','metric':'rmse','greater_is_better':False,
+@@ -88,6 +89,11 @@
+              patch.object(release,'make_split',return_value=(np.arange(6),np.arange(6,9),{'test':True})),\
+              patch.object(release,'run_release_worker',side_effect=worker),patch.object(release,'publish_fresh_result'):
+             self.assertEqual(release.execute(task),0)
++            for replacement in [dict(spec,target='wrong_target'),dict(spec,id='wrong_id')]:
++                with patch.object(release,'discover',return_value=(replacement,{},loaded['train'],loaded['test'],loaded['sample'],'',np.arange(9))),\
++                     self.assertRaises(ValueError):release.execute(task)
++            with patch.object(release,'validate_output_identity',side_effect=ValueError('protected output alias')),\
++                 self.assertRaises(ValueError):release.execute(task)
+         self.assertEqual(len(calls),3)
+         self.assertNotIn('fit_iterations',calls[0]);self.assertNotIn('fit_iterations',calls[1])
+         self.assertEqual(calls[2]['fit_iterations'],[60,80]);self.assertTrue(calls[2]['full_fit'])
+@@ -119,6 +125,15 @@
+         task,paths=self.fixture(role='not_target')
+         with patch.object(release,'resolve_inputs',return_value=paths),self.assertRaises(ValueError):
+             release.load_fixed_inputs(task,'regression',self.clock())
++        task,paths=self.fixture()
++        for dictionary in ['feature,role\nticket,id\nsensor,feature\nghost,target\n',
++                           'feature,role\nmissing_key,id\nsensor,feature\nanswer,target\n',
++                           'feature,role\nticket,id\nsensor,feature\n,target\n']:
++            paths['data_dictionary'].write_text(dictionary,encoding='utf-8')
++            with patch.object(release,'resolve_inputs',return_value=paths),\
++                 patch.object(release,'validate_role_tables',side_effect=AssertionError('Legacy guessing must not run')),\
++                 self.assertRaises(ValueError):
++                release.load_fixed_inputs(task,'regression',self.clock())
+ 
+     def test_renamed_paths_and_lexical_sample_order_use_declared_roles(self):
+         task,paths=self.fixture()
+@@ -138,7 +153,8 @@
+         np.savez(folder/'test_probabilities.npz',classes=np.asarray(['NA','left']),probabilities=[[.8,.2],[.1,.9]])
+         spec={'kind':'classification','id':'key','classes':['NA','left'],'prediction_type':'value',
+             'target':'out','output_columns':['out'],'sample_test_positions':[1,0]}
+-        loaded={'test':pd.DataFrame({'key':['001','NA']}),'sample':pd.DataFrame({'key':['NA','001'],'out':['','']})}
++        loaded={'test':pd.DataFrame({'key':['001','NA']}),'sample':pd.DataFrame({'key':['NA','001'],'out':['','']}),
++            'protected_files':{'task':self.write('task.md','classification')}}
+         output=self.root/'submission.csv'
+         release.publish_fresh_result(spec,loaded,{'status':'ok','full_fit':True,'output_dir':str(folder)},output,run,self.clock())
+         with output.open(newline='') as stream:rows=list(csv.DictReader(stream))
+@@ -147,7 +163,8 @@
+     def test_bad_probability_order_and_nonfinite_values_cannot_publish(self):
+         run=self.root/'run';folder=run/'final-fit';folder.mkdir(parents=True)
+         spec={'kind':'classification','id':None,'classes':['a','b'],'prediction_type':'value','output_columns':['out']}
+-        loaded={'test':pd.DataFrame({'x':[1]}),'sample':pd.DataFrame({'out':['']})}
++        loaded={'test':pd.DataFrame({'x':[1]}),'sample':pd.DataFrame({'out':['']}),
++            'protected_files':{'task':self.write('task.md','classification')}}
+         for classes,probs in [(['b','a'],[[.3,.7]]),(['a','b'],[[float('nan'),.7]])]:
+             np.savez(folder/'test_probabilities.npz',classes=np.asarray(classes),probabilities=probs)
+             with self.assertRaises(ValueError):release.publish_fresh_result(spec,loaded,{'status':'ok','full_fit':True,'output_dir':str(folder)},self.root/'submission.csv',run,self.clock())
+@@ -163,7 +180,7 @@
+     def test_clock_actual_sample_cadence_and_sticky_denial(self):
+         now=[0.];calls=[]
+         class Resources:
+-            memory_limit=1000
++            memory_limit=runtime.WHOLE_MEMORY_LIMIT_BYTES
+             def inspect(self,*args):calls.append(now[0]);return None,1,2
+         with patch.object(runtime.time,'monotonic',side_effect=lambda:now[0]),\
+              patch.object(runtime.time,'time',side_effect=lambda:1000+now[0]),\
+@@ -185,6 +202,61 @@
+             now[0]=.5
+             with self.assertRaises(runtime.psutil.AccessDenied) as caught:fresh.check()
+             self.assertIs(caught.exception,denied)
++            now[0]=0.
++            parent=runtime.ReleaseClock(60,self.root)
++            with patch.object(parent.resources,'inspect',return_value=(None,1,runtime.WHOLE_MEMORY_LIMIT_BYTES)):
++                now[0]=.25;parent.check()
++            with patch.object(parent.resources,'inspect',return_value=(None,1,runtime.WHOLE_MEMORY_LIMIT_BYTES+1)):
++                now[0]=.5
++                with self.assertRaisesRegex(RuntimeError,'whole_memory'):parent.check()
++            self.assertEqual(parent.receipt()['last_actual_resource_observation']['conservative_combined_bytes'],runtime.WHOLE_MEMORY_LIMIT_BYTES+1)
++
++    def test_terminal_memory_caps_boundary_and_denial_are_not_success(self):
++        worker_cap=1536*2**20;whole_cap=2048*2**20
++        for index,(rss,total,expected) in enumerate([
++            (worker_cap,whole_cap,'ok'),(worker_cap+1,whole_cap,'worker_memory_limit'),
++            (worker_cap,whole_cap+1,'whole_memory_limit')]):
++            with self.subTest(rss=rss,total=total):
++                directory=self.root/('worker-'+str(index))
++                process=unittest.mock.Mock(pid=123,returncode=0);process.poll.return_value=0
++                tree=unittest.mock.Mock();tree.members={(123,1.):object()}
++                budget=unittest.mock.Mock();budget.inspect.return_value=(None,rss,total);budget.inspect_artifacts.return_value=0
++                def spawned(*args,**kwargs):
++                    (directory/'result.json').write_text(json.dumps({'status':'ok'}),encoding='utf-8');return process
++                with patch.object(runtime.subprocess,'Popen',side_effect=spawned),\
++                     patch.object(runtime,'ProcessTree',return_value=tree),\
++                     patch.object(runtime,'ResourceBudget',return_value=budget) as constructor,\
++                     patch.object(runtime.time,'monotonic',return_value=0.):
++                    result=runtime.run_release_worker({'root':str(self.root)},recipes.REGRESSION_RECIPE,
++                        directory,'unused',100,clock=self.clock())
++                self.assertEqual(result['status'],expected)
++                self.assertEqual(result['observed_worker_tree_peak_bytes'],rss)
++                self.assertEqual(result['observed_combined_peak_bytes'],total)
++                self.assertEqual(result['worker_memory_limit_bytes'],worker_cap)
++                self.assertEqual(result['whole_memory_limit_bytes'],whole_cap)
++                self.assertEqual(result['terminal_resource_observation']['status'],'sampled_before_terminal_acceptance')
++                constructor.assert_called_once_with(memory_limit=whole_cap);tree.terminate.assert_called_once()
++        directory=self.root/'terminal-denial';process=unittest.mock.Mock(pid=123,returncode=0);process.poll.return_value=0
++        tree=unittest.mock.Mock();tree.members={(123,1.):object()}
++        budget=unittest.mock.Mock();budget.inspect.side_effect=runtime.psutil.AccessDenied(pid=123)
++        with patch.object(runtime.subprocess,'Popen',return_value=process),\
++             patch.object(runtime,'ProcessTree',return_value=tree),patch.object(runtime,'ResourceBudget',return_value=budget):
++            with self.assertRaises(runtime.ProcessObservationError):
++                runtime.run_release_worker({'root':str(self.root)},recipes.REGRESSION_RECIPE,
++                    directory,'unused',100,clock=self.clock())
++        tree.terminate.assert_called_once()
++
++    def test_publication_alias_preflight_preserves_protected_files(self):
++        output=self.write('submission.csv','immutable source bytes')
++        with self.assertRaises(ValueError):release.validate_output_identity(output,{'sample':output})
++        self.assertEqual(output.read_text(),'immutable source bytes')
++        other=self.write('task.md','task bytes')
++        with patch.object(Path,'samefile',return_value=True),self.assertRaises(ValueError):
++            release.validate_output_identity(output,{'task':other})
++        with patch.object(Path,'is_symlink',return_value=True),self.assertRaises(ValueError):
++            release.validate_output_identity(output,{'task':other})
++        release.validate_output_identity(output,{'task':other})
++        self.assertEqual(other.read_text(),'task bytes');self.assertEqual(output.read_text(),'immutable source bytes')
+ 
+     def test_source_base_requirements_and_numerical_adapter_bytes_preserved(self):
+         inventory=json.loads((ROOT/'base-inventory.json').read_text('utf-8'))['members_sha256']

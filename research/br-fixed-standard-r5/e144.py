@@ -1,0 +1,20 @@
+"""Frozen typed release recipes. Historical iterations are provenance ONLY.
+No row/data/prediction/path/label identifiers are embedded. Routing uses the
+strictly resolved task kind/metric, never a benchmark or filename.
+"""
+from copy import deepcopy
+
+REGRESSION_RECIPE = {'engine': 'ensemble', 'hypothesis': 'Validated cached-prediction blend', 'params': {}, 'components': [{'hypothesis': 'Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control', 'engine': 'lightgbm', 'params': {'iterations': 1600, 'learning_rate': 0.035, 'num_leaves': 127, 'max_depth': -1, 'min_child_samples': 25, 'reg_lambda': 8, 'subsample': 1, 'colsample_bytree': 0.9, 'generic_features': 'missing', 'subsample_freq': 0, 'min_iterations': 100, 'target_encoding': True, 'target_encoding_auto_groups': True, 'target_encoding_smoothing': 2, 'log_target': True, 'target_encoding_hierarchical': True, 'history_asof': True, 'history_min_periods': 3, 'early_metric': 'primary', 'nested_stopping': True, 'loss_profile_id': 'lgbm_l1_v1'}, 'feature_code': ''}, {'hypothesis': "The best recipe (38.596) may be over-regularized or under-regularized. This parameter-only ablation tests a slightly higher learning rate (0.05) and lower regularization (reg_lambda=5) to see if the model can capture more signal. It avoids the 'broad' feature failure by keeping the proven 'missing' feature set.", 'engine': 'lightgbm', 'params': {'iterations': 1600, 'learning_rate': 0.05, 'num_leaves': 104, 'max_depth': -1, 'min_child_samples': 25, 'reg_lambda': 5, 'subsample': 1, 'colsample_bytree': 0.9899657323952007, 'generic_features': 'missing', 'subsample_freq': 0, 'min_iterations': 100, 'target_encoding': True, 'target_encoding_auto_groups': True, 'target_encoding_smoothing': 2, 'log_target': True, 'target_encoding_hierarchical': True, 'history_asof': True, 'history_min_periods': 3, 'early_metric': 'primary', 'nested_stopping': True}, 'feature_code': ''}], 'weights': [0.75, 0.25]}
+
+CLASSIFICATION_RECIPE = {'engine': 'ensemble', 'hypothesis': 'Validated cached-prediction blend', 'params': {}, 'components': [{'hypothesis': 'Fixed equal-weight original and cross-fitted categorical feature views; compare full procedure', 'engine': 'lightgbm', 'params': {'iterations': 1200, 'learning_rate': 0.04, 'num_leaves': 63, 'max_depth': -1, 'min_child_samples': 25, 'reg_lambda': 5, 'subsample': 1, 'colsample_bytree': 0.9, 'class_weight_power': 0.5, 'calibrate': True, 'subsample_freq': 0, 'min_iterations': 100, 'feature_views': 'categorical_te_pair', 'early_metric': 'primary', 'nested_stopping': True}, 'feature_code': ''}, {'hypothesis': 'Controlled deterministic alternative', 'engine': 'lightgbm', 'params': {'iterations': 1200, 'learning_rate': 0.04, 'num_leaves': 63, 'max_depth': -1, 'min_child_samples': 25, 'reg_lambda': 5, 'subsample': 1, 'colsample_bytree': 0.9, 'class_weight_power': 0.5, 'calibrate': True, 'subsample_freq': 0, 'min_iterations': 100, 'feature_views': 'categorical_te_pair', 'seed': 48, 'early_metric': 'primary', 'nested_stopping': True}, 'feature_code': ''}, {'hypothesis': 'Optional training-only XGBoost decision calibration; retain the uncalibrated control', 'engine': 'xgboost', 'params': {'iterations': 1800, 'learning_rate': 0.035, 'max_depth': 6, 'min_child_weight': 3, 'subsample': 0.85, 'colsample_bytree': 0.9, 'reg_lambda': 8, 'reg_alpha': 0.1, 'class_weight_power': 0.5, 'min_iterations': 50, 'calibrate': True, 'early_metric': 'primary', 'nested_stopping': True}, 'feature_code': ''}], 'weights': [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]}
+
+HISTORICAL_DEPLOYMENT_ITERATIONS = {'regression': [474, 109], 'classification': [[100, 111], [100, 138], 339]}
+
+def fixed_recipe(kind, metric, *, text_features=()):
+    if text_features:
+        raise ValueError('Fixed release supports non-text tabular tasks only')
+    if (kind, metric) == ('regression', 'rmse'):
+        return deepcopy(REGRESSION_RECIPE)
+    if (kind, metric) == ('classification', 'macro_f1'):
+        return deepcopy(CLASSIFICATION_RECIPE)
+    raise ValueError('Unsupported or unresolved fixed-release kind/metric')

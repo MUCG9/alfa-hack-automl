@@ -1,0 +1,18 @@
+{
+  "schema": "br-fixed-standard-r5-prospective-scope-v1",
+  "original_root_scope_sha256": "a00ea96ff2455ad80d640f20f7da071288dffd7f18401058a6f14e35d4458f0e",
+  "finding": "BRS04: worker sampling callback called full caller check during unfinished worker sampling, allowing nested RSS and parent last-success advancement.",
+  "original_review": {
+    "path": "br-standard-release-independent-source-review-r4.json",
+    "sha256": "2a99d7bc14ffd570ee85aa22303ca958090a1c958566593c35f48ef7f9fad10a"
+  },
+  "root_authorized_source_deltas": [
+    "Use exact typed existing original ReleaseClock._resource_checkpoint only inside worker sampler callback; preserve every outer full resource check.",
+    "One new mock consumer contract while old18 test bytes remain exact.",
+    "Add existing observed worker root/self identities and Popen returncode after cleanup; initialize sampling_root null."
+  ],
+  "source_authority": "Root messages authorizing R5 callback correction, one consumer fixture and minimal additive provenance before freeze.",
+  "new_process_or_fit_instrumentation": false,
+  "runtime_or_metric_qualification": null,
+  "original_BRQ1_BRQ2_FAIL_preserved": true
+}

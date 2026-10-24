@@ -1,0 +1,961 @@
+{
+  "schema": "br-fixed-standard-r5-exact-source-transport-v1",
+  "readiness": "SOURCE_REVIEWED_NOT_RUNTIME_QUALIFIED_NOT_SUBMISSION_READY",
+  "files": {
+    "e001.json": {
+      "source": "br-standard-release-next-dev-r5/base-inventory.json",
+      "sha256": "642fe72b1bc2a172a83826b1362ba0ad6a995524c866fa3b1b17d0f86ac39483"
+    },
+    "e002.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/agent_core.py",
+      "sha256": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085"
+    },
+    "e003.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/agent_policy.py",
+      "sha256": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b"
+    },
+    "e004.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/agent_runner.py",
+      "sha256": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342"
+    },
+    "e005.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/agent_worker.py",
+      "sha256": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4"
+    },
+    "e006.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_atomic.py",
+      "sha256": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86"
+    },
+    "e007.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_callbacks.py",
+      "sha256": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9"
+    },
+    "e008.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_contracts_error_analysis.py",
+      "sha256": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a"
+    },
+    "e009.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_contracts_messages.py",
+      "sha256": "6f5bf6742bfde3e015559d5e4638ab749930f4177a0c24c3268f24ef8197c9a6"
+    },
+    "e010.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_contracts_metrics.py",
+      "sha256": "30bc28707a08c06a7272fafff1685ef4b0b1b4be2748225a7fe6abaf5d24c356"
+    },
+    "e011.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_ensembles.py",
+      "sha256": "f52deb156e74e6e8e46b67fa6045bbaf942a2b9dac32e6ec11b16d1782328185"
+    },
+    "e012.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_error_analysis_api.py",
+      "sha256": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad"
+    },
+    "e013.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_error_analysis_artifacts.py",
+      "sha256": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454"
+    },
+    "e014.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_error_analysis_classification.py",
+      "sha256": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073"
+    },
+    "e015.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_error_analysis_comparisons.py",
+      "sha256": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418"
+    },
+    "e016.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_error_analysis_preparation.py",
+      "sha256": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52"
+    },
+    "e017.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_error_analysis_regression.py",
+      "sha256": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719"
+    },
+    "e018.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_error_analysis_reporting.py",
+      "sha256": "5d1e37b3360c8096277576eb174737eb1a209ae9f656a42d71ff3d6bedb0b051"
+    },
+    "e019.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_error_analysis_service.py",
+      "sha256": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630"
+    },
+    "e020.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_error_analysis_slices.py",
+      "sha256": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f"
+    },
+    "e021.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_error_analysis_uncertainty.py",
+      "sha256": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591"
+    },
+    "e022.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_evaluation.py",
+      "sha256": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d"
+    },
+    "e023.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_evaluation_api.py",
+      "sha256": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73"
+    },
+    "e024.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_evaluation_postprocessor.py",
+      "sha256": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551"
+    },
+    "e025.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_evaluation_ranking.py",
+      "sha256": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a"
+    },
+    "e026.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_execution_api.py",
+      "sha256": "73c5cd7787959119d17dacd4c051d1ba72201e13b83dbb2c1983004a8208ef27"
+    },
+    "e027.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_execution_augmentation_masking.py",
+      "sha256": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748"
+    },
+    "e028.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_execution_augmentation_noop.py",
+      "sha256": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c"
+    },
+    "e029.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_execution_feature_engineering_selection.py",
+      "sha256": "9b5f5104425a9416f005acc11af7239fec2e10f59a7c8c15dc4e99878bef38fa"
+    },
+    "e030.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_execution_feature_views.py",
+      "sha256": "3188c6a64aee09a012fdb4bf49eeec1b780046ad0a4390ad69a7f9d2e7c598ea"
+    },
+    "e031.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_execution_model_adapters_specialists.py",
+      "sha256": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df"
+    },
+    "e032.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_execution_postprocessing_targets.py",
+      "sha256": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218"
+    },
+    "e033.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_execution_preprocessing_history.py",
+      "sha256": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56"
+    },
+    "e034.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_execution_preprocessing_target_encoding.py",
+      "sha256": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873"
+    },
+    "e035.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_execution_sampling_policies.py",
+      "sha256": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5"
+    },
+    "e036.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_features.py",
+      "sha256": "1c505e20611ad9e96affeeee0e7e8ac88b3a9b8a3167761e5a252dcd283511a8"
+    },
+    "e037.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_fixed_release.py",
+      "sha256": "fe8a08f193db5c05c60a637c9fa83814fb86651d2315338b2d588a3abd740bf7"
+    },
+    "e038.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_frames.py",
+      "sha256": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249"
+    },
+    "e039.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_infrastructure_llm_gateway.py",
+      "sha256": "580261a8cbc720fef77f8e33819faa6c401153b4c6c2006536ec2bfaa0435551"
+    },
+    "e040.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_infrastructure_observation_time.py",
+      "sha256": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd"
+    },
+    "e041.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_infrastructure_processes.py",
+      "sha256": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3"
+    },
+    "e042.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_infrastructure_resources.py",
+      "sha256": "fab3b49c0640738983f92d59f977584de9f9001cbace59e985e36a7802a69d15"
+    },
+    "e043.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_infrastructure_run_budget.py",
+      "sha256": "baa9f7469ba9e8344005ca50a77d48e3c856f1a97010f27dee8fc40bdc42a9f0"
+    },
+    "e044.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_infrastructure_tables.py",
+      "sha256": "7ce3aa0125eb27b14512b37a57688835b8c039015dc7fc80f324c8565fa9e162"
+    },
+    "e045.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_model_catboost.py",
+      "sha256": "bc4934d9146fb5925df1ce40220c0cd87f143c13213b3c4029266bc9a5cd10c4"
+    },
+    "e046.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_model_extra_trees.py",
+      "sha256": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0"
+    },
+    "e047.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_model_lightgbm.py",
+      "sha256": "95f9ade67d71170ed822f371ead79dab24c3867837d4fc9e05cc72129adc9b31"
+    },
+    "e048.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_model_linear_text.py",
+      "sha256": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a"
+    },
+    "e049.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_model_xgboost.py",
+      "sha256": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910"
+    },
+    "e050.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_models.py",
+      "sha256": "435db85acb24305d3b6a9535b8653e95fc559d264118f9f300d350e158de97f5"
+    },
+    "e051.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_policy.py",
+      "sha256": "bd751953a3ffad7b7f4709c99df2802eb6b8ade9a5276841bd8e96378d393b91"
+    },
+    "e052.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_publishing.py",
+      "sha256": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63"
+    },
+    "e053.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_publishing_api.py",
+      "sha256": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26"
+    },
+    "e054.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_release_recipes.py",
+      "sha256": "d446c93e410cda9bff44aff7f09ffc843d69aa15c794bd73d422d587de55f880"
+    },
+    "e055.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_release_runtime.py",
+      "sha256": "ad6087fc12ca1c57c7b7764fe1033fc737ca8c067426578262b860a51c973fe4"
+    },
+    "e056.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_runner.py",
+      "sha256": "0f3208fcfb86587b88bb778148cb207713382d417fe7c2e92581721047989bc0"
+    },
+    "e057.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_runtime.py",
+      "sha256": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576"
+    },
+    "e058.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_search_hpo.py",
+      "sha256": "2675ef78df893b73689ed38143d252e7d747b059494f59c4bfbd4989fd78c508"
+    },
+    "e059.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_search_multitarget.py",
+      "sha256": "f56063373e7af57472069a5043de7e6b65d5d644d52ece3884a875e93d075fbf"
+    },
+    "e060.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_search_stages.py",
+      "sha256": "bbc677fae6d7963a30cf0a64296249daae0b9dfbb7fef875babbb27ca5d25b84"
+    },
+    "e061.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_task.py",
+      "sha256": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f"
+    },
+    "e062.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_task_understanding_api.py",
+      "sha256": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9"
+    },
+    "e063.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_task_understanding_inputs.py",
+      "sha256": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca"
+    },
+    "e064.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_task_understanding_metric_contract.py",
+      "sha256": "601db6655324d7fbdcd11de28441d5153ff675d7b7de02a867b8525f788d43a0"
+    },
+    "e065.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_task_understanding_metrics.py",
+      "sha256": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a"
+    },
+    "e066.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_task_understanding_probabilities.py",
+      "sha256": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3"
+    },
+    "e067.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_task_understanding_role_validation.py",
+      "sha256": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407"
+    },
+    "e068.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_task_understanding_semantic_inputs.py",
+      "sha256": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662"
+    },
+    "e069.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_verified_resource_sampling.py",
+      "sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0"
+    },
+    "e070.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_weights.py",
+      "sha256": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452"
+    },
+    "e071.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/automl_worker.py",
+      "sha256": "c7dd895d0fecfb40c1837c69d08fe04b4297e1304ee364e760e40b36892bd74d"
+    },
+    "e072.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/ensemble_cache.py",
+      "sha256": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd"
+    },
+    "e073.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/model_utils.py",
+      "sha256": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58"
+    },
+    "e074.txt": {
+      "source": "br-standard-release-next-dev-r5/candidate/requirements.txt",
+      "sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+    },
+    "e075.py": {
+      "source": "br-standard-release-next-dev-r5/candidate/solution.py",
+      "sha256": "f666465b00d20168e28359559f5e81787316d66c3a90964852ee4cb6b3fb3eb5"
+    },
+    "e076.json": {
+      "source": "br-standard-release-next-dev-r5/candidate-source-manifest.json",
+      "sha256": "f5338b1728bf98d4bb320f1a5081c2b96fd3d79afd917927c1ec113860b4fb84"
+    },
+    "e077.json": {
+      "source": "br-standard-release-next-dev-r5/protocol.json",
+      "sha256": "49189258e3730154f9857117e15ce25e8d5117f571e3b0be4d9f5c9c18052dc2"
+    },
+    "e078.json": {
+      "source": "br-standard-release-next-dev-r5/R1-preservation.json",
+      "sha256": "673fd57bf694171a31a257985557f0e469451105cb258ae1b7b5e8a833220deb"
+    },
+    "e079.patch": {
+      "source": "br-standard-release-next-dev-r5/R1-to-R2.patch",
+      "sha256": "8a70b0de50e4a6268d7f87e2f91d1eee66360510a95c609efc76890f6efeb2cb"
+    },
+    "e080.json": {
+      "source": "br-standard-release-next-dev-r5/R2-preservation.json",
+      "sha256": "63dac8a732f253afbb0a7b86e0e5b8535794a9d7660d3136205f32300719a4cf"
+    },
+    "e081.patch": {
+      "source": "br-standard-release-next-dev-r5/R2-to-R3.patch",
+      "sha256": "12e24514e5d39e8b1264161af1ff619d88b7304722482ace4d4d1bdbe7de8175"
+    },
+    "e082.json": {
+      "source": "br-standard-release-next-dev-r5/r3-focused-AST-proof.json",
+      "sha256": "4096f7d177763880b097dee571e36cd5b9042dd3a1e6281d58d00ecc5e1a3dfc"
+    },
+    "e083.json": {
+      "source": "br-standard-release-next-dev-r5/R3-preservation.json",
+      "sha256": "8a12f3f03cfc3b5c0d51d808ca15365b847be87d998e460500a90ddd10e2c3a0"
+    },
+    "e084.patch": {
+      "source": "br-standard-release-next-dev-r5/R3-to-R4.patch",
+      "sha256": "a94598d2ef5e76c86aba9d2193287f65e1f660e0f767a8710d243e2f7245eb33"
+    },
+    "e085.json": {
+      "source": "br-standard-release-next-dev-r5/R4-preservation.json",
+      "sha256": "502460f5383dd0ac44ea3cfb4feaaa92348bb2777d21154cf8ddbb0e8d2c94f4"
+    },
+    "e086.json": {
+      "source": "br-standard-release-next-dev-r5/R4-source-finding-and-R5-scope.json",
+      "sha256": "45b78ad52cd47b43dd141cc3249e0c70ec209f6ec348903ac52840595f42ea39"
+    },
+    "e087.patch": {
+      "source": "br-standard-release-next-dev-r5/R4-to-R5.patch",
+      "sha256": "bc80ca687bafa91bda746abb02c17596821e30ee5c81637fde1a734738ec7b22"
+    },
+    "e088.json": {
+      "source": "br-standard-release-next-dev-r5/r5-focused-AST-proof.json",
+      "sha256": "e0592725e8b910320862c343cda4fa7376352bd5f12ca12affd046d6f23cd0d1"
+    },
+    "e089.txt": {
+      "source": "br-standard-release-next-dev-r5/README.txt",
+      "sha256": "b9b86daea1a5cc8132174e0223ec4cfb6289d5dbffb1c1e4f7f34af4c24a1a36"
+    },
+    "e090.zip": {
+      "source": "br-standard-release-next-dev-r5/solution-br-fixed-candidate.zip",
+      "sha256": "c7b54a8996e36dfaaf582b104d1f38ecca71d91d4f38362ed50775381f42f930"
+    },
+    "e091.json": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/base-inventory.json",
+      "sha256": "642fe72b1bc2a172a83826b1362ba0ad6a995524c866fa3b1b17d0f86ac39483"
+    },
+    "e092.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/agent_core.py",
+      "sha256": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085"
+    },
+    "e093.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/agent_policy.py",
+      "sha256": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b"
+    },
+    "e094.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/agent_runner.py",
+      "sha256": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342"
+    },
+    "e095.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/agent_worker.py",
+      "sha256": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4"
+    },
+    "e096.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_atomic.py",
+      "sha256": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86"
+    },
+    "e097.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_callbacks.py",
+      "sha256": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9"
+    },
+    "e098.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_contracts_error_analysis.py",
+      "sha256": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a"
+    },
+    "e099.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_contracts_messages.py",
+      "sha256": "6f5bf6742bfde3e015559d5e4638ab749930f4177a0c24c3268f24ef8197c9a6"
+    },
+    "e100.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_contracts_metrics.py",
+      "sha256": "30bc28707a08c06a7272fafff1685ef4b0b1b4be2748225a7fe6abaf5d24c356"
+    },
+    "e101.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_ensembles.py",
+      "sha256": "f52deb156e74e6e8e46b67fa6045bbaf942a2b9dac32e6ec11b16d1782328185"
+    },
+    "e102.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_error_analysis_api.py",
+      "sha256": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad"
+    },
+    "e103.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_error_analysis_artifacts.py",
+      "sha256": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454"
+    },
+    "e104.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_error_analysis_classification.py",
+      "sha256": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073"
+    },
+    "e105.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_error_analysis_comparisons.py",
+      "sha256": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418"
+    },
+    "e106.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_error_analysis_preparation.py",
+      "sha256": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52"
+    },
+    "e107.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_error_analysis_regression.py",
+      "sha256": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719"
+    },
+    "e108.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_error_analysis_reporting.py",
+      "sha256": "5d1e37b3360c8096277576eb174737eb1a209ae9f656a42d71ff3d6bedb0b051"
+    },
+    "e109.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_error_analysis_service.py",
+      "sha256": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630"
+    },
+    "e110.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_error_analysis_slices.py",
+      "sha256": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f"
+    },
+    "e111.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_error_analysis_uncertainty.py",
+      "sha256": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591"
+    },
+    "e112.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_evaluation.py",
+      "sha256": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d"
+    },
+    "e113.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_evaluation_api.py",
+      "sha256": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73"
+    },
+    "e114.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_evaluation_postprocessor.py",
+      "sha256": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551"
+    },
+    "e115.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_evaluation_ranking.py",
+      "sha256": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a"
+    },
+    "e116.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_execution_api.py",
+      "sha256": "73c5cd7787959119d17dacd4c051d1ba72201e13b83dbb2c1983004a8208ef27"
+    },
+    "e117.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_execution_augmentation_masking.py",
+      "sha256": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748"
+    },
+    "e118.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_execution_augmentation_noop.py",
+      "sha256": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c"
+    },
+    "e119.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_execution_feature_engineering_selection.py",
+      "sha256": "9b5f5104425a9416f005acc11af7239fec2e10f59a7c8c15dc4e99878bef38fa"
+    },
+    "e120.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_execution_feature_views.py",
+      "sha256": "3188c6a64aee09a012fdb4bf49eeec1b780046ad0a4390ad69a7f9d2e7c598ea"
+    },
+    "e121.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_execution_model_adapters_specialists.py",
+      "sha256": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df"
+    },
+    "e122.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_execution_postprocessing_targets.py",
+      "sha256": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218"
+    },
+    "e123.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_execution_preprocessing_history.py",
+      "sha256": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56"
+    },
+    "e124.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_execution_preprocessing_target_encoding.py",
+      "sha256": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873"
+    },
+    "e125.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_execution_sampling_policies.py",
+      "sha256": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5"
+    },
+    "e126.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_features.py",
+      "sha256": "1c505e20611ad9e96affeeee0e7e8ac88b3a9b8a3167761e5a252dcd283511a8"
+    },
+    "e127.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_fixed_release.py",
+      "sha256": "fe8a08f193db5c05c60a637c9fa83814fb86651d2315338b2d588a3abd740bf7"
+    },
+    "e128.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_frames.py",
+      "sha256": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249"
+    },
+    "e129.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_infrastructure_llm_gateway.py",
+      "sha256": "580261a8cbc720fef77f8e33819faa6c401153b4c6c2006536ec2bfaa0435551"
+    },
+    "e130.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_infrastructure_observation_time.py",
+      "sha256": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd"
+    },
+    "e131.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_infrastructure_processes.py",
+      "sha256": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3"
+    },
+    "e132.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_infrastructure_resources.py",
+      "sha256": "fab3b49c0640738983f92d59f977584de9f9001cbace59e985e36a7802a69d15"
+    },
+    "e133.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_infrastructure_run_budget.py",
+      "sha256": "baa9f7469ba9e8344005ca50a77d48e3c856f1a97010f27dee8fc40bdc42a9f0"
+    },
+    "e134.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_infrastructure_tables.py",
+      "sha256": "7ce3aa0125eb27b14512b37a57688835b8c039015dc7fc80f324c8565fa9e162"
+    },
+    "e135.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_model_catboost.py",
+      "sha256": "bc4934d9146fb5925df1ce40220c0cd87f143c13213b3c4029266bc9a5cd10c4"
+    },
+    "e136.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_model_extra_trees.py",
+      "sha256": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0"
+    },
+    "e137.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_model_lightgbm.py",
+      "sha256": "95f9ade67d71170ed822f371ead79dab24c3867837d4fc9e05cc72129adc9b31"
+    },
+    "e138.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_model_linear_text.py",
+      "sha256": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a"
+    },
+    "e139.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_model_xgboost.py",
+      "sha256": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910"
+    },
+    "e140.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_models.py",
+      "sha256": "435db85acb24305d3b6a9535b8653e95fc559d264118f9f300d350e158de97f5"
+    },
+    "e141.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_policy.py",
+      "sha256": "bd751953a3ffad7b7f4709c99df2802eb6b8ade9a5276841bd8e96378d393b91"
+    },
+    "e142.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_publishing.py",
+      "sha256": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63"
+    },
+    "e143.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_publishing_api.py",
+      "sha256": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26"
+    },
+    "e144.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_release_recipes.py",
+      "sha256": "d446c93e410cda9bff44aff7f09ffc843d69aa15c794bd73d422d587de55f880"
+    },
+    "e145.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_release_runtime.py",
+      "sha256": "88462c7d68a78aed7ae2a879f3af46069427892e4a58ae42c3e33005e3d53675"
+    },
+    "e146.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_runner.py",
+      "sha256": "0f3208fcfb86587b88bb778148cb207713382d417fe7c2e92581721047989bc0"
+    },
+    "e147.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_runtime.py",
+      "sha256": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576"
+    },
+    "e148.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_search_hpo.py",
+      "sha256": "2675ef78df893b73689ed38143d252e7d747b059494f59c4bfbd4989fd78c508"
+    },
+    "e149.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_search_multitarget.py",
+      "sha256": "f56063373e7af57472069a5043de7e6b65d5d644d52ece3884a875e93d075fbf"
+    },
+    "e150.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_search_stages.py",
+      "sha256": "bbc677fae6d7963a30cf0a64296249daae0b9dfbb7fef875babbb27ca5d25b84"
+    },
+    "e151.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_task.py",
+      "sha256": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f"
+    },
+    "e152.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_task_understanding_api.py",
+      "sha256": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9"
+    },
+    "e153.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_task_understanding_inputs.py",
+      "sha256": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca"
+    },
+    "e154.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_task_understanding_metric_contract.py",
+      "sha256": "601db6655324d7fbdcd11de28441d5153ff675d7b7de02a867b8525f788d43a0"
+    },
+    "e155.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_task_understanding_metrics.py",
+      "sha256": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a"
+    },
+    "e156.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_task_understanding_probabilities.py",
+      "sha256": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3"
+    },
+    "e157.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_task_understanding_role_validation.py",
+      "sha256": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407"
+    },
+    "e158.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_task_understanding_semantic_inputs.py",
+      "sha256": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662"
+    },
+    "e159.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_verified_resource_sampling.py",
+      "sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0"
+    },
+    "e160.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_weights.py",
+      "sha256": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452"
+    },
+    "e161.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/automl_worker.py",
+      "sha256": "c7dd895d0fecfb40c1837c69d08fe04b4297e1304ee364e760e40b36892bd74d"
+    },
+    "e162.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/ensemble_cache.py",
+      "sha256": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd"
+    },
+    "e163.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/model_utils.py",
+      "sha256": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58"
+    },
+    "e164.txt": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/requirements.txt",
+      "sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+    },
+    "e165.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate/solution.py",
+      "sha256": "f666465b00d20168e28359559f5e81787316d66c3a90964852ee4cb6b3fb3eb5"
+    },
+    "e166.json": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/candidate-source-manifest.json",
+      "sha256": "1dc220caefb9d931d0b69146f2281d997cadc3b0e57abaa8a106dd20eb46694b"
+    },
+    "e167.json": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/protocol.json",
+      "sha256": "d1fa831c6732a5ca157d625cb719351043a5c8882de5694d960e9dda5c242bd4"
+    },
+    "e168.json": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/R1-preservation.json",
+      "sha256": "673fd57bf694171a31a257985557f0e469451105cb258ae1b7b5e8a833220deb"
+    },
+    "e169.patch": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/R1-to-R2.patch",
+      "sha256": "8a70b0de50e4a6268d7f87e2f91d1eee66360510a95c609efc76890f6efeb2cb"
+    },
+    "e170.json": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/R2-preservation.json",
+      "sha256": "63dac8a732f253afbb0a7b86e0e5b8535794a9d7660d3136205f32300719a4cf"
+    },
+    "e171.patch": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/R2-to-R3.patch",
+      "sha256": "12e24514e5d39e8b1264161af1ff619d88b7304722482ace4d4d1bdbe7de8175"
+    },
+    "e172.json": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/r3-focused-AST-proof.json",
+      "sha256": "4096f7d177763880b097dee571e36cd5b9042dd3a1e6281d58d00ecc5e1a3dfc"
+    },
+    "e173.json": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/R3-preservation.json",
+      "sha256": "8a12f3f03cfc3b5c0d51d808ca15365b847be87d998e460500a90ddd10e2c3a0"
+    },
+    "e174.patch": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/R3-to-R4.patch",
+      "sha256": "a94598d2ef5e76c86aba9d2193287f65e1f660e0f767a8710d243e2f7245eb33"
+    },
+    "e175.txt": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/README.txt",
+      "sha256": "13a51dc69b7be7298f5ee04151772d6ee88cf9a0e579c2bdf9fe151a4961a91a"
+    },
+    "e176.zip": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/solution-br-fixed-candidate.zip",
+      "sha256": "b56e8a96523a7d96655e3e9f548a904281b4c6a60582f345a2ecc5ec11e2d3d8"
+    },
+    "e177.json": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/source-proof.json",
+      "sha256": "0fd7f94f8005cc21cd7abbb92b9605dc6926bf0f96613e8ff95f704bed1c4e4f"
+    },
+    "e178.txt": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/strict-functions-source.txt",
+      "sha256": "d3925a3ea3fe83b05bbadd2a77fdc339fbda44b20c522242903eceb88d8a2166"
+    },
+    "e179.json": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/tests/fixtures/recipes.json",
+      "sha256": "bd2a0ecd8ea802c63aa9cfd4f914eb1c0a2504c509ac02573495e8e27e34cc83"
+    },
+    "e180.py": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/tests/test_fixed_release.py",
+      "sha256": "53c3d8dc823cbaf74dc05ae4681457bd0e9459c1f686fb4a024df0d018c5b515"
+    },
+    "e181.json": {
+      "source": "br-standard-release-next-dev-r5/source-proof.json",
+      "sha256": "e0592725e8b910320862c343cda4fa7376352bd5f12ca12affd046d6f23cd0d1"
+    },
+    "e182.txt": {
+      "source": "br-standard-release-next-dev-r5/strict-functions-source.txt",
+      "sha256": "b3b20c45d479e2b2e073ff6bc5f24e8292c70603a06769aed7f0782e874a0c74"
+    },
+    "e183.json": {
+      "source": "br-standard-release-next-dev-r5/tests/fixtures/recipes.json",
+      "sha256": "bd2a0ecd8ea802c63aa9cfd4f914eb1c0a2504c509ac02573495e8e27e34cc83"
+    },
+    "e184.py": {
+      "source": "br-standard-release-next-dev-r5/tests/test_fixed_release.py",
+      "sha256": "53c3d8dc823cbaf74dc05ae4681457bd0e9459c1f686fb4a024df0d018c5b515"
+    },
+    "e185.py": {
+      "source": "br-standard-release-next-dev-r5/tests/test_sampling_checkpoint_consumer.py",
+      "sha256": "48ca97b75ae3c178255fb87d8d5b87fed85dc6cd07bdddd52b412fcac0e81657"
+    },
+    "e186.json": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r2/source-handoff.json",
+      "sha256": "64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09"
+    },
+    "e187.json": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r3/source-handoff.json",
+      "sha256": "df44ca63160d64d52ade5a04553f4189ca79101c6cc17af25b9526d55d52ead5"
+    },
+    "e188.json": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/source-evidence/frozen-r2/source-handoff.json",
+      "sha256": "64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09"
+    },
+    "e189.json": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/source-evidence/frozen-r3/source-handoff.json",
+      "sha256": "df44ca63160d64d52ade5a04553f4189ca79101c6cc17af25b9526d55d52ead5"
+    },
+    "e190.json": {
+      "source": "br-standard-release-next-dev-r5/source-evidence/frozen-r4/source-handoff.json",
+      "sha256": "33cbaec611532ff2d21660d0e6a9865d2083d74bd7429388125c6ecf864abb32"
+    },
+    "e191.json": {
+      "source": "br-standard-release-next-dev-r5/source-handoff.json",
+      "sha256": "92cfd41804ca162ba5ec4aeff53a3cb45e6b0c798b93e0c36c1cbb969fdfef08"
+    },
+    "c001.py": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/run_controller.py",
+      "sha256": "d5f41cad6de2168cd520e442223428285dd3714854079d9305dd1b34938abd7d"
+    },
+    "c002.py": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/artifact_audit.py",
+      "sha256": "39678926216dd7ea45305f02efc86989f9bdea63b3f8b163ebe6ad0ff8490c64"
+    },
+    "c003.py": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/close_controller.py",
+      "sha256": "bd2203675ce6312e1a6459734677f837085b3b59225a8d9ef73e412694f8229e"
+    },
+    "c004.py": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/test_controller_contracts.py",
+      "sha256": "90c74f4c70e9712364ecd0b51233b01489c5be953806720f8d4230d7df53d34a"
+    },
+    "c005.py": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/prepare_metadata.py",
+      "sha256": "1530f1dbfe6db5da91b59ebd026d8f0a7104960fe28b71d41ef96325e91ec796"
+    },
+    "c006.json": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/source-proof.json",
+      "sha256": "6bfbf580a0fbff2b195a71c4adabfba52de2119d7d790b012e67ad21f2dc3981"
+    },
+    "c007.json": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/R4-preservation.json",
+      "sha256": "3d846c1b823fe9f4ceb8ebbf3879eeb6d1ba848129a485f08bf6fcd19b0d0b16"
+    },
+    "c008.json": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/binding.template.NOT_READY.json",
+      "sha256": "25e1b719ce5d7895a7daf76fa0b360eca0b112d08fcd3c4ce65154a319e491fa"
+    },
+    "c009.json": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/protocol.json",
+      "sha256": "90de7ba96b5cd9f663c7b701775812a8d8fb99b3c0e0387b600c58c59996af11"
+    },
+    "c010.txt": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/README.txt",
+      "sha256": "c1c9a6dbb7969944c88b6c63083715e9ea09b07dfe228e7d26c27f080bea0492"
+    },
+    "c011.json": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/prepeer-preservation.json",
+      "sha256": "3da0795209cbb8ec501d65905e0c9b15419615627072a4c727c80004f785b271"
+    },
+    "c012.patch": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/run_controller.py.patch",
+      "sha256": "fe8a43b430a0251c4a3f9043bd8e635f9050226fca771b5959b1e338b4fc7a1a"
+    },
+    "c013.patch": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/artifact_audit.py.patch",
+      "sha256": "e0d359e94a1a070fccc7b1aa9b759c3cdebc7f068d8bd6cbc53efd673b2a6eae"
+    },
+    "c014.patch": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/close_controller.py.patch",
+      "sha256": "2839d87cd35f8e67a5f3187330097e96245b962ac3a33774bdfaebd457efec03"
+    },
+    "c015.json": {
+      "source": "br-standard-release-qualification-next-dev/controller-r5/source-handoff.json",
+      "sha256": "b1bc42c822dfbc424b810094c759dbff18b74152c0e3ba11861faed2bed87e3c"
+    },
+    "s001.py": {
+      "source": "verified-resource-sampling-next-dev/verified_sampling.py",
+      "sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0"
+    },
+    "s002.py": {
+      "source": "verified-resource-sampling-next-dev/test_verified_sampling.py",
+      "sha256": "da898950c63727c65bd67c8a87121fcb9b4730b2aec51ca5cad02dad7c76478b"
+    },
+    "s003.txt": {
+      "source": "verified-resource-sampling-next-dev/README.txt",
+      "sha256": "fdadb766afe71697c4b4218cb982b0ec972ef80e7327e22745d46a85282785d9"
+    },
+    "s004.json": {
+      "source": "verified-resource-sampling-next-dev/source-proof.json",
+      "sha256": "a839f8622fdcfda54507e8ed0f07a230c0cccf4d216f63a04fb68b1f9d88d72e"
+    },
+    "s005.json": {
+      "source": "verified-resource-sampling-next-dev/source-handoff.json",
+      "sha256": "86859fe9596d672373e76edc56d6fc89c88c956952c2ed88ded15a6ea7e0076c"
+    },
+    "v001.py": {
+      "source": "verified-supervision-next-dev-r2/coordinator.py",
+      "sha256": "bd864b13460d31176d57e1dbddbe179ad8e6911163b117e3f9698228c5540f76"
+    },
+    "v002.json": {
+      "source": "verified-supervision-next-dev-r2/source-proof.json",
+      "sha256": "e32a68fbb04b704ff3f3379aa5c83356311f0f2d7cd5eb597255ee05c6524539"
+    },
+    "v003.patch": {
+      "source": "verified-supervision-next-dev-r2/R1-to-R2.patch",
+      "sha256": "e59f72bb5fda680a29011a5104acf534bf8cf2c29aab60d58cbed785fadadd18"
+    },
+    "v004.txt": {
+      "source": "verified-supervision-next-dev-r2/README.txt",
+      "sha256": "c0a4a6a7c9dfc4b6311004de55df6fbde023d6ed10b856fac06a25323057e2a7"
+    },
+    "v005.py": {
+      "source": "verified-supervision-next-dev-r2/prepare_source.py",
+      "sha256": "20d981aa66ba4c7b9d8f47b6ba930b6fbfc6bdf407271e4a0eb0b431a12f1077"
+    },
+    "v006.json": {
+      "source": "verified-supervision-next-dev-r2/source-handoff.json",
+      "sha256": "e794d8c1ed44a213ef3622111a3cbd577d1d4f79aed584228e2e6118d927d104"
+    },
+    "h001.py": {
+      "source": "verified-supervision-next-dev/coordinator.py",
+      "sha256": "52d1cf5154d845888392be60dcaa55a2e82bb7ada6dc08441efafce2278565ba"
+    },
+    "h002.patch": {
+      "source": "verified-supervision-next-dev/base-to-copy.patch",
+      "sha256": "f756ad6989d644e317ac28d3e1ccf3f98ae9090a4efefec5699b3bf5c157d495"
+    },
+    "h003.json": {
+      "source": "verified-supervision-next-dev/source-proof.json",
+      "sha256": "ad0f4e164738a4d78241252cb2e0c6faac400f11b067fb4f5d7077bf707a6108"
+    },
+    "h004.json": {
+      "source": "verified-supervision-next-dev/protocol.json",
+      "sha256": "d32b7e45a830c4cb777f4e85aabe0ac3ba1bf6d0c84d5c276a8da079d934823d"
+    },
+    "h005.txt": {
+      "source": "verified-supervision-next-dev/README.txt",
+      "sha256": "c380c9d8e589a377046a9d8e7e27d7d480dfe7696ca75e05fc2b1468acb071d5"
+    },
+    "h006.py": {
+      "source": "verified-supervision-next-dev/prepare_source.py",
+      "sha256": "94558f5f3adbaacf3943c52d157282af4f2c6981e8d5caf0b8850562aa8cd1b5"
+    },
+    "h007.json": {
+      "source": "verified-supervision-next-dev/R1-preservation.json",
+      "sha256": "0be97e2ad380d047d8c2a212c12e6a928a9be7df106e1210af4412129fb491e6"
+    },
+    "h008.json": {
+      "source": "verified-supervision-next-dev/source-handoff.json",
+      "sha256": "ae471f6e6b17e8f7b462ee7bd6edce60f6888c98c3304904080918f2874fd645"
+    },
+    "r001.json": {
+      "source": "brq2-verified-sampling-batch-root-scope-r1.json",
+      "sha256": "a00ea96ff2455ad80d640f20f7da071288dffd7f18401058a6f14e35d4458f0e"
+    },
+    "r002.json": {
+      "source": "verified-resource-consumer-root-scope-r2.json",
+      "sha256": "5785e2a045670783207cff4aacea3c141dca1a942c5655923c661cf645056310"
+    },
+    "r003.json": {
+      "source": "verified-resource-sampling-independent-review-r1.json",
+      "sha256": "c61e4f028b7a06c0e6b17e02f8a567d08fd31804554e1a908e1dffb49bb418d6"
+    },
+    "r004.json": {
+      "source": "verified-resource-sampling-root-source-acceptance-r1.json",
+      "sha256": "dc3b92829c0e33fc1ada8af529b681cb7e58a1fd63f45bbdabe675fb415fd535"
+    },
+    "r005.json": {
+      "source": "verified-supervision-independent-review-r1.json",
+      "sha256": "81d54ba923773341cc25d4b5d190bc97104bbabfe68541e08b7cb1cfd89a917c"
+    },
+    "r006.json": {
+      "source": "verified-supervision-independent-review-r2.json",
+      "sha256": "93402ed1f0613e72770e294401515f4e7ff06d885fa373a05da0ac0ce9e1dae3"
+    },
+    "r007.json": {
+      "source": "verified-supervision-root-source-acceptance-r2.json",
+      "sha256": "2715c5b0ffda72519f833f59e30343f77b0f4da3ea076cf2683bbce259ce588d"
+    },
+    "r008.json": {
+      "source": "br-standard-release-independent-source-review-r4.json",
+      "sha256": "2a99d7bc14ffd570ee85aa22303ca958090a1c958566593c35f48ef7f9fad10a"
+    },
+    "r009.json": {
+      "source": "br-standard-release-independent-source-review-r5.json",
+      "sha256": "15c8e64b9b8fe0a646e694afe1929d8849e1bcb804ba372d809097cfc9971eb4"
+    },
+    "r010.json": {
+      "source": "br-standard-release-root-source-acceptance-r5.json",
+      "sha256": "b464f089a3cb7f30a21014059b74dd02a6f7aa8288a324309a3f5389fc17bb5d"
+    },
+    "r011.json": {
+      "source": "br-standard-release-controller-independent-review-r5.json",
+      "sha256": "e7c58e8e59c983bad25431f4bb5fe91daabc864c9819f9671ac26fb4d904fd0a"
+    },
+    "r012.json": {
+      "source": "br-standard-release-controller-root-source-acceptance-r5.json",
+      "sha256": "4cf39b8a4df74ac89189ae4f7d3c231b8291e331ab1c3338761f6574e4e449bf"
+    }
+  },
+  "runtime_archive_sha256": "c7b54a8996e36dfaaf582b104d1f38ecca71d91d4f38362ed50775381f42f930",
+  "archive_members": 74,
+  "prepared_test_executions": 81,
+  "actual_new_tests_or_models": 0,
+  "new_metrics": null,
+  "Linux_resume_or_job_approval": false,
+  "upload": false
+}

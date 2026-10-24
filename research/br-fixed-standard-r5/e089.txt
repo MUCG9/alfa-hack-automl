@@ -1,0 +1,28 @@
+Fixed standard candidate R5 — SOURCE ONLY / NOT READY
+
+Minimal correction to frozen R4: the strict worker sampler invokes the exact typed
+original ReleaseClock._resource_checkpoint, never full caller RSS check during an
+unfinished worker resource round. All outer full checks, clocks, limits, cleanup,
+model/feature/recipe/metric/IO semantics and other73 runtime members remain exact.
+Archive74 is new; no previous archive qualification or historical metric transfers.
+
+Three additive result fields expose existing observations only: worker_resource_root
+PID/birth or null, worker_resource_self PID/birth and parent_observed_worker_exit_code
+after confirmed cleanup. An auditor must bind the actual root to the sampler receipt
+for departed-root acceptance; the new terminal status alone grants no qualification.
+No new process or learner-fit instrumentation exists.
+
+Old18 test bytes are exact. One separate consumer mock fixture exercises the real
+installed callback during an unfinished fake resource round, rejects nested full RSS,
+requires original clock-only callback, observes outer full checks and typed provenance.
+Source19/flat19 executor methods plus the separately frozen14 sampler methods are
+prepared, actual0; no exclusions. Flat placement needs only the reviewed module path.
+The entire R4 packet92 files plus handoff/ZIP is preserved under source-evidence/frozen-r4.
+Whole-module inverse AST proof accounts exactly for callback+null init+three fields.
+
+Plain command remains python3 solution.py task.md, no external JSON/research flags.
+No candidate imports/tests/fixtures/fits/API/data/PID scans/new clocks/Git/canonical
+writes by author. Original BRQ1 and BRQ2 remain FAIL with original clocks. Future
+qualification requires final peer/root review, exact technical contracts, two standard
+calls and independent saved-artifact R4 audit. New runs/root/metrics/READY remain NULL.
+No automatic upload/submit.

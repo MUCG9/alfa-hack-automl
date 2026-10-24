@@ -1,0 +1,56 @@
+{
+  "schema": "br-standard-release-independent-source-review-r4",
+  "scope": "Root-authorized verified resource sampling support-port integration only",
+  "source_handoff": {
+    "path": "work/br-standard-release-next-dev-r4/source-handoff.json",
+    "sha256": "33cbaec611532ff2d21660d0e6a9865d2083d74bd7429388125c6ecf864abb32"
+  },
+  "runtime_sources": {
+    "resources": "fab3b49c0640738983f92d59f977584de9f9001cbace59e985e36a7802a69d15",
+    "release_runtime": "88462c7d68a78aed7ae2a879f3af46069427892e4a58ae42c3e33005e3d53675",
+    "verified_sampler": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+    "archive": "b56e8a96523a7d96655e3e9f548a904281b4c6a60582f345a2ecc5ec11e2d3d8"
+  },
+  "independent_static_checks": {
+    "all92_handoff_pins_exact": true,
+    "all88_R3_files_preserved": true,
+    "only_two_old_runtime_members_changed": true,
+    "other71_old_members_byte_exact": true,
+    "one_new_member_is_exact_reviewed_sampler": true,
+    "archive74_unique_members_SHA_and_CRC_exact": true,
+    "default_ResourceBudget_whole_module_AST_inverse_exact_R3": true,
+    "existing18_test_bytes_exact_R3": true,
+    "numerical_models_worker_recipes_requirements_and_counter_unchanged": true,
+    "actual_captured_SELF_mandatory_in_both_verified_resource_configurations": true,
+    "known_resource_descendants_retained_for_existing_birth_verified_cleanup": true,
+    "sampler_SELF_excluded_from_child_cleanup_adoption": true,
+    "worker1536_whole2048_and_conservative_overlap_scopes_retained": true
+  },
+  "findings": [
+    {
+      "id": "BRS04",
+      "severity": "P1",
+      "status": "OPEN_SOURCE_INTEGRATION_BLOCKER",
+      "path": "candidate/automl_release_runtime.py",
+      "lines": [93, 97, 162, 168],
+      "finding": "The worker sampler's sampling_checkpoint calls release_checkpoint(), which invokes the actual caller ReleaseClock.check(). That is the full parent RSS sampling path, not a clock-only checkpoint. A distinct sampler instance avoids direct object recursion but can still advance parent.last during an unfinished worker resource round and before its caps complete.",
+      "root_finding_independently_confirmed": true,
+      "minimum_correction": "Use the existing typed original caller _resource_checkpoint clock-only hook in this callback, with explicit failure if missing/incompatible. Preserve all outer full release_checkpoint calls, worker-local deadline/rollback checks and original common observation state. Do not create a clock, fall back to the full RSS guard or change memory caps.",
+      "execution_used": false
+    }
+  ],
+  "separate_consumer_binding_note": "A future reviewed auditor must recognize and validate the new fresh_known_root_departed_after_observed_exit terminal receipt together with its actual departed sampler proof and strict remaining cleanup; frozen C4's old two-state enum alone is not an appropriate new-source binding. This is a future consumer check, not permission to weaken it.",
+  "conclusion": "CHANGES_REQUIRED_BRS04; candidate R4 is not accepted for qualification",
+  "history_and_readiness": {
+    "R4_is_unexecuted_source_snapshot": true,
+    "BRQ1_BRQ2_original_FAIL_and_flags_unchanged": true,
+    "old_archive_metrics_inherited": false,
+    "actual_new_runtime_qualification": null,
+    "new_clock_assigned": false
+  },
+  "reviewer_activity": {
+    "imports_tests_models_fits_API_PID_scans_data_prediction_truth_reads": 0,
+    "source_AST_hash_ZIP_and_mock_control_flow_reading_only": true,
+    "frozen_or_canonical_files_modified": false
+  }
+}

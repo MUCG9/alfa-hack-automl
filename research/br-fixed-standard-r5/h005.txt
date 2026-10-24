@@ -1,0 +1,7 @@
+Frozen source-only consumer of the reviewed verified resource sampler.
+Use only coordinator.supervise and unchanged helper functions; never main/run.
+Original43be remains byte-exact. The new nested file keeps effective WORK at work/.
+Only supervise RSS/role/bootstrap sampling changes; all other function/class ASTs equal.
+The sampler checkpoint uses the existing caller pulse plus common/parent bounds.
+No missing/denied resource observation is skipped. Fresh departure is recorded, not RSS0.
+No imports/tests/fits/PID observations/clocks were executed during preparation.

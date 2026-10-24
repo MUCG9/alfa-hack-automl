@@ -1,0 +1,42 @@
+{
+  "schema": "verified-supervision-independent-source-review-v1",
+  "source_handoff": {
+    "path": "work/verified-supervision-next-dev/source-handoff.json",
+    "sha256": "ae471f6e6b17e8f7b462ee7bd6edce60f6888c98c3304904080918f2874fd645"
+  },
+  "coordinator_sha256": "52d1cf5154d845888392be60dcaa55a2e82bb7ada6dc08441efafce2278565ba",
+  "immutable_base_sha256": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+  "static_checks": {
+    "all7_local_pins_exact": true,
+    "all5_external_source_refs_exact": true,
+    "only_changed_existing_definition": "supervise",
+    "all_other_definition_ASTs_exact_base": true,
+    "actual_self_identity_passed_as_required": true,
+    "known_observer_tree_inventory_retained_after_departures": true,
+    "existing_peak_memory_scopes_and_caps_preserved": true,
+    "fresh_departure_confirmation_before_role_NoSuch_exclusion": true,
+    "previously_sampled_RSS_and_PPID_retained_conservatively_on_later_role_NoSuch": true
+  },
+  "findings": [
+    {
+      "id": "VSC01",
+      "severity": "P1",
+      "status": "OPEN_SOURCE_INTEGRATION_BLOCKER",
+      "path": "coordinator.py",
+      "lines": [240, 243],
+      "finding": "The callback supplied to VerifiedResourceSampler invokes state['_pulse'](). In the frozen C4 consumer, _pulse is the full resource/Power guard, not an original clock-only callback. A separate sampler instance avoids direct self-recursion but does not satisfy the required clock-only integration contract.",
+      "source_counterexample": "A sampling _check invokes resource_checkpoint; that invokes the C4 full guard, which may perform its own OS RSS observation and update its prior successful-resource timestamp while the coordinator sample and its memory caps are still in progress.",
+      "minimum_correction": "Use a separately named mandatory original-origin clock-only state hook with no RSS/heartbeat/last-success update, while retaining the existing full _pulse call in the outer supervisor loop. Keep common/parent deadline checks and the original prior observation/gap state. No fallback to the full guard is allowed.",
+      "root_finding_independently_confirmed": true,
+      "execution_used": false
+    }
+  ],
+  "conclusion": "CHANGES_REQUIRED_VSC01; this frozen source is not accepted for consumer integration",
+  "preservation": "Preserve ae471/52d1 and this finding; review the separately authorized source revision without relabelling this snapshot or any old BRQ failure",
+  "reviewer_activity": {
+    "imports_tests_models_fits_API_PID_scans_data_prediction_reads": 0,
+    "clock_assigned": false,
+    "source_edits": false,
+    "runtime_failure_or_PASS_claimed": false
+  }
+}

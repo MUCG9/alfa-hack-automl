@@ -1,0 +1,34 @@
+{
+  "schema": "brq2-verified-sampling-batch-root-scope-r1",
+  "status": "AUTHORIZE_ISOLATED_SOURCE_ONLY_NO_RUNTIME",
+  "checked_unix": 1792846765.268385,
+  "finding_sha256": "3490fc2bddaa7c731030f3a791a3a6cfeeabf5f2621d472e3fce0747a5173735",
+  "reason": "Confirmed post-observer known identity/RSS lifecycle race in C4, and same concrete raw ResourceBudget race inside standalone archive. Fix affected sampler consumers once, without changing numerical recipes/model/feature/search/HPO logic or weakening observation policy.",
+  "scopes": {
+    "AC_author": [
+      "work/verified-resource-sampling-next-dev: one small portable dataclass-free psutil/stdlib-only identity/RSS primitive plus meaningful pure/mock source contracts from14specs",
+      "NEW work/br-standard-release-next-dev-r4: R3copy, only verified resource sampling integration needed for caller and strictworker path; originalnumerical runtime bytes/requirements unchanged; newarchive/hash/flatcount deriveactual"
+    ],
+    "EO_after_current_negative_helper": [
+      "NEW isolated coordinator-copy: ONLY existing NoSuch exclusions in ownedRSS/role/bootstrap reads use same fresh exact identity confirmation before exclusion, allotherAST/procedure unchanged; original43be immutable",
+      "NEW controller-r5 after sampler/candidatefreeze: knownRSS race fix +shared primitive use and exactnewrefs/output; sameclock/caps/capture/typedpredecessor/source/cleanup guards; rootcloser reuses sameverified guard"
+    ],
+    "FM_peer": "Independently review frozen ACprimitive/candidate and EOconsumer delta; no runtime/tests before permitted qualification"
+  },
+  "contract": [
+    "typed actual knownPID+birth required; fresh PID birth checks before and after live RSS; mandatory sampler self remains freshly sampled",
+    "NoSuchProcess may exclude ONLY after new Process(pid) proves absence or different birth; record departed oldidentity explicitly, retain provenance and established peaks; never fabricate RSS0/fit or samplecount",
+    "same birth stillalive, AccessDenied, missing/untyped/nonfinite identity, unknown/recheck errors =>sticky observation STOP; no blanket continue or retry loop",
+    "no memory/role read after detecting identity reuse, no unrelated adoption/signals; caps1536worker2048whole unchanged, preserve existing conservative doublecount",
+    "all observed clocks/rollback/gap10/parent/common/last-successful-resource timestamp enforced through confirmation, no deadline extension/reset/sleep/backgroundheartbeat or forced process lifetime",
+    "original parserbc320, all prior testassertions, model/feature/numerical adapters, raw recipes/cuts/refit aggregation/HPO/sourcecontracts unchanged",
+    "sourceunitstdoutcapture fix retained; test counts/flat members/sourcepins must deriveactual; newruntimearchive hash cannot inherit6af qualification or metric",
+    "new source only, no imports/fixtures/tests/fits/API/data/PIDscan or candidate unpack execution until current separately reviewed negative closure audit succeeds and future frozen full targeted qualifier is admitted",
+    "BRQ1/BRQ2 original FAIL/false flags/clocks remain untouched; no oldlauncher/closer retry, no fakepositive predecessor"
+  ],
+  "current_negative_closure_required": true,
+  "runtime_start": null,
+  "new_qualification_clock": null,
+  "new_standard_metrics": null,
+  "ready_archive": null
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "verified-resource-sampling-root-source-acceptance-r1",
+  "source_handoff_sha256": "86859fe9596d672373e76edc56d6fc89c88c956952c2ed88ded15a6ea7e0076c",
+  "independent_peer_sha256": "c61e4f028b7a06c0e6b17e02f8a567d08fd31804554e1a908e1dffb49bb418d6",
+  "root_static_review_sha256": "8c21ba69a33f252699dfd9519b3be827c691106b79f49a6736e0304af8782494",
+  "source_scope_accepted": true,
+  "conditions": [
+    "Each consumer must use exact captured actual self as mandatory verified sample",
+    "Original clock-only checkpoint is non-reentrant and checks wall/mono/gap through confirmations",
+    "Only successful complete verified self RSS plus unchanged cap checks can advance old resource sample timestamp",
+    "All existing peak/known provenance persists; explicit departed null RSS is not fake zero or positive child sample",
+    "Candidate/coordination consumers require separate exact source peer/root review and one new fully bound prospective gate"
+  ],
+  "prepared_source_methods": 14,
+  "prepared_flat_methods": 14,
+  "actual_tests_executed": 0,
+  "runtime_qualified": false,
+  "new_metrics": null,
+  "ready_archive": null
+}

@@ -1,0 +1,209 @@
+--- frozen_R3/automl_infrastructure_resources.py
++++ R4/automl_infrastructure_resources.py
+@@ -26,6 +26,9 @@
+     disk_status: str | None = None
+ 
+     def inspect(self, worker_pid, root):
++        verified = getattr(self, '_verified_sampling', None)
++        if verified is not None:
++            return self._inspect_verified(worker_pid, root, verified)
+         worker = psutil.Process(worker_pid)
+         processes = [worker] + worker.children(recursive=True)
+         rss = sum((p.memory_info().rss for p in processes if p.is_running()))
+@@ -39,6 +42,42 @@
+                 self.disk_status = 'disk_space_limit'
+         return (self.disk_status, rss, total)
+ 
++    def _inspect_verified(self, worker_pid, root, configuration):
++        """Fixed-release opt-in only; the original inspect branch stays intact."""
++        sampler = configuration['sampler']
++        checkpoint = configuration['checkpoint']
++        own = configuration['self_identity']
++        worker = configuration['root_identity']
++        checkpoint()
++        if type(worker_pid) is not int or worker_pid != worker[0]:
++            raise RuntimeError('verified_resource_root_mismatch')
++        provider = configuration.get('known_provider')
++        if provider is not None:
++            if not callable(provider):
++                raise RuntimeError('verified_resource_known_provider_untyped')
++            sampler.remember(provider())
++            checkpoint()
++        sampler.remember([own, worker])
++        sampler.discover_owned_tree(worker, checkpoint=checkpoint)
++        sample = sampler.sample(list(sampler.known), required=[own], checkpoint=checkpoint)
++        rows = {(row['pid'], row['create_time']): row['rss_bytes'] for row in sample['sampled']}
++        # Preserve the base scope: worker subtree + caller RSS.  If the worker
++        # is self this intentionally remains a conservative self double-count.
++        rss = sum(value for identity, value in rows.items()
++                  if worker == own or identity != own)
++        total = rss + rows[own]
++        self.last_verified_sample = sample
++        if total > self.memory_limit:
++            return ('memory_limit', rss, total)
++        checkpoint()
++        now = time.monotonic()
++        if now - self.last_disk_check > 15:
++            self.last_disk_check = now
++            if shutil.disk_usage(root).free < self.minimum_free:
++                self.disk_status = 'disk_space_limit'
++        checkpoint()
++        return (self.disk_status, rss, total)
++
+     def inspect_artifacts(self, path):
+         size = sum((p.stat().st_size for p in Path(path).rglob('*') if p.is_file()))
+         if size > self.artifact_limit:
+--- frozen_R3/automl_release_runtime.py
++++ R4/automl_release_runtime.py
+@@ -12,6 +12,7 @@
+ from automl_infrastructure_resources import ResourceBudget
+ from automl_infrastructure_processes import ProcessTree, ProcessCleanupError, ProcessObservationError
+ from automl_runtime import worker_entrypoint
++from automl_verified_resource_sampling import VerifiedResourceSampler, ResourceSamplingError
+ 
+ THREADS = min(2, max(1, int(os.environ.get('AUTOML_THREADS', '2'))))
+ WORKER_MEMORY_LIMIT_BYTES = 1536 * 2**20
+@@ -36,24 +37,35 @@
+         self.root=Path(root);self.last=self.start_monotonic;self.previous=self.start_monotonic
+         self.failure=None;self.resources=ResourceBudget(memory_limit=WHOLE_MEMORY_LIMIT_BYTES)
+         self.samples=0;self.peak=0;self.peak_tree=0;self.last_resource_observation=None
++        self._resource_checkpoint()
++        own=psutil.Process(os.getpid());self.sampling_identity=(own.pid,own.create_time())
++        self._resource_checkpoint()
++        self.resources._verified_sampling=dict(sampler=VerifiedResourceSampler(),
++            self_identity=self.sampling_identity,root_identity=self.sampling_identity,
++            checkpoint=self._resource_checkpoint)
+         self.check(force=True)
++    def _resource_checkpoint(self):
++        """Clock-only checks around every OS observation; never advance last."""
++        if self.failure is not None:raise self.failure
++        now=time.monotonic();wall=time.time()
++        if not math.isfinite(now) or not math.isfinite(wall) or now < self.previous or wall<self.start_unix:
++            raise RuntimeError('release_nonfinite_or_rollback')
++        self.previous=now
++        if now-self.last>10:raise RuntimeError('release_observation_gap_over10s')
++        if now>=self.deadline_monotonic or wall>=self.deadline_unix:raise RuntimeError('release_original_common_deadline')
++        if abs((self.deadline_unix-wall)-(self.deadline_monotonic-now))>5:raise RuntimeError('release_clock_disagreement')
++        return now,wall
+     def check(self, force=False):
+         if self.failure is not None:raise self.failure
+         try:
+-            now=time.monotonic();wall=time.time()
+-            if not math.isfinite(now) or not math.isfinite(wall) or now < self.previous or wall<self.start_unix:
+-                raise RuntimeError('release_nonfinite_or_rollback')
+-            self.previous=now
+-            if now-self.last>10:raise RuntimeError('release_observation_gap_over10s')
+-            if now>=self.deadline_monotonic or wall>=self.deadline_unix:raise RuntimeError('release_original_common_deadline')
+-            if abs((self.deadline_unix-wall)-(self.deadline_monotonic-now))>5:raise RuntimeError('release_clock_disagreement')
++            now,wall=self._resource_checkpoint()
+             if not force and now-self.last<.25:return
+             limit,rss,total=self.resources.inspect(os.getpid(),self.root)
+             self.last_resource_observation=dict(parent_tree_rss_bytes=rss,conservative_combined_bytes=total)
+             self.peak=max(self.peak,total);self.peak_tree=max(self.peak_tree,rss)
+             if total>WHOLE_MEMORY_LIMIT_BYTES:raise RuntimeError('release_whole_memory_limit')
+             if limit:raise RuntimeError('release_'+limit)
+-            after=time.monotonic();wall_after=time.time()
++            after,wall_after=self._resource_checkpoint()
+             if not math.isfinite(after) or not math.isfinite(wall_after):raise RuntimeError('release_nonfinite_resource_observation')
+             if after<now or after-self.last>10:raise RuntimeError('release_resource_inspection_gap_or_rollback')
+             if after>=self.deadline_monotonic or wall_after>=self.deadline_unix:raise RuntimeError('release_original_common_deadline')
+@@ -71,6 +83,8 @@
+             observed_parent_tree_rss_peak_bytes=self.peak_tree,
+             observed_parent_conservative_total_peak_bytes=self.peak,
+             last_actual_resource_observation=self.last_resource_observation,
++            last_verified_resource_sample=(self.resources.last_verified_sample
++                if type(getattr(self.resources,'last_verified_sample',None)) is dict else None),
+             parent_total_scope='inherited inspect(self) adds caller RSS twice; conservative, not exact OS-owned whole',
+             observation_gap_limit_seconds=10,resource_sample_cadence_seconds=.25,
+             resource_limit_bytes=self.resources.memory_limit,
+@@ -143,6 +157,15 @@
+     env.update(PYTHONIOENCODING='utf-8',PYTHONUTF8='1',MPLCONFIGDIR=str(run_dir/'mpl-cache'))
+     process=tree=None; primary=None; killed=None; peak=peak_total=0
+     budget=ResourceBudget(memory_limit=WHOLE_MEMORY_LIMIT_BYTES)
++    parent=psutil.Process(os.getpid());sampling_self=(parent.pid,parent.create_time())
++    sampling_previous=started
++    def sampling_checkpoint():
++        nonlocal sampling_previous
++        release_checkpoint();now=time.monotonic()
++        if not math.isfinite(now) or now<sampling_previous:
++            raise RuntimeError('release_worker_resource_clock_rollback')
++        sampling_previous=now
++        if now>=deadline:raise TimeoutError('release_worker_resource_deadline')
+     terminal_resource_observation=None
+     result=None
+     try:
+@@ -153,6 +176,15 @@
+                 process=subprocess.Popen([sys.executable,'-u',str(worker_entrypoint()),str(job_path)],
+                     cwd=spec['root'],env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+                 tree=ProcessTree(process,strict_observation=True)
++                roots=[identity for identity in tree.members if identity[0]==process.pid]
++                if len(roots)!=1:
++                    raise ProcessObservationError({'status':'resource_observation_unconfirmed',
++                        'unresolved':[{'pid':process.pid,'create_time':None,
++                            'action':'bind_resource_root','error':'KnownRootIdentityRequired'}],'actions':[]})
++                sampling_root=roots[0]
++                budget._verified_sampling=dict(sampler=VerifiedResourceSampler(),
++                    self_identity=sampling_self,root_identity=sampling_root,
++                    known_provider=lambda:list(tree.members),checkpoint=sampling_checkpoint)
+                 while True:
+                     release_checkpoint()
+                     tree.refresh()
+@@ -164,12 +196,27 @@
+                         limit,rss,total=budget.inspect(process.pid,run_dir)
+                         release_checkpoint()
+                         peak=max(peak,rss); peak_total=max(peak_total,total)
++                        observed=getattr(budget,'last_verified_sample',None)
++                        if type(observed) is dict and not any((r['pid'],r['create_time'])==sampling_root for r in observed['sampled']):
++                            if process.poll() is None:
++                                raise ProcessObservationError({'status':'resource_observation_unconfirmed',
++                                    'unresolved':[{'pid':process.pid,'create_time':sampling_root[1],
++                                        'action':'verified_resource_root','error':'AbsentWithLivePopen'}],'actions':[]})
++                            terminal_resource_observation=dict(status='fresh_known_root_departed_after_observed_exit',
++                                worker_root_rss_bytes=None,sampled_known_worker_rss_bytes=rss,
++                                departed=observed['departed'],remaining_owned_cleanup_still_required=True)
+                         if terminal_before_sample:
+-                            terminal_resource_observation=dict(status='sampled_before_terminal_acceptance',
+-                                worker_tree_rss_bytes=rss,combined_observed_bytes=total)
++                            if terminal_resource_observation is None:
++                                terminal_resource_observation=dict(status='sampled_before_terminal_acceptance',
++                                    worker_tree_rss_bytes=rss,combined_observed_bytes=total)
+                         if limit: killed=limit
+                         if total>WHOLE_MEMORY_LIMIT_BYTES:killed='whole_memory_limit'
+                         if rss>WORKER_MEMORY_LIMIT_BYTES:killed='worker_memory_limit'
++                    except ResourceSamplingError as exc:
++                        raise ProcessObservationError({'status':'resource_observation_unconfirmed',
++                            'unresolved':[{'pid':process.pid,'create_time':sampling_root[1],
++                                'action':'verified_resource_sampling','error':exc.receipt['code']}],
++                            'verified_sampling_failure':exc.receipt,'actions':[]}) from exc
+                     except psutil.AccessDenied:
+                         births=[c for pid,c in tree.members if pid==process.pid]
+                         raise ProcessObservationError({'status':'resource_observation_unconfirmed',
+@@ -213,6 +260,19 @@
+         primary=exc
+         result={'status':'error','exception_type':type(exc).__name__}
+     finally:
++        # Keep exact resource-observed descendants available to the existing
++        # strict cleanup tracker if a short-lived root has already departed.
++        # Every eventual action still goes through ProcessTree's fresh birth
++        # checks.  The caller itself is never adopted into a child cleanup.
++        if tree is not None:
++            caller_resources=getattr(_CALLER_CLOCK.get(),'resources',None)
++            configurations=[getattr(budget,'_verified_sampling',None),
++                getattr(caller_resources,'_verified_sampling',None)]
++            for configuration in configurations:
++                if type(configuration) is dict:
++                    sampler=configuration.get('sampler')
++                    for identity in getattr(sampler,'known',()):
++                        if identity[0]!=sampling_self[0]:tree.members.setdefault(identity,None)
+         cleanup_primary=primary
+         if cleanup_primary is None and killed=='timeout':
+             cleanup_primary=subprocess.TimeoutExpired('owned_worker',timeout)
+@@ -237,6 +297,8 @@
+         observed_worker_tree_peak_bytes=peak,observed_combined_peak_bytes=peak_total,
+         worker_memory_limit_bytes=WORKER_MEMORY_LIMIT_BYTES,
+         whole_memory_limit_bytes=WHOLE_MEMORY_LIMIT_BYTES,
++        verified_resource_sample=(budget.last_verified_sample
++            if type(getattr(budget,'last_verified_sample',None)) is dict else None),
+         terminal_resource_observation=terminal_resource_observation)
+     return result
+ 

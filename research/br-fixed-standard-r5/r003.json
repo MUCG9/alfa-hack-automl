@@ -1,0 +1,53 @@
+{
+  "schema": "verified-resource-sampling-independent-source-review-v1",
+  "scope": "Standalone frozen verified known-identity RSS primitive and fourteen prepared mock methods only",
+  "source_handoff": {
+    "path": "work/verified-resource-sampling-next-dev/source-handoff.json",
+    "sha256": "86859fe9596d672373e76edc56d6fc89c88c956952c2ed88ded15a6ea7e0076c"
+  },
+  "source_sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+  "test_sha256": "da898950c63727c65bd67c8a87121fcb9b4730b2aec51ca5cad02dad7c76478b",
+  "root_scope_sha256": "a00ea96ff2455ad80d640f20f7da071288dffd7f18401058a6f14e35d4458f0e",
+  "source_finding_sha256": "3490fc2bddaa7c731030f3a791a3a6cfeeabf5f2621d472e3fce0747a5173735",
+  "independent_static_checks": {
+    "all4_local_handoff_pins_exact": true,
+    "root_scope_and_source_finding_pins_exact": true,
+    "AST_prepared_test_method_count": 14,
+    "declared_flat_applicable_methods": 14,
+    "source_imports": ["math", "psutil"],
+    "dataclass_dependency": false,
+    "internal_clock_sleep_background_subprocess_global_scan_or_signal_calls": false,
+    "candidate_or_test_imports_by_reviewer": 0,
+    "actual_test_executions": 0
+  },
+  "source_judgment": [
+    "Sampling accepts bounded typed PID/create_time inventories and requires a nonempty mandatory subset. Every sampled RSS is bracketed by fresh Process(pid) birth observations; replacement identities are not sampled after reuse is detected.",
+    "A NoSuchProcess observation triggers a separate fresh lookup. Only fresh absence or a different birth produces a departed row. Same original identity still present, AccessDenied, unknown exceptions and malformed metadata stop and retain sticky failure.",
+    "Departed rows retain the exact original identity and rss_bytes=null; known provenance is not deleted. Prior successful receipts and counts remain intact after a later failure. No departed memory value or learner/fit count is fabricated.",
+    "The caller's supplied checkpoint is invoked around OS observations and confirmation. Its exception identity is preserved and made sticky. The primitive contains no clock creation, cadence or last-successful-timestamp update; successful_rounds denotes completed sampling rounds, not a complete guard PASS.",
+    "Raw RSS values, including boundary and over-cap values, are returned unchanged. Memory-cap policy and the existing conservative parent double-count remain consumer responsibilities.",
+    "Owned-tree discovery traverses only one supplied root. New child births are not accepted if root scope becomes unconfirmed; a child whose birth cannot be observed causes STOP. There is no process_iter, arbitrary host discovery or authority to terminate any process.",
+    "Fourteen prepared mock methods meaningfully cover stable sampling, initial and post-RSS disappearance, reuse, same-birth contradiction, sticky denial/unknown/checkpoint failures, malformed identities, mandatory identity omission, raw cap values, prior receipt retention and owned-root discovery. Their bodies use injected fake process factories; none was executed during this review."
+  ],
+  "mandatory_consumer_review_boundaries": [
+    "The API trusts the caller-supplied required identities; each actual consumer must pass its captured actual SELF identity as mandatory, rather than another trusted process alone.",
+    "Consumers must retain the original known identity inventory and accumulated peaks after departures, and must not reinterpret a departed null as an observed live RSS of zero.",
+    "Consumers may advance the original last-successful resource sample timestamp only after the mandatory SELF sample, all memory caps and original clock/gap checks complete successfully.",
+    "The callback must be the original non-reentrant clock-only checkpoint. Passing an RSS-sampling checkpoint would recurse and is not an approved integration.",
+    "Candidate, coordinator and controller integration, exact dependency/flat mapping and actual source tests remain separate frozen review and qualification steps."
+  ],
+  "findings": [],
+  "conclusion": "No concrete standalone primitive source blocker in the authorized scope; consumer invariants require the separately assigned source review",
+  "qualification_boundary": {
+    "actual_runtime_PASS": false,
+    "actual_new_model_metrics": null,
+    "new_clock_assigned": false,
+    "BRQ1_BRQ2_failures_or_old_flags_changed": false,
+    "automatic_ready_promotion_submit": false
+  },
+  "reviewer_activity": {
+    "imports_tests_models_fits_API_PID_scans_data_or_prediction_reads": 0,
+    "source_AST_hash_and_mock_control_flow_reading_only": true,
+    "frozen_or_canonical_files_modified": false
+  }
+}

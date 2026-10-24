@@ -1,0 +1,15 @@
+{
+  "schema": "verified-supervision-preparation-history-v1",
+  "status": "SOURCE_ONLY_NOT_EXECUTED",
+  "handoff_sha256": "1776a8a82d33c4cd2e946b4f6b4cfe22101ea397be58dfb3ae343d4dc8555ebd",
+  "files_sha256": {
+    "base-to-copy.patch": "446ece119ecdb58a50f7b64e9e4ae861edd5d80d101c1c221768ba77cecea73e",
+    "coordinator.py": "17495693bb83d7b5b680d51e63772aad1e9c4c6acdfcfd003ff5f420b36dccd5",
+    "prepare_source.py": "f5340832199aba1a1dbf6090ef340e2d5ad8781c15732889948e87eaa3c0a9b5",
+    "protocol.json": "d32b7e45a830c4cb777f4e85aabe0ac3ba1bf6d0c84d5c276a8da079d934823d",
+    "README.txt": "c380c9d8e589a377046a9d8e7e27d7d480dfe7696ca75e05fc2b1468acb071d5",
+    "source-handoff.json": "1776a8a82d33c4cd2e946b4f6b4cfe22101ea397be58dfb3ae343d4dc8555ebd",
+    "source-proof.json": "20db5e722d9702db603702bf51d516d207cfb0ac8abda310b02401f3530f6f45"
+  },
+  "corrected_before_peer": "Keep already verified RSS and PPID conservatively when role NoSuch is freshly confirmed; do not discard an actual measured row."
+}

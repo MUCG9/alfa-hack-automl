@@ -1,0 +1,26 @@
+{
+  "schema": "br-controller-R4-preservation-v1",
+  "source_handoff_sha256": "027a20423d733716155ca93d5fc1eaedcb16e3a5f52a2483b995b9b31bf37ad3",
+  "files_sha256": {
+    "artifact_audit.py": "005e63e36c1458140221b0d551ee2c67cd3819d8912123706b88fa4f6093614e",
+    "binding.template.NOT_READY.json": "7bb473f7b30b333b8cd0a663f1836104b63c44e035f2826674f92662e0c1afd3",
+    "close_controller.py": "35fda4f41718d0e0be50ec0da1682f7ccfaf32b66fd93b122c70f67a680a2a48",
+    "protocol.json": "4117c98ef2997b1f63e270c5a6d340e8bda06be59dac6a93da6c3e1afb175e90",
+    "R1-preservation.json": "39505148b77fabf573391c25dfdfbaee023186a3a12bf383611dcd0a0222d11c",
+    "R1-to-R2.patch": "f814703e2904d8ecf09f77eb1d7defdf11ca3d10bf71bbf3cce13ddf9de5a969",
+    "R2-preservation.json": "badd15fec67fe2b1d27c39089b3b25305bbab20b4b58c121e14a51163c04fb94",
+    "R2-to-R3.patch": "bfa4f29ea05a28bb5f32401c8558212469f0a5dbea6010f5826873ca16b41a32",
+    "R3-preservation.json": "728252d8e59e7c9198671475339fa65e601083fc201686f2c5bbd41b0de2e672",
+    "R3-to-R4.patch": "48f6219e57d6292edf30efcc02bcbf9ce295f3fc53207daa49cd164256d3302b",
+    "README.txt": "72ccdd8ad5eb5e232254f094d0c4748b8c1e3e76a0ef15d9a90bb12af63819fd",
+    "run_controller.py": "975d28e52c62a0b00834e898edbfc46c35eedec683cbd9e1e9a5337ca5d26470",
+    "source-handoff.R1-history.json": "8d4c259ddbf0a56a1366e25cc60ed4ada4f111dd10acdf1f0b911c2bd55b4249",
+    "source-handoff.R2-history.json": "c27a1f46782e1a692bfe19b3b9a479771483ca4e75efdaa0a951d939a490f95d",
+    "source-handoff.R3-history.json": "b189f70e586234bf9ac8e4ed99d88772e5cdcfde00c02007636cf87585153a25",
+    "source-proof.json": "c5ed2ead586fe15702b41db821ba7a096eae479fa2f04336bbcddb3fcd2de9bb",
+    "test_controller_contracts.py": "6e062df82e25f181e9b1d2c30545851f3f4c7d3e26be15c08b84c4c79a9b6d1e",
+    "uq3-current-observation.template.NOT_READY.json": "6dd987cf63d00cd7bcc41362a1f8079514f9da8266f50a5ea193f6c84eb33220"
+  },
+  "original_BRQ2_flags_and_FAIL_unchanged": true,
+  "qualification_cannot_inherit_archive6af_or_b56e": true
+}

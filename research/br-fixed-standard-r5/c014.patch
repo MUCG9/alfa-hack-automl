@@ -1,0 +1,20 @@
+--- frozen-controller-r4/close_controller.py
++++ controller-r5/close_controller.py
+@@ -4,7 +4,7 @@
+ 
+ PACKET=Path(__file__).resolve().parent
+ WORK=PACKET.parents[1]
+-OUT=WORK/'brq2'
++OUT=WORK/'brq3'
+ LAUNCHER_PATH=WORK/'venv/Scripts/python.exe'
+ LAUNCHER_SHA='d59c9a894b319828d023f3aa83d9a3488d2339f9e27e60e49b02abb0d53cf538'
+ 
+@@ -142,7 +142,7 @@
+     passed=(a.actual_exit_code==0 and state.get('status')=='completed_pending_root' and not state.get('error_history')
+         and state.get('artifact_procedure_passed') is True and state.get('source_unchanged') is True
+         and state.get('awake_guard',{}).get('release_API_verified') is True and cleanup
+-        and len(state.get('tasks',[]))==2 and len(state.get('contracts',[]))==3
++        and len(state.get('tasks',[]))==2 and len(state.get('contracts',[]))==7
+         and audit is not None and audit.get('artifact_procedure_passed') is True
+         and audit.get('manifest_sha256')==a.manifest_sha256 and audit.get('audit_within_original_common_clock') is True)
+     result=dict(schema='br-standard-qualification-root-closure-v1',technical_procedure_passed=bool(passed),

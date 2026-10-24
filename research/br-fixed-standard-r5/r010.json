@@ -1,0 +1,18 @@
+{
+  "schema": "br-fixed-standard-root-source-acceptance-r5",
+  "handoff_sha256": "92cfd41804ca162ba5ec4aeff53a3cb45e6b0c798b93e0c36c1cbb969fdfef08",
+  "independent_peer_sha256": "15c8e64b9b8fe0a646e694afe1929d8849e1bcb804ba372d809097cfc9971eb4",
+  "root_static_review_sha256": "25db081856be86906564fd4a7b01ad982eeb5349360ca35ac1565b810a155bb5",
+  "source_scope_accepted": true,
+  "derived_source_contracts": 33,
+  "derived_flat_contracts": 33,
+  "archive_sha256": "c7b54a8996e36dfaaf582b104d1f38ecca71d91d4f38362ed50775381f42f930",
+  "archive_members": 74,
+  "old18_assertion_test_bytes_preserved": true,
+  "old73_other_runtime_members_exact_R4": true,
+  "conditions": "Final paired C5 guard clock-only hook, typed terminal artifact adapter, derived counters and binding require independent/root source review before publication/READY/new prospective qualifier. No previous metric inherited.",
+  "actual_new_tests": 0,
+  "actual_standard_model_calls": 0,
+  "new_metrics": null,
+  "ready_archive": null
+}

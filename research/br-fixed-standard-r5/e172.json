@@ -1,0 +1,97 @@
+{
+  "schema": "br-fixed-standard-stdout-fixture-proof-r3",
+  "prior_handoff_sha256": "64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09",
+  "prior_test_sha256": "3c8623effa31702d7b97217e7bf3e5c1037ad49185950c45b01f96749da4f9b8",
+  "new_test_sha256": "53c3d8dc823cbaf74dc05ae4681457bd0e9459c1f686fb4a024df0d018c5b515",
+  "only_changed_test_definition": "test_actual_cut_iterations_not_historical_tree_feed_only_full_refit",
+  "whole_module_AST_inverse_exact_R2": true,
+  "inverse_scope": [
+    "remove only contextlib.redirect_stdout and io imports",
+    "remove only local StringIO assignment",
+    "remove only redirect_stdout context manager",
+    "remove only added independent JSON assertion"
+  ],
+  "other17_method_AST_exact_R2": true,
+  "all18_existing_assertion_calls_retained": true,
+  "prepared_methods": [
+    {
+      "method": "FixedReleaseContracts.test_exact_embedded_raw_recipes_and_outer_component_geometry",
+      "AST_sha256": "6de9fda270a7d46a56da3cbbe5597463255b729d13d20ed88487f04c33bac8be"
+    },
+    {
+      "method": "FixedReleaseContracts.test_routing_uses_only_supported_kind_metric_not_schema_names",
+      "AST_sha256": "1ad10b75df9b921a08cfee48eeabe5743ca045049097afecb3563a5c6a2b415f"
+    },
+    {
+      "method": "FixedReleaseContracts.test_unknown_incompatible_metric_and_text_do_not_get_wrong_recipe",
+      "AST_sha256": "18c87fc4b341f89a38d19afbef64067e24c8b61ebf858d1472576eb550368bb9"
+    },
+    {
+      "method": "FixedReleaseContracts.test_fixed_recipe_returns_independent_copies",
+      "AST_sha256": "5f9df044504358796a96d26aef9c5ea1bfc45ff415bcada9e0ad15319e2a04e2"
+    },
+    {
+      "method": "FixedReleaseContracts.test_actual_cut_iterations_not_historical_tree_feed_only_full_refit",
+      "AST_sha256": "c15063d679071a61f9e0067c38a83c12e4fd1f8c9db0504d5e23862ca64561d2"
+    },
+    {
+      "method": "FixedReleaseContracts.test_recursive_actual_median_and_malformed_trees",
+      "AST_sha256": "333754d596d89b5fbd39ddaf4914a32eb5e2210795c421abb8b45d5b51204be0"
+    },
+    {
+      "method": "FixedReleaseContracts.test_lexical_ID_preserves_numeric_regression_target_and_predictor_parsing",
+      "AST_sha256": "4a8c98ba91843f0c34fd8fb7f3addf95e2388a6a1d2f8a442ae322f3cdc8be0d"
+    },
+    {
+      "method": "FixedReleaseContracts.test_worker_lexical_class_labels_and_sample_IDs",
+      "AST_sha256": "6e278d95607f7e8d9a8d8a1e725258dba2e80cb43176c42831822702979a2fc8"
+    },
+    {
+      "method": "FixedReleaseContracts.test_missing_declared_target_role_stops_before_discovery_or_fit",
+      "AST_sha256": "eeeaa7b2cb5bf1042dec7923eb376ac0b31d6c27bc4bcf7bb9cf8ae5c03d3172"
+    },
+    {
+      "method": "FixedReleaseContracts.test_renamed_paths_and_lexical_sample_order_use_declared_roles",
+      "AST_sha256": "3fe0bc77a97cb0f3431a42eb140ce2a57e0be13afb224d9e5bb07f1e29e7fbcd"
+    },
+    {
+      "method": "FixedReleaseContracts.test_strict_original_metric_contrast_unknown_and_conflicts",
+      "AST_sha256": "56294e7d373cd6d744062582ee51e378583c92749f60c601a414384f4bf2caf4"
+    },
+    {
+      "method": "FixedReleaseContracts.test_publication_preserves_lexical_IDs_canonical_labels_and_sample_order",
+      "AST_sha256": "abd1917f8041c09b3c410161462cd78d0618260aae36c553b71d07f61a018d55"
+    },
+    {
+      "method": "FixedReleaseContracts.test_bad_probability_order_and_nonfinite_values_cannot_publish",
+      "AST_sha256": "495ed46a41cde30b509d75e7d7e12ef9ef89e7465e12b9fe169fdb9a0b3419f7"
+    },
+    {
+      "method": "FixedReleaseContracts.test_strict_adapter_preserves_primary_failure_and_restores_caller_scope",
+      "AST_sha256": "e990cc50e7274584bd08e966383a5ef1f5fb219e30658f68f806558c47c06d46"
+    },
+    {
+      "method": "FixedReleaseContracts.test_clock_actual_sample_cadence_and_sticky_denial",
+      "AST_sha256": "c5055e1d4be4a331ac9805acdcf334658e66a4b9b4076c107b2bafea0bf0b59e"
+    },
+    {
+      "method": "FixedReleaseContracts.test_terminal_memory_caps_boundary_and_denial_are_not_success",
+      "AST_sha256": "03a8d5710161339227cdc4e41a01e4be1503b63e1261a1896d34de13a9f33d7c"
+    },
+    {
+      "method": "FixedReleaseContracts.test_publication_alias_preflight_preserves_protected_files",
+      "AST_sha256": "86d528e04cff6772d0e13cdb1630c6f21c1c54df3992f895a371e17d0a54c479"
+    },
+    {
+      "method": "FixedReleaseContracts.test_source_base_requirements_and_numerical_adapter_bytes_preserved",
+      "AST_sha256": "547a629e19bef318f0eadf41a3f15da14f17233b4191df818f45b199db78dcf7"
+    }
+  ],
+  "prepared_method_count": 18,
+  "actual_R3_test_runs": 0,
+  "runtime73_and_archive_byte_exact_R2": true,
+  "archive_sha256": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a",
+  "strict_counter_unchanged": true,
+  "stdout_contract": "Capture mocked fixed executor JSON inside this fixture and assert its parsed complete payload; leave unittest terminal status last in harness log.",
+  "runtime_quality_or_clock_claim": false
+}

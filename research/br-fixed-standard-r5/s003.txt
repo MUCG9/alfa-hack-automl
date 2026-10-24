@@ -1,0 +1,51 @@
+Verified resource sampling — SOURCE ONLY / PREPARED14 / ACTUAL0
+
+Portable dataclass-free psutil + stdlib primitive. No time/clock creation, global
+process scan, signal, file/model/API work, heartbeat or delay. The trusted caller
+must pass its ORIGINAL non-reentrant clock-only checkpoint; it is checked before
+and after every OS observation, including fresh disappearance confirmation.
+
+API:
+  VerifiedResourceSampler(process_factory=None)
+  .remember(typed_identity_collection)
+  .sample(identities, required=[actual_sampler_self], checkpoint=clock_only)
+  .confirm_departed(known_identity, checkpoint=clock_only)
+  .discover_owned_tree(known_root, checkpoint=clock_only)  # candidate-only use
+Known identities are native positive PID + finite positive birth tuples. Process
+factory injection is for trusted tests only, with explicit None semantics. A
+sample requires at least one mandatory identity; root/caller consumers MUST make
+that the actual sampler self. Missing self stops, even if it freshly disappeared.
+
+sample returns schema verified-known-resource-sample-v1: sampled stable RSS rows,
+explicit departed rows (rss_bytes NULL), counts and conservative sampled scope.
+It freshly opens a PID/birth before and after RSS. It never samples a replacement
+PID after detecting reuse. On NoSuchProcess it requires a NEW Process(pid) check:
+absence or another birth confirms only the old identity gone. Same original birth
+still present, denial, unknown/invalid metadata or a caller checkpoint failure is
+sticky. Later absence cannot erase it. Established last_receipt/known provenance
+is retained after failure. successful_rounds counts actual COMPLETE RSS rounds;
+it is not a clock/heartbeat, process/model/fit counter or full guard PASS.
+
+Caller controls unchanged caps, disk checks, phase/common clocks and .25 successful
+sampling cadence/sticky10s gap. Caller advances its last-success timestamp ONLY
+after its entire resource sample and checks succeed. It must not call its own RSS
+sampling recursively from checkpoint. Sampler keeps no internal clock to reset.
+
+Known-only consumers: C5 observes exact owned identities first, calls sample with
+that known set and actual self required. Coordinator NoSuch metadata/RSS consumers
+may call confirm_departed; only a returned fresh-confirmed row permits exclusion.
+Always retain old known PID/birth for cleanup. Do not treat it as a new ownership
+grant or cast a departed RSS to0. AccessDenied is never a benign absence.
+
+Candidate ResourceBudget may discover only one previously supplied owned root's
+descendants (never process_iter). New child births must be typed and root stable
+around traversal; new/unbound discovery uncertainty is STOP. This is resource
+observation, not authority to signal unrelated processes. Strict owned ProcessTree
+remains the sole cleanup implementation. Existing memory caps/scopes and conservative
+parent double-count are caller policy and are not changed by this primitive.
+
+14 meaningful mock methods source-prepared,0executed. No real Process is opened
+by those mocks. Future ROOT-GUARDED command only: python test_verified_sampling.py -v.
+Flat applicability: all14; only import alias verified_sampling ->
+automl_verified_resource_sampling is permitted for mapped archive tests. No src
+sidecar or AST-only exclusion. No runtime PASS/ML metric/default promotion claimed.

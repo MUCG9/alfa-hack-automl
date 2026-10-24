@@ -1,0 +1,77 @@
+{
+  "schema": "verified-resource-sampling-source-proof-v1",
+  "source_sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+  "test_sha256": "da898950c63727c65bd67c8a87121fcb9b4730b2aec51ca5cad02dad7c76478b",
+  "dataclass_free": true,
+  "imports": [
+    "math",
+    "psutil"
+  ],
+  "no_time_clock_or_signal_process_scan_model_API_file_IO": true,
+  "AST_parse_only": true,
+  "prepared_methods": [
+    {
+      "method": "VerifiedSamplingContracts.test_stable_fresh_before_and_after_RSS_and_exact_raw_bytes",
+      "AST_sha256": "5cf1c00c70930d091d563d0537291e8d0f144e55c5e70eb26d0be688bb098769"
+    },
+    {
+      "method": "VerifiedSamplingContracts.test_missing_known_child_requires_second_fresh_absence",
+      "AST_sha256": "9fc01eb2c1a72a8a48e0ed7b17afe96f9aeb5e990bd626db8992d7c4927f3e44"
+    },
+    {
+      "method": "VerifiedSamplingContracts.test_memory_NoSuch_then_fresh_reuse_never_reads_new_process",
+      "AST_sha256": "31a7922fcbe3936f21fa139b712dc1f0dc05acc92fb402838bc95beabed48430"
+    },
+    {
+      "method": "VerifiedSamplingContracts.test_same_original_identity_after_NoSuch_is_sticky_STOP",
+      "AST_sha256": "0af1b897a7eefb2fb4f9db7963ade16a50120f980c0d05741b20886c82aef602"
+    },
+    {
+      "method": "VerifiedSamplingContracts.test_first_AccessDenied_cannot_be_erased_by_later_absence",
+      "AST_sha256": "b964eb88714c664a593e10faabc42e8759e55fca379f22b7ff85ea7f314e2d4e"
+    },
+    {
+      "method": "VerifiedSamplingContracts.test_recheck_denial_or_unknown_exception_is_not_departure",
+      "AST_sha256": "a376e9aab4367f83cd9808648b6329a868288044fb1ed43cfbc9d2ee90d08108"
+    },
+    {
+      "method": "VerifiedSamplingContracts.test_missing_untyped_or_nonfinite_identity_stops_before_PID_open",
+      "AST_sha256": "19dde6a912293b553310826c0377478588b270fc549142188925a1e69f7ab4c6"
+    },
+    {
+      "method": "VerifiedSamplingContracts.test_post_RSS_disappearance_discards_unstable_value_not_to_zero",
+      "AST_sha256": "befd13e6afd483a2f3683ef9c8c10be679b60f235afe5dc557fab6cfd6e08d64"
+    },
+    {
+      "method": "VerifiedSamplingContracts.test_mandatory_self_cannot_be_dropped_or_omitted",
+      "AST_sha256": "5ff4219f1cf867be15284897f6942243eea25d9d09e81d8addf39c4edc724293"
+    },
+    {
+      "method": "VerifiedSamplingContracts.test_over_cap_RSS_is_preserved_not_clamped_for_consumer_caps",
+      "AST_sha256": "d2550576bee6f1203016931886c02df9120488ca78da58f0c3d3105154d10555"
+    },
+    {
+      "method": "VerifiedSamplingContracts.test_caller_deadline_or_gap_during_confirmation_is_sticky",
+      "AST_sha256": "476ed5ead8be8efb896e9f9cba833ea685d6489467bb5f17a319987d63135892"
+    },
+    {
+      "method": "VerifiedSamplingContracts.test_success_then_later_denial_preserves_prior_receipt_and_known",
+      "AST_sha256": "612c6a4729772c1a1866156d5679525923dd8e7ec3e05271ff1a011acfa6c634"
+    },
+    {
+      "method": "VerifiedSamplingContracts.test_metadata_consumer_confirmation_requires_fresh_absence_not_same_birth",
+      "AST_sha256": "e58988888b140d7dd1dc6b8e1622fc79fc2479d951c34d8639498cedaed3be53"
+    },
+    {
+      "method": "VerifiedSamplingContracts.test_owned_tree_discovery_preserves_known_and_rejects_unverified_birth",
+      "AST_sha256": "5b2058e63b39898c8e6ffee16265e7dca341c5b3690c2c0bd659e68dd473aee6"
+    }
+  ],
+  "source_method_count": 14,
+  "flat_method_count": 14,
+  "flat_exclusions": [],
+  "actual_tests": 0,
+  "actual_imports": 0,
+  "all_actual_fits_API_data_PIDscan_clock": 0,
+  "caller_contract": "original clock-only callback + actual self required; no consumer timestamp advance inside primitive"
+}

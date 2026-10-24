@@ -1,0 +1,21 @@
+{
+  "schema": "uar08-root-scaffold-source-review-v1",
+  "status": "SOURCE_REVIEWED_NOT_READY_NOT_EXECUTED",
+  "source_handoff_sha256": "1c4a8b25e371dada1fbe7aa75878be7194bea2d08941bc5ab6df222b4c41f0ae",
+  "independent_review_sha256": "ace0ec421e7d267123311906bcc2b05846ee73b27914d4ed0aba403c6e22631b",
+  "all14_local_source_hashes_verified": true,
+  "source_AST_counts_only": [
+    58,
+    616
+  ],
+  "mapped_method_AST_count_only": 87,
+  "expected_flat_members_only": 73,
+  "runtime_tests_executed": 0,
+  "actual_candidate_integration": false,
+  "UQ2_terminal_root": null,
+  "actual_final_private_pins": null,
+  "actual_gate_clock": null,
+  "required_admission": "Whole actual UQ2 exit, source/cleanup root evidence and independently fresh full owned/preparer absence, final source/registry pins and root review. Otherwise STOP; never coerce false flags.",
+  "current_active_frozen_UQ2_unchanged": true,
+  "quality_metric": null
+}

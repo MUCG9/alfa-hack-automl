@@ -1,0 +1,95 @@
+{
+  "schema": "uar-full-technical-protocol-v1",
+  "run_id": "UAR08",
+  "status": "NOT_READY_SOURCE_ONLY",
+  "unit": "New full cadence technical qualification; never reopen/reset UQ2 or oldgates",
+  "budget_seconds": {
+    "fresh_common_at_actual_future_launch": 1200,
+    "parent_including_setup": 900,
+    "setup_max": 60,
+    "actual_final": 180,
+    "root_closer": 60,
+    "mandatory_remaining_both_clocks": 1140,
+    "phase_reset": false,
+    "one_shared_child_all4_phases": 840
+  },
+  "source_counts": {
+    "current_actual_AST": [
+      57,
+      604
+    ],
+    "current_registry_sha256": "6530c5e01ba1f61354670c3d97e4fd9b02e144b60d8b017ebea60a3023c6d537",
+    "cadence_unique_AST_methods": 12,
+    "prospective_registry_projection": [
+      58,
+      616
+    ],
+    "actual_postintegration_registry": null
+  },
+  "flat_counts": {
+    "current_transitive_runtime_modules": 67,
+    "mapped": {
+      "io03": 14,
+      "vertical": 14,
+      "loss": 16,
+      "retention": 15,
+      "metric_contrast": 16,
+      "cadence": 12
+    },
+    "sole_exclusion": "LossContractTests.test_default_OFF_all_six_modules_preserve_base_UAR_AST",
+    "actual_final_inventory": null,
+    "prospective_members": 73,
+    "exact_repeated": 23,
+    "mapped_repeated": 87
+  },
+  "root_guard": {
+    "resource_sampling_seconds": 0.25,
+    "clocks_and_sticky10_every_callback": true,
+    "last_sample_successful_actual_observation_only": true,
+    "forced_initial_observer_init_final": true,
+    "own60_original1200": true,
+    "OS_preemption_claimed": false
+  },
+  "parent_final": {
+    "PowerGuard_active_through_cleanup_hashes": true,
+    "unconditional_release": true,
+    "postrelease_and_terminal_save_sticky_pulse": true,
+    "verified_release_required": true
+  },
+  "temporary_layout": {
+    "path": "WORK/t/u8-<exclusive8>",
+    "absolute_all_leaf_environment_before_imports": true,
+    "contained_resolved_path_cleanup_after_known_absence": true,
+    "final180_and_common1200": true,
+    "sticky_uncertainty": true
+  },
+  "resources": {
+    "technical_library_threads": 1,
+    "worker_mib": 1536,
+    "whole_mib": 2048,
+    "serial": true,
+    "no_external_API_intended": true,
+    "local_mock_HTTP_allowed": true
+  },
+  "prerequisite": {
+    "whole_UQ2_actual_session": 3588,
+    "terminal_root_sha256": null,
+    "actual_exit": null,
+    "actual_tool": null,
+    "fresh_owned_preparer_union": null,
+    "normal_clean_ownership_required_or_STOP_for_separately_reviewed_typed_negative": true
+  },
+  "fixture_counts": {
+    "public_experiment_fits": 0,
+    "aggregate_actual_fixture_learner_fits": null,
+    "aggregate_external_API_usage": null,
+    "reason": "Broad fixtures can fit synthetic learners; aggregate actual counts uninstrumented. Cadence12 only fake clock/resources."
+  },
+  "canonical_commit": null,
+  "private_READY_manifest": null,
+  "actual_clock": null,
+  "actual_run": null,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

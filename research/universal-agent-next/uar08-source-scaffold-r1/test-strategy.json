@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "status": "PREPARED_NOT_EXECUTED",
+  "actual_source_registry_after_root_merge_required": true,
+  "full_source_expected_projection": [
+    58,
+    616
+  ],
+  "build73": true,
+  "exact_counts": {
+    "test_v2.py": 11,
+    "test_resilience.py": 7,
+    "smoke.py": 5
+  },
+  "fixed_flat_counts": {
+    "io03": 14,
+    "vertical": 14,
+    "loss": 16,
+    "retention": 15,
+    "metric_contrast": 16,
+    "cadence": 12
+  },
+  "no_skips_or_changed_assertions": true,
+  "LOSS_modular_AST_only_runs_full_source": true,
+  "parser16_already_reviewed_and_UAR07_executed_no_new_repeat": true,
+  "actual_stdout_counts_exit_clocks_resources_cleanup_required": true,
+  "known_whole_UQ2_terminal_preparer_absence_mandatory": true,
+  "model_quality": null,
+  "official_default_ready": false
+}

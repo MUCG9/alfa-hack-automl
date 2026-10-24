@@ -1,0 +1,150 @@
+{
+  "schema": "uar08-independent-source-review-v1",
+  "status": "SOURCE_REVIEWED_NO_SCOPED_BLOCKER_NOT_READY_NO_EXECUTION",
+  "handoff": {
+    "path": "work/uar08-cadence-gate-next-dev/source-handoff.json",
+    "sha256": "1c4a8b25e371dada1fbe7aa75878be7194bea2d08941bc5ab6df222b4c41f0ae"
+  },
+  "frozen_files_verified": {
+    "close_gate.py": "8d4c47a32a7a874a2982fc020b655d04341d0151895fc07dc529c746a67fc0fe",
+    "close_gate.py.patch": "f9483aa6017d86946da239b3e98afcd186e4ce72d01f96eba19bd8ddbcfea0fa",
+    "contracts.py": "06fcca7271be009712b54985c3974049ff2d628e917f9f3658d0b13d5b973045",
+    "contracts.py.patch": "1a1e26074c507340994dfcc689a70bda40820384b4b6ca94ff50cf18144f37a1",
+    "mapped-method-whitelist.json": "ca2f23bd47d5c7d6aa0408bb83aa811aae4e4741c036e5365b737c65d8725085",
+    "private-manifest.template.json": "5b99276d9815a5ee0c04537e282a91073cc271aa71ec5c914fedb5c051539fa4",
+    "protocol.json": "8ca170378b177e3916d6d20906ea7753e271ab0cea18e6fbff5f8deb8495d50a",
+    "README.txt": "7b377e511dec8484965b8e2df20388f1c8499cf6f8c8a7970fb19e1be15fd9c5",
+    "run_gate.py": "7000465b0933c6e147cd2ff6dfbd8afb9f30b523e5bf34025bca585f32bc7c74",
+    "run_gate.py.patch": "f20694dbf65f1f20cccc1be64eac3704512f6a8f018a214a39bfb49b9d2cbe71",
+    "source-proof.json": "4659f04abf5c2f6937a32153cb0a583170b6afb87ddbd8ca6348041d5c189eb1",
+    "technical_entry.py": "629316ca8a54d26b45fd2cdc5c7ce0caccccfb1f8e1e5e8ab458f547d017d010",
+    "technical_entry.py.patch": "787c770f3fa6cc3faec672e09fd90f6426e4ebe6ee7fb924b0be24a2b71df056",
+    "test-strategy.json": "1dda40eed084fa4ba2e2e384b79fde137441f223c3029af65019897e476c0e1f"
+  },
+  "review_scope": [
+    "controller clock/ownership/source/finalization predicates",
+    "inherited assertion and entry AST preservation",
+    "registry/whitelist/flat structural counts",
+    "exclusive shallow temporary environment and cleanup",
+    "root closer successful resource-sample cadence and sticky uncertainty",
+    "explicit NOT_READY unresolved authority"
+  ],
+  "independent_findings": {
+    "packet_hashes": {
+      "count": 14,
+      "all_exact": true
+    },
+    "source_structure": {
+      "current_registry_scripts": 57,
+      "current_registry_declared_checks": 604,
+      "prospective_after_cadence_scripts": 58,
+      "prospective_after_cadence_checks": 616,
+      "flat_inventory_members": 73,
+      "flat_inventory_exact_to_source_proof": true,
+      "mapped_selected": {
+        "io03": 14,
+        "vertical": 14,
+        "loss": 16,
+        "retention": 15,
+        "metric_contrast": 16,
+        "cadence": 12
+      },
+      "mapped_total": 87,
+      "all_six_method_name_order_inventories_exact": true,
+      "LOSS_only_exclusion": "LossContractTests.test_default_OFF_all_six_modules_preserve_base_UAR_AST",
+      "default_exact_repeated": 23
+    },
+    "preserved_logic": {
+      "contracts_all_noncounts_definitions_AST_equal_UAR06_after_run_id_projection": true,
+      "counts_AST_equal_reviewed_UAR07": true,
+      "entry_all_definitions_AST_equal_UAR06_after_run_id_projection": true,
+      "driver_need_read_digest_imported_own_bootstraps_AST_equal_UAR06": true,
+      "no_assertion_or_selected_method_dropped": true
+    },
+    "clock": {
+      "future_common_seconds": 1200,
+      "parent_seconds": 900,
+      "shared_child_seconds": 840,
+      "actual_final_seconds": 180,
+      "root_close_seconds": 60,
+      "minimum_remaining_before_admission_seconds": 1140,
+      "setup_in_parent_maximum_seconds": 60,
+      "single_original_dual_clock": true,
+      "phase_clock_reset": false,
+      "parent_power_release_and_terminal_checks_fail_closed": true,
+      "root_own60_and_original1200_checked_before_after_resource_reads_and_save": true
+    },
+    "ownership": {
+      "historical_fac3_guard_separate_from_candidate_9f84": true,
+      "all_normal_predecessor_source_cleanup_exit_bindings_required": true,
+      "fresh_known_union_before_and_under_ResearchLock": true,
+      "outer_and_nested_leaf_receipts_required_and_uncertainty_sticky": true,
+      "actual_root_exit_evidence_and_followup_fresh_preparer_absence_required": true,
+      "false_UQ2_flags_not_coerced": true,
+      "unqualified_historical_failure_not_owned_grant": true
+    },
+    "temporary_environment": {
+      "exclusive_root_pattern": "work/t/u8-<8 lowercase letters digits underscores>",
+      "absolute_environment_before_candidate_imports": [
+        "TMP",
+        "TEMP",
+        "TMPDIR",
+        "MPLCONFIGDIR"
+      ],
+      "environment_receipt_and_all_leaf_roots_cross_checked": true,
+      "cleanup_after_owned_absence_only": true,
+      "containment_resolve_symlink_checks": true,
+      "temporary_absence_and_saved_cleanup_required": true
+    },
+    "root_resource_sampling": {
+      "cadence_seconds": 0.25,
+      "initial_and_terminal_forced_actual_samples": true,
+      "every_callback_checks_own_and_common_clocks_and_gap": true,
+      "last_sample_advances_only_after_successful_actual_observation_and_postchecks": true,
+      "gap_limit_seconds": 10,
+      "denial_RSS_gap_error_sticky": true,
+      "no_background_heartbeat": true,
+      "sampler_has_no_new_clock_or_allowance": true
+    },
+    "not_ready": {
+      "template_readiness": "NOT_READY",
+      "files_sha256_count": 0,
+      "actual_registry_and_flat_inventory_empty": true,
+      "UQ2_whole_root_sha_exit_tool_fresh_union": null,
+      "canonical_commit": null,
+      "private_READY_manifest": null,
+      "actual_clock": null,
+      "actual_run": null,
+      "current_template_cannot_satisfy_config": true
+    }
+  },
+  "concrete_blocking_defects": [],
+  "required_before_any_launch": [
+    "UQ2 whole actual terminal session/exit/tool, saved closure and fresh owned/preparer absence; early arm closure is insufficient",
+    "Root-reviewed cadence merge and exact actual canonical source/registry/flat/helper/review/private pins; expected counts are not test results",
+    "Root explicit launch under one fresh 1200-second clock after all prerequisites; no continuation or reset of UQ2",
+    "If latest UQ2 cleanup/source fields are false or uncertain, this normal predecessor schema must STOP; any alternative needs a separate reviewed typed negative path",
+    "After actual gate exit, run the reviewed closer then independently confirm its actual exit and fresh preparer absence"
+  ],
+  "limits": [
+    "Static source review is not an executed test/build/resource/cleanup proof or runtime readiness grant.",
+    "Full source/flat checks may contain learner fixtures and local mock HTTP. Aggregate fixture fit/API usage is explicitly uninstrumented null, not claimed zero. Public experiment fits remain separate zero.",
+    "Resource checks are sampled/cooperative; there is no OS memory sandbox or preemption claim.",
+    "Every generic inherited branch was source compared; no candidate adaptation/import/test was executed."
+  ],
+  "reviewer_execution": {
+    "stdlib_AST_JSON_SHA_readonly": true,
+    "candidate_imports": 0,
+    "tests": 0,
+    "builds": 0,
+    "fits": 0,
+    "API": 0,
+    "data_or_prediction_reads": 0,
+    "PID_scans": 0,
+    "clock_assigned": false,
+    "canonical_STATE_Git_changes": 0
+  },
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

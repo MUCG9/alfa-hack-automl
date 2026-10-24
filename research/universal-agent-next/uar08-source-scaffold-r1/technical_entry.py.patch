@@ -1,0 +1,11 @@
+--- immutable-UAR06/technical_entry.py
++++ UAR08-source-only/technical_entry.py
+@@ -33,7 +33,7 @@
+          and not temporary_root.is_symlink() and temporary_root.is_dir(),
+          'exclusive_shallow_temporary_root_required')
+     ownership=json.loads((out/'temporary-root.json').read_text('utf-8'))
+-    need(ownership.get('run_id')=='UAR06' and ownership.get('root')==str(temporary_root)
++    need(ownership.get('run_id')=='UAR08' and ownership.get('root')==str(temporary_root)
+          and ownership.get('scope')=='exclusive_shallow_leaf_environment','temporary_root_receipt_changed')
+     for key in ('TMP','TEMP','TMPDIR'):os.environ[key]=str(temporary_root)
+     os.environ['MPLCONFIGDIR']=str(temporary_root/'m')

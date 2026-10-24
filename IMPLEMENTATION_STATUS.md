@@ -1,5 +1,23 @@
 # Universal AutoResearch: UAR-v1
 
+<!-- CURRENT_UAR_OBSERVATION_BEGIN -->
+Current observation, 2026-10-24: UAR06 remains FAIL. Its completed source 604,
+build 73 and exact-unpacked 23 checks are preserved. The mapped gate rejected
+valid unittest output because its parser confused telemetry `skipped:null` with
+skipped tests; 44 mapped checks ran and 31 were not attempted. A later long pause
+exhausted the original clock; its cause is unproven. A separate late audit checked
+235 unchanged pins and 6,178 known identities including its preparers, without
+retroactively qualifying the failed run. See
+[the failure and late observation](research/universal-agent-next/uar06-r1/results-summary.json).
+
+UAR07 is prospective: recheck exact historical source/build/exact evidence, then
+execute the corrected parser's 16 checks and all 75 mapped checks under a new
+600-second budget. No new full Qwen run or ML gain has been measured after the UAR
+integration. Best research regression remains 34.155023394837; historical strong
+classification remains 0.6593178433614652. Linux is temporarily paused by the user;
+remote12 is an unpublished draft. Local research continues. No upload succeeded.
+<!-- CURRENT_UAR_OBSERVATION_END -->
+
 The new specification is being integrated into the existing pipeline. LA2 completed
 training, then failed its audit metadata check. A separate audit verified all four
 saved model artifacts and found a new regression best of RMSE34.1550233948. The

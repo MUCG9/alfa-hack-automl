@@ -57,6 +57,7 @@ class EarlyDeclarationTests(unittest.TestCase):
         self.assertEqual(result.declaration.target, 'outcome')
         self.assertEqual(result.declaration.identifier, 'identity')
         self.assertEqual(result.declaration.kind, 'regression')
+        self.assertEqual(result.receipt['dictionary_path'], 'roles.csv')
         self.assertFalse(result.receipt['feature_rows_loaded'])
         self.assertFalse(result.receipt['target_rows_loaded'])
 

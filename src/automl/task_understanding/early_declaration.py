@@ -280,6 +280,7 @@ def bootstrap_early_declaration(task_path, *, checkpoint,
         if dictionary in paths.values():
             return result('ambiguous', 'dictionary_reuses_input_table')
         _, dictionary_roles, dictionary_sha = table(dictionary, metadata=True)
+        receipt['dictionary_path'] = dictionary.relative_to(root).as_posix()
         receipt['dictionary_metadata_sha256'] = dictionary_sha
     targets = fields.get('targets', [fields['target']] if 'target' in fields else [])
     if 'target' in fields and targets != [fields['target']]:

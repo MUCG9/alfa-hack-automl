@@ -1,7 +1,7 @@
 # Validation and acceptance protocol
 
 <!-- CURRENT_UAR_OBSERVATION_BEGIN -->
-Current observation: UAR07 reused exact604 source checks,73-member build and23 standard checks, then actually passed16 parser and75 mapped checks. Its original closer timed out at30 seconds and remains FAIL. A separate reviewed saved-artifact audit completed with actualexit0, current source/cleanup verified and6200 known identities absent, within the original600-second deadline including failure/fix/review/publication. The archive now has explicit composite technical qualification; no new ML metric or generic release claim. Next: actual four-arm Qwen comparison. Linux second laptop remains paused by the user.
+Current observation: UQ2 four-arm comparison is actually running under the original10800-second UQ1 clock, with matched source/data/strong retention and strict-runtime in both arms. The first real Qwen response has complete usage; this is intermediate evidence, not final quality qualification. UQ1 pre-API historical/current process-pin collision remains FAIL, its single reviewed bootstrap recovery retains all original clocks and costs. UAR07 composite technical qualification and all old failures remain unchanged. No new ML metric or generic release claim. Linux second laptop remains paused by the user.
 <!-- CURRENT_UAR_OBSERVATION_END -->
 
 Before fitting, freeze the task/metric contract, control and candidate source,

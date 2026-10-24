@@ -1,0 +1,34 @@
+{
+  "schema": "uq2-progress-v1",
+  "checked_unix": 1792826913.0340457,
+  "status": "running",
+  "actual_session": 3588,
+  "launch_tool": "45e8bb",
+  "original_start_unix": 1792826068.8239975,
+  "original_deadline_unix": 1792836868.8239975,
+  "authority_status": "validated_before_first_Qwen",
+  "slot_status": {
+    "Ar": "admitted",
+    "Br": "not_attempted",
+    "Ac": "not_attempted",
+    "Bc": "not_attempted"
+  },
+  "actual_terminal_exit": null,
+  "quality_metric": null,
+  "initial_assessment_valid_at_first_worker": true,
+  "sampled_supervisor_owned_tree_peak_mib": 820.6953125,
+  "whole_campaign_peak_mib": null,
+  "original_UQ1_failure_preserved": true,
+  "Linux_paused": true,
+  "source_publication": "f84b07698543da58776b9f11b21eb08b238b31fb",
+  "Qwen": {
+    "actual_gateway_records": 1,
+    "actual_HTTP_attempts": 1,
+    "usage_complete": true,
+    "input_tokens": 8253,
+    "output_tokens": 779,
+    "status": "intermediate_not_final_qualification",
+    "response_model": "qwen/qwen3.8-27b",
+    "reasoning_requested_not_attestation": true
+  }
+}

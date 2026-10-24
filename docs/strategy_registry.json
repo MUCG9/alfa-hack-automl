@@ -8,7 +8,7 @@
   "ideas": [
     {
       "source_idea_id": "001",
-      "title": "Scout \u2192 Researcher \u2192 Judge \u0441 \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0435\u0439 \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0433\u043e \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u044f.",
+      "title": "Scout → Researcher → Judge с передачей структурированного состояния.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [],
@@ -26,7 +26,7 @@
     },
     {
       "source_idea_id": "002",
-      "title": "LLM \u043f\u0440\u0435\u0434\u043b\u0430\u0433\u0430\u0435\u0442 \u0433\u0438\u043f\u043e\u0442\u0435\u0437\u044b, \u0434\u0435\u0442\u0435\u0440\u043c\u0438\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0435 \u044f\u0434\u0440\u043e \u0438\u0441\u043f\u043e\u043b\u043d\u044f\u0435\u0442.",
+      "title": "LLM предлагает гипотезы, детерминированное ядро исполняет.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [],
@@ -44,7 +44,7 @@
     },
     {
       "source_idea_id": "003",
-      "title": "\u0420\u0430\u0437\u0434\u0435\u043b\u044c\u043d\u044b\u0435 exploit \u0438 explore \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f.",
+      "title": "Раздельные exploit и explore направления.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -62,7 +62,7 @@
     },
     {
       "source_idea_id": "004",
-      "title": "Critic \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0430\u0435\u0442\u0441\u044f \u043a \u0441\u043f\u043e\u0440\u043d\u044b\u043c \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u0430\u043c, \u043d\u0435 \u043a \u043a\u0430\u0436\u0434\u043e\u043c\u0443 trial.",
+      "title": "Critic подключается к спорным результатам, не к каждому trial.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -80,7 +80,7 @@
     },
     {
       "source_idea_id": "005",
-      "title": "\u041a\u043e\u043c\u0438\u0442\u0435\u0442 \u0440\u0430\u0437\u043d\u044b\u0445 \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0439, \u043d\u0435 \u043e\u0434\u0438\u043d\u0430\u043a\u043e\u0432\u044b\u0445 \u043f\u0440\u043e\u043c\u043f\u0442\u043e\u0432.",
+      "title": "Комитет разных направлений, не одинаковых промптов.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -98,7 +98,7 @@
     },
     {
       "source_idea_id": "006",
-      "title": "Finite-state machine \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u044f\u043c\u0438 \u043f\u043e\u0432\u0442\u043e\u0440\u043e\u0432 \u0438 \u043e\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0430\u043c\u0438.",
+      "title": "Finite-state machine с ограничениями повторов и остановками.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [
@@ -118,7 +118,7 @@
     },
     {
       "source_idea_id": "007",
-      "title": "Structured DSL \u0434\u043b\u044f \u0433\u0438\u043f\u043e\u0442\u0435\u0437.",
+      "title": "Structured DSL для гипотез.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [],
@@ -136,7 +136,7 @@
     },
     {
       "source_idea_id": "008",
-      "title": "\u041a\u043e\u043d\u0442\u0440\u0430\u043a\u0442 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f: \u0434\u0430\u043d\u043d\u044b\u0435, \u0440\u0435\u0441\u0443\u0440\u0441\u044b, \u0438\u0437\u043c\u0435\u0440\u0435\u043d\u0438\u0435, rollback.",
+      "title": "Контракт действия: данные, ресурсы, измерение, rollback.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [
@@ -156,7 +156,7 @@
     },
     {
       "source_idea_id": "009",
-      "title": "AutoML fallback \u043f\u0440\u0438 \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e\u0441\u0442\u0438 LLM.",
+      "title": "AutoML fallback при недоступности LLM.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [
@@ -176,7 +176,7 @@
     },
     {
       "source_idea_id": "010",
-      "title": "\u0421\u0442\u0440\u0430\u0442\u0435\u0433 \u0440\u0430\u0441\u043f\u0440\u0435\u0434\u0435\u043b\u044f\u0435\u0442 \u0431\u044e\u0434\u0436\u0435\u0442 \u043c\u0435\u0436\u0434\u0443 \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f\u043c\u0438.",
+      "title": "Стратег распределяет бюджет между направлениями.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -194,7 +194,7 @@
     },
     {
       "source_idea_id": "011",
-      "title": "\u041e\u0442\u0440\u0438\u0446\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b \u0432 \u043a\u043e\u043d\u0442\u0435\u043a\u0441\u0442\u0435 \u0430\u0433\u0435\u043d\u0442\u0430.",
+      "title": "Отрицательные результаты в контексте агента.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [],
@@ -212,7 +212,7 @@
     },
     {
       "source_idea_id": "012",
-      "title": "\u041a\u043e\u043d\u043a\u0443\u0440\u0435\u043d\u0446\u0438\u044f \u0433\u0438\u043f\u043e\u0442\u0435\u0437 \u043f\u043e \u043e\u0431\u0449\u0435\u0439 \u0442\u0430\u0431\u043b\u0438\u0446\u0435 \u0438\u0437\u043c\u0435\u0440\u0435\u043d\u0438\u0439.",
+      "title": "Конкуренция гипотез по общей таблице измерений.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -230,7 +230,7 @@
     },
     {
       "source_idea_id": "013",
-      "title": "Dynamic expert routing \u043f\u043e fingerprint.",
+      "title": "Dynamic expert routing по fingerprint.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [
@@ -250,7 +250,7 @@
     },
     {
       "source_idea_id": "014",
-      "title": "\u041f\u0430\u043c\u044f\u0442\u044c \u0430\u0433\u0435\u043d\u0442\u0430 \u043a\u0430\u043a \u0436\u0443\u0440\u043d\u0430\u043b \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442\u043e\u0432.",
+      "title": "Память агента как журнал экспериментов.",
       "primary_stage": "03",
       "owner_role": "A04 RUNTIME_OPS",
       "task_ids": [],
@@ -286,7 +286,7 @@
     },
     {
       "source_idea_id": "016",
-      "title": "\u0418\u0437\u043e\u043b\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0435 \u043a\u0430\u043d\u0434\u0438\u0434\u0430\u0442\u044b \u0438 rollback.",
+      "title": "Изолированные кандидаты и rollback.",
       "primary_stage": "03",
       "owner_role": "A04 RUNTIME_OPS",
       "task_ids": [],
@@ -304,7 +304,7 @@
     },
     {
       "source_idea_id": "017",
-      "title": "\u041a\u0430\u0436\u0434\u044b\u0439 \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u0442 \u043d\u0430 \u043a\u043e\u043d\u043a\u0440\u0435\u0442\u043d\u044b\u0439 \u0432\u043e\u043f\u0440\u043e\u0441.",
+      "title": "Каждый эксперимент отвечает на конкретный вопрос.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -322,7 +322,7 @@
     },
     {
       "source_idea_id": "018",
-      "title": "\u0410\u0434\u0430\u043f\u0442\u0438\u0432\u043d\u043e\u0435 \u0447\u0438\u0441\u043b\u043e \u0440\u043e\u043b\u0435\u0439 \u0441\u0434\u0430\u0432\u0430\u0435\u043c\u043e\u0433\u043e ML-\u0430\u0433\u0435\u043d\u0442\u0430.",
+      "title": "Адаптивное число ролей сдаваемого ML-агента.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -340,7 +340,7 @@
     },
     {
       "source_idea_id": "019",
-      "title": "\u0418\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 data_dictionary \u0438 \u0435\u0434\u0438\u043d\u0438\u0446 \u0438\u0437\u043c\u0435\u0440\u0435\u043d\u0438\u044f.",
+      "title": "Использование data_dictionary и единиц измерения.",
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
@@ -361,7 +361,7 @@
     },
     {
       "source_idea_id": "020",
-      "title": "\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c\u043e\u0435 \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u0438\u0435 target.",
+      "title": "Проверяемое определение target.",
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
@@ -382,7 +382,7 @@
     },
     {
       "source_idea_id": "021",
-      "title": "\u0418\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u0435 \u043c\u0435\u0442\u0440\u0438\u043a\u0438 \u0438\u0437 \u043f\u043e\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0438.",
+      "title": "Извлечение метрики из постановки.",
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
@@ -410,7 +410,7 @@
     },
     {
       "source_idea_id": "022",
-      "title": "\u0421\u043e\u0432\u043c\u0435\u0441\u0442\u043d\u044b\u0439 \u0430\u043d\u0430\u043b\u0438\u0437 cardinality \u0438 \u0441\u0435\u043c\u0430\u043d\u0442\u0438\u043a\u0438 target.",
+      "title": "Совместный анализ cardinality и семантики target.",
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
@@ -430,7 +430,7 @@
     },
     {
       "source_idea_id": "023",
-      "title": "\u0414\u0438\u0430\u0433\u043d\u043e\u0441\u0442\u0438\u043a\u0430 ID \u0438 \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0439 group/time \u0441\u0435\u043c\u0430\u043d\u0442\u0438\u043a\u0438.",
+      "title": "Диагностика ID и возможной group/time семантики.",
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
@@ -470,7 +470,7 @@
     },
     {
       "source_idea_id": "025",
-      "title": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 train/test schema.",
+      "title": "Проверка train/test schema.",
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
@@ -491,7 +491,7 @@
     },
     {
       "source_idea_id": "026",
-      "title": "\u0411\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u0430\u044f \u043a\u043e\u043d\u0432\u0435\u0440\u0441\u0438\u044f \u0447\u0438\u0441\u043b\u043e\u0432\u044b\u0445 \u0441\u0442\u0440\u043e\u043a.",
+      "title": "Безопасная конверсия числовых строк.",
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
@@ -512,7 +512,7 @@
     },
     {
       "source_idea_id": "027",
-      "title": "\u041f\u043e\u0438\u0441\u043a datetime-\u043f\u0440\u0438\u0437\u043d\u0430\u043a\u043e\u0432.",
+      "title": "Поиск datetime-признаков.",
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
@@ -532,7 +532,7 @@
     },
     {
       "source_idea_id": "028",
-      "title": "\u041f\u043e\u0438\u0441\u043a \u0433\u0440\u0443\u043f\u043f \u0438 \u043f\u043e\u0432\u0442\u043e\u0440\u044f\u044e\u0449\u0438\u0445\u0441\u044f \u0441\u0443\u0449\u043d\u043e\u0441\u0442\u0435\u0439.",
+      "title": "Поиск групп и повторяющихся сущностей.",
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
@@ -552,7 +552,7 @@
     },
     {
       "source_idea_id": "029",
-      "title": "Target skew \u0438 \u0434\u0438\u0430\u0433\u043d\u043e\u0441\u0442\u0438\u043a\u0430 \u0432\u044b\u0431\u0440\u043e\u0441\u043e\u0432.",
+      "title": "Target skew и диагностика выбросов.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [],
@@ -570,7 +570,7 @@
     },
     {
       "source_idea_id": "030",
-      "title": "Class imbalance \u0438 rare-class support.",
+      "title": "Class imbalance и rare-class support.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [],
@@ -588,7 +588,7 @@
     },
     {
       "source_idea_id": "031",
-      "title": "\u041f\u043e\u0434\u043e\u0437\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435 target surrogates \u0438 post-event leakage.",
+      "title": "Подозрительные target surrogates и post-event leakage.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [],
@@ -606,7 +606,7 @@
     },
     {
       "source_idea_id": "032",
-      "title": "Train/test drift report \u0432 \u0440\u0430\u0437\u0440\u0435\u0448\u0451\u043d\u043d\u043e\u043c \u0440\u0435\u0436\u0438\u043c\u0435.",
+      "title": "Train/test drift report в разрешённом режиме.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [],
@@ -624,7 +624,7 @@
     },
     {
       "source_idea_id": "033",
-      "title": "\u0423\u0441\u043b\u043e\u0432\u043d\u0430\u044f adversarial validation.",
+      "title": "Условная adversarial validation.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -642,7 +642,7 @@
     },
     {
       "source_idea_id": "034",
-      "title": "\u0411\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u0430\u044f \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0430 constant/all-NA \u043a\u043e\u043b\u043e\u043d\u043e\u043a.",
+      "title": "Безопасная обработка constant/all-NA колонок.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [
@@ -662,7 +662,7 @@
     },
     {
       "source_idea_id": "035",
-      "title": "\u0414\u0443\u0431\u043b\u0438\u043a\u0430\u0442\u044b \u0438 \u043f\u0440\u043e\u0442\u0438\u0432\u043e\u0440\u0435\u0447\u0438\u0432\u044b\u0435 \u043c\u0435\u0442\u043a\u0438.",
+      "title": "Дубликаты и противоречивые метки.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [],
@@ -680,7 +680,7 @@
     },
     {
       "source_idea_id": "036",
-      "title": "\u041e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0430 inf/-inf \u0431\u0435\u0437 \u043f\u043e\u0440\u0447\u0438 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0439.",
+      "title": "Обработка inf/-inf без порчи категорий.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [
@@ -700,7 +700,7 @@
     },
     {
       "source_idea_id": "037",
-      "title": "High-cardinality routing \u0431\u0435\u0437 \u0432\u0437\u0440\u044b\u0432\u043d\u043e\u0433\u043e one-hot.",
+      "title": "High-cardinality routing без взрывного one-hot.",
       "primary_stage": "06",
       "owner_role": "A07 AGENT_RUNTIME",
       "task_ids": [
@@ -720,7 +720,7 @@
     },
     {
       "source_idea_id": "038",
-      "title": "Split \u0434\u043e fit-transform.",
+      "title": "Split до fit-transform.",
       "primary_stage": "02",
       "owner_role": "A03 EVALUATION",
       "task_ids": [
@@ -740,7 +740,7 @@
     },
     {
       "source_idea_id": "039",
-      "title": "Stratified split \u0441 rare-class fallback.",
+      "title": "Stratified split с rare-class fallback.",
       "primary_stage": "02",
       "owner_role": "A03 EVALUATION",
       "task_ids": [],
@@ -794,7 +794,7 @@
     },
     {
       "source_idea_id": "042",
-      "title": "Repeated KFold \u0434\u043b\u044f \u043c\u0430\u043b\u043e\u0433\u043e n \u043f\u0440\u0438 \u043d\u0430\u043b\u0438\u0447\u0438\u0438 \u0431\u044e\u0434\u0436\u0435\u0442\u0430.",
+      "title": "Repeated KFold для малого n при наличии бюджета.",
       "primary_stage": "02",
       "owner_role": "A03 EVALUATION",
       "task_ids": [],
@@ -812,7 +812,7 @@
     },
     {
       "source_idea_id": "043",
-      "title": "\u0424\u0438\u043a\u0441\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0439 quick split.",
+      "title": "Фиксированный quick split.",
       "primary_stage": "02",
       "owner_role": "A03 EVALUATION",
       "task_ids": [],
@@ -830,7 +830,7 @@
     },
     {
       "source_idea_id": "044",
-      "title": "\u041e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u044b\u0439 shadow/audit.",
+      "title": "Ограниченный shadow/audit.",
       "primary_stage": "02",
       "owner_role": "A03 EVALUATION",
       "task_ids": [
@@ -850,7 +850,7 @@
     },
     {
       "source_idea_id": "045",
-      "title": "Nested/light-nested \u043e\u0446\u0435\u043d\u043a\u0430.",
+      "title": "Nested/light-nested оценка.",
       "primary_stage": "02",
       "owner_role": "A03 EVALUATION",
       "task_ids": [],
@@ -886,7 +886,7 @@
     },
     {
       "source_idea_id": "047",
-      "title": "LCB-like ranking \u0441 \u0443\u0447\u0451\u0442\u043e\u043c \u043d\u0435\u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0451\u043d\u043d\u043e\u0441\u0442\u0438.",
+      "title": "LCB-like ranking с учётом неопределённости.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -922,7 +922,7 @@
     },
     {
       "source_idea_id": "049",
-      "title": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e \u0441\u0440\u0435\u0437\u0430\u043c.",
+      "title": "Проверка по срезам.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -940,7 +940,7 @@
     },
     {
       "source_idea_id": "050",
-      "title": "Leakage audit \u043f\u0435\u0440\u0435\u0434 \u043f\u0440\u0438\u043d\u044f\u0442\u0438\u0435\u043c \u043a\u0430\u043d\u0434\u0438\u0434\u0430\u0442\u0430.",
+      "title": "Leakage audit перед принятием кандидата.",
       "primary_stage": "02",
       "owner_role": "A03 EVALUATION",
       "task_ids": [
@@ -960,7 +960,7 @@
     },
     {
       "source_idea_id": "051",
-      "title": "\u041e\u0434\u0438\u043d\u0430\u043a\u043e\u0432\u044b\u0435 folds \u0443 \u0441\u0440\u0430\u0432\u043d\u0438\u0432\u0430\u0435\u043c\u044b\u0445 \u043c\u043e\u0434\u0435\u043b\u0435\u0439.",
+      "title": "Одинаковые folds у сравниваемых моделей.",
       "primary_stage": "02",
       "owner_role": "A03 EVALUATION",
       "task_ids": [
@@ -980,7 +980,7 @@
     },
     {
       "source_idea_id": "052",
-      "title": "\u0412\u044b\u0431\u043e\u0440 \u043f\u043e \u0446\u0435\u043b\u0435\u0432\u043e\u0439, \u0430 \u043d\u0435 \u0432\u0441\u043f\u043e\u043c\u043e\u0433\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0439 \u043c\u0435\u0442\u0440\u0438\u043a\u0435.",
+      "title": "Выбор по целевой, а не вспомогательной метрике.",
       "primary_stage": "02",
       "owner_role": "A03 EVALUATION",
       "task_ids": [
@@ -1001,7 +1001,7 @@
     },
     {
       "source_idea_id": "053",
-      "title": "\u0417\u0430\u043f\u0440\u0435\u0442 \u043e\u0446\u0435\u043d\u043a\u0438 \u043f\u043e \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u044b\u043c test labels.",
+      "title": "Запрет оценки по недоступным test labels.",
       "primary_stage": "02",
       "owner_role": "A03 EVALUATION",
       "task_ids": [
@@ -1021,7 +1021,7 @@
     },
     {
       "source_idea_id": "054",
-      "title": "\u041e\u0442\u043a\u0430\u0437 \u043e\u0442 leaderboard hill climbing.",
+      "title": "Отказ от leaderboard hill climbing.",
       "primary_stage": "13",
       "owner_role": "A13 QA_REVIEW",
       "task_ids": [],
@@ -1039,7 +1039,7 @@
     },
     {
       "source_idea_id": "055",
-      "title": "\u041e\u0441\u0442\u043e\u0440\u043e\u0436\u043d\u043e\u0441\u0442\u044c \u043f\u0440\u0438 \u043c\u043d\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u043c \u043f\u043e\u0438\u0441\u043a\u0435.",
+      "title": "Осторожность при множественном поиске.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -1057,7 +1057,7 @@
     },
     {
       "source_idea_id": "056",
-      "title": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0443\u0441\u0442\u043e\u0439\u0447\u0438\u0432\u043e\u0441\u0442\u0438 \u043a seed.",
+      "title": "Проверка устойчивости к seed.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -1075,7 +1075,7 @@
     },
     {
       "source_idea_id": "057",
-      "title": "\u0420\u0430\u0437\u0434\u0435\u043b\u0435\u043d\u0438\u0435 \u043f\u043e\u0434\u0431\u043e\u0440\u0430 \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 postprocessing/ensemble.",
+      "title": "Разделение подбора и проверки postprocessing/ensemble.",
       "primary_stage": "02",
       "owner_role": "A03 EVALUATION",
       "task_ids": [
@@ -1095,7 +1095,7 @@
     },
     {
       "source_idea_id": "058",
-      "title": "\u0420\u0430\u043d\u043d\u0438\u0439 \u0431\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u044b\u0439 baseline \u0438 submission.",
+      "title": "Ранний безопасный baseline и submission.",
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
@@ -1116,7 +1116,7 @@
     },
     {
       "source_idea_id": "059",
-      "title": "CatBoost \u0441 native categorical \u043f\u0440\u0438 \u0440\u0430\u0437\u0440\u0435\u0448\u0451\u043d\u043d\u043e\u0441\u0442\u0438.",
+      "title": "CatBoost с native categorical при разрешённости.",
       "primary_stage": "04",
       "owner_role": "A05 MODELS",
       "task_ids": [
@@ -1136,7 +1136,7 @@
     },
     {
       "source_idea_id": "060",
-      "title": "LightGBM \u043f\u0440\u0438 \u0440\u0430\u0437\u0440\u0435\u0448\u0451\u043d\u043d\u043e\u0441\u0442\u0438.",
+      "title": "LightGBM при разрешённости.",
       "primary_stage": "04",
       "owner_role": "A05 MODELS",
       "task_ids": [
@@ -1156,7 +1156,7 @@
     },
     {
       "source_idea_id": "061",
-      "title": "XGBoost \u0434\u043b\u044f \u0430\u043b\u044c\u0442\u0435\u0440\u043d\u0430\u0442\u0438\u0432\u044b \u0438 diversity.",
+      "title": "XGBoost для альтернативы и diversity.",
       "primary_stage": "04",
       "owner_role": "A05 MODELS",
       "task_ids": [
@@ -1216,7 +1216,7 @@
     },
     {
       "source_idea_id": "064",
-      "title": "RandomForest \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u044b\u043c \u0431\u044e\u0434\u0436\u0435\u0442\u043e\u043c.",
+      "title": "RandomForest с ограниченным бюджетом.",
       "primary_stage": "04",
       "owner_role": "A05 MODELS",
       "task_ids": [
@@ -1296,7 +1296,7 @@
     },
     {
       "source_idea_id": "068",
-      "title": "Naive Bayes \u0434\u043b\u044f \u043f\u043e\u0434\u0445\u043e\u0434\u044f\u0449\u0438\u0445 sparse/count \u0434\u0430\u043d\u043d\u044b\u0445.",
+      "title": "Naive Bayes для подходящих sparse/count данных.",
       "primary_stage": "04",
       "owner_role": "A05 MODELS",
       "task_ids": [
@@ -1316,7 +1316,7 @@
     },
     {
       "source_idea_id": "069",
-      "title": "kNN \u0434\u043b\u044f \u043d\u0435\u0431\u043e\u043b\u044c\u0448\u0438\u0445 \u043f\u043e\u0434\u0445\u043e\u0434\u044f\u0449\u0438\u0445 \u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432.",
+      "title": "kNN для небольших подходящих пространств.",
       "primary_stage": "04",
       "owner_role": "A05 MODELS",
       "task_ids": [
@@ -1336,7 +1336,7 @@
     },
     {
       "source_idea_id": "070",
-      "title": "Model-family routing \u043f\u043e fingerprint.",
+      "title": "Model-family routing по fingerprint.",
       "primary_stage": "04",
       "owner_role": "A05 MODELS",
       "task_ids": [
@@ -1362,7 +1362,7 @@
     },
     {
       "source_idea_id": "071",
-      "title": "\u0420\u0430\u0437\u043d\u043e\u043e\u0431\u0440\u0430\u0437\u043d\u044b\u0435 depth/leaf/subsample \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438.",
+      "title": "Разнообразные depth/leaf/subsample конфигурации.",
       "primary_stage": "04",
       "owner_role": "A05 MODELS",
       "task_ids": [
@@ -1382,7 +1382,7 @@
     },
     {
       "source_idea_id": "072",
-      "title": "Early stopping \u0441 \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u044b\u043c final selection.",
+      "title": "Early stopping с корректным final selection.",
       "primary_stage": "04",
       "owner_role": "A05 MODELS",
       "task_ids": [],
@@ -1436,7 +1436,7 @@
     },
     {
       "source_idea_id": "075",
-      "title": "Multi-output \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438 \u0438\u0437\u0432\u0435\u0441\u0442\u043d\u043e\u043c \u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442\u0435.",
+      "title": "Multi-output только при известном контракте.",
       "primary_stage": "01",
       "owner_role": "A02 DATA_IO",
       "task_ids": [
@@ -1492,7 +1492,7 @@
     },
     {
       "source_idea_id": "078",
-      "title": "Hyperband \u043f\u0440\u0438 \u0434\u043e\u0441\u0442\u0430\u0442\u043e\u0447\u043d\u043e\u043c \u0431\u044e\u0434\u0436\u0435\u0442\u0435.",
+      "title": "Hyperband при достаточном бюджете.",
       "primary_stage": "05",
       "owner_role": "A06 HPO",
       "task_ids": [],
@@ -1528,7 +1528,7 @@
     },
     {
       "source_idea_id": "080",
-      "title": "\u0414\u0432\u0443\u0445\u0443\u0440\u043e\u0432\u043d\u0435\u0432\u044b\u0439 \u043f\u043e\u0438\u0441\u043a: \u0441\u0435\u043c\u0435\u0439\u0441\u0442\u0432\u0430 \u2192 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b \u043b\u0438\u0434\u0435\u0440\u043e\u0432.",
+      "title": "Двухуровневый поиск: семейства → параметры лидеров.",
       "primary_stage": "05",
       "owner_role": "A06 HPO",
       "task_ids": [],
@@ -1546,7 +1546,7 @@
     },
     {
       "source_idea_id": "081",
-      "title": "HPO \u043d\u0435 \u0432\u044b\u0442\u0435\u0441\u043d\u044f\u0435\u0442 feature research.",
+      "title": "HPO не вытесняет feature research.",
       "primary_stage": "05",
       "owner_role": "A06 HPO",
       "task_ids": [],
@@ -1582,7 +1582,7 @@
     },
     {
       "source_idea_id": "083",
-      "title": "UCB/bandit \u043f\u043e \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f\u043c.",
+      "title": "UCB/bandit по направлениям.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -1600,7 +1600,7 @@
     },
     {
       "source_idea_id": "084",
-      "title": "\u0421\u043c\u0435\u043d\u0430 \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f \u043f\u0440\u0438 diminishing returns.",
+      "title": "Смена направления при diminishing returns.",
       "primary_stage": "11",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -1636,7 +1636,7 @@
     },
     {
       "source_idea_id": "086",
-      "title": "Trial budget \u043f\u043e \u0440\u0430\u0437\u043c\u0435\u0440\u0443 \u0437\u0430\u0434\u0430\u0447\u0438.",
+      "title": "Trial budget по размеру задачи.",
       "primary_stage": "05",
       "owner_role": "A06 HPO",
       "task_ids": [],
@@ -1654,7 +1654,7 @@
     },
     {
       "source_idea_id": "087",
-      "title": "Subsample screening \u0441 \u043f\u043e\u043b\u043d\u043e\u0446\u0435\u043d\u043d\u043e\u0439 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u043e\u0439 \u0444\u0438\u043d\u0430\u043b\u0438\u0441\u0442\u043e\u0432.",
+      "title": "Subsample screening с полноценной проверкой финалистов.",
       "primary_stage": "05",
       "owner_role": "A06 HPO",
       "task_ids": [],
@@ -1690,7 +1690,7 @@
     },
     {
       "source_idea_id": "089",
-      "title": "Cost prediction \u043f\u043e \u0440\u0435\u0430\u043b\u044c\u043d\u044b\u043c fit.",
+      "title": "Cost prediction по реальным fit.",
       "primary_stage": "03",
       "owner_role": "A04 RUNTIME_OPS",
       "task_ids": [],
@@ -1708,7 +1708,7 @@
     },
     {
       "source_idea_id": "090",
-      "title": "\u0420\u0435\u0437\u0435\u0440\u0432 \u0432\u0440\u0435\u043c\u0435\u043d\u0438 \u043d\u0430 refit/output.",
+      "title": "Резерв времени на refit/output.",
       "primary_stage": "03",
       "owner_role": "A04 RUNTIME_OPS",
       "task_ids": [
@@ -1747,7 +1747,7 @@
     },
     {
       "source_idea_id": "092",
-      "title": "\u0420\u0430\u0437\u0443\u043c\u043d\u044b\u0435 defaults \u0434\u043b\u044f \u0441\u043b\u0430\u0431\u043e\u0447\u0443\u0432\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0445 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u043e\u0432.",
+      "title": "Разумные defaults для слабочувствительных параметров.",
       "primary_stage": "05",
       "owner_role": "A06 HPO",
       "task_ids": [],
@@ -1765,7 +1765,7 @@
     },
     {
       "source_idea_id": "093",
-      "title": "Macro F1 \u0441 \u0444\u0438\u043a\u0441\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u043c \u043f\u043e\u0440\u044f\u0434\u043a\u043e\u043c \u0438 \u043d\u0430\u0431\u043e\u0440\u043e\u043c \u043a\u043b\u0430\u0441\u0441\u043e\u0432.",
+      "title": "Macro F1 с фиксированным порядком и набором классов.",
       "primary_stage": "07",
       "owner_role": "A08 CLASSIFICATION",
       "task_ids": [
@@ -1803,7 +1803,7 @@
     },
     {
       "source_idea_id": "095",
-      "title": "\u0420\u0435\u0433\u0443\u043b\u044f\u0440\u0438\u0437\u043e\u0432\u0430\u043d\u043d\u044b\u0435 class offsets.",
+      "title": "Регуляризованные class offsets.",
       "primary_stage": "07",
       "owner_role": "A08 CLASSIFICATION",
       "task_ids": [],
@@ -1839,7 +1839,7 @@
     },
     {
       "source_idea_id": "097",
-      "title": "Oversampling \u0442\u043e\u043b\u044c\u043a\u043e \u0432\u043d\u0443\u0442\u0440\u0438 train-fold.",
+      "title": "Oversampling только внутри train-fold.",
       "primary_stage": "07",
       "owner_role": "A08 CLASSIFICATION",
       "task_ids": [],
@@ -1875,7 +1875,7 @@
     },
     {
       "source_idea_id": "099",
-      "title": "\u041f\u0440\u0438\u0437\u043d\u0430\u043a\u0438 \u0434\u043b\u044f \u0443\u0441\u0442\u043e\u0439\u0447\u0438\u0432\u043e \u043f\u0443\u0442\u0430\u0435\u043c\u044b\u0445 \u043a\u043b\u0430\u0441\u0441\u043e\u0432.",
+      "title": "Признаки для устойчиво путаемых классов.",
       "primary_stage": "09",
       "owner_role": "A10 FEATURES",
       "task_ids": [],
@@ -1929,7 +1929,7 @@
     },
     {
       "source_idea_id": "102",
-      "title": "HPO objective \u043f\u043e \u043d\u0430\u0441\u0442\u043e\u044f\u0449\u0435\u043c\u0443 decision rule \u0438 Macro F1.",
+      "title": "HPO objective по настоящему decision rule и Macro F1.",
       "primary_stage": "07",
       "owner_role": "A08 CLASSIFICATION",
       "task_ids": [],
@@ -1947,7 +1947,7 @@
     },
     {
       "source_idea_id": "103",
-      "title": "\u041a\u043e\u043d\u0441\u0435\u0440\u0432\u0430\u0442\u0438\u0432\u043d\u044b\u0435 minority corrections \u043f\u0440\u0438 \u0434\u043e\u0441\u0442\u0430\u0442\u043e\u0447\u043d\u043e\u043c support.",
+      "title": "Консервативные minority corrections при достаточном support.",
       "primary_stage": "07",
       "owner_role": "A08 CLASSIFICATION",
       "task_ids": [],
@@ -1965,7 +1965,7 @@
     },
     {
       "source_idea_id": "104",
-      "title": "Probability averaging \u043f\u043e seeds/folds.",
+      "title": "Probability averaging по seeds/folds.",
       "primary_stage": "10",
       "owner_role": "A11 ENSEMBLES",
       "task_ids": [],
@@ -1983,7 +1983,7 @@
     },
     {
       "source_idea_id": "105",
-      "title": "Prior-shift diagnostics \u0431\u0435\u0437 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0439 \u043f\u043e\u0434\u0433\u043e\u043d\u043a\u0438 priors.",
+      "title": "Prior-shift diagnostics без автоматической подгонки priors.",
       "primary_stage": "07",
       "owner_role": "A08 CLASSIFICATION",
       "task_ids": [],
@@ -2001,7 +2001,7 @@
     },
     {
       "source_idea_id": "106",
-      "title": "\u0420\u0435\u0433\u0443\u043b\u044f\u0440\u0438\u0437\u043e\u0432\u0430\u043d\u043d\u044b\u0439 \u043f\u043e\u0438\u0441\u043a class-specific weights.",
+      "title": "Регуляризованный поиск class-specific weights.",
       "primary_stage": "07",
       "owner_role": "A08 CLASSIFICATION",
       "task_ids": [],
@@ -2019,7 +2019,7 @@
     },
     {
       "source_idea_id": "107",
-      "title": "\u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 soft/hard voting.",
+      "title": "Сравнение soft/hard voting.",
       "primary_stage": "10",
       "owner_role": "A11 ENSEMBLES",
       "task_ids": [],
@@ -2055,7 +2055,7 @@
     },
     {
       "source_idea_id": "109",
-      "title": "\u0423\u0441\u043b\u043e\u0432\u043d\u0430\u044f \u0438\u0435\u0440\u0430\u0440\u0445\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043a\u043b\u0430\u0441\u0441\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f.",
+      "title": "Условная иерархическая классификация.",
       "primary_stage": "07",
       "owner_role": "A08 CLASSIFICATION",
       "task_ids": [],
@@ -2073,7 +2073,7 @@
     },
     {
       "source_idea_id": "110",
-      "title": "Pseudo-labeling \u0442\u043e\u043b\u044c\u043a\u043e \u0447\u0435\u0440\u0435\u0437 explicit approval gate.",
+      "title": "Pseudo-labeling только через explicit approval gate.",
       "primary_stage": "12",
       "owner_role": "A12 META_POLICY",
       "task_ids": [],
@@ -2091,7 +2091,7 @@
     },
     {
       "source_idea_id": "111",
-      "title": "Accuracy/weighted F1 \u043e\u0441\u0442\u0430\u044e\u0442\u0441\u044f \u0432\u0441\u043f\u043e\u043c\u043e\u0433\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u043c\u0438.",
+      "title": "Accuracy/weighted F1 остаются вспомогательными.",
       "primary_stage": "07",
       "owner_role": "A08 CLASSIFICATION",
       "task_ids": [],
@@ -2109,7 +2109,7 @@
     },
     {
       "source_idea_id": "112",
-      "title": "\u041e\u0446\u0435\u043d\u043a\u0430 RMSE \u0432 \u0438\u0441\u0445\u043e\u0434\u043d\u043e\u0439 \u0448\u043a\u0430\u043b\u0435.",
+      "title": "Оценка RMSE в исходной шкале.",
       "primary_stage": "08",
       "owner_role": "A09 REGRESSION",
       "task_ids": [
@@ -2201,7 +2201,7 @@
     },
     {
       "source_idea_id": "117",
-      "title": "Outlier diagnostics \u0431\u0435\u0437 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0433\u043e \u0443\u0434\u0430\u043b\u0435\u043d\u0438\u044f.",
+      "title": "Outlier diagnostics без автоматического удаления.",
       "primary_stage": "08",
       "owner_role": "A09 REGRESSION",
       "task_ids": [],
@@ -2219,7 +2219,7 @@
     },
     {
       "source_idea_id": "118",
-      "title": "\u0427\u0435\u0441\u0442\u043d\u044b\u0439 nested/cross-fitted residual learning.",
+      "title": "Честный nested/cross-fitted residual learning.",
       "primary_stage": "08",
       "owner_role": "A09 REGRESSION",
       "task_ids": [],
@@ -2237,7 +2237,7 @@
     },
     {
       "source_idea_id": "119",
-      "title": "Quantile-stratified regression splits \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438 IID.",
+      "title": "Quantile-stratified regression splits только при IID.",
       "primary_stage": "02",
       "owner_role": "A03 EVALUATION",
       "task_ids": [],
@@ -2255,7 +2255,7 @@
     },
     {
       "source_idea_id": "120",
-      "title": "\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c\u044b\u0439 clipping \u0431\u0435\u0437 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u043b\u044c\u043d\u044b\u0445 \u0433\u0440\u0430\u043d\u0438\u0446.",
+      "title": "Проверяемый clipping без произвольных границ.",
       "primary_stage": "08",
       "owner_role": "A09 REGRESSION",
       "task_ids": [],
@@ -2273,7 +2273,7 @@
     },
     {
       "source_idea_id": "121",
-      "title": "Huber/L1 challengers \u0441 \u0432\u044b\u0431\u043e\u0440\u043e\u043c \u043f\u043e target metric.",
+      "title": "Huber/L1 challengers с выбором по target metric.",
       "primary_stage": "08",
       "owner_role": "A09 REGRESSION",
       "task_ids": [],
@@ -2316,7 +2316,7 @@
     },
     {
       "source_idea_id": "123",
-      "title": "\u041e\u0431\u043e\u0441\u043d\u043e\u0432\u0430\u043d\u043d\u044b\u0435 monotonic constraints.",
+      "title": "Обоснованные monotonic constraints.",
       "primary_stage": "08",
       "owner_role": "A09 REGRESSION",
       "task_ids": [],
@@ -2334,7 +2334,7 @@
     },
     {
       "source_idea_id": "124",
-      "title": "\u0421\u0433\u043b\u0430\u0436\u0435\u043d\u043d\u044b\u0435 target statistics \u0441 cross-fitting.",
+      "title": "Сглаженные target statistics с cross-fitting.",
       "primary_stage": "09",
       "owner_role": "A10 FEATURES",
       "task_ids": [],
@@ -2370,7 +2370,7 @@
     },
     {
       "source_idea_id": "126",
-      "title": "RMSE \u043f\u043e \u0434\u0435\u0446\u0438\u043b\u044f\u043c target \u0438 \u043a\u0440\u0443\u043f\u043d\u0435\u0439\u0448\u0438\u043c \u043e\u0448\u0438\u0431\u043a\u0430\u043c.",
+      "title": "RMSE по децилям target и крупнейшим ошибкам.",
       "primary_stage": "08",
       "owner_role": "A09 REGRESSION",
       "task_ids": [],
@@ -2388,7 +2388,7 @@
     },
     {
       "source_idea_id": "127",
-      "title": "\u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 full-refit recipe \u0438 fold ensemble.",
+      "title": "Сравнение full-refit recipe и fold ensemble.",
       "primary_stage": "10",
       "owner_role": "A11 ENSEMBLES",
       "task_ids": [],
@@ -2460,7 +2460,7 @@
     },
     {
       "source_idea_id": "131",
-      "title": "\u0427\u0438\u0441\u043b\u0435\u043d\u043d\u043e \u0443\u0441\u0442\u043e\u0439\u0447\u0438\u0432\u044b\u0435 ratios.",
+      "title": "Численно устойчивые ratios.",
       "primary_stage": "09",
       "owner_role": "A10 FEATURES",
       "task_ids": [],
@@ -2478,7 +2478,7 @@
     },
     {
       "source_idea_id": "132",
-      "title": "Categorical \u00d7 numeric interactions.",
+      "title": "Categorical × numeric interactions.",
       "primary_stage": "09",
       "owner_role": "A10 FEATURES",
       "task_ids": [],
@@ -2550,7 +2550,7 @@
     },
     {
       "source_idea_id": "136",
-      "title": "Datetime decomposition \u0431\u0435\u0437 \u0432\u043d\u0435\u0448\u043d\u0438\u0445 \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u043d\u044b\u0445 \u0434\u0430\u043d\u043d\u044b\u0445.",
+      "title": "Datetime decomposition без внешних календарных данных.",
       "primary_stage": "09",
       "owner_role": "A10 FEATURES",
       "task_ids": [],
@@ -2604,7 +2604,7 @@
     },
     {
       "source_idea_id": "139",
-      "title": "TF-IDF, \u043e\u0431\u0443\u0447\u0435\u043d\u043d\u044b\u0439 \u0442\u043e\u043b\u044c\u043a\u043e \u043d\u0430 \u0434\u043e\u043f\u0443\u0441\u0442\u0438\u043c\u044b\u0445 \u0434\u0430\u043d\u043d\u044b\u0445.",
+      "title": "TF-IDF, обученный только на допустимых данных.",
       "primary_stage": "09",
       "owner_role": "A10 FEATURES",
       "task_ids": [],
@@ -2640,7 +2640,7 @@
     },
     {
       "source_idea_id": "141",
-      "title": "Feature selection \u0432\u043d\u0443\u0442\u0440\u0438 train-fold.",
+      "title": "Feature selection внутри train-fold.",
       "primary_stage": "09",
       "owner_role": "A10 FEATURES",
       "task_ids": [],
@@ -2676,7 +2676,7 @@
     },
     {
       "source_idea_id": "143",
-      "title": "\u041e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u044b\u0435 categorical pairs/triples.",
+      "title": "Ограниченные categorical pairs/triples.",
       "primary_stage": "09",
       "owner_role": "A10 FEATURES",
       "task_ids": [],
@@ -2694,7 +2694,7 @@
     },
     {
       "source_idea_id": "144",
-      "title": "Semantic hypotheses \u0438\u0437 dictionary \u0447\u0435\u0440\u0435\u0437 safe operators.",
+      "title": "Semantic hypotheses из dictionary через safe operators.",
       "primary_stage": "09",
       "owner_role": "A10 FEATURES",
       "task_ids": [],
@@ -2712,7 +2712,7 @@
     },
     {
       "source_idea_id": "145",
-      "title": "OOF ensemble weight search \u0441 \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u043e\u0439 \u043e\u0446\u0435\u043d\u043a\u043e\u0439.",
+      "title": "OOF ensemble weight search с отдельной оценкой.",
       "primary_stage": "10",
       "owner_role": "A11 ENSEMBLES",
       "task_ids": [],
@@ -2802,7 +2802,7 @@
     },
     {
       "source_idea_id": "149",
-      "title": "Experiment tracking \u0441 \u043f\u043e\u043b\u043d\u043e\u0439 provenance.",
+      "title": "Experiment tracking с полной provenance.",
       "primary_stage": "03",
       "owner_role": "A04 RUNTIME_OPS",
       "task_ids": [
@@ -2822,7 +2822,7 @@
     },
     {
       "source_idea_id": "150",
-      "title": "Portfolio stress-tests \u043d\u0430 \u0440\u0430\u0437\u043d\u043e\u043e\u0431\u0440\u0430\u0437\u043d\u044b\u0445 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0445 \u0441\u0446\u0435\u043d\u0430\u0440\u0438\u044f\u0445.",
+      "title": "Portfolio stress-tests на разнообразных локальных сценариях.",
       "primary_stage": "13",
       "owner_role": "A13 QA_REVIEW",
       "task_ids": [
@@ -3072,5 +3072,39 @@
     "official_default_ready": false,
     "promotion": false,
     "submit": false
+  },
+  "UQ2_current_observation": {
+    "schema": "uq2-progress-v1",
+    "checked_unix": 1792826913.0340457,
+    "status": "running",
+    "actual_session": 3588,
+    "launch_tool": "45e8bb",
+    "original_start_unix": 1792826068.8239975,
+    "original_deadline_unix": 1792836868.8239975,
+    "authority_status": "validated_before_first_Qwen",
+    "slot_status": {
+      "Ar": "admitted",
+      "Br": "not_attempted",
+      "Ac": "not_attempted",
+      "Bc": "not_attempted"
+    },
+    "actual_terminal_exit": null,
+    "quality_metric": null,
+    "initial_assessment_valid_at_first_worker": true,
+    "sampled_supervisor_owned_tree_peak_mib": 820.6953125,
+    "whole_campaign_peak_mib": null,
+    "original_UQ1_failure_preserved": true,
+    "Linux_paused": true,
+    "source_publication": "f84b07698543da58776b9f11b21eb08b238b31fb",
+    "Qwen": {
+      "actual_gateway_records": 1,
+      "actual_HTTP_attempts": 1,
+      "usage_complete": true,
+      "input_tokens": 8253,
+      "output_tokens": 779,
+      "status": "intermediate_not_final_qualification",
+      "response_model": "qwen/qwen3.8-27b",
+      "reasoning_requested_not_attestation": true
+    }
   }
 }

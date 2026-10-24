@@ -1,0 +1,27 @@
+{
+  "schema": "qwen-three-hour-binding-input-v1",
+  "readiness": "NOT_READY",
+  "missing_bindings": [
+    "Future actual positive RQ6 driver/root/atomic/final post-tool proof and actual exits.",
+    "Final R7-compatible outer handoff and independent outer source peer.",
+    "Root-selected requested provider model/reasoning; no credentials."
+  ],
+  "reviewed_outer": null,
+  "outer_source_review": null,
+  "qualified_manifest": null,
+  "campaign": null,
+  "source_qualification": {
+    "archive": null,
+    "root": null,
+    "confirmation": null,
+    "post_tool": null,
+    "driver_actual": null,
+    "wrapper_actual": null,
+    "post_tool_actual": null
+  },
+  "additional_preparer_receipts": [],
+  "requested_model": null,
+  "reasoning_effort": null,
+  "actual_clock": null,
+  "actual_metrics": null
+}

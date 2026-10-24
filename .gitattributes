@@ -193,3 +193,4 @@ research/repair-r4-qwen3h-source/** -text
 research/rq4-qualification-checked-source/** -text
 research/rq5-qwen-time-driven-checked-source/** -text
 research/rq6-bootstrap-clock-checked-source/** -text
+research/qwen-anytime-bootstrap-r7-checked-source/** -text

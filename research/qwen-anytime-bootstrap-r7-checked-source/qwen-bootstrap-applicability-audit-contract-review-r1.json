@@ -1,0 +1,44 @@
+{
+  "schema": "qwen-bootstrap-applicability-audit-contract-source-review-v1",
+  "status": "one_concrete_startup_first_observation_blocker",
+  "scope": "Only applicability of the actual RQ5 bootstrap defect to the frozen prospective Qwen outer/core startup.",
+  "source_refs": {
+    "outer_handoff_sha256": "0c46fe7316be1808b1d62a341cc95772863b22c14b5226afae31bc9db8e465ab",
+    "outer_run_campaign_sha256": "e621e6459a7a6685b9403bb655adb49ba0f6fceb4462a141b9b5faa686541f9e",
+    "task_entry_sha256": "4660711d1e7b8b45d972ed35ce7d361530c612dd6f4e73f26b83858c38cce312",
+    "r5_worker_runtime_sha256": "3123d34052bbaf0c03b7e2717eff9c64c1e3282a43c6d3de51d1ecf3b87895b8"
+  },
+  "bounded_findings": {
+    "wrong_OUT_not_found": "The outer consistently uses qh1 and supplies each explicit absolute task output in its hash-bound task manifest. task_entry does not use the RQ5 fcd bootstrap or a hardcoded rq4 campaign.",
+    "per_import_child_callback_gap_not_present_in_original_clock_only": "task_entry.original_clock_only checks the original common/task assignments and absolute deadlines without an inter-callback resource gap.",
+    "confirmed_indirect_startup_gap": {
+      "code": "QWEN-STARTUP-FIRST-SAMPLE-01",
+      "task_entry_lines": [141,142,144,145,153],
+      "runtime_lines": [37,40,46,54],
+      "mechanism": "Heavy numerical/task imports run before constructing ReleaseClock. The constructor receives the actual task-admission origin, initializes last to that origin, and invokes _resource_checkpoint before the first child resource observation. A startup interval over10 seconds therefore raises release_observation_gap_over10s before any child successful RSS sample even when the independently qualified outer parent observed the entire child/import subtree continuously.",
+      "source_counterexample": "If construction occurs at task_start_monotonic+15 while the original4800/10800 deadlines remain far ahead, now-last>10 is true solely because last was seeded from task admission. No candidate execution is needed to establish this branch.",
+      "not_an_actual_new_Qwen_failure": true
+    }
+  },
+  "minimal_prospective_repair_boundary": {
+    "new_copy_only": true,
+    "frozen_core_R6_and_outer_R3_remain_unchanged": true,
+    "original_task_common_origins_and_deadlines_unchanged": true,
+    "all_source_hashing_and_import_elapsed_time_still_charged": true,
+    "parent_full_resource_observations_and_gap10_unchanged": true,
+    "initial_child_last_sample_unknown_until_actual_success": true,
+    "first_inspection_duration_caps_denial_and_original_deadlines_bounded": true,
+    "only_successful_first_inspection_establishes_child_resource_timestamp": true,
+    "subsequent_child_sticky_gap10_and_resource_limits_unchanged": true,
+    "no_fake_timestamp_cached_parent_sample_new_time_or_background_heartbeat": true,
+    "no_model_process_recipe_evaluator_or_gateway_change": true
+  },
+  "meaningful_future_source_contracts": [
+    "A synthetic delayed startup with an unchanged original task origin can reach the first real child sample; no prior child sample or parent sample is invented.",
+    "Failure, denial, resource violation, too-slow first inspection or expired original deadline cannot publish a successful initial sample.",
+    "After the first successful sample, the same later gap10, rollback and sticky failure semantics continue to reject uncertainty."
+  ],
+  "concrete_blockers": ["QWEN-STARTUP-FIRST-SAMPLE-01"],
+  "reviewer_imports_tests_fits_API_data_arrays_predictions_truth_PID_Git_canonical_clock": 0,
+  "actual_future_READY_clock_metrics": null
+}

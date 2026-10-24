@@ -1,0 +1,10 @@
+{
+  "schema": "qwen-three-hour-R4-parent-ledger-focused-AST-proof-v1",
+  "whole_task_entry_inverse_exact_R3": true,
+  "whole_research_loop_inverse_exact_R3": true,
+  "original_R3_resource_origin_proof_applies_to_preserved_R3_source": true,
+  "current_R4_recovers_that_R3_before_its_R2_inverse": true,
+  "strict_worker_process_provider_bytes_unchanged": true,
+  "source_handoff_initial_sha256": "7dc0a0e61f371173946ffa69ee4bbc6d7700206925606cedadb9d453a99dc254",
+  "candidate_imports_tests_fits_API_data_PID_clock": 0
+}

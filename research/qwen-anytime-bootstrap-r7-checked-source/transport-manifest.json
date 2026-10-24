@@ -1,0 +1,672 @@
+{
+  "schema": "qwen_anytime_bootstrap_r7_source_transport_v1",
+  "exact_bytes": {
+    "core-r7-000-auditor-compatibility.json": {
+      "sha256": "aaaa0c36e8464d243e039832980fea97e31a5f73053ab10ad498dd3e84118a58",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/auditor-compatibility.json"
+    },
+    "core-r7-001-gateway_child.py": {
+      "sha256": "3e10be821bb7daa4188434e5201c182301f801f734f1b32cbfdcf30a644c1686",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/gateway_child.py"
+    },
+    "core-r7-002-protocol.json": {
+      "sha256": "3330b7589c483a29c80012823e070a49b065d5fe398f87e9accc82ff2c192c43",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/protocol.json"
+    },
+    "core-r7-003-provider_environment.py": {
+      "sha256": "e96b92389f33a0612c9c1c4a18fc5a5cee45ef9edc9164185c3cbe19ca33605d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/provider_environment.py"
+    },
+    "core-r7-004-r5_resources.py": {
+      "sha256": "fab3b49c0640738983f92d59f977584de9f9001cbace59e985e36a7802a69d15",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/r5_resources.py"
+    },
+    "core-r7-005-r5_worker_runtime.py": {
+      "sha256": "f7813cb463ca3d8655443971ec382756d88eb93987edb26fcf1e445b14635b42",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/r5_worker_runtime.py"
+    },
+    "core-r7-006-R7-first-actual-sample-only.patch": {
+      "sha256": "5f0301e5e22c4c9fca4a811ca6f6244cf96460af51d404f6a91c2e8f319ad566",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/R7-first-actual-sample-only.patch"
+    },
+    "core-r7-007-README.txt": {
+      "sha256": "3fbd0b3222c3b3add80d062e4bc2406be8f35fad8b34a756390208dffb1d9523",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/README.txt"
+    },
+    "core-r7-008-research_loop.py": {
+      "sha256": "5405d7e0a734897d2251f0ad15d10d12854654ada63c022a99aba1deb0f53af8",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/research_loop.py"
+    },
+    "core-r7-009-0001.bin": {
+      "sha256": "76dac097e45d46b89f840bb0afe1e33197f31ed45eeaef33bf0e5d6063f90c72",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0001.bin"
+    },
+    "core-r7-010-0002.bin": {
+      "sha256": "62386e9ea05c2b29ac435c6d196e5b4ce9248144706244a84975f23035ea3fc0",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0002.bin"
+    },
+    "core-r7-011-0003.bin": {
+      "sha256": "19f03c1606d3fb9524ae4e26ffe17e4e0d122531cb5c69cc0ad114e637e0bb8d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0003.bin"
+    },
+    "core-r7-012-0004.bin": {
+      "sha256": "63ccc7653b9dde95f5b918f1269fe34e0df08dfa38e22cec187bf56fd72de49b",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0004.bin"
+    },
+    "core-r7-013-0005.bin": {
+      "sha256": "3e10be821bb7daa4188434e5201c182301f801f734f1b32cbfdcf30a644c1686",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0005.bin"
+    },
+    "core-r7-014-0006.bin": {
+      "sha256": "c9c1481d641e18456753144d6d93d429c7a57f046a5fb30300ba6bd5878e91d0",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0006.bin"
+    },
+    "core-r7-015-0007.bin": {
+      "sha256": "12d0700843565a153015f97dc7d42a607eea75a8d1382b640d32fcf5cb5b3fc9",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0007.bin"
+    },
+    "core-r7-016-0008.bin": {
+      "sha256": "e96b92389f33a0612c9c1c4a18fc5a5cee45ef9edc9164185c3cbe19ca33605d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0008.bin"
+    },
+    "core-r7-017-0009.bin": {
+      "sha256": "fab3b49c0640738983f92d59f977584de9f9001cbace59e985e36a7802a69d15",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0009.bin"
+    },
+    "core-r7-018-0010.bin": {
+      "sha256": "3123d34052bbaf0c03b7e2717eff9c64c1e3282a43c6d3de51d1ecf3b87895b8",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0010.bin"
+    },
+    "core-r7-019-0011.bin": {
+      "sha256": "3ac0b09f2d828c57b08beccc62718730b9c356b15d489f344bd098f61f87bfe0",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0011.bin"
+    },
+    "core-r7-020-0012.bin": {
+      "sha256": "47eaa4b73aa78f114bc78380041f03fd067ab9e8bb0eeafae39180874ed7da56",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0012.bin"
+    },
+    "core-r7-021-0013.bin": {
+      "sha256": "5405d7e0a734897d2251f0ad15d10d12854654ada63c022a99aba1deb0f53af8",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0013.bin"
+    },
+    "core-r7-022-0014.bin": {
+      "sha256": "76dac097e45d46b89f840bb0afe1e33197f31ed45eeaef33bf0e5d6063f90c72",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0014.bin"
+    },
+    "core-r7-023-0015.bin": {
+      "sha256": "ebce64e037935f1d5182fbc6b53679e837b25d666b52e4114241dba633e060a3",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0015.bin"
+    },
+    "core-r7-024-0016.bin": {
+      "sha256": "19f03c1606d3fb9524ae4e26ffe17e4e0d122531cb5c69cc0ad114e637e0bb8d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0016.bin"
+    },
+    "core-r7-025-0017.bin": {
+      "sha256": "3e10be821bb7daa4188434e5201c182301f801f734f1b32cbfdcf30a644c1686",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0017.bin"
+    },
+    "core-r7-026-0018.bin": {
+      "sha256": "c9c1481d641e18456753144d6d93d429c7a57f046a5fb30300ba6bd5878e91d0",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0018.bin"
+    },
+    "core-r7-027-0019.bin": {
+      "sha256": "12d0700843565a153015f97dc7d42a607eea75a8d1382b640d32fcf5cb5b3fc9",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0019.bin"
+    },
+    "core-r7-028-0020.bin": {
+      "sha256": "e96b92389f33a0612c9c1c4a18fc5a5cee45ef9edc9164185c3cbe19ca33605d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0020.bin"
+    },
+    "core-r7-029-0021.bin": {
+      "sha256": "fab3b49c0640738983f92d59f977584de9f9001cbace59e985e36a7802a69d15",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0021.bin"
+    },
+    "core-r7-030-0022.bin": {
+      "sha256": "3123d34052bbaf0c03b7e2717eff9c64c1e3282a43c6d3de51d1ecf3b87895b8",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0022.bin"
+    },
+    "core-r7-031-0023.bin": {
+      "sha256": "8846703e4d7e48b041f6fb4d7ed4a475de7d61c53e3eddfe26a4dcf72dd0aa5b",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0023.bin"
+    },
+    "core-r7-032-0024.bin": {
+      "sha256": "87cdd578e7012b6ec31eb2ed610c2b2a873421191983bfe9fd45c5910232aaa2",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0024.bin"
+    },
+    "core-r7-033-0025.bin": {
+      "sha256": "f2dba132c5b2b9b51b439b6aec930aa1cab628eab5a66c959d4717b7d747657e",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0025.bin"
+    },
+    "core-r7-034-0026.bin": {
+      "sha256": "657bdca4e69e5f8d74fd16fda9814ab1624a07f63d1d970463bddaa33e27c119",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0026.bin"
+    },
+    "core-r7-035-0027.bin": {
+      "sha256": "48f2c60171387b650e65f6cd9f440ee268a4ffbea8f2351a919904153fa666d5",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0027.bin"
+    },
+    "core-r7-036-0028.bin": {
+      "sha256": "672a7a059614ae8c7e89693fb4d764fd9bc2e766c0b49ca74860cb8116492974",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0028.bin"
+    },
+    "core-r7-037-0029.bin": {
+      "sha256": "190a6654a1b9d8e0cae7edafdbb14e1beae324ee26497f04c100481061315e8f",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0029.bin"
+    },
+    "core-r7-038-0030.bin": {
+      "sha256": "e96b92389f33a0612c9c1c4a18fc5a5cee45ef9edc9164185c3cbe19ca33605d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0030.bin"
+    },
+    "core-r7-039-0031.bin": {
+      "sha256": "50699c94c31c94cb7a2022141ade41fd9678d2f7e4b50982f3770f4e62beb112",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0031.bin"
+    },
+    "core-r7-040-0032.bin": {
+      "sha256": "3604e9756700f581d80803ce1c71996cc8d997e465f0078d57f4a0747b974e6a",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0032.bin"
+    },
+    "core-r7-041-0033.bin": {
+      "sha256": "fab3b49c0640738983f92d59f977584de9f9001cbace59e985e36a7802a69d15",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0033.bin"
+    },
+    "core-r7-042-0034.bin": {
+      "sha256": "3123d34052bbaf0c03b7e2717eff9c64c1e3282a43c6d3de51d1ecf3b87895b8",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0034.bin"
+    },
+    "core-r7-043-0035.bin": {
+      "sha256": "a64f79d4873f65e49902796ad3fe197c5b1b3b3ace6d643e987d0700a24241d9",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0035.bin"
+    },
+    "core-r7-044-0036.bin": {
+      "sha256": "52f50fe50b44f45533b3956bfa49690acac0fc4bd3874019d5a4d42a3760d4e7",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0036.bin"
+    },
+    "core-r7-045-0037.bin": {
+      "sha256": "a61357434566fb6af066d023fc49287cdc9a3f848df947df21b46d0ddf4124ab",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0037.bin"
+    },
+    "core-r7-046-0038.bin": {
+      "sha256": "f2dba132c5b2b9b51b439b6aec930aa1cab628eab5a66c959d4717b7d747657e",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0038.bin"
+    },
+    "core-r7-047-0039.bin": {
+      "sha256": "e58b07429294ddfa0605bedffba6bca70090b5bd9680d868ff5d65f1c4be3fa9",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0039.bin"
+    },
+    "core-r7-048-0040.bin": {
+      "sha256": "7da2e0ea91f950beb31db853376b9bf16e1712757199188642939ffc2a929a8f",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0040.bin"
+    },
+    "core-r7-049-0041.bin": {
+      "sha256": "672a7a059614ae8c7e89693fb4d764fd9bc2e766c0b49ca74860cb8116492974",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0041.bin"
+    },
+    "core-r7-050-0042.bin": {
+      "sha256": "cc1bb8f32db4a438c6eec7de0b45b77b58b844c9361863eae20dea6491cedb96",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0042.bin"
+    },
+    "core-r7-051-0043.bin": {
+      "sha256": "e96b92389f33a0612c9c1c4a18fc5a5cee45ef9edc9164185c3cbe19ca33605d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0043.bin"
+    },
+    "core-r7-052-0044.bin": {
+      "sha256": "50699c94c31c94cb7a2022141ade41fd9678d2f7e4b50982f3770f4e62beb112",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0044.bin"
+    },
+    "core-r7-053-0045.bin": {
+      "sha256": "fab3b49c0640738983f92d59f977584de9f9001cbace59e985e36a7802a69d15",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0045.bin"
+    },
+    "core-r7-054-0046.bin": {
+      "sha256": "3123d34052bbaf0c03b7e2717eff9c64c1e3282a43c6d3de51d1ecf3b87895b8",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0046.bin"
+    },
+    "core-r7-055-0047.bin": {
+      "sha256": "06a57cdc8bb363e34830c34c93e32fb657d3d19b207f2794f66ac4c5bbfa13be",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0047.bin"
+    },
+    "core-r7-056-0048.bin": {
+      "sha256": "5c8003b77ed81aee0526fd4687e133cd78df45fa2c4e51b5b51966da7f8e59a5",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0048.bin"
+    },
+    "core-r7-057-0049.bin": {
+      "sha256": "a61357434566fb6af066d023fc49287cdc9a3f848df947df21b46d0ddf4124ab",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0049.bin"
+    },
+    "core-r7-058-0050.bin": {
+      "sha256": "970a6e1b02f5632f741e01c81cc63149a9ce1ee7a8f659040c7996b99a15d8fd",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0050.bin"
+    },
+    "core-r7-059-0051.bin": {
+      "sha256": "f2dba132c5b2b9b51b439b6aec930aa1cab628eab5a66c959d4717b7d747657e",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0051.bin"
+    },
+    "core-r7-060-0052.bin": {
+      "sha256": "ef16a93a48976d2e108312fd38fb336d941a4e88b9446c0558153857db03473d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0052.bin"
+    },
+    "core-r7-061-0053.bin": {
+      "sha256": "16c3a17f8f5772491caabf1bb0a5caeda3bd8ad2100e18ed900120df3ed79bf3",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0053.bin"
+    },
+    "core-r7-062-0054.bin": {
+      "sha256": "672a7a059614ae8c7e89693fb4d764fd9bc2e766c0b49ca74860cb8116492974",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0054.bin"
+    },
+    "core-r7-063-0055.bin": {
+      "sha256": "7e520690f868cc3a9adfec3b7938c260d2979fd536d6d9e988485050e737e845",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0055.bin"
+    },
+    "core-r7-064-0056.bin": {
+      "sha256": "e96b92389f33a0612c9c1c4a18fc5a5cee45ef9edc9164185c3cbe19ca33605d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0056.bin"
+    },
+    "core-r7-065-0057.bin": {
+      "sha256": "fab3b49c0640738983f92d59f977584de9f9001cbace59e985e36a7802a69d15",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0057.bin"
+    },
+    "core-r7-066-0058.bin": {
+      "sha256": "3123d34052bbaf0c03b7e2717eff9c64c1e3282a43c6d3de51d1ecf3b87895b8",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0058.bin"
+    },
+    "core-r7-067-0059.bin": {
+      "sha256": "2e23386799bfb4e014cb698cd8594086e60ba5f23d5970cb1311d08c749fac6b",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0059.bin"
+    },
+    "core-r7-068-0060.bin": {
+      "sha256": "bc0cc5cb33342abb95cf232abe09466e0a6fcff25d5b2a315907d19159ad484e",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0060.bin"
+    },
+    "core-r7-069-0061.bin": {
+      "sha256": "6332d228b5d61677fa48f687285e283b10bc4b261f9526d101ba1753105ae435",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0061.bin"
+    },
+    "core-r7-070-0062.bin": {
+      "sha256": "30c03e380b372a031d67b7aacbf14d809df741c784b8a2216822d7fe6071f51b",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0062.bin"
+    },
+    "core-r7-071-0063.bin": {
+      "sha256": "fce70f486ca713ec46e9c897270cc7f389a053aa535a1fee5695aa5de3b7ed02",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0063.bin"
+    },
+    "core-r7-072-0064.bin": {
+      "sha256": "8e241158488efaa0eff03fe7fc8da989202992f95bf1d7b99045ae994e83e87d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0064.bin"
+    },
+    "core-r7-073-0065.bin": {
+      "sha256": "bc8012de6ee8942fafc4daa79d796e804edeb9dc0e087847176a624e2b892697",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0065.bin"
+    },
+    "core-r7-074-0066.bin": {
+      "sha256": "e45cc6076e8a5ccf19278742a9d1762e259fa214ec206b415895aa411f4fa956",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0066.bin"
+    },
+    "core-r7-075-0067.bin": {
+      "sha256": "d683c21de3e0b413cdc6414f50cadf277ebfa0f8c477e70bce96d81a647fb26f",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0067.bin"
+    },
+    "core-r7-076-0068.bin": {
+      "sha256": "4c74a16485b0a1695a0c61246c8280f4417d2abec9c5e6cc69562da5c00d1c6d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0068.bin"
+    },
+    "core-r7-077-0069.bin": {
+      "sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0069.bin"
+    },
+    "core-r7-078-0070.bin": {
+      "sha256": "1c1516a18ed2fb6b281121969f67dd9c83898749abba069291c4af200eff2c4b",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0070.bin"
+    },
+    "core-r7-079-0071.bin": {
+      "sha256": "6cfa6b3f8cb213054a4723d2dbeb733f50b4505d158cfd67c1fa4121a6f8a414",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0071.bin"
+    },
+    "core-r7-080-0072.bin": {
+      "sha256": "d10de325661b83066dadc511294d10cefc3210e86d59ab0ec11169ad3e299ee8",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0072.bin"
+    },
+    "core-r7-081-0073.bin": {
+      "sha256": "8e241158488efaa0eff03fe7fc8da989202992f95bf1d7b99045ae994e83e87d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0073.bin"
+    },
+    "core-r7-082-0074.bin": {
+      "sha256": "f68d900655ff2aa9eceaac049a64255b78cf2ed20825604ee7988e7aef5cf170",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0074.bin"
+    },
+    "core-r7-083-0075.bin": {
+      "sha256": "e45cc6076e8a5ccf19278742a9d1762e259fa214ec206b415895aa411f4fa956",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0075.bin"
+    },
+    "core-r7-084-0076.bin": {
+      "sha256": "d683c21de3e0b413cdc6414f50cadf277ebfa0f8c477e70bce96d81a647fb26f",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0076.bin"
+    },
+    "core-r7-085-0077.bin": {
+      "sha256": "bed3e4fa8ec6ebc73745b0281e8e6b791a29cb2350f5ae69bbe8c76257f455fc",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0077.bin"
+    },
+    "core-r7-086-0078.bin": {
+      "sha256": "d87e2ecb0c71ec7394d94976bd565e9b4891c123457183701efa490ac9f8121d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0078.bin"
+    },
+    "core-r7-087-0079.bin": {
+      "sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0079.bin"
+    },
+    "core-r7-088-0080.bin": {
+      "sha256": "1c1516a18ed2fb6b281121969f67dd9c83898749abba069291c4af200eff2c4b",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0080.bin"
+    },
+    "core-r7-089-0081.bin": {
+      "sha256": "ef50adf134d67967ad177c75632376889e87dd67d926d75c83838dc8ef6d9544",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0081.bin"
+    },
+    "core-r7-090-0082.bin": {
+      "sha256": "7dc0a0e61f371173946ffa69ee4bbc6d7700206925606cedadb9d453a99dc254",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0082.bin"
+    },
+    "core-r7-091-0083.bin": {
+      "sha256": "d7b4cd3dc85bf7260bcffdda342adeaa164dcfbb830c21e5e1f377bd4463d095",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0083.bin"
+    },
+    "core-r7-092-0084.bin": {
+      "sha256": "8e241158488efaa0eff03fe7fc8da989202992f95bf1d7b99045ae994e83e87d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0084.bin"
+    },
+    "core-r7-093-0085.bin": {
+      "sha256": "b4b036b7b53f455a43bdbc150b91c421c76be7c204cc02b21fcbd6882c387721",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0085.bin"
+    },
+    "core-r7-094-0086.bin": {
+      "sha256": "67bcc3b1ef95457cac1519a7a2cb791f1180c21403dcbdc68f98bbb2cb174cd0",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0086.bin"
+    },
+    "core-r7-095-0087.bin": {
+      "sha256": "e45cc6076e8a5ccf19278742a9d1762e259fa214ec206b415895aa411f4fa956",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0087.bin"
+    },
+    "core-r7-096-0088.bin": {
+      "sha256": "d683c21de3e0b413cdc6414f50cadf277ebfa0f8c477e70bce96d81a647fb26f",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0088.bin"
+    },
+    "core-r7-097-0089.bin": {
+      "sha256": "e61946246af0f3e6b50e2ebd0266b40147453eb2256deebc4f1494363a7361fa",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0089.bin"
+    },
+    "core-r7-098-0090.bin": {
+      "sha256": "d87e2ecb0c71ec7394d94976bd565e9b4891c123457183701efa490ac9f8121d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0090.bin"
+    },
+    "core-r7-099-0091.bin": {
+      "sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0091.bin"
+    },
+    "core-r7-100-0092.bin": {
+      "sha256": "1c1516a18ed2fb6b281121969f67dd9c83898749abba069291c4af200eff2c4b",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0092.bin"
+    },
+    "core-r7-101-0093.bin": {
+      "sha256": "d1f8d20d653d78be474092fdf7cd143174c0157c32daf92eb6e9263465cac25d",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0093.bin"
+    },
+    "core-r7-102-0094.bin": {
+      "sha256": "77f570b86202fefaf00e2c84e18308a76d5465c2f50ff12dcb8bf1a5f89023f3",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0094.bin"
+    },
+    "core-r7-103-0095.bin": {
+      "sha256": "4660711d1e7b8b45d972ed35ce7d361530c612dd6f4e73f26b83858c38cce312",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0095.bin"
+    },
+    "core-r7-104-0096.bin": {
+      "sha256": "f1aad4cdd793bf598403ea9338dbec17c6b14defdee72e9dcd6a0af1db7ed985",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0096.bin"
+    },
+    "core-r7-105-0097.bin": {
+      "sha256": "e45cc6076e8a5ccf19278742a9d1762e259fa214ec206b415895aa411f4fa956",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0097.bin"
+    },
+    "core-r7-106-0098.bin": {
+      "sha256": "d683c21de3e0b413cdc6414f50cadf277ebfa0f8c477e70bce96d81a647fb26f",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0098.bin"
+    },
+    "core-r7-107-0099.bin": {
+      "sha256": "61be1fbd3c1931289b03fa65f0a186b884493639d5a8d8b88d45d23ec75f34a3",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0099.bin"
+    },
+    "core-r7-108-0100.bin": {
+      "sha256": "db58f1cf4d4c09c8befbbca0d6ebd47f79a4917ec688d5c1dfcfca06914f0042",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0100.bin"
+    },
+    "core-r7-109-0101.bin": {
+      "sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0101.bin"
+    },
+    "core-r7-110-0102.bin": {
+      "sha256": "226a4100ed0ca4c51d857b64f5e77f3dad38e7dde6fe5b386d5c83a42a4021b6",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0102.bin"
+    },
+    "core-r7-111-0103.bin": {
+      "sha256": "699ff70140b76dfb44b077d1796c2d9c224ae90fa30775075f89d03adadc30c7",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0103.bin"
+    },
+    "core-r7-112-0104.bin": {
+      "sha256": "f4819b794502608fc6e89a204c5bcc9336f56d507ba3680510a46cd39a32adcb",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0104.bin"
+    },
+    "core-r7-113-0105.bin": {
+      "sha256": "4660711d1e7b8b45d972ed35ce7d361530c612dd6f4e73f26b83858c38cce312",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0105.bin"
+    },
+    "core-r7-114-0106.bin": {
+      "sha256": "f1aad4cdd793bf598403ea9338dbec17c6b14defdee72e9dcd6a0af1db7ed985",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0106.bin"
+    },
+    "core-r7-115-0107.bin": {
+      "sha256": "e45cc6076e8a5ccf19278742a9d1762e259fa214ec206b415895aa411f4fa956",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0107.bin"
+    },
+    "core-r7-116-0108.bin": {
+      "sha256": "d683c21de3e0b413cdc6414f50cadf277ebfa0f8c477e70bce96d81a647fb26f",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0108.bin"
+    },
+    "core-r7-117-0109.bin": {
+      "sha256": "3023d5f7725eec2425f893b577ed2badd18767895aec464663cc5ef00403ae5a",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0109.bin"
+    },
+    "core-r7-118-0110.bin": {
+      "sha256": "db58f1cf4d4c09c8befbbca0d6ebd47f79a4917ec688d5c1dfcfca06914f0042",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0110.bin"
+    },
+    "core-r7-119-0111.bin": {
+      "sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-flat/0111.bin"
+    },
+    "core-r7-120-r6-index.json": {
+      "sha256": "a506acc293c13dd830c3a0f8d67ebc5215a2ab7b00dada2674d33935ddafb3ec",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-evidence/r6-index.json"
+    },
+    "core-r7-121-source-proof.json": {
+      "sha256": "5b68ec4664d9d9e46e36c2c80df1af96c73daab76c1d9a5398c8e8c57c8511b6",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-proof.json"
+    },
+    "core-r7-122-task_entry.py": {
+      "sha256": "4660711d1e7b8b45d972ed35ce7d361530c612dd6f4e73f26b83858c38cce312",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/task_entry.py"
+    },
+    "core-r7-123-test_parent_callback_ledger.py": {
+      "sha256": "f1aad4cdd793bf598403ea9338dbec17c6b14defdee72e9dcd6a0af1db7ed985",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/test_parent_callback_ledger.py"
+    },
+    "core-r7-124-test_provider_environment.py": {
+      "sha256": "e45cc6076e8a5ccf19278742a9d1762e259fa214ec206b415895aa411f4fa956",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/test_provider_environment.py"
+    },
+    "core-r7-125-test_r5_worker_consumer.py": {
+      "sha256": "1a48c0aa81c3c1c47aa2da719d60459e82418f02bde32d0b2c10e873e1e2b1b0",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/test_r5_worker_consumer.py"
+    },
+    "core-r7-126-test_research_loop.py": {
+      "sha256": "3023d5f7725eec2425f893b577ed2badd18767895aec464663cc5ef00403ae5a",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/test_research_loop.py"
+    },
+    "core-r7-127-test_resource_origin.py": {
+      "sha256": "db58f1cf4d4c09c8befbbca0d6ebd47f79a4917ec688d5c1dfcfca06914f0042",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/test_resource_origin.py"
+    },
+    "core-r7-128-verified_sampling.py": {
+      "sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/verified_sampling.py"
+    },
+    "core-r7-129-source-handoff.json": {
+      "sha256": "27b426642b64d7f9db79bfe528c322ccccd8e41e11d3e7ac001fb2caeb161926",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-handoff.json"
+    },
+    "core-r7-source-handoff-final.json": {
+      "sha256": "9aa248594ea925ff0e0281773bbdb3f6c4107dd0e7e50fb228146bb94371ba73",
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r7/source-handoff-final.json"
+    },
+    "binding-000-freeze_source.py": {
+      "sha256": "3428d4f74c6809039823ac5f18d3e2fe4aacd7887dcd7a07ba17f12c13b0efd9",
+      "source": "work/qwen-three-hour-binding-preparation-next-dev/freeze_source.py"
+    },
+    "binding-001-input-plan.template.NOT_READY.json": {
+      "sha256": "42cf864eae63b182143b2b94291b15a334f3ade2688d5996a24714d68bef6268",
+      "source": "work/qwen-three-hour-binding-preparation-next-dev/input-plan.template.NOT_READY.json"
+    },
+    "binding-002-metadata_signature.py": {
+      "sha256": "9caaaf525938e4c512d0b71e78d9a2d5bd156700a525abd729fed6453c4dd572",
+      "source": "work/qwen-three-hour-binding-preparation-next-dev/metadata_signature.py"
+    },
+    "binding-003-metadata_validators.py": {
+      "sha256": "b9cd94151cc2b6edd48fea694f90561bda37d303c9549b4727bb53d2996848de",
+      "source": "work/qwen-three-hour-binding-preparation-next-dev/metadata_validators.py"
+    },
+    "binding-004-prepare_binding.py": {
+      "sha256": "5d2b75457c438046f1268fcaad1152f21f6f4b248e41675bfd930d432c7e4989",
+      "source": "work/qwen-three-hour-binding-preparation-next-dev/prepare_binding.py"
+    },
+    "binding-005-README.txt": {
+      "sha256": "2158d7ff8526dacfb60b0c9ca1f97c74a34c9955325bdf0fcb9a7a86ac45b3ea",
+      "source": "work/qwen-three-hour-binding-preparation-next-dev/README.txt"
+    },
+    "binding-006-source-proof.json": {
+      "sha256": "60a46961fb31ed6f6d0d2fc5e196b38b9b0d5b5d9d766357c1a119fb6cc5205d",
+      "source": "work/qwen-three-hour-binding-preparation-next-dev/source-proof.json"
+    },
+    "binding-source-handoff.json": {
+      "sha256": "1e284b0f4f845a2684e07c469a08e8963fc9c03ca57d028f89e3a3d782794dae",
+      "source": "work/qwen-three-hour-binding-preparation-next-dev/source-handoff.json"
+    },
+    "qwen-core-r7-audit-contract-source-review-r1.json": {
+      "sha256": "2c5957d66310c8207a810f0d48018cfed096a288483daf207e8a739757e6b835",
+      "source": "work/qwen-core-r7-audit-contract-source-review-r1.json"
+    },
+    "qwen-binding-preparation-audit-contract-source-review-r1.json": {
+      "sha256": "e96bd51acb7b25fcb96446c3d1cf33ad10582cd136c41b1810591ed53e2afe27",
+      "source": "work/qwen-binding-preparation-audit-contract-source-review-r1.json"
+    },
+    "qwen-bootstrap-applicability-audit-contract-review-r1.json": {
+      "sha256": "3364b299c10391ef64625b4a7821a76099600c6a238ab9ec16e885cff0bca5ed",
+      "source": "work/qwen-bootstrap-applicability-audit-contract-review-r1.json"
+    },
+    "outer-r5-000-atomic-binding.template.NOT_READY.json": {
+      "sha256": "422878ab37aa99d6f2280f3f06b77151a25198cac5a9b71d98428c09250fa52a",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/atomic-binding.template.NOT_READY.json"
+    },
+    "outer-r5-001-binding.template.NOT_READY.json": {
+      "sha256": "5fa7516f9c53bc6bef798581ff94a7e73efd1ecd1a02568c52bafe59360cbab8",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/binding.template.NOT_READY.json"
+    },
+    "outer-r5-002-close_child.ps1": {
+      "sha256": "605594aa5e3f9395a339c28915541402305d60b0b27d7e21b3073c5b05d32778",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/close_child.ps1"
+    },
+    "outer-r5-003-close_controller.py": {
+      "sha256": "9668c2bd13beecdbd60951a1557c048c8d8cd4ba1ad430d4fa7d3b341811f145",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/close_controller.py"
+    },
+    "outer-r5-004-confirm_post_tool.py": {
+      "sha256": "ea2d8e6c15ae407c005cc246180cb28bb53a45f26a68d9791a91520a2510fb0b",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/confirm_post_tool.py"
+    },
+    "outer-r5-005-prepare_r5.py": {
+      "sha256": "94f8d2aee80f1458451395c056d57db005154585f15ae1b1e0a74ffbe6baf72c",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/prepare_r5.py"
+    },
+    "outer-r5-006-protocol.json": {
+      "sha256": "24bc970708fd0ddeae29c7179db9cd006b48c0cae9a1833cebd0a4c389511478",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/protocol.json"
+    },
+    "outer-r5-007-QHPOST01.patch": {
+      "sha256": "984b6f75964122f1c9903149d172d70e19e6c7c4a4f1b432856e965d8fb429bf",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/QHPOST01.patch"
+    },
+    "outer-r5-008-README.txt": {
+      "sha256": "95c3f676e025f59dab1da9976a114f5a9741ab0731e190c29919604f9c96ca48",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/README.txt"
+    },
+    "outer-r5-009-run_campaign.py": {
+      "sha256": "283b92ddbcc474c734aa4ce84b083ed09e7eca04e110d680c046ea3a2db50130",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/run_campaign.py"
+    },
+    "outer-r5-010-run_root.py": {
+      "sha256": "6cb580c7fb0600c091eab3ef267c8ab20e845abda4e62d71402c604a4e19c64a",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/run_root.py"
+    },
+    "outer-r5-011-source-proof.json": {
+      "sha256": "c3b29583abcbc224a487ef6543ab3425d20a51fb56b6f061ed423a9e14a0d951",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/source-proof.json"
+    },
+    "outer-r5-012-strong-authority.template.NOT_READY.json": {
+      "sha256": "66ecfc0249b450910c68507eb6facf9779a9b85b4a4b70eac67fa4fa58a475b5",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/strong-authority.template.NOT_READY.json"
+    },
+    "outer-r5-013-test_atomic_root.py": {
+      "sha256": "6a855980a261dc625258f6e85ca029d30eddc676520b953f14b854a7535657e0",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/test_atomic_root.py"
+    },
+    "outer-r5-014-test_broker_contracts.py": {
+      "sha256": "b953ae45305852dcabd2da17a7a2e03c684f61633e2d1be05275f9b41abb06da",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/test_broker_contracts.py"
+    },
+    "outer-r5-source-handoff.json": {
+      "sha256": "f19d42fbc9c641a7a055b085dafce66f9f089ca5d895f935f9128397bace8b69",
+      "source": "work/qwen-three-hour-outer-next-dev-r5/source-handoff.json"
+    },
+    "outer-r5-qwen-three-hour-outer-independent-source-review-r5.json": {
+      "sha256": "ac37c614c4de536601f0285e52481adf23997746dc3c83f32da822dbfb7d414c",
+      "source": "work/qwen-three-hour-outer-independent-source-review-r5.json"
+    },
+    "outer-r5-qwen-three-hour-outer-independent-source-review-r4.json": {
+      "sha256": "cdd36ef030c8c6ccb09837505724162f47ff550f80aa29a633a1bedea4c98f98",
+      "source": "work/qwen-three-hour-outer-independent-source-review-r4.json"
+    },
+    "metadata-000-preflight.py": {
+      "sha256": "62b3b5fd2296d7ddf1841020aeffdba35c5426bf649e8893d48221b58b68a53f",
+      "source": "work/qwen-three-hour-metadata-preflight-next-dev/preflight.py"
+    },
+    "metadata-001-source-proof.json": {
+      "sha256": "c9d3e28910670b169e2837e7a6dc8d49e678a35959dc609d9df2605a4a4e202f",
+      "source": "work/qwen-three-hour-metadata-preflight-next-dev/source-proof.json"
+    },
+    "metadata-002-README.txt": {
+      "sha256": "58e7ab0adf4f07522c6c8c3639f1da3c1cc6c94c606a5ad23484ee32833fae22",
+      "source": "work/qwen-three-hour-metadata-preflight-next-dev/README.txt"
+    },
+    "metadata-source-handoff.json": {
+      "sha256": "8214a3d001f62dc2c36d2bddc96a49595bf21968a0119cfc4d63e30192c65753",
+      "source": "work/qwen-three-hour-metadata-preflight-next-dev/source-handoff.json"
+    },
+    "metadata-qh-metadata-preflight-fm-independent-review-r1.json": {
+      "sha256": "2d804366f9e8a3ffdc4b2ff08642a6640624fa0e9893cfab20c7329967855bbe",
+      "source": "work/qh-metadata-preflight-fm-independent-review-r1.json"
+    }
+  },
+  "hash_only_private_operational_sources": {},
+  "runtime_qualified": false,
+  "actual_clock": null,
+  "new_metrics": null,
+  "final_outer_sha256": "f19d42fbc9c641a7a055b085dafce66f9f089ca5d895f935f9128397bace8b69",
+  "contracts_prepared": 63,
+  "contracts_actual": 0
+}

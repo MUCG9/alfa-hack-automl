@@ -1,0 +1,49 @@
+{
+  "schema": "qwen-exact-metadata-preflight-source-proof-v1",
+  "status": "SOURCE_ONLY_UNEXECUTED",
+  "utility_sha256": "62b3b5fd2296d7ddf1841020aeffdba35c5426bf649e8893d48221b58b68a53f",
+  "reviewed_controller": {
+    "path": "work/qwen-three-hour-outer-next-dev-r5/run_campaign.py",
+    "sha256": "283b92ddbcc474c734aa4ce84b083ed09e7eca04e110d680c046ea3a2db50130"
+  },
+  "original_utility05b_sha256": "05b0701e0c2c9bc74c1ac7e4f211c1fad06884005cb1bc4d0b3c0df8de437a7f",
+  "why05b_not_applicable": [
+    "Mandatory previous_admission function is absent from QH outer.",
+    "QH config calls strong_authority and predecessor calls qualified; both missing from old projection.",
+    "QH CORE/AUDITOR/SOURCE_REVIEWS and transitive assignment dependencies differ."
+  ],
+  "entire_function_AST_sha256": {
+    "config": "3acc47fe77092b4166fba0006e580a433575eca2a389227918737c7533163034",
+    "methods": "4bf692e7d1e1eb4c2fd739e07f2f977c4b8995fdd66fbe8769e8401e2a1f0347",
+    "need": "159d9d323f4faad09ba0b001b03123990c9b476c5ef982baa948aeb3b8111056",
+    "predecessor": "19bb735d38436cfd07107748337479a4b02ecf3ccba4c64b03449ec6a2176c17",
+    "qualified": "c80544758caf702a04b1c587b72fcb3aa0c6e0a0c0ec0e454e933277d5a83ca5",
+    "read": "43377dc7a834255aeb87edf18f1893c185742d5f1b84331f4486f7124d8d75e7",
+    "sha": "1265c7c6f596719559db6f27257124ae58ef9a50c6cec60c461c22693dbd6cda",
+    "strong_authority": "eebf3626379266e64d0ff41bc08db03496a4a3d0d5615ea3c30620fc1adde21d"
+  },
+  "entire_global_assignment_AST_sha256": {
+    "AUDITOR": "a7044dd968bbd94b07349e39ae5ab21c728dcd2587aae4ef6bb63253e6e42414",
+    "AUDITOR_HANDOFF_SHA": "d3c78e1f0f03662914dc6077fc71dfc65d0c29a6b49cbda046dc6e659fa69938",
+    "BASE": "2ac8a2ef099481bf75d174b1a74bb567b2423dc13390465d57cd00f3d26d634a",
+    "BASE_SHA": "8f3215d1eb6bd1f7ca059dedc0964a78ee2be36d0ab80a380d6b25376d4d5842",
+    "CORE": "587a9be073a02f943328488a214fcba5cbf967eedfba123817353fd63144b6b6",
+    "CORE_SHA": "bdbc1a0cc763939b27319465a9aaaef4d9a33a3834d00741519190a7540235a8",
+    "HELPERS": "29f702f105292052123f3fbe4101f62cc3284e3a6dd8879a496f5f6ebec9846c",
+    "LAUNCHER_PATH": "75e6a5dc9e487cc6b80047acec4447977bed657a9fa65d31636da8a1b218fffa",
+    "LAUNCHER_SHA": "76190415989c1e4c835961cb445312e919020a2936fb6a0ce362027e7c1bbfe6",
+    "OUT": "51ccd46a45e20f16b2f1679a713bec1b07610cb81ca7d22040ad5a7f36255337",
+    "PACKET": "a34e1f804c5645aa7e85357babb79c396442935d96b58ce4ccb08ed5b19118a0",
+    "SOURCE_REVIEWS": "84320cc9153f48c0cd1b4ba7afd7bfaf70f8c4eb517176ba6d1e378a54455fc1",
+    "WORK": "0cad96398ee6a78fa87116987c1fe42f291ca12494d72a1f98098fc3e54fc55c"
+  },
+  "source_node_order_projection_AST_sha256": "fc05518ac2f0796d3502f8fb99bee2248ecd3fb967370181cc57608cced271a9",
+  "functions_copied_without_AST_rewriting": true,
+  "global_assignment_closure_complete_for_reviewed_source": true,
+  "opaque_raw_SHA_streaming_exact_pinned_allowlist_only": true,
+  "JSON_and_Python_text_only_no_payload_decoding": true,
+  "only_C5_module_import_by_exact_path_and_SHA": true,
+  "metadata_seconds": 30,
+  "actual_utility_executions": 0,
+  "candidate_or_controller_imports_tests_fits_API_data_PID_clock": 0
+}

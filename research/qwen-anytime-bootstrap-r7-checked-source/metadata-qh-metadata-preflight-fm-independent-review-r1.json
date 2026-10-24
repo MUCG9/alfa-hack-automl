@@ -1,0 +1,46 @@
+{
+  "schema": "qwen-exact-metadata-preflight-independent-source-review-v1",
+  "result": "NO_SCOPED_SOURCE_BLOCKER",
+  "reviewed_handoff": {
+    "path": "work/qwen-three-hour-metadata-preflight-next-dev/source-handoff.json",
+    "sha256": "8214a3d001f62dc2c36d2bddc96a49595bf21968a0119cfc4d63e30192c65753"
+  },
+  "reviewed_utility": {
+    "path": "work/qwen-three-hour-metadata-preflight-next-dev/preflight.py",
+    "sha256": "62b3b5fd2296d7ddf1841020aeffdba35c5426bf649e8893d48221b58b68a53f"
+  },
+  "local_pins_verified": 3,
+  "external_pins_verified": 4,
+  "scope": "Bounded source applicability to exact reviewed QH outerR5 config/strong_authority/predecessor; no utility or projected controller execution.",
+  "independent_proofs": {
+    "all_seven_pins_match": true,
+    "exact_eight_entire_functions_and_thirteen_transitive_global_assignments": true,
+    "all_twenty_one_node_AST_hashes_and_source_order_projection_reproduced": true,
+    "no_projected_import_or_forbidden_runtime_call": true,
+    "projection_does_not_rewrite_predicates_fields_or_paths": true
+  },
+  "checked_boundaries": [
+    "Controller/private actual SHA streams before decode; absolute resolved existing source/private paths, private<=1MiB, frozen path map1..4096.",
+    "Opaque raw SHA IO limited to exact frozen path allowlist, <=1MiB chunks, successful real bytes never replaced by stored digests; file growth is rejected. No payload decoder.",
+    "Decoded text permitted only allowlisted JSON/Python UTF8 metadata<=32MiB; direct read_bytes and unbounded opens rejected.",
+    "Only exact pinned C5 helper may be imported; projected predecessor invokes its saved-identity ids function, no process observations.",
+    "Original exact config, strong_authority and predecessor predicates remain whole source AST; known full union is derived from their actual metadata checks.",
+    "Own30s finite monotonic/no rollback interval is metadata only; no campaign origin, new trial deadline, model/API or runtime admission."
+  ],
+  "findings": [],
+  "limits": [
+    "This is a preflight for a separately reviewed and root-pinned controller, not an arbitrary Python sandbox.",
+    "Actual invocation must use final controller/private SHA values after RQ6 closure; actual byte IO or predicates may fail within30s and must remain failure.",
+    "No source or runtime qualification is supplied by this source review; root must pin/publish utility and inspect its actual exit."
+  ],
+  "actual_utility_executions": 0,
+  "actual_candidate_or_controller_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API_calls": 0,
+  "actual_PID_scans": 0,
+  "raw_data_or_NPZ_reads_by_reviewer": 0,
+  "actual_experiment_clock": null,
+  "actual_private_READY": null,
+  "runtime_admitted": false
+}

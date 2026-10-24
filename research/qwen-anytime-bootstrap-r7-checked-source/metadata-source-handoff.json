@@ -1,0 +1,20 @@
+{
+  "schema": "qwen-exact-metadata-preflight-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_PENDING_INDEPENDENT_PEER",
+  "files_sha256": {
+    "preflight.py": "62b3b5fd2296d7ddf1841020aeffdba35c5426bf649e8893d48221b58b68a53f",
+    "source-proof.json": "c9d3e28910670b169e2837e7a6dc8d49e678a35959dc609d9df2605a4a4e202f",
+    "README.txt": "58e7ab0adf4f07522c6c8c3639f1da3c1cc6c94c606a5ad23484ee32833fae22"
+  },
+  "external_refs_sha256": {
+    "qwen-three-hour-outer-next-dev-r5/run_campaign.py": "283b92ddbcc474c734aa4ce84b083ed09e7eca04e110d680c046ea3a2db50130",
+    "qwen-three-hour-outer-next-dev-r5/source-handoff.json": "f19d42fbc9c641a7a055b085dafce66f9f089ca5d895f935f9128397bace8b69",
+    "qualification-metadata-preflight-r4.py": "05b0701e0c2c9bc74c1ac7e4f211c1fad06884005cb1bc4d0b3c0df8de437a7f",
+    "br-standard-release-qualification-next-dev/controller-r5/run_controller.py": "d5f41cad6de2168cd520e442223428285dd3714854079d9305dd1b34938abd7d"
+  },
+  "prepared_utility_executions": 0,
+  "actual_utility_executions": 0,
+  "actual_experiment_clock": null,
+  "actual_private_READY": null,
+  "author_candidate_controller_imports_tests_fits_API_data_PID_clock": 0
+}

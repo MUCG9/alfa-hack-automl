@@ -1,0 +1,37 @@
+{
+  "schema": "qwen-binding-preparation-audit-contract-independent-source-review-v1",
+  "result": "NO_SCOPED_SOURCE_BLOCKER",
+  "reviewed_handoff": {"path": "work/qwen-three-hour-binding-preparation-next-dev/source-handoff.json", "sha256": "1e284b0f4f845a2684e07c469a08e8963fc9c03ca57d028f89e3a3d782794dae"},
+  "reviewed_prepare_sha256": "5d2b75457c438046f1268fcaad1152f21f6f4b248e41675bfd930d432c7e4989",
+  "checks": {
+    "all_local_raw_pins_exact": 7,
+    "all_external_raw_pins_exact": 9,
+    "ten_signature_closure_nodes_independently_AST_exact_canonical_sources": true,
+    "seven_projected_validator_definitions_independently_whole_AST_exact_outer_R3": true,
+    "signature_uses_original_JSON_serialization_not_compact_metadata_substitute": true,
+    "CAPABILITIES_used_only_as_exact_engine_membership_for_signature": true,
+    "no_candidate_model_outer_module_import": true,
+    "fixed_qualified_C5_capture_only_plus_local_stdlib_projections": true,
+    "source_self_plan_handoff_and_no_conflicting_pin_checks": true,
+    "output_files_exclusive_NOT_READY_no_experiment_origin": true
+  },
+  "metadata_interface_review": {
+    "qualification": "Requires the actual positive RQ6 archive/root/atomic confirmation/final posttool chain, exact actual driver/wrapper/posttool exits and same qualified manifest. Inherited complete root/fresh/wrapper/posttool preparer scope comes from the exact copied validator; no old negative proof grants ownership or qualification.",
+    "actual_task_rows": "Consumes the actual campaign.tasks LIST with exactly ordered regression/classification kinds, not a guessed dictionary. Report paths must be absolute and present in the independent qualified actual_artifact_sha256 map before metadata use.",
+    "strong_authority": "Copies only the actual independently qualified report.spec and raw selected recipe, recursively forbids fit_iterations in raw recipes, binds source report/root and both actual split SHA roles. No historical deployment tree is transferred.",
+    "numeric_witness": "Reads only the source-bound explicit data dictionary metadata. Predictor names must have role exactly feature; only dtype exactly numeric enters numeric_features, in qualified spec.features order. Binary/unknown/non-numeric entries are omitted rather than inferred from not-categorical. Target/ID features remain forbidden.",
+    "data_scope": "Qualified original data and NPZ pin values are reused as metadata without opening arrays/rows. The future producer deliberately reads the bounded data_dictionary.csv metadata only, plus code/JSON report metadata and hashes.",
+    "finite_current_observation": "Freshly checks the actual complete prior known identity set with exact birth matching; only NoSuchProcess or a different observed birth establish prior identity absence. Denial/unknown errors abort. Current preparer identities are captured separately and never claimed absent by their own observation.",
+    "current_preparers": "The actual producer emits a pinned sidecar and PENDING actual tool. Root must observe producer exit0 and replace only the external pending binding before any readiness grant. Future outer fresh checks include those captured preparers.",
+    "paths_and_census": "Typed path/SHA references including contract rows are resolved and collision-checked. Every current contract method map is independently AST-enumerated; exactly nine30-second parent slots total270 inside setup300. No tests are executed by preparation.",
+    "future_source_dependency": "The final reviewed outer may change core source references/census, but its predecessor and strong_authority bodies must remain AST-identical to the projected validators. Its independent peer must retain the explicitly consumed result/reviewed_handoff schema. A semantic change requires an explicit source rebind, not an assumed generic compatibility."
+  },
+  "concrete_blockers": [],
+  "actual_qualified_archive_root_final_posttool": null,
+  "actual_final_outer_and_private_binding": null,
+  "actual_producer_exit": null,
+  "actual_experiment_clock": null,
+  "actual_metrics": null,
+  "remaining": "After actual RQ6 positive closure and final outer source peer, root supplies exact input-plan metadata, observes bounded producer exit, verifies resulting typed refs/preparer union, performs independent private peer and exact final config/predecessor preflight before assigning a new experiment clock.",
+  "reviewer_candidate_imports_tests_fits_API_data_dictionary_or_dataset_reads_arrays_predictions_truth_PID_Git_canonical_clock": 0
+}

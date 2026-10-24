@@ -1,0 +1,35 @@
+{
+  "schema": "qwen-three-hour-binding-preparation-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_NOT_EXECUTED",
+  "files_sha256": {
+    "freeze_source.py": "3428d4f74c6809039823ac5f18d3e2fe4aacd7887dcd7a07ba17f12c13b0efd9",
+    "input-plan.template.NOT_READY.json": "42cf864eae63b182143b2b94291b15a334f3ade2688d5996a24714d68bef6268",
+    "metadata_signature.py": "9caaaf525938e4c512d0b71e78d9a2d5bd156700a525abd729fed6453c4dd572",
+    "metadata_validators.py": "b9cd94151cc2b6edd48fea694f90561bda37d303c9549b4727bb53d2996848de",
+    "prepare_binding.py": "5d2b75457c438046f1268fcaad1152f21f6f4b248e41675bfd930d432c7e4989",
+    "README.txt": "2158d7ff8526dacfb60b0c9ca1f97c74a34c9955325bdf0fcb9a7a86ac45b3ea",
+    "source-proof.json": "60a46961fb31ed6f6d0d2fc5e196b38b9b0d5b5d9d766357c1a119fb6cc5205d"
+  },
+  "external_refs_sha256": {
+    "alfa-hack-automl/src/automl/contracts/messages.py": "2da59a8467632748d021d4169ddb3e3af4eac01a48a8dc2ab9207c4c7701652d",
+    "alfa-hack-automl/src/automl/execution/model_adapters/registry.py": "75b885e822186ab8c235e6638ee888ecaa918a50f7662dc8fc2892682d761045",
+    "alfa-hack-automl/src/automl/search/policy.py": "8faf616caff90f7cdea4de9c4b5033ad22bd4ed1ac0dad3f0ca1d721f0759549",
+    "qwen-three-hour-outer-next-dev-r3/run_campaign.py": "e621e6459a7a6685b9403bb655adb49ba0f6fceb4462a141b9b5faa686541f9e",
+    "prepare-rq6-private.py": "0bcbe81742318a66fb98695a025359b0d56d8f99c6758ad81c0ab2b4529bcd5b",
+    "br-standard-release-qualification-next-dev/controller-r5/run_controller.py": "d5f41cad6de2168cd520e442223428285dd3714854079d9305dd1b34938abd7d",
+    "qwen-three-hour-outer-next-dev-r3/source-handoff.json": "0c46fe7316be1808b1d62a341cc95772863b22c14b5226afae31bc9db8e465ab",
+    "qwen-three-hour-outer-independent-source-review-r3.json": "751e27346cacc1b18b19ea3364967f96f8a76d42a42352aa0d09b5756ac318e1",
+    "alfa-hack-automl/tools/propose_feature_dsl.py": "6b17dbc4acb4841c2a08e6333a2f452e9df56c2bca6a96db40b399e10c332e6c"
+  },
+  "DSL_compiler_sha256": "6b17dbc4acb4841c2a08e6333a2f452e9df56c2bca6a96db40b399e10c332e6c",
+  "parent_pattern": "prepare-rq6-private.py; one qualified C5 capture plus finite known absence; pending actual exit patched only by root",
+  "final_outer_core_auditor_actual_bindings": null,
+  "actual_qualification": null,
+  "actual_clock": null,
+  "author_candidate_imports": 0,
+  "author_tests": 0,
+  "author_fits": 0,
+  "author_API": 0,
+  "author_data_reads": 0,
+  "author_PID_observations": 0
+}

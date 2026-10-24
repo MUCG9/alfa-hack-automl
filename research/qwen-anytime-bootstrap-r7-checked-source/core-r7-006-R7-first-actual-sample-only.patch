@@ -1,0 +1,124 @@
+--- R6/r5_worker_runtime.py
++++ R7/r5_worker_runtime.py
+@@ -34,7 +34,7 @@
+             raise ValueError('Finite original wall/monotonic origin required')
+         self.start_unix,self.start_monotonic=origin
+         self.deadline_unix=self.start_unix+seconds;self.deadline_monotonic=self.start_monotonic+seconds
+-        self.root=Path(root);self.last=self.start_monotonic;self.previous=self.start_monotonic
++        self.root=Path(root);self.last=None;self.previous=self.start_monotonic
+         self.failure=None;self.resources=ResourceBudget(memory_limit=WHOLE_MEMORY_LIMIT_BYTES)
+         self.samples=0;self.peak=0;self.peak_tree=0;self.last_resource_observation=None
+         self._resource_checkpoint()
+@@ -51,7 +51,7 @@
+         if not math.isfinite(now) or not math.isfinite(wall) or now < self.previous or wall<self.start_unix:
+             raise RuntimeError('release_nonfinite_or_rollback')
+         self.previous=now
+-        if now-self.last>10:raise RuntimeError('release_observation_gap_over10s')
++        if self.last is not None and now-self.last>10:raise RuntimeError('release_observation_gap_over10s')
+         if now>=self.deadline_monotonic or wall>=self.deadline_unix:raise RuntimeError('release_original_common_deadline')
+         if abs((self.deadline_unix-wall)-(self.deadline_monotonic-now))>5:raise RuntimeError('release_clock_disagreement')
+         return now,wall
+@@ -59,7 +59,7 @@
+         if self.failure is not None:raise self.failure
+         try:
+             now,wall=self._resource_checkpoint()
+-            if not force and now-self.last<.25:return
++            if not force and self.last is not None and now-self.last<.25:return
+             limit,rss,total=self.resources.inspect(os.getpid(),self.root)
+             self.last_resource_observation=dict(parent_tree_rss_bytes=rss,conservative_combined_bytes=total)
+             self.peak=max(self.peak,total);self.peak_tree=max(self.peak_tree,rss)
+@@ -67,7 +67,7 @@
+             if limit:raise RuntimeError('release_'+limit)
+             after,wall_after=self._resource_checkpoint()
+             if not math.isfinite(after) or not math.isfinite(wall_after):raise RuntimeError('release_nonfinite_resource_observation')
+-            if after<now or after-self.last>10:raise RuntimeError('release_resource_inspection_gap_or_rollback')
++            if after<now or after-now>10 or (self.last is not None and after-self.last>10):raise RuntimeError('release_resource_inspection_gap_or_rollback')
+             if after>=self.deadline_monotonic or wall_after>=self.deadline_unix:raise RuntimeError('release_original_common_deadline')
+             if abs((self.deadline_unix-wall_after)-(self.deadline_monotonic-after))>5:raise RuntimeError('release_clock_disagreement')
+             self.last=after;self.previous=after;self.samples+=1
+--- R6/test_r5_worker_consumer.py
++++ R7/test_r5_worker_consumer.py
+@@ -4,6 +4,7 @@
+ only a source checkout has the sibling candidate directory below.
+ """
+ from pathlib import Path
++from contextlib import ExitStack
+ from types import SimpleNamespace
+ from unittest.mock import Mock, patch
+ import json
+@@ -82,5 +83,75 @@
+         self.assertIsNone(runtime._CALLER_CLOCK.get())
+ 
+ 
++class FirstActualResourceSampleContracts(unittest.TestCase):
++    def setUp(self):
++        self.stack=ExitStack();self.addCleanup(self.stack.close)
++        self.now=[20.];self.inspection_delay=.25;self.inspection_error=None
++        self.inspection_total=84;self.rounds=[]
++        self.budget=SimpleNamespace(memory_limit=runtime.WHOLE_MEMORY_LIMIT_BYTES)
++        def inspect(pid,root):
++            self.assertEqual(pid,99)
++            clock=self.budget._verified_sampling['checkpoint'].__self__
++            self.rounds.append(dict(clock=clock,last=clock.last,samples=clock.samples))
++            self.budget._verified_sampling['checkpoint']()
++            self.now[0]+=self.inspection_delay
++            if self.inspection_error is not None:raise self.inspection_error
++            return None,42,self.inspection_total
++        self.budget.inspect=Mock(side_effect=inspect)
++        own=SimpleNamespace(pid=99,create_time=lambda:9.)
++        for target,name,value in [(runtime,'ResourceBudget',Mock(return_value=self.budget)),
++                (runtime,'VerifiedResourceSampler',Mock(return_value=object())),
++                (runtime.psutil,'Process',Mock(return_value=own)),
++                (runtime.os,'getpid',lambda:99),
++                (runtime.time,'monotonic',lambda:self.now[0]),
++                (runtime.time,'time',lambda:1000.+self.now[0])]:
++            self.stack.enter_context(patch.object(target,name,value))
++
++    def create(self):
++        return runtime.ReleaseClock(4800,'unused-synthetic-root',origin=(1000.,0.))
++
++    def test_slow_import_before_first_real_sample_keeps_original_clock_and_unknown_prior(self):
++        clock=self.create()
++        self.assertIsNone(self.rounds[0]['last']);self.assertEqual(self.rounds[0]['samples'],0)
++        self.assertEqual((clock.start_unix,clock.start_monotonic),(1000.,0.))
++        self.assertEqual((clock.deadline_unix,clock.deadline_monotonic),(5800.,4800.))
++        self.assertEqual(clock.last,20.25);self.assertEqual(clock.samples,1)
++        self.assertEqual(clock.sampling_identity,(99,9.))
++        self.assertEqual(clock.resources._verified_sampling['self_identity'],(99,9.))
++        self.assertEqual(clock.resources._verified_sampling['root_identity'],(99,9.))
++        self.assertIs(clock.resources._verified_sampling['checkpoint'].__self__,clock)
++        self.assertEqual(clock.receipt()['actual_resource_samples'],1)
++        self.assertEqual(clock.receipt()['last_actual_resource_observation'],
++            dict(parent_tree_rss_bytes=42,conservative_combined_bytes=84))
++        self.budget.inspect.assert_called_once_with(99,Path('unused-synthetic-root'))
++
++    def test_slow_or_denied_or_over_cap_first_inspection_never_becomes_a_sample(self):
++        self.inspection_delay=10.001
++        with self.assertRaisesRegex(RuntimeError,'resource_inspection_gap') as first:self.create()
++        clock=self.rounds[-1]['clock'];self.assertIsNone(clock.last);self.assertEqual(clock.samples,0)
++        self.assertIs(clock.failure,first.exception)
++        with self.assertRaises(RuntimeError) as sticky:clock.check(force=True)
++        self.assertIs(sticky.exception,first.exception);self.assertEqual(self.budget.inspect.call_count,1)
++        self.inspection_delay=.25;self.inspection_error=PermissionError('synthetic actual observation denial')
++        with self.assertRaises(PermissionError) as denied:self.create()
++        denied_clock=self.rounds[-1]['clock'];self.assertIsNone(denied_clock.last)
++        self.assertEqual(denied_clock.samples,0);self.assertIs(denied_clock.failure,denied.exception)
++        self.inspection_error=None;self.inspection_total=runtime.WHOLE_MEMORY_LIMIT_BYTES+1
++        with self.assertRaisesRegex(RuntimeError,'whole_memory_limit'):self.create()
++        self.assertIsNone(self.rounds[-1]['clock'].last)
++        self.assertEqual(self.rounds[-1]['clock'].samples,0)
++
++    def test_later_observation_gap_stays_sticky_and_deadline_cannot_rebase(self):
++        clock=self.create();last=clock.last;self.now[0]=last+10.001
++        with self.assertRaisesRegex(RuntimeError,'observation_gap_over10s') as first:clock.check()
++        self.assertEqual(clock.last,last);self.assertEqual(clock.samples,1)
++        self.assertEqual(self.budget.inspect.call_count,1)
++        with self.assertRaises(RuntimeError) as sticky:clock.check(force=True)
++        self.assertIs(sticky.exception,first.exception)
++        self.assertEqual((clock.deadline_unix,clock.deadline_monotonic),(5800.,4800.))
++        self.now[0]=4800.
++        with self.assertRaisesRegex(RuntimeError,'original_common_deadline'):self.create()
++
++
+ if __name__ == '__main__':
+     unittest.main()

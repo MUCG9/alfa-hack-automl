@@ -1,0 +1,53 @@
+"""Source-only provider environment repair. Preserve8019 forever."""
+from pathlib import Path
+import ast,copy,hashlib,json
+HERE=Path(__file__).resolve().parent;OLD=HERE.parent/'qwen-three-hour-autoresearch-next-dev'
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def dump(text):return ast.dump(ast.parse(text),include_attributes=False)
+def save(name,value):(HERE/name).write_text(json.dumps(value,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+assert sha(OLD/'source-handoff.json')=='8019f45b3bb89f4a48075856cf4fc9327506578dc8cc1ec140a2b430970ab199'
+original=json.loads((OLD/'source-handoff.json').read_bytes())
+for rel,h in original['files_sha256'].items():
+    assert sha(OLD/rel)==h
+    target=HERE/rel;target.parent.mkdir(parents=True,exist_ok=True);assert not target.exists()
+    target.write_bytes((OLD/rel).read_bytes())
+before=(OLD/'task_entry.py').read_text('utf-8-sig')
+anchor="    import r5_worker_runtime as runtime"
+addition="\n    from provider_environment import provider_credentials"
+dependency="'verified_sampling.py','gateway_child.py']"
+newdependency="'verified_sampling.py','gateway_child.py','provider_environment.py']"
+old="""        observed=coor.supervise(argv,output,receipt,'provider-'+str(provider_count),start,timeout+10,timeout+5,
+            timing['task_deadline_monotonic'],timing['task_deadline_unix'],0,state,persist_supervision,
+            frozen,owner,processes,[],solver_seconds=timeout)"""
+new="""        with provider_credentials(coor):
+            observed=coor.supervise(argv,output,receipt,'provider-'+str(provider_count),start,timeout+10,timeout+5,
+                timing['task_deadline_monotonic'],timing['task_deadline_unix'],0,state,persist_supervision,
+                frozen,owner,processes,[],solver_seconds=None)"""
+assert before.count(anchor)==before.count(dependency)==before.count(old)==1
+after=before.replace(anchor,anchor+addition).replace(dependency,newdependency).replace(old,new)
+reverse=after.replace(anchor+addition,anchor).replace(newdependency,dependency).replace(new,old)
+assert dump(reverse)==dump(before)
+(HERE/'task_entry.py').write_text(after,encoding='utf-8')
+proof=json.loads((OLD/'source-proof.json').read_bytes())
+source=HERE/'test_provider_environment.py';tree=ast.parse(source.read_bytes())
+methods={c.name+'.'+m.name:hashlib.sha256(ast.dump(m,include_attributes=False).encode()).hexdigest()
+    for c in tree.body if isinstance(c,ast.ClassDef) for m in c.body if isinstance(m,ast.FunctionDef) and m.name.startswith('test_')}
+assert len(methods)==1
+proof['prepared_contracts'][source.name]=dict(sha256=sha(source),prepared_method_count=1,methods_AST_sha256=methods,actual_executed=0)
+proof['provider_facade_R2']={'8019_blocker_preserved':'solver_seconds was incorrectly nonNone solely for provider credentials',
+    'fixed':'technical coor.environment(False) copy plus authorized provider-only facade, solver_seconds=None, restore original function in finally',
+    'inverse_complete_task_entry_AST_exact':True,'all_other_old_runtime_sources_byte_exact':True,
+    'new_environment_mock_methods':1,'total_prepared_methods':18,'actual_executed':0}
+save('source-proof.json',proof)
+plan=json.loads((OLD/'reuse-plan.json').read_bytes());plan['existing_reuse']['gateway']='existing request_json; owned fixed gateway child with original-clock parent sampling; provider-only scoped facade over technical coor.environment(False), solver_seconds=None, exact original function restored in finally'
+save('reuse-plan.json',plan)
+protocol=json.loads((OLD/'protocol.json').read_bytes());protocol['provider_environment']='existing authorized creds copied ONLY into fixed gateway child technical environment; no solver_seconds trick; no credential to worker/auditor/prompts/logs; requested reasoning is not backend attestation'
+save('protocol.json',protocol)
+(HERE/'README.txt').write_text((OLD/'README.txt').read_text('utf-8-sig')+'\nR2 fixes the frozen8019 provider environment blocker. Gateway children use technical coor.environment(False) plus an explicit provider-only authorized credential facade, restored in finally, with solver_seconds=None. All models/auditors remain outside the facade. One additional pure mock verifies mapping copy, technical1 caps and exception restoration;18 methods prepared,0run. No actual bindings or clock.\n',encoding='utf-8')
+for p in HERE.glob('*.py'):compile(p.read_bytes(),p.name,'exec')
+external=dict(original['external_refs_sha256']);external['qwen-three-hour-autoresearch-next-dev/source-handoff.json']=sha(OLD/'source-handoff.json')
+files={p.relative_to(HERE).as_posix():sha(p) for p in sorted(HERE.rglob('*')) if p.is_file() and p.name!='source-handoff.json'}
+newhandoff=dict(original);newhandoff.update(files_sha256=files,external_refs_sha256=external,prepared_contract_methods=18,
+    previous_handoff_sha256=sha(OLD/'source-handoff.json'),source_revision='R2_PROVIDER_ONLY_TECHNICAL_ENVIRONMENT_FACADE')
+save('source-handoff.json',newhandoff)
+print(json.dumps({'source_only_frozen':True,'handoff_sha256':sha(HERE/'source-handoff.json'),'prepared_methods':18,'runtime':False}))

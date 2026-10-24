@@ -1,0 +1,88 @@
+{
+  "schema": "qwen-three-hour-outer-independent-source-review-v1",
+  "revision": "R4",
+  "review_kind": "SOURCE_ONLY_INDEPENDENT_BOUNDED_REVIEW",
+  "result": "SCOPED_SOURCE_BLOCKER",
+  "reviewed_handoff": {
+    "path": "work/qwen-three-hour-outer-next-dev-r4/source-handoff.json",
+    "sha256": "22151643df72f68b94d303725375b113e056b4851c7952d107cb912c14ad2b0c"
+  },
+  "reviewed_driver": {
+    "path": "work/qwen-three-hour-outer-next-dev-r4/run_campaign.py",
+    "sha256": "283b92ddbcc474c734aa4ce84b083ed09e7eca04e110d680c046ea3a2db50130"
+  },
+  "previous_accepted_handoff_sha256": "0c46fe7316be1808b1d62a341cc95772863b22c14b5226afae31bc9db8e465ab",
+  "local_pins_verified": 16,
+  "external_pins_verified": 470,
+  "raw_data_or_NPZ_reads": 0,
+  "independent_proofs": {
+    "all_486_pinned_bytes_match": true,
+    "whole_driver_AST_inverse_to_R3_after_four_literal_rebinds_and_one_post_source_pin_list_item": true,
+    "other_four_runtime_test_files_raw_exact_R3": true,
+    "old_four_atomic_method_AST_exact": true,
+    "all_63_contract_method_AST_hashes_reproduced": true,
+    "prepared_counts": [
+      2,
+      1,
+      4,
+      18,
+      4,
+      23,
+      2,
+      3,
+      6
+    ],
+    "prepared_total": 63,
+    "slots": 9,
+    "setup_parent_maxima_seconds": 270,
+    "post_policy_need_exact_union_revoked_publish_checked_save_json_whole_AST_exact_RQ6": true,
+    "post_window_whole_AST_inverse_10800_to_6000_exact_RQ6": true
+  },
+  "final_dependencies": {
+    "core_R7_handoff": "9aa248594ea925ff0e0281773bbdb3f6c4107dd0e7e50fb228146bb94371ba73",
+    "core_R7_peer": "2c5957d66310c8207a810f0d48018cfed096a288483daf207e8a739757e6b835",
+    "auditor_R3_handoff": "cc220ce9242b8b97a4e014dd29e62bc88c66623729caf31ad24c775a02ff72f1",
+    "auditor_R3_peer": "ab30e5cfb39b8a04935553fe628373e8aabe5fcdf9bbfdfe3888d9451c90e4f1"
+  },
+  "checked_source_interfaces": [
+    "R7 first actual child resource observation preserves original task/common deadlines and later sticky10; outer clock/resource/provider logic unchanged.",
+    "Post exact original10800/common/final240/actual closer birth60/own30; actual wrapper exit0/tool, full known/root/wrapper union, current post exclusion, source/temp/cleanup terminal proof and revocation.",
+    "Producer atomic/root schemas and post required fields agree; unchanged run_root emits actual closer birth, wrapper preparers and original/final/birth flags.",
+    "Main/atomic templates remain NOT_READY; actual private qualification, authorities and clocks NULL."
+  ],
+  "findings": [
+    {
+      "id": "Q3O02",
+      "severity": "P1",
+      "status": "OPEN_SOURCE_ONLY_ROOT_ACCEPTED_FOR_NARROW_R5",
+      "path": "work/qwen-three-hour-outer-next-dev-r4/confirm_post_tool.py",
+      "lines": [
+        150,
+        151,
+        152,
+        158,
+        159
+      ],
+      "problem": "The post helper verifies binding.driver SHA against current bytes and fixed path, then imports that driver before requiring its SHA to equal the original immutable source pin.",
+      "source_counterexample": "Keep cfg.immutable_files[driver_path]=original_SHA, replace driver bytes, and refresh only binding.driver.sha256 to changed_SHA. exact_union retains the original pin; the current pre-import checks accept the changed bytes and imported() executes them. Later frozen() rejects the old pin after import, which is too late for the source barrier.",
+      "minimum_fix": "Before imported(), require pins.get(driver_ref['path']) == driver_ref['sha256'] as well as the existing actual hash and exact path checks. Add a source/mock witness that a refreshed role SHA cannot pass the original pin.",
+      "actual_runtime_event": false
+    }
+  ],
+  "bounded_batch_complete": true,
+  "no_other_scoped_source_blocker_found": true,
+  "pending_root_materialization": [
+    "Narrow R5 source fix and independent rebind before runtime admission.",
+    "Actual repaired archive qualification/root/atomic/final post-tool, exact strong authorities/input splits and private immutable pins."
+  ],
+  "actual_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API_calls": 0,
+  "actual_PID_scans": 0,
+  "actual_clock": null,
+  "actual_metrics": null,
+  "READY": false,
+  "promotion": false,
+  "submit": false
+}

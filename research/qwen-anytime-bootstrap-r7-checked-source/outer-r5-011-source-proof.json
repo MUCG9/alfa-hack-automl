@@ -1,0 +1,29 @@
+{
+  "schema": "qwen-outer-post-preimport-pin-source-proof-v1",
+  "previous_handoff_sha256": "22151643df72f68b94d303725375b113e056b4851c7952d107cb912c14ad2b0c",
+  "sole_runtime_delta": "Require original immutable driver pin equals ref SHA BEFORE actual SHA/path/import; exact conjunction inverse wholepost AST.",
+  "whole_post_AST_inverse_exact": true,
+  "other_five_runtime_files_raw_exact": true,
+  "only_one_new_post_test_method_expanded": [
+    "PostToolContracts.test_full_known_union_keeps_wrapper_and_closer_preparers_and_denies_missing_or_live_scope"
+  ],
+  "old_four_atomic_and_other_new_time_method_AST_exact": true,
+  "prepared_counts": [
+    2,
+    1,
+    4,
+    18,
+    4,
+    23,
+    2,
+    3,
+    6
+  ],
+  "prepared_contract_executions": 63,
+  "slots": 9,
+  "parent_maxima270": true,
+  "actual_tests": 0,
+  "actual_clock": null,
+  "actual_source_qualification": null,
+  "all_caps_clocks_resources_ownership_numerical_predicates_unchanged": true
+}

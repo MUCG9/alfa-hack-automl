@@ -1,0 +1,48 @@
+{
+  "schema": "qwen-three-hour-atomic-root-private-v1",
+  "readiness": "NOT_READY",
+  "missing_bindings": [
+    "actual_driver_exit_before_atomic_root",
+    "root_bound_absolute_manifest_campaign_and_all_source_pins",
+    "source_peer_and_rootreview"
+  ],
+  "output": "qh1",
+  "immutable_files": {},
+  "child_script_sha256": "605594aa5e3f9395a339c28915541402305d60b0b27d7e21b3073c5b05d32778",
+  "driver": {
+    "path": "qwen-three-hour-outer-next-dev-r5/run_campaign.py",
+    "sha256": "283b92ddbcc474c734aa4ce84b083ed09e7eca04e110d680c046ea3a2db50130"
+  },
+  "closer": {
+    "path": "qwen-three-hour-outer-next-dev-r5/close_controller.py",
+    "sha256": "9668c2bd13beecdbd60951a1557c048c8d8cd4ba1ad430d4fa7d3b341811f145"
+  },
+  "manifest": {
+    "path": null,
+    "sha256": null
+  },
+  "campaign": {
+    "path": null,
+    "sha256": null
+  },
+  "python": {
+    "path": null,
+    "sha256": null
+  },
+  "powershell": {
+    "path": null,
+    "sha256": null
+  },
+  "independent_source_review": {
+    "path": null,
+    "sha256": null
+  },
+  "qualification_source_review": {
+    "path": null,
+    "sha256": null
+  },
+  "post_tool": {
+    "path": "qwen-three-hour-outer-next-dev-r5/confirm_post_tool.py",
+    "sha256": "ea2d8e6c15ae407c005cc246180cb28bb53a45f26a68d9791a91520a2510fb0b"
+  }
+}

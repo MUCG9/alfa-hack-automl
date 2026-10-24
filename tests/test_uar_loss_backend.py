@@ -28,7 +28,10 @@ from automl.execution import worker
 from automl.search.policy import normalize,signature
 
 
-DEFAULT_OFF_AST_SHA256={'src/automl/contracts/messages.py': '0b50cd6f2586376e111df718e872b6dd0dfc7b98842ef68b3b25b8faf7269f42', 'src/automl/execution/api.py': '084e1daa73179210f3121d7af9fb640f05593e9a4177ac84e22ecd649328981c', 'src/automl/execution/worker.py': 'ea1ba7f6270ced919a4f04ef50b80725af86068722a38573ab3a61fb3b9b324e', 'src/automl/search/policy.py': 'e38eeb0f02fd1f7cb135f2fde0ecdb7783fa5ce7f83813d662bb1750fc851ba7', 'src/automl/execution/model_adapters/lightgbm.py': '4eada9d5b315883c3351aae43c49f7b03052b01a2211ded5610679d34aed9041', 'src/automl/execution/model_adapters/registry.py': 'eb22c05f60f80d7307d8507a8a42ebd607cd47656556044f6bd29af9cc3dd2d1'}
+# Baseline provenance: Git 3ca3f7a63cd107527ab6b7b1ead2af651407d109 execution/api.py,
+# plus ONLY approved same-object feature_view_components API export
+# (architecture R2 handoff13aed9ec); all five other base AST pins unchanged.
+DEFAULT_OFF_AST_SHA256={'src/automl/contracts/messages.py': '0b50cd6f2586376e111df718e872b6dd0dfc7b98842ef68b3b25b8faf7269f42', 'src/automl/execution/api.py': '2f5a5a753da784e3c2ea30c4629e0427ca41743ba86b16b591c7ad1e02317fab', 'src/automl/execution/worker.py': 'ea1ba7f6270ced919a4f04ef50b80725af86068722a38573ab3a61fb3b9b324e', 'src/automl/search/policy.py': 'e38eeb0f02fd1f7cb135f2fde0ecdb7783fa5ce7f83813d662bb1750fc851ba7', 'src/automl/execution/model_adapters/lightgbm.py': '4eada9d5b315883c3351aae43c49f7b03052b01a2211ded5610679d34aed9041', 'src/automl/execution/model_adapters/registry.py': 'eb22c05f60f80d7307d8507a8a42ebd607cd47656556044f6bd29af9cc3dd2d1'}
 LEGACY_CAPABILITIES_SHA256='956827b308970db4f31a0827e203c4fd86c3ebbd24453d2f9f605d690a907249'
 
 class LegacyOffProjection(ast.NodeTransformer):
@@ -177,6 +180,9 @@ class LossContractTests(NoNetwork):
             with self.assertRaises(ValueError):worker.run(dict(spec={'kind':'classification'},recipe=parent))
 
     def test_default_OFF_all_six_modules_preserve_base_UAR_AST(self):
+        from automl.execution import api as public_execution
+        from automl.execution.feature_views import feature_view_components
+        self.assertIs(public_execution.feature_view_components,feature_view_components)
         for path,expected in DEFAULT_OFF_AST_SHA256.items():
             with self.subTest(path=path):
                 tree=LegacyOffProjection().visit(ast.parse((ROOT/path).read_text('utf-8')))

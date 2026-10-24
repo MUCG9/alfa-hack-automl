@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "status": "SOURCE_REVIEWED_NO_SCOPED_BLOCKER_TEST_BASELINE_REBASE_ONLY_NOT_EXECUTED",
+  "proposal_sha256": "c2629b0c4553ac6062109bed12b30d275080ec50a47573f3bbcfab5c40d3318e",
+  "handoff_sha256": "e65e027fdd5c52e729851c842bf828852cf6704907629f25115507a3d147d079",
+  "original_test_sha256_preserved": "6ebc360d737423625ab8edd230002dc6284bf018a961e8a53dc4624e8e0c3bb4",
+  "candidate_test_sha256": "b882f673692ef758f3505c456a98d5883d25a37a2d75f3e611c3958b9aa58a7f",
+  "patch_sha256": "ccc0908edafc5ccf5ce2825d9ecf22def72e89495cc5b5951a7d909ffd029525",
+  "independent_baseline_construction": {
+    "git_commit": "3ca3f7a63cd107527ab6b7b1ead2af651407d109",
+    "path": "src/automl/execution/api.py",
+    "original_git_blob_sha256": "2ccf83adff9a8692acd35fb3a3811411aa87ab317dc101c1e0fd07eb2d0bc71c",
+    "original_API_AST_sha256": "084e1daa73179210f3121d7af9fb640f05593e9a4177ac84e22ecd649328981c",
+    "exact_added_alias": "from automl.execution.feature_views import ... feature_view_components",
+    "new_expected_AST_sha256": "2f5a5a753da784e3c2ea30c4629e0427ca41743ba86b16b591c7ad1e02317fab",
+    "current_API_LOSS_projection_exactly_equal": true,
+    "current_API_projection_removed_aliases": [
+      "loss_profile_catalog"
+    ],
+    "baseline_derived_from_current_source": false,
+    "broad_import_stripping_or_ignore": false
+  },
+  "fixture_delta_verified": {
+    "only_one_expected_hash_changed": {
+      "src/automl/execution/api.py": [
+        "084e1daa73179210f3121d7af9fb640f05593e9a4177ac84e22ecd649328981c",
+        "2f5a5a753da784e3c2ea30c4629e0427ca41743ba86b16b591c7ad1e02317fab"
+      ]
+    },
+    "other_five_expected_hashes_unchanged": true,
+    "LegacyOffProjection_AST_unchanged": true,
+    "Legacy_CAPABILITIES_hash_unchanged": true,
+    "other_sixteen_methods_AST_equal": true,
+    "existing_modular_method_prior_body_AST_equal_after_added3statements": true,
+    "added_statements": [
+      "from automl.execution import api as public_execution",
+      "from automl.execution.feature_views import feature_view_components",
+      "self.assertIs(public_execution.feature_view_components, feature_view_components)"
+    ],
+    "entire_module_AST_equal_after_reverting_only_declared_hash_and3addedstatements": true,
+    "method_count": 17,
+    "predeclared_modular_flat_exclusion_unchanged": "test_default_OFF_all_six_modules_preserve_base_UAR_AST",
+    "remaining_flat16_method_AST_unchanged": true,
+    "future_tiny_fit_callbacks": "Unchanged fixture bodies;9 remains static/historical, not newly observed"
+  },
+  "source_identity_limit": "assertIs checks normal same-object API reexport in the future leased modular test. Static review does not execute identity/import/build/tests or claim fresh PASS.",
+  "historical_disposition": {
+    "old_UAR04_LOSS17_PASS_unchanged": true,
+    "old_UAR04_FAIL_unchanged": true,
+    "current_new_source_not_tested_by_review": true
+  },
+  "operations": {
+    "read_only_git_show": 1,
+    "candidate_or_test_imports": 0,
+    "tests": 0,
+    "builds": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "data_or_predictions": 0,
+    "PID_scans": 0,
+    "canonical_STATE_or_Git_writes": false,
+    "clock_assigned": false
+  }
+}

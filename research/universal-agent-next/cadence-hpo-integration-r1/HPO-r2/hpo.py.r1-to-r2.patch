@@ -1,0 +1,33 @@
+--- frozen-R1/hpo.py
++++ R2/hpo.py
+@@ -350,7 +350,7 @@
+ 
+     try:
+         clock.observe()
+-        if deadline - clock.last > 900:
++        if deadline > clock.last + 900:
+             raise HPOFairReserveStop('fair_reserve_original_phase_exceeds900')
+         # Full untouched anchor maximum plus all later minimum slots, before any fit.
+         clock.allocation(trials, anchor=True)
+@@ -466,5 +466,20 @@
+     except BaseException as exc:
+         policy['stop_reason'] = exc.code if isinstance(exc, HPOFairReserveStop) else 'fair_reserve_technical_failure'
+         policy['stop_exception_type'] = type(exc).__name__
+-        finish('fair_reserve_stopped')
++        try:
++            finish('fair_reserve_stopped')
++        except BaseException as diagnostic_error:
++            # No raw exception text/path/argv. Retain the original raised exception
++            # and traceback even when the diagnostic destination is unavailable.
++            policy['diagnostic_save_exception_type'] = type(diagnostic_error).__name__
++            failure_types = {'primary_exception_type': type(exc).__name__,
++                'diagnostic_save_exception_type': type(diagnostic_error).__name__}
++            try:
++                exc.hpo_fair_reserve_failure_types = failure_types
++            except BaseException:
++                pass  # A non-writable exception must still remain the primary.
++            try:
++                print(json.dumps({'hpo_fair_reserve_failure_types': failure_types}, sort_keys=True), flush=True)
++            except BaseException:
++                pass  # A broken log destination cannot replace the primary either.
+         raise

@@ -1,0 +1,59 @@
+{
+  "schema": "uar08-combined-source-proof-v1",
+  "status": "FROZEN_SOURCE_ONLY_NOT_READY",
+  "base_handoff_sha256": "1c4a8b25e371dada1fbe7aa75878be7194bea2d08941bc5ab6df222b4c41f0ae",
+  "base14pins_unchanged": true,
+  "driver_only_config_function_AST_changed": true,
+  "all_other_driver_functions_AST_exact": true,
+  "entry_contracts_closer_byte_exact_base": true,
+  "structural_parser_shallowtemp_sticky_uncertainty_resource_clock_PowerGuard_canonical_lock_unchanged": true,
+  "caps": [
+    1200,
+    900,
+    840,
+    180,
+    60,
+    1140
+  ],
+  "actual_postintegration_registry_AST": [
+    59,
+    634
+  ],
+  "actual_flat_mapping_members": 73,
+  "seven_mapped_source_method_counts": [
+    14,
+    14,
+    17,
+    15,
+    16,
+    12,
+    18
+  ],
+  "seven_mapped_selected_counts": [
+    14,
+    14,
+    16,
+    15,
+    16,
+    12,
+    17
+  ],
+  "mapped_repeated_total": 104,
+  "sole_exact_exclusions": [
+    "LossContractTests.test_default_OFF_all_six_modules_preserve_base_UAR_AST",
+    "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases"
+  ],
+  "HPO_final_source_handoff_sha256": "50112ae7469194afa167bb655b3b6caf4f2d1600af7cb41714f5dd82c9b5c995",
+  "HPO_final_source_review_sha256": "d7bdcb553893d8f864bbdc5028a12b8b7a58e302a247f6ae47406d0816d12b3b",
+  "superseded_HPO7091_not_current": true,
+  "actual_UQ2_clean_negative_root_sha256": "5c9bfc7f8f4f9c5d760e52963f89a4983172144698b7dd334d252a5dce18eabd",
+  "actual_UQ2_root_confirmation_sha256": "ec6ee6b4e4e0452d787f69a8735edc4ea56da8d782fe1fd62210fbd1a222997e",
+  "accepts_technical_false_ownership_only": true,
+  "legacy87_and_UQ1_false_evidence_not_new_grants": true,
+  "canonical_binding_sha256": "c0cfc9b54883f5dcc11f669dacaaf9b1677d651db7c7afbdab85afb71dc67641",
+  "private_READY_materialized": false,
+  "clock_assigned": false,
+  "compile_only": true,
+  "candidate_or_config_imports_tests_build_fixtures_fits_API_PID_scans_data_truth_reads": 0,
+  "canonical_STATE_Git_writes": 0
+}

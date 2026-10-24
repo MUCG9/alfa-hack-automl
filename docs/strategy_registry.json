@@ -2843,19 +2843,40 @@
   ],
   "library_source_revision": "108efd4",
   "current_UAR_source_snapshot": {
-    "source_revision": "47a69340367245531438755a3d39d4065e083ba7",
-    "canonical_Python_files": 169,
-    "registry_scripts": 57,
-    "registry_checks": 604,
-    "archive_members": 73,
-    "latest_full_gate": "UAR06_FAIL",
-    "source_leaf604_and_exact_leaf23_completed": true,
-    "current_composite_qualification": null,
-    "new_full_Qwen_after_integration": false,
-    "default_release_ready": false,
-    "next_gate": "UAR07_prospective600_reused604_73_23_fresh16_75",
-    "Linux_worker_paused_by_user": true,
-    "new_remote_jobs_allowed": false
+    "status": "CANONICAL_SOURCE_INTEGRATED_CURRENT_GATE_UNRUN",
+    "canonical_sha256": {
+      "src/automl/search/hpo.py": "009d581e2987d9c4295627cb44c28c1996df46751fb91d1f99e6f6c42732da2f",
+      "src/automl/search/runner.py": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+      "tests/test_uar_task_checkpoint_cadence.py": "7a31398a5a64ac9f80983f419e19d7e318ba4345603b31e396aa7bfe8102c286",
+      "tests/test_uar_hpo_fair_reserve.py": "8bfe59fa6bd0114c3867e1ef426f1f155cd83fbe3ba90709a332046b903d5643",
+      "tools/run_checks.py": "98607a6db9073b91b7e3e868d61db559b77d0081dd35d81e2fcf3c875a477011"
+    },
+    "prepared_source_registry": {
+      "scripts": 59,
+      "expected_checks": 634,
+      "canonical_python": 171
+    },
+    "expected_flat_members": 73,
+    "expected_exact_checks": 23,
+    "expected_mapped_checks": 104,
+    "actual_new_tests": 0,
+    "current_full_PASS": false,
+    "performance_gain": null,
+    "cadence_handoff_sha256": "a7261757add60b39366fbfcb245f88699ca5a8f86570b85e09bc7ecac61fed3e",
+    "HPO_R2_handoff_sha256": "50112ae7469194afa167bb655b3b6caf4f2d1600af7cb41714f5dd82c9b5c995",
+    "HPO_R2_peer_sha256": "d7bdcb553893d8f864bbdc5028a12b8b7a58e302a247f6ae47406d0816d12b3b",
+    "flat_scope_decision_sha256": "478f01bf7b56d59a45d9f9b85ccb758a55a6ac1e4ca621df7cd195250bb91193",
+    "gate": {
+      "source_handoff_sha256": "4fb7fe138ffde1875f6520e0d7198a3100dabbc5e7f76c702128957fa517b72d",
+      "status": "SOURCE_FROZEN_PEER_AND_PRIVATE_READY_PENDING",
+      "clock": null
+    },
+    "changes": [
+      "Clock checked every task callback; expensive resource samples on first, forced and bounded cadence callbacks.",
+      "Opt-in classification-only HPO fair time reservations; original anchor, recipes, limits and default-OFF behavior preserved.",
+      "Parent failure origin retained separately when late cleanup overwrites final timeout classification."
+    ],
+    "fair_policy_limits": "Soft reservations do not guarantee 8 successful trials; late cleanup is charged and technical uncertainty stops admission. Regression remains OFF."
   },
   "UAR04_closed_technical_failure": {
     "schema": 1,
@@ -3074,38 +3095,50 @@
     "submit": false
   },
   "UQ2_current_observation": {
-    "schema": "uq2-progress-v1",
-    "checked_unix": 1792826913.0340457,
-    "status": "running",
-    "actual_session": 3588,
-    "launch_tool": "45e8bb",
-    "original_start_unix": 1792826068.8239975,
-    "original_deadline_unix": 1792836868.8239975,
-    "authority_status": "validated_before_first_Qwen",
-    "slot_status": {
-      "Ar": "admitted",
-      "Br": "not_attempted",
-      "Ac": "not_attempted",
-      "Bc": "not_attempted"
-    },
-    "actual_terminal_exit": null,
+    "UQ2_status": "CLOSED_FAIL",
     "quality_metric": null,
-    "initial_assessment_valid_at_first_worker": true,
-    "sampled_supervisor_owned_tree_peak_mib": 820.6953125,
-    "whole_campaign_peak_mib": null,
-    "original_UQ1_failure_preserved": true,
+    "current_cleanup_confirmed_by_separate_negative_audit": true,
+    "negative_root_sha256": "5c9bfc7f8f4f9c5d760e52963f89a4983172144698b7dd334d252a5dce18eabd",
+    "fresh_confirmation_sha256": "ec6ee6b4e4e0452d787f69a8735edc4ea56da8d782fe1fd62210fbd1a222997e",
+    "all_original_failures_preserved": true,
+    "canonical_fix_integration": {
+      "status": "CANONICAL_SOURCE_INTEGRATED_CURRENT_GATE_UNRUN",
+      "canonical_sha256": {
+        "src/automl/search/hpo.py": "009d581e2987d9c4295627cb44c28c1996df46751fb91d1f99e6f6c42732da2f",
+        "src/automl/search/runner.py": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+        "tests/test_uar_task_checkpoint_cadence.py": "7a31398a5a64ac9f80983f419e19d7e318ba4345603b31e396aa7bfe8102c286",
+        "tests/test_uar_hpo_fair_reserve.py": "8bfe59fa6bd0114c3867e1ef426f1f155cd83fbe3ba90709a332046b903d5643",
+        "tools/run_checks.py": "98607a6db9073b91b7e3e868d61db559b77d0081dd35d81e2fcf3c875a477011"
+      },
+      "prepared_source_registry": {
+        "scripts": 59,
+        "expected_checks": 634,
+        "canonical_python": 171
+      },
+      "expected_flat_members": 73,
+      "expected_exact_checks": 23,
+      "expected_mapped_checks": 104,
+      "actual_new_tests": 0,
+      "current_full_PASS": false,
+      "performance_gain": null,
+      "cadence_handoff_sha256": "a7261757add60b39366fbfcb245f88699ca5a8f86570b85e09bc7ecac61fed3e",
+      "HPO_R2_handoff_sha256": "50112ae7469194afa167bb655b3b6caf4f2d1600af7cb41714f5dd82c9b5c995",
+      "HPO_R2_peer_sha256": "d7bdcb553893d8f864bbdc5028a12b8b7a58e302a247f6ae47406d0816d12b3b",
+      "flat_scope_decision_sha256": "478f01bf7b56d59a45d9f9b85ccb758a55a6ac1e4ca621df7cd195250bb91193",
+      "gate": {
+        "source_handoff_sha256": "4fb7fe138ffde1875f6520e0d7198a3100dabbc5e7f76c702128957fa517b72d",
+        "status": "SOURCE_FROZEN_PEER_AND_PRIVATE_READY_PENDING",
+        "clock": null
+      },
+      "changes": [
+        "Clock checked every task callback; expensive resource samples on first, forced and bounded cadence callbacks.",
+        "Opt-in classification-only HPO fair time reservations; original anchor, recipes, limits and default-OFF behavior preserved.",
+        "Parent failure origin retained separately when late cleanup overwrites final timeout classification."
+      ],
+      "fair_policy_limits": "Soft reservations do not guarantee 8 successful trials; late cleanup is charged and technical uncertainty stops admission. Regression remains OFF."
+    },
     "Linux_paused": true,
-    "source_publication": "f84b07698543da58776b9f11b21eb08b238b31fb",
-    "Qwen": {
-      "actual_gateway_records": 1,
-      "actual_HTTP_attempts": 1,
-      "usage_complete": true,
-      "input_tokens": 8253,
-      "output_tokens": 779,
-      "status": "intermediate_not_final_qualification",
-      "response_model": "qwen/qwen3.8-27b",
-      "reasoning_requested_not_attestation": true
-    }
+    "automatic_submit": false
   },
   "UQ2_Br_component_timeout": {
     "schema": "uq2-Br-terminal-component-v1",
@@ -3250,5 +3283,346 @@
     "promotion": false,
     "official_score": null,
     "submit": false
+  },
+  "UQ2_closed_results": {
+    "schema": "uq2-closed-failed-results-public-summary-v1",
+    "saved_unix": 1792835293.7108743,
+    "status": "CLOSED_FAIL",
+    "actual_exec": {
+      "session": 3588,
+      "exit_code": 1,
+      "tool": "d7f40a"
+    },
+    "campaign_sha256": "f5dcda611d626d1e35cea9d7d1b6388a8c778ad485c624e2fbd468db149cc57c",
+    "runtime_publication": "f84b07698543da58776b9f11b21eb08b238b31fb",
+    "original_clock": [
+      1792826068.8239975,
+      85073.953,
+      1792836868.8239975,
+      95873.953
+    ],
+    "elapsed_common_seconds": 7438.297000000006,
+    "first_failure": {
+      "code": "child_nonzero_exit",
+      "phase": "child_exit",
+      "unix": 1792827800.4858081,
+      "monotonic": 86805.625,
+      "exception_type": null,
+      "errno": null,
+      "winerror": null,
+      "child_kind": "regression-B"
+    },
+    "error_history": [
+      {
+        "code": "child_nonzero_exit",
+        "phase": "child_exit",
+        "unix": 1792827800.4858081,
+        "monotonic": 86805.625,
+        "exception_type": null,
+        "errno": null,
+        "winerror": null,
+        "child_kind": "regression-B"
+      },
+      {
+        "code": "child_nonzero_exit",
+        "phase": "child_exit",
+        "unix": 1792833492.9137006,
+        "monotonic": 92498.156,
+        "exception_type": null,
+        "errno": null,
+        "winerror": null,
+        "child_kind": "classification-B"
+      },
+      {
+        "code": "child_nonzero_exit",
+        "phase": "child_exit",
+        "unix": 1792833501.8822858,
+        "monotonic": 92507.125,
+        "exception_type": null,
+        "errno": null,
+        "winerror": null,
+        "child_kind": "pair-audit"
+      },
+      {
+        "code": "independent_auditor_process_failed",
+        "phase": "pair_procedure",
+        "unix": 1792833503.9571004,
+        "monotonic": 92509.203,
+        "exception_type": "TechnicalFailure",
+        "errno": null,
+        "winerror": null
+      }
+    ],
+    "slots": [
+      {
+        "slot": "Ar",
+        "task_kind": "regression",
+        "actual_exit": 0,
+        "status": "ok",
+        "seconds": 265.75,
+        "cleanup_confirmed": true,
+        "supervisor_sha256": "9d0dcc94957df4057bab8d214c09e10dbbefaadeff49af6fe265e5da7539a4b6",
+        "coreseal_sha256": "1706eea0c4e5b3665a92c83fa5773fa3c4428700a406f7b497e900996deb49f3",
+        "observed_worker_roots": 21,
+        "sampled_supervisor_owned_peak_mib": 820.6953125,
+        "budget_scalars": [
+          {
+            "schema_version": "1.0",
+            "status": "completed",
+            "wall_limit_seconds": 810,
+            "elapsed_seconds": 259.234,
+            "remaining_seconds": 550.766,
+            "gateway_call_limit": 4,
+            "gateway_calls_started": 2,
+            "http_attempts_reported": 2,
+            "prompt_tokens_reported": 18974,
+            "completion_tokens_reported": 1832,
+            "usage_complete": true,
+            "exception_type": null
+          }
+        ],
+        "HPO_report_present": true,
+        "HPO_reported_counts": {
+          "status": "ok",
+          "seconds": 41.25,
+          "maximum_trials": 8,
+          "planned_trials": 8,
+          "attempted_trials": 8,
+          "completed_trials": 8,
+          "failed_trials": 0,
+          "duplicate_trials": 0,
+          "unattempted_trials": 0,
+          "sampler_startup_trials": 3,
+          "phase_counts": {
+            "anchor": {
+              "attempted": 1,
+              "completed": 1,
+              "failed": 0
+            },
+            "startup": {
+              "attempted": 2,
+              "completed": 2,
+              "failed": 0
+            },
+            "guided": {
+              "attempted": 5,
+              "completed": 5,
+              "failed": 0
+            },
+            "random": {
+              "attempted": 0,
+              "completed": 0,
+              "failed": 0
+            }
+          },
+          "guided_attempts": 5,
+          "guided_successful_trials": 5
+        },
+        "HPO_entry_validity_independently_scored": false,
+        "recursive_learner_fit_count": null,
+        "quality_metric": null
+      },
+      {
+        "slot": "Br",
+        "task_kind": "regression",
+        "actual_exit": 1,
+        "status": "child_failed",
+        "seconds": 816.8439999999973,
+        "cleanup_confirmed": true,
+        "supervisor_sha256": "ebf7d05e363512bd5c1db0594ec23b3d5d286d0736569d7bd817ceee060cedc6",
+        "coreseal_sha256": "32a4d1f59e3630eb9717579e7961c60a7f7949aa5c8a7903baab90d05be891f4",
+        "observed_worker_roots": 0,
+        "sampled_supervisor_owned_peak_mib": 276.46484375,
+        "budget_scalars": [
+          {
+            "schema_version": "1.0",
+            "status": "failed",
+            "wall_limit_seconds": 810,
+            "elapsed_seconds": 810.0,
+            "remaining_seconds": 0.0,
+            "gateway_call_limit": 4,
+            "gateway_calls_started": 0,
+            "http_attempts_reported": 0,
+            "prompt_tokens_reported": 0,
+            "completion_tokens_reported": 0,
+            "usage_complete": true,
+            "exception_type": "TimeoutError"
+          }
+        ],
+        "HPO_report_present": false,
+        "HPO_reported_counts": null,
+        "HPO_entry_validity_independently_scored": false,
+        "recursive_learner_fit_count": null,
+        "quality_metric": null
+      },
+      {
+        "slot": "Ac",
+        "task_kind": "classification",
+        "actual_exit": 0,
+        "status": "ok",
+        "seconds": 2861.7189999999973,
+        "cleanup_confirmed": true,
+        "supervisor_sha256": "05dbed659b8642a855219d686c7673256104fba504447a46c6fa1e44a4257a73",
+        "coreseal_sha256": "5b263537fa93436a303c7f28630845caac23962a1aa16da59365c457f9581162",
+        "observed_worker_roots": 19,
+        "sampled_supervisor_owned_peak_mib": 1411.38671875,
+        "budget_scalars": [
+          {
+            "schema_version": "1.0",
+            "status": "completed",
+            "wall_limit_seconds": 3510,
+            "elapsed_seconds": 2854.453,
+            "remaining_seconds": 655.547,
+            "gateway_call_limit": 4,
+            "gateway_calls_started": 2,
+            "http_attempts_reported": 2,
+            "prompt_tokens_reported": 16428,
+            "completion_tokens_reported": 1630,
+            "usage_complete": true,
+            "exception_type": null
+          }
+        ],
+        "HPO_report_present": true,
+        "HPO_reported_counts": {
+          "status": "ok",
+          "seconds": 900.187,
+          "maximum_trials": 8,
+          "planned_trials": 8,
+          "attempted_trials": 6,
+          "completed_trials": 5,
+          "failed_trials": 1,
+          "duplicate_trials": 0,
+          "unattempted_trials": 2,
+          "sampler_startup_trials": 3,
+          "phase_counts": {
+            "anchor": {
+              "attempted": 1,
+              "completed": 1,
+              "failed": 0
+            },
+            "startup": {
+              "attempted": 2,
+              "completed": 2,
+              "failed": 0
+            },
+            "guided": {
+              "attempted": 3,
+              "completed": 2,
+              "failed": 1
+            },
+            "random": {
+              "attempted": 0,
+              "completed": 0,
+              "failed": 0
+            }
+          },
+          "guided_attempts": 3,
+          "guided_successful_trials": 2
+        },
+        "HPO_entry_validity_independently_scored": false,
+        "recursive_learner_fit_count": null,
+        "quality_metric": null
+      },
+      {
+        "slot": "Bc",
+        "task_kind": "classification",
+        "actual_exit": 1,
+        "status": "child_failed",
+        "seconds": 2819.2810000000027,
+        "cleanup_confirmed": true,
+        "supervisor_sha256": "635895ef53d397c864607e0a1c6af8582275b8125ce4e54c33d8ae9707a294d8",
+        "coreseal_sha256": "544a5b11f4f658b3a07c57f8eea15ad11a42e2d26d03d69c43eeb5377530d58b",
+        "observed_worker_roots": 0,
+        "sampled_supervisor_owned_peak_mib": 338.28515625,
+        "budget_scalars": [
+          {
+            "schema_version": "1.0",
+            "status": "failed",
+            "wall_limit_seconds": 3510,
+            "elapsed_seconds": 2811.407,
+            "remaining_seconds": 698.593,
+            "gateway_call_limit": 4,
+            "gateway_calls_started": 0,
+            "http_attempts_reported": 0,
+            "prompt_tokens_reported": 0,
+            "completion_tokens_reported": 0,
+            "usage_complete": true,
+            "exception_type": "TimeoutError"
+          }
+        ],
+        "HPO_report_present": false,
+        "HPO_reported_counts": null,
+        "HPO_entry_validity_independently_scored": false,
+        "recursive_learner_fit_count": null,
+        "quality_metric": null
+      }
+    ],
+    "Qwen_usage_scalar_replay": {
+      "gateway_calls_started": 4,
+      "http_attempts_reported": 4,
+      "prompt_tokens_reported": 35402,
+      "completion_tokens_reported": 3462,
+      "ledger_count": 4,
+      "usage_complete_reported_by_all_ledgers": true,
+      "event_count": 4,
+      "known_HTTP_event_sum": 4,
+      "scope": "Independent scalar replay of four distinct local RunBudget receipts; client/provider usage remains reported, not a billing/provider attestation. Missing fields are never zero-imputed."
+    },
+    "Br_failure": "IO02 preparation reached original 810-second task-contract deadline before model search.",
+    "Ac_HPO": {
+      "planned": 8,
+      "actual_entries": 6,
+      "reported_valid": 5,
+      "failed_timeout": 1,
+      "unattempted": 2
+    },
+    "Bc_failure": "Task-contract admitted after lengthy preparation, then no complete minimum retention worker slice remained after reserved phases; not a direct solver-deadline timeout.",
+    "optional_successful_pair_audit": "NOT_EXECUTED_BOTH_PAIRS_INELIGIBLE_UNCHANGED_PREREGISTRATION",
+    "frozen_original_closer": {
+      "actual_exit": 1,
+      "actual_tool": "80def1",
+      "root_created": false,
+      "do_not_rerun": true
+    },
+    "separate_negative_audit": {
+      "root_sha256": "5c9bfc7f8f4f9c5d760e52963f89a4983172144698b7dd334d252a5dce18eabd",
+      "confirmation_sha256": "ec6ee6b4e4e0452d787f69a8735edc4ea56da8d782fe1fd62210fbd1a222997e",
+      "helper_sha256": "45639bdbf9433588ffdda8145693d585b040a715b761215b1de5823ceb3b95aa",
+      "actual_exec": {
+        "session": null,
+        "exit_code": 0,
+        "tool": "1d6371"
+      },
+      "fresh_tool": "b5de78",
+      "known_identity_count": 6300,
+      "live": 0,
+      "uncertain": 0,
+      "cleanup_confirmed": true,
+      "source_unchanged": true,
+      "source_and_core_refs_rehashed": 1889,
+      "inside_original_clock": true,
+      "technical_procedure_passed": false,
+      "historical_false_flags_preserved": true,
+      "scope": "Current clean negative closure permits later ownership admission; it does not qualify failed ML or change historical failures."
+    },
+    "technical_procedure_passed": false,
+    "quality_metric": null,
+    "official_score": null,
+    "promotion": false,
+    "submit": false,
+    "whole_campaign_peak_rss_mib": null,
+    "whole_campaign_CPU": null,
+    "actual_recursive_learner_fits": null,
+    "prior_retained_references": {
+      "research_regression_RMSE": 34.155023394837,
+      "historical_classification_MacroF1": 0.6593178433614652
+    },
+    "limits": [
+      "Usage and HPO objective-valid flags are reported scalar ledger evidence, not independently scored quality.",
+      "No pristine truth or prediction values were read for this summary.",
+      "Sampled arm peaks are not a whole campaign peak.",
+      "Reused public confirmation data are not a blind or official score."
+    ],
+    "Linux_paused": true
   }
 }

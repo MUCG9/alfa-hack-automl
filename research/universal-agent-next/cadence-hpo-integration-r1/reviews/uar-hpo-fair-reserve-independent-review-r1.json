@@ -1,0 +1,118 @@
+{
+  "schema": "uar-hpo-fair-reserve-independent-source-review-v1",
+  "status": "TWO_CONCRETE_PRE_EXECUTION_BLOCKERS",
+  "source_handoff": {
+    "path": "work/uar-hpo-fair-reserve-next-dev/source-handoff.json",
+    "sha256": "7091a9d9866f71ae6d9918c596affdf25e169e56dae7baf509a1b9caab1e18ce"
+  },
+  "packet_pins_checked": {
+    "candidate/src/automl/search/hpo.py": "37c0ef77b65d41c5480adeb660baf18fcb71bb2e38928e7ab457f77a3812082f",
+    "candidate/src/automl/search/runner.py": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+    "candidate/tests/test_uar_hpo_fair_reserve.py": "8b892994ff640a0bc221fbb1fee58e3466eae2e4d4866bbb6048446d7493f0d9",
+    "flat-method-whitelist.json": "91866da6aece502950f317cf15dd404a447c012a20f5826ad822cab0b9363acf",
+    "hpo.py.patch": "2cd2bdadcd33a95432979d35d965e1feeb03b978b8c35cd3a52e305262c0b8ea",
+    "protocol.json": "80ed192089a74bbe97b786beaae58773647902d0371f28820250e11a7d98324f",
+    "README.txt": "befe46404a28ba5cd302acae1a742cf56c8b4987dafd1434242ab83e766d090e",
+    "root-scope-decision-r1.json": "fdc74d0a4fa98cd2816b18ce0f557a18cc52c6a1872de41f19ad856a3e022503",
+    "runner.py.patch": "f2b4b01f5200696b881b9b9f7b778051f754ec2207c7c70a1835cc9e12598688",
+    "scope-blocker-r1.json": "d0dd9deb55467f2be7641497a063d8a5971a027367b2db445c8fd21f6f667374",
+    "source-evidence/pre-provenance-r1/hpo.py": "8d0cb2e699ff0e85285939de65b07689e12ebfd7335f863b86b0ca0cb5a94b30",
+    "source-evidence/pre-provenance-r1/preservation.json": "a3eb081cfa68f18677e8c13590ce9159c2bd3b9c230de3b95b58e03660e0c220",
+    "source-evidence/pre-provenance-r1/runner.py": "dae30125cd7cb0be9f6affbf73408d115c40e6c432f63147f9e6660ea13583ce",
+    "source-evidence/pre-provenance-r1/scope-blocker-r1.json": "d0dd9deb55467f2be7641497a063d8a5971a027367b2db445c8fd21f6f667374",
+    "source-proof.json": "305437c46e9765631d22f5caf2a6d10709935be43a7fd4b474650ea0184c6a27"
+  },
+  "runtime_source_sha256": {
+    "candidate/src/automl/search/hpo.py": "37c0ef77b65d41c5480adeb660baf18fcb71bb2e38928e7ab457f77a3812082f",
+    "candidate/src/automl/search/runner.py": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df"
+  },
+  "static_proof": {
+    "independently_reproduced_OFF_whole_module_AST_exact": {
+      "hpo.py": "b03466060e2eed6886b89b8c3706afbb51eac9364f855b955c3b90f47bddbe96",
+      "runner.py": "877b5cd74b661d921cb1a12bca0b0b554caf943ee1c2e9b80adcb5e467097f7c"
+    },
+    "proof_method": "Independent stdlib ast.NodeTransformer applied only named new dispatch/definitions/CLI/provenance guards, then exact whole AST comparison to pinned canonicalHPO6aac and reviewed cadence425b sources; candidate projector was not called/imported.",
+    "source_methods": 18,
+    "flat_selected_methods": 17,
+    "method_AST_sha256": {
+      "FairReserveTests.test_numerical_REG300_and_missing_strict_reject_before_discovery_or_API": "e394a81e987c7da7edc2b3630cffc6d89ab41ed141e60d62441e7379c55eb5d1",
+      "FairReserveTests.test_exact_anchor_feasibility_and_soft_equal_share_arithmetic": "565ebc72fb38fd2f703d85d73411bfae470d6c8eba870dffd58e24efc12c7367",
+      "FairReserveTests.test_original_clock_invalid_rollback_and_deadline_remain_sticky": "db2842c47fe70a0e55dd575a87ee10a3a06a7036516279062a307391bb1b4f7b",
+      "FairReserveTests.test_late_anchor_setup_stops_without_callback_or_fake_trial": "6431849e7aefcadc7a344820e16453ffbf253923077e8a556a8f700f3a670521",
+      "FairReserveTests.test_share_recomputed_after_persist_does_not_launch_stale_proposal": "dd29eba28f186f428ce5cf63b33cad29a09d0b994f67dbccc15d2e5ea0352a01",
+      "FairReserveTests.test_eight_actual_callbacks_preserve_anchor_template_space_and_truthful_phases": "df5e265a5c72e6d9e3e78bc0b08d3ce08c1e6949244c567e2229291f15774396",
+      "FairReserveTests.test_ordinary_confirmed_timeout_is_null_consumes_slot_and_continues": "3a771f43d947402b6e2c9d04df893fd7ac02014fecd9520b6514957f088ecd6b",
+      "FairReserveTests.test_actual_cleanup_overrun_stops_later_slots_without_reset_or_retry": "479c7c35043918d566a1fd2c39beb6b8de10e07d12125cad210d3733e4289379",
+      "FairReserveTests.test_resource_kill_late_cleanup_stays_timeout_but_parent_origin_forces_STOP": "78dac323a1a93eec6ad130e4a51d01d57987220193e1b2d8ba7e735d73e6e694",
+      "FairReserveTests.test_ordinary_late_clean_result_has_complete_nonresource_origin": "d89c4d114e1b6b2927acf76709f71c0a424d0ecebb70eba53463a4959491d9a8",
+      "FairReserveTests.test_original_cleanup_exception_propagates_and_trusted_scope_restores": "501e9339f15a8ac907031d5b6b1a6bfe5a61ce8b750e05777b23eb61f0e5c1bc",
+      "FairReserveTests.test_missing_or_incomplete_parent_receipt_is_technical_STOP": "f2c4b7b15b077f1f23b1aa2917918890ec5b83d1338ef15ec239c2905bbe7940",
+      "FairReserveTests.test_resource_or_unknown_technical_origin_STOPs_without_extra_draw": "b1ed407b979ec0a3fd11d39a808240d4896dc3b02cc1d3dba4ebfb26e3d049b0",
+      "FairReserveTests.test_duplicate_proposal_is_not_callback_or_valid_or_padding": "f5c956f4d5a27a097baf944d4e1df24c321bf8c63afc20c47aa88c10518db190",
+      "FairReserveTests.test_final_save_crossing_original_deadline_cannot_return_ok": "047962a32fde7991b983e80e0713ccfc3cc6ed1b2fc192fc5858d40b7635c00f",
+      "FairReserveTests.test_trusted_flag_cannot_be_enabled_by_recipe_context_and_scope_is_local": "4d9607e3c857f2c54a1d04b2a4ed709970235c548d6b232be7890edb1f63dbf3",
+      "FairReserveTests.test_OFF_strict_worker_late_classification_does_not_add_provenance": "07f4d97aebfd1f0696910d7127361e9d68a8f12f8fc33d8353447133e006a786",
+      "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases": "8eda1d7e132a84b0061e3ac2c50827d68867a14ebbc40edcdbefd15df5899a1f"
+    },
+    "sole_flat_exclusion": "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases",
+    "selected_methods_no_source_sidecars_or_modular_mock_strings": true,
+    "legacy_partition_search_space_anchor_counter_definitions_unchanged": true,
+    "reviewed_cadence_base_kept_separate_from_current_canonical_reference": true
+  },
+  "findings": [
+    {
+      "id": "HFR01",
+      "severity": "P1",
+      "path": "candidate/src/automl/search/hpo.py",
+      "line": 466,
+      "finding": "Final except BaseException calls finish(fair_reserve_stopped), whose diagnostic atomic_json may raise PermissionError/OSError and replace the active primary HPO/resource/clock/observation exception before bare raise.",
+      "source_chain": [
+        "final except466-470",
+        "finish344-349 -> atomic_json",
+        "inner callback419-429 preserves sampler secondary, outer diagnostic save does not"
+      ],
+      "minimum_fix": "Nest diagnostic finish in try/except, preserve/re-raise original exception object; retain sanitized secondary type as available in-memory/exception evidence. Do not introduce a second mandatory persistence that can mask primary, a retry, deadline reset or success fallback.",
+      "prepared_test_delta": "Extend existing cleanup-exception/final-save method with diagnostic-savePermissionError, assert original identity and secondarytype; no extra method needed."
+    },
+    {
+      "id": "HFR02",
+      "severity": "P2",
+      "path": "candidate/src/automl/search/hpo.py",
+      "line": 353,
+      "finding": "Subtraction-based maximum-phase test can reject an exactly assigned original900 deadline at a floating-point binade boundary, repeating the known assignment-versus-subtraction failure pattern.",
+      "arithmetic_counterexample_no_candidate_execution": {
+        "observed": 65535.00000000002,
+        "observed_hex": "0x1.fffe000000003p+15",
+        "assigned_deadline": 66435.00000000003,
+        "subtracted_remaining": 900.0000000000073,
+        "false_exceeds900": true,
+        "assignment_compatible_exceeds900": false
+      },
+      "minimum_fix": "Use assignment-compatible deadline > observed +900 check. Keep exact original deadline, no epsilon/new clock, unchanged actual expiration checks.",
+      "prepared_test_delta": "Add the assigned-deadline boundary to an existing clock/arithmetic method, no new method required."
+    }
+  ],
+  "other_reviewed_scope": [
+    "Trusted CLI OFF; CLASS900/TPE8/strict/anchor600 numerical preflight rejects incompatibleREG300 before loader; later spec-kind check is honestly not claimed before every legacy role API.",
+    "Anchor/template/space/inheritance/nested rows/stopper/weights/family preserved; derived soft shares and sampler trajectory are the declared prospective procedure factor.",
+    "Original deadline retained; full680 minimum before anchor; k includes current; fresh q after ask/normalization/signature/persist; no stale budget, retry/padding/borrowed refit reserve.",
+    "Parent-origin ContextVar only around ON callback and reset finally. Additive receipt after confirmed cleanup preserves killed/primary/prior status before finaltimeout overwrite; OFF projection exact.",
+    "Missing/incomplete/resource/unknown parent origin=>STOP; ordinary confirmed timeout consumes failed/null slot; callbacks separate from unknown Popen/recursive fit totals.",
+    "Duplicate proposal is a counted failed proposal, not worker/valid objective. Actual8 and extra8VALID predicates remain distinct and unchanged.",
+    "18 prepared methods are meaningful synthetic source contracts.17 flat methods have object-based patching/import mapping and no source reads except the sole authorized modular-AST exclusion; actual flat gate remains unrun."
+  ],
+  "current_UQ2_and_optional8VALID_immutable": true,
+  "integration_or_runtime_ready": false,
+  "next_action": "Preserve7091 exactsnapshot; only root-authorized narrow source repairs and exact peer rebind before integration/lease.",
+  "execution": {
+    "candidate_imports": 0,
+    "tests": 0,
+    "model_fits": 0,
+    "API_calls": 0,
+    "metric_value_reads": 0,
+    "data_prediction_truth_reads": 0,
+    "PID_scans": 0,
+    "new_clock_assigned": false,
+    "canonical_STATE_Git_writes": 0
+  }
+}

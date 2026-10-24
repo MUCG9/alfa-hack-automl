@@ -1,0 +1,28 @@
+{
+  "schema": "root-prospective-flat-scope-decision-v1",
+  "approved_before_any_fixture_outcome": true,
+  "source_suite": "tests/test_uar_hpo_fair_reserve.py",
+  "source_all_methods_required": true,
+  "source_prepared_methods": 18,
+  "flat_prepared_methods": 17,
+  "sole_excluded_method": "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases",
+  "sole_excluded_method_AST_sha256": "8eda1d7e132a84b0061e3ac2c50827d68867a14ebbc40edcdbefd15df5899a1f",
+  "reason": "Modular source AST proof reads ROOT/src/automl/search; full source gate runs it. Flat portability gate runs all17 other assertions unchanged via import-only adaptation. Archive/source byte equivalence is independently checked. No modular source sidecars or hidden exclusions.",
+  "independent_base_witnesses": {
+    "hpo.py": {
+      "source_sha256": "6aac0dd13ae81e4b38295987ffe23235908a1c399d93335eb156bee070c8309d",
+      "AST_sha256": "b03466060e2eed6886b89b8c3706afbb51eac9364f855b955c3b90f47bddbe96"
+    },
+    "runner.py": {
+      "source_sha256": "425bf395417afbc359fc7400f8dd038060d640642733e4deaad90830a0c481eb",
+      "AST_sha256": "877b5cd74b661d921cb1a12bca0b0b554caf943ee1c2e9b80adcb5e467097f7c"
+    }
+  },
+  "root_source_inspection_tool": "36dc29",
+  "root_independent_base_AST_tool": "46c3a8",
+  "final_test_sha256": null,
+  "execution": false,
+  "new_clock": null,
+  "old_LOSS_exception_unchanged": true,
+  "checked_unix": 1792833332.8974483
+}

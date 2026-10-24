@@ -1,0 +1,17 @@
+{
+  "schema": "task-contract-cadence-source-proof-v1",
+  "base_source": {
+    "path": "alfa-hack-automl/src/automl/search/runner.py",
+    "sha256": "6822a58ec6cf89e3344340edec7f79f218ca02cc19fafd236f15d099755135b2"
+  },
+  "candidate_source_sha256": "425bf395417afbc359fc7400f8dd038060d640642733e4deaad90830a0c481eb",
+  "added_class": "_TaskContractCheckpoint",
+  "changed_existing_definitions": [
+    "_strict_task_flow"
+  ],
+  "whole_module_AST_exact_after_only_removing_adapter_and_restoring_strict_flow": true,
+  "original_task_checkpoint_function_AST_exact": true,
+  "all_OTHER_definitions_and_defaultOFF_main_AST_exact": true,
+  "prepared_test_methods": 12,
+  "actual_tests_imports_fits_API_scans": 0
+}

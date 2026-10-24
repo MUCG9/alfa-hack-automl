@@ -1,7 +1,7 @@
 # Dependency-driven next steps
 
 <!-- CURRENT_UAR_OBSERVATION_BEGIN -->
-Current observation: UQ2 remains active under its original10800-second clock; Bc is running. Ar completed8 HPO attempts. Br failed before model search at its810-second IO02 deadline. Ac solver exited0 with cleanup confirmed, but HPO attempted6 of8 trials:5 successful,1 timeout,2 unattempted; no complete paired quality is qualified. The predeclared8-valid-trial optional audit is therefore withheld for both tasks, and its unfinished caller is preserved NOT_READY without execution. All original failures, clocks and criteria remain unchanged. Prior verified research RMSE34.155023394837 and historical classification MacroF1.6593178433614652 remain retained. Linux stays paused.
+Current observation: UQ2 is closed FAIL after the strict preparation failures and incomplete classification HPO. A separate negative audit confirmed current cleanup and source integrity, with 6,300 known local identities absent; it does not qualify ML quality or alter the failed run or original failed closer. New cadence and classification HPO reservation fixes are integrated as reviewed source. The new full technical gate is pending: 59 scripts/634 expected source checks, 73 flat members, 23 exact and 104 mapped checks are derived expectations, not PASS results. No new quality score or promotion is available. Prior research RMSE 34.155023394837 and historical classification MacroF1 0.6593178433614652 remain retained. Linux stays paused.
 <!-- CURRENT_UAR_OBSERVATION_END -->
 
 1. Preserve LA2's original failure and separately verified saved-artifact result:

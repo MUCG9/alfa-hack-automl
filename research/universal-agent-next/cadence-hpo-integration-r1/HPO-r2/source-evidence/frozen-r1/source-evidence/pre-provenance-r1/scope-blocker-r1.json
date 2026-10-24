@@ -1,0 +1,38 @@
+{
+  "schema": "hpo-fair-reserve-pre-freeze-scope-finding-v1",
+  "status": "WIP_NOT_FROZEN_NO_EXECUTION_SCOPE_DECISION_PENDING",
+  "bases": {
+    "canonical_hpo": "6aac0dd13ae81e4b38295987ffe23235908a1c399d93335eb156bee070c8309d",
+    "canonical_runner": "6822a58ec6cf89e3344340edec7f79f218ca02cc19fafd236f15d099755135b2",
+    "reviewed_cadence_runner": "425bf395417afbc359fc7400f8dd038060d640642733e4deaad90830a0c481eb"
+  },
+  "finding": {
+    "id": "HFR-P01",
+    "source": "reviewed cadence runner._run_worker_strict",
+    "lines": [
+      221,
+      250
+    ],
+    "fact": "A resource-limit status is initially placed in result. After cleanup, finished>=deadline replaces the whole result with timeout. Resource kill plus late cleanup is then indistinguishable from ordinary timeout to an HPO-only consumer. Raised ProcessObservationError/ProcessCleanupError paths already propagate safely.",
+    "required_invariant": "Resource/observation/cleanup uncertainty must STOP; only ordinary confirmed timeout may consume one slot and continue.",
+    "scope_limit": "Do not alter worker behavior/caps or existing strict helper without root approval.",
+    "options": [
+      "Conservatively STOP on every current timeout because cause is not explicitly exported; loses intended ordinary-timeout continuation.",
+      "Narrow trusted-mode-only additive failure-origin provenance before late-timeout replacement; retains actual prior status/exception and existing timeout classification. HPO uses that field to STOP on masked resource failures. No clock/cap/model behavior change."
+    ]
+  },
+  "isolated_WIP_files_not_integration_authority": {
+    "candidate/src/automl/search/hpo.py": "8d0cb2e699ff0e85285939de65b07689e12ebfd7335f863b86b0ca0cb5a94b30",
+    "candidate/src/automl/search/runner.py": "dae30125cd7cb0be9f6affbf73408d115c40e6c432f63147f9e6660ea13583ce"
+  },
+  "not_final_handoff": true,
+  "tests_not_yet_authored_at_pause": true,
+  "candidate_imports": 0,
+  "tests": 0,
+  "fits": 0,
+  "API": 0,
+  "data_reads": 0,
+  "PID_scans": 0,
+  "new_clock": false,
+  "canonical_STATE_Git_changes": 0
+}

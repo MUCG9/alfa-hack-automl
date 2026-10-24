@@ -1,0 +1,53 @@
+{
+  "schema": "hpo-fair-reserve-explicit-flat-whitelist-v1",
+  "test_relative_path": "tests/test_uar_hpo_fair_reserve.py",
+  "source_expected_methods": 18,
+  "flat_expected_methods": 17,
+  "all_methods": [
+    "FairReserveTests.test_numerical_REG300_and_missing_strict_reject_before_discovery_or_API",
+    "FairReserveTests.test_exact_anchor_feasibility_and_soft_equal_share_arithmetic",
+    "FairReserveTests.test_original_clock_invalid_rollback_and_deadline_remain_sticky",
+    "FairReserveTests.test_late_anchor_setup_stops_without_callback_or_fake_trial",
+    "FairReserveTests.test_share_recomputed_after_persist_does_not_launch_stale_proposal",
+    "FairReserveTests.test_eight_actual_callbacks_preserve_anchor_template_space_and_truthful_phases",
+    "FairReserveTests.test_ordinary_confirmed_timeout_is_null_consumes_slot_and_continues",
+    "FairReserveTests.test_actual_cleanup_overrun_stops_later_slots_without_reset_or_retry",
+    "FairReserveTests.test_resource_kill_late_cleanup_stays_timeout_but_parent_origin_forces_STOP",
+    "FairReserveTests.test_ordinary_late_clean_result_has_complete_nonresource_origin",
+    "FairReserveTests.test_original_cleanup_exception_propagates_and_trusted_scope_restores",
+    "FairReserveTests.test_missing_or_incomplete_parent_receipt_is_technical_STOP",
+    "FairReserveTests.test_resource_or_unknown_technical_origin_STOPs_without_extra_draw",
+    "FairReserveTests.test_duplicate_proposal_is_not_callback_or_valid_or_padding",
+    "FairReserveTests.test_final_save_crossing_original_deadline_cannot_return_ok",
+    "FairReserveTests.test_trusted_flag_cannot_be_enabled_by_recipe_context_and_scope_is_local",
+    "FairReserveTests.test_OFF_strict_worker_late_classification_does_not_add_provenance",
+    "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases"
+  ],
+  "selected_methods": [
+    "FairReserveTests.test_numerical_REG300_and_missing_strict_reject_before_discovery_or_API",
+    "FairReserveTests.test_exact_anchor_feasibility_and_soft_equal_share_arithmetic",
+    "FairReserveTests.test_original_clock_invalid_rollback_and_deadline_remain_sticky",
+    "FairReserveTests.test_late_anchor_setup_stops_without_callback_or_fake_trial",
+    "FairReserveTests.test_share_recomputed_after_persist_does_not_launch_stale_proposal",
+    "FairReserveTests.test_eight_actual_callbacks_preserve_anchor_template_space_and_truthful_phases",
+    "FairReserveTests.test_ordinary_confirmed_timeout_is_null_consumes_slot_and_continues",
+    "FairReserveTests.test_actual_cleanup_overrun_stops_later_slots_without_reset_or_retry",
+    "FairReserveTests.test_resource_kill_late_cleanup_stays_timeout_but_parent_origin_forces_STOP",
+    "FairReserveTests.test_ordinary_late_clean_result_has_complete_nonresource_origin",
+    "FairReserveTests.test_original_cleanup_exception_propagates_and_trusted_scope_restores",
+    "FairReserveTests.test_missing_or_incomplete_parent_receipt_is_technical_STOP",
+    "FairReserveTests.test_resource_or_unknown_technical_origin_STOPs_without_extra_draw",
+    "FairReserveTests.test_duplicate_proposal_is_not_callback_or_valid_or_padding",
+    "FairReserveTests.test_final_save_crossing_original_deadline_cannot_return_ok",
+    "FairReserveTests.test_trusted_flag_cannot_be_enabled_by_recipe_context_and_scope_is_local",
+    "FairReserveTests.test_OFF_strict_worker_late_classification_does_not_add_provenance"
+  ],
+  "excluded_methods": [
+    "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases"
+  ],
+  "exclusion_reason": "only_modular_whole_source_AST_proof_runs_full_source; independent baseline imports preserved; no source-sidecar provided to flat runtime",
+  "root_authorized_before_execution": true,
+  "other_exclusions": [],
+  "actual_source_tests": 0,
+  "actual_flat_tests": 0
+}

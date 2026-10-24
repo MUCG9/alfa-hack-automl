@@ -142,3 +142,9 @@ research/universal-agent-next/uar06-r1/** -text
 research/universal-agent-next/uar07-r1/** -text
 research/universal-agent-next/uar07-audit-repair-r1/** -text
 research/universal-agent-next/qwen-pair-composite-r3/** -text
+
+# Preserve reviewed cadence/HPO packet and canonical frozen source bytes.
+/research/universal-agent-next/cadence-hpo-integration-r1/** -text
+/src/automl/search/hpo.py -text
+/src/automl/search/runner.py -text
+/tests/test_uar_hpo_fair_reserve.py -text

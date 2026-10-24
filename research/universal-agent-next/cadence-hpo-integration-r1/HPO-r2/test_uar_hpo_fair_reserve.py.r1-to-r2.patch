@@ -1,0 +1,84 @@
+--- frozen-R1/test_uar_hpo_fair_reserve.py
++++ R2/test_uar_hpo_fair_reserve.py
+@@ -155,10 +155,12 @@
+             wall_seconds=40., fit_iterations=[100,100], hpo_fair_reserve_provenance=origin())
+ 
+     def optimize(self, worker=None, **kwargs):
++        deadline=kwargs.pop('original_deadline',900.)
++        output=kwargs.pop('original_output',Path(self.directory.name)/'study')
+         options = dict(trials=8, fair_reserve=hpo.HPO_FAIR_RESERVE_MODE)
+         options.update(kwargs)
+         return hpo.optimize_recipe(self.spec, None, None, [0], self.recipe,
+-            Path(self.directory.name)/'study', worker or self.worker, 900., **options)
++            output, worker or self.worker, deadline, **options)
+ 
+     def test_numerical_REG300_and_missing_strict_reject_before_discovery_or_API(self):
+         for extra in [['--hpo-budget','300','--strict-runtime'], ['--hpo-budget','900']]:
+@@ -185,6 +187,27 @@
+         for allocation in [(float('nan'),0.,7),(900.,0.,True),(True,0.,7)]:
+             with self.subTest(allocation=allocation), self.assertRaises(hpo.HPOFairReserveStop):
+                 hpo._fair_share(*allocation)
++        # Include the requested decimal and a true false-rejection witness.
++        # Both preserve EXACT endpoint=start+900, without epsilon or reset.
++        for index,start in enumerate([65452.093,65535.00000000002]):
++            self.clock.now=start
++            self.study=Study()
++            self.calls.clear()
++            end=start+900.
++            if index==1:
++                self.assertGreater(end-start,900.)
++            _, report=self.optimize(original_deadline=end,
++                original_output=Path(self.directory.name)/('exact-assignment-'+str(index)))
++            self.assertEqual(report['fair_reserve']['original_deadline_monotonic'],end)
++            self.assertEqual(report['attempted_trials'],8)
++            self.assertEqual(self.calls[0]['timeout'],600.)
++            self.clock.now=start
++            calls_before=len(self.calls)
++            with self.assertRaisesRegex(hpo.HPOFairReserveStop,'original_phase_exceeds900'):
++                hpo.optimize_recipe(self.spec,None,None,[0],self.recipe,
++                    Path(self.directory.name)/('too-long-'+str(index)),self.worker,end+.0001,
++                    trials=8,fair_reserve=hpo.HPO_FAIR_RESERVE_MODE)
++            self.assertEqual(len(self.calls),calls_before)
+ 
+     def test_original_clock_invalid_rollback_and_deadline_remain_sticky(self):
+         for bad in [float('nan'), float('inf'), -1., 100.]:
+@@ -341,6 +364,39 @@
+         self.assertEqual(len(self.calls),1)
+         self.assertFalse(self.saved[-1]['trials'][0]['objective_valid'])
+         self.assertIsNone(self.saved[-1]['trials'][0]['value'])
++        # A secondary diagnostic IO failure cannot mask the primary uncertainty.
++        # Use a separate output tree; no retry/continuation of the stopped study.
++        self.clock.now=0.
++        before=len(self.calls)
++        save_failure=PermissionError('synthetic private path must never be exported')
++        def diagnostics_unavailable(report):
++            if report['status']=='fair_reserve_stopped':
++                raise save_failure
++        self.persist_hook=diagnostics_unavailable
++        with patch('builtins.print') as diagnostics:
++            try:
++                hpo.optimize_recipe(self.spec,None,None,[0],self.recipe,
++                    Path(self.directory.name)/'secondary-save',raised_callback,900.,
++                    trials=8,fair_reserve=hpo.HPO_FAIR_RESERVE_MODE)
++            except runner.ProcessObservationError as retained:
++                self.assertIs(retained,error)
++                traceback=retained.__traceback__
++                names=[]
++                while traceback is not None:
++                    names.append(traceback.tb_frame.f_code.co_name)
++                    traceback=traceback.tb_next
++                self.assertIn('raised_callback',names)
++            else:
++                self.fail('primary observation uncertainty was not re-raised')
++        payload=json.loads(diagnostics.call_args.args[0])
++        self.assertEqual(payload,{'hpo_fair_reserve_failure_types':{
++            'primary_exception_type':'ProcessObservationError',
++            'diagnostic_save_exception_type':'PermissionError'}})
++        self.assertEqual(len(self.calls),before+1)
++        self.assertEqual(error.hpo_fair_reserve_failure_types,{
++            'primary_exception_type':'ProcessObservationError',
++            'diagnostic_save_exception_type':'PermissionError'})
++        self.assertNotIn('synthetic private path',str(error.hpo_fair_reserve_failure_types))
+ 
+     def test_missing_or_incomplete_parent_receipt_is_technical_STOP(self):
+         for receipt in [None,{},dict(schema='hpo-fair-reserve-worker-origin-v1'),

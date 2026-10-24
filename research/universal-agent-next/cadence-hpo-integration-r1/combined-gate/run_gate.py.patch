@@ -1,0 +1,160 @@
+--- frozen-UAR08/run_gate.py
++++ combined-UAR08/run_gate.py
+@@ -1,4 +1,4 @@
+-"""New UAR08 technical gate; prior UAR05/UAR04 remain closed FAIL, never resumed."""
++"""Draft combined cadence/HPO UAR08 gate; final HPO whitelist/pins pending."""
+ from pathlib import Path
+ import argparse, hashlib, importlib.util, json, math, re, shutil, sys, tempfile, time
+ sys.dont_write_bytecode=True
+@@ -10,6 +10,14 @@
+  'awake':'9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b'}
+ BASE_SHA='c3e87a486e0b4bdd9a2189dd6151e6871d838923f04efde1f884cf0fda7d9ae3'
+ 
++# Exact source-derived target constants; NOT actual root integration or runtime qualification.
++FINAL_SOURCE_SCRIPTS=59
++FINAL_SOURCE_CHECKS=634
++FINAL_FLAT_MEMBERS=73
++HPO_TEST_PATH='tests/test_uar_hpo_fair_reserve.py'
++HPO_METHODS=['FairReserveTests.test_numerical_REG300_and_missing_strict_reject_before_discovery_or_API', 'FairReserveTests.test_exact_anchor_feasibility_and_soft_equal_share_arithmetic', 'FairReserveTests.test_original_clock_invalid_rollback_and_deadline_remain_sticky', 'FairReserveTests.test_late_anchor_setup_stops_without_callback_or_fake_trial', 'FairReserveTests.test_share_recomputed_after_persist_does_not_launch_stale_proposal', 'FairReserveTests.test_eight_actual_callbacks_preserve_anchor_template_space_and_truthful_phases', 'FairReserveTests.test_ordinary_confirmed_timeout_is_null_consumes_slot_and_continues', 'FairReserveTests.test_actual_cleanup_overrun_stops_later_slots_without_reset_or_retry', 'FairReserveTests.test_resource_kill_late_cleanup_stays_timeout_but_parent_origin_forces_STOP', 'FairReserveTests.test_ordinary_late_clean_result_has_complete_nonresource_origin', 'FairReserveTests.test_original_cleanup_exception_propagates_and_trusted_scope_restores', 'FairReserveTests.test_missing_or_incomplete_parent_receipt_is_technical_STOP', 'FairReserveTests.test_resource_or_unknown_technical_origin_STOPs_without_extra_draw', 'FairReserveTests.test_duplicate_proposal_is_not_callback_or_valid_or_padding', 'FairReserveTests.test_final_save_crossing_original_deadline_cannot_return_ok', 'FairReserveTests.test_trusted_flag_cannot_be_enabled_by_recipe_context_and_scope_is_local', 'FairReserveTests.test_OFF_strict_worker_late_classification_does_not_add_provenance', 'FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases']
++HPO_OFF_AST_METHOD='FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases'
++
+ def need(value,code):
+     if not value:raise RuntimeError(code)
+ 
+@@ -29,6 +37,12 @@
+     spec.loader.exec_module(module);return module
+ 
+ def config(path,expected,self_sha):
++    need(all(type(v) is int and v>0 for v in (FINAL_SOURCE_SCRIPTS,FINAL_SOURCE_CHECKS,FINAL_FLAT_MEMBERS))
++         and type(HPO_TEST_PATH) is str and re.fullmatch(r'tests/test_uar_[a-z0-9_]+\.py',HPO_TEST_PATH)
++         and type(HPO_METHODS) is list and 1<=len(HPO_METHODS)<=256
++         and len(HPO_METHODS)==len(set(HPO_METHODS)) and HPO_OFF_AST_METHOD in HPO_METHODS
++         and all(type(v) is str and re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*\.test_[A-Za-z0-9_]+',v) for v in HPO_METHODS),
++         'NOT_READY_exact_final_HPO_methods_and_combined_counts_required')
+     need(Path(path).is_absolute() and Path(path).stat().st_size<=2**20,'bounded_absolute_manifest_required')
+     need(digest(path)==expected,'private_manifest_changed');cfg=read(path)
+     need(type(cfg) is dict and cfg.get('schema')=='uar-full-private-manifest-v1'
+@@ -77,11 +91,12 @@
+                  'explicit_qualified_method_whitelist_required')
+         need(type(suite['expected_tests']) is int and 1<=suite['expected_tests']==len(suite['selected_methods'])<=256,
+              'exact_selected_test_count_required')
+-        expected_exclusion=['LossContractTests.test_default_OFF_all_six_modules_preserve_base_UAR_AST']
++        expected_exclusion=(['LossContractTests.test_default_OFF_all_six_modules_preserve_base_UAR_AST']
++                            if rel=='tests/test_uar_loss_backend.py' else [HPO_OFF_AST_METHOD] if rel==HPO_TEST_PATH else [])
+         if suite['excluded_methods']:
+-            need(rel=='tests/test_uar_loss_backend.py' and suite['excluded_methods']==expected_exclusion
++            need(rel in {'tests/test_uar_loss_backend.py',HPO_TEST_PATH} and suite['excluded_methods']==expected_exclusion
+                  and suite['exclusion_reason']=='modular_source_AST_assertion_covered_by_full_source_not_flat',
+-                 'only_predeclared_modular_source_AST_exclusion_allowed')
++                 'only_two_exact_predeclared_modular_source_AST_exclusions_allowed')
+         else:need(suite['exclusion_reason'] is None,'unannounced_mapped_exclusion')
+         ref=suite['source_review_ref'];need(type(ref) is dict and set(ref)=={'path','sha256'}
+              and Path(ref['path']).is_absolute() and pins.get(ref['path'])==ref['sha256'],'actual_source_review_required')
+@@ -92,8 +107,10 @@
+                'tests/test_uar_strong_retention.py':(15,15),
+                'tests/test_uar_metric_contrast.py':(16,16),
+                'tests/test_uar_task_checkpoint_cadence.py':(12,12)}
++    need(HPO_TEST_PATH not in mandatory,'new_HPO_suite_path_must_be_unique')
++    mandatory[HPO_TEST_PATH]=(len(HPO_METHODS),len(HPO_METHODS)-1)
+     need(len(ids)==len(set(ids)) and len(testpaths)==len(set(testpaths)) and set(testpaths)==set(mandatory),
+-         'exact_six_mandatory_mapped_suites_required')
++         'exact_seven_mandatory_mapped_suites_required')
+     for suite in cfg['mapped_suites']:
+         rel=suite['test_relative_path'];all_count,selected_count=mandatory[rel]
+         need(len(suite['all_methods'])==all_count and suite['expected_tests']==selected_count
+@@ -105,11 +122,17 @@
+                  ['LossContractTests.test_default_OFF_all_six_modules_preserve_base_UAR_AST']
+                  and suite['exclusion_reason']=='modular_source_AST_assertion_covered_by_full_source_not_flat',
+                  'LOSS17_source_and_exact16_applicable_flat_required')
++        elif rel==HPO_TEST_PATH:
++            need(suite['all_methods']==HPO_METHODS
++                 and suite['selected_methods']==[n for n in HPO_METHODS if n!=HPO_OFF_AST_METHOD]
++                 and suite['excluded_methods']==[HPO_OFF_AST_METHOD]
++                 and suite['exclusion_reason']=='modular_source_AST_assertion_covered_by_full_source_not_flat',
++                 'HPO_all_source_and_exact_applicable_flat_methods_required')
+         else:
+             need(suite['excluded_methods']==[] and suite['exclusion_reason'] is None,
+                  'all_IO03_vertical_retention_methods_mandatory')
+-    need(len(cfg['registry'])==58 and sum(cfg['registry'].values())==616
+-         and len(cfg['flat_inventory'])==73,'declared_combined_source58_616_flat73_required')
++    need(len(cfg['registry'])==FINAL_SOURCE_SCRIPTS and sum(cfg['registry'].values())==FINAL_SOURCE_CHECKS
++         and len(cfg['flat_inventory'])==FINAL_FLAT_MEMBERS,'declared_final_combined_source_flat_counts_required')
+     need(type(cfg.get('predecessors')) is list and any(r.get('id')=='uar03' and r.get('sha256')==
+          'e86a151481b5b2849d9d0b6b4dc8ef6787a6ccf766dd97486b65de9d05cbf5d9' for r in cfg['predecessors']),
+          'actual_UAR03_terminal_root_required')
+@@ -118,10 +141,72 @@
+          and cfg.get('requires_whole_UQ2_terminal_and_fresh_closure') is True,
+          'whole_UQ2_terminal_fresh_root_required_before_new_gate')
+     ref=latest[0]
+-    need(Path(ref['path']).resolve()==work/'uq2/terminal-root-closure.json'
++    need(Path(ref['path']).resolve()==work/'uq2-audit-close-repair-r1/terminal-root-closure.json'
++         and ref.get('sha256')=='5c9bfc7f8f4f9c5d760e52963f89a4983172144698b7dd334d252a5dce18eabd'
+          and ref.get('actual_exec_session')==3588 and type(ref.get('actual_exit_code')) is int
+-         and ref['actual_exit_code'] in (0,1) and type(ref.get('actual_tool_evidence')) is str
+-         and bool(ref['actual_tool_evidence'].strip()),'actual_UQ2_exit_evidence_not_pending_required')
++         and ref['actual_exit_code']==1 and ref.get('actual_tool_evidence')=='d7f40a'
++         and pins.get(ref['path'])==ref['sha256'] and digest(ref['path'])==ref['sha256'],
++         'exact_actual_UQ2_clean_negative_audit_root_required')
++    admission=cfg.get('latest_UQ2_negative_audit')
++    need(type(admission) is dict and set(admission)=={'schema','root_confirmation','helper_source','helper_review'}
++         and admission['schema']=='uq2-clean-negative-root-admission-v1',
++         'explicit_separate_negative_audit_confirmation_required')
++    fixed={
++        'root_confirmation':('uq2-audit-close-repair-r1/root-confirmation.json','ec6ee6b4e4e0452d787f69a8735edc4ea56da8d782fe1fd62210fbd1a222997e'),
++        'helper_source':('uq2-audit-close-repair-next-dev/close_pair.py','45639bdbf9433588ffdda8145693d585b040a715b761215b1de5823ceb3b95aa'),
++        'helper_review':('uq2-audit-close-repair-independent-review-r3.json','820834b95ab3ab5cd2e8b285701010de29d8d9dd239862fd448b59eba34b11b9')}
++    for name,(relative,expected_sha) in fixed.items():
++        receipt=admission[name]
++        need(type(receipt) is dict and set(receipt)=={'path','sha256'}
++             and Path(receipt['path']).is_absolute() and Path(receipt['path']).resolve()==work/relative
++             and receipt['sha256']==expected_sha and pins.get(receipt['path'])==expected_sha
++             and digest(receipt['path'])==expected_sha,'fixed_negative_audit_source_review_or_confirmation_changed')
++    uq2_proof=read(ref['path']);confirmation=read(admission['root_confirmation']['path'])
++    need(uq2_proof.get('schema')=='uq2-clean-negative-audit-root-closure-v1'
++         and uq2_proof.get('cleanup_confirmed') is True and uq2_proof.get('source_unchanged') is True
++         and uq2_proof.get('active_owned_processes')==[] and uq2_proof.get('uncertain_owned')==[]
++         and uq2_proof.get('technical_procedure_passed') is False
++         and uq2_proof.get('original_full_procedure_passed') is False
++         and uq2_proof.get('original_global_qualification')=='FAIL'
++         and uq2_proof.get('qualified_ML_metrics') is None
++         and uq2_proof.get('audit_helper_source')==dict(path=fixed['helper_source'][0],sha256=fixed['helper_source'][1]),
++         'clean_known_scope_must_not_relabel_UQ2_technical_or_ML_failure')
++    need(confirmation.get('schema')=='uq2-negative-audit-root-exec-confirmation-v1'
++         and confirmation.get('audit_root_sha256')==ref['sha256']
++         and confirmation.get('audit_helper_sha256')==fixed['helper_source'][1]
++         and confirmation.get('audit_actual_exec_session') is None
++         and confirmation.get('audit_actual_exit')==0 and confirmation.get('audit_actual_tool')=='1d6371'
++         and confirmation.get('campaign_actual_session')==3588 and confirmation.get('campaign_actual_exit')==1
++         and confirmation.get('campaign_actual_tool')=='d7f40a'
++         and confirmation.get('original_failed_closer_actual_exit')==1
++         and confirmation.get('original_failed_closer_tool')=='80def1'
++         and confirmation.get('known_exact_live')==[] and confirmation.get('uncertain')==[]
++         and confirmation.get('root_and_closure_preparer_union_included') is True
++         and confirmation.get('observed_root_cleanup_confirmed') is True
++         and confirmation.get('observed_root_source_unchanged') is True
++         and confirmation.get('technical_procedure_passed') is False
++         and confirmation.get('original_UQ2_FAIL_preserved') is True
++         and confirmation.get('original_closer_FAIL_preserved') is True
++         and confirmation.get('old87_false_flags_unchanged') is True
++         and confirmation.get('old87_unknown_leaf_not_retroqualified') is True,
++         'actual_new_audit_exit0_fresh_confirmation_and_old_FAILURES_required')
++    need(confirmation.get('original_deadline_unix')==1792836868.8239975
++         and confirmation.get('original_deadline_monotonic')==95873.953
++         and type(confirmation.get('checked_unix')) in (int,float) and math.isfinite(confirmation['checked_unix'])
++         and type(confirmation.get('checked_monotonic')) in (int,float) and math.isfinite(confirmation['checked_monotonic'])
++         and confirmation['checked_unix']<confirmation['original_deadline_unix']
++         and confirmation['checked_monotonic']<confirmation['original_deadline_monotonic'],
++         'separate_audit_confirmation_must_be_inside_its_original10800')
++    def identity_set(rows):
++        need(type(rows) is list and len(rows)<=20000,'bounded_exact_confirmation_identities_required')
++        need(all(type(v) is dict and type(v.get('pid')) is int and v['pid']>0
++             and type(v.get('create_time')) in (int,float) and math.isfinite(v['create_time'])
++             and v['create_time']>0 for v in rows),'typed_confirmation_pid_birth_required')
++        return {(v['pid'],v['create_time']) for v in rows}
++    confirmed=identity_set(confirmation['known_identities'])
++    need(len(confirmed)==confirmation.get('known_count')==6300
++         and identity_set(uq2_proof['owned_identities']+uq2_proof['closure_preparer_identities'])<=confirmed,
++         'negative_audit_root_and_new_preparers_must_be_in_actual_confirmed_union')
+     # Normal source_union checks actual cleanup/source and current absence. A
+     # false/unqualified root needs a separately reviewed typed observation;
+     # this fixed source does not coerce a negative receipt into normal success.

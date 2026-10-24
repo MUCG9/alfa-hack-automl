@@ -1,0 +1,20 @@
+{
+  "schema": "root-combined-source-review-v1",
+  "source_handoff_sha256": "4fb7fe138ffde1875f6520e0d7198a3100dabbc5e7f76c702128957fa517b72d",
+  "FM_peer_sha256": "d58700176d1d753f12cb8eadce36759ecee0ac0602112515fd2663264dd5f5cc",
+  "AC_peer_sha256": "d8c7ea29cdae0546318da26347e4550d9ab9eaacb9eec76311c7d757bae0e9ea",
+  "root_source_read_tool": "23f2f1",
+  "status": "SOURCE_REVIEW_CLOSED_PRIVATE_READY_AND_ACTUAL_FULL_GATE_PENDING",
+  "source_counts": [
+    59,
+    634
+  ],
+  "flat_members": 73,
+  "exact": 23,
+  "mapped": 104,
+  "typed_clean_negative_predecessor_checked": true,
+  "original_UQ2_FAIL_preserved": true,
+  "current_gate_runtime_PASS": false,
+  "clock": null,
+  "checked_unix": 1792835377.9619114
+}

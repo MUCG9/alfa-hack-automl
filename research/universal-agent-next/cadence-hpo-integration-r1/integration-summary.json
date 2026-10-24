@@ -1,0 +1,36 @@
+{
+  "status": "CANONICAL_SOURCE_INTEGRATED_CURRENT_GATE_UNRUN",
+  "canonical_sha256": {
+    "src/automl/search/hpo.py": "009d581e2987d9c4295627cb44c28c1996df46751fb91d1f99e6f6c42732da2f",
+    "src/automl/search/runner.py": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+    "tests/test_uar_task_checkpoint_cadence.py": "7a31398a5a64ac9f80983f419e19d7e318ba4345603b31e396aa7bfe8102c286",
+    "tests/test_uar_hpo_fair_reserve.py": "8bfe59fa6bd0114c3867e1ef426f1f155cd83fbe3ba90709a332046b903d5643",
+    "tools/run_checks.py": "98607a6db9073b91b7e3e868d61db559b77d0081dd35d81e2fcf3c875a477011"
+  },
+  "prepared_source_registry": {
+    "scripts": 59,
+    "expected_checks": 634,
+    "canonical_python": 171
+  },
+  "expected_flat_members": 73,
+  "expected_exact_checks": 23,
+  "expected_mapped_checks": 104,
+  "actual_new_tests": 0,
+  "current_full_PASS": false,
+  "performance_gain": null,
+  "cadence_handoff_sha256": "a7261757add60b39366fbfcb245f88699ca5a8f86570b85e09bc7ecac61fed3e",
+  "HPO_R2_handoff_sha256": "50112ae7469194afa167bb655b3b6caf4f2d1600af7cb41714f5dd82c9b5c995",
+  "HPO_R2_peer_sha256": "d7bdcb553893d8f864bbdc5028a12b8b7a58e302a247f6ae47406d0816d12b3b",
+  "flat_scope_decision_sha256": "478f01bf7b56d59a45d9f9b85ccb758a55a6ac1e4ca621df7cd195250bb91193",
+  "gate": {
+    "source_handoff_sha256": "4fb7fe138ffde1875f6520e0d7198a3100dabbc5e7f76c702128957fa517b72d",
+    "status": "SOURCE_FROZEN_PEER_AND_PRIVATE_READY_PENDING",
+    "clock": null
+  },
+  "changes": [
+    "Clock checked every task callback; expensive resource samples on first, forced and bounded cadence callbacks.",
+    "Opt-in classification-only HPO fair time reservations; original anchor, recipes, limits and default-OFF behavior preserved.",
+    "Parent failure origin retained separately when late cleanup overwrites final timeout classification."
+  ],
+  "fair_policy_limits": "Soft reservations do not guarantee 8 successful trials; late cleanup is charged and technical uncertainty stops admission. Regression remains OFF."
+}

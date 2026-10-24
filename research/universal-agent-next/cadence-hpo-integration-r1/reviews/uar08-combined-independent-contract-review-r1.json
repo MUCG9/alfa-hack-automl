@@ -1,0 +1,98 @@
+{
+  "schema": "uar08-combined-independent-contract-source-review-v1",
+  "status": "NO_SCOPED_SOURCE_BLOCKER_NOT_RUNTIME_QUALIFICATION",
+  "source_handoff": {
+    "path": "uar08-combined-gate-next-dev/source-handoff.json",
+    "sha256": "4fb7fe138ffde1875f6520e0d7198a3100dabbc5e7f76c702128957fa517b72d"
+  },
+  "all16_packet_pins_match": {
+    "close_gate.py": "8d4c47a32a7a874a2982fc020b655d04341d0151895fc07dc529c746a67fc0fe",
+    "close_gate.py.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "contracts.py": "06fcca7271be009712b54985c3974049ff2d628e917f9f3658d0b13d5b973045",
+    "contracts.py.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mapped-method-whitelist.json": "c2414687c04c5fcaa7444e972795e0c7cc20f472f6cdeb3ea56b3f5ca786f40f",
+    "private-manifest.template.json": "bafbaae56c3a1bdd24a6c33735e935b0894141592fc9860ff32d47e4757caf4c",
+    "protocol.json": "e29bfe572edb9e04eef8bb1c3ae6bf763db118d83021da4890eaf33435f3e666",
+    "README.txt": "f9894482def8532b36b8544c1ebf59bf88b171e5dd82116e1401e7e80e8859f0",
+    "run_gate.py": "26af6506dfbcb9a41011b9aa4d517c522445fda1bc96c8bac9f8a1fa27ce2e73",
+    "run_gate.py.patch": "8c69695b2a2d6f5ba1bd6a3c90c672bdf855b83e12614dda1aa2e750878671cf",
+    "source-proof.json": "e8c272a778d7681f246fd4c3ba786cbde537ba41b880efec5666be793ad727ff",
+    "technical_entry.py": "629316ca8a54d26b45fd2cdc5c7ce0caccccfb1f8e1e5e8ab458f547d017d010",
+    "technical_entry.py.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "test-strategy.json": "563a8e021023f88e0510e22e25828a5f1d97b589310ddcc5ed7752d798009e45",
+    "canonical-source-binding.json": "c0cfc9b54883f5dcc11f669dacaaf9b1677d651db7c7afbdab85afb71dc67641",
+    "HPO-source-binding.json": "810a0c74aa3037aa0cd0cc00ce6de177297164d65232505ce267ae7a6b2be815"
+  },
+  "canonical_source_registry": {
+    "path": "alfa-hack-automl/tools/run_checks.py",
+    "sha256": "98607a6db9073b91b7e3e868d61db559b77d0081dd35d81e2fcf3c875a477011",
+    "AST_literal_scripts": 59,
+    "AST_literal_expected_checks": 634,
+    "equal_frozen_binding": true
+  },
+  "canonical_source_binding": {
+    "path": "uar08-combined-gate-next-dev/canonical-source-binding.json",
+    "sha256": "c0cfc9b54883f5dcc11f669dacaaf9b1677d651db7c7afbdab85afb71dc67641",
+    "all171_python_pins_and_inventory_match": true,
+    "counts": {
+      "src": 81,
+      "tests": 61,
+      "tools": 29
+    }
+  },
+  "flat_mapping": {
+    "path": "alfa-hack-automl/tools/module_map.json",
+    "sha256": "f989a9177958b6d0c539b6e3bc9b0a4f8a686c5dea8801af8a94a3ee7aa4ab8e",
+    "independent_JSON_plus_source_expansion_members": 73,
+    "exact23_static": true,
+    "mapped_expected104": true
+  },
+  "HPO": {
+    "source_test_sha256": "8bfe59fa6bd0114c3867e1ef426f1f155cd83fbe3ba90709a332046b903d5643",
+    "all_methods_source_AST": 18,
+    "mandatory_flat": 17,
+    "sole_predeclared_exclusion": "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases",
+    "driver_whitelist_equals_actual_AST": true
+  },
+  "exact_negative_predecessor_binding": {
+    "root_sha256": "5c9bfc7f8f4f9c5d760e52963f89a4983172144698b7dd334d252a5dce18eabd",
+    "root_confirmation_sha256": "ec6ee6b4e4e0452d787f69a8735edc4ea56da8d782fe1fd62210fbd1a222997e",
+    "actual_campaign_session": 3588,
+    "actual_campaign_exit": 1,
+    "actual_campaign_tool": "d7f40a",
+    "actual_separate_audit_session": null,
+    "actual_separate_audit_exit": 0,
+    "actual_separate_audit_tool": "1d6371",
+    "UQ2_technical_false_preserved": true,
+    "original_closer_failure_preserved": true,
+    "root_owned_and_preparer_union_equals_confirmation_known6300": true,
+    "config_does_not_grant_ownership_from_false87_or_UQ1": true
+  },
+  "source_review": [
+    "Only config body differs from reviewed cadence gate; all other driver definitions and entry/contracts/closer bytes exact.",
+    "Actual clean-negative UQ2 schema, helper45639/source review820834, new direct audit exit0 and original3588exit1/failedcloser80def1 are separately bound. Prior technical/global FAIL and null metrics are required, not changed to PASS.",
+    "All6300 known root/new-preparer identities are already exactly the normal clean-negative root owned+preparer union, so unchanged source_union adopts the full confirmed set and performs fresh exact absence before and under existing lock.",
+    "Negative87/UQ1 remain source-pinned immutable evidence. No negative cleanup flag is coerced and no unknown historical leaf is reidentified.",
+    "Canonical source registry/hash/full Python inventory agree with actual files; frozen() independently repeats inventory/registry/method/flat checks and artifact_checks requires actual source634/default23/mapped104/archive73 exits/counts/no skips.",
+    "Actual --launch assigns one fresh1200 before config and preflight. NOT_READY/schema/hash checks happen before helper imports/output creation/child launch. A failed private preflight is a blocked launch, not a clock reset or technical PASS.",
+    "Existing900 parent includes setup<=60/840child,180final+60root inside1200; source helpers retain sticky deadline/resource/cleanup handling, all prior source-only readiness limitations remain."
+  ],
+  "open_scoped_findings": [],
+  "remaining_actual_requirements": [
+    "Root exact private READY manifest/publication/source review and fresh observed predecessor absence",
+    "Actual full source/build/exact/mapped gates and terminal root helper exit/fresh preparer confirmation inside original1200",
+    "No runtime PASS, ML result, wholecampaign resource attestation or approval is created by this static review"
+  ],
+  "execution": {
+    "candidate_or_config_imports": 0,
+    "tests": 0,
+    "builds": 0,
+    "fixtures": 0,
+    "model_fits": 0,
+    "API_calls": 0,
+    "data_truth_prediction_metric_values_read": 0,
+    "PID_scans": 0,
+    "new_clock_assigned": false,
+    "canonical_STATE_Git_writes": 0
+  }
+}

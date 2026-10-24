@@ -1,0 +1,61 @@
+{
+  "schema": "uar02-recovery-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_LAUNCHED",
+  "common_seconds": 600,
+  "original_start_unix": 1792800986.6425061,
+  "original_start_monotonic": 59991.75,
+  "original_deadline_unix": 1792801586.6425061,
+  "original_deadline_monotonic": 60591.75,
+  "parent_seconds": 90,
+  "child_seconds": 60,
+  "final_seconds": 40,
+  "root_closure_seconds": 20,
+  "minimum_original_remaining_seconds": 150,
+  "preflight_seconds": 30,
+  "expected_tests": 29,
+  "counts": [
+    15,
+    14
+  ],
+  "source_root": "alfa-hack-automl",
+  "original_failure": {
+    "schema": 1,
+    "status": "PROSPECTIVE_ZERO_LEAF_RECOVERY_EVIDENCE_ONLY_NOT_RETROACTIVE_CLEANUP_OR_TEST_PASS",
+    "original_driver_sha256": "6a23ec8c6641712150fae3c6c43933e9a94c8cb886ccdb7a4262ff5c9dbb3018",
+    "entry_source_sha256": "24eb9949465470b53a19385d29d775c9e356b60da1ced30802573a6bec154744",
+    "focused_trace_sha256": "71c14958e262aa9b31ee4a6e32b6d313c45bd753b38a1bcf5760286f4e784b6e",
+    "original_campaign_sha256": "7cebb038eb4d45879b085af7a512cd712e809e482aa330dfe5de9720f998d49d",
+    "original_root_closure_sha256": "87f691b5774ed6f604069d952041bdd6af6a6022f9ea1268ac77a8364180a106",
+    "actual_original_exit_code": 1,
+    "actual_original_session": null,
+    "actual_original_tool": "ae1308",
+    "source_derived_original_child_cwd": "WORK",
+    "original_forwarded_manifest": "work/uar02-next-dev/private-manifest.json",
+    "trace_failure_line": 33,
+    "trace_error": "FileNotFoundError",
+    "first_entry_guard_import_line": 41,
+    "first_leaf_Popen_line": 59,
+    "entry_failure_precedes_leaf_or_candidate_import": true,
+    "original_leaf_logs_and_results_absent": true,
+    "original_uncertainty_preserved": [
+      {
+        "action": "leaf_cleanup_receipts",
+        "reason": "missing_after_entry_started"
+      }
+    ],
+    "fresh_known_owned_and_closure_preparer_absence": "Required before and under canonical lock at actual recovery; not executed in preparation.",
+    "original_root_fresh_observation_reported_by_root": "28a162",
+    "no_identity_invented": true
+  },
+  "change_scope": "Absolute manifest bootstrap; new output; same original600 wall/mono clocks and failed-attempt lineage. No suite/algorithm/guard/canonical source changes.",
+  "superseded_unlaunched_caps": {
+    "parent200_child150_final70_root30": 300,
+    "clock_assigned": false
+  },
+  "new_clock_assigned": false,
+  "API_calls": 0,
+  "model_fits": 0,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

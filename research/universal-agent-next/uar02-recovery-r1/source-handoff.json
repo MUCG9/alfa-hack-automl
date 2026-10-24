@@ -1,0 +1,28 @@
+{
+  "schema": "uar02-recovery-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_ORIGINAL600_NOT_RESET",
+  "files_sha256": {
+    "run_checks.py": "f1a05eb5b242871cc71824d53b571455f537dffa8ef21e220252815cca8d3e6b",
+    "suite_entry.py": "24eb9949465470b53a19385d29d775c9e356b60da1ced30802573a6bec154744",
+    "close_checks.py": "a32d05e6d270a9cfbfc792174612774f76ba8f2c64009f1d5a05ad07d98e559b",
+    "protocol.json": "084201a5796a6f9505d9f3ed5e1dab7ae57cec2cec3d9e7e46b0db4f0863b4cd",
+    "source-pins-public.json": "94f1c25b7c70380cb16689c56783cc90ad897a320b8b08b7db2f3def1e068bc0",
+    "original-failure-source-evidence.json": "4b7fddbfc13c5966612e3956fb1b2493d9837a2733c0fd322a06505028622b51",
+    "static-proof.json": "1738a1cf7c1a539cd8b0f9655ebd512fe18156e6deeeabe0aac879838d1a8fe5",
+    "recovery.patch": "a4f1d35d4139fb9b13f52eb6a8e633d4678a2380455fa73964e0eee04349a4f7",
+    "README.txt": "adcd9cc2607854105cda7107d7e2a8aeaad8c92ab6b1f5f30bbcfc20f5ffb16a"
+  },
+  "private_manifest": {
+    "path": "private-manifest.json",
+    "sha256": "bcf98491d05f13e7db6b2a364de5e0cdcb9ce11e4184d494125b3071945b9550",
+    "publish": false
+  },
+  "original_failed_handoff_sha256": "3880038f27c662b5e4210208311dade3b8d9c99f4f6441d6ffa447ce4b2802ed",
+  "original_failure_root_sha256": "87f691b5774ed6f604069d952041bdd6af6a6022f9ea1268ac77a8364180a106",
+  "original_campaign_sha256": "7cebb038eb4d45879b085af7a512cd712e809e482aa330dfe5de9720f998d49d",
+  "new_clock_assigned": false,
+  "actual_tests": 0,
+  "candidate_imports": 0,
+  "fits": 0,
+  "API_calls": 0
+}

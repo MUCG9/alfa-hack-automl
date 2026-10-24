@@ -1,15 +1,11 @@
 # Evidence and open assumptions
 
 <!-- CURRENT_UAR_OBSERVATION_BEGIN -->
-Research remains the current priority; new submission archive work is deferred. No local heavy unit is active. Three native scopes prepare fitting-only initial Qwen context, independent selector-cache review and atomic root/fresh orchestration.
 
-CX1 is CLOSED FAIL because the first fresh known-process check began after the actual closer's60-second limit. The driver77390 exited0 (7b23cf), frozen closer exited0 (4566fc), and16 changed contracts passed; those facts do not override the failed final timing predicate. Comparative metrics remain unqualified/null. No new fits or API calls occurred, and no promotion, archive or upload followed. The saved positive closer flags and the separate original failure are retained without relabeling or clock reset.
+Current research observation: CX2 CLOSED, technical/source/owned+temporary cleanup PASS; quality REJECTED. Exactly 19 contracts, 0 new model fits/API. Full3 matched control MacroF1 mean 0.6530048968876206; fixed half/half retained LGBM pair 0.6543398049868425. The mean gain +0.0013349080992218765 fails the preregistered gate: primary cut drops 0.0016671681 and supported Analysis F1 drops 0.0241090 on confirmation. No refit/promotion/archive follow-up. Atomic fresh closure completed 3.351266 seconds after actual closer birth within original600/final240; all7343 known identities absent, zero uncertain. CX1 FAIL from missed root60 remains immutable.
 
-One independently reviewed, bounded metadata-only current negative audit exited0 (473af3):703 source/input/core pins remained unchanged, temporary work was absent, and all7320 known original/preparer identities were absent with0uncertain. Its observer identities were checked absent after its actual exit. This establishes current cleanup only; it does not retroactively qualify CX1 or its missed root60. A separately reviewed atomic closer/fresh producer is being prepared before any future cache-only attempt.
+All native resources remain on research. Fitting-only initial context/extractor and current selector cache are independently SOURCE-reviewed separately and being composed for one technical gate; final counts/READY/clock pending. HPO trial-memory is proposal/producer-only scope, no reuse/savings claim. Delivered REG34.15502 ZIP remains unchanged. Linux stays paused; no upload.
 
-The prior-idea backlog has13 evidence-linked directions. The fitting-context extractor R2 is independently source-reviewed with26 prepared methods and0executed; exact builder/old16 contracts remain unchanged. Upstream parser IO remains unknown rather than fabricated. The initial consumer is still isolated source work. The selector leaf-cache port is frozen defaultOFF with12 retained+4new prepared contracts, pending independent peer and runtime; prospective counts are not PASS. HPO trial memory remains a separate unimplemented mechanism with stronger fingerprint/accounting prerequisites.
-
-Completed UQ3/BRQ3 and the delivered c7b54 archive remain immutable. Old measured RMSE34.155023394837 and CLASS0.6530048968876206 are unchanged; historical selected CLASS0.6593178433614652 remains a reference. These are reused-public validation results, not official/blind scores. All old clocks/failures stay closed, Linux stays human-paused, and no upload is authorized.
 <!-- CURRENT_UAR_OBSERVATION_END -->
 
 The organizer baseline, case and requirements were inspected by C01. Source hashes:

@@ -1,0 +1,71 @@
+{
+  "schema": "class-xgb-cx2-results-independent-metadata-review-v1",
+  "status": "SUMMARY_MATCHES_CLOSED_EVIDENCE_TECHNICAL_PASS_QUALITY_REJECTED",
+  "summary": {
+    "path": "outputs/class-xgb-cx2-results.json",
+    "sha256": "db8c4538d41edce5f1afcfef432272f287f804f702fc9faf68f0c07a1bf8dd4f"
+  },
+  "proofs_verified": {
+    "campaign.json": "e524526093205967a33b89cf1e289ed6d2af691570e831a4cbb52039e472a071",
+    "terminal-root-closure.json": "9525e4eb4a90a50c7eab4894b00080f032c782455cd360f39a7777f32fffb131",
+    "root-confirmation.json": "b9f5cd2c86ad150cb710c45f3fbc097b802d2f1ab6974a2fc1640ad3d772ac47",
+    "actual-wrapper-exit-confirmation.json": "51fb764051ecb1147b95377ff420a5a8ae96ea0128ed5a5f15aa115c368f1d46",
+    "independent-cache-audit.json": "85e131d7ba5e97f76185743134bbf63383df37a48a9e1d5aca50f51d260dbca0",
+    "atomic-child-exit.json": "239d590623836055ac27c65db6d5924db731f6d8b16b05aef8803a141d172969"
+  },
+  "contract_terminal_log_and_supervisor_checks": {
+    "auditor-contracts": {
+      "terminal_count": 12,
+      "log_sha256": "940b646f59d382cd94cb1655deeed542ff1c603c5e4ab39925b79570f2d2b54c",
+      "supervisor_sha256": "d90a377fb232fcc6f2fd150a92225387e49a4a3c85dc1cfd0bf0e0f5d7046b21"
+    },
+    "caller-contracts": {
+      "terminal_count": 4,
+      "log_sha256": "3264fe5b719120beb421ff1f456bd1ea50be7081049b4db179414070bde99ee3",
+      "supervisor_sha256": "4393de31003e880be69e5078b85b5f902c6a7540fd77f2ff434f34f7d23b3abe"
+    },
+    "atomic-root-contracts": {
+      "terminal_count": 3,
+      "log_sha256": "50a7c38ebea309ca72b7466b99211d31a1cf756cb0b3248d155c86894c8fb9ed",
+      "supervisor_sha256": "7269a4336bcf27a598a22d67c156a27d38257f901f3f36e89cee86517aa04c20"
+    }
+  },
+  "actual_qualified_driver": {
+    "session": 72141,
+    "exit_code": 0,
+    "tool": "ea9a27"
+  },
+  "actual_wrapper_exit": {
+    "exit_code": 0,
+    "tool": "ea00b8"
+  },
+  "root_reported_posttool": {
+    "exit_code": 0,
+    "tool": "180656",
+    "known_count": 7343,
+    "live": [],
+    "uncertain": []
+  },
+  "decision_consistency": {
+    "technical_source_cleanup_pass": true,
+    "quality_pass": false,
+    "positive_mean_is_not_sufficient": true,
+    "primary_gate_failed": true,
+    "supported_class_confirmation_gate_failed": true,
+    "existing_protection_threshold_unchanged": true,
+    "no_new_threshold_or_mean_selection": true,
+    "no_candidate_refit_release_promotion_or_upload": true,
+    "original_CX1_failure_retained": true
+  },
+  "source_preregistered_predicate_ref": {
+    "path": "work/class-xgb-contribution-independent-review-next-dev/decision-and-reuse-eligibility.json",
+    "sha256": "c52594cd9eeeb23edd15a20f428fa0fcac844990a3e24f203380e05dc86dc4e9"
+  },
+  "limitations": [
+    "Independently checked source/JSON/hash/log-count consistency only. Actual OS absence and tool exits are trusted root-observed records, not a new independent PID scan.",
+    "Metrics are exact aggregate fields from the sealed independent audit. No labels, rows, predictions, arrays or rescoring were read/run.",
+    "Same reused public cuts/cache hypothesis; no blind/official gain or native-XGB causal claim."
+  ],
+  "findings": [],
+  "candidate_imports_tests_fits_API_data_arrays_PID_Git_canonical_edits": 0
+}

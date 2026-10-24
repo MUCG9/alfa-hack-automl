@@ -1,0 +1,112 @@
+{
+  "schema": "class-xgb-CX2-qualified-cache-comparison-v1",
+  "status": "CLOSED_TECHNICAL_SOURCE_CLEANUP_PASS_QUALITY_REJECTED",
+  "hypothesis": "CLASS-XGB-CONTRIBUTION-01",
+  "actual_driver": {
+    "session": 72141,
+    "exit_code": 0,
+    "launch_tool": "fa614e",
+    "terminal_tool": "ea9a27"
+  },
+  "actual_atomic_wrapper": {
+    "exit_code": 0,
+    "tool": "ea00b8"
+  },
+  "actual_native_closer_exit": 0,
+  "actual_posttool_confirmation": {
+    "exit_code": 0,
+    "tool": "180656"
+  },
+  "source_handoff_sha256": "7baff9cc257afb2aa2a41b9d0741831cae9c87a5e427a70c8089ebfd00b0316e",
+  "ready_binding_sha256": "16c87369fcbcd8cd3bc1690b6f0ea63248db001da6e3370a135be539ba0165ae",
+  "ready_peer_sha256": "9b3d27d828a2dfaa6fb76fe25dcd03cf9e6a1add76184f345b71ea0493484f92",
+  "proofs": {
+    "campaign.json": "e524526093205967a33b89cf1e289ed6d2af691570e831a4cbb52039e472a071",
+    "terminal-root-closure.json": "9525e4eb4a90a50c7eab4894b00080f032c782455cd360f39a7777f32fffb131",
+    "root-confirmation.json": "b9f5cd2c86ad150cb710c45f3fbc097b802d2f1ab6974a2fc1640ad3d772ac47",
+    "actual-wrapper-exit-confirmation.json": "51fb764051ecb1147b95377ff420a5a8ae96ea0128ed5a5f15aa115c368f1d46",
+    "independent-cache-audit.json": "85e131d7ba5e97f76185743134bbf63383df37a48a9e1d5aca50f51d260dbca0",
+    "atomic-child-exit.json": "239d590623836055ac27c65db6d5924db731f6d8b16b05aef8803a141d172969"
+  },
+  "technical_procedure_passed": true,
+  "source_unchanged": true,
+  "temporary_cleanup_confirmed": true,
+  "current_known_cleanup_confirmed": true,
+  "known_count": 7343,
+  "known_exact_live": [],
+  "uncertain": [],
+  "contracts": [
+    {
+      "name": "auditor-contracts",
+      "actual_passed": 12,
+      "exit_code": 0,
+      "receipt_sha256": "d90a377fb232fcc6f2fd150a92225387e49a4a3c85dc1cfd0bf0e0f5d7046b21"
+    },
+    {
+      "name": "caller-contracts",
+      "actual_passed": 4,
+      "exit_code": 0,
+      "receipt_sha256": "4393de31003e880be69e5078b85b5f902c6a7540fd77f2ff434f34f7d23b3abe"
+    },
+    {
+      "name": "atomic-root-contracts",
+      "actual_passed": 3,
+      "exit_code": 0,
+      "receipt_sha256": "7269a4336bcf27a598a22d67c156a27d38257f901f3f36e89cee86517aa04c20"
+    }
+  ],
+  "actual_contracts": 19,
+  "new_model_fits": 0,
+  "API_calls": 0,
+  "original_clock": {
+    "start_unix": 1792855742.2214303,
+    "start_monotonic": 114747.5,
+    "absolute_deadline_unix": 1792856342.2214303,
+    "common_deadline_monotonic": 115347.5,
+    "common_seconds": 600
+  },
+  "driver_elapsed_seconds": 14.952999999994063,
+  "through_atomic_fresh_seconds": 34.07799999999406,
+  "actual_closer_birth_to_fresh_seconds": 3.3512659072875977,
+  "root_window_inside_original600_and_existingfinal240": true,
+  "original_clock_now_closed": true,
+  "clock_reset": false,
+  "candidate": "Fixed retained outer LGBM children0+1 at half/half, no weight sweep; sealed BRQ3 child caches",
+  "control": "Independently reproduced full3 sealed BRQ3 mixture on both same cuts",
+  "metrics": {
+    "control_mean": 0.6530048968876206,
+    "candidate_mean": 0.6543398049868425,
+    "delta_candidate_minus_control": 0.0013349080992218765,
+    "cuts": {
+      "control": {
+        "primary": 0.6560462962524971,
+        "confirmation": 0.6499634975227442
+      },
+      "candidate": {
+        "primary": 0.6543791281161477,
+        "confirmation": 0.6543004818575374
+      }
+    }
+  },
+  "quality_gate_passed": false,
+  "rejection": {
+    "each_cut_primary_gate_passed": false,
+    "class_each_cut_gate_passed": false,
+    "primary_delta": -0.0016671681363493729,
+    "confirmation_supported_class_losses_over_001": {
+      "Analysis": -0.02410902776910301
+    }
+  },
+  "decision": "REJECT fixed LGBM-only replacement. Mean gain does not pass preregistered both-cut and supported-class protections. No full-refit or archive follow-up for this factor.",
+  "limitations": [
+    "Same reused public cuts and saved child probabilities; not blind or official.",
+    "No fresh learner fit, candidate full-refit, standard CSV qualification or causal native-XGB explanation.",
+    "CX1 failure and unqualified comparison retained; CX2 is a separately admitted unchanged-predicate cache comparison."
+  ],
+  "original_CX1_global_status": "FAIL_ROOT_FRESH60_MISSED",
+  "original_CX1_requalified": false,
+  "REG_or_delivered_ZIP_changed": false,
+  "promotion": false,
+  "upload": false,
+  "created_unix": 1792855906.33996
+}

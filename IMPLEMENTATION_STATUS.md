@@ -1,7 +1,7 @@
 # Universal AutoResearch: UAR-v1
 
 <!-- CURRENT_UAR_OBSERVATION_BEGIN -->
-Current observation: UQ2 four-arm comparison is actually running under the original10800-second UQ1 clock, with matched source/data/strong retention and strict-runtime in both arms. The first real Qwen response has complete usage; this is intermediate evidence, not final quality qualification. UQ1 pre-API historical/current process-pin collision remains FAIL, its single reviewed bootstrap recovery retains all original clocks and costs. UAR07 composite technical qualification and all old failures remain unchanged. No new ML metric or generic release claim. Linux second laptop remains paused by the user.
+Current observation: UQ2 remains running under its original10800-second clock. Ar is sealed with8 successful HPO attempts and2 real Qwen calls. Br exited1 after exhausting its810-second solver budget in IO02 output projection before models/HPO/API; component cleanup and current two known identities are confirmed absent. Regression A/B quality is unqualified. The frozen campaign continues classification; prospective cadence correction is source-reviewed with12 prepared, unexecuted tests and is not integrated. Prior verified Br research RMSE34.155023394837 and historical classification MacroF1.6593178433614652 remain unchanged. Linux remains paused by the user.
 <!-- CURRENT_UAR_OBSERVATION_END -->
 
 The new specification is being integrated into the existing pipeline. LA2 completed

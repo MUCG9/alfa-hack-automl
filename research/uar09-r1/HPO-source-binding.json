@@ -1,0 +1,22 @@
+{
+  "schema": "uar09-HPO-reviewed-R3-binding-v1",
+  "handoff": {
+    "path": "uar-hpo-fair-reserve-r3-next-dev/source-handoff.json",
+    "sha256": "c4cc50792cca7426e3ee4aa4af5de7cf2ae4ce114c00a8a549fba988c9bec220"
+  },
+  "source_peer": {
+    "path": "uar-hpo-fair-reserve-independent-review-r3.json",
+    "sha256": "7568cf5a1210780fff2ed40ae40a46b5d0f2897f81d5cca507e924a7ed08e359"
+  },
+  "hpo_source_sha256": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+  "runner_source_sha256": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+  "test_source_sha256": "8bfe59fa6bd0114c3867e1ef426f1f155cd83fbe3ba90709a332046b903d5643",
+  "source_methods": 18,
+  "selected_flat_methods": 17,
+  "exclusions": [
+    "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases"
+  ],
+  "R2_previous_failure_retained": true,
+  "old58_evidence_not_reused_as_current_PASS": true,
+  "actual_execution": null
+}

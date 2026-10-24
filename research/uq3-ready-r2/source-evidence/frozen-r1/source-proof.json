@@ -1,0 +1,53 @@
+{
+  "schema": "uq3-ready-binding-source-proof-v1",
+  "source_sha256": "152d17a6ce2af1c9035860a9f4673c3e8a3ac08c67d4f4dfb26b1db5a4b09607",
+  "AST_parsed": true,
+  "stdlib_imports_only": [
+    "argparse",
+    "hashlib",
+    "json",
+    "math",
+    "pathlib",
+    "re",
+    "zipfile"
+  ],
+  "inspection_return_precedes_actual_reference_reads": true,
+  "positive_gate_confirmation_precedes_first_archive_reference_hash_and_ZipFile": true,
+  "reference_line_order": {
+    "last_positive_clock_confirmation": 186,
+    "first_archive_reference": 189,
+    "first_ZipFile": 200
+  },
+  "UQ3_gate_routing": "full_gate_v1 actual refs, no fixed UAR08 paths/HPO009d requirement",
+  "private_manifest_readiness_literal": "READY_FROZEN_SOURCE_REVIEWED",
+  "same_archive_members": 73,
+  "expected_counts": {
+    "source_scripts": 59,
+    "source_unique_checks": 634,
+    "exact_repeated_checks": 23,
+    "mapped_repeated_checks": 104,
+    "flat_members": 73
+  },
+  "new_HPO_raw_source_sha256": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+  "runner_raw_source_sha256": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+  "template_preserved": true,
+  "source_only_read_refs_sha256": {
+    "uq3-cadence-hpo-next-dev/candidate/source-handoff.json": "cd6898045edd61110e6fce08f964389914e37b93f3d9b2241316e57b8a122471",
+    "uq3-cadence-hpo-next-dev/candidate/binding.template.json": "37359debe953ca3d795b1b80fc0a7c6eb6ed545b3a56e437824b4d62c33b1738",
+    "uq3-cadence-hpo-next-dev/candidate/run_pair.py": "464305881ab1661fdf2f7b7f4a443aeec59b4bb4664f6d3f18dece2c204d25dd",
+    "uq3-cadence-hpo-next-dev/candidate/launcher.py": "c6d0dfa82939160200b39a4b176a9a462a1f6530e6089a9f5445dfd5850d76a5",
+    "uq3-cadence-hpo-next-dev/candidate/audit_pair.py": "f58a17c218ca89461c3c97c3498d197fa105b5a8ea0b240b26b232b12badf7ff",
+    "uq3-cadence-hpo-next-dev/candidate/close_pair.py": "81292f982a6cdf235905940c977115ae11ef3745626f4a28069841a291cfb462",
+    "uq3-cadence-hpo-next-dev/candidate/r4_adapter.py": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+    "uar08-combined-gate-next-dev/run_gate.py": "26af6506dfbcb9a41011b9aa4d517c522445fda1bc96c8bac9f8a1fa27ce2e73",
+    "uar08-combined-gate-next-dev/close_gate.py": "8d4c47a32a7a874a2982fc020b655d04341d0151895fc07dc529c746a67fc0fe",
+    "uar08-combined-gate-next-dev/contracts.py": "06fcca7271be009712b54985c3974049ff2d628e917f9f3658d0b13d5b973045",
+    "uar-hpo-fair-reserve-r3-next-dev/source-handoff.json": "c4cc50792cca7426e3ee4aa4af5de7cf2ae4ce114c00a8a549fba988c9bec220",
+    "uar-hpo-fair-reserve-independent-review-r3.json": "7568cf5a1210780fff2ed40ae40a46b5d0f2897f81d5cca507e924a7ed08e359",
+    "uq2-audit-close-repair-r1/terminal-root-closure.json": "5c9bfc7f8f4f9c5d760e52963f89a4983172144698b7dd334d252a5dce18eabd",
+    "uq2-audit-close-repair-r1/root-confirmation.json": "ec6ee6b4e4e0452d787f69a8735edc4ea56da8d782fe1fd62210fbd1a222997e"
+  },
+  "actual_builder_inspection_or_write_executions": 0,
+  "actual_tests_fits_API_data_reads_PID_scans": 0,
+  "clock_assigned": false
+}

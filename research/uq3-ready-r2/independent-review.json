@@ -1,0 +1,72 @@
+{
+  "schema": "uq3-ready-binding-independent-source-review-r2",
+  "status": "NO_SCOPED_SOURCE_BLOCKER_FUTURE_ACTUAL_GATE_REQUIRED",
+  "handoff": {
+    "path": "uq3-ready-binding-r2-next-dev/source-handoff.json",
+    "sha256": "07f47d821ac1e255cf00dc5f19e3d5da75e8207e0e61afe6885e8780c686f743"
+  },
+  "all9_local_pins_match": {
+    "build_binding.py": "c323ef4b793960b94f0fff1db83525dfe85b9bb91aaf703093b4758160520581",
+    "R1-finding.json": "394050ae97381e7bf42dd7be0c2143e078f497ec37b2e97ae2e140ac835c2006",
+    "R1-to-R2.patch": "dd014d93f3d04560682f555cd9caef8dc2d004b0f7b6fb7c4a29df10e3843e1a",
+    "README.txt": "9fe34d76257191ea93f8eb04807e9b820e6b5a31f8942ad2f8fc276eee6d1b21",
+    "source-evidence/frozen-r1/build_binding.py": "152d17a6ce2af1c9035860a9f4673c3e8a3ac08c67d4f4dfb26b1db5a4b09607",
+    "source-evidence/frozen-r1/README.txt": "1d821e001f3c48de17c8c7a5bc06450b920f53f516c09fea9d9d5dc030880731",
+    "source-evidence/frozen-r1/source-handoff.json": "7b6629d9232f9307b4e28126285e1e26c8f0bb498b39a89b1bb54db5307e7c01",
+    "source-evidence/frozen-r1/source-proof.json": "976996a8f4fc1ee201fc156609091788948e5136a8bba6dd12298e3a391e8c86",
+    "source-proof.json": "9bb12efcb9b432d764a4f17e7ba8ffb067b9017c00501bc462b9d2617e1d79d6"
+  },
+  "all14_source_contract_refs_match": {
+    "uq3-cadence-hpo-next-dev/candidate/source-handoff.json": "cd6898045edd61110e6fce08f964389914e37b93f3d9b2241316e57b8a122471",
+    "uq3-cadence-hpo-next-dev/candidate/binding.template.json": "37359debe953ca3d795b1b80fc0a7c6eb6ed545b3a56e437824b4d62c33b1738",
+    "uq3-cadence-hpo-next-dev/candidate/run_pair.py": "464305881ab1661fdf2f7b7f4a443aeec59b4bb4664f6d3f18dece2c204d25dd",
+    "uq3-cadence-hpo-next-dev/candidate/launcher.py": "c6d0dfa82939160200b39a4b176a9a462a1f6530e6089a9f5445dfd5850d76a5",
+    "uq3-cadence-hpo-next-dev/candidate/audit_pair.py": "f58a17c218ca89461c3c97c3498d197fa105b5a8ea0b240b26b232b12badf7ff",
+    "uq3-cadence-hpo-next-dev/candidate/close_pair.py": "81292f982a6cdf235905940c977115ae11ef3745626f4a28069841a291cfb462",
+    "uq3-cadence-hpo-next-dev/candidate/r4_adapter.py": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+    "uar08-combined-gate-next-dev/run_gate.py": "26af6506dfbcb9a41011b9aa4d517c522445fda1bc96c8bac9f8a1fa27ce2e73",
+    "uar08-combined-gate-next-dev/close_gate.py": "8d4c47a32a7a874a2982fc020b655d04341d0151895fc07dc529c746a67fc0fe",
+    "uar08-combined-gate-next-dev/contracts.py": "06fcca7271be009712b54985c3974049ff2d628e917f9f3658d0b13d5b973045",
+    "uar-hpo-fair-reserve-r3-next-dev/source-handoff.json": "c4cc50792cca7426e3ee4aa4af5de7cf2ae4ce114c00a8a549fba988c9bec220",
+    "uar-hpo-fair-reserve-independent-review-r3.json": "7568cf5a1210780fff2ed40ae40a46b5d0f2897f81d5cca507e924a7ed08e359",
+    "uq2-audit-close-repair-r1/terminal-root-closure.json": "5c9bfc7f8f4f9c5d760e52963f89a4983172144698b7dd334d252a5dce18eabd",
+    "uq2-audit-close-repair-r1/root-confirmation.json": "ec6ee6b4e4e0452d787f69a8735edc4ea56da8d782fe1fd62210fbd1a222997e"
+  },
+  "prior_review": {
+    "path": "uq3-ready-binding-independent-review-r1.json",
+    "sha256": "9c3c2611009ff8e6528100a2333ab121e69ed2e33ce9b0722d98f3e42ebb2c14"
+  },
+  "closed_finding": {
+    "id": "UQ3B01_RB01",
+    "resolution": "Both supplied archive and candidate.manifest SHA must match BOTH saved positive campaign.technical_artifacts and root.technical_artifact_refs before ZIP member acceptance.",
+    "producer_key_shape": "Exact absolute str(Path(cfg.output)/filename); CLI source refs remain WORK-relative. No suffix/basename/key-format fallback.",
+    "producer_shape_read_from_reviewed_source": true,
+    "missing_or_mutated_ref_fails_closed": true
+  },
+  "independent_AST_proof": {
+    "one_validation_loop_plus_R2_output_default_only": true,
+    "inverse_recovers_exact_whole_R1_module_AST": true,
+    "R1all4_original_files_byte_exact_preserved": true,
+    "no_other_validation_or_runtime_semantics_changed": true
+  },
+  "open_scoped_findings": [],
+  "remaining_actual_requirements": [
+    "Actual NEW full59/634 gate/build73/exact23/mapped104 and positive root/fresh confirmation",
+    "Root exact actual typed refs/private publication review before --write",
+    "Reviewed UQ3 controller independently repeats full artifacts/source checks and fresh owned absence before any arms/API",
+    "No READY binding or runtime PASS has been created by this review"
+  ],
+  "execution": {
+    "candidate_or_config_imports": 0,
+    "builder_execution": 0,
+    "tests": 0,
+    "fixtures": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "data_truth_predictions_read": 0,
+    "PID_scans": 0,
+    "new_clock_assigned": false,
+    "canonical_STATE_Git_writes": 0
+  },
+  "actual_READY_binding_created": false
+}

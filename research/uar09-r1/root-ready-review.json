@@ -1,0 +1,22 @@
+{
+  "schema": "root-uar09-ready-review-v1",
+  "status": "ROOT_READY_FOR_ONE_NEW_FULL_GATE_AFTER_PUBLICATION_AND_FRESH_UNION",
+  "guard_source_review_tool": "2d1104",
+  "instantiator_review_tool": "0defd1",
+  "metadata_actual_tool": "1ae551",
+  "metadata_actual_exit": 0,
+  "private_manifest_sha256": "ac801e25c84719e7966290327d3c905c9f9e8491ce1326c30c2925a56ef90cab",
+  "all_current_pins": 235,
+  "all_canonical_python": 171,
+  "source_expected": [
+    59,
+    634
+  ],
+  "flat_expected": 73,
+  "exact_expected": 23,
+  "mapped_expected": 104,
+  "current_PASS": false,
+  "actual_clock": null,
+  "old_UAR08_FAIL_preserved": true,
+  "checked_unix": 1792836771.0116088
+}

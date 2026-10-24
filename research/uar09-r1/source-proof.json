@@ -1,0 +1,40 @@
+{
+  "schema": "uar09-focused-source-proof-v1",
+  "base_handoff_sha256": "4fb7fe138ffde1875f6520e0d7198a3100dabbc5e7f76c702128957fa517b72d",
+  "runtime_source_sha256": {
+    "run_gate.py": "14f5a6e339e0e8f7d48698490e26d42d4f8c01b42479a75686f0737ea69d4c9a",
+    "technical_entry.py": "629316ca8a54d26b45fd2cdc5c7ce0caccccfb1f8e1e5e8ab458f547d017d010",
+    "contracts.py": "06fcca7271be009712b54985c3974049ff2d628e917f9f3658d0b13d5b973045",
+    "close_gate.py": "7ad50d93988374d3f5799ed26ad8d09aad1d0de082548a63ae83c7d640c8fd50"
+  },
+  "driver_delta": "config only plus exactly one explicit confirmed6649 identity union in main",
+  "closer_delta": "exactly one explicit confirmed6649 identity union",
+  "other_driver_functions_AST_equal": true,
+  "main_AST_equal_after_reversing_one_union": true,
+  "whole_closer_AST_equal_after_reversing_one_union": true,
+  "technical_entry_and_contracts_byte_exact_base": true,
+  "unchanged_caps": {
+    "common": 1200,
+    "parent": 900,
+    "child": 840,
+    "final": 180,
+    "root": 60,
+    "minimum_remaining": 1140
+  },
+  "positive_predicate_and_clock_guards_unchanged": true,
+  "source_AST_registry": [
+    59,
+    634
+  ],
+  "canonical_python_counts": {
+    "src": 81,
+    "tests": 61,
+    "tools": 29
+  },
+  "flat_members": 73,
+  "default_exact": 23,
+  "mapped_repeated": 104,
+  "source_only_compile": true,
+  "candidate_imports_config_tests_build_fits_API_PID_scans_Git_writes": 0,
+  "actual_clock": null
+}

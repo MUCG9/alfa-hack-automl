@@ -1,0 +1,100 @@
+--- reviewed_UAR08/run_gate.py
++++ UAR09/run_gate.py
+@@ -69,6 +69,9 @@
+     need(cfg['candidate_process_sha256']=='9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3'
+          and pins.get(str((root/'src/automl/infrastructure/processes.py').resolve()))==cfg['candidate_process_sha256'],
+          'candidate_process_separate_from_historical_fac3_guard')
++    need(pins.get(str((root/'src/automl/search/hpo.py').resolve()))==
++         'e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51',
++         'current_reviewed_HPO_R3_runtime_required_no_R2_reuse')
+     need(type(cfg.get('canonical_python_inventory')) is list and len(cfg['canonical_python_inventory'])<=2048
+          and len(set(cfg['canonical_python_inventory']))==len(cfg['canonical_python_inventory'])
+          and all(v in pins and Path(v).is_relative_to(root) for v in cfg['canonical_python_inventory']),
+@@ -137,7 +140,7 @@
+          'e86a151481b5b2849d9d0b6b4dc8ef6787a6ccf766dd97486b65de9d05cbf5d9' for r in cfg['predecessors']),
+          'actual_UAR03_terminal_root_required')
+     latest=[r for r in cfg['predecessors'] if r.get('id')=='uq2']
+-    need(cfg.get('latest_predecessor_id')=='uq2' and len(latest)==1
++    need(cfg.get('latest_predecessor_id')=='uar08_failed' and len(latest)==1
+          and cfg.get('requires_whole_UQ2_terminal_and_fresh_closure') is True,
+          'whole_UQ2_terminal_fresh_root_required_before_new_gate')
+     ref=latest[0]
+@@ -207,6 +210,68 @@
+     need(len(confirmed)==confirmation.get('known_count')==6300
+          and identity_set(uq2_proof['owned_identities']+uq2_proof['closure_preparer_identities'])<=confirmed,
+          'negative_audit_root_and_new_preparers_must_be_in_actual_confirmed_union')
++    # A current clean-negative root grants only known ownership closure, never prior technical PASS.
++    u8=[r for r in cfg['predecessors'] if r.get('id')=='uar08_failed']
++    need(len(u8)==1 and Path(u8[0]['path']).is_absolute()
++         and Path(u8[0]['path']).resolve()==work/'uar08-combined-gate-next-dev/attempt-r1/terminal-root-closure.json'
++         and u8[0].get('sha256')=='bca0d1bbdf1dba98b03ca17be3d8dd5a584e0d5cf72034073fc35f5fc32c3842'
++         and u8[0].get('actual_exec_session')==68067 and type(u8[0].get('actual_exit_code')) is int
++         and u8[0]['actual_exit_code']==1 and u8[0].get('actual_tool_evidence')=='848481'
++         and pins.get(u8[0]['path'])==u8[0]['sha256'] and digest(u8[0]['path'])==u8[0]['sha256'],
++         'actual_UAR08_clean_negative_root_required')
++    current=cfg.get('latest_UAR08_negative')
++    need(type(current) is dict and set(current)=={'schema','root_confirmation','closer_source','original_private_manifest'}
++         and current['schema']=='uar08-clean-negative-root-admission-v1',
++         'explicit_UAR08_negative_confirmation_and_original_closer_binding_required')
++    fixed8={
++        'root_confirmation':('uar08-combined-gate-next-dev/attempt-r1/root-confirmation.json','67942a2aa68e9757d590f36bf689bbe349751470de166690f7429801f0ae3f86'),
++        'closer_source':('uar08-combined-gate-next-dev/close_gate.py','8d4c47a32a7a874a2982fc020b655d04341d0151895fc07dc529c746a67fc0fe'),
++        'original_private_manifest':('uar08-combined-gate-next-dev/private-manifest-uar08-r1.json','4a1030bb2b987a746870fe99709d151ad6cd3d9f00abb7592a249194524c6141')}
++    for name,(relative,expected_sha) in fixed8.items():
++        value=current[name]
++        need(type(value) is dict and set(value)=={'path','sha256'} and type(value['path']) is str
++             and Path(value['path']).is_absolute() and Path(value['path']).resolve()==work/relative
++             and value['sha256']==expected_sha and pins.get(value['path'])==expected_sha
++             and digest(value['path'])==expected_sha,'fixed_UAR08_negative_evidence_changed')
++    u8proof=read(u8[0]['path']);u8confirmation=read(current['root_confirmation']['path'])
++    original8=read(current['original_private_manifest']['path'])
++    need(u8proof.get('schema')=='uar-full-root-closure-v1'
++         and u8proof.get('actual_exec_session')==68067
++         and type(u8proof.get('actual_exec_exit_code_observed_by_root')) is int
++         and u8proof['actual_exec_exit_code_observed_by_root']==1
++         and u8proof.get('actual_tool_evidence')=='848481'
++         and u8proof.get('cleanup_confirmed') is True and u8proof.get('source_unchanged') is True
++         and u8proof.get('active_owned_processes')==[] and u8proof.get('uncertain_owned')==[]
++         and u8proof.get('technical_procedure_passed') is False and u8proof.get('qualified_checks') is None
++         and u8proof.get('private_manifest_sha256')==fixed8['original_private_manifest'][1]
++         and original8.get('files_sha256',{}).get(current['closer_source']['path'])==fixed8['closer_source'][1],
++         'UAR08_FAIL_and_original_closer_source_must_remain_bound')
++    need(u8confirmation.get('schema')=='uar08-negative-root-exec-confirmation-v1'
++         and u8confirmation.get('root_sha256')==u8[0]['sha256']
++         and u8confirmation.get('gate_actual_exec')==dict(session=68067,exit_code=1,tool='848481')
++         and u8confirmation.get('closer_actual_exec')==dict(session=None,exit_code=1,tool='fd47c3')
++         and u8confirmation.get('known_count')==6649
++         and u8confirmation.get('known_exact_live')==[] and u8confirmation.get('uncertain')==[]
++         and u8confirmation.get('root_and_closure_preparer_union_included') is True
++         and u8confirmation.get('metadata_and_prelaunch_preparers_included') is True
++         and u8confirmation.get('cleanup_confirmed') is True and u8confirmation.get('source_unchanged') is True
++         and u8confirmation.get('technical_procedure_passed') is False
++         and u8confirmation.get('original_FAIL_preserved') is True,
++         'actual_UAR08_gate_and_negative_closer_exits_fresh_union_required')
++    observed8=identity_set(u8confirmation.get('known_identities'))
++    need(len(observed8)==len(u8confirmation['known_identities'])==6649
++         and identity_set(u8proof['owned_identities']+u8proof['closure_preparer_identities'])<=observed8,
++         'all_UAR08_root_closer_and_five_extra_preparers_required')
++    need(u8confirmation.get('original_deadline_unix')==1792836857.0601652
++         and u8confirmation.get('original_deadline_monotonic')==95862.328
++         and type(u8confirmation.get('checked_unix')) in (int,float)
++         and math.isfinite(u8confirmation['checked_unix'])
++         and type(u8confirmation.get('checked_monotonic')) in (int,float)
++         and math.isfinite(u8confirmation['checked_monotonic'])
++         and u8confirmation['checked_unix']<u8confirmation['original_deadline_unix']
++         and u8confirmation['checked_monotonic']<u8confirmation['original_deadline_monotonic'],
++         'saved_UAR08_confirmation_must_have_closed_its_original_clock')
++    cfg['_latest_full_gate_confirmation_identities']=u8confirmation['known_identities']
+     # Normal source_union checks actual cleanup/source and current absence. A
+     # false/unqualified root needs a separately reviewed typed observation;
+     # this fixed source does not coerce a negative receipt into normal success.
+@@ -303,7 +368,8 @@
+         need(time.monotonic()-mono<10,'pre_power_guard_setup_gap')
+         awake=modules['awake'].PowerRequestGuard('UAR08 cadence combined serial technical fixtures',10)
+         awake.__enter__();pulse()
+-        guard();known=base.source_union(cfg,coor,pulse);base.absence(owner,known)
++        guard();known=base.source_union(cfg,coor,pulse)
++        known |= coor.identities(cfg['_latest_full_gate_confirmation_identities']);base.absence(owner,known)
+         with modules['lock'].ResearchLock(cfg['lock_path']) as lease:
+             lease.write_identity(root);base.absence(owner,known);persist();guard()
+             need(unix-time.time()>=MINIMUM_REMAINING and end-time.monotonic()>=MINIMUM_REMAINING,

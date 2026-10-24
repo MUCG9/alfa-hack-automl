@@ -1,0 +1,35 @@
+{
+  "schema": "uar09-fixed-metadata-instantiator-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_NOT_EXECUTED_ROOT_REVIEW_REQUIRED",
+  "source": {
+    "path": "instantiate_packet_r1.py",
+    "sha256": "a05238a4bbd239525caddfb8c507d8f053988e714c5d9f62781e30d4d8767db1"
+  },
+  "frozen_gate_handoff_sha256": "6c0a98aa916a66a7f76af91eb47647b99efceec4d6dc49bec19c922276feaf29",
+  "gate_peer_sha256": "cb13868e77f08d83bf70080d16ed1bc9687a1655c389a0903b94b3ac82801cbe",
+  "root_reported_current_source_publication_commit": "8467a33a32c487a7cc63dee4c1328ff9be4d99af",
+  "static_source_compile_only": true,
+  "actual_script_execution": false,
+  "actual_config_import": false,
+  "private_packet_materialized": false,
+  "actual_clock": null,
+  "counts_to_revalidate": {
+    "source_scripts": 59,
+    "expected_source_checks": 634,
+    "canonical_python": 171,
+    "flat_members": 73,
+    "default_exact": 23,
+    "mapped": 104,
+    "saved_identity_union": 6649
+  },
+  "old_private_lookup": {
+    "path": "uar08-combined-gate-next-dev/private-manifest-uar08-r1.json",
+    "sha256": "4a1030bb2b987a746870fe99709d151ad6cd3d9f00abb7592a249194524c6141",
+    "scope": "Only10opaque fixture file pins; never imports/revalidates obsolete R2 canonical source maps."
+  },
+  "predecessors": "Fixed declared paths and exact template receipt hashes, normal clean-negative UAR08 plus retained UQ2; complete6649 actual confirmation preserved",
+  "metadata_preparer_identity": null,
+  "metadata_identity_limit": "Not captured; source spawns no children. No invented identity.",
+  "not_run_command": "work/venv/Scripts/python.exe work/uar09-full-next-dev/instantiate_packet_r1.py --root-reviewed --canonical-commit ACTUAL_REVIEWED_PUBLICATION_COMMIT --self-sha256 a05238a4bbd239525caddfb8c507d8f053988e714c5d9f62781e30d4d8767db1",
+  "runtime_tests_builds_fits_API_PID_scans_Git_writes": 0
+}

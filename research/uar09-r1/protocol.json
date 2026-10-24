@@ -1,0 +1,144 @@
+{
+  "schema": "uar-full-technical-protocol-v1",
+  "run_id": "UAR09",
+  "status": "FROZEN_SOURCE_ONLY_PRIVATE_NOT_READY",
+  "unit": "ONE NEW full current-runtime qualification after UAR08 FAIL; no phase or suite reused as current PASS",
+  "budget_seconds": {
+    "fresh_common_at_actual_future_launch": 1200,
+    "parent_including_setup": 900,
+    "setup_max": 60,
+    "actual_final": 180,
+    "root_closer": 60,
+    "mandatory_remaining_both_clocks": 1140,
+    "phase_reset": false,
+    "one_shared_child_all4_phases": 840
+  },
+  "source_counts": {
+    "actual_literal_registry_source_scripts": 59,
+    "actual_literal_registry_expected_checks": 634,
+    "registry_sha256": "98607a6db9073b91b7e3e868d61db559b77d0081dd35d81e2fcf3c875a477011",
+    "canonical_python_files": 171,
+    "source_checks_executed": null
+  },
+  "flat_counts": {
+    "current_transitive_runtime_modules": 67,
+    "mapped": {
+      "io03": 14,
+      "vertical": 14,
+      "loss": 16,
+      "retention": 15,
+      "metric_contrast": 16,
+      "cadence": 12,
+      "hpo_fair_reserve": 17
+    },
+    "sole_exclusion": "LossContractTests.test_default_OFF_all_six_modules_preserve_base_UAR_AST",
+    "actual_final_inventory": null,
+    "prospective_members": 73,
+    "exact_repeated": 23,
+    "mapped_repeated": 104,
+    "pending_HPO_mapped": null,
+    "actual_postintegration_mapping_members": 73,
+    "HPO_source_methods": 18,
+    "HPO_flat_methods": 17
+  },
+  "root_guard": {
+    "resource_sampling_seconds": 0.25,
+    "clocks_and_sticky10_every_callback": true,
+    "last_sample_successful_actual_observation_only": true,
+    "forced_initial_observer_init_final": true,
+    "own60_original1200": true,
+    "OS_preemption_claimed": false
+  },
+  "parent_final": {
+    "PowerGuard_active_through_cleanup_hashes": true,
+    "unconditional_release": true,
+    "postrelease_and_terminal_save_sticky_pulse": true,
+    "verified_release_required": true
+  },
+  "temporary_layout": {
+    "path": "WORK/t/u8-<exclusive8>",
+    "absolute_all_leaf_environment_before_imports": true,
+    "contained_resolved_path_cleanup_after_known_absence": true,
+    "final180_and_common1200": true,
+    "sticky_uncertainty": true
+  },
+  "resources": {
+    "technical_library_threads": 1,
+    "worker_mib": 1536,
+    "whole_mib": 2048,
+    "serial": true,
+    "no_external_API_intended": true,
+    "local_mock_HTTP_allowed": true
+  },
+  "prerequisite": {
+    "whole_UQ2_actual_session": 3588,
+    "actual_exit": 1,
+    "actual_tool": "d7f40a",
+    "fresh_owned_preparer_union": {
+      "confirmation_sha256": "ec6ee6b4e4e0452d787f69a8735edc4ea56da8d782fe1fd62210fbd1a222997e",
+      "known_count": 6300,
+      "recorded_absent": true,
+      "must_recheck_current_before_and_under_new_lock": true
+    },
+    "normal_clean_ownership_required_or_STOP_for_separately_reviewed_typed_negative": true,
+    "old_UQ2_technical_global_FAILURE_retained": true,
+    "actual_helper_exit": 0,
+    "actual_helper_tool": "1d6371",
+    "original_failed_closer_exit": 1,
+    "original_failed_closer_tool": "80def1",
+    "old_uq2_terminal_root_absent_never_fabricated": true,
+    "retained_UQ2_clean_negative_root_sha256": "5c9bfc7f8f4f9c5d760e52963f89a4983172144698b7dd334d252a5dce18eabd",
+    "latest_UAR08": {
+      "negative_root_sha256": "bca0d1bbdf1dba98b03ca17be3d8dd5a584e0d5cf72034073fc35f5fc32c3842",
+      "confirmation_sha256": "67942a2aa68e9757d590f36bf689bbe349751470de166690f7429801f0ae3f86",
+      "gate_actual_session": 68067,
+      "gate_actual_exit": 1,
+      "gate_actual_tool": "848481",
+      "closer_actual_session": null,
+      "closer_actual_exit": 1,
+      "closer_actual_tool": "fd47c3",
+      "all6649_saved_IDs_including5_extra_preparers_checked_current_before_and_under_lock_and_at_closure": true,
+      "old_FAIL_permanent": true
+    }
+  },
+  "fixture_counts": {
+    "public_experiment_fits": 0,
+    "aggregate_actual_fixture_learner_fits": null,
+    "aggregate_external_API_usage": null,
+    "reason": "Broad fixtures can fit synthetic learners; aggregate actual counts uninstrumented. Cadence12 only fake clock/resources."
+  },
+  "canonical_commit": "8467a33a32c487a7cc63dee4c1328ff9be4d99af",
+  "private_READY_manifest": null,
+  "actual_clock": null,
+  "actual_run": null,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false,
+  "HPO_policy_scope": "Reviewed R3 defaultOFF; future CLASS900 optin/REG300 OFF unchanged. Technical fixtures do not prove public ML gains or8valid trials.",
+  "pending_final_source_review": true,
+  "root_authorized_exact_HPO_exception": {
+    "test_relative_path": "tests/test_uar_hpo_fair_reserve.py",
+    "excluded_methods": [
+      "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases"
+    ],
+    "exclusion_reason": "modular_source_AST_assertion_covered_by_full_source_not_flat",
+    "full_source_method_still_mandatory": true,
+    "all_other_final_HPO_methods_flat_mandatory": true,
+    "assertions_calls_unchanged": true,
+    "no_src_sidecars": true,
+    "root_authorization": "Root explicit prospective instruction before outcomes; source36dc29 and independent original AST witnesses46c3a8. No new methods or outcomes executed."
+  },
+  "HPO_R3_source_handoff_sha256": "c4cc50792cca7426e3ee4aa4af5de7cf2ae4ce114c00a8a549fba988c9bec220",
+  "HPO_R3_source_review_sha256": "7568cf5a1210780fff2ed40ae40a46b5d0f2897f81d5cca507e924a7ed08e359",
+  "reuse_policy": {
+    "prior58_source_suites616": "Historical passed rows only; not reused to qualify changed current runtime",
+    "reason": "Necessary json import changes runtime hpo.py. Original exact-runtime equivalence prerequisite is false.",
+    "fresh_source_full_suites": 59,
+    "fresh_source_expected_checks": 634,
+    "fresh_build_flat_members": 73,
+    "fresh_default_exact": 23,
+    "fresh_mapped": 104
+  },
+  "source_review_pending": true,
+  "root_and_private_review_pending": true
+}

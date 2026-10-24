@@ -1,0 +1,21 @@
+{
+  "schema": "uar09-technical-strategy-v1",
+  "source": {
+    "scripts": 59,
+    "checks": 634,
+    "full_registry_no_skips": true
+  },
+  "flat": {
+    "members": 73,
+    "default_exact": 23,
+    "mapped": 104,
+    "fullsource_exclusions_still_run": true
+  },
+  "current_HPO_R3_json_import_fix_source_pinned": true,
+  "new_fresh1200_only_future_actual_launch": true,
+  "original_UAR08_FAIL_kept": true,
+  "fixture_learner_fit_count": null,
+  "external_API_usage": null,
+  "public_experiment_fits": 0,
+  "scope": "Source preparation compile/AST only; technical broad fixtures may fit synthetic learners/local mockHTTP under existing resources."
+}

@@ -1,0 +1,10 @@
+--- reviewed_UAR08/close_gate.py
++++ UAR09/close_gate.py
+@@ -107,6 +107,7 @@
+     coor,owner=modules['coordinator'],modules['owner']
+     audit_observer=owner.StrictOwnedObserver();audit_observer.remember(coor.identities(preparers));check(force=True)
+     known=base.source_union(cfg,coor,check)
++    known |= coor.identities(cfg['_latest_full_gate_confirmation_identities'])
+     known |= coor.identities([c['owned_root']]+c['coordinator_bootstrap_identities']+c.get('owned_process_identities',[]))
+     refs=c.get('supervisors',[]);artifacts={str(early):driver.digest(early,check)}
+     sup_ok=len(refs)==1;outer_cleanup=True;entry_started=False

@@ -1,0 +1,59 @@
+{
+  "schema": "uar09-full-gate-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_PRIVATE_NOT_READY",
+  "files_sha256": {
+    "close_gate.py": "7ad50d93988374d3f5799ed26ad8d09aad1d0de082548a63ae83c7d640c8fd50",
+    "close_gate.py.patch": "97d13aa3e6fc549ddfeb0f35c5d11cd0c523aed83d647807add986d45156224f",
+    "contracts.py": "06fcca7271be009712b54985c3974049ff2d628e917f9f3658d0b13d5b973045",
+    "contracts.py.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mapped-method-whitelist.json": "6168221e2337b8b82e1f35ace2169c0e2530d2396dcef330e2f2320304768fbe",
+    "private-manifest.template.json": "428bb25c6daafd78e4af69f86ce58c9ceae45d2f7f751fc3d233e8c021b3a376",
+    "protocol.json": "41335086336ff5fad494e91eaa3ea82d6aec3544261863032b9f40444259e917",
+    "README.txt": "8df1a8387e1c3485c00313b284a757d2d21c1d0db3553425d53f1c8ea28c3081",
+    "run_gate.py": "14f5a6e339e0e8f7d48698490e26d42d4f8c01b42479a75686f0737ea69d4c9a",
+    "run_gate.py.patch": "c2475c1e23716e9e9d8fcc82686fdff4aedf490f3567e2484fb53163e195785f",
+    "source-proof.json": "4497d301d6807a2cd4c56ea1f5089514473b8d389fa4d4579410183c30b594b5",
+    "technical_entry.py": "629316ca8a54d26b45fd2cdc5c7ce0caccccfb1f8e1e5e8ab458f547d017d010",
+    "technical_entry.py.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "test-strategy.json": "66f6e6a9335454c4a07cee3f6a72702e264985d514a102ca1f4838ae60561227",
+    "canonical-source-binding.json": "b9d463edb2c41ffc84eb3b467757a2c63c49ebf5e6573dc6dc637478c6e69872",
+    "HPO-source-binding.json": "05cb409be71137196070a35c4013307c0e1415103637c5461e476d64c6f3baf9",
+    "proposal.json": "b923a7e9110f65ec6cd15de49c9ba4979923abba900d57ba0b7297aa49992f56"
+  },
+  "runtime_sources": [
+    "run_gate.py",
+    "technical_entry.py",
+    "contracts.py",
+    "close_gate.py"
+  ],
+  "base_handoff_sha256": "4fb7fe138ffde1875f6520e0d7198a3100dabbc5e7f76c702128957fa517b72d",
+  "base_peer_sha256": "d58700176d1d753f12cb8eadce36759ecee0ac0602112515fd2663264dd5f5cc",
+  "canonical_commit": "8467a33a32c487a7cc63dee4c1328ff9be4d99af",
+  "current_HPO_R3_handoff_sha256": "c4cc50792cca7426e3ee4aa4af5de7cf2ae4ce114c00a8a549fba988c9bec220",
+  "current_HPO_R3_peer_sha256": "7568cf5a1210780fff2ed40ae40a46b5d0f2897f81d5cca507e924a7ed08e359",
+  "new_runtime_source_registry_AST": [
+    59,
+    634
+  ],
+  "canonical_python_counts": {
+    "src": 81,
+    "tests": 61,
+    "tools": 29
+  },
+  "flat_members": 73,
+  "default_exact": 23,
+  "mapped_repeated": 104,
+  "old_UAR08_FAIL_preserved": true,
+  "old58passed616_not_reused_as_current_PASS": true,
+  "latest_UAR08_root_sha256": "bca0d1bbdf1dba98b03ca17be3d8dd5a584e0d5cf72034073fc35f5fc32c3842",
+  "latest_UAR08_confirmation_sha256": "67942a2aa68e9757d590f36bf689bbe349751470de166690f7429801f0ae3f86",
+  "saved_current_identity_union": 6649,
+  "own_source_compile_only": true,
+  "actual_candidate_config_imports_tests_build_fits_API_PID_scans_Git_writes": 0,
+  "private_READY": null,
+  "actual_clock": null,
+  "actual_run": null,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

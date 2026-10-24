@@ -152,3 +152,7 @@ research/universal-agent-next/qwen-pair-composite-r3/** -text
 /research/universal-agent-next/uq3-cadence-hpo-r1/** -text
 
 /research/uar-hpo-r3/** -text
+
+/research/uar09-r1/** -text
+
+/research/uq3-ready-r2/** -text

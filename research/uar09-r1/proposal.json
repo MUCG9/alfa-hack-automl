@@ -1,0 +1,41 @@
+{
+  "schema": "uar09-prospective-qualification-decision-v1",
+  "status": "SOURCE_ONLY_NEW_FULL_GATE_REQUIRED_NOT_READY",
+  "original_UAR08_permanently_failed": {
+    "actual_session": 68067,
+    "exit": 1,
+    "tool": "848481",
+    "negative_root_sha256": "bca0d1bbdf1dba98b03ca17be3d8dd5a584e0d5cf72034073fc35f5fc32c3842",
+    "fresh_confirmation_sha256": "67942a2aa68e9757d590f36bf689bbe349751470de166690f7429801f0ae3f86"
+  },
+  "initial_composite_condition": "Reuse58/616 only if only fixture/test bytes changed and all runtime pins remained exact",
+  "concrete_diagnosis": "ON diagnostics json.dumps has no json import; swallowed NameError leaves printmock uncalled. Fixture is valid and unchanged.",
+  "necessary_delta": "Local import json inside ON diagnostics try before print; hpo runtime hash changes.",
+  "composite_reuse_decision": "REJECTED for current runtime: exact-runtime-pins condition is false",
+  "new_procedure": {
+    "fresh_common_seconds": 1200,
+    "parent_including_setup": 900,
+    "child": 840,
+    "final": 180,
+    "root": 60,
+    "minimum_remaining": 1140,
+    "full_source_suites": 59,
+    "expected_source_checks": 634,
+    "build_members": 73,
+    "default_exact": 23,
+    "mapped": 104
+  },
+  "new_source_delta": "Reviewed controller plus strict latest UAR08 negative admission and2 explicit full-confirmation union lines. No other runtime/supervision change.",
+  "current_HPO_R3_handoff_sha256": "c4cc50792cca7426e3ee4aa4af5de7cf2ae4ce114c00a8a549fba988c9bec220",
+  "current_HPO_R3_review_sha256": "7568cf5a1210780fff2ed40ae40a46b5d0f2897f81d5cca507e924a7ed08e359",
+  "gate_source_review": null,
+  "canonical_publication_commit": null,
+  "private_READY": null,
+  "actual_clock": null,
+  "actual_execution": null,
+  "all_prior_attempts_separate": true,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false,
+  "executed_tests_fits_API_PID_scans": 0
+}

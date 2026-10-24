@@ -1,0 +1,12 @@
+{
+  "schema": "uq3-ready-binding-R1-source-finding",
+  "finding_id": "RB01",
+  "severity": "P2",
+  "frozen_R1_source_sha256": "152d17a6ce2af1c9035860a9f4673c3e8a3ac08c67d4f4dfb26b1db5a4b09607",
+  "reported_by": "audit_contract",
+  "accepted_by_root": true,
+  "source_only_counterexample": "A replacement valid73 code ZIP plus matching new manifest could match supplied hashes and fixed paths without matching the actual PASS root/campaign artifact maps. Builder could emit metadata READY; reviewed UQ3 later artifact_checks would still reject. No execution or ML bypass was observed.",
+  "minimal_approved_fix": "Both supplied SHA refs must match BOTH campaign.technical_artifacts and rootproof.technical_artifact_refs, using exact producer str(Path(cfg.output)/filename) absolute keys; no fallback key spelling.",
+  "original_runtime_FAILURE": false,
+  "R1_frozen_preserved": true
+}

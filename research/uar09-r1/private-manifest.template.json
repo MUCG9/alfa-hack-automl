@@ -1,0 +1,541 @@
+{
+  "schema": "uar-full-private-manifest-v1",
+  "readiness": "NOT_READY",
+  "missing_bindings": [
+    "Independent UAR09 source review and root review/publication",
+    "Absolute private source/helper/evidence paths and complete immutable hashes",
+    "Root private binding review/fresh exact-owned absence then ONE new1200 launch; clock not assigned"
+  ],
+  "work_root": null,
+  "canonical_root": null,
+  "python": null,
+  "output": null,
+  "lock_path": null,
+  "technical_entry": null,
+  "contracts": null,
+  "focused_helper": null,
+  "common_seconds": 1200,
+  "candidate_process_sha256": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3",
+  "canonical_python_inventory": [],
+  "registry": {},
+  "flat_inventory": [],
+  "files_sha256": {},
+  "helpers": {
+    "coordinator": {
+      "path": null,
+      "sha256": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818"
+    },
+    "owner": {
+      "path": null,
+      "sha256": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8"
+    },
+    "processes": {
+      "path": null,
+      "sha256": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d"
+    },
+    "lock": {
+      "path": null,
+      "sha256": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45"
+    },
+    "awake": {
+      "path": null,
+      "sha256": "9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b"
+    }
+  },
+  "mapped_suites": [
+    {
+      "id": "io03",
+      "test": null,
+      "test_relative_path": "tests/test_uar_early_declaration.py",
+      "expected_tests": 14,
+      "all_methods": [
+        "EarlyDeclarationTests.test_renamed_explicit_tables_and_dictionary_roles_resolve_without_name_aliases",
+        "EarlyDeclarationTests.test_explicit_no_ID_single_column_semicolon_schema_composes_with_IO02",
+        "EarlyDeclarationTests.test_unknown_metric_is_not_guessed_and_known_format_remains_separate",
+        "EarlyDeclarationTests.test_basenames_prose_and_numeric_target_values_never_supply_missing_authority",
+        "EarlyDeclarationTests.test_missing_ID_is_unknown_and_explicit_no_ID_conflicting_with_dictionary_is_ambiguous",
+        "EarlyDeclarationTests.test_conflicting_repeated_fields_and_dictionary_sources_are_not_silently_overridden",
+        "EarlyDeclarationTests.test_explicit_multitarget_is_retained_as_unsupported_branch",
+        "EarlyDeclarationTests.test_scalar_probability_needs_explicit_positive_and_output_header_authority",
+        "EarlyDeclarationTests.test_target_ID_and_output_header_conflicts_fail_before_IO02",
+        "EarlyDeclarationTests.test_task_text_header_metadata_row_and_field_bounds_use_original_checkpoint",
+        "EarlyDeclarationTests.test_checkpoint_expiry_propagates_before_IO_and_falsey_callable_is_not_replaced",
+        "EarlyDeclarationTests.test_path_escape_symlink_reused_files_and_dictionary_alias_are_rejected",
+        "EarlyDeclarationTests.test_headers_only_ignore_unread_invalid_feature_target_and_placeholder_rows",
+        "EarlyDeclarationTests.test_fenced_examples_and_malformed_lists_cannot_manufacture_declarations"
+      ],
+      "selected_methods": [
+        "EarlyDeclarationTests.test_renamed_explicit_tables_and_dictionary_roles_resolve_without_name_aliases",
+        "EarlyDeclarationTests.test_explicit_no_ID_single_column_semicolon_schema_composes_with_IO02",
+        "EarlyDeclarationTests.test_unknown_metric_is_not_guessed_and_known_format_remains_separate",
+        "EarlyDeclarationTests.test_basenames_prose_and_numeric_target_values_never_supply_missing_authority",
+        "EarlyDeclarationTests.test_missing_ID_is_unknown_and_explicit_no_ID_conflicting_with_dictionary_is_ambiguous",
+        "EarlyDeclarationTests.test_conflicting_repeated_fields_and_dictionary_sources_are_not_silently_overridden",
+        "EarlyDeclarationTests.test_explicit_multitarget_is_retained_as_unsupported_branch",
+        "EarlyDeclarationTests.test_scalar_probability_needs_explicit_positive_and_output_header_authority",
+        "EarlyDeclarationTests.test_target_ID_and_output_header_conflicts_fail_before_IO02",
+        "EarlyDeclarationTests.test_task_text_header_metadata_row_and_field_bounds_use_original_checkpoint",
+        "EarlyDeclarationTests.test_checkpoint_expiry_propagates_before_IO_and_falsey_callable_is_not_replaced",
+        "EarlyDeclarationTests.test_path_escape_symlink_reused_files_and_dictionary_alias_are_rejected",
+        "EarlyDeclarationTests.test_headers_only_ignore_unread_invalid_feature_target_and_placeholder_rows",
+        "EarlyDeclarationTests.test_fenced_examples_and_malformed_lists_cannot_manufacture_declarations"
+      ],
+      "excluded_methods": [],
+      "exclusion_reason": null,
+      "source_review_ref": {
+        "path": null,
+        "sha256": "9a46b2ad2f367cfc0b6a992e358444734a5eb89c8ff35a5dc2596b586515ac40"
+      }
+    },
+    {
+      "id": "vertical",
+      "test": null,
+      "test_relative_path": "tests/test_uar_vertical_contract.py",
+      "expected_tests": 14,
+      "all_methods": [
+        "VerticalContractTests.test_legacy_OFF_does_not_enter_bootstrap_and_retains_runtime_scope",
+        "VerticalContractTests.test_CLI_trusted_optin_enters_original_budget_and_restores_on_error",
+        "VerticalContractTests.test_atomic_metric_aware_fallback_exists_before_full_loader",
+        "VerticalContractTests.test_unknown_unsupported_and_ambiguous_metric_keep_fallback_and_never_load",
+        "VerticalContractTests.test_unknown_format_and_multitarget_preserve_prior_bytes_without_fake_CSV",
+        "VerticalContractTests.test_resolved_hooks_bypass_legacy_kind_and_metric_guesses",
+        "VerticalContractTests.test_explicit_renamed_dictionary_roles_do_not_call_filename_or_LLM_resolution",
+        "VerticalContractTests.test_lexical_test_ID_drift_stops_before_search_and_preserves_early_order",
+        "VerticalContractTests.test_lexical_class_labels_lost_by_legacy_loader_are_not_silently_repaired",
+        "VerticalContractTests.test_probability_columns_class_order_and_sample_permutation_remain_authoritative",
+        "VerticalContractTests.test_full_input_or_task_change_after_publication_rejects_before_solver",
+        "VerticalContractTests.test_named_but_unsupported_strict_scope_stops_after_output_before_full_load",
+        "VerticalContractTests.test_original_checkpoint_deadline_and_raw_denial_propagate_without_API",
+        "VerticalContractTests.test_strict_candidate_checkpoint_validates_context_and_OFF_call_is_unchanged"
+      ],
+      "selected_methods": [
+        "VerticalContractTests.test_legacy_OFF_does_not_enter_bootstrap_and_retains_runtime_scope",
+        "VerticalContractTests.test_CLI_trusted_optin_enters_original_budget_and_restores_on_error",
+        "VerticalContractTests.test_atomic_metric_aware_fallback_exists_before_full_loader",
+        "VerticalContractTests.test_unknown_unsupported_and_ambiguous_metric_keep_fallback_and_never_load",
+        "VerticalContractTests.test_unknown_format_and_multitarget_preserve_prior_bytes_without_fake_CSV",
+        "VerticalContractTests.test_resolved_hooks_bypass_legacy_kind_and_metric_guesses",
+        "VerticalContractTests.test_explicit_renamed_dictionary_roles_do_not_call_filename_or_LLM_resolution",
+        "VerticalContractTests.test_lexical_test_ID_drift_stops_before_search_and_preserves_early_order",
+        "VerticalContractTests.test_lexical_class_labels_lost_by_legacy_loader_are_not_silently_repaired",
+        "VerticalContractTests.test_probability_columns_class_order_and_sample_permutation_remain_authoritative",
+        "VerticalContractTests.test_full_input_or_task_change_after_publication_rejects_before_solver",
+        "VerticalContractTests.test_named_but_unsupported_strict_scope_stops_after_output_before_full_load",
+        "VerticalContractTests.test_original_checkpoint_deadline_and_raw_denial_propagate_without_API",
+        "VerticalContractTests.test_strict_candidate_checkpoint_validates_context_and_OFF_call_is_unchanged"
+      ],
+      "excluded_methods": [],
+      "exclusion_reason": null,
+      "source_review_ref": {
+        "path": null,
+        "sha256": "a288833727ac2f86ebbbe2f68119c1b9a24325bcea9cbe46c1494ebd7fd09985"
+      }
+    },
+    {
+      "id": "loss",
+      "test": null,
+      "test_relative_path": "tests/test_uar_loss_backend.py",
+      "expected_tests": 16,
+      "all_methods": [
+        "LossContractTests.test_catalog_fixed_regression_only_and_returned_metadata_independent",
+        "LossContractTests.test_normalization_effective_parameters_and_signature_retain_typed_ID",
+        "LossContractTests.test_unknown_incompatible_and_misplaced_profile_reject_before_filter",
+        "LossContractTests.test_raw_alias_conflicts_and_inherited_profile_reject_without_mutation",
+        "LossContractTests.test_process_contract_rejects_bad_profile_in_any_ensemble_child",
+        "LossContractTests.test_ordinary_advertised_capabilities_equal_base_UAR",
+        "LossContractTests.test_nonprimary_early_stopping_and_direct_classification_are_rejected",
+        "LossContractTests.test_telemetry_requires_actual_fitted_booster_not_constructor_claim",
+        "LossContractTests.test_worker_rejects_wrong_kind_before_IO_or_any_ensemble_child",
+        "LossContractTests.test_default_OFF_all_six_modules_preserve_base_UAR_AST",
+        "LossContractTests.test_ensemble_inventory_retains_leaf_loss_receipts_and_iteration_tree",
+        "LossRealEstimatorTests.test_real_l2_booster_parameters_and_finite_outputs",
+        "LossRealEstimatorTests.test_real_l1_booster_parameters_and_finite_outputs",
+        "LossRealEstimatorTests.test_real_huber_booster_parameters_and_fixed_alpha",
+        "LossRealEstimatorTests.test_real_explicit_l2_matches_implicit_legacy_loss",
+        "LossRealEstimatorTests.test_real_huber_stops_only_on_unchanged_original_scale_RMSE",
+        "LossRealEstimatorTests.test_tiny_worker_nested_and_full_refit_record_actual_booster_scopes"
+      ],
+      "selected_methods": [
+        "LossContractTests.test_catalog_fixed_regression_only_and_returned_metadata_independent",
+        "LossContractTests.test_normalization_effective_parameters_and_signature_retain_typed_ID",
+        "LossContractTests.test_unknown_incompatible_and_misplaced_profile_reject_before_filter",
+        "LossContractTests.test_raw_alias_conflicts_and_inherited_profile_reject_without_mutation",
+        "LossContractTests.test_process_contract_rejects_bad_profile_in_any_ensemble_child",
+        "LossContractTests.test_ordinary_advertised_capabilities_equal_base_UAR",
+        "LossContractTests.test_nonprimary_early_stopping_and_direct_classification_are_rejected",
+        "LossContractTests.test_telemetry_requires_actual_fitted_booster_not_constructor_claim",
+        "LossContractTests.test_worker_rejects_wrong_kind_before_IO_or_any_ensemble_child",
+        "LossContractTests.test_ensemble_inventory_retains_leaf_loss_receipts_and_iteration_tree",
+        "LossRealEstimatorTests.test_real_l2_booster_parameters_and_finite_outputs",
+        "LossRealEstimatorTests.test_real_l1_booster_parameters_and_finite_outputs",
+        "LossRealEstimatorTests.test_real_huber_booster_parameters_and_fixed_alpha",
+        "LossRealEstimatorTests.test_real_explicit_l2_matches_implicit_legacy_loss",
+        "LossRealEstimatorTests.test_real_huber_stops_only_on_unchanged_original_scale_RMSE",
+        "LossRealEstimatorTests.test_tiny_worker_nested_and_full_refit_record_actual_booster_scopes"
+      ],
+      "excluded_methods": [
+        "LossContractTests.test_default_OFF_all_six_modules_preserve_base_UAR_AST"
+      ],
+      "exclusion_reason": "modular_source_AST_assertion_covered_by_full_source_not_flat",
+      "source_review_ref": {
+        "path": null,
+        "sha256": "46df8892c3ffc731acb181188f4f7434d291d7c9b8c04748d0000f513529fd3c"
+      }
+    },
+    {
+      "id": "retention",
+      "test": null,
+      "test_relative_path": "tests/test_uar_strong_retention.py",
+      "expected_tests": 15,
+      "all_methods": [
+        "StrongRetentionTests.test_first5_raw_control_hpo_anchor_isolated_fe_and_three_families",
+        "StrongRetentionTests.test_class_full_three_component_control_is_intact_not_fake_seven",
+        "StrongRetentionTests.test_strongest_composite_exact_children_weights_and_seven_slot_tradeoff",
+        "StrongRetentionTests.test_l1_constructor_changes_only_profile_and_no_standalone_mode_exists",
+        "StrongRetentionTests.test_signature_unknown_fields_or_normalization_drift_are_not_repaired",
+        "StrongRetentionTests.test_external_profile_and_class_regression_modes_are_rejected",
+        "StrongRetentionTests.test_unknown_history_eligibility_and_wrong_retained_signature_stop",
+        "StrongRetentionTests.test_missing_family_duplicate_required_seed_and_invalid_selector_stop",
+        "StrongRetentionTests.test_hpo_uses_successful_unprofiled_single_not_best_composite",
+        "StrongRetentionTests.test_fixed_deadline_reserves_full_hpo_refit_and_remaining_minimum_slices",
+        "StrongRetentionTests.test_structural_fit_counts_include_views_calibration_and_teachers_not_jobs",
+        "StrongRetentionTests.test_bounded_file_byte_pin_duplicate_keys_and_link_preflight",
+        "StrongRetentionTests.test_only_trusted_cli_can_enable_and_invalid_caps_reject_before_budget",
+        "StrongRetentionTests.test_default_cli_keeps_legacy_branch_and_strict_contexts_disabled",
+        "StrongRetentionTests.test_invalid_authority_is_rejected_before_any_api_worker_or_split"
+      ],
+      "selected_methods": [
+        "StrongRetentionTests.test_first5_raw_control_hpo_anchor_isolated_fe_and_three_families",
+        "StrongRetentionTests.test_class_full_three_component_control_is_intact_not_fake_seven",
+        "StrongRetentionTests.test_strongest_composite_exact_children_weights_and_seven_slot_tradeoff",
+        "StrongRetentionTests.test_l1_constructor_changes_only_profile_and_no_standalone_mode_exists",
+        "StrongRetentionTests.test_signature_unknown_fields_or_normalization_drift_are_not_repaired",
+        "StrongRetentionTests.test_external_profile_and_class_regression_modes_are_rejected",
+        "StrongRetentionTests.test_unknown_history_eligibility_and_wrong_retained_signature_stop",
+        "StrongRetentionTests.test_missing_family_duplicate_required_seed_and_invalid_selector_stop",
+        "StrongRetentionTests.test_hpo_uses_successful_unprofiled_single_not_best_composite",
+        "StrongRetentionTests.test_fixed_deadline_reserves_full_hpo_refit_and_remaining_minimum_slices",
+        "StrongRetentionTests.test_structural_fit_counts_include_views_calibration_and_teachers_not_jobs",
+        "StrongRetentionTests.test_bounded_file_byte_pin_duplicate_keys_and_link_preflight",
+        "StrongRetentionTests.test_only_trusted_cli_can_enable_and_invalid_caps_reject_before_budget",
+        "StrongRetentionTests.test_default_cli_keeps_legacy_branch_and_strict_contexts_disabled",
+        "StrongRetentionTests.test_invalid_authority_is_rejected_before_any_api_worker_or_split"
+      ],
+      "excluded_methods": [],
+      "exclusion_reason": null,
+      "source_review_ref": {
+        "path": null,
+        "sha256": "5816d6aeaf03ab1846c59bc6fe9b74593009e5480f367d1f54969f38cde01ded"
+      }
+    },
+    {
+      "id": "metric_contrast",
+      "test": null,
+      "test_relative_path": "tests/test_uar_metric_contrast.py",
+      "expected_tests": 16,
+      "all_methods": [
+        "MetricContrastTests.test_russian_explicit_contrast",
+        "MetricContrastTests.test_english_direct_not",
+        "MetricContrastTests.test_rather_than_regression",
+        "MetricContrastTests.test_instead_of_regression_alias",
+        "MetricContrastTests.test_longest_metric_alias_spans_are_preserved",
+        "MetricContrastTests.test_repeated_equivalent_primary_with_multiline_contrast",
+        "MetricContrastTests.test_negation_only_never_creates_a_default",
+        "MetricContrastTests.test_not_only_but_also_keeps_both_objectives",
+        "MetricContrastTests.test_ambiguous_objective_list_is_not_reinterpreted",
+        "MetricContrastTests.test_independent_primary_sources_still_conflict",
+        "MetricContrastTests.test_affirmed_and_negated_same_name_stay_unresolved",
+        "MetricContrastTests.test_unsupported_primary_does_not_use_negated_or_diagnostic_metric",
+        "MetricContrastTests.test_nonprimary_contrast_is_not_new_authority",
+        "MetricContrastTests.test_legacy_parser_path_is_unchanged",
+        "MetricContrastTests.test_probability_shape_and_direction_remain_typed",
+        "MetricContrastTests.test_existing_evidence_bound_is_not_removed"
+      ],
+      "selected_methods": [
+        "MetricContrastTests.test_russian_explicit_contrast",
+        "MetricContrastTests.test_english_direct_not",
+        "MetricContrastTests.test_rather_than_regression",
+        "MetricContrastTests.test_instead_of_regression_alias",
+        "MetricContrastTests.test_longest_metric_alias_spans_are_preserved",
+        "MetricContrastTests.test_repeated_equivalent_primary_with_multiline_contrast",
+        "MetricContrastTests.test_negation_only_never_creates_a_default",
+        "MetricContrastTests.test_not_only_but_also_keeps_both_objectives",
+        "MetricContrastTests.test_ambiguous_objective_list_is_not_reinterpreted",
+        "MetricContrastTests.test_independent_primary_sources_still_conflict",
+        "MetricContrastTests.test_affirmed_and_negated_same_name_stay_unresolved",
+        "MetricContrastTests.test_unsupported_primary_does_not_use_negated_or_diagnostic_metric",
+        "MetricContrastTests.test_nonprimary_contrast_is_not_new_authority",
+        "MetricContrastTests.test_legacy_parser_path_is_unchanged",
+        "MetricContrastTests.test_probability_shape_and_direction_remain_typed",
+        "MetricContrastTests.test_existing_evidence_bound_is_not_removed"
+      ],
+      "excluded_methods": [],
+      "exclusion_reason": null,
+      "source_review_ref": {
+        "path": null,
+        "sha256": "c3928199975a991522cf3acef130de71b0555fbbacd1f0faa0050b4bf78a7d6d"
+      }
+    },
+    {
+      "id": "cadence",
+      "test": null,
+      "test_relative_path": "tests/test_uar_task_checkpoint_cadence.py",
+      "expected_tests": 12,
+      "all_methods": [
+        "TaskContractCadenceTests.test_burst_checks_original_clock_but_only_first_resource_sample",
+        "TaskContractCadenceTests.test_exact_cadence_boundary_samples_and_skips_do_not_move_last_sample",
+        "TaskContractCadenceTests.test_phase_force_really_inspects_even_inside_cadence",
+        "TaskContractCadenceTests.test_deadline_on_otherwise_skipped_callback_is_sticky",
+        "TaskContractCadenceTests.test_inspection_crossing_original_deadline_cannot_commit_sample",
+        "TaskContractCadenceTests.test_slow_inspection_duration_over10_is_sticky",
+        "TaskContractCadenceTests.test_gap_includes_due_inspection_duration_and_cannot_be_laundered",
+        "TaskContractCadenceTests.test_presample_gap_over10_rejects_before_any_new_inspection",
+        "TaskContractCadenceTests.test_raw_denials_are_fatal_sticky_and_do_not_advance_last_sample",
+        "TaskContractCadenceTests.test_resource_limit_failure_is_sticky_and_never_becomes_cached_pass",
+        "TaskContractCadenceTests.test_rollback_or_nonfinite_clock_fails_before_resource_and_stays_sticky",
+        "TaskContractCadenceTests.test_flow_state_is_local_original_helper_still_inspects_every_direct_call"
+      ],
+      "selected_methods": [
+        "TaskContractCadenceTests.test_burst_checks_original_clock_but_only_first_resource_sample",
+        "TaskContractCadenceTests.test_exact_cadence_boundary_samples_and_skips_do_not_move_last_sample",
+        "TaskContractCadenceTests.test_phase_force_really_inspects_even_inside_cadence",
+        "TaskContractCadenceTests.test_deadline_on_otherwise_skipped_callback_is_sticky",
+        "TaskContractCadenceTests.test_inspection_crossing_original_deadline_cannot_commit_sample",
+        "TaskContractCadenceTests.test_slow_inspection_duration_over10_is_sticky",
+        "TaskContractCadenceTests.test_gap_includes_due_inspection_duration_and_cannot_be_laundered",
+        "TaskContractCadenceTests.test_presample_gap_over10_rejects_before_any_new_inspection",
+        "TaskContractCadenceTests.test_raw_denials_are_fatal_sticky_and_do_not_advance_last_sample",
+        "TaskContractCadenceTests.test_resource_limit_failure_is_sticky_and_never_becomes_cached_pass",
+        "TaskContractCadenceTests.test_rollback_or_nonfinite_clock_fails_before_resource_and_stays_sticky",
+        "TaskContractCadenceTests.test_flow_state_is_local_original_helper_still_inspects_every_direct_call"
+      ],
+      "excluded_methods": [],
+      "exclusion_reason": null,
+      "source_review_ref": {
+        "path": null,
+        "sha256": "490f9695124c759d53677eb1162b7250b527370b1c30a4b9d4518b0dcbe7b87f"
+      }
+    },
+    {
+      "id": "hpo_fair_reserve",
+      "test": null,
+      "test_relative_path": "tests/test_uar_hpo_fair_reserve.py",
+      "expected_tests": 17,
+      "all_methods": [
+        "FairReserveTests.test_numerical_REG300_and_missing_strict_reject_before_discovery_or_API",
+        "FairReserveTests.test_exact_anchor_feasibility_and_soft_equal_share_arithmetic",
+        "FairReserveTests.test_original_clock_invalid_rollback_and_deadline_remain_sticky",
+        "FairReserveTests.test_late_anchor_setup_stops_without_callback_or_fake_trial",
+        "FairReserveTests.test_share_recomputed_after_persist_does_not_launch_stale_proposal",
+        "FairReserveTests.test_eight_actual_callbacks_preserve_anchor_template_space_and_truthful_phases",
+        "FairReserveTests.test_ordinary_confirmed_timeout_is_null_consumes_slot_and_continues",
+        "FairReserveTests.test_actual_cleanup_overrun_stops_later_slots_without_reset_or_retry",
+        "FairReserveTests.test_resource_kill_late_cleanup_stays_timeout_but_parent_origin_forces_STOP",
+        "FairReserveTests.test_ordinary_late_clean_result_has_complete_nonresource_origin",
+        "FairReserveTests.test_original_cleanup_exception_propagates_and_trusted_scope_restores",
+        "FairReserveTests.test_missing_or_incomplete_parent_receipt_is_technical_STOP",
+        "FairReserveTests.test_resource_or_unknown_technical_origin_STOPs_without_extra_draw",
+        "FairReserveTests.test_duplicate_proposal_is_not_callback_or_valid_or_padding",
+        "FairReserveTests.test_final_save_crossing_original_deadline_cannot_return_ok",
+        "FairReserveTests.test_trusted_flag_cannot_be_enabled_by_recipe_context_and_scope_is_local",
+        "FairReserveTests.test_OFF_strict_worker_late_classification_does_not_add_provenance",
+        "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases"
+      ],
+      "selected_methods": [
+        "FairReserveTests.test_numerical_REG300_and_missing_strict_reject_before_discovery_or_API",
+        "FairReserveTests.test_exact_anchor_feasibility_and_soft_equal_share_arithmetic",
+        "FairReserveTests.test_original_clock_invalid_rollback_and_deadline_remain_sticky",
+        "FairReserveTests.test_late_anchor_setup_stops_without_callback_or_fake_trial",
+        "FairReserveTests.test_share_recomputed_after_persist_does_not_launch_stale_proposal",
+        "FairReserveTests.test_eight_actual_callbacks_preserve_anchor_template_space_and_truthful_phases",
+        "FairReserveTests.test_ordinary_confirmed_timeout_is_null_consumes_slot_and_continues",
+        "FairReserveTests.test_actual_cleanup_overrun_stops_later_slots_without_reset_or_retry",
+        "FairReserveTests.test_resource_kill_late_cleanup_stays_timeout_but_parent_origin_forces_STOP",
+        "FairReserveTests.test_ordinary_late_clean_result_has_complete_nonresource_origin",
+        "FairReserveTests.test_original_cleanup_exception_propagates_and_trusted_scope_restores",
+        "FairReserveTests.test_missing_or_incomplete_parent_receipt_is_technical_STOP",
+        "FairReserveTests.test_resource_or_unknown_technical_origin_STOPs_without_extra_draw",
+        "FairReserveTests.test_duplicate_proposal_is_not_callback_or_valid_or_padding",
+        "FairReserveTests.test_final_save_crossing_original_deadline_cannot_return_ok",
+        "FairReserveTests.test_trusted_flag_cannot_be_enabled_by_recipe_context_and_scope_is_local",
+        "FairReserveTests.test_OFF_strict_worker_late_classification_does_not_add_provenance"
+      ],
+      "excluded_methods": [
+        "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases"
+      ],
+      "exclusion_reason": "modular_source_AST_assertion_covered_by_full_source_not_flat",
+      "source_review_ref": {
+        "path": null,
+        "sha256": "7568cf5a1210780fff2ed40ae40a46b5d0f2897f81d5cca507e924a7ed08e359"
+      }
+    }
+  ],
+  "predecessors": [
+    {
+      "id": "la2",
+      "path": null,
+      "sha256": "3ae50a32e3931f214e59343eee99654c37b77bf66b1b8ec233d416586d6cfd8b",
+      "actual_exec_session": 12413,
+      "actual_exit_code": 1,
+      "actual_tool_evidence": "1c2b5e"
+    },
+    {
+      "id": "postfailure_audit",
+      "path": null,
+      "sha256": "9b6de5609bd18ca9a31356b96af375f62ec131cf173658142247a39701a2dcbc",
+      "actual_exec_session": 67321,
+      "actual_exit_code": 0,
+      "actual_tool_evidence": "8a0524"
+    },
+    {
+      "id": "uar00",
+      "path": null,
+      "sha256": "3454c4f4399cd66c1940c5f2c57171a5f9c5dd10af7b71a016bf856b78f9ddb0",
+      "actual_exec_session": null,
+      "actual_exit_code": 0,
+      "actual_tool_evidence": "251512"
+    },
+    {
+      "id": "uar01_failed",
+      "path": null,
+      "sha256": "7ac573e9f59e9e8ea71a46091fca56c488e0ae4dbdbdd31f81e9b481f1572d60",
+      "actual_exec_session": 25916,
+      "actual_exit_code": 1,
+      "actual_tool_evidence": "2b1c5a"
+    },
+    {
+      "id": "uar01_recovery",
+      "path": null,
+      "sha256": "a750111f4b88ba6317b09625791b75f0e173ddd224499c3e5a7792f9c01268be",
+      "actual_exec_session": 8705,
+      "actual_exit_code": 0,
+      "actual_tool_evidence": "f0dc9d"
+    },
+    {
+      "id": "uar02_recovery",
+      "path": null,
+      "sha256": "67694534b84604c02ec97545b8a6075f3b34b99855a3e7d6605ff69917b2b868",
+      "actual_exec_session": null,
+      "actual_exit_code": 0,
+      "actual_tool_evidence": "f94275"
+    },
+    {
+      "id": "uar03",
+      "path": null,
+      "sha256": "e86a151481b5b2849d9d0b6b4dc8ef6787a6ccf766dd97486b65de9d05cbf5d9",
+      "actual_exec_session": null,
+      "actual_exit_code": 0,
+      "actual_tool_evidence": "0a5cff"
+    },
+    {
+      "id": "uar04_failed",
+      "path": null,
+      "sha256": "cd6c4e73bc0f5f6145ec11dbdd36160f96ba6f39dad09027496b177b60f0b10b",
+      "actual_exec_session": 66061,
+      "actual_exit_code": 1,
+      "actual_tool_evidence": "0971f4"
+    },
+    {
+      "id": "uar05_failed",
+      "path": null,
+      "sha256": "f6beea92100db555853da7bd7990308f5d667fe1b2f60ffa9e69b36eabd5faf6",
+      "actual_exec_session": 21393,
+      "actual_exit_code": 1,
+      "actual_tool_evidence": "6f3ad1"
+    },
+    {
+      "id": "uq2",
+      "path": null,
+      "sha256": "5c9bfc7f8f4f9c5d760e52963f89a4983172144698b7dd334d252a5dce18eabd",
+      "actual_exec_session": 3588,
+      "actual_exit_code": 1,
+      "actual_tool_evidence": "d7f40a"
+    },
+    {
+      "id": "uar08_failed",
+      "path": null,
+      "sha256": "bca0d1bbdf1dba98b03ca17be3d8dd5a584e0d5cf72034073fc35f5fc32c3842",
+      "actual_exec_session": 68067,
+      "actual_exit_code": 1,
+      "actual_tool_evidence": "848481"
+    }
+  ],
+  "latest_predecessor_id": "uar08_failed",
+  "historical_failure_evidence": [
+    {
+      "path": null,
+      "sha256": "87f691b5774ed6f604069d952041bdd6af6a6022f9ea1268ac77a8364180a106",
+      "scope": "immutable_evidence_only_not_owned_grant"
+    },
+    {
+      "path": null,
+      "sha256": "c880e6625dfa1a52af9aab9847adbb9c1c519493e3e3d678d591237266bded15",
+      "scope": "immutable_evidence_only_not_owned_grant"
+    }
+  ],
+  "canonical_commit": null,
+  "binding_hints": {
+    "new_UAR08_not_UQ2_recovery": true,
+    "UQ2_actual_root_SHA_unknown": false,
+    "whole_UQ2_then_fresh_before_and_under_lock_required": true,
+    "negative_false_flags_never_coerced_to_positive": true,
+    "unknown_old_parent_never_adopted": true,
+    "candidate9f84_distinct_guardfac3": true,
+    "reviewed_cadence_source_sha256": "425bf395417afbc359fc7400f8dd038060d640642733e4deaad90830a0c481eb",
+    "reviewed_cadence_test_sha256": "7a31398a5a64ac9f80983f419e19d7e318ba4345603b31e396aa7bfe8102c286",
+    "actual_future_registry_inventory_source_pins": null,
+    "actual_clock": null,
+    "combined_cadence_and_HPO_source": true,
+    "HPO_source_handoff_sha256": "c4cc50792cca7426e3ee4aa4af5de7cf2ae4ce114c00a8a549fba988c9bec220",
+    "HPO_source_test_sha256": "8bfe59fa6bd0114c3867e1ef426f1f155cd83fbe3ba90709a332046b903d5643",
+    "HPO_expected_full_source_methods": 18,
+    "HPO_expected_flat_methods": 17,
+    "combined_expected_source_scripts": 59,
+    "combined_expected_source_checks": 634,
+    "combined_expected_flat_members": 73,
+    "combined_expected_mapped_checks": 104,
+    "actual_postintegration_counts": {
+      "source_scripts": 59,
+      "source_checks": 634,
+      "flat_members": 73,
+      "mapped_checks": 104
+    },
+    "canonical_source_binding_sha256": "b9d463edb2c41ffc84eb3b467757a2c63c49ebf5e6573dc6dc637478c6e69872",
+    "new_UAR09_experience_not_UAR08_recovery": true,
+    "old_UAR08_FAIL_preserved": true,
+    "HPO_runtime_source_final_sha256": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+    "HPO_source_peer_sha256": "7568cf5a1210780fff2ed40ae40a46b5d0f2897f81d5cca507e924a7ed08e359"
+  },
+  "run_id": "UAR09",
+  "requires_whole_UQ2_terminal_and_fresh_closure": true,
+  "latest_UQ2_negative_audit": {
+    "schema": "uq2-clean-negative-root-admission-v1",
+    "root_confirmation": {
+      "path": null,
+      "sha256": "ec6ee6b4e4e0452d787f69a8735edc4ea56da8d782fe1fd62210fbd1a222997e"
+    },
+    "helper_source": {
+      "path": null,
+      "sha256": "45639bdbf9433588ffdda8145693d585b040a715b761215b1de5823ceb3b95aa"
+    },
+    "helper_review": {
+      "path": null,
+      "sha256": "820834b95ab3ab5cd2e8b285701010de29d8d9dd239862fd448b59eba34b11b9"
+    }
+  },
+  "latest_UAR08_negative": {
+    "schema": "uar08-clean-negative-root-admission-v1",
+    "root_confirmation": {
+      "path": null,
+      "sha256": "67942a2aa68e9757d590f36bf689bbe349751470de166690f7429801f0ae3f86"
+    },
+    "closer_source": {
+      "path": null,
+      "sha256": "8d4c47a32a7a874a2982fc020b655d04341d0151895fc07dc529c746a67fc0fe"
+    },
+    "original_private_manifest": {
+      "path": null,
+      "sha256": "4a1030bb2b987a746870fe99709d151ad6cd3d9f00abb7592a249194524c6141"
+    }
+  }
+}

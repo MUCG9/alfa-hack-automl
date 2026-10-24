@@ -1,0 +1,15 @@
+{
+  "schema": "uq3-ready-binding-source-proof-r2",
+  "source_sha256": "c323ef4b793960b94f0fff1db83525dfe85b9bb91aaf703093b4758160520581",
+  "R1_handoff_sha256": "7b6629d9232f9307b4e28126285e1e26c8f0bb498b39a89b1bb54db5307e7c01",
+  "AST_inverse_exact_entire_R1_module": true,
+  "sole_validation_delta": "Bind archive+manifest SHA to both sealed positive campaign/root artifact maps using exact producer absolute keys.",
+  "sole_other_AST_delta": "exclusive output path default points to isolated R2 folder",
+  "sealed_lineage_block_before_ZipFile": true,
+  "R1_bytes_preserved": true,
+  "original_R1_never_executed": true,
+  "all_other_eligibility_schema_clock_pin_checks_exact": true,
+  "actual_builder_import_inspection_write_executions": 0,
+  "actual_tests_fits_API_data_reads_PID_scans": 0,
+  "clock_assigned": false
+}

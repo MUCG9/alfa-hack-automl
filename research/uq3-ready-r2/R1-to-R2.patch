@@ -1,0 +1,26 @@
+--- frozen_R1/build_binding.py
++++ R2/build_binding.py
+@@ -118,7 +118,7 @@
+              'root-confirmation', 'archive', 'candidate-manifest', 'authority-review']
+     for name in names:
+         parser.add_argument('--'+name, help='Actual WORK-relative path=SHA256')
+-    parser.add_argument('--output', default='uq3-ready-binding-next-dev/binding.ready-root.json')
++    parser.add_argument('--output', default='uq3-ready-binding-r2-next-dev/binding.ready-root.json')
+     args = parser.parse_args()
+     if not args.write:
+         print(json.dumps(dict(status='inspection_only_NOT_READY_no_reads_no_clock_no_write',
+@@ -193,6 +193,14 @@
+     need(archive == gate_output/'candidate.zip'
+          and local(refs['candidate-manifest']['path']) == gate_output/'candidate.manifest.json'
+          and manifest.get('sha256') == refs['archive']['sha256'], 'qualified_gate_archive_lineage_changed')
++    # Producer contracts.record() uses str(out/name), where out is cfg['output'].
++    # A new valid archive/manifest pair cannot replace the pair sealed by PASS.
++    for field, receipt in [('technical_artifacts', campaign), ('technical_artifact_refs', proof)]:
++        saved = receipt.get(field)
++        need(type(saved) is dict, 'actual_positive_saved_artifact_inventory_required')
++        for name, filename in [('archive', 'candidate.zip'), ('candidate-manifest', 'candidate.manifest.json')]:
++            need(saved.get(str(Path(cfg['output'])/filename)) == refs[name]['sha256'],
++                 'actual_positive_sealed_archive_or_manifest_reference_changed')
+     compiled = manifest.get('files')
+     need(type(compiled) is dict and len(compiled) == 73 and set(compiled) == set(cfg['flat_inventory'])
+          and all(is_sha(v) for v in compiled.values())

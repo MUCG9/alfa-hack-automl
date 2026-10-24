@@ -1,0 +1,80 @@
+{
+  "schema": "uar09-full-gate-independent-source-review-r1",
+  "verdict": "NO_SCOPED_SOURCE_BLOCKER",
+  "handoff": {
+    "path": "uar09-full-next-dev/source-handoff.json",
+    "sha256": "6c0a98aa916a66a7f76af91eb47647b99efceec4d6dc49bec19c922276feaf29"
+  },
+  "checked_source_packet_pins": {
+    "close_gate.py": "7ad50d93988374d3f5799ed26ad8d09aad1d0de082548a63ae83c7d640c8fd50",
+    "close_gate.py.patch": "97d13aa3e6fc549ddfeb0f35c5d11cd0c523aed83d647807add986d45156224f",
+    "contracts.py": "06fcca7271be009712b54985c3974049ff2d628e917f9f3658d0b13d5b973045",
+    "contracts.py.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mapped-method-whitelist.json": "6168221e2337b8b82e1f35ace2169c0e2530d2396dcef330e2f2320304768fbe",
+    "private-manifest.template.json": "428bb25c6daafd78e4af69f86ce58c9ceae45d2f7f751fc3d233e8c021b3a376",
+    "protocol.json": "41335086336ff5fad494e91eaa3ea82d6aec3544261863032b9f40444259e917",
+    "README.txt": "8df1a8387e1c3485c00313b284a757d2d21c1d0db3553425d53f1c8ea28c3081",
+    "run_gate.py": "14f5a6e339e0e8f7d48698490e26d42d4f8c01b42479a75686f0737ea69d4c9a",
+    "run_gate.py.patch": "c2475c1e23716e9e9d8fcc82686fdff4aedf490f3567e2484fb53163e195785f",
+    "source-proof.json": "4497d301d6807a2cd4c56ea1f5089514473b8d389fa4d4579410183c30b594b5",
+    "technical_entry.py": "629316ca8a54d26b45fd2cdc5c7ce0caccccfb1f8e1e5e8ab458f547d017d010",
+    "technical_entry.py.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "test-strategy.json": "66f6e6a9335454c4a07cee3f6a72702e264985d514a102ca1f4838ae60561227",
+    "canonical-source-binding.json": "b9d463edb2c41ffc84eb3b467757a2c63c49ebf5e6573dc6dc637478c6e69872",
+    "HPO-source-binding.json": "05cb409be71137196070a35c4013307c0e1415103637c5461e476d64c6f3baf9",
+    "proposal.json": "b923a7e9110f65ec6cd15de49c9ba4979923abba900d57ba0b7297aa49992f56"
+  },
+  "base_handoff_sha256": "4fb7fe138ffde1875f6520e0d7198a3100dabbc5e7f76c702128957fa517b72d",
+  "driver_inverse_config_and_one_known_union_exact_base_AST": true,
+  "closer_inverse_one_known_union_exact_whole_base_AST": true,
+  "entry_and_contracts_byte_exact_base": true,
+  "closed_UAR08_root": {
+    "path": "uar08-combined-gate-next-dev/attempt-r1/terminal-root-closure.json",
+    "sha256": "bca0d1bbdf1dba98b03ca17be3d8dd5a584e0d5cf72034073fc35f5fc32c3842"
+  },
+  "closed_UAR08_confirmation": {
+    "path": "uar08-combined-gate-next-dev/attempt-r1/root-confirmation.json",
+    "sha256": "67942a2aa68e9757d590f36bf689bbe349751470de166690f7429801f0ae3f86"
+  },
+  "root_owned_preparer_identity_union": 6644,
+  "confirmed_known_union": 6649,
+  "extra_current_preparers_included": 5,
+  "strict_negative_actual_gate_session_exit_tool": [
+    68067,
+    1,
+    "848481"
+  ],
+  "strict_negative_closer_session_exit_tool": [
+    null,
+    1,
+    "fd47c3"
+  ],
+  "old_UAR08_technical_FAIL_not_requalified": true,
+  "confirmed6649_union_fresh_checked_before_and_under_lock": true,
+  "UQ2_clean_negative_admission_preserved": true,
+  "positive_predicate_clock_resource_cleanup_main_loop_AST_unchanged": true,
+  "common_parent_child_final_root_minimum_remaining_seconds": [
+    1200,
+    900,
+    840,
+    180,
+    60,
+    1140
+  ],
+  "actual_source_registry_AST": [
+    59,
+    634
+  ],
+  "flat_members_expected": 73,
+  "default_exact_expected": 23,
+  "mapped_expected": 104,
+  "current_HPO_R3_source_sha256": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+  "findings": [],
+  "limits": [
+    "Private template intentionally NOT_READY until actual root instantiation.",
+    "Future full59/634/build73/exact23/mapped104 must execute; no reuse of old616 as current PASS.",
+    "Source-only inspection grants no runtime qualification or launch."
+  ],
+  "actual_imports_config_execution_tests_build_fits_API_data_PID_scans": 0,
+  "clock_assigned": false
+}

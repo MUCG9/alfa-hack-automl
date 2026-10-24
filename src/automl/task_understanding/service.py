@@ -45,6 +45,126 @@ class MultipleTargets(ValueError):
         super().__init__('Expected one target, got '+repr(list(targets)))
 
 
+class StrictTaskContractError(ValueError):
+    """Explicit opt-in handoff failed; retain the already validated fallback."""
+
+
+def _strict_objective(resolved_metric,task_kind,output_contract):
+    from automl.contracts.metrics import MetricSpec
+    if type(resolved_metric) is not MetricSpec:
+        raise StrictTaskContractError('typed_resolved_metric_required')
+    resolved_metric.require_resolved()
+    allowed={'regression':{'rmse','mae','mse','mape','rmsle','r2'},
+             'classification':{'macro_f1','weighted_f1','accuracy','balanced_accuracy','roc_auc','log_loss'}}
+    if task_kind not in allowed or resolved_metric.name not in allowed[task_kind]:
+        raise StrictTaskContractError('objective_not_implemented_for_declared_kind')
+    if (type(output_contract) is not dict or output_contract.get('kind')!=task_kind
+            or output_contract.get('metric')!=resolved_metric.name
+            or output_contract.get('greater_is_better')!=(resolved_metric.direction=='maximize')):
+        raise StrictTaskContractError('objective_output_contract_conflict')
+    return resolved_metric
+
+
+def _load_declared_inputs(task_path,declared,checkpoint):
+    """Explicit-role full load only; legacy table dtype rules are unchanged."""
+    from automl.task_understanding.early_declaration import EarlyDeclaration
+    if type(declared) is not EarlyDeclaration or not declared.ready_for_projection or not callable(checkpoint):
+        raise StrictTaskContractError('typed_declaration_and_checkpoint_required')
+    checkpoint(); task_path=Path(task_path).resolve(); root=task_path.parent
+    paths={}
+    roles=dict(declared.paths)
+    dictionary=(declared.receipt or {}).get('dictionary_path')
+    if dictionary is not None: roles['data_dictionary']=dictionary
+    for role,value in roles.items():
+        checkpoint(); raw=Path(value); path=root/raw
+        if raw.is_absolute() or '..' in raw.parts or path.is_symlink():
+            raise StrictTaskContractError('declared_role_path_drift')
+        path=path.resolve()
+        if not path.is_relative_to(root) or not path.is_file():
+            raise StrictTaskContractError('declared_role_path_drift')
+        paths[role]=path
+    if set(paths)-{'train','test','sample_submission','data_dictionary'} or not {'train','test','sample_submission'}<=set(paths):
+        raise StrictTaskContractError('declared_role_set_drift')
+    tables={}
+    for role,key in [('train','train'),('test','test'),('sample_submission','sample')]:
+        checkpoint(); tables[key]=read_input_table(paths[role]); checkpoint()
+    checkpoint()
+    tables['dictionary']=read_input_table(paths['data_dictionary']) if dictionary is not None else pd.DataFrame(columns=['feature','role'])
+    checkpoint()
+    return {'root':root,'task_path':task_path,'text':declared.task_text,'paths':paths,
+            **tables,'file_role_resolution':{'method':'strict_explicit_declaration','semantic_API_calls':0}}
+
+
+def validate_declared_inputs(loaded,declared,early,*,checkpoint):
+    """Check protected projections before profiling or changing any dtype.
+
+    Numeric features keep the legacy loader. A protected lexical value lost by
+    that loader is rejected rather than reconstructed. Only exact revalidated
+    class/ID strings are then handed to the existing worker/publisher.
+    """
+    from automl.task_understanding.early_declaration import EarlyDeclaration
+    from automl.task_understanding.early_output import EarlyOutputResult
+    if (type(declared) is not EarlyDeclaration or type(early) is not EarlyOutputResult
+            or not declared.ready_for_projection or not early.ready_for_publication or not callable(checkpoint)):
+        raise StrictTaskContractError('typed_early_handoff_required')
+    checkpoint(); writer=early.writer_spec; root=Path(loaded['root']).resolve()
+    expected={r:(root/Path(v)).resolve() for r,v in declared.paths.items()}
+    dictionary=(declared.receipt or {}).get('dictionary_path')
+    if dictionary is not None: expected['data_dictionary']=(root/dictionary).resolve()
+    if (loaded['paths']!=expected or loaded['text']!=declared.task_text
+            or Path(loaded['task_path']).resolve().parent!=root):
+        raise StrictTaskContractError('full_load_role_or_task_drift')
+    train,test,sample=(loaded[k] for k in ['train','test','sample'])
+    for role,frame in [('train',train),('test',test),('sample_submission',sample)]:
+        checkpoint()
+        actual=hashlib.sha256(json.dumps(list(frame.columns),ensure_ascii=False,separators=(',',':')).encode('utf-8')).hexdigest()
+        if actual!=(declared.receipt or {}).get('header_sha256',{}).get(role) or frame.columns.duplicated().any():
+            raise StrictTaskContractError('full_load_header_drift:'+role)
+    counts=early.receipt['row_counts']
+    if [len(train),len(test),len(sample)]!=[counts['train'],counts['test'],counts['sample']]:
+        raise StrictTaskContractError('full_load_row_count_drift')
+    target,identifier=writer['target'],writer['id']
+    def exact_strings(left,right,label):
+        checkpoint()
+        if left.isna().any() or left.astype(str).tolist()!=right.astype(str).tolist():
+            raise StrictTaskContractError('full_load_lexical_drift:'+label)
+    if writer['kind']=='classification':
+        exact_strings(train[target],early.target_frame[target],'target')
+        if sorted(train[target].astype(str).unique().tolist())!=writer['classes'] or len(writer['classes'])<2:
+            raise StrictTaskContractError('full_load_class_order_or_cardinality_drift')
+    else:
+        checkpoint()
+        values=pd.to_numeric(train[target],errors='raise').to_numpy(dtype=float)
+        expected_y=early.target_frame[target].to_numpy(dtype=float)
+        if not np.isfinite(values).all() or not np.array_equal(values,expected_y):
+            raise StrictTaskContractError('full_load_target_value_drift')
+    if identifier is not None:
+        exact_strings(test[identifier],early.test_ids[identifier],'test_ID')
+        exact_strings(sample[identifier],early.sample[identifier],'sample_ID')
+    # Placeholder cells are not objective evidence. Header, row count and
+    # protected IDs are checked here; the caller separately binds whole input
+    # bytes. Use the already validated lexical sample for later publication.
+    train_features=[c for c in train if c not in {target,identifier}]
+    test_features=[c for c in test if c!=identifier]
+    if train_features!=test_features:
+        raise StrictTaskContractError('undeclared_train_test_columns')
+    dictionary_frame=loaded['dictionary']
+    if len(dictionary_frame):
+        if not {'feature','role'}<=set(dictionary_frame):
+            raise StrictTaskContractError('full_load_dictionary_schema_drift')
+        roles=dictionary_frame['role'].astype(str).str.strip().str.lower()
+        for role,wanted in [('target',[target]),('id',[] if identifier is None else [identifier])]:
+            actual=dictionary_frame.loc[roles.eq(role),'feature'].tolist()
+            if actual and actual!=wanted:
+                raise StrictTaskContractError('full_load_dictionary_role_drift:'+role)
+    checkpoint()
+    if writer['kind']=='classification': train[target]=early.target_frame[target].to_numpy(copy=True)
+    if identifier is not None: test[identifier]=early.test_ids[identifier].to_numpy(copy=True)
+    loaded['sample']=early.sample.copy()
+    loaded['strict_handoff_validated']=True
+    checkpoint(); return loaded
+
+
 def _read_tables(paths):
     train = read_input_table(paths['train'])
     test = read_input_table(paths['test'])
@@ -53,7 +173,9 @@ def _read_tables(paths):
     return {'train':train,'test':test,'sample':sample,'dictionary':dictionary}
 
 
-def load_inputs(task_path:Path,allow_llm=False):
+def load_inputs(task_path:Path,allow_llm=False,*,declared=None,checkpoint=None):
+    if declared is not None:
+        return _load_declared_inputs(task_path,declared,checkpoint)
     root=task_path.resolve().parent; text=task_path.read_text(encoding='utf-8-sig')
     resolution={}; accepted={}
     def validate(paths):
@@ -67,7 +189,12 @@ def load_inputs(task_path:Path,allow_llm=False):
             **tables,'file_role_resolution':resolution}
 
 
-def discover(task_path: Path,target_override=None,loaded=None,allow_llm=False):
+def discover(task_path: Path,target_override=None,loaded=None,allow_llm=False,*,resolved_metric=None,task_kind=None,output_contract=None):
+    strict=any(v is not None for v in (resolved_metric,task_kind,output_contract))
+    if strict:
+        _strict_objective(resolved_metric,task_kind,output_contract)
+        if loaded is None or loaded.get('strict_handoff_validated') is not True:
+            raise StrictTaskContractError('validated_full_input_handoff_required')
     loaded=load_inputs(task_path,allow_llm=allow_llm) if loaded is None else loaded
     if loaded['task_path']!=task_path.resolve(): raise ValueError('Cached inputs belong to a different task')
     root,text,paths=(loaded[k] for k in ['root','text','paths'])
@@ -78,7 +205,8 @@ def discover(task_path: Path,target_override=None,loaded=None,allow_llm=False):
     groups=dictionary.loc[roles.isin(['group','group_id','validation_group','query','query_id']), 'feature'].tolist() if len(roles) else []
     groups=[c for c in groups if c in train and c in test]
     targets = dictionary.loc[roles.eq('target'), 'feature'].tolist() if len(roles) else []
-    if not targets or any(c not in train for c in targets):
+    if strict: targets=[output_contract['target']]
+    elif not targets or any(c not in train for c in targets):
         targets = [c for c in train if c not in test]
     if len(targets)>1 and target_override is None: raise MultipleTargets(targets)
     if target_override is not None:
@@ -87,9 +215,10 @@ def discover(task_path: Path,target_override=None,loaded=None,allow_llm=False):
     elif len(targets)==1: target=targets[0]
     else: raise ValueError(f'Expected one target, got {targets}')
     all_ids = dictionary.loc[roles.eq('id'), 'feature'].tolist() if len(roles) else []
+    if strict: all_ids=[] if output_contract['id'] is None else [output_contract['id']]
     ids = list(all_ids)
     ids = [c for c in ids if c in sample and c in test and c not in targets]
-    if not ids:
+    if not ids and not strict:
         ids = [c for c in sample if c in test and c not in targets]
     if len(ids) > 1:
         raise ValueError('Ambiguous sample ID columns')
@@ -115,7 +244,9 @@ def discover(task_path: Path,target_override=None,loaded=None,allow_llm=False):
     ranking=bool(re.search(r'\bndcg\b|learning.to.rank|\branking\b|ранжирован',text.lower()))
     classification = bool(re.search(r'классификац|classification', text.lower()))
     regression = bool(re.search(r'регресси|regression', text.lower()))
-    if ranking:
+    if strict:
+        ranking=False; kind=task_kind
+    elif ranking:
         kind='regression'
     elif regression and not classification:
         kind = 'regression'
@@ -125,7 +256,7 @@ def discover(task_path: Path,target_override=None,loaded=None,allow_llm=False):
         kind = 'classification'
     else:
         kind = 'classification' if train[target].nunique() <= min(20, max(2, len(train)//100)) else 'regression'
-    metric = metric_from_text(text, kind)
+    metric = resolved_metric.name if strict else metric_from_text(text, kind)
     ranking_parameters={}
     if ranking:
         if metric!='ndcg': raise ValueError('Only NDCG score-output ranking is implemented')
@@ -153,6 +284,10 @@ def discover(task_path: Path,target_override=None,loaded=None,allow_llm=False):
             raise ValueError('Multiclass probabilities require one sample column per class')
     else:
         raise ValueError('No prediction columns in sample_submission')
+    if strict:
+        if classes!=output_contract['classes'] or output_columns!=output_contract['output_columns']:
+            raise StrictTaskContractError('full_discovery_class_or_output_drift')
+        prediction_type=output_contract['prediction_type']
     hashes = pd.util.hash_pandas_object(train[features], index=False).to_numpy(dtype='uint64')
     dup_rate = float(pd.Series(hashes).duplicated().mean())
     text_features=[c for c in features if not pd.api.types.is_numeric_dtype(train[c])
@@ -177,7 +312,11 @@ def discover(task_path: Path,target_override=None,loaded=None,allow_llm=False):
     spec.update(ranking_parameters)
     if loaded.get('file_role_resolution'): spec['file_role_resolution']=dict(loaded['file_role_resolution'])
     if prediction_type=='probability':
-        spec['positive_class'],spec['positive_class_source']=infer_positive_class(text,classes,pd.api.types.is_numeric_dtype(train[target]))
+        if strict:
+            spec['positive_class']=output_contract['positive_class']; spec['positive_class_source']='explicit_declaration'
+        else:
+            spec['positive_class'],spec['positive_class_source']=infer_positive_class(text,classes,pd.api.types.is_numeric_dtype(train[target]))
+    if strict: spec['metric_spec']=resolved_metric.to_dict()
     if len(targets)>1:
         spec['sample_columns']=list(sample.columns); spec['all_targets']=list(targets)
     profile = {

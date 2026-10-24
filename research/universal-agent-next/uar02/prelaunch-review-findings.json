@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "scope": "prelaunch_source_review_only",
+  "runtime_attempts": 0,
+  "tests_executed": 0,
+  "fits": 0,
+  "API": 0,
+  "clock_assigned": false,
+  "preserved_R1_handoff_sha256": "9bca9c49d4e14890e9ceaad97f1a03cbdf3c3fe1c6d50640bb42ca4743dbe7fe",
+  "preserved_R2_handoff_sha256": "773d044e224b22c251b4abd11c6593a19190880b9f346e43f9745adef83a43f1",
+  "fixed_findings": [
+    "Cover Popen/identity discovery with guaranteed cleanup finally",
+    "Enforce actual final70 phase inside common600",
+    "Retain saved leaf cleanup uncertainty in parent and negative root proofs"
+  ],
+  "final_revision": "R3",
+  "positive_path": "29 unit contracts; no ML quality/release claim"
+}

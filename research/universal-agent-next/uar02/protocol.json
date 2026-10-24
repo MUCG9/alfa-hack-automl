@@ -1,0 +1,114 @@
+{
+  "schema": "uar02-protocol-v1",
+  "status": "FROZEN_SOURCE_ONLY_NOT_EXECUTED",
+  "canonical_commit": "7817c498e96516a8cd3da9e3cbd8a2100876c66e",
+  "common_seconds": 600,
+  "parent_seconds": 500,
+  "child_seconds": 450,
+  "final_seconds": 70,
+  "root_closure_seconds": 30,
+  "setup": "Inside first500s; full450s child admission requires preflight<=50s. Clock assigned once only by actual --launch.",
+  "expected_tests": 29,
+  "suites": [
+    {
+      "id": "io02",
+      "expected_tests": 15,
+      "test_methods": [
+        "test_known_RMSE_and_MAE_publish_mean_or_median_with_sample_order",
+        "test_lexical_labels_and_IDs_preserve_leading_zero_and_literal_NA",
+        "test_binary_probability_uses_explicit_first_positive_class",
+        "test_probability_matrix_follows_sample_class_columns_and_row_mapping",
+        "test_unknown_or_unsupported_metric_can_only_be_format_only",
+        "test_unresolved_declared_roles_do_not_open_or_guess_files",
+        "test_conflicting_target_ID_or_file_roles_are_explicitly_ambiguous",
+        "test_classification_placeholder_cannot_decide_unknown_format_or_positive_label",
+        "test_bad_ID_bijection_or_row_count_cannot_publish",
+        "test_bad_headers_width_targets_and_RMSLE_domain_reject",
+        "test_changed_header_between_validation_and_projection_cannot_publish",
+        "test_hard_projection_row_header_field_prediction_and_source_bounds",
+        "test_caller_checkpoint_failure_propagates_and_no_fresh_clock_is_created",
+        "test_path_escape_symlink_and_malformed_declaration_reject",
+        "test_no_ID_renamed_semicolon_tables_retain_only_output_projections"
+      ]
+    },
+    {
+      "id": "run02",
+      "expected_tests": 14,
+      "test_methods": [
+        "test_trusted_cli_scope_applies_and_restores_on_success_and_failure",
+        "test_task_recipe_or_environment_cannot_enable_strict_runtime",
+        "test_legacy_off_retains_resource_denial_compatibility",
+        "test_strict_success_uses_same_job_and_sanitized_environment",
+        "test_raw_resource_denial_remains_fatal_after_owned_cleanup",
+        "test_tree_observation_error_is_not_an_ordinary_model_failure",
+        "test_cleanup_uncertainty_is_fatal_and_retains_prior_failure_type",
+        "test_constructor_failure_cleans_only_popen_root_and_stays_unqualified",
+        "test_initial_construction_and_prelaunch_setup_use_same_deadline",
+        "test_terminal_at_deadline_is_timeout_without_minimum_one_second_extension",
+        "test_cleanup_and_result_inspection_cannot_extend_success",
+        "test_uncertain_resource_snapshot_is_fatal_unless_root_already_terminal",
+        "test_nonzero_child_remains_an_ordinary_failed_candidate",
+        "test_blend_generic_catch_propagates_strict_cleanup_but_preserves_off_failure"
+      ]
+    }
+  ],
+  "guard_process_sha256": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d",
+  "candidate_process_sha256": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3",
+  "source_scope": "Canonical src inventory and exact selected tests after IO02/RUN02 cherry-pick; never use old worktree infrastructure as candidate or current candidate as unqualified guard.",
+  "predecessors": [
+    {
+      "id": "la2",
+      "sha256": "3ae50a32e3931f214e59343eee99654c37b77bf66b1b8ec233d416586d6cfd8b",
+      "actual_exec_session": 12413,
+      "actual_exit_code": 1,
+      "actual_tool_evidence": "1c2b5e"
+    },
+    {
+      "id": "postfailure_audit",
+      "sha256": "9b6de5609bd18ca9a31356b96af375f62ec131cf173658142247a39701a2dcbc",
+      "actual_exec_session": 67321,
+      "actual_exit_code": 0,
+      "actual_tool_evidence": "8a0524"
+    },
+    {
+      "id": "uar00",
+      "sha256": "3454c4f4399cd66c1940c5f2c57171a5f9c5dd10af7b71a016bf856b78f9ddb0",
+      "actual_exec_session": null,
+      "actual_exit_code": 0,
+      "actual_tool_evidence": "251512"
+    },
+    {
+      "id": "uar01_failed",
+      "sha256": "7ac573e9f59e9e8ea71a46091fca56c488e0ae4dbdbdd31f81e9b481f1572d60",
+      "actual_exec_session": 25916,
+      "actual_exit_code": 1,
+      "actual_tool_evidence": "2b1c5a"
+    },
+    {
+      "id": "uar01_recovery",
+      "sha256": "a750111f4b88ba6317b09625791b75f0e173ddd224499c3e5a7792f9c01268be",
+      "actual_exec_session": 8705,
+      "actual_exit_code": 0,
+      "actual_tool_evidence": "f0dc9d"
+    }
+  ],
+  "resources": {
+    "compute_threads": 1,
+    "child_tree_memory_mib": 1536,
+    "whole_owned_memory_mib": 2048,
+    "sampling_not_OS_sandbox": true
+  },
+  "model_fits": 0,
+  "API_calls": 0,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false,
+  "clocks_assigned": false,
+  "tests_or_candidate_imports_executed": 0,
+  "revision": "R3",
+  "narrow_prelaunch_fix": [
+    "Post-Popen identity discovery and monitor always execute under existing cleanup finally; unverified initial identity remains sticky failure.",
+    "Actual final phase is capped at min(supervisor_return+70, original_common_end-30), checked during hash/pulse/final save and root closure; common600 is never reset."
+  ],
+  "failure_path_cleanup_contract": "Actual attempted-leaf cleanup false, missing observation, denials or unresolved records stay sticky in parent finally and negative root proof; fresh absence of known IDs alone cannot erase saved uncertainty. Missing leaf receipts after actual entry launch are unconfirmed. Positive29 path and all caps unchanged."
+}

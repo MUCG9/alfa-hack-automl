@@ -1,0 +1,96 @@
+{
+  "schema": "uq2-successful-task-pair-independent-source-review-v2",
+  "status": "NO_SCOPED_SOURCE_BLOCKER_NOT_EXECUTION_READY",
+  "source_handoff": {
+    "path": "work/uq2-successful-task-pair-audit-next-dev/source-handoff-r2.json",
+    "sha256": "b17d1c9cb291c4d71c19c04caff75facb13b26a4f852627cfb34cd7ea4a6ef53"
+  },
+  "auditor_sha256": "034af834b0c5803030a0d0bcce416e7313429d5f044d792a2a5f57427295d12c",
+  "declaration_sha256": "f93e0109f7e68e65109a0d72ebb8823770170ddb3895c9640f36fa17b3d707df",
+  "protocol_sha256": "01c6b9a6751ff8cd22f701b5a76b59f1eb1d39197227d59f8ba81a0eafae7c53",
+  "local_packet_pins_checked": {
+    "audit_pair.py": "034af834b0c5803030a0d0bcce416e7313429d5f044d792a2a5f57427295d12c",
+    "audit_pair.py.patch": "e2ec1592d8d21172ed2907f39e7912e3cd3650ad4e37c925251c638224e1bda4",
+    "preregistration.json": "5e826ec22f0291d5b204b9bc2594db16e0320e14adc20f08c90ac86ae77ecc22",
+    "protocol.json": "01c6b9a6751ff8cd22f701b5a76b59f1eb1d39197227d59f8ba81a0eafae7c53",
+    "declaration.json": "f93e0109f7e68e65109a0d72ebb8823770170ddb3895c9640f36fa17b3d707df",
+    "root-readiness.template.json": "dc731cb880b08a56d29f7a06e133e907235e79fe3f28412785d627429c1ce6ef",
+    "source-proof.json": "7068ba2f7d64f35595421fe1c1c469be645e7d5c7540a7747c8e97f6447909c0",
+    "README.txt": "2cc4ec46e843999df35d231cae8dddf6e4ef485f4877cfdde32b9b9ad6bebe88"
+  },
+  "external_source_pins_checked": {
+    "uar-qwen-pair-bootstrap-repair-next-dev/audit_pair.py": "d004d777670807d59d8998c6bc7c4c84cf5a177c68144cdc71aceebaa937bd22",
+    "uar-qwen-pair-bootstrap-repair-next-dev/r4_adapter.py": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+    "uar-qwen-pair-bootstrap-repair-next-dev/run_pair.py": "f438b8be25236c8db04b343e1b891c6a17d73cc53f372fb26c5c0bd05bc654ef",
+    "uar-qwen-pair-bootstrap-repair-next-dev/close_pair.py": "078051c7741acfec8f552fa052f0025166a5db880daab8dc08498b6428a36f91",
+    "uar-qwen-pair-bootstrap-repair-next-dev/source-handoff-r2.json": "24e897489abbb4abb84bf25781ca0fe55ef8865d06f7d444870b74b642749295",
+    "repaired-mvp-r1-dev/evaluator_r4.py": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+    "run_lean_mvp_r2.py": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "support_component_coordinator.py": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "historical-runtime-support/fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d.py": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d",
+    "alfa-hack-automl/tools/research_lock.py": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45",
+    "awake-next-dev/awake_guard.py": "9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b",
+    "uq2-successful-task-pair-audit-next-dev/preregistration.json": "5e826ec22f0291d5b204b9bc2594db16e0320e14adc20f08c90ac86ae77ecc22",
+    "uq2-successful-task-pair-audit-next-dev/audit_pair.py": "034af834b0c5803030a0d0bcce416e7313429d5f044d792a2a5f57427295d12c"
+  },
+  "preserved_R1": {
+    "path": "work/uq2-successful-task-pair-audit-next-dev/source-evidence/prelaunch-r1/source-handoff.json",
+    "sha256": "01119781983f8ce75a63bbc67009e088aef82b6b461aac08b7b6c995715aeabf",
+    "all8files_exact": true,
+    "status": "Prelaunch source-only finding, not runtime failure"
+  },
+  "narrow_R2_finding_closed": "READY now requires missing_bindings empty; actual non-null work-relative caller source/hash is verified before admission and rehashed by frozen(); readiness plan/manifest exactly bind CLI pins.",
+  "static_evidence": {
+    "unchanged_original_auditor_sha256": "d004d777670807d59d8998c6bc7c4c84cf5a177c68144cdc71aceebaa937bd22",
+    "inherited_helpers_AST_exact": [
+      "need",
+      "load",
+      "hpo_counts",
+      "loss_telemetry",
+      "raw_records",
+      "retention_proof",
+      "strict_proof"
+    ],
+    "R2_non_main_helper_AST_exact_to_R1": true,
+    "published_preregistration_exact_sha256": "5e826ec22f0291d5b204b9bc2594db16e0320e14adc20f08c90ac86ae77ecc22",
+    "original_R4_adapter_sha256": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+    "original_manual_R4_sha256": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783"
+  },
+  "reviewed_contracts": [
+    "Whole actual session3588 exit1 plus exact campaign/root closure and actual root-closer exit/tool required; source/cleanup false or uncertain scope cannot become clean by inference.",
+    "Fresh exact-known/preparer observation is root-bound; new guarded audit source mandatory. Auditor does not itself replace or claim the missing external120/90 guard/lock/resource/PowerGuard execution.",
+    "Original four10800 clocks and original pair-audit600 start retained; all previous failure/closure/review/publication charged; parent120+root30 must fit both clocks; child90 no reset.",
+    "All4 distinct terminal supervisors/core seals, failed Br exact partial inventory, deployed flat/input/retention/control/checkpoint and archive hashes checked before numerical/R4 import or pristine truth scoring.",
+    "Per-task eligibility determined only from both actual solver success, refit/CSV/four-stage evidence and8 objective-valid HPO attempts; reasons and nulls persisted before scoring, no quality-sign selection.",
+    "Br actual child failure must remain regression-unqualified; no Ar-only regression comparison. Both eligible class arms must independently pass unchanged R4/retention/strict/probability/iteration/ID/partition gates.",
+    "Only paired procedure-passed arms expose qualified comparison; raw R4 evidence may be retained diagnostically without qualifying an incomplete/failed pair.",
+    "Final authority/source/core/input/supervisor/seal/eligibility rehash and clocks precede final exclusive output; root must confirm actual separate exit, late source/clock and fresh cleanup before qualification.",
+    "Original global qualification remains FAIL/full_procedure false, new separate output only, no model/API/promotion/default/submit/causal/blind claim."
+  ],
+  "remaining_actual_prerequisites": [
+    "ALL4 terminal seals",
+    "whole actual terminal tool/exit",
+    "root closure and actual root exit/tool",
+    "fresh all-owned/preparer proof",
+    "exact terminal campaign/manifest/plan",
+    "original audit-supervisor admission",
+    "source-reviewed existing bounded caller source pin",
+    "actual parent start after closure and within old budget"
+  ],
+  "limitations": [
+    "Source review is not actual readiness/metric validation. No campaign, report, predictions, pristine labels or current process states were read.",
+    "Root is the authority for actual exec/tool/fresh process observation and must source-review/pin/execute the external guarded caller. A child exit0 alone is not qualification.",
+    "Reused-public per-task comparison only; historical whole-procedure FAIL stays unchanged, no release or official-default result."
+  ],
+  "concrete_open_findings": [],
+  "execution": {
+    "candidate_imports": 0,
+    "tests": 0,
+    "model_fits": 0,
+    "API_calls": 0,
+    "data_prediction_truth_outcome_reads": 0,
+    "PID_scans": 0,
+    "new_clock_assigned": false,
+    "canonical_STATE_Git_writes": 0
+  }
+}

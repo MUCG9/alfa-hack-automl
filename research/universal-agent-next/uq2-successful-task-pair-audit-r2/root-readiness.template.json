@@ -1,0 +1,61 @@
+{
+  "schema": "uq2-successful-task-pair-audit-root-readiness-v1",
+  "status": "NOT_READY",
+  "missing_bindings": [
+    "ALL4 terminal seals",
+    "whole actual terminal tool/exit",
+    "root closure and actual root exit/tool",
+    "fresh all-owned/preparer proof",
+    "exact terminal campaign/manifest/plan",
+    "original audit-supervisor admission",
+    "source-reviewed existing bounded caller source pin",
+    "actual parent start after closure and within old budget"
+  ],
+  "actual_campaign_session": 3588,
+  "actual_campaign_exit_code": null,
+  "actual_campaign_tool_evidence": null,
+  "declaration_sha256": "f93e0109f7e68e65109a0d72ebb8823770170ddb3895c9640f36fa17b3d707df",
+  "preregistration_sha256": "5e826ec22f0291d5b204b9bc2594db16e0320e14adc20f08c90ac86ae77ecc22",
+  "campaign_sha256": null,
+  "root_closure": {
+    "path": "uq2/terminal-root-closure.json",
+    "sha256": null
+  },
+  "root_closure_actual_exit_code": null,
+  "root_closure_actual_tool_evidence": null,
+  "original_global_failure_preserved": true,
+  "original_full_procedure_passed": false,
+  "fresh_owned_observation": {
+    "known_exact_live": null,
+    "uncertain": null,
+    "all_root_and_preparer_identities_checked": null,
+    "known_identities": null,
+    "checked_unix": null,
+    "checked_monotonic": null
+  },
+  "original_audit_supervisor": {
+    "path": "uq2/audit-supervisor.json",
+    "sha256": null
+  },
+  "guard": {
+    "source_path": null,
+    "source_sha256": null,
+    "parent_seconds": 120,
+    "child_seconds": 90,
+    "parent_start_unix": null,
+    "parent_start_monotonic": null,
+    "worker_mib": 1536,
+    "whole_mib": 2048,
+    "threads": 1,
+    "API_environment_stripped": true,
+    "canonical_lock_required": true
+  },
+  "manifest": {
+    "path": "uq2/manifest.json",
+    "sha256": null
+  },
+  "plan": {
+    "path": "uq2/verification-plan.json",
+    "sha256": null
+  }
+}

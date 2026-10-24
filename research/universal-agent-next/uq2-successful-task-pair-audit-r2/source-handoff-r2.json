@@ -1,0 +1,46 @@
+{
+  "schema": "uq2-successful-task-pair-audit-source-handoff-v2",
+  "status": "FROZEN_SOURCE_ONLY_NOT_READY",
+  "files_sha256": {
+    "audit_pair.py": "034af834b0c5803030a0d0bcce416e7313429d5f044d792a2a5f57427295d12c",
+    "audit_pair.py.patch": "e2ec1592d8d21172ed2907f39e7912e3cd3650ad4e37c925251c638224e1bda4",
+    "preregistration.json": "5e826ec22f0291d5b204b9bc2594db16e0320e14adc20f08c90ac86ae77ecc22",
+    "protocol.json": "01c6b9a6751ff8cd22f701b5a76b59f1eb1d39197227d59f8ba81a0eafae7c53",
+    "declaration.json": "f93e0109f7e68e65109a0d72ebb8823770170ddb3895c9640f36fa17b3d707df",
+    "root-readiness.template.json": "dc731cb880b08a56d29f7a06e133e907235e79fe3f28412785d627429c1ce6ef",
+    "source-proof.json": "7068ba2f7d64f35595421fe1c1c469be645e7d5c7540a7747c8e97f6447909c0",
+    "README.txt": "2cc4ec46e843999df35d231cae8dddf6e4ef485f4877cfdde32b9b9ad6bebe88"
+  },
+  "runtime_sources": [
+    "audit_pair.py"
+  ],
+  "published_preregistration_sha256": "5e826ec22f0291d5b204b9bc2594db16e0320e14adc20f08c90ac86ae77ecc22",
+  "published_protocol_precedes_outcomes": "Root registration before Ac completion/Bc launch; no outcomes read by preparation",
+  "future_actual_root_closure_sha256": null,
+  "future_actual_caller_source_sha256": null,
+  "future_actual_start": null,
+  "original_campaign_session": 3588,
+  "required_original_global_qualification": "FAIL",
+  "new_common_clock": false,
+  "maximum_new_parent_seconds": 120,
+  "maximum_new_child_seconds": 90,
+  "original_audit_allocation_seconds": 600,
+  "remaining_root_cleanup_reserve_seconds": 30,
+  "imports_tests_fits_API_data_prediction_truth_outcome_reads_PID_scans": 0,
+  "compile_only": true,
+  "source_preparation_executed_not_runtime": true,
+  "canonical_STATE_Git_or_original_frozen_writes": 0,
+  "missing_bindings": [
+    "ALL4 terminal seals",
+    "whole actual terminal tool/exit",
+    "root closure and actual root exit/tool",
+    "fresh all-owned/preparer proof",
+    "exact terminal campaign/manifest/plan",
+    "original audit-supervisor admission",
+    "source-reviewed existing bounded caller source pin",
+    "actual parent start after closure and within old budget"
+  ],
+  "previous_source_only_handoff_sha256": "01119781983f8ce75a63bbc67009e088aef82b6b461aac08b7b6c995715aeabf",
+  "previous_freeze_preserved": "source-evidence/prelaunch-r1",
+  "narrow_R2_delta": "READY also requires no missing bindings, exact non-null bounded-caller source SHA with initial/final rehash, and manifest/plan reference equality."
+}

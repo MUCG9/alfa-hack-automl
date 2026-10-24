@@ -1,0 +1,62 @@
+{
+  "schema": "uq2-successful-task-pair-audit-implementation-protocol-v1",
+  "status": "FROZEN_SOURCE_ONLY_NOT_READY",
+  "published_preregistration": {
+    "path": "research/universal-agent-next/qwen-pair-bootstrap-repair-r2/successful-task-pair-audit-preregistration.json",
+    "sha256": "5e826ec22f0291d5b204b9bc2594db16e0320e14adc20f08c90ac86ae77ecc22",
+    "published_commit": "d84d6971dbc944122a1ad7a20610dcc960d7040a"
+  },
+  "selection": "The two fixed task pairs only; technical eligibility before numerical/truth import, never quality sign/value. Existing Br child failure makes regression pair null.",
+  "selected_pair_requirements": [
+    "BOTH saved solver status ok/exit0/clean with equal original caps",
+    "ALL4 distinct actual closed source/input/core seals before every truth read, including failed Br exact partial inventory as failure evidence only",
+    "BOTH successful four-stage/full-refit CSV and eight actual objective-valid HPO attempts; completed8/failed0/duplicate0/unattempted0",
+    "Unchanged per-task R4 + retention_proof + strict_proof + hpo_counts; original source/data/task/control/retention/partitions/class/probability/iterations/lexical IDs checked",
+    "Genuine original Qwen usage; reported HTTP attempts are not measured network latency",
+    "Both selected arms must independently pass; otherwise the paired quality metric stays null"
+  ],
+  "whole_campaign_barrier": {
+    "actual_session": 3588,
+    "actual_exit_required": 1,
+    "actual_tool_evidence": null,
+    "root_closure_sha256": null,
+    "root_closer_actual_exit_required": 0,
+    "root_closer_actual_tool_evidence": null,
+    "root_cleanup_and_source_required": true,
+    "fresh_exact_owned_and_preparer_absence_required": true,
+    "actual_current_source_or_ownership_false": "STOP; no coercion or generic negative-root admission"
+  },
+  "original_clock": [
+    1792826068.8239975,
+    85073.953,
+    1792836868.8239975,
+    95873.953
+  ],
+  "same_original_audit_allocation_seconds": 600,
+  "time_charging": "All elapsed wall and monotonic time since original pair-audit supervisor admission, including failed audit/root closure/review/publication, consumes original audit600. All source preparation consumes original10800. Nothing reclaimed/reset.",
+  "separate_existing_supervisor": {
+    "parent_seconds": 120,
+    "child_seconds": 90,
+    "remaining_root_cleanup_reserve_seconds": 30,
+    "worker_mib": 1536,
+    "whole_mib": 2048,
+    "threads": 1,
+    "source_pinned_existing_coor_supervise": true,
+    "canonical_lock_and_fresh_before_under_lock": true,
+    "sticky10_gap_and_denial": true,
+    "PowerRequestGuard_through_finalization": true,
+    "strip_API_environment": true,
+    "guard_source": null
+  },
+  "output": "uq2-successful-task-pair-audit-r1/audit.json",
+  "pretruth_eligibility": "uq2-successful-task-pair-audit-r1/eligibility-pretruth.json",
+  "original_global_qualification": "FAIL forever; original campaign/root/error history and failed old auditor remain untouched",
+  "new_audit_actual_exec_and_fresh_cleanup_confirmation": "PENDING until actual bounded root execution, source posthash, owned absence and original deadline confirmation",
+  "metrics": null,
+  "promotion": false,
+  "official_default_ready": false,
+  "submit": false,
+  "new_model_fits": 0,
+  "API_calls": 0,
+  "scope": "Reused-public research task-pair evidence only; not blind, causal, official, whole-procedure or platform default qualification."
+}

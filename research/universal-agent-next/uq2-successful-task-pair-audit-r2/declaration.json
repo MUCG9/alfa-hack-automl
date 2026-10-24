@@ -1,0 +1,32 @@
+{
+  "schema": "uq2-successful-task-pair-audit-declaration-v1",
+  "status": "FROZEN_SOURCE_ONLY_NOT_READY",
+  "auditor_sha256": "034af834b0c5803030a0d0bcce416e7313429d5f044d792a2a5f57427295d12c",
+  "original_auditor_path": "uar-qwen-pair-bootstrap-repair-next-dev/audit_pair.py",
+  "original_auditor_sha256": "d004d777670807d59d8998c6bc7c4c84cf5a177c68144cdc71aceebaa937bd22",
+  "preregistration": {
+    "path": "uq2-successful-task-pair-audit-next-dev/preregistration.json",
+    "sha256": "5e826ec22f0291d5b204b9bc2594db16e0320e14adc20f08c90ac86ae77ecc22"
+  },
+  "implementation_protocol_sha256": "01c6b9a6751ff8cd22f701b5a76b59f1eb1d39197227d59f8ba81a0eafae7c53",
+  "source_pins": {
+    "uar-qwen-pair-bootstrap-repair-next-dev/audit_pair.py": "d004d777670807d59d8998c6bc7c4c84cf5a177c68144cdc71aceebaa937bd22",
+    "uar-qwen-pair-bootstrap-repair-next-dev/r4_adapter.py": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+    "uar-qwen-pair-bootstrap-repair-next-dev/run_pair.py": "f438b8be25236c8db04b343e1b891c6a17d73cc53f372fb26c5c0bd05bc654ef",
+    "uar-qwen-pair-bootstrap-repair-next-dev/close_pair.py": "078051c7741acfec8f552fa052f0025166a5db880daab8dc08498b6428a36f91",
+    "uar-qwen-pair-bootstrap-repair-next-dev/source-handoff-r2.json": "24e897489abbb4abb84bf25781ca0fe55ef8865d06f7d444870b74b642749295",
+    "repaired-mvp-r1-dev/evaluator_r4.py": "c08e9f0be13a708d67b3266518381d6f1be3b0f43c384ef6425634160d7e2783",
+    "run_lean_mvp_r2.py": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "support_component_coordinator.py": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "historical-runtime-support/fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d.py": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d",
+    "alfa-hack-automl/tools/research_lock.py": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45",
+    "awake-next-dev/awake_guard.py": "9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b",
+    "uq2-successful-task-pair-audit-next-dev/preregistration.json": "5e826ec22f0291d5b204b9bc2594db16e0320e14adc20f08c90ac86ae77ecc22",
+    "uq2-successful-task-pair-audit-next-dev/audit_pair.py": "034af834b0c5803030a0d0bcce416e7313429d5f044d792a2a5f57427295d12c"
+  },
+  "original_plan_unchanged": true,
+  "future_root_readiness_sha256": null,
+  "actual_start": null,
+  "actual_result": null,
+  "qualification": null
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "uq2-conditional-pair-root-source-review-v1",
+  "status": "SOURCE_REVIEWED_NOT_READY_NO_EXECUTION",
+  "handoff_sha256": "b17d1c9cb291c4d71c19c04caff75facb13b26a4f852627cfb34cd7ea4a6ef53",
+  "peer_review_sha256": "a1cd0ed40ea251db73578f37283e1cfce03d74c775ab4d7e3e93095e68ab0961",
+  "preregistered_before_classification_pair_outcomes": true,
+  "published_preregistration_sha256": "5e826ec22f0291d5b204b9bc2594db16e0320e14adc20f08c90ac86ae77ecc22",
+  "all4_closed_inventory_and_terminal_root_barrier_required": true,
+  "metric_independent_complete_pair_eligibility": true,
+  "global_UQ2_FAIL_preserved": true,
+  "regression_pair_quality": null,
+  "original_R4_and_seven_helper_bodies_preserved": true,
+  "actual_guard_source_binding": null,
+  "actual_campaign_terminal": null,
+  "actual_root_confirmation": null,
+  "actual_clock": null,
+  "quality_metric": null,
+  "executed_tests_or_audits": 0,
+  "future_UAR08_must_include_any_actual_audit_guard_root_preparers_in_full_union": true
+}

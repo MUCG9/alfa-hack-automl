@@ -26,7 +26,8 @@ CHECKS={'test_v2.py':11,'test_resilience.py':7,'smoke.py':5,
         'test_feature_dsl.py':4,'test_research_summary.py':4,'test_planner_comparison.py':4}
 CHECKS.update({'test_uar_fallback_writer.py':12, 'test_uar_model_routing.py':12,
                'test_uar_process_observation.py':12, 'test_uar_metric_contract.py':12,
-               'test_uar_early_output.py':15, 'test_uar_runtime_optin.py':14})
+               'test_uar_early_output.py':15, 'test_uar_runtime_optin.py':14,
+               'test_uar_early_declaration.py':14, 'test_uar_vertical_contract.py':14})
 
 
 def source_hashes():

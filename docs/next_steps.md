@@ -31,3 +31,6 @@ submission is disabled; release ZIP preparation and source/quality checks contin
 
 
 UAR03 preregistration: default-OFF explicit declaration/strict task caller is source-integrated and independently reviewed, including both prepublication source repairs. Exact28 focused contracts are prepared and not yet run; see research/universal-agent-next/uar03-r1. No new ML score, full updated source/build/flat gate or default release is claimed. Linux10 is a separate claimed zero-fit clock-plumbing repair; original08/09 failures remain.
+
+
+UAR03 completed:28 focused contracts passed, actual direct exit0 (0a5cff), closer exit0 (533074), fresh5070 known identities confirmed no exact live or uncertain processes (883089). Root closure e86a151481b5b2849d9d0b6b4dc8ef6787a6ccf766dd97486b65de9d05cbf5d9;5.484s driver within original600s. No fits/external API or new ML metric. Registry now54scripts/556 expected checks; whole updated suite/build/flat not yet executed. See research/universal-agent-next/uar03-r1/results-summary.json. Next: frozen full technical gate; isolated strong-backend/retention port before strong quality A/B.

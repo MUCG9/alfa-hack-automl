@@ -1,4 +1,0 @@
-interface:
-  display_name: "Autoresearch ML"
-  short_description: "Bounded ML research with metrics and Git history"
-  default_prompt: "Use $autoresearch-ml to run a bounded sequence of reproducible ML experiments and keep only verified improvements."

@@ -1,0 +1,48 @@
+{
+  "schema": "user-requested-current-validated-standard-archive-v1",
+  "status": "DELIVERED_CURRENT_VALIDATED_ARCHIVE_BY_EXPLICIT_HUMAN_REQUEST",
+  "archive": "outputs/solution-br-rmse34.15502.zip",
+  "archive_sha256": "c7b54a8996e36dfaaf582b104d1f38ecca71d91d4f38362ed50775381f42f930",
+  "archive_bytes": 150751,
+  "members": 74,
+  "standard_command": "python3 solution.py task.md",
+  "external_recipe_JSON_or_research_flags_required": false,
+  "actual_standard_task_calls": 2,
+  "actual_contract_executions": 81,
+  "new_independent_two_cut_metrics": {
+    "regression": 34.155023394837,
+    "classification": 0.6530048968876206
+  },
+  "historical_best_CLASS_reference": 0.6593178433614652,
+  "historical_strong_CLASS_retained": false,
+  "quality_limitation_disclosed_to_user": true,
+  "explicit_latest_human_request": "Выдай этот архив, а после продолжай работу с гипотезами и тд",
+  "actual_driver": {
+    "session": 37018,
+    "exit_code": 0,
+    "tool": "757206"
+  },
+  "actual_closer": {
+    "session": null,
+    "exit_code": 0,
+    "tool": "d1005d"
+  },
+  "root_sha256": "7578f3ea5f4d3b14e9925bec5705a3169ab17ae77de5a45cfc7583edeaedf42d",
+  "fresh_confirmation_sha256": "85a00effb05fa5cb7218e1021c446855a84a508f1c9f68c01b6d83eee440fdd0",
+  "timing_addendum_sha256": "d2436badbad18f75b2f67feafede7b3ee5b91da840344b2aba4b4154c264b2c8",
+  "independent_audit_sha256": "c5757f966e79b2e25ccb5b069860dfbb2c4246d310d4a5dd20d51c4fbd039ca4",
+  "fresh_known_identity_count": 7305,
+  "known_alive": 0,
+  "uncertain": 0,
+  "technical_source_temp_owned_cleanup_confirmed": true,
+  "evaluation_scope": "New local standard-task, reused-public primary/confirmation two-cut validation with actual full refit CSV. Not official or hidden-test metrics.",
+  "default_model_promotion": false,
+  "upload_performed": false,
+  "prior_BRQ1_BRQ2_failures_preserved": true,
+  "prepared_unix": 1792850629.5090683,
+  "root_technical_procedure_passed": true,
+  "original_common_seconds": 6000,
+  "elapsed_through_fresh": 946.1879999999946,
+  "archive_original_strong_class_request_met": false,
+  "current_archive_explicitly_requested_and_delivered": true
+}

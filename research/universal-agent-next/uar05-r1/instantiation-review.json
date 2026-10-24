@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "status": "ROOT_STATIC_READY_INSTANTIATION_REVIEW_ACCEPTED_FOR_ONE_NEW_TECHNICAL_UAR05",
+  "canonical_code_snapshot": "5267a37b6647634ea1c750c819c1d04b7e54149a",
+  "private_manifest_sha256": "f7cfc42212651ef9103d914c1016d6937d41c32f88d70d280ffde79439c83cb3",
+  "source_handoff_sha256": "016e1c67226ed3773aa90f5099c674ced2a08668b7c8eacfd780b0bd4cd6274d",
+  "instantiated_handoff_sha256": "12b2bdf14f95b59a65d2d64a101adf30ae339f5194f2259ab1566469a1d7aeba",
+  "independent_source_review_sha256": "4e5b23a2f245dcbaadb84094abab5547d007388e7640db9d60e81d1ec147fb4b",
+  "runtime_source_sha256": {
+    "run_gate.py": "1deeb61ddc9750a94c5f4c5db70751769d076536fb50dd82d0e83db83669f11c",
+    "close_gate.py": "c56adfffd2bc59bbd942687081eac103f32d665c157700109d0fbeb2a62c23ed",
+    "contracts.py": "92aa3506ec955710d98d8dcc7274da2e2dc860b3eac429b6a5412d5491fb6099",
+    "technical_entry.py": "ec748e81e4e91d199abc8f438fbabaab1c3ff1dbc464bbbaab8cf8be81650f0c"
+  },
+  "immutable_files": 224,
+  "canonical_python_files": 168,
+  "source_registry_scripts": 56,
+  "source_expected_checks": 588,
+  "exact_expected_checks": 23,
+  "mapped_expected_checks": 59,
+  "flat_members": 73,
+  "original_UAR04_permanent_FAIL": true,
+  "new_clock_assigned": false,
+  "proposed_fresh_common_seconds_at_actual_launch_only": 1200,
+  "actual_imports": 0,
+  "tests": 0,
+  "builds": 0,
+  "fits": 0,
+  "API": 0,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

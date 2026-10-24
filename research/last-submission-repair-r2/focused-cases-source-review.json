@@ -1,0 +1,16 @@
+{
+  "schema": "focused-class-cases-independent-source-review-v2",
+  "reviewer": "root independent of AC fixture author",
+  "source_handoff_sha256": "2381ff5fbd0e77a4f0a3fa58f46a5bb93a9e3f102a9379c6e1c6584c26cac0df",
+  "test_sha256": "b2236d4779f71e70c897c6b7c96dc5171b19211deda95937247f266c43ad6484",
+  "local_pins_checked": 17,
+  "external_pins_checked": 6,
+  "original_12_method_and_assertion_AST_preserved": true,
+  "per_test_no_learner_Popen_tripwire_AST_preserved": true,
+  "scope": "Only setupClass dependency import metadata subprocess applicability and clarifying module docstring. Exact74 source barrier and network deny remain before imports; technical owner/resource budget covers actual metadata subprocesses.",
+  "scoped_blockers": [],
+  "prepared_contracts": 12,
+  "actual_tests_fits_API": 0,
+  "organizer_cause": null,
+  "ready_for_submission": false
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "last-submission-repair-environment-scope-decision-v1",
+  "chosen_source_handoff_sha256": "381f4d31a5cadc97b46c3c84db78a3e0e72872c4f7e0abf3d82807acdc029346",
+  "chosen_independent_peer_sha256": "d7838c83ef96b34a52e3059a92612f425bb4b17583927c2e8b9e47b64e47d63d",
+  "decision": "Preserve R2 source; no transitive environment redesign or REG numerical change.",
+  "outer_model_mapping": {
+    "AUTOML_THREADS": "2",
+    "native_BLAS": "1"
+  },
+  "inherited_effective_model_native_threads": 2,
+  "technical_audit_threads": 1,
+  "strict_limits": {
+    "model_CPU": 2,
+    "worker_MiB": 1536,
+    "whole_owned_MiB": 2048
+  },
+  "end_to_end_BLAS1_claim": false,
+  "evidence": "Inherited fixed_release, release_runtime and isolated V16 alias derive native threads from learner THREADS2. Outer mapping alone does not establish effective BLAS1. Existing numerical/worker source is preserved; no resource guard/cap is relaxed.",
+  "organizer_cause": null,
+  "runtime_executed": false
+}

@@ -1,0 +1,27 @@
+{
+  "schema": "last-submission-focused-cases-failure-v1",
+  "actual_execution": {
+    "session": null,
+    "exit_code": 1,
+    "tool": "7f198f"
+  },
+  "original_root_sha256": "8c370c8a2ffa59bf272cbdfb2893672b144f8978d4e7cfa060534977f958c10c",
+  "technical_procedure_passed": false,
+  "actual_tests": 0,
+  "model_fits": 0,
+  "API_calls": 0,
+  "first_error": "Popen tripwire intercepted NumPy import-time CPU feature metadata probe before any test",
+  "secondary_error": "Caller seeded a bootstrap-side sampled identity predating test Popen into technical-leaf ownership; saved final absence failed. Suite own two tuples were confirmed absent. No role/name retroactively inferred.",
+  "original_source_cleanup_temp_flags_preserved_false": true,
+  "current_negative_closure_sha256": "27ea25b977b105d34dd57c6a61c85ae918bc0c052f44f65d57c9c6090e008e5e",
+  "current_negative_actual": {
+    "exit_code": 0,
+    "tool": "f07ac9"
+  },
+  "current_known_absent": 7811,
+  "current_uncertain": 0,
+  "current_source_pins": 116,
+  "current_temp_absent": true,
+  "organizer_cause": null,
+  "next": "Correct exact same12 bootstrap-only source and include in one repaired-archive qualification; no repeated LC1 caller."
+}

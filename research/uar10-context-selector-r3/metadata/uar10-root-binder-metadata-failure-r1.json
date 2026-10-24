@@ -1,0 +1,13 @@
+{
+  "schema": "uar10-root-binder-metadata-failure-v1",
+  "actual_tool": "bed2d4",
+  "actual_exit_code": 1,
+  "phase": "metadata_prepare_before_private_binding",
+  "error": "KeyError:source_review_sha256",
+  "cause": "sevennewwhitelistrowscarrysource_review_refNULLtobeboundratherthanlegacySHAfield",
+  "old_source_sha256": "7c5951403bf73cd8e6c5f83d43586dac778a40bbabf67cf3ad8eb995994d67fb",
+  "new_source_sha256": "064c37099775ea1c9310c1c4726265562c8cf8c2b6182afd6ccd54646a251714",
+  "prior_preparer_receipt_preserved": true,
+  "gate_executed": false,
+  "clock_assigned": false
+}

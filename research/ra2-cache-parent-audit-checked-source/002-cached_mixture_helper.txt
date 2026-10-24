@@ -1,0 +1,34 @@
+def verified_cached_mixture_parent(record,folder,phase,full_fit,verified,report,verified_records):
+    """A saved R4-verified probability mixture is not an actual fitting leaf.
+
+    This branch proves every immediate cached child is already in the same R4
+    verification graph. That graph is recursively populated before its parent.
+    The unchanged loop still requires fitting receipts for EVERY real leaf.
+    Missing receipts on any non-cache leaf are never excused by its recipe.
+    """
+    recipe=record.get('recipe');folder=Path(folder).resolve()
+    if (record.get('training_reused') is not True or record.get('status')!='ok'
+        or record.get('full_fit') is not False or full_fit is not False
+        or phase not in ('primary','confirmation') or record.get('components')
+        or (folder/'job.json').exists() or type(recipe) is not dict or recipe.get('engine')!='ensemble'
+        or type(recipe.get('components')) is not list or not recipe['components']
+        or type(recipe.get('weights')) is not list or len(recipe['weights'])!=len(recipe['components'])
+        or any(type(w) not in (int,float) or not math.isfinite(w) or w<0 for w in recipe['weights'])
+        or sum(recipe['weights'])<=0 or type(verified) is not dict
+        or verified.get('folder')!=folder or verified.get('recipe')!=recipe
+        or verified_records.get((str(folder),phase,False)) is not verified
+        or type(verified.get('mixture_children')) is not int or verified['mixture_children']!=len(recipe['components'])):
+        return None
+    field='experiments' if phase=='primary' else 'confirmations';rows=report.get(field)
+    if type(rows) is not list:return None
+    children=[]
+    for component in recipe['components']:
+        matches=[row for row in rows if row.get('status')=='ok' and row.get('recipe')==component]
+        if len(matches)!=1 or type(matches[0].get('output_dir')) is not str:return None
+        path=Path(matches[0]['output_dir'])
+        if not path.is_absolute():return None
+        path=path.resolve();key=(str(path),phase,False);child=verified_records.get(key)
+        if (path==folder or type(child) is not dict or child.get('folder')!=path
+            or child.get('recipe')!=component or path in children):return None
+        children.append(path)
+    return children

@@ -196,3 +196,4 @@ research/rq6-bootstrap-clock-checked-source/** -text
 research/qwen-anytime-bootstrap-r7-checked-source/** -text
 research/rq6-saved-artifact-audit-r1-checked-source/** -text
 research/ra1-current-negative-checked-source/** -text
+research/ra2-cache-parent-audit-checked-source/** -text

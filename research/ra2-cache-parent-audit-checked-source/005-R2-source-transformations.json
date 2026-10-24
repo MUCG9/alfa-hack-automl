@@ -1,0 +1,26 @@
+[
+  [
+    "is_relative_to(WORK/'ra1')",
+    "is_relative_to(WORK/'ra2')"
+  ],
+  [
+    "    return {'producer_schema':'RQ6_CLASS_stable_sample_then_observed_exit_v1','runtime_sha256':runtime,'known':known}",
+    "    current=current_caller_proof(context,check)\n    need(known<=current['known'],'current_caller_must_cover_saved_RQ6_worker_scope')\n    return {'producer_schema':'RQ6_CLASS_stable_sample_then_observed_exit_v1','runtime_sha256':runtime,\n        'known':current['known'],'caller_pins':current['pins']}"
+  ],
+  [
+    "    actual.update({v['path']:v['sha256'] for v in repair_context.values() if type(v) is dict and set(v)=={'path','sha256'}})",
+    "    actual.update({v['path']:v['sha256'] for v in repair_context.values() if type(v) is dict and set(v)=={'path','sha256'}})\n    need(all((path not in actual or actual[path]==h) and (path not in cfg['immutable_files'] or cfg['immutable_files'][path]==h)\n        for path,h in repair['caller_pins'].items()),'current_caller_original_pin_collision')\n    actual.update(repair['caller_pins'])"
+  ],
+  [
+    "        fitted=[]\n",
+    "        fitted=[];cached_parent_proofs=[]\n"
+  ],
+  [
+    "            if record.get('components'):continue\n            partition=parts['confirmation']",
+    "            if record.get('components'):continue\n            if record.get('training_reused') is True:\n                children=verified_cached_mixture_parent(record,folder,phase,full_fit,verified,report,verifier.records)\n                need(children is not None,'unsupported_or_unverified_cached_mixture_parent')\n                cached_parent_proofs.append(dict(path=str(Path(folder).relative_to(directory)),phase=phase,\n                    independently_R4_verified_children=[str(path.relative_to(directory)) for path in children],\n                    actual_fitting_leaf=False,actual_new_model_fits=0))\n                continue\n            partition=parts['confirmation']"
+  ],
+  [
+    "full_CSV_sha256=report['submission_sha256'],fitting_receipts=fitted,",
+    "full_CSV_sha256=report['submission_sha256'],fitting_receipts=fitted,cached_mixture_parent_proofs=cached_parent_proofs,"
+  ]
+]

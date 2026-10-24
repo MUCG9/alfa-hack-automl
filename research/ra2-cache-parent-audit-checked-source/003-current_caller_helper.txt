@@ -1,0 +1,75 @@
+def current_caller_proof(context,check):
+    """Hash-bound actual RA2 caller, with separately preserved RA1 failure.
+
+    The private manifest is referenced from the runtime context, not from its
+    own immutable map; this avoids a circular hash. All predecessor refs are
+    separately members of that private immutable map and rehashed here.
+    """
+    ref=context.get('current_caller_manifest')
+    need(type(ref) is dict and set(ref)=={'path','sha256'} and Path(ref['path']).is_absolute()
+         and Path(ref['path']).is_file() and not Path(ref['path']).is_symlink() and Path(ref['path']).stat().st_size<=4*2**20
+         and digest(ref['path'],check)==ref['sha256'],'actual_current_caller_manifest_required')
+    caller=load(ref['path']);pins=caller.get('immutable_files');source=str(Path(__file__).resolve())
+    need(caller.get('schema')=='postfailure-standard-artifact-qualification-private-v1'
+         and caller.get('readiness')=='READY_REVIEWED_FROZEN' and caller.get('missing_bindings')==[]
+         and caller.get('output')==str(WORK/'ra2') and type(pins) is dict and 1<=len(pins)<=4096
+         and caller.get('common_seconds')==600 and caller.get('caps')==dict(setup=180,audit=[120,90],final=240,root=60)
+         and pins.get(source)==digest(__file__,check)
+         and caller.get('auditor')==dict(path=source,sha256=pins[source]),'exact_current_RA2_caller_source_and_caps')
+    for path,h in pins.items():
+        need(type(path) is str and Path(path).is_absolute() and type(h) is str and len(h)==64
+             and all(c in '0123456789abcdef' for c in h) and digest(path,check)==h,'current_caller_immutable_changed')
+    prior=caller.get('ra1_previous')
+    need(type(prior) is dict and set(prior)=={'manifest','campaign','root','negative','post',
+        'driver_actual','closer_actual','negative_actual','post_actual'},'exact_RA1_previous_proof_fields')
+    def bound(name):
+        value=prior[name]
+        need(type(value) is dict and set(value)=={'path','sha256'} and Path(value['path']).is_absolute()
+             and pins.get(value['path'])==value['sha256'] and digest(value['path'],check)==value['sha256'],
+             'current_RA1_predecessor_ref_changed')
+        return load(value['path'])
+    expected={'manifest':(WORK/'private/ra1-manifest.ready-r2.json','84b93538b73d73e2636b0730ad4cd105b2901633990e4654ccf9463e724d63f3'),
+        'campaign':(WORK/'ra1/campaign.json','20fb2e4f4251218e62f1e91126ce581dc2c4cfc6a692d004d4b1b6aad7585536'),
+        'root':(WORK/'ra1/terminal-root-closure.json','94132c7d68a49e7e85ee795f648db724891b8ea6ba7f670dacb151ac63afc6ca')}
+    for key,(path,h) in expected.items():need(prior[key]==dict(path=str(path),sha256=h),'exact_RA1_failed_source_refs')
+    documents={key:bound(key) for key in ('manifest','campaign','root','negative','post')}
+    root=documents['root'];state=documents['campaign']
+    need(prior['driver_actual']==dict(session=25644,exit_code=1,tool='19905f')
+         and prior['closer_actual']==dict(exit_code=1,tool='8efa0b')
+         and root.get('schema')=='postfailure-standard-artifact-qualification-root-v1'
+         and root.get('technical_procedure_passed') is False and root.get('actual_exec_session')==25644
+         and root.get('actual_exec_exit_code_observed_by_root')==1 and root.get('actual_tool_evidence')=='19905f'
+         and root.get('manifest_sha256')==prior['manifest']['sha256']
+         and all(root.get(k) is True for k in ('cleanup_confirmed','source_unchanged','temporary_cleanup_confirmed'))
+         and root.get('independent_audit') is None and root.get('quality_metric') is None
+         and state.get('status')=='failed' and state.get('artifact_procedure_passed') is False
+         and state.get('independent_audit') is None,'RA1_failed_procedure_preserved_not_requalified')
+    negative,post=documents['negative'],documents['post']
+    for value,schema,count in [(negative,'ra1-separate-current-negative-closure-v1',8039),
+            (post,'ra1-current-negative-post-tool-confirmation-v1',8042)]:
+        need(value.get('schema')==schema and value.get('technical_procedure_passed') is False
+             and value.get('original_RA1_FAIL_preserved') is True and value.get('original_RQ6_FAIL_preserved') is True
+             and value.get('root60_requalified') is False and value.get('source_pins_checked')==1560
+             and all(value.get(k) is True for k in ('current_source_unchanged','current_cleanup_confirmed','current_temporary_absent'))
+             and value.get('original_manifest_sha256')==prior['manifest']['sha256']
+             and value.get('original_campaign_sha256')==prior['campaign']['sha256']
+             and value.get('original_negative_root_sha256')==prior['root']['sha256']
+             and value.get('actual_failed_driver')==prior['driver_actual']
+             and value.get('actual_failed_frozen_closer')==prior['closer_actual']
+             and value.get('known_exact_live')==value.get('uncertain')==[]
+             and len(identity_inventory(value['known_identities']))==value.get('known_count')==count,
+             'actual_current_RA1_negative_proofs_required')
+    for key in ('negative_actual','post_actual'):
+        value=prior[key];need(type(value) is dict and set(value)=={'exit_code','tool'} and type(value['exit_code']) is int
+            and value['exit_code']==0 and type(value['tool']) is str and value['tool'] and 'PENDING' not in value['tool'],
+            'actual_current_RA1_observer_exit_required')
+    known=identity_inventory(post['known_identities']);pre=identity_inventory(negative['known_identities'])
+    observers=identity_inventory(negative['observer_preparer_identities']);later=identity_inventory(post['observer_preparer_identities'])
+    need(len(observers)==len(later)==3 and not pre&observers and known==pre|observers
+         and not known&later and len(known|later)==8045
+         and post.get('negative_closure_sha256')==prior['negative']['sha256']
+         and post.get('actual_negative_observer')==prior['negative_actual']
+         and post.get('post_tool_current_confirmation') is True
+         and identity_inventory(root['owned_identities']+root['closure_preparer_identities'])<=pre,
+         'complete_current_RA1_root_and_observer_union_required')
+    return {'known':known,'pins':pins}

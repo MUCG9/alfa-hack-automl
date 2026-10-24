@@ -1,0 +1,351 @@
+{
+  "schema": "ra1-fitting-receipt-structural-diagnosis-v1",
+  "original_RQ6_and_RA1_FAIL_preserved": true,
+  "diagnosis": "Cached blend materialization is a non-fitting node with training_reused=True, no job.json, recipe.engine=ensemble, no result.components and no data_policy_runs. Existing audit skips only result.components, so this intentional cache node is misclassified as a fitting leaf and fails fitting_receipts_required.",
+  "cached_nodes": [
+    {
+      "path": "rq6/classification/automl_runs/v16-class-release/ensemble-primary/result.json",
+      "sha256": "5932e2abac445870be4510b5c6b44353738d250cb9f3cf29dbd6330e1a5af0e6",
+      "matches_sealed_hash": true,
+      "status": "ok",
+      "engine": "ensemble",
+      "full_fit": false,
+      "has_top_job": false,
+      "training_reused": true,
+      "has_result_components": false,
+      "fitting_receipts_count": null,
+      "fitting_receipt_evidence": null,
+      "early_stopping_source": null,
+      "inner_split_error_is_null": true
+    },
+    {
+      "path": "rq6/classification/automl_runs/v16-class-release/ensemble-confirmation/result.json",
+      "sha256": "4d0e02b5d6d4ea0c051d136e3d7e85e23c04532079b89f13ff0795d4a0588171",
+      "matches_sealed_hash": true,
+      "status": "ok",
+      "engine": "ensemble",
+      "full_fit": false,
+      "has_top_job": false,
+      "training_reused": true,
+      "has_result_components": false,
+      "fitting_receipts_count": null,
+      "fitting_receipt_evidence": null,
+      "early_stopping_source": null,
+      "inner_split_error_is_null": true
+    }
+  ],
+  "actual_selected_fitting_leaves": [
+    {
+      "path": "rq6/classification/automl_runs/v16-class-release/experiment-06/component-0/result.json",
+      "sha256": "6892fdf190ac2b0ecb2b91c51115ce1043f0b2ed95b8d5044ccf74a8b6038a79",
+      "matches_sealed_hash": true,
+      "status": "ok",
+      "engine": "lightgbm",
+      "full_fit": false,
+      "has_top_job": false,
+      "training_reused": null,
+      "has_result_components": false,
+      "fitting_receipts_count": 3,
+      "fitting_receipt_evidence": [
+        {
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "synthetic_rows": 0
+        },
+        {
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "synthetic_rows": 0
+        },
+        {
+          "source_rows": 70529,
+          "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+          "synthetic_rows": 0
+        }
+      ],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split_error_is_null": true
+    },
+    {
+      "path": "rq6/classification/automl_runs/v16-class-release/experiment-06/component-1/result.json",
+      "sha256": "4f47b9daa4db117af12f41282992e67dc33af1b382aab19358305c570235aa89",
+      "matches_sealed_hash": true,
+      "status": "ok",
+      "engine": "lightgbm",
+      "full_fit": false,
+      "has_top_job": false,
+      "training_reused": null,
+      "has_result_components": false,
+      "fitting_receipts_count": 2,
+      "fitting_receipt_evidence": [
+        {
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "synthetic_rows": 0
+        },
+        {
+          "source_rows": 70529,
+          "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+          "synthetic_rows": 0
+        }
+      ],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split_error_is_null": true
+    },
+    {
+      "path": "rq6/classification/automl_runs/v16-class-release/experiment-04/result.json",
+      "sha256": "9043916a8da1dda64e19485a09d58f7780d9792a0bf1dc6883c37ba9c8aa2f6a",
+      "matches_sealed_hash": true,
+      "status": "ok",
+      "engine": "xgboost",
+      "full_fit": false,
+      "has_top_job": true,
+      "training_reused": null,
+      "has_result_components": false,
+      "fitting_receipts_count": 2,
+      "fitting_receipt_evidence": [
+        {
+          "source_rows": 56743,
+          "source_parent_sha256": "90062e465ac9481c50faedc8dbed616bb7e2d52865f32b7322bfa7584e4d26c7",
+          "synthetic_rows": 0
+        },
+        {
+          "source_rows": 70529,
+          "source_parent_sha256": "a599e8ede156db796a0d930bd624ea11318178d87de9d4691bda91fcba928796",
+          "synthetic_rows": 0
+        }
+      ],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split_error_is_null": true
+    },
+    {
+      "path": "rq6/classification/automl_runs/v16-class-release/confirmation-1/component-0/result.json",
+      "sha256": "c2a5321e0158b3a6f77ada6803628023b88a3d3a1a4c3e2b09abbb690f7a80d0",
+      "matches_sealed_hash": true,
+      "status": "ok",
+      "engine": "lightgbm",
+      "full_fit": false,
+      "has_top_job": false,
+      "training_reused": null,
+      "has_result_components": false,
+      "fitting_receipts_count": 3,
+      "fitting_receipt_evidence": [
+        {
+          "source_rows": 56442,
+          "source_parent_sha256": "f552564bf6576fabccb6e9d53e35634cbe9d6c8a04a39fe92e50e6d1a9984787",
+          "synthetic_rows": 0
+        },
+        {
+          "source_rows": 56442,
+          "source_parent_sha256": "f552564bf6576fabccb6e9d53e35634cbe9d6c8a04a39fe92e50e6d1a9984787",
+          "synthetic_rows": 0
+        },
+        {
+          "source_rows": 70321,
+          "source_parent_sha256": "98042ca608f0d55d96547ef6a59d21f007cc370e024d9e500e7e735e25dffa7d",
+          "synthetic_rows": 0
+        }
+      ],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split_error_is_null": true
+    },
+    {
+      "path": "rq6/classification/automl_runs/v16-class-release/confirmation-1/component-1/result.json",
+      "sha256": "7408c0b7538129b072607710b9fc73148a52f4a2f59afe8e4ad23d6538c9e974",
+      "matches_sealed_hash": true,
+      "status": "ok",
+      "engine": "lightgbm",
+      "full_fit": false,
+      "has_top_job": false,
+      "training_reused": null,
+      "has_result_components": false,
+      "fitting_receipts_count": 2,
+      "fitting_receipt_evidence": [
+        {
+          "source_rows": 56442,
+          "source_parent_sha256": "f552564bf6576fabccb6e9d53e35634cbe9d6c8a04a39fe92e50e6d1a9984787",
+          "synthetic_rows": 0
+        },
+        {
+          "source_rows": 70321,
+          "source_parent_sha256": "98042ca608f0d55d96547ef6a59d21f007cc370e024d9e500e7e735e25dffa7d",
+          "synthetic_rows": 0
+        }
+      ],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split_error_is_null": true
+    },
+    {
+      "path": "rq6/classification/automl_runs/v16-class-release/confirmation-2/result.json",
+      "sha256": "ed36eafa2e02b1d67ef5c478449eaa794824d3ebfd1e0a5f27ccf6632bf0a486",
+      "matches_sealed_hash": true,
+      "status": "ok",
+      "engine": "xgboost",
+      "full_fit": false,
+      "has_top_job": true,
+      "training_reused": null,
+      "has_result_components": false,
+      "fitting_receipts_count": 2,
+      "fitting_receipt_evidence": [
+        {
+          "source_rows": 56442,
+          "source_parent_sha256": "f552564bf6576fabccb6e9d53e35634cbe9d6c8a04a39fe92e50e6d1a9984787",
+          "synthetic_rows": 0
+        },
+        {
+          "source_rows": 70321,
+          "source_parent_sha256": "98042ca608f0d55d96547ef6a59d21f007cc370e024d9e500e7e735e25dffa7d",
+          "synthetic_rows": 0
+        }
+      ],
+      "early_stopping_source": "inner_training_holdout",
+      "inner_split_error_is_null": true
+    },
+    {
+      "path": "rq6/classification/automl_runs/v16-class-release/final-fit/component-0/component-0/result.json",
+      "sha256": "7b272915bacba1ee4356f97ff9b08b19302a0c85914b6f71d655ddbdc0efd024",
+      "matches_sealed_hash": true,
+      "status": "ok",
+      "engine": "lightgbm",
+      "full_fit": true,
+      "has_top_job": false,
+      "training_reused": null,
+      "has_result_components": false,
+      "fitting_receipts_count": 2,
+      "fitting_receipt_evidence": [
+        {
+          "source_rows": 70206,
+          "source_parent_sha256": "6db44728cedb434b97d17624be3bd70a1e496a4b1d8e7f5c181a2522f75670be",
+          "synthetic_rows": 0
+        },
+        {
+          "source_rows": 87670,
+          "source_parent_sha256": "f9d8115edff681886b0664ded7ef61518bd2155435a3027d0eef222e4ca7fd50",
+          "synthetic_rows": 0
+        }
+      ],
+      "early_stopping_source": "full_refit",
+      "inner_split_error_is_null": true
+    },
+    {
+      "path": "rq6/classification/automl_runs/v16-class-release/final-fit/component-0/component-1/result.json",
+      "sha256": "4519711ed16d103ff93a0317545c1df756f4d41b021341243e58a7fdc57bc89a",
+      "matches_sealed_hash": true,
+      "status": "ok",
+      "engine": "lightgbm",
+      "full_fit": true,
+      "has_top_job": false,
+      "training_reused": null,
+      "has_result_components": false,
+      "fitting_receipts_count": 2,
+      "fitting_receipt_evidence": [
+        {
+          "source_rows": 70206,
+          "source_parent_sha256": "6db44728cedb434b97d17624be3bd70a1e496a4b1d8e7f5c181a2522f75670be",
+          "synthetic_rows": 0
+        },
+        {
+          "source_rows": 87670,
+          "source_parent_sha256": "f9d8115edff681886b0664ded7ef61518bd2155435a3027d0eef222e4ca7fd50",
+          "synthetic_rows": 0
+        }
+      ],
+      "early_stopping_source": "full_refit",
+      "inner_split_error_is_null": true
+    },
+    {
+      "path": "rq6/classification/automl_runs/v16-class-release/final-fit/component-1/result.json",
+      "sha256": "99f0df00d86031c9c93de34fcf2d1c81f13864dd9cfe1eef55ffa2e86b6d8641",
+      "matches_sealed_hash": true,
+      "status": "ok",
+      "engine": "xgboost",
+      "full_fit": true,
+      "has_top_job": false,
+      "training_reused": null,
+      "has_result_components": false,
+      "fitting_receipts_count": 2,
+      "fitting_receipt_evidence": [
+        {
+          "source_rows": 70206,
+          "source_parent_sha256": "6db44728cedb434b97d17624be3bd70a1e496a4b1d8e7f5c181a2522f75670be",
+          "synthetic_rows": 0
+        },
+        {
+          "source_rows": 87670,
+          "source_parent_sha256": "f9d8115edff681886b0664ded7ef61518bd2155435a3027d0eef222e4ca7fd50",
+          "synthetic_rows": 0
+        }
+      ],
+      "early_stopping_source": "full_refit",
+      "inner_split_error_is_null": true
+    }
+  ],
+  "actual_selected_leaf_count": 9,
+  "receipts_exist_for_every_selected_leaf": true,
+  "no_claim_expected_parent_rows_checked_without_arrays": true,
+  "source_refs": [
+    {
+      "path": "work/rq6-no-fit-audit-repair-next-dev/artifact_audit.py",
+      "sha256": "39530e417e5504f416c4e833d1c25ede6f6fc6a5a4a7aed7d73193bf896a9093",
+      "lines": [
+        511,
+        513,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521
+      ]
+    },
+    {
+      "path": "work/last-submission-repair-next-dev-r4/candidate/automl_ensembles.py",
+      "sha256": "f52deb156e74e6e8e46b67fa6045bbaf942a2b9dac32e6ec11b16d1782328185",
+      "lines": [
+        44,
+        66
+      ]
+    },
+    {
+      "path": "work/last-submission-repair-next-dev-r4/candidate/automl_worker.py",
+      "sha256": "c7dd895d0fecfb40c1837c69d08fe04b4297e1304ee364e760e40b36892bd74d",
+      "lines": [
+        33,
+        54,
+        105,
+        107,
+        112,
+        115,
+        241,
+        242,
+        380
+      ]
+    },
+    {
+      "path": "work/uq3-cadence-hpo-next-dev/candidate/r4_adapter.py",
+      "sha256": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+      "lines": [
+        219,
+        227,
+        228,
+        277,
+        282,
+        283,
+        284,
+        286,
+        294,
+        297,
+        299
+      ]
+    }
+  ],
+  "minimum_prospective_fix": "Separate typed recognition only for already R4-decomposed and numerically verified non-full cached ensemble parents with training_reused=True and exact child coverage. Keep mandatory nonempty data_policy_runs/original-parent hash/nested stopping for EVERY actual fitting leaf, including all nested feature-view and fresh full-refit leaves. Missing real leaf receipts remain STOP. No synthetic receipts, no new learner fits.",
+  "actual_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API_calls": 0,
+  "actual_PID_scans": 0,
+  "raw_rows_NPZ_prediction_truth_reads": 0,
+  "metric_values_read_or_reported": false,
+  "new_clock": null
+}

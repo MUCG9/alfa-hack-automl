@@ -1,0 +1,94 @@
+class CachedMixtureContracts(unittest.TestCase):
+    def cache(self,root,phase='primary'):
+        parent=root/'cached';parent.mkdir();children=[root/'leaf-a',root/'leaf-b']
+        for p in children:p.mkdir()
+        recipes=[{'engine':'synthetic-a','params':{}},{'engine':'synthetic-b','params':{}}]
+        recipe={'engine':'ensemble','components':recipes,'weights':[.75,.25]}
+        record={'status':'ok','recipe':recipe,'full_fit':False,'training_reused':True}
+        verified={'folder':parent,'recipe':recipe,'mixture_children':2}
+        graph={(str(parent),phase,False):verified}
+        graph.update({(str(p),phase,False):{'folder':p,'recipe':r,'mixture_children':0} for p,r in zip(children,recipes)})
+        field='experiments' if phase=='primary' else 'confirmations'
+        report={field:[dict(status='ok',recipe=r,output_dir=str(p)) for p,r in zip(children,recipes)]}
+        return record,parent,phase,False,verified,report,graph
+
+    def test_cached_mixture_requires_same_R4_parent_and_all_children_without_faking_leaf_receipts(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            args=self.cache(Path(tmp).resolve());before=deepcopy(args[0])
+            children=A.verified_cached_mixture_parent(*args)
+            self.assertEqual(len(children),2);self.assertEqual(args[0],before)
+            self.assertNotIn('data_policy_runs',args[0]);self.assertNotIn('components',args[0])
+            for path in children:self.assertIn((str(path),'primary',False),args[-1])
+            self.assertIsNone(A.verified_cached_mixture_parent(*[dict(args[0],training_reused=False),*args[1:]]))
+            # A real leaf with no receipt cannot enter this cache-only bridge.
+            self.assertIsNone(A.verified_cached_mixture_parent(*[dict(args[0],recipe={'engine':'synthetic-a'}),*args[1:]]))
+            source=(PACKET/'artifact_audit.py').read_text('utf-8')
+            self.assertIn("receipts=record.get('data_policy_runs');need(type(receipts) is list and receipts,'fitting_receipts_required')",source)
+            self.assertIn("v.get('source_parent_sha256')==r4.canonical(parent.tolist())",source)
+
+    def test_unverified_missing_duplicate_wrong_cut_full_or_job_cached_parent_stops(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            args=self.cache(Path(tmp).resolve())
+            for mode in ('missing','duplicate','phase','full','parent','weight'):
+                value=list(deepcopy(args))
+                if mode=='missing':del value[-1][(str(value[1].parent/'leaf-a'),'primary',False)]
+                elif mode=='duplicate':value[-2]['experiments'].append(deepcopy(value[-2]['experiments'][0]))
+                elif mode=='phase':value[2]='confirmation'
+                elif mode=='full':value[3]=True
+                elif mode=='parent':value[4]=dict(value[4])
+                else:value[0]['recipe']['weights']=[float('nan'),.25]
+                with self.subTest(mode=mode):self.assertIsNone(A.verified_cached_mixture_parent(*value))
+            (args[1]/'job.json').write_text('{}',encoding='utf-8')
+            self.assertIsNone(A.verified_cached_mixture_parent(*args))
+
+    def test_hash_bound_current_caller_requires_exact_failed_RA1_and_current_full_union(self):
+        import tempfile,hashlib
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp).resolve()/'caller.json';path.write_text('{}',encoding='utf-8')
+            current={'path':str(path),'sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
+            fixed={'manifest':(A.WORK/'private/ra1-manifest.ready-r2.json','84b93538b73d73e2636b0730ad4cd105b2901633990e4654ccf9463e724d63f3'),
+                'campaign':(A.WORK/'ra1/campaign.json','20fb2e4f4251218e62f1e91126ce581dc2c4cfc6a692d004d4b1b6aad7585536'),
+                'root':(A.WORK/'ra1/terminal-root-closure.json','94132c7d68a49e7e85ee795f648db724891b8ea6ba7f670dacb151ac63afc6ca'),
+                'negative':(A.WORK/'ra1/current-negative-closure.json','a'*64),
+                'post':(A.WORK/'ra1/current-negative-post-tool-confirmation.json','b'*64)}
+            prior={k:dict(path=str(p),sha256=h) for k,(p,h) in fixed.items()}
+            prior.update(driver_actual=dict(session=25644,exit_code=1,tool='19905f'),closer_actual=dict(exit_code=1,tool='8efa0b'),
+                negative_actual=dict(exit_code=0,tool='negative-actual'),post_actual=dict(exit_code=0,tool='post-actual'))
+            rows=lambda a,b:[identity(i) for i in range(a,b)]
+            negative=dict(schema='ra1-separate-current-negative-closure-v1',technical_procedure_passed=False,
+                original_RA1_FAIL_preserved=True,original_RQ6_FAIL_preserved=True,root60_requalified=False,source_pins_checked=1560,
+                current_source_unchanged=True,current_cleanup_confirmed=True,current_temporary_absent=True,
+                original_manifest_sha256=prior['manifest']['sha256'],original_campaign_sha256=prior['campaign']['sha256'],
+                original_negative_root_sha256=prior['root']['sha256'],actual_failed_driver=prior['driver_actual'],
+                actual_failed_frozen_closer=prior['closer_actual'],known_exact_live=[],uncertain=[],known_count=8039,
+                known_identities=rows(1,8040),observer_preparer_identities=rows(8040,8043))
+            post=deepcopy(negative);post.update(schema='ra1-current-negative-post-tool-confirmation-v1',known_count=8042,
+                known_identities=rows(1,8043),observer_preparer_identities=rows(8043,8046),post_tool_current_confirmation=True,
+                negative_closure_sha256=prior['negative']['sha256'],actual_negative_observer=prior['negative_actual'])
+            root=dict(schema='postfailure-standard-artifact-qualification-root-v1',technical_procedure_passed=False,
+                actual_exec_session=25644,actual_exec_exit_code_observed_by_root=1,actual_tool_evidence='19905f',
+                manifest_sha256=prior['manifest']['sha256'],cleanup_confirmed=True,source_unchanged=True,temporary_cleanup_confirmed=True,
+                independent_audit=None,quality_metric=None,owned_identities=rows(1,2),closure_preparer_identities=rows(2,5))
+            docs={prior[k]['path']:v for k,v in [('manifest',{}),('campaign',dict(status='failed',artifact_procedure_passed=False,independent_audit=None)),
+                ('root',root),('negative',negative),('post',post)]}
+            source=str(Path(A.__file__).resolve());hashes={ref['path']:ref['sha256'] for ref in prior.values() if 'path' in ref}
+            hashes[source]='c'*64
+            caller=dict(schema='postfailure-standard-artifact-qualification-private-v1',readiness='READY_REVIEWED_FROZEN',missing_bindings=[],
+                output=str(A.WORK/'ra2'),immutable_files=hashes,common_seconds=600,caps=dict(setup=180,audit=[120,90],final=240,root=60),
+                auditor=dict(path=source,sha256=hashes[source]),ra1_previous=prior)
+            docs[current['path']]=caller;observed={**hashes,current['path']:current['sha256']}
+            def checked(changed):
+                with patch.object(A,'digest',side_effect=lambda p,*args:observed[str(p)]),patch.object(A,'load',side_effect=lambda p:changed[str(p)]):
+                    return A.current_caller_proof({'current_caller_manifest':current},lambda:None)
+            self.assertEqual(len(checked(docs)['known']),8042)
+            for name,key,bad in [('root','technical_procedure_passed',True),('post','known_count',8041),('negative','current_cleanup_confirmed',False)]:
+                changed=deepcopy(docs);changed[prior[name]['path']][key]=bad
+                with self.subTest(key=key),self.assertRaises(RuntimeError):checked(changed)
+            changed=deepcopy(docs);changed[current['path']]['output']=str(A.WORK/'ra1')
+            with self.assertRaises(RuntimeError):checked(changed)
+            with self.assertRaises(RuntimeError):A.current_caller_proof({},lambda:None)
+
+

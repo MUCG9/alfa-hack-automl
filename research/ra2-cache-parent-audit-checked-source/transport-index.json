@@ -1,0 +1,222 @@
+{
+  "schema": "checked-source-transport-v1",
+  "runtime_qualified": false,
+  "original_RQ6_RA1_FAIL_preserved": true,
+  "files": [
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/source-handoff-final.json",
+      "file": "000-source-handoff-final.json",
+      "sha256": "63228d4e3231f863893c07d5cd1c53ece52506cc4e767af2f7787ba0f84a15c6"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/artifact_audit.py",
+      "file": "001-artifact_audit.py",
+      "sha256": "7d201758d1af8f6ca6f73c6e3715d15301817426bd1987060776039815e15ce6"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/cached_mixture_helper.txt",
+      "file": "002-cached_mixture_helper.txt",
+      "sha256": "f0840bb93f59b161d1663e6487749fb5e5ecc250dab26c77c27d9ce1cc9ac69a"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/current_caller_helper.txt",
+      "file": "003-current_caller_helper.txt",
+      "sha256": "6473024e656ce585d445570c827e6f717016621e82a72c8109b090e129428373"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/R1-preservation.json",
+      "file": "004-R1-preservation.json",
+      "sha256": "13c0a5ba53098b8e173696086548afa9e7d45bfcd6cca126ff93e9061639b3fc"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/R2-source-transformations.json",
+      "file": "005-R2-source-transformations.json",
+      "sha256": "ae261a90901a06372cb46a622ea314706b2f54043dcd131d61b60bc7010297d4"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/R2-tests.txt",
+      "file": "006-R2-tests.txt",
+      "sha256": "f0f83aabc0d376f0643eae65744fd2ef5d346f9debe71335656f6ab4a8f9eaf5"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/README.md",
+      "file": "007-README.md",
+      "sha256": "b6443944e6eb4b7869a6e7ac3edbf1f45f84c9028f1d916fa19bfc9319576161"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/repair-context.template.json",
+      "file": "008-repair-context.template.json",
+      "sha256": "e29470859e3f4a3cd5c5f96237f863d3633476ffaf7e610c23fdc6eefc04d0e8"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/source-evidence/00-artifact_audit.py",
+      "file": "009-00-artifact_audit.py",
+      "sha256": "39530e417e5504f416c4e833d1c25ede6f6fc6a5a4a7aed7d73193bf896a9093"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/source-evidence/01-README.md",
+      "file": "010-01-README.md",
+      "sha256": "95e12abaae9b302d11d9e47147e955405991b89e155f51eb301642e5eac51046"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/source-evidence/02-repair-context.template.json",
+      "file": "011-02-repair-context.template.json",
+      "sha256": "b2662f5180a1253e8eb81efa661b519ffee395babb2674160708b446ca236604"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/source-evidence/03-repair_helpers.txt",
+      "file": "012-03-repair_helpers.txt",
+      "sha256": "1377791dcec580119a279c12913ffdefe8a626f2ed9a17eee190746049f93d64"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/source-evidence/04-original-artifact_audit.py",
+      "file": "013-04-original-artifact_audit.py",
+      "sha256": "910f8c5374b147c1d665ed01cb93f9b492f17d5cee330621f0f23685854b7209"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/source-evidence/05-original-controller-contracts.py",
+      "file": "014-05-original-controller-contracts.py",
+      "sha256": "da9c6f10d14f25c207b9821230a7eb8c7ffbe1cce7fd6b598e0d00e5aedae3cd"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/source-evidence/06-source-proof.json",
+      "file": "015-06-source-proof.json",
+      "sha256": "9b52d28d83ad78f05cc28be74017544df81911f3156be1045e4c56d9f8b006be"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/source-evidence/07-source-transformations.json",
+      "file": "016-07-source-transformations.json",
+      "sha256": "1971ec03b16cb788bfc69e4b2f3979f65f7cf7b15de6498ea7edd40f74183768"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/source-evidence/08-test_saved_terminal_bridge.py",
+      "file": "017-08-test_saved_terminal_bridge.py",
+      "sha256": "024642ae96640b5641c72cd6c485d5c28b9dfa0bf5f6cadcd01df5ec37320745"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/source-evidence/09-source-handoff.json",
+      "file": "018-09-source-handoff.json",
+      "sha256": "9d71e51c509eb9119381c22500b5b0470e4d2703616f1271deac6df9c6eddfdc"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/source-proof.json",
+      "file": "019-source-proof.json",
+      "sha256": "a105b1c2e0e45ecc43ab67aeff6df2da6e3c14accb01ad6a5edfa2b009e90829"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/test_saved_terminal_bridge.py",
+      "file": "020-test_saved_terminal_bridge.py",
+      "sha256": "4def680502b9d10cc54e8f970f7328dd51e81dd30342db88a8ba8c59a02a51d9"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/source-evidence/original-artifact_audit.py",
+      "file": "021-original-artifact_audit.py",
+      "sha256": "910f8c5374b147c1d665ed01cb93f9b492f17d5cee330621f0f23685854b7209"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-next-dev-r2/source-handoff.json",
+      "file": "022-source-handoff.json",
+      "sha256": "e1dd906b1d53d228c318d9e428cce301814c01189a33718acad945575a800149"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/source-handoff.json",
+      "file": "023-source-handoff.json",
+      "sha256": "bf011c6176fbab1de93fdbfbe1f7c98c8508f0b77cd7d9a1fbeedf4228648e6e"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/atomic-binding.template.NOT_READY.json",
+      "file": "024-atomic-binding.template.NOT_READY.json",
+      "sha256": "ebf4e33ae527c20097904c7736a95e2fa6c32aa9d185bdcff823dba0cd429c39"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/binding.template.NOT_READY.json",
+      "file": "025-binding.template.NOT_READY.json",
+      "sha256": "e90db2dc3aefa8710f11b11adee8ff503b20ec9d372c7f069a079279fa45eb0b"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/close_audit.py",
+      "file": "026-close_audit.py",
+      "sha256": "ac08a261ab7916c21cc842d209194b7259116cd164a1bd236eb92d1f9ed37a3a"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/close_child.ps1",
+      "file": "027-close_child.ps1",
+      "sha256": "d9aaf1420ce44b074a9bfbd51c7c4fcabcefefa02a05702db8d2af8f94a81f4e"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/compose_closure.py",
+      "file": "028-compose_closure.py",
+      "sha256": "e1ccceacc19561f74410dd70d790386ddcd373cbbd7b6f896bbf5383a4493b3b"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/compose_main.py",
+      "file": "029-compose_main.py",
+      "sha256": "6898285b9b5152707567721f7b21af133e6f7779b744f34fffb86417013041fa"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/confirm_post_tool.py",
+      "file": "030-confirm_post_tool.py",
+      "sha256": "dffdbb7bd6917d908efc8be804f1dd6c6d2e57c56a550ac6309da2010013acfe"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/freeze_source.py",
+      "file": "031-freeze_source.py",
+      "sha256": "da2c64171a3181494209d9556f66be9dea5e5f2434b87d7b784b2d3059187fa5"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/plan.json",
+      "file": "032-plan.json",
+      "sha256": "32daaf5d1968b32e6ebf30793f6ad9153861b06ccf16af194d39754f43ad7b1a"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/protocol.json",
+      "file": "033-protocol.json",
+      "sha256": "8fa3955d6b7cd2d0fa47533a93614fedc093e31fc84724a0be69ad2841bc2cce"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/README.txt",
+      "file": "034-README.txt",
+      "sha256": "3f1b0a7707a79f9ca9eae9fe3748bfc37c895841d7025dfceba78421e5ad3796"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/run_audit.py",
+      "file": "035-run_audit.py",
+      "sha256": "18bc65e7f4e6e7a5b2ac9685d2ac2fa9ee748a51d4c28925a317e53fd99e3da1"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/run_root.py",
+      "file": "036-run_root.py",
+      "sha256": "aceba8ba2eaa978c905c7196181e92ef3679c9ab1d7c174b525a294432cc9837"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/source-proof.json",
+      "file": "037-source-proof.json",
+      "sha256": "d6b2afdfb5625a0cd9103923678148a867f5dd0e872433edab636820e6b382eb"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/test_atomic_root.py",
+      "file": "038-test_atomic_root.py",
+      "sha256": "df37c2e6e3e45da47bf992ad7545c66414e58c463ff972a0bbe2a4d97d48401d"
+    },
+    {
+      "origin": "ra2-saved-artifact-qualification-next-dev/test_caller.py",
+      "file": "039-test_caller.py",
+      "sha256": "662ede2941b6359dd223019a2c314375b3d55a07ad3b9e4b84e13f47de1c50d0"
+    },
+    {
+      "origin": "rq6-no-fit-audit-repair-fm-independent-review-r2.json",
+      "file": "040-rq6-no-fit-audit-repair-fm-independent-review-r2.json",
+      "sha256": "0971a8a5115747cfff33bc86148e831d73e7f21b25768d32269b95e0df8444d9"
+    },
+    {
+      "origin": "ra2-caller-audit-contract-source-review-r1.json",
+      "file": "041-ra2-caller-audit-contract-source-review-r1.json",
+      "sha256": "68f21ddf9b2006136cdf634e4090ef96c19dd43cd4f04b5ba2611db129be0654"
+    },
+    {
+      "origin": "ra1-fitting-receipt-metadata-diagnosis-next-dev/evidence-r1.json",
+      "file": "042-evidence-r1.json",
+      "sha256": "8e29c4b9f5f94c741e0a54a65c395555c8a41c40fee0569755eb2d73006d4636"
+    }
+  ]
+}

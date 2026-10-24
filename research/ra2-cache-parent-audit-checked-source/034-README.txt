@@ -1,0 +1,4 @@
+SOURCE_ONLY / NOT_READY. RA2new600 setup180/audit120/final300(driver240/root60), MIN originalRQ6common6000. No models/API/119repeat.
+[15, 5, 6] prepared contracts=26;3serial60/45 slots. RootnormalizealltypedpathsABS, outputABS WORK/ra2, fullsourcepinmapneverrepin; include ra1_previous five refs/four actualdicts. Runtimecontext adds current_caller_manifest actualprivatepath/SHA; staticpayload fieldNone.
+Same main/atomic/post CLI as frozenRA1R2; packet paths now thisdirectory. Root hostedwriter hasnoPID; optionalcaptured nativepreparers requireactual0receipt/map; completeknown8045+laterpreps before/underlock.
+Metadata preflightconfig+predecessor beforeunitclock; no candidate/model import/dataarrays. EachnewphaseclockalsooriginalRQ6common6000. OriginalRQ6 andRA1FAILs remainimmutable. No promotion/submit.

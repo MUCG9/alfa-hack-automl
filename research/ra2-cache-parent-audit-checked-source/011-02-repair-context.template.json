@@ -1,0 +1,55 @@
+{
+  "schema": "rq6-saved-terminal-audit-repair-private-v1",
+  "readiness": "NOT_READY",
+  "missing_bindings": [
+    "actual_RA1_clock",
+    "exclusive_absolute_output",
+    "actual_RA1_source_private_binding"
+  ],
+  "original_failure_preserved": true,
+  "original_RQ6_procedure_requalified": false,
+  "original_manifest": {
+    "path": "C:\\Users\\\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440\u0430\\Documents\\Codex\\2026-10-22\\api-qwen-api-sk-c-z32arsqprgt1nli7bsbg-2\\work\\private\\rq6-manifest.ready-r1.json",
+    "sha256": "f4eb5dca1e3560de66206c76937d0314a790047436bd80f218422c9324afd65a"
+  },
+  "original_campaign": {
+    "path": "C:\\Users\\\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440\u0430\\Documents\\Codex\\2026-10-22\\api-qwen-api-sk-c-z32arsqprgt1nli7bsbg-2\\work\\rq6\\campaign.json",
+    "sha256": "60afb434d1e6f943d05be02c0761cdb255745fe3e543961ed407e559eaf38725"
+  },
+  "original_root": {
+    "path": "C:\\Users\\\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440\u0430\\Documents\\Codex\\2026-10-22\\api-qwen-api-sk-c-z32arsqprgt1nli7bsbg-2\\work\\rq6\\terminal-root-closure.json",
+    "sha256": "f9e26b3a9e9223fc903909aafd3172dbd0b4242b142d9d29cf8593a3379d9810"
+  },
+  "original_auditor": {
+    "path": "C:\\Users\\\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440\u0430\\Documents\\Codex\\2026-10-22\\api-qwen-api-sk-c-z32arsqprgt1nli7bsbg-2\\work\\last-submission-repair-qualification-next-dev-r6\\artifact_audit.py",
+    "sha256": "910f8c5374b147c1d665ed01cb93f9b492f17d5cee330621f0f23685854b7209"
+  },
+  "current_negative": {
+    "path": "C:\\Users\\\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440\u0430\\Documents\\Codex\\2026-10-22\\api-qwen-api-sk-c-z32arsqprgt1nli7bsbg-2\\work\\rq6\\current-negative-closure.json",
+    "sha256": "fe8941210806633144b53f2f1345daa3922f7099dc81148637da7240592ce0bc"
+  },
+  "post_tool_confirmation": {
+    "path": "C:\\Users\\\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440\u0430\\Documents\\Codex\\2026-10-22\\api-qwen-api-sk-c-z32arsqprgt1nli7bsbg-2\\work\\rq6\\current-negative-post-tool-confirmation.json",
+    "sha256": "9ad55350293113fbf7c026762979e06cc40a350b948718c39b998b8dea316fdc"
+  },
+  "actual_current_negative_observer": {
+    "exit_code": 0,
+    "tool": "b449e3"
+  },
+  "actual_post_tool_observer": {
+    "exit_code": 0,
+    "tool": "317ee6"
+  },
+  "executor_runtime_sha256": "db277eefd3f94a62785d28c0c1d09c25c94ca55012c9a69bc06996482378ee82",
+  "clock": {
+    "start_unix": null,
+    "start_monotonic": null,
+    "absolute_deadline_unix": null,
+    "common_deadline_monotonic": null,
+    "audit_start_unix": null,
+    "audit_start_monotonic": null,
+    "audit_deadline_unix": null,
+    "audit_deadline_monotonic": null
+  },
+  "output": null
+}

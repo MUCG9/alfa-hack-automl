@@ -1,0 +1,162 @@
+SAVED_RUNTIME_SHA256='db277eefd3f94a62785d28c0c1d09c25c94ca55012c9a69bc06996482378ee82'
+SAVED_AUDITOR_SHA256='910f8c5374b147c1d665ed01cb93f9b492f17d5cee330621f0f23685854b7209'
+SAVED_REFS={
+    'original_campaign':('rq6/campaign.json','60afb434d1e6f943d05be02c0761cdb255745fe3e543961ed407e559eaf38725'),
+    'original_root':('rq6/terminal-root-closure.json','f9e26b3a9e9223fc903909aafd3172dbd0b4242b142d9d29cf8593a3379d9810'),
+    'current_negative':('rq6/current-negative-closure.json','fe8941210806633144b53f2f1345daa3922f7099dc81148637da7240592ce0bc'),
+    'post_tool_confirmation':('rq6/current-negative-post-tool-confirmation.json','9ad55350293113fbf7c026762979e06cc40a350b948718c39b998b8dea316fdc')}
+
+def exact_identity(row):
+    if (type(row) is not dict or type(row.get('pid')) is not int or row['pid']<=0
+        or type(row.get('create_time')) not in (int,float) or not math.isfinite(row['create_time'])
+        or row['create_time']<=0):return None
+    return row['pid'],row['create_time']
+
+def identity_inventory(rows):
+    need(type(rows) is list and len(rows)<=30000,'repair_typed_bounded_identity_list')
+    keys=[exact_identity(row) for row in rows]
+    need(None not in keys and len(keys)==len(set(keys)),'repair_unique_exact_identity_list')
+    return set(keys)
+
+def repair_deadlines(context,unix,monotonic):
+    clock=context['clock']
+    need(type(clock) is dict and set(clock)=={'start_unix','start_monotonic','absolute_deadline_unix',
+        'common_deadline_monotonic','audit_start_unix','audit_start_monotonic','audit_deadline_unix',
+        'audit_deadline_monotonic'},'repair_exact_clock_fields')
+    need(all(type(v) in (int,float) and math.isfinite(v) and v>0 for v in clock.values()),'repair_finite_original_clocks')
+    need(clock['absolute_deadline_unix']==clock['start_unix']+600
+        and clock['common_deadline_monotonic']==clock['start_monotonic']+600
+        and clock['audit_deadline_unix']==clock['audit_start_unix']+120
+        and clock['audit_deadline_monotonic']==clock['audit_start_monotonic']+120
+        and clock['start_unix']<=clock['audit_start_unix']<clock['audit_deadline_unix']<=clock['absolute_deadline_unix']
+        and clock['start_monotonic']<=clock['audit_start_monotonic']<clock['audit_deadline_monotonic']<=clock['common_deadline_monotonic'],
+        'repair_same600_and_phase120')
+    need(type(unix) in (int,float) and math.isfinite(unix) and type(monotonic) in (int,float) and math.isfinite(monotonic)
+        and clock['audit_start_unix']<=unix<min(clock['absolute_deadline_unix'],clock['audit_deadline_unix'])
+        and clock['audit_start_monotonic']<=monotonic<min(clock['common_deadline_monotonic'],clock['audit_deadline_monotonic']),
+        'repair_original_common_or_phase_deadline')
+
+def repair_lineage(context,root,negative,post,clock,manifest_sha256,campaign_sha256):
+    """Current absence qualifies a NEW audit; it never repairs the old clock."""
+    need(root.get('schema')=='standard-repair-qualification-root-closure-v1'
+        and root.get('technical_procedure_passed') is False
+        and root.get('actual_exec_session')==49569 and root.get('actual_exec_exit_code_observed_by_root')==1
+        and root.get('actual_tool_evidence')=='dbc6a1'
+        and root.get('manifest_sha256')==manifest_sha256
+        and all(root.get(k) is True for k in ('cleanup_confirmed','source_unchanged','temporary_cleanup_confirmed'))
+        and root.get('root_errors')==[] and root.get('active_owned_processes')==[] and root.get('uncertain_owned')==[],
+        'repair_original_failed_root_exact')
+    need(all(root.get(k)==clock[v] for k,v in [('original_start_unix','start_unix'),
+        ('original_deadline_unix','absolute_deadline_unix'),('original_start_monotonic','start_monotonic'),
+        ('original_end_monotonic','common_deadline_monotonic')]),'repair_old_clock_not_reset')
+    for record,schema,count in [(negative,'rq6-separate-current-negative-closure-v1',8010),
+            (post,'rq6-current-negative-post-tool-confirmation-v1',8013)]:
+        need(record.get('schema')==schema and record.get('technical_procedure_passed') is False
+            and record.get('original_RQ6_FAIL_preserved') is True and record.get('root60_requalified') is False
+            and record.get('old_clock_reset') is False and record.get('new_qualification') is False
+            and all(record.get(k) is True for k in ('current_source_unchanged','current_cleanup_confirmed',
+                'current_temporary_absent','inside_original6000'))
+            and record.get('original_manifest_sha256')==manifest_sha256
+            and record.get('original_campaign_sha256')==campaign_sha256
+            and record.get('original_negative_root_sha256')==SAVED_REFS['original_root'][1]
+            and record.get('known_count')==count and type(record.get('known_count')) is int
+            and record.get('known_exact_live')==[] and record.get('uncertain')==[]
+            and record.get('source_pins_checked')==1017 and record.get('new_model_fits')==0
+            and record.get('API_calls')==0,'repair_actual_current_negative_not_old_PASS')
+        need(record.get('actual_failed_driver')=={'session':49569,'exit_code':1,'tool':'dbc6a1'},'repair_failed_driver_preserved')
+        closer=record.get('actual_failed_frozen_closer',{})
+        need(closer.get('exit_code')==1 and closer.get('tool')=='fb3841','repair_failed_closer_preserved')
+        need(len(identity_inventory(record.get('known_identities')))==count,'repair_known_count')
+    prior=identity_inventory(negative['known_identities']);current=identity_inventory(post['known_identities'])
+    old_preparers=identity_inventory(negative.get('observer_preparer_identities'))
+    new_preparers=identity_inventory(post.get('observer_preparer_identities'))
+    need(len(old_preparers)==len(new_preparers)==3 and not prior&old_preparers
+        and current==prior|old_preparers and not current&new_preparers,
+        'repair_exact_current_observer_union')
+    root_owned=identity_inventory(root.get('owned_identities'))|identity_inventory(root.get('closure_preparer_identities'))
+    need(root_owned<=prior and post.get('negative_closure_sha256')==SAVED_REFS['current_negative'][1]
+        and post.get('actual_negative_observer')=={'exit_code':0,'tool':'b449e3'}
+        and post.get('post_tool_current_confirmation') is True
+        and context.get('actual_current_negative_observer')=={'exit_code':0,'tool':'b449e3'}
+        and context.get('actual_post_tool_observer')=={'exit_code':0,'tool':'317ee6'},'repair_actual_posttool_linkage')
+    return current
+
+def validate_repair_context(context,manifest_path,manifest_sha256,cfg,campaign,clock,output,check):
+    need(context.get('schema')=='rq6-saved-terminal-audit-repair-private-v1'
+        and context.get('original_failure_preserved') is True
+        and context.get('original_RQ6_procedure_requalified') is False,'repair_explicit_separate_procedure')
+    def ref(name,expected_path,expected_sha256,decode=True):
+        value=context.get(name)
+        need(type(value) is dict and set(value)=={'path','sha256'} and Path(value['path']).is_absolute()
+            and Path(value['path']).resolve()==Path(expected_path).resolve() and value['sha256']==expected_sha256,
+            'repair_exact_reference_'+name)
+        need(digest(value['path'],check)==value['sha256'],'repair_reference_changed_'+name)
+        return load(value['path']) if decode else None
+    ref('original_manifest',manifest_path,manifest_sha256)
+    need(manifest_sha256=='f4eb5dca1e3560de66206c76937d0314a790047436bd80f218422c9324afd65a','repair_exact_RQ6_manifest')
+    ref('original_auditor',WORK/'last-submission-repair-qualification-next-dev-r6/artifact_audit.py',SAVED_AUDITOR_SHA256,False)
+    saved={name:ref(name,WORK/relative,h) for name,(relative,h) in SAVED_REFS.items()}
+    need(saved['original_campaign']==campaign and campaign.get('status')=='failed'
+        and campaign.get('artifact_procedure_passed') is False,'repair_original_campaign_FAIL_retained')
+    runtime=context.get('executor_runtime_sha256')
+    need(runtime==SAVED_RUNTIME_SHA256 and cfg['executor']['members_sha256'].get('automl_release_runtime.py')==runtime,
+        'repair_exact_successful_sample_producer_source')
+    need(Path(context.get('output','')).is_absolute() and Path(context['output']).resolve()==Path(output).resolve()
+        and Path(output).resolve().is_relative_to(WORK/'ra1') and not Path(output).exists()
+        and not Path(output).is_symlink(),'repair_new_exclusive_output')
+    known=repair_lineage(context,saved['original_root'],saved['current_negative'],saved['post_tool_confirmation'],
+        clock,manifest_sha256,SAVED_REFS['original_campaign'][1])
+    return {'producer_schema':'RQ6_CLASS_stable_sample_then_observed_exit_v1','runtime_sha256':runtime,'known':known}
+
+def saved_terminal_bridge(record,proof,owned,intrinsic):
+    """Qualify saved stable sample + later exit/cleanup; original None stays None.
+
+    No terminal timestamp exists in this producer schema. Source ordering and
+    exact saved/current-owned identities provide the proof, not a backfilled
+    terminal status, timestamp, sampled zero, or a fresh observation claim.
+    """
+    if (type(record) is not dict or record.get('terminal_resource_observation','missing') is not None
+        or type(proof) is not dict or proof.get('producer_schema')!='RQ6_CLASS_stable_sample_then_observed_exit_v1'
+        or proof.get('runtime_sha256')!=SAVED_RUNTIME_SHA256 or type(proof.get('known')) is not set
+        or type(owned) is not set or type(intrinsic) is not dict
+        or record.get('status')!='ok' or record.get('strict_runtime') is not True or record.get('cleanup_confirmed') is not True
+        or type(record.get('parent_observed_worker_exit_code')) is not int or record['parent_observed_worker_exit_code']!=0):return False
+    root=exact_identity(record.get('worker_resource_root'));own=exact_identity(record.get('worker_resource_self'))
+    if root is None or own is None or root==own or not {root,own}<=owned or not {root,own}<=proof['known']:return False
+    sample=record.get('verified_resource_sample');receipt=record.get('release_original_clock')
+    if (type(sample) is not dict or sample.get('schema')!='verified-known-resource-sample-v1'
+        or sample.get('scope')!='sampled_stable_known_RSS_not_OS_lifetime_peak'
+        or type(sample.get('sampled')) is not list or type(sample.get('departed')) is not list
+        or len(sample['sampled'])+len(sample['departed'])>30000
+        or type(sample.get('required_count')) is not int or sample['required_count']!=1
+        or type(sample.get('sampled_count')) is not int or sample['sampled_count']!=len(sample['sampled'])
+        or type(sample.get('known_count')) is not int or sample['known_count']<len(sample['sampled'])+len(sample['departed'])
+        or type(receipt) is not dict or any(receipt.get(k)!=intrinsic.get(k) for k in
+            ('start_unix','start_monotonic','deadline_unix','deadline_monotonic'))
+        or any(type(receipt.get(k)) not in (int,float) or not math.isfinite(receipt[k]) or receipt[k]<=0 for k in
+            ('start_unix','start_monotonic','deadline_unix','deadline_monotonic'))
+        or receipt.get('deadline_unix')<=receipt['start_unix'] or receipt.get('deadline_monotonic')<=receipt['start_monotonic']
+        or 'actual_failure_type' not in receipt or receipt.get('actual_failure_type') is not None
+        or type(receipt.get('actual_resource_samples')) is not int or receipt['actual_resource_samples']<=0
+        or receipt.get('observation_gap_limit_seconds')!=10 or receipt.get('resource_sample_cadence_seconds')!=.25
+        or receipt.get('resource_limit_bytes')!=2048*2**20):return False
+    sampled={};departed=set()
+    for row in sample['sampled']:
+        key=exact_identity(row)
+        if key is None or key in sampled or type(row.get('rss_bytes')) is not int or row['rss_bytes']<0:return False
+        sampled[key]=row['rss_bytes']
+    for row in sample['departed']:
+        key=exact_identity(row);replacement=row.get('replacement_create_time') if type(row) is dict else None
+        if key is None or key in departed or key in sampled or row.get('rss_bytes') is not None:return False
+        if row.get('state')=='fresh_confirmed_absent':
+            if replacement is not None:return False
+        elif row.get('state')=='fresh_confirmed_reused':
+            if type(replacement) not in (int,float) or not math.isfinite(replacement) or replacement<=0 or replacement==key[1]:return False
+        else:return False
+        departed.add(key)
+    if root not in sampled or own not in sampled or sampled[root]<=0 or sampled[own]<=0:return False
+    worker=sum(v for key,v in sampled.items() if key!=own);whole=worker+sampled[own]
+    peak_worker=record.get('observed_worker_tree_peak_bytes');peak_whole=record.get('observed_combined_peak_bytes')
+    return (record.get('worker_memory_limit_bytes')==1536*2**20 and record.get('whole_memory_limit_bytes')==2048*2**20
+        and type(peak_worker) is int and worker<=peak_worker<=1536*2**20
+        and type(peak_whole) is int and whole<=peak_whole<=2048*2**20)

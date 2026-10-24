@@ -1,0 +1,22 @@
+{
+  "schema": "RA2-prospective-no-fit-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "common600": true,
+  "old_RQ6_common6000_MIN": true,
+  "setup180": true,
+  "audit_parent120_child90": true,
+  "final300_driver240_root60": true,
+  "post30_inside_same_windows": true,
+  "contracts": [
+    15,
+    5,
+    6
+  ],
+  "prepared_executions": 26,
+  "new_model_fits": 0,
+  "API_calls": 0,
+  "original_RQ6_FAIL_preserved": true,
+  "original_RA1_FAIL_preserved": true,
+  "actual_clock": null,
+  "actual_metrics": null
+}

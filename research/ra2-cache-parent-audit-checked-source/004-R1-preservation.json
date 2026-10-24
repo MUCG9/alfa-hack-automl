@@ -1,0 +1,42 @@
+{
+  "artifact_audit.py": {
+    "snapshot": "source-evidence/00-artifact_audit.py",
+    "sha256": "39530e417e5504f416c4e833d1c25ede6f6fc6a5a4a7aed7d73193bf896a9093"
+  },
+  "README.md": {
+    "snapshot": "source-evidence/01-README.md",
+    "sha256": "95e12abaae9b302d11d9e47147e955405991b89e155f51eb301642e5eac51046"
+  },
+  "repair-context.template.json": {
+    "snapshot": "source-evidence/02-repair-context.template.json",
+    "sha256": "b2662f5180a1253e8eb81efa661b519ffee395babb2674160708b446ca236604"
+  },
+  "repair_helpers.txt": {
+    "snapshot": "source-evidence/03-repair_helpers.txt",
+    "sha256": "1377791dcec580119a279c12913ffdefe8a626f2ed9a17eee190746049f93d64"
+  },
+  "source-evidence/original-artifact_audit.py": {
+    "snapshot": "source-evidence/04-original-artifact_audit.py",
+    "sha256": "910f8c5374b147c1d665ed01cb93f9b492f17d5cee330621f0f23685854b7209"
+  },
+  "source-evidence/original-controller-contracts.py": {
+    "snapshot": "source-evidence/05-original-controller-contracts.py",
+    "sha256": "da9c6f10d14f25c207b9821230a7eb8c7ffbe1cce7fd6b598e0d00e5aedae3cd"
+  },
+  "source-proof.json": {
+    "snapshot": "source-evidence/06-source-proof.json",
+    "sha256": "9b52d28d83ad78f05cc28be74017544df81911f3156be1045e4c56d9f8b006be"
+  },
+  "source-transformations.json": {
+    "snapshot": "source-evidence/07-source-transformations.json",
+    "sha256": "1971ec03b16cb788bfc69e4b2f3979f65f7cf7b15de6498ea7edd40f74183768"
+  },
+  "test_saved_terminal_bridge.py": {
+    "snapshot": "source-evidence/08-test_saved_terminal_bridge.py",
+    "sha256": "024642ae96640b5641c72cd6c485d5c28b9dfa0bf5f6cadcd01df5ec37320745"
+  },
+  "source-handoff.json": {
+    "snapshot": "source-evidence/09-source-handoff.json",
+    "sha256": "9d71e51c509eb9119381c22500b5b0470e4d2703616f1271deac6df9c6eddfdc"
+  }
+}

@@ -2844,7 +2844,7 @@
   "library_source_revision": "108efd4",
   "current_UAR_source_snapshot": {
     "schema": 1,
-    "status": "SOURCE_INTEGRATED_REVIEWED_RUNTIME_GATES_PENDING",
+    "status": "SOURCE_ARCHITECTURE_FIX_INTEGRATED_CURRENT_FULL_GATE_PENDING",
     "registry_scripts": 56,
     "registry_expected_checks": 588,
     "registry_sha256": "cb009124a54d1e57ed50aa26833f7106214cb9911bc5515894dc90809c1898c8",
@@ -2860,6 +2860,76 @@
     "Linux10_fitting_approval": false,
     "automatic_submission": false,
     "new_quality_metric": null,
-    "promotion": false
+    "promotion": false,
+    "historical_LOSS17_retention15_source_PASS_in_failed_UAR04": true
+  },
+  "UAR04_closed_technical_failure": {
+    "schema": 1,
+    "run_id": "UAR04",
+    "status": "FAIL_CLOSED_NEGATIVE_AUDIT_PROOF",
+    "actual_exec_session": 66061,
+    "actual_exec_exit": 1,
+    "actual_exec_tool": "0971f4",
+    "first_error": "test_architecture.test_domain_only_imports_public_neighbor_api:7 cross-domain private imports across runner/stages; one architecture assertion failure",
+    "source_scripts_observed": 56,
+    "source_scripts_passed": 55,
+    "source_qualified_checks_in_passing_scripts": 581,
+    "source_all_script_observed_checks": 588,
+    "failed_suite_observed_checks": 7,
+    "failed_suite_assertions": 1,
+    "failed_suite_skips": 0,
+    "new_LOSS_source17_PASS": true,
+    "new_retention_source15_PASS": true,
+    "build_attempted": false,
+    "exact_unpacked_attempted": false,
+    "mapped_unpacked_attempted": false,
+    "first_frozen_closer": {
+      "exit": 1,
+      "tool": "a1d203",
+      "error": "same_original1200_required",
+      "cause": "stored monotonic subtraction1199.9999999999927; both assigned-addition equalities true",
+      "PID_create_time": null,
+      "raw_trace_file_sha256": null,
+      "retro_identity_qualified": false
+    },
+    "audit_only_negative_closer": {
+      "exit": 1,
+      "tool": "b1c092",
+      "negative_exit_expected": true,
+      "source_sha256": "25456f5367d2564f88bff4805a58afce48cd120b23334f73b8ce34a82cec6414",
+      "independent_review_sha256": "c7d14d354665e1ddef73b315d5c46c43951406f6f32907d562b83078bd392592",
+      "root_closure_sha256": "cd6c4e73bc0f5f6145ec11dbdd36160f96ba6f39dad09027496b177b60f0b10b"
+    },
+    "fresh_known_identity_cleanup": {
+      "tool": "b16c2c",
+      "known_count": 5408,
+      "exact_live": 0,
+      "uncertain": 0,
+      "scope": "known model/fixture/parent/new-auditor IDs; old frozen closer preparer ID not recorded; actual terminal exit and source-prefix limitation retained"
+    },
+    "original_common_seconds": 1200,
+    "original_start_unix": 1792806446.972887,
+    "original_deadline_unix": 1792807646.972887,
+    "original_start_monotonic": 65452.093,
+    "original_deadline_monotonic": 66652.093,
+    "clock_reset": false,
+    "gate_elapsed_seconds": 312.57800000000134,
+    "elapsed_through_fresh_audit_seconds": 853.7408444881439,
+    "source_unchanged_at_terminal_audit": true,
+    "fixture_learner_fit_total": null,
+    "external_API_usage_total": null,
+    "public_model_experiment_fits": 0,
+    "new_ML_metric": null,
+    "references_preserved": {
+      "research_REG_RMSE": 34.155023394837,
+      "historical_V16_REG_RMSE": 35.4472315578,
+      "historical_V11_V16_CLASS_MacroF1": 0.6593178433614652
+    },
+    "primary_error_log_sha256": "c159996bdd6a8902276a43d58aeae6b8e0a5dc1b9166d1df5b243bf4c6d7ee12",
+    "source_results_sha256": "44162d4891a88a427a2bbb9a0dcf32cb02cff038af6de239e0754f686840e327",
+    "source_campaign_sha256": "ae5c99fa1dcc041602bad25a3ceb7ac9efaab9b093a6345c77a6fec3c4090d46",
+    "promotion": false,
+    "submit": false,
+    "decision": "Preserve FAIL; independently reviewed API-boundary repair before a separate new source/build/flat gate; no Qwen rerun before technical readiness."
   }
 }

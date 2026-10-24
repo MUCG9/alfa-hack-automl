@@ -41,3 +41,5 @@ process traversal, exceeded budgets and missing artifacts cannot become success.
 Existing frozen experiments keep their originally assigned clocks and inventories.
 
 The trusted strong-retention research opt-in preserves the complete control and raw unprofiled HPO SINGLE. Eligible regression uses seven initial slots: protected first5, the prior champion and the fixed .75 L1 SINGLE/.25 champion composite. It has no separate L1 candidate and is a declared admission tradeoff under max9, not free capacity or an exact old-search superset. Classification accepts control mode only. Both future paired arms must use the same task-specific admission policy; the normal CLI defaults remain unchanged.
+
+Cross-domain implementation imports use the public neighbor api module. The UAR04 failure exposed seven violations; the reviewed correction reexports the same functions and changes import targets, preserving runtime bodies and model policy. The vertical drift fixture patches that public export while retaining its drift effect and assertions. Source compatibility and current full technical qualification still need actual execution.

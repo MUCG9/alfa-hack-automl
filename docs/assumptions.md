@@ -39,3 +39,5 @@ research/dispatch Git publication authorization persists. Browser-origin access
 denial remains binding independently of this policy.
 
 The two new source ports have exact canonical normalized-byte and AST bindings to independently reviewed sources. Declared recipe source hashes are lineage fields, not independent proof of quality. Source-based minimum slices and structural fit upper bounds do not guarantee eight HPO attempts, successful confirmation, refit or a valid final CSV. Linux10 focused simulated/inert tests establish no live-network latency measurement; whole-campaign CPU/RSS remain unknown.
+
+Stored floating-point clock differences can round below an integer duration even when the saved deadline equals the exact original start-plus-duration operation. Closure checks reconstruct the assigned operation; no tolerance or deadline extension is introduced. Original technical and first-closer failures remain failures. The first failed closer has no persisted PID/create_time proof; actual terminal exit and exact source-prefix limitations are retained rather than retroactively inventing identity.

@@ -125,7 +125,7 @@ class VerticalContractTests(unittest.TestCase):
                 self.assertEqual(receipt['status'],'format_only_metric_unresolved');self.assertEqual(receipt['model_planner_API_calls'],0)
         for changed in ['sample_header','task_metadata','dictionary_metadata']:
             with self.subTest(prepublication_drift=changed),case(metric=None,dictionary=True) as c,patch.object(runner,'load_inputs',side_effect=AssertionError('full load')):
-                from automl.task_understanding import early_output
+                from automl.task_understanding import api as early_output
                 original=early_output.prepare_early_output
                 def drift(*args,**kwargs):
                     if changed=='sample_header':

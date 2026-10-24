@@ -371,7 +371,7 @@ def _task_contract_checkpoint(budget,resources,root):
 
 
 def _contract_fingerprints(paths,check):
-    from automl.task_understanding.service import StrictTaskContractError
+    from automl.task_understanding.api import StrictTaskContractError
     values={}
     for label,path in paths.items():
         check(); path=Path(path)
@@ -395,7 +395,7 @@ def _publish_task_checkpoint(record,output,spec,sample,test):
 
 
 def _check_contract_destination(root,task_path,declared,check):
-    from automl.task_understanding.service import StrictTaskContractError
+    from automl.task_understanding.api import StrictTaskContractError
     check(); output=Path(root)/'submission.csv'
     if output.is_symlink(): raise StrictTaskContractError('publication_output_symlink')
     try: existing=output.stat()
@@ -412,7 +412,7 @@ def _check_contract_destination(root,task_path,declared,check):
 
 
 def _validate_early_output_binding(root,task_path,declared,early,limits,check):
-    from automl.task_understanding.service import StrictTaskContractError
+    from automl.task_understanding.api import StrictTaskContractError
     check()
     sample_sha=hashlib.sha256(json.dumps(list(early.sample.columns),ensure_ascii=False,
         separators=(',',':')).encode('utf-8')).hexdigest()
@@ -441,9 +441,9 @@ def _strict_task_flow(args,budget):
     existing later planner profile a fitting-only context. Unstructured prose,
     ranking and multitarget are deliberately not guessed into supported tasks.
     """
-    from automl.task_understanding.early_declaration import bootstrap_early_declaration,DeclarationLimits
-    from automl.task_understanding.early_output import prepare_early_output
-    from automl.task_understanding.service import StrictTaskContractError,validate_declared_inputs,_strict_objective
+    from automl.task_understanding.api import bootstrap_early_declaration,DeclarationLimits
+    from automl.task_understanding.api import prepare_early_output
+    from automl.task_understanding.api import StrictTaskContractError,validate_declared_inputs,strict_objective as _strict_objective
     root=args.task.resolve().parent; resources=ResourceBudget(); declaration_limits=DeclarationLimits()
     check=lambda:_task_contract_checkpoint(budget,resources,root)
     receipt_path=budget.trace.parent/'task-contract.json'

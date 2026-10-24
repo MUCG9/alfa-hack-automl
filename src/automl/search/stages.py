@@ -370,7 +370,7 @@ def load_retention_packet(path, spec, expected_sha256):
 
 def retention_fit_cost(recipe, spec):
     """Structural callback upper bounds, never actual fits or seconds saved."""
-    from automl.execution.feature_views import feature_view_components
+    from automl.execution.api import feature_view_components
     if recipe['engine'] == 'ensemble':
         children = [retention_fit_cost(r, spec) for r in recipe['components']]
         return {k: sum(c[k] for c in children) for k in children[0]}

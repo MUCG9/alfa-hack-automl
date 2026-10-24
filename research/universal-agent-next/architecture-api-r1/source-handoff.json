@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SOURCE_ONLY_FIVE_FILE_OVERLAY_NOT_APPLIED_NOT_TESTED",
+  "original_R1_handoff_sha256": "9f0aadb4357cb66eb6dd3f9cf72c73753a8a8148fee24694d43ddb501cd9885f",
+  "four_runtime_byte_identical_R1": true,
+  "changed_source_paths": [
+    "src/automl/search/runner.py",
+    "src/automl/search/stages.py",
+    "src/automl/task_understanding/api.py",
+    "src/automl/execution/api.py",
+    "tests/test_uar_vertical_contract.py"
+  ],
+  "base_source_sha256": {
+    "src/automl/search/runner.py": "63118d12c47cf3ca06cc1d6ac977d7804c3710276e52032e152013b6edb7be51",
+    "src/automl/search/stages.py": "9b3cd3e44d552b0426b286e515b0019970a211cf31f6b3d7ccf99e16e65480ad",
+    "src/automl/task_understanding/api.py": "f565a711e0c494bdcc940a248ef80e2891b2ec66d28c16d1329d238124320597",
+    "src/automl/execution/api.py": "1f07d02b386d1fdc348cce67d66b864d6b743191d2ca802cf58f7d9725fdbe17",
+    "tests/test_uar_vertical_contract.py": "019ba9eae86f4df01e9e8456f4ce107cf12bf27c9b79dac7468fb09c8c99b023"
+  },
+  "candidate_source_sha256": {
+    "src/automl/search/runner.py": "6822a58ec6cf89e3344340edec7f79f218ca02cc19fafd236f15d099755135b2",
+    "src/automl/search/stages.py": "a1d2adb4b548afe71ecc1d9b161c30f49125998eb4314bc6efd04c42e7962a31",
+    "src/automl/task_understanding/api.py": "4884dca96f7f14b7bf7183519915129f7fdfb84b19828b9186e271d419681bd1",
+    "src/automl/execution/api.py": "74c752d6ac19e119a5b266f17193ee5a9a433bd02e120d3b636e2f342ee771c9",
+    "tests/test_uar_vertical_contract.py": "27306af69bd8a0a3544e7643e5dbff9605508ddfee5dc5a95c245fa9fd546ec1"
+  },
+  "packet_sha256": {
+    "changes.patch": "fd7b38e8b01a4b4ad9255a988b059c8988b08328e482324aa4b160761c0679f8",
+    "r1-source-handoff-preserved.json": "9f0aadb4357cb66eb6dd3f9cf72c73753a8a8148fee24694d43ddb501cd9885f",
+    "R2-fixture-only.patch": "6a0a55f4d85f5ffca27ac53ee41834598b67fa249ec31cb321af7f85e8d79de4",
+    "README.txt": "ca63b51061c9d635f66ad374b6b70c81b229f82e5299f29ec6bc81bf51b5dba7",
+    "source-proof.json": "f24fa8a11146101986c7a429e1b5eafed7ef897fce41ac50973d520038052934",
+    "tests/test_uar_vertical_contract.py": "27306af69bd8a0a3544e7643e5dbff9605508ddfee5dc5a95c245fa9fd546ec1",
+    "src/automl/execution/api.py": "74c752d6ac19e119a5b266f17193ee5a9a433bd02e120d3b636e2f342ee771c9",
+    "src/automl/search/runner.py": "6822a58ec6cf89e3344340edec7f79f218ca02cc19fafd236f15d099755135b2",
+    "src/automl/search/stages.py": "a1d2adb4b548afe71ecc1d9b161c30f49125998eb4314bc6efd04c42e7962a31",
+    "src/automl/task_understanding/api.py": "4884dca96f7f14b7bf7183519915129f7fdfb84b19828b9186e271d419681bd1"
+  },
+  "prepared_vertical_methods": 14,
+  "actual_runtime_checks": null,
+  "imports_tests_fits_API_builds_scans": 0,
+  "clock_assigned": false,
+  "canonical_author_STATE_Git_edits": false,
+  "promotion": false
+}

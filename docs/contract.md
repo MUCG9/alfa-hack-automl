@@ -1,7 +1,7 @@
 # UAR-v1 contract
 
 <!-- CURRENT_UAR_OBSERVATION_BEGIN -->
-Current observation: UQ2 is closed FAIL after the strict preparation failures and incomplete classification HPO. A separate negative audit confirmed current cleanup and source integrity, with 6,300 known local identities absent; it does not qualify ML quality or alter the failed run or original failed closer. New cadence and classification HPO reservation fixes are integrated as reviewed source. The new full technical gate is pending: 59 scripts/634 expected source checks, 73 flat members, 23 exact and 104 mapped checks are derived expectations, not PASS results. No new quality score or promotion is available. Prior research RMSE 34.155023394837 and historical classification MacroF1 0.6593178433614652 remain retained. Linux stays paused.
+Current observation: UQ2 remains closed FAIL with separately confirmed current cleanup. UAR08 executed all 59 source suites/634 checks: 58 suites/616 checks passed; the new HPO suite executed 18 tests with 17 passing and one error. It correctly found a missing local json import in the guarded diagnostic branch. The run and closer completed negative with current cleanup/source confirmed and 6,649 known identities absent. Build, exact and mapped stages were not attempted. Reviewed R3 adds that one import while retaining every test and assertion; a new complete UAR09 gate is required for the changed runtime. No new ML score or promotion is available. Prior research RMSE 34.155023394837 and historical classification MacroF1 0.6593178433614652 remain retained. Linux stays paused.
 <!-- CURRENT_UAR_OBSERVATION_END -->
 
 This is the target contract for the new integration, not an attestation that every

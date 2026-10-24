@@ -1,0 +1,28 @@
+{
+  "schema": "root-source-scope-decision-v1",
+  "scope_blocker_sha256": "d0dd9deb55467f2be7641497a063d8a5971a027367b2db445c8fd21f6f667374",
+  "decision": "option2_mode_only_parent_failure_origin_provenance",
+  "authorized_scope": "isolated runner overlay _run_worker_strict only, trusted fair-HPO optin",
+  "preserve": [
+    "defaultOFF behavior and AST projection",
+    "existing final status timeout reclassification",
+    "unchanged process/cleanup semantics and worker/parent/common caps",
+    "active UQ2 immutable",
+    "first scope-blocker receipt preserved"
+  ],
+  "required": [
+    "parent-owned killed/primary exception/prior status survive terminal timeout masking in additive mode-only receipt",
+    "confirmed cleanup boundary",
+    "HPO technical STOP on resource/observation/cleanup/technical or missing provenance",
+    "ordinary clean timeout may continue only under original actual remaining admission"
+  ],
+  "forbidden": [
+    "general worker redesign",
+    "Popen/learner-fit instrumentation",
+    "candidate import or tests",
+    "runtime execution or clock",
+    "canonical or active frozen changes"
+  ],
+  "source_review_before_integration": true,
+  "root_checked_unix": 1792832648.5430093
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "uar-hpo-fair-reserve-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_NOT_READY_UNEXECUTED",
+  "files_sha256": {
+    "candidate/src/automl/search/hpo.py": "37c0ef77b65d41c5480adeb660baf18fcb71bb2e38928e7ab457f77a3812082f",
+    "candidate/src/automl/search/runner.py": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+    "candidate/tests/test_uar_hpo_fair_reserve.py": "8b892994ff640a0bc221fbb1fee58e3466eae2e4d4866bbb6048446d7493f0d9",
+    "flat-method-whitelist.json": "91866da6aece502950f317cf15dd404a447c012a20f5826ad822cab0b9363acf",
+    "hpo.py.patch": "2cd2bdadcd33a95432979d35d965e1feeb03b978b8c35cd3a52e305262c0b8ea",
+    "protocol.json": "80ed192089a74bbe97b786beaae58773647902d0371f28820250e11a7d98324f",
+    "README.txt": "befe46404a28ba5cd302acae1a742cf56c8b4987dafd1434242ab83e766d090e",
+    "root-scope-decision-r1.json": "fdc74d0a4fa98cd2816b18ce0f557a18cc52c6a1872de41f19ad856a3e022503",
+    "runner.py.patch": "f2b4b01f5200696b881b9b9f7b778051f754ec2207c7c70a1835cc9e12598688",
+    "scope-blocker-r1.json": "d0dd9deb55467f2be7641497a063d8a5971a027367b2db445c8fd21f6f667374",
+    "source-evidence/pre-provenance-r1/hpo.py": "8d0cb2e699ff0e85285939de65b07689e12ebfd7335f863b86b0ca0cb5a94b30",
+    "source-evidence/pre-provenance-r1/preservation.json": "a3eb081cfa68f18677e8c13590ce9159c2bd3b9c230de3b95b58e03660e0c220",
+    "source-evidence/pre-provenance-r1/runner.py": "dae30125cd7cb0be9f6affbf73408d115c40e6c432f63147f9e6660ea13583ce",
+    "source-evidence/pre-provenance-r1/scope-blocker-r1.json": "d0dd9deb55467f2be7641497a063d8a5971a027367b2db445c8fd21f6f667374",
+    "source-proof.json": "305437c46e9765631d22f5caf2a6d10709935be43a7fd4b474650ea0184c6a27"
+  },
+  "runtime_sources": {
+    "candidate/src/automl/search/hpo.py": "37c0ef77b65d41c5480adeb660baf18fcb71bb2e38928e7ab457f77a3812082f",
+    "candidate/src/automl/search/runner.py": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df"
+  },
+  "new_test": {
+    "path": "candidate/tests/test_uar_hpo_fair_reserve.py",
+    "sha256": "8b892994ff640a0bc221fbb1fee58e3466eae2e4d4866bbb6048446d7493f0d9",
+    "canonical_relative_path": "tests/test_uar_hpo_fair_reserve.py",
+    "prepared_methods": 18,
+    "flat_methods": 17,
+    "sole_flat_exclusion": "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases"
+  },
+  "base_raw_sha256": {
+    "canonical_hpo": "6aac0dd13ae81e4b38295987ffe23235908a1c399d93335eb156bee070c8309d",
+    "canonical_runner_reference": "6822a58ec6cf89e3344340edec7f79f218ca02cc19fafd236f15d099755135b2",
+    "reviewed_cadence_runner": "425bf395417afbc359fc7400f8dd038060d640642733e4deaad90830a0c481eb"
+  },
+  "parent_proposal_handoff_sha256": "075279f5a1f5f0466b683497b3f5f3129d1edeff197db24c693c66a8e6a50f58",
+  "proposal_peer_sha256": "8a71be47ad402caff5ebdddbc2261ef2436bdc02db712898739b879f46aa015c",
+  "scope_finding_sha256": "d0dd9deb55467f2be7641497a063d8a5971a027367b2db445c8fd21f6f667374",
+  "mode_only_provenance_authorized_by_root": true,
+  "actual_tests": 0,
+  "candidate_imports": 0,
+  "fits": 0,
+  "API": 0,
+  "data_or_prediction_reads": 0,
+  "PID_scans": 0,
+  "new_clock_assigned": false,
+  "canonical_worktree_STATE_Git_changes": 0,
+  "current_UQ2_optional8VALID_immutable": true,
+  "ready_for_runtime": false,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

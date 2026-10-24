@@ -1,0 +1,81 @@
+{
+  "schema": "uar-hpo-fair-reserve-static-source-proof-v1",
+  "AST_parse_only": true,
+  "candidate_imports": 0,
+  "tests": 0,
+  "clock_assigned": false,
+  "whole_module_OFF_witnesses": {
+    "hpo.py": {
+      "base_path": "work/alfa-hack-automl/src/automl/search/hpo.py",
+      "base_raw_sha256": "6aac0dd13ae81e4b38295987ffe23235908a1c399d93335eb156bee070c8309d",
+      "base_AST_sha256": "b03466060e2eed6886b89b8c3706afbb51eac9364f855b955c3b90f47bddbe96",
+      "candidate_raw_sha256": "37c0ef77b65d41c5480adeb660baf18fcb71bb2e38928e7ab457f77a3812082f",
+      "whole_OFF_projected_AST_exact": true
+    },
+    "runner.py": {
+      "base_path": "work/uar-task-checkpoint-cadence-next-dev/candidate/src/automl/search/runner.py",
+      "base_raw_sha256": "425bf395417afbc359fc7400f8dd038060d640642733e4deaad90830a0c481eb",
+      "base_AST_sha256": "877b5cd74b661d921cb1a12bca0b0b554caf943ee1c2e9b80adcb5e467097f7c",
+      "candidate_raw_sha256": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+      "whole_OFF_projected_AST_exact": true
+    }
+  },
+  "canonical_runner_reference": {
+    "path": "work/alfa-hack-automl/src/automl/search/runner.py",
+    "sha256": "6822a58ec6cf89e3344340edec7f79f218ca02cc19fafd236f15d099755135b2"
+  },
+  "reviewed_cadence_class_AST_exact": true,
+  "old_runner_changed_definitions": [
+    "_run_worker_strict",
+    "_main",
+    "solve_single"
+  ],
+  "old_HPO_changed_definitions": [
+    "optimize_recipe"
+  ],
+  "search_space_anchor_partition_counter_definitions_AST_exact": true,
+  "legacy_optimize_OFF_signature_body_exact_after_named_dispatch_projection": true,
+  "original_HPO_calls_and_kwargs_exact_in_OFF_arms": true,
+  "mode_only_worker_provenance_changes_no_process_cleanup_or_status_reclassification_body": true,
+  "new_module_or_dependency": false,
+  "prospective_flat_members_unchanged": 73,
+  "prepared_method_AST_sha256": {
+    "FairReserveTests.test_numerical_REG300_and_missing_strict_reject_before_discovery_or_API": "e394a81e987c7da7edc2b3630cffc6d89ab41ed141e60d62441e7379c55eb5d1",
+    "FairReserveTests.test_exact_anchor_feasibility_and_soft_equal_share_arithmetic": "565ebc72fb38fd2f703d85d73411bfae470d6c8eba870dffd58e24efc12c7367",
+    "FairReserveTests.test_original_clock_invalid_rollback_and_deadline_remain_sticky": "db2842c47fe70a0e55dd575a87ee10a3a06a7036516279062a307391bb1b4f7b",
+    "FairReserveTests.test_late_anchor_setup_stops_without_callback_or_fake_trial": "6431849e7aefcadc7a344820e16453ffbf253923077e8a556a8f700f3a670521",
+    "FairReserveTests.test_share_recomputed_after_persist_does_not_launch_stale_proposal": "dd29eba28f186f428ce5cf63b33cad29a09d0b994f67dbccc15d2e5ea0352a01",
+    "FairReserveTests.test_eight_actual_callbacks_preserve_anchor_template_space_and_truthful_phases": "df5e265a5c72e6d9e3e78bc0b08d3ce08c1e6949244c567e2229291f15774396",
+    "FairReserveTests.test_ordinary_confirmed_timeout_is_null_consumes_slot_and_continues": "3a771f43d947402b6e2c9d04df893fd7ac02014fecd9520b6514957f088ecd6b",
+    "FairReserveTests.test_actual_cleanup_overrun_stops_later_slots_without_reset_or_retry": "479c7c35043918d566a1fd2c39beb6b8de10e07d12125cad210d3733e4289379",
+    "FairReserveTests.test_resource_kill_late_cleanup_stays_timeout_but_parent_origin_forces_STOP": "78dac323a1a93eec6ad130e4a51d01d57987220193e1b2d8ba7e735d73e6e694",
+    "FairReserveTests.test_ordinary_late_clean_result_has_complete_nonresource_origin": "d89c4d114e1b6b2927acf76709f71c0a424d0ecebb70eba53463a4959491d9a8",
+    "FairReserveTests.test_original_cleanup_exception_propagates_and_trusted_scope_restores": "501e9339f15a8ac907031d5b6b1a6bfe5a61ce8b750e05777b23eb61f0e5c1bc",
+    "FairReserveTests.test_missing_or_incomplete_parent_receipt_is_technical_STOP": "f2c4b7b15b077f1f23b1aa2917918890ec5b83d1338ef15ec239c2905bbe7940",
+    "FairReserveTests.test_resource_or_unknown_technical_origin_STOPs_without_extra_draw": "b1ed407b979ec0a3fd11d39a808240d4896dc3b02cc1d3dba4ebfb26e3d049b0",
+    "FairReserveTests.test_duplicate_proposal_is_not_callback_or_valid_or_padding": "f5c956f4d5a27a097baf944d4e1df24c321bf8c63afc20c47aa88c10518db190",
+    "FairReserveTests.test_final_save_crossing_original_deadline_cannot_return_ok": "047962a32fde7991b983e80e0713ccfc3cc6ed1b2fc192fc5858d40b7635c00f",
+    "FairReserveTests.test_trusted_flag_cannot_be_enabled_by_recipe_context_and_scope_is_local": "4d9607e3c857f2c54a1d04b2a4ed709970235c548d6b232be7890edb1f63dbf3",
+    "FairReserveTests.test_OFF_strict_worker_late_classification_does_not_add_provenance": "07f4d97aebfd1f0696910d7127361e9d68a8f12f8fc33d8353447133e006a786",
+    "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases": "8eda1d7e132a84b0061e3ac2c50827d68867a14ebbc40edcdbefd15df5899a1f"
+  },
+  "full_source_methods": 18,
+  "flat_methods": 17,
+  "sole_flat_exclusion": "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases",
+  "prospective_registry_if_root_integrates_cadence_then_HPO": {
+    "scripts": 59,
+    "checks": 634,
+    "basis": "current57/604 +reviewed cadence1/12 +newHPO1/18; registry NOTedited"
+  },
+  "scope_finding_history": {
+    "path": "scope-blocker-r1.json",
+    "sha256": "d0dd9deb55467f2be7641497a063d8a5971a027367b2db445c8fd21f6f667374",
+    "resolved_by": "root explicitly authorized trusted mode-only additive parent failure provenance; pre-provenance WIP retained exact"
+  },
+  "remaining_gaps": [
+    "Independent source review",
+    "Root merged source freeze/publication and actual UQ2 whole terminal/fresh closure",
+    "Actual bounded18/17contract execution and source/build/flat gates",
+    "Separately authorized measured common-policy Qwen pair; no clock or score here"
+  ]
+}

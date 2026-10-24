@@ -150,3 +150,5 @@ research/universal-agent-next/qwen-pair-composite-r3/** -text
 /tests/test_uar_hpo_fair_reserve.py -text
 
 /research/universal-agent-next/uq3-cadence-hpo-r1/** -text
+
+/research/uar-hpo-r3/** -text

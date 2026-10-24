@@ -1,0 +1,42 @@
+{
+  "schema": "uar-hpo-fair-reserve-r2-focused-AST-proof-v1",
+  "R1_handoff_sha256": "7091a9d9866f71ae6d9918c596affdf25e169e56dae7baf509a1b9caab1e18ce",
+  "R1_all15files_and_handoff_preserved_exact": true,
+  "old_runtime_changed_definitions": [
+    "_optimize_recipe_fair_reserve"
+  ],
+  "two_area_inverse_projection_recovers_exact_R1_function_AST": true,
+  "runner_byte_exact_R1": true,
+  "all_resource_provenance_and_schedule_semantics_unchanged": true,
+  "changed_existing_test_methods": [
+    "FairReserveTests.test_exact_anchor_feasibility_and_soft_equal_share_arithmetic",
+    "FairReserveTests.test_original_cleanup_exception_propagates_and_trusted_scope_restores"
+  ],
+  "unchanged_other_test_methods": 16,
+  "source_methods": 18,
+  "flat_methods": 17,
+  "original_OFF_witnesses_unchanged": {
+    "hpo": "b03466060e2eed6886b89b8c3706afbb51eac9364f855b955c3b90f47bddbe96",
+    "runner": "877b5cd74b661d921cb1a12bca0b0b554caf943ee1c2e9b80adcb5e467097f7c"
+  },
+  "assignment_float_witnesses": [
+    {
+      "start": 65452.093,
+      "assigned_deadline": 66352.093,
+      "note": "requested exact decimal accepted; subtraction rounds below900, not rejection witness"
+    },
+    {
+      "start": 65535.00000000002,
+      "assigned_deadline": 66435.00000000003,
+      "subtraction": 900.0000000000073,
+      "note": "actual subtraction falseSTOP witness; no epsilon/newclock"
+    }
+  ],
+  "primary_exception_fix": "nested diagnostic save/attribute/log guards; safe type names only; bare raise preserves primary identity/type/traceback if every diagnostic destination fails",
+  "AST_parse_only": true,
+  "candidate_imports": 0,
+  "tests": 0,
+  "fits": 0,
+  "API": 0,
+  "clock_assigned": false
+}

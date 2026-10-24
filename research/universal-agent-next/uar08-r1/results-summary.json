@@ -1,0 +1,93 @@
+{
+  "schema": "uar08-closed-failure-public-summary-v1",
+  "status": "CLOSED_FAIL",
+  "actual_exec": {
+    "session": 68067,
+    "exit_code": 1,
+    "tool": "848481"
+  },
+  "closer_actual_exec": {
+    "session": null,
+    "exit_code": 1,
+    "tool": "fd47c3"
+  },
+  "source_suites": 59,
+  "source_checks_executed": 634,
+  "source_passed_suites": 58,
+  "source_checks_in_passed_suites": 616,
+  "new_HPO_fixture_suite": {
+    "executed": 18,
+    "passed": 17,
+    "errors": 1,
+    "skipped": 0,
+    "failed_method": "test_original_cleanup_exception_propagates_and_trusted_scope_restores",
+    "error_type": "AttributeError",
+    "cause": "Runtime missing json import inside guarded diagnostic branch swallowed NameError; print mock not called. Assertion remains correct."
+  },
+  "build_attempted": false,
+  "exact_attempted": false,
+  "mapped_attempted": false,
+  "first_failure": {
+    "code": "child_nonzero_exit",
+    "phase": "child_exit",
+    "unix": 1792835959.8622267,
+    "monotonic": 94965.125,
+    "exception_type": null,
+    "errno": null,
+    "winerror": null,
+    "child_kind": "technical"
+  },
+  "error_history": [
+    {
+      "code": "child_nonzero_exit",
+      "phase": "child_exit",
+      "unix": 1792835959.8622267,
+      "monotonic": 94965.125,
+      "exception_type": null,
+      "errno": null,
+      "winerror": null,
+      "child_kind": "technical"
+    },
+    {
+      "code": "mandatory_technical_child_failed",
+      "phase": "full_gate",
+      "unix": 1792835961.8663626,
+      "monotonic": 94967.125,
+      "exception_type": "RuntimeError",
+      "errno": null,
+      "winerror": null
+    }
+  ],
+  "campaign_elapsed_seconds": null,
+  "root_sha256": "bca0d1bbdf1dba98b03ca17be3d8dd5a584e0d5cf72034073fc35f5fc32c3842",
+  "fresh_confirmation_sha256": "67942a2aa68e9757d590f36bf689bbe349751470de166690f7429801f0ae3f86",
+  "fresh_tool": "3f22cb",
+  "known_absent": 6649,
+  "known_live": 0,
+  "known_uncertain": 0,
+  "cleanup_confirmed": true,
+  "source_unchanged": true,
+  "technical_procedure_passed": false,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false,
+  "original_clock": {
+    "start_unix": 1792835657.0601652,
+    "start_monotonic": 94662.328,
+    "absolute_deadline_unix": 1792836857.0601652,
+    "common_deadline_monotonic": 95862.328,
+    "common_seconds": 1200
+  },
+  "fixture_recursive_fits": null,
+  "fixture_API_totals": null,
+  "public_experiment_fits": 0,
+  "decision": "Preserve UAR08 FAIL; fix runtime with one local json import in a new R3 copy. Repeat a new complete full gate for changed runtime, retaining all assertions.",
+  "elapsed_seconds": 305.21800000000803,
+  "R3_runtime_source_fix": {
+    "hpo_sha256": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+    "handoff_sha256": "c4cc50792cca7426e3ee4aa4af5de7cf2ae4ce114c00a8a549fba988c9bec220",
+    "peer_sha256": "7568cf5a1210780fff2ed40ae40a46b5d0f2897f81d5cca507e924a7ed08e359",
+    "tests_byte_unchanged": true,
+    "new_full_gate_pending": true
+  }
+}

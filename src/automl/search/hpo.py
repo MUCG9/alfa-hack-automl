@@ -479,6 +479,7 @@ def _optimize_recipe_fair_reserve(spec, train, hashes, fitting_rows, recipe, out
             except BaseException:
                 pass  # A non-writable exception must still remain the primary.
             try:
+                import json
                 print(json.dumps({'hpo_fair_reserve_failure_types': failure_types}, sort_keys=True), flush=True)
             except BaseException:
                 pass  # A broken log destination cannot replace the primary either.

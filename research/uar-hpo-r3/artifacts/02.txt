@@ -1,0 +1,15 @@
+HPO R3 diagnostic import — SOURCE ONLY, no execution
+
+Actual UAR08 remains FAIL68067/848481: HPO18 ran17PASS+1ERROR; other58/616 passed.
+The test correctly exposed a runtime missing import. R2 called json.dumps in the
+safe diagnostic try without a json binding; its NameError was swallowed by the
+secondary diagnostic guard. It did not mask/reclassify the primary exception.
+R3 adds ONLY local import json inside that existing ON helper try. No global import,
+fixture changes, fake print call, exception text/path export or weaker assertion.
+All18 test methods/whole test bytes and runner bytes are exact R2. One-line inverse
+recovers the complete exact R2 HPO module AST; independent OFF projection equals
+original b034. R2 handoff+all26 pins preserved under source-evidence/frozen-r2.
+No candidate imports/tests/fits/API/data/PID/clock/canonical/Git actions. Root sole
+integrator, independent FM source review first, then ONE new actual full gate59/634,
+build73/default23/mapped104; runtime changed, no dishonest616 reuse. No UAR08 rerun,
+clock reset, retrospective PASS, metric/quality claim or promotion.

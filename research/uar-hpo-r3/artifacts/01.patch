@@ -1,0 +1,10 @@
+--- frozen_R2/hpo.py
++++ prospective_R3/hpo.py
+@@ -479,6 +479,7 @@
+             except BaseException:
+                 pass  # A non-writable exception must still remain the primary.
+             try:
++                import json
+                 print(json.dumps({'hpo_fair_reserve_failure_types': failure_types}, sort_keys=True), flush=True)
+             except BaseException:
+                 pass  # A broken log destination cannot replace the primary either.

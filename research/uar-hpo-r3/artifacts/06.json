@@ -1,0 +1,36 @@
+{
+  "schema": "uar-HPO-diagnostic-json-prospective-fix-r3",
+  "status": "SOURCE_ONLY_NOT_EXECUTED",
+  "runtime_delta_only": "local standard-library json import inside existing ON diagnostic try",
+  "unchanged": [
+    "All scheduler arithmetic/clock/callback/null/primary-exception semantics",
+    "All HPO templates/space/anchor1200/timeout600",
+    "Runner/cadence/strict worker/retention/API",
+    "All18 test source bodies/assertions",
+    "Original default-OFF whole AST"
+  ],
+  "original_UAR08_actual_failure_preserved": {
+    "session": 68067,
+    "exit_code": 1,
+    "tool": "848481",
+    "source_HPO_methods": 18,
+    "passed": 17,
+    "errors": 1,
+    "prior_suites_passed": 58,
+    "prior_expected_checks": 616,
+    "root_closure_sha256": "bca0d1bbdf1dba98b03ca17be3d8dd5a584e0d5cf72034073fc35f5fc32c3842",
+    "fresh_confirmation_sha256": "67942a2aa68e9757d590f36bf689bbe349751470de166690f7429801f0ae3f86"
+  },
+  "not_fixture_weakening": true,
+  "not_runtime_PASS": true,
+  "requires_NEW_full_gate": true,
+  "prospective_source_scripts": 59,
+  "prospective_source_checks": 634,
+  "prospective_build_members": 73,
+  "prospective_exact_checks": 23,
+  "prospective_mapped_checks": 104,
+  "actual_gate_clock": null,
+  "quality_metric": null,
+  "promotion": false,
+  "submit": false
+}

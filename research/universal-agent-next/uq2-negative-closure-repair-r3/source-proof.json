@@ -1,0 +1,46 @@
+{
+  "schema": "uq2-negative-audit-source-proof-v1",
+  "compile_source_only": true,
+  "all9_fixed_source_metadata_pins_verified": true,
+  "legacy87_IDs_subset_strict_positive_known_verified_by_saved_JSON_only": true,
+  "legacy_identity_count": 5050,
+  "independently_positive_identity_count": 6200,
+  "no_source_grant_from_legacy87": true,
+  "forced_technical_false": true,
+  "no_numerical_audit_or_metric_JSON_read": true,
+  "captured_observer_unknown_shell_stays_null": true,
+  "source_only_activity": {
+    "candidate_or_guard_imports": 0,
+    "tests_fits_API_data_predictions_truth_reads": 0,
+    "PID_scans": 0,
+    "clock_assigned": false,
+    "canonical_STATE_Git_old_frozen_writes": 0
+  },
+  "reviewed_check_pattern_source": "uar07-audit-close-repair-r1/close_gate.py",
+  "reviewed_check_pattern_sha256": "e2395e1154296e420ce5d608a013d852a7c2d274eed8be158ba0f019a4b8f1da",
+  "old_positive_predicate_removed_in_new_helper_only": true,
+  "source_pins": {
+    "uar-qwen-pair-bootstrap-repair-next-dev/close_pair.py": "078051c7741acfec8f552fa052f0025166a5db880daab8dc08498b6428a36f91",
+    "uq2/campaign.json": "f5dcda611d626d1e35cea9d7d1b6388a8c778ad485c624e2fbd468db149cc57c",
+    "uq2/root-preparer-identity.json": "16c9e39ec22d6044e16813ffe41722eb159dcfdca5f61d504db1e4d848db69fd",
+    "uq2-closer-failure-r1.json": "b896fb6be5c4a46674010f7736a1811f92545ae342223dde3ffab2d82e795a3c",
+    "uq2-postfailure-current-observation-r1.json": "015eea291a16c61643ef835523dd2f0e503608dced2bb61b6d64648059072bf7",
+    "uar02-next-dev/attempt-r1/terminal-root-closure.json": "87f691b5774ed6f604069d952041bdd6af6a6022f9ea1268ac77a8364180a106",
+    "run_lean_mvp_r2.py": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "support_component_coordinator.py": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "alfa-hack-automl/tools/research_lock.py": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45"
+  },
+  "prelaunch_R1_peer_finding_resolved": {
+    "original_handoff_sha256": "635dcd4c27db83900d15c40d4e8bd0805c4a7b3c99685283277615c2f94883f8",
+    "finding": "Copied reviewed check() lacked its need helper and RESOURCE_SAMPLE_SECONDS constant; static compile missed undefined names.",
+    "fix": "Added exact need helper and RESOURCE_SAMPLE_SECONDS=0.25; no execution/fits/API/clock before or after.",
+    "preserved": "source-evidence/prelaunch-r1"
+  },
+  "prelaunch_R2_peer_finding_resolved": {
+    "prior_handoff_sha256": "961d12bd997ce8d0e151aef3205579299786e402e3b6bb659f3b8dd100412927",
+    "finding": "New helper outside old manifest lacked its own expected terminal hash map reference.",
+    "fix": "Add new self path/selfSHA to expected under-lock rehash, include audit_helper_source in receipt, rehash own source after receipt write.",
+    "preserved": "source-evidence/prelaunch-r2",
+    "runtime": false
+  }
+}

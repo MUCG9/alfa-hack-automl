@@ -1,0 +1,65 @@
+{
+  "schema": "uq2-clean-negative-audit-root-repair-protocol-v1",
+  "status": "FROZEN_SOURCE_ONLY_NO_EXECUTION",
+  "original_campaign_actual": {
+    "session": 3588,
+    "exit": 1,
+    "tool": "d7f40a",
+    "sha256": "f5dcda611d626d1e35cea9d7d1b6388a8c778ad485c624e2fbd468db149cc57c"
+  },
+  "original_failed_closer_actual": {
+    "exit": 1,
+    "tool": "80def1",
+    "source_sha256": "078051c7741acfec8f552fa052f0025166a5db880daab8dc08498b6428a36f91",
+    "preparers_sha256": "16c9e39ec22d6044e16813ffe41722eb159dcfdca5f61d504db1e4d848db69fd",
+    "source_assert_line": 93,
+    "raw_trace_sha256": null,
+    "root_receipt_absent": true,
+    "retroqualified": false
+  },
+  "original_clock": [
+    1792826068.8239975,
+    85073.953,
+    1792836868.8239975,
+    95873.953
+  ],
+  "new_common_clock": false,
+  "own_audit_seconds": 60,
+  "resource_guard": {
+    "sampling_seconds": 0.25,
+    "every_call_original_clock_sticky10": true,
+    "only_successful_actual_sample_advances_clock": true,
+    "force_initial_observer_init_terminal": true,
+    "whole_mib": 2048,
+    "no_children_or_signals": true
+  },
+  "exclusive_output": "uq2-audit-close-repair-r1/terminal-root-closure.json",
+  "early_exclusive_preparers": "uq2-audit-close-repair-r1/preparer-identity.json",
+  "legacy87_exception": {
+    "path": "uar02-next-dev/attempt-r1/terminal-root-closure.json",
+    "sha256": "87f691b5774ed6f604069d952041bdd6af6a6022f9ea1268ac77a8364180a106",
+    "cleanup_confirmed": false,
+    "source_unchanged": true,
+    "technical_procedure_passed": false,
+    "unknown_leaf_retroqualified": false,
+    "role": "IMMUTABLE_EVIDENCE_ONLY_NO_KNOWN_UNION_UPDATE",
+    "all_declared_legacy_IDs_already_independently_covered": true,
+    "legacy_identity_count": 5050,
+    "positive_authority_paths": [
+      "uar02-recovery-next-dev/attempt-r1/terminal-root-closure.json",
+      "uar-focused-gate-next-dev/attempt-uar03-r1/terminal-root-closure.json",
+      "uar07-audit-close-repair-r1/terminal-audit-root-closure.json"
+    ]
+  },
+  "other_historical_proofs": "Strict cleanup/source checks retained; exact existing UQ1c880 typed history branch unchanged.",
+  "current_known_authority": "Original campaign/supervisors + normal positive proofs + root current6294 exactknown metadata + captured observer14552; old failed closer two preparers included. No unknown shell or leaf identity manufactured.",
+  "technical_procedure_passed": false,
+  "qualified_ML_metrics": null,
+  "scoring": false,
+  "promotion": false,
+  "submit": false,
+  "actual_execution": null,
+  "actual_exit": null,
+  "root_fresh_after_helper_required": true,
+  "scope": "Known-owned/source clean-negative closure only; original UQ2 and closer failures/error history remain unchanged."
+}

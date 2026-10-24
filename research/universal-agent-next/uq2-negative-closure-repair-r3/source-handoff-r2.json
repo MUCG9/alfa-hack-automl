@@ -1,0 +1,36 @@
+{
+  "schema": "uq2-negative-audit-close-repair-source-handoff-v2",
+  "status": "FROZEN_SOURCE_ONLY_ROOT_REVIEW_REQUIRED",
+  "files_sha256": {
+    "close_pair.py": "0a42117d32a2ad684b678742bf99b34d1c9e6631570a300e70b718b8ca6cf058",
+    "close_pair.py.patch": "13901f5ff2746f37bc106c565daaad9b3c29973158d0f60076bfa510bd0fd43b",
+    "protocol.json": "938cb4058756d6c9452e8ff8671005e53020636983c8d40c3eaa0885bb73552b",
+    "source-proof.json": "60fa9a2b63e7081144e6af1c930da6dd689eb5dcf2274234cd2dcc88f329ac97",
+    "README.txt": "36efaecf4282bc8b543e79b52e2075e9e8a9118771d4ba4113a076cde302391a"
+  },
+  "static_inputs_sha256": {
+    "uar-qwen-pair-bootstrap-repair-next-dev/close_pair.py": "078051c7741acfec8f552fa052f0025166a5db880daab8dc08498b6428a36f91",
+    "uq2/campaign.json": "f5dcda611d626d1e35cea9d7d1b6388a8c778ad485c624e2fbd468db149cc57c",
+    "uq2/root-preparer-identity.json": "16c9e39ec22d6044e16813ffe41722eb159dcfdca5f61d504db1e4d848db69fd",
+    "uq2-closer-failure-r1.json": "b896fb6be5c4a46674010f7736a1811f92545ae342223dde3ffab2d82e795a3c",
+    "uq2-postfailure-current-observation-r1.json": "015eea291a16c61643ef835523dd2f0e503608dced2bb61b6d64648059072bf7",
+    "uar02-next-dev/attempt-r1/terminal-root-closure.json": "87f691b5774ed6f604069d952041bdd6af6a6022f9ea1268ac77a8364180a106",
+    "run_lean_mvp_r2.py": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "support_component_coordinator.py": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "alfa-hack-automl/tools/research_lock.py": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45"
+  },
+  "own_seconds": 60,
+  "original_clock": [
+    1792826068.8239975,
+    85073.953,
+    1792836868.8239975,
+    95873.953
+  ],
+  "destination": "uq2-audit-close-repair-r1/terminal-root-closure.json",
+  "technical_procedure_passed": false,
+  "metrics": null,
+  "actual_clock_or_execution": null,
+  "runtime_imports_tests_fits_API_data_PID_scans": 0,
+  "prior_prelaunch_handoff_sha256": "635dcd4c27db83900d15c40d4e8bd0805c4a7b3c99685283277615c2f94883f8",
+  "prior_prelaunch_preserved": "source-evidence/prelaunch-r1"
+}

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "status": "AUDIT_ONLY_SOURCE_FROZEN_PENDING_ROOT_REVIEW_NO_EXECUTION",
+  "files_sha256": {
+    "close_gate.py": "25456f5367d2564f88bff4805a58afce48cd120b23334f73b8ce34a82cec6414",
+    "changes.patch": "186de251605c58f0edf085ac5519e8c7fb09605f303061540a66e90a7f98d75c",
+    "static-proof.json": "710daae5fbd1439aa4ec32a53a2352080e5fbf11468dae37419207b25fb31d6c",
+    "README.txt": "adf99a277df543807b5b290311b15d3c59f11de36b6f34db5c7bb922213c128e"
+  },
+  "original_frozen_closer_sha256": "4aaeddd54f4d35211cf3c1c3d39ffc0e0bd129731ee324442c9926211b909a94",
+  "original_driver_sha256": "c9efc4030c7269cb94c43c757f896e563d9f553f559af0fbf00cddd5e0e8f9f3",
+  "original_private_manifest_sha256": "5535c1f5eb7e2b85cff646a11a82afa263435c0c3bcc5c0ed471dbbfa71f81b8",
+  "original_failure_monitor_sha256": "c30a65ab571b82275a798e785c7160de0eff7421b51941d9581b6191f89cb998",
+  "original_gate_permanent_FAIL": true,
+  "original_deadline_unix": 1792807646.972887,
+  "original_deadline_monotonic": 66652.093,
+  "own_audit_cap_seconds": 60,
+  "expected_negative_exit_if_proof_created": 1,
+  "actual_audit_run": null,
+  "new_clock_assigned": false,
+  "candidate_imports": 0,
+  "tests": 0,
+  "fits": 0,
+  "API": 0,
+  "PID_scans": 0,
+  "old_frozen_files_changed": false,
+  "root_actual_new_auditor_exit_and_fresh_preparers_pending": true
+}

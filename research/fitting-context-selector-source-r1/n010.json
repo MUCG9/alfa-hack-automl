@@ -1,0 +1,43 @@
+{
+  "schema": "fitting-context-selector-root-source-integration-v1",
+  "status": "SOURCE_INTEGRATED_NOT_RUNTIME_QUALIFIED",
+  "source_handoff_sha256": "1e08cd7915e067dc264fce5bcbe46ca2a770760b04843479f74511df5a263acf",
+  "independent_source_peer_sha256": "94b29ff1f4370f7167ffda71d27ec5316e85ee6698a88b2a41726088963c0961",
+  "changed_before_sha256": {
+    "src/automl/execution/feature_engineering/selection.py": "185bb78f870f0af709924ca25944ba4d5d1c84459da1a1f95e3a5b2a969a6871",
+    "src/automl/execution/worker.py": "de75742f1cdbe18bf1a1280d16637116cdf76f53a12cab53496df75f3fefb477",
+    "src/automl/search/runner.py": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+    "tools/run_checks.py": "98607a6db9073b91b7e3e868d61db559b77d0081dd35d81e2fcf3c875a477011"
+  },
+  "integrated_after_sha256": {
+    "src/automl/execution/feature_engineering/selection.py": "31f2e70e36ecc210ee4660d58b8598711b088e1b723eb6bbce3d4d4af6cc3dbd",
+    "src/automl/execution/worker.py": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac",
+    "src/automl/search/runner.py": "7f98647af4dc720f3895fb551edc25efb6f18ab53c4b87bd0d7f854c09a4af96",
+    "tools/run_checks.py": "6fd9682cb65e88abd150d45a9ecd4a10cf759700de1a536ffdc4dea130493a44",
+    "src/automl/execution/feature_engineering/importance_cache.py": "aed6d38534e8959f78587bb6e80025731923d2d5ed374a2853e5cb84c206c02a",
+    "src/automl/search/fit_context_gateway.py": "89836938a2cc6f11c24a654f7a1b72d01301ebe5be8a7cc8bc343abde2f3724b",
+    "src/automl/search/fitting_bounds.py": "1f6b27debfdf2609e03641beae8235ad1a034bd97450b61156bd991cc588a93c",
+    "src/automl/search/fitting_context.py": "48793ea77b607583c480965e31c9658ba6465cf2e05545239549bf2349e69314",
+    "src/automl/search/fitting_extractor.py": "1defeaa322c76285b0e75969ad8f148321e4c592f22437494d4219c7000f3a04",
+    "tests/test_selector_cache_consumer.py": "2e1e8bad2ed4f3d75e495df9331dbb7fbd5424e74030266b2100f0bfbaaabc77",
+    "tests/test_teacher_importance_cache.py": "7237383822152f98094e867cc3c5d3d99734cd78825b32ab3e09f80fd45df7b3",
+    "tests/test_uar_fitting_context_builder.py": "e899768dc3d29427f9397ffc2fdd38ab72e07755d5d251c64b05f9e736a0a453",
+    "tests/test_uar_fitting_context_initial.py": "d62a68b7f85312c81d6a392d5696841a02c4d1fcd78bfd87b902ec88ed228ddc",
+    "tests/test_uar_fitting_extractor.py": "4cc0853ca53e8007912b2f4c82cb8047e3db44ad82f22fea988a20cb39b03745",
+    "tests/test_uar_fitting_frame.py": "e951588208944a3c135926cbebfc8fdfc3859ae2d0028014dc8c326235a7f3c3",
+    "tests/test_uar_fitting_selector_combined.py": "f6791197f2aa24bc9a6d26ec7dc7ff86bc8e6c9cb45f738b5d3381a4a0cfd824"
+  },
+  "canonical_python_pins": 183,
+  "source_scripts": 66,
+  "source_expected_checks": 704,
+  "prospective_flat_members": 78,
+  "prospective_mapped": 174,
+  "prospective_exact": 23,
+  "actual_imports_tests_fits_API": 0,
+  "technical_gate_READY": null,
+  "technical_gate_clock": null,
+  "whole_default_OFF_AST_source_proof": true,
+  "HPO_cadence_fairreserve_body_unchanged": true,
+  "archive_work": false,
+  "created_unix": 1792856365.894492
+}

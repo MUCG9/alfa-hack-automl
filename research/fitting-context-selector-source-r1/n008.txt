@@ -1,0 +1,74 @@
+Fitting-context initial consumer + bounded selector importance cache
+
+SOURCE ONLY. No candidate import, test, build, model fit, gateway call, input
+data/array read, process observation or experiment clock has been performed.
+There is no READY private binding or authority to launch this package.
+
+The isolated candidate combines the reviewed context consumer63c6/extractor6b0a
+and selectorff373 against exact runner12091. The runner is composed surgically:
+reversing selector additions restores the whole reviewed context runner AST;
+projecting the context flag OFF restores the whole reviewed selector runner AST;
+both projections restore the original whole runner AST. Frozen supporting
+runtime modules and the selector's original12+4 tests are copied byte exactly.
+Root alone may later integrate the reviewed patch; never copy a stale whole
+runner over unrelated later changes.
+
+The two flags remain independent and default OFF:
+  --fitting-context-initial requires strict-runtime, strict-task-contract and
+  four-stage. It changes only the initial cold-start packet and repeats bounded
+  complete-message preflight before both unchanged initial request branches.
+  --selector-importance-cache scopes the existing selector computation cache to
+  one actual leaf, at most4 entries/262144 conservative bytes. It retains only
+  importance/column metadata, with separate views/calibration/fitting scopes.
+
+This is not evidence that later outer-result feedback is fitting-only. It is
+not new training data, a teacher/pretrained model, an HPO bank, or an API/ML
+experiment. Upstream parser IO, total parent IO and raw RSS remain unqualified
+NULL as in the reviewed context receipt. The cache has no persistent or
+cross-worker reuse. Scientific factors must be measured separately.
+
+Prepared canonical test projections:
+  builder12, extractor16, native/trusted-frame10, initial consumer14,
+  teacher-cache12, selector-consumer4, combined-interaction2 =70 unique methods.
+The original native standalone main loaded the old16 as well as its new10.
+Here the old16 and new10 are separate scripts, each runs only its own methods;
+no 16+26 duplicate credit. The first three standalone main loaders, package
+imports and module docstrings are adapted; every other class/helper/method AST
+is exact. Initial consumer14 receives only a source bootstrap. Original
+assertions are retained. Two new interaction methods exercise all four flag
+combinations including solver exceptions and unchanged later feedback.
+Their strict-scope helper compiles the exact final authority branch in a mock
+namespace; it is not a full-loader test. Extractor/native26 and consumer14
+remain separately required.
+
+Derived source census (not executed):66 scripts/704 expected checks,
+183 canonical Python files,72 runtime flat mappings/78 expected flat members.
+The prospective old104+new70 mapped methods total174, across14 fixed suites;
+the default23 exact checks are separate. No new flat exclusions. Existing
+sole LOSS/HPO modular-source-AST exclusions retain their original scope.
+
+The old UAR09 gate cannot simply accept a larger manifest. The proposal in
+prospective-gate-plan.json identifies the narrow necessary fixed adapter:
+derived counts and14 mandatory suites, plus an import-only adapted unrun
+test_feature_views fixture file in unpacked/tests with an exact inventory/hash
+check. Its tests receive no additional credit. Native10 uses the separately
+deployed extractor16 module by its declared test filename. ROOT/src bootstrap
+is replaced by the actual flat root; ROOT/tests refers only to unpacked test
+fixtures. No modular src sidecars, weakened assertions or arbitrary commands.
+That gate change is proposed only and has not been implemented here.
+
+The candidate snapshot contains Python, module_map.json and requirements.
+It deliberately excludes data and legacy fixture CSV materialization. A full
+gate requires root-selected actual current source/publication, transitive
+fixture pins, actual terminal predecessor confirmations and complete fresh
+known/preparer union. CX2 actual result is separate current evidence; this
+package does not consume or reclassify its scientific outcome.
+
+prepare_source.py and freeze_source.py are stdlib source/JSON/SHA/AST metadata
+tools. Only compile(source) is used for syntax checking, never importing or
+running candidate/tests/gate. The first source-copy attempt's UTF8 decoding
+failure is preserved under source-evidence/preparation-r1; no runtime attempt
+or clock was assigned. See source-handoff.json for exact frozen bytes.
+
+Submission/archive-delivery work remains deferred by the human. This internal
+source candidate and prospective technical gate grant no release/promotion.

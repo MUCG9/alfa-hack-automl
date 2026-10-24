@@ -1,0 +1,109 @@
+{
+  "schema": "fitting-context-selector-combined-independent-source-review-v1",
+  "status": "SOURCE_REVIEWED_NO_SCOPED_BLOCKER_NOT_RUNTIME_READY",
+  "handoff": {
+    "path": "work/fitting-context-selector-combined-next-dev/source-handoff.json",
+    "sha256": "1e08cd7915e067dc264fce5bcbe46ca2a770760b04843479f74511df5a263acf"
+  },
+  "source_preflight": {
+    "path": "work/fitting-context-selector-composition-review-preflight-r1.json",
+    "sha256": "b61becb6e68ad528142cfc1fe63f12fbc8e57a32b9c9d4025e5de38e0f37706d"
+  },
+  "verified_refs": {
+    "local_count": 204,
+    "external_count": 14,
+    "external_refs_sha256": {
+      "fit-context-gateway-next-dev/source-handoff.json": "63c6f5d1fcbb8f639b7be9cc5029f6d92bb8a47b4143241c40fdbd97281f4287",
+      "fit-context-gateway-independent-review-r1.json": "513686d1c68afcf6076ea9583db11874428a676ba730e5fe4fa6cf39c0e74996",
+      "fit-context-extractor-next-dev-r2/source-handoff.json": "6b0a611b0cc882be30f2de58feeca475bdb22a321c89b27a6222cf64e1d004c8",
+      "fit-context-extractor-independent-review-r2.json": "350f49a4e9dec2e1412af5c41fe57d2acd81dd1649fb1b9b7aafc3c68910474e",
+      "selector-cache-current-port-next-dev/source-handoff.json": "ff373cb5a4eb6232c1adb2cb141931c1d8bc08cfbe80c4eca10a8654eade018b",
+      "selector-cache-current-independent-review-r1.json": "f696df19f1ff0708dbc48c522110c7d70a3c3767c4bc1fd0aaff1233e5a2cba3",
+      "fitting-context-selector-composition-review-preflight-r1.json": "b61becb6e68ad528142cfc1fe63f12fbc8e57a32b9c9d4025e5de38e0f37706d",
+      "fit-context-gateway-next-dev/source-evidence/base/runner.py": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+      "fit-context-gateway-next-dev/candidate/src/automl/search/runner.py": "266306a47859c718a420e6aa3a2a459bca1d0ce96a67b4db4a80ce0d1a6d1f7d",
+      "selector-cache-current-port-next-dev/candidate/src/automl/search/runner.py": "fa18b4064c3f5c0adda76fc86e052943d56b6bfe4d87f9690225a2bbecdf7ee5",
+      "uar09-full-next-dev/run_gate.py": "14f5a6e339e0e8f7d48698490e26d42d4f8c01b42479a75686f0737ea69d4c9a",
+      "uar09-full-next-dev/contracts.py": "06fcca7271be009712b54985c3974049ff2d628e917f9f3658d0b13d5b973045",
+      "uar09-full-next-dev/technical_entry.py": "629316ca8a54d26b45fd2cdc5c7ce0caccccfb1f8e1e5e8ab458f547d017d010",
+      "uar09-full-next-dev/close_gate.py": "7ad50d93988374d3f5799ed26ad8d09aad1d0de082548a63ae83c7d640c8fd50"
+    },
+    "critical_runtime_sha256": {
+      "src/automl/execution/worker.py": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac",
+      "src/automl/search/fitting_bounds.py": "1f6b27debfdf2609e03641beae8235ad1a034bd97450b61156bd991cc588a93c",
+      "src/automl/search/fitting_context.py": "48793ea77b607583c480965e31c9658ba6465cf2e05545239549bf2349e69314",
+      "src/automl/search/fitting_extractor.py": "1defeaa322c76285b0e75969ad8f148321e4c592f22437494d4219c7000f3a04",
+      "src/automl/search/fit_context_gateway.py": "89836938a2cc6f11c24a654f7a1b72d01301ebe5be8a7cc8bc343abde2f3724b",
+      "src/automl/search/runner.py": "7f98647af4dc720f3895fb551edc25efb6f18ab53c4b87bd0d7f854c09a4af96",
+      "src/automl/execution/feature_engineering/importance_cache.py": "aed6d38534e8959f78587bb6e80025731923d2d5ed374a2853e5cb84c206c02a",
+      "src/automl/execution/feature_engineering/selection.py": "31f2e70e36ecc210ee4660d58b8598711b088e1b723eb6bbce3d4d4af6cc3dbd"
+    }
+  },
+  "findings": [],
+  "independent_AST_and_inventory_evidence": {
+    "selector_inverse_restores_entire_reviewed_context_runner266306": true,
+    "context_OFF_restores_entire_reviewed_selector_runner_fa18": true,
+    "both_OFF_restore_entire_original_runner12091": true,
+    "worker_selection_cache_exact_reviewed_selector_bytes": true,
+    "four_gateway_support_modules_exact_reviewed_consumer_bytes": true,
+    "existing_numerical_models_stages_HPO_fair_loss_strict_cadence_body_changes": false,
+    "only_existing_runtime_modified": [
+      "src/automl/search/runner.py",
+      "src/automl/execution/worker.py",
+      "src/automl/execution/feature_engineering/selection.py"
+    ],
+    "only_existing_tool_deltas": "Five explicit module-map entries and seven CHECKS updates; old registry entries unchanged.",
+    "source_registry_scripts": 66,
+    "source_registry_expected_checks": 704,
+    "base_registry_scripts": 59,
+    "base_registry_expected_checks": 634,
+    "new_unique_prepared_methods": 70,
+    "canonical_Python_scope_src_tests_tools": 183,
+    "root_facade_entry_Python_files_separately_preserved": 7,
+    "effective_unique_runtime_mappings": 72,
+    "prospective_flat_members": 78,
+    "actual_flat_archive_built": false
+  },
+  "source_composition_semantics": [
+    "Both flags are independent trusted default-OFF CLI scopes. Cache token and live strict fitting authority reset in their finally blocks across normal/error paths; existing strict/task/fair scopes retain exact bodies.",
+    "Exact live strict producer objects and original RunBudget/checkpoint reach the reviewed trusted-frame extractor; only the four approved validation-spec fields may differ. No new parser, clock, objective guess or dataset routing.",
+    "ON initial request uses only the fresh fitting_context envelope, no legacy profile/split/feedback/retention/cache-snapshot merge. Both existing initial request branches repeat exact SYSTEM+STAGED message/packet preflight with8192/65536 caps; HTTP request arguments and later feedback are unchanged.",
+    "Selector remains one-leaf deterministic teacher-importance reuse with exact actual prepared fitting input/scope key, bounded defensive importance-only storage and typed caller flag; no student/HPO result reuse or changes to learner settings.",
+    "No claim that discovery/full profile or later validation feedback is fitting-only. Upstream parser IO, whole parent IO and retained raw RSS remain null/unqualified; only existing successful source-bound resource guard and scoped fresh hash IO are recorded."
+  ],
+  "test_source_evidence": {
+    "unchanged_all_classes_helpers_and_test_method_AST_except_explicit_main_bootstrap": {
+      "builder": 12,
+      "extractor": 16,
+      "native_trusted_frame": 10,
+      "initial_consumer": 14
+    },
+    "selector_old12_plus_consumer4_byte_exact": true,
+    "interaction_methods": 2,
+    "interaction_coverage": "Four independent flag combinations including solver exceptions exercise exact final strict authority branch and real _main token restoration. Second method preserves unchanged later planner feedback. These mocks do not substitute a full-loader or API test.",
+    "extractor_native_double_credit_fixed": "Canonical extractor16 and frame10 each have their own unittest.main; native imports old fixture helper without running its16 methods.",
+    "flat_import_projection_plan_independently_reproduced": true,
+    "all_eight_projected_test_file_byte_hashes_match_plan": true,
+    "all70_selected_method_AST_inverse_exact": true,
+    "new_exclusions": [],
+    "test_feature_views_helper": "Pinned import-only adapted fixture, unrun and zero additional credit. Future gate must deploy/inventory-check actual unpacked/tests helper.",
+    "prospective_mapped_suites": 14,
+    "prospective_mapped_checks": 174,
+    "default_exact_checks_separate": 23,
+    "actual_source_flat_method_executions": 0
+  },
+  "remaining_before_runtime": [
+    "Root-owned integration on exact reviewed source epoch and complete input/fixture/source publication inventory.",
+    "A separately reviewed narrow technical-gate copy: exact66/704/source183/map72/flat78, fourteen mandatory suites, mapped174/default23, pinned unrun helper deployment and unchanged existing two modular-AST exclusions. No such executable gate is qualified by this review.",
+    "Actual clean predecessor/current complete known+preparer union, private READY and future original-clock admission remain root-owned and null in this source packet.",
+    "One bounded guarded source/actual-flat qualification before any actual Qwen/ML experiment; no repeated unchanged full gate solely to restate prior evidence."
+  ],
+  "reviewer_metadata_reconstruction_notes": [
+    "Source-only projection initially selected a non-EDA four_stage branch; corrected to the unique branch containing actual request_json before concluding whole AST equality. No candidate code was evaluated.",
+    "Canonical183 census intentionally excludes seven unchanged root facade/entry Python files. Total candidate .py count190 is consistent with that scope, not a source mismatch."
+  ],
+  "candidate_imports_tests_builds_fits_API_data_arrays_PID_clock_Git_canonical_edits": 0,
+  "actual_Qwen_context_snapshot_quality_savings": null,
+  "READY": null,
+  "promotion": false
+}

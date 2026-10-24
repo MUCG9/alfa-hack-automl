@@ -22,6 +22,7 @@ from automl.execution.weighting.classes import sample_weights,number
 from automl.evaluation.api import lgbm_metric,tune_class_factors,adjusted_probabilities
 from automl.execution.feature_engineering.transforms import feature_transform,generic_features
 from automl.execution.feature_engineering.selection import select_features,validate_selection
+from automl.execution.feature_engineering.importance_cache import TeacherImportanceCache
 from automl.execution.preprocessing.frames import prepare_frames
 from automl.execution.preprocessing.target_encoding import target_encode_frames,infer_history_groups
 from automl.execution.preprocessing.history import add_history_features,validate_history_groups
@@ -127,6 +128,8 @@ def run_feature_views(job):
 
 def run(job):
     start=time.monotonic()
+    cache_enabled=job.get('selector_importance_cache',False)
+    if type(cache_enabled) is not bool: raise ValueError('selector_importance_cache must be a boolean')
     spec=job['spec']
     recipe=job['recipe']
     validate_loss_profiles(recipe,spec['kind'])
@@ -198,6 +201,7 @@ def run(job):
         atomic_json(output_dir/'result.json',record)
         print(json.dumps({'status':'ok','metrics':metrics,'wall_seconds':record['wall_seconds']}),flush=True)
         return
+    importance_cache=TeacherImportanceCache(enabled=True) if cache_enabled else None
     fit_tr=np.arange(len(train)) if full else tr
     raw_train_x,raw_test_x=train_x,test_x
     iterations=int(np.clip(job.get('fit_iterations',recipe.get('params',{}).get('iterations',800)),30,3000))
@@ -208,7 +212,7 @@ def run(job):
     fit_y=np.log1p(y) if target_log else y
     policy_records=[]
     source_hashes=pd.util.hash_pandas_object(train[spec['features']],index=False).to_numpy(dtype='uint64')
-    def fit_on_rows(estimator,rows,validation_rows=None):
+    def fit_on_rows(estimator,rows,validation_rows=None,cache_scope='outer'):
         # Refit all learned preprocessing for this partition, including inner fits.
         prepared_x,prepared_test=generic_features(raw_train_x,raw_test_x,rows,recipe.get('params',{}).get('generic_features','none'))
         encoding_groups=None
@@ -239,6 +243,8 @@ def run(job):
         if recipe.get('params',{}).get('feature_selection_top_k',0):
             selection_options=({'protected_columns':spec['features']}
                 if recipe['params'].get('feature_selection_protect_original',False) else {})
+            if importance_cache is not None:
+                selection_options.update(importance_cache=importance_cache,cache_scope=cache_scope)
             prepared_x,prepared_test,selection_record=select_features(prepared_x,prepared_test,fit_y,rows,
                 spec['kind'],job['threads'],recipe.get('params',{}),selector_weights,**selection_options)
         prepared_x,prepared_test,categorical=prepare_frames(prepared_x,prepared_test,recipe['engine'],rows)
@@ -302,7 +308,7 @@ def run(job):
             inner_tr=fit_tr[inner_tr]; inner_va=fit_tr[inner_va]
             inner_model=make_model(model_recipe,spec['kind'],job['threads'],iterations)
             with threadpool_limits(limits=job['threads']):
-                inner_x,_=fit_on_rows(inner_model,inner_tr,inner_va if nested else None)
+                inner_x,_=fit_on_rows(inner_model,inner_tr,inner_va if nested else None,cache_scope='inner')
             if nested:
                 selected=selected_iterations(recipe['engine'],inner_model)
                 if selected and selected>0:
@@ -320,7 +326,7 @@ def run(job):
                 with threadpool_limits(limits=job['threads']):
                     if nested and selected and int(selected)!=iterations:
                         inner_model=make_model(model_recipe,spec['kind'],job['threads'],iterations)
-                        inner_x,_=fit_on_rows(inner_model,inner_tr,None)
+                        inner_x,_=fit_on_rows(inner_model,inner_tr,None,cache_scope='inner')
                     if calibrate:
                         class_factors,decision_diagnostics=calibrate_class_factors(y.iloc[inner_va],inner_model.predict_proba(inner_x.iloc[inner_va]),inner_model.classes_,decision_optimizer)
                         calibration_status='inner_training_holdout_matching_iterations'
@@ -339,14 +345,14 @@ def run(job):
             for local_tr,local_va,info in folds:
                 local_model=make_model(model_recipe,spec['kind'],job['threads'],iterations)
                 with threadpool_limits(limits=job['threads']):
-                    local_x,_=fit_on_rows(local_model,fit_tr[local_tr],None)
+                    local_x,_=fit_on_rows(local_model,fit_tr[local_tr],None,cache_scope='calibration')
                     order=[list(map(str,local_model.classes_)).index(c) for c in spec['classes']]
                     probabilities[local_va]=local_model.predict_proba(local_x.iloc[fit_tr[local_va]])[:,order]
                 calibration_folds.append(info)
             class_factors,decision_diagnostics=calibrate_class_factors(y.iloc[fit_tr],probabilities,spec['classes'],decision_optimizer)
             calibration_status='training_oof_matching_iterations'
     with threadpool_limits(limits=job['threads']):
-        train_x,test_x=fit_on_rows(model,fit_tr,None if full or nested else va)
+        train_x,test_x=fit_on_rows(model,fit_tr,None if full or nested else va,cache_scope='full' if full else 'outer')
         pred=np.asarray(model.predict(test_x)).reshape(-1)
         if target_log:
             pred=inverse_log_predictions(pred,smearing['factor']) if target_smearing else np.expm1(pred)
@@ -402,6 +408,7 @@ def run(job):
     if loss_profile is not None:
         record['loss_profile_id']=loss_profile.loss_profile_id
         record['effective_loss_profile']=policy_records[-1]['loss_profile']
+    if importance_cache is not None: record['selector_importance_cache']=importance_cache.snapshot()
     atomic_json(output_dir/'result.json',record)
     print(json.dumps({k:v for k,v in record.items() if k not in {'recipe','feature_names'}},ensure_ascii=False),flush=True)
 

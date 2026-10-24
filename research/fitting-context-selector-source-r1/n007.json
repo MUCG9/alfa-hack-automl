@@ -1,0 +1,52 @@
+{
+  "schema": "fitting-selector-combined-source-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "factors": {
+    "fitting_context_initial": "Independent default-OFF cold-start context only; requires both strict modes and four-stage.",
+    "selector_importance_cache": "Independent default-OFF per-leaf selector computation reuse; not pretrained data/teacher augmentation."
+  },
+  "independent_flags_and_scopes": true,
+  "default_OFF_AST_to_base12091": true,
+  "context_OFF_AST_to_selector_fa18": true,
+  "selector_inverse_AST_to_context266306": true,
+  "model_recipe_anchor_HPO_followup_scheduling_unchanged": true,
+  "scope_limit": "Initial fitting packet only. Existing later feedback still contains prior outer outcomes; no whole-feedback fitting-only claim.",
+  "context_limits": {
+    "packet_UTF8": 8192,
+    "complete_SYSTEM_plus_STAGED_UTF8": 65536,
+    "original_budget": true,
+    "new_clock": false,
+    "upstream_native_parser_IO_bytes": null,
+    "total_parent_IO_qualified": false,
+    "raw_RSS_bytes": null
+  },
+  "cache_limits": {
+    "maximum_entries": 4,
+    "conservative_bytes": 262144,
+    "lifetime": "one actual leaf worker; scopes/views/calibration separated",
+    "retained": "importance vector+column metadata only; no X/y/models/predictions",
+    "unsupported_exact_key": "BYPASS original fitting",
+    "invalid_payload": "REJECT"
+  },
+  "scientific_A_B": "Do not confound factors: context-only and cache-only hypotheses must retain separate flags/control conditions and measured receipts. This package grants no API/ML experiment.",
+  "source_preparation_error": {
+    "tool": "f48725",
+    "exit": 1,
+    "phase": "source-only stdlib preparation",
+    "reason": "implicit cp1251 source decoding",
+    "runtime_attempt": false,
+    "preserved": "source-evidence/preparation-r1"
+  },
+  "corrected_source_preparation_tools": [
+    "49520a",
+    "6dda26",
+    "dc4bfd"
+  ],
+  "runtime_imports_tests_fits_API_data_arrays_PIDscans_Git_clock": 0,
+  "quality": null,
+  "actual_feedback_context": null,
+  "private_READY": null,
+  "actual_clock": null,
+  "root_integration": false,
+  "submission_archive_release_work": "DEFERRED_BY_HUMAN"
+}

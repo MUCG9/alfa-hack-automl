@@ -1,0 +1,42 @@
+{
+  "schema": "fitting-selector-prospective-technical-gate-v1",
+  "status": "NOT_READY_SOURCE_PROPOSAL_ONLY",
+  "based_on": "work/uar09-full-next-dev",
+  "based_on_exact_sources": {
+    "uar09-full-next-dev/run_gate.py": "14f5a6e339e0e8f7d48698490e26d42d4f8c01b42479a75686f0737ea69d4c9a",
+    "uar09-full-next-dev/contracts.py": "06fcca7271be009712b54985c3974049ff2d628e917f9f3658d0b13d5b973045",
+    "uar09-full-next-dev/technical_entry.py": "629316ca8a54d26b45fd2cdc5c7ce0caccccfb1f8e1e5e8ab458f547d017d010",
+    "uar09-full-next-dev/close_gate.py": "7ad50d93988374d3f5799ed26ad8d09aad1d0de082548a63ae83c7d640c8fd50"
+  },
+  "budget": null,
+  "actual_clock": null,
+  "private_READY": null,
+  "execution_authority": null,
+  "source_counts": {
+    "scripts": 66,
+    "checks": 704
+  },
+  "flat_counts": {
+    "modules": 72,
+    "members": 78,
+    "default_exact": 23,
+    "mapped_suites": 14,
+    "mapped_methods": 174
+  },
+  "minimum_future_source_adapter": [
+    "Fixed run_gate constants59/634/73 -> derived66/704/78 and mandatory existing7+new7 exact suites. Replace mapped_suites<=8 by exact fixed14; no arbitrary test/method commands.",
+    "Keep all old7 suite method lists and sole LOSS/HPO modular-AST exclusions; require all70 new methods with no exclusions and import-only AST inverse.",
+    "Fixed technical_entry deploys the reviewed import-only test_feature_views fixture module before teacher cache suite, and records/checks its hash and exact unpacked inventory. No tests from this helper are newly credited.",
+    "Use new extractor suite ID/file test_uar_fitting_extractor to satisfy native10 helper import. Every new source bootstrap uses conventional ROOT/src hook already understood by contracts; flat contains no src package.",
+    "Keep source, build, exact23, mapped174 sequential under existing proven owned/temp/lock/power/clock/resource mechanisms; no new generic controller.",
+    "Root must bind actual current publication+all transitive legacy fixtures+current predecessor terminal/actual exits/root confirmations/preparers and fresh complete union. Current CX2 root/atomic actual confirmation remains unbound."
+  ],
+  "exact_reuse_limit": "Only unchanged source evidence with exact source/input/runtime/receipt bindings may be reused if separately approved. No prior PASS is assigned to this changed runner/worker or new flat members.",
+  "candidate_tree_limit": "This source-only copy includes Python+module_map+requirements, not input data or legacy fixture CSVs. It is not yet a runnable full gate.",
+  "broad_fixture_fits": null,
+  "broad_fixture_fits_reason": "Legacy full suites may fit synthetic learners/local mock HTTP; aggregate uninstrumented, not zero.",
+  "public_model_experiment_fits": 0,
+  "external_API_actual": null,
+  "quality_metric": null,
+  "next": "Independent source composition peer; root integration and exact private source/fixture/predecessor binding; root separately approves one bounded technical gate. No archive delivery."
+}

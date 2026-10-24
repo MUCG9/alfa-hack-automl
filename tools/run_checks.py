@@ -32,6 +32,7 @@ CHECKS.update({'test_uar_fallback_writer.py':12, 'test_uar_model_routing.py':12,
                'test_uar_metric_contrast.py':16,
                'test_uar_task_checkpoint_cadence.py':12, 'test_uar_hpo_fair_reserve.py':18})
 
+CHECKS.update({'test_uar_fitting_context_builder.py': 12, 'test_uar_fitting_extractor.py': 16, 'test_uar_fitting_frame.py': 10, 'test_uar_fitting_context_initial.py': 14, 'test_teacher_importance_cache.py': 12, 'test_selector_cache_consumer.py': 4, 'test_uar_fitting_selector_combined.py': 2})
 
 def source_hashes():
     return {n:hashlib.sha256(b).hexdigest() for n,b in build_files().items()}

@@ -6,6 +6,10 @@ Current research observation: CX2 CLOSED, technical/source/owned+temporary clean
 
 All native resources remain on research. Fitting-only initial context/extractor and current selector cache are independently SOURCE-reviewed separately and being composed for one technical gate; final counts/READY/clock pending. HPO trial-memory is proposal/producer-only scope, no reuse/savings claim. Delivered REG34.15502 ZIP remains unchanged. Linux stays paused; no upload.
 
+
+
+SOURCE update: combined fitting-context/extractor/selector handoff1e08cd and independent peer94b29f accepted; root integrated exactly4 changed and12 added canonical files, verified183Python pins (66scripts/704 prospective checks,78flat,23exact/174mapped). Runtime/fixtures/build/API/READY/clock remain NULL. Existing UAR09 raw-RSS and argv-ancestry paths cannot qualify the new gate; EO is preparing a narrow UAR10 consumer of already-qualified C5 capture/verified sampling/coordinatorR2 plus automatic root/fresh closure. Old gates/clocks remain closed, no weakened checks. HPO memory and CLASS seed reconciliation remain source proposals only.
+
 <!-- CURRENT_UAR_OBSERVATION_END -->
 
 The organizer baseline, case and requirements were inspected by C01. Source hashes:

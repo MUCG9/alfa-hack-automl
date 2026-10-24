@@ -162,3 +162,20 @@ research/universal-agent-next/qwen-pair-composite-r3/** -text
 /research/br-fixed-standard-r3/** -text
 research/class-xgb-contribution-r1/** -text
 research/class-xgb-cx1-negative-r1/** -text
+
+# Reviewed fitting-context and selector source bytes; prospective technical gate pending.
+/src/automl/execution/feature_engineering/selection.py -text
+/src/automl/execution/worker.py -text
+/tools/run_checks.py -text
+/src/automl/execution/feature_engineering/importance_cache.py -text
+/src/automl/search/fit_context_gateway.py -text
+/src/automl/search/fitting_bounds.py -text
+/src/automl/search/fitting_context.py -text
+/src/automl/search/fitting_extractor.py -text
+/tests/test_selector_cache_consumer.py -text
+/tests/test_teacher_importance_cache.py -text
+/tests/test_uar_fitting_context_builder.py -text
+/tests/test_uar_fitting_context_initial.py -text
+/tests/test_uar_fitting_extractor.py -text
+/tests/test_uar_fitting_frame.py -text
+/tests/test_uar_fitting_selector_combined.py -text

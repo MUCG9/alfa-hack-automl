@@ -1,0 +1,76 @@
+{
+  "schema": "exact-combined-source-metadata-transport-v1",
+  "entries": [
+    {
+      "source": "fitting-context-selector-combined-next-dev/source-handoff.json",
+      "member": "n001.json",
+      "sha256": "1e08cd7915e067dc264fce5bcbe46ca2a770760b04843479f74511df5a263acf"
+    },
+    {
+      "source": "fitting-context-selector-combined-next-dev/component-bindings.json",
+      "member": "n002.json",
+      "sha256": "629413c9ef3102c16dcecc38c291d03df7e13bfca30dbfca637c86b2ddc97ec8"
+    },
+    {
+      "source": "fitting-context-selector-combined-next-dev/composition-proof.json",
+      "member": "n003.json",
+      "sha256": "06a6cde6190af06a9dc43beecaf9c95e156cdb61ccf67d4b1dd634da93e7c357"
+    },
+    {
+      "source": "fitting-context-selector-combined-next-dev/source-census.json",
+      "member": "n004.json",
+      "sha256": "b998cc69350d67be7a14eb50cd29b797ddefa0d3aa84ee2fe9ca49dca3e3ce5d"
+    },
+    {
+      "source": "fitting-context-selector-combined-next-dev/flat-test-plan.json",
+      "member": "n005.json",
+      "sha256": "f2d19ed6e1f0ec680c67ed2395f306a1b862c0451ccbe6f67433f204d5c9b3b7"
+    },
+    {
+      "source": "fitting-context-selector-combined-next-dev/prospective-gate-plan.json",
+      "member": "n006.json",
+      "sha256": "10db4ff192f81e31911988a826fce445f4c63d0f4203fac3f92bf3c348ab0bc9"
+    },
+    {
+      "source": "fitting-context-selector-combined-next-dev/protocol.json",
+      "member": "n007.json",
+      "sha256": "4dd08fa9a336123446322a1ac19ffa6387e530c889a75d2bbf7214fece8d2e18"
+    },
+    {
+      "source": "fitting-context-selector-combined-next-dev/README.txt",
+      "member": "n008.txt",
+      "sha256": "49bdca7662f0a37100caf3890d706f99d69ba8981fd7111ee3cd38136d94d59a"
+    },
+    {
+      "source": "fitting-context-selector-combined-independent-review-r1.json",
+      "member": "n009.json",
+      "sha256": "94b29ff1f4370f7167ffda71d27ec5316e85ee6698a88b2a41726088963c0961"
+    },
+    {
+      "source": "fitting-context-selector-root-integration-r1/root-integration.json",
+      "member": "n010.json",
+      "sha256": "43ce32a609773e2d07b8d6e1306251c8c8cf966e3c330841c53808b65a855706"
+    }
+  ],
+  "canonical_source_paths": [
+    "src/automl/execution/feature_engineering/selection.py",
+    "src/automl/execution/worker.py",
+    "src/automl/search/runner.py",
+    "tools/run_checks.py",
+    "src/automl/execution/feature_engineering/importance_cache.py",
+    "src/automl/search/fit_context_gateway.py",
+    "src/automl/search/fitting_bounds.py",
+    "src/automl/search/fitting_context.py",
+    "src/automl/search/fitting_extractor.py",
+    "tests/test_selector_cache_consumer.py",
+    "tests/test_teacher_importance_cache.py",
+    "tests/test_uar_fitting_context_builder.py",
+    "tests/test_uar_fitting_context_initial.py",
+    "tests/test_uar_fitting_extractor.py",
+    "tests/test_uar_fitting_frame.py",
+    "tests/test_uar_fitting_selector_combined.py"
+  ],
+  "actual_runtime": false,
+  "READY": null,
+  "metrics": null
+}

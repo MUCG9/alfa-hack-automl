@@ -1,0 +1,60 @@
+{
+  "schema": "fitting-selector-reviewed-components-v1",
+  "external_refs_sha256": {
+    "fit-context-gateway-next-dev/source-handoff.json": "63c6f5d1fcbb8f639b7be9cc5029f6d92bb8a47b4143241c40fdbd97281f4287",
+    "fit-context-gateway-independent-review-r1.json": "513686d1c68afcf6076ea9583db11874428a676ba730e5fe4fa6cf39c0e74996",
+    "fit-context-extractor-next-dev-r2/source-handoff.json": "6b0a611b0cc882be30f2de58feeca475bdb22a321c89b27a6222cf64e1d004c8",
+    "fit-context-extractor-independent-review-r2.json": "350f49a4e9dec2e1412af5c41fe57d2acd81dd1649fb1b9b7aafc3c68910474e",
+    "selector-cache-current-port-next-dev/source-handoff.json": "ff373cb5a4eb6232c1adb2cb141931c1d8bc08cfbe80c4eca10a8654eade018b",
+    "selector-cache-current-independent-review-r1.json": "f696df19f1ff0708dbc48c522110c7d70a3c3767c4bc1fd0aaff1233e5a2cba3",
+    "fitting-context-selector-composition-review-preflight-r1.json": "b61becb6e68ad528142cfc1fe63f12fbc8e57a32b9c9d4025e5de38e0f37706d",
+    "fit-context-gateway-next-dev/source-evidence/base/runner.py": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+    "fit-context-gateway-next-dev/candidate/src/automl/search/runner.py": "266306a47859c718a420e6aa3a2a459bca1d0ce96a67b4db4a80ce0d1a6d1f7d",
+    "selector-cache-current-port-next-dev/candidate/src/automl/search/runner.py": "fa18b4064c3f5c0adda76fc86e052943d56b6bfe4d87f9690225a2bbecdf7ee5",
+    "uar09-full-next-dev/run_gate.py": "14f5a6e339e0e8f7d48698490e26d42d4f8c01b42479a75686f0737ea69d4c9a",
+    "uar09-full-next-dev/contracts.py": "06fcca7271be009712b54985c3974049ff2d628e917f9f3658d0b13d5b973045",
+    "uar09-full-next-dev/technical_entry.py": "629316ca8a54d26b45fd2cdc5c7ce0caccccfb1f8e1e5e8ab458f547d017d010",
+    "uar09-full-next-dev/close_gate.py": "7ad50d93988374d3f5799ed26ad8d09aad1d0de082548a63ae83c7d640c8fd50"
+  },
+  "byte_exact_frozen_components": {
+    "src/automl/execution/worker.py": {
+      "path": "work/selector-cache-current-port-next-dev/candidate/src/automl/execution/worker.py",
+      "sha256": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac"
+    },
+    "src/automl/execution/feature_engineering/selection.py": {
+      "path": "work/selector-cache-current-port-next-dev/candidate/src/automl/execution/feature_engineering/selection.py",
+      "sha256": "31f2e70e36ecc210ee4660d58b8598711b088e1b723eb6bbce3d4d4af6cc3dbd"
+    },
+    "src/automl/execution/feature_engineering/importance_cache.py": {
+      "path": "work/selector-cache-current-port-next-dev/candidate/src/automl/execution/feature_engineering/importance_cache.py",
+      "sha256": "aed6d38534e8959f78587bb6e80025731923d2d5ed374a2853e5cb84c206c02a"
+    },
+    "src/automl/search/fit_context_gateway.py": {
+      "path": "work/fit-context-gateway-next-dev/candidate/src/automl/search/fit_context_gateway.py",
+      "sha256": "89836938a2cc6f11c24a654f7a1b72d01301ebe5be8a7cc8bc343abde2f3724b"
+    },
+    "src/automl/search/fitting_bounds.py": {
+      "path": "work/fit-context-gateway-next-dev/candidate/src/automl/search/fitting_bounds.py",
+      "sha256": "1f6b27debfdf2609e03641beae8235ad1a034bd97450b61156bd991cc588a93c"
+    },
+    "src/automl/search/fitting_context.py": {
+      "path": "work/fit-context-gateway-next-dev/candidate/src/automl/search/fitting_context.py",
+      "sha256": "48793ea77b607583c480965e31c9658ba6465cf2e05545239549bf2349e69314"
+    },
+    "src/automl/search/fitting_extractor.py": {
+      "path": "work/fit-context-gateway-next-dev/candidate/src/automl/search/fitting_extractor.py",
+      "sha256": "1defeaa322c76285b0e75969ad8f148321e4c592f22437494d4219c7000f3a04"
+    },
+    "tests/test_teacher_importance_cache.py": {
+      "path": "work/selector-cache-current-port-next-dev/candidate/tests/test_teacher_importance_cache.py",
+      "sha256": "7237383822152f98094e867cc3c5d3d99734cd78825b32ab3e09f80fd45df7b3"
+    },
+    "tests/test_selector_cache_consumer.py": {
+      "path": "work/selector-cache-current-port-next-dev/candidate/tests/test_selector_cache_consumer.py",
+      "sha256": "2e1e8bad2ed4f3d75e495df9331dbb7fbd5424e74030266b2100f0bfbaaabc77"
+    }
+  },
+  "all_external_sourcefiles_verified_by_original_handoff": "prepare_source.py verifies every frozen local file in all3 source handoffs before composition.",
+  "composition_proof": "composition-proof.json",
+  "no_new_import_or_execution": true
+}

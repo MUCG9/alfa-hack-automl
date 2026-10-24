@@ -1,0 +1,33 @@
+{
+  "schema": "uq3-regression-strict-admission-observation-v1",
+  "observed_unix": 1792838188.102741,
+  "actual_campaign_session": 18415,
+  "campaign_running": true,
+  "campaign_first_failure": null,
+  "Ar_supervisor_actual_exit": 0,
+  "Ar_supervisor_cleanup_confirmed": true,
+  "Ar_supervisor_seconds": 332.70299999999406,
+  "Ar_HPO_reported_counts": {
+    "planned_trials": 8,
+    "attempted_trials": 8,
+    "completed_trials": 8,
+    "failed_trials": 0,
+    "unattempted_trials": 0,
+    "guided_attempts": 5,
+    "guided_successful_trials": 5
+  },
+  "Br_strict_task_contract": [
+    {
+      "status": "admitted",
+      "format_status": "resolved",
+      "output_produced": true,
+      "objective_resolved": true
+    }
+  ],
+  "meaning": "Prior presearch blocker resolved for this observed Br stage; first Qwen HTTP returned before training. This is not a complete Br outcome or an independently scored quality result.",
+  "prior_Br_timeout_seconds": 810,
+  "prior_failure_summary_sha256": "b1413d11e94be0903a408be8b59e66e8e684158973e58cd15548dc9298a0008b",
+  "source_archive_sha256": "efcce84cd0ce0648c73e1d0f152fc1073a22b8f1ca0b4e24fafd70fb6cca2737",
+  "quality_metric": null,
+  "promotion": false
+}

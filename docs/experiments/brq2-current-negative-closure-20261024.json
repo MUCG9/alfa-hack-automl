@@ -1,0 +1,28 @@
+{
+  "schema": "brq2-separate-current-negative-audit-completed-v1",
+  "actual_helper_execution": {
+    "session": null,
+    "exit_code": 0,
+    "tool": "48e5ce"
+  },
+  "actual_fresh_tool": "root fresh confirmation command after 48e5ce",
+  "root_sha256": "0a2f2dae7962892a596a98b7d51d1135f1017358a6326abe31ff2e986b7b5ade",
+  "fresh_confirmation_sha256": "a5f5d57f7137ea6159db0cb43e760cbae8cb7674172624199e3479b399eed325",
+  "current_source_unchanged": true,
+  "current_cleanup_confirmed": true,
+  "current_temporary_cleanup_confirmed": true,
+  "old130_immutable_pins_verified_before_after": true,
+  "preserved_terminal_failure_artifacts": 7,
+  "known_count": 7267,
+  "same_identity_alive": 0,
+  "uncertain": 0,
+  "elapsed_through_fresh": 17.01600000000326,
+  "inside_original_BRQ2_common_and_parent90": true,
+  "original_BRQ2_driver_and_root_false_flags_preserved": true,
+  "original_BRQ2_status": "FAIL",
+  "technical_procedure_passed": false,
+  "new_standard_model_calls": 0,
+  "new_standard_metrics": null,
+  "ready_archive": null,
+  "decision": "Current negative source/temp/known-owned closure accepted independently; original BRQ2 technical failure and false flags remain. Only reviewed new source version may enter a new prospective qualifier."
+}

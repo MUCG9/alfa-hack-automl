@@ -1,0 +1,14 @@
+{
+  "schema": "focused-class-cases-r3-mock-interface-proof-v1",
+  "only_delta": "Add known={own} to the synthetic sampler stub, matching actual VerifiedResourceSampler.known accessed by unchanged R5 ResourceBudget._inspect_verified.",
+  "inverse_full_module_bytes_exact_R2": true,
+  "all_assertion_AST_exact_R2": true,
+  "unchanged_full_test_method_AST_count": 11,
+  "changed_fixture_method": "test_parent_inspect_self_conservatively_counts_self_twice",
+  "expected_memory_limit_and_conservative_double_count_unchanged": true,
+  "actual_tests": 0,
+  "learner_fits": 0,
+  "API_calls": 0,
+  "organizer_cause": null,
+  "RQ2_failure_preserved": true
+}

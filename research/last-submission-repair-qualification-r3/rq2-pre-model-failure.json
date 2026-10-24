@@ -1,0 +1,35 @@
+{
+  "schema": "standard-repair-rq2-pre-model-failure-v1",
+  "actual_driver": {
+    "session": 2272,
+    "exit_code": 1,
+    "tool": "962ee0"
+  },
+  "actual_closer": {
+    "exit_code": 1,
+    "tool": "0b9302"
+  },
+  "root_sha256": "d1b57d2006d2d77ebc600ed611714498aa3941de93c39ebd8860376093b83f51",
+  "current_negative_sha256": "b313626148434c0cde741aa2ef0abbf8caf25047bc9a492a09f19d34227c8aca",
+  "current_negative_actual": {
+    "exit_code": 0,
+    "tool": "aab701"
+  },
+  "technical_procedure_passed": false,
+  "contracts_passed_complete_groups": 50,
+  "focused_cases_executed": 12,
+  "focused_cases_passed": 11,
+  "focused_cases_errors": 1,
+  "actual_standard_tasks": 0,
+  "model_fits": 0,
+  "API_calls": 0,
+  "new_metrics": null,
+  "error": "Synthetic sampler lacked actual verified sampler known field; all production source and assertions unchanged.",
+  "current_known_absent": 7848,
+  "current_union_including_observer": 7851,
+  "current_source_pins": 308,
+  "current_uncertain": 0,
+  "current_temporary_absent": true,
+  "old_clock_closed": true,
+  "organizer_cause": null
+}

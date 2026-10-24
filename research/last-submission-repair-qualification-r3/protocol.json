@@ -1,0 +1,84 @@
+{
+  "schema": "standard-repair-qualification-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "clock": null,
+  "common6000": {
+    "setup600": 600,
+    "REG_parent_child": [
+      900,
+      870
+    ],
+    "CLASS_parent_child": [
+      3600,
+      3570
+    ],
+    "audit_parent_child": [
+      600,
+      570
+    ],
+    "final300": {
+      "driver240": 240,
+      "root60": 60
+    }
+  },
+  "setup_slots": [
+    [
+      "repair-source-contracts",
+      16,
+      90,
+      60
+    ],
+    [
+      "repair-unpacked-contracts",
+      16,
+      90,
+      60
+    ],
+    [
+      "REG-common-unpacked-contracts",
+      18,
+      90,
+      60
+    ],
+    [
+      "corrected-cases-source-contracts",
+      12,
+      90,
+      60
+    ],
+    [
+      "caller-contracts",
+      15,
+      60,
+      45
+    ],
+    [
+      "atomic-contracts",
+      3,
+      30,
+      20
+    ]
+  ],
+  "future_contract_executions": 80,
+  "unique_method_bodies": 64,
+  "scope": "Exactly two plain solution.py task.md calls; no duplicate four-cut model jobs. All cores sealed before pristine independent R4 audit.",
+  "REG": "Unchanged fixed .75L1/.25CP1 cuts without iteration override, fresh median full refit.",
+  "CLASS": "Existing V16 offline portfolio/search/confirmation/cache blends/full refit; selected matching confirmation mandatory or STOP/null. No Qwen/HPO/four-stage claim.",
+  "entitlement": "MIN actual outer common/parent/child bounds. Archive intrinsic9900 or CLASS9870 execution clock never expands outer entitlement.",
+  "threads": "Outer launch facade AUTOML_THREADS2/native pool environment1; inherited models/worker runtime may set native pools2. Actual model CPU<=2; technical and audit1. No end-to-end BLAS1 claim.",
+  "retention": "CLASS strength is measured, not assumed from historical selected outcomes; no automatic promotion/upload.",
+  "CLASS_full_terminal": "Raw full-fit job/result/median/CSV independently checked. Full per-worker strict telemetry not serialized by inherited V16 report. Actual source-bound clean CLASS parent subtree/child complete diagnostic required; do not invent missing receipt.",
+  "predecessor": "Mandatory actual UAR10 root/fresh/post and all explicit preparations plus typed current LC1 negative proof; LC1 permanent FAIL/0 tests is not relabeled.",
+  "atomic": "Actual driver exit evidence first. Wrapper launches one child PowerShell, pinned venv/closer; saves actual child exit before fresh full union. Wrapper enclosing60 AND actual closer birth60 AND original6000 AND saved driverfinal240; no reset.",
+  "actual_tests_fits_API_runtime": 0,
+  "actual_metrics": null,
+  "actual_model_fit_count": null,
+  "API_external_measurement": null,
+  "source_revision": "RQ3_MOCK_INTERFACE_BINDING_ONLY",
+  "output": "rq3",
+  "previous_RQ1": "PermanentFAIL/3754fa; frozencloser81b95d exit1; separate currentnegative16e4/helper5b80 exit0 only source/temp/currentknown cleanup,7828+observer3=7831.",
+  "technical_import_policy": "Before each unchanged16 suite: network tripwire, actual81/source hashes, NumPy/numpy.testing/SciPy sparse/sklearn metrics/model_selection initialization under existing outer technical1 ownership/resource/common guards. Native CPU metadata Popen is permitted during dependency initialization; no fit/candidate import. Original test-method Popen learner-denial unchanged.",
+  "bootstrap_contract_credit": 0,
+  "previous_RQ2": "PermanentFAIL actual2272/1/962ee0; original closer1/0b9302; separate currentnegative b313 helper0/aab701 supplies current source308/temp/cleanup and7848+observer3=7851 only.",
+  "corrected_case_binding": "Root-authored45408/test622e/independent9caf; synthetic known={own} only, all12 assertions unchanged."
+}

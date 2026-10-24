@@ -1,0 +1,28 @@
+{
+  "schema": "last-submission-repair-qualification-r3-public-source-v1",
+  "qualification_handoff_sha256": "bb716e943e73ed22ff6fd05824801526de4be8d1f8cee1a5c4e4c885c37a0dae",
+  "qualification_peer_sha256": "f6d7e730d67cee4509dcf1d7fcc9b6d902668eda59a721c68be26372ddcff298",
+  "cases_handoff_sha256": "45408b289e0cce8b61ae0c5478cc310a1c32aa16a824f4796a9c9edf1b9ad278",
+  "cases_peer_sha256": "9cafdf6254036def8245ebe42006e5e4a5194533ccad0d0584aca5a9fc605b09",
+  "exact_source_files_sha256": {
+    "research/last-submission-repair-qualification-r3/run_controller.py": "f9692caa4ea5f4ee694e14879ffdf641dd353e0513425ec0e2b55b680679b7c1",
+    "research/last-submission-repair-qualification-r3/artifact_audit.py": "b5018d77faefaa7c24a6d5d611ec9e8d54f6576a8ded5a25664bd377561080dd",
+    "research/last-submission-repair-qualification-r3/close_controller.py": "4d0340693c015da24c6935d3266bb3e2da016576d271fad7a8149e60e3420fe4",
+    "research/last-submission-repair-qualification-r3/run_root.py": "14738cf62409fef8303a6b1762ffb28639f52d777c98408c914b0c95d8afc8f0",
+    "research/last-submission-repair-qualification-r3/close_child.ps1": "de032ba27868f07b0583f7de83af22e1a3178b2f87ff4c3435c80fad1fafea65",
+    "research/last-submission-repair-qualification-r3/test_controller_contracts.py": "90c74f4c70e9712364ecd0b51233b01489c5be953806720f8d4230d7df53d34a",
+    "research/last-submission-repair-qualification-r3/test_atomic_root.py": "77edd14c545b4c59899c64dd02e3a4a45c5ac5f3259c33c2b8e2dbad18ca5a5b",
+    "research/last-submission-repair-qualification-r3/technical_entry.py": "ec2bfdaf74ff5ff5f4a8586e58b93473e3f6bb773b408e1c1b03bb8fae8e6ed7",
+    "research/last-submission-repair-qualification-r3/README.txt": "a3999be3cddff9188c4ff48e0ae76dbbf16ed1bb05044ab463dc16ab2533c676",
+    "research/last-submission-repair-qualification-r3/protocol.json": "7f572e4e68740869eecea6d118dabaa9a277088d8b6d9227d4e7ab76584bd826",
+    "research/last-submission-repair-qualification-r3/test_class_runtime_contracts.py": "622e699bc446dc34846ead76205cbcdc9ce74942c6a4e2e6d3bc5866d2d6b451",
+    "research/last-submission-repair-qualification-r3/mock-interface-proof-r3.json": "8bd5e346826f528bd2d09acaeaa97cd01d28ca3f0e26301e840067d38c35a4bd",
+    "research/last-submission-repair-qualification-r3/rq2-pre-model-failure.json": "803b66116aaedae1b73e93893bbf7336fd5af761cb3371c8693015b89104ee35"
+  },
+  "prepared_contract_executions": 80,
+  "actual_rq3_executions": 0,
+  "source_candidate_sha256": "9bb8fe6e4c9a5d86e381e5412e4fa895b219d206415f2590a10ec071a69d78c1",
+  "submission_ready": false,
+  "old_RQ1_RQ2_failures_preserved": true,
+  "new_metrics": null
+}

@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "original_driver_actual": {
+    "session": 78888,
+    "exit_code": 0,
+    "tool": "8a9663"
+  },
+  "original_closer_actual": {
+    "session": 19230,
+    "exit_code": 1,
+    "tool": "617a23",
+    "failure": "root_closure30_cap",
+    "source_line": 177,
+    "raw_trace_file": null
+  },
+  "original_pins": {
+    "original_driver": "fe2f6cae227d7b0ab8345aad460905c2fa87a4d88622cfa2eb785e5147d4bb81",
+    "original_closer": "1b3bfc4091426febdc49665e99cc6da2c98e06efd804ef7dc86648eb9bd3bfc5",
+    "private_manifest": "b8dae322501349622326313f94430042729e2cb1310ecdd32d09796812cf797d",
+    "campaign": "6ce7a1723b7b8a8edf7c895522ad90a24f601eda48f862e2f008b82ead1aa2c1",
+    "failed_preparer_receipt": "0d79d0d94f5a51c98fbe06643f5ab8d33d0b7cc589341bcb42e2c6b60f81c79e"
+  },
+  "original_clock": {
+    "start_unix": 1792825378.045702,
+    "deadline_unix": 1792825978.045702,
+    "start_monotonic": 84383.171,
+    "deadline_monotonic": 84983.171
+  },
+  "original_closer_retroqualified": false,
+  "actual_new_audit": null,
+  "clock_reset": false
+}

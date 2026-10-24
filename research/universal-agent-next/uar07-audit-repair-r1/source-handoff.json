@@ -1,0 +1,50 @@
+{
+  "schema": "uar07-audit-close-repair-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_NOT_EXECUTED",
+  "files_sha256": {
+    "close_gate.py": "e2395e1154296e420ce5d608a013d852a7c2d274eed8be158ba0f019a4b8f1da",
+    "close_gate.py.patch": "6cef5dddbbbbac0bdc55895b843d65f908971450c7e2d58c83b6de570bd6acdc",
+    "original-failure-binding.json": "c03bc2fee3d16fdfd061b4271d939db9a93a1f6c1bb612d174ed91d5682fc995",
+    "README.txt": "2aee4d18f6abc2882840f8fc3cbedce81fd13e807a8e010af6a3a1a113aa44f3",
+    "source-proof.json": "c52cda702bfce9f784bbebe5d8e0add972d74c94e9fc59474095ee85273cbbe9"
+  },
+  "original_driver_sha256": "fe2f6cae227d7b0ab8345aad460905c2fa87a4d88622cfa2eb785e5147d4bb81",
+  "original_closer_sha256": "1b3bfc4091426febdc49665e99cc6da2c98e06efd804ef7dc86648eb9bd3bfc5",
+  "original_private_manifest_sha256": "b8dae322501349622326313f94430042729e2cb1310ecdd32d09796812cf797d",
+  "original_campaign_sha256": "6ce7a1723b7b8a8edf7c895522ad90a24f601eda48f862e2f008b82ead1aa2c1",
+  "original_preparer_receipt_sha256": "0d79d0d94f5a51c98fbe06643f5ab8d33d0b7cc589341bcb42e2c6b60f81c79e",
+  "original_driver_actual": {
+    "session": 78888,
+    "exit_code": 0,
+    "tool": "8a9663"
+  },
+  "original_closer_actual": {
+    "session": 19230,
+    "exit_code": 1,
+    "tool": "617a23",
+    "failure": "root_closure30_cap"
+  },
+  "original_start_unix": 1792825378.045702,
+  "original_deadline_unix": 1792825978.045702,
+  "original_start_monotonic": 84383.171,
+  "original_deadline_monotonic": 84983.171,
+  "new_own_audit_cap_seconds": 30,
+  "resource_sampling_interval_seconds": 0.25,
+  "sticky_observation_gap_seconds": 10,
+  "whole_memory_mib": 2048,
+  "technical_library_threads": 1,
+  "new_receipt_schema": "uar-composite-audit-repair-root-closure-v1",
+  "new_output": "terminal-audit-root-closure.json",
+  "actual_new_audit": null,
+  "tests": 0,
+  "candidate_imports": 0,
+  "fits": 0,
+  "API": 0,
+  "PID_scans": 0,
+  "clock_assigned": false,
+  "old_frozen_changes": 0,
+  "original_closer_retroqualified": false,
+  "original_full_procedure_passed": false,
+  "promotion": false,
+  "submit": false
+}

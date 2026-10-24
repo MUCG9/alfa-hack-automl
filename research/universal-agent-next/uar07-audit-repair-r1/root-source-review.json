@@ -1,0 +1,17 @@
+{
+  "schema": "uar07-separate-audit-root-source-review-v1",
+  "status": "approved_narrow_saved_artifact_audit_not_runtime_PASS",
+  "source_handoff_sha256": "3d92d685176bcc86afdabc5c1fdd7afccdefe90cc7adff7086beee9f49b23bd3",
+  "helper_sha256": "e2395e1154296e420ce5d608a013d852a7c2d274eed8be158ba0f019a4b8f1da",
+  "independent_review_sha256": "66d2414b31da180bb4e928e8630c5a5a2dc38df5a6c37aad46a5a56fe76d8468",
+  "new_audit_own_seconds": 30,
+  "original_common_deadline_unix": 1792825978.045702,
+  "original_closer_session": 19230,
+  "original_closer_exit": 1,
+  "original_closer_tool": "617a23",
+  "original_closer_retroqualified": false,
+  "original_full_procedure_passed": false,
+  "passed_predicate_unchanged": true,
+  "no_new_tests_fits_API": true,
+  "source_review_only": true
+}

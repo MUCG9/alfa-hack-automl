@@ -1,0 +1,23 @@
+{
+  "schema": "uar07-audit-close-repair-source-proof-v1",
+  "source_only": true,
+  "base_closer_sha256": "1b3bfc4091426febdc49665e99cc6da2c98e06efd804ef7dc86648eb9bd3bfc5",
+  "new_source_sha256": "e2395e1154296e420ce5d608a013d852a7c2d274eed8be158ba0f019a4b8f1da",
+  "changes": [
+    "throttle only costly resource observations by0.25s while original clock/drift/sticky10 checked every callback",
+    "force initial/observer-init/final before-and-after save resource observations",
+    "separate external selfpin and distinct receipt schema; original packet/failed closer unchanged",
+    "bind actual driver78888/0/8a9663, failedcloser19230/1/617a23, exactoldpreparers union",
+    "CPU-library environment1 for audit only"
+  ],
+  "unchanged_qualification_block": true,
+  "compile_source_only": true,
+  "tests": 0,
+  "candidate_imports": 0,
+  "fits": 0,
+  "API": 0,
+  "PID_scans": 0,
+  "actual_new_audit": null,
+  "old_closer_retroqualified": false,
+  "original_clock_reset": false
+}

@@ -1,0 +1,7 @@
+Clock admission repair — SOURCE_ONLY10
+
+Source09 stopped honestly before implementation because driver/caller clock plumbing was outside its scope. Preserve its BLOCKED result ef3892cecba913e4a8d144f3aaf932b280cdf1c8, all08 partial artifacts and original costs. Root reviewed all9 hashes and the actual AST admission order. No new ML metric or approval.
+
+New immutable remote-port-10-explicit-clock-admission-repair permits only the minimum explicit clock plumbing in portable, driver execute/audit_child and a new fixed caller, then the cooperative Git adapter and focused no-network contracts. Read its pinned task and source-manifest. Original protected queue validations,45s Git command cap and10s gap remain. ONE new1800s SOURCE_ONLY claim includes all preparation/checks/cleanup/publication;0fits/API. Local canonical claim supplies initial clock evidence, not admission; exact remote validation still precedes any future model. Existing retained origins/lastsamples never reset. A fresh prospective campaign may initialize its sole clock once, retaining original claim wall deadline and charging prior elapsed time; absent claim-time mono stays null.
+
+Windows IO03 helper is source-integrated, fourteen tests not yet run. Vertical caller R1 is preserved unexecuted; two prepublication source findings are being fixed in R2. Reusable focused guard is independently source-reviewed and NOT_READY until exact canonical source/count/review bindings. No default release, promotion or automatic submit. ACK this notice in the next result.

@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "job_id": "remote-port-09-cooperative-admission-repair",
+  "result_sha": "ef3892cecba913e4a8d144f3aaf932b280cdf1c8",
+  "worker_id": "remote-worker-f7dd39e0",
+  "claim_sha": "3355218056109aa257db5f5f3a5ee92284b57d07",
+  "job_sha256": "35b8952fda6dd009ae123ea3e5599b32184d95027a1a47d2cd7d02d8b42e39d6",
+  "status": "BLOCKED_scope_stop_independently_source_verified_NO_ML_approval",
+  "artifact_count": 9,
+  "artifact_hashes_verified": true,
+  "artifact_sha256": {
+    "blockers.json": "1b69f4e054447642cbf9eeb1c4806928de7808018fe1a575899b2b1b9d68d6b4",
+    "capabilities.json": "cc6291e7498d22199ea25982a5cab6461d2a51afc3e20bba75544e592ed91e79",
+    "next-bounded-preparation.json": "4753c4d61ae7af9ad2f2236721ac6fab29c136c0291d9cd3f850ba4e30018e43",
+    "portable_harness.py": "8b14a7c9db4a37623fac0555e7989a79f94971f2768aebaf5752488f2b540342",
+    "protocol.json": "cf17573ed2ad3c2798698dca757f2be84a7d0ab6db37f6176715599379c7ab2d",
+    "pure-checks.json": "569acfc1a4580ce3e16d802bb5e4a1d482150aaffddc1bc42377cfdc7ab4340f",
+    "pure_cooperative_contracts.py": "68d7e6a84c10a34fe054165cdb38b92a5106c7e685c207e9dcef30df28ad05f7",
+    "source-handoff.json": "e48314e80cbf308c7b88bf81dc100b0cf617f6ed97fad1fc5360142140d62d36",
+    "summary.txt": "816a2925d2628a649063762c2a0f8ea194349d772f0939d7b42a5342d2edd8cc"
+  },
+  "observed_source_findings": [
+    {
+      "source": "experiment_driver.py",
+      "function": "execute",
+      "admission_line": 120,
+      "retained_clock_line": 123,
+      "explicit_clock_available_before_admission": false
+    },
+    {
+      "source": "experiment_driver.py",
+      "function": "audit_child",
+      "admission_line": 205,
+      "retained_clock_line": 207,
+      "explicit_clock_available_before_admission": false
+    },
+    {
+      "source": "remote08-run-bounded-class.py",
+      "function": "main",
+      "q_read_claim_line": 37,
+      "before_driver_import": true
+    }
+  ],
+  "first_error": {
+    "code": "explicit_clock_plumbing_outside_scope",
+    "detail": "Mandatory AST stop: frozen experiment_driver.execute and audit_child call queue_admission without a clock before creating Clock.retained; fixed caller performs q.read_claim before importing the harness. Safe explicit original-clock coverage requires driver/caller edits forbidden by09. No implicit clock, global heartbeat, validation bypass or partial claimed repair implemented."
+  },
+  "secondary_errors": [],
+  "reported_wall_seconds": 94.97416234016418,
+  "reported_model_fits": 0,
+  "reported_API_calls": 0,
+  "actual_runtime_tests": 0,
+  "quality_metrics": null,
+  "whole_campaign_CPU_RSS": null,
+  "source_changed": false,
+  "original08_preserved_reported": true,
+  "old08_total_fits": null,
+  "old08_known_successful_fit_lower_bound": 12,
+  "decision": "Preserve09 BLOCKED. Authorize separate source-only10 for minimum explicit clock plumbing in portable, driver.execute/audit_child and new fixed caller before cooperative Git adapter tests. No fitting approval, restart or score implied.",
+  "independently_verified_scope": "Public bytes and AST order only; remote execution, private inventories, process cleanup, clocks and RSS remain remote-reported",
+  "approved_for_bounded_experiments": false,
+  "promotion": false,
+  "submit": false
+}

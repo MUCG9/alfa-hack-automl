@@ -1,0 +1,75 @@
+{
+  "schema": "br-standard-release-prospective-qualification-v1",
+  "status": "SOURCE_PLAN_ONLY_NOT_READY",
+  "human_goal": "Standard positional archive implementing exact retained Br regression recipe and historical full strong CLASS; no upload.",
+  "root_authorized_scope": {
+    "path": "br-standard-release-root-scope-r2.json",
+    "sha256": "f29e25ab5779dc3524a447c875e4b102bbf01678c03e80855553ce1d68249d4c"
+  },
+  "minimal_implementation": {
+    "base": "Exact reviewed LA2/L1 flat16be/68, preserve worker numeric fitting/transform/calibration/model semantics",
+    "entry": "python3 solution.py task.md; no external recipe JSON/research flags required",
+    "policy": "Explicit fixed recipe executor, not a claimed Qwen/search/HPO agent or a hidden replacement of a selected search result",
+    "recipe_source": "Embedded raw approved constants above, exact .75/.25 two-leaf regression; full historical three-outer-child CLASS (two feature-view recipes plus XGBoost). Do not flatten five internal class models.",
+    "routing": "Trusted actually resolved task kind+fixed primary metric and generic supported schema only. Never path/dataset/target name or input fingerprint/shape thresholds that identify a public dataset.",
+    "tasks": "Original organizer task bytes, no hand-enriched declarations. Reused current pure MetricSpec/parser support must resolve those original primary clauses; unknown/ambiguous/incompatible => explicit typed stop before model work.",
+    "support_ports": "Only exact root-authorized strict worker/process dependency inventory, pure metric resolver/parser and lexical declared ID/literal-class semantics. Regression target stays numeric; no blanket dtype=str.",
+    "validation_flow": "Primary and confirmation cut jobs use exact raw recipe with fit_iterations OMITTED; fitting-only original nested stopping/calibration selects actual cut-local trees. Compute recursive median of those actual trees; full_fit on all allowed training rows with that median.",
+    "historical_iterations": "[474,109] and [[100,111],[100,138],339] retained as provenance/comparison only, never passed into validation jobs or blindly substituted for newly derived median.",
+    "unchanged": "Original9173 requirements, LightGBM4.6 primary custom-RMSE/loss telemetry, target-log conditional scale, fitting-only TE/history/OHE/calibration, fixed seeds/weights/hyperparameters.",
+    "source_boundary": "16be old run_worker swallowed inspection denial; old publisher used a fixed .csv.tmp. Do not call them current strict/C01 unless the exact corresponding approved support code and actual checks are present."
+  },
+  "minimal_real_qualification": {
+    "before_execution": "Freeze candidate+all support ports+tests/archive member map; independently review; root assigns a new bounded lease only after UQ3 terminal/fresh closure.",
+    "technical": "Meaningful fixed-entry contracts and exact built/unpacked archive/requirements/entry/source invariance; no automatic reuse of an unrelated full-gate PASS or old Br metric. Root chooses necessary exact checks from actual delta.",
+    "run": "Exactly TWO guarded standard positional whole-task calls, same frozen archive and original task/inputs; each produces primary+confirmation+full-refit artifacts. These already supply four cut artifacts and two final CSVs; no duplicate four fit jobs absent an artifact-binding gap.",
+    "split": "Use independently frozen original two-cut role/order/fingerprint references in the external qualification harness; runtime discovers compatible generic split from task/spec. No validation labels or historical data files supplied to the executor.",
+    "seal": "After process exit/known-owned cleanup, seal exact new code/archive/dependency/input/job/spec/recipe/split/recursive child/result/probability/finalCSV inventory before independent truth/metric checks.",
+    "independent": "Use unchanged R4 manual formulas/TaskVerifier/recursive mixture/iteration rules on the fixed two-cut and full-refit records, with a thin fixed-policy adapter. Do NOT demand or fabricate whole-search/planner/HPO stages that this fixed executor does not perform.",
+    "row_contract": "Original train/test/sample/lexicalID order and classes exact; validation original row positions exact; canonical probability class order and output columns; finite bounded probabilities/labels/value shape; final CSV independently re-read and checked.",
+    "fitting_scope": "For every validation leaf prove proper fitting-only inner parent/stopping/data-policy/target-encoding/history/calibration and actual booster objective; full refit receives all permitted training rows and independently verified recursive median only.",
+    "acceptance": "New source-qualified metrics remain null until actual saved-artifact audit. Exact historical Br mean34.155023394837 and CLASS.6593178433614652 may be called reproduced only if both new cuts meet the predeclared unchanged R4 numerical tolerances and final artifacts pass. If they differ, report the actual new result, no old-score transfer, retune or post-score tolerance relaxation.",
+    "failures": "Keep technical failure/status/cleanup uncertainty distinct from an honestly measured negative result. Missing/failed branch metrics null, no zero imputation, hidden fallback-as-model success, retry/reset/clock borrowing.",
+    "operational": "CPU<=2, worker1536MiB/whole2048MiB; one original wall+monotonic clock per approved unit includes input/setup/fits/fullrefit/CSV/audit/cleanup. Sampling/denial/known-owned cleanup and actual exit/fresh preparers must be attested.",
+    "costs": {
+      "standard_top_level_task_processes": 2,
+      "composite_worker_callbacks": 6,
+      "validation_composites": 4,
+      "full_refit_composites": 2,
+      "conditional_static_learner_fit_upper": 50,
+      "upper_derivation": "REG2leaves * 2fits *2cuts +REGfull2; CLASS5leafmodels * up-to3fits(innerstopping+optionalmatching-floor-calibrationrefit+outerfit)*2cuts +CLASSfull5*2(innercalibration+fullfit) =50. No calibration_folds>1/selection/extra teachers in exact raw recipes.",
+      "actual_learner_fit_count": null,
+      "upper_is_not_actual": true
+    },
+    "actual_clock": null,
+    "actual_execution": null,
+    "actual_metrics": null
+  },
+  "readiness_blockers": [
+    "No candidate frozen source/support inventory yet",
+    "No actual standard entry/role/metric/lexical contract execution yet",
+    "No newly built/unpacked archive gate yet",
+    "No actual TWO standard full-task runs and independent artifact/numeric audit yet",
+    "Current UQ3 active; no new heavy execution authorized by this plan"
+  ],
+  "standard_release_archive": null,
+  "standard_release_exact_Br_score_verified": false,
+  "old_LA2_and_UQ2_failures_preserved": true,
+  "old_Br_research_metric_retained_not_promoted": true,
+  "Qwen_or_HPO_claim": false,
+  "official_score": null,
+  "automatic_submit": false,
+  "upload": false,
+  "preparation": {
+    "source_reads_AST_hash_JSON_only": true,
+    "candidate_imports": 0,
+    "tests": 0,
+    "fixtures": 0,
+    "fits": 0,
+    "API": 0,
+    "data_or_prediction_array_reads": 0,
+    "PID_scans": 0,
+    "clock_assigned": false,
+    "canonical_frozen_Git_STATE_edits": 0
+  }
+}

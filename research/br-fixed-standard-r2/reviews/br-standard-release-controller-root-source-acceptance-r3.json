@@ -1,0 +1,27 @@
+{
+  "schema": "root-controller-source-acceptance-r3",
+  "checked_unix": 1792843408.9643157,
+  "status": "SOURCE_ACCEPTED_RUNTIME_NOT_READY",
+  "handoff_sha256": "b189f70e586234bf9ac8e4ed99d88772e5cdcfde00c02007636cf87585153a25",
+  "independent_peer_sha256": "1024095251d01c856b60b0873cbc7b8c65711a3668aea9c580150396ae3b341f",
+  "actual_static_tool_evidence": [
+    "138709",
+    "c511e6"
+  ],
+  "local_pins": 15,
+  "external_pins": 14,
+  "mismatches": [],
+  "ast_compile_checked_files": 4,
+  "capture_AST_exact_between_driver_closer": true,
+  "R2_test_methods_AST_preserved": 8,
+  "prepared_caller_methods": 10,
+  "prepared_total_test_executions": 46,
+  "actual_imports_tests_fixture_models_API": 0,
+  "actual_chain_metadata_sha256": "bffd82fed38719da00746ba6c71cc8ff4cd3f22aca6329cc81c29655ea71e29c",
+  "scope": "exact direct shell or one pinned Windows venv redirector only; source review not runtime validation",
+  "UQ3_whole_terminal_root_fresh_bindings": null,
+  "clock": null,
+  "private_ready_manifest": null,
+  "ready_archive": null,
+  "actual_new_metrics": null
+}

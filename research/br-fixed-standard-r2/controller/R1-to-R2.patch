@@ -1,0 +1,233 @@
+--- controller-r1/run_controller.py
++++ controller-r2/run_controller.py
+@@ -5,7 +5,7 @@
+ 
+ PACKET=Path(__file__).resolve().parent
+ WORK=PACKET.parents[1]
+-OUT=WORK/'br-standard-release-qualification-r1'
++OUT=WORK/'brq1'
+ COMMON,SETUP,AUDIT,FINAL,ROOT_CLOSE=6000,600,600,240,60
+ CAPS={'regression':(900,870),'classification':(3600,3570)}
+ HELPERS={
+@@ -59,14 +59,31 @@
+         and v['create_time']>0 for v in rows),'typed_PID_create_time_required')
+     return {(v['pid'],v['create_time']) for v in rows}
+ 
+-def capture(psutil,script):
+-    me=psutil.Process();rows=[dict(pid=me.pid,create_time=me.create_time())];parent=me.parent()
+-    while parent is not None:
+-        birth=parent.create_time()
+-        if not any(v and not v.startswith('-') and Path(v).resolve()==script for v in parent.cmdline()):break
+-        need(parent.create_time()==birth,'bootstrap_identity_changed')
+-        rows.append(dict(pid=parent.pid,create_time=birth));parent=parent.parent()
+-    return rows
++def capture(psutil,parent_pid,parent_birth):
++    """Observe self+DIRECT declared parent; never inspect argv or adopt ancestors.
++
++    One microsecond absolute tolerance is ONLY for Get-Process ticks/Unix float
++    transport. Saved identities always contain the exact observed psutil birth.
++    PID and fresh direct OS relationship must match independently of tolerance.
++    """
++    transported=parent_birth if type(parent_birth) in (int,float) and math.isfinite(parent_birth) else None
++    rows=[];record=dict(declared=dict(pid=parent_pid,create_time=transported),
++        declared_birth_invalid=transported is None,
++        observed_parent=None,verified=False,transport_absolute_tolerance_seconds=1e-6)
++    try:
++        me=psutil.Process();own_birth=me.create_time();rows.append(dict(pid=me.pid,create_time=own_birth))
++        parent=me.parent();need(parent is not None,'direct_launch_parent_missing')
++        birth=parent.create_time();observed=dict(pid=parent.pid,create_time=birth);record['observed_parent']=observed
++        need(type(parent_pid) is int and parent_pid>0 and type(parent_birth) in (int,float)
++            and math.isfinite(parent_birth) and parent_birth>0,'typed_launch_parent_required')
++        need(parent.pid==parent_pid and abs(birth-parent_birth)<=1e-6,'direct_launch_parent_transport_mismatch')
++        need(me.ppid()==parent.pid and me.create_time()==own_birth and parent.create_time()==birth,
++            'direct_launch_parent_relationship_or_identity_changed')
++        rows.append(observed);record['verified']=True
++    except BaseException as exc:
++        record['error']=str(exc) if isinstance(exc,RuntimeError) else 'launch_parent_observation_unconfirmed'
++        record['exception_type']=type(exc).__name__
++    return rows,record
+ 
+ def guard(begin,deadline,wall,owner,preparers,state,awake=None):
+     ob=owner.StrictOwnedObserver();ob.remember(ids(preparers));last=begin;previous=begin;sticky=None
+@@ -133,7 +150,7 @@
+             'byte_exact_reviewed_executor_contract_required')
+     need(cfg['counts']==dict(path=str(WORK/'uar-count-parser-next-dev/counts.py'),sha256=COUNTS_SHA)
+         and pins.get(cfg['counts']['path'])==COUNTS_SHA
+-        and cfg['caller_contract_count']==6 and len(cfg['caller_test_methods'])==6
++        and cfg['caller_contract_count']==8 and len(cfg['caller_test_methods'])==8
+         and methods(PACKET/'test_controller_contracts.py')==cfg['caller_test_methods'], 'fixed_caller_and_count_contracts_required')
+     for ref in (executor['handoff'],executor['archive'],cfg['candidate_source_review'],cfg['uq3']['root'],cfg['uq3']['fresh']):
+         need(type(ref) is dict and Path(ref['path']).is_absolute() and pins.get(ref['path'])==ref['sha256'],'mandatory_reference_pin_required')
+@@ -221,13 +238,16 @@
+ def main():
+     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--launch',action='store_true',required=True)
+     for n in ('manifest','manifest-sha256','self-sha256'):p.add_argument('--'+n,required=True)
++    p.add_argument('--launch-parent-pid',type=int,required=True);p.add_argument('--launch-parent-create-time',type=float,required=True)
+     args=p.parse_args();start,begin=time.time(),time.monotonic();wall,end=start+COMMON,begin+COMMON
+     import psutil
+-    preparers=capture(psutil,Path(__file__).resolve());need(not OUT.exists(),'exclusive_output_no_retry');OUT.mkdir()
+-    save(OUT/'preparer-identity.json',dict(schema=1,identities=preparers))
++    preparers,parent_observation=capture(psutil,args.launch_parent_pid,args.launch_parent_create_time)
++    need(not OUT.exists(),'exclusive_output_no_retry');OUT.mkdir()
++    save(OUT/'preparer-identity.json',dict(schema=2,identities=preparers,launch_parent_observation=parent_observation))
+     state=dict(schema='br-standard-qualification-campaign-v1',status='starting',start_unix=start,start_monotonic=begin,
+         absolute_deadline_unix=wall,common_deadline_monotonic=end,common_seconds=COMMON,
+-        owned_root=preparers[0],coordinator_bootstrap_identities=preparers[1:],supervisors=[],active_supervisor=None,
++        owned_root=preparers[0] if preparers else None,coordinator_bootstrap_identities=preparers[1:],supervisors=[],active_supervisor=None,
++        launch_parent_observation=parent_observation,
+         tasks=[],contracts=[],error_history=[],cleanup_uncertainty=[],cleanup_confirmed=False,source_unchanged=False,temporary_cleanup_confirmed=False,
+         artifact_procedure_passed=False,quality_metric=None,root_actual_exec_pending=True,promotion=False,submit=False,_manifest={})
+     cfg=None;coor=owner=awake=lease=None;tmp=None;pulse=lambda **kwargs:None;known=set();cores={};deployment={}
+@@ -271,6 +291,7 @@
+             and not sup.get('error_history'),'mandatory_child_failed')
+         return dict(path=str(target/(name+'.json')),sha256=cores[str(target/(name+'.json'))],record=sup)
+     try:
++        need(parent_observation['verified'] is True,'explicit_direct_launch_parent_unconfirmed')
+         cfg=config(str(Path(args.manifest).resolve()),args.manifest_sha256,args.self_sha256)
+         modules={}
+         for key,(relative,h) in HELPERS.items():
+@@ -352,7 +373,10 @@
+         except BaseException as exc:fail(exc,'terminal_save');persist()
+         finally:
+             if lease is not None:lease.__exit__(None,None,None)
+-        try:pulse(force=True)
++        try:
++            check(state['final_deadline_monotonic'],'final_phase_after_lease_over_cap')
++            state.update(finished_unix=time.time(),finished_monotonic=time.monotonic(),elapsed_common_seconds=time.monotonic()-begin)
++            persist();check(state['final_deadline_monotonic'],'terminal_save_after_lease_over_cap')
+         except BaseException as exc:fail(exc,'postlease');persist()
+     passed=state.get('status')=='completed_pending_root' and not state['error_history'] and state['cleanup_confirmed']
+     print(json.dumps(dict(status=state['status'],artifact_procedure_passed=bool(passed),quality_metric=state['quality_metric']),allow_nan=False))
+--- controller-r1/artifact_audit.py
++++ controller-r2/artifact_audit.py
+@@ -4,7 +4,7 @@
+ 
+ PACKET=Path(__file__).resolve().parent
+ WORK=PACKET.parents[1]
+-OUT=WORK/'br-standard-release-qualification-r1'
++OUT=WORK/'brq1'
+ R4=('uq3-cadence-hpo-next-dev/candidate/r4_adapter.py','823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd')
+ LOSS=('uq3-cadence-hpo-next-dev/candidate/audit_pair.py','f58a17c218ca89461c3c97c3498d197fa105b5a8ea0b240b26b232b12badf7ff')
+ 
+--- controller-r1/close_controller.py
++++ controller-r2/close_controller.py
+@@ -1,10 +1,10 @@
+ """Prospective root audit: own60 inside the same original6000; no fitting."""
+ from pathlib import Path
+-import argparse, hashlib, importlib.util, json, time
++import argparse, hashlib, importlib.util, json, math, time
+ 
+ PACKET=Path(__file__).resolve().parent
+ WORK=PACKET.parents[1]
+-OUT=WORK/'br-standard-release-qualification-r1'
++OUT=WORK/'brq1'
+ 
+ def need(value,code):
+     if not value:raise RuntimeError(code)
+@@ -17,24 +17,47 @@
+     spec=importlib.util.spec_from_file_location(name,path);value=importlib.util.module_from_spec(spec)
+     spec.loader.exec_module(value);return value
+ 
++def capture(psutil,parent_pid,parent_birth):
++    """Observe self+DIRECT declared parent; never inspect argv or adopt ancestors.
++
++    One microsecond absolute tolerance is ONLY for Get-Process ticks/Unix float
++    transport. Saved identities always contain the exact observed psutil birth.
++    PID and fresh direct OS relationship must match independently of tolerance.
++    """
++    transported=parent_birth if type(parent_birth) in (int,float) and math.isfinite(parent_birth) else None
++    rows=[];record=dict(declared=dict(pid=parent_pid,create_time=transported),
++        declared_birth_invalid=transported is None,
++        observed_parent=None,verified=False,transport_absolute_tolerance_seconds=1e-6)
++    try:
++        me=psutil.Process();own_birth=me.create_time();rows.append(dict(pid=me.pid,create_time=own_birth))
++        parent=me.parent();need(parent is not None,'direct_launch_parent_missing')
++        birth=parent.create_time();observed=dict(pid=parent.pid,create_time=birth);record['observed_parent']=observed
++        need(type(parent_pid) is int and parent_pid>0 and type(parent_birth) in (int,float)
++            and math.isfinite(parent_birth) and parent_birth>0,'typed_launch_parent_required')
++        need(parent.pid==parent_pid and abs(birth-parent_birth)<=1e-6,'direct_launch_parent_transport_mismatch')
++        need(me.ppid()==parent.pid and me.create_time()==own_birth and parent.create_time()==birth,
++            'direct_launch_parent_relationship_or_identity_changed')
++        rows.append(observed);record['verified']=True
++    except BaseException as exc:
++        record['error']=str(exc) if isinstance(exc,RuntimeError) else 'launch_parent_observation_unconfirmed'
++        record['exception_type']=type(exc).__name__
++    return rows,record
++
+ def main():
+     p=argparse.ArgumentParser(description=__doc__)
+     for key in ('manifest','manifest-sha256','self-sha256','driver-sha256','campaign-sha256','actual-tool-evidence'):
+         p.add_argument('--'+key,required=True)
+     p.add_argument('--actual-exec-session',type=int,default=None)
+     p.add_argument('--actual-exit-code',type=int,required=True)
++    p.add_argument('--launch-parent-pid',type=int,required=True);p.add_argument('--launch-parent-create-time',type=float,required=True)
+     a=p.parse_args();own_unix,own_mono=time.time(),time.monotonic()
+     import psutil
+     # Capture this actual helper/bootstrap before source, manifest or campaign validation.
+-    me=psutil.Process();preparers=[dict(pid=me.pid,create_time=me.create_time())];parent=me.parent()
+-    while parent is not None:
+-        birth=parent.create_time()
+-        if not any(v and not v.startswith('-') and Path(v).resolve()==Path(__file__).resolve() for v in parent.cmdline()):break
+-        need(parent.create_time()==birth,'root_bootstrap_identity_changed')
+-        preparers.append(dict(pid=parent.pid,create_time=birth));parent=parent.parent()
++    preparers,parent_observation=capture(psutil,a.launch_parent_pid,a.launch_parent_create_time)
+     early=OUT/'root-preparer-identity.json'
+     need(OUT.is_dir() and not early.exists(),'exclusive_actual_root_preparer_receipt')
+-    with early.open('x',encoding='utf-8') as stream:json.dump(dict(identities=preparers),stream,indent=2,allow_nan=False)
++    with early.open('x',encoding='utf-8') as stream:json.dump(dict(identities=preparers,launch_parent_observation=parent_observation),stream,indent=2,allow_nan=False)
++    need(parent_observation['verified'] is True,'root_explicit_direct_launch_parent_unconfirmed')
+     need(__debug__ and Path(a.manifest).is_absolute() and sha(__file__)==a.self_sha256,'root_source_or_absolute_manifest_required')
+     driver=PACKET/'run_controller.py';need(sha(driver)==a.driver_sha256,'root_driver_source_changed')
+     c=imported('_brq_root_source',driver)
+--- controller-r1/test_controller_contracts.py
++++ controller-r2/test_controller_contracts.py
+@@ -7,6 +7,49 @@
+     spec=importlib.util.spec_from_file_location(name,path);value=importlib.util.module_from_spec(spec);spec.loader.exec_module(value);return value
+ controller=module('_brq_contract_controller',ROOT/'run_controller.py')
+ audit=module('_brq_contract_audit',ROOT/'artifact_audit.py')
++closer=module('_brq_contract_closer',ROOT/'close_controller.py')
++
++class LaunchParentContracts(unittest.TestCase):
++    def test_actual_direct_parent_and_full_birth_saved_without_argv_parsing(self):
++        class Parent:
++            pid=20
++            def create_time(self):return 1700000000.1234567
++            def cmdline(self):raise AssertionError('Whole PowerShell -Command must never be parsed')
++            def parent(self):raise AssertionError('Unrelated ancestor must never be adopted')
++        class Me:
++            pid=21
++            def create_time(self):return 1700000001.25
++            def parent(self):return Parent()
++            def ppid(self):return 20
++        fake=types.SimpleNamespace(Process=Me)
++        for implementation in (controller,closer):
++            with self.subTest(implementation=implementation.__name__):
++                rows,receipt=implementation.capture(fake,20,1700000000.123457)
++                self.assertTrue(receipt['verified']);self.assertEqual(len(rows),2)
++                self.assertEqual(rows[1],{'pid':20,'create_time':1700000000.1234567})
++                self.assertNotEqual(rows[1]['create_time'],receipt['declared']['create_time'])
++    def test_missing_mismatch_reuse_and_denial_are_sticky_unverified_not_adopted(self):
++        class Parent:
++            pid=20
++            def __init__(self,mode):self.mode=mode;self.samples=0
++            def create_time(self):
++                self.samples+=1
++                if self.mode=='denied':raise PermissionError('fixture')
++                return 1700000000.0+(1 if self.mode=='reuse' and self.samples>1 else 0)
++        class Me:
++            pid=21
++            def __init__(self,mode):self.mode=mode;self.process=Parent(mode)
++            def create_time(self):return 1700000001.0
++            def parent(self):return None if self.mode=='missing' else self.process
++            def ppid(self):return 99 if self.mode=='relationship' else 20
++        for implementation in (controller,closer):
++            for mode,pid,birth in [('missing',20,1700000000.0),('denied',20,1700000000.0),
++                ('reuse',20,1700000000.0),('relationship',20,1700000000.0),('wrongPID',99,1700000000.0),
++                ('wrongbirth',20,1700000002.0),('nonfinite',20,float('nan'))]:
++                with self.subTest(implementation=implementation.__name__,mode=mode):
++                    rows,receipt=implementation.capture(types.SimpleNamespace(Process=lambda:Me(mode)),pid,birth)
++                    self.assertFalse(receipt['verified']);self.assertIn('error',receipt)
++                    self.assertEqual(rows,[{'pid':21,'create_time':1700000001.0}])
+ 
+ class EnvironmentContracts(unittest.TestCase):
+     def test_facade_copies_mapping_changes_only_AUTOML_THREADS_and_keeps_scrub(self):

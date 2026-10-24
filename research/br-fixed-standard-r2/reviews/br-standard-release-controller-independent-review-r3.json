@@ -1,0 +1,64 @@
+{
+  "schema": "br-standard-controller-independent-source-review-v3",
+  "scope": "Root-authorized direct-shell or one pinned venv redirector bootstrap applicability correction only",
+  "source_handoff": {
+    "path": "work/br-standard-release-qualification-next-dev/controller-r3/source-handoff.json",
+    "sha256": "b189f70e586234bf9ac8e4ed99d88772e5cdcfde00c02007636cf87585153a25"
+  },
+  "source_sha256": {
+    "run_controller.py": "a65ba96c5957d0ecf358254e64ed0dae6989f3034a7c358369b4229627c86709",
+    "close_controller.py": "a3b0059c5bd2258166c25ae1dacbff853e85b69621085fd9645de9cf9534743d",
+    "artifact_audit.py": "79f06069e130a9395888dbdb0de6777dc89bbde0932022f3e114925b55942757",
+    "test_controller_contracts.py": "6e062df82e25f181e9b1d2c30545851f3f4c7d3e26be15c08b84c4c79a9b6d1e"
+  },
+  "root_authority_refs": {
+    "scope_sha256": "2841333d9a4a5c2e4bc01c85a16128c0517c3bcc1aa9969100802221ffeb37f7",
+    "actual_launch_chain_metadata_sha256": "bffd82fed38719da00746ba6c71cc8ff4cd3f22aca6329cc81c29655ea71e29c",
+    "expected_venv_launcher_sha256": "d59c9a894b319828d023f3aa83d9a3488d2339f9e27e60e49b02abb0d53cf538"
+  },
+  "independent_static_checks": {
+    "R3_local_pins_exact": 15,
+    "R3_external_refs_exact": 14,
+    "R1_all9_files_preserved_byte_exact": true,
+    "R2_all12_files_preserved_byte_exact": true,
+    "R2_peer_unchanged_sha256": "c4e00ac0b6e1d3dd314f85493d4925f5c39626e4dfd4861d52b60a5842472930",
+    "controller_changed_definition_names": ["capture", "config", "main"],
+    "closer_changed_definition_names": ["capture", "main"],
+    "auditor_byte_exact_R2": true,
+    "capture_AST_identical_in_both_entrypoints": true,
+    "old8_caller_method_ASTs_exact": true,
+    "new_method_count": 2,
+    "all10_caller_method_AST_hashes_match_template": true,
+    "executor_source_and_unpacked_methods_unchanged": 18,
+    "expected_total_test_executions": 46,
+    "actual_test_executions": 0
+  },
+  "applicability_history": {
+    "R2_source_review_is_preserved": true,
+    "R2_runtime_failure_claimed": false,
+    "actual_metadata_boundary": "Root's harmless launch metadata established an intervening venv redirector even for the normal PowerShell ampersand launch. R2's exact direct-parent contract therefore did not capture the separately declared shell. R3 addresses only this observed applicability gap."
+  },
+  "source_judgment": [
+    "Accepted chains are exactly self -> declared shell, or self -> one direct launcher -> declared shell. The function makes at most one parent.parent() call and never traverses beyond that shell.",
+    "The intermediate branch requires the exact expected executable path and SHA256 before accepting its immediate parent. No argv parsing, arbitrary ancestor search, cached approval or parent termination is added.",
+    "Actual self, direct-parent and shell PID/create_time identities are saved separately from the declared shell birth. Current PPID links and repeated exact observed births must remain stable before verified=true.",
+    "The documented one-microsecond absolute tolerance applies only to the transported declared shell birth. Actual identities retain the unrounded observed psutil births.",
+    "Denial, missing shell, extra hop, path/hash mismatch, reuse or reparenting leaves observation unverified; both entry points save the early observation and stop before candidate activity.",
+    "The new mock source covers a successful exact two-hop chain and wrong executable/hash, extra hop, missing shell, reparenting, reuse and denial for both implementations. Existing direct-parent and all eight R2 method bodies are unchanged.",
+    "The same shortened output path, existing final240 postlease checks, clocks, caps, candidate archive, recipes, two standard calls and independent scoring gates are preserved."
+  ],
+  "conclusion": "No remaining concrete source blocker in the assigned narrow R3 bootstrap scope",
+  "readiness": "SOURCE_REVIEW_CLOSED_NOT_RUNTIME_READY",
+  "pending_actual_evidence": [
+    "Whole UQ3 actual terminal/root/current complete absence binding",
+    "Root publication and frozen private READY manifest",
+    "One future authorized qualification clock and actual test/model/audit/cleanup outcomes"
+  ],
+  "reviewer_activity": {
+    "candidate_or_guard_imports": 0,
+    "tests_models_API_PID_scans_data_predictions_truth_reads": 0,
+    "clock_assigned": false,
+    "canonical_or_frozen_files_modified": false,
+    "new_metric_or_runtime_PASS_claimed": false
+  }
+}

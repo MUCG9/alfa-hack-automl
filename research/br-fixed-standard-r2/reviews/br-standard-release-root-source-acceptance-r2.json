@@ -1,0 +1,19 @@
+{
+  "schema": "br-fixed-standard-source-acceptance-r2",
+  "checked_unix": 1792841247.8990927,
+  "status": "SOURCE_REVIEW_ACCEPTED_RUNTIME_NOT_READY",
+  "handoff_sha256": "64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09",
+  "archive_sha256": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a",
+  "peer_sha256": "88a19482855ebb068f9ee11ef0889bd078cf10fbc4b18743e8bc086b33db11ec",
+  "root_static_review_sha256": "456383d6b210e69ac075f2acff6bea02bf75f8e9486f88f58988307eb992974a",
+  "R1_three_findings_retained_and_closed_by_new_source": true,
+  "source_prepared_contract_methods": 18,
+  "executed_contracts": 0,
+  "new_runtime_metrics": null,
+  "admission": "No candidate imports/tests/fits while UQ3session18415 active. Need actual whole exec/root/closer/fresh full union source+cleanup, frozen qualification controller/auditor/closer peer/root review, final input/library/protocol bindings, then one new original bounded sequential technical+two-standard-call qualification.",
+  "candidate_archive_ready_for_submission": false,
+  "new_standard_metric": null,
+  "current_Qwen_modified": false,
+  "promotion": false,
+  "upload": false
+}

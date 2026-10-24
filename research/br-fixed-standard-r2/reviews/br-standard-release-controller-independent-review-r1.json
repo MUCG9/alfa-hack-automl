@@ -1,0 +1,84 @@
+{
+  "schema": "br-standard-controller-independent-source-review-v1",
+  "scope": "Frozen controller source, source-bound test declarations and dependency interfaces only",
+  "source_handoff": {
+    "path": "work/br-standard-release-qualification-next-dev/controller-r1/source-handoff.json",
+    "sha256": "8d4c259ddbf0a56a1366e25cc60ed4ada4f111dd10acdf1f0b911c2bd55b4249"
+  },
+  "runtime_source_sha256": {
+    "run_controller.py": "3770ddf310190864471e7445760fc45b5c670c14b5ba2930df095da863a83486",
+    "artifact_audit.py": "9b81acc3f67a3b2879b26c119a5cf2c8973b6c1e06fbed19306d7e2a54a3dcaf",
+    "close_controller.py": "84626eddba20911fbe3520a002edd79788b429bfdf74a01ce4429f9c107d68fb",
+    "test_controller_contracts.py": "e44539301f03771645ec8241c1a5bbc45ed25ff0f1472d9d6fa87550cd6ba961"
+  },
+  "hash_and_AST_checks": {
+    "local_handoff_files_exact": 9,
+    "external_source_refs_exact": 10,
+    "caller_test_method_count": 6,
+    "caller_test_method_AST_map_matches_template": true,
+    "four_runtime_test_source_files_parse_as_AST": true,
+    "candidate_handoff_sha256": "64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09",
+    "candidate_archive_sha256": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a"
+  },
+  "findings": [
+    {
+      "id": "BQC01",
+      "severity": "P1",
+      "status": "OPEN_SOURCE_BLOCKER",
+      "locations": [
+        {"path": "run_controller.py", "lines": [62, 69]},
+        {"path": "close_controller.py", "lines": [29, 34]}
+      ],
+      "finding": "Early bootstrap capture accepts an ancestor only when a complete non-option argv item resolves exactly to the Python source file. A PowerShell launch with -Command and the whole launch script in one argv item has no such item. The actual owned launching shell is silently omitted; interpreting the whole command as a path can also raise before the early preparer receipt is written.",
+      "source_counterexample": "Parent argv consists of a PowerShell executable, -Command and one script string that invokes the interpreter and the source path. No argv element equals the source path. The existing any(...) predicate is false and the while loop breaks with only the Python identity captured.",
+      "impact": "Bootstrap RSS and the later known/preparer closure union may omit an actually owned launch parent. This is separate from historical unknown parents, which must remain unknown and must not be adopted retrospectively.",
+      "minimum_correction": "Use a narrow trusted declaration/provenance check for the actual direct launch parent, capture its exact PID/create_time before validation, and stop explicitly if a required owned parent is missing or unconfirmed. Do not infer ownership by admitting arbitrary system ancestors or arbitrary command substrings.",
+      "execution_used_for_finding": false
+    },
+    {
+      "id": "BQC02",
+      "severity": "P2",
+      "status": "OPEN_SOURCE_BLOCKER",
+      "locations": [
+        {"path": "run_controller.py", "lines": [331, 356]}
+      ],
+      "finding": "The final240 deadline is checked at line351 before ResearchLock.__exit__. After lock release, line355 calls pulse(force=True), whose deadline is the common6000 end, but does not check the final phase deadline again.",
+      "source_counterexample": "The last phase check occurs just before final_deadline. A successful lock release lasts less than the ten-second observation limit but ends after final_deadline and before the common end. The post-release pulse succeeds; status and error_history remain positive, so line357 can qualify a final phase longer than240 seconds.",
+      "impact": "The promised final240 cap does not cover the complete final release path even though the common deadline and gap guard remain enforced.",
+      "minimum_correction": "After lock release, check the existing absolute final_deadline_monotonic as well as the original common clock; preserve the same prior observation and sticky failure behavior. No new clock or allowance is needed.",
+      "execution_used_for_finding": false
+    }
+  ],
+  "reviewed_without_additional_scoped_blocker": [
+    "The fixed task loop issues precisely two literal standard positional model commands; no duplicate outer cut fits or whole-search/HPO requirement is introduced.",
+    "Both task cores, saved actual terminal supervisors and all frozen input/source references are rehashed before R4 imports and pristine numerical reads; the six internally generated cut/refit roots remain in the sealed task inventories.",
+    "Cut jobs must omit fit_iterations, full refit must use the recursive median of the two new trees, and raw Br/CLASS recipes are checked independently.",
+    "The lexical facade is restricted to explicit classification cell/path roles, with separate stdlib lexical witnesses; numeric regression parsing is preserved.",
+    "The environment facade copies the original scrubbed model=False environment, changes only AUTOML_THREADS for the two standard calls and restores the original function in finally.",
+    "Candidate intrinsic9900 is reported separately from actual parent/child/common watchdog caps. Worker1536 and conservative combined2048 receipts are checked without claiming exact OS-owned RSS.",
+    "Normal negative predecessor admission requires actual UQ3 terminal, clean/source proof and a complete current known/preparer observation. NULL future bindings and the NOT_READY template are intentional and do not constitute runtime readiness.",
+    "Root positive qualification requires actual driver exit0, independent artifact audit, source checks, known cleanup and verified power release. A clean negative model procedure is not promoted to a positive release."
+  ],
+  "declared_future_tests": {
+    "executor_unique_methods": 18,
+    "source_executor_method_executions": 18,
+    "unpacked_same_method_executions": 18,
+    "caller_unique_methods": 6,
+    "total_expected_executions_before_any_revision": 42,
+    "observed_test_executions_by_reviewer": 0,
+    "these_counts_are_not_learner_fit_counts": true
+  },
+  "qualification": {
+    "source_scope_status": "CHANGES_REQUIRED_BQC01_BQC02",
+    "ready_for_launch": false,
+    "actual_clock": null,
+    "actual_tests": null,
+    "actual_model_fits": null,
+    "actual_metrics": null,
+    "historical_metrics_inherited": false,
+    "UQ3_outcomes_inspected": false,
+    "frozen_sources_modified": false,
+    "candidate_or_guard_imports": 0,
+    "tests_fits_API_process_scans_data_prediction_truth_reads": 0
+  }
+}

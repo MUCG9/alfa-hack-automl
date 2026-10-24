@@ -1,0 +1,74 @@
+{
+  "schema": "br-standard-controller-independent-source-review-v2",
+  "scope": "Narrow BQC01/BQC02 correction and necessary path/hash/test-count rebinding only",
+  "source_handoff": {
+    "path": "work/br-standard-release-qualification-next-dev/controller-r2/source-handoff.json",
+    "sha256": "c27a1f46782e1a692bfe19b3b9a479771483ca4e75efdaa0a951d939a490f95d"
+  },
+  "reviewed_runtime_sha256": {
+    "run_controller.py": "15f7bf6c828ca5123c0009004556873fbe7c7100887a6107f233c1d5061b8a1d",
+    "artifact_audit.py": "79f06069e130a9395888dbdb0de6777dc89bbde0932022f3e114925b55942757",
+    "close_controller.py": "c18941f523a3aa25956e0a63efa592fe1f73af8aac7e27087ea3ed2d1d5a2b23",
+    "test_controller_contracts.py": "ce75c8b52e2619d11916a01d6f7ceb0351a76894b27327b5f12eb2a8615a8a58"
+  },
+  "preserved_R1": {
+    "handoff_sha256": "8d4c259ddbf0a56a1366e25cc60ed4ada4f111dd10acdf1f0b911c2bd55b4249",
+    "all9_original_files_byte_exact": true,
+    "finding_receipt": "work/br-standard-release-controller-independent-review-r1.json",
+    "finding_receipt_sha256": "8a10f3f2c10919295f60438aba5903dbc4fbd99e85bde3cede3032c094ff08b2",
+    "original_packet_execution_claimed": false
+  },
+  "independent_static_checks": {
+    "R2_local_handoff_pins_exact": 12,
+    "R2_external_source_refs_exact": 11,
+    "controller_changed_definition_names": ["capture", "config", "main"],
+    "closer_changed_definition_names": ["capture", "main"],
+    "auditor_all_function_and_class_ASTs_exact_R1": true,
+    "auditor_runtime_delta_only_OUT_constant": true,
+    "all_three_runtime_OUT_constants": "WORK/brq1",
+    "controller_and_closer_capture_AST_identical": true,
+    "old6_caller_test_method_ASTs_exact": true,
+    "new_caller_methods": 2,
+    "all8_caller_method_AST_hashes_match_template": true,
+    "candidate_handoff_sha256_unchanged": "64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09",
+    "candidate_archive_sha256_unchanged": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a"
+  },
+  "resolved_findings": [
+    {
+      "id": "BQC01",
+      "status": "RESOLVED_IN_SOURCE",
+      "evidence": "Both entry points require declared direct-parent PID and create-time. Capture observes the actual OS direct parent, verifies PID, current parent relationship and stable actual births, and saves exact observed identities before manifest/source validation. It does not parse argv or traverse unrelated ancestors. Failed, denied, missing, reused or mismatched observation stays unverified and stops before candidate activity.",
+      "precision_boundary": "The explicitly documented one-microsecond absolute comparison is for transported declaration precision only. Exact observed psutil birth, exact PID and stable direct-parent relationship remain the saved authority.",
+      "prepared_contracts": "Two new methods cover successful transported birth with no argv/ancestor access and missing/denied/reused/relationship/PID/birth/nonfinite failures across both implementations. These methods were read, not run."
+    },
+    {
+      "id": "BQC02",
+      "status": "RESOLVED_IN_SOURCE",
+      "evidence": "After ResearchLock.__exit__, controller lines377 and379 check the existing final_deadline_monotonic, respectively before and after the final persisted campaign. The same original common clock and prior successful observation are retained; a late release or save records failure instead of reaching a positive exit."
+    }
+  ],
+  "unchanged_review_boundaries": [
+    "Precisely two ordinary positional standard model calls, same raw fixed recipes and candidate bytes; no extra model jobs or changed numerical policy.",
+    "All-six-root source/input/seal barrier, independent R4 scoring and strict recipe/row/probability/median/refit gates remain as reviewed in R1.",
+    "Common6000, setup600, model900/3600, audit600, final240 and root60 allocations are unchanged; no clock is assigned by source preparation.",
+    "Future actual UQ3 terminal/root/fresh absence, publication and private READY bindings remain mandatory and currently null."
+  ],
+  "future_contract_counts": {
+    "source_executor": 18,
+    "unpacked_same_assertions": 18,
+    "caller_methods": 8,
+    "total_expected_executions": 44,
+    "observed_executions": 0,
+    "learner_fit_count": null
+  },
+  "conclusion": "No remaining concrete source blocker in the assigned narrow R2 scope",
+  "launch_readiness": "NOT_READY_PENDING_ACTUAL_BINDINGS_AND_ROOT_AUTHORIZED_EXECUTION",
+  "actual_checks": {
+    "candidate_or_guard_imports": 0,
+    "tests_fits_API_data_prediction_truth_reads_process_scans": 0,
+    "clock_assigned": false,
+    "frozen_or_canonical_files_changed": false,
+    "UQ3_outcomes_read": false,
+    "new_metrics_or_runtime_PASS_claimed": false
+  }
+}

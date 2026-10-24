@@ -1,0 +1,498 @@
+{
+  "schema": "br-standard-qualification-private-v1",
+  "readiness": "NOT_READY",
+  "missing_bindings": [
+    "Root-reviewed final controller peer",
+    "Whole UQ3 actual exit/tool + clean/source root and actual closer evidence",
+    "Complete fresh known root/supervisor/preparer observation",
+    "Absolute interpreter/dependency/input paths and hashes",
+    "Root source review/publication/private manifest hash and launch lease"
+  ],
+  "path_resolution": "All paths below are WORK-relative source proposals; root must resolve ALL private runtime paths to absolute and freeze them before launch",
+  "output": "brq1",
+  "python": null,
+  "lock": "alfa-hack-automl/test-runs/.owned-research.lock",
+  "common_seconds": 6000,
+  "caps": {
+    "setup": 600,
+    "regression": [
+      900,
+      870
+    ],
+    "classification": [
+      3600,
+      3570
+    ],
+    "audit": [
+      600,
+      570
+    ],
+    "final": 240,
+    "root": 60
+  },
+  "helpers": {
+    "coordinator": {
+      "path": "run_lean_mvp_r2.py",
+      "sha256": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818"
+    },
+    "owner": {
+      "path": "support_component_coordinator.py",
+      "sha256": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8"
+    },
+    "processes": {
+      "path": "historical-runtime-support/fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d.py",
+      "sha256": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d"
+    },
+    "lock": {
+      "path": "alfa-hack-automl/tools/research_lock.py",
+      "sha256": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45"
+    },
+    "awake": {
+      "path": "awake-next-dev/awake_guard.py",
+      "sha256": "9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b"
+    }
+  },
+  "executor": {
+    "handoff": {
+      "path": "br-standard-release-next-dev-r2/source-handoff.json",
+      "sha256": "64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09"
+    },
+    "archive": {
+      "path": "br-standard-release-next-dev-r2/solution-br-fixed-candidate.zip",
+      "sha256": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a"
+    },
+    "members_sha256": {
+      "agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+      "agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+      "agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+      "agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+      "automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+      "automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+      "automl_contracts_error_analysis.py": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a",
+      "automl_contracts_messages.py": "6f5bf6742bfde3e015559d5e4638ab749930f4177a0c24c3268f24ef8197c9a6",
+      "automl_contracts_metrics.py": "30bc28707a08c06a7272fafff1685ef4b0b1b4be2748225a7fe6abaf5d24c356",
+      "automl_ensembles.py": "f52deb156e74e6e8e46b67fa6045bbaf942a2b9dac32e6ec11b16d1782328185",
+      "automl_error_analysis_api.py": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad",
+      "automl_error_analysis_artifacts.py": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454",
+      "automl_error_analysis_classification.py": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073",
+      "automl_error_analysis_comparisons.py": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418",
+      "automl_error_analysis_preparation.py": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52",
+      "automl_error_analysis_regression.py": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719",
+      "automl_error_analysis_reporting.py": "5d1e37b3360c8096277576eb174737eb1a209ae9f656a42d71ff3d6bedb0b051",
+      "automl_error_analysis_service.py": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630",
+      "automl_error_analysis_slices.py": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f",
+      "automl_error_analysis_uncertainty.py": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591",
+      "automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+      "automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+      "automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
+      "automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+      "automl_execution_api.py": "73c5cd7787959119d17dacd4c051d1ba72201e13b83dbb2c1983004a8208ef27",
+      "automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+      "automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+      "automl_execution_feature_engineering_selection.py": "9b5f5104425a9416f005acc11af7239fec2e10f59a7c8c15dc4e99878bef38fa",
+      "automl_execution_feature_views.py": "3188c6a64aee09a012fdb4bf49eeec1b780046ad0a4390ad69a7f9d2e7c598ea",
+      "automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+      "automl_execution_postprocessing_targets.py": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218",
+      "automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+      "automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+      "automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+      "automl_features.py": "1c505e20611ad9e96affeeee0e7e8ac88b3a9b8a3167761e5a252dcd283511a8",
+      "automl_fixed_release.py": "fe8a08f193db5c05c60a637c9fa83814fb86651d2315338b2d588a3abd740bf7",
+      "automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+      "automl_infrastructure_llm_gateway.py": "580261a8cbc720fef77f8e33819faa6c401153b4c6c2006536ec2bfaa0435551",
+      "automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+      "automl_infrastructure_processes.py": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3",
+      "automl_infrastructure_resources.py": "0053175adce33660c72cfda4dbbe3dc7db24bcdd114a2f40f0906f856332bec2",
+      "automl_infrastructure_run_budget.py": "baa9f7469ba9e8344005ca50a77d48e3c856f1a97010f27dee8fc40bdc42a9f0",
+      "automl_infrastructure_tables.py": "7ce3aa0125eb27b14512b37a57688835b8c039015dc7fc80f324c8565fa9e162",
+      "automl_model_catboost.py": "bc4934d9146fb5925df1ce40220c0cd87f143c13213b3c4029266bc9a5cd10c4",
+      "automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+      "automl_model_lightgbm.py": "95f9ade67d71170ed822f371ead79dab24c3867837d4fc9e05cc72129adc9b31",
+      "automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+      "automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+      "automl_models.py": "435db85acb24305d3b6a9535b8653e95fc559d264118f9f300d350e158de97f5",
+      "automl_policy.py": "bd751953a3ffad7b7f4709c99df2802eb6b8ade9a5276841bd8e96378d393b91",
+      "automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+      "automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+      "automl_release_recipes.py": "d446c93e410cda9bff44aff7f09ffc843d69aa15c794bd73d422d587de55f880",
+      "automl_release_runtime.py": "eab5c87d017610dbd2a31fba4a2f6ad70249aaa28117b835cd45675f4706c23d",
+      "automl_runner.py": "0f3208fcfb86587b88bb778148cb207713382d417fe7c2e92581721047989bc0",
+      "automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+      "automl_search_hpo.py": "2675ef78df893b73689ed38143d252e7d747b059494f59c4bfbd4989fd78c508",
+      "automl_search_multitarget.py": "f56063373e7af57472069a5043de7e6b65d5d644d52ece3884a875e93d075fbf",
+      "automl_search_stages.py": "bbc677fae6d7963a30cf0a64296249daae0b9dfbb7fef875babbb27ca5d25b84",
+      "automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+      "automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+      "automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+      "automl_task_understanding_metric_contract.py": "601db6655324d7fbdcd11de28441d5153ff675d7b7de02a867b8525f788d43a0",
+      "automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+      "automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+      "automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+      "automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+      "automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+      "automl_worker.py": "c7dd895d0fecfb40c1837c69d08fe04b4297e1304ee364e760e40b36892bd74d",
+      "ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+      "model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+      "requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+      "solution.py": "f666465b00d20168e28359559f5e81787316d66c3a90964852ee4cb6b3fb3eb5"
+    },
+    "test": "br-standard-release-next-dev-r2/tests/test_fixed_release.py",
+    "test_count": 18,
+    "test_methods": {
+      "FixedReleaseContracts.test_exact_embedded_raw_recipes_and_outer_component_geometry": "6de9fda270a7d46a56da3cbbe5597463255b729d13d20ed88487f04c33bac8be",
+      "FixedReleaseContracts.test_routing_uses_only_supported_kind_metric_not_schema_names": "1ad10b75df9b921a08cfee48eeabe5743ca045049097afecb3563a5c6a2b415f",
+      "FixedReleaseContracts.test_unknown_incompatible_metric_and_text_do_not_get_wrong_recipe": "18c87fc4b341f89a38d19afbef64067e24c8b61ebf858d1472576eb550368bb9",
+      "FixedReleaseContracts.test_fixed_recipe_returns_independent_copies": "5f9df044504358796a96d26aef9c5ea1bfc45ff415bcada9e0ad15319e2a04e2",
+      "FixedReleaseContracts.test_actual_cut_iterations_not_historical_tree_feed_only_full_refit": "bee583bb4f0a7e8162677137eae86c732bce2672a81096b11dafd26b02f22cf7",
+      "FixedReleaseContracts.test_recursive_actual_median_and_malformed_trees": "333754d596d89b5fbd39ddaf4914a32eb5e2210795c421abb8b45d5b51204be0",
+      "FixedReleaseContracts.test_lexical_ID_preserves_numeric_regression_target_and_predictor_parsing": "4a8c98ba91843f0c34fd8fb7f3addf95e2388a6a1d2f8a442ae322f3cdc8be0d",
+      "FixedReleaseContracts.test_worker_lexical_class_labels_and_sample_IDs": "6e278d95607f7e8d9a8d8a1e725258dba2e80cb43176c42831822702979a2fc8",
+      "FixedReleaseContracts.test_missing_declared_target_role_stops_before_discovery_or_fit": "eeeaa7b2cb5bf1042dec7923eb376ac0b31d6c27bc4bcf7bb9cf8ae5c03d3172",
+      "FixedReleaseContracts.test_renamed_paths_and_lexical_sample_order_use_declared_roles": "3fe0bc77a97cb0f3431a42eb140ce2a57e0be13afb224d9e5bb07f1e29e7fbcd",
+      "FixedReleaseContracts.test_strict_original_metric_contrast_unknown_and_conflicts": "56294e7d373cd6d744062582ee51e378583c92749f60c601a414384f4bf2caf4",
+      "FixedReleaseContracts.test_publication_preserves_lexical_IDs_canonical_labels_and_sample_order": "abd1917f8041c09b3c410161462cd78d0618260aae36c553b71d07f61a018d55",
+      "FixedReleaseContracts.test_bad_probability_order_and_nonfinite_values_cannot_publish": "495ed46a41cde30b509d75e7d7e12ef9ef89e7465e12b9fe169fdb9a0b3419f7",
+      "FixedReleaseContracts.test_strict_adapter_preserves_primary_failure_and_restores_caller_scope": "e990cc50e7274584bd08e966383a5ef1f5fb219e30658f68f806558c47c06d46",
+      "FixedReleaseContracts.test_clock_actual_sample_cadence_and_sticky_denial": "c5055e1d4be4a331ac9805acdcf334658e66a4b9b4076c107b2bafea0bf0b59e",
+      "FixedReleaseContracts.test_terminal_memory_caps_boundary_and_denial_are_not_success": "03a8d5710161339227cdc4e41a01e4be1503b63e1261a1896d34de13a9f33d7c",
+      "FixedReleaseContracts.test_publication_alias_preflight_preserves_protected_files": "86d528e04cff6772d0e13cdb1630c6f21c1c54df3992f895a371e17d0a54c479",
+      "FixedReleaseContracts.test_source_base_requirements_and_numerical_adapter_bytes_preserved": "547a629e19bef318f0eadf41a3f15da14f17233b4191df818f45b199db78dcf7"
+    },
+    "recipe_fixture": "br-standard-release-next-dev-r2/tests/fixtures/recipes.json",
+    "base_inventory": "br-standard-release-next-dev-r2/base-inventory.json"
+  },
+  "candidate_source_review": {
+    "path": "br-standard-release-independent-source-review-r2.json",
+    "sha256": "88a19482855ebb068f9ee11ef0889bd078cf10fbc4b18743e8bc086b33db11ec"
+  },
+  "counts": {
+    "path": "uar-count-parser-next-dev/counts.py",
+    "sha256": "bc320fd4723476c8a73404ed17a7bdec0cd4c69b1b1d41b321e370549c8cf4d3"
+  },
+  "caller_contract_count": 10,
+  "caller_test_methods": {
+    "LaunchParentContracts.test_one_exact_pinned_launcher_binds_actual_direct_and_separate_declared_shell": "6613ccf065612ccacea56f8cae837dfbfadc6f00f09eaba77f342a83475a1746",
+    "LaunchParentContracts.test_launcher_path_hash_extra_hop_reparent_reuse_or_denial_never_grant_parent": "06071f443319d554ac0db173d0e394471928167a119d080fc99fd04280c557f4",
+    "LaunchParentContracts.test_actual_direct_parent_and_full_birth_saved_without_argv_parsing": "c1349e96d95e643c7ca603f49c2d1ade3e4fe4ad0f51930202c5fd6b5fa618c4",
+    "LaunchParentContracts.test_missing_mismatch_reuse_and_denial_are_sticky_unverified_not_adopted": "dfa37f94bc132614eb24dae08a4618d94f7a64dbc1bcbb61fdc0e771732df162",
+    "EnvironmentContracts.test_facade_copies_mapping_changes_only_AUTOML_THREADS_and_keeps_scrub": "6424f8deeadf61986f31a68a79ea113507b7dcf3ee755d0994b28e5c82abea09",
+    "EnvironmentContracts.test_facade_restores_on_primary_failure_and_refuses_model_API_route": "8fd916c10b98a730bbc63272c42fa8edfd55558d5574174b2321e1d5b341e28c",
+    "EnvironmentContracts.test_facade_fails_closed_if_original_scrub_returns_credential": "2d43f5c2af10dae020bf075d51c1f3d1aee3084fa2f34de50830ed78e503c1a3",
+    "LexicalAuditContracts.test_stdlib_witness_keeps_NA_001_and_empty_distinct": "f1601f941e548dd0c8f04fd46cc8d13b454bd749bf2d1c2b9c61785d5fa16db3",
+    "LexicalAuditContracts.test_proxy_converts_only_explicit_path_and_declared_class_cells": "f8c289cd46e1612798559157b20aefd65431ec12eb80167c73dc245924ea8b94",
+    "LexicalAuditContracts.test_witness_rejects_duplicate_or_missing_headers_and_wrong_width": "6138cc90f44815167045e93262c75a6c313fcaa6ab7225f991b7e34c0c2eb32f"
+  },
+  "immutable_files": {
+    "br-standard-release-next-dev-r2/base-inventory.json": "642fe72b1bc2a172a83826b1362ba0ad6a995524c866fa3b1b17d0f86ac39483",
+    "br-standard-release-next-dev-r2/candidate/agent_core.py": "9792ebcddae60c017f032bda5b4a33d26d491d30f8bc33375b5e07d4505bb085",
+    "br-standard-release-next-dev-r2/candidate/agent_policy.py": "4c53ee13f60ce27382bf1724f4ed23460a5d686d5c0957677dd316c45730ef3b",
+    "br-standard-release-next-dev-r2/candidate/agent_runner.py": "296154107dc473aa0cc7788726e9a281aca8fa090d1a76b75c2cb4a147bc4342",
+    "br-standard-release-next-dev-r2/candidate/agent_worker.py": "e6549006a03f4de0752efe3abd05ff2c0f77530ab4d764591c9301158a3d2ae4",
+    "br-standard-release-next-dev-r2/candidate/automl_atomic.py": "17292f234cf5bbbc3c702ae835bb865a2414de3b63600c3f7aacfabf9f1fee86",
+    "br-standard-release-next-dev-r2/candidate/automl_callbacks.py": "e18bc7927ef92106561ee7e2c81c63f9f09866e25a553ce66984535000fe02e9",
+    "br-standard-release-next-dev-r2/candidate/automl_contracts_error_analysis.py": "952e4a02672661d99d47e2e78268370e45bf727bdbe46ea7fc88455b5e41401a",
+    "br-standard-release-next-dev-r2/candidate/automl_contracts_messages.py": "6f5bf6742bfde3e015559d5e4638ab749930f4177a0c24c3268f24ef8197c9a6",
+    "br-standard-release-next-dev-r2/candidate/automl_contracts_metrics.py": "30bc28707a08c06a7272fafff1685ef4b0b1b4be2748225a7fe6abaf5d24c356",
+    "br-standard-release-next-dev-r2/candidate/automl_ensembles.py": "f52deb156e74e6e8e46b67fa6045bbaf942a2b9dac32e6ec11b16d1782328185",
+    "br-standard-release-next-dev-r2/candidate/automl_error_analysis_api.py": "15e69e4cdb4dc52b7c7ed24d67627f6f3be518c82f05c311226a44ffc4e888ad",
+    "br-standard-release-next-dev-r2/candidate/automl_error_analysis_artifacts.py": "cc1760ad8fa5c730a70e69a7bf62e7536482c1bca56855787836004ed1ae5454",
+    "br-standard-release-next-dev-r2/candidate/automl_error_analysis_classification.py": "b7b481bca247c57fe444ac2c57f68239bcad31df39d1ce752d04f52b6d79c073",
+    "br-standard-release-next-dev-r2/candidate/automl_error_analysis_comparisons.py": "edd5610c53cf80583e01a7b8e1f829b9708ad23a238ff5a9b228a3e40b66c418",
+    "br-standard-release-next-dev-r2/candidate/automl_error_analysis_preparation.py": "961d8fac6b4e6be07c5ac8e1ca223cd397579d11fbf9a1868e14efff0a26ed52",
+    "br-standard-release-next-dev-r2/candidate/automl_error_analysis_regression.py": "ab69ae8959dbcd1cbffa4f975d5cf4e434e37e4d065cd23f1cd0c28383a0f719",
+    "br-standard-release-next-dev-r2/candidate/automl_error_analysis_reporting.py": "5d1e37b3360c8096277576eb174737eb1a209ae9f656a42d71ff3d6bedb0b051",
+    "br-standard-release-next-dev-r2/candidate/automl_error_analysis_service.py": "9444d6d3f215e6dae750d326ad1ae631c93d38db9e00664bd8efdbc9b9487630",
+    "br-standard-release-next-dev-r2/candidate/automl_error_analysis_slices.py": "16f7d2b906b4757abe0d10bfa311e6b6652e6bb2a821bd5a58ff6676b48c0c2f",
+    "br-standard-release-next-dev-r2/candidate/automl_error_analysis_uncertainty.py": "dbfdd0de3c29faeea8ec0ee5246e373eda15977e0da10cd745b04de4c037a591",
+    "br-standard-release-next-dev-r2/candidate/automl_evaluation.py": "6673ca84645b0ef9c4fe44bdb060b71ce60c18e18e78a54deb76552a471bce4d",
+    "br-standard-release-next-dev-r2/candidate/automl_evaluation_api.py": "477c592eb0947716a6297693a9256f5b2330a898ed8645edda1fbfeb3c7ceb73",
+    "br-standard-release-next-dev-r2/candidate/automl_evaluation_postprocessor.py": "a412cc9d4619c27e6eecd1086276090d95de9c444b15ea48cf61a92fc1848551",
+    "br-standard-release-next-dev-r2/candidate/automl_evaluation_ranking.py": "f3fb012708c84a90fd55a385f6a3f73225ac79c99fb6c79bf50de439962dc58a",
+    "br-standard-release-next-dev-r2/candidate/automl_execution_api.py": "73c5cd7787959119d17dacd4c051d1ba72201e13b83dbb2c1983004a8208ef27",
+    "br-standard-release-next-dev-r2/candidate/automl_execution_augmentation_masking.py": "48b43ebaaaa0254289f165e9b4d0690326fa1c7dd01dd2994ebe6e7485c5d748",
+    "br-standard-release-next-dev-r2/candidate/automl_execution_augmentation_noop.py": "167b84f07a7c2877908857c7d99e0bbab42011f7bcb600d44e158306adc87b9c",
+    "br-standard-release-next-dev-r2/candidate/automl_execution_feature_engineering_selection.py": "9b5f5104425a9416f005acc11af7239fec2e10f59a7c8c15dc4e99878bef38fa",
+    "br-standard-release-next-dev-r2/candidate/automl_execution_feature_views.py": "3188c6a64aee09a012fdb4bf49eeec1b780046ad0a4390ad69a7f9d2e7c598ea",
+    "br-standard-release-next-dev-r2/candidate/automl_execution_model_adapters_specialists.py": "c58db65139e17318a8650bebf0ffcfc741f118c4171d54f2febfd797cdd120df",
+    "br-standard-release-next-dev-r2/candidate/automl_execution_postprocessing_targets.py": "b7d30388007680add03533cc059f7cd97d25c536ea06810c783945ce643b2218",
+    "br-standard-release-next-dev-r2/candidate/automl_execution_preprocessing_history.py": "be138cb903d168f1d898b0d6859257cf1f25a38208afe9fae998d4a561337e56",
+    "br-standard-release-next-dev-r2/candidate/automl_execution_preprocessing_target_encoding.py": "29e1ed8c6b795a5e71734c39d1a10eab164dc4ecf4e66697be82cadeff6f5873",
+    "br-standard-release-next-dev-r2/candidate/automl_execution_sampling_policies.py": "efe030ba89b9c0a4815d513a15cbf1a42e767a1444d6ed16928f9997d73580a5",
+    "br-standard-release-next-dev-r2/candidate/automl_features.py": "1c505e20611ad9e96affeeee0e7e8ac88b3a9b8a3167761e5a252dcd283511a8",
+    "br-standard-release-next-dev-r2/candidate/automl_fixed_release.py": "fe8a08f193db5c05c60a637c9fa83814fb86651d2315338b2d588a3abd740bf7",
+    "br-standard-release-next-dev-r2/candidate/automl_frames.py": "10e661597d322c26647c8cf6e665f8703730cfd61bfd26458988cb8ce4c78249",
+    "br-standard-release-next-dev-r2/candidate/automl_infrastructure_llm_gateway.py": "580261a8cbc720fef77f8e33819faa6c401153b4c6c2006536ec2bfaa0435551",
+    "br-standard-release-next-dev-r2/candidate/automl_infrastructure_observation_time.py": "79b5119c8925649a0820a2d0b50c873218c1bdebe06e2b82fd6ebda4ed3758bd",
+    "br-standard-release-next-dev-r2/candidate/automl_infrastructure_processes.py": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3",
+    "br-standard-release-next-dev-r2/candidate/automl_infrastructure_resources.py": "0053175adce33660c72cfda4dbbe3dc7db24bcdd114a2f40f0906f856332bec2",
+    "br-standard-release-next-dev-r2/candidate/automl_infrastructure_run_budget.py": "baa9f7469ba9e8344005ca50a77d48e3c856f1a97010f27dee8fc40bdc42a9f0",
+    "br-standard-release-next-dev-r2/candidate/automl_infrastructure_tables.py": "7ce3aa0125eb27b14512b37a57688835b8c039015dc7fc80f324c8565fa9e162",
+    "br-standard-release-next-dev-r2/candidate/automl_model_catboost.py": "bc4934d9146fb5925df1ce40220c0cd87f143c13213b3c4029266bc9a5cd10c4",
+    "br-standard-release-next-dev-r2/candidate/automl_model_extra_trees.py": "701c8a825c4db269021f8146f1d02d5cd1d9b8def8cc542e72cf55e0b0ba42f0",
+    "br-standard-release-next-dev-r2/candidate/automl_model_lightgbm.py": "95f9ade67d71170ed822f371ead79dab24c3867837d4fc9e05cc72129adc9b31",
+    "br-standard-release-next-dev-r2/candidate/automl_model_linear_text.py": "019ac49b1447fd5d86f69aee05bf5ac584edc1d32409f7f99c0f108c235b152a",
+    "br-standard-release-next-dev-r2/candidate/automl_model_xgboost.py": "117a5e1b746299cdb0e11f25a43fc844d2fbf2d06bbd70c794947e2b5d743910",
+    "br-standard-release-next-dev-r2/candidate/automl_models.py": "435db85acb24305d3b6a9535b8653e95fc559d264118f9f300d350e158de97f5",
+    "br-standard-release-next-dev-r2/candidate/automl_policy.py": "bd751953a3ffad7b7f4709c99df2802eb6b8ade9a5276841bd8e96378d393b91",
+    "br-standard-release-next-dev-r2/candidate/automl_publishing.py": "364e1ca3e48ef133142207ecc15ef24b0fe436b40c4e5f74176f4c40ceae3a63",
+    "br-standard-release-next-dev-r2/candidate/automl_publishing_api.py": "9cd435d708b288f21c01d5513c8bacfe431b99c77537484129f227726a148c26",
+    "br-standard-release-next-dev-r2/candidate/automl_release_recipes.py": "d446c93e410cda9bff44aff7f09ffc843d69aa15c794bd73d422d587de55f880",
+    "br-standard-release-next-dev-r2/candidate/automl_release_runtime.py": "eab5c87d017610dbd2a31fba4a2f6ad70249aaa28117b835cd45675f4706c23d",
+    "br-standard-release-next-dev-r2/candidate/automl_runner.py": "0f3208fcfb86587b88bb778148cb207713382d417fe7c2e92581721047989bc0",
+    "br-standard-release-next-dev-r2/candidate/automl_runtime.py": "d32c7cc43b24526af70c96a9f909a9fb3c95b3f2b1b54a08a65db7a51bf6e576",
+    "br-standard-release-next-dev-r2/candidate/automl_search_hpo.py": "2675ef78df893b73689ed38143d252e7d747b059494f59c4bfbd4989fd78c508",
+    "br-standard-release-next-dev-r2/candidate/automl_search_multitarget.py": "f56063373e7af57472069a5043de7e6b65d5d644d52ece3884a875e93d075fbf",
+    "br-standard-release-next-dev-r2/candidate/automl_search_stages.py": "bbc677fae6d7963a30cf0a64296249daae0b9dfbb7fef875babbb27ca5d25b84",
+    "br-standard-release-next-dev-r2/candidate/automl_task.py": "fcfa46181d47c3b7e137899460746fcf7885a944bdc02b24ef12581cfebade5f",
+    "br-standard-release-next-dev-r2/candidate/automl_task_understanding_api.py": "d70701db4b67f825a0776c44ff2158fea36c6ebdcca206ca1c2515a8f690dcb9",
+    "br-standard-release-next-dev-r2/candidate/automl_task_understanding_inputs.py": "58ad2bb963da32d4236b828fe26f4f91f6f0fb271b4c9195affa9df315a83fca",
+    "br-standard-release-next-dev-r2/candidate/automl_task_understanding_metric_contract.py": "601db6655324d7fbdcd11de28441d5153ff675d7b7de02a867b8525f788d43a0",
+    "br-standard-release-next-dev-r2/candidate/automl_task_understanding_metrics.py": "f174d66d161cfeb8926149585dcfd35469fedb2a8b26659bf301c7b0606b482a",
+    "br-standard-release-next-dev-r2/candidate/automl_task_understanding_probabilities.py": "e2c6c4c0046cad08d731de5d9e2e8bc10a048baf82b32f36790533fb2229d1f3",
+    "br-standard-release-next-dev-r2/candidate/automl_task_understanding_role_validation.py": "1ae6de52fd502bf846d7f532e96a49f67c4cfbda6778049055140b11ea2a8407",
+    "br-standard-release-next-dev-r2/candidate/automl_task_understanding_semantic_inputs.py": "25fec817649f5d5856b3cebc1cc51c1352e84f49cf4c0916fcde6afb4617c662",
+    "br-standard-release-next-dev-r2/candidate/automl_weights.py": "3459627dd48a815f775527951b745d5a7debf7bca5e00348ecf7bfa4b601e452",
+    "br-standard-release-next-dev-r2/candidate/automl_worker.py": "c7dd895d0fecfb40c1837c69d08fe04b4297e1304ee364e760e40b36892bd74d",
+    "br-standard-release-next-dev-r2/candidate/ensemble_cache.py": "37a62eb37e926d6a3c250d1b2c5964f31f33e95b99023de7c0f1a50ab0ebc2dd",
+    "br-standard-release-next-dev-r2/candidate/model_utils.py": "2a3e717b9a550189b78b2bc00f7f909b6d42517964599ce2c76f253d73cd3d58",
+    "br-standard-release-next-dev-r2/candidate/requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+    "br-standard-release-next-dev-r2/candidate/solution.py": "f666465b00d20168e28359559f5e81787316d66c3a90964852ee4cb6b3fb3eb5",
+    "br-standard-release-next-dev-r2/candidate-source-manifest.json": "bb76524eee220bad94f98c07a943e5ec57bddba2d4870386e7c19b5c5c3cb32b",
+    "br-standard-release-next-dev-r2/protocol.json": "0e19ef6cb8950606a28abaa8e085c238111a817f53fb638c1478420b8967815c",
+    "br-standard-release-next-dev-r2/R1-preservation.json": "673fd57bf694171a31a257985557f0e469451105cb258ae1b7b5e8a833220deb",
+    "br-standard-release-next-dev-r2/R1-to-R2.patch": "8a70b0de50e4a6268d7f87e2f91d1eee66360510a95c609efc76890f6efeb2cb",
+    "br-standard-release-next-dev-r2/README.txt": "34ed3f9af21e93c0745a0f3762d631450e946238cdb9aa63a77d2cf2599757f3",
+    "br-standard-release-next-dev-r2/solution-br-fixed-candidate.zip": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a",
+    "br-standard-release-next-dev-r2/source-proof.json": "1479976a442ac03f88b68e2dc7aecf8122228ba0f71959f2d8595f12b58c8a0c",
+    "br-standard-release-next-dev-r2/strict-functions-source.txt": "d3925a3ea3fe83b05bbadd2a77fdc339fbda44b20c522242903eceb88d8a2166",
+    "br-standard-release-next-dev-r2/tests/fixtures/recipes.json": "bd2a0ecd8ea802c63aa9cfd4f914eb1c0a2504c509ac02573495e8e27e34cc83",
+    "br-standard-release-next-dev-r2/tests/test_fixed_release.py": "3c8623effa31702d7b97217e7bf3e5c1037ad49185950c45b01f96749da4f9b8",
+    "br-standard-release-next-dev-r2/source-handoff.json": "64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09",
+    "br-standard-release-qualification-next-dev/qualification-plan.json": "7fc521651c9567921b69af6837671acad07656c615538820fd57f8b0861030f5",
+    "uq3-cadence-hpo-next-dev/candidate/r4_adapter.py": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+    "uq3-cadence-hpo-next-dev/candidate/audit_pair.py": "f58a17c218ca89461c3c97c3498d197fa105b5a8ea0b240b26b232b12badf7ff",
+    "uar-count-parser-next-dev/counts.py": "bc320fd4723476c8a73404ed17a7bdec0cd4c69b1b1d41b321e370549c8cf4d3",
+    "run_lean_mvp_r2.py": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "support_component_coordinator.py": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "historical-runtime-support/fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d.py": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d",
+    "alfa-hack-automl/tools/research_lock.py": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45",
+    "awake-next-dev/awake_guard.py": "9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b",
+    "br-standard-release-qualification-next-dev/controller-r3/run_controller.py": "a65ba96c5957d0ecf358254e64ed0dae6989f3034a7c358369b4229627c86709",
+    "br-standard-release-qualification-next-dev/controller-r3/artifact_audit.py": "79f06069e130a9395888dbdb0de6777dc89bbde0932022f3e114925b55942757",
+    "br-standard-release-qualification-next-dev/controller-r3/close_controller.py": "a3b0059c5bd2258166c25ae1dacbff853e85b69621085fd9645de9cf9534743d",
+    "br-standard-release-qualification-next-dev/controller-r3/test_controller_contracts.py": "6e062df82e25f181e9b1d2c30545851f3f4c7d3e26be15c08b84c4c79a9b6d1e",
+    "alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/split.npz": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0",
+    "alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/confirmation_split.npz": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df",
+    "br-standard-release-independent-source-review-r2.json": "88a19482855ebb068f9ee11ef0889bd078cf10fbc4b18743e8bc086b33db11ec",
+    "br-standard-release-controller-root-scope-r3.json": "2841333d9a4a5c2e4bc01c85a16128c0517c3bcc1aa9969100802221ffeb37f7",
+    "br-standard-controller-launch-chain-observation-r1.json": "bffd82fed38719da00746ba6c71cc8ff4cd3f22aca6329cc81c29655ea71e29c",
+    "venv/Scripts/python.exe": "d59c9a894b319828d023f3aa83d9a3488d2339f9e27e60e49b02abb0d53cf538"
+  },
+  "tasks": [
+    {
+      "kind": "regression",
+      "source": null,
+      "files": {
+        "task.md": null,
+        "train.csv": null,
+        "test.csv": null,
+        "sample_submission.csv": null,
+        "data_dictionary.csv": null
+      },
+      "expected_recipe": {
+        "engine": "ensemble",
+        "hypothesis": "Validated cached-prediction blend",
+        "params": {},
+        "components": [
+          {
+            "hypothesis": "Strictly earlier context values and trends after three fitting periods; compare the unchanged schema-history control",
+            "engine": "lightgbm",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.035,
+              "num_leaves": 127,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 8,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "generic_features": "missing",
+              "subsample_freq": 0,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 2,
+              "log_target": true,
+              "target_encoding_hierarchical": true,
+              "history_asof": true,
+              "history_min_periods": 3,
+              "early_metric": "primary",
+              "nested_stopping": true,
+              "loss_profile_id": "lgbm_l1_v1"
+            },
+            "feature_code": ""
+          },
+          {
+            "hypothesis": "The best recipe (38.596) may be over-regularized or under-regularized. This parameter-only ablation tests a slightly higher learning rate (0.05) and lower regularization (reg_lambda=5) to see if the model can capture more signal. It avoids the 'broad' feature failure by keeping the proven 'missing' feature set.",
+            "engine": "lightgbm",
+            "params": {
+              "iterations": 1600,
+              "learning_rate": 0.05,
+              "num_leaves": 104,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9899657323952007,
+              "generic_features": "missing",
+              "subsample_freq": 0,
+              "min_iterations": 100,
+              "target_encoding": true,
+              "target_encoding_auto_groups": true,
+              "target_encoding_smoothing": 2,
+              "log_target": true,
+              "target_encoding_hierarchical": true,
+              "history_asof": true,
+              "history_min_periods": 3,
+              "early_metric": "primary",
+              "nested_stopping": true
+            },
+            "feature_code": ""
+          }
+        ],
+        "weights": [
+          0.75,
+          0.25
+        ]
+      },
+      "reference_mean": 34.155023394837
+    },
+    {
+      "kind": "classification",
+      "source": null,
+      "files": {
+        "task.md": null,
+        "train.csv": null,
+        "test.csv": null,
+        "sample_submission.csv": null,
+        "data_dictionary.csv": null
+      },
+      "expected_recipe": {
+        "engine": "ensemble",
+        "hypothesis": "Validated cached-prediction blend",
+        "params": {},
+        "components": [
+          {
+            "hypothesis": "Fixed equal-weight original and cross-fitted categorical feature views; compare full procedure",
+            "engine": "lightgbm",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "calibrate": true,
+              "subsample_freq": 0,
+              "min_iterations": 100,
+              "feature_views": "categorical_te_pair",
+              "early_metric": "primary",
+              "nested_stopping": true
+            },
+            "feature_code": ""
+          },
+          {
+            "hypothesis": "Controlled deterministic alternative",
+            "engine": "lightgbm",
+            "params": {
+              "iterations": 1200,
+              "learning_rate": 0.04,
+              "num_leaves": 63,
+              "max_depth": -1,
+              "min_child_samples": 25,
+              "reg_lambda": 5,
+              "subsample": 1,
+              "colsample_bytree": 0.9,
+              "class_weight_power": 0.5,
+              "calibrate": true,
+              "subsample_freq": 0,
+              "min_iterations": 100,
+              "feature_views": "categorical_te_pair",
+              "seed": 48,
+              "early_metric": "primary",
+              "nested_stopping": true
+            },
+            "feature_code": ""
+          },
+          {
+            "hypothesis": "Optional training-only XGBoost decision calibration; retain the uncalibrated control",
+            "engine": "xgboost",
+            "params": {
+              "iterations": 1800,
+              "learning_rate": 0.035,
+              "max_depth": 6,
+              "min_child_weight": 3,
+              "subsample": 0.85,
+              "colsample_bytree": 0.9,
+              "reg_lambda": 8,
+              "reg_alpha": 0.1,
+              "class_weight_power": 0.5,
+              "min_iterations": 50,
+              "calibrate": true,
+              "early_metric": "primary",
+              "nested_stopping": true
+            },
+            "feature_code": ""
+          }
+        ],
+        "weights": [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333
+        ]
+      },
+      "reference_mean": 0.6593178433614652
+    }
+  ],
+  "verification_plan": {
+    "expected_classification_splits": {
+      "primary": {
+        "path": "alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/split.npz",
+        "sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0"
+      },
+      "confirmation": {
+        "path": "alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/confirmation_split.npz",
+        "sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df"
+      }
+    }
+  },
+  "uq3": {
+    "root": {
+      "path": null,
+      "sha256": null
+    },
+    "fresh": {
+      "path": null,
+      "sha256": null
+    },
+    "actual_execution": {
+      "session": 18415,
+      "exit_code": null,
+      "tool": null
+    },
+    "root_actual_execution": {
+      "session": null,
+      "exit_code": null,
+      "tool": null
+    }
+  },
+  "actual_clock": null,
+  "actual_quality_metric": null,
+  "actual_root": null,
+  "promotion": false,
+  "submit": false,
+  "launch_shell_transport": "Required CLI --launch-parent-pid/--launch-parent-create-time refer to actual root-declared shell, direct or exactly one pinned venv launcher"
+}

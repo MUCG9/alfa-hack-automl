@@ -1,0 +1,117 @@
+{
+  "schema": "br-standard-qualification-protocol-v3",
+  "status": "SOURCE_ONLY_NOT_READY_NO_CLOCK",
+  "executor_handoff": {
+    "path": "br-standard-release-next-dev-r2/source-handoff.json",
+    "sha256": "64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09"
+  },
+  "archive_sha256": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a",
+  "archive_members": 73,
+  "source_executor_unique_methods": 18,
+  "source_execution_count": 18,
+  "unpacked_same_assertion_execution_count": 18,
+  "own_caller_methods": 10,
+  "expected_total_test_method_executions": 46,
+  "legacy_exact23": {
+    "status": "INAPPLICABLE_CHANGED_ENTRY_NOT_EXECUTED_NO_SKIP_OR_PASS_CLAIM",
+    "citations": [
+      {
+        "path": "alfa-hack-automl/tests/smoke.py",
+        "sha256": "3f1ecff5ec3cf1c974b97659f407a9975ab9a148752decb5f088d0f0f3045ec4",
+        "lines": "43-59",
+        "reason": "Research CLI flags/search report best_validation"
+      },
+      {
+        "path": "alfa-hack-automl/tests/test_resilience.py",
+        "sha256": "e8ec09f1cc2bb93f94ab3811bcb24df0925a6025b2b01994b319d961270a4706",
+        "lines": "42-72",
+        "reason": "Research flags and unsupported fixed-entry probability objectives"
+      }
+    ]
+  },
+  "original_clock": {
+    "seconds": 6000,
+    "assigned": false,
+    "start": null,
+    "end": null,
+    "inherits_UQ3_clock": false
+  },
+  "allocations": {
+    "setup": 600,
+    "regression": [
+      900,
+      870
+    ],
+    "classification": [
+      3600,
+      3570
+    ],
+    "audit": [
+      600,
+      570
+    ],
+    "final": 240,
+    "root": 60
+  },
+  "execution": {
+    "standard_calls": 2,
+    "order": [
+      "regression",
+      "classification"
+    ],
+    "cut_roots": 4,
+    "full_refit_roots": 2,
+    "duplicate_outer_model_jobs": 0,
+    "argv": [
+      "PINNED_PYTHON",
+      "-B",
+      "-X",
+      "utf8",
+      "solution.py",
+      "task.md"
+    ],
+    "fit_iterations_on_cut": "ABSENT",
+    "final_iterations": "Recursive median of NEW cut iteration trees"
+  },
+  "outer_bound": "min actual common/parent/child; intrinsic9900 is not outer entitlement",
+  "scientific_scope": "Independently remeasured reused-public fixed two-cut procedure; no hidden-test score/search/Qwen improvement claim",
+  "actual_fits": null,
+  "actual_quality": null,
+  "actual_root": null,
+  "API_calls_expected": 0,
+  "automatic_promotion": false,
+  "automatic_submit": false,
+  "source_preparation": {
+    "candidate_imports": 0,
+    "guard_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API": 0,
+    "data_NPZ_prediction_truth_reads": 0,
+    "process_scans": 0,
+    "clock_assigned": false,
+    "canonical_STATE_Git_writes": 0
+  },
+  "permanent_output": "WORK/brq1",
+  "required_dynamic_launch_parent_flags": [
+    "--launch-parent-pid",
+    "--launch-parent-create-time"
+  ],
+  "parent_authority": "Observed self/direct/shell; exact direct declared shell OR one exactpath+SHA pinned venv launcher whose immediate stable parent is declared shell. No more ancestors. Exact actual identities saved; <=1microsecond ONLY declared shell timestamp transport.",
+  "R1_handoff_sha256": "8d4c259ddbf0a56a1366e25cc60ed4ada4f111dd10acdf1f0b911c2bd55b4249",
+  "R1_source_execution": 0,
+  "BQC02": "Repeat existing final240 phase check after lease exit and before/after terminal save; original common6000 unchanged",
+  "R2_handoff_sha256": "c27a1f46782e1a692bfe19b3b9a479771483ca4e75efdaa0a951d939a490f95d",
+  "root_R3_scope": {
+    "path": "br-standard-release-controller-root-scope-r3.json",
+    "sha256": "2841333d9a4a5c2e4bc01c85a16128c0517c3bcc1aa9969100802221ffeb37f7"
+  },
+  "root_actual_launch_chain_metadata": {
+    "path": "br-standard-controller-launch-chain-observation-r1.json",
+    "sha256": "bffd82fed38719da00746ba6c71cc8ff4cd3f22aca6329cc81c29655ea71e29c"
+  },
+  "pinned_venv_launcher": {
+    "path": "venv/Scripts/python.exe",
+    "sha256": "d59c9a894b319828d023f3aa83d9a3488d2339f9e27e60e49b02abb0d53cf538"
+  }
+}

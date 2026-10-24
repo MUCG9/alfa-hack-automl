@@ -1,7 +1,11 @@
 # Dependency-driven next steps
 
 <!-- CURRENT_UAR_OBSERVATION_BEGIN -->
-Current observation: UAR09 passed all 634 source, 23 exact and 104 mapped checks, with73 flat files and separately confirmed source/temporary/owned-process cleanup. The real UQ3 campaign is now running under one original10800-second clock; Ar is admitted. The shared authority checkpoint was validated before Qwen. The current Ar ledger reports 2 real gateway calls/2 HTTP attempts with complete usage (18977 input/1714 output tokens); these are intermediate counters. No new independently qualified ML quality is available. Prior research RMSE34.155023394837 and historical classification MacroF1.6593178433614652 remain retained. Earlier UQ2/UAR08 failures remain closed, Linux stays paused, and automatic submission stays forbidden.
+Current observation: UQ3 remains the single active real-Qwen campaign under its original 10800-second clock. Ar, Br and Ac are sealed with solver exit0/cleanup confirmed. Bc is active; its saved HPO metadata reports 8 attempted/8 completed/0 failed/5 guided, while final refit and whole-campaign independent quality remain pending. No new RMSE/F1 or ready archive is claimed. UAR09 remains a closed full technical PASS; prior failed runs remain failures.
+
+The requested standard fixed Br release is a separate source-reviewed candidate: exact historical 0.75 L1SINGLE/0.25 CP1 and strong historical CLASS, positional `python3 solution.py task.md`, no external recipe JSON or dataset-specific routing. Executor R2 and controller R3 have independent source reviews. Their 46 targeted test executions are prepared and unrun. The Windows bootstrap verifies either the declared direct shell or one exact pinned venv redirector. Actual runtime bindings, qualification clock, archive metrics and ready release remain null. After actual UQ3 whole exit, its original closer and fresh complete source/owned cleanup, one bounded sequential qualification must verify both standard calls, their four cut jobs/two full refits and independent metrics. Historical RMSE34.155023394837 is not inherited by repackaging. Source transport: research/br-fixed-standard-r2/README.md.
+
+Linux remains paused; no new remote job or upload is authorized. Active UQ3 source, inputs, manifest, runtime publication and clocks are unchanged.
 <!-- CURRENT_UAR_OBSERVATION_END -->
 
 1. Preserve LA2's original failure and separately verified saved-artifact result:

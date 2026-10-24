@@ -1,0 +1,83 @@
+{
+  "schema": "br-standard-controller-source-handoff-v2",
+  "readiness": "FROZEN_SOURCE_ONLY_NOT_READY",
+  "files_sha256": {
+    "artifact_audit.py": "79f06069e130a9395888dbdb0de6777dc89bbde0932022f3e114925b55942757",
+    "binding.template.NOT_READY.json": "88cfb0f8fffc76147da0a1643dbc057343edb20045a5733903e84eb6e0143995",
+    "close_controller.py": "c18941f523a3aa25956e0a63efa592fe1f73af8aac7e27087ea3ed2d1d5a2b23",
+    "protocol.json": "6f6f366c98f89aaf64f3902e481041c27f1cc7047ddddd7faedb65b8e7a2fbdb",
+    "R1-preservation.json": "39505148b77fabf573391c25dfdfbaee023186a3a12bf383611dcd0a0222d11c",
+    "R1-to-R2.patch": "f814703e2904d8ecf09f77eb1d7defdf11ca3d10bf71bbf3cce13ddf9de5a969",
+    "README.txt": "b27c25dcee8cc905314ebc15b393d8c70b54ac279548094a705f7e1d1017687d",
+    "run_controller.py": "15f7bf6c828ca5123c0009004556873fbe7c7100887a6107f233c1d5061b8a1d",
+    "source-handoff.R1-history.json": "8d4c259ddbf0a56a1366e25cc60ed4ada4f111dd10acdf1f0b911c2bd55b4249",
+    "source-proof.json": "21315f609578011bee8cf0e1d839dc9d8182c7ede719d6ca47f013d37471edfd",
+    "test_controller_contracts.py": "ce75c8b52e2619d11916a01d6f7ceb0351a76894b27327b5f12eb2a8615a8a58",
+    "uq3-current-observation.template.NOT_READY.json": "6dd987cf63d00cd7bcc41362a1f8079514f9da8266f50a5ea193f6c84eb33220"
+  },
+  "external_source_refs": {
+    "executor_handoff": {
+      "path": "br-standard-release-next-dev-r2/source-handoff.json",
+      "sha256": "64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09"
+    },
+    "qualification_plan": {
+      "path": "br-standard-release-qualification-next-dev/qualification-plan.json",
+      "sha256": "7fc521651c9567921b69af6837671acad07656c615538820fd57f8b0861030f5"
+    },
+    "manual_R4": {
+      "path": "uq3-cadence-hpo-next-dev/candidate/r4_adapter.py",
+      "sha256": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd"
+    },
+    "loss_receipts": {
+      "path": "uq3-cadence-hpo-next-dev/candidate/audit_pair.py",
+      "sha256": "f58a17c218ca89461c3c97c3498d197fa105b5a8ea0b240b26b232b12badf7ff"
+    },
+    "counts": {
+      "path": "uar-count-parser-next-dev/counts.py",
+      "sha256": "bc320fd4723476c8a73404ed17a7bdec0cd4c69b1b1d41b321e370549c8cf4d3"
+    },
+    "coordinator": {
+      "path": "run_lean_mvp_r2.py",
+      "sha256": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818"
+    },
+    "owner": {
+      "path": "support_component_coordinator.py",
+      "sha256": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8"
+    },
+    "processes": {
+      "path": "historical-runtime-support/fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d.py",
+      "sha256": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d"
+    },
+    "lock": {
+      "path": "alfa-hack-automl/tools/research_lock.py",
+      "sha256": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45"
+    },
+    "awake": {
+      "path": "awake-next-dev/awake_guard.py",
+      "sha256": "9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b"
+    },
+    "candidate_R2_peer": {
+      "path": "br-standard-release-independent-source-review-r2.json",
+      "sha256": "88a19482855ebb068f9ee11ef0889bd078cf10fbc4b18743e8bc086b33db11ec"
+    }
+  },
+  "R1_handoff_sha256": "8d4c259ddbf0a56a1366e25cc60ed4ada4f111dd10acdf1f0b911c2bd55b4249",
+  "resolved_findings": [
+    "BQC01",
+    "BQC02"
+  ],
+  "executor_source_handoff_sha256": "64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09",
+  "executor_archive_sha256": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a",
+  "prepared_executor_source_methods": 18,
+  "prepared_executor_unpacked_same_methods": 18,
+  "prepared_caller_methods": 8,
+  "expected_total_test_executions": 44,
+  "controller_publication_and_peer_required": true,
+  "UQ3_actual_terminal_root_fresh_bindings": null,
+  "actual_private_manifest": null,
+  "actual_clock": null,
+  "actual_tests_models_API_metrics": null,
+  "actual_candidate_imports_tests_fits_API_data_NPZ_predictions_truth_PIDscans": 0,
+  "automatic_promotion": false,
+  "automatic_submit": false
+}

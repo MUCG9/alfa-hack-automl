@@ -1,0 +1,27 @@
+{
+  "schema": "br-standard-release-root-scope-r3",
+  "created_unix": 1792840762.931867,
+  "prior_scope_sha256": "f29e25ab5779dc3524a447c875e4b102bbf01678c03e80855553ce1d68249d4c",
+  "R1_candidate_handoff_sha256": "601a627cb7b1664858e5a5324dce9a5f0ec598152810adf1f46e7ce81be872ab",
+  "R1_archive_sha256": "01a6170b1e001fca7a8132e2d1db0b51e70506401b7f1b4b8690c88a65a5c527",
+  "R1_peer_sha256": "37a487bb38025273f666ca9677cc3c01f56bcef036e8aa0b23e4ffedcd3ba3c0",
+  "R1_root_static_review_sha256": "bbecaf577f263ececcf0ee3dc5d5dc8bb775bb36a2ce89c5e062458965e971f4",
+  "status": "R1_BLOCKED_THREE_SOURCE_FINDINGS_R2_SOURCE_ONLY_AUTHORIZED",
+  "R1_immutable": true,
+  "R2_directory": "work/br-standard-release-next-dev-r2",
+  "narrow_batch_authorized": {
+    "BR01": "Explicit ResourceBudget(memory_limit=2048MiB) for parent and child+parent combined conservative bound; independent worker-tree1536MiB denial, including terminal sampling; retain original model/process utility semantics and distinguish conservative combined sample from exact OS whole-owned RSS.",
+    "BR02": "Explicit declared target must exist in train and not test; optional declared ID must exist in all required train/test/sample roles; after discover assert target/ID equal exact declaration; no silent legacy fallback. Preserve numeric regression target/predictors and valid output naming.",
+    "BR03": "Before workers and immediately before publication, resolved output destination distinct from all protected input/task/source/requirements paths; refuse alias/symlink mutation before replacing anything."
+  },
+  "prepared_contracts": "Preserve R1 meaningful16 and add exact negative/boundary fixtures for three findings; derive final AST counts after freeze. No execution whileUQ3active.",
+  "technical_applicability": "Legacy exact23 search/text-specialist/ROC-AUC/CLI-timeout report assertions are inapplicable to changed fixed-RMSE/MacroF1 entry. Preserve oldtests/evidence unmodified; do not claim currentPASS/skip or weaken assertions. New fixed-entry changed-port contracts execute source+actualunpacked with same assertions; unchangedbackend byte parity remains strict.",
+  "qualification_environment_facade": "For TWOstandard modelcalls only: original coor.environment(model=False) credential scrub, change only AUTOML_THREADS=2, preserve all other returned values/BLAS1/clocks and restore original function in finally. Technical/audit1.",
+  "qualification_IO_facade": "Fixed-artifact auditor may use explicitly scoped lexical classification CSV converter on trusted target/output/y_true/y_pred cells and existing IDs; frozen R4 bytes/formulas unchanged, facade pinned separately, numeric regression/predictors unchanged. Independent stdlib lexical witnesses prepared.",
+  "qualification_clock_boundary": "Intrinsic standardchild9900 default does not extend MIN actual outertask/common bounds. Literal positional CLI retained; no reset/relaxation; parent measures start-through-publication-cleanup.",
+  "UQ3_prerequisite": "Actual whole18415exit, actual reviewed current root plus observed closer exit/tool and fresh full known-root/supervisor/preparer absence/source/tempcleanup. A clean negative UQ3 proof can admit separate release protocol while global UQ3FAIL remains. All actual refs/clocks stillNULL.",
+  "runtime_or_quality_qualification": null,
+  "ready_archive": null,
+  "new_metrics": null,
+  "upload": false
+}

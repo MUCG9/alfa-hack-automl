@@ -1,0 +1,147 @@
+{
+  "schema": "br-fixed-standard-independent-source-review-v1",
+  "status": "SOURCE_REVIEWED_BLOCKED_THREE_CONCRETE_PREEXECUTION_FINDINGS",
+  "scope": "Independent stdlib-only source/AST/hash/ZIP and closed recipe-metadata review; no candidate code was imported or executed.",
+  "reviewed_handoff": {
+    "path": "br-standard-release-next-dev/source-handoff.json",
+    "sha256": "601a627cb7b1664858e5a5324dce9a5f0ec598152810adf1f46e7ce81be872ab"
+  },
+  "reviewed_archive": {
+    "path": "br-standard-release-next-dev/solution-br-fixed-candidate.zip",
+    "sha256": "01a6170b1e001fca7a8132e2d1db0b51e70506401b7f1b4b8690c88a65a5c527",
+    "members": 73,
+    "bytes": 146049
+  },
+  "root_scope": {
+    "path": "br-standard-release-root-scope-r2.json",
+    "sha256": "f29e25ab5779dc3524a447c875e4b102bbf01678c03e80855553ce1d68249d4c"
+  },
+  "exact_sources": {
+    "automl_fixed_release.py": "7cbd0af248955d27a4a2ea503f47ca440de37646f9de069ef11dbae4734e0e94",
+    "automl_infrastructure_processes.py": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3",
+    "automl_infrastructure_tables.py": "7ce3aa0125eb27b14512b37a57688835b8c039015dc7fc80f324c8565fa9e162",
+    "automl_release_recipes.py": "d446c93e410cda9bff44aff7f09ffc843d69aa15c794bd73d422d587de55f880",
+    "automl_release_runtime.py": "06397546a469cdd30ef68aff203040526973eb50c921af6092a3e5c498910df4",
+    "automl_worker.py": "c7dd895d0fecfb40c1837c69d08fe04b4297e1304ee364e760e40b36892bd74d",
+    "solution.py": "f666465b00d20168e28359559f5e81787316d66c3a90964852ee4cb6b3fb3eb5"
+  },
+  "verified_source_facts": {
+    "all_83_handoff_file_hashes_match": true,
+    "all_7_closed_lineage_ref_hashes_match": true,
+    "base_archive_sha256": "16be73e1a8493f64b752231cf8f333856197e43ba3939b243496bc7da6cc5f04",
+    "base_members": 68,
+    "unchanged_base_members": 64,
+    "changed_base_members": [
+      "automl_infrastructure_processes.py",
+      "automl_infrastructure_tables.py",
+      "automl_worker.py",
+      "solution.py"
+    ],
+    "new_members": [
+      "automl_contracts_metrics.py",
+      "automl_fixed_release.py",
+      "automl_release_recipes.py",
+      "automl_release_runtime.py",
+      "automl_task_understanding_metric_contract.py"
+    ],
+    "archive_members": 73,
+    "unique_flat_code_and_requirements_members": true,
+    "zip_CRC_error": null,
+    "archive_members_equal_local_candidate_bytes": true,
+    "missing_flat_local_import_dependencies": [],
+    "original_requirements_sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+    "worker_entire_AST_after_only_IO_import_and_four_reader_inverse_equals_base": true,
+    "strict_cleanup_AST_equals_reviewed_runner12091": true,
+    "strict_worker_AST_after_only_four_release_checkpoint_Expr_removal_equals_reviewed_runner12091": true,
+    "reviewed_runner_sha256": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+    "removed_checkpoint_source_lines": [
+      118,
+      129,
+      144,
+      153
+    ],
+    "embedded_REG_recipe_raw_equal_closed_LA2_Br": true,
+    "embedded_CLASS_recipe_raw_equal_closed_V16_full_recipe": true,
+    "historical_iteration_trees_provenance_only": true,
+    "two_cut_calls_omit_fit_iterations_and_only_fresh_recursive_median_feeds_full_refit": true,
+    "original_origin_captured_before_numerical_imports": true,
+    "CPU_native_threads_at_most_2": true,
+    "fresh_class_probabilities_validate_class_order_and_sample_row_permutation": true,
+    "declared_ID_and_CLASS_target_lexical_only_REG_target_and_predictor_base_parsing_preserved": true,
+    "prepared_test_methods_AST_count": 16,
+    "actual_prepared_test_runs": 0
+  },
+  "findings": [
+    {
+      "id": "BR01",
+      "severity": "P1",
+      "state": "OPEN_SOURCE_CONTRACT_GAP_ROOT_AUTHORIZED_NARROW_R2",
+      "source": "candidate/automl_release_runtime.py",
+      "lines": [
+        35,
+        133
+      ],
+      "problem": "Both caller and strict-worker ResourceBudget() use the unchanged default 28*2**30 bytes (30064771072), with no separate worker1536MiB enforcement. This does not implement the root scope worker1536MiB/whole2048MiB caps inside the standalone archive.",
+      "minimal_correction": "Explicit2048MiB ResourceBudget cap in caller/child and explicit1536MiB worker-subtree RSS check; preserve denial/deadline/owned cleanup semantics. Label existing parent/self summed total as conservative sampled guard estimate, not exact whole-campaign RSS. Do not rewrite shared resource implementation.",
+      "meaningful_prepared_cases": "Synthetic over-limit caller total and worker RSS, exact allowed boundary, sticky denial and cleanup path; no fits."
+    },
+    {
+      "id": "BR02",
+      "severity": "P1",
+      "state": "OPEN_SOURCE_AUTHORITY_GAP_ROOT_AUTHORIZED_NARROW_R2",
+      "source": "candidate/automl_fixed_release.py",
+      "lines": [
+        84,
+        88,
+        99,
+        170,
+        172
+      ],
+      "problem": "A single dictionary target is counted but its membership is not enforced. For REG a stale/nonexistent declared target reaches unchanged validate_role_tables/discover, which fall back to another train-minus-test column. Discovery is checked only for kind/metric, so wrong target authority can be silently accepted.",
+      "minimal_correction": "Root-approved supported-release preconditions: valid/distinct declared names; target in TRAIN and not TEST; declared ID if present in TRAIN/TEST/SAMPLE; then require discovered target and ID equal the declared roles. Target name need not be a SAMPLE output column, preserving renamed output/probability schemas.",
+      "meaningful_prepared_cases": "Stale declared target with alternative train-only column must fail before discovery/worker; absent ID role member and discovered target/ID mismatch must stop."
+    },
+    {
+      "id": "BR03",
+      "severity": "P1",
+      "state": "OPEN_SOURCE_INPUT_PRESERVATION_GAP_ROOT_AUTHORIZED_NARROW_R2",
+      "source": "candidate/automl_fixed_release.py",
+      "lines": [
+        160,
+        180,
+        183,
+        213,
+        214
+      ],
+      "problem": "Final output is always root/submission.csv, without rejecting identity with protected inputs/task/source. resolve_inputs resolves input symlinks. For example sample_submission.csv resolving to submission.csv makes publication overwrite the protected sample; only the post-replace fingerprint comparison detects it, after mutation.",
+      "minimal_correction": "Root-approved output identity preflight against all input/task/source/requirements paths before workers, repeated immediately before publication; reject symlink/canonical/same-file alias collisions and preserve unrelated files. Keep existing unique run-owned validated temporary publication and numerical behavior.",
+      "meaningful_prepared_cases": "Resolved alias to input or source stops before workers; a late destination alias stops before replace while an unrelated existing output remains unchanged on failed validation."
+    }
+  ],
+  "nonblocking_scope_limits": [
+    "No historical Br/V16 metric transfers to this repackaged procedure; future two standard calls and independent saved-artifact R4 qualification remain required.",
+    "Prepared synthetic methods are source-reviewed only, not16PASS; no model/API/data or prediction-array execution occurred.",
+    "RSS is sampled and the existing root-self inspection conservatively double-counts parent RSS; it must not be called exact whole-run memory attestation.",
+    "Existing publisher plus unique run-owned temporary path and os.replace is not claimed to provide C01 fsync/CAS durability.",
+    "The standard fixed recipe is not Qwen/search/HPO; no such optimization or gain claim is made.",
+    "Static source identity does not prove actual split bytes, recursive fitting counts, actual source/input invariance or process closure; those remain runtime authority."
+  ],
+  "ready_for_runtime_or_release": false,
+  "actual_new_metrics": null,
+  "actual_standard_runs": null,
+  "execution": {
+    "candidate_imports": 0,
+    "tests": 0,
+    "fixtures": 0,
+    "model_fits": 0,
+    "API": 0,
+    "data_or_prediction_array_reads": 0,
+    "PID_scans": 0,
+    "clock_assigned": false,
+    "canonical_STATE_Git_writes": 0
+  },
+  "changed_files": [
+    "br-standard-release-independent-source-review-r1.json"
+  ],
+  "frozen_author_sources_modified": false
+}

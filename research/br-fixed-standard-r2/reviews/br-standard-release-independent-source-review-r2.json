@@ -1,0 +1,108 @@
+{
+  "schema": "br-fixed-standard-independent-source-review-r2",
+  "status": "SOURCE_REVIEWED_NO_REMAINING_SCOPED_BLOCKER_RUNTIME_UNRUN",
+  "scope": "Narrow independent source/AST/hash/ZIP rebind of root-approved BR01/BR02/BR03 R2; no candidate import/execution.",
+  "reviewed_handoff": {
+    "path": "br-standard-release-next-dev-r2/source-handoff.json",
+    "sha256": "64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09"
+  },
+  "reviewed_archive": {
+    "path": "br-standard-release-next-dev-r2/solution-br-fixed-candidate.zip",
+    "sha256": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a",
+    "members": 73,
+    "bytes": 146833
+  },
+  "sources": {
+    "automl_fixed_release.py": "fe8a08f193db5c05c60a637c9fa83814fb86651d2315338b2d588a3abd740bf7",
+    "automl_release_runtime.py": "eab5c87d017610dbd2a31fba4a2f6ad70249aaa28117b835cd45675f4706c23d",
+    "automl_worker.py": "c7dd895d0fecfb40c1837c69d08fe04b4297e1304ee364e760e40b36892bd74d",
+    "automl_infrastructure_tables.py": "7ce3aa0125eb27b14512b37a57688835b8c039015dc7fc80f324c8565fa9e162",
+    "automl_infrastructure_processes.py": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3",
+    "automl_release_recipes.py": "d446c93e410cda9bff44aff7f09ffc843d69aa15c794bd73d422d587de55f880",
+    "solution.py": "f666465b00d20168e28359559f5e81787316d66c3a90964852ee4cb6b3fb3eb5"
+  },
+  "prior_review": {
+    "path": "br-standard-release-independent-source-review-r1.json",
+    "sha256": "37a487bb38025273f666ca9677cc3c01f56bcef036e8aa0b23e4ffedcd3ba3c0"
+  },
+  "preservation": {
+    "prior_handoff_sha256": "601a627cb7b1664858e5a5324dce9a5f0ec598152810adf1f46e7ce81be872ab",
+    "prior_archive_sha256": "01a6170b1e001fca7a8132e2d1db0b51e70506401b7f1b4b8690c88a65a5c527",
+    "all_prior_83_hashes_unchanged": true,
+    "R2_84_file_pins_exact": true,
+    "archive73_unique_flat_members": true,
+    "ZIP_CRC_error": null,
+    "local_candidate_bytes_equal_archive": true,
+    "only_changed_archive_members_vs_R1": [
+      "automl_fixed_release.py",
+      "automl_release_runtime.py"
+    ],
+    "other_71_archive_members_byte_exact_R1": true
+  },
+  "closed_findings": [
+    {
+      "id": "BR01",
+      "status": "SOURCE_FIXED",
+      "evidence": "Caller and child ResourceBudget explicitly2048MiB; child compares worker subtree1536MiB and combined2048MiB even when terminal poll is already observed. AccessDenied raises typed observation error; missing root after observed exit records null current RSS and still requires strict owned cleanup. Existing conservative parent self-RSS double-count is labelled, not rewritten. Sampling/deadline/cleanup policy retained."
+    },
+    {
+      "id": "BR02",
+      "status": "SOURCE_FIXED",
+      "evidence": "Nonempty distinct declared target/ID names; target in TRAIN and not TEST; any declared ID in TRAIN/TEST/SAMPLE; post-discovery target/ID exact equality to declaration. No target-name requirement on SAMPLE output and no predictor/numeric REG parsing change."
+    },
+    {
+      "id": "BR03",
+      "status": "SOURCE_FIXED",
+      "evidence": "Resolved/samefile/symlink output identity preflight against all four inputs/task/source/requirements before workers; repeated at publication entry and immediately before os.replace. Protected source files remain checked and unrelated existing output is not touched on a rejected alias."
+    }
+  ],
+  "preserved_procedure": {
+    "raw_Br_and_historical_CLASS_recipes_byte_exact_R1": true,
+    "worker_model_feature_transform_semantics_byte_exact_R1": true,
+    "two_cut_jobs_without_iteration_override_then_fresh_recursive_median_full_refit_unchanged": true,
+    "original_entrypoint_and_origin_before_heavy_import_unchanged": true,
+    "strict_cleanup_function_AST_exact_R1": true,
+    "CPU2_deadline_sticky10_successful_point25_sampling_unchanged": true,
+    "strict_worker_AST_scope": "Intentionally strengthened by explicit resource caps and terminal sample; no unsupported whole-function-equality claim.",
+    "prepared_methods": 18,
+    "all_16_R1_assertion_calls_retained": true,
+    "new_prepared_methods": [
+      "FixedReleaseContracts.test_terminal_memory_caps_boundary_and_denial_are_not_success",
+      "FixedReleaseContracts.test_publication_alias_preflight_preserves_protected_files"
+    ],
+    "actual_tests": 0,
+    "actual_model_fits": 0
+  },
+  "preliminary_concern_rechecked_and_withdrawn": {
+    "claim": "Reviewer initially thought terminal AccessDenied would be caught by generic Exception, conflicting with assertRaises(ProcessObservationError).",
+    "resolution": "Exact processes9f declares ProcessObservationError(ProcessCleanupError); _run_worker_strict catches ProcessCleanupError and bare-raises before generic Exception, then executes finally cleanup. The original test expectation is supported. No fixture/source change is requested.",
+    "status": "DISPROVED_SOURCE_MISREAD_NO_RUNTIME_FAILURE"
+  },
+  "reporting_limits": [
+    "Late cleanup may conservatively reclassify a memory stop to final timeout. Fixed flow stops every non-ok result and has no HPO retry/continuation; preserved observed byte peaks/caps retain limit evidence. Original coordinator-killed cause is not claimed unconditionally retained in every final timeout receipt.",
+    "RSS caps are sampled soft guards, not OS sandbox/exact whole-campaign peak attestation; parent self-inspection conservative double-count remains explicit.",
+    "Current terminal RSS can be null after observed exit; known owned cleanup is still mandatory, and absence is not fabricated as RSS0.",
+    "No16/18 PASS, standard runtime qualification, independent new metrics, exact historical score reproduction or release READY is established by this source review.",
+    "Root still must run bounded focused contracts and two actual standard positional task calls plus independent pristine R4 saved-artifact/refit/CSV/input/source/closure checks before qualification."
+  ],
+  "remaining_scoped_source_blockers": [],
+  "actual_new_metrics": null,
+  "actual_standard_runs": null,
+  "runtime_qualified": false,
+  "release_ready": false,
+  "execution": {
+    "candidate_imports": 0,
+    "tests": 0,
+    "fixtures": 0,
+    "model_fits": 0,
+    "API": 0,
+    "data_or_prediction_array_reads": 0,
+    "PID_scans": 0,
+    "clock_assigned": false,
+    "canonical_STATE_Git_writes": 0
+  },
+  "changed_files": [
+    "br-standard-release-independent-source-review-r2.json"
+  ],
+  "frozen_author_sources_modified": false
+}

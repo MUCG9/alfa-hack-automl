@@ -1,0 +1,267 @@
+{
+  "schema": "br-standard-release-qualification-plan-v1",
+  "status": "PROPOSAL_ONLY_NOT_READY_NO_EXECUTION_OR_CLOCK",
+  "objective": "Qualify the approved fixed-recipe standard positional archive against retained Br34.155023394837 and the complete historical CLASS recipe. V16-only/default-agent evidence does not satisfy this objective.",
+  "approved_scope": {
+    "base_archive": {
+      "path": "work/ls-stage0-packet/loss-seed-source.zip",
+      "sha256": "16be73e1a8493f64b752231cf8f333856197e43ba3939b243496bc7da6cc5f04",
+      "base_members": 68
+    },
+    "mode": "Fixed recipe executor, not stochastic search/Qwen/HPO",
+    "standard_command": [
+      "PINNED_PYTHON",
+      "-B",
+      "-X",
+      "utf8",
+      "solution.py",
+      "task.md"
+    ],
+    "candidate_archive_sha256": null,
+    "candidate_source_handoff_sha256": null,
+    "candidate_peer_review_sha256": null,
+    "changed_member_inventory": null,
+    "generic_routing": "Trusted explicit task kind/primary MetricSpec and declared roles only; no dataset basename/ID/value/target-stat routing. Unknown/conflicting authority fails closed."
+  },
+  "frozen_reference_lineage": {
+    "regression": {
+      "source": "work/la2/B/r/automl_runs/repair4/report.json",
+      "sha256": "f6993f5fcf2a462fe2a3209c3a6b28c9f6ee2abf388fa3026c531e118f8388af",
+      "selected_recipe_metadata_canonical_sha256": "1d92e9d67f44f72ed33ed3f861efa869515f38eaf7718c83b24fb7744c592a34",
+      "recipe": "Exact two-child ensemble .75 protected SINGLE with lgbm_l1_v1 +.25 exact CP1 champion; retain feature_code/normalization/seed/weights/settings",
+      "CP1_source": "work/champion-seed-next-dev/champion-t5-regression.json",
+      "CP1_sha256": "914880505ed751da9fd0a38d7f1724dd860c20d98456ff3efd16a195a0709ad4",
+      "historical_deployment_iteration_tree": [
+        474,
+        109
+      ],
+      "historical_target_mean": 34.155023394837
+    },
+    "classification": {
+      "recipe_source": "work/m2packet/control-c.json",
+      "recipe_sha256": "56c0e2204df33ebc733034ad5ed835d902874862c71bbb4a16a043c3a99781a9",
+      "reference_report": "work/alfa-hack-automl/release/v16-mean1/classification-report.json",
+      "reference_report_sha256": "2905c32aa98270fb5b76f6ca1a4e664c0e76f7b399772864b51d0baf8e08a606",
+      "recipe": "Exact complete historical CLASS ensemble and all recursive feature views/weights; never substitute first SINGLE",
+      "historical_deployment_iteration_tree": [
+        [
+          100,
+          111
+        ],
+        [
+          100,
+          138
+        ],
+        339
+      ]
+    },
+    "closed_LA2_audit": {
+      "path": "work/la2-audit-repair-r1/independent-audit.json",
+      "sha256": "75fa29c2f3cc0bb183f6849c984203b986070e6833e111e2d5a2382a6c4bd47e"
+    },
+    "verification_plan": {
+      "path": "work/la2/verification-plan.json",
+      "sha256": "98ca6f294b048eccf1025bf6d1956804ba970aafc88f79630790f7a6fd4cd060"
+    },
+    "limits": "Reference facts are immutable closed evidence/root-approved targets, not newly measured results. Original LA2 FAIL stays historical FAIL. Deployment iteration trees are provenance only and are never supplied to new cut evaluations."
+  },
+  "hard_preconditions_before_ANY_candidate_import_or_fit": [
+    "Whole UQ3 session18415 actually terminal; root records actual exit/tool, frozen campaign/manifest/audit/core hashes, then a closed root receipt and fresh exact-owned/preparer confirmation. All dynamic SHA/exit/tool fields below remain null until observed.",
+    "UQ3 root/closer proof must preserve first+secondary errors, original10800 and all4seals; required cleanup/source/current-known absence must actually hold. A clean-negative UQ3 can grant known ownership closure only, never scientific PASS. Missing/false cleanup/source or sticky uncertainty blocks this new lease.",
+    "Include UQ3 root/preparers and last actual observers/metadata preparers plus its entire prior known union before and under canonical ResearchLock; retain old87/UQ1 evidence-only limitations without retroqualification.",
+    "Root reviews candidate source+targeted contracts and exact profile lineage; all archive members/interpreter/libraries/source helpers/role files/cut references/evaluator/private plan pinned before data or metrics are read.",
+    "Freeze a new exclusive output directory and one prospective common-clock contract; all setup/materialization/contracts/two task calls/audit/cleanup/terminal writes/root close are charged. No old UQ3/UAR clock reuse or reset."
+  ],
+  "future_UQ3_authority": {
+    "actual_session": 18415,
+    "actual_exit": null,
+    "actual_tool": null,
+    "campaign_sha256": null,
+    "root_path": "work/uq3/terminal-root-closure.json",
+    "root_sha256": null,
+    "root_helper_actual_exit": null,
+    "root_helper_actual_tool": null,
+    "fresh_confirmation_path": null,
+    "fresh_confirmation_sha256": null,
+    "known_union_count": null,
+    "root_preparer_and_extra_identity_records": null
+  },
+  "minimal_existing_composition": {
+    "preferred": "One small fixed two-task controller built from existing standalone functions; no second orchestration framework and no original coor.run/main.",
+    "supervision": {
+      "path": "work/run_lean_mvp_r2.py",
+      "functions": [
+        "supervise:230",
+        "materialize:391 (only generic flat+five-input copy/hash mechanics)",
+        "child_errors:202"
+      ],
+      "settings": "solver_seconds=None, requested_hpo=None => credential-stripped env/BLAS1; fixed trusted learner jobs may request2 threads, enforced whole-tree serial. No Qwen provider bootstrap."
+    },
+    "ownership": "Existing StrictOwnedObserver/cleanup_owned from owner8e9, historical fac3 guard, ResearchLock78a and PowerRequestGuard9a0; preserve original wall+monotonic/sticky10 and .25s successful resource samples/final forced observation. Candidate process9f remains separate under-test code.",
+    "seal": "Reuse generic whole-directory seal logic from METH01 run_components, not coor.task_proof/core_seal hardcoded automl_runs/repair4. Fixed executor must declare exact report/cut/final paths; seal all code+inputs+four cut cores+two final cores before pristine audit.",
+    "independent_metrics": "Use frozen R4 adapter823 TaskVerifier.verify/diagnostics/f1/close/expected_partition and original manual formulas; thin fixed-recipe artifact adapter only. Do not call whole verify_task unchanged: it requires a four-stage search/HPO/API ledger that this fixed executor intentionally does not perform.",
+    "root_close": "Reuse UQ3 close_pair identity/resource/clock/seal-validation mechanics, but its hardcoded4arms/HPO/API/whole-search predicate is inapplicable. New fixed two-task predicate and source-reviewed explicit schema are required before any execution."
+  },
+  "existing_CLI_assessment": {
+    "benchmark_release": "scripts/benchmark_release.py has positional python solution.py task.md and serial --jobs1, but performs load_inputs/copies before child timer, inherits broad environment, defaults9900, uses legacy wait_owned and has no all-core-before-truth independent seal barrier. It is an interface reference, not already qualified standalone release control.",
+    "verify_release": "tools/verify_release.py verifies current build_files bytes and runs three unpacked test scripts (23 tests). An approved historical16be-based candidate differs from current canonical73, so its unconditional current build_files comparison cannot be reused blindly. Preserve exact23 assertions/imports in a fixed candidate-manifest verifier, inside the proven outer resource/clock guard.",
+    "no_blanket_full_gate": "Do not rerun entire current59/634 or old499 merely as ritual. Pin exact unchanged model/backend members and applicable already-qualified dependency evidence. Freshly run only new/changed fixed-entry/strict-worker/MetricSpec/process/lexical-ID contracts plus exact candidate flat entry/default23; a semantic change beyond the approved port scope requires root to revise coverage before outcomes."
+  },
+  "minimal_serial_sequence": [
+    {
+      "phase": "setup_and_targeted_technical",
+      "steps": [
+        "Rehash all immutable dependencies/candidate ZIP and compare every unchanged base16be member byte/hash; exact changed/new member whitelist from final handoff. requirements exact.",
+        "Validate no private inputs/NPZ/predictions/weights/credentials in archive; generic routing and only positional task argument; no external recipe/config/research flags required.",
+        "Run final source-authored meaningful pure/mock contracts for changed executor and approved ports, then same contracts against unpacked actual archive; retain assertions/import-only rewrites and exact count whitelist. Reuse unchanged test evidence only with exact test/module/dependency/interpreter binding.",
+        "Run existing exact23 against candidate flat bytes if applicable; no default full-source replay. Record source/flat/entry/contracts as distinct evidence, never count an AST/source review as execution.",
+        "Materialize both five-file tasks from pristine originals as opaque hashed copies; source/raw-feature/cut reference and class/ID authority bound before first fitting."
+      ]
+    },
+    {
+      "phase": "standard_regression",
+      "command": [
+        "PINNED_PYTHON",
+        "-B",
+        "-X",
+        "utf8",
+        "solution.py",
+        "task.md"
+      ],
+      "required": "Exactly one standard call. Executor evaluates primary+confirmation with raw Br recipe/fit_iterations omitted, then recursively takes median of ACTUAL newly observed cut iteration trees and full-refits; atomically publishes complete submission.csv/report. No extra four external model jobs."
+    },
+    {
+      "phase": "standard_classification",
+      "command": [
+        "PINNED_PYTHON",
+        "-B",
+        "-X",
+        "utf8",
+        "solution.py",
+        "task.md"
+      ],
+      "required": "Exactly one standard call. Complete historical CLASS recipe; two frozen-equivalent feature-group cuts, canonical labels/probabilities and raw fitting-only stopping; new recursive median then full refit and CSV. No SINGLE substitution."
+    },
+    {
+      "phase": "seal_before_pristine_truth",
+      "required": "Both actual task supervisors terminal with exit0/cleanup true and all four cut+two final artifacts source/input/row/class/proba/core sealed BEFORE auditor imports R4/data libraries or parses pristine targets. If a task fails, keep its slot null and raw errors; whole release qualification false, never drop it."
+    },
+    {
+      "phase": "independent_no_fit_audit",
+      "required": "Freshly parse pristine source data only inside audit child after all seals. Recompute original-scale RMSE and all-class MacroF1 on both exact cut row arrays using frozen formulas; verify predictions/weights/child records/feature hashes/group or time disjointness and full-refit provenance/output IDs/classes. No fit or parameter/weight/threshold search."
+    },
+    {
+      "phase": "final_and_root",
+      "required": "Posthash source/copies/jobs/cores/audit under lock; exact-known cleanup and temp cleanup; verified PowerGuard release; terminal save within original common then root actual-exec+fresh preparer closure. Public archive/output/readiness only after root review; no autosubmit."
+    }
+  ],
+  "cut_and_final_contract": {
+    "regression": "Same two forward periods as frozen LA2 plan: primary last observed period, confirmation immediately previous, fitting only earlier periods. Compare canonical int64 row arrays/fingerprints and original feature-column hash; never use final-trained test CSV as cut prediction.",
+    "classification_reference_arrays": {
+      "primary": {
+        "path": "work/alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/split.npz",
+        "sha256": "e16a563499871e19227ba700425045bc14eb853615c420defd6277d0a963b2a0"
+      },
+      "confirmation": {
+        "path": "work/alfa-hack-automl/test-runs/tm1/c/automl_runs/true4/confirmation_split.npz",
+        "sha256": "d4d278eebfeebba90e3441854a4342def29ad57d704bdaff8dd226b66aa206df"
+      }
+    },
+    "generic_partition_boundary": "Archive generates its generic deterministic splits; private historical arrays are auditor-only references and are NOT shipped as benchmark-specific archive data or selected by dataset names. Actual ordered train/validation arrays must equal approved references, not just same seed or row count.",
+    "nested_stopping": "Each cut fit uses only that cut fitting rows for all preprocessing/weights/inner split/stopping/calibration. Verify each recursive child fitting-row proof and inner holdout provenance. Historical final trees[474,109] or[[100,111],[100,138],339] must not enter any cut job.",
+    "full_refit": "Recursive median of actual two-cut fit_iterations exactly equals full-refit job/record; all training rows in original order, no outer validation used for stopping, selected raw recipe unchanged. submission CSV is finite, exact lexical sample ID order/rows/schema/class order; no unseen test-label score is claimed.",
+    "roundtrip": "Bind raw CSV SHA, actual parser/dtype and lexical ID/label contract before/after copies. Preserve declared column order and canonical classes; numeric feature conversion must be the source-reviewed algorithm, not a repair from validation labels."
+  },
+  "prospective_caps_for_root_review_only": {
+    "common_seconds": 6000,
+    "setup_and_targeted_contracts": 600,
+    "standard_regression": {
+      "parent": 900,
+      "child": 870
+    },
+    "standard_classification": {
+      "parent": 3600,
+      "child": 3570
+    },
+    "independent_audit": {
+      "parent": 600,
+      "child": 570
+    },
+    "final_cleanup_and_root": 300,
+    "root_own_seconds_inside_final": 60,
+    "sum": 6000,
+    "technical_threads": 1,
+    "learner_threads_max": 2,
+    "worker_mib": 1536,
+    "whole_tree_mib": 2048,
+    "strict_serial": true,
+    "API_cap": 0,
+    "extra_fit_jobs": 0,
+    "allocation_note": "Prospective reuse of proven900/3600 task envelopes plus600 audit and300 cleanup. Before READY root must accept these against final fixed recipe fit census/closed timing evidence; no observed timing/guarantee here. Every child cap includes preprocessing/publication/cleanup; no silent retry, overflow or saved-time reallocation."
+  },
+  "quality_and_readiness": {
+    "new_regression_primary": null,
+    "new_regression_confirmation": null,
+    "new_regression_mean": null,
+    "new_classification_primary": null,
+    "new_classification_confirmation": null,
+    "new_classification_mean": null,
+    "all_full_CSV_verified": null,
+    "target_reproduction": "Freeze exact per-cut reference values/hashes and existing R4.close abs_tol=rel_tol1e-10 before execution. Report all new means/deltas; claim Br34.15502 reproduced only if actual same-cut recipe/row/provenance and registered numerical comparison pass. An otherwise valid slower/weaker/different result remains measured but target not fulfilled. Do not replace failure with V16 or fallback score.",
+    "search_Qwen_four_stage_HPO_claims": false,
+    "official_hidden_test_score": null,
+    "fixed_executor_qualification": null,
+    "universal_search_agent_qualification": false,
+    "promotion": false,
+    "submit": false
+  },
+  "remaining_concrete_bindings": {
+    "FM_executor_handoff_and_archive_member_inventory": null,
+    "AC_source_peer_and_targeted_test_counts": null,
+    "source_equivalence_and_reused_proof_map": null,
+    "fresh_task_input_role_hashes": null,
+    "interpreter_and_native_library_pins": null,
+    "private_manifest_plan_auditor_controller_closer_SHA": null,
+    "root_accepted_caps": null,
+    "UQ3_actual_root_and_fresh_union": null,
+    "source_publication_commit": null,
+    "actual_start_unix": null,
+    "actual_start_monotonic": null,
+    "actual_deadline_unix": null,
+    "actual_deadline_monotonic": null
+  },
+  "inspected_source_and_metadata_bindings_sha256": {
+    "work/run_lean_mvp_r2.py": "43be86ece6c453641afdcc6f8eccef02d713986e2ac8bf3314756f0bb78e0818",
+    "work/support_component_coordinator.py": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "work/historical-runtime-support/fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d.py": "fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d",
+    "work/awake-next-dev/awake_guard.py": "9a0bae0acb6ddb37e638420c52ad1e587a9180fbd7ef68ebc6e1a3c43e4bfc9b",
+    "work/alfa-hack-automl/tools/research_lock.py": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45",
+    "work/alfa-hack-automl/scripts/benchmark_release.py": "f2c44bb7eb4606501e83584f2f435e439414b0e934c1e4267318b970bf88fe60",
+    "work/alfa-hack-automl/tools/verify_release.py": "956799595b4ddfb1de5353b51d5510fc40c0c659ea28116e80ff5b18fff32f9e",
+    "work/method-component-next-dev/run_components.py": "672479b4aa444242369c28aef179454e1ab3c6470e3b00052676f255d4281379",
+    "work/method-component-next-dev/audit_components.py": "bf3526023c265fd102531426a2c35472686be84104500e703eb82d18f9456973",
+    "work/uq3-cadence-hpo-next-dev/candidate/source-handoff.json": "cd6898045edd61110e6fce08f964389914e37b93f3d9b2241316e57b8a122471",
+    "work/uq3-cadence-hpo-next-dev/candidate/protocol.json": "84bfaef410045efeec853c73e0e59e199896cae72990827386498ac98fdb4872",
+    "work/uq3-cadence-hpo-next-dev/candidate/close_pair.py": "81292f982a6cdf235905940c977115ae11ef3745626f4a28069841a291cfb462",
+    "work/uq3-cadence-hpo-next-dev/candidate/audit_pair.py": "f58a17c218ca89461c3c97c3498d197fa105b5a8ea0b240b26b232b12badf7ff",
+    "work/uq3-cadence-hpo-next-dev/candidate/r4_adapter.py": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd",
+    "work/uar-qwen-qualification-plan-next-dev/proposal.json": "4e518cd178e49579aa6c8b344b2cfc4a35fe595ddd7aecb8eb9538f85cc70448",
+    "work/ls-stage0-packet/manifest.json": "f025f1144d23724a8963d77ee2fce8d66f1fa3ff5cd0bda07203dd995d1e48b6"
+  },
+  "this_preparation": {
+    "candidate_imports": 0,
+    "config_imports": 0,
+    "tests": 0,
+    "builds": 0,
+    "fits": 0,
+    "API": 0,
+    "data_truth_prediction_reads": 0,
+    "PID_scans": 0,
+    "Git_writes": 0,
+    "STATE_writes": 0,
+    "active_UQ3_artifact_or_outcome_reads": 0,
+    "new_READY": false,
+    "new_clock_assigned": false,
+    "subagents_spawned": 0
+  }
+}

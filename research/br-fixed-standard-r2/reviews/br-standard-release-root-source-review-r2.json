@@ -1,0 +1,26 @@
+{
+  "schema": "root-br-fixed-source-review-r2",
+  "checked_unix": 1792841165.624841,
+  "handoff_sha256": "64fcf54a8bd987ea38b2fc921a1d06eadd834b56e2f09c6e4fd0fa333bce8b09",
+  "archive_sha256": "6af5374a8fac2ba7d0286580e6b8c588e8bd50552a7d942fccdc2081e634699a",
+  "candidate_pins_checked": 84,
+  "pin_mismatches": [],
+  "CRC_bad_member": null,
+  "flat_unique": true,
+  "source_AST_parsed": 72,
+  "changed_vs_R1": [
+    "automl_fixed_release.py",
+    "automl_release_runtime.py"
+  ],
+  "unchanged_runtime_members_vs_R1": 71,
+  "R1_archive_preserved": true,
+  "prepared_methods_from_AST": 18,
+  "prior_test_methods": 16,
+  "old_assertion_AST_missing": {},
+  "original_requirements_sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+  "root_source_read_status": "R1_BR01_BR02_BR03_NARROW_FIXES_SEEN_PENDING_FINAL_PEER_AND_ACTUAL_TECHNICAL_QUALIFICATION",
+  "candidate_imports_tests_fits_API": 0,
+  "new_metrics": null,
+  "archive_ready": false,
+  "known_legacy_boundary": "Late cleanup may make final status timeout while peakbytes/caps retain prior memory denial. Fixed flow rejects every non-ok with no retry, so no success/admission relaxation; no exact OS sandbox memory claim."
+}

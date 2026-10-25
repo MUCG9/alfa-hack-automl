@@ -1,0 +1,154 @@
+{
+  "audit_final.py": {
+    "snapshot": "source-evidence/000-audit_final.py",
+    "sha256": "d2496c1b4c751f75a50324cee820c7b2d29b447d40294108320c18fa6ae9a129"
+  },
+  "binding.template.NOT_READY.json": {
+    "snapshot": "source-evidence/001-binding.template.NOT_READY.json",
+    "sha256": "f998537fd5440f4fc5f99b5c5362d2bf57d51099031f4a9d6424175b05dcff6d"
+  },
+  "freeze_r3.py": {
+    "snapshot": "source-evidence/002-freeze_r3.py",
+    "sha256": "e7f30a272cad2fa9a8ab40c76c49835bdb0b572a3375653f7848c604a880f580"
+  },
+  "primitive-provenance.json": {
+    "snapshot": "source-evidence/003-primitive-provenance.json",
+    "sha256": "c00301db2b2c242c9aac450355072bd25ae5f143f4957923bb0a7e832bf87b75"
+  },
+  "protocol.json": {
+    "snapshot": "source-evidence/004-protocol.json",
+    "sha256": "2e3d8e88d53cfedcb173fb8cf4162c8ff26093d6ad8ecc561c4a503062e8e327"
+  },
+  "R2-preservation.json": {
+    "snapshot": "source-evidence/005-R2-preservation.json",
+    "sha256": "e4eb51d21cc55f0c58061122173b38e10d90cededc703c6a155fefdcc27fccb2"
+  },
+  "R3-anytime-only.patch": {
+    "snapshot": "source-evidence/006-R3-anytime-only.patch",
+    "sha256": "fe73a3dc0f958a53f5b095fb3c9fc1275a6235b1e7781bf33d7ee9e8457ce8cc"
+  },
+  "r4_primitives.py": {
+    "snapshot": "source-evidence/007-r4_primitives.py",
+    "sha256": "d89a8024539eedb6daae9777ae3bd6a4f826da54265df4828a73caf10e94b371"
+  },
+  "README.txt": {
+    "snapshot": "source-evidence/008-README.txt",
+    "sha256": "8eb3cee3d0cb60687781633fb3ee002b695eb5a3862cceb57f3c6f3510246fd8"
+  },
+  "source-evidence/r2/audit_final.py": {
+    "snapshot": "source-evidence/009-audit_final.py",
+    "sha256": "2f5ccf71530a16c4dc62219c5f64b42d96b1ef8f7d9a3f02736abc422e0639e5"
+  },
+  "source-evidence/r2/binding.template.NOT_READY.json": {
+    "snapshot": "source-evidence/010-binding.template.NOT_READY.json",
+    "sha256": "f998537fd5440f4fc5f99b5c5362d2bf57d51099031f4a9d6424175b05dcff6d"
+  },
+  "source-evidence/r2/freeze_r2.py": {
+    "snapshot": "source-evidence/011-freeze_r2.py",
+    "sha256": "fd675839af7ac945e74d8e72ec8242c5292398b1d4b134743558e7f09f5f8110"
+  },
+  "source-evidence/r2/independent-review-r2.json": {
+    "snapshot": "source-evidence/012-independent-review-r2.json",
+    "sha256": "0a989362cff22dfe3d3ce25440898285faffbffb366f40ddb56a12412793a68c"
+  },
+  "source-evidence/r2/primitive-provenance.json": {
+    "snapshot": "source-evidence/013-primitive-provenance.json",
+    "sha256": "c00301db2b2c242c9aac450355072bd25ae5f143f4957923bb0a7e832bf87b75"
+  },
+  "source-evidence/r2/protocol.json": {
+    "snapshot": "source-evidence/014-protocol.json",
+    "sha256": "bd0ceccaded83aa1bb2bcabbbbf67f29852742d1ee693f3ada90ed773fcee2f6"
+  },
+  "source-evidence/r2/Q3A01-role-only.patch": {
+    "snapshot": "source-evidence/015-Q3A01-role-only.patch",
+    "sha256": "06d10479e4e3c49a1641f5e1516c752c9ed5ebffd9a70a300e46892d434e7480"
+  },
+  "source-evidence/r2/r1-preservation.json": {
+    "snapshot": "source-evidence/016-r1-preservation.json",
+    "sha256": "90460f4197b88e962e7d7715aa8eff9109798dbd8e4c1a3c6029ea07cc3360dd"
+  },
+  "source-evidence/r2/r4_primitives.py": {
+    "snapshot": "source-evidence/017-r4_primitives.py",
+    "sha256": "d89a8024539eedb6daae9777ae3bd6a4f826da54265df4828a73caf10e94b371"
+  },
+  "source-evidence/r2/README.txt": {
+    "snapshot": "source-evidence/018-README.txt",
+    "sha256": "e2a1f02152727abb1ad158698310463e6f756dad51f2adc06b9c3981aa2c5b09"
+  },
+  "source-evidence/r2/source-evidence/r1/audit_final.py": {
+    "snapshot": "source-evidence/019-audit_final.py",
+    "sha256": "31d71275d9e819dfa41d2bff4bf5e47c9b17693e2fb7b1537ec48fe7cb3f502c"
+  },
+  "source-evidence/r2/source-evidence/r1/binding.template.NOT_READY.json": {
+    "snapshot": "source-evidence/020-binding.template.NOT_READY.json",
+    "sha256": "f998537fd5440f4fc5f99b5c5362d2bf57d51099031f4a9d6424175b05dcff6d"
+  },
+  "source-evidence/r2/source-evidence/r1/freeze_source.py": {
+    "snapshot": "source-evidence/021-freeze_source.py",
+    "sha256": "7356a45e749efa7b3b6e432c9eff33c6f9e03faaf42bc7aaae2b24ccaf4c27bb"
+  },
+  "source-evidence/r2/source-evidence/r1/independent-review-r1.json": {
+    "snapshot": "source-evidence/022-independent-review-r1.json",
+    "sha256": "4311ae2fd23ee2d33f529a975166a44b6509343076743ef4b1ec1fd601bc07a8"
+  },
+  "source-evidence/r2/source-evidence/r1/primitive-provenance.json": {
+    "snapshot": "source-evidence/023-primitive-provenance.json",
+    "sha256": "c00301db2b2c242c9aac450355072bd25ae5f143f4957923bb0a7e832bf87b75"
+  },
+  "source-evidence/r2/source-evidence/r1/protocol.json": {
+    "snapshot": "source-evidence/024-protocol.json",
+    "sha256": "cbfd369a2a0da4f32f707320f7681a780332702eddc31cc0a3f53dcd3cb06a35"
+  },
+  "source-evidence/r2/source-evidence/r1/r4_primitives.py": {
+    "snapshot": "source-evidence/025-r4_primitives.py",
+    "sha256": "d89a8024539eedb6daae9777ae3bd6a4f826da54265df4828a73caf10e94b371"
+  },
+  "source-evidence/r2/source-evidence/r1/README.txt": {
+    "snapshot": "source-evidence/026-README.txt",
+    "sha256": "f3b03b481fb6dfb75e049ff2261f5ff58e17b95db4a793d82bbce7a18d59484b"
+  },
+  "source-evidence/r2/source-evidence/r1/source-handoff.json": {
+    "snapshot": "source-evidence/027-source-handoff.json",
+    "sha256": "ca8f814393face3bcf27fedde2739be7ded3e3c56449b234cd112bb906c83709"
+  },
+  "source-evidence/r2/source-evidence/r1/source-proof.json": {
+    "snapshot": "source-evidence/028-source-proof.json",
+    "sha256": "aa9e3954236aaa47f8d528be78e1d86e6b88d7c58504995e1dddff79d1562c7f"
+  },
+  "source-evidence/r2/source-evidence/r1/test_audit_contracts.py": {
+    "snapshot": "source-evidence/029-test_audit_contracts.py",
+    "sha256": "4a71a1a76ca92ef2d2aaa696616cb7fe6349ef0afbd03d2088820134ba066132"
+  },
+  "source-evidence/r2/source-handoff.json": {
+    "snapshot": "source-evidence/030-source-handoff.json",
+    "sha256": "c751420ad4df2411ee50f6c7789b4f554206954575ae7c5d2f4702cf81984edc"
+  },
+  "source-evidence/r2/source-proof.json": {
+    "snapshot": "source-evidence/031-source-proof.json",
+    "sha256": "d5e441e478ac271fda1e8c1fb1cf2b56dc04784d7b5e1d5e5d7ec557db3e291c"
+  },
+  "source-evidence/r2/test_audit_contracts.py": {
+    "snapshot": "source-evidence/032-test_audit_contracts.py",
+    "sha256": "4a71a1a76ca92ef2d2aaa696616cb7fe6349ef0afbd03d2088820134ba066132"
+  },
+  "source-evidence/r2/test_csv_role_contracts.py": {
+    "snapshot": "source-evidence/033-test_csv_role_contracts.py",
+    "sha256": "d2905f8bcddaad53f0fb25c8efaf64aec8fa6c0822b64b17bf23c7ba4ecabe07"
+  },
+  "source-proof.json": {
+    "snapshot": "source-evidence/034-source-proof.json",
+    "sha256": "a76c1c8e52daff98ec8a36b6b6f5ce561d4c9c301de0163d0c82cec71c9f360d"
+  },
+  "test_audit_contracts.py": {
+    "snapshot": "source-evidence/035-test_audit_contracts.py",
+    "sha256": "87898ca5b69c33de24b7443bafceee5730e8910b873d13f7ccc76e1f34306347"
+  },
+  "test_csv_role_contracts.py": {
+    "snapshot": "source-evidence/036-test_csv_role_contracts.py",
+    "sha256": "d2905f8bcddaad53f0fb25c8efaf64aec8fa6c0822b64b17bf23c7ba4ecabe07"
+  },
+  "source-handoff.json": {
+    "snapshot": "source-evidence/037-source-handoff.json",
+    "sha256": "cc220ce9242b8b97a4e014dd29e62bc88c66623729caf31ad24c775a02ff72f1"
+  }
+}

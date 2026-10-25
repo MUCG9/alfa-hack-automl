@@ -1,0 +1,94 @@
+{
+  "schema": "qh3-outer-R8-coupled-source-binding-independent-review-v1",
+  "result": "NO_SCOPED_SOURCE_BLOCKER",
+  "reviewed_handoff": {
+    "path": "work/qwen-three-hour-outer-next-dev-r9/source-handoff-final.json",
+    "sha256": "0f11d7b9275638a73e6ce5222ffa2663704b75201c0a690047905d1259da2da5"
+  },
+  "reviewed_base_handoff": {
+    "path": "work/qwen-three-hour-outer-next-dev-r9/source-handoff.json",
+    "sha256": "7e8d64a9f52d8990f7a1c35b3e27a7f8a56b8249daf44c73253f51384a841028"
+  },
+  "evidence": {
+    "local_pins": 26,
+    "external_pins": 1628,
+    "all_actual_file_hashes_match": true,
+    "all24_original_files_and_original7e8d_handoff_raw_preserved": true,
+    "runtime_functions_guards_clocks_caps_unchanged_after_original_narrow_literals": true,
+    "main_whole_AST_inverse_to_R8": true,
+    "other3_raw_OUT_inverses": true,
+    "PS_and_outer_test_files_raw_exact_R8": true,
+    "core": {
+      "handoff": {
+        "path": "qwen-three-hour-autoresearch-next-dev-r9/source-handoff-final.json",
+        "sha256": "aeeecd09e4631d6b96b2e57ded614df22d84ea6bdf56b1406ba0e2e1b96b13a9"
+      },
+      "peer": {
+        "path": "qh4-core-r9-audit-contract-source-review-r1.json",
+        "sha256": "8a49e4cd1db3c1f02ced84c95964e31c5379bd983a830102206abbe97289b638"
+      }
+    },
+    "auditor": {
+      "handoff": {
+        "path": "qwen-three-hour-independent-audit-next-dev-r6/source-handoff.json",
+        "sha256": "55028e01b968db3fc826951fbe827fdc96dda71264e2096a41fe03c41ac0ee3d"
+      },
+      "peer": {
+        "path": "qwen-three-hour-independent-audit-source-review-r6.json",
+        "sha256": "6fa28b1348c9b57e67a73a0563e0918758f6d15929cbff0524e951ca6483eb0d"
+      }
+    },
+    "exact_method_counts": [
+      2,
+      6,
+      4,
+      21,
+      4,
+      28,
+      2,
+      4,
+      6
+    ],
+    "prepared_contracts": 77,
+    "entrypoints": 9,
+    "parent_slot_seconds": 270,
+    "all_method_AST_hash_and_file_hash_maps_match_actual_source": true,
+    "all_main_negative_closer_atomic_wrapper_post_tool_CLI_and_outputs_match_actual_parser_PS": true,
+    "embedded_launch_source_refs_proposal11_refs_and_component_helpers_triple_checked": true,
+    "protocol_correction": {
+      "path": "protocol-correction-r1.json",
+      "sha256": "c1b7814706de46b2f5811e40b9e57772a29f068c5db03ed966499f58c5efee7c",
+      "authoritative_only_for": [
+        "exact_contracts",
+        "completion_time_intent",
+        "source_revision"
+      ],
+      "margin": 270,
+      "elapsed_min": 4530,
+      "provider_window": 180,
+      "QHO09META01": "CLOSED"
+    },
+    "initial_finding_receipt": {
+      "path": "work/qh4-outer-r9-fm-independent-source-review-r1.json",
+      "sha256": "8179b5465a5f754e3b298d4ad0d10e7c904e2c2c8754939e5cf47a0ef5399042"
+    },
+    "projection8467_plus_exact_two_UNKNOWN_equals8469": true,
+    "UNKNOWN_confers_no_ownership_or_termination": true,
+    "all_old_QH_FAIL_units_preserved": true
+  },
+  "next_required": [
+    "Root actual private binding must pin finalhandoff and authoritative annex plus exact review; all operational paths ABS; actual fullunion/current absence/publication/pins preflight before one prospective admission",
+    "Private <=1MiB and pin cap4096 remain actual preflight requirements; source census3281 does not claim actual private READY",
+    "Original10800/task4800, all qualified resource/ownership/source/cleanup and complete HTTP usage predicates retained; no runtime or measured duration claim"
+  ],
+  "limits": {
+    "actual_imports": 0,
+    "actual_tests": 0,
+    "actual_models": 0,
+    "actual_API": 0,
+    "actual_data_array_prediction_truth_reads": 0,
+    "actual_PID_scans": 0,
+    "actual_campaign_clock": null,
+    "actual_private_READY": null
+  }
+}

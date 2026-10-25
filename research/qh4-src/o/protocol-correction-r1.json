@@ -1,0 +1,120 @@
+{
+  "schema": "qh4-outer-r9-protocol-correction-v1",
+  "status": "APPEND_ONLY_FROZEN_SOURCE_NOT_READY",
+  "preserved_handoff": {
+    "path": "source-handoff.json",
+    "sha256": "7e8d64a9f52d8990f7a1c35b3e27a7f8a56b8249daf44c73253f51384a841028"
+  },
+  "preserved_protocol": {
+    "path": "protocol.json",
+    "sha256": "df37d2bafaf47f64f409462b787dfd8fa0fbdddce0b4ddcd10f4b8a3f7e976f1"
+  },
+  "precedence": "This annex authoritatively replaces ONLY exact_contracts, completion_time_intent and source_revision in the preserved protocol.json. All other frozen bytes and claims remain unchanged.",
+  "exact_contracts": [
+    {
+      "name": "core-parent-ledger",
+      "expected": 2,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "core-provider-environment",
+      "expected": 6,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "core-worker-consumer",
+      "expected": 4,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "core-iterative-policy",
+      "expected": 21,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "core-resource-origin",
+      "expected": 4,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "independent-audit-contracts",
+      "expected": 28,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "audit-CSV-role-contracts",
+      "expected": 2,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "outer-broker-authority-contracts",
+      "expected": 4,
+      "parent": 30,
+      "child": 20
+    },
+    {
+      "name": "outer-atomic-contracts",
+      "expected": 6,
+      "parent": 30,
+      "child": 20
+    }
+  ],
+  "contract_counts": [
+    2,
+    6,
+    4,
+    21,
+    4,
+    28,
+    2,
+    4,
+    6
+  ],
+  "prepared_contract_executions": 77,
+  "entrypoints": 9,
+  "setup_contract_parent_seconds": 270,
+  "completion_time_intent": "Each task actual elapsed>=4530 and report remaining<=270 with actual supervisor end>=task deadline-270; complete180s provider window plus unchanged10s parent grace/60s sealing/10s admission overhead/two minimum worker windows10s; no idle padding/time borrowing. Strict complete usage and every other quality/resource/seal predicate remain unchanged. Source-defined incomplete cap/early exit cannot qualify.",
+  "completion_time_thresholds": {
+    "per_task_seconds": 4800,
+    "provider_window_seconds": 180,
+    "minimum_admission_seconds": 270,
+    "minimum_elapsed_seconds": 4530,
+    "maximum_remaining_seconds": 270,
+    "supervisor_end_at_least_task_deadline_minus_seconds": 270
+  },
+  "source_revision": "OUTER_R9_QH4_WITH_CORE_R9_AND_AUDITOR_R6_PROVIDER_WINDOW_180_ADMISSION_270",
+  "component_authorities": {
+    "core_handoff": {
+      "path": "qwen-three-hour-autoresearch-next-dev-r9/source-handoff-final.json",
+      "sha256": "aeeecd09e4631d6b96b2e57ded614df22d84ea6bdf56b1406ba0e2e1b96b13a9"
+    },
+    "auditor_handoff": {
+      "path": "qwen-three-hour-independent-audit-next-dev-r6/source-handoff.json",
+      "sha256": "55028e01b968db3fc826951fbe827fdc96dda71264e2096a41fe03c41ac0ee3d"
+    },
+    "source_reviews": {
+      "core": {
+        "path": "qh4-core-r9-audit-contract-source-review-r1.json",
+        "sha256": "8a49e4cd1db3c1f02ced84c95964e31c5379bd983a830102206abbe97289b638"
+      },
+      "auditor": {
+        "path": "qwen-three-hour-independent-audit-source-review-r6.json",
+        "sha256": "6fa28b1348c9b57e67a73a0563e0918758f6d15929cbff0524e951ca6483eb0d"
+      }
+    }
+  },
+  "runtime_files_or_tests_changed": false,
+  "validators_guards_clocks_caps_changed": false,
+  "original_failures_preserved": true,
+  "actual_runtime": 0,
+  "actual_clock": null,
+  "actual_metrics": null,
+  "private_READY_created": false
+}

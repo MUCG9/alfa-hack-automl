@@ -1,0 +1,93 @@
+--- R3/task_entry.py
++++ R4/task_entry.py
+@@ -55,6 +55,28 @@
+     token=marker.set(True)
+     try:yield
+     finally:marker.reset(token)
++
++
++def canonical_metadata(value):
++    return hashlib.sha256(json.dumps(value,sort_keys=True,ensure_ascii=False,
++        separators=(',',':'),allow_nan=False).encode('utf-8')).hexdigest()
++
++
++def persist_parent_callback(result,folder,index,phase,cut,*,task_manifest,source_union,spec,recipe,check):
++    """Save the exact returned parent record, separate from child result.json."""
++    need(type(result) is dict and type(index) is int and index>0
++         and type(phase) is str and phase,'typed_actual_parent_callback_required')
++    folder=Path(folder).resolve();need(folder.is_absolute(),'absolute_callback_folder_required')
++    def actual_ref(path):
++        check()
++        return dict(path=str(path),sha256=sha(path,check)) if path.is_file() else None
++    record=dict(schema='qwen-three-hour-parent-result-v1',callback_index=index,phase=phase,
++        task_manifest=dict(task_manifest),cut=dict(cut),
++        source_union_canonical_sha256=canonical_metadata(source_union),
++        spec_canonical_sha256=canonical_metadata(spec),recipe_canonical_sha256=canonical_metadata(recipe),
++        raw_job=actual_ref(folder/'job.json'),raw_result=actual_ref(folder/'result.json'),result=result)
++    target=folder/'parent-result.json';check();save(target,record);check()
++    return dict(path=str(target),sha256=sha(target,check))
+ 
+ 
+ def run(a):
+@@ -177,6 +199,9 @@
+                 clock=clock,full_fit=phase=='full-refit',fit_iterations=fit_iterations)
+         view.check();frozen();need(sha(cut['path'],view.check)==cut['sha256'],'cut_changed_after_worker')
+         result['split_sha256']=cut['sha256']
++        result['parent_callback_receipt']=persist_parent_callback(result,output/('worker-'+str(worker_count)),
++            worker_count,phase,cut,task_manifest=dict(path=str(manifest),sha256=a.manifest_sha256),
++            source_union=pins,spec=cfg['spec'],recipe=recipe,check=view.check)
+         return result
+     report=policy.run_task(cfg['task'],view,gateway,worker,normalize,signature,compiler,
+         lambda row:save(output/'report.json',row))
+--- R3/research_loop.py
++++ R4/research_loop.py
+@@ -190,7 +190,8 @@
+         'records':[],'worker_calls_attempted':0,'worker_calls_succeeded':0,'executed_Qwen_candidates':0,'actual_learner_fit_calls':None,
+         'actual_learner_fit_count_reason':'worker callbacks can contain nested stopping/calibration; no fabricated logical-job fit count',
+         'first_failure':None,'secondary_failures':[],'selected_recipe':None,'final_confirmation':None,
+-        'full_refit':None,'quality_qualified':False,'promotion':False,'official_score_claim':False}
++        'full_refit':None,'quality_qualified':False,'promotion':False,'official_score_claim':False,
++        'strong_control_cuts':None,'callback_ledger_refs':[]}
+     def save():clock.check();persist(deepcopy(state));clock.check()
+     def fail(exc):
+         row={'type':type(exc).__name__,'code':str(exc) if isinstance(exc,ResearchStop) else None}
+@@ -201,6 +202,13 @@
+         state['worker_calls_attempted']+=1
+         result=worker(deepcopy(recipe),cut,min(PER_CUT_LIMIT,limit),phase=phase,fit_iterations=iterations)
+         clock.check();need(type(result) is dict and result.get('cleanup_confirmed') is True,'worker_cleanup_or_typed_receipt_unknown')
++        receipt=result.get('parent_callback_receipt')
++        need(type(receipt) is dict and set(receipt)=={'path','sha256'}
++             and type(receipt['path']) is str and receipt['path']
++             and type(receipt['sha256']) is str and len(receipt['sha256'])==64
++             and all(c in '0123456789abcdef' for c in receipt['sha256']),
++             'actual_saved_parent_callback_receipt_required')
++        state['callback_ledger_refs'].append(deepcopy(receipt))
+         state['last_worker_final_status']=result.get('status')
+         state['last_worker_parent_origin']=deepcopy(result.get('hpo_fair_reserve_provenance'))
+         require_worker_origin(result)
+@@ -218,7 +226,8 @@
+         return rows
+     seen=set();incumbent=deepcopy(task['strong_recipe']);control=best=None
+     try:
+-        control=paired(incumbent,'control-');score_pair(control,task);best=control
++        control=paired(incumbent,'control-');state['strong_control_cuts']=deepcopy(control)
++        score_pair(control,task);best=control
+         seen.add(signature(incumbent));save()
+         while clock.remaining()>FINAL_RESERVE+15:
+             if state['gateway_calls']>=GATEWAY_LIMIT:
+--- R3/test_research_loop.py
++++ R4/test_research_loop.py
+@@ -58,9 +58,11 @@
+             clock.left-=1;calls.append((deepcopy(recipe),cut['seed'],timeout,phase,fit_iterations))
+             if worker_override:return worker_override(recipe,cut,phase,fit_iterations)
+             return dict(status='ok',cleanup_confirmed=True,split_sha256=cut['sha256'],metrics={'rmse':10-recipe['params']['v']*.01},
+-                fit_iterations=101 if cut['seed']==42 else 205,full_fit=phase=='full-refit',submission='owned/final.csv',
++                fit_iterations=101 if cut['seed']==42 else 205,full_fit=phase=='full-refit',submission='owned/final.csv',recipe=deepcopy(recipe),
+                 hpo_fair_reserve_provenance=dict(schema='hpo-fair-reserve-worker-origin-v1',cleanup_confirmed=True,
+-                    coordinator_killed=None,primary_exception_type=None,prior_result_status='ok'))
++                    coordinator_killed=None,primary_exception_type=None,prior_result_status='ok'),
++                parent_callback_receipt=dict(path='synthetic-owned/worker-'+str(len(calls))+'/parent-result.json',
++                    sha256=hashlib.sha256(str(len(calls)).encode()).hexdigest()))
+         return clock,gateway,worker,calls,gateway_calls,saved
+ 
+     def test_one10800_and_equal4800_leave_exact_shared_reserves_without_borrow(self):

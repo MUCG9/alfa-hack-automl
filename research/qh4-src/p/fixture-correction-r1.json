@@ -1,0 +1,21 @@
+{
+  "schema": "qh4-metadata-caller-QHMP03-fixture-correction-v1",
+  "status": "APPEND_ONLY_SOURCE_ONLY",
+  "preserved_R2_handoff_sha256": "2af237d6e5eba119944becda33280b1c9fb88918cc529c20fb157b47fad73d36",
+  "runtime_sha256": "1a4c0b19e9ea08b95653f55c83d620842967dbd35cc69f7f64bb3935eef4e42c",
+  "runtime_bytes_changed": false,
+  "superseded_contract_entry": "test_caller.py",
+  "selected_contract_entry": "test_caller_corrected_r1.py",
+  "selected_methods": {
+    "MetadataCallerContracts.test_evaluate_clock_checkpoints_are_continuous_and_local_and_restore_primary_exception": "1ad015080c2b4fdcf8720eba3b6a85a5373a1fa9c606e6e70fdb4fd1f7e238ad",
+    "MetadataCallerContracts.test_guard_observer_seen_is_retained_even_when_a_round_fails_without_role_adoption": "9710ef47e6daa5aaad6e5fd6859cfe7ae5234e83c9166151139b15be4e559942",
+    "MetadataCallerContracts.test_positive_JSON_newline_failure_is_owned_and_revoked_but_existing_file_is_untouched": "adc0d9ef05449a05d72594c6cde0e6036440f8bc449fc2f137cb4aecc1404b15",
+    "MetadataCallerContracts.test_both_negative_save_failures_survive_in_final_console_summary": "9e96e9bfe69f7388f951876f1e8587f7783484753715fee46c4167e7bf8f9691"
+  },
+  "prepared_contracts": 4,
+  "actual_tests": 0,
+  "sole_fixture_delta": "Mock write fails ONLY on trailing newline AFTER complete single-dict JSON ends with }; internal indent newline passes.",
+  "exact_RAW_inverse_to_previous_test": true,
+  "other3_method_ASTs_exact": true,
+  "no_new_gate_or_clock": true
+}

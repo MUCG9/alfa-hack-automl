@@ -1,0 +1,129 @@
+"""SHA/AST/compile source-core freeze. Never imports or runs task/test sources."""
+from pathlib import Path
+import ast
+import hashlib
+import json
+
+HERE=Path(__file__).resolve().parent;WORK=HERE.parent;CANONICAL=WORK/'alfa-hack-automl'
+def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+def save(name,value):(HERE/name).write_text(json.dumps(value,indent=2,ensure_ascii=False,allow_nan=False)+'\n',encoding='utf-8')
+methods={}
+for filename in ['test_research_loop.py','test_r5_worker_consumer.py']:
+    path=HERE/filename;tree=ast.parse(path.read_bytes());compile(path.read_bytes(),filename,'exec')
+    declared={c.name+'.'+m.name:hashlib.sha256(ast.dump(m,include_attributes=False).encode()).hexdigest()
+        for c in tree.body if isinstance(c,ast.ClassDef) for m in c.body if isinstance(m,ast.FunctionDef) and m.name.startswith('test_')}
+    assert len(declared)==len(set(declared))
+    methods[filename]={'sha256':sha(path),'prepared_method_count':len(declared),'methods_AST_sha256':declared,'actual_executed':0}
+assert sum(v['prepared_method_count'] for v in methods.values())==17
+for filename in ['research_loop.py','task_entry.py','gateway_child.py','r5_worker_runtime.py','r5_resources.py','verified_sampling.py']:
+    compile((HERE/filename).read_bytes(),filename,'exec')
+refs=[
+ 'br-standard-release-next-dev-r5/source-handoff.json',
+ 'br-standard-release-independent-source-review-r5.json',
+ 'br-standard-release-root-source-acceptance-r5.json',
+ 'br-standard-release-qualification-next-dev/controller-r5/run_controller.py',
+ 'br-standard-release-controller-independent-review-r5.json',
+ 'verified-supervision-next-dev-r2/coordinator.py',
+ 'verified-supervision-independent-review-r2.json',
+ 'verified-resource-sampling-next-dev/verified_sampling.py',
+ 'verified-resource-sampling-independent-review-r1.json',
+ 'support_component_coordinator.py',
+ 'historical-runtime-support/fac3a54ba91958576b913585f1e567460201af2bc09d18a46c87e80a8545482d.py',
+ 'alfa-hack-automl/tools/propose_feature_dsl.py',
+ 'alfa-hack-automl/src/automl/search/policy.py',
+ 'alfa-hack-automl/src/automl/evaluation/api.py',
+ 'alfa-hack-automl/src/automl/evaluation/service.py',
+ 'alfa-hack-automl/src/automl/infrastructure/llm_gateway.py',
+ 'alfa-hack-automl/src/automl/infrastructure/run_budget.py',
+ 'alfa-hack-automl/src/automl/infrastructure/processes.py',
+ 'alfa-hack-automl/src/automl/infrastructure/runtime.py']
+external={rel:sha(WORK/rel) for rel in refs}
+save('reuse-plan.json',{'schema':'qwen-three-hour-minimal-reuse-plan-v1','status':'SOURCE_CORE_ONLY_NOT_READY',
+    'scope':'Next NEW experience after current bounded technical gate and last-submitted archive CLASS repair; no release/upload or historical clock reset.',
+    'existing_reuse':{'capture_guard_lease_Power':'qualified C5 d5f41, exact own/direct/one-pinned-launcher/shell capture, true-prior gap10 and successful .25 RSS sampling',
+        'supervise':'qualified coordinatorR2 bd864, StrictOwnedObserver owner8e9, historical fac3, current candidate processes9f84 distinct',
+        'worker':'R5 ad608 strict wrapper +verified ResourceBudget +d65 sampler; six import-path rewrites only to canonical worker_entrypoint',
+        'gateway':'existing request_json; fixed child executable and parent-main-thread coorR2 sampling, no background heartbeat or RunBudget',
+        'recipe':'existing normalize/signature; one selected existing strong-recipe leaf per proposal; complete protected recipe otherwise unchanged',
+        'features':'exact trusted compile_features from tools/propose_feature_dsl.py; no Qwen-provided feature_code',
+        'evaluator':'unchanged canonical worker/evaluation; exact supplied frozen42/43 byte identities; no regenerated partitions',
+        'independent_audit':'reuse appropriate fixed-artifact R4 predicate functions AFTER both task cores; original whole verify_task HPO/search predicates are inapplicable to this loop'},
+    'minimum_remaining_integration':[
+        'After archive CLASS fix: exact strong REG Br and CLASS authorities/loader schema, data/task/MetricSpec/class lexical order/split/source pins',
+        'One narrow outer C5 two-task literal/schema adapter: common captured before setup/materialization/API, setup<=300, each task4800, audit600, cleanup300 with atomicroot60 inside',
+        'Root-approved all-task core seal barrier +fixed-artifact independent rescore adapter +actual exit/known/fresh/source/temp cleanup evidence',
+        'Source peer, only necessary changed-source contracts under root serial lease, private binding/publication/fresh predecessor admission'],
+    'no_portfolio_HPO_flow':True,'no_9_or14_experiment_cap':True,'gateway64_per_task':True,
+    'same_two_scientific_flags_context_and_selector_OFF':True,'current_runtime_allowed':False,
+    'archive_fix_authority_paths':None,'actual_predecessor_root':None,'actual_clock':None,'READY':None})
+save('protocol.json',{'schema':'qwen-three-hour-iterative-preregistration-source-v1','status':'PROSPECTIVE_SOURCE_NOT_READY',
+    'common_seconds':10800,'setup_seconds':300,'REG_seconds':4800,'CLASS_seconds':4800,
+    'independent_audit_seconds':600,'cleanup_seconds':300,'atomic_root_seconds_inside_cleanup':60,
+    'nominal_equal_task_seconds_including_half_shared_overheads':5400,
+    'shared_overhead_seconds_per_task':600,'unused_task_compute_not_reinvested_in_other_task':True,
+    'each_task_internal_reserves':{'fresh_selected_confirmation':600,'fresh_full_refit':900,'core_seal':60},
+    'per_cut_callback_seconds_upper':900,'gateway_calls_per_task_upper':64,'HTTP_attempts_per_gateway_upper':3,
+    'HTTP_attempts_per_task_reported_upper_if_all_attempt_counts_known':192,
+    'models_and_nested_fit_count':None,'fit_count_scope':'actual worker callbacks reported separately; nested stopping/calibration can fit multiple learners, so logical job count is never actual fit count',
+    'iteration':'real Qwen proposal -> one normalized recipe/approved DSL leaf delta ->both fixed42/43 strict workers ->bounded real feedback ->keep/discard',
+    'stop_conditions':['original reserve exhausted','resource/clock/source/ownership/typed fatal failure','provider failure or unknown HTTP attempt accounting','bounded64 gateway cap'],
+    'ordinary_failed_trial':'record NULL metrics and attempted slot; no fake0, no stale checkpoint, no synthetic success; permit next genuine hypothesis within same reserves',
+    'selection':'strict improvement on BOTH cuts vs current complete incumbent; CLASS also BOTH-cut strong-control support>=100 loss tolerance.01 and ex-rarest delta>0',
+    'confirmation':'fresh selected43 within task reserve, use actual42+fresh43 recursive median tree for full refit; no historical iteration override',
+    'independent_audit_barrier':'both task terminal cores/source-input-split-prediction hashes sealed before any pristine independent label audit',
+    'quality_scope':'adaptive reused public validation, not blind/official; keep/discard never default promotion/upload',
+    'CPU_threads_per_learner':2,'worker_RSS_MiB':1536,'whole_RSS_MiB':2048,
+    'no_arbitrary_generated_Python':True,'approved_DSL_only':True,'context_flag':False,'selector_cache_flag':False,
+    'actual_clocks':None,'strong_authority_refs_after_archive_repair':None,'actual_metrics':None,'promotion':False,'submit':False})
+save('task-private.template.json',{'schema':'qwen-three-hour-task-private-v1','readiness':'NOT_READY',
+    'missing_bindings':['archive CLASS repair and exact strong recipe authorities','outer10800 reviewed C5 adapter and actual current-clean predecessor','all immutable canonical/helper/source/input/split hashes','strict MetricSpec/lexical ID/classes and trusted preparation receipts','independent all-core auditor and root/fresh closure adapter','source peers/root private review/publication','actual common/task tuple assigned only by future launch'],
+    'canonical_root':None,'python':None,'output':None,'immutable_files':None,'helpers':None,
+    'clock':None,'task':None,'spec':None,'strong_authority':None,'trusted_DSL_compiler':None,
+    'requested_model':None,'reasoning_effort':None,'actual_runtime':None})
+save('source-proof.json',{'schema':'qwen-three-hour-source-preparation-proof-v1','status':'SOURCE_ONLY_NOT_EXECUTED',
+    'prepared_contracts':methods,'new_policy_test_methods':16,'preserved_R5_consumer_method_AST':1,
+    'worker_port_proof':'worker-port-source-proof.json','compile_only':'all new Python sources compiled as text; none imported',
+    'no_candidate_or_test_imports':True,'tests_executed':0,'fits':0,'API_calls':0,
+    'data_arrays_PIDs_Git_canonical_clock':0,'root_launch_remaining':True})
+(HERE/'README.txt').write_text('''SOURCE CORE ONLY / NOT READY. No runtime or clock has been assigned.
+
+research_loop.py is the new iterative policy; task_entry.py is one strict4800
+task leaf; gateway_child.py is one fixed provider request observed by the parent
+main thread using exact coorR2. No background heartbeat and no legacy16-call
+RunBudget. Qualified R5 worker/resources/sampler are copied with only six import
+paths adapted. Numerical worker/evaluator/splits remain unchanged.
+
+Prepared contracts:16 new pure/mock policy methods plus1 exact R5 consumer
+method (import-path adaptation only). None executed. Existing qualified helper
+receipts support source reuse; they do not qualify this new campaign.
+
+Original total10800=setup300+REG4800+CLASS4800+independent audit600+cleanup300;
+root60 is inside cleanup. Each task nominal5400 including half shared overheads.
+No task borrows unused compute from the other. Both fixed cuts for each proposed
+recipe, genuine failure=NULL, exact recipe dedup, no repeated portfolios/HPO.
+At most64 gateway calls/task and at most3 HTTP attempts per call. Actual reported
+HTTP/token completeness is preserved; nested learner fits are not inferred from
+worker-call counts. Confirm600/refit900/seal60 remain inside each4800.
+
+This source is intentionally not a complete launch packet until the submitted
+archive CLASS failure is fixed and exact strong REG/CLASS/task/split authorities
+are supplied. The reuse-plan lists the ONE thin outer C5 two-task binding and
+independent all-core audit adapter still required. Root alone may materialize
+READY, observe full predecessor absence, publish and assign a new actual clock.
+No old UAR/CX/UQ launcher/closer or clock may be reopened. No release/upload.
+
+Future task-leaf CLI, NOT TO RUN independently:
+ python -B -X utf8 task_entry.py --manifest ABS --manifest-sha256 SHA
+   --self-sha256 TASK_ENTRY_SHA
+The reviewed outer caller must supply both original common/task tuples before
+candidate imports/API and supervise the leaf under the same remaining reserves.
+''',encoding='utf-8')
+local={p.relative_to(HERE).as_posix():sha(p) for p in sorted(HERE.rglob('*')) if p.is_file() and p.name!='source-handoff.json'}
+save('source-handoff.json',{'schema':'qwen-three-hour-autoresearch-source-core-handoff-v1',
+    'status':'SOURCE_CORE_FROZEN_PENDING_ARCHIVE_AUTHORITY_AND_OUTER_BINDING',
+    'files_sha256':local,'external_refs_sha256':external,'prepared_contract_methods':17,
+    'candidate_imports_tests_fits_API_data_PID_Git_clock':0,'actual_clock':None,'private_READY':None,
+    'complete_executable_campaign':False,'one_executable_task_leaf_and_fixed_gateway':True,
+    'remaining_launch_dependencies':'reuse-plan.json','promotion':False,'submit':False})
+print(json.dumps({'source_core_frozen':True,'handoff_sha256':sha(HERE/'source-handoff.json'),
+    'prepared_methods':17,'local_pins':len(local),'external_pins':len(external),'runtime':False}))

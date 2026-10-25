@@ -1,0 +1,42 @@
+{
+  "schema": "qh4-metadata-preflight-caller-r2-source-proof-v1",
+  "status": "SOURCE_ONLY",
+  "exact_existing_saved_equivalent_caller_found": false,
+  "unrelated_old_run_preflight_guarded_not_reused": true,
+  "utility_R2_file_and_evaluate_whole_AST_unchanged": true,
+  "qualified_C5_guard_and_sampling_files_unchanged": true,
+  "local_clock_facade": "only trusted utility module.time; full original C5 pulse then real monotonic, restore finally; no global time mutation or guard timestamp reset",
+  "guard_identity_recording": "subclass only observe finally snapshots actual .seen; sampled/departed also retained; original owner performs known8469 absence",
+  "known_count": 8469,
+  "known_identity_canonical_sha256": "7bd7cb265f740b78c095c722cd4184fdf366439b7f0084d4bd7a4a0862facd3f",
+  "metadata_own_seconds": 30,
+  "whole_window_includes_evaluate_and_save": true,
+  "continuous_original_guard": true,
+  "late_positive_flags_revoked": true,
+  "final_positive_requires_same_observed_identity_inventory_after_last_sample": true,
+  "exclusive_outputs": [
+    "private/qh4-metadata-preflight-early-preparers-r1.json",
+    "private/qh4-metadata-preflight-preparer-r1.json",
+    "private/qh4-metadata-preflight-result-r1.json"
+  ],
+  "no_candidate_controller_module_import": true,
+  "no_array_decoder": true,
+  "no_child_or_model_API": true,
+  "no_experiment_clock": true,
+  "prepared_mock_contracts": {
+    "MetadataCallerContracts.test_evaluate_clock_checkpoints_are_continuous_and_local_and_restore_primary_exception": "1ad015080c2b4fdcf8720eba3b6a85a5373a1fa9c606e6e70fdb4fd1f7e238ad",
+    "MetadataCallerContracts.test_guard_observer_seen_is_retained_even_when_a_round_fails_without_role_adoption": "9710ef47e6daa5aaad6e5fd6859cfe7ae5234e83c9166151139b15be4e559942",
+    "MetadataCallerContracts.test_positive_JSON_newline_failure_is_owned_and_revoked_but_existing_file_is_untouched": "378c175693cbd52d250fccfa4afe58f82b6e523f4f658f429b4b8ec75017079f",
+    "MetadataCallerContracts.test_both_negative_save_failures_survive_in_final_console_summary": "9e96e9bfe69f7388f951876f1e8587f7783484753715fee46c4167e7bf8f9691"
+  },
+  "prepared_count": 4,
+  "actual_tests_models_API_PID_clock": 0,
+  "preserved_R1_handoff_sha256": "419e30c40bfe0fb4b67429651b980ddb22695d3539695b97745e687e23fa3da0",
+  "only_runtime_changes": [
+    "save_new records exclusive-created ownership immediately after open, before bytes",
+    "negative revocation only for exact owned created paths",
+    "final stdout compact secondary error types"
+  ],
+  "whole_runtime_RAW_and_AST_inverse_to_R1": true,
+  "old2_method_ASTs_exact": true
+}

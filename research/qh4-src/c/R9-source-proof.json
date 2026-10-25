@@ -1,0 +1,306 @@
+{
+  "schema": "qwen-core-full-provider-window-source-proof-v1",
+  "source_only": true,
+  "base_handoff_sha256": "efa770c766eaa4a49392193d24fd867cfd8ca5a9b64f44a8f07c4466e8aecd58",
+  "runtime_changed_only": [
+    "research_loop.py",
+    "gateway_child.py"
+  ],
+  "other5_runtime_raw_exact": true,
+  "all137_R8_files_and_final_handoff_preserved": true,
+  "exact_text_and_AST_inverses": {
+    "research_loop.py": {
+      "base_sha256": "5405d7e0a734897d2251f0ad15d10d12854654ada63c022a99aba1deb0f53af8",
+      "candidate_sha256": "1ec5af7721a2e434554707fc0667ad430f9ec0743b471e1d916341751b1f53c7",
+      "exact_LF_text_inverse": true,
+      "whole_AST_inverse": true,
+      "edits": [
+        {
+          "base_lines": [
+            31,
+            31
+          ],
+          "candidate_lines": [
+            31,
+            36
+          ],
+          "old": "",
+          "new": "# One full provider window, its existing parent overhead, publication margin,\n# admission work and two minimum worker slots. No shortened final request.\nPROVIDER_SECONDS=180\nPROVIDER_PARENT_OVERHEAD=10\nTASK_ADMISSION_MARGIN=PROVIDER_SECONDS+PROVIDER_PARENT_OVERHEAD+SEAL_RESERVE+ADMISSION_OVERHEAD+2*MIN_WORKER_SLICE\n"
+        },
+        {
+          "base_lines": [
+            212,
+            213
+          ],
+          "candidate_lines": [
+            217,
+            220
+          ],
+          "old": "        complete_ledger_qualification=False,failed_diagnostic_only=True)\n",
+          "new": "        complete_ledger_qualification=False,failed_diagnostic_only=True,\n        http_attempts_reported_is_lower_bound=state.get('http_attempts_complete') is not True,\n        unrecorded_gateway_outcomes=max(0,state.get('gateway_calls',0)-len(state.get('usage',[]))))\n"
+        },
+        {
+          "base_lines": [
+            332,
+            333
+          ],
+          "candidate_lines": [
+            339,
+            340
+          ],
+          "old": "        while clock.remaining()>SEAL_RESERVE+MIN_ROUND_ADMISSION:\n",
+          "new": "        while clock.remaining()>TASK_ADMISSION_MARGIN:\n"
+        },
+        {
+          "base_lines": [
+            342,
+            344
+          ],
+          "candidate_lines": [
+            349,
+            359
+          ],
+          "old": "            state['gateway_calls']+=1;round_number=state['gateway_calls'];save()\n            content,usage=gateway(PROMPT,context,min(180,available()-2*MIN_WORKER_SLICE))\n",
+          "new": "            # Context construction and persistence consume the SAME task clock.\n            # Recheck before counting/invoking: a budget stop creates no request.\n            save()\n            if clock.remaining()<=TASK_ADMISSION_MARGIN:break\n            state['gateway_calls']+=1;round_number=state['gateway_calls']\n            prior_http_complete=state['http_attempts_complete'];prior_usage_complete=state['usage_complete']\n            # Pending invocation has no accepted receipt. Even an exception or\n            # hard deadline after return cannot leave completeness falsely true.\n            state['http_attempts_complete']=False;state['usage_complete']=False\n            content,usage=gateway(PROMPT,context,PROVIDER_SECONDS)\n"
+        },
+        {
+          "base_lines": [
+            346,
+            347
+          ],
+          "candidate_lines": [
+            361,
+            362
+          ],
+          "old": "            state['http_attempts_complete'] &= known\n",
+          "new": "            state['http_attempts_complete']=prior_http_complete and known\n"
+        },
+        {
+          "base_lines": [
+            348,
+            349
+          ],
+          "candidate_lines": [
+            363,
+            364
+          ],
+          "old": "            state['usage_complete'] &= usage.get('usage_complete') is True\n",
+          "new": "            state['usage_complete']=prior_usage_complete and usage.get('usage_complete') is True\n"
+        }
+      ]
+    },
+    "gateway_child.py": {
+      "base_sha256": "b274e6f5abb5c689e5c2c9a0b3407c59e31c0ca31ebb276cb42c54e5ff6004d0",
+      "candidate_sha256": "4889f928bddc3f80e52a27cf426d89ce3a11f01289140e009e3878b01af72cd9",
+      "exact_LF_text_inverse": true,
+      "whole_AST_inverse": true,
+      "edits": [
+        {
+          "base_lines": [
+            51,
+            52
+          ],
+          "candidate_lines": [
+            51,
+            52
+          ],
+          "old": "    def check():\n",
+          "new": "    def check(provider=True):\n"
+        },
+        {
+          "base_lines": [
+            56,
+            58
+          ],
+          "candidate_lines": [
+            56,
+            59
+          ],
+          "old": "        need(now<min(clock['common_deadline_monotonic'],clock['task_deadline_monotonic'],clock['provider_deadline_monotonic'])\n             and wall<clock['absolute_deadline_unix'],'original_provider_task_common_deadline')\n",
+          "new": "        need(now<min(clock['common_deadline_monotonic'],clock['task_deadline_monotonic'])\n             and wall<clock['absolute_deadline_unix'],'original_task_common_deadline')\n        if provider:need(now<clock['provider_deadline_monotonic'],'original_provider_task_common_deadline')\n"
+        },
+        {
+          "base_lines": [
+            69,
+            70
+          ],
+          "candidate_lines": [
+            70,
+            76
+          ],
+          "old": "    check();need(content is None or type(content) is str and len(content.encode('utf-8'))<=32768,'provider_output_too_large')\n",
+          "new": "    # Preserve a bounded safe SDK outcome before the provider-only postcheck.\n    # Hard task/common expiry still stops before publication. A provider overrun\n    # still exits nonzero AFTER this diagnostic write; the parent rejects it.\n    check(provider=False)\n    need(content is None or type(content) is str and len(content.encode('utf-8'))<=32768,'provider_output_too_large')\n    need(type(usage) is dict,'actual_gateway_usage_receipt_required')\n"
+        }
+      ]
+    },
+    "test_research_loop.py": {
+      "base_sha256": "3023d5f7725eec2425f893b577ed2badd18767895aec464663cc5ef00403ae5a",
+      "candidate_sha256": "448c850aeb1f637021a315ab6c25dd76bc17f015ce5f87ac065fc332fde72949",
+      "exact_LF_text_inverse": true,
+      "whole_AST_inverse": true,
+      "edits": [
+        {
+          "base_lines": [
+            81,
+            82
+          ],
+          "candidate_lines": [
+            81,
+            82
+          ],
+          "old": "        self.assertLessEqual(clock.left,R.SEAL_RESERVE+R.MIN_ROUND_ADMISSION)\n",
+          "new": "        self.assertLessEqual(clock.left,R.TASK_ADMISSION_MARGIN)\n"
+        },
+        {
+          "base_lines": [
+            220,
+            221
+          ],
+          "candidate_lines": [
+            220,
+            221
+          ],
+          "old": "        self.assertGreater(result['elapsed_task_seconds_at_stop'],4700)\n",
+          "new": "        self.assertGreaterEqual(result['elapsed_task_seconds_at_stop'],4800-R.TASK_ADMISSION_MARGIN)\n"
+        },
+        {
+          "base_lines": [
+            266,
+            266
+          ],
+          "candidate_lines": [
+            266,
+            323
+          ],
+          "old": "",
+          "new": "class FullProviderAdmissionContracts(unittest.TestCase):\n    harness=ThreeHourResearchContracts.harness\n\n    def test_exact270_stops_and_above270_admits_only_full180_with_completed_checkpoint(self):\n        self.assertEqual(R.TASK_ADMISSION_MARGIN,180+10+60+10+2*5)\n        for tail,expected in ((270.,1),(270.001,2)):\n            clock,gateway,ordinary,calls,gcalls,saved=self.harness()\n            def worker(recipe,cut,timeout,phase,fit_iterations=None):\n                row=ordinary(recipe,cut,timeout,phase,fit_iterations)\n                if recipe['params']['v']==1 and phase=='full-refit':clock.left=tail\n                return row\n            with self.subTest(tail=tail):\n                result=R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)\n                self.assertEqual(len(gcalls),expected)\n                self.assertTrue(all(call[2]==180 for call in gcalls))\n                self.assertEqual(result['gateway_calls'],len(gcalls))\n                self.assertEqual(result['stop_reason'],'original_task_time_admission_margin')\n                self.assertLessEqual(clock.left,270.)\n                self.assertEqual(result['checkpoints'][result['selected_checkpoint']-1]['status'],'completed')\n                if tail==270.:self.assertEqual(result['selected_checkpoint'],2)\n\n    def test_context_persistence_cost_recheck_creates_no_extra_gateway_obligation(self):\n        clock,gateway,worker,calls,gcalls,saved=self.harness();late_saves=[0]\n        def persist(row):\n            saved.append(deepcopy(row))\n            if len(row.get('records',[]))==1 and row['gateway_calls']==1:\n                late_saves[0]+=1\n                if late_saves[0]==1:clock.left=271.\n                elif late_saves[0]==2:clock.left=270.\n        result=R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,persist)\n        self.assertGreaterEqual(late_saves[0],2)\n        self.assertEqual(len(gcalls),1);self.assertEqual(result['gateway_calls'],1)\n        self.assertEqual(len(result['usage']),1);self.assertEqual(len(result['records']),1)\n        self.assertEqual(result['http_attempts_reported'],1)\n        self.assertTrue(result['http_attempts_complete']);self.assertTrue(result['usage_complete'])\n        self.assertEqual(result['selected_checkpoint'],2)\n        self.assertEqual(result['remaining_task_seconds_at_stop'],270.)\n\n    def test_raised_unrecorded_gateway_is_fatal_with_prior_attempts_lower_bound(self):\n        clock,ordinary,worker,calls,gcalls,saved=self.harness();primary=RuntimeError('synthetic_owned_provider_failure')\n        def gateway(prompt,context,timeout):\n            answer=ordinary(prompt,context,timeout)\n            if len(gcalls)==2:raise primary\n            return answer\n        with self.assertRaises(RuntimeError) as caught:\n            R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)\n        self.assertIs(caught.exception,primary)\n        summary=saved[-1]\n        self.assertEqual(summary['gateway_calls'],2);self.assertEqual(summary['http_attempts_reported'],1)\n        self.assertFalse(summary['http_attempts_complete']);self.assertFalse(summary['usage_complete'])\n        self.assertTrue(summary['http_attempts_reported_is_lower_bound'])\n        self.assertEqual(summary['unrecorded_gateway_outcomes'],1)\n        self.assertEqual(summary['status'],'failed');self.assertFalse(summary['complete_ledger_qualification'])\n        self.assertIsNone(summary['metrics']);self.assertEqual(summary['last_completed_checkpoint_index'],2)\n        self.assertEqual(len([row for row in calls if row[3]=='full-refit']),2)\n\n\n"
+        }
+      ]
+    },
+    "test_provider_environment.py": {
+      "base_sha256": "c456a917af85ea1faa465f8b22a9f1fae784727f74bf4539afcffaff23ec514c",
+      "candidate_sha256": "cb23b0433829bb5d98646ab352ef5f37e586051e63781a15fa24ada88f895d72",
+      "exact_LF_text_inverse": true,
+      "whole_AST_inverse": true,
+      "edits": [
+        {
+          "base_lines": [
+            103,
+            103
+          ],
+          "candidate_lines": [
+            103,
+            161
+          ],
+          "old": "",
+          "new": "class GatewayOutcomeContracts(unittest.TestCase):\n    def outcome(self,terminal,provider_status='ok',terminal_wall=None):\n        \"\"\"Run the real child body with a synthetic SDK and original clock only.\"\"\"\n        import hashlib\n        import json\n        import tempfile\n        from types import ModuleType\n        import gateway_child as child\n        self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)\n        root=Path(self.temp.name).resolve();request=root/'request.json';output=root/'result.json'\n        clock=dict(start_unix=2000.,start_monotonic=1000.,absolute_deadline_unix=12800.,\n            common_deadline_monotonic=11800.,task_deadline_monotonic=5800.,provider_deadline_monotonic=1180.)\n        cfg=dict(schema='qwen-three-hour-single-gateway-v1',call_number=1,clock=clock,\n            canonical_root=str(root),output=str(output),source_files={},timeout=180.,prompt='synthetic',context={})\n        request.write_text(json.dumps(cfg),encoding='utf-8')\n        digest=hashlib.sha256(request.read_bytes()).hexdigest();current={'mono':1000.,'wall':2000.};calls=[]\n        budget=ModuleType('automl.infrastructure.run_budget');budget.current_budget=lambda:None\n        gateway=ModuleType('automl.infrastructure.llm_gateway')\n        def sdk(*args,**kwargs):\n            calls.append(kwargs);current['mono']=terminal\n            if terminal_wall is not None:current['wall']=terminal_wall\n            return 'synthetic-safe-content',dict(status=provider_status,attempts=1,usage_complete=True,\n                usage={'prompt_tokens':2,'completion_tokens':3},secret='MUST_NOT_PERSIST',reasoning='MUST_NOT_PERSIST')\n        gateway.request_json=sdk\n        modules={'automl':ModuleType('automl'),'automl.infrastructure':ModuleType('automl.infrastructure'),\n            'automl.infrastructure.run_budget':budget,'automl.infrastructure.llm_gateway':gateway}\n        args=SimpleNamespace(request=str(request),request_sha256=digest,\n            self_sha256=hashlib.sha256(Path(child.__file__).read_bytes()).hexdigest())\n        error=None\n        with patch.dict(sys.modules,modules),patch.object(child,'verified_gateway_sources',return_value={}),\\\n             patch.object(child.time,'monotonic',side_effect=lambda:current['mono']),\\\n             patch.object(child.time,'time',side_effect=lambda:current['wall']),\\\n             patch.object(child.sys,'path',list(sys.path)),patch.object(child.sys,'dont_write_bytecode',True):\n            try:code=child.run(args)\n            except RuntimeError as exc:error=exc;code=None\n        return output,error,code,calls,cfg\n\n    def test_late_provider_only_outcome_is_saved_but_still_exits_fatal(self):\n        import json\n        output,error,code,calls,cfg=self.outcome(1181.25)\n        self.assertIsNone(code);self.assertIsInstance(error,RuntimeError)\n        self.assertIn('original_provider_task_common_deadline',str(error))\n        self.assertTrue(output.is_file());row=json.loads(output.read_text('utf-8'))\n        self.assertEqual(row['call']['attempts'],1);self.assertEqual(row['call']['status'],'ok')\n        self.assertEqual(row['content'],'synthetic-safe-content')\n        self.assertNotIn('MUST_NOT_PERSIST',output.read_text('utf-8'))\n        self.assertEqual(len(calls),1);self.assertEqual(calls[0]['timeout'],180.)\n        self.assertEqual(cfg['clock']['provider_deadline_monotonic'],1180.)\n\n    def test_hard_task_and_common_expiry_never_publish_qualified_sdk_result(self):\n        for terminal,wall in ((5800.,None),(1001.,12800.)):\n            with self.subTest(terminal=terminal,wall=wall):\n                output,error,code,calls,cfg=self.outcome(terminal,terminal_wall=wall)\n                self.assertIsNone(code);self.assertIsInstance(error,RuntimeError)\n                self.assertIn('original_task_common_deadline',str(error))\n                self.assertFalse(output.exists());self.assertEqual(len(calls),1)\n\n\n"
+        }
+      ]
+    }
+  },
+  "old32_methods": {
+    "test_parent_callback_ledger.py:ParentCallbackLedgerContracts.test_exact_parent_return_binds_actual_job_result_or_honest_missing_refs": "b8963b7ba02c31958453c3f6a26204544740a6684e98eea09704b5bab14b985c",
+    "test_parent_callback_ledger.py:ParentCallbackLedgerContracts.test_fresh_strong_control_pair_survives_later_winner_and_ledger_counts_callbacks_only": "4195e579aeee6a00bc1ef5a27d9256fdaca01bd7a360f5590c8f48172547b4be",
+    "test_provider_environment.py:ProviderEnvironmentContracts.test_technical_copy_provider_only_and_exact_function_restored_after_failure": "83f4b3d3aaf6429f7f762e59a3d25b28e93f9cf202a55b8de74b20694f49e14d",
+    "test_provider_environment.py:GatewaySourceClosureContracts.test_long_UTF8_963_source_2299_parent_map_serializes_below_unchanged_request_bound_only_with_exact_five": "2eb86c37f16ee4d493bce3b690de68aaa7174e467da026797f3bf9f979a918c8",
+    "test_provider_environment.py:GatewaySourceClosureContracts.test_missing_extra_or_changed_source_hash_never_reaches_gateway_import": "e2b69b9cc3efe6800d5d97161fbc7547cb6bfdb4bf7f0e6c9e60267ff26bb14e",
+    "test_provider_environment.py:GatewaySourceClosureContracts.test_installed_projection_is_pre_model_and_request_child_cap_and_full_parent_barriers_remain": "2388dc08527b5d88cb2ff53d0be3a1eefbc618fc8936dc70af33dee3b5013b8f",
+    "test_r5_worker_consumer.py:SamplingCheckpointConsumerContracts.test_unfinished_worker_resource_round_uses_only_original_clock_hook": "8a22442c46ceffc45a0c387ee4fca725c6d83ff7cf110ac467f6dc17be1601e9",
+    "test_r5_worker_consumer.py:FirstActualResourceSampleContracts.test_slow_import_before_first_real_sample_keeps_original_clock_and_unknown_prior": "1f03bbd21f30a51a3e4a7276834dc82c1d376363696097eaf25c565995c57d28",
+    "test_r5_worker_consumer.py:FirstActualResourceSampleContracts.test_slow_or_denied_or_over_cap_first_inspection_never_becomes_a_sample": "85cc402fab64c64cf0b1a40e61d1ec14b38a66c8e5c7e7b55c7dfd41a58f6b93",
+    "test_r5_worker_consumer.py:FirstActualResourceSampleContracts.test_later_observation_gap_stays_sticky_and_deadline_cannot_rebase": "d7469808233141ecf0db8fa7025236b5e219ffb466113866721dc17b70a89564",
+    "test_research_loop.py:ThreeHourResearchContracts.test_time_driven_rounds_exceed64_gateway_and_callback_counts": "6d8e478f96b474226047bb10f84d14fcd6628e00cbee9b9cdbc05dcc6b4e63e2",
+    "test_research_loop.py:ThreeHourResearchContracts.test_cheap_initial_checkpoint_does_not_finish_or_refit_unchanged_incumbent_repeatedly": "5a12b3317ee0f4ceb32ee2aea7b00de388637f9427a581d449aa28cdaeafb556",
+    "test_research_loop.py:ThreeHourResearchContracts.test_late_valid_gain_can_finalize_with_less_than_old1560_reserve": "d8c9f27b0947f8d4c3397968b31c0293f472243ca6fe59b153cfdbe0c6099fe8",
+    "test_research_loop.py:ThreeHourResearchContracts.test_selected_output_always_belongs_to_last_completed_checkpoint": "49107c7c2f031de6715af31a2d4dd97ae518b904ef366dd82fb6fe19c736d38b",
+    "test_research_loop.py:ThreeHourResearchContracts.test_confirmed_pair_timeout_is_NULL_and_later_real_rounds_continue": "e49c0fda1bb59aff31896a9d77fe8f036e9791c6f5159322974a4c1fd36c182e",
+    "test_research_loop.py:ThreeHourResearchContracts.test_resource_origin_masked_by_final_timeout_remains_fatal": "3ad3dfac231a371102a072c79f4b487b8a17c12f1ef968a2bc3c390c40130667",
+    "test_research_loop.py:ThreeHourResearchContracts.test_cleanup_and_unknown_provenance_are_not_discarded_as_checkpoint_timeouts": "d1b3d4ed92245efd1ff8dcefa56b72f8884e22f51a4290d39395eff2b4c4fdf8",
+    "test_research_loop.py:ThreeHourResearchContracts.test_safety_ceiling_early_hit_is_INCOMPLETE_never_normal_success": "16e2d8c577808f58f5dddb6990018d33e50a5022c2698967abadc1b0405b08c4",
+    "test_research_loop.py:ThreeHourResearchContracts.test_provider_failure_and_unknown_attempts_are_fatal_with_truthful_counters": "5a5864e6fc8cf46ce46c56f6f3e41b34837a43e3864926da6a6cdeb657550116",
+    "test_research_loop.py:ThreeHourResearchContracts.test_all_callback_and_HTTP_ledgers_remain_cumulative_across_checkpoints": "7edf0b9631d44451076f92bf65d52c2827663437b0b69d0c340418e9d02cddcf",
+    "test_research_loop.py:ThreeHourResearchContracts.test_recursive_median_uses_fresh_checkpoint_pair_only": "4f1cddf15b999ec26ad7e453ca9799be0dff1fe015a5c0e4a42c1f04cefc5de8",
+    "test_research_loop.py:ThreeHourResearchContracts.test_same_original_task_windows_and_no_transfer": "502a4514714d87d6cfde6dd9141e73b21eccf2855fc59741dd58939eb95ec1a9",
+    "test_research_loop.py:ThreeHourResearchContracts.test_leaf_DSL_and_raw_complete_recipe_guards_are_unchanged": "f5b580e37d6efe0590ae041d8e7773498079efd780c9ccdd913042b011a207f1",
+    "test_research_loop.py:ThreeHourResearchContracts.test_regression_and_supported_class_guards_remain_strict": "6cc820fbb04b108307ebc00120f82fff7eaae662a0686e764f27c5387e01e721",
+    "test_research_loop.py:ThreeHourResearchContracts.test_actual_report_byte_bound_stops_instead_of_claiming_truncated_evidence": "6b45bbb49ec94daf30dbb33db5029459b39184e649384b2af3c9f7841f944608",
+    "test_research_loop.py:ThreeHourResearchContracts.test_cheap_checkpoints_do_not_claim_4800_or_10800_elapsed": "6b0f2d2d0653e251e2a07ca0a1c3b4711e00c38a19ae3a5d138dbb76ecdf8757",
+    "test_research_loop.py:ThreeHourResearchContracts.test_oversized_failure_state_is_bounded_with_exact_counts_refs_and_hashes": "924aa47e622476497c6984ebca6932172130a93914d3e1c08313c684ebc14812",
+    "test_research_loop.py:ThreeHourResearchContracts.test_failure_persist_secondary_is_saved_without_replacing_original_primary": "a12a8ef55a39a939afc90605cb3d8d22a0d48c909599871f0c1734efaf071ccf",
+    "test_resource_origin.py:WorkerOriginContracts.test_resource_origin_survives_final_timeout_and_stops_before_later_gateway": "da584d389c41394c7dee3052bcac3292863043948082de725728222e0b571f17",
+    "test_resource_origin.py:WorkerOriginContracts.test_missing_incomplete_or_parent_exception_provenance_never_becomes_trial_failure": "3716d7e0e8a9b6eff4e2eb67061355e41b7267a6929bc563a1c44468d2962517",
+    "test_resource_origin.py:WorkerOriginContracts.test_confirmed_ordinary_timeout_is_NULL_and_later_real_hypotheses_continue": "a465fec7d797109fcaa4183de3978698069d480ff63d4d7dd6d3316735d24f7a",
+    "test_resource_origin.py:WorkerOriginContracts.test_trusted_scope_enables_existing_capture_and_restores_exact_marker_after_failure": "ac57d0a6cc3f54275d4d6b63394b6aeb0598087c65160503904738739b03d394"
+  },
+  "prepared_methods": {
+    "test_parent_callback_ledger.py:ParentCallbackLedgerContracts.test_exact_parent_return_binds_actual_job_result_or_honest_missing_refs": "b8963b7ba02c31958453c3f6a26204544740a6684e98eea09704b5bab14b985c",
+    "test_parent_callback_ledger.py:ParentCallbackLedgerContracts.test_fresh_strong_control_pair_survives_later_winner_and_ledger_counts_callbacks_only": "4195e579aeee6a00bc1ef5a27d9256fdaca01bd7a360f5590c8f48172547b4be",
+    "test_provider_environment.py:ProviderEnvironmentContracts.test_technical_copy_provider_only_and_exact_function_restored_after_failure": "83f4b3d3aaf6429f7f762e59a3d25b28e93f9cf202a55b8de74b20694f49e14d",
+    "test_provider_environment.py:GatewaySourceClosureContracts.test_long_UTF8_963_source_2299_parent_map_serializes_below_unchanged_request_bound_only_with_exact_five": "2eb86c37f16ee4d493bce3b690de68aaa7174e467da026797f3bf9f979a918c8",
+    "test_provider_environment.py:GatewaySourceClosureContracts.test_missing_extra_or_changed_source_hash_never_reaches_gateway_import": "e2b69b9cc3efe6800d5d97161fbc7547cb6bfdb4bf7f0e6c9e60267ff26bb14e",
+    "test_provider_environment.py:GatewaySourceClosureContracts.test_installed_projection_is_pre_model_and_request_child_cap_and_full_parent_barriers_remain": "2388dc08527b5d88cb2ff53d0be3a1eefbc618fc8936dc70af33dee3b5013b8f",
+    "test_provider_environment.py:GatewayOutcomeContracts.test_late_provider_only_outcome_is_saved_but_still_exits_fatal": "ec71d181ef87561e224b1f0ceac4ca52c77a48e90a07a183f9d1905bc1dee1e4",
+    "test_provider_environment.py:GatewayOutcomeContracts.test_hard_task_and_common_expiry_never_publish_qualified_sdk_result": "976104e3c69f99f62d7328c9d89118c6c589fc5700bd6c3fc7ad4fc059468714",
+    "test_r5_worker_consumer.py:SamplingCheckpointConsumerContracts.test_unfinished_worker_resource_round_uses_only_original_clock_hook": "8a22442c46ceffc45a0c387ee4fca725c6d83ff7cf110ac467f6dc17be1601e9",
+    "test_r5_worker_consumer.py:FirstActualResourceSampleContracts.test_slow_import_before_first_real_sample_keeps_original_clock_and_unknown_prior": "1f03bbd21f30a51a3e4a7276834dc82c1d376363696097eaf25c565995c57d28",
+    "test_r5_worker_consumer.py:FirstActualResourceSampleContracts.test_slow_or_denied_or_over_cap_first_inspection_never_becomes_a_sample": "85cc402fab64c64cf0b1a40e61d1ec14b38a66c8e5c7e7b55c7dfd41a58f6b93",
+    "test_r5_worker_consumer.py:FirstActualResourceSampleContracts.test_later_observation_gap_stays_sticky_and_deadline_cannot_rebase": "d7469808233141ecf0db8fa7025236b5e219ffb466113866721dc17b70a89564",
+    "test_research_loop.py:ThreeHourResearchContracts.test_time_driven_rounds_exceed64_gateway_and_callback_counts": "47e6d7c4aacb6d6e9269a095cf52b875185f7c71bb46e8db298542c54cfedd15",
+    "test_research_loop.py:ThreeHourResearchContracts.test_cheap_initial_checkpoint_does_not_finish_or_refit_unchanged_incumbent_repeatedly": "5a12b3317ee0f4ceb32ee2aea7b00de388637f9427a581d449aa28cdaeafb556",
+    "test_research_loop.py:ThreeHourResearchContracts.test_late_valid_gain_can_finalize_with_less_than_old1560_reserve": "d8c9f27b0947f8d4c3397968b31c0293f472243ca6fe59b153cfdbe0c6099fe8",
+    "test_research_loop.py:ThreeHourResearchContracts.test_selected_output_always_belongs_to_last_completed_checkpoint": "49107c7c2f031de6715af31a2d4dd97ae518b904ef366dd82fb6fe19c736d38b",
+    "test_research_loop.py:ThreeHourResearchContracts.test_confirmed_pair_timeout_is_NULL_and_later_real_rounds_continue": "e49c0fda1bb59aff31896a9d77fe8f036e9791c6f5159322974a4c1fd36c182e",
+    "test_research_loop.py:ThreeHourResearchContracts.test_resource_origin_masked_by_final_timeout_remains_fatal": "3ad3dfac231a371102a072c79f4b487b8a17c12f1ef968a2bc3c390c40130667",
+    "test_research_loop.py:ThreeHourResearchContracts.test_cleanup_and_unknown_provenance_are_not_discarded_as_checkpoint_timeouts": "d1b3d4ed92245efd1ff8dcefa56b72f8884e22f51a4290d39395eff2b4c4fdf8",
+    "test_research_loop.py:ThreeHourResearchContracts.test_safety_ceiling_early_hit_is_INCOMPLETE_never_normal_success": "16e2d8c577808f58f5dddb6990018d33e50a5022c2698967abadc1b0405b08c4",
+    "test_research_loop.py:ThreeHourResearchContracts.test_provider_failure_and_unknown_attempts_are_fatal_with_truthful_counters": "5a5864e6fc8cf46ce46c56f6f3e41b34837a43e3864926da6a6cdeb657550116",
+    "test_research_loop.py:ThreeHourResearchContracts.test_all_callback_and_HTTP_ledgers_remain_cumulative_across_checkpoints": "7edf0b9631d44451076f92bf65d52c2827663437b0b69d0c340418e9d02cddcf",
+    "test_research_loop.py:ThreeHourResearchContracts.test_recursive_median_uses_fresh_checkpoint_pair_only": "4f1cddf15b999ec26ad7e453ca9799be0dff1fe015a5c0e4a42c1f04cefc5de8",
+    "test_research_loop.py:ThreeHourResearchContracts.test_same_original_task_windows_and_no_transfer": "502a4514714d87d6cfde6dd9141e73b21eccf2855fc59741dd58939eb95ec1a9",
+    "test_research_loop.py:ThreeHourResearchContracts.test_leaf_DSL_and_raw_complete_recipe_guards_are_unchanged": "f5b580e37d6efe0590ae041d8e7773498079efd780c9ccdd913042b011a207f1",
+    "test_research_loop.py:ThreeHourResearchContracts.test_regression_and_supported_class_guards_remain_strict": "6cc820fbb04b108307ebc00120f82fff7eaae662a0686e764f27c5387e01e721",
+    "test_research_loop.py:ThreeHourResearchContracts.test_actual_report_byte_bound_stops_instead_of_claiming_truncated_evidence": "6b45bbb49ec94daf30dbb33db5029459b39184e649384b2af3c9f7841f944608",
+    "test_research_loop.py:ThreeHourResearchContracts.test_cheap_checkpoints_do_not_claim_4800_or_10800_elapsed": "ff668daa8383638da6e9eb3838fe0ed0152f887bf55cfb1783378f5500463edf",
+    "test_research_loop.py:ThreeHourResearchContracts.test_oversized_failure_state_is_bounded_with_exact_counts_refs_and_hashes": "924aa47e622476497c6984ebca6932172130a93914d3e1c08313c684ebc14812",
+    "test_research_loop.py:ThreeHourResearchContracts.test_failure_persist_secondary_is_saved_without_replacing_original_primary": "a12a8ef55a39a939afc90605cb3d8d22a0d48c909599871f0c1734efaf071ccf",
+    "test_research_loop.py:FullProviderAdmissionContracts.test_exact270_stops_and_above270_admits_only_full180_with_completed_checkpoint": "f6d2dad9b816a64cb6255d86e870cf14e107e3a3a5df19513b1989a650ca6c7b",
+    "test_research_loop.py:FullProviderAdmissionContracts.test_context_persistence_cost_recheck_creates_no_extra_gateway_obligation": "cb03dd023003ce37fbd805fa020146ce839b15bd702f55c26efb5ff3ad714e46",
+    "test_research_loop.py:FullProviderAdmissionContracts.test_raised_unrecorded_gateway_is_fatal_with_prior_attempts_lower_bound": "9ee8e3831d0b5ba01646996ef66c61cf8c2e289accc003351ed24ae0e29cf0cf",
+    "test_resource_origin.py:WorkerOriginContracts.test_resource_origin_survives_final_timeout_and_stops_before_later_gateway": "da584d389c41394c7dee3052bcac3292863043948082de725728222e0b571f17",
+    "test_resource_origin.py:WorkerOriginContracts.test_missing_incomplete_or_parent_exception_provenance_never_becomes_trial_failure": "3716d7e0e8a9b6eff4e2eb67061355e41b7267a6929bc563a1c44468d2962517",
+    "test_resource_origin.py:WorkerOriginContracts.test_confirmed_ordinary_timeout_is_NULL_and_later_real_hypotheses_continue": "a465fec7d797109fcaa4183de3978698069d480ff63d4d7dd6d3316735d24f7a",
+    "test_resource_origin.py:WorkerOriginContracts.test_trusted_scope_enables_existing_capture_and_restores_exact_marker_after_failure": "ac57d0a6cc3f54275d4d6b63394b6aeb0598087c65160503904738739b03d394"
+  },
+  "old30_method_AST_exact": true,
+  "explicitly_rebased_obsolete_timing_assertions": [
+    "test_research_loop.py:ThreeHourResearchContracts.test_time_driven_rounds_exceed64_gateway_and_callback_counts",
+    "test_research_loop.py:ThreeHourResearchContracts.test_cheap_checkpoints_do_not_claim_4800_or_10800_elapsed"
+  ],
+  "rebasing": "R8 predicates <=85 and elapsed>4700 are preserved as evidence, not claimed current; R9 uses <=270 and elapsed>=4530.",
+  "entrypoint_counts": {
+    "test_parent_callback_ledger.py": 2,
+    "test_provider_environment.py": 6,
+    "test_r5_worker_consumer.py": 4,
+    "test_research_loop.py": 21,
+    "test_resource_origin.py": 4
+  },
+  "total_prepared": 37,
+  "actual_executions": 0,
+  "unchanged": [
+    "Exact five gateway closure and full parent immutable barrier",
+    "SDK/client/model/leaf DSL/recipe/stopping/quality gates",
+    "Last completed checkpoint selection and ordinary confirmed worker timeout semantics",
+    "Original4800/task and10800/common; parent resource/gap/ownership/cleanup and worker provenance",
+    "Strict provider successful exit, complete known HTTP accounting and usage for qualification",
+    "CPU2/worker1536MiB/whole2048MiB/report32MiB/core20k and semantic4800/19204 bounds"
+  ],
+  "new_contracts": [
+    "Exact270 stop/above270 full180 admission and completed selected checkpoint",
+    "Context/persist admission recheck creates no counted request when reserve consumed",
+    "Raised gateway keeps prior counts lower-bound, pending completeness false, no retry/refit",
+    "Safe SDK outcome precedes provider-only postcheck yet late invocation remains fatal",
+    "Hard task/absolute common expiry prevents outcome publication"
+  ],
+  "actual_imports_tests_models_API_arrays_PID_Git": 0,
+  "actual_clock": null
+}

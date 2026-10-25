@@ -1,0 +1,19 @@
+{
+  "schema": "qwen-three-hour-independent-audit-private-v1",
+  "readiness": "NOT_READY",
+  "missing_bindings": [
+    "qualified repaired archive/root/FINAL post-tool receipt",
+    "actual same original10800 common and audit600 clock",
+    "both runtime task manifests/specs/supervisors",
+    "both complete all-source/input/task-output seals",
+    "immutable union and source peers/root actual admission"
+  ],
+  "immutable_files": null,
+  "clock": null,
+  "source_qualification": {
+    "archive": null,
+    "root": null,
+    "confirmation": null
+  },
+  "tasks": null
+}

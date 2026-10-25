@@ -1,0 +1,23 @@
+{
+  "schema": "qwen-three-hour-auditor-R1-preservation-v1",
+  "handoff": {
+    "path": "work/qwen-three-hour-independent-audit-next-dev-r2/source-evidence/r1/source-handoff.json",
+    "sha256": "ca8f814393face3bcf27fedde2739be7ded3e3c56449b234cd112bb906c83709"
+  },
+  "review": {
+    "path": "work/qwen-three-hour-independent-audit-next-dev-r2/source-evidence/r1/independent-review-r1.json",
+    "sha256": "4311ae2fd23ee2d33f529a975166a44b6509343076743ef4b1ec1fd601bc07a8"
+  },
+  "all_nine_R1_files_sha256": {
+    "audit_final.py": "31d71275d9e819dfa41d2bff4bf5e47c9b17693e2fb7b1537ec48fe7cb3f502c",
+    "binding.template.NOT_READY.json": "f998537fd5440f4fc5f99b5c5362d2bf57d51099031f4a9d6424175b05dcff6d",
+    "freeze_source.py": "7356a45e749efa7b3b6e432c9eff33c6f9e03faaf42bc7aaae2b24ccaf4c27bb",
+    "primitive-provenance.json": "c00301db2b2c242c9aac450355072bd25ae5f143f4957923bb0a7e832bf87b75",
+    "protocol.json": "cbfd369a2a0da4f32f707320f7681a780332702eddc31cc0a3f53dcd3cb06a35",
+    "r4_primitives.py": "d89a8024539eedb6daae9777ae3bd6a4f826da54265df4828a73caf10e94b371",
+    "README.txt": "f3b03b481fb6dfb75e049ff2261f5ff58e17b95db4a793d82bbce7a18d59484b",
+    "source-proof.json": "aa9e3954236aaa47f8d528be78e1d86e6b88d7c58504995e1dddff79d1562c7f",
+    "test_audit_contracts.py": "4a71a1a76ca92ef2d2aaa696616cb7fe6349ef0afbd03d2088820134ba066132"
+  },
+  "original_directory_unchanged": true
+}

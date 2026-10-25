@@ -1,0 +1,57 @@
+--- R5/audit_final.py
++++ R6/audit_final.py
+@@ -22,6 +22,7 @@
+ GATEWAY_LIMIT=4800
+ CALLBACK_LIMIT=19204
+ CORE_FILES_LIMIT=20000
++TASK_ADMISSION_MARGIN=180+10+60+10+2*5
+ GATEWAY_SOURCE_RELATIVE=(
+     'src/automl/__init__.py',
+     'src/automl/infrastructure/__init__.py',
+@@ -302,8 +303,8 @@
+          and report.get('callback_safety_upper')==CALLBACK_LIMIT,
+          'time_driven_schema_or_safety_ceiling_changed')
+     need(all(type(v) in (int,float) and math.isfinite(v) for v in (remaining,elapsed,end))
+-         and 0<remaining<=85 and 4715<=elapsed<4800
+-         and end>=timing['task_deadline_unix']-85,
++         and 0<remaining<=TASK_ADMISSION_MARGIN and 4800-TASK_ADMISSION_MARGIN<=elapsed<4800
++         and end>=timing['task_deadline_unix']-TASK_ADMISSION_MARGIN,
+          'actual_task_time_goal_or_observed_exit_missing')
+     return dict(admission_stop_remaining_seconds=remaining,admission_stop_elapsed_seconds=elapsed,
+         observed_supervisor_end_unix=end,scope='actual original4800 admission margin; no counted-time or padding claim')
+--- R5/test_audit_contracts.py
++++ R6/test_audit_contracts.py
+@@ -311,10 +311,32 @@
+             gateway_safety_upper=4800,callback_safety_upper=19204,remaining_task_seconds_at_stop=84.,elapsed_task_seconds_at_stop=4716.)
+         timing=dict(task_deadline_unix=5800.)
+         self.assertEqual(A.anytime_time_goal(report,timing,dict(end_unix=5717.))['admission_stop_elapsed_seconds'],4716.)
+-        for change in [dict(remaining_task_seconds_at_stop=100.),dict(elapsed_task_seconds_at_stop=40.),dict(stop_reason='gateway64_cap')]:
++        for change in [dict(remaining_task_seconds_at_stop=271.),dict(elapsed_task_seconds_at_stop=40.),dict(stop_reason='gateway64_cap')]:
+             with self.subTest(change=change),self.assertRaises(A.AuditStop):
+                 A.anytime_time_goal(dict(report,**change),timing,dict(end_unix=5717.))
+         with self.assertRaisesRegex(A.AuditStop,'observed_exit'):A.anytime_time_goal(report,timing,dict(end_unix=1100.))
++
++    def test_full_provider_margin_exact_boundary_and_too_early_or_invalid_stops(self):
++        report=dict(schema='qwen-iterative-task-v2-anytime',stop_reason='original_task_time_admission_margin',
++            gateway_safety_upper=4800,callback_safety_upper=19204,
++            remaining_task_seconds_at_stop=270.,elapsed_task_seconds_at_stop=4530.)
++        timing=dict(task_deadline_unix=5800.)
++        boundary=A.anytime_time_goal(report,timing,dict(end_unix=5530.))
++        self.assertEqual(boundary['admission_stop_remaining_seconds'],270.)
++        self.assertEqual(boundary['admission_stop_elapsed_seconds'],4530.)
++        later=A.anytime_time_goal(dict(report,remaining_task_seconds_at_stop=269.75,
++            elapsed_task_seconds_at_stop=4530.25),timing,dict(end_unix=5530.25))
++        self.assertEqual(later['observed_supervisor_end_unix'],5530.25)
++        changes=[dict(remaining_task_seconds_at_stop=270.000001),
++            dict(remaining_task_seconds_at_stop=0.),dict(remaining_task_seconds_at_stop=-1.),
++            dict(remaining_task_seconds_at_stop=True),dict(remaining_task_seconds_at_stop=float('nan')),
++            dict(elapsed_task_seconds_at_stop=4529.999999),dict(elapsed_task_seconds_at_stop=4800.),
++            dict(elapsed_task_seconds_at_stop=float('inf'))]
++        for change in changes:
++            with self.subTest(change=change),self.assertRaises(A.AuditStop):
++                A.anytime_time_goal(dict(report,**change),timing,dict(end_unix=5530.))
++        with self.assertRaisesRegex(A.AuditStop,'observed_exit'):
++            A.anytime_time_goal(report,timing,dict(end_unix=5529.999999))
+ 
+     def test_actual_semantic_counts_above_64_256_remain_finite_without_file_capacity_claim(self):
+         call=dict(status='ok',attempts=1,usage_complete=True,usage=dict(prompt_tokens=1,completion_tokens=2))

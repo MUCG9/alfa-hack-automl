@@ -1,0 +1,241 @@
+--- R8/research_loop.py
++++ R9/research_loop.py
+@@ -29,6 +29,11 @@
+ SEAL_RESERVE=60
+ FINAL_RESERVE=CONFIRMATION_RESERVE+REFIT_RESERVE+SEAL_RESERVE
+ MIN_ROUND_ADMISSION=MIN_GATEWAY_SLICE+2*MIN_WORKER_SLICE+ADMISSION_OVERHEAD
++# One full provider window, its existing parent overhead, publication margin,
++# admission work and two minimum worker slots. No shortened final request.
++PROVIDER_SECONDS=180
++PROVIDER_PARENT_OVERHEAD=10
++TASK_ADMISSION_MARGIN=PROVIDER_SECONDS+PROVIDER_PARENT_OVERHEAD+SEAL_RESERVE+ADMISSION_OVERHEAD+2*MIN_WORKER_SLICE
+ PROMPT='''You conduct one sequential adaptive recipe experiment at a time.
+ Actual entitlement: 2 CPU threads per learner, worker RSS1536MiB, whole2048MiB.
+ The remaining task and common seconds in context are authoritative; this is
+@@ -210,7 +215,9 @@
+         callback_ledger_refs=deepcopy(refs),callback_ledger_refs_inlined=True,
+         ledger_descriptor=descriptor(refs),records_descriptor=descriptor(state.get('records',[])),
+         checkpoints_descriptor=descriptor(state.get('checkpoints',[])),usage_descriptor=descriptor(state.get('usage',[])),
+-        complete_ledger_qualification=False,failed_diagnostic_only=True)
++        complete_ledger_qualification=False,failed_diagnostic_only=True,
++        http_attempts_reported_is_lower_bound=state.get('http_attempts_complete') is not True,
++        unrecorded_gateway_outcomes=max(0,state.get('gateway_calls',0)-len(state.get('usage',[]))))
+     for key in ('gateway_calls','http_attempts_reported','http_attempts_complete','usage_complete',
+                 'worker_calls_attempted','worker_calls_succeeded','executed_Qwen_candidates'):
+         answer[key]=state.get(key)
+@@ -330,7 +337,7 @@
+         score_pair(control,task);seen.add(signature(incumbent))
+         best=checkpoint(incumbent,control,0,True)
+         need(best is not None,'initial_current_run_checkpoint_incomplete')
+-        while clock.remaining()>SEAL_RESERVE+MIN_ROUND_ADMISSION:
++        while clock.remaining()>TASK_ADMISSION_MARGIN:
+             need(state['gateway_calls']<GATEWAY_LIMIT,'gateway_safety_upper_INCOMPLETE_before_time_goal')
+             context={'task':task['kind'],'metric':task['metric'],'greater_is_better':task['greater_is_better'],
+                 'actual_resources':{'learner_threads':2,'worker_RSS_MiB':1536,'whole_RSS_MiB':2048},
+@@ -340,13 +347,21 @@
+                 'untrusted_task_excerpt':str(task.get('task_excerpt',''))[:4500],
+                 'column_descriptions':task.get('column_descriptions',[])[:64],'feedback_read_first':feedback(state['records'])}
+             safe_json(context,49152);need(len(PROMPT.encode())+len(safe_json(context,49152).encode())<=65536,'complete_gateway_message_UTF8_cap')
+-            state['gateway_calls']+=1;round_number=state['gateway_calls'];save()
+-            content,usage=gateway(PROMPT,context,min(180,available()-2*MIN_WORKER_SLICE))
++            # Context construction and persistence consume the SAME task clock.
++            # Recheck before counting/invoking: a budget stop creates no request.
++            save()
++            if clock.remaining()<=TASK_ADMISSION_MARGIN:break
++            state['gateway_calls']+=1;round_number=state['gateway_calls']
++            prior_http_complete=state['http_attempts_complete'];prior_usage_complete=state['usage_complete']
++            # Pending invocation has no accepted receipt. Even an exception or
++            # hard deadline after return cannot leave completeness falsely true.
++            state['http_attempts_complete']=False;state['usage_complete']=False
++            content,usage=gateway(PROMPT,context,PROVIDER_SECONDS)
+             clock.check();need(type(usage) is dict,'actual_gateway_usage_receipt_required')
+             attempts=usage.get('attempts');known=type(attempts) is int and 1<=attempts<=3
+-            state['http_attempts_complete'] &= known
++            state['http_attempts_complete']=prior_http_complete and known
+             if known:state['http_attempts_reported']+=attempts
+-            state['usage_complete'] &= usage.get('usage_complete') is True
++            state['usage_complete']=prior_usage_complete and usage.get('usage_complete') is True
+             state['usage'].append({k:deepcopy(usage.get(k)) for k in ('status','attempts','usage','usage_complete','finish_reason','reasoning_effort_requested','response_model')})
+             if usage.get('status')!='ok' or not known:raise ResearchStop('provider_failure_or_unconfirmed_HTTP_accounting')
+             row={'round':round_number,'signature':None,'status':'invalid','decision':'discard','scores':None,
+--- R8/gateway_child.py
++++ R9/gateway_child.py
+@@ -49,13 +49,14 @@
+     need(cfg.get('schema')=='qwen-three-hour-single-gateway-v1' and type(cfg.get('call_number')) is int
+          and 1<=cfg['call_number']<=4800,'bounded_time_admitted_provider_request_required')
+     clock=cfg['clock']
+-    def check():
++    def check(provider=True):
+         now=time.monotonic();wall=time.time()
+         need(all(type(v) in (int,float) and math.isfinite(v) for v in (now,wall,*clock.values())),'finite_original_clock_required')
+         need(clock['common_deadline_monotonic']==clock['start_monotonic']+10800
+              and clock['absolute_deadline_unix']==clock['start_unix']+10800,'same_original10800_required')
+-        need(now<min(clock['common_deadline_monotonic'],clock['task_deadline_monotonic'],clock['provider_deadline_monotonic'])
+-             and wall<clock['absolute_deadline_unix'],'original_provider_task_common_deadline')
++        need(now<min(clock['common_deadline_monotonic'],clock['task_deadline_monotonic'])
++             and wall<clock['absolute_deadline_unix'],'original_task_common_deadline')
++        if provider:need(now<clock['provider_deadline_monotonic'],'original_provider_task_common_deadline')
+     check()
+     verified_gateway_sources(cfg,check)
+     root=Path(cfg['canonical_root'])
+@@ -67,7 +68,12 @@
+     check();timeout=min(cfg['timeout'],clock['provider_deadline_monotonic']-time.monotonic())
+     need(type(timeout) in (int,float) and 5<=timeout<=180,'bounded_provider_timeout_required')
+     content,usage=request_json(cfg['prompt'],cfg['context'],max_output=8192,timeout=timeout,purpose='iterative_research')
+-    check();need(content is None or type(content) is str and len(content.encode('utf-8'))<=32768,'provider_output_too_large')
++    # Preserve a bounded safe SDK outcome before the provider-only postcheck.
++    # Hard task/common expiry still stops before publication. A provider overrun
++    # still exits nonzero AFTER this diagnostic write; the parent rejects it.
++    check(provider=False)
++    need(content is None or type(content) is str and len(content.encode('utf-8'))<=32768,'provider_output_too_large')
++    need(type(usage) is dict,'actual_gateway_usage_receipt_required')
+     safe={k:usage.get(k) for k in ('status','attempts','usage','usage_complete','finish_reason',
+         'reasoning_effort_requested','response_model','reasoning_tokens_reported','wall_seconds','exception_type')}
+     # No provider error text, credential, environment, reasoning text or URL.
+--- R8/test_research_loop.py
++++ R9/test_research_loop.py
+@@ -79,7 +79,7 @@
+         result,clock,calls,gcalls,saved=self.run_policy()
+         self.assertGreater(len(gcalls),64);self.assertGreater(len(calls),64)
+         self.assertEqual(result['stop_reason'],'original_task_time_admission_margin')
+-        self.assertLessEqual(clock.left,R.SEAL_RESERVE+R.MIN_ROUND_ADMISSION)
++        self.assertLessEqual(clock.left,R.TASK_ADMISSION_MARGIN)
+         self.assertGreater(clock.left,R.SEAL_RESERVE)
+         self.assertEqual(result['gateway_calls'],len(gcalls));self.assertEqual(result['worker_calls_attempted'],len(calls))
+         self.assertIsNone(result['actual_learner_fit_calls']);self.assertFalse(result['quality_qualified'])
+@@ -218,7 +218,7 @@
+     def test_cheap_checkpoints_do_not_claim_4800_or_10800_elapsed(self):
+         result,clock,calls,gcalls,saved=self.run_policy()
+         self.assertEqual(result['elapsed_task_seconds_at_stop'],4800-clock.left)
+-        self.assertGreater(result['elapsed_task_seconds_at_stop'],4700)
++        self.assertGreaterEqual(result['elapsed_task_seconds_at_stop'],4800-R.TASK_ADMISSION_MARGIN)
+         self.assertLess(result['elapsed_task_seconds_at_stop'],4800)
+         self.assertGreater(result['remaining_task_seconds_at_stop'],0)
+         self.assertNotIn('measured_three_hours',result)
+@@ -264,4 +264,61 @@
+         self.assertFalse(saved[-1]['quality_qualified']);self.assertIsNone(saved[-1]['quality_metric'])
+ 
+ 
++class FullProviderAdmissionContracts(unittest.TestCase):
++    harness=ThreeHourResearchContracts.harness
++
++    def test_exact270_stops_and_above270_admits_only_full180_with_completed_checkpoint(self):
++        self.assertEqual(R.TASK_ADMISSION_MARGIN,180+10+60+10+2*5)
++        for tail,expected in ((270.,1),(270.001,2)):
++            clock,gateway,ordinary,calls,gcalls,saved=self.harness()
++            def worker(recipe,cut,timeout,phase,fit_iterations=None):
++                row=ordinary(recipe,cut,timeout,phase,fit_iterations)
++                if recipe['params']['v']==1 and phase=='full-refit':clock.left=tail
++                return row
++            with self.subTest(tail=tail):
++                result=R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
++                self.assertEqual(len(gcalls),expected)
++                self.assertTrue(all(call[2]==180 for call in gcalls))
++                self.assertEqual(result['gateway_calls'],len(gcalls))
++                self.assertEqual(result['stop_reason'],'original_task_time_admission_margin')
++                self.assertLessEqual(clock.left,270.)
++                self.assertEqual(result['checkpoints'][result['selected_checkpoint']-1]['status'],'completed')
++                if tail==270.:self.assertEqual(result['selected_checkpoint'],2)
++
++    def test_context_persistence_cost_recheck_creates_no_extra_gateway_obligation(self):
++        clock,gateway,worker,calls,gcalls,saved=self.harness();late_saves=[0]
++        def persist(row):
++            saved.append(deepcopy(row))
++            if len(row.get('records',[]))==1 and row['gateway_calls']==1:
++                late_saves[0]+=1
++                if late_saves[0]==1:clock.left=271.
++                elif late_saves[0]==2:clock.left=270.
++        result=R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,persist)
++        self.assertGreaterEqual(late_saves[0],2)
++        self.assertEqual(len(gcalls),1);self.assertEqual(result['gateway_calls'],1)
++        self.assertEqual(len(result['usage']),1);self.assertEqual(len(result['records']),1)
++        self.assertEqual(result['http_attempts_reported'],1)
++        self.assertTrue(result['http_attempts_complete']);self.assertTrue(result['usage_complete'])
++        self.assertEqual(result['selected_checkpoint'],2)
++        self.assertEqual(result['remaining_task_seconds_at_stop'],270.)
++
++    def test_raised_unrecorded_gateway_is_fatal_with_prior_attempts_lower_bound(self):
++        clock,ordinary,worker,calls,gcalls,saved=self.harness();primary=RuntimeError('synthetic_owned_provider_failure')
++        def gateway(prompt,context,timeout):
++            answer=ordinary(prompt,context,timeout)
++            if len(gcalls)==2:raise primary
++            return answer
++        with self.assertRaises(RuntimeError) as caught:
++            R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
++        self.assertIs(caught.exception,primary)
++        summary=saved[-1]
++        self.assertEqual(summary['gateway_calls'],2);self.assertEqual(summary['http_attempts_reported'],1)
++        self.assertFalse(summary['http_attempts_complete']);self.assertFalse(summary['usage_complete'])
++        self.assertTrue(summary['http_attempts_reported_is_lower_bound'])
++        self.assertEqual(summary['unrecorded_gateway_outcomes'],1)
++        self.assertEqual(summary['status'],'failed');self.assertFalse(summary['complete_ledger_qualification'])
++        self.assertIsNone(summary['metrics']);self.assertEqual(summary['last_completed_checkpoint_index'],2)
++        self.assertEqual(len([row for row in calls if row[3]=='full-refit']),2)
++
++
+ if __name__=='__main__':unittest.main(verbosity=2)
+--- R8/test_provider_environment.py
++++ R9/test_provider_environment.py
+@@ -101,4 +101,62 @@
+         self.assertIn('max_output=8192,timeout=timeout',child_source)
+ 
+ 
++class GatewayOutcomeContracts(unittest.TestCase):
++    def outcome(self,terminal,provider_status='ok',terminal_wall=None):
++        """Run the real child body with a synthetic SDK and original clock only."""
++        import hashlib
++        import json
++        import tempfile
++        from types import ModuleType
++        import gateway_child as child
++        self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
++        root=Path(self.temp.name).resolve();request=root/'request.json';output=root/'result.json'
++        clock=dict(start_unix=2000.,start_monotonic=1000.,absolute_deadline_unix=12800.,
++            common_deadline_monotonic=11800.,task_deadline_monotonic=5800.,provider_deadline_monotonic=1180.)
++        cfg=dict(schema='qwen-three-hour-single-gateway-v1',call_number=1,clock=clock,
++            canonical_root=str(root),output=str(output),source_files={},timeout=180.,prompt='synthetic',context={})
++        request.write_text(json.dumps(cfg),encoding='utf-8')
++        digest=hashlib.sha256(request.read_bytes()).hexdigest();current={'mono':1000.,'wall':2000.};calls=[]
++        budget=ModuleType('automl.infrastructure.run_budget');budget.current_budget=lambda:None
++        gateway=ModuleType('automl.infrastructure.llm_gateway')
++        def sdk(*args,**kwargs):
++            calls.append(kwargs);current['mono']=terminal
++            if terminal_wall is not None:current['wall']=terminal_wall
++            return 'synthetic-safe-content',dict(status=provider_status,attempts=1,usage_complete=True,
++                usage={'prompt_tokens':2,'completion_tokens':3},secret='MUST_NOT_PERSIST',reasoning='MUST_NOT_PERSIST')
++        gateway.request_json=sdk
++        modules={'automl':ModuleType('automl'),'automl.infrastructure':ModuleType('automl.infrastructure'),
++            'automl.infrastructure.run_budget':budget,'automl.infrastructure.llm_gateway':gateway}
++        args=SimpleNamespace(request=str(request),request_sha256=digest,
++            self_sha256=hashlib.sha256(Path(child.__file__).read_bytes()).hexdigest())
++        error=None
++        with patch.dict(sys.modules,modules),patch.object(child,'verified_gateway_sources',return_value={}),\
++             patch.object(child.time,'monotonic',side_effect=lambda:current['mono']),\
++             patch.object(child.time,'time',side_effect=lambda:current['wall']),\
++             patch.object(child.sys,'path',list(sys.path)),patch.object(child.sys,'dont_write_bytecode',True):
++            try:code=child.run(args)
++            except RuntimeError as exc:error=exc;code=None
++        return output,error,code,calls,cfg
++
++    def test_late_provider_only_outcome_is_saved_but_still_exits_fatal(self):
++        import json
++        output,error,code,calls,cfg=self.outcome(1181.25)
++        self.assertIsNone(code);self.assertIsInstance(error,RuntimeError)
++        self.assertIn('original_provider_task_common_deadline',str(error))
++        self.assertTrue(output.is_file());row=json.loads(output.read_text('utf-8'))
++        self.assertEqual(row['call']['attempts'],1);self.assertEqual(row['call']['status'],'ok')
++        self.assertEqual(row['content'],'synthetic-safe-content')
++        self.assertNotIn('MUST_NOT_PERSIST',output.read_text('utf-8'))
++        self.assertEqual(len(calls),1);self.assertEqual(calls[0]['timeout'],180.)
++        self.assertEqual(cfg['clock']['provider_deadline_monotonic'],1180.)
++
++    def test_hard_task_and_common_expiry_never_publish_qualified_sdk_result(self):
++        for terminal,wall in ((5800.,None),(1001.,12800.)):
++            with self.subTest(terminal=terminal,wall=wall):
++                output,error,code,calls,cfg=self.outcome(terminal,terminal_wall=wall)
++                self.assertIsNone(code);self.assertIsInstance(error,RuntimeError)
++                self.assertIn('original_task_common_deadline',str(error))
++                self.assertFalse(output.exists());self.assertEqual(len(calls),1)
++
++
+ if __name__=='__main__':unittest.main()

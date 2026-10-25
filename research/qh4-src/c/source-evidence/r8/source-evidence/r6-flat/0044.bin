@@ -1,0 +1,96 @@
+--- R2/task_entry.py
++++ R3/task_entry.py
+@@ -5,6 +5,8 @@
+ prepare both frozen cuts, and supply the original actual admission tuple.
+ """
+ from pathlib import Path
++from contextlib import contextmanager
++from contextvars import ContextVar
+ import argparse
+ import hashlib
+ import importlib.util
+@@ -43,6 +45,16 @@
+ def imported(name,path):
+     spec=importlib.util.spec_from_file_location(name,path);module=importlib.util.module_from_spec(spec)
+     sys.modules[name]=module;spec.loader.exec_module(module);return module
++
++
++@contextmanager
++def worker_origin_scope(runtime):
++    """Trusted caller only; reuse existing additive parent facts, no worker change."""
++    marker=getattr(runtime,'_HPO_FAIR_RESERVE_PROVENANCE',None)
++    need(type(marker) is ContextVar,'typed_existing_worker_origin_marker_required')
++    token=marker.set(True)
++    try:yield
++    finally:marker.reset(token)
+ 
+ 
+ def run(a):
+@@ -160,8 +172,9 @@
+         nonlocal worker_count
+         worker_count+=1;view.check();frozen()
+         need(sha(cut['path'],view.check)==cut['sha256'],'cut_changed_before_worker')
+-        result=runtime.run_release_worker(cfg['spec'],recipe,output/('worker-'+str(worker_count)),cut['path'],timeout,
+-            clock=clock,full_fit=phase=='full-refit',fit_iterations=fit_iterations)
++        with worker_origin_scope(runtime):
++            result=runtime.run_release_worker(cfg['spec'],recipe,output/('worker-'+str(worker_count)),cut['path'],timeout,
++                clock=clock,full_fit=phase=='full-refit',fit_iterations=fit_iterations)
+         view.check();frozen();need(sha(cut['path'],view.check)==cut['sha256'],'cut_changed_after_worker')
+         result['split_sha256']=cut['sha256']
+         return result
+--- R2/research_loop.py
++++ R3/research_loop.py
+@@ -102,6 +102,30 @@
+     return recipe
+ 
+ 
++def require_worker_origin(result):
++    """Parent-only facts, saved after strict cleanup and before late timeout."""
++    origin=result.get('hpo_fair_reserve_provenance')
++    required={'schema','cleanup_confirmed','coordinator_killed',
++              'primary_exception_type','prior_result_status'}
++    need(type(origin) is dict and set(origin)==required
++         and origin.get('schema')=='hpo-fair-reserve-worker-origin-v1'
++         and origin.get('cleanup_confirmed') is True,
++         'worker_parent_origin_missing_or_unconfirmed')
++    killed=origin['coordinator_killed'];primary=origin['primary_exception_type']
++    prior=origin['prior_result_status'];status=result.get('status')
++    need(killed is None or type(killed) is str,'worker_parent_origin_untyped')
++    need(primary is None or type(primary) is str,'worker_parent_origin_untyped')
++    need(type(prior) is str and prior in {'ok','error','timeout'}
++         and type(status) is str and status in {'ok','error','timeout'},
++         'worker_technical_status_STOP')
++    need(killed in (None,'timeout') and primary is None,
++         'worker_resource_or_parent_technical_origin_STOP')
++    need((killed!='timeout' or status=='timeout')
++         and (status=='timeout' or status==prior),
++         'worker_parent_origin_status_inconsistent')
++    return origin
++
++
+ def score_pair(records,task):
+     need(type(records) is list and len(records)==2,'both42_and43_records_required')
+     scores=[]
+@@ -177,6 +201,9 @@
+         state['worker_calls_attempted']+=1
+         result=worker(deepcopy(recipe),cut,min(PER_CUT_LIMIT,limit),phase=phase,fit_iterations=iterations)
+         clock.check();need(type(result) is dict and result.get('cleanup_confirmed') is True,'worker_cleanup_or_typed_receipt_unknown')
++        state['last_worker_final_status']=result.get('status')
++        state['last_worker_parent_origin']=deepcopy(result.get('hpo_fair_reserve_provenance'))
++        require_worker_origin(result)
+         if result.get('status')=='ok':state['worker_calls_succeeded']+=1
+         # Bind each result to the caller-verified split, never trust a proposed
+         # changed split or a missing hash in an otherwise successful record.
+--- R2/test_research_loop.py
++++ R3/test_research_loop.py
+@@ -58,7 +58,9 @@
+             clock.left-=1;calls.append((deepcopy(recipe),cut['seed'],timeout,phase,fit_iterations))
+             if worker_override:return worker_override(recipe,cut,phase,fit_iterations)
+             return dict(status='ok',cleanup_confirmed=True,split_sha256=cut['sha256'],metrics={'rmse':10-recipe['params']['v']*.01},
+-                fit_iterations=101 if cut['seed']==42 else 205,full_fit=phase=='full-refit',submission='owned/final.csv')
++                fit_iterations=101 if cut['seed']==42 else 205,full_fit=phase=='full-refit',submission='owned/final.csv',
++                hpo_fair_reserve_provenance=dict(schema='hpo-fair-reserve-worker-origin-v1',cleanup_confirmed=True,
++                    coordinator_killed=None,primary_exception_type=None,prior_result_status='ok'))
+         return clock,gateway,worker,calls,gateway_calls,saved
+ 
+     def test_one10800_and_equal4800_leave_exact_shared_reserves_without_borrow(self):

@@ -1,0 +1,41 @@
+{
+  "schema": "qwen-core-first-actual-observation-protocol-v7",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "common_seconds": 10800,
+  "task_seconds": 4800,
+  "gateway_semantic_upper": 4800,
+  "callback_semantic_upper": 19204,
+  "prepared_methods": 29,
+  "same5_contract_entrypoints": {
+    "test_parent_callback_ledger.py": 2,
+    "test_provider_environment.py": 1,
+    "test_r5_worker_consumer.py": 4,
+    "test_research_loop.py": 18,
+    "test_resource_origin.py": 4
+  },
+  "actual_executions": 0,
+  "first_sample": {
+    "last_initially": null,
+    "samples_initially": 0,
+    "meaning": "No actual child RSS sample exists before first successful real inspection; original task origin is not a sample.",
+    "first_inspect_duration_seconds_max": 10,
+    "mandatory_actual_self_identity_retained": true,
+    "caps_and_denials_still_fail_sticky": true
+  },
+  "later_samples": {
+    "gap_seconds_max": 10,
+    "cadence_seconds": 0.25,
+    "successful_round_only_updates_last": true,
+    "resource_callback_clock_only": true
+  },
+  "original_task_wall_monotonic_origin_and_deadline_unchanged": true,
+  "independent_parent_full_resource_and_gap_checks_unchanged": true,
+  "worker_RSS_MiB": 1536,
+  "whole_RSS_MiB": 2048,
+  "learner_threads": 2,
+  "physical_report32MiB_files20k_unchanged": true,
+  "numerical_recipe_gateway_keep_checkpoint_behavior_unchanged": true,
+  "actual_archive_READY_clock_metrics": null,
+  "promotion": false,
+  "submit": false
+}

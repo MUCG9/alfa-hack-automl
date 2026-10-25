@@ -1,0 +1,44 @@
+{
+  "schema": "qh4-metadata-preflight-caller-independent-source-review-v1",
+  "result": "SCOPED_SOURCE_CORRECTIONS_REQUIRED",
+  "reviewed_handoff": {
+    "path": "work/qh4-root-metadata-preflight-caller-next-dev/source-handoff.json",
+    "sha256": "419e30c40bfe0fb4b67429651b980ddb22695d3539695b97745e687e23fa3da0"
+  },
+  "evidence": {
+    "local_pins": 4,
+    "external_pins": 12,
+    "all_actual_hashes_match": true,
+    "prepared_methods": 2,
+    "actual_method_executions": 0,
+    "exact_existing_utility_R2_and_C5_sampler_owner_lock_unchanged": true,
+    "local_time_facade_calls_original_full_C5_guard_then_actual_clock_and_restores_finally": true,
+    "mandatory_actual_self_and_successful_sample_only_clock_semantics_retained": true,
+    "captured_and_observer_seen_sampled_departed_identities_saved_UNKNOWN_without_adoption": true,
+    "exact8469_finite_absence_before_underlease_afterevaluate_and_ABS_private_interface_consistent": true,
+    "no_models_children_API_array_or_controller_import": true
+  },
+  "findings": [
+    {
+      "id": "QHMP01",
+      "source": "run_preflight.py",
+      "line": 58,
+      "issue": "Positive file can contain complete JSON before trailing newline/flush/close raises; written.append(path) occurs only after save_new returns. Failure revocation skips existing-but-not-written path, retaining true role flags on actual EXIT1.",
+      "witness": "Exclusive open succeeds; json.dump completes; trailing write or __exit__ raises OSError. Outer written stays empty for that path; path.exists is true; neither negative branch condition executes.",
+      "minimum_fix": "Track actual exclusive-created ownership before positive bytes, then revoke owned attempted files even when write/close fails. Do not overwrite an unrelated preexisting/race-created output."
+    },
+    {
+      "id": "QHMP02",
+      "source": "run_preflight.py",
+      "line": 62,
+      "issue": "If negative receipt writes both raise, caught save_error types only enter secondary list in memory. Final negative stdout includes primary error type alone, so secondary types vanish from every surviving result.",
+      "witness": "Primary failure then PermissionError/OSError on both negative writes; no receipt holds appended secondary_errors, no rethrow prints secondary, final stdout omits them.",
+      "minimum_fix": "Include bounded phase/type-only secondary errors in final negative stdout alongside preserved primary type; keep no positive qualification."
+    }
+  ],
+  "limits": {
+    "actual_imports_tests_runtime_models_API_PID": 0,
+    "actual_data_array_truth_prediction_reads": 0,
+    "actual_experiment_clock": null
+  }
+}

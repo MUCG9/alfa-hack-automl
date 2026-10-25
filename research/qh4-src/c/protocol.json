@@ -1,0 +1,53 @@
+{
+  "schema": "qwen-core-full-provider-admission-protocol-v9",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "common_seconds": 10800,
+  "task_seconds": 4800,
+  "gateway_semantic_upper": 4800,
+  "callback_semantic_upper": 19204,
+  "prepared_methods": 37,
+  "same5_contract_entrypoints": {
+    "test_parent_callback_ledger.py": 2,
+    "test_provider_environment.py": 6,
+    "test_r5_worker_consumer.py": 4,
+    "test_research_loop.py": 21,
+    "test_resource_origin.py": 4
+  },
+  "actual_executions": 0,
+  "first_sample": {
+    "last_initially": null,
+    "samples_initially": 0,
+    "meaning": "No actual child RSS sample exists before first successful real inspection; original task origin is not a sample.",
+    "first_inspect_duration_seconds_max": 10,
+    "mandatory_actual_self_identity_retained": true,
+    "caps_and_denials_still_fail_sticky": true
+  },
+  "later_samples": {
+    "gap_seconds_max": 10,
+    "cadence_seconds": 0.25,
+    "successful_round_only_updates_last": true,
+    "resource_callback_clock_only": true
+  },
+  "original_task_wall_monotonic_origin_and_deadline_unchanged": true,
+  "independent_parent_full_resource_and_gap_checks_unchanged": true,
+  "worker_RSS_MiB": 1536,
+  "whole_RSS_MiB": 2048,
+  "learner_threads": 2,
+  "physical_report32MiB_files20k_unchanged": true,
+  "numerical_recipe_gateway_keep_checkpoint_behavior_unchanged": false,
+  "actual_archive_READY_clock_metrics": null,
+  "promotion": false,
+  "submit": false,
+  "provider_window_seconds": 180,
+  "provider_parent_overhead_seconds": 10,
+  "task_admission_margin_seconds": 270,
+  "task_admission_margin_derivation": "180+10+60+10+2*5",
+  "admission_recheck": "After context construction and save, before counting/invoking; no callback if remaining<=270",
+  "provider_postcheck": "Safe bounded returned SDK outcome is written after hard task/common check, before provider-only postcheck. Late/failed provider is still fatal.",
+  "failure_accounting": "Pending call makes completeness false; accepted returned usage restores cumulative completeness. Unrecorded outcome counts remain lower bounds.",
+  "numerical_recipe_keep_checkpoint_behavior_unchanged": true,
+  "exact_gateway_source_closure_unchanged": true,
+  "strict_provider_success_and_complete_usage_unchanged": true,
+  "no_idle_padding_or_borrowing": true,
+  "actual_duration_claim": null
+}

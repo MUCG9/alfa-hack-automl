@@ -1,0 +1,42 @@
+{
+  "schema": "qwen-three-hour-selected-R4-primitive-source-proof-v1",
+  "R4_source": {
+    "path": "work\\uar-qwen-pair-next-dev\\r4_adapter.py",
+    "sha256": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd"
+  },
+  "C5_resource_source": {
+    "path": "work\\br-standard-release-qualification-next-dev\\controller-r5\\artifact_audit.py",
+    "sha256": "39678926216dd7ea45305f02efc86989f9bdea63b3f8b163ebe6ad0ff8490c64"
+  },
+  "selected_names": [
+    "load",
+    "digest",
+    "close",
+    "canonical",
+    "index_sha",
+    "split",
+    "f1",
+    "f1_counts",
+    "probability",
+    "child_feature_views",
+    "value_output_contract",
+    "median_iterations",
+    "matched_control_comparison",
+    "TaskVerifier",
+    "diagnostics"
+  ],
+  "all_selected_AST_exact": true,
+  "C5_verified_terminal_AST_exact": true,
+  "no_verify_task_HPO_or_4stage_predicate": true,
+  "prepared_extraction_only_no_candidate_imports_tests": true,
+  "primitives_sha256": "d89a8024539eedb6daae9777ae3bd6a4f826da54265df4828a73caf10e94b371",
+  "loss_source": {
+    "path": "work\\loss-seed-whole-agent-ab-r2-next-dev\\audit_pair.py",
+    "sha256": "d0f2becf11979ea56d9523f0f010391325c2e684af0e7e521b3bbb832cba5e3c"
+  },
+  "loss_selected_names": [
+    "need",
+    "loss_telemetry"
+  ],
+  "loss_selected_AST_exact": true
+}

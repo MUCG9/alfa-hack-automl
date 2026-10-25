@@ -1,0 +1,11 @@
+{
+  "schema": "qwen-R7-auditor-source-interface-compatibility-v1",
+  "reviewed_auditor_handoff_sha256": "cc220ce9242b8b97a4e014dd29e62bc88c66623729caf31ad24c775a02ff72f1",
+  "runtime_report_parent_callback_clock_receipt_keys_unchanged": true,
+  "original_clock_origin_not_rebased": true,
+  "actual_resource_samples_positive_only_after_success": true,
+  "caps_denial_failure_type_and_subsequent_gap_semantics_unchanged": true,
+  "actual_fitting_or_metric_equivalence": null,
+  "outer_core_source_literal_and_peer_must_rebind_to_R7": true,
+  "actual_runtime_checks": 0
+}

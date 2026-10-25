@@ -1,0 +1,57 @@
+{
+  "schema": "qwen-anytime-auditor-compatibility-v1",
+  "status": "REQUIRES_NEW_INDEPENDENT_R3_ADAPTER",
+  "old_R2_unchanged": true,
+  "old_source_handoff_sha256": "c751420ad4df2411ee50f6c7789b4f554206954575ae7c5d2f4702cf81984edc",
+  "root_authorized_new_semantic_uppers": {
+    "gateway": 4800,
+    "parent_callback": 19204
+  },
+  "actual_32MiB_20k_2GiB_caps_unchanged": true,
+  "required_deltas": [
+    "accept exact qwen-iterative-task-v2-anytime schema and full cumulative counters",
+    "validate checkpoint index/round/signature/reference/stage/lease/status consistency and last completed selected checkpoint",
+    "allow unattempted_budget row with ZERO callback and NULLscore",
+    "preserve both selected/current control cuts, fresh selected confirmation/fullmedian and all existing R4 primitives/formulas/class/CSV/source/clock gates",
+    "all observed callback receipts remain validated including discarded partialcheckpoints; report callback counts never learner fits"
+  ],
+  "checkpoint_item_fields": [
+    "index",
+    "round",
+    "signature",
+    "status",
+    "scores",
+    "primary_ref",
+    "confirmation_ref",
+    "full_refit_ref",
+    "confirmation_lease_seconds",
+    "refit_lease_seconds",
+    "reason?"
+  ],
+  "checkpoint_statuses": [
+    "pending",
+    "completed",
+    "unfinalized_budget",
+    "unfinalized_timeout",
+    "unfinalized_invalid",
+    "unfinalized_quality"
+  ],
+  "checkpoint_parent_phases_unchanged": [
+    "control-0",
+    "control-1",
+    "round-N-0",
+    "round-N-1",
+    "selected-confirmation",
+    "full-refit"
+  ],
+  "row_new_status": "unattempted_budget",
+  "row_decisions": [
+    "discard",
+    "keep_completed_checkpoint",
+    "eligible_unfinalized"
+  ],
+  "selected_checkpoint": "one-based index in cumulative checkpoints; selected_recipe/cuts/final_confirmation/full_refit bind ONLY that completed item",
+  "actual_adapter_handoff": null,
+  "actual_review": null,
+  "actual_execution": 0
+}

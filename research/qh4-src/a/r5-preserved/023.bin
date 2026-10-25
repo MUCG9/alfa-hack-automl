@@ -1,0 +1,213 @@
+--- frozen-R2/audit_final.py
++++ R3/audit_final.py
+@@ -19,6 +19,9 @@
+ 
+ KINDS=('regression','classification')
+ PRIMITIVES=Path(__file__).with_name('r4_primitives.py')
++GATEWAY_LIMIT=4800
++CALLBACK_LIMIT=19204
++CORE_FILES_LIMIT=20000
+ 
+ 
+ class AuditStop(RuntimeError):pass
+@@ -86,7 +89,7 @@
+              and seal.get('immutable_files_sha256')==pins,'all_source_input_and_task_binding_seal_required')
+         output=Path(row['output']);need(output.is_absolute() and output.resolve()==output and output.is_dir()
+             and not output.is_symlink(),'absolute_task_output_required')
+-        files=seal['files_sha256'];need(type(files) is dict and 1<=len(files)<=30000,'complete_bounded_core_inventory_required')
++        files=seal['files_sha256'];need(type(files) is dict and 1<=len(files)<=CORE_FILES_LIMIT,'complete_bounded_core_inventory_required')
+         actual={str(p.resolve()) for p in output.rglob('*') if p.is_file() and p.resolve()!=seal_path.resolve()}
+         need(actual==set(files),'entire_task_tree_must_be_sealed')
+         for path,h in files.items():
+@@ -170,7 +173,7 @@
+ 
+ def parent_records(row,report,taskcfg,seal,check,terminal_check):
+     refs=report.get('callback_ledger_refs');count=report.get('worker_calls_attempted')
+-    need(type(refs) is list and type(count) is int and 1<=count==len(refs)<=256,'all_actual_callback_receipts_required')
++    need(type(refs) is list and type(count) is int and 1<=count==len(refs)<=CALLBACK_LIMIT,'all_actual_callback_receipts_required')
+     seen=set();records=[]
+     for index,ref in enumerate(refs,1):
+         need(ref['path'] not in seen and seal['files_sha256'].get(ref['path'])==ref['sha256'],'duplicate_or_unsealed_parent_receipt')
+@@ -232,7 +235,8 @@
+ 
+ 
+ def usage_summary(rows,report):
+-    need(len(rows)==report.get('gateway_calls')==len(report.get('usage',[])) and 1<=len(rows)<=64,'actual_gateway_count_mismatch')
++    need(type(report.get('gateway_calls')) is int and len(rows)==report.get('gateway_calls')==len(report.get('usage',[]))
++         and 1<=len(rows)<=GATEWAY_LIMIT,'actual_gateway_count_mismatch')
+     attempts=0;totals={'prompt_tokens':0,'completion_tokens':0};complete=True
+     for index,(row,saved) in enumerate(zip(rows,report['usage']),1):
+         call=row['call'];number=call.get('attempts')
+@@ -279,6 +283,154 @@
+          'adaptive_callback_attempt_counter_changed')
+     return dict(actual_candidate_recipe_attempts=attempted,actual_candidate_worker_callbacks=sum(map(len,actual.values())),all_rounds=len(rows),
+         failed_objectives_are_NULL=True,learner_fit_count=None)
++
++
++def anytime_time_goal(report,timing,supervisor):
++    """Actual admission stop and observed task exit, never a callback time proxy."""
++    remaining=report.get('remaining_task_seconds_at_stop');elapsed=report.get('elapsed_task_seconds_at_stop')
++    end=supervisor.get('end_unix')
++    need(report.get('schema')=='qwen-iterative-task-v2-anytime'
++         and report.get('stop_reason')=='original_task_time_admission_margin'
++         and report.get('gateway_safety_upper')==GATEWAY_LIMIT
++         and report.get('callback_safety_upper')==CALLBACK_LIMIT,
++         'time_driven_schema_or_safety_ceiling_changed')
++    need(all(type(v) in (int,float) and math.isfinite(v) for v in (remaining,elapsed,end))
++         and 0<remaining<=85 and 4715<=elapsed<4800
++         and end>=timing['task_deadline_unix']-85,
++         'actual_task_time_goal_or_observed_exit_missing')
++    return dict(admission_stop_remaining_seconds=remaining,admission_stop_elapsed_seconds=elapsed,
++        observed_supervisor_end_unix=end,scope='actual original4800 admission margin; no counted-time or padding claim')
++
++
++def anytime_accounting(report,parents,task,median,strong_signature):
++    """Bind every actual callback and atomic completed-checkpoint selection."""
++    refs=report.get('callback_ledger_refs');rows=report.get('records');items=report.get('checkpoints')
++    need(report.get('schema')=='qwen-iterative-task-v2-anytime'
++         and type(refs) is list and len(refs)==len(parents)
++         and type(rows) is list and type(report.get('gateway_calls')) is int
++         and 1<=len(rows)==report.get('gateway_calls')<=GATEWAY_LIMIT
++         and type(items) is list and 1<=len(items)<=len(rows)+1,'bounded_anytime_rows_and_checkpoints_required')
++    def key(ref):
++        need(type(ref) is dict and set(ref)=={'path','sha256'} and type(ref['path']) is str
++             and ref['path'] and valid_hash(ref['sha256']),'exact_checkpoint_parent_ref_required')
++        return (ref['path'],ref['sha256'])
++    indexed={key(ref):(i,parent,ref) for i,(parent,ref) in enumerate(zip(parents,refs),1)}
++    need(len(indexed)==len(parents),'duplicate_checkpoint_parent_ref')
++    used=set();rounds={};finalizers=set()
++    for ref,parent in zip(refs,parents):
++        phase=parent['phase'];match=re.fullmatch(r'round-(\d+)-([01])',phase)
++        if match:
++            slot=(int(match[1]),int(match[2]));need(slot not in rounds,'duplicate_round_callback_phase')
++            rounds[slot]=(ref,parent)
++        else:
++            need(phase in {'control-0','control-1','selected-confirmation','full-refit'},'unknown_anytime_callback_phase')
++            if phase in {'selected-confirmation','full-refit'}:finalizers.add(key(ref))
++    def lookup(ref,phase,cut):
++        k=key(ref);need(k in indexed,'checkpoint_parent_ref_not_actual')
++        index,parent,_=indexed[k]
++        need(parent['phase']==phase and parent['cut']==task['cuts'][cut],'checkpoint_phase_or_cut_changed')
++        used.add(k);return index,parent
++    def returned(parent,ref):return dict(parent['result'],parent_callback_receipt=copy.deepcopy(ref))
++    def scores(pair):
++        values=[p['result'].get('metrics',{}).get(task['metric']) for p in pair]
++        need(all(type(v) in (int,float) and math.isfinite(v) for v in values),'checkpoint_actual_finite_scores_required')
++        return values
++    need(len(parents)>=4 and [p['phase'] for p in parents[:2]]==['control-0','control-1'],
++         'initial_control_pair_before_checkpoints_required')
++    control=[]
++    for i in (0,1):
++        _,p=lookup(refs[i],'control-'+str(i),i);control.append(returned(p,refs[i]))
++        need(p['result']['status']=='ok' and p['result']['recipe']==task['strong_recipe'],'actual_strong_control_pair_changed')
++    need(report.get('strong_control_cuts')==control,'reported_strong_control_not_exact_actual_pair')
++    attempted=0
++    for number,row in enumerate(rows,1):
++        need(type(row) is dict and type(row.get('round')) is int and row.get('round')==number
++             and row.get('status') in {'invalid','duplicate','unattempted_budget','completed','failed'},'anytime_round_sequence_or_status_changed')
++        actual=[rounds[(number,i)] for i in (0,1) if (number,i) in rounds]
++        for ref,parent in actual:
++            used.add(key(ref));need(parent['cut']==task['cuts'][int(parent['phase'][-1])],'round_actual_cut_order_changed')
++        if row['status'] in {'invalid','duplicate','unattempted_budget'}:
++            need(not actual and row.get('scores') is None and row.get('decision')=='discard'
++                 and row.get('checkpoint') is None,'unattempted_or_duplicate_is_not_actual_callback')
++        else:
++            attempted+=1
++            need(1<=len(actual)<=2 and (number,0) in rounds,'attempted_round_callback_missing')
++            if row['status']=='failed':
++                need(row.get('scores') is None and row.get('decision')=='discard' and row.get('checkpoint') is None,
++                     'failed_anytime_objective_must_be_NULL')
++            else:
++                need(len(actual)==2 and all(p['result']['status']=='ok' for _,p in actual)
++                     and actual[0][1]['result']['recipe']==actual[1][1]['result']['recipe']
++                     and row.get('scores')==scores([p for _,p in actual]),'completed_round_requires_exact_two_actual_scores')
++                need(row.get('decision') in {'discard','keep_completed_checkpoint','eligible_unfinalized'},'unknown_anytime_round_decision')
++    need(not {n for n,_ in rounds}-set(range(1,len(rows)+1))
++         and type(report.get('executed_Qwen_candidates')) is int
++         and report.get('executed_Qwen_candidates')==attempted and attempted>=1,'anytime_actual_attempt_counter_changed')
++    required={'index','round','signature','status','scores','primary_ref','confirmation_ref','full_refit_ref',
++              'confirmation_lease_seconds','refit_lease_seconds'}
++    complete=[];linked_finalizers=set();linked_rounds=set();complete_signatures=set();selected=None
++    for index,item in enumerate(items,1):
++        need(type(item) is dict and set(item) in (required,required|{'reason'})
++             and type(item.get('index')) is int and item.get('index')==index
++             and valid_hash(item.get('signature')) and item.get('status') in {'completed','unfinalized_budget',
++                 'unfinalized_timeout','unfinalized_invalid','unfinalized_quality'},'closed_completed_or_unfinalized_checkpoint_required')
++        number=item['round'];need(type(number) is int and 0<=number<=len(rows),'checkpoint_round_changed')
++        if index==1:need(number==0 and item['signature']==strong_signature and item['status']=='completed','complete_initial_strong_checkpoint_required')
++        else:
++            need(number>0 and number not in linked_rounds and rows[number-1].get('checkpoint')==index
++                 and rows[number-1]['status']=='completed' and rows[number-1].get('signature')==item['signature'],
++                 'checkpoint_not_bound_to_eligible_actual_round')
++            linked_rounds.add(number)
++        a,primary=lookup(item['primary_ref'],'control-0' if number==0 else 'round-'+str(number)+'-0',0)
++        need(primary['result']['status']=='ok','checkpoint_primary_not_successful')
++        confirmation=full=None;b=d=None
++        for role,phase,limit in [('confirmation','selected-confirmation',600),('full_refit','full-refit',900)]:
++            ref=item[role+'_ref'];lease=item['confirmation_lease_seconds' if role=='confirmation' else 'refit_lease_seconds']
++            if ref is None:need(lease is None,'unused_checkpoint_lease_must_be_NULL');continue
++            need(type(lease) in (int,float) and math.isfinite(lease) and 5<=lease<=limit,'checkpoint_soft_lease_cap_changed')
++            k=key(ref);need(k not in linked_finalizers,'checkpoint_finalizer_reused');linked_finalizers.add(k)
++            order,parent=lookup(ref,phase,1)
++            need(parent['result']['recipe']==primary['result']['recipe']
++                 and parent['result']['release_worker_allocation_seconds']<=lease,'checkpoint_recipe_or_actual_lease_changed')
++            if role=='confirmation':b,confirmation=order,parent
++            else:d,full=order,parent
++        need((b is None or a<b) and (d is None or b is not None and b<d),'checkpoint_callback_order_changed')
++        if item['status']=='completed':
++            need(confirmation is not None and full is not None and confirmation['result']['status']==full['result']['status']=='ok'
++                 and full['result'].get('full_fit') is True and type(full['result'].get('submission')) is str
++                 and item['scores']==scores([primary,confirmation])
++                 and full['result'].get('fit_iterations')==median(primary['result']['fit_iterations'],confirmation['result']['fit_iterations']),
++                 'completed_checkpoint_fresh_confirmation_median_full_required')
++            need(item['signature'] not in complete_signatures,'unchanged_completed_checkpoint_refitted')
++            complete_signatures.add(item['signature']);complete.append(index)
++            if number:need(rows[number-1]['decision']=='keep_completed_checkpoint','completed_checkpoint_decision_changed')
++            selected=(item,primary,confirmation,full)
++        else:
++            need(item['scores'] is None and type(item.get('reason')) is str and item['reason'],'unfinalized_checkpoint_objective_must_be_NULL')
++            if number:need(rows[number-1]['decision']=='eligible_unfinalized','unfinalized_checkpoint_cannot_select')
++            status=item['status']
++            if status=='unfinalized_timeout':
++                need(confirmation is not None and (confirmation['result']['status']=='timeout' and full is None
++                     or confirmation['result']['status']=='ok' and full is not None and full['result']['status']=='timeout'),
++                     'unfinalized_timeout_requires_actual_confirmed_timeout')
++            else:
++                need(full is None and (status=='unfinalized_budget' or confirmation is not None)
++                     and (confirmation is None or confirmation['result']['status']=='ok'),
++                     'unfinalized_checkpoint_role_status_changed')
++    need(complete and type(report.get('selected_checkpoint')) is int
++         and report.get('selected_checkpoint')==complete[-1] and selected is not None,'selected_checkpoint_must_be_last_completed')
++    item,primary,confirmation,full=selected
++    need(report.get('selected_recipe')==primary['result']['recipe']
++         and report.get('selected_cuts')==[returned(primary,item['primary_ref']),returned(confirmation,item['confirmation_ref'])]
++         and report.get('final_confirmation')==returned(confirmation,item['confirmation_ref'])
++         and report.get('full_refit')==returned(full,item['full_refit_ref']),'selected_outputs_not_atomic_completed_checkpoint')
++    need(linked_finalizers==finalizers and used==set(indexed),'unlinked_actual_checkpoint_callback')
++    for number,row in enumerate(rows,1):
++        need((row.get('checkpoint') is None)==(number not in linked_rounds),'round_checkpoint_link_changed')
++        if number not in linked_rounds:need(row.get('decision')=='discard','unlinked_round_cannot_claim_selection')
++    return dict(actual_candidate_recipe_attempts=attempted,actual_candidate_worker_callbacks=len(rounds),
++        all_rounds=len(rows),completed_checkpoints=len(complete),unfinalized_checkpoints=len(items)-len(complete),
++        selected_checkpoint=complete[-1],failed_objectives_are_NULL=True,learner_fit_count=None)
+ 
+ 
+ def verify_usage(row,report,seal,taskcfg,check):
+@@ -338,7 +490,8 @@
+          and terminal.get('manifest_sha256')==row['task_manifest']['sha256']
+          and terminal.get('independently_qualified') is False,'actual_terminal_binding_missing')
+     parents=parent_records(row,report,taskcfg,seal,check,r4.verified_terminal)
+-    accounting=iteration_accounting(report,parents)
++    time_goal=anytime_time_goal(report,timing,row['supervisor']['record'])
++    accounting=anytime_accounting(report,parents,task,r4.median_iterations,authority['recipe_signature'])
+     need([p['phase'] for p in parents[:2]]==['control-0','control-1']
+          and all(p['result']['recipe']==task['strong_recipe'] for p in parents[:2]),'fresh_strong_control_pair_missing')
+     def parent(record):
+@@ -407,6 +560,7 @@
+             selected_cut_mean=sum(cuts[p]['value'] for p in ('primary','confirmation'))/2,
+             retained_unchanged_strong_recipe=same,final_CSV_sha256=sha(final['folder']/'submission.csv',check),
+             actual_worker_callbacks=len(parents),actual_learner_fit_count=None,iteration_accounting=accounting,
++            anytime_time_goal=time_goal,
+             fitting_receipts=fitting,resource_scope='sampled stable known RSS; not OS lifetime peak',
+             usage=verify_usage(row,report,seal,taskcfg,check),
+             validation_scope='adaptive reused public validation; independently rescored after all-core seals, not blind/official')

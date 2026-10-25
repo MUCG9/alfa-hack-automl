@@ -1,0 +1,34 @@
+{
+  "schema": "qwen-three-hour-resource-origin-independent-source-review-v1",
+  "status": "CLOSED_SOURCE_ONLY_NO_SCOPED_BLOCKER",
+  "handoff": {
+    "path": "work/qwen-three-hour-autoresearch-next-dev-r3/source-handoff.json",
+    "sha256": "6cfa6b3f8cb213054a4723d2dbeb733f50b4505d158cfd67c1fa4121a6f8a414"
+  },
+  "local_pins_verified": 41,
+  "external_pins_verified": 22,
+  "preserved_R2_handoff_sha256": "30c03e380b372a031d67b7aacbf14d809df741c784b8a2216822d7fe6071f51b",
+  "preserved_R2_source_and_review_bytes_verified": true,
+  "whole_task_entry_inverse_AST_exact": true,
+  "whole_research_loop_inverse_AST_exact": true,
+  "strict_worker_resources_sampler_provider_gateway_bytes_exact_R2": true,
+  "old18_test_method_assertion_AST_exact": true,
+  "prepared_contract_methods": 22,
+  "new_contract_methods": 4,
+  "actual_executed": 0,
+  "source_findings": [],
+  "scope_facts": [
+    "Trusted typed ContextVar is set/reset in finally around actual strict worker call only; no recipe/provider authority.",
+    "Parent origin is captured after confirmed cleanup before existing late timeout status replacement; strict worker bytes unchanged.",
+    "Result final status and parent origin are saved then validated in call before paired returns to the ordinary score_pair failure handler.",
+    "Missing/incomplete/unknown/technical/resource/primary-exception origin stops the task; clean ordinary timeout remains NULL and can continue.",
+    "Provider R2 facade and original10800/equal4800/reserves/recipes remain unchanged."
+  ],
+  "pending": [
+    "Actual source contracts and runtime have not executed.",
+    "Actual qualified archive/task authority/outer controller/root/READY/clock remain absent; this source receipt grants no runtime admission."
+  ],
+  "candidate_imports_tests_fits_API_data_PID_Git_clock": 0,
+  "promotion": false,
+  "submit": false
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "qh4-provider-window-root-source-decision-v1",
+  "decided_utc": "2026-10-25 00:54:59 UTC",
+  "parent_QH3_status": "CLOSED_FAILED",
+  "factor": "Complete-provider-window admission; preserved post-SDK diagnostics",
+  "selected_option": "B",
+  "provider_window_seconds": 180,
+  "existing_parent_grace_seconds": 10,
+  "sealing_reserve_seconds": 60,
+  "admission_overhead_seconds": 10,
+  "two_minimum_worker_windows_seconds": 10,
+  "minimum_admission_seconds": 270,
+  "per_task_seconds": 4800,
+  "common_seconds": 10800,
+  "strict_success_status_and_complete_usage_audit_unchanged": true,
+  "earlier_budget_end_only_when_remaining_lte_270": true,
+  "no_idle_padding": true,
+  "no_time_borrowing": true,
+  "no_three_hours_completed_claim_without_measurement": true,
+  "persist_safe_sdk_outcome_before_provider_only_postcheck": true,
+  "no_new_runtime_authorized": true,
+  "clock_start": null,
+  "quality": null,
+  "model_changes": false,
+  "archive_work": false,
+  "scopes": {
+    "FM": "isolated coreR9 after negative observer R2 peer",
+    "AC": "isolated auditorR6 timing predicate and independent core review",
+    "EO": "negative observer R2; prospective outer after final core/auditor freeze"
+  },
+  "preserve": [
+    "all existing quality predicates",
+    "equal identical task policy",
+    "hard original task/common clocks",
+    "source/ownership/resource/cleanup controls",
+    "exact five-file gateway closure",
+    "strict complete usage requirement for successful completed run",
+    "all previous failures and clocks"
+  ]
+}

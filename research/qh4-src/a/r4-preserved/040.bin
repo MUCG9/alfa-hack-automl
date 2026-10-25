@@ -1,0 +1,85 @@
+{
+  "schema": "qwen-three-hour-independent-artifact-audit-source-handoff-v1",
+  "revision": "Q3A01_R2",
+  "status": "FROZEN_SOURCE_ONLY_NOT_READY_PENDING_INDEPENDENT_PEER",
+  "files_sha256": {
+    "audit_final.py": "2f5ccf71530a16c4dc62219c5f64b42d96b1ef8f7d9a3f02736abc422e0639e5",
+    "binding.template.NOT_READY.json": "f998537fd5440f4fc5f99b5c5362d2bf57d51099031f4a9d6424175b05dcff6d",
+    "freeze_r2.py": "fd675839af7ac945e74d8e72ec8242c5292398b1d4b134743558e7f09f5f8110",
+    "primitive-provenance.json": "c00301db2b2c242c9aac450355072bd25ae5f143f4957923bb0a7e832bf87b75",
+    "protocol.json": "bd0ceccaded83aa1bb2bcabbbbf67f29852742d1ee693f3ada90ed773fcee2f6",
+    "Q3A01-role-only.patch": "06d10479e4e3c49a1641f5e1516c752c9ed5ebffd9a70a300e46892d434e7480",
+    "r1-preservation.json": "90460f4197b88e962e7d7715aa8eff9109798dbd8e4c1a3c6029ea07cc3360dd",
+    "r4_primitives.py": "d89a8024539eedb6daae9777ae3bd6a4f826da54265df4828a73caf10e94b371",
+    "README.txt": "e2a1f02152727abb1ad158698310463e6f756dad51f2adc06b9c3981aa2c5b09",
+    "source-evidence/r1/audit_final.py": "31d71275d9e819dfa41d2bff4bf5e47c9b17693e2fb7b1537ec48fe7cb3f502c",
+    "source-evidence/r1/binding.template.NOT_READY.json": "f998537fd5440f4fc5f99b5c5362d2bf57d51099031f4a9d6424175b05dcff6d",
+    "source-evidence/r1/freeze_source.py": "7356a45e749efa7b3b6e432c9eff33c6f9e03faaf42bc7aaae2b24ccaf4c27bb",
+    "source-evidence/r1/independent-review-r1.json": "4311ae2fd23ee2d33f529a975166a44b6509343076743ef4b1ec1fd601bc07a8",
+    "source-evidence/r1/primitive-provenance.json": "c00301db2b2c242c9aac450355072bd25ae5f143f4957923bb0a7e832bf87b75",
+    "source-evidence/r1/protocol.json": "cbfd369a2a0da4f32f707320f7681a780332702eddc31cc0a3f53dcd3cb06a35",
+    "source-evidence/r1/r4_primitives.py": "d89a8024539eedb6daae9777ae3bd6a4f826da54265df4828a73caf10e94b371",
+    "source-evidence/r1/README.txt": "f3b03b481fb6dfb75e049ff2261f5ff58e17b95db4a793d82bbce7a18d59484b",
+    "source-evidence/r1/source-handoff.json": "ca8f814393face3bcf27fedde2739be7ded3e3c56449b234cd112bb906c83709",
+    "source-evidence/r1/source-proof.json": "aa9e3954236aaa47f8d528be78e1d86e6b88d7c58504995e1dddff79d1562c7f",
+    "source-evidence/r1/test_audit_contracts.py": "4a71a1a76ca92ef2d2aaa696616cb7fe6349ef0afbd03d2088820134ba066132",
+    "source-proof.json": "d5e441e478ac271fda1e8c1fb1cf2b56dc04784d7b5e1d5e5d7ec557db3e291c",
+    "test_audit_contracts.py": "4a71a1a76ca92ef2d2aaa696616cb7fe6349ef0afbd03d2088820134ba066132",
+    "test_csv_role_contracts.py": "d2905f8bcddaad53f0fb25c8efaf64aec8fa6c0822b64b17bf23c7ba4ecabe07"
+  },
+  "external_source_refs": [
+    {
+      "path": "work/qwen-three-hour-autoresearch-next-dev-r4/source-handoff-final.json",
+      "sha256": "ef50adf134d67967ad177c75632376889e87dd67d926d75c83838dc8ef6d9544"
+    },
+    {
+      "path": "work/qwen-three-hour-autoresearch-next-dev-r4/task_entry.py",
+      "sha256": "b4b036b7b53f455a43bdbc150b91c421c76be7c204cc02b21fcbd6882c387721"
+    },
+    {
+      "path": "work/qwen-three-hour-autoresearch-next-dev-r4/research_loop.py",
+      "sha256": "52f50fe50b44f45533b3956bfa49690acac0fc4bd3874019d5a4d42a3760d4e7"
+    },
+    {
+      "path": "work/qwen-three-hour-autoresearch-next-dev-r4/gateway_child.py",
+      "sha256": "f2dba132c5b2b9b51b439b6aec930aa1cab628eab5a66c959d4717b7d747657e"
+    },
+    {
+      "path": "work/qwen-three-hour-autoresearch-next-dev-r4/r5_worker_runtime.py",
+      "sha256": "3123d34052bbaf0c03b7e2717eff9c64c1e3282a43c6d3de51d1ecf3b87895b8"
+    },
+    {
+      "path": "work/qwen-three-hour-autoresearch-independent-review-r4.json",
+      "sha256": "1010f2fa83a2e6338d2472a08ec4def1f6219affbfb214b6723a17726e1cbbcc"
+    },
+    {
+      "path": "work/uar-qwen-pair-next-dev/r4_adapter.py",
+      "sha256": "823d9629119bcd03560cafb62e8b240af8dea5b3f3ba63b4d196b96a62a518cd"
+    },
+    {
+      "path": "work/br-standard-release-qualification-next-dev/controller-r5/artifact_audit.py",
+      "sha256": "39678926216dd7ea45305f02efc86989f9bdea63b3f8b163ebe6ad0ff8490c64"
+    },
+    {
+      "path": "work/loss-seed-whole-agent-ab-r2-next-dev/audit_pair.py",
+      "sha256": "d0f2becf11979ea56d9523f0f010391325c2e684af0e7e521b3bbb832cba5e3c"
+    },
+    {
+      "path": "work/qwen-three-hour-independent-audit-next-dev-r2/source-evidence/r1/source-handoff.json",
+      "sha256": "ca8f814393face3bcf27fedde2739be7ded3e3c56449b234cd112bb906c83709"
+    },
+    {
+      "path": "work/qwen-three-hour-independent-audit-next-dev-r2/source-evidence/r1/independent-review-r1.json",
+      "sha256": "4311ae2fd23ee2d33f529a975166a44b6509343076743ef4b1ec1fd601bc07a8"
+    }
+  ],
+  "prepared_method_count": 17,
+  "actual_tests_executed": 0,
+  "actual_candidate_imports": 0,
+  "actual_fits": 0,
+  "actual_API_calls": 0,
+  "actual_metrics": null,
+  "actual_archive_root_outer_binding": null,
+  "actual_clock": null,
+  "requires": "narrow independent R2 source peer then root actual source/qualification/outer admission; no runtime authorization from source freeze"
+}

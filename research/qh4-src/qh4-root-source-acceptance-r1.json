@@ -1,0 +1,37 @@
+{
+  "schema": "qh4-root-reviewed-source-acceptance-v1",
+  "factor": "Complete provider window admission, preserved safe gateway diagnostics and truthful pending accounting",
+  "core_handoff_sha256": "aeeecd09e4631d6b96b2e57ded614df22d84ea6bdf56b1406ba0e2e1b96b13a9",
+  "core_peer_sha256": "8a49e4cd1db3c1f02ced84c95964e31c5379bd983a830102206abbe97289b638",
+  "auditor_handoff_sha256": "55028e01b968db3fc826951fbe827fdc96dda71264e2096a41fe03c41ac0ee3d",
+  "auditor_peer_sha256": "6fa28b1348c9b57e67a73a0563e0918758f6d15929cbff0524e951ca6483eb0d",
+  "outer_handoff_sha256": "0f11d7b9275638a73e6ce5222ffa2663704b75201c0a690047905d1259da2da5",
+  "outer_peer_sha256": "9f9b3cf009d9addf5a57264ec73f9794659bf0a183130cfef7f1edcdf05d9f03",
+  "prepared_method_counts": [
+    2,
+    6,
+    4,
+    21,
+    4,
+    28,
+    2,
+    4,
+    6
+  ],
+  "prepared_methods": 77,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API": 0,
+  "actual_metrics": null,
+  "actual_clock": null,
+  "READY": false,
+  "root_source_accepted": true,
+  "archive_unchanged": true,
+  "original_QH3_FAIL_preserved": true,
+  "missing_runtime_bindings": [
+    "independent private review",
+    "bounded metadata preflight and fresh finite absence",
+    "final preparer/observed-resource union",
+    "source publication"
+  ]
+}

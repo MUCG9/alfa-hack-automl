@@ -1,0 +1,27 @@
+{
+  "schema": "qh4-root-metadata-preflight-caller-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_PENDING_PEER",
+  "files_sha256": {
+    "README.txt": "eb6b2a659d1ec014cd97aa69ca87f03f7290cdfc4212d8ebe35fd91e24274b49",
+    "run_preflight.py": "b4ab457e5fc6bef47fd38f45b3611f454735c0509e05a45472f36b3ec49726aa",
+    "source-proof.json": "c2c3957f2cfd4cbba6fbbc952396074e09276710910489aeea4e327dc4ec3ecd",
+    "test_caller.py": "80b68a627bc09de99ef6150599641d04390b14fa38db70ffce543c0537db3d4f"
+  },
+  "external_refs_sha256": {
+    "qwen-three-hour-metadata-preflight-next-dev-r2/preflight.py": "a830f4b24f655795ad30b73298eb469abdabdc724ff05f1a691d6b1a334161a0",
+    "qwen-three-hour-metadata-preflight-next-dev-r2/source-handoff.json": "64695251a1cf03cf3aae74b0436fe6237bb3a39d43b931fd60283ba386442ad6",
+    "qh-metadata-preflight-fm-independent-review-r2.json": "0344ebb261cb9eab9018afada86b34cfa73cbcc0efb88159350b744393c212b6",
+    "br-standard-release-qualification-next-dev/controller-r5/run_controller.py": "d5f41cad6de2168cd520e442223428285dd3714854079d9305dd1b34938abd7d",
+    "support_component_coordinator.py": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "verified-resource-sampling-next-dev/verified_sampling.py": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+    "alfa-hack-automl/tools/research_lock.py": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45",
+    "qwen-three-hour-outer-next-dev-r9/run_campaign.py": "cf8057fe763ec9ca8f90972fd5e6e98f365453c4dc55f5a361f53a1ce5d0c95a",
+    "qwen-three-hour-outer-next-dev-r9/source-handoff-final.json": "0f11d7b9275638a73e6ce5222ffa2663704b75201c0a690047905d1259da2da5",
+    "qh4-outer-r9-fm-independent-source-review-r2.json": "9f9b3cf009d9addf5a57264ec73f9794659bf0a183130cfef7f1edcdf05d9f03",
+    "qwen-three-hour-outer-next-dev-r9/predecessor-projection-proposal.json": "bab1e6fc90cf9e79b11764e5486d5331464d3654780f724d6c7a39365111b34d",
+    "freeze-qh4-metadata-caller-source.py": "ad7064fdb063ddf88fb7ded1261d0c437fa9f152d019b3bc8a8560386906c2e2"
+  },
+  "prepared_contracts": 2,
+  "actual_runtime_tests": 0,
+  "actual_experiment_clock": null
+}

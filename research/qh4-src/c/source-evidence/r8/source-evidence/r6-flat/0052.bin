@@ -1,0 +1,73 @@
+{
+  "schema": "qwen-three-hour-autoresearch-independent-source-review-v1",
+  "status": "SOURCE_REVIEWED_CORE_BLOCKED_NO_EXECUTION",
+  "reviewed_handoff": {
+    "path": "work\\qwen-three-hour-autoresearch-next-dev-r2\\source-handoff.json",
+    "sha256": "30c03e380b372a031d67b7aacbf14d809df741c784b8a2216822d7fe6071f51b"
+  },
+  "checks": {
+    "local_pins": 19,
+    "all_local_exact": true,
+    "external_pins": 20,
+    "all_external_exact": true,
+    "R1_all_pinned_bytes_preserved": true,
+    "only_provider_task_entry_inverse_whole_AST_exact": true,
+    "other5_old_runtime_byte_exact": true,
+    "prepared_method_counts": {
+      "test_research_loop.py": 16,
+      "test_r5_worker_consumer.py": 1,
+      "test_provider_environment.py": 1
+    },
+    "prepared_total": 18
+  },
+  "findings": [
+    {
+      "id": "Q3H01",
+      "priority": "P1",
+      "status": "SOURCE_BLOCKER_NOT_ACTUAL_FAILURE",
+      "paths": [
+        {
+          "path": "work\\qwen-three-hour-autoresearch-next-dev-r2\\research_loop.py",
+          "line": 175
+        },
+        {
+          "path": "work\\qwen-three-hour-autoresearch-next-dev-r2\\research_loop.py",
+          "line": 234
+        },
+        {
+          "path": "work\\qwen-three-hour-autoresearch-next-dev-r2\\r5_worker_runtime.py",
+          "line": 215
+        },
+        {
+          "path": "work\\qwen-three-hour-autoresearch-next-dev-r2\\r5_worker_runtime.py",
+          "line": 284
+        }
+      ],
+      "problem": "Confirmed-clean resource-killed candidate callback is treated as an ordinary discarded hypothesis and later gateway/worker calls remain eligible. call checks cleanup/split only; score_pair rejects non-ok but its ResearchStop is caught as failed pair in loop. Worker resource statuses include memory_limit, whole_memory_limit, worker_memory_limit and disk_space_limit. This contradicts preregistered resource technicalSTOP.",
+      "late_cleanup_edge": "Exact copied R5 may overwrite resource status with timeout after cleanup. Existing optional parent-owned provenance remains disabled in this task adapter, so final timeout alone cannot distinguish ordinary timeout from resource origin or a masked parent technical error.",
+      "minimal_prospective_action": "Root-authorized narrow new revision should preserve copied R5/default behavior, enable/reuse an exact parent-owned origin receipt scoped to this trusted research callback, then STOP before proposal failure handling on resource/observation/cleanup/unknown technical provenance. Missing/incomplete origin must STOP; genuinely confirmed ordinary model timeout may remain honest NULL discard. Add meaningful source mock cases for resource+latecleanup→timeout, ordinary confirmed timeout continuation, missing origin and typed parent error. Frozen30c03/R18019 remain unchanged."
+    }
+  ],
+  "bounded_provider_delta_review": [
+    "solver_seconds=None now selects unchanged technical environment(False), avoids irrelevant legacy HPO solver checks; provider-only facade copies mapping and injects only already-authorized gateway endpoint/key/model/requested-reasoning fields.",
+    "Facade requires technical1 thread caps, rejects model=True and restores exact original coordinator.environment in finally, including supervise failure. No workers/auditors execute under that facade.",
+    "Original8019 source and all pinned files are preserved. Whole task-entry AST recovers old source after inverse of only facade import/dependency/with+solver argument. Gateway/research loop/strict worker/resources/sampler bytes remain exact old.",
+    "18 prepared methods are16 policy +1 unchanged R5consumer +1 new environment-restoration/copy contract; source count is not actual tests."
+  ],
+  "remaining_outer_binding_requirements": [
+    "Exact repaired archive/strong REG+CLASS/MetricSpec/lexical class+ID/source+cut42/43 authority, new actual predecessor/current known union and one original10800 outer clock remain NULL.",
+    "Outer task launch must explicitly supply provider-broker credentials to the trusted task coordinator; technical environment(False) itself strips them. The R2 facade reads task process environment, while all learner/auditor environments must remain secret-free. This is an unresolved outer launch binding, not a ready claim.",
+    "One outer two-task4800-each/setup300/audit600/cleanup300(root60 inside) and both-core seal-before-truth independent rescore remains absent. Actual learner fit count stays NULL; worker callbacks are counted separately.",
+    "Requested reasoning off is not backend attestation. Unknown reported HTTP/token accounting remains honest; no official/private score or promotion/upload."
+  ],
+  "execution": {
+    "candidate_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API": 0,
+    "data_arrays_or_truth_read": 0,
+    "PID_scans": 0,
+    "clock_assigned": false,
+    "canonical_or_Git_changes": false
+  }
+}

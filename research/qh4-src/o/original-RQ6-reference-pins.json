@@ -1,0 +1,38 @@
+{
+  "manifest": {
+    "path": "private/rq6-manifest.ready-r1.json",
+    "sha256": "f4eb5dca1e3560de66206c76937d0314a790047436bd80f218422c9324afd65a"
+  },
+  "campaign": {
+    "path": "rq6/campaign.json",
+    "sha256": "60afb434d1e6f943d05be02c0761cdb255745fe3e543961ed407e559eaf38725"
+  },
+  "root": {
+    "path": "rq6/terminal-root-closure.json",
+    "sha256": "f9e26b3a9e9223fc903909aafd3172dbd0b4242b142d9d29cf8593a3379d9810"
+  },
+  "negative": {
+    "path": "rq6/current-negative-closure.json",
+    "sha256": "fe8941210806633144b53f2f1345daa3922f7099dc81148637da7240592ce0bc"
+  },
+  "post": {
+    "path": "rq6/current-negative-post-tool-confirmation.json",
+    "sha256": "9ad55350293113fbf7c026762979e06cc40a350b948718c39b998b8dea316fdc"
+  },
+  "barrier": {
+    "path": "rq6/pretruth-barrier.json",
+    "sha256": "1a1c52f62d0badc5e579437e3f90b376e6f3e8440ca6948afbc92e45c1d79781"
+  },
+  "regression_seal": {
+    "path": "rq6/regression-core-seal.json",
+    "sha256": "53c6dde06429214624ad071349b6365e0ddd5f73f8a8f5080c8b0dfa81cc7a9d"
+  },
+  "classification_seal": {
+    "path": "rq6/classification-core-seal.json",
+    "sha256": "6d9345942bcb8e3752cdf66ba35f13292ed3f0f3da64481c3418f63bea1652fd"
+  },
+  "old_auditor": {
+    "path": "last-submission-repair-qualification-next-dev-r6/artifact_audit.py",
+    "sha256": "910f8c5374b147c1d665ed01cb93f9b492f17d5cee330621f0f23685854b7209"
+  }
+}

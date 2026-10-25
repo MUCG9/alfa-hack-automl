@@ -1,0 +1,41 @@
+{
+  "schema": "qwen-three-hour-independent-auditor-source-review-v1",
+  "status": "SOURCE_BLOCKER_REQUIRES_NARROW_ROLE_SCOPING",
+  "handoff": {
+    "path": "work/qwen-three-hour-independent-audit-next-dev/source-handoff.json",
+    "sha256": "ca8f814393face3bcf27fedde2739be7ded3e3c56449b234cd112bb906c83709"
+  },
+  "verified": {
+    "local_pins": 9,
+    "external_pins": 9,
+    "selected_R4_C5_LOSS_definition_AST_exact": 18,
+    "source_methods_AST_exact": 15,
+    "prepared_tests": 15,
+    "actual_tests": 0
+  },
+  "findings": [
+    {
+      "id": "Q3A01",
+      "priority": "P2",
+      "path": "work/qwen-three-hour-independent-audit-next-dev/audit_final.py",
+      "line": 124,
+      "title": "Prediction-column converters also reparse pristine numeric predictors",
+      "evidence": "LiteralCSV adds str converters for y_true, y_pred and all output_columns on every classification read. verify_task lines332-334 uses the same facade for pristine train/test/sample; a numeric predictor named y_true or y_pred is consequently converted to str before TaskVerifier hashes raw features.",
+      "source_counterexample": "Valid declared CLASS predictor named y_true has CSV lexical values 1 and1.0. Ordinary numeric parsing yields the same numeric feature group; the facade yields distinct strings, altering fitting feature-group counts/disjointness vs original parser and declared cut support. No rows or arrays were read/executed to establish this source path.",
+      "minimum_fix": "Scope converters by exact resolved path plus declared role: pristine train only declared class target and ID; pristine test/sample only ID as applicable; saved validation_predictions.csv only y_true/y_pred; submission.csv only declared output and ID. Keep numeric feature parsing and all exact R4 functions/formulas unchanged. Add a meaningful source mock/fixture for a numeric predictor named y_true/y_pred."
+    }
+  ],
+  "other_bounded_review_facts": [
+    "All immutable and BOTH complete task seals are checked before numerical primitive import and pristine target reads.",
+    "Parent-ledger/source/spec/recipe/cut/raw-role/clock/resource/terminal bindings and typed NULL/callback-vs-fit counts are explicit.",
+    "Missing confirmation/raw terminal/technical-origin evidence stops audit; selected and unchanged initial strong-control cuts are independently rescored, with fresh43 median/fullrefit CSV.",
+    "Source qualification requires actual positive repaired archive root and final posttool exit/fresh evidence; templates remain NOT_READY.",
+    "Per-task strict comparisons are retained separately from conservative globalAND; no historical score/official/promotion claim.",
+    "Current audit main retains actual usage attempt/token accounting and late failure clears all metrics."
+  ],
+  "remaining": "Author/root must preserve ca8f and explicitly authorize a narrow new path/role-scoped facade revision before final source closing.",
+  "candidate_imports_tests_models_fits_API_data_arrays_PID_Git_canonical_clock": 0,
+  "actual_metrics": null,
+  "promotion": false,
+  "submit": false
+}

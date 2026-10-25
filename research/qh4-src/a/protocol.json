@@ -1,0 +1,27 @@
+{
+  "schema": "QH-auditor-R6-full-provider-window-time-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "projection_roles": [
+    "archive",
+    "root",
+    "confirmation"
+  ],
+  "confirmation_is": "final_post_tool_proof",
+  "old_positive_schema_preserved": "standard-repair-qualification-root-closure-v1",
+  "new_positive_schema": "postfailure-standard-artifact-qualification-root-v1",
+  "original_RQ6_procedure_requalified": false,
+  "new_models": 0,
+  "sourceonly27_prepared_0run": true,
+  "actual_qualified_archive_root_refs": null,
+  "actual_READY": null,
+  "actual_clock": null,
+  "revision": "R6 timing predicate only",
+  "prepared_method_count": 30,
+  "actual_tests": 0,
+  "actual_experiment_clock": null,
+  "notes": "Only new prospective full-provider-window timing predicate; no padding, time borrowing, current QH3 salvage, or usage relaxation. Historical evidence is immutable; current30 prepared methods, same2 entrypoints.",
+  "task_seconds": 4800,
+  "common_seconds": 10800,
+  "admission_margin_expression": "180+10+60+10+2*5",
+  "admission_margin_seconds": 270
+}

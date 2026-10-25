@@ -1,0 +1,660 @@
+--- frozen-R4/research_loop.py
++++ anytime-R5/research_loop.py
+@@ -14,12 +14,20 @@
+ INDEPENDENT_AUDIT_SECONDS=600
+ CLEANUP_SECONDS=300
+ ROOT_SECONDS=60
+-GATEWAY_LIMIT=64
++# A finite safety bound, never a successful substitute for elapsed task time.
++# Hitting it early is INCOMPLETE. No seconds are fabricated/charged by counting.
++GATEWAY_LIMIT=TASK_SECONDS
++CALLBACK_LIMIT=4*GATEWAY_LIMIT+4
++REPORT_BYTES_LIMIT=32*2**20
++MIN_WORKER_SLICE=5
++MIN_GATEWAY_SLICE=5
++ADMISSION_OVERHEAD=10
+ PER_CUT_LIMIT=900
+ CONFIRMATION_RESERVE=600
+ REFIT_RESERVE=900
+ SEAL_RESERVE=60
+ FINAL_RESERVE=CONFIRMATION_RESERVE+REFIT_RESERVE+SEAL_RESERVE
++MIN_ROUND_ADMISSION=MIN_GATEWAY_SLICE+2*MIN_WORKER_SLICE+ADMISSION_OVERHEAD
+ PROMPT='''You conduct one sequential adaptive recipe experiment at a time.
+ Actual entitlement: 2 CPU threads per learner, worker RSS1536MiB, whole2048MiB.
+ The remaining task and common seconds in context are authoritative; this is
+@@ -173,121 +181,158 @@
+ 
+ 
+ def run_task(task,clock,gateway,worker,normalize,signature,compile_features,persist):
+-    """One iterative task under its original4800 and outer original10800.
+-
+-    Production gateway callback MUST be main-thread supervised in a separate
+-    process, keeping clock.check active while HTTP blocks; no background pulse.
+-    Worker callback is the exact adapted R5 strict wrapper. No RunBudget/HPO.
+-    """
++    """Anytime checkpoints under the SAME original4800/10800; no idle padding."""
+     need(task['kind'] in ('regression','classification') and task['metric'] in ('rmse','macro_f1'),'typed_task_metric_required')
+     need(type(task['greater_is_better']) is bool and task['greater_is_better']==(task['kind']=='classification'),'metric_direction_mismatch')
+     need([v['seed'] for v in task['cuts']]==[42,43] and len({v['sha256'] for v in task['cuts']})==2,'fixed_two_unequal_cut_hashes_required')
+     need(task['context_flag'] is False and task['selector_cache_flag'] is False,'separate_scientific_factors_default_OFF')
+-    need(set(task['numeric_features'])<=set(task['features'])
+-         and not set(task['features'])&set(task['forbidden_columns']),'declared_predictors_only')
+-    state={'schema':'qwen-iterative-task-v1','kind':task['kind'],'status':'running','gateway_calls':0,
++    need(set(task['numeric_features'])<=set(task['features']) and not set(task['features'])&set(task['forbidden_columns']),'declared_predictors_only')
++    state={'schema':'qwen-iterative-task-v2-anytime','kind':task['kind'],'status':'running','gateway_calls':0,
+         'http_attempts_reported':0,'http_attempts_complete':True,'usage_complete':True,'usage':[],
+         'records':[],'worker_calls_attempted':0,'worker_calls_succeeded':0,'executed_Qwen_candidates':0,'actual_learner_fit_calls':None,
+-        'actual_learner_fit_count_reason':'worker callbacks can contain nested stopping/calibration; no fabricated logical-job fit count',
+-        'first_failure':None,'secondary_failures':[],'selected_recipe':None,'final_confirmation':None,
+-        'full_refit':None,'quality_qualified':False,'promotion':False,'official_score_claim':False,
+-        'strong_control_cuts':None,'callback_ledger_refs':[]}
+-    def save():clock.check();persist(deepcopy(state));clock.check()
++        'actual_learner_fit_count_reason':'callbacks may contain nested stopping/calibration; no invented learner fit count',
++        'first_failure':None,'secondary_failures':[],'selected_recipe':None,'selected_cuts':None,
++        'final_confirmation':None,'full_refit':None,'quality_qualified':False,'promotion':False,'official_score_claim':False,
++        'strong_control_cuts':None,'callback_ledger_refs':[],'checkpoints':[],'selected_checkpoint':None,
++        'time_policy':'original remaining time drives admission; completed checkpoints never end research early',
++        'gateway_safety_upper':GATEWAY_LIMIT,'callback_safety_upper':CALLBACK_LIMIT}
++    def save():
++        clock.check()
++        need(len(json.dumps(state,ensure_ascii=False,allow_nan=False,indent=2).encode('utf-8'))<=REPORT_BYTES_LIMIT,
++             'actual_report_JSON_bound_INCOMPLETE')
++        persist(deepcopy(state));clock.check()
+     def fail(exc):
+         row={'type':type(exc).__name__,'code':str(exc) if isinstance(exc,ResearchStop) else None}
+         if state['first_failure'] is None:state['first_failure']=row
+         else:state['secondary_failures'].append(row)
++    def available():
++        return clock.remaining()-SEAL_RESERVE-ADMISSION_OVERHEAD
+     def call(recipe,cut,limit,phase,iterations=None):
+-        clock.check();need(limit>=5,'worker_minimum_slice_unavailable')
++        clock.check();limit=min(PER_CUT_LIMIT,limit,available())
++        need(finite(limit) and limit>=MIN_WORKER_SLICE,'worker_minimum_slice_unavailable')
++        need(state['worker_calls_attempted']<CALLBACK_LIMIT,'callback_safety_upper_INCOMPLETE')
+         state['worker_calls_attempted']+=1
+-        result=worker(deepcopy(recipe),cut,min(PER_CUT_LIMIT,limit),phase=phase,fit_iterations=iterations)
++        result=worker(deepcopy(recipe),cut,limit,phase=phase,fit_iterations=iterations)
+         clock.check();need(type(result) is dict and result.get('cleanup_confirmed') is True,'worker_cleanup_or_typed_receipt_unknown')
+         receipt=result.get('parent_callback_receipt')
+         need(type(receipt) is dict and set(receipt)=={'path','sha256'}
+              and type(receipt['path']) is str and receipt['path']
+              and type(receipt['sha256']) is str and len(receipt['sha256'])==64
+-             and all(c in '0123456789abcdef' for c in receipt['sha256']),
+-             'actual_saved_parent_callback_receipt_required')
++             and all(c in '0123456789abcdef' for c in receipt['sha256']),'actual_saved_parent_callback_receipt_required')
+         state['callback_ledger_refs'].append(deepcopy(receipt))
+         state['last_worker_final_status']=result.get('status')
+         state['last_worker_parent_origin']=deepcopy(result.get('hpo_fair_reserve_provenance'))
++        # This is OUTSIDE any numerical/proposal/ordinary-timeout handlers.
+         require_worker_origin(result)
+         if result.get('status')=='ok':state['worker_calls_succeeded']+=1
+-        # Bind each result to the caller-verified split, never trust a proposed
+-        # changed split or a missing hash in an otherwise successful record.
+         need(result.get('split_sha256')==cut['sha256'],'worker_split_hash_mismatch')
+         return result
+     def paired(recipe,phase):
+         rows=[]
+         for index,cut in enumerate(task['cuts']):
+-            available=clock.remaining()-FINAL_RESERVE
+-            rows.append(call(recipe,cut,min(PER_CUT_LIMIT,available/(2-index)),phase+str(index)))
++            room=available()
++            if room<(2-index)*MIN_WORKER_SLICE:break
++            rows.append(call(recipe,cut,min(PER_CUT_LIMIT,room/(2-index)),phase+str(index)))
+             if rows[-1].get('status')!='ok':break
+         return rows
+-    seen=set();incumbent=deepcopy(task['strong_recipe']);control=best=None
++    control=best=None;incumbent=deepcopy(task['strong_recipe']);seen=set();checkpointed=set()
++    def checkpoint(recipe,pair,round_number,initial=False):
++        key=signature(recipe)
++        need(key not in checkpointed,'unchanged_completed_checkpoint_must_not_refit')
++        item=dict(index=len(state['checkpoints'])+1,round=round_number,signature=key,status='pending',scores=None,
++            primary_ref=deepcopy(pair[0]['parent_callback_receipt']),confirmation_ref=None,full_refit_ref=None,
++            confirmation_lease_seconds=None,refit_lease_seconds=None)
++        state['checkpoints'].append(item)
++        def discard(status,code):
++            item.update(status=status,scores=None,reason=code);save();return None
++        # Soft two-slot lease, not a new allowance. Overrun/cleanup remains charged.
++        room=available()
++        if room<2*MIN_WORKER_SLICE:return discard('unfinalized_budget','two_checkpoint_slots_unavailable')
++        item['confirmation_lease_seconds']=min(CONFIRMATION_RESERVE,room/2)
++        save()
++        confirmation=call(recipe,task['cuts'][1],item['confirmation_lease_seconds'],'selected-confirmation')
++        item['confirmation_ref']=deepcopy(confirmation['parent_callback_receipt'])
++        if confirmation.get('status')=='timeout':return discard('unfinalized_timeout','confirmed_ordinary_confirmation_timeout')
++        need(confirmation.get('status')=='ok','checkpoint_non_timeout_worker_failure')
++        final_pair=[pair[0],confirmation]
++        # Only pure numerical/shape gates are handled here; calls/provenance stay outside.
++        try:
++            scores=score_pair(final_pair,task)
++            iterations=median_iterations(final_pair[0]['fit_iterations'],confirmation['fit_iterations'])
++            eligible=initial or keep_candidate(final_pair,best,control,task)
++        except ResearchStop as exc:
++            return discard('unfinalized_invalid',str(exc))
++        if not eligible:return discard('unfinalized_quality','fresh_confirmation_rejected_unchanged_quality_gates')
++        room=available()
++        if room<MIN_WORKER_SLICE:return discard('unfinalized_budget','refit_slot_unavailable_after_charged_confirmation')
++        item['refit_lease_seconds']=min(REFIT_RESERVE,room)
++        save()
++        full=call(recipe,task['cuts'][1],item['refit_lease_seconds'],'full-refit',iterations)
++        item['full_refit_ref']=deepcopy(full['parent_callback_receipt'])
++        if full.get('status')=='timeout':return discard('unfinalized_timeout','confirmed_ordinary_refit_timeout')
++        need(full.get('status')=='ok' and full.get('full_fit') is True and type(full.get('submission')) is str
++             and full.get('fit_iterations')==iterations,'fresh_complete_median_refit_CSV_required')
++        item.update(status='completed',scores=scores)
++        checkpointed.add(key)
++        # Atomic policy commit only after BOTH fresh stages completed successfully.
++        state.update(selected_recipe=deepcopy(recipe),selected_cuts=deepcopy(final_pair),final_confirmation=deepcopy(confirmation),
++            full_refit=deepcopy(full),selected_checkpoint=item['index'])
++        save();return final_pair
+     try:
+         control=paired(incumbent,'control-');state['strong_control_cuts']=deepcopy(control)
+-        score_pair(control,task);best=control
+-        seen.add(signature(incumbent));save()
+-        while clock.remaining()>FINAL_RESERVE+15:
+-            if state['gateway_calls']>=GATEWAY_LIMIT:
+-                state['stop_reason']='gateway64_cap';break
++        score_pair(control,task);seen.add(signature(incumbent))
++        best=checkpoint(incumbent,control,0,True)
++        need(best is not None,'initial_current_run_checkpoint_incomplete')
++        while clock.remaining()>SEAL_RESERVE+MIN_ROUND_ADMISSION:
++            need(state['gateway_calls']<GATEWAY_LIMIT,'gateway_safety_upper_INCOMPLETE_before_time_goal')
+             context={'task':task['kind'],'metric':task['metric'],'greater_is_better':task['greater_is_better'],
+                 'actual_resources':{'learner_threads':2,'worker_RSS_MiB':1536,'whole_RSS_MiB':2048},
+                 'remaining_task_seconds':clock.remaining(),'remaining_common_seconds':clock.common_remaining(),
+-                'remaining_confirmation_refit_seal_reserve_seconds':FINAL_RESERVE,
+-                'best_recipe':incumbent,'allowed_numeric_predictors':task['numeric_features'],
+-                'allowed_predictors':task['features'],'untrusted_task_excerpt':str(task.get('task_excerpt',''))[:4500],
+-                'column_descriptions':task.get('column_descriptions',[])[:64],
+-                'feedback_read_first':feedback(state['records'])}
++                'mandatory_seal_margin_seconds':SEAL_RESERVE,'finalization_caps_seconds':dict(confirmation=600,refit=900),
++                'best_recipe':incumbent,'allowed_numeric_predictors':task['numeric_features'],'allowed_predictors':task['features'],
++                'untrusted_task_excerpt':str(task.get('task_excerpt',''))[:4500],
++                'column_descriptions':task.get('column_descriptions',[])[:64],'feedback_read_first':feedback(state['records'])}
+             safe_json(context,49152);need(len(PROMPT.encode())+len(safe_json(context,49152).encode())<=65536,'complete_gateway_message_UTF8_cap')
+             state['gateway_calls']+=1;round_number=state['gateway_calls'];save()
+-            content,usage=gateway(PROMPT,context,min(180,clock.remaining()-FINAL_RESERVE-10))
++            content,usage=gateway(PROMPT,context,min(180,available()-2*MIN_WORKER_SLICE))
+             clock.check();need(type(usage) is dict,'actual_gateway_usage_receipt_required')
+             attempts=usage.get('attempts');known=type(attempts) is int and 1<=attempts<=3
+             state['http_attempts_complete'] &= known
+             if known:state['http_attempts_reported']+=attempts
+             state['usage_complete'] &= usage.get('usage_complete') is True
+             state['usage'].append({k:deepcopy(usage.get(k)) for k in ('status','attempts','usage','usage_complete','finish_reason','reasoning_effort_requested','response_model')})
+-            if usage.get('status')!='ok' or not known:
+-                raise ResearchStop('provider_failure_or_unconfirmed_HTTP_accounting')
++            if usage.get('status')!='ok' or not known:raise ResearchStop('provider_failure_or_unconfirmed_HTTP_accounting')
+             row={'round':round_number,'signature':None,'status':'invalid','decision':'discard','scores':None,
+-                 'error_type':None,'hypothesis':None}
++                'error_type':None,'hypothesis':None,'checkpoint':None}
+             try:
+                 need(type(content) is str and len(content.encode('utf-8'))<=32768,'bounded_provider_JSON_required')
+                 proposal=json.loads(content);safe_json(proposal,32768)
+                 recipe=mutate_recipe(proposal,incumbent,task['numeric_features'],task['features'],normalize,compile_features)
+                 key=signature(recipe);row.update(signature=key,hypothesis=proposal['hypothesis'])
+             except (ValueError,TypeError,KeyError,IndexError,ResearchStop) as exc:
+-                row['error_type']=type(exc).__name__
+-                state['records'].append(row);save();continue
+-            # Worker/resource/source/cleanup failures are OUTSIDE proposal-error
+-            # handling and cannot become an ordinary discarded Qwen suggestion.
++                row['error_type']=type(exc).__name__;state['records'].append(row);save();continue
+             if key in seen:row['status']='duplicate'
++            elif available()<2*MIN_WORKER_SLICE:
++                row.update(status='unattempted_budget',error_type='two_cut_admission_unavailable')
+             else:
+                 seen.add(key);state['executed_Qwen_candidates']+=1
+                 rows=paired(recipe,'round-'+str(round_number)+'-')
+                 try:row['scores']=score_pair(rows,task)
+-                except ResearchStop:
+-                    row.update(status='failed',scores=None,error_type='worker_pair_incomplete_or_nonfinite')
++                except ResearchStop:row.update(status='failed',scores=None,error_type='worker_pair_incomplete_or_nonfinite')
+                 else:
+                     row['status']='completed'
+                     if keep_candidate(rows,best,control,task):
+-                        incumbent=recipe;best=rows;row['decision']='keep'
++                        finalized=checkpoint(recipe,rows,round_number)
++                        row['checkpoint']=state['checkpoints'][-1]['index']
++                        if finalized is not None:
++                            incumbent=deepcopy(recipe);best=finalized;row['decision']='keep_completed_checkpoint'
++                        else:row['decision']='eligible_unfinalized'
+             state['records'].append(row);save()
+         need(state['executed_Qwen_candidates']>=1,'no_actual_Qwen_candidate_worker_attempt')
+-        need(clock.remaining()>FINAL_RESERVE,'final_confirmation_refit_reserve_exhausted')
+-        confirmation=call(incumbent,task['cuts'][1],CONFIRMATION_RESERVE,'selected-confirmation')
+-        final_pair=[best[0],confirmation];score_pair(final_pair,task)
+-        need(signature(incumbent)==signature(task['strong_recipe'])
+-             or keep_candidate(final_pair,control,control,task),'selected_confirmation_must_retain_both_cut_and_class_gates')
+-        state['final_confirmation']=confirmation
+-        iterations=median_iterations(best[0]['fit_iterations'],confirmation['fit_iterations'])
+-        need(clock.remaining()>REFIT_RESERVE+SEAL_RESERVE,'refit_and_seal_reserve_required')
+-        full=call(incumbent,task['cuts'][1],REFIT_RESERVE,'full-refit',iterations)
+-        need(full.get('status')=='ok' and full.get('full_fit') is True and type(full.get('submission')) is str,'fresh_full_refit_CSV_required')
+-        state.update(selected_recipe=incumbent,selected_cuts=final_pair,full_refit=full,
+-            status='cores_ready_pending_all_task_seals_and_independent_audit',quality_qualified=False)
++        need(state['selected_checkpoint'] is not None and state['full_refit'] is not None,'completed_current_run_checkpoint_required')
++        state.update(status='cores_ready_pending_all_task_seals_and_independent_audit',stop_reason='original_task_time_admission_margin',
++            remaining_task_seconds_at_stop=clock.remaining(),elapsed_task_seconds_at_stop=TASK_SECONDS-clock.remaining(),
++            time_accounting_scope='through admission stop; terminal save/seal costs remain charged to original clock')
+     except BaseException as exc:
+         fail(exc);state['status']='failed';state['quality_qualified']=False
+         try:persist(deepcopy(state))
+--- frozen-R4/task_entry.py
++++ anytime-R5/task_entry.py
+@@ -38,7 +38,7 @@
+ 
+ def save(path,value):
+     path=Path(path);temporary=path.with_name(path.name+'.pending')
+-    with temporary.open('x',encoding='utf-8') as stream:json.dump(value,stream,indent=2,ensure_ascii=False,allow_nan=False)
++    with temporary.open('x',encoding='utf-8',newline='\n') as stream:json.dump(value,stream,indent=2,ensure_ascii=False,allow_nan=False)
+     os.replace(temporary,path)
+ 
+ 
+@@ -64,7 +64,7 @@
+ 
+ def persist_parent_callback(result,folder,index,phase,cut,*,task_manifest,source_union,spec,recipe,check):
+     """Save the exact returned parent record, separate from child result.json."""
+-    need(type(result) is dict and type(index) is int and index>0
++    need(type(result) is dict and type(index) is int and 1<=index<=19204
+          and type(phase) is str and phase,'typed_actual_parent_callback_required')
+     folder=Path(folder).resolve();need(folder.is_absolute(),'absolute_callback_folder_required')
+     def actual_ref(path):
+@@ -75,6 +75,8 @@
+         source_union_canonical_sha256=canonical_metadata(source_union),
+         spec_canonical_sha256=canonical_metadata(spec),recipe_canonical_sha256=canonical_metadata(recipe),
+         raw_job=actual_ref(folder/'job.json'),raw_result=actual_ref(folder/'result.json'),result=result)
++    need(len(json.dumps(record,indent=2,ensure_ascii=False,allow_nan=False).encode('utf-8'))<=32*2**20,
++         'parent_callback_JSON_bound_INCOMPLETE')
+     target=folder/'parent-result.json';check();save(target,record);check()
+     return dict(path=str(target),sha256=sha(target,check))
+ 
+@@ -165,7 +167,7 @@
+     provider_count=0;worker_count=0
+     def gateway(prompt,context,timeout):
+         nonlocal provider_count
+-        view.check();provider_count+=1;need(provider_count<=64,'gateway64_hardcap')
++        view.check();provider_count+=1;need(provider_count<=policy.GATEWAY_LIMIT,'gateway_safety_upper_INCOMPLETE')
+         start=time.monotonic();folder=output/('gateway-'+str(provider_count));folder.mkdir()
+         request=folder/'request.json';result=folder/'result.json'
+         provider_clock={k:timing[k] for k in ('start_unix','start_monotonic','absolute_deadline_unix','common_deadline_monotonic','task_deadline_monotonic')}
+@@ -173,6 +175,7 @@
+         save(request,dict(schema='qwen-three-hour-single-gateway-v1',call_number=provider_count,
+             clock=provider_clock,source_files={p:h for p,h in pins.items() if Path(p).suffix=='.py'},
+             canonical_root=str(root),output=str(result),timeout=timeout,prompt=prompt,context=context))
++        need(request.stat().st_size<=131072,'gateway_request_JSON_bound_INCOMPLETE')
+         request_sha=sha(request,view.check)
+         argv=[cfg['python'],'-B','-X','utf8',str(HERE/'gateway_child.py'),'--request',str(request),
+             '--request-sha256',request_sha,'--self-sha256',pins[str(HERE/'gateway_child.py')]]
+--- frozen-R4/gateway_child.py
++++ anytime-R5/gateway_child.py
+@@ -24,7 +24,7 @@
+     request=Path(a.request);need(request.stat().st_size<=131072 and sha(request)==a.request_sha256,'bounded_exact_gateway_request_required')
+     cfg=json.loads(request.read_text('utf-8'))
+     need(cfg.get('schema')=='qwen-three-hour-single-gateway-v1' and type(cfg.get('call_number')) is int
+-         and 1<=cfg['call_number']<=64,'one_of64_bounded_provider_requests_required')
++         and 1<=cfg['call_number']<=4800,'bounded_time_admitted_provider_request_required')
+     clock=cfg['clock']
+     def check():
+         now=time.monotonic();wall=time.time()
+--- frozen-R4/test_research_loop.py
++++ anytime-R5/test_research_loop.py
+@@ -1,10 +1,11 @@
+-"""Prepared pure synthetic contracts. Source author has executed zero tests."""
++"""Prepared synthetic time-driven contracts. No actual clocks/models/providers."""
+ from copy import deepcopy
+ import hashlib
+ import json
+ from pathlib import Path
+ import sys
+ import unittest
++from unittest.mock import patch
+ sys.path.insert(0,str(Path(__file__).resolve().parent))
+ import research_loop as R
+ 
+@@ -20,8 +21,8 @@
+ 
+ 
+ def normalizer(candidate,prior):
+-    result=deepcopy(prior);result['hypothesis']=candidate['hypothesis']
+-    result['engine']=candidate['engine'];result.setdefault('params',{}).update(candidate['params'])
++    result=deepcopy(prior);result['hypothesis']=candidate['hypothesis'];result['engine']=candidate['engine']
++    result.setdefault('params',{}).update(candidate['params'])
+     if 'feature_code' in candidate:result['feature_code']=candidate['feature_code']
+     return result
+ 
+@@ -48,140 +49,179 @@
+ 
+ 
+ class ThreeHourResearchContracts(unittest.TestCase):
+-    def harness(self,provider=None,worker_override=None):
++    def harness(self,provider=None,worker_override=None,*,gateway_seconds=60.,worker_seconds=1.):
+         clock=Clock();calls=[];saved=[];gateway_calls=[]
+         def gateway(prompt,context,timeout):
+-            gateway_calls.append((prompt,deepcopy(context),timeout));clock.left-=1
++            gateway_calls.append((prompt,deepcopy(context),timeout))
++            clock.left-=min(gateway_seconds,max(.1,timeout-1))
+             if provider:return provider(len(gateway_calls))
+-            return json.dumps(proposal(min(len(gateway_calls),20))),dict(status='ok',attempts=1,usage_complete=True,usage={'prompt_tokens':11,'completion_tokens':7})
+-        def worker(recipe,cut,timeout,phase,fit_iterations=None):
+-            clock.left-=1;calls.append((deepcopy(recipe),cut['seed'],timeout,phase,fit_iterations))
++            return json.dumps(proposal(min(len(gateway_calls),20))),dict(status='ok',attempts=1,usage_complete=True,
++                usage={'prompt_tokens':11,'completion_tokens':7})
++        def worker(recipe,cut,timeout,phase,fit_iterations=None):
++            clock.left-=min(worker_seconds,max(.1,timeout-1));calls.append((deepcopy(recipe),cut['seed'],timeout,phase,fit_iterations))
+             if worker_override:return worker_override(recipe,cut,phase,fit_iterations)
+-            return dict(status='ok',cleanup_confirmed=True,split_sha256=cut['sha256'],metrics={'rmse':10-recipe['params']['v']*.01},
+-                fit_iterations=101 if cut['seed']==42 else 205,full_fit=phase=='full-refit',submission='owned/final.csv',recipe=deepcopy(recipe),
++            return dict(status='ok',cleanup_confirmed=True,split_sha256=cut['sha256'],
++                metrics={'rmse':10-recipe['params']['v']*.01},
++                fit_iterations=deepcopy(fit_iterations) if phase=='full-refit' else (101 if cut['seed']==42 else 205),
++                full_fit=phase=='full-refit',submission='owned/final.csv',recipe=deepcopy(recipe),
+                 hpo_fair_reserve_provenance=dict(schema='hpo-fair-reserve-worker-origin-v1',cleanup_confirmed=True,
+                     coordinator_killed=None,primary_exception_type=None,prior_result_status='ok'),
+                 parent_callback_receipt=dict(path='synthetic-owned/worker-'+str(len(calls))+'/parent-result.json',
+                     sha256=hashlib.sha256(str(len(calls)).encode()).hexdigest()))
+         return clock,gateway,worker,calls,gateway_calls,saved
+ 
+-    def test_one10800_and_equal4800_leave_exact_shared_reserves_without_borrow(self):
++    def run_policy(self,provider=None,override=None,**kwargs):
++        clock,gateway,worker,calls,gcalls,saved=self.harness(provider,override,**kwargs)
++        result=R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
++        return result,clock,calls,gcalls,saved
++
++    def test_time_driven_rounds_exceed64_gateway_and_callback_counts(self):
++        result,clock,calls,gcalls,saved=self.run_policy()
++        self.assertGreater(len(gcalls),64);self.assertGreater(len(calls),64)
++        self.assertEqual(result['stop_reason'],'original_task_time_admission_margin')
++        self.assertLessEqual(clock.left,R.SEAL_RESERVE+R.MIN_ROUND_ADMISSION)
++        self.assertGreater(clock.left,R.SEAL_RESERVE)
++        self.assertEqual(result['gateway_calls'],len(gcalls));self.assertEqual(result['worker_calls_attempted'],len(calls))
++        self.assertIsNone(result['actual_learner_fit_calls']);self.assertFalse(result['quality_qualified'])
++
++    def test_cheap_initial_checkpoint_does_not_finish_or_refit_unchanged_incumbent_repeatedly(self):
++        provider=lambda n:(json.dumps(proposal()),dict(status='ok',attempts=1,usage_complete=True))
++        result,clock,calls,gcalls,saved=self.run_policy(provider)
++        self.assertGreater(len(gcalls),64)
++        full=[row for row in calls if row[3]=='full-refit']
++        self.assertEqual([row[0]['params']['v'] for row in full],[0,1])
++        self.assertEqual(result['selected_checkpoint'],2)
++        self.assertTrue(any(row['status']=='duplicate' for row in result['records']))
++
++    def test_late_valid_gain_can_finalize_with_less_than_old1560_reserve(self):
++        provider=lambda n:(json.dumps(proposal(0 if n<25 else 1)),dict(status='ok',attempts=1,usage_complete=True))
++        result,clock,calls,gcalls,saved=self.run_policy(provider,gateway_seconds=170.)
++        late=result['checkpoints'][1]
++        self.assertEqual(late['round'],25);self.assertEqual(late['status'],'completed')
++        self.assertLess(late['confirmation_lease_seconds'],600)
++        self.assertLess(late['refit_lease_seconds'],900)
++        self.assertGreaterEqual(late['confirmation_lease_seconds'],5);self.assertGreaterEqual(late['refit_lease_seconds'],5)
++        self.assertEqual(result['selected_recipe']['params']['v'],1)
++
++    def test_selected_output_always_belongs_to_last_completed_checkpoint(self):
++        clock,gateway,ordinary,calls,gcalls,saved=self.harness()
++        def worker(recipe,cut,timeout,phase,fit_iterations=None):
++            row=ordinary(recipe,cut,timeout,phase,fit_iterations)
++            if recipe['params']['v']==20 and phase=='full-refit':
++                row.update(status='timeout',metrics=None,hpo_fair_reserve_provenance=dict(
++                    schema='hpo-fair-reserve-worker-origin-v1',cleanup_confirmed=True,
++                    coordinator_killed='timeout',primary_exception_type=None,prior_result_status='timeout'))
++            return row
++        result=R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
++        selected=result['checkpoints'][result['selected_checkpoint']-1]
++        self.assertEqual(selected['status'],'completed');self.assertEqual(result['selected_recipe']['params']['v'],19)
++        self.assertEqual(result['full_refit']['parent_callback_receipt'],selected['full_refit_ref'])
++        self.assertTrue(any(row['status']=='unfinalized_timeout' and row['scores'] is None for row in result['checkpoints']))
++        self.assertIsNone(result['first_failure'])
++
++    def test_confirmed_pair_timeout_is_NULL_and_later_real_rounds_continue(self):
++        clock,gateway,ordinary,calls,gcalls,saved=self.harness()
++        def worker(recipe,cut,timeout,phase,fit_iterations=None):
++            row=ordinary(recipe,cut,timeout,phase,fit_iterations)
++            if recipe['params']['v']==1:row.update(status='timeout',metrics=None,
++                hpo_fair_reserve_provenance=dict(schema='hpo-fair-reserve-worker-origin-v1',cleanup_confirmed=True,
++                    coordinator_killed='timeout',primary_exception_type=None,prior_result_status='timeout'))
++            return row
++        result=R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
++        self.assertIsNone(next(row for row in result['records'] if row['status']=='failed')['scores'])
++        self.assertGreater(result['selected_recipe']['params']['v'],1);self.assertIsNone(result['first_failure'])
++
++    def test_resource_origin_masked_by_final_timeout_remains_fatal(self):
++        clock,gateway,ordinary,calls,gcalls,saved=self.harness()
++        def worker(recipe,cut,timeout,phase,fit_iterations=None):
++            row=ordinary(recipe,cut,timeout,phase,fit_iterations)
++            if recipe['params']['v']==1:row.update(status='timeout',metrics=None,
++                hpo_fair_reserve_provenance=dict(schema='hpo-fair-reserve-worker-origin-v1',cleanup_confirmed=True,
++                    coordinator_killed='memory_limit',primary_exception_type=None,prior_result_status='memory_limit'))
++            return row
++        with self.assertRaises(R.ResearchStop):R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
++        self.assertEqual(len(gcalls),1);self.assertEqual(saved[-1]['status'],'failed')
++        self.assertFalse(saved[-1]['quality_qualified'])
++
++    def test_cleanup_and_unknown_provenance_are_not_discarded_as_checkpoint_timeouts(self):
++        for mutation in ({'cleanup_confirmed':False},{'hpo_fair_reserve_provenance':None}):
++            clock,gateway,ordinary,calls,gcalls,saved=self.harness()
++            def worker(recipe,cut,timeout,phase,fit_iterations=None):
++                row=ordinary(recipe,cut,timeout,phase,fit_iterations);row.update(mutation);return row
++            with self.subTest(mutation=mutation),self.assertRaises(R.ResearchStop):
++                R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
++            self.assertEqual(len(gcalls),0)
++
++    def test_safety_ceiling_early_hit_is_INCOMPLETE_never_normal_success(self):
++        clock,gateway,worker,calls,gcalls,saved=self.harness(gateway_seconds=1.)
++        with patch.object(R,'GATEWAY_LIMIT',2),self.assertRaisesRegex(R.ResearchStop,'INCOMPLETE'):
++            R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
++        self.assertEqual(len(gcalls),2);self.assertGreater(clock.left,4000)
++        self.assertEqual(saved[-1]['status'],'failed');self.assertFalse(saved[-1]['quality_qualified'])
++
++    def test_provider_failure_and_unknown_attempts_are_fatal_with_truthful_counters(self):
++        for usage in (dict(status='error',attempts=3,usage_complete=False),dict(status='ok',attempts=None,usage_complete=False)):
++            clock,gateway,worker,calls,gcalls,saved=self.harness(lambda n:(None,usage))
++            with self.subTest(usage=usage),self.assertRaises(R.ResearchStop):
++                R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
++            self.assertEqual(len(calls),4);self.assertEqual(len(gcalls),1)
++            self.assertEqual(saved[-1]['http_attempts_reported'],3 if usage['attempts']==3 else 0)
++            self.assertEqual(saved[-1]['http_attempts_complete'],usage['attempts']==3)
++
++    def test_all_callback_and_HTTP_ledgers_remain_cumulative_across_checkpoints(self):
++        result,clock,calls,gcalls,saved=self.run_policy()
++        self.assertEqual(len(result['callback_ledger_refs']),len(calls))
++        self.assertEqual(len({ref['path'] for ref in result['callback_ledger_refs']}),len(calls))
++        self.assertEqual(result['http_attempts_reported'],len(gcalls));self.assertEqual(len(result['usage']),len(gcalls))
++        self.assertEqual(len(result['records']),len(gcalls));self.assertGreater(len(result['checkpoints']),1)
++
++    def test_recursive_median_uses_fresh_checkpoint_pair_only(self):
++        result,clock,calls,gcalls,saved=self.run_policy()
++        self.assertTrue(all(row[4] is None for row in calls if row[3]!='full-refit'))
++        self.assertTrue(all(row[4]==153 for row in calls if row[3]=='full-refit'))
++        self.assertEqual(result['full_refit']['fit_iterations'],153)
++        for a,b in [([100],100),([100],[100,200]),(None,100),(True,100),(0,100)]:
++            with self.subTest(a=a,b=b),self.assertRaises(R.ResearchStop):R.median_iterations(a,b)
++
++    def test_same_original_task_windows_and_no_transfer(self):
+         self.assertEqual(R.task_window(10.,10810.,310.,'regression'),5110.)
+         self.assertEqual(R.task_window(10.,10810.,5110.,'classification'),9910.)
+         self.assertEqual(300+4800+4800+600+300,10800)
+-        self.assertEqual(4800+(300+600+300)//2,5400)
+-
+-    def test_early_finish_never_increases_other_task4800_or_rebases_common(self):
+-        reg=R.task_window(10.,10810.,110.,'regression')
+-        cls=R.task_window(10.,10810.,reg,'classification')
+-        self.assertEqual(reg-110,4800);self.assertEqual(cls-reg,4800)
+-        with self.assertRaises(R.ResearchStop):R.task_window(10.,10810.,312.,'regression')
+         with self.assertRaises(R.ResearchStop):R.task_window(10.,10811.,310.,'regression')
+ 
+-    def test_single_leaf_parameter_edit_preserves_full_strong_siblings_and_weights(self):
++    def test_leaf_DSL_and_raw_complete_recipe_guards_are_unchanged(self):
+         leaf=task()['strong_recipe'];seed=dict(engine='ensemble',components=[leaf,deepcopy(leaf)],weights=[.75,.25],params={})
+         before=deepcopy(seed);p=proposal(3);p['component_path']=[1]
+-        result=R.mutate_recipe(p,seed,['x'],['x'],normalizer,compiler)
+-        self.assertEqual(seed,before);self.assertEqual(result['components'][0],seed['components'][0])
+-        self.assertEqual(result['weights'],[.75,.25]);self.assertEqual(result['components'][1]['params']['v'],3)
+-
+-    def test_raw_generated_Python_execution_fields_and_nonexisting_component_reject(self):
+-        for delta in [dict(feature_code='import os'),dict(component_path=[0]),dict(params={'threads':8}),dict(features=[],params={})]:
++        changed=R.mutate_recipe(p,seed,['x'],['x'],normalizer,compiler)
++        self.assertEqual(seed,before);self.assertEqual(changed['components'][0],seed['components'][0]);self.assertEqual(changed['weights'],[.75,.25])
++        for delta in [dict(feature_code='import os'),dict(component_path=[99]),dict(params={'threads':8}),dict(features=[],params={})]:
+             p=proposal();p.update(delta)
+-            with self.subTest(delta=delta),self.assertRaises(R.ResearchStop):
+-                R.mutate_recipe(p,task()['strong_recipe'],['x'],['x'],normalizer,compiler)
+-
+-    def test_feature_factor_uses_only_trusted_DSL_compiler_and_declared_predictors(self):
+-        p=proposal();p.pop('params');p['features']=[dict(op='missing',columns=['x'],reason='measured missingness')]
+-        actual=R.mutate_recipe(p,task()['strong_recipe'],['x'],['x'],normalizer,compiler)
+-        self.assertTrue(actual['feature_code'].startswith('trusted_compiler_output:'))
+-        p['features'][0]['columns']=['target']
+-        with self.assertRaises(ValueError):R.mutate_recipe(p,task()['strong_recipe'],['x'],['x'],normalizer,compiler)
+-
+-    def test_failed_timeout_nonfinite_or_wrong_split_is_never_objective_zero(self):
+-        base=[dict(status='ok',cleanup_confirmed=True,split_sha256=c['sha256'],metrics={'rmse':2.}) for c in task()['cuts']]
+-        for key,value in [('status','timeout'),('split_sha256','wrong')]:
+-            rows=deepcopy(base);rows[1][key]=value
+-            with self.subTest(key=key),self.assertRaises(R.ResearchStop):R.score_pair(rows,task())
+-        rows=deepcopy(base);rows[0]['metrics']['rmse']=float('nan')
+-        with self.assertRaises(R.ResearchStop):R.score_pair(rows,task())
+-
+-    def test_regression_requires_each_cut_not_just_better_average(self):
+-        rows=lambda x:[dict(status='ok',cleanup_confirmed=True,split_sha256=c['sha256'],metrics={'rmse':v}) for c,v in zip(task()['cuts'],x)]
+-        self.assertFalse(R.keep_candidate(rows([8,10.1]),rows([10,10]),rows([10,10]),task()))
+-        self.assertTrue(R.keep_candidate(rows([9,9]),rows([10,10]),rows([10,10]),task()))
+-
+-    def test_classification_supported_loss_and_ex_rarest_guard_are_not_relaxed(self):
+-        t=task();t.update(kind='classification',metric='macro_f1',greater_is_better=True,classes=['NA','001','rare'],
+-            independent_fitting_groups={'NA':100,'001':200,'rare':1},rarest_fitting_class='rare')
+-        for cut in t['cuts']:cut.update(independent_fitting_groups=t['independent_fitting_groups'],rarest_fitting_class=t['rarest_fitting_class'])
+-        def rows(values):return [dict(status='ok',cleanup_confirmed=True,split_sha256=c['sha256'],
+-            metrics={'macro_f1':mean,'per_class_f1':dict(zip(t['classes'],values))}) for c in t['cuts'] for mean in [sum(values)/3]]
+-        baseline=rows([.5,.5,.2]);self.assertTrue(R.keep_candidate(rows([.52,.52,.3]),baseline,baseline,t))
+-        self.assertFalse(R.keep_candidate(rows([.47,.55,.4]),baseline,baseline,t))
+-        self.assertFalse(R.keep_candidate(rows([.5,.5,.8]),baseline,baseline,t))
+-
+-    def test_real_iterative_loop_exceeds_old14_rounds_and_caps64_gateway_only(self):
++            with self.subTest(delta=delta),self.assertRaises(R.ResearchStop):R.mutate_recipe(p,task()['strong_recipe'],['x'],['x'],normalizer,compiler)
++
++    def test_regression_and_supported_class_guards_remain_strict(self):
++        def rows(values,t):return [dict(status='ok',cleanup_confirmed=True,split_sha256=c['sha256'],metrics=dict(rmse=v)) for c,v in zip(t['cuts'],values)]
++        t=task();baseline=rows([10,10],t)
++        self.assertTrue(R.keep_candidate(rows([9,9],t),baseline,baseline,t))
++        self.assertFalse(R.keep_candidate(rows([9,10],t),baseline,baseline,t))
++        cls=dict(t,kind='classification',metric='macro_f1',greater_is_better=True,classes=['a','b','r'])
++        cls['cuts']=[dict(c,independent_fitting_groups={'a':200,'b':100,'r':5},rarest_fitting_class='r') for c in t['cuts']]
++        def cr(v):return [dict(status='ok',cleanup_confirmed=True,split_sha256=c['sha256'],metrics={'macro_f1':sum(v)/3,'per_class_f1':dict(zip(cls['classes'],v))}) for c in cls['cuts']]
++        base=cr([.5,.5,.2]);self.assertTrue(R.keep_candidate(cr([.52,.52,.3]),base,base,cls))
++        self.assertFalse(R.keep_candidate(cr([.47,.55,.4]),base,base,cls));self.assertFalse(R.keep_candidate(cr([.5,.5,.8]),base,base,cls))
++
++    def test_actual_report_byte_bound_stops_instead_of_claiming_truncated_evidence(self):
+         clock,gateway,worker,calls,gcalls,saved=self.harness()
+-        result=R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+-        self.assertEqual(len(gcalls),64);self.assertEqual(result['executed_Qwen_candidates'],20)
+-        self.assertEqual(result['http_attempts_reported'],64);self.assertIsNone(result['actual_learner_fit_calls'])
+-        self.assertEqual(result['stop_reason'],'gateway64_cap');self.assertFalse(result['quality_qualified'])
+-        self.assertEqual(len(calls),2+40+2);self.assertTrue(all(row[4] is None for row in calls[:-1]))
+-        self.assertEqual(calls[-1][4],153);self.assertEqual(result['full_refit']['full_fit'],True)
+-
+-    def test_duplicates_do_not_refit_or_reuse_failed_recipe_as_a_new_attempt(self):
+-        provider=lambda n:(json.dumps(proposal()),dict(status='ok',attempts=1,usage_complete=True))
+-        clock,gateway,worker,calls,gcalls,saved=self.harness(provider)
+-        result=R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+-        self.assertEqual(result['executed_Qwen_candidates'],1);self.assertEqual(len(calls),6)
+-        self.assertEqual(sum(row['status']=='duplicate' for row in result['records']),63)
+-
+-    def test_provider_failure_stops_and_retains_null_quality_and_actual_HTTP_attempts(self):
+-        provider=lambda n:(None,dict(status='error',attempts=3,usage_complete=False))
+-        clock,gateway,worker,calls,gcalls,saved=self.harness(provider)
+-        with self.assertRaises(R.ResearchStop):R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+-        self.assertEqual(len(calls),2);self.assertEqual(saved[-1]['http_attempts_reported'],3)
+-        self.assertFalse(saved[-1]['usage_complete']);self.assertFalse(saved[-1]['quality_qualified'])
+-        self.assertIsNone(saved[-1]['full_refit'])
+-
+-    def test_unknown_HTTP_accounting_is_not_silently_counted_as_zero(self):
+-        provider=lambda n:(json.dumps(proposal()),dict(status='ok',attempts=None,usage_complete=False))
+-        clock,gateway,worker,calls,gcalls,saved=self.harness(provider)
+-        with self.assertRaises(R.ResearchStop):R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+-        self.assertFalse(saved[-1]['http_attempts_complete']);self.assertFalse(saved[-1]['usage_complete'])
+-        self.assertEqual(len(calls),2)
+-
+-    def test_cleanup_uncertainty_is_fatal_not_a_discarded_proposal(self):
+-        def bad(recipe,cut,phase,iterations):
+-            return dict(status='ok',cleanup_confirmed=False,split_sha256=cut['sha256'],metrics={'rmse':1})
+-        clock,gateway,worker,calls,gcalls,saved=self.harness(worker_override=bad)
+-        with self.assertRaisesRegex(R.ResearchStop,'cleanup'):R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+-        self.assertEqual(len(gcalls),0);self.assertEqual(len(calls),1);self.assertEqual(saved[-1]['status'],'failed')
+-
+-    def test_actual_resources_and_remaining_common_task_seconds_are_in_every_prompt(self):
+-        clock,gateway,worker,calls,gcalls,saved=self.harness()
+-        R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+-        for prompt,context,timeout in gcalls:
+-            self.assertIn('2 CPU',prompt);self.assertNotIn('8 CPU',prompt);self.assertNotIn('32GB',prompt)
+-            self.assertEqual(context['actual_resources']['worker_RSS_MiB'],1536)
+-            self.assertGreater(context['remaining_common_seconds'],context['remaining_task_seconds'])
+-            self.assertLessEqual(timeout,180);self.assertLessEqual(len(R.safe_json(context,49152).encode()),49152)
+-
+-    def test_raw_worker_failure_is_recorded_NULL_and_does_not_terminate_valid_later_rounds(self):
+-        clock,gateway,default,calls,gcalls,saved=self.harness()
+-        def worker(recipe,cut,timeout,phase,fit_iterations=None):
+-            result=default(recipe,cut,timeout,phase,fit_iterations)
+-            if recipe['params']['v']==1:result.update(status='timeout',metrics=None)
+-            return result
+-        result=R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
+-        failed=next(row for row in result['records'] if row['status']=='failed')
+-        self.assertIsNone(failed['scores']);self.assertGreater(result['executed_Qwen_candidates'],14)
+-
+-    def test_median_requires_fresh_matching_tree_and_never_historical_iterations(self):
+-        self.assertEqual(R.median_iterations([101,205],[203,307]),[152,256])
+-        for first,second in [([100],100),([100],[100,200]),(None,100),(True,100),(0,100)]:
+-            with self.subTest(values=(first,second)),self.assertRaises(R.ResearchStop):R.median_iterations(first,second)
+-
+-
+-if __name__=='__main__':unittest.main()
++        with patch.object(R,'REPORT_BYTES_LIMIT',32),self.assertRaisesRegex(R.ResearchStop,'JSON_bound_INCOMPLETE'):
++            R.run_task(task(),clock,gateway,worker,normalizer,signature,compiler,saved.append)
++        self.assertEqual(saved[-1]['status'],'failed');self.assertIsNone(saved[-1]['actual_learner_fit_calls'])
++
++    def test_cheap_checkpoints_do_not_claim_4800_or_10800_elapsed(self):
++        result,clock,calls,gcalls,saved=self.run_policy()
++        self.assertEqual(result['elapsed_task_seconds_at_stop'],4800-clock.left)
++        self.assertGreater(result['elapsed_task_seconds_at_stop'],4700)
++        self.assertLess(result['elapsed_task_seconds_at_stop'],4800)
++        self.assertGreater(result['remaining_task_seconds_at_stop'],0)
++        self.assertNotIn('measured_three_hours',result)
++
++
++if __name__=='__main__':unittest.main(verbosity=2)
+--- frozen-R4/test_resource_origin.py
++++ anytime-R5/test_resource_origin.py
+@@ -32,11 +32,12 @@
+                 with self.assertRaises(R.ResearchStop):
+                     R.run_task(old.task(),clock,gateway,worker,old.normalizer,old.signature,old.compiler,saved.append)
+                 self.assertEqual(len(gcalls),1)
+-                self.assertEqual(len(calls),3)
++                self.assertEqual(len(calls),5)  # Initial complete checkpoint precedes Qwen.
+                 self.assertEqual(saved[-1]['status'],'failed')
+                 self.assertEqual(saved[-1]['last_worker_final_status'],'timeout')
+                 self.assertEqual(saved[-1]['last_worker_parent_origin']['coordinator_killed'],reason)
+-                self.assertIsNone(saved[-1]['full_refit'])
++                self.assertIsNotNone(saved[-1]['full_refit'])
++                self.assertEqual(saved[-1]['selected_recipe']['params']['v'],0)
+                 self.assertFalse(saved[-1]['quality_qualified'])
+ 
+     def test_missing_incomplete_or_parent_exception_provenance_never_becomes_trial_failure(self):
+@@ -67,7 +68,8 @@
+         failed=next(row for row in result['records'] if row['status']=='failed')
+         self.assertIsNone(failed['scores'])
+         self.assertEqual(result['full_refit']['status'],'ok')
+-        self.assertEqual(len(gcalls),64)
++        self.assertGreater(len(gcalls),64)
++        self.assertEqual(result['stop_reason'],'original_task_time_admission_margin')
+ 
+     def test_trusted_scope_enables_existing_capture_and_restores_exact_marker_after_failure(self):
+         marker=ContextVar('synthetic_parent_origin',default=False)
+--- frozen-R4/test_parent_callback_ledger.py
++++ anytime-R5/test_parent_callback_ledger.py
+@@ -50,7 +50,9 @@
+         self.assertEqual(len(result['callback_ledger_refs']),len(calls))
+         self.assertEqual(result['worker_calls_attempted'],len(calls))
+         self.assertEqual(len({r['path'] for r in result['callback_ledger_refs']}),len(calls))
+-        self.assertEqual(result['full_refit']['parent_callback_receipt'],result['callback_ledger_refs'][-1])
++        completed=result['checkpoints'][result['selected_checkpoint']-1]
++        self.assertEqual(completed['status'],'completed')
++        self.assertEqual(result['full_refit']['parent_callback_receipt'],completed['full_refit_ref'])
+         self.assertIsNone(result['actual_learner_fit_calls'])
+         self.assertFalse(result['quality_qualified'])
+ 

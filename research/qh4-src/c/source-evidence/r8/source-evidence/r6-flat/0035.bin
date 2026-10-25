@@ -1,0 +1,38 @@
+SOURCE CORE ONLY / NOT READY. No runtime or clock has been assigned.
+
+research_loop.py is the new iterative policy; task_entry.py is one strict4800
+task leaf; gateway_child.py is one fixed provider request observed by the parent
+main thread using exact coorR2. No background heartbeat and no legacy16-call
+RunBudget. Qualified R5 worker/resources/sampler are copied with only six import
+paths adapted. Numerical worker/evaluator/splits remain unchanged.
+
+Prepared contracts:16 new pure/mock policy methods plus1 exact R5 consumer
+method (import-path adaptation only). None executed. Existing qualified helper
+receipts support source reuse; they do not qualify this new campaign.
+
+Original total10800=setup300+REG4800+CLASS4800+independent audit600+cleanup300;
+root60 is inside cleanup. Each task nominal5400 including half shared overheads.
+No task borrows unused compute from the other. Both fixed cuts for each proposed
+recipe, genuine failure=NULL, exact recipe dedup, no repeated portfolios/HPO.
+At most64 gateway calls/task and at most3 HTTP attempts per call. Actual reported
+HTTP/token completeness is preserved; nested learner fits are not inferred from
+worker-call counts. Confirm600/refit900/seal60 remain inside each4800.
+
+This source is intentionally not a complete launch packet until the submitted
+archive CLASS failure is fixed and exact strong REG/CLASS/task/split authorities
+are supplied. The reuse-plan lists the ONE thin outer C5 two-task binding and
+independent all-core audit adapter still required. Root alone may materialize
+READY, observe full predecessor absence, publish and assign a new actual clock.
+No old UAR/CX/UQ launcher/closer or clock may be reopened. No release/upload.
+
+Future task-leaf CLI, NOT TO RUN independently:
+ python -B -X utf8 task_entry.py --manifest ABS --manifest-sha256 SHA
+   --self-sha256 TASK_ENTRY_SHA
+The reviewed outer caller must supply both original common/task tuples before
+candidate imports/API and supervise the leaf under the same remaining reserves.
+
+R2 fixes the frozen8019 provider environment blocker. Gateway children use technical coor.environment(False) plus an explicit provider-only authorized credential facade, restored in finally, with solver_seconds=None. All models/auditors remain outside the facade. One additional pure mock verifies mapping copy, technical1 caps and exception restoration;18 methods prepared,0run. No actual bindings or clock.
+
+R3 fixes Q3H01 only. The trusted task callback scopes the EXISTING R5 parent provenance flag and restores it in finally. No strict worker/process/cap/cleanup change. Research call validates exact after-cleanup origin BEFORE pair-failure handling, stopping resources/parent errors/missing or inconsistent origin even when final status became timeout. Confirmed ordinary timeout remains honest NULL and may continue. All18 old test method/assertion ASTs remain exact; four additional synthetic source methods are prepared, not run. All actual clock/READY/archive/quality bindings remain NULL.
+
+R4 adds only actual saved parent callback metadata and retained strong-control cut records. Child result.json is not a parent cleanup/resource receipt. Missing parent/cut/core/confirmation/source evidence STOPs independent audit; no reconstruction of absent facts. Raw job/result references may be genuinely NULL on failed callbacks, never fake success or learner-fit accounting. Existing22test method/assertion ASTs remain exact;2new source mocks,24prepared0run.

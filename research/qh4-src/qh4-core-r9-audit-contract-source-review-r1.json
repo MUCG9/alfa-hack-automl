@@ -1,0 +1,85 @@
+{
+  "schema": "QH4-core-R9-independent-source-review-v1",
+  "status": "SOURCE_PEER_CLOSED_NO_SCOPED_BLOCKER_NOT_RUNTIME_QUALIFICATION",
+  "reviewer": "audit_contract",
+  "author": "features_models",
+  "refs_sha256": {
+    "qwen-three-hour-autoresearch-next-dev-r9/source-handoff-final.json": "aeeecd09e4631d6b96b2e57ded614df22d84ea6bdf56b1406ba0e2e1b96b13a9",
+    "qwen-three-hour-autoresearch-next-dev-r9/research_loop.py": "1ec5af7721a2e434554707fc0667ad430f9ec0743b471e1d916341751b1f53c7",
+    "qwen-three-hour-autoresearch-next-dev-r9/gateway_child.py": "4889f928bddc3f80e52a27cf426d89ce3a11f01289140e009e3878b01af72cd9",
+    "qwen-three-hour-autoresearch-next-dev-r8/source-handoff-final.json": "efa770c766eaa4a49392193d24fd867cfd8ca5a9b64f44a8f07c4466e8aecd58",
+    "qwen-three-hour-independent-audit-next-dev-r6/source-handoff.json": "55028e01b968db3fc826951fbe827fdc96dda71264e2096a41fe03c41ac0ee3d",
+    "qwen-three-hour-independent-audit-source-review-r6.json": "6fa28b1348c9b57e67a73a0563e0918758f6d15929cbff0524e951ca6483eb0d",
+    "qh4-provider-window-root-source-decision-r1.json": "a3c150f9ab1fc0eed4a7b6e5ab0bfcfcef3fc3d7d08c74028564421e7a793eb6"
+  },
+  "checked_pins": {
+    "local": 278,
+    "external": 174,
+    "all_exact": true
+  },
+  "preservation": {
+    "all137_R8_files_and_final_handoff_exact": true,
+    "old_failure_immutable": true
+  },
+  "source_delta": {
+    "runtime_changed_only": [
+      "research_loop.py",
+      "gateway_child.py"
+    ],
+    "other5_runtime_byte_exact": true,
+    "exact_diff_segments": {
+      "research_loop": 6,
+      "gateway_child": 3,
+      "test_research_loop": 3,
+      "test_provider_environment": 1
+    },
+    "independent_line_range_and_old_new_fragment_reproduction": true,
+    "whole_LF_text_and_AST_inverses_exact": true
+  },
+  "source_findings": [
+    "Derived margin is 180 provider +10 existing parent +60 seal +10 admission +2*5 minimum workers=270; original4800/task and10800 common unchanged.",
+    "While admission and post-context/persist recheck require remaining>270 before counting/invoking. Every admitted gateway argument is180; budget stop creates no invented request.",
+    "Initial strong pair plus fresh confirmation/fullrefit checkpoint remains mandatory. Completed checkpoint selection, fresh median/full CSV and all quality gates are unchanged.",
+    "Before invocation both completeness flags becomeFalse; only accepted typed usage restores cumulative flags. Raised or unrecorded invocation retains pending count, known HTTP lower bound, NULL failed diagnostic and original exception.",
+    "After request_json returns, hard task/common checks remain before bounded safe outcome write; only provider postcheck is delayed until after writing. Provider lateness still exits nonzero and parent supervision rejects it.",
+    "Current task_entry and provider facade are raw R8 bytes; full-parent source guard, exact5 child closure,131072 request cap, strict worker/resource/origin/cleanup behavior remain unchanged.",
+    "Separate FM-reviewed auditorR6 retains strict every-call statusok/known attempts/complete usage; matching schema/stop_reason and270/4530 observed-time bound. No expected-error positive route introduced."
+  ],
+  "tests": {
+    "prepared": 37,
+    "executed": 0,
+    "entrypoint_counts": [
+      2,
+      6,
+      4,
+      21,
+      4
+    ],
+    "old30_method_AST_exact": true,
+    "authorized_timing_rebases": 2,
+    "old_rebased_source_preserved": true,
+    "new_meaningful_methods": 5,
+    "new_case_scope": [
+      "exact270 stop/above270 full180",
+      "context/persist costs before request count",
+      "raised second invocation lower-bound and incomplete flags",
+      "provider-only overrun safe result then fatal",
+      "hard task/common expiry rejects result publication"
+    ]
+  },
+  "limitations": [
+    "Source-only review; synthetic contracts prepared, not executed.",
+    "No guarantee SDK success or complete usage: actual error/unknown/late/resource/cleanup failures remain nonqualifying.",
+    "4800/task and10800 common are caps and admission origins, not padded or guaranteed measured durations.",
+    "No current QH3 salvage, metrics, promotion, or new actual launch authority."
+  ],
+  "actual_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API": 0,
+  "actual_data_truth_prediction_reads": 0,
+  "actual_PID_scans": 0,
+  "actual_experiment_clock": null,
+  "actual_READY": null,
+  "findings": []
+}

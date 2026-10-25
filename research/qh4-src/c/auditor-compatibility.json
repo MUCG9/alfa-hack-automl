@@ -1,0 +1,13 @@
+{
+  "schema": "qwen-R9-auditor-source-interface-compatibility-v1",
+  "reviewed_auditor_handoff_sha256": "55028e01b968db3fc826951fbe827fdc96dda71264e2096a41fe03c41ac0ee3d",
+  "independent_auditor_peer_sha256": "6fa28b1348c9b57e67a73a0563e0918758f6d15929cbff0524e951ca6483eb0d",
+  "schema_and_stop_reason_unchanged": true,
+  "admission_margin_seconds": 270,
+  "minimum_task_admission_elapsed_seconds": 4530,
+  "complete_usage_and_callback_formulas_unchanged": true,
+  "pending_negative_summary_fields_additive_only": true,
+  "late_diagnostic_result_is_not_qualified_provider_success": true,
+  "actual_runtime_checks": 0,
+  "actual_archive_READY_clock_metrics": null
+}

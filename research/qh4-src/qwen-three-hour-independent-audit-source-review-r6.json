@@ -1,0 +1,32 @@
+{
+  "schema": "qwen-independent-source-review-v1",
+  "result": "NO_SCOPED_SOURCE_BLOCKER",
+  "reviewed_handoff": {
+    "path": "work/qwen-three-hour-independent-audit-next-dev-r6/source-handoff.json",
+    "sha256": "55028e01b968db3fc826951fbe827fdc96dda71264e2096a41fe03c41ac0ee3d"
+  },
+  "checked_local_pins": 214,
+  "checked_external_pins": 26,
+  "runtime_sha256": "59319a87d5727d483bd10e026edf8d7ddbe922264a17f7a978320df8fbe62cc0",
+  "whole_R5_runtime_AST_inverse": true,
+  "whole_fixture_AST_inverse": true,
+  "old28_method_AST_exact": true,
+  "changed_old_method": "Only invalid rejection input100 to271; assertion ASTs retained",
+  "prepared_methods": 30,
+  "entrypoint_counts": [
+    28,
+    2
+  ],
+  "findings": [],
+  "scope": [
+    "Derived270 margin and three bounds only; exact270/4530/observed end boundary accepted, early/nonfinite/zero/deadline rejected in prepared fixture",
+    "Complete HTTP usage/status/attempts, full immutable core/source barriers, CSV/math/quality, resources and original4800/10800 checks unchanged"
+  ],
+  "actual_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API": 0,
+  "actual_data_prediction_truth_reads": 0,
+  "actual_PID_scans": 0,
+  "actual_experiment_clock": null
+}

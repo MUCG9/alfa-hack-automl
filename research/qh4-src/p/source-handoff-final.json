@@ -1,0 +1,60 @@
+{
+  "schema": "qh4-root-metadata-preflight-caller-source-handoff-final-v1",
+  "status": "FROZEN_SOURCE_ONLY_PENDING_PEER",
+  "files_sha256": {
+    "README.txt": "0c0efc02a1cb727c19b19f6d8518edd30e7d831be0e61dc12d33f4f1820b03ad",
+    "run_preflight.py": "1a4c0b19e9ea08b95653f55c83d620842967dbd35cc69f7f64bb3935eef4e42c",
+    "source-proof.json": "f2d76d4f91ca01341f75f65814c50aca8ea1b649b6585da56fdfb12f39687c21",
+    "test_caller.py": "afe1408e77dc2e8e9361f95538957a48c4ca8e8cc13441b62aab5658674b3437",
+    "source-evidence/r1/README.txt": "eb6b2a659d1ec014cd97aa69ca87f03f7290cdfc4212d8ebe35fd91e24274b49",
+    "source-evidence/r1/run_preflight.py": "b4ab457e5fc6bef47fd38f45b3611f454735c0509e05a45472f36b3ec49726aa",
+    "source-evidence/r1/source-handoff.json": "419e30c40bfe0fb4b67429651b980ddb22695d3539695b97745e687e23fa3da0",
+    "source-evidence/r1/source-proof.json": "c2c3957f2cfd4cbba6fbbc952396074e09276710910489aeea4e327dc4ec3ecd",
+    "source-evidence/r1/test_caller.py": "80b68a627bc09de99ef6150599641d04390b14fa38db70ffce543c0537db3d4f",
+    "source-handoff.json": "2af237d6e5eba119944becda33280b1c9fb88918cc529c20fb157b47fad73d36",
+    "test_caller_corrected_r1.py": "8df6c37b43228aa62e8ee7e70bf1697085c6ec874166a178eeb74553ce3436fc",
+    "fixture-correction-r1.json": "ec16db06ce46072a9446dc8a1b7c01bcdef301f5a9bc34fcf2e215091483fa71"
+  },
+  "external_refs_sha256": {
+    "qwen-three-hour-metadata-preflight-next-dev-r2/preflight.py": "a830f4b24f655795ad30b73298eb469abdabdc724ff05f1a691d6b1a334161a0",
+    "qwen-three-hour-metadata-preflight-next-dev-r2/source-handoff.json": "64695251a1cf03cf3aae74b0436fe6237bb3a39d43b931fd60283ba386442ad6",
+    "qh-metadata-preflight-fm-independent-review-r2.json": "0344ebb261cb9eab9018afada86b34cfa73cbcc0efb88159350b744393c212b6",
+    "br-standard-release-qualification-next-dev/controller-r5/run_controller.py": "d5f41cad6de2168cd520e442223428285dd3714854079d9305dd1b34938abd7d",
+    "support_component_coordinator.py": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "verified-resource-sampling-next-dev/verified_sampling.py": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+    "alfa-hack-automl/tools/research_lock.py": "78a0441bb3b9ea60197e9a1a6e1087f6e4cd0886593ec54bcfc4e41c9abe5a45",
+    "qwen-three-hour-outer-next-dev-r9/run_campaign.py": "cf8057fe763ec9ca8f90972fd5e6e98f365453c4dc55f5a361f53a1ce5d0c95a",
+    "qwen-three-hour-outer-next-dev-r9/source-handoff-final.json": "0f11d7b9275638a73e6ce5222ffa2663704b75201c0a690047905d1259da2da5",
+    "qh4-outer-r9-fm-independent-source-review-r2.json": "9f9b3cf009d9addf5a57264ec73f9794659bf0a183130cfef7f1edcdf05d9f03",
+    "qwen-three-hour-outer-next-dev-r9/predecessor-projection-proposal.json": "bab1e6fc90cf9e79b11764e5486d5331464d3654780f724d6c7a39365111b34d",
+    "freeze-qh4-metadata-caller-source.py": "ad7064fdb063ddf88fb7ded1261d0c437fa9f152d019b3bc8a8560386906c2e2",
+    "qh4-root-metadata-preflight-caller-next-dev/source-handoff.json": "419e30c40bfe0fb4b67429651b980ddb22695d3539695b97745e687e23fa3da0",
+    "qh4-root-metadata-preflight-caller-fm-independent-source-review-r1.json": "bbee8d4d9caa9fefb0e00885b9324e6575bd80fa461188acfe6438617edbb661",
+    "prepare-qh4-metadata-caller-r2-source.py": "d401ae5abb4fdb425458153e6f67baf8206a928040bc996002f215766587c5ff",
+    "append-qh4-metadata-caller-test-correction-source.py": "403e72f669ccc9fc3ae536365f4a06cfb13d2cb194ee423e519541741f195f86"
+  },
+  "prepared_contracts": 4,
+  "actual_runtime_tests": 0,
+  "actual_experiment_clock": null,
+  "preserved_R2_handoff": {
+    "path": "source-handoff.json",
+    "sha256": "2af237d6e5eba119944becda33280b1c9fb88918cc529c20fb157b47fad73d36"
+  },
+  "authoritative_fixture_correction": {
+    "path": "fixture-correction-r1.json",
+    "sha256": "ec16db06ce46072a9446dc8a1b7c01bcdef301f5a9bc34fcf2e215091483fa71"
+  },
+  "selected_contracts": {
+    "path": "test_caller_corrected_r1.py",
+    "sha256": "8df6c37b43228aa62e8ee7e70bf1697085c6ec874166a178eeb74553ce3436fc",
+    "methods": {
+      "MetadataCallerContracts.test_evaluate_clock_checkpoints_are_continuous_and_local_and_restore_primary_exception": "1ad015080c2b4fdcf8720eba3b6a85a5373a1fa9c606e6e70fdb4fd1f7e238ad",
+      "MetadataCallerContracts.test_guard_observer_seen_is_retained_even_when_a_round_fails_without_role_adoption": "9710ef47e6daa5aaad6e5fd6859cfe7ae5234e83c9166151139b15be4e559942",
+      "MetadataCallerContracts.test_positive_JSON_newline_failure_is_owned_and_revoked_but_existing_file_is_untouched": "adc0d9ef05449a05d72594c6cde0e6036440f8bc449fc2f137cb4aecc1404b15",
+      "MetadataCallerContracts.test_both_negative_save_failures_survive_in_final_console_summary": "9e96e9bfe69f7388f951876f1e8587f7783484753715fee46c4167e7bf8f9691"
+    },
+    "expected": 4
+  },
+  "superseded_contract_entry": "test_caller.py",
+  "runtime_bytes_unchanged": true
+}

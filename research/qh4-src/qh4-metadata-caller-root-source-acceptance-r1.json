@@ -1,0 +1,31 @@
+{
+  "schema": "qh4-metadata-caller-root-source-acceptance-v1",
+  "status": "SOURCE_ACCEPTED_PREFLIGHT_RUNTIME_PENDING",
+  "handoff": {
+    "path": "qh4-root-metadata-preflight-caller-next-dev-r2/source-handoff-final.json",
+    "sha256": "0b1db49694c98de713bcde4d6ad6877b43a252cbd61215a03102f30dc80e8dd9"
+  },
+  "peer": {
+    "path": "qh4-root-metadata-preflight-caller-fm-independent-source-review-r3.json",
+    "sha256": "5b972cafc84a2e31db04ca8aec1fcc3a3b416cdcf5f99c089a31edf6633ee3f1"
+  },
+  "caller_sha256": "1a4c0b19e9ea08b95653f55c83d620842967dbd35cc69f7f64bb3935eef4e42c",
+  "local_pins": 12,
+  "external_pins": 16,
+  "main_contracts_prepared": 77,
+  "metadata_mock_contracts_prepared": 4,
+  "actual_new_contracts": 0,
+  "preflight_body_executed": false,
+  "experiment_clock": null,
+  "runtime_ready": false,
+  "known_predecessor_count": 8469,
+  "own_metadata_seconds": 30,
+  "source_limits": "Exact qualified utility R2 and C5 unchanged; continuous full guard; finite current absence; actual chain plus all observer identities retained; source-only metadata generation grants no process ownership.",
+  "prior_findings_preserved": [
+    "QHMP01",
+    "QHMP02",
+    "QHMP03"
+  ],
+  "QH3_failed": true,
+  "late_failures_remain_fatal": true
+}

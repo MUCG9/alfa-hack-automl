@@ -1,0 +1,37 @@
+{
+  "schema": "qh4-metadata-preflight-caller-independent-source-review-v1",
+  "result": "PREPARED_FIXTURE_CORRECTION_REQUIRED_NO_RUNTIME_SOURCE_BLOCKER",
+  "reviewed_handoff": {
+    "path": "work/qh4-root-metadata-preflight-caller-next-dev-r2/source-handoff.json",
+    "sha256": "2af237d6e5eba119944becda33280b1c9fb88918cc529c20fb157b47fad73d36"
+  },
+  "evidence": {
+    "local_pins": 9,
+    "external_pins": 15,
+    "all_actual_hashes_match": true,
+    "R1all4_plus_handoff_snapshot_raw_exact": true,
+    "unchanged_guard_evaluate_capture_known8469_source_clock_paths": true,
+    "old2_method_AST_exact": true,
+    "prepared4_actual0": true
+  },
+  "closed_findings": [
+    "QHMP01 exact exclusively created paths tracked before positive bytes and revoked even on trailing write/close failure; unrelated existingfile skipped",
+    "QHMP02 final negative stdout preserves primarytype plus phase/type-only secondary errors after failed negative writes"
+  ],
+  "findings": [
+    {
+      "id": "QHMP03",
+      "severity": "prepared_fixture_defect",
+      "path": "test_caller.py",
+      "method": "MetadataCallerContracts.test_positive_JSON_newline_failure_is_owned_and_revoked_but_existing_file_is_untouched",
+      "issue": "Fake Stream.write raises on every exact newline chunk. stdlib json.dump(indent=2) emits exact newline before its closing brace; subsequent json.loads(ours.content) therefore receives incomplete JSON.",
+      "evidence": "Read actual stdlib json.encoder._iterencode_dict source: after indentation level decremented, yield newline then yield closing brace. No test or serialization fixture was executed.",
+      "minimum_fix": "Inject failure only on trailing newline after a complete object/dump completion; retain all assertions and runtime1a4c bytes."
+    }
+  ],
+  "limits": {
+    "actual_imports_tests_models_API_PID": 0,
+    "actual_data_arrays_prediction_truth_reads": 0,
+    "actual_experiment_clock": null
+  }
+}

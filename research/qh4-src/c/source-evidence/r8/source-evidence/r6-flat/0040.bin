@@ -1,0 +1,165 @@
+"""Metadata-only R3 source preparation; never import candidate/tests or run them."""
+from pathlib import Path
+import ast
+import copy
+import difflib
+import hashlib
+import json
+
+HERE=Path(__file__).resolve().parent
+WORK=HERE.parent
+OLD=WORK/'qwen-three-hour-autoresearch-next-dev-r2'
+OLD_SHA='30c03e380b372a031d67b7aacbf14d809df741c784b8a2216822d7fe6071f51b'
+REVIEW=WORK/'qwen-three-hour-autoresearch-independent-review-r2.json'
+REVIEW_SHA='ef16a93a48976d2e108312fd38fb336d941a4e88b9446c0558153857db03473d'
+
+
+def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+def dump(node):return ast.dump(node,include_attributes=False)
+def save(name,value):(HERE/name).write_bytes((json.dumps(value,indent=2,ensure_ascii=False,allow_nan=False)+'\n').encode('utf-8'))
+
+
+ORIGIN_HELPER='''def require_worker_origin(result):
+    """Parent-only facts, saved after strict cleanup and before late timeout."""
+    origin=result.get('hpo_fair_reserve_provenance')
+    required={'schema','cleanup_confirmed','coordinator_killed',
+              'primary_exception_type','prior_result_status'}
+    need(type(origin) is dict and set(origin)==required
+         and origin.get('schema')=='hpo-fair-reserve-worker-origin-v1'
+         and origin.get('cleanup_confirmed') is True,
+         'worker_parent_origin_missing_or_unconfirmed')
+    killed=origin['coordinator_killed'];primary=origin['primary_exception_type']
+    prior=origin['prior_result_status'];status=result.get('status')
+    need(killed is None or type(killed) is str,'worker_parent_origin_untyped')
+    need(primary is None or type(primary) is str,'worker_parent_origin_untyped')
+    need(type(prior) is str and prior in {'ok','error','timeout'}
+         and type(status) is str and status in {'ok','error','timeout'},
+         'worker_technical_status_STOP')
+    need(killed in (None,'timeout') and primary is None,
+         'worker_resource_or_parent_technical_origin_STOP')
+    need((killed!='timeout' or status=='timeout')
+         and (status=='timeout' or status==prior),
+         'worker_parent_origin_status_inconsistent')
+    return origin
+
+
+'''
+
+SCOPE_HELPER='''@contextmanager
+def worker_origin_scope(runtime):
+    """Trusted caller only; reuse existing additive parent facts, no worker change."""
+    marker=getattr(runtime,'_HPO_FAIR_RESERVE_PROVENANCE',None)
+    need(type(marker) is ContextVar,'typed_existing_worker_origin_marker_required')
+    token=marker.set(True)
+    try:yield
+    finally:marker.reset(token)
+
+
+'''
+
+
+def main():
+    assert sha(OLD/'source-handoff.json')==OLD_SHA and sha(REVIEW)==REVIEW_SHA
+    previous=json.loads((OLD/'source-handoff.json').read_bytes())
+    snapshot=HERE/'source-evidence/r2';snapshot.mkdir(parents=True,exist_ok=True)
+    for rel,h in previous['files_sha256'].items():
+        assert sha(OLD/rel)==h
+        target=snapshot/rel;target.parent.mkdir(parents=True,exist_ok=True)
+        if target.exists():assert sha(target)==h
+        else:target.write_bytes((OLD/rel).read_bytes())
+        if rel not in {'freeze_source.py','prepare_r2.py'}:
+            destination=HERE/rel
+            assert not destination.exists(),rel
+            destination.parent.mkdir(parents=True,exist_ok=True)
+            destination.write_bytes((OLD/rel).read_bytes())
+    for source,name in [(OLD/'source-handoff.json','source-handoff.json'),(REVIEW,'independent-review-r2.json')]:
+        target=snapshot/name
+        if target.exists():assert target.read_bytes()==source.read_bytes()
+        else:target.write_bytes(source.read_bytes())
+    # Only the trusted callback acquires provenance. The existing strict worker,
+    # capture timing, reclassification, caps and cleanup implementation stay exact.
+    entry=(OLD/'task_entry.py').read_text('utf-8-sig')
+    anchor='def run(a):\n';assert entry.count(anchor)==1
+    entry=entry.replace('from pathlib import Path\n','from pathlib import Path\nfrom contextlib import contextmanager\nfrom contextvars import ContextVar\n',1)
+    entry=entry.replace(anchor,SCOPE_HELPER+anchor,1)
+    before="""        result=runtime.run_release_worker(cfg['spec'],recipe,output/('worker-'+str(worker_count)),cut['path'],timeout,
+            clock=clock,full_fit=phase=='full-refit',fit_iterations=fit_iterations)"""
+    after="""        with worker_origin_scope(runtime):
+            result=runtime.run_release_worker(cfg['spec'],recipe,output/('worker-'+str(worker_count)),cut['path'],timeout,
+                clock=clock,full_fit=phase=='full-refit',fit_iterations=fit_iterations)"""
+    assert entry.count(before)==1;entry=entry.replace(before,after)
+    (HERE/'task_entry.py').write_bytes(entry.encode('utf-8'))
+    loop=(OLD/'research_loop.py').read_text('utf-8-sig');assert loop.count('def score_pair(records,task):\n')==1
+    loop=loop.replace('def score_pair(records,task):\n',ORIGIN_HELPER+'def score_pair(records,task):\n',1)
+    anchor="        clock.check();need(type(result) is dict and result.get('cleanup_confirmed') is True,'worker_cleanup_or_typed_receipt_unknown')\n"
+    assert loop.count(anchor)==1
+    loop=loop.replace(anchor,anchor+"        state['last_worker_final_status']=result.get('status')\n"
+        +"        state['last_worker_parent_origin']=deepcopy(result.get('hpo_fair_reserve_provenance'))\n"
+        +'        require_worker_origin(result)\n',1)
+    (HERE/'research_loop.py').write_bytes(loop.encode('utf-8'))
+    # Existing test methods/assertions remain exact. The shared synthetic callback
+    # now supplies the newly mandatory parent receipt, outside all old test bodies.
+    test=(OLD/'test_research_loop.py').read_text('utf-8-sig')
+    anchor="                fit_iterations=101 if cut['seed']==42 else 205,full_fit=phase=='full-refit',submission='owned/final.csv')"
+    replacement="""                fit_iterations=101 if cut['seed']==42 else 205,full_fit=phase=='full-refit',submission='owned/final.csv',
+                hpo_fair_reserve_provenance=dict(schema='hpo-fair-reserve-worker-origin-v1',cleanup_confirmed=True,
+                    coordinator_killed=None,primary_exception_type=None,prior_result_status='ok'))"""
+    assert test.count(anchor)==1;test=test.replace(anchor,replacement)
+    (HERE/'test_research_loop.py').write_bytes(test.encode('utf-8'))
+    protocol=json.loads((OLD/'protocol.json').read_bytes())
+    protocol['worker_parent_origin']='Trusted callback scopes existing additive R5 parent provenance; resource/observation/cleanup/unknown/missing origin STOP before ordinary failed-pair handling. Confirmed ordinary timeout may remain NULL and continue under same reserves.'
+    save('protocol.json',protocol)
+    plan=json.loads((OLD/'reuse-plan.json').read_bytes())
+    plan['existing_reuse']['worker']+='; exact existing parent-origin capture enabled only by trusted task callback, then fail-closed origin validation before pair scoring'
+    plan['minimum_remaining_integration'].append('Trusted task coordinator provider-broker credentials must be explicitly supplied by outer private environment; all learner/auditor environments remain scrubbed')
+    save('reuse-plan.json',plan)
+    (HERE/'README.txt').write_bytes(((OLD/'README.txt').read_text('utf-8-sig')+'\nR3 fixes Q3H01 only. The trusted task callback scopes the EXISTING R5 parent provenance flag and restores it in finally. No strict worker/process/cap/cleanup change. Research call validates exact after-cleanup origin BEFORE pair-failure handling, stopping resources/parent errors/missing or inconsistent origin even when final status became timeout. Confirmed ordinary timeout remains honest NULL and may continue. All18 old test method/assertion ASTs remain exact; four additional synthetic source methods are prepared, not run. All actual clock/READY/archive/quality bindings remain NULL.\n').encode('utf-8'))
+    proof=json.loads((OLD/'source-proof.json').read_bytes())
+    contracts={}
+    for path in sorted(HERE.glob('test_*.py')):
+        tree=ast.parse(path.read_bytes())
+        methods={c.name+'.'+m.name:hashlib.sha256(dump(m).encode()).hexdigest()
+            for c in tree.body if isinstance(c,ast.ClassDef) for m in c.body if isinstance(m,ast.FunctionDef) and m.name.startswith('test_')}
+        contracts[path.name]=dict(sha256=sha(path),prepared_method_count=len(methods),methods_AST_sha256=methods,actual_executed=0)
+    for name,row in proof['prepared_contracts'].items():assert contracts[name]['methods_AST_sha256']==row['methods_AST_sha256']
+    assert sum(v['prepared_method_count'] for v in contracts.values())==22
+    assert (HERE/'provider_environment.py').read_bytes()==(OLD/'provider_environment.py').read_bytes()
+    assert (HERE/'r5_worker_runtime.py').read_bytes()==(OLD/'r5_worker_runtime.py').read_bytes()
+    class EntryInverse(ast.NodeTransformer):
+        def visit_ImportFrom(self,node):return None if node.module in {'contextlib','contextvars'} else node
+        def visit_FunctionDef(self,node):return None if node.name=='worker_origin_scope' else self.generic_visit(node)
+        def visit_With(self,node):
+            if len(node.items)==1 and isinstance(node.items[0].context_expr,ast.Call) and isinstance(node.items[0].context_expr.func,ast.Name) and node.items[0].context_expr.func.id=='worker_origin_scope':return node.body
+            return self.generic_visit(node)
+    class LoopInverse(ast.NodeTransformer):
+        def visit_FunctionDef(self,node):return None if node.name=='require_worker_origin' else self.generic_visit(node)
+        def visit_Assign(self,node):
+            if len(node.targets)==1 and isinstance(node.targets[0],ast.Subscript) and isinstance(node.targets[0].value,ast.Name) and node.targets[0].value.id=='state' and isinstance(node.targets[0].slice,ast.Constant) and node.targets[0].slice.value in {'last_worker_final_status','last_worker_parent_origin'}:return None
+            return self.generic_visit(node)
+        def visit_Expr(self,node):
+            return None if isinstance(node.value,ast.Call) and isinstance(node.value.func,ast.Name) and node.value.func.id=='require_worker_origin' else self.generic_visit(node)
+    assert dump(EntryInverse().visit(ast.parse(entry)))==dump(ast.parse((OLD/'task_entry.py').read_bytes()))
+    assert dump(LoopInverse().visit(ast.parse(loop)))==dump(ast.parse((OLD/'research_loop.py').read_bytes()))
+    patches=[]
+    for name in ['task_entry.py','research_loop.py','test_research_loop.py']:
+        patches.extend(difflib.unified_diff((OLD/name).read_text('utf-8-sig').splitlines(True),(HERE/name).read_text('utf-8-sig').splitlines(True),fromfile='R2/'+name,tofile='R3/'+name))
+    (HERE/'R3-origin-only.patch').write_bytes(''.join(patches).encode('utf-8'))
+    proof['prepared_contracts']=contracts
+    proof['resource_origin_R3']=dict(finding_review_sha256=REVIEW_SHA,R2_handoff_sha256=OLD_SHA,
+        existing_worker_runtime_byte_exact=True,existing_provider_facade_byte_exact=True,
+        all18_old_test_method_and_assert_ASTs_exact=True,whole_task_entry_R2_inverse_exact=True,
+        whole_research_loop_R2_inverse_exact=True,new_prepared_methods=4,total_prepared_methods=22,
+        actual_executed=0,no_new_clocks_or_allowance=True)
+    save('source-proof.json',proof)
+    for path in HERE.glob('*.py'):ast.parse(path.read_bytes())
+    external=dict(previous['external_refs_sha256'])
+    external['qwen-three-hour-autoresearch-next-dev-r2/source-handoff.json']=OLD_SHA
+    external['qwen-three-hour-autoresearch-independent-review-r2.json']=REVIEW_SHA
+    files={p.relative_to(HERE).as_posix():sha(p) for p in sorted(HERE.rglob('*')) if p.is_file() and p!=HERE/'source-handoff.json'}
+    handoff=dict(previous);handoff.update(files_sha256=files,external_refs_sha256=external,prepared_contract_methods=22,
+        previous_handoff_sha256=OLD_SHA,source_revision='R3_TRUSTED_PARENT_RESOURCE_ORIGIN_STOP_ONLY')
+    save('source-handoff.json',handoff)
+    print(json.dumps(dict(handoff_sha256=sha(HERE/'source-handoff.json'),local_pins=len(files),external_pins=len(external),prepared_methods=22,executed=0)))
+
+
+if __name__=='__main__':main()

@@ -1,0 +1,195 @@
+{
+  "schema": "qh4-predecessor-projection-source-proposal-v1",
+  "status": "FROZEN_SOURCE_ONLY_ROOT_WRITES_PRIVATE",
+  "output_unit": "QH4",
+  "planned_outer_packet": "work/qwen-three-hour-outer-next-dev-r9",
+  "private_writer": "root hosted metadata only",
+  "private_projection": null,
+  "actual_future_clock": null,
+  "actual_future_READY": null,
+  "existing_runtime_ABI": {
+    "config_field": "launch_preparer_receipts",
+    "ref_exact_keys": [
+      "path",
+      "sha256",
+      "actual_tool"
+    ],
+    "receipt_required_field": "identities",
+    "paths": "all operational refs ABS in private immutable_files",
+    "admission": "unchanged predecessor union plus exact known absence before and under existing lock"
+  },
+  "required_base_projection": {
+    "planned_path": "work/private/qh4-root-predecessor-identities-r1.json",
+    "schema": "qh4-root-verified-failed-predecessor-identity-projection-v1",
+    "transformation": "R2_post.known_identities UNION R2_post.observer_preparer_identities; exact PID/full observed birth only; sorted by PID/birth",
+    "known_count": 8467,
+    "identities_canonical_sha256": "d176fea7cd48c8497a53a85a9bea073ceda12a209647b25b859c1e05b2fb0e43",
+    "source_negative": {
+      "path": "work/qh3/current-negative-closure-r2.json",
+      "sha256": "8149c1921bd57cfe676555af494cbaf62b1d20e4ec95caff8c6606d18584d6ee",
+      "actual_tool": {
+        "exit_code": 0,
+        "tool": "20b674"
+      }
+    },
+    "source_post": {
+      "path": "work/qh3/current-negative-post-tool-confirmation-r2.json",
+      "sha256": "abd0a5d94940414727c9beed5f3c9c6c43e05b2b3eb0e67d8a36ee3d70373dcd",
+      "actual_tool": {
+        "exit_code": 0,
+        "tool": "69cba3"
+      }
+    },
+    "actual_tools": {
+      "path": "work/private/qh3-current-negative-r2-actual-tools.json",
+      "sha256": "bdce0f654861b2ec2244ba4bad8c068990550d37a46893123c357a1949fc5dd5"
+    },
+    "technical_procedure_passed": false,
+    "original_QH3_FAIL_preserved": true,
+    "original_QH2_FAIL_preserved": true,
+    "original_QH1_FAIL_preserved": true,
+    "root60_requalified": false,
+    "new_metrics": null,
+    "current_source_cleanup_temp_verified": true
+  },
+  "mandatory_resource_supplement": {
+    "planned_path": "work/private/qh4-observed-resource-identities-supplement-r1.json",
+    "schema": "qh4-exact-observed-resource-identities-supplement-v1",
+    "identities": [
+      {
+        "pid": 6836,
+        "create_time": 1792889832.8119547
+      },
+      {
+        "pid": 16736,
+        "create_time": 1792889809.2734463
+      }
+    ],
+    "known_count": 2,
+    "source_witnesses": [
+      {
+        "identity": {
+          "pid": 16736,
+          "create_time": 1792889809.2734463
+        },
+        "source": {
+          "path": "work/qh3/current-negative-closure-r2.json",
+          "sha256": "8149c1921bd57cfe676555af494cbaf62b1d20e4ec95caff8c6606d18584d6ee"
+        },
+        "source_JSON_pointer": "/resource_observation/verified_resource_sample/sampled/1",
+        "asserted_process_role": "UNKNOWN",
+        "ownership_adopted": false
+      },
+      {
+        "identity": {
+          "pid": 6836,
+          "create_time": 1792889832.8119547
+        },
+        "source": {
+          "path": "work/qh3/current-negative-post-tool-confirmation-r2.json",
+          "sha256": "abd0a5d94940414727c9beed5f3c9c6c43e05b2b3eb0e67d8a36ee3d70373dcd"
+        },
+        "source_JSON_pointer": "/resource_observation/verified_resource_sample/sampled/0",
+        "asserted_process_role": "UNKNOWN",
+        "ownership_adopted": false
+      }
+    ],
+    "asserted_process_roles": null,
+    "ownership_adopted": false,
+    "termination_authority": false,
+    "no_invented_births": true,
+    "admission": "read-only exact current absence before/under lock; live/uncertain stops; resource witness does not retrospectively qualify QH3"
+  },
+  "final_next_admission": {
+    "known_count_before_future_preparers": 8469,
+    "identities_canonical_sha256": "7bd7cb265f740b78c095c722cd4184fdf366439b7f0084d4bd7a4a0862facd3f",
+    "formula": "required_base8467 UNION witnessed_UNKNOWN2; then actual future captured preparers/receipts only"
+  },
+  "failure_lineage": {
+    "original_main": {
+      "session": 56903,
+      "exit_code": 1,
+      "tool": "eb10dd"
+    },
+    "original_frozen_closer": {
+      "exit_code": 1,
+      "tool": "8a38cc"
+    },
+    "failed_R1_observer": {
+      "exit_code": 1,
+      "tool": "73272b",
+      "failure": "fixed_current_metadata_changed",
+      "captured_identities": [
+        {
+          "pid": 1388,
+          "create_time": 1792889588.1581492
+        },
+        {
+          "pid": 23964,
+          "create_time": 1792889588.1365423
+        },
+        {
+          "pid": 3504,
+          "create_time": 1792889587.837793
+        }
+      ],
+      "identities_already_in_base8467": true
+    },
+    "R2_post_prebody_CLI_failure": {
+      "exit_code": 2,
+      "tool": "f6c3b2",
+      "source_actual_tools_ref": "R2_actual_tools",
+      "capture_or_body_completed": false,
+      "captured_PID_birth_evidence_available": false,
+      "invented_identities": [],
+      "does_not_count_as_completed_post_observer": true
+    },
+    "R2_observer": {
+      "exit_code": 0,
+      "tool": "20b674",
+      "body_executions": 1
+    },
+    "R2_post_body": {
+      "exit_code": 0,
+      "tool": "69cba3",
+      "body_executions": 1
+    }
+  },
+  "checks_before_root_private_write": [
+    "rehash every exact source ref below",
+    "post array unique8464 plus disjoint actual postpreparer3 ==8467",
+    "source root/campaign/manifest equal original failed QH3 refs",
+    "old observer failure3 subset8467",
+    "both resource supplement identities equal exact pinned JSON pointers",
+    "no guessed processes from prebody CLI failure",
+    "preserve all old technicalfalse/globalFAIL/metricsNULL",
+    "all projection refs plus provenance in next immutable map; exact actual0 post tool in launch receipt"
+  ],
+  "prospective_outer": {
+    "code_generation": "WAIT final coreR9/auditorR6 source freezes and independent peers",
+    "allowed_runtime_delta": [
+      "four OUT qh3 to qh4 literals",
+      "CORE/CORE_SHA/AUDITOR/AUDITOR_HANDOFF_SHA/SOURCE_REVIEWS constants",
+      "derived template/source hashes and method maps"
+    ],
+    "original_10800_and_task4800_caps_unchanged": true,
+    "metadata_preflight_R2_binding_only_reuse": true,
+    "expected_entrypoints": 9,
+    "expected_setup_parent_slot_total_seconds": 270,
+    "actual_contract_count": null
+  },
+  "exact_refs_sha256": {
+    "private/qh3-manifest.ready-r3.json": "cc76d69808f589750f7598c5c58772cdc109f06a91bafc420ce09a6ef60c9f1d",
+    "qh3/campaign.json": "7df4fe3b771d2b8ec95c4cb4eaa8458ad550af720e5890016f410826552499c6",
+    "qh3/terminal-root-closure.json": "25cadd8cc34853c7b2ce6b4cb39180a92bb792add715632e7b70b5dffa4dc7d0",
+    "private/qh3-actual-terminal-tools-r1.json": "7d07e7aad6137238d36ab2b763dde7cf27c77eb364ff2031948ba7de03746d18",
+    "qh3/current-negative-preparer-identity.json": "ad25554e80d19372a7abb79cc37e0350fcac3fea747ec59a7b5d043d7ada0818",
+    "qh3/current-negative-closure-r2.json": "8149c1921bd57cfe676555af494cbaf62b1d20e4ec95caff8c6606d18584d6ee",
+    "qh3/current-negative-post-tool-confirmation-r2.json": "abd0a5d94940414727c9beed5f3c9c6c43e05b2b3eb0e67d8a36ee3d70373dcd",
+    "private/qh3-current-negative-r2-actual-tools.json": "bdce0f654861b2ec2244ba4bad8c068990550d37a46893123c357a1949fc5dd5",
+    "qh3-current-negative-audit-next-dev-r2/source-handoff.json": "0d281815c5caf6fb5aad0e0a152ea67efd86a00952c5194aa736e94dc5f6985e",
+    "qh3-current-negative-fm-independent-source-review-r2.json": "75f05fce4b678c6e081082c1939a1ab4db470b30e7fc8346449d8bac75bf91bc",
+    "qh4-provider-window-root-source-decision-r1.json": "a3c150f9ab1fc0eed4a7b6e5ab0bfcfcef3fc3d7d08c74028564421e7a793eb6"
+  },
+  "author_runtime_models_API_data_PID_clock": 0
+}

@@ -1,0 +1,82 @@
+{
+  "schema": "qwen-three-hour-anytime-auditor-R3-source-proof-v1",
+  "status": "SOURCE_ONLY_NOT_EXECUTED",
+  "changed_existing_definitions": [
+    "parent_records",
+    "usage_summary",
+    "verify_all_seals",
+    "verify_task"
+  ],
+  "new_definitions": [
+    "anytime_accounting",
+    "anytime_time_goal"
+  ],
+  "constants": {
+    "GATEWAY_LIMIT": 4800,
+    "CALLBACK_LIMIT": 19204,
+    "CORE_FILES_LIMIT": 20000
+  },
+  "whole_runtime_inverse_to_frozen_R2_AST_exact": true,
+  "whole_test_inverse_to_frozen_R2_AST_exact": true,
+  "R2_runtime_AST_sha256": "a66b34eb90c67b660e390a64386327c82272bdc3bf9d72c8c27a74bea0d8f1da",
+  "source_AST": {
+    "audit_final.py": {
+      "sha256": "d2496c1b4c751f75a50324cee820c7b2d29b447d40294108320c18fa6ae9a129",
+      "AST_sha256": "555a18f2258f93a2ec74765f80836a264b0056f04c6982a9a50ebb0d3bf03e91"
+    },
+    "freeze_r3.py": {
+      "sha256": "e7f30a272cad2fa9a8ab40c76c49835bdb0b572a3375653f7848c604a880f580",
+      "AST_sha256": "7fc14108618778d64e575f560dc7a8ae5285fec1550f0e65f95290378ff43c35"
+    },
+    "r4_primitives.py": {
+      "sha256": "d89a8024539eedb6daae9777ae3bd6a4f826da54265df4828a73caf10e94b371",
+      "AST_sha256": "b2db669ddb3da0286f63cf63f5bf48f61fdefdb98a11115686351539e66f6162"
+    },
+    "test_audit_contracts.py": {
+      "sha256": "87898ca5b69c33de24b7443bafceee5730e8910b873d13f7ccc76e1f34306347",
+      "AST_sha256": "8a99327bd4bd0b7a760efa566a695a07a98e26fcd70946b9a8c1f4d4c0950395"
+    },
+    "test_csv_role_contracts.py": {
+      "sha256": "d2905f8bcddaad53f0fb25c8efaf64aec8fa6c0822b64b17bf23c7ba4ecabe07",
+      "AST_sha256": "e7ea622ceb22f2d7d24d6022dee85853c7c288e1e218032161440819f1f8d15b"
+    }
+  },
+  "methods_AST_sha256": {
+    "IndependentAuditContracts.test_both_complete_seals_before_any_numerical_import": "d0fd411315851f02b8c2958cb09da32d5adab77e58696ab9a84a758e6a118313",
+    "IndependentAuditContracts.test_unsealed_extra_file_or_swapped_terminal_rejected": "92ee11c7771f3d76132d90ea94ce9fb9d4b8f9e4412a69bc69e4aeaf4bf40ccb",
+    "IndependentAuditContracts.test_JSON_duplicate_nonfinite_and_bounded_size_fail_closed": "7724c7d3222ef5c775c2559ca0abc045594736b308602239969c641704711904",
+    "IndependentAuditContracts.test_callback_count_never_becomes_learner_fit_count": "1f6c0507c9e0406086b4cfbf61ef7673d19e81719df5fc7d800c41a8a096f205",
+    "IndependentAuditContracts.test_late_timeout_resource_origin_stays_technical_STOP": "4d0285db16596579dbe135bad98448795ae125cab27fd527df80cb48c22b3db3",
+    "IndependentAuditContracts.test_success_requires_actual_raw_roles_exit_and_terminal": "3ed1054c0ad014fc8ca74821aa7fd2043e60e5220fabe73a088230aa9fb8c204",
+    "IndependentAuditContracts.test_parent_source_union_duplicate_and_output_roles_rejected": "79e881a86ce33caa73031eeceab426a65c889048659ed6907122b860c127c2f2",
+    "IndependentAuditContracts.test_failed_timeout_NULL_duplicate_and_actual_attempts_separate": "8737177ed8477aee1ed41d44ed964a5fc2921bc8955f1eb32280809ffc4a9893",
+    "IndependentAuditContracts.test_invalid_proposal_cannot_claim_callback_or_completed_score": "fcaae661adc4ac074030435f5d503435804924645579383d6450299929f365cf",
+    "IndependentAuditContracts.test_actual_HTTP_usage_complete_and_reasoning_not_attested": "3cc72003f3bd9e4a14e62ca92c852a265a292fa022928358b253668831909ddf",
+    "IndependentAuditContracts.test_incomplete_usage_and_reported_counter_mismatch_STOP": "39e93e039fc5109bf42320f58f74ca775c2b56203056345754cf0ad6157830a4",
+    "IndependentAuditContracts.test_original_clock_reserves_rollback_and_no_reset": "53f06208ca084b0af1ecce812386843c37324e93608d0e1968baea6fe91c84a0",
+    "IndependentAuditContracts.test_qualification_requires_final_posttool_not_pending_atomic": "e47c8e12ae6d6200d1478c14990950488bcf8f4d9ba64c3d6ab24374671658f4",
+    "IndependentAuditContracts.test_pretruth_failure_emits_NULL_without_numerical_import": "cd54b1a676351d3b7c68aaa0dc68dc4648f998508a4d50d784cbbcfc6fe489ae",
+    "IndependentAuditContracts.test_reused_R4_requires_both_cuts_and_supported_class_protection": "3ea195973f38f9bf9cee98addcd921133db5ca59e2972212f3b3bf904a8a6234",
+    "AnytimeAuditContracts.test_current_run_initial_checkpoint_and_failed_candidate_stay_distinct": "1fb054e83d095596dadc1c0b932a5c36f574b3aa34e58065f54f2abaf0d30d56",
+    "AnytimeAuditContracts.test_late_unfinalized_timeout_cannot_replace_complete_CSV_checkpoint": "f9c0dbcded4220115cfdcc93e0685cdac5ce6dda320ccbaf60eee881730e5999",
+    "AnytimeAuditContracts.test_duplicate_and_budget_unattempted_rows_are_not_callbacks_or_scores": "1c0969a1fab6dac82ee10e216cb7c21e39b8bc32215dbd6c86539fc69a237b41",
+    "AnytimeAuditContracts.test_stray_finalizer_wrong_cut_and_reused_refs_are_rejected": "22245b27145df020adc0467067687a64beb96c49127a6064e01876f02577f247",
+    "AnytimeAuditContracts.test_selected_binding_fresh_median_and_actual_soft_lease_are_required": "9e251026dedfb1c08263a3fdc5f5e4ecaea44985240f6ef35f3b63d198e5d710",
+    "AnytimeAuditContracts.test_time_goal_requires_original_margin_and_observed_supervisor_end": "01a3a0a9badeb236072a7f92402c367cff0e7f28597a950ab4b7bfcb84cbeec5",
+    "AnytimeAuditContracts.test_actual_semantic_counts_above_64_256_remain_finite_without_file_capacity_claim": "8593d0c7d9a1a91a8337a5e2835d5ec284048c1e6c005072cea3fb6566d027e9",
+    "AnytimeAuditContracts.test_physical_core_file_cap_stops_before_numerical_truth": "051075de3de357424c4ba82e410608c4dab6a6208cfa0ea9009b1fd87583864c",
+    "CSVRoleContracts.test_native_numeric_prediction_name_collisions_and_lexical_labels": "a99702c98e02f905a67453b11577a169b6c7fa2f1a4d3e2a951ee38e6efc0bf7",
+    "CSVRoleContracts.test_mock_exact_path_role_controls_converters_not_filename_or_column_name": "dd1517035a5145863fdf0084b728124753c31f633256ccc674a54aa714c2e294"
+  },
+  "prepared_methods": 25,
+  "old17_method_AST_exact": true,
+  "existing_R4_primitives_and_CSV_role_fixture_bytes_exact": true,
+  "same_two_fixture_entrypoints": [
+    "test_audit_contracts.py",
+    "test_csv_role_contracts.py"
+  ],
+  "physical_bounds": "report/parentJSON32MiB; actualcore20k; worker1536/whole2048MiB RSS retained; no diskcapacity provision",
+  "qualification": "semantic4800/19204 are independent safety maxima, not capacity or elapsed time",
+  "actual_imports_tests_fits_API_data_PID_Git_clock": 0,
+  "actual_archive_root_READY_clock_metrics": null
+}

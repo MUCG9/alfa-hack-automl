@@ -1,0 +1,34 @@
+{
+  "schema": "qwen-anytime-budget-decision-source-v1",
+  "status": "SOURCE_ONLY_PREREGISTERED",
+  "source_base_handoff_sha256": "ef50adf134d67967ad177c75632376889e87dd67d926d75c83838dc8ef6d9544",
+  "common_seconds": 10800,
+  "task_seconds": 4800,
+  "seal_margin_seconds": 60,
+  "gateway_safety_ceiling": 4800,
+  "callback_upper": 19204,
+  "safety_ceiling_is_not_elapsed_time": true,
+  "safety_ceiling_early_hit": "typed INCOMPLETE/fatal STOP, never normal-success",
+  "policy": [
+    "Fresh control pair -> fresh confirmation -> recursive-median fullrefit establishes first completed current-run checkpoint.",
+    "Time-driven Qwen pairs continue until only a minimum real admission plus seal margin remains. No sleeping/padding/fake time advancement.",
+    "Only unchanged-gate-eligible candidate attempts checkpoint; confirmation softlease=min600,(remaining-SEAL-10)/2; after actualcharged completion refit=min900,remaining-SEAL-10, minimum5. No fixed1560 hold.",
+    "Commit selected recipe/cuts/full only after actual complete successful confirmation/fullrefit. Confirmed ordinary timeout discards partial checkpoint; resource/unknown/cleanup/provenance errors escape fatally.",
+    "All callbacks/failedNULL/HTTPusage and completed or rejected checkpoints remain cumulative; no repeated fullrefit of unchanged executable signature."
+  ],
+  "unchanged": [
+    "Metric/proposal/leaf DSL/normalization/raw recipes/stopping/caps/provider service/strictworker/source barriers/clock origins"
+  ],
+  "auditor_R2_not_edited": true,
+  "required_independent_adapter": [
+    "usage_summary64 ceiling",
+    "parent_records256 ceiling",
+    "ANYTIME checkpoint ledger/current selected checkpoint consistency",
+    "actual JSON/parent/core inventory bounds for worst19204 callbacks; no invented nested learner fit count"
+  ],
+  "old_R4_tests": "All obsolete cap64/final-only assertions retained as immutable source evidence; not declared current PASS.",
+  "actual_clock": null,
+  "actual_archive": null,
+  "actual_metrics": null,
+  "author_execution": 0
+}

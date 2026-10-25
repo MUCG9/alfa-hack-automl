@@ -1,0 +1,98 @@
+class PostfailureQualificationContracts(unittest.TestCase):
+    def fixture(self,folder):
+        work=P.parent;expected={k:dict(path=str(work/rel),sha256=h) for k,(rel,h) in A.RA1_ORIGINAL_REFS.items()}
+        docs={};pins={};make=lambda name:dict(path=str(folder/name),sha256=A.canonical(name))
+        archive=make('archive.zip');root_ref=make('terminal-root-closure.json');post_ref=make('post.json')
+        context_ref=make('repair-context.json');audit_ref=make('independent-audit.json');fresh_ref=make('root-confirmation.json')
+        for ref in [*expected.values(),archive,root_ref,post_ref,context_ref,audit_ref,fresh_ref]:pins[ref['path']]=ref['sha256']
+        def rows(start,end):return [dict(pid=i,create_time=100.+i) for i in range(start,end)]
+        prior=rows(1,8011);negative_preps=rows(8011,8014);post_preps=rows(8014,8017)
+        negative=dict(schema='rq6-separate-current-negative-closure-v1',technical_procedure_passed=False,
+            original_RQ6_FAIL_preserved=True,root60_requalified=False,
+            original_negative_root_sha256=expected['root']['sha256'],original_manifest_sha256=expected['manifest']['sha256'],
+            current_source_unchanged=True,current_cleanup_confirmed=True,current_temporary_absent=True,inside_original6000=True,
+            known_exact_live=[],uncertain=[],known_count=8010,known_identities=prior,observer_preparer_identities=negative_preps)
+        oldpost=copy.deepcopy(negative);oldpost.update(schema='rq6-current-negative-post-tool-confirmation-v1',known_count=8013,
+            known_identities=prior+negative_preps,observer_preparer_identities=post_preps,
+            negative_closure_sha256=expected['negative']['sha256'],actual_negative_observer=dict(exit_code=0,tool='b449e3'))
+        inherited=dict(start_unix=10.,start_monotonic=20.,absolute_deadline_unix=6010.,common_deadline_monotonic=6020.)
+        docs.update({expected[k]['path']:{} for k in expected if k!='old_auditor'})
+        docs[expected['manifest']['path']]=dict(readiness='READY_REVIEWED_FROZEN',executor=dict(archive=archive),immutable_files={})
+        docs[expected['campaign']['path']]=dict(inherited,status='failed',manifest_sha256=expected['manifest']['sha256'],
+            independent_audit=None,first_failure=dict(child_kind='independent-audit'),
+            contracts=[dict(expected=n) for n in [24,24,18,12,16,5,2,11,7]],tasks=[dict(kind=k) for k in A.KINDS])
+        docs[expected['root']['path']]=dict(technical_procedure_passed=False,independent_audit=None,actual_exec_session=49569,
+            actual_exec_exit_code_observed_by_root=1,actual_tool_evidence='dbc6a1',qualified_ML_metrics=None)
+        docs[expected['negative']['path']]=negative;docs[expected['post']['path']]=oldpost
+        root=dict(schema='postfailure-standard-artifact-qualification-root-v1',archive_sha256=archive['sha256'],original_rq6=expected,
+            original_RQ6_FAIL_preserved=True,original_RQ6_procedure_requalified=False,
+            original_failed_driver=dict(session=49569,exit_code=1,tool='dbc6a1'),original_failed_frozen_closer=dict(exit_code=1,tool='fb3841'),
+            actual_exec_session=None,actual_exec_exit_code_observed_by_root=0,actual_tool_evidence='actual-new-driver',
+            technical_procedure_passed=True,source_unchanged=True,cleanup_confirmed=True,temporary_cleanup_confirmed=True,
+            inside_inherited_RQ6_common6000=True,active_owned_processes=[],uncertain_owned=[],changed_source_or_core=[],
+            inherited_original_clock=inherited,original_common_seconds=600,original_start_unix=1000.,original_start_monotonic=100.,
+            original_deadline_unix=1600.,original_end_monotonic=700.,repair_context=context_ref,independent_audit=audit_ref,
+            owned_identities=prior+negative_preps+post_preps+rows(8017,8018),closure_preparer_identities=rows(8018,8019))
+        context=dict(schema='rq6-saved-terminal-audit-repair-private-v1',original_failure_preserved=True,original_RQ6_procedure_requalified=False,
+            clock=dict(start_unix=1000.,start_monotonic=100.,absolute_deadline_unix=1600.,common_deadline_monotonic=700.,
+                audit_start_unix=1180.,audit_start_monotonic=280.,audit_deadline_unix=1300.,audit_deadline_monotonic=400.))
+        for k,v in [('original_manifest','manifest'),('original_campaign','campaign'),('original_root','root'),
+            ('original_auditor','old_auditor'),('current_negative','negative'),('post_tool_confirmation','post')]:context[k]=expected[v]
+        audit=dict(schema='postfailure-standard-artifact-audit-v1',artifact_procedure_passed=True,manifest_sha256=expected['manifest']['sha256'],
+            repair_context_sha256=context_ref['sha256'],archive_sha256=archive['sha256'],original_failure_preserved=True,
+            original_RQ6_procedure_requalified=False,audit_within_original_common_clock=True,audit_within_repair_clock=True,
+            new_model_fits=0,reported_API_calls=0,actual_artifact_sha256={ref['path']:ref['sha256'] for ref in [*expected.values(),context_ref]})
+        actual=dict(session=None,exit_code=0,tool='actual-new-driver');fresh_known=root['owned_identities']+root['closure_preparer_identities']
+        common_flags=dict(source_unchanged=True,current_temporary_absent=True,current_cleanup_confirmed=True,
+            inside_actual_closer_birth60=True,inside_original600=True,inside_inherited_RQ6_common6000=True,known_exact_live=[],uncertain=[])
+        fresh=dict(common_flags,schema='postfailure-standard-artifact-atomic-root-confirmation-v1',technical_procedure_passed=True,
+            root_sha256=root_ref['sha256'],actual_driver=actual,actual_closer_exit=0,errors=[],
+            known_identities=fresh_known,known_count=len(fresh_known),wrapper_preparer_identities=rows(8019,8022),inside_existing_driver_final240=True)
+        current=fresh_known+fresh['wrapper_preparer_identities']
+        post=dict(common_flags,schema='postfailure-standard-artifact-actual-wrapper-exit-confirmation-v1',root_sha256=root_ref['sha256'],
+            root_confirmation_sha256=fresh_ref['sha256'],inside_saved_driver_final240=True,post_tool_confirmed=True,
+            actual_driver=actual,actual_wrapper=dict(exit_code=0,tool='actual-wrapper'),known_identities=current,known_count=len(current),
+            post_tool_preparer_identities=rows(8022,8025))
+        docs.update({root_ref['path']:root,post_ref['path']:post,context_ref['path']:context,audit_ref['path']:audit,fresh_ref['path']:fresh})
+        return dict(source_qualification=dict(archive=archive,root=root_ref,confirmation=post_ref),immutable_files=pins),docs,expected
+
+    def checked(self,cfg,docs):
+        def bound(ref,check,pins):
+            A.need(type(ref) is dict and set(ref)=={'path','sha256'} and Path(ref['path']).is_absolute()
+                and pins.get(ref['path'])==ref['sha256'],'synthetic_actual_pinned_ref_required')
+            return Path(ref['path'])
+        with patch.object(A,'ref_check',side_effect=bound),patch.object(A,'load',side_effect=lambda path,check:docs[str(path)]):
+            return A.source_qualification(cfg,lambda:None)
+
+    def test_separate_saved_artifact_qualification_keeps_failed_RQ6_and_post_schema(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            cfg,docs,refs=self.fixture(Path(tmp).resolve());before=copy.deepcopy(docs)
+            self.assertEqual(self.checked(cfg,docs),cfg['source_qualification']);self.assertEqual(docs,before)
+            self.assertIs(docs[refs['root']['path']]['technical_procedure_passed'],False)
+            post=docs[cfg['source_qualification']['confirmation']['path']]
+            self.assertNotIn('technical_procedure_passed',post);self.assertTrue(post['inside_saved_driver_final240'])
+            legacy=copy.deepcopy(docs);legacy[cfg['source_qualification']['root']['path']]=dict(
+                schema='standard-repair-qualification-root-closure-v1',archive_sha256=cfg['source_qualification']['archive']['sha256'],
+                actual_exec_exit_code_observed_by_root=0,actual_tool_evidence='legacy-actual',technical_procedure_passed=True,
+                source_unchanged=True,cleanup_confirmed=True,temporary_cleanup_confirmed=True)
+            self.assertEqual(self.checked(cfg,legacy),cfg['source_qualification'])
+
+    def test_incomplete_mixed_failed_relabelled_or_unobserved_qualification_stops(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            cfg,docs,refs=self.fixture(Path(tmp).resolve());root_path=cfg['source_qualification']['root']['path']
+            root=docs[root_path];context_path=root['repair_context']['path'];audit_path=root['independent_audit']['path']
+            post_path=cfg['source_qualification']['confirmation']['path'];fresh_path=str(Path(root_path).with_name('root-confirmation.json'))
+            cases=[(root_path,'original_RQ6_procedure_requalified',True),(root_path,'actual_exec_exit_code_observed_by_root',1),
+                (root_path,'inside_inherited_RQ6_common6000',False),(refs['root']['path'],'technical_procedure_passed',True),
+                (context_path,'original_failure_preserved',False),(audit_path,'repair_context_sha256','a'*64),
+                (audit_path,'new_model_fits',1),(post_path,'inside_saved_driver_final240',False),
+                (post_path,'actual_wrapper',dict(exit_code=1,tool='failed')),(fresh_path,'actual_closer_exit',1)]
+            for path,key,value in cases:
+                bad=copy.deepcopy(docs);bad[path][key]=value
+                with self.subTest(key=key),self.assertRaises(A.AuditStop):self.checked(cfg,bad)
+            bad=copy.deepcopy(docs);bad[post_path]['known_identities'][-1]=bad[post_path]['known_identities'][0]
+            with self.assertRaises(A.AuditStop):self.checked(cfg,bad)
+            badcfg=copy.deepcopy(cfg);del badcfg['immutable_files'][fresh_path]
+            with self.assertRaises(A.AuditStop):self.checked(badcfg,docs)
+
+

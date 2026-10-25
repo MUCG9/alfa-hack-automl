@@ -1,0 +1,62 @@
+{
+  "schema": "qh4-metadata-preflight-caller-independent-source-review-v1",
+  "result": "NO_SCOPED_SOURCE_BLOCKER",
+  "reviewed_handoff": {
+    "path": "work/qh4-root-metadata-preflight-caller-next-dev-r2/source-handoff-final.json",
+    "sha256": "0b1db49694c98de713bcde4d6ad6877b43a252cbd61215a03102f30dc80e8dd9"
+  },
+  "reviewed_runtime": {
+    "path": "work/qh4-root-metadata-preflight-caller-next-dev-r2/run_preflight.py",
+    "sha256": "1a4c0b19e9ea08b95653f55c83d620842967dbd35cc69f7f64bb3935eef4e42c"
+  },
+  "evidence": {
+    "local_pins": 12,
+    "external_pins": 16,
+    "all_actual_hashes_match": true,
+    "R1all4_plus_handoff_and_R2all9_plus_handoff_raw_preserved": true,
+    "exact_utility_R2_C5_guard_sampler_owner_lock_and_outer_bytes_unchanged": true,
+    "original30_wall_monotonic_includes_capture_setup_evaluate_lease_release_writes_finalsample": true,
+    "local_utility_time_facade_full_original_guard_before_actual_monotonic_finally_restored": true,
+    "no_global_time_replacement_no_successful_sample_reset_no_campaign_clock": true,
+    "mandatory_actualself_cap2048_sticky10_success_only_sampling_originalSemantics": true,
+    "capture_and_all_observer_seen_sampled_departed_rows_retained_UNKNOWN_without_ownership_adoption": true,
+    "finite_exact8469_absence_before_underlease_afterevaluate_and_source_prepost_checks": true,
+    "positive_requires_finalsample_and_no_observed_inventory_growth": true,
+    "QHMP01": "CLOSED: exact exclusive-open-created ownership before bytes; own partial/full positive files revoked; unrelated preexisting output untouched",
+    "QHMP02": "CLOSED: compact primary plus all bounded phase/type secondary errors survive in negative stdout",
+    "QHMP03": "CLOSED: explicit selected corrected fixture injects trailingnewline only after completed object; rawonecondition inverse, other3methods AST exact",
+    "selected_contracts": {
+      "path": "test_caller_corrected_r1.py",
+      "sha256": "8df6c37b43228aa62e8ee7e70bf1697085c6ec874166a178eeb74553ce3436fc",
+      "methods": {
+        "MetadataCallerContracts.test_evaluate_clock_checkpoints_are_continuous_and_local_and_restore_primary_exception": "1ad015080c2b4fdcf8720eba3b6a85a5373a1fa9c606e6e70fdb4fd1f7e238ad",
+        "MetadataCallerContracts.test_guard_observer_seen_is_retained_even_when_a_round_fails_without_role_adoption": "9710ef47e6daa5aaad6e5fd6859cfe7ae5234e83c9166151139b15be4e559942",
+        "MetadataCallerContracts.test_positive_JSON_newline_failure_is_owned_and_revoked_but_existing_file_is_untouched": "adc0d9ef05449a05d72594c6cde0e6036440f8bc449fc2f137cb4aecc1404b15",
+        "MetadataCallerContracts.test_both_negative_save_failures_survive_in_final_console_summary": "9e96e9bfe69f7388f951876f1e8587f7783484753715fee46c4167e7bf8f9691"
+      },
+      "expected": 4
+    },
+    "prepared4_actual0_separate_from_main77": true
+  },
+  "previous_findings": [
+    {
+      "path": "work/qh4-root-metadata-preflight-caller-fm-independent-source-review-r1.json",
+      "sha256": "bbee8d4d9caa9fefb0e00885b9324e6575bd80fa461188acfe6438617edbb661"
+    },
+    {
+      "path": "work/qh4-root-metadata-preflight-caller-fm-independent-source-review-r2.json",
+      "sha256": "5d1024b91eb06892a5a1c6964930f494ab6111791b5717961819eaa9a576883b"
+    }
+  ],
+  "next_required": [
+    "Root must bind exact runtime1a4c and all utility/helper/current source pins in actual ABS manifest before one invocation; earlier a5c790 preflight-only manifest missing finalized caller pin is not admitted by this review",
+    "Only actual tool EXIT0 plus exact finalpreparer rawSHA may add ALL captured/guard-seen identities through unchanged launch_preparer_receipts ABI. Preparer/guard observations do not grant ownership or runtime admission.",
+    "Main77 source contracts and root campaign clock remain unchanged/future; caller4 prepared mocks have not run."
+  ],
+  "limits": {
+    "actual_imports_tests_runtime_models_API_PID": 0,
+    "actual_data_array_prediction_truth_reads": 0,
+    "actual_campaign_clock": null,
+    "actual_private_READY": null
+  }
+}

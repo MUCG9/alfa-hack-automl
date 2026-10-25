@@ -1,0 +1,23 @@
+{
+  "schema": "qh4-predecessor-projection-proposal-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY",
+  "files_sha256": {
+    "predecessor-projection-proposal.json": "bab1e6fc90cf9e79b11764e5486d5331464d3654780f724d6c7a39365111b34d"
+  },
+  "external_refs_sha256": {
+    "private/qh3-manifest.ready-r3.json": "cc76d69808f589750f7598c5c58772cdc109f06a91bafc420ce09a6ef60c9f1d",
+    "qh3/campaign.json": "7df4fe3b771d2b8ec95c4cb4eaa8458ad550af720e5890016f410826552499c6",
+    "qh3/terminal-root-closure.json": "25cadd8cc34853c7b2ce6b4cb39180a92bb792add715632e7b70b5dffa4dc7d0",
+    "private/qh3-actual-terminal-tools-r1.json": "7d07e7aad6137238d36ab2b763dde7cf27c77eb364ff2031948ba7de03746d18",
+    "qh3/current-negative-preparer-identity.json": "ad25554e80d19372a7abb79cc37e0350fcac3fea747ec59a7b5d043d7ada0818",
+    "qh3/current-negative-closure-r2.json": "8149c1921bd57cfe676555af494cbaf62b1d20e4ec95caff8c6606d18584d6ee",
+    "qh3/current-negative-post-tool-confirmation-r2.json": "abd0a5d94940414727c9beed5f3c9c6c43e05b2b3eb0e67d8a36ee3d70373dcd",
+    "private/qh3-current-negative-r2-actual-tools.json": "bdce0f654861b2ec2244ba4bad8c068990550d37a46893123c357a1949fc5dd5",
+    "qh3-current-negative-audit-next-dev-r2/source-handoff.json": "0d281815c5caf6fb5aad0e0a152ea67efd86a00952c5194aa736e94dc5f6985e",
+    "qh3-current-negative-fm-independent-source-review-r2.json": "75f05fce4b678c6e081082c1939a1ab4db470b30e7fc8346449d8bac75bf91bc",
+    "qh4-provider-window-root-source-decision-r1.json": "a3c150f9ab1fc0eed4a7b6e5ab0bfcfcef3fc3d7d08c74028564421e7a793eb6",
+    "prepare-qh4-predecessor-proposal-source.py": "6b6ac5d3c8e804d57cf27f58e0bbd0f64fb1ed8abf7da3f45d7b5548168ba779"
+  },
+  "actual_runtime": 0,
+  "actual_clock": null
+}

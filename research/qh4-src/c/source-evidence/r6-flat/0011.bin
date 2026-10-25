@@ -1,0 +1,11 @@
+{
+  "schema": "qwen-core-R6-append-only-metadata-clarification-v1",
+  "preserved_first_R6_handoff_sha256": "699ff70140b76dfb44b077d1796c2d9c224ae90fa30775075f89d03adadc30c7",
+  "runtime_source_changed_after_first_freeze": false,
+  "current_prepared_contract_methods": 26,
+  "actual_executions": 0,
+  "copied_R5_protocol_test_count24_is_historical": true,
+  "authoritative_current_counts": "source-proof.json and source-handoff-final.json: policy18/origin4/parent2/provider1/consumer1=26",
+  "positive_policy_caps_source_contract_unchanged": true,
+  "changed_old_test": "Only synthetic32-byte fixture threshold rebases4096; old method preserved under source-evidence/r5; other23methodASTexact."
+}

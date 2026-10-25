@@ -1,0 +1,38 @@
+{
+  "schema": "qh5-schema-plan-metadata-transport-v1",
+  "status": "REVIEWED_SOURCE_PLANS_ONLY",
+  "files": {
+    "producer-handoff.json": "3d54650e3609d77b29f325f2a3b1e328e734472cc0acda47c24cf5d93d301046",
+    "producer-plan.json": "4cfb75d6ab791029174a78fac7d991e4ac9d2f3c5631637ea2f8db8c7c5bb9f8",
+    "producer-source-refs.json": "505c0377f28507404a68e4932cc6ba427fa6a1a389a563162b0c5be1cedd13d0",
+    "fixture-handoff.json": "d22b7ae9aca09bf75aa0e674d27abb11507352dd7769813cd69849121d970944",
+    "fixture-plan.json": "9b6383e6efdde2e1681cb95a5250d6a336b02179db10830f0e559c978a43a58b",
+    "fixture-README.md": "ac9d3ed67468f9230d52c9ab09e598acb989bcf890e4a5fdee629b7975a0815b",
+    "review.json": "d4dc7b9acd32c0fa7608be6cd37de0c1eb3275a3aa94eb743c24bd36d75297aa",
+    "root-scope.json": "0f52abc5e7f38a9bde43827046fa92063360239f2296a037662ae3af95a9e9c1",
+    "root-acceptance.json": "712b851da10067c3845b26d57ea11174b852fdaafdb380ad7fd50e0795ed43d1",
+    "source-results.json": "5c2d04f5e2df56131569a140201d621799e31edb55c0865718689d6c471543ef",
+    "docs-proof.json": "2522e4a7e8d18383b2963a488b1e6dd065d1c9c4fd53256811c71200c733e80b"
+  },
+  "docs_LF_normalized_sha256": {
+    "IMPLEMENTATION_STATUS.md": "05175a1d308e3b50f75b75636a0a16c5fcba2e6d6e98569e62c59222643e8cd5",
+    "docs/assumptions.md": "fe63123835350a9b2ec833c644f4abe74151695995800dfcf8ae63b38a327ece",
+    "docs/contract.md": "f5d486e771d5fa65b3207aaffeeb186a51284266ab16826156be91816875b4e8",
+    "docs/next_steps.md": "9551699dbf62d7aab0644fa7cb4eca3239ea8d8590f5f1c442f0faa3bfc36880",
+    "docs/validation_protocol.md": "f054007da31096fd0596704c6e8e9d36d36c17ae3bd678ff7e0ecf36a716aaa6",
+    "program.md": "68c91245ad40bca807397669902e3cd30f70af677c356a0239a044ce314e0cf0",
+    "research/README.md": "5ad42b985925c8d2d77dfd1c48d5026ab361c8ac0d00e7f9d69c5096e55cbfab"
+  },
+  "external_source_refs_retained_by_hash": true,
+  "standalone_runtime_closure": false,
+  "runtime_source_commit": "ac7d16d23163b541cf1646bb1427373642fc3307",
+  "runtime_source_changed_by_this_work": false,
+  "current_full_runtime_source_recheck": false,
+  "private_receipts_included": false,
+  "data_predictions_truth_weights_included": false,
+  "archive_created": false,
+  "implementation_admitted": false,
+  "runtime_admitted": false,
+  "new_heavy_admission": false,
+  "qualified_metrics": null
+}

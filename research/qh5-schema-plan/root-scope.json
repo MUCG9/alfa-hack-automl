@@ -1,0 +1,51 @@
+{
+  "schema": "qh5-future-supervisor-schema-plan-root-scope-v1",
+  "status": "SOURCE_PROPOSAL_ONLY",
+  "reason": "QH5 pre-truth audit rejected omitted supervisor error_history; truthful producer schema and real producer/consumer interoperability must be designed before any future integration.",
+  "authority": "Current heartbeat authorizes a source-only repair proposal; it does not admit implementation or runtime.",
+  "historical_evidence": {
+    "QH5_terminal_addendum_sha256": "108f1b5eccf9dba31b332ff8ed1f5daf2d4bf9bea8dc8b08b0e588a10cd74c02",
+    "first_cause_review_sha256": "42cbc53aaecf4fee33e35c867dd9f4f3f5a1cf3eb742cd12b499a323fcda69b1",
+    "fresh_negative_result_review_sha256": "322b2d47f4b9fd4688dcdc8e06ffb3c97e0525dca600a62d17a4c6791f947736",
+    "prior_final_delivery_sha256": "53476517774a05020dd244d4bcb90f6e58f3c46ae9dfe015344675ae736423a6"
+  },
+  "scope": {
+    "producer_plan": "Explicit typed truthful error_history from first persisted supervisor record; keep every existing exception, cleanup, status, time and resource meaning.",
+    "fixture_plan": "Propose real producer serialization through strict task-seal and provider-usage consumer boundaries, retaining all rejection and binding gates.",
+    "pin_plan": "Enumerate transitive hardcoded helper bindings; no private-config-only substitution.",
+    "independent_review": true
+  },
+  "prohibited": {
+    "implementation": true,
+    "imports_or_tests": true,
+    "models_or_API": true,
+    "process_queries": true,
+    "old_receipt_changes": true,
+    "frozen_source_changes": true,
+    "audit_relaxation": true,
+    "QH5_salvage_or_relaunch": true,
+    "observer_or_closer_replay": true,
+    "HPO_or_LOSS_integration": true,
+    "archives_upload_promotion": true
+  },
+  "admission": {
+    "implementation": false,
+    "runtime": false,
+    "heavy": false,
+    "reason": "46 uncertain saved original identities remain sticky; no current all-absent or full-source qualification."
+  },
+  "counts": {
+    "implemented_changes": 0,
+    "prepared_executable_contracts": 0,
+    "executed_contracts": 0,
+    "new_fits": 0,
+    "new_API": 0
+  },
+  "preserved": {
+    "QH5_status": "CLOSED_FAIL_FRESH_OBSERVATION_UNCERTAIN",
+    "three_hour_completion": false,
+    "qualified_metrics": null,
+    "REG_incomplete_usage_disqualifies": true,
+    "Linux_human_pause": true
+  }
+}

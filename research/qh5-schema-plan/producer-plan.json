@@ -1,0 +1,100 @@
+{
+  "schema": "qh5-supervisor-producer-error-history-plan-v1",
+  "status": "SOURCE_PLAN_ONLY",
+  "implementation_admitted": false,
+  "runtime_admitted": false,
+  "purpose": "Plan the smallest future producer change that makes healthy supervisor error history explicit from the first saved record, without changing any error, resource, ownership, clock or audit policy.",
+  "confirmed_source_cause": {
+    "review_ref": "qh5-terminal-review-r1.json",
+    "producer": "verified-supervision-next-dev-r2/coordinator.py:244-252",
+    "fact": "supervise constructs and first saves a starting record without error_history. error() creates that key only when recording a failure.",
+    "both_consumers": [
+      "qwen-three-hour-independent-audit-next-dev-r7/audit_final.py:109-115 verify_all_seals",
+      "qwen-three-hour-independent-audit-next-dev-r7/audit_final.py:471-483 verify_usage"
+    ],
+    "required_expression_unchanged": "saved supervisor error_history must explicitly equal []",
+    "old_history": "Missing in old QH5 remains missing/unknown. Never insert [], normalize a missing field, rewrite a sealed record, or qualify QH5."
+  },
+  "minimal_proposed_edit": {
+    "location": "coordinator.py::supervise record constructor, current lines244-251, before the first exclusive save at252",
+    "addition": "error_history=[]",
+    "meaning": "No error events have been recorded yet. This is not a completion, cleanup, source, actual-exit or quality claim.",
+    "scope": "The same constructor serves outer task supervisors, technical/audit supervisors, and nested provider supervisors.",
+    "preserve_exact": [
+      "error() append order and real event timestamps",
+      "first_failure and failure_code first-event setdefault semantics",
+      "child_errors propagation and child_kind",
+      "statuses, exception handling and original propagation behavior",
+      "cleanup observations, denials, unresolved identities and actual exits",
+      "strict auditor [] predicates in both task and provider paths",
+      "all resource, original-clock, ownership, usage and numerical rules"
+    ],
+    "not_proposed": ["consumer missing-to-empty adapter", "old artifact repair", "new controller", "new error retry", "history truncation", "timeout usage imputation", "quality or runtime admission"]
+  },
+  "field_contract_proposed": {
+    "field": "error_history",
+    "container": "Explicit list on every future supervise record beginning at first persistence; never null, absent, reset or silently coerced.",
+    "entry_shape_matches_existing_error_helper": {
+      "code": "string: actual existing failure code",
+      "phase": "string: actual existing source phase",
+      "unix": "finite numeric timestamp captured by the error helper",
+      "monotonic": "finite numeric timestamp captured by the error helper",
+      "exception_type": "actual exception type name or null when no exception was supplied",
+      "errno": "actual exception errno or null; no invented zero",
+      "winerror": "actual exception winerror or null; no invented zero"
+    },
+    "no_new_entry_fields_required": true,
+    "first_failure": "When present, retains the first real event; later cleanup or receipt errors cannot replace it or clear history.",
+    "valid_empty_history": "A valid explicit list with no observed events. Qualification still requires all existing independent status/actual-exit/cleanup/denial/source/clock predicates.",
+    "malformed_or_missing_history": "Rejected/unknown. Proposed contract validation must not sanitize the record into a healthy list.",
+    "persistence_limit": "A saved history is only the durable prefix actually written. Failed persistence cannot be represented as a successfully complete durable history; actual nonzero/unknown outer execution remains disqualifying."
+  },
+  "source_path_map": [
+    {"boundary": "pre-record initialization", "source": "coordinator.py:235-243", "actual": "psutil import, observer construction and original parent end setup precede the record. An exception here can escape before any receipt exists.", "history_rule": "Do not invent an initial receipt or history after a failed initialization; caller keeps missing receipt and actual exception/nonzero as failure."},
+    {"boundary": "first persistence", "source": "coordinator.py:244-254; save:68-82", "actual": "First save is exclusive and outside supervise's try. It may fail or leave an incomplete file before child launch.", "history_rule": "Future constructor contains [] before this save. Save failure remains failure; []/starting/cleanupFalse cannot qualify anything."},
+    {"boundary": "setup and launch", "source": "coordinator.py:255-282", "actual": "Source/clock checks, sampler import, scrubbed environment, reserve checks, log creation, Popen and exact child tracking occur inside try.", "history_rule": "Existing catch records the actual failure code/type; preserve no-child or initially-unverified cleanup observations and source/clock checks."},
+    {"boundary": "heartbeat persistence", "source": "coordinator.py:365-371", "actual": "Running receipt and caller persist occur under the existing observation loop; an exception is handled by the existing supervisor catch.", "history_rule": "Append the existing event; never advance/reset clocks or erase earlier events to make a later write pass."},
+    {"boundary": "resource and identity loop", "source": "coordinator.py:284-358; verified_sampling.py:28-44,148-185; owner:103-150", "actual": "Original pulse/checkpoint, exact identity checks, sticky denials, required self sampling and existing worker/whole RSS caps apply. Confirmed departures retain provenance, not fabricated zero RSS.", "history_rule": "Existing resource/identity/parent/common failures remain technical; actual exception metadata is retained. Missing or denied observations stay unresolved."},
+    {"boundary": "child watchdog", "source": "coordinator.py:359-360", "actual": "A supervised child allocation expiry sets status timeout and appends local_child_watchdog/child_watchdog.", "history_rule": "This remains a supervisor history event and cannot become a clean ordinary candidate timeout."},
+    {"boundary": "child exit", "source": "coordinator.py:361-364", "actual": "Zero exit selects ok; nonzero selects child_failed and appends child_nonzero_exit/child_exit.", "history_rule": "An initial [] remains empty only on the actual clean path. Nonzero whole-child exit is not silently forgiven."},
+    {"boundary": "body exception", "source": "coordinator.py:372-376", "actual": "Existing BaseException handler records TechnicalFailure code or supervisor_operation_failed plus original type/OS metadata, then marks technical_failure.", "history_rule": "Additive history initialization cannot suppress, replace, reclassify or clear this recorded primary failure."},
+    {"boundary": "cleanup", "source": "coordinator.py:377-386; owner:153-218", "actual": "Canonical owned cleanup and independent final observation retain denial/unresolved facts. Failed cleanup/source/clock guard appends supervisor_terminal and technical_failure. An unexpected exception before the inner terminal try can escape.", "history_rule": "Do not convert escaped cleanup faults into clean history. Preserve earlier primary information and any actual secondary diagnostics; never invent cleanup success."},
+    {"boundary": "terminal save and over-cap save", "source": "coordinator.py:387-391", "actual": "First terminal save is outside the inner guard catch. A late cap violation appends terminal_parent_receipt_over_cap and attempts a second save. Either save can fail.", "history_rule": "No completed durable-history guarantee on failed writes. Original history is not reset, actual failure is not suppressed, and a stale earlier receipt cannot substitute for actual successful execution."},
+    {"boundary": "receipt indexing and caller persistence", "source": "coordinator.py:392-396; child_errors:205-209", "actual": "Receipt hashing, state indexing and persist may fail after terminal save. On normal return the caller separately propagates actual child entries.", "history_rule": "Do not claim these unrecorded exceptions are absent. Maintain original propagation; any future diagnostic improvement is a separate reviewed choice, not part of this initializer-only plan."},
+    {"boundary": "outer handling", "source": "outer run_campaign.py:388-423", "actual": "Outer caller preserves actual receipt/copy/source hashes, records cleanup uncertainty, propagates child errors and requires actual ok/exit0/cleanup. Its top-level error history is separate and already initialized.", "history_rule": "Do not substitute outer history for the missing supervisor field or waive saved receipt/actual-exit requirements."}
+  ],
+  "ordinary_outcomes_are_distinct": [
+    {"case": "clean model allocation timeout", "sources": ["r5_worker_runtime.py:265-334", "research_loop.py:119-140,309-326"], "rule": "Only existing trusted parent origin after confirmed cleanup and original final checks may describe a timeout result. Candidate discard/NULL remains in research records; it is not a coordinator technical error or a successful metric."},
+    {"case": "clean provider SDK timeout result", "sources": ["task_entry.py:188-220", "research_loop.py:355-380"], "rule": "A clean broker child can exit0 under an error-free supervisor and return an application TimeoutError result. Preserve failed/NULL/no-worker and actual usage completeness facts. Do not fabricate a supervisor error or erase the provider failure."},
+    {"case": "supervisor timeout/resource/source/cleanup fault", "sources": ["coordinator.py:255-395"], "rule": "Existing status/error history/exception and cleanup predicates remain disqualifying. No ordinary-timeout path can consume a technical failure."},
+    {"case": "independent provider usage gate", "sources": ["audit_final.py:248-261"], "rule": "Any provider error or incomplete actual token usage still fails unchanged strict usage. Explicit healthy supervisor history does not remove this independent old-QH5 blocker."}
+  ],
+  "required_transitive_binding_plan": [
+    "Future separately reviewed coordinator successor receives a new path/hash and source proof; preserve the frozen R2 bytes.",
+    "Update the prospective outer HELPERS coordinator path/hash and exact helper config checks/import binding (run_campaign.py:19-20,198,426).",
+    "Update the prospective core task_entry.COOR_SHA literal and retain its exact helper pin equality checks (task_entry.py:20,131-132); both outer tasks and nested providers must use the same reviewed successor.",
+    "Refresh only resulting source/handoff/review/template/immutable-map hashes through the existing publication/private-binding process. A config-only repin is insufficient and must fail existing source authority.",
+    "Keep auditor runtime and both strict [] predicates unchanged. Any unchanged source closure and tests remain byte exact except explicitly reviewed pin cascades, with actual method counts derived later.",
+    "All future clocks/READY/runtime/source integration choices remain unset and require root authorization; nothing requalifies or rewrites closed QH5."
+  ],
+  "future_checks_proposed_not_prepared": [
+    "Use the real supervise constructor and real serialization before the unchanged auditor predicate, with injected source-only fake process/observer dependencies under FM's separate fixture plan.",
+    "Inspect first saved starting record: explicit typed empty list, cleanup still false; then clean task and nested provider terminal records preserve [].",
+    "Exercise actual existing child nonzero, watchdog, technical exception, resource/identity denial, cleanup/source guard and over-cap branches; assert ordered real entries and stable first failure.",
+    "Exercise initialization/first save, heartbeat save, cleanup escape, terminal save/hash/index/persist failures; require original failure remains observable and no false durable healthy receipt is accepted.",
+    "Keep missing/null/wrong-type history rejection, original actual exit/cleanup/denial/unresolved gates, and separate strict provider usage failure tests unchanged.",
+    "Check ordinary clean worker/provider timeout outcomes remain distinct from supervisor technical errors; never turn NULL into a score or unknown usage into zero."
+  ],
+  "counts_and_authority": {
+    "production_files_changed": 0,
+    "implementation_functions_prepared": 0,
+    "fixture_methods_prepared": 0,
+    "tests_run": 0,
+    "candidate_imports": 0,
+    "process_queries": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "all_checks_above": "Proposed checks only; no implementation, executed fixture or runtime qualification is implied.",
+    "QH5_failure_and_fresh_unknowns": "Preserved without reinterpretation or new observation; all closed main/collector/closer/observer invocations must not be polled or replayed."
+  }
+}

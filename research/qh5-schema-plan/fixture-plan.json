@@ -1,0 +1,298 @@
+{
+  "schema": "qh5-real-supervisor-audit-fixture-plan-v1",
+  "status": "SOURCE_PLAN_ONLY_NOT_IMPLEMENTED",
+  "scope": "Future bounded synthetic contract between real supervisor serialization and both unchanged strict auditor consumers.",
+  "counts": {
+    "implemented_changes": 0,
+    "prepared_executable_contracts": 0,
+    "executed_contracts": 0,
+    "fits": 0,
+    "API_calls": 0,
+    "process_queries": 0
+  },
+  "existing_facts": [
+    "Frozen supervise constructor omits error_history; error() first creates it only when appending an event. First exclusive save occurs before the main try.",
+    "verify_all_seals requires saved.error_history == [] for each ordered task supervisor; verify_usage independently requires it for every provider supervisor.",
+    "The existing sealed_pair and provider scaffold hand-build healthy supervisor dictionaries; the exact-closure test also patches usage_summary. They are not evidence of real producer/consumer interoperability.",
+    "QH5 first AuditStop was supervisor-schema incompatibility. Independent REG provider errors/incomplete usage remain disqualifying even after any prospective schema repair."
+  ],
+  "prospective_flow": [
+    "Source-pin the complete selected producer and auditor modules before extracting exact whole functions and required globals into a bounded synthetic harness. Fingerprints below identify current functions, not an authorized code rewrite.",
+    "Call actual supervise, actual error and actual save with injected external OS/process/resource/environment interfaces. Keep real producer control flow, record construction, event append, terminal cleanup checks and serialization. Read back the produced JSON bytes and bind returned record, saved record and raw SHA.",
+    "Current bd864 baseline: a clean injected child must produce the current missing-field receipt and BOTH unchanged consumers must reject it. Do not insert [] and call this a producer success.",
+    "Positive fixture is conditional on a separately authorized, frozen and reviewed producer successor from the complementary EO plan. Its actual first starting save and terminal save must contain explicit [] with no fabricated first_failure. The fixture must never patch the constructor or synthesize the healthy supervisor dictionary.",
+    "Use a task-style and a provider-style supervise invocation, distinguished by actual existing arguments. Place each actual produced receipt in its applicable complete synthetic sealed envelope; do not reuse a task-style solver budget as a provider entitlement.",
+    "Invoke complete real verify_all_seals for two ordered tiny synthetic task cores and complete real verify_usage for one synthetic sealed gateway result. Keep their SHA/path/seal/clock/source/resource/context/usage predicates and usage_summary unchanged. Reports/terminal stubs are synthetic nonnumeric metadata; verify_all_seals must not decode them or import numerical primitives."
+  ],
+  "injected_boundaries": {
+    "only_external_interfaces": [
+      "subprocess.Popen child/poll",
+      "psutil import and Process objects",
+      "owner.StrictOwnedObserver and cleanup_owned",
+      "processes.ProcessTree",
+      "imported resource sampler interface",
+      "environment external mapping",
+      "time functions/sleep",
+      "caller full pulse, original clock-only checkpoint, source guard and persist callback"
+    ],
+    "real_code_retained": [
+      "supervise complete body",
+      "need/clock/source SHA checks",
+      "save exclusive creation and replacement serialization",
+      "error ordered event append and first_failure/failure_code setdefault",
+      "strict consumers and their required helper definitions"
+    ],
+    "limits": "Synthetic identities, observations and cleanup are injected contract inputs only. They provide no native process ownership, resource, timing or cleanup qualification. No OS process is created or queried; no learner, candidate, provider or numerical primitive is imported."
+  },
+  "fixture_groups": [
+    {
+      "id": "F1_real_roundtrip_baseline_and_success",
+      "cases": [
+        "Current frozen clean producer rejected by both consumers for absent history.",
+        "Future reviewed successor first-save and final-save explicit [] accepted by both complete consumers with all other synthetic gates satisfied.",
+        "Read-back record exactly matches returned record and sealed raw SHA; no independent matching supervisor dictionary."
+      ],
+      "result_boundary": "Acceptance proves only this synthetic ABI contract."
+    },
+    {
+      "id": "F2_history_wire_rejections",
+      "cases": [
+        "Starting from actual successor-produced serialized receipt: remove history; set null; set string/number/bool/object; use a nonempty list.",
+        "Derive nonempty event from actual error() path; assert original code/phase/exception metadata and first failure ordering remain intact.",
+        "For each deliberately corrupted synthetic receipt, regenerate only the synthetic SHA/seal/inline record needed to isolate the unchanged history predicate; run both consumers."
+      ],
+      "type_precision": "JSON serialization normalizes tuples to arrays; do not claim an empty tuple is a distinguishable serialized wrong-type case."
+    },
+    {
+      "id": "F3_real_failing_producer_paths",
+      "cases": [
+        "Injected child nonzero, Popen exception, owned identity/observation denial or uncertainty, memory-limit violation, original clock/source-guard failure, local_child_watchdog and cleanup false/unresolved.",
+        "Use actual resulting saved producer record whenever it exists; both consumers reject failed/unclean/unknown records without overriding their terminal facts.",
+        "Ordered actual events and first_failure/failure_code retain the first cause, including a second terminal failure. Ordinary worker timeout provenance is distinct from the coordinator local_child_watchdog event."
+      ],
+      "scope_limit": "No new error/status semantics are proposed."
+    },
+    {
+      "id": "F4_publication_failures",
+      "cases": [
+        "Initial exclusive save failure, cleanup callback failure, terminal save failure and final persist failure.",
+        "No successful durable round-trip specimen is manufactured after an escaping failure; record available durable prefix and original/secondary error boundary honestly.",
+        "Missing, partial, stale or changed bytes/inline record/ref must not become a consumer success."
+      ],
+      "dependency": "Producer plan owns any future separately authorized handling of current escape gaps; this fixture plan does not fix them."
+    },
+    {
+      "id": "F5_remaining_strict_gates",
+      "cases": [
+        "Keep generated history [] but vary nonzero exit, failed status, cleanup false, denial and unresolved evidence: both consumers still reject.",
+        "Reject changed supervisor SHA/inline content, unsealed or extra task core files, swapped task roles and request/result bindings.",
+        "Provider path rejects clock mismatch, wrong exact five-source closure, wrong output/timeout/resources/message cap.",
+        "Complete real verify_usage with synthetic status-error TimeoutError/unknown attempts/NULL tokens or inconsistent report usage must reach and fail the unchanged strict usage gate. No usage_summary patch or missing-token zero-fill."
+      ],
+      "preserved": "No technical, cleanup, usage, source, clock or binding gate is relaxed."
+    },
+    {
+      "id": "F6_hardcoded_pin_cascade",
+      "cases": [
+        "Future producer successor requires outer HELPERS source path/SHA and task_entry.COOR_SHA/exact helper check to agree with the full immutable union.",
+        "Private manifest-only repin is insufficient; changed/missing/stale hardcoded bindings remain rejected."
+      ],
+      "owner": "EO complementary source plan; later root selects minimal implementation cascade."
+    }
+  ],
+  "source_anchors": {
+    "producer_constructor_first_save": "coordinator.py:244-252",
+    "producer_event_semantics": "coordinator.py:198-209",
+    "producer_terminal_publication": "coordinator.py:372-396",
+    "task_consumer": "audit_final.py:82-117; history condition114",
+    "provider_consumer": "audit_final.py:471-508; history condition480",
+    "strict_usage": "audit_final.py:245-266",
+    "existing_scaffolds_to_adapt_only_after_authorization": "test_audit_contracts.py:27-45,496-525,560-595",
+    "outer_binding": "run_campaign.py:19-20,198,426",
+    "nested_provider_binding": "task_entry.py:20,131-132"
+  },
+  "future_execution_bounds": {
+    "proposed_only": true,
+    "synthetic_workspace": "One exclusive temporary directory under a future admitted fixture workspace; never QH5 artifacts or actual inputs.",
+    "proposed_cap_seconds": 30,
+    "proposed_synthetic_artifact_bytes_max": 1048576,
+    "proposed_synthetic_files_max": 96,
+    "polling": "Deterministic virtual clock and finite fake poll sequence; sleep advances only the fake clock. No idle padding or background heartbeat.",
+    "tripwires": "Reject real Popen/OS process access/network/provider/learner/numerical imports; use only stdlib and exact extracted source. Do not globally monkeypatch production code.",
+    "not_claimed": "These bounds and case groups are planning constraints, not prepared tests, measured runtime, actual process observations or a new gate."
+  },
+  "qualification_levels": {
+    "pure_injected_contract": "Future source-pinned simulation of serialization/consumer ABI only; no native cleanup/resource/HTTP/metric attestation.",
+    "native_integration": "Separate prospective root admission and actual source/identity/clock/resource/cleanup proof required. Current 46 uncertain saved identities hold heavy admission.",
+    "benchmark_or_three_hour_qualification": "Not authorized by this plan; pure fixtures do not qualify metrics, elapsed research duration, existing QH5 or a new release."
+  },
+  "preserved": {
+    "QH5": "CLOSED_FAIL; no receipt modification, replay, salvage or relaunch",
+    "REG_incomplete_usage": "Still disqualifying",
+    "consumers": "Unchanged strict predicates; no missing-to-empty default",
+    "source_runtime_canonical_STATE_leases_docs": "Untouched",
+    "archives": "No creation, extraction, upload or promotion"
+  },
+  "unresolved_before_implementation": [
+    "Root must separately authorize the minimal producer successor and complete hardcoded pin cascade.",
+    "Final future source hashes and exact fixture source must be frozen and independently reviewed before any execution.",
+    "Durable publication failure behavior must follow the separately reviewed producer plan; unknown or escaping paths cannot be relabelled clean."
+  ],
+  "exact_refs": {
+    "root_scope": {
+      "path": "qh5-supervisor-schema-plan-root-scope-r1.json",
+      "sha256": "0f52abc5e7f38a9bde43827046fa92063360239f2296a037662ae3af95a9e9c1"
+    },
+    "producer": {
+      "path": "verified-supervision-next-dev-r2/coordinator.py",
+      "sha256": "bd864b13460d31176d57e1dbddbe179ad8e6911163b117e3f9698228c5540f76"
+    },
+    "auditor": {
+      "path": "qwen-three-hour-independent-audit-next-dev-r7/audit_final.py",
+      "sha256": "5dee0daddb5b66145826ddd82dd30ba320ca552580690d5d04ca7b94b41ced0d"
+    },
+    "existing_synthetic_scaffold": {
+      "path": "qwen-three-hour-independent-audit-next-dev-r7/test_audit_contracts.py",
+      "sha256": "96ac083afb6c241c2eeabb7fb5827cdda2a1917bfaef6d57de0a7f6c55d87e95"
+    },
+    "task_entry": {
+      "path": "qwen-three-hour-autoresearch-next-dev-r10/task_entry.py",
+      "sha256": "e693d8f74abd368184cc34aea5a67e0e24ff1e285be4503b6e75697b09291e5c"
+    },
+    "outer": {
+      "path": "qwen-three-hour-outer-next-dev-r10/run_campaign.py",
+      "sha256": "d3c8b2a7cb37aaa5391df6934b41c160600947d129c9718eb79d71bde52ced1b"
+    },
+    "first_cause_review": {
+      "path": "qh5-terminal-review-r1.json",
+      "sha256": "42cbc53aaecf4fee33e35c867dd9f4f3f5a1cf3eb742cd12b499a323fcda69b1"
+    },
+    "current_negative_addendum": {
+      "path": "../outputs/qh5-terminal-negative-addendum-r1.json",
+      "sha256": "108f1b5eccf9dba31b332ff8ed1f5daf2d4bf9bea8dc8b08b0e588a10cd74c02"
+    },
+    "producer_plan_handoff": {
+      "path": "qh5-supervisor-history-plan-next-dev/source-handoff.json",
+      "sha256": "3d54650e3609d77b29f325f2a3b1e328e734472cc0acda47c24cf5d93d301046"
+    },
+    "producer_plan_plan.json": {
+      "path": "qh5-supervisor-history-plan-next-dev/plan.json",
+      "sha256": "4cfb75d6ab791029174a78fac7d991e4ac9d2f3c5631637ea2f8db8c7c5bb9f8"
+    },
+    "producer_plan_source-refs.json": {
+      "path": "qh5-supervisor-history-plan-next-dev/source-refs.json",
+      "sha256": "505c0377f28507404a68e4932cc6ba427fa6a1a389a563162b0c5be1cedd13d0"
+    }
+  },
+  "current_AST_fingerprints": {
+    "producer": {
+      "TechnicalFailure": {
+        "line": 44,
+        "end_line": 45,
+        "ast_sha256": "fa1e973af19fe6d6435f968c409e9eee62e23bc5a424c454c3824d28e72a767f"
+      },
+      "need": {
+        "line": 47,
+        "end_line": 49,
+        "ast_sha256": "2a026e8cc8e4609fd945ab87d61e89b55d3825c5a235246b4d3a292e8097e9bf"
+      },
+      "sha": {
+        "line": 51,
+        "end_line": 63,
+        "ast_sha256": "b54d855cb3c5cb5471575d23a52e6350d8d7673dd99bc5f72ed8742aa5adba7f"
+      },
+      "load": {
+        "line": 65,
+        "end_line": 66,
+        "ast_sha256": "eacbaacb9f199c96b7522ea91832cac8014a70ccba756733c6f0c5d800d648af"
+      },
+      "save": {
+        "line": 68,
+        "end_line": 83,
+        "ast_sha256": "72ea060e72b6bbb64218f8c5208cf48a62a2e95b268d8cedf4d5e5272f093e3c"
+      },
+      "local": {
+        "line": 85,
+        "end_line": 88,
+        "ast_sha256": "3b38e6a3dc5b800d6d1648b59b5f7d2795aa809091a3e2790ee034a850977cee"
+      },
+      "relative": {
+        "line": 90,
+        "end_line": 91,
+        "ast_sha256": "898e2f6a854280ca5dfa44fc1bc4a9b3f4aa4d57be2b7d7465565fb4a6237c5f"
+      },
+      "identities": {
+        "line": 99,
+        "end_line": 106,
+        "ast_sha256": "e3bb000ede991ea28d5ecfb079a6242ab788322a34af0c5e4e3cfd579f740d7f"
+      },
+      "clock": {
+        "line": 145,
+        "end_line": 147,
+        "ast_sha256": "04d9a7b01980429358524caf77d167e75996d8e3e2fe79f205fd5397c2f4ffed"
+      },
+      "error": {
+        "line": 198,
+        "end_line": 203,
+        "ast_sha256": "9015dbc878551fae8f3c9c4f55caf0a393bbc4a32b646c4823de0107a8165d50"
+      },
+      "child_errors": {
+        "line": 205,
+        "end_line": 209,
+        "ast_sha256": "18f64dd221eaa0610270ddec75081169326f5a226d52476dfe6d1a47177b7c5a"
+      },
+      "supervise": {
+        "line": 232,
+        "end_line": 396,
+        "ast_sha256": "ea16ed3a8c85385ff75f85ea833786644a840a64127e20bb01c52996b8abb2a4"
+      }
+    },
+    "auditor": {
+      "AuditStop": {
+        "line": 35,
+        "end_line": 35,
+        "ast_sha256": "48df224aae511a0b8a859711bfc6937e88bfd4681d7ee16c737a791f804deed6"
+      },
+      "need": {
+        "line": 38,
+        "end_line": 39,
+        "ast_sha256": "92e7188216d2b637f029b0d5380f95017092bbdcdf2cfe3b2bac743db9c8fe98"
+      },
+      "sha": {
+        "line": 47,
+        "end_line": 54,
+        "ast_sha256": "0f48aa66539c6ea1622782e2a398fa9fad64f91fcc6778eb618afab4c829b381"
+      },
+      "load": {
+        "line": 57,
+        "end_line": 67,
+        "ast_sha256": "71f51ab8d47f5dba3f55c6fdda9ea4c1edd6b510536cb1023c2feb3c1aa95c49"
+      },
+      "ref_check": {
+        "line": 74,
+        "end_line": 79,
+        "ast_sha256": "567366aa12539bace09e37300b6274c10723120cf9e5fa6ae8ed8111c9b936e3"
+      },
+      "verify_all_seals": {
+        "line": 82,
+        "end_line": 117,
+        "ast_sha256": "50b3c29e7d299aa0b476076a319bc381e81da847193f9ad0542443f4671205c6"
+      },
+      "usage_summary": {
+        "line": 245,
+        "end_line": 266,
+        "ast_sha256": "9ee333bbdd762e15cc5672d13a983cd5017944d6e9f1401a5e2e5d4d967bb8cc"
+      },
+      "gateway_source_files": {
+        "line": 453,
+        "end_line": 468,
+        "ast_sha256": "21175d9b56406a177840256c680a405d4ea91635f9b8ee1af5c28545994881da"
+      },
+      "verify_usage": {
+        "line": 471,
+        "end_line": 508,
+        "ast_sha256": "18d1de1200c8c8ec4511e8788c7e762a25346d3161d68eb7d8d14978e543e5dc"
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "qh5-supervisor-history-source-plan-handoff-v1",
+  "status": "SOURCE_PLAN_ONLY",
+  "implementation_admitted": false,
+  "runtime_admitted": false,
+  "files_sha256": {
+    "plan.json": "4cfb75d6ab791029174a78fac7d991e4ac9d2f3c5631637ea2f8db8c7c5bb9f8",
+    "source-refs.json": "505c0377f28507404a68e4932cc6ba427fa6a1a389a563162b0c5be1cedd13d0"
+  },
+  "external_refs_sha256": {
+    "verified-supervision-next-dev-r2/coordinator.py": "bd864b13460d31176d57e1dbddbe179ad8e6911163b117e3f9698228c5540f76",
+    "support_component_coordinator.py": "8e9e3abe72c19029a0342cb1b169bc0299f167bab983d8a5bc0b3a17f65fedf8",
+    "verified-resource-sampling-next-dev/verified_sampling.py": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0",
+    "qwen-three-hour-autoresearch-next-dev-r10/task_entry.py": "e693d8f74abd368184cc34aea5a67e0e24ff1e285be4503b6e75697b09291e5c",
+    "qwen-three-hour-autoresearch-next-dev-r10/research_loop.py": "6cdd820d519fa762b389852f0902d6b819fbf96121881f98a1bf418633d4a28f",
+    "qwen-three-hour-autoresearch-next-dev-r10/r5_worker_runtime.py": "f7813cb463ca3d8655443971ec382756d88eb93987edb26fcf1e445b14635b42",
+    "qwen-three-hour-independent-audit-next-dev-r7/audit_final.py": "5dee0daddb5b66145826ddd82dd30ba320ca552580690d5d04ca7b94b41ced0d",
+    "qwen-three-hour-outer-next-dev-r10/run_campaign.py": "d3c8b2a7cb37aaa5391df6934b41c160600947d129c9718eb79d71bde52ced1b",
+    "qh5-terminal-review-r1.json": "42cbc53aaecf4fee33e35c867dd9f4f3f5a1cf3eb742cd12b499a323fcda69b1",
+    "qh5-supervisor-schema-plan-root-scope-r1.json": "0f52abc5e7f38a9bde43827046fa92063360239f2296a037662ae3af95a9e9c1"
+  },
+  "relative_refs_base": "workspace work directory",
+  "scope": "One proposed explicit producer initializer plus unchanged truthful error appends, source boundary map and necessary hash-only cascade",
+  "existing_auditor_predicates_unchanged": true,
+  "old_QH5_missing_history_not_backfilled": true,
+  "old_QH5_failure_and_unknowns_preserved": true,
+  "prepared_executable_contracts": 0,
+  "tests_run": 0,
+  "production_files_changed": 0,
+  "candidate_imports": 0,
+  "process_queries": 0,
+  "model_fits": 0,
+  "API_calls": 0,
+  "raw_receipts_or_private_paths_reproduced": false,
+  "independent_peer": "/root/audit_contract",
+  "complementary_future_fixture_plan_owner": "/root/features_models"
+}

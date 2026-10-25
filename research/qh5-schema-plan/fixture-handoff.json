@@ -1,0 +1,30 @@
+{
+  "schema": "qh5-supervisor-audit-fixture-plan-source-handoff-v1",
+  "status": "FROZEN_SOURCE_PLAN_ONLY",
+  "path_base": "All external_refs_sha256 keys are relative to WORK; ../outputs refers to the existing workspace outputs directory. No private paths.",
+  "files_sha256": {
+    "fixture-plan.json": "9b6383e6efdde2e1681cb95a5250d6a336b02179db10830f0e559c978a43a58b",
+    "README.md": "ac9d3ed67468f9230d52c9ab09e598acb989bcf890e4a5fdee629b7975a0815b"
+  },
+  "external_refs_sha256": {
+    "qh5-supervisor-schema-plan-root-scope-r1.json": "0f52abc5e7f38a9bde43827046fa92063360239f2296a037662ae3af95a9e9c1",
+    "verified-supervision-next-dev-r2/coordinator.py": "bd864b13460d31176d57e1dbddbe179ad8e6911163b117e3f9698228c5540f76",
+    "qwen-three-hour-independent-audit-next-dev-r7/audit_final.py": "5dee0daddb5b66145826ddd82dd30ba320ca552580690d5d04ca7b94b41ced0d",
+    "qwen-three-hour-independent-audit-next-dev-r7/test_audit_contracts.py": "96ac083afb6c241c2eeabb7fb5827cdda2a1917bfaef6d57de0a7f6c55d87e95",
+    "qwen-three-hour-autoresearch-next-dev-r10/task_entry.py": "e693d8f74abd368184cc34aea5a67e0e24ff1e285be4503b6e75697b09291e5c",
+    "qwen-three-hour-outer-next-dev-r10/run_campaign.py": "d3c8b2a7cb37aaa5391df6934b41c160600947d129c9718eb79d71bde52ced1b",
+    "qh5-terminal-review-r1.json": "42cbc53aaecf4fee33e35c867dd9f4f3f5a1cf3eb742cd12b499a323fcda69b1",
+    "../outputs/qh5-terminal-negative-addendum-r1.json": "108f1b5eccf9dba31b332ff8ed1f5daf2d4bf9bea8dc8b08b0e588a10cd74c02",
+    "qh5-supervisor-history-plan-next-dev/source-handoff.json": "3d54650e3609d77b29f325f2a3b1e328e734472cc0acda47c24cf5d93d301046",
+    "qh5-supervisor-history-plan-next-dev/plan.json": "4cfb75d6ab791029174a78fac7d991e4ac9d2f3c5631637ea2f8db8c7c5bb9f8",
+    "qh5-supervisor-history-plan-next-dev/source-refs.json": "505c0377f28507404a68e4932cc6ba427fa6a1a389a563162b0c5be1cedd13d0"
+  },
+  "entry": "fixture-plan.json",
+  "executable_contracts_prepared": 0,
+  "executed_contracts": 0,
+  "implementation_admitted": false,
+  "runtime_admitted": false,
+  "no_candidate_controller_imports_or_tests": true,
+  "no_data_metrics_process_queries_API": true,
+  "independent_peer": "audit_contract requested after this freeze; not claimed completed"
+}

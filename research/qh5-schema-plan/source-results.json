@@ -1,0 +1,58 @@
+{
+  "schema": "qh5-supervisor-schema-plans-source-results-v1",
+  "status": "INDEPENDENTLY_REVIEWED_SOURCE_PLANS_ONLY",
+  "producer_plan": {
+    "proposed_delta": "One explicit error_history=[] constructor field before first save, with existing errors and both audit predicates unchanged.",
+    "external_refs": 10,
+    "local_refs": 2,
+    "handoff_sha256": "3d54650e3609d77b29f325f2a3b1e328e734472cc0acda47c24cf5d93d301046"
+  },
+  "fixture_plan": {
+    "proposed_groups": 6,
+    "external_refs": 11,
+    "boundary": "Actual supervise/error/save and readback through complete verify_all_seals and verify_usage; current producer expected negative, future successor conditional.",
+    "local_refs": 2,
+    "handoff_sha256": "d22b7ae9aca09bf75aa0e674d27abb11507352dd7769813cd69849121d970944"
+  },
+  "peer": {
+    "whole_node_AST_fingerprints_checked": 21,
+    "execution_checks": 0,
+    "sha256": "d4dc7b9acd32c0fa7608be6cd37de0c1eb3275a3aa94eb743c24bd36d75297aa",
+    "verdict": "NO_SCOPED_PLAN_BLOCKER_WITH_EXPLICIT_FUTURE_CONDITIONS"
+  },
+  "root_acceptance_sha256": "712b851da10067c3845b26d57ea11174b852fdaafdb380ad7fd50e0795ed43d1",
+  "required_pin_cascade": [
+    "Isolated successor coordinator",
+    "Outer HELPERS path and hash",
+    "task_entry.COOR_SHA and exact helper binding",
+    "Resulting immutable maps and reviewed source bindings"
+  ],
+  "publication_failure_limit": "Matched stale saved bytes may satisfy consumer-local predicates. Failed whole supervise/publication and enclosing actual exit/handoff binding must prevent whole-call admission. No successful durable roundtrip may be manufactured.",
+  "counts": {
+    "fits": 0,
+    "executed_contracts": 0,
+    "process_queries": 0,
+    "implemented_changes": 0,
+    "prepared_executable_contracts": 0,
+    "API_calls": 0
+  },
+  "implementation_admitted": false,
+  "runtime_admitted": false,
+  "new_heavy_admission_blocked": true,
+  "fresh_uncertain_records": 46,
+  "current_full_runtime_source_recheck": false,
+  "QH5_fail_preserved": true,
+  "REG_incomplete_usage_still_disqualifying": true,
+  "old_QH5_history_backfilled": false,
+  "auditor_gate_relaxed": false,
+  "qualified_metrics": null,
+  "three_hour_completion": false,
+  "archives_created": 0,
+  "upload": false,
+  "promotion": false,
+  "Linux_human_pause": true,
+  "external_evidence_by_hash": {
+    "QH5_terminal_addendum": "108f1b5eccf9dba31b332ff8ed1f5daf2d4bf9bea8dc8b08b0e588a10cd74c02",
+    "QH5_cause_review": "42cbc53aaecf4fee33e35c867dd9f4f3f5a1cf3eb742cd12b499a323fcda69b1"
+  }
+}

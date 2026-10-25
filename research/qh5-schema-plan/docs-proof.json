@@ -1,0 +1,49 @@
+{
+  "schema": "qh5-schema-plan-docs-inverse-proof-v1",
+  "scope": "One added source-plan paragraph; all earlier text retained modulo CRLF-to-LF normalization",
+  "documents": [
+    {
+      "path": "IMPLEMENTATION_STATUS.md",
+      "before_LF_sha256": "77acf801e3ceb1eb9f1d5e3f7ba8f8046cdf424411b598808a27f507ab398baa",
+      "after_LF_sha256": "05175a1d308e3b50f75b75636a0a16c5fcba2e6d6e98569e62c59222643e8cd5",
+      "inverse_equal": true
+    },
+    {
+      "path": "docs/assumptions.md",
+      "before_LF_sha256": "1e032831c3d906bfed645caa8938da631bc7082dc94aa6b9be275a71fa40d70f",
+      "after_LF_sha256": "fe63123835350a9b2ec833c644f4abe74151695995800dfcf8ae63b38a327ece",
+      "inverse_equal": true
+    },
+    {
+      "path": "docs/contract.md",
+      "before_LF_sha256": "44f55d61a27b2000ff1b8a886b6de6489fb479e796fd6ea02cf6970fea2b2681",
+      "after_LF_sha256": "f5d486e771d5fa65b3207aaffeeb186a51284266ab16826156be91816875b4e8",
+      "inverse_equal": true
+    },
+    {
+      "path": "docs/next_steps.md",
+      "before_LF_sha256": "c13b182cfcc2e0225b3b2c07e3df8c6855a6953be10809ff703c509a74d54030",
+      "after_LF_sha256": "9551699dbf62d7aab0644fa7cb4eca3239ea8d8590f5f1c442f0faa3bfc36880",
+      "inverse_equal": true
+    },
+    {
+      "path": "docs/validation_protocol.md",
+      "before_LF_sha256": "b22cb69fb237100316582bbaf606d4ab6970533c869c8d95785539b69b1d37a9",
+      "after_LF_sha256": "f054007da31096fd0596704c6e8e9d36d36c17ae3bd678ff7e0ecf36a716aaa6",
+      "inverse_equal": true
+    },
+    {
+      "path": "program.md",
+      "before_LF_sha256": "96960ae935f6f6ef76139be767b36bf32cd2729f4a30158db6b0e6a6b9e5a0cc",
+      "after_LF_sha256": "68c91245ad40bca807397669902e3cd30f70af677c356a0239a044ce314e0cf0",
+      "inverse_equal": true
+    },
+    {
+      "path": "research/README.md",
+      "before_LF_sha256": "381a05ac4ef73d80d599867099dcf5eacfbe9cf7428315d79f01265c030fded7",
+      "after_LF_sha256": "5ad42b985925c8d2d77dfd1c48d5026ab361c8ac0d00e7f9d69c5096e55cbfab",
+      "inverse_equal": true
+    }
+  ],
+  "runtime_changes": 0
+}

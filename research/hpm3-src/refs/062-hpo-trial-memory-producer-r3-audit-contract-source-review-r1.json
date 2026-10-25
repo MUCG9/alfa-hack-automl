@@ -1,0 +1,134 @@
+{
+  "schema": "hpo-current-epoch-producer-HPM01-independent-source-closing-v1",
+  "reviewer": "audit_contract",
+  "status": "NO_SCOPED_SOURCE_BLOCKER_HPM01_RESOLVED_RUNTIME_NOT_QUALIFIED",
+  "producer_handoff": {
+    "path": "work/hpo-trial-memory-producer-next-dev-r3/source-handoff-final.json",
+    "sha256": "1d5e283ba19aabe47d5af9f014c95e043fc6ff93cbe14e26aeb91aa5f11a22e9"
+  },
+  "contract_handoff": {
+    "path": "work/hpo-trial-memory-producer-contract-next-dev-r3/source-handoff.json",
+    "sha256": "da0922ea06d1c549705213bdad81fdc6d74719fb69262506f20faa4079bf3057"
+  },
+  "root_scope": {
+    "path": "work/hpo-trial-memory-HPM01-root-source-decision-r1.json",
+    "sha256": "bab2f6398244c6c8f2b8a8fcd603a2ba2a91386e59b09ab219005d423a7994f0"
+  },
+  "preserved_negative_R2_review": {
+    "path": "work/hpo-trial-memory-producer-r2-audit-contract-source-review-r1.json",
+    "sha256": "f14c9cde8a17fb5b1c22b6cc8fd6e7cd6c571e33757ed39f11f32b48f02a7dd5"
+  },
+  "pin_checks": {
+    "producer_local": 12,
+    "producer_external": 48,
+    "contracts_local": 6,
+    "contracts_external": 32,
+    "all_actual_raw_SHA_exact": true,
+    "R2_frozen_handoffs_and_old_pins_preserved": true
+  },
+  "narrow_delta": {
+    "runner_only_old_function_changed": "_optimize_with_trial_bank",
+    "runner_whole_module_outside_that_function_AST_exact_R2": true,
+    "bank_whole_R2_AST_inverse_exact_after_declared_publication_tail_changes": true,
+    "HPO_worker_native_tests_and_optin_template_raw_exact_R2": true,
+    "actual_parent_source_cleanup_and_fitting_authority_unchanged": true
+  },
+  "HPM01_resolution": {
+    "finding": "HPM01",
+    "source_resolved": true,
+    "retained_publication_identity": "The exact _exclusive-created (st_dev,st_ino), byte size, path and SHA are retained only after successful exclusive index publication.",
+    "wrapper_tail": "Post-finish index hash/ref comparison, HPO report atomic publication, final original checkpoint and normal active-context restoration occur under the error path that revokes the retained owned completed index.",
+    "primary": "The caught primary is re-raised with bare raise; cleanup failure types are attached separately and do not replace it.",
+    "revocation_checks": [
+      "lstat regular-file identity and byte size",
+      "opened file fstat same identity",
+      "bounded streamed SHA and byte count",
+      "post-read fstat and immediate pre-unlink lstat same identity",
+      "unlink exact owned path only",
+      "post-unlink absence confirmation"
+    ],
+    "replacement_boundary": "Detected changed inode/size/bytes, symlink, unrelated/preexisting file or failed unlink refuses successful revocation. No recursive removal, PID adoption or unrelated path deletion. This is the reviewed checked-identity boundary; no broader concurrent-filesystem authority is claimed.",
+    "failed_revocation": "Original failure propagates with bank_index_revocation_confirmed false and separate secondary type; never a successful removed/absence claim.",
+    "saved_receipt": "Any persisted or returned trial_bank_producer receipt remains state pending_wrapper_parent_qualification and qualifies_completed_handoff false. Failed wrapper removes its in-memory receipt; an already-written disk receipt remains explicitly nonqualifying.",
+    "future_completion_authority": "Actual successful wrapper/parent exit and cleanup must be bound separately; transient function return is not a persisted completion proof.",
+    "cleanup_bound": "At most the retained <=32MiB index is streamed; no new budget/clock/successful-sample timestamp or recursive cleanup. Time remains charged to original HPO/task/parent limits."
+  },
+  "independent_source_metadata_proofs": {
+    "source_proof": {
+      "path": "work/hpo-trial-memory-producer-next-dev-r3/source-proof-final.json",
+      "sha256": "1e2e93787addb4a9c12c9c1a6ed6c857c9030e5b3a18b54b65f9921eb2a6df80"
+    },
+    "closed_inverse": {
+      "path": "work/hpo-trial-memory-producer-next-dev-r3/default_off_inverse.py",
+      "sha256": "40be8df5989db2a3f7beaa9c8dab8b20228ddcd857dd92ddf3b036d8b0342af2"
+    },
+    "method": "Own stdlib AST transformations use exact frozen node fingerprint multiplicities; no candidate/projector function execution.",
+    "normalized_candidate_SHA_before_parse_or_mutation_guard_verified": true,
+    "whole_three_default_OFF_AST_exact": {
+      "src/automl/search/runner.py": {
+        "removed_nodes": 23,
+        "base_AST_sha256": "cdd7733acce5792c8357d568f3b8844fed6ac8edf81b30dec6824121de89abf8"
+      },
+      "src/automl/search/hpo.py": {
+        "removed_nodes": 5,
+        "base_AST_sha256": "b0ffed9fa268cd4b3196a48d86f907deda68172816bcca7325f371cfd0647875"
+      },
+      "src/automl/execution/worker.py": {
+        "removed_nodes": 13,
+        "base_AST_sha256": "f706494763a34ec14d03a96c7df2f469c26bdb83dff935c1b3ab9a120525dedf"
+      }
+    }
+  },
+  "prepared_contracts": {
+    "method_counts": [
+      3,
+      13,
+      4,
+      3
+    ],
+    "combined": 23,
+    "declared_method_AST_SHA_all_exact": true,
+    "old_seventeen_independent_methods_and_assertions_raw_exact_R2": true,
+    "new_actual_wrapper_helper_matrices": [
+      "post-finish index hash failure, HPO receipt write failure, final original deadline failure with same primary object and successful owned-index revocation",
+      "replacement, symlink and preexisting index refuse adoption/deletion",
+      "failed unlink retains primary, secondary PermissionError and only nonqualifying pending disk receipt"
+    ],
+    "synthetic_fixture_boundary": "Real reviewed wrapper and bank helper are prepared for execution on temporary synthetic files with injected failure points. They do not prove actual native identity or fit/source/process authority.",
+    "actual_executed": 0
+  },
+  "unchanged_and_pending": {
+    "original_HPO_ask_tell_objectives_anchor_splits_seeds_budget_fairness": true,
+    "consumer": false,
+    "lookup": false,
+    "warmstart": false,
+    "add_trial": false,
+    "reuse_count": 0,
+    "savings": null,
+    "quality_gain": null,
+    "actual_bank_entries": null,
+    "actual_native_authority": null,
+    "model_process_launches": null,
+    "actual_recursive_learner_fits": null,
+    "canonical_integration": false,
+    "runtime_READY": null,
+    "clock": null,
+    "remaining_gates": [
+      "Compose exact closed inverse before unchanged legacy HPO/LOSS/context/selector projection helpers without assertion or golden changes.",
+      "Package/flat deployment and source-qualified original-budget runtime gate require separate admission after active QH5 terminal.",
+      "Actual native and strict CLI authority remains unqualified."
+    ]
+  },
+  "blockers": [],
+  "review_execution_limits": {
+    "stdlib_source_text_AST_JSON_SHA_only": true,
+    "candidate_functions_or_modules_invoked": 0,
+    "tests": 0,
+    "fits": 0,
+    "API": 0,
+    "data_arrays_predictions_truth": 0,
+    "PID_scan": 0,
+    "Git_STATE_canonical_frozen_QH5_mutations": 0,
+    "new_clock": false
+  }
+}

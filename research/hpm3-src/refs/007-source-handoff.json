@@ -1,0 +1,41 @@
+{
+  "schema": "hpo-trial-memory-current-triage-source-handoff-v1",
+  "status": "FROZEN_PROPOSAL_ONLY_NOT_READY",
+  "files_sha256": {
+    "evidence.json": "fe0cfcd81a2f9a90799acdce487abd799eb71ebccfd25983b9631abd991397f4",
+    "proposal.json": "be7a71fd6eb3d6b19bbd7f1d043bd4991772645d386ac9fa519be4fa4e531420",
+    "README.txt": "21761951a7ad8ccf126c74b1715bb45769c366ea7c330735b108feb39bdf7041"
+  },
+  "source_refs_sha256": {
+    "work/hpo-memory-next-dev/proposal.json": "97741780911058e74d1ac57a3f865eb2e7369ddaa70cb4e1ccf999ea1d6d0a56",
+    "work/hpo-memory-next-dev/analysis.json": "9d6d0a2cd1b79252df12746b78d964e78c97495f589a562739730a253e781e0d",
+    "work/hpo-memory-next-dev/classification-closed-cost.json": "1012defac49c4ff10aec4bfea0a2d0a89c1d3e09945ca087521c580a2d5db220",
+    "work/selector-hpo-cache-current-next-dev/source-handoff.json": "428fa5526756f07111e363cc017b109fd07be5b212b09fa58181c71e1bdb287a",
+    "work/selector-hpo-cache-current-next-dev/proposal.json": "2ba2f0b6afd81b5c719a6a28f8be09b271b0a0c0a0cbee740325ba9b34c39a6f",
+    "work/selector-cache-current-port-next-dev/source-handoff.json": "ff373cb5a4eb6232c1adb2cb141931c1d8bc08cfbe80c4eca10a8654eade018b",
+    "work/selector-cache-current-independent-review-r1.json": "f696df19f1ff0708dbc48c522110c7d70a3c3767c4bc1fd0aaff1233e5a2cba3",
+    "work/cache-pilot-k1-terminal-closure.json": "a42d2fedb4156158d8876134e238c7b86863d70506fcb59697c28efb096f939e",
+    "work/k1/independent-audit.json": "7cedba3ce665758af1f014a37ba118e0aa7f9db44b32e7783aae4f57ba265407",
+    "work/alfa-hack-automl/src/automl/search/hpo.py": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+    "work/alfa-hack-automl/src/automl/search/runner.py": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+    "work/alfa-hack-automl/src/automl/search/policy.py": "8faf616caff90f7cdea4de9c4b5033ad22bd4ed1ac0dad3f0ca1d721f0759549",
+    "work/alfa-hack-automl/src/automl/execution/worker.py": "de75742f1cdbe18bf1a1280d16637116cdf76f53a12cab53496df75f3fefb477",
+    "work/alfa-hack-automl/src/automl/execution/model_adapters/registry.py": "75b885e822186ab8c235e6638ee888ecaa918a50f7662dc8fc2892682d761045",
+    "work/alfa-hack-automl/src/automl/execution/model_adapters/lightgbm.py": "cc773c5329a06a99c5d9567cf8c978f4fb0b21818ef21cd9ac1ba46bcd949856",
+    "work/alfa-hack-automl/src/automl/execution/preprocessing/frames.py": "859a7559e3d2b0111191f9d45b6d94408faea100bd370fb60ce51415b7e5f76d",
+    "work/alfa-hack-automl/src/automl/execution/preprocessing/target_encoding.py": "7a2614bf54dc1779f649e5446460f5b8d341b8e89803c40fa1301bac98e75702",
+    "work/alfa-hack-automl/src/automl/execution/preprocessing/history.py": "d96c85d1732be7f6a8ba24b5e2a3e386b70bcb38383f19dc8f3013f4c2a35d28",
+    "work/alfa-hack-automl/src/automl/execution/sampling/policies.py": "3dc5b004df4c46e21e62c358d0b746f0d9e255ab90f24cb4bf1f5096ff01f05c",
+    "work/alfa-hack-automl/src/automl/execution/weighting/classes.py": "421ba823788be5e3c4d6c529578c7fb7e5f64b5e95c4c35ca11c7ce75fd1ccd5",
+    "work/alfa-hack-automl/src/automl/evaluation/service.py": "4aac3ca3cdd3714e3d61598020bb9597faa68a460f0dc4a356dc9591a9a27b9e",
+    "work/venv/Lib/site-packages/optuna/study/study.py": "f8a7c44ec5807268546827c4a4dbd7c387a6364682c680438dbb5067afcf28b3",
+    "work/venv/Lib/site-packages/optuna/trial/_frozen.py": "e3677e0715710c133a143a34e0adb4476a64ecbe5f43075194348fee638eefbe",
+    "work/venv/Lib/site-packages/optuna/samplers/_tpe/sampler.py": "ceb886a8fbd3b6090e8b62407249e2482fd28ba75a75d728b6851f354b83f999",
+    "work/venv/Lib/site-packages/optuna/distributions.py": "a140e4e42f2fd6077d7fd201c2d1e8e47cd4ba76dfd111356616919fbfef7eec"
+  },
+  "single_future_scope": "HPO-BANK-PRODUCER-01",
+  "implementation_authorized": false,
+  "actual_imports_tests_fits_API_data_arrays_PID_clock_Git_canonical_edits": 0,
+  "savings": null,
+  "READY": null
+}

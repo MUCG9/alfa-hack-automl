@@ -1,0 +1,38 @@
+{
+  "schema": "hpo-producer-HPM01-root-source-revision-v1",
+  "created_unix": 1792897177.1336808,
+  "decision": "AUTHOR_ONE_NARROW_SOURCE_REVISION_R3",
+  "finding": "HPM01",
+  "independent_review": {
+    "path": "work\\hpo-trial-memory-producer-r2-audit-contract-source-review-r1.json",
+    "sha256": "f14c9cde8a17fb5b1c22b6cc8fd6e7cd6c571e33757ed39f11f32b48f02a7dd5"
+  },
+  "preserve_frozen_R2": [
+    "ec298616df2aed7c5e0e2b9450b1059a18b1abd757b9b09e416d2d984f0ddbd0",
+    "e5135cfc4fc87f74f1dfa55a05d266c3aa0854522f730cfb79d02c132ff456de"
+  ],
+  "FM_directory": "work/hpo-trial-memory-producer-next-dev-r3",
+  "EO_directory": "work/hpo-trial-memory-producer-contract-next-dev-r3",
+  "scope": [
+    "Retain exact identity/reference of index exclusively created by this producer.",
+    "On post-finish hash/handoff/HPO receipt write/final original checkpoint exception, revoke only this exact owned completed index; preserve original exception type/traceback and separate cleanup secondary failures.",
+    "Reject replacement/symlink/preexisting/unrelated identity; never claim successful revocation or positive producer receipt if cleanup cannot be confirmed.",
+    "Preserve diagnostic pending entries as in original scope; no recursive directory cleanup.",
+    "Add meaningful actual-wrapper mock matrix covering each post-finish failure and replacement/unrelated/preexisting/failed-revocation protection.",
+    "Recompute exact source pins/census and closed default-OFF whole-three-module inverse; preserve all previous assertions."
+  ],
+  "unchanged": [
+    "HPO ask/tell/objectives/anchor/splits/seeds/budget/fairness",
+    "Model/feature/numeric behavior and resource/original-clock policy",
+    "No consumer/hit/warmstart/add_trial/savings",
+    "Active QH5 and all old frozen source/clock/metrics",
+    "Root sole canonical/registry/STATE/READY writer"
+  ],
+  "authors_source_only": true,
+  "imports_tests_fits_API_data_PID_Git_canonical_by_authors": false,
+  "runtime_ready": false,
+  "canonical_integration": false,
+  "new_clock": null,
+  "new_metrics": null,
+  "no_execution_until_QH5_terminal_and_separate_admission": true
+}

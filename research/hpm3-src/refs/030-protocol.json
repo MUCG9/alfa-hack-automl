@@ -1,0 +1,52 @@
+{
+  "schema": "hpo-current-epoch-producer-R2-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "scope": "PRODUCER ONLY; no lookup/consumer/warmstart/add_trial/model artifact reuse",
+  "trusted_optin": [
+    "--hpo-trial-bank ABS_JSON",
+    "--hpo-trial-bank-sha256 SHA",
+    "strict-runtime",
+    "strict-task-contract",
+    "four-stage",
+    "positive HPO trials"
+  ],
+  "manifest_schema": "hpo-trial-bank-opt-in-v1",
+  "manifest_authority": "Exact source/input path+SHA maps must equal actual strict-flow paths/fingerprints; native file map is mandatory and must exactly match observed loaded Python/package/native closure before and after each supported fit.",
+  "supported": "Plain LightGBM or exact existing categorical_te_pair; selector teachers, pair refinement, other engines and unobserved fit metadata are bank NOT_QUALIFIED.",
+  "actual_fit_nodes": [
+    "actual ordered prepared X/schema/index/dtypes/categories/missing bits",
+    "transformed y/weights/augmentation parent positions",
+    "actual original fit/stopping row positions and separate stopping X/y/metric/callback code identity",
+    "effective constructor and fitted booster parameters, best/actual iterations/actual trees, feature names",
+    "actual Python/native/source closure, ABI and native thread/environment metadata"
+  ],
+  "parent_commit": [
+    "Existing strict Popen-owned ProcessTree cleanup must have returned successfully first",
+    "actual returned object identity, exact raw job/result/split hashes and raw metric/recipe/fit iterations/fit-node identity",
+    "strict parent actual exit0/no primary exception/no kill; original task/HPO checkpoint/deadline/source rechecks",
+    "only then exclusive trial publication; complete index only after original HPO returns successfully"
+  ],
+  "clocks": "No new budget/deadline. Same original TaskContractCheckpoint pulses in existing bank-ON strict parent observation loop; only successful real observations update its state. Gap10/denial/timeout remains typed STOP; long unobserved preprocessing is not exempted.",
+  "original_HPO": "Ask/tell/anchor/space/seeds/recipes/fair-reserve allocations and original valid/failed objectives unchanged. BankRejected is separate NULL bank evidence; ordinary technical/resource/cleanup/deadline failures are never relabeled numeric observations.",
+  "accounting": {
+    "bank_admitted_and_rejected": "Separate from original HPO trial accounting",
+    "callback_count_is_not_fit_count": true,
+    "actual_model_process_launches": null,
+    "actual_recursive_learner_fits": null,
+    "bank_only_overhead_seconds": null,
+    "overhead_charged_to_original_HPO_task": true,
+    "consumer_implemented": false,
+    "lookup_implemented": false,
+    "reuse_count": 0,
+    "savings": null,
+    "quality_gain": null
+  },
+  "publication": "Bounded32MiB exclusive pending+fsync+hardlink; revoke only exact owned inode on any late error. Primary/secondary types retained. Entries remain pending and ineligible without complete index; every reuse_eligible is false, including fresh anchor.",
+  "future_hit_validation": "Stored prepared/matrix hashes are evidence of this actual producer call only; cannot self-validate a future preworker hit.",
+  "actual_contract_executions": 0,
+  "actual_bank_entries": null,
+  "actual_native_authority": null,
+  "actual_clock": null,
+  "READY": null,
+  "promotion": false
+}

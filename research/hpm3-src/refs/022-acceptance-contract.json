@@ -1,0 +1,89 @@
+{
+  "schema": "hpo-current-epoch-producer-independent-acceptance-v1",
+  "status": "SOURCE_WORKING_INTERFACE_BINDING_PENDING",
+  "scope": "Independent acceptance contract and black-box pure/mock source only; FM owns production files.",
+  "interface_binding": null,
+  "authority": {
+    "frozen_triage_handoff_sha256": "8d7bc2fab720aed7dc526684efd381d8582908ea18b01742ae59ff74314e0911",
+    "frozen_proposal_sha256": "be7a71fd6eb3d6b19bbd7f1d043bd4991772645d386ac9fa519be4fa4e531420",
+    "current_epoch_only": true,
+    "trusted_caller_only_default_OFF": true,
+    "recipe_task_Qwen_environment_metadata_grants_no_authority": true,
+    "legacy_T5_T6_T7_import": false
+  },
+  "commit_order": [
+    "Actual ordinary cold proposal and actual worker callback occur through unchanged HPO machinery.",
+    "Every actual fit node supplies its ordered prepared input, stopping-validation, effective fit settings and actual native/runtime identity through the supported source hooks.",
+    "The callback returns a statusOK inner observation with a finite native non-bool numeric objective.",
+    "Source-bound actual parent completion, original-clock/resource observations and full cleanup are confirmed; missing or unknown evidence is not replaced by a caller boolean.",
+    "All expected fit nodes and private job/result/split/source references are complete and consistent for this exact current epoch.",
+    "Only then may one bounded exclusive bank entry be committed/sealed. Any failure before final publication leaves no admissible bank observation."
+  ],
+  "identity_acceptance": {
+    "closed_typed_encoding": "Versioned closed schema and length-delimited native typed values; no object repr/str fallback, bool-as-number, rounded floats, unordered set coercion or 64-bit row-hash authority.",
+    "preworker_context": [
+      "Complete current source/producer/archive epoch and source closure",
+      "Original input byte references plus declared task/spec roles, ordered features/classes/output columns and metric implementation/direction",
+      "Ordered outer fitting, HPO fitting/validation and all actual worker stopping/calibration partitions",
+      "Complete raw/normalized/effective recipe settings, feature code/view, transform, sampling, augmentation, weighting, stopping and calibration semantics",
+      "Explicit fit_iterations absence or exact supplied value, seeds, thread/native environment settings, Python executable/ABI and actual native binary/package source fingerprints",
+      "Original parent/worker cap and normal-completion contract without any renewed allowance"
+    ],
+    "every_actual_fit_node": [
+      "Deterministic recursive component/inner/calibration/outer scope and actual execution order",
+      "Prepared fitting X value digest plus ordered index/schema/dimensions/native dtypes/category order/missingness",
+      "Actual transformed y, weights and augmentation parent-row identities supplied at this node",
+      "Actual stopping validation X/y/metric inputs separately scoped; no fitting-only feedback claim for these validation inputs",
+      "Actual effective constructor/fit settings and actual post-fit/native witness, not requested params or version labels alone"
+    ],
+    "first_supported_scope": "Only the source-authorized existing plain LightGBM leaf and its existing fixed two-view expansion; unsupported engines/wrappers or an unobserved recursive fit node remain bank-unqualified.",
+    "path_and_process_provenance": "Actual job/result/split/parent artifacts and execution identities are diagnostic/source authority. They must not be confused with deterministic value identities or native compatibility.",
+    "future_lookup_boundary": "Stored prepared digests are producer evidence only. No future consumer may validate a new input by comparing the entry to itself; no consumer is implemented here."
+  },
+  "negative_acceptance": {
+    "reject_without_commit": [
+      "Wrong/missing epoch, source closure, typed schema, native binary/effective setting or any ordered value/partition identity",
+      "Missing, duplicate, reordered or unsupported fit-node scope; missing or malformed private artifact reference",
+      "Non-OK, timeout, exception, partial, nonfinite or bool objective; source/parent/cleanup/resource/observation uncertainty",
+      "Deadline expiry or bounded bank entry/file/encoding limit reached before final publication",
+      "Duplicate trial authority, pre-existing output, symlink/unsafe path, malformed/cyclic/unserializable payload"
+    ],
+    "bank_objective_on_rejection": null,
+    "original_HPO_observation_semantics": "Rejecting a bank witness does not fabricate or relabel the original HPO callback/value. Existing valid/failed/duplicate/unattempted study accounting and source-defined technical-stop handling remain unchanged.",
+    "failure_preservation": "Keep the original primary failure; record secondary serialization/seal failures separately. A late publication failure cannot leave an admissible positive entry."
+  },
+  "accounting": {
+    "original_ask_tell_anchor_fair_reserve_caps_seeds_unchanged": true,
+    "separate_counts": [
+      "actual sampler ask/proposal entries",
+      "same-study duplicate and unattempted proposals",
+      "actual worker callback invocations and fresh valid/failed returned observations",
+      "bank admitted/rejected observations and actual bank compute/IO cost"
+    ],
+    "anchor": "Fresh anchor is still executed first, may be recorded, and is explicitly ineligible for any future reuse.",
+    "consumer_implemented": false,
+    "lookup_calls": 0,
+    "cache_hits": 0,
+    "reused_observations": 0,
+    "warm_start_imports": 0,
+    "actual_model_process_launches": "NULL unless separately observed by an existing actual parent receipt",
+    "recursive_learner_fits": "NULL unless complete actual fit instrumentation proves them; callback count is not a learner-fit count",
+    "saved_seconds": null,
+    "speedup": null,
+    "quality_gain": null
+  },
+  "prepared_black_box_test_boundaries": [
+    "No commit before actual parent/source/cleanup completion; one complete current-epoch trial commits exactly once.",
+    "Independent prepared/native/effective/source/partition/metric/seed/thread mutation cases change identity or reject; version-only native proof is rejected.",
+    "All-node completeness/order and unsupported engine/wrapper cases cannot silently qualify.",
+    "Timeout/error/bool/nonfinite/partial/unclean/deadline cases remain bank NULL and noncommitted without rewriting original callback accounting.",
+    "Exclusive publication, caller-payload mutation after seal and primary-versus-secondary failure edges retain immutable truthful evidence.",
+    "DefaultOFF invokes no identity/bank IO; reviewed whole-module inverse restores the exact current base, including existing context/selector code.",
+    "Fresh anchor, duplicate/noncallback proposals and process/fit NULL counts remain explicit; no lookup/hit/warm-start/saving claim."
+  ],
+  "integration_boundary": "Candidate code/module-map/registry/canonical/source-gate execution are FM/root-owned. Existing legacy HPO/LOSS whole-AST methods/assertions/witnesses must survive an exact reviewed producer-OFF inverse; no hidden exclusions.",
+  "actual_imports_tests_fits_API_data_arrays_PID_Git_canonical_STATE_writes": 0,
+  "actual_clock": null,
+  "READY": null,
+  "promotion": false
+}

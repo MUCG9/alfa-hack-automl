@@ -1,0 +1,7 @@
+HPM01 independent contract SOURCE successor R3
+
+R2/e513 and producerR2/ec298 remain immutable, including AC's HPM01 negative finding. The two old entrypoint files are raw byte-exact R2: all17 prior method/assertion ASTs retained. The new third source entrypoint adds3 real-wrapper/real-helper synthetic methods covering late hash/write/deadline, replacement/symlink/preexisting/unrelated protections and failed unlink/primary-secondary handling. No method is executed by the author.
+
+A completed index is revoked only by its exact retained regular inode, bytes and saved ref, with immediate absence required for confirmed cleanup. Failed or mismatched revocation remains unconfirmed. Pending diagnostic entries and unrelated files are not recursively removed. Any persisted additive HPO receipt remains pending_wrapper_parent_qualification with qualifies_completed_handoff=False, including after a late deadline or unlink failure; original numerical trial ledger remains unchanged. Future qualification still needs actual successful wrapper/parent exit and cleanup.
+
+20 independent prepared contracts plus3 FM native/mock methods =>23 prepared,0run. The final source proof and closed exact-source inverse are bound without a circular future producer handoff. Whole runner/HPO/worker OFF AST equality independently reproduced; existing legacy HPO/LOSS projection composition and any technical/flat run remain later integration work. No consumer/hit/warmstart/add_trial/savings, models/API/data/PID/Git/canonical/STATE or new experiment clock.

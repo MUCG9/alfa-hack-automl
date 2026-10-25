@@ -1,0 +1,10 @@
+{
+  "schema": "hpo-bank-current-source-base-v1",
+  "source": "current composed canonical source read-only",
+  "files_sha256": {
+    "src/automl/search/hpo.py": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+    "src/automl/search/runner.py": "7f98647af4dc720f3895fb551edc25efb6f18ab53c4b87bd0d7f854c09a4af96",
+    "src/automl/execution/worker.py": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac"
+  },
+  "actual_runtime": 0
+}

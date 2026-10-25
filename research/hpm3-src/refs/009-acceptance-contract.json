@@ -1,0 +1,168 @@
+{
+  "schema": "hpo-current-epoch-producer-independent-acceptance-v2",
+  "status": "FROZEN_SOURCE_ONLY_PENDING_INDEPENDENT_COMBINED_PEER",
+  "scope": "Independent acceptance contract and black-box pure/mock source only; FM owns production files.",
+  "interface_binding": {
+    "producer_packet": "hpo-trial-memory-producer-next-dev-r2",
+    "runtime_files_sha256": {
+      "src/automl/search/runner.py": "34df62ad1ee0aaa7104dfe56661b838f486f2b33a5b9f3d66ccd55ece0c955d1",
+      "src/automl/search/hpo.py": "837b28c5a4da1f8ff2f547d58b66ff626156ce357d7bd1185b281b5335f90cfa",
+      "src/automl/execution/worker.py": "2f629eb465a80ed6d1ea5cdccdb3c53bcac249570291281e212480c0208281bc",
+      "src/automl/infrastructure/hpo_bank.py": "aee8bafe24f7a58259a793fecce59e0193f10ebfc0cb816787a05d9c15da2c96"
+    },
+    "selected_source_proof": {
+      "path": "hpo-trial-memory-producer-next-dev-r2/source-proof-final.json",
+      "sha256": "042b780557ad966d67b27b5ba708a2e0d5d368c5d772a1aaec8702909817012d"
+    },
+    "closed_OFF_inverse": {
+      "path": "hpo-trial-memory-producer-next-dev-r2/default_off_inverse.py",
+      "sha256": "79e30b1a2f4c9dca5675427f1ee4cfc95a2a69e6d5ca3e068b807461726fdc74"
+    },
+    "producer_fixture": {
+      "path": "hpo-trial-memory-producer-next-dev-r2/tests/test_worker_identities.py",
+      "sha256": "1e08f62ce61e85b2a7179516a1362043a808e93b3d87831569cebd294ca5c195",
+      "prepared_methods": 3
+    },
+    "no_future_producer_handoff_reference": "Intentionally bind concrete source/proof bytes; producer final handoff may bind this contract without a circular hash."
+  },
+  "authority": {
+    "frozen_triage_handoff_sha256": "8d7bc2fab720aed7dc526684efd381d8582908ea18b01742ae59ff74314e0911",
+    "frozen_proposal_sha256": "be7a71fd6eb3d6b19bbd7f1d043bd4991772645d386ac9fa519be4fa4e531420",
+    "current_epoch_only": true,
+    "trusted_caller_only_default_OFF": true,
+    "recipe_task_Qwen_environment_metadata_grants_no_authority": true,
+    "legacy_T5_T6_T7_import": false
+  },
+  "commit_order": [
+    "Actual ordinary cold proposal and actual worker callback occur through unchanged HPO machinery.",
+    "Every actual fit node supplies its ordered prepared input, stopping-validation, effective fit settings and actual native/runtime identity through the supported source hooks.",
+    "The callback returns a statusOK inner observation with a finite native non-bool numeric objective.",
+    "Source-bound actual parent completion, original-clock/resource observations and full cleanup are confirmed; missing or unknown evidence is not replaced by a caller boolean.",
+    "All expected fit nodes and private job/result/split/source references are complete and consistent for this exact current epoch.",
+    "Only then may one bounded exclusive bank entry be committed/sealed. Any failure before final publication leaves no admissible bank observation."
+  ],
+  "identity_acceptance": {
+    "closed_typed_encoding": "Versioned closed schema and length-delimited native typed values; no object repr/str fallback, bool-as-number, rounded floats, unordered set coercion or 64-bit row-hash authority.",
+    "preworker_context": [
+      "Complete current source/producer/archive epoch and source closure",
+      "Original input byte references plus declared task/spec roles, ordered features/classes/output columns and metric implementation/direction",
+      "Ordered outer fitting, HPO fitting/validation and all actual worker stopping/calibration partitions",
+      "Complete raw/normalized/effective recipe settings, feature code/view, transform, sampling, augmentation, weighting, stopping and calibration semantics",
+      "Explicit fit_iterations absence or exact supplied value, seeds, thread/native environment settings, Python executable/ABI and actual native binary/package source fingerprints",
+      "Original parent/worker cap and normal-completion contract without any renewed allowance"
+    ],
+    "every_actual_fit_node": [
+      "Deterministic recursive component/inner/calibration/outer scope and actual execution order",
+      "Prepared fitting X value digest plus ordered index/schema/dimensions/native dtypes/category order/missingness",
+      "Actual transformed y, weights and augmentation parent-row identities supplied at this node",
+      "Actual stopping validation X/y/metric inputs separately scoped; no fitting-only feedback claim for these validation inputs",
+      "Actual effective constructor/fit settings and actual post-fit/native witness, not requested params or version labels alone"
+    ],
+    "first_supported_scope": "Only the source-authorized existing plain LightGBM leaf and its existing fixed two-view expansion; unsupported engines/wrappers or an unobserved recursive fit node remain bank-unqualified.",
+    "path_and_process_provenance": "Actual job/result/split/parent artifacts and execution identities are diagnostic/source authority. They must not be confused with deterministic value identities or native compatibility.",
+    "future_lookup_boundary": "Stored prepared digests are producer evidence only. No future consumer may validate a new input by comparing the entry to itself; no consumer is implemented here."
+  },
+  "negative_acceptance": {
+    "reject_without_commit": [
+      "Wrong/missing epoch, source closure, typed schema, native binary/effective setting or any ordered value/partition identity",
+      "Missing, duplicate, reordered or unsupported fit-node scope; missing or malformed private artifact reference",
+      "Non-OK, timeout, exception, partial, nonfinite or bool objective; source/parent/cleanup/resource/observation uncertainty",
+      "Deadline expiry or bounded bank entry/file/encoding limit reached before final publication",
+      "Duplicate trial authority, pre-existing output, symlink/unsafe path, malformed/cyclic/unserializable payload"
+    ],
+    "bank_objective_on_rejection": null,
+    "original_HPO_observation_semantics": "Rejecting a bank witness does not fabricate or relabel the original HPO callback/value. Existing valid/failed/duplicate/unattempted study accounting and source-defined technical-stop handling remain unchanged.",
+    "failure_preservation": "Keep the original primary failure; record secondary serialization/seal failures separately. A late publication failure cannot leave an admissible positive entry."
+  },
+  "accounting": {
+    "original_ask_tell_anchor_fair_reserve_caps_seeds_unchanged": true,
+    "separate_counts": [
+      "actual sampler ask/proposal entries",
+      "same-study duplicate and unattempted proposals",
+      "actual worker callback invocations and fresh valid/failed returned observations",
+      "bank admitted/rejected observations and actual bank compute/IO cost"
+    ],
+    "anchor": "Fresh anchor is still executed first, may be recorded, and is explicitly ineligible for any future reuse.",
+    "consumer_implemented": false,
+    "lookup_calls": 0,
+    "cache_hits": 0,
+    "reused_observations": 0,
+    "warm_start_imports": 0,
+    "actual_model_process_launches": "NULL unless separately observed by an existing actual parent receipt",
+    "recursive_learner_fits": "NULL unless complete actual fit instrumentation proves them; callback count is not a learner-fit count",
+    "saved_seconds": null,
+    "speedup": null,
+    "quality_gain": null
+  },
+  "prepared_black_box_test_boundaries": [
+    "No commit before actual parent/source/cleanup completion; one complete current-epoch trial commits exactly once.",
+    "Independent prepared/native/effective/source/partition/metric/seed/thread mutation cases change identity or reject; version-only native proof is rejected.",
+    "All-node completeness/order and unsupported engine/wrapper cases cannot silently qualify.",
+    "Timeout/error/bool/nonfinite/partial/unclean/deadline cases remain bank NULL and noncommitted without rewriting original callback accounting.",
+    "Exclusive publication, caller-payload mutation after seal and primary-versus-secondary failure edges retain immutable truthful evidence.",
+    "DefaultOFF invokes no identity/bank IO; reviewed whole-module inverse restores the exact current base, including existing context/selector code.",
+    "Fresh anchor, duplicate/noncallback proposals and process/fit NULL counts remain explicit; no lookup/hit/warm-start/saving claim.",
+    "Parent admits only the exact persisted current inner job/result/split with nonempty actual process identities; full refit, explicit fit_iterations, changed spec/epoch, mismatched result or missing process evidence cannot acquire commit authority.",
+    "The closed source inverse must restore all three complete current-base ASTs and reject an edit inside recognized removable scaffolding before mutation; actual raw source pins remain independently mandatory."
+  ],
+  "integration_boundary": "Candidate code/module-map/registry/canonical/source-gate execution are FM/root-owned. Existing legacy HPO/LOSS whole-AST methods/assertions/witnesses must survive an exact reviewed producer-OFF inverse; no hidden exclusions.",
+  "actual_imports_tests_fits_API_data_arrays_PID_Git_canonical_STATE_writes": 0,
+  "actual_clock": null,
+  "READY": null,
+  "promotion": false,
+  "preserved_r1_files_sha256": {
+    "acceptance-contract.json": "5283270455c5f1227d79e0f20531307c6004bb62bfe1899bf677dcb82c9a6fed",
+    "README.md": "ad5d23fb7d9f3d552189c353bb50938af3ee6f4c6b6fd98709439a6de60567a1",
+    "test_producer_acceptance.py": "801e5a95d4ce433a1235821b6fc376b044698101f21f8f6d4f41944ebeb7dcd5"
+  },
+  "source_acceptance_required_before_freeze": {
+    "concrete_final_producer_source_and_selected_proof_bound": true,
+    "whole_default_OFF_AST_inverse_to_current_base": {
+      "src/automl/search/runner.py": "cdd7733acce5792c8357d568f3b8844fed6ac8edf81b30dec6824121de89abf8",
+      "src/automl/search/hpo.py": "b0ffed9fa268cd4b3196a48d86f907deda68172816bcca7325f371cfd0647875",
+      "src/automl/execution/worker.py": "f706494763a34ec14d03a96c7df2f469c26bdb83dff935c1b3ab9a120525dedf"
+    },
+    "closed_inverse_prevalidates_exact_source_SHA_before_mutation": true,
+    "worker_adapter_prepared_native_effective_source_bound": true,
+    "old12_assertion_AST_preserved": true,
+    "no_new_bank_consumer_lookup_hit_warmstart_add_trial": true,
+    "runtime_semantics_or_savings_claim": false,
+    "pending_integration": "Reviewed producer-OFF inverse must compose before existing context/selector legacy HPO/LOSS projections; no canonical overlay or technical PASS in this scope."
+  },
+  "prepared_test_entrypoints": [
+    {
+      "path": "test_producer_acceptance.py",
+      "methods": 13
+    },
+    {
+      "path": "test_default_off_acceptance.py",
+      "methods": 4
+    }
+  ],
+  "prepared_contract_methods": 17,
+  "actual_contract_executions": 0,
+  "default_OFF_acceptance": {
+    "source": "Exact reviewed _optimize_with_trial_bank and _hpo_trial_bank_options FunctionDefs, independently extracted from the bound candidate runner file during future tests; no whole runner module execution.",
+    "OFF": "Same original callable positional/keyword argument objects and exact returned object; no producer import, identity or bank IO.",
+    "ON_exception": "Original callable error propagates, active producer ContextVar restores exact prior value, original authority remains; wrong actual frame or changed non-validation spec refuses before producer construction.",
+    "CLI": "Both opt-in fields absent performs no read/import; one missing Path/SHA never grants authority.",
+    "whole_module_inverse": "Required separately from function mocks; actual reviewed runner/HPO/worker default-OFF AST must restore all current source bytes modulo AST positions."
+  },
+  "default_OFF_basis": {
+    "src/automl/search/runner.py": {
+      "base_path": "work/hpo-trial-memory-producer-next-dev/source-evidence/base/src/automl/search/runner.py",
+      "base_sha256": "7f98647af4dc720f3895fb551edc25efb6f18ab53c4b87bd0d7f854c09a4af96",
+      "base_AST_sha256": "cdd7733acce5792c8357d568f3b8844fed6ac8edf81b30dec6824121de89abf8"
+    },
+    "src/automl/search/hpo.py": {
+      "base_path": "work/hpo-trial-memory-producer-next-dev/source-evidence/base/src/automl/search/hpo.py",
+      "base_sha256": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+      "base_AST_sha256": "b0ffed9fa268cd4b3196a48d86f907deda68172816bcca7325f371cfd0647875"
+    },
+    "src/automl/execution/worker.py": {
+      "base_path": "work/hpo-trial-memory-producer-next-dev/source-evidence/base/src/automl/execution/worker.py",
+      "base_sha256": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac",
+      "base_AST_sha256": "f706494763a34ec14d03a96c7df2f469c26bdb83dff935c1b3ab9a120525dedf"
+    }
+  }
+}

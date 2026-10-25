@@ -1,0 +1,100 @@
+{
+  "schema": "hpo-HPM01-independent-contract-R3-source-proof-v1",
+  "status": "SOURCE_ONLY_PREPARED_NOT_EXECUTED",
+  "root_scope": {
+    "path": "hpo-trial-memory-HPM01-root-source-decision-r1.json",
+    "sha256": "bab2f6398244c6c8f2b8a8fcd603a2ba2a91386e59b09ab219005d423a7994f0"
+  },
+  "producer_selected_source_proof": {
+    "path": "hpo-trial-memory-producer-next-dev-r3/source-proof-final.json",
+    "sha256": "1e2e93787addb4a9c12c9c1a6ed6c857c9030e5b3a18b54b65f9921eb2a6df80"
+  },
+  "inverse": {
+    "path": "hpo-trial-memory-producer-next-dev-r3/default_off_inverse.py",
+    "sha256": "40be8df5989db2a3f7beaa9c8dab8b20228ddcd857dd92ddf3b036d8b0342af2"
+  },
+  "whole_OFF_projections": {
+    "src/automl/search/runner.py": {
+      "candidate": {
+        "path": "hpo-trial-memory-producer-next-dev-r3/src/automl/search/runner.py",
+        "sha256": "68c135c0f321714abf4ca24aebf6ba3ffb67394a622c24e9a313862a999ae115"
+      },
+      "base": {
+        "path": "hpo-trial-memory-producer-next-dev/source-evidence/base/src/automl/search/runner.py",
+        "sha256": "7f98647af4dc720f3895fb551edc25efb6f18ab53c4b87bd0d7f854c09a4af96"
+      },
+      "whole_OFF_AST_equal": true,
+      "base_AST_sha256": "cdd7733acce5792c8357d568f3b8844fed6ac8edf81b30dec6824121de89abf8",
+      "removed_nodes": 23
+    },
+    "src/automl/search/hpo.py": {
+      "candidate": {
+        "path": "hpo-trial-memory-producer-next-dev-r3/src/automl/search/hpo.py",
+        "sha256": "837b28c5a4da1f8ff2f547d58b66ff626156ce357d7bd1185b281b5335f90cfa"
+      },
+      "base": {
+        "path": "hpo-trial-memory-producer-next-dev/source-evidence/base/src/automl/search/hpo.py",
+        "sha256": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51"
+      },
+      "whole_OFF_AST_equal": true,
+      "base_AST_sha256": "b0ffed9fa268cd4b3196a48d86f907deda68172816bcca7325f371cfd0647875",
+      "removed_nodes": 5
+    },
+    "src/automl/execution/worker.py": {
+      "candidate": {
+        "path": "hpo-trial-memory-producer-next-dev-r3/src/automl/execution/worker.py",
+        "sha256": "2f629eb465a80ed6d1ea5cdccdb3c53bcac249570291281e212480c0208281bc"
+      },
+      "base": {
+        "path": "hpo-trial-memory-producer-next-dev/source-evidence/base/src/automl/execution/worker.py",
+        "sha256": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac"
+      },
+      "whole_OFF_AST_equal": true,
+      "base_AST_sha256": "f706494763a34ec14d03a96c7df2f469c26bdb83dff935c1b3ab9a120525dedf",
+      "removed_nodes": 13
+    }
+  },
+  "preserved_R2_test_files_raw_sha256": {
+    "test_producer_acceptance.py": "b2aeed0f8215f76e1bc3009c84dc4ec99ef2862d2a56054de39ed2937d6585d8",
+    "test_default_off_acceptance.py": "d26412bb2cd9af3d86a44617f1ec6e30c5b36ab79bacc4be36ac8079d2634901"
+  },
+  "all17_prior_method_and_assert_AST_retained": true,
+  "method_AST_sha256": {
+    "test_producer_acceptance.py": {
+      "ProducerAcceptanceContracts.test_closed_typed_digest_distinguishes_values_and_preserves_order": "7e3fb329c6fb795c81e34704baf1a4f99f03ed7b9f64ade3058240ae3c4b36f5",
+      "ProducerAcceptanceContracts.test_closed_digest_rejects_unknown_cycles_nonfinite_without_repr": "a0b9dc93807e44f399bdcffddcfec8300f147a554235033dc8f296ab5e30ae2d",
+      "ProducerAcceptanceContracts.test_each_prepared_native_and_effective_dimension_changes_identity": "168ea403caf9092d21a3f1bf4efb9b4d2d6a041af75dd866543545573bdc0c82",
+      "ProducerAcceptanceContracts.test_recorder_requires_actual_completion_and_native_files": "f26d8c359dc640790784753803ad9438e5c91e566112cec15c2163c10f086cc6",
+      "ProducerAcceptanceContracts.test_recorder_snapshots_before_and_after_fit_inputs": "0010c92685f520d9067b44b1a1f93e12f6b64661ea94a5d3ae2fc47146be9641",
+      "ProducerAcceptanceContracts.test_worker_booleans_and_copied_result_cannot_forge_parent_authority": "b7445708f43c0ea65cc291f7c10fd568db33311b7baf9d51b11d111cdb9779ab",
+      "ProducerAcceptanceContracts.test_valid_anchor_seals_once_and_reports_no_consumer_or_savings": "fc3c0eba7174256ea0d95ed02839d43e719425316f7f96d5a63cce73c2de539a",
+      "ProducerAcceptanceContracts.test_invalid_objectives_and_failed_trials_remain_bank_null": "97a84a2d3e32e2e638ab0a3dd04454ea16a04410faca77f85929152d562db113",
+      "ProducerAcceptanceContracts.test_unclean_parent_source_and_original_deadline_cannot_publish": "bb4b3f348a4884dde1e36f5ac03dec7f12a6dd153db920acaffe79b3d4607b0e",
+      "ProducerAcceptanceContracts.test_post_parent_receipt_tampering_and_wrong_epoch_are_rejected": "add8ef327786bcaa5b2e3d68898f65345971dd6e3d8becb69e597ea093b1a080",
+      "ProducerAcceptanceContracts.test_sealed_artifact_change_and_unsupported_recipe_do_not_change_hpo_value": "193df3b9eb1f61d80676bb9475989902828df4ce7acb0d54b8ab8cb6717bbbb8",
+      "ProducerAcceptanceContracts.test_late_index_io_failure_cannot_leave_a_discoverable_positive_bank": "b01e2a12d4004486fd14e7595a4fb934af0fa389d5965bf4e02137d7fc46cf39",
+      "ProducerAcceptanceContracts.test_parent_qualification_requires_exact_inner_job_saved_result_and_processes": "bfc07d009a4dce993da2bf31206ba45f5e5fe2a5b9f8f9d249b4459d9bc97dd6"
+    },
+    "test_default_off_acceptance.py": {
+      "DefaultOffAcceptanceContracts.test_OFF_is_exact_original_call_with_no_producer_import_IO_or_copy": "cc1461d701bd390d63ecb953208217404817ffecc847c132a551a9eadbebd265",
+      "DefaultOffAcceptanceContracts.test_OFF_options_read_nothing_and_partial_flags_cannot_grant_authority": "ad0b4241785522c4fae078360ee6d47589e3de2f1cd44a6be8040c6c6f7f1ed0",
+      "DefaultOffAcceptanceContracts.test_opted_in_exception_restores_exact_active_context_and_rejects_changed_frame": "d2109fb73da6076ed27ab0b55c54e4a8690f70ade2acda7fd97e418b9c903615",
+      "DefaultOffAcceptanceContracts.test_closed_OFF_inverse_restores_whole_base_and_rejects_removed_scaffold_edits": "2920d2adb147be886f167835219d86233dd1d2c70e87a85478b33a86378fa5e3"
+    },
+    "test_postfinish_publication.py": {
+      "PostFinishPublicationContracts.test_real_wrapper_postfinish_hash_write_and_deadline_keep_primary_and_revoke_owned_index": "d0f33d2dc872337d2956188a3f676964b8a58adb48fd33332a807d30ca95605b",
+      "PostFinishPublicationContracts.test_revocation_refuses_replacement_symlink_and_preexisting_target_without_adoption": "7e5634bc5e372ec79377160c3b8c3ae0fb9449c5214f6b20de85a6ec1614dfd9",
+      "PostFinishPublicationContracts.test_failed_unlink_retains_primary_secondary_and_only_nonqualifying_pending_receipt": "3bf77d66dbf18524f101e17f1518203a06f4cb4ea1912ee085a6537e07a2f13e"
+    }
+  },
+  "prepared_independent_methods": 20,
+  "producer_native_mock_methods": 3,
+  "combined_prepared_methods": 23,
+  "source_tool_execution": "Stdlib AST/text/hash/syntax only; no candidate module/function or fixture execution.",
+  "actual_contracts_imports_models_fits_API_arrays_PID_Git_canonical_STATE": 0,
+  "runtime_qualified": null,
+  "actual_clock": null,
+  "READY": null,
+  "consumer_implemented": false,
+  "savings": null
+}

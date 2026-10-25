@@ -1,0 +1,178 @@
+{
+  "schema": "hpo-current-epoch-producer-R2-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_PENDING_INDEPENDENT_COMBINED_PEER",
+  "files_sha256": {
+    "default_off_inverse.py": "79e30b1a2f4c9dca5675427f1ee4cfc95a2a69e6d5ca3e068b807461726fdc74",
+    "OFF-proof.working.json": "47ca83b9658a4b20f091747faa150914678d40df359fff92b324098743ba27c0",
+    "opt-in.template.NOT_READY.json": "318d53a3d1dd887292dc1241b0fd7d6a60fb7f342c7f7882d8fcdbd42995f090",
+    "producer-only-final.patch": "8faaf9c5fa9a40e1c05d355574db24c1c84248d037ad8cb4bde4a7fe4848b674",
+    "producer-only.patch": "216ae0a4740d2f484db5e04669dba2f794f7930db43521bff6a8335c56e4f96e",
+    "protocol.json": "2833909606289665e4d1afd07b71c478ec5a48c843a2361f593eb45ac05e0a10",
+    "README.txt": "7fe93ad520c7eeda1aaadc35ec9661b3502d06fb5ae1d7f8dfdb5685aaba34fa",
+    "source-proof-final.json": "042b780557ad966d67b27b5ba708a2e0d5d368c5d772a1aaec8702909817012d",
+    "source-proof.json": "6872e5da2ca7ae33496fc50f167c8d9806ef24ab861b4d7c70bac80070715bfb",
+    "src/automl/execution/worker.py": "2f629eb465a80ed6d1ea5cdccdb3c53bcac249570291281e212480c0208281bc",
+    "src/automl/infrastructure/hpo_bank.py": "aee8bafe24f7a58259a793fecce59e0193f10ebfc0cb816787a05d9c15da2c96",
+    "src/automl/search/hpo.py": "837b28c5a4da1f8ff2f547d58b66ff626156ce357d7bd1185b281b5335f90cfa",
+    "src/automl/search/runner.py": "34df62ad1ee0aaa7104dfe56661b838f486f2b33a5b9f3d66ccd55ece0c955d1",
+    "tests/test_worker_identities.py": "1e08f62ce61e85b2a7179516a1362043a808e93b3d87831569cebd294ca5c195"
+  },
+  "external_refs_sha256": {
+    "alfa-hack-automl/requirements.txt": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6",
+    "alfa-hack-automl/src/automl/execution/worker.py": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac",
+    "alfa-hack-automl/src/automl/search/hpo.py": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+    "alfa-hack-automl/src/automl/search/runner.py": "7f98647af4dc720f3895fb551edc25efb6f18ab53c4b87bd0d7f854c09a4af96",
+    "hpo-trial-memory-current-triage-next-dev/proposal.json": "be7a71fd6eb3d6b19bbd7f1d043bd4991772645d386ac9fa519be4fa4e531420",
+    "hpo-trial-memory-current-triage-next-dev/source-handoff.json": "8d7bc2fab720aed7dc526684efd381d8582908ea18b01742ae59ff74314e0911",
+    "hpo-trial-memory-producer-contract-next-dev-r2/README.md": "c2e90bc78b3d59f612f04078e447e5ccecb53c5424e388c2b808aebd6528dc10",
+    "hpo-trial-memory-producer-contract-next-dev-r2/acceptance-contract.json": "032eed4b274f37874510ed42ab98797e8f30159c861b370ec23ad59e8c6b457e",
+    "hpo-trial-memory-producer-contract-next-dev-r2/source-handoff.json": "e5135cfc4fc87f74f1dfa55a05d266c3aa0854522f730cfb79d02c132ff456de",
+    "hpo-trial-memory-producer-contract-next-dev-r2/source-proof.json": "0c5e678c68d1d571521d26fbdfde0cc3a73cf4351943155590876a7de3ae46ca",
+    "hpo-trial-memory-producer-contract-next-dev-r2/test_default_off_acceptance.py": "d26412bb2cd9af3d86a44617f1ec6e30c5b36ab79bacc4be36ac8079d2634901",
+    "hpo-trial-memory-producer-contract-next-dev-r2/test_producer_acceptance.py": "b2aeed0f8215f76e1bc3009c84dc4ec99ef2862d2a56054de39ed2937d6585d8",
+    "hpo-trial-memory-producer-contract-next-dev/README.md": "ad5d23fb7d9f3d552189c353bb50938af3ee6f4c6b6fd98709439a6de60567a1",
+    "hpo-trial-memory-producer-contract-next-dev/acceptance-contract.json": "5283270455c5f1227d79e0f20531307c6004bb62bfe1899bf677dcb82c9a6fed",
+    "hpo-trial-memory-producer-contract-next-dev/test_producer_acceptance.py": "801e5a95d4ce433a1235821b6fc376b044698101f21f8f6d4f41944ebeb7dcd5",
+    "hpo-trial-memory-producer-next-dev/base-pins.json": "d5d349829b4027c68d956915eba42b6f4f6aad78d83cb3f1ced30ec26e9cb2cf",
+    "hpo-trial-memory-producer-next-dev/draft-checkpoint-r1.json": "6165efe8501ae29058b5e019198f597bfe5dcd5a70b42a69678b2f13fce22fc6",
+    "hpo-trial-memory-producer-next-dev/source-evidence/base/src/automl/execution/worker.py": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac",
+    "hpo-trial-memory-producer-next-dev/source-evidence/base/src/automl/search/hpo.py": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+    "hpo-trial-memory-producer-next-dev/source-evidence/base/src/automl/search/runner.py": "7f98647af4dc720f3895fb551edc25efb6f18ab53c4b87bd0d7f854c09a4af96",
+    "hpo-trial-memory-producer-next-dev/src/automl/execution/worker.py": "70396012dffa601d62f550bc732f224d87809f0cef4e67a8b5ad88049bcec813",
+    "hpo-trial-memory-producer-next-dev/src/automl/infrastructure/hpo_bank.py": "0dc1e7cf704031a041a8ad5f9241719af8f90b89fab874046fef88ca77ccb16c",
+    "hpo-trial-memory-producer-next-dev/src/automl/search/hpo.py": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+    "hpo-trial-memory-producer-next-dev/src/automl/search/runner.py": "8e83454603a885dcd0b632ea6f7c9365f068bacfd0a07de7d7aa67f53b3eac45"
+  },
+  "reference_roots": {
+    "files_sha256": "this packet",
+    "external_refs_sha256": "workspace/work; all keys relative, no leading work/"
+  },
+  "selected": {
+    "source-proof-final.json": {
+      "path": "source-proof-final.json",
+      "sha256": "042b780557ad966d67b27b5ba708a2e0d5d368c5d772a1aaec8702909817012d"
+    },
+    "producer-only-final.patch": {
+      "path": "producer-only-final.patch",
+      "sha256": "8faaf9c5fa9a40e1c05d355574db24c1c84248d037ad8cb4bde4a7fe4848b674"
+    },
+    "default_off_inverse.py": {
+      "path": "default_off_inverse.py",
+      "sha256": "79e30b1a2f4c9dca5675427f1ee4cfc95a2a69e6d5ca3e068b807461726fdc74"
+    },
+    "protocol.json": {
+      "path": "protocol.json",
+      "sha256": "2833909606289665e4d1afd07b71c478ec5a48c843a2361f593eb45ac05e0a10"
+    },
+    "opt-in.template.NOT_READY.json": {
+      "path": "opt-in.template.NOT_READY.json",
+      "sha256": "318d53a3d1dd887292dc1241b0fd7d6a60fb7f342c7f7882d8fcdbd42995f090"
+    }
+  },
+  "superseded_unissued_staging": [
+    "OFF-proof.working.json",
+    "source-proof.json",
+    "producer-only.patch"
+  ],
+  "independent_contract_handoff": {
+    "path": "hpo-trial-memory-producer-contract-next-dev-r2/source-handoff.json",
+    "sha256": "e5135cfc4fc87f74f1dfa55a05d266c3aa0854522f730cfb79d02c132ff456de"
+  },
+  "prior_R1_draft": {
+    "path": "hpo-trial-memory-producer-next-dev/draft-checkpoint-r1.json",
+    "sha256": "6165efe8501ae29058b5e019198f597bfe5dcd5a70b42a69678b2f13fce22fc6"
+  },
+  "current_base_preserved": {
+    "src/automl/search/runner.py": "7f98647af4dc720f3895fb551edc25efb6f18ab53c4b87bd0d7f854c09a4af96",
+    "src/automl/search/hpo.py": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+    "src/automl/execution/worker.py": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac"
+  },
+  "runtime_overlay": {
+    "src/automl/execution/worker.py": "2f629eb465a80ed6d1ea5cdccdb3c53bcac249570291281e212480c0208281bc",
+    "src/automl/infrastructure/hpo_bank.py": "aee8bafe24f7a58259a793fecce59e0193f10ebfc0cb816787a05d9c15da2c96",
+    "src/automl/search/hpo.py": "837b28c5a4da1f8ff2f547d58b66ff626156ce357d7bd1185b281b5335f90cfa",
+    "src/automl/search/runner.py": "34df62ad1ee0aaa7104dfe56661b838f486f2b33a5b9f3d66ccd55ece0c955d1"
+  },
+  "default_OFF": {
+    "whole_three_base_AST_exact": true,
+    "candidate_normalized_SHA_checked_before_AST_mutation": true,
+    "removed_node_counts": {
+      "src/automl/search/runner.py": 23,
+      "src/automl/search/hpo.py": 5,
+      "src/automl/execution/worker.py": 13
+    },
+    "actual_runtime_equivalence_qualification": null
+  },
+  "prepared_method_AST_sha256": {
+    "hpo-trial-memory-producer-next-dev-r2/tests/test_worker_identities.py": {
+      "WorkerIdentityContracts.test_actual_prepared_value_encoder_preserves_order_dtype_missing_categories_and_weight_values": "274ed5f15e7af70def02275c106774a15d215bf5e895861c64ad8fb894aa41e0",
+      "WorkerIdentityContracts.test_actual_fit_hooks_separate_stopping_X_y_positions_and_capture_effective_without_fitting": "92a53d8a8a2d3c053b90d40cd3ea5bb170ed8ba5493e635345e6d5e7909e0ae8",
+      "WorkerIdentityContracts.test_actual_parent_retains_observed_birth_tuple_after_terminal_members_removed_before_qualification": "b22115734fc96b75832e2cdd447b3522d04eb6885d602c19b8f5b08d658539ee"
+    },
+    "hpo-trial-memory-producer-contract-next-dev-r2/test_producer_acceptance.py": {
+      "ProducerAcceptanceContracts.test_closed_typed_digest_distinguishes_values_and_preserves_order": "7e3fb329c6fb795c81e34704baf1a4f99f03ed7b9f64ade3058240ae3c4b36f5",
+      "ProducerAcceptanceContracts.test_closed_digest_rejects_unknown_cycles_nonfinite_without_repr": "a0b9dc93807e44f399bdcffddcfec8300f147a554235033dc8f296ab5e30ae2d",
+      "ProducerAcceptanceContracts.test_each_prepared_native_and_effective_dimension_changes_identity": "168ea403caf9092d21a3f1bf4efb9b4d2d6a041af75dd866543545573bdc0c82",
+      "ProducerAcceptanceContracts.test_recorder_requires_actual_completion_and_native_files": "f26d8c359dc640790784753803ad9438e5c91e566112cec15c2163c10f086cc6",
+      "ProducerAcceptanceContracts.test_recorder_snapshots_before_and_after_fit_inputs": "0010c92685f520d9067b44b1a1f93e12f6b64661ea94a5d3ae2fc47146be9641",
+      "ProducerAcceptanceContracts.test_worker_booleans_and_copied_result_cannot_forge_parent_authority": "b7445708f43c0ea65cc291f7c10fd568db33311b7baf9d51b11d111cdb9779ab",
+      "ProducerAcceptanceContracts.test_valid_anchor_seals_once_and_reports_no_consumer_or_savings": "fc3c0eba7174256ea0d95ed02839d43e719425316f7f96d5a63cce73c2de539a",
+      "ProducerAcceptanceContracts.test_invalid_objectives_and_failed_trials_remain_bank_null": "97a84a2d3e32e2e638ab0a3dd04454ea16a04410faca77f85929152d562db113",
+      "ProducerAcceptanceContracts.test_unclean_parent_source_and_original_deadline_cannot_publish": "bb4b3f348a4884dde1e36f5ac03dec7f12a6dd153db920acaffe79b3d4607b0e",
+      "ProducerAcceptanceContracts.test_post_parent_receipt_tampering_and_wrong_epoch_are_rejected": "add8ef327786bcaa5b2e3d68898f65345971dd6e3d8becb69e597ea093b1a080",
+      "ProducerAcceptanceContracts.test_sealed_artifact_change_and_unsupported_recipe_do_not_change_hpo_value": "193df3b9eb1f61d80676bb9475989902828df4ce7acb0d54b8ab8cb6717bbbb8",
+      "ProducerAcceptanceContracts.test_late_index_io_failure_cannot_leave_a_discoverable_positive_bank": "b01e2a12d4004486fd14e7595a4fb934af0fa389d5965bf4e02137d7fc46cf39",
+      "ProducerAcceptanceContracts.test_parent_qualification_requires_exact_inner_job_saved_result_and_processes": "bfc07d009a4dce993da2bf31206ba45f5e5fe2a5b9f8f9d249b4459d9bc97dd6"
+    },
+    "hpo-trial-memory-producer-contract-next-dev-r2/test_default_off_acceptance.py": {
+      "DefaultOffAcceptanceContracts.test_OFF_is_exact_original_call_with_no_producer_import_IO_or_copy": "cc1461d701bd390d63ecb953208217404817ffecc847c132a551a9eadbebd265",
+      "DefaultOffAcceptanceContracts.test_OFF_options_read_nothing_and_partial_flags_cannot_grant_authority": "ad0b4241785522c4fae078360ee6d47589e3de2f1cd44a6be8040c6c6f7f1ed0",
+      "DefaultOffAcceptanceContracts.test_opted_in_exception_restores_exact_active_context_and_rejects_changed_frame": "d2109fb73da6076ed27ab0b55c54e4a8690f70ade2acda7fd97e418b9c903615",
+      "DefaultOffAcceptanceContracts.test_closed_OFF_inverse_restores_whole_base_and_rejects_removed_scaffold_edits": "2920d2adb147be886f167835219d86233dd1d2c70e87a85478b33a86378fa5e3"
+    }
+  },
+  "prepared_methods": 20,
+  "prepared_method_counts": [
+    3,
+    13,
+    4
+  ],
+  "actual_contract_executions": 0,
+  "authority_scope": "Trusted paired manifest CLI, exact actual strict-flow frame/spec/MetricSpec/original budget/checkpoint; current-epoch plain LGBM or exact existing two-view only.",
+  "qualification_boundary": "Every actual prepared/native/effective fit node; existing strict parent actual job/result/split/source/owned-process proof and unchanged cleanup BEFORE exclusive commit. Original HPO validity/objectives remain unchanged; bank rejection objective is NULL.",
+  "original_clock_checkpoint": "Same actual strict checkpoint during existing bank-ON parent observation; no reset/new deadline or fake sample, gap10/denial/timeout remains typed STOP. Retained real verified ProcessTree tuples survive terminal removal solely as postcleanup proof.",
+  "publication": "New exclusive pending entries; complete bounded index only after original HPO returns. Exact owned inode rollback on late failure. No overwrite or consumer eligibility.",
+  "integration_pending": [
+    "Compose exact closed producer-OFF inverse before unchanged legacy context/selector HPO/LOSS projections while retaining existing assertions/witnesses.",
+    "Package/flat deployment mapping and source-qualified original-budget runtime gate remain unperformed.",
+    "Actual native witness/strict opt-in manifest must be supplied and qualified; template maps are NULL."
+  ],
+  "consumer_implemented": false,
+  "lookup_implemented": false,
+  "warmstart_implemented": false,
+  "add_trial_implemented": false,
+  "hit_claims": false,
+  "reuse_count": 0,
+  "actual_model_process_launches": null,
+  "actual_recursive_learner_fits": null,
+  "bank_only_overhead_seconds": null,
+  "savings": null,
+  "quality_gain": null,
+  "actual_bank_entries": null,
+  "actual_native_authority": null,
+  "actual_clock": null,
+  "READY": null,
+  "metrics": null,
+  "canonical_integration": false,
+  "promotion": false,
+  "author_execution": {
+    "candidate_imports": 0,
+    "tests": 0,
+    "fits": 0,
+    "API": 0,
+    "data_rows_arrays_predictions_truth_reads": 0,
+    "PID_scans": 0,
+    "Git_canonical_STATE_private_READY_changes": 0,
+    "source_tooling": "stdlib AST/text/hash/JSON only; no candidate function/module/test invocation"
+  }
+}

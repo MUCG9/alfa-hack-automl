@@ -1,0 +1,219 @@
+{
+  "schema": "hpo-current-epoch-producer-R2-source-proof-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "exact_current_base": {
+    "src/automl/search/runner.py": {
+      "base_sha256": "7f98647af4dc720f3895fb551edc25efb6f18ab53c4b87bd0d7f854c09a4af96",
+      "candidate_sha256": "34df62ad1ee0aaa7104dfe56661b838f486f2b33a5b9f3d66ccd55ece0c955d1",
+      "candidate_normalized_text_sha256": "86ee2f295fe73c32723e4dedad1dc02ba5d9f79f212f66ff109437c3e455724c",
+      "projected_base_AST_sha256": "cdd7733acce5792c8357d568f3b8844fed6ac8edf81b30dec6824121de89abf8",
+      "whole_base_AST_exact": true,
+      "removed_nodes": [
+        {
+          "kind": "Assign",
+          "AST_sha256": "12b3202ebf983cedd51c701b2a120e0a26163cf13d03677ad4aae3a87f258f9e"
+        },
+        {
+          "kind": "Assign",
+          "AST_sha256": "f14c1f7c12638a054eb9c4cff0972febba1bce2879be94486e89ebdce24c5937"
+        },
+        {
+          "kind": "Expr",
+          "AST_sha256": "c02400748db121c68298fe6653090a722efebf543490885e50a9e12b13d8d64d"
+        },
+        {
+          "kind": "Assign",
+          "AST_sha256": "3994c84fec3d2edaa644f0960dd304f7078211a061f5caa73afe4e258803d7b9"
+        },
+        {
+          "kind": "Assign",
+          "AST_sha256": "4196e778c3c65c9c171c7f0a673d8ec2057419870e77f41d321b9cf91ce0ae7e"
+        },
+        {
+          "kind": "If",
+          "AST_sha256": "22406d32cd077921bdb6fa64423750cd410fc0ef0df26324179b35c6feb9c7ee"
+        },
+        {
+          "kind": "If",
+          "AST_sha256": "79e728ba520813f6a23a4f5c75c1fa008a4f5de2f08cf1dfbf86f51b8e4fc46c"
+        },
+        {
+          "kind": "Expr",
+          "AST_sha256": "c02400748db121c68298fe6653090a722efebf543490885e50a9e12b13d8d64d"
+        },
+        {
+          "kind": "If",
+          "AST_sha256": "79e728ba520813f6a23a4f5c75c1fa008a4f5de2f08cf1dfbf86f51b8e4fc46c"
+        },
+        {
+          "kind": "If",
+          "AST_sha256": "79e728ba520813f6a23a4f5c75c1fa008a4f5de2f08cf1dfbf86f51b8e4fc46c"
+        },
+        {
+          "kind": "Expr",
+          "AST_sha256": "c02400748db121c68298fe6653090a722efebf543490885e50a9e12b13d8d64d"
+        },
+        {
+          "kind": "If",
+          "AST_sha256": "b61068e798fef9d6f3e4b67ce73a35d10d044b26535ba6109da882516c5f2f6b"
+        },
+        {
+          "kind": "Assign",
+          "AST_sha256": "2d4fb8c79d09aace78d02c9365036ce8e8a4109aed1156bb841852554829d950"
+        },
+        {
+          "kind": "Assign",
+          "AST_sha256": "6160a58c00adeef6172ea9c858832a6c3678578d047f242016fbb38c8f5dc222"
+        },
+        {
+          "kind": "If",
+          "AST_sha256": "050e202ce94ad8c77d2e52b116dd2ff2ee833a24a655540e93e980c1963e1454"
+        },
+        {
+          "kind": "Expr",
+          "AST_sha256": "8af8c526f3eaa133f7e361a1727c43fb9f450486d228c85a6050c3859eeed1e1"
+        },
+        {
+          "kind": "Expr",
+          "AST_sha256": "f6ed1e92ab3fb4b0bf0ed249a5493d553584f90b442f6d996a5fe8057202cd5a"
+        },
+        {
+          "kind": "Expr",
+          "AST_sha256": "a354ead9dff34a5c275f4da65851a9f35b9f3ebf3c8af8aa9c8c4fd6b24a8e0f"
+        },
+        {
+          "kind": "FunctionDef",
+          "AST_sha256": "5ac70ac73475801556a6b5421e20d5ce14a755f534e01f13c3076cc23db3cb69"
+        },
+        {
+          "kind": "FunctionDef",
+          "AST_sha256": "b34e8f715a360665414f5440e66e83c25465c725d84f57e50fa8d6a1835df2d1"
+        },
+        {
+          "kind": "FunctionDef",
+          "AST_sha256": "da7394e8632ba9bdd564fee84887adb4fe26d098e22b804013c39d4d8be7d50e"
+        },
+        {
+          "kind": "FunctionDef",
+          "AST_sha256": "1f777a3cdf90730da26e1405c2f0ea852f74baa5de8bce7ac5771ae94491b2f2"
+        },
+        {
+          "kind": "FunctionDef",
+          "AST_sha256": "a9c102e79dcb6315c51d6d3bdaedcaccc96e51103db9a35d8275e0d85e6360f4"
+        }
+      ]
+    },
+    "src/automl/search/hpo.py": {
+      "base_sha256": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+      "candidate_sha256": "837b28c5a4da1f8ff2f547d58b66ff626156ce357d7bd1185b281b5335f90cfa",
+      "candidate_normalized_text_sha256": "837b28c5a4da1f8ff2f547d58b66ff626156ce357d7bd1185b281b5335f90cfa",
+      "projected_base_AST_sha256": "b0ffed9fa268cd4b3196a48d86f907deda68172816bcca7325f371cfd0647875",
+      "whole_base_AST_exact": true,
+      "removed_nodes": [
+        {
+          "kind": "If",
+          "AST_sha256": "c52e058cb60d4bc31bd9da13e2678772b0b7cf412228b051a6f811193a2e2d54"
+        },
+        {
+          "kind": "If",
+          "AST_sha256": "7cf651e4bafa8dd138926b6efe04843db50f018492535c9a9cbeadcd5a695b39"
+        },
+        {
+          "kind": "If",
+          "AST_sha256": "c52e058cb60d4bc31bd9da13e2678772b0b7cf412228b051a6f811193a2e2d54"
+        },
+        {
+          "kind": "If",
+          "AST_sha256": "bc044330971a377a1b322fa6bd7b4125279c893d2850cec6112fb5f30c809e42"
+        },
+        {
+          "kind": "FunctionDef",
+          "AST_sha256": "3336a3a71bd22ece4ff9d6532e4b3eff91eeebf2a06e416a69d21c10a6b07928"
+        }
+      ]
+    },
+    "src/automl/execution/worker.py": {
+      "base_sha256": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac",
+      "candidate_sha256": "2f629eb465a80ed6d1ea5cdccdb3c53bcac249570291281e212480c0208281bc",
+      "candidate_normalized_text_sha256": "2f629eb465a80ed6d1ea5cdccdb3c53bcac249570291281e212480c0208281bc",
+      "projected_base_AST_sha256": "f706494763a34ec14d03a96c7df2f469c26bdb83dff935c1b3ab9a120525dedf",
+      "whole_base_AST_exact": true,
+      "removed_nodes": [
+        {
+          "kind": "If",
+          "AST_sha256": "9b7e3f81fb76cb34c21f3af8cf4b7368caceb69814e19269604027504ba2963e"
+        },
+        {
+          "kind": "If",
+          "AST_sha256": "af79c9a41710f03c1a1d749f59e40ee0260622fe1928dfe6338f030c5d0640e4"
+        },
+        {
+          "kind": "Assign",
+          "AST_sha256": "24fe4abf43321bf0bd5d55323e8124b4370303a906ba6d5b1afb94f8e85928ae"
+        },
+        {
+          "kind": "Assign",
+          "AST_sha256": "ba5e58236b95c4f0c52b2856377d3e74fa00064cf309468ae0eebb6d0c6c2ce8"
+        },
+        {
+          "kind": "If",
+          "AST_sha256": "c3b7d198d2aa59e75bc58ff26f1ced09c4565ccf98cdb969fe313843c26b55bb"
+        },
+        {
+          "kind": "If",
+          "AST_sha256": "21866ad17f6657b4fa1fdd54654e04ee28b4ab0e2c6c84fec8f62f8c75563cb3"
+        },
+        {
+          "kind": "FunctionDef",
+          "AST_sha256": "602dc547f2d4ae74fca4cfcfbbd96de4d5a852f2e141cef33272b664a1a32f89"
+        },
+        {
+          "kind": "FunctionDef",
+          "AST_sha256": "7ba029d282b0e615b296b487e79f85cd0808ef9de7f5e93c81f1470bd5a0235a"
+        },
+        {
+          "kind": "FunctionDef",
+          "AST_sha256": "fdaa5a1f6cf6d198e5fd3fdfceefa54e442cf9e2dee952d1fbc724afc424570a"
+        },
+        {
+          "kind": "FunctionDef",
+          "AST_sha256": "ed6801c705cb93eba928e4c774a706f1bbc463afb379befdd71f769457a17040"
+        },
+        {
+          "kind": "FunctionDef",
+          "AST_sha256": "9e46a49e705bf58bd025ee75e7eeced7063b2f3f5d0d463a87cc331c77c3c7a8"
+        },
+        {
+          "kind": "FunctionDef",
+          "AST_sha256": "30c8faae1ee2cb6916f5ac01d250f4b2f1cc7cab0ab10d5eac4cf439086a4287"
+        },
+        {
+          "kind": "FunctionDef",
+          "AST_sha256": "d6369d35009fb6e0b9c6faf7317a1afd74071da7aa9e2479ccd38ac92eb695ce"
+        }
+      ]
+    }
+  },
+  "new_module_sha256": "aee8bafe24f7a58259a793fecce59e0193f10ebfc0cb816787a05d9c15da2c96",
+  "inverse_tool_sha256": "79e30b1a2f4c9dca5675427f1ee4cfc95a2a69e6d5ca3e068b807461726fdc74",
+  "inverse_guard": "Exact hardcoded normalized candidate SHA map checked before AST parsing/mutation; changes inside removable scaffolding also reject.",
+  "prior_R1_draft_preserved": {
+    "path": "hpo-trial-memory-producer-next-dev/draft-checkpoint-r1.json",
+    "sha256": "6165efe8501ae29058b5e019198f597bfe5dcd5a70b42a69678b2f13fce22fc6"
+  },
+  "prepared_native_mock_methods": {
+    "tests/test_worker_identities.py": {
+      "WorkerIdentityContracts.test_actual_prepared_value_encoder_preserves_order_dtype_missing_categories_and_weight_values": "274ed5f15e7af70def02275c106774a15d215bf5e895861c64ad8fb894aa41e0",
+      "WorkerIdentityContracts.test_actual_fit_hooks_separate_stopping_X_y_positions_and_capture_effective_without_fitting": "92a53d8a8a2d3c053b90d40cd3ea5bb170ed8ba5493e635345e6d5e7909e0ae8",
+      "WorkerIdentityContracts.test_actual_parent_retains_observed_birth_tuple_after_terminal_members_removed_before_qualification": "b22115734fc96b75832e2cdd447b3522d04eb6885d602c19b8f5b08d658539ee"
+    }
+  },
+  "actual_candidate_imports_tests_fits_API_data_PID_Git": 0,
+  "source_tool_execution": "stdlib AST/text/hash proof only; no candidate function/module/test invocation",
+  "pending_integration": "Compose this exact closed producer-OFF inverse with existing unchanged context/selector legacy HPO/LOSS projections. No canonical helper overlay or gate PASS is claimed.",
+  "parent_identity_retention": "Bank-ON retains actual verified tuples from the existing constructor/refresh loop before terminal membership removal, and passes the retained tuples only after original strict cleanup; no new discovery, ownership adoption or invented birth.",
+  "supersedes_unissued_staging_proof": {
+    "path": "source-proof.json",
+    "sha256": "6872e5da2ca7ae33496fc50f167c8d9806ef24ab861b4d7c70bac80070715bfb"
+  }
+}

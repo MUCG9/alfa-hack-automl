@@ -1,0 +1,34 @@
+{
+  "schema": "hpo-trial-memory-producer-paused-source-draft-v1",
+  "status": "INCOMPLETE_SOURCE_DRAFT_DO_NOT_IMPORT_EXECUTE_OR_INTEGRATE",
+  "reason": "Root redirected active source slot to QH4 actual failure current-negative peer; no further HPO implementation until resumed.",
+  "files_sha256": {
+    "base-pins.json": "d5d349829b4027c68d956915eba42b6f4f6aad78d83cb3f1ced30ec26e9cb2cf",
+    "source-evidence/base/src/automl/execution/worker.py": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac",
+    "source-evidence/base/src/automl/search/hpo.py": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+    "source-evidence/base/src/automl/search/runner.py": "7f98647af4dc720f3895fb551edc25efb6f18ab53c4b87bd0d7f854c09a4af96",
+    "src/automl/execution/worker.py": "70396012dffa601d62f550bc732f224d87809f0cef4e67a8b5ad88049bcec813",
+    "src/automl/infrastructure/hpo_bank.py": "0dc1e7cf704031a041a8ad5f9241719af8f90b89fab874046fef88ca77ccb16c",
+    "src/automl/search/hpo.py": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51",
+    "src/automl/search/runner.py": "8e83454603a885dcd0b632ea6f7c9365f068bacfd0a07de7d7aa67f53b3eac45"
+  },
+  "implemented_draft": [
+    "Closed typed identity digest and current-epoch producer helper skeleton with actual parent object/saved-job/result binding",
+    "Worker identity-only before/after-fit descriptors/native/effective bridge and exact two-view aggregation draft",
+    "Partial runner ContextVars/job and postcleanup hooks; original HPO file still exactbase"
+  ],
+  "incomplete_required": [
+    "Runner actual strict-flow authority binding and CLI options implementation",
+    "_optimize_with_trial_bank and _hpo_trial_bank_options referenced but not defined; MUST NOT execute draft",
+    "HPO optional study/commit/index/counter hooks",
+    "Final actual-native closure/callback/schema edge checks, per-node completeness and atomic-error source review",
+    "Meaningful prepared source fixture alignment, defaultOFF whole AST inverse, source freeze and independent peers"
+  ],
+  "actual_imports_tests_models_API_data_arrays_PID_Git_canonical_STATE_privateREADY": 0,
+  "default_OFF_equivalence_proved": null,
+  "actual_bank_entries": null,
+  "actual_savings": null,
+  "consumer_implemented": false,
+  "actual_clock": null,
+  "READY": null
+}

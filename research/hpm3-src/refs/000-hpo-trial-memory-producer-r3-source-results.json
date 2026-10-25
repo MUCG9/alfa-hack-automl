@@ -1,0 +1,25 @@
+{
+  "schema": "hpo-producer-r3-source-results-v1",
+  "status": "SOURCE_REVIEW_ACCEPTED_NOT_RUNTIME_RESULT",
+  "root_acceptance_sha256": "71f29fe57e8f42e051a3f74d10acb4cc2a586045f3ada1c2dbe42196d6ab3b90",
+  "producer_handoff_sha256": "1d5e283ba19aabe47d5af9f014c95e043fc6ff93cbe14e26aeb91aa5f11a22e9",
+  "contract_handoff_sha256": "da0922ea06d1c549705213bdad81fdc6d74719fb69262506f20faa4079bf3057",
+  "peer_sha256": "e6f739e3a1af8d8e8cf4141343383050897c8b6da848d9807b7267ab016d105a",
+  "HPM01_source_resolved": true,
+  "prepared_contracts": 23,
+  "actual_contracts_run": 0,
+  "actual_model_or_API_calls": 0,
+  "qualified_metrics": null,
+  "consumer": false,
+  "hits": null,
+  "savings": null,
+  "runtime_ready": false,
+  "canonical_integration": false,
+  "QH5_runtime_changed": false,
+  "limitations": [
+    "Actual native/strict CLI/source authority and flat deployment compatibility remain unperformed.",
+    "Compose closed producer OFF inverse before unchanged legacy context/selector HPO/LOSS projections while preserving assertions and witnesses.",
+    "Future qualification must bind actual successful wrapper and parent exit plus cleanup.",
+    "Any runtime requires QH5 terminal and separate reviewed admission."
+  ]
+}

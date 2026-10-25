@@ -1,0 +1,165 @@
+{
+  "src/automl/search/runner.py": {
+    "whole_AST_exact": true,
+    "removed": [
+      {
+        "kind": "Assign",
+        "AST_sha256": "12b3202ebf983cedd51c701b2a120e0a26163cf13d03677ad4aae3a87f258f9e"
+      },
+      {
+        "kind": "Assign",
+        "AST_sha256": "f14c1f7c12638a054eb9c4cff0972febba1bce2879be94486e89ebdce24c5937"
+      },
+      {
+        "kind": "Expr",
+        "AST_sha256": "c02400748db121c68298fe6653090a722efebf543490885e50a9e12b13d8d64d"
+      },
+      {
+        "kind": "Assign",
+        "AST_sha256": "3994c84fec3d2edaa644f0960dd304f7078211a061f5caa73afe4e258803d7b9"
+      },
+      {
+        "kind": "If",
+        "AST_sha256": "22406d32cd077921bdb6fa64423750cd410fc0ef0df26324179b35c6feb9c7ee"
+      },
+      {
+        "kind": "Expr",
+        "AST_sha256": "c02400748db121c68298fe6653090a722efebf543490885e50a9e12b13d8d64d"
+      },
+      {
+        "kind": "Expr",
+        "AST_sha256": "c02400748db121c68298fe6653090a722efebf543490885e50a9e12b13d8d64d"
+      },
+      {
+        "kind": "If",
+        "AST_sha256": "ae1af69983beba87d5223f93c84bee1ef259b1b5f5869da622415a9ad88684c9"
+      },
+      {
+        "kind": "Assign",
+        "AST_sha256": "2d4fb8c79d09aace78d02c9365036ce8e8a4109aed1156bb841852554829d950"
+      },
+      {
+        "kind": "Assign",
+        "AST_sha256": "6160a58c00adeef6172ea9c858832a6c3678578d047f242016fbb38c8f5dc222"
+      },
+      {
+        "kind": "If",
+        "AST_sha256": "050e202ce94ad8c77d2e52b116dd2ff2ee833a24a655540e93e980c1963e1454"
+      },
+      {
+        "kind": "Expr",
+        "AST_sha256": "8af8c526f3eaa133f7e361a1727c43fb9f450486d228c85a6050c3859eeed1e1"
+      },
+      {
+        "kind": "Expr",
+        "AST_sha256": "f6ed1e92ab3fb4b0bf0ed249a5493d553584f90b442f6d996a5fe8057202cd5a"
+      },
+      {
+        "kind": "Expr",
+        "AST_sha256": "a354ead9dff34a5c275f4da65851a9f35b9f3ebf3c8af8aa9c8c4fd6b24a8e0f"
+      },
+      {
+        "kind": "FunctionDef",
+        "AST_sha256": "5ac70ac73475801556a6b5421e20d5ce14a755f534e01f13c3076cc23db3cb69"
+      },
+      {
+        "kind": "FunctionDef",
+        "AST_sha256": "b34e8f715a360665414f5440e66e83c25465c725d84f57e50fa8d6a1835df2d1"
+      },
+      {
+        "kind": "FunctionDef",
+        "AST_sha256": "da7394e8632ba9bdd564fee84887adb4fe26d098e22b804013c39d4d8be7d50e"
+      },
+      {
+        "kind": "FunctionDef",
+        "AST_sha256": "1f777a3cdf90730da26e1405c2f0ea852f74baa5de8bce7ac5771ae94491b2f2"
+      },
+      {
+        "kind": "FunctionDef",
+        "AST_sha256": "a9c102e79dcb6315c51d6d3bdaedcaccc96e51103db9a35d8275e0d85e6360f4"
+      }
+    ]
+  },
+  "src/automl/search/hpo.py": {
+    "whole_AST_exact": true,
+    "removed": [
+      {
+        "kind": "If",
+        "AST_sha256": "c52e058cb60d4bc31bd9da13e2678772b0b7cf412228b051a6f811193a2e2d54"
+      },
+      {
+        "kind": "If",
+        "AST_sha256": "7cf651e4bafa8dd138926b6efe04843db50f018492535c9a9cbeadcd5a695b39"
+      },
+      {
+        "kind": "If",
+        "AST_sha256": "c52e058cb60d4bc31bd9da13e2678772b0b7cf412228b051a6f811193a2e2d54"
+      },
+      {
+        "kind": "If",
+        "AST_sha256": "bc044330971a377a1b322fa6bd7b4125279c893d2850cec6112fb5f30c809e42"
+      },
+      {
+        "kind": "FunctionDef",
+        "AST_sha256": "3336a3a71bd22ece4ff9d6532e4b3eff91eeebf2a06e416a69d21c10a6b07928"
+      }
+    ]
+  },
+  "src/automl/execution/worker.py": {
+    "whole_AST_exact": true,
+    "removed": [
+      {
+        "kind": "If",
+        "AST_sha256": "9b7e3f81fb76cb34c21f3af8cf4b7368caceb69814e19269604027504ba2963e"
+      },
+      {
+        "kind": "If",
+        "AST_sha256": "af79c9a41710f03c1a1d749f59e40ee0260622fe1928dfe6338f030c5d0640e4"
+      },
+      {
+        "kind": "Assign",
+        "AST_sha256": "24fe4abf43321bf0bd5d55323e8124b4370303a906ba6d5b1afb94f8e85928ae"
+      },
+      {
+        "kind": "Assign",
+        "AST_sha256": "ba5e58236b95c4f0c52b2856377d3e74fa00064cf309468ae0eebb6d0c6c2ce8"
+      },
+      {
+        "kind": "If",
+        "AST_sha256": "c3b7d198d2aa59e75bc58ff26f1ced09c4565ccf98cdb969fe313843c26b55bb"
+      },
+      {
+        "kind": "If",
+        "AST_sha256": "21866ad17f6657b4fa1fdd54654e04ee28b4ab0e2c6c84fec8f62f8c75563cb3"
+      },
+      {
+        "kind": "FunctionDef",
+        "AST_sha256": "602dc547f2d4ae74fca4cfcfbbd96de4d5a852f2e141cef33272b664a1a32f89"
+      },
+      {
+        "kind": "FunctionDef",
+        "AST_sha256": "7ba029d282b0e615b296b487e79f85cd0808ef9de7f5e93c81f1470bd5a0235a"
+      },
+      {
+        "kind": "FunctionDef",
+        "AST_sha256": "fdaa5a1f6cf6d198e5fd3fdfceefa54e442cf9e2dee952d1fbc724afc424570a"
+      },
+      {
+        "kind": "FunctionDef",
+        "AST_sha256": "ed6801c705cb93eba928e4c774a706f1bbc463afb379befdd71f769457a17040"
+      },
+      {
+        "kind": "FunctionDef",
+        "AST_sha256": "f9ca31f79db49209df1233ab442ab34b78e47ecc4c60ad74fdfe325790c83c95"
+      },
+      {
+        "kind": "FunctionDef",
+        "AST_sha256": "7bde4dab623314ab72e53ebad1e690043c2fec07c946690881e59496cc4b4aae"
+      },
+      {
+        "kind": "FunctionDef",
+        "AST_sha256": "d6369d35009fb6e0b9c6faf7317a1afd74071da7aa9e2479ccd38ac92eb695ce"
+      }
+    ]
+  }
+}

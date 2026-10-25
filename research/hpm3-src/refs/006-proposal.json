@@ -1,0 +1,90 @@
+{
+  "schema": "hpo-trial-memory-current-minimal-proposal-v1",
+  "status": "PROPOSAL_ONLY_BLOCKED_ON_PROSPECTIVE_PRODUCER_NOT_READY",
+  "decision": "Choose ONE next implementation: default-OFF current-epoch sealed trial-bank PRODUCER only. Do not implement a consumer or Optuna warm-start in that patch.",
+  "single_future_scope": {
+    "id": "HPO-BANK-PRODUCER-01",
+    "purpose": "Produce sufficient current-source identity and sealed complete inner-trial records during an otherwise unchanged cold study; save no models or raw array values in the bank manifest.",
+    "candidate_files": [
+      "NEW small typed trial_identity/bank-manifest helper",
+      "src/automl/execution/worker.py optional identity-only hooks at actual fit_on_rows inputs and recursive result aggregation",
+      "src/automl/search/hpo.py optional append/seal of fully returned complete trial observations",
+      "src/automl/search/runner.py only trusted CLI scope forwarding and confirmed parent cleanup/source reference handoff",
+      "NEW focused synthetic/mock test source; prospective module-map/registry plumbing only when root separately authorizes implementation"
+    ],
+    "preserved": "Default OFF exact projection; all recipes, search-space distributions, anchor recipe/timeout, first5, max9, HPO proposal cap, seeds, fair-reserve scheduler/provenance, strict cleanup, deadlines, Qwen and outer/full refit remain unchanged. No cache hits or saved-time claim in producer mode.",
+    "supported_first_version": "Existing LightGBM single leaf and its existing fixed two-view expansion only; collect each actual leaf/fit node in deterministic component/inner/calibration/outer order. Other engines/missing native identities are explicitly not bank-qualified, never silently certified from version strings. Root must approve exact eligibility before source implementation.",
+    "no_new_allowance": "Fingerprint, native-file hash, serialization, verification and sealing costs consume the original study/worker/common clocks. Phase exhaustion or observation/cleanup uncertainty prevents a qualified bank entry; no retry, new worker, new deadline or compute reinvestment."
+  },
+  "minimum_bank_key": {
+    "encoding": "Versioned typed length-delimited SHA256 of a closed schema; preserve ordered vectors, native types/dtypes, dimensions, missingness, category/class order and scope. No hash_pandas_object64 shortcut, stringified object fallback, rounded float identity or JSON bool-as-number acceptance.",
+    "preworker_compatibility": [
+      "Frozen complete source/archive transitive closure and explicit producer schema/source SHA; same current epoch only",
+      "Original input bytes plus resolved task/spec semantic roles, target metric implementation/direction, features/class/output order and all relevant non-path settings",
+      "Ordered original outer fitting rows, HPO train/validation rows and worker inner stopping/calibration partitions; canonical ordered value hashes plus native artifact SHA as distinct fields",
+      "Complete normalized raw recipe, engine/effective defaults, feature code, data/augmentation/sampling/weight policy, target transform, nested stopping, calibration and explicit fit_iterations absence or exact supplied value",
+      "Actual Python executable/ABI, required package/native binary fingerprints, effective seed/thread/BLAS/OpenMP settings and parent/worker logical cap/normal-completion contract"
+    ],
+    "producer_witness": [
+      "For EVERY actual fit node, after all transforms/selection/prepare_training, exact ordered fit X/schema/dtypes/categories/index, transformed targets, actual weights/parent rows, and validation X/y/metric inputs actually supplied to stopping; fit node scope/order must be bound",
+      "Actual effective constructor/fit settings and native runtime identities; version labels or caller-supplied booleans alone do not qualify",
+      "After valid inner completion: finite non-bool objective, iteration tree, job/result/split/core/source fingerprints, confirmed parent cleanup/source observations and independently auditable private artifact references"
+    ],
+    "critical_boundary": "A stored prepared-matrix digest cannot validate a new pre-worker lookup by comparing the entry to itself. A later consumer additionally needs an approved complete deterministic reconstruction identity or independently computed current witness before reuse. Without that, remain NOT_QUALIFIED; do not launch a fit merely to manufacture a cache-hit witness."
+  },
+  "entry_rules": {
+    "admit": "Only statusOK, finite valid inner objective, complete all-node identity, sealed job/result/split/source artifacts and confirmed cleanup. Fresh control anchor is recorded but marked ineligible for later reuse. No outer/official score is admitted.",
+    "reject": "Unknown/missing/mismatched/oversized/malformed/duplicate authority, failed/timeout/partial/unclean/resource/observation-denied record, incomplete node identity, native mismatch, unresolved historical provenance or missing private audit artifact. Preserve first error; no retroactive qualification.",
+    "bank_surface": "Trusted explicit source-bound bounded private manifest, not recipe/task/Qwen/environment authority; one frozen epoch. Atomic exclusive creation and exact file references; no persistent executable/model/prediction payload. Do not add a generalized cache service."
+  },
+  "counter_contract": {
+    "keep_existing": "Do not reinterpret attempted_trials/phase_counts/worker_callback_invocations or synthesize strict-worker provenance. Existing duplicates remain FAIL/no worker.",
+    "separate": [
+      "planned proposal cap",
+      "actual sampler ask calls",
+      "retained proposal entries",
+      "same-study duplicate proposals",
+      "prelaunch stopped/unattempted proposals",
+      "actual worker callback invocations",
+      "actual model process launches or null if uninstrumented",
+      "actual recursive learner fits or null if uninstrumented",
+      "fresh valid/failed observations",
+      "bank entries admitted/rejected and bank-source compute/IO cost",
+      "future reused observations, separately by startup/guided origin"
+    ],
+    "producer_mode": "Reuse count is exactly zero because lookup is absent; realized HPO savings is null, not measured0speedup. Process/learner counts remain null unless an existing independently observed receipt proves them.",
+    "future_consumer_semantics_not_authorized_here": "Prefer lookup only AFTER unchanged ask/params/normalize/signature for non-anchor proposals, then one truthful tell. Do not also import observations with add_trial. A reused observation is not a fresh worker attempt and cannot satisfy existing eight-actual-callback or eight-valid current preregistrations. Any future cached-study criterion requires separate pre-outcome registration and audit adaptation."
+  },
+  "meaningful_future_source_contracts": [
+    "Each independent input/source/native/prepared-scope/seed/thread/metric/direction/class/partition/recipe mutation invalidates identity",
+    "Poisoned nonfitting/test values cannot enter fit-node witness, while actual stopping-validation inputs are explicitly scoped and never relabeled fitting-only feedback",
+    "Missing fit node, unknown native module or partial/error/timeout/unclean result cannot seal",
+    "DefaultOFF invokes no digest/bank IO and original whole-module AST projection holds",
+    "One real cold proposal/worker result yields one source entry with exact callback/duplicate/unattempted accounting; no process/fit count invention",
+    "Clock expiry or failed final source/cleanup seal retains original primary and yields no admissible bank entry"
+  ],
+  "dependencies_before_consumer": [
+    "Root approves exact first supported scope and source ownership for the single producer patch",
+    "Independent source review and bounded synthetic source/flat checks of the complete producer",
+    "Prospectively observed, independently audited cold current-epoch bank with all identities; historical T5/T6/T7 remain excluded",
+    "Root separately preregisters any cold-vs-reuse comparison with a fresh protected anchor, truthful changed HPO criteria and unchanged all-inclusive budgets"
+  ],
+  "savings": {
+    "historical_K1_HPO_saving": null,
+    "realized_current_HPO_cache_saved_seconds": null,
+    "future_saved_seconds": null,
+    "bank_creation_cost": null,
+    "amortized_gain": null,
+    "stable_speedup": null,
+    "quality_gain": null
+  },
+  "actual_execution": {
+    "implementation": false,
+    "tests": 0,
+    "fits": 0,
+    "API": 0,
+    "clock": null,
+    "READY": null,
+    "promotion": false
+  }
+}

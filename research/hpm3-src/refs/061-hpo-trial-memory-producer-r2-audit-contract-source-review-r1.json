@@ -1,0 +1,143 @@
+{
+  "schema": "hpo-current-epoch-producer-combined-independent-source-review-v1",
+  "reviewer": "audit_contract",
+  "status": "SOURCE_BLOCKER_HPM01_NO_RUNTIME_ATTEMPT",
+  "producer_handoff": {
+    "path": "work/hpo-trial-memory-producer-next-dev-r2/source-handoff-final.json",
+    "sha256": "ec298616df2aed7c5e0e2b9450b1059a18b1abd757b9b09e416d2d984f0ddbd0"
+  },
+  "independent_contract_handoff": {
+    "path": "work/hpo-trial-memory-producer-contract-next-dev-r2/source-handoff.json",
+    "sha256": "e5135cfc4fc87f74f1dfa55a05d266c3aa0854522f730cfb79d02c132ff456de"
+  },
+  "pins": {
+    "producer_local": 14,
+    "producer_external": 24,
+    "contract_local": 5,
+    "contract_external": 16,
+    "all_actual_raw_SHA_exact": true,
+    "R1_draft_and_eight_producer_pins_preserved": true
+  },
+  "source_proof": {
+    "candidate_normalized_source_SHA_before_AST_transformation_independently_verified": true,
+    "inverse_method": "Own stdlib AST transformation removes only exact pinned node fingerprints/counts, unwraps added context/calls/signatures, and preserves/inlines existing ensemble record expression; no target helper execution.",
+    "whole_base_AST_exact": {
+      "src/automl/search/runner.py": {
+        "removed_nodes": 23,
+        "base_AST_sha256": "cdd7733acce5792c8357d568f3b8844fed6ac8edf81b30dec6824121de89abf8"
+      },
+      "src/automl/search/hpo.py": {
+        "removed_nodes": 5,
+        "base_AST_sha256": "b0ffed9fa268cd4b3196a48d86f907deda68172816bcca7325f371cfd0647875"
+      },
+      "src/automl/execution/worker.py": {
+        "removed_nodes": 13,
+        "base_AST_sha256": "f706494763a34ec14d03a96c7df2f469c26bdb83dff935c1b3ab9a120525dedf"
+      }
+    },
+    "proof": {
+      "path": "work/hpo-trial-memory-producer-next-dev-r2/source-proof-final.json",
+      "sha256": "042b780557ad966d67b27b5ba708a2e0d5d368c5d772a1aaec8702909817012d"
+    },
+    "closed_inverse": {
+      "path": "work/hpo-trial-memory-producer-next-dev-r2/default_off_inverse.py",
+      "sha256": "79e30b1a2f4c9dca5675427f1ee4cfc95a2a69e6d5ca3e068b807461726fdc74"
+    },
+    "runtime_equivalence_test_qualification": null
+  },
+  "contracts": {
+    "AST_counts": [
+      3,
+      13,
+      4
+    ],
+    "total_prepared": 20,
+    "all_declared_method_AST_SHA_exact": true,
+    "old_twelve_method_assertion_AST_lists_exact": true,
+    "actual_executed": 0,
+    "meaningful_coverage": [
+      "ordered native/prepared values and dtypes/categories/missing values",
+      "actual fit hooks with fake estimator that cannot fit",
+      "retention of actual observed parent birth before ProcessTree terminal removal and qualification only after cleanup",
+      "copied object/worker booleans cannot grant parent authority",
+      "inner job/result/split/epoch/process identity mismatches",
+      "source/native/artifact/objective/iteration tampering",
+      "OFF no import/IO/copy plus exact function forwarding",
+      "closed inverse rejects removable-scaffold mutation",
+      "pending-file fsync failure inside finish"
+    ],
+    "missing_concrete_failure_path": "Post-finish wrapper hash/check/HPO-receipt write or final-check failure after successful bank.json publication."
+  },
+  "reviewed_authority_and_scope": {
+    "optin_only": "Paired explicit absolute manifest/SHA, both strict modes/four-stage/positive HPO; no task/recipe activation.",
+    "strict_producer_authority": "Actual strict frame identity, original budget/checkpoint identity, actual source/input fingerprint equality, exact MetricSpec/strict task proof; only validation-derived spec fields may differ.",
+    "worker_and_parent": "Actual prepared/effective/native fit nodes are recorded around existing fit; qualification follows unchanged strict cleanup and retains verified process tuples before terminal removal; result object identity plus exact actual saved job/result/split/source bindings required.",
+    "unsupported": "Non-LightGBM, selector teachers/pair refinement, unknown prepared/native/callback/effective values or incomplete exact two-view graph remain bank NOT_QUALIFIED with NULL objective.",
+    "clock": "Bank costs use original HPO/task and worker deadlines; bank-ON supervision pulses existing strict checkpoint; no new clock/retry/fit/process launched.",
+    "original_algorithm": "OFF whole-module inverse exact; cold HPO ask/tell/recipes/seed/fair-reserve/stopping/caps retained.",
+    "consumer": false,
+    "lookup": false,
+    "warmstart": false,
+    "reuse_count": 0,
+    "savings": null,
+    "quality_gain": null,
+    "actual_process_launch_count": null,
+    "actual_recursive_learner_fit_count": null,
+    "future_hit_validation": "This producer witness cannot self-validate a future preworker cache hit.",
+    "explicit_pending_integration": [
+      "Compose this exact closed inverse before unchanged legacy context/selector HPO/LOSS projectors.",
+      "Package/flat deployment/source gate not performed.",
+      "Actual native authority and opt-in manifest still NULL/NOT_READY."
+    ]
+  },
+  "findings": [
+    {
+      "id": "HPM01",
+      "severity": "blocker",
+      "kind": "source_confirmed_post_publication_failure_not_revoked",
+      "file": "work/hpo-trial-memory-producer-next-dev-r2/src/automl/search/runner.py",
+      "lines": [
+        834,
+        836,
+        841,
+        843
+      ],
+      "supporting_file": "work/hpo-trial-memory-producer-next-dev-r2/src/automl/infrastructure/hpo_bank.py",
+      "supporting_lines": [
+        239,
+        274,
+        276,
+        285
+      ],
+      "problem": "finish() publishes complete bank.json before wrapper computes its file_ref, writes trial_bank_producer into hpo.json, and runs final original checkpoint. Any OSError or deadline/observation failure at these later operations escapes through context reset only, leaving the completed index with admitted objectives discoverable.",
+      "source_counterexample": [
+        "Existing actual cold HPO succeeds; at least one valid trial admitted.",
+        "finish() and its internal _exclusive return successfully, publishing bank.json.",
+        "Next file_ref checkpoint or HPO atomic_json/final checkpoint raises the original error.",
+        "The wrapper finally resets context but has no owned-index revocation branch; bank.json remains."
+      ],
+      "why_existing_rollback_and_fixture_do_not_cover": "_exclusive revokes only errors caught before that particular call returns. The current late-index test injects fsync inside finish, not the subsequent caller operations.",
+      "impact": "Contradicts complete-index/no-positive-bank-on-late-I/O-or-original-budget-failure contract. No consumer exists and reuse_eligible stays false, so this is a producer finalization evidence defect, not an observed cache hit or ML failure.",
+      "minimal_prospective_repair": "After root authorization, preserve frozen R2. A new narrow revision should retain exact owned index inode/ref and revoke that same completed index on any post-finish handoff/hash/HPO-write/final-check failure; never delete unrelated/preexisting files. Preserve original raised type/traceback and separate cleanup secondary types; no new clock, allowance, consumer or model change.",
+      "meaningful_source_contracts": [
+        "Inject post-finish index hash/check failure and assert no complete discoverable index.",
+        "Inject HPO receipt atomic write failure after finish and assert index revoked and original exception retained.",
+        "Inject final original deadline/check failure after publication and require same revocation.",
+        "Replacement/unrelated/preexisting index must not be unlinked; failed revocation is recorded separately and prevents positive receipt."
+      ]
+    }
+  ],
+  "bounded_batch_complete": true,
+  "other_scoped_blockers": [],
+  "execution_limits": {
+    "source_text_AST_metadata_SHA_only": true,
+    "candidate_functions_or_modules_invoked": 0,
+    "tests": 0,
+    "fits": 0,
+    "API": 0,
+    "arrays_data_truth_predictions": 0,
+    "PID_scans": 0,
+    "Git_STATE_canonical_QH5_frozen_mutations": 0,
+    "new_clock": false
+  }
+}

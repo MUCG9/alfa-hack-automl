@@ -1,0 +1,142 @@
+--- a/src/automl/search/runner.py
++++ b/src/automl/search/runner.py
+@@ -826,21 +826,45 @@
+         source_refs=deepcopy(authority['source_refs']),input_refs=deepcopy(authority['input_refs']),native_refs=deepcopy(authority['native_refs']),
+         spec=deepcopy(spec),bank_root=str(Path(output).resolve()/'trial-bank')),check)
+     token=_HPO_TRIAL_BANK_ACTIVE.set(producer)
+-    try:
+-        answer=function(spec,train,hashes,fitting_rows,recipe,output,worker,deadline,bank_producer=producer,**options)
+-        check()
+-        if producer.bound is not None:
+-            from automl.infrastructure.hpo_bank import file_ref
+-            index=producer.finish(answer[1]['status'])
+-            answer[1]['trial_bank_producer']={'schema':'hpo-trial-bank-producer-receipt-v1',
+-                'index':file_ref(producer.root/'bank.json',check),
+-                'admitted':sum(e['status']=='admitted' for e in index['entries']),
+-                'not_qualified':sum(e['status']!='admitted' for e in index['entries']),
+-                'consumer_implemented':False,'reuse_count':0,'savings':None,
+-                'actual_model_process_launches':None,'actual_recursive_learner_fits':None}
+-            atomic_json(Path(output)/'hpo.json',answer[1]);check()
+-        return answer
+-    finally:_HPO_TRIAL_BANK_ACTIVE.reset(token)
++    answer=None;handoff_report=None
++    try:
++        try:
++            answer=function(spec,train,hashes,fitting_rows,recipe,output,worker,deadline,bank_producer=producer,**options)
++            handoff_report=answer[1]
++            check()
++            if producer.bound is not None:
++                from automl.infrastructure.hpo_bank import file_ref
++                index=producer.finish(answer[1]['status'])
++                actual_index=file_ref(producer.root/'bank.json',check)
++                if actual_index!=producer.completed_index_ref():
++                    raise BankRejected('actual_exclusively_created_index_ref_changed')
++                answer[1]['trial_bank_producer']={'schema':'hpo-trial-bank-producer-receipt-v1',
++                    'state':'pending_wrapper_parent_qualification','qualifies_completed_handoff':False,
++                    'index':actual_index,
++                    'admitted':sum(e['status']=='admitted' for e in index['entries']),
++                    'not_qualified':sum(e['status']!='admitted' for e in index['entries']),
++                    'consumer_implemented':False,'reuse_count':0,'savings':None,
++                    'actual_model_process_launches':None,'actual_recursive_learner_fits':None}
++                atomic_json(Path(output)/'hpo.json',answer[1]);check()
++            return answer
++        finally:_HPO_TRIAL_BANK_ACTIVE.reset(token)
++    except BaseException as primary:
++        if type(handoff_report) is dict:handoff_report.pop('trial_bank_producer',None)
++        if getattr(producer,'_completed_index',None) is not None:
++            try:revocation=producer.revoke_completed_index()
++            except BaseException as cleanup:
++                try:
++                    secondary=list(getattr(primary,'bank_cleanup_secondary_types',[]))
++                    secondary.append(type(cleanup).__name__)
++                    primary.bank_cleanup_secondary_types=secondary
++                    primary.bank_index_revocation_confirmed=False
++                except BaseException:pass
++            else:
++                try:
++                    primary.bank_index_revocation=revocation
++                    primary.bank_index_revocation_confirmed=revocation['absence_confirmed'] is True
++                except BaseException:pass
++        raise
+ 
+ 
+ def _hpo_trial_bank_checkpoint():
+--- a/src/automl/infrastructure/hpo_bank.py
++++ b/src/automl/infrastructure/hpo_bank.py
+@@ -11,6 +11,7 @@
+ import math
+ import os
+ import struct
++import stat
+ 
+ 
+ class BankRejected(ValueError):
+@@ -128,7 +129,7 @@
+         required={'schema','manifest','source_refs','input_refs','native_refs','spec','bank_root'}
+         need(type(authority) is dict and set(authority)==required and authority['schema']=='hpo-trial-bank-authority-v1','closed_actual_strict_authority_required')
+         need(callable(checkpoint),'original_checkpoint_required')
+-        self.authority=deepcopy(authority);self.checkpoint=checkpoint;self.parents={};self.entries=[];self.bound=None
++        self.authority=deepcopy(authority);self.checkpoint=checkpoint;self.parents={};self.entries=[];self.bound=None;self._completed_index=None
+         self.root=Path(authority['bank_root']);need(self.root.is_absolute() and not self.root.exists(),'new_absolute_study_bank_required')
+         self.epoch_id=canonical_digest({k:v for k,v in authority.items() if k!='bank_root'})
+         self.actual_process_launches=None;self.actual_learner_fits=None;self.reuse_count=0;self.savings=None
+@@ -272,6 +273,53 @@
+             try:primary.bank_cleanup_secondary_types=secondary
+             except BaseException:pass
+             raise primary.with_traceback(trace)
++        return dict(ref=dict(path=str(path),sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw)),
++            identity=identity)
++
++    def completed_index_ref(self):
++        return deepcopy(self._completed_index['ref']) if self._completed_index is not None else None
++
++    def revoke_completed_index(self):
++        """Bounded cleanup of our exact inode/ref; never grants fit/source authority.
++
++        No new clock or successful-sample timestamp is assigned here. Cleanup
++        remains charged to the existing outer HPO/task/parent deadlines even
++        when the original checkpoint itself caused the primary exception.
++        """
++        owned=self._completed_index
++        if owned is None:
++            return dict(schema='hpo-trial-bank-index-revocation-v1',owned_index=False,
++                removed=False,absence_confirmed=None,index=None)
++        path=Path(owned['ref']['path']);expected=owned['ref'];identity=owned['identity']
++        def same(observed):
++            return (stat.S_ISREG(observed.st_mode)
++                and (observed.st_dev,observed.st_ino)==identity
++                and observed.st_size==expected['bytes'])
++        try:observed=path.lstat()
++        except FileNotFoundError:
++            self._completed_index=None
++            return dict(schema='hpo-trial-bank-index-revocation-v1',owned_index=True,
++                removed=False,absence_confirmed=True,index=deepcopy(expected))
++        need(same(observed),'owned_completed_index_identity_changed')
++        digest=hashlib.sha256();count=0
++        with path.open('rb') as stream:
++            need(same(os.fstat(stream.fileno())),'owned_completed_index_open_identity_changed')
++            while True:
++                block=stream.read(2**20)
++                if not block:break
++                count+=len(block);need(count<=expected['bytes']<=32*2**20,'owned_completed_index_size_changed')
++                digest.update(block)
++            need(same(os.fstat(stream.fileno())),'owned_completed_index_changed_during_cleanup')
++        need(count==expected['bytes'] and digest.hexdigest()==expected['sha256'],
++            'owned_completed_index_bytes_changed')
++        need(same(path.lstat()),'owned_completed_index_replaced_before_unlink')
++        path.unlink()
++        try:path.lstat()
++        except FileNotFoundError:pass
++        else:raise BankRejected('owned_completed_index_absence_unconfirmed')
++        self._completed_index=None
++        return dict(schema='hpo-trial-bank-index-revocation-v1',owned_index=True,
++            removed=True,absence_confirmed=True,index=deepcopy(expected))
+ 
+     def finish(self,study_status):
+         self.check_sources()
+@@ -282,4 +330,4 @@
+             entries=deepcopy(self.entries),reuse_count=0,savings=None,consumer_implemented=False,
+             actual_model_process_launches=None,actual_recursive_learner_fits=None,
+             future_preworker_hit_validation=False,authority=deepcopy(self.authority),study=deepcopy(self.bound))
+-        self._exclusive(self.root/'bank.json',value);return value
++        self._completed_index=self._exclusive(self.root/'bank.json',value);return value

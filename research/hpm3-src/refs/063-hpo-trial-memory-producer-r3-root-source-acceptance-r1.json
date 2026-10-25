@@ -1,0 +1,52 @@
+{
+  "schema": "hpo-producer-r3-root-source-acceptance-v1",
+  "status": "SOURCE_ACCEPTED_RUNTIME_NOT_ADMITTED",
+  "created_utc": "2026-10-25T03:11:44.268846+00:00",
+  "producer_handoff": {
+    "path": "work/hpo-trial-memory-producer-next-dev-r3/source-handoff-final.json",
+    "sha256": "1d5e283ba19aabe47d5af9f014c95e043fc6ff93cbe14e26aeb91aa5f11a22e9"
+  },
+  "contract_handoff": {
+    "path": "work/hpo-trial-memory-producer-contract-next-dev-r3/source-handoff.json",
+    "sha256": "da0922ea06d1c549705213bdad81fdc6d74719fb69262506f20faa4079bf3057"
+  },
+  "independent_review": {
+    "path": "work/hpo-trial-memory-producer-r3-audit-contract-source-review-r1.json",
+    "sha256": "e6f739e3a1af8d8e8cf4141343383050897c8b6da848d9807b7267ab016d105a"
+  },
+  "root_actual_source_check_tools": [
+    "1dfbf9",
+    "464717",
+    "25aef1",
+    "291ed0"
+  ],
+  "HPM01": "Source blocker resolved by exact-owned index revocation after wrapper tail failures; pending/nonqualifying persisted receipt. No observed runtime or metric result.",
+  "finite_source_reference_count": 62,
+  "prepared_contracts": 23,
+  "prepared_census": [
+    3,
+    13,
+    4,
+    3
+  ],
+  "actual_contract_executions": 0,
+  "old17_independent_methods_raw_preserved": true,
+  "whole_default_OFF_inverse_removed_nodes": [
+    23,
+    5,
+    13
+  ],
+  "runtime_admitted": false,
+  "canonical_integration": false,
+  "active_runtime_QH5_unchanged": true,
+  "consumer": false,
+  "hits": null,
+  "savings": null,
+  "new_quality_metric": null,
+  "remaining": [
+    "Actual native/strict CLI/source authority and flat deployment compatibility remain unperformed.",
+    "Compose closed producer OFF inverse before unchanged legacy context/selector HPO/LOSS projections while preserving assertions and witnesses.",
+    "Future qualification must bind actual successful wrapper and parent exit plus cleanup.",
+    "Any runtime requires QH5 terminal and separate reviewed admission."
+  ]
+}

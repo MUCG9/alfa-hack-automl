@@ -1,0 +1,81 @@
+{
+  "schema": "qh5-outer-R10-metadata-correction-v1",
+  "status": "SOURCE_ONLY_NOT_READY_PENDING_FINAL_PEER",
+  "finding": "QHO10META01",
+  "preserved_handoff": {
+    "path": "source-handoff.json",
+    "sha256": "928e566492f42b5825b9689cc3aa26966b388419aa97090648611fe5f4e70501"
+  },
+  "finding_review": {
+    "path": "qh5-outer-r10-fm-independent-source-review-r1.json",
+    "sha256": "57cb6e79a7d330e591f32939f0fc8ca6eff7ba63f9f79881a6e8e77526a6927d"
+  },
+  "selected_metadata": {
+    "binding_template": {
+      "path": "binding.template.corrected-r1.NOT_READY.json",
+      "sha256": "95b33c2cfaa4ca065df9827d334f7edce70249854b5a0b2f378f296b07228102"
+    },
+    "launch_terminal_contract": {
+      "path": "launch-terminal-contract.corrected-r1.json",
+      "sha256": "2fc46d95abb6fe758b59414d9354d6256e92b0346dfcca806ef02dff7a9dd6f5"
+    }
+  },
+  "corrections": [
+    {
+      "preserved_file": "binding.template.NOT_READY.json",
+      "json_pointer": "/expected_output_work_relative",
+      "before": "qh4",
+      "after": "qh5"
+    },
+    {
+      "preserved_file": "binding.template.NOT_READY.json",
+      "json_pointer": "/prepared_contract_executions",
+      "before": 77,
+      "after": 83
+    },
+    {
+      "preserved_file": "launch-terminal-contract.json",
+      "json_pointer": "/atomic_binding/roles/independent_source_review",
+      "before": "exact accepted outerR9 review ABS path/SHA, root supplies after peer",
+      "after": "exact accepted outerR10 final review ABS path/SHA, root supplies after peer"
+    }
+  ],
+  "selection_rule": "Root materializes future private binding from binding.template.corrected-r1.NOT_READY.json and uses launch-terminal-contract.corrected-r1.json. The historical selected names remain immutable evidence and are superseded only for these three metadata values.",
+  "all_original_local_files_preserved_sha256": {
+    "atomic-binding.template.NOT_READY.json": "3c740629c9314aa37a5a7aeafd6cea3fdff8522b3610aa03ca3a5ae6ef4154a6",
+    "binding.template.NOT_READY.json": "0011e1aec36aeb048cf493b6add6023d6b9e3038d27652bdf3f26f985f9f2e1b",
+    "close_child.ps1": "605594aa5e3f9395a339c28915541402305d60b0b27d7e21b3073c5b05d32778",
+    "close_controller.py": "1b28d7da61e18d1869ac55dde9f841f8d599186c509f9374b14e56809fb1721a",
+    "confirm_post_tool.py": "dc774e3ecc3cb158513199d80a9caa74936b144faefedb394ef7614f9bf362a5",
+    "freeze_source.py": "c89b4d63e77eb0757a54f147cc3b2719bc46abddff1dcfaf49ef975f22bb07c9",
+    "launch-terminal-contract.json": "99a01e9f44cc8f56cc637eec4a2e5c599a0147f6111f755153053f1471be057b",
+    "protocol.json": "3ec7dd3a75a627fc602a518f0afed6961599cd088342fa5b9b8c107bfbbe3fbd",
+    "README.txt": "d6fd722943f4e71a7d01409c13f9977fda2ec0e67f3139531761d199eba18d9e",
+    "run_campaign.py": "d3c8b2a7cb37aaa5391df6934b41c160600947d129c9718eb79d71bde52ced1b",
+    "run_root.py": "a8aac5b469851c0f649221456e4ded92e5a1517692b83769743757f3f8d71bc4",
+    "source-proof.json": "c85b62cef038c4461bbc1d3c5698c4ef5baebd633a79744602930dcbda8daa0d",
+    "strong-authority.template.NOT_READY.json": "66ecfc0249b450910c68507eb6facf9779a9b85b4a4b70eac67fa4fa58a475b5",
+    "test_atomic_root.py": "6a855980a261dc625258f6e85ca029d30eddc676520b953f14b854a7535657e0",
+    "test_broker_contracts.py": "621def08d83ae8277f15af130178b0bfddacaaa31cc3a0b9cb3b2adbf7e30038"
+  },
+  "all_original_external_refs_preserved": true,
+  "runtime_test_bytes_unchanged": true,
+  "prepared_contract_executions": 83,
+  "startup_method_counts": [
+    2,
+    8,
+    4,
+    23,
+    4,
+    30,
+    2,
+    4,
+    6
+  ],
+  "startup_slots": 9,
+  "startup_parent_seconds": 270,
+  "author_contract_executions": 0,
+  "actual_experiment_clock": null,
+  "READY": null,
+  "native_collector_proofs_separate_from83": true
+}

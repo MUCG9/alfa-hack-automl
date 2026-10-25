@@ -1,0 +1,49 @@
+{
+  "schema": "qh5-collector-independent-source-review-v1",
+  "result": "NO_SCOPED_SOURCE_BLOCKER",
+  "author_of_collector_and_contracts": "root; reviewer did not author these files",
+  "reviewer_related_source": "Reviewer authored separately FM-reviewed native bootstrap, not self-reviewed here.",
+  "reviewed_files_sha256": {
+    "qh5-collector-next-dev/collector.js": "085d7bbdbdeac8c0408ad3112de751617844fb2b5ebdd4a06f44512e5f04db7c",
+    "qh5-collector-next-dev/test_collector_contracts.js": "821e8a31e90d25906a999a3fc5d8f47fb72f5ecbc82d307617dd08fb3fd9238d"
+  },
+  "native_dependency_handoff": {
+    "path": "qh5-closure-bootstrap-next-dev/source-handoff.json",
+    "sha256": "6114f7d7563c94321e95d66f279bcb541808468d5024bde6756c025f4c8b50c7"
+  },
+  "native_dependency_independent_peer": {
+    "path": "qh5-native-closure-bootstrap-fm-independent-source-review-r1.json",
+    "sha256": "efebd0d67e4394214279843da5e0ddc389acb641e25411962cc3465fdd5e8a85"
+  },
+  "reviewed_source_boundaries": [
+    "No standalone campaign reader, no stdout JSON parsing, no new pwsh/process shell; exact named PS flags unquoted and literal values quoted.",
+    "Same execPS Close metadatawork +actual native closer/wrapper, followed only by NEW execPS Post after wholeClose actual0.",
+    "Every terminal role retains initial+poll history and requires integer actualexit+nonempty actualchunk; initial completed exec/sessionNULL is admitted without fabricatedsession.",
+    "Actual mainreceipt is hosted before Close; late hostsave failure is recorded/restored and visible; no retry/reset.",
+    "Trusted exact bootstrap/template ABS+SHA inputs, source arguments match nativeparam names.",
+    "Mockstore uses serializable snapshots; ten sourcecases exercise validyielded/direct terminals, warningstdout, missingevidence, nonzero child, missinghandle, early/late hostfail and postfail."
+  ],
+  "resolved_preliminary_findings": [
+    "Direct completed initialexec was previously rejected and terminal omitted; now accepted through existingterminal helper.",
+    "Mock store previously retained object references; now deep serialized snapshots."
+  ],
+  "prepared_case_count": 10,
+  "prepared_case_names": [
+    "positive_yielded_whole_shells_and_actual_chunks",
+    "warning_prefixed_stdout_not_parsed",
+    "invalid_main_chunk_stops_before_close",
+    "missing_wrapper_chunk_blocks_post",
+    "nonzero_wrapper_preserved_no_post",
+    "main_receipt_failure_is_fatal_before_close",
+    "final_receipt_failure_visible_and_stored",
+    "missing_running_handle_is_fatal",
+    "post_failure_preserved",
+    "direct_initial_terminal_without_session"
+  ],
+  "actual_test_executions": 0,
+  "actual_collector_executions": 0,
+  "actual_OS_processes_models_API": 0,
+  "pending_actual_privatebinding_and_exact_outer_source": true,
+  "READY": null,
+  "clock": null
+}

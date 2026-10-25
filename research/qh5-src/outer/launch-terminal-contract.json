@@ -1,0 +1,288 @@
+{
+  "schema": "qh5-exact-launch-terminal-contract-source-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "packet": "qwen-three-hour-outer-next-dev-r10",
+  "output_work_relative": "qh5",
+  "actual_clock": null,
+  "source_sha256": {
+    "run_campaign.py": "d3c8b2a7cb37aaa5391df6934b41c160600947d129c9718eb79d71bde52ced1b",
+    "close_controller.py": "1b28d7da61e18d1869ac55dde9f841f8d599186c509f9374b14e56809fb1721a",
+    "run_root.py": "a8aac5b469851c0f649221456e4ded92e5a1517692b83769743757f3f8d71bc4",
+    "confirm_post_tool.py": "dc774e3ecc3cb158513199d80a9caa74936b144faefedb394ef7614f9bf362a5",
+    "close_child.ps1": "605594aa5e3f9395a339c28915541402305d60b0b27d7e21b3073c5b05d32778"
+  },
+  "main": {
+    "provider_wrapper": "work/run_private.py",
+    "provider_wrapper_sha256": "3ff9024fbcd5e449868acb4e19f0c7788572dc2b1bdc85e2427c98ffffd4292c",
+    "argv": [
+      "PINNED_PYTHON",
+      "-B",
+      "-X",
+      "utf8",
+      "ABS_work/run_private.py",
+      "ABS_PACKET/run_campaign.py",
+      "--launch",
+      "--manifest",
+      "ABS_MAIN_MANIFEST",
+      "--manifest-sha256",
+      "MAIN_MANIFEST_SHA",
+      "--self-sha256",
+      "d3c8b2a7cb37aaa5391df6934b41c160600947d129c9718eb79d71bde52ced1b",
+      "--launch-parent-pid",
+      "ACTUAL_PS_PID",
+      "--launch-parent-create-time",
+      "ACTUAL_PS_UNIX_BIRTH"
+    ],
+    "evidence": "Wait actual whole terminal; preserve actual tool/session when supplied, NULL direct session stays NULL. Never infer main exit from model child status.",
+    "outputs": [
+      "qh5/preparer-identity.json",
+      "qh5/campaign.json",
+      "qh5/supervisors/*.json",
+      "qh5/supervisors/*.log"
+    ]
+  },
+  "negative_closer": {
+    "when": "ACTUAL main nonzero; invoke once only, never wrapper-positive path; preserve FAIL",
+    "argv": [
+      "PINNED_PYTHON",
+      "-B",
+      "-X",
+      "utf8",
+      "ABS_PACKET/close_controller.py",
+      "--manifest",
+      "ABS_MAIN_MANIFEST",
+      "--manifest-sha256",
+      "MAIN_MANIFEST_SHA",
+      "--self-sha256",
+      "1b28d7da61e18d1869ac55dde9f841f8d599186c509f9374b14e56809fb1721a",
+      "--driver-sha256",
+      "d3c8b2a7cb37aaa5391df6934b41c160600947d129c9718eb79d71bde52ced1b",
+      "--campaign-sha256",
+      "ACTUAL_TERMINAL_CAMPAIGN_SHA",
+      "--actual-exit-code",
+      "ACTUAL_NONZERO_MAIN_EXIT",
+      "--actual-tool-evidence",
+      "ACTUAL_MAIN_TERMINAL_TOOL",
+      "--launch-parent-pid",
+      "ACTUAL_PS_PID",
+      "--launch-parent-create-time",
+      "ACTUAL_PS_UNIX_BIRTH"
+    ],
+    "optional_actual_session": [
+      "--actual-exec-session",
+      "ACTUAL_MAIN_SESSION_ONLY_IF_SUPPLIED"
+    ],
+    "output": "qh5/terminal-root-closure.json",
+    "early": "qh5/root-preparer-identity.json",
+    "source_bounds": "close_controller requires own_start+60 inside unchanged original10800 wall/mono; negative tool exit may be1 and is preserved; this never emits a fake positive main result"
+  },
+  "positive_atomic": {
+    "when": "ACTUAL main exit0 AND campaign completed_pending_root/source+cleanup+temp true; hosted binding complete; all saved deadlines still admit full enclosing60",
+    "argv": [
+      "PINNED_PYTHON",
+      "-B",
+      "-X",
+      "utf8",
+      "ABS_PACKET/run_root.py",
+      "--binding",
+      "ABS_ATOMIC_BINDING",
+      "--binding-sha256",
+      "ATOMIC_BINDING_SHA",
+      "--self-sha256",
+      "a8aac5b469851c0f649221456e4ded92e5a1517692b83769743757f3f8d71bc4",
+      "--actual-exit-code",
+      "0",
+      "--actual-tool-evidence",
+      "ACTUAL_MAIN_TERMINAL_TOOL",
+      "--launch-parent-pid",
+      "ACTUAL_PS_PID",
+      "--launch-parent-create-time",
+      "ACTUAL_PS_UNIX_BIRTH"
+    ],
+    "optional_actual_session": [
+      "--actual-exec-session",
+      "ACTUAL_MAIN_SESSION_ONLY_IF_SUPPLIED"
+    ],
+    "child": "Wrapper alone invokes exact close_child.ps1; child PowerShell supplies its own actual shell PID/birth to close_controller. Do not run closer separately first.",
+    "outputs": [
+      "qh5/atomic-root-preparer-identity.json",
+      "qh5/atomic-root-child.log",
+      "qh5/root-preparer-identity.json",
+      "qh5/terminal-root-closure.json",
+      "qh5/atomic-native-exit.json",
+      "qh5/atomic-child-exit.json",
+      "qh5/root-confirmation.json"
+    ]
+  },
+  "atomic_binding": {
+    "schema": "qwen-three-hour-atomic-root-private-v1",
+    "readiness": "READY_REVIEWED_FROZEN",
+    "missing_bindings": [],
+    "required_fields": [
+      "schema",
+      "readiness",
+      "missing_bindings",
+      "output",
+      "immutable_files",
+      "child_script_sha256",
+      "driver",
+      "closer",
+      "manifest",
+      "campaign",
+      "python",
+      "powershell",
+      "independent_source_review",
+      "qualification_source_review",
+      "post_tool",
+      "expected_output_work_relative"
+    ],
+    "output": "ABS_WORK/qh5",
+    "immutable_files": "Exact non-repin union of all original main immutable files, exact main manifest SHA, ACTUAL terminal campaign SHA, all current packet scripts, interpreter/PowerShell, and exact accepted review refs; existing keys may never be replaced by new hashes.",
+    "roles": {
+      "driver": {
+        "path": "ABS_PACKET/run_campaign.py",
+        "sha256": "d3c8b2a7cb37aaa5391df6934b41c160600947d129c9718eb79d71bde52ced1b"
+      },
+      "closer": {
+        "path": "ABS_PACKET/close_controller.py",
+        "sha256": "1b28d7da61e18d1869ac55dde9f841f8d599186c509f9374b14e56809fb1721a"
+      },
+      "post_tool": {
+        "path": "ABS_PACKET/confirm_post_tool.py",
+        "sha256": "dc774e3ecc3cb158513199d80a9caa74936b144faefedb394ef7614f9bf362a5"
+      },
+      "manifest": {
+        "path": "ABS_MAIN_MANIFEST",
+        "sha256": "MAIN_MANIFEST_SHA"
+      },
+      "campaign": {
+        "path": "ABS_WORK/qh5/campaign.json",
+        "sha256": "ACTUAL_TERMINAL_CAMPAIGN_SHA"
+      },
+      "python": {
+        "path": "ABS_WORK/venv/Scripts/python.exe",
+        "sha256": "d59c9a894b319828d023f3aa83d9a3488d2339f9e27e60e49b02abb0d53cf538"
+      },
+      "powershell": {
+        "path": "ACTUAL_HASH_PINNED_PS_EXE_ABS",
+        "sha256": "362a356ce7f0940ec74f73a8fc2c990a2cc24a38a11c90bbd8eca947110ad139"
+      },
+      "independent_source_review": "exact accepted outerR9 review ABS path/SHA, root supplies after peer",
+      "qualification_source_review": "exact accepted source-qualification review ABS path/SHA retained in reviewed root binding"
+    },
+    "child_script_sha256": "605594aa5e3f9395a339c28915541402305d60b0b27d7e21b3073c5b05d32778",
+    "no_hosted_writer_PID": "Host JSON writes create no native preparer; only actual observed native preparer receipts enter known union.",
+    "campaign_mapping": "Hash unchanged qh5/campaign.json ONLY after actual main terminal; bind its saved start_unix/start_monotonic/absolute_deadline_unix/common_deadline_monotonic/final_deadline_monotonic; do not create or reset clocks."
+  },
+  "post_tool": {
+    "when": "Immediately after ACTUAL wrapper tool exit0; actual wrapper nonzero must not enter positive post path",
+    "argv": [
+      "PINNED_PYTHON",
+      "-B",
+      "-X",
+      "utf8",
+      "ABS_PACKET/confirm_post_tool.py",
+      "--binding",
+      "SAME_ABS_ATOMIC_BINDING",
+      "--binding-sha256",
+      "SAME_ATOMIC_BINDING_SHA",
+      "--self-sha256",
+      "dc774e3ecc3cb158513199d80a9caa74936b144faefedb394ef7614f9bf362a5",
+      "--wrapper-tool",
+      "ACTUAL_WRAPPER_TOOL",
+      "--wrapper-exit-code",
+      "0",
+      "--launch-parent-pid",
+      "NEW_ACTUAL_PS_PID",
+      "--launch-parent-create-time",
+      "NEW_ACTUAL_PS_UNIX_BIRTH"
+    ],
+    "early": "qh5/post-tool-preparer-identity.json",
+    "output": "qh5/actual-wrapper-exit-confirmation.json",
+    "union": "fresh.known_identities UNION fresh.wrapper_preparer_identities; post own preparers separately saved, become future union only with actual post tool exit0. Guard-only resource tuples remain UNKNOWN observations; no blanket owned adoption."
+  },
+  "timing": {
+    "original_common": 10800,
+    "setup": 300,
+    "REG": [
+      4800,
+      4770
+    ],
+    "CLASS": [
+      4800,
+      4770
+    ],
+    "audit": [
+      600,
+      570
+    ],
+    "cleanup_reserve": 300,
+    "driver_final": 240,
+    "root_inside_cleanup": 60,
+    "post_own_seconds": 30,
+    "positive_wrapper_admission": "wrapper_start+60 <= saved final_deadline_monotonic AND original common end in both clocks",
+    "all_atomic_checks": "MIN(wrapper_start+60, actual closer birth+60, original common end, saved driver final_deadline); later closer birth grants no replacement window.",
+    "post_checks": "Own30 AND same actual closer birth60/original10800/saved driverfinal240; no manual inter-tool delay/new60/reset.",
+    "actual_session": "Include actual session only if tool supplied it; no invented numeric session."
+  },
+  "schemas": {
+    "root": "qwen-three-hour-root-closure-v1",
+    "fresh": "qwen-three-hour-atomic-root-confirmation-v1",
+    "post": "qwen-three-hour-actual-wrapper-exit-confirmation-v1"
+  },
+  "positive_field_distinction": {
+    "fresh": [
+      "technical_procedure_passed",
+      "inside_existing_driver_final240"
+    ],
+    "post": [
+      "post_tool_confirmed",
+      "inside_saved_driver_final240"
+    ],
+    "post_has_no_positive_technical_procedure_field": true
+  },
+  "metadata_preflight": {
+    "reuse": "qwen-three-hour-metadata-preflight-next-dev-r2/preflight.py",
+    "source_sha256": "a830f4b24f655795ad30b73298eb469abdabdc724ff05f1a691d6b1a334161a0",
+    "argv": [
+      "PINNED_PYTHON",
+      "-B",
+      "ABS_PREFLIGHT_PY",
+      "ABS_PACKET/run_campaign.py",
+      "ABS_ACTUAL_MAIN_MANIFEST",
+      "d3c8b2a7cb37aaa5391df6934b41c160600947d129c9718eb79d71bde52ced1b",
+      "ACTUAL_MAIN_MANIFEST_SHA"
+    ],
+    "same9_whole_metadata_functions_and14globals": true,
+    "no_candidate_import": true,
+    "capacity_limits_unchanged": {
+      "pins": 4096,
+      "private_JSON_bytes": 1048576
+    }
+  },
+  "future_predecessor": "Actual QH4 FAIL/qualified-current pair remains unchanged; root hosted finite projection baseline8541 plus allactualnew preparers, including guard-only UNKNOWN witnesses; existing receipt ABI only.",
+  "author_execution": 0,
+  "authoritative_prospective_startup_counts": [
+    2,
+    8,
+    4,
+    23,
+    4,
+    30,
+    2,
+    4,
+    6
+  ],
+  "native_transport": {
+    "contract": "qh5-closure-bootstrap-next-dev/contract.json",
+    "handoff": {
+      "path": "qh5-closure-bootstrap-next-dev/source-handoff.json",
+      "sha256": "6114f7d7563c94321e95d66f279bcb541808468d5024bde6756c025f4c8b50c7"
+    },
+    "close": "Existing execPS: & ABS/close_native.ps1 -Mode Close -Template ROOT_HOSTED_ABS -TemplateSha256 SHA -SelfSha256 NATIVE_SHA -ActualMainExit ACTUAL -ActualMainTool CHUNK [-ActualMainSession ACTUAL_SESSION]",
+    "post": "NEW execPS only after wholeClose0: & ABS/close_native.ps1 -Mode Post -SelfSha256 NATIVE_SHA -ActualWrapperExit 0 -ActualWrapperTool ACTUAL_CLOSE_CHUNK",
+    "underlying_Python_argv_reference_only": "Existing negative/atomic/post sections describe unchanged Python contracts. Collector selects exactly nativeClose, then nativePost ifeligible; never also invoke closer manually.",
+    "template": "Root materializes complete ABS+exactsource atomic template NOT_READY, missing ONLY actual_campaign_sha256, null campaign SHA, no campaign pin; native positive Close alone publishes actual binding via CreateNew.",
+    "binding_output": "ABS_WORK/private/qh5-atomic-root-binding-r1.json"
+  }
+}

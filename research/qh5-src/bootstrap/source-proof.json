@@ -1,0 +1,22 @@
+{
+  "schema": "qh5-native-closure-bootstrap-source-proof-v1",
+  "status": "SOURCE_ONLY",
+  "exact_qualified_Python_helpers_unchanged": true,
+  "new_source_boundary": "Native boundedmetadata/atomicbinding transport in exactly current closurePS; no standalone reader/native PID.",
+  "first_negative_source_and_positive_atomic_post_argv": "Original flags only, structured arrays/arguments and exact role SHA before invocation.",
+  "original_C5_guard_sampler_ownership_and_quality_predicates": "unchanged Python source; no monkeypatch/new guard",
+  "root_template_authority": "Exact root-hosted hash +self+role originalpin; nativebinder cannot re-pin an existing campaign.",
+  "safe_late_failure": "No child invocation when native read/hash/parse/missingbudget/publish fails; tool nonzero prevents positivepost. Existing partial binding is not retried or a qualification receipt.",
+  "source_checks": [
+    {
+      "kind": "native Parser.ParseFile AST only",
+      "tool": "3ffe81",
+      "syntax_errors": 0
+    }
+  ],
+  "actual_script_or_helper_executions": 0,
+  "actual_tests_fits_API_PID_scans_data": 0,
+  "new_startup_methods": 0,
+  "new_startup_slots": 0,
+  "pending_peer": true
+}

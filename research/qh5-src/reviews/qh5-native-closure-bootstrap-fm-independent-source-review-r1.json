@@ -1,0 +1,42 @@
+{
+  "schema": "qh5-native-closure-bootstrap-FM-source-review-v1",
+  "result": "NO_SCOPED_SOURCE_BLOCKER",
+  "reviewed_handoff": {
+    "path": "qh5-closure-bootstrap-next-dev/source-handoff.json",
+    "sha256": "6114f7d7563c94321e95d66f279bcb541808468d5024bde6756c025f4c8b50c7"
+  },
+  "checked_local_pins": 4,
+  "checked_external_pins": 7,
+  "native_source_sha256": "1ee44a54bad8f54e818da1e635498f0e22d5822380e425513582c5c2550d5960",
+  "source_only_PowerShell_parser": {
+    "syntax_errors": 0,
+    "function_definitions": 12,
+    "target_executed": false
+  },
+  "checked_semantics": [
+    "Close and Post use exact existing exec PowerShell; script launches only the existing pinned Python closer/wrapper/post helper and introduces no standalone metadata reader or new pwsh",
+    "self, fixed OuterR10 roles, Python, actual current PowerShell, root-hosted private template/main manifest and review refs must equal original absolute source pins and actual hashes",
+    "template is NOT_READY with exactly actual_campaign_sha256 missing; campaign pin must be absent, so the one additive actual campaign binding cannot silently re-pin any existing entry",
+    "bounded native JSON read: template/binding1MiB, campaign32MiB; original4096 map cap and regular/nonreparse operational paths retained",
+    "positive binding uses FileMode.CreateNew only after actual main0 plus typed clean campaign and original10800/final reserve wall prechecks; Python helpers retain original monotonic/common/final240/closerbirth60/resource/source/ownership checks",
+    "actual main nonzero requires failed campaign and invokes direct frozen negative closer once without publishing atomic binding",
+    "all required closer, run_root and confirm_post_tool CLI argument names match their pinned baseline parser source; actual tool strings and native exit propagate, no fabricated success",
+    "Post requires actual whole prior Close exit0/tool and exact existing binding/campaign pins, then calls unchanged qualified post helper from new exec shell; remaining source/known/preparer/time checks stay in that helper",
+    "native publication or helper failure returns nonzero; a partial READY binding is not a root/fresh/post qualification receipt and cannot authorize dependent Post through the reviewed collector contract"
+  ],
+  "findings": [],
+  "deployment_requirements": [
+    "Root must bind final independently reviewed OuterR10 source roles and final private manifest; those future bytes are not qualified by this baseline ABI review",
+    "Root collector must invoke Close in its existing exec PS and Post in a NEW exec PS only after the entire Close tool actual exit0, preserving actual terminal chunks",
+    "Root-hosted template actual values, complete predecessor/preparer union, clock admission and any new prepared contract execution remain root-owned; this source review creates none"
+  ],
+  "baseline_helpers": "Pinned OuterR9 run_root/close_controller/confirm_post_tool/close_child ABI; future OuterR10 source rebind still requires its separate source review.",
+  "actual_target_script_invocations": 0,
+  "actual_helper_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API": 0,
+  "actual_data_prediction_truth_reads": 0,
+  "actual_PID_scans": 0,
+  "actual_experiment_clock": null
+}

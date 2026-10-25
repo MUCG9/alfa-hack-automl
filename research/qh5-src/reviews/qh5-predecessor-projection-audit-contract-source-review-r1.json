@@ -1,0 +1,51 @@
+{
+  "schema": "QH5-predecessor-projection-independent-source-review-v1",
+  "status": "SOURCE_R2_CLOSED_NO_SCOPED_BLOCKER_NOT_EXECUTED",
+  "source_sha256": "ff225be48e2d4cf4663974cd2f224219070c23a4f3cf5d05297db8bb6ffa7efd",
+  "preserved_R1_sha256": "025f71e2b62116a0b5d69b680cef22c1667bf48f36f82276f9fbb5b0032d3e04",
+  "R1_prelaunch_finding": "Both exact87f564 witnesses have uncertain:null, notFalse; R1 predicate would reject.",
+  "R2_repair": "Explicit exact pinned null-form plus read_only_absence_witnessTrue and original_absent_or_reusedTrue; output preserves null and states no coercion.",
+  "checks": {
+    "exact5_source_metadata_refs_SHA_and_16MiB_bounds_applicable": true,
+    "actual_post8536_unique_finite_pid_births": true,
+    "post_observer3_disjoint": true,
+    "actual_e73c96_d151b3_terminal0_history_exact": true,
+    "actual62c651_tool0_bound": true,
+    "both_guard_source_hashes_and_JSON_pointer_rows_exact": true,
+    "both_witness_identity_dict_types_valid": true,
+    "null_uncertain_field_preserved_not_False": true,
+    "known8539_plus2_exactguardUNKNOWN_equals8541": true,
+    "exclusive_fixed_output_no_overwrite": true,
+    "only_pathlib_hashlib_json_math_imports": true,
+    "no_process_clock_gateway_or_candidate_imports": true,
+    "two_area_inverse_whole_R1_text_and_AST_exact": true
+  },
+  "independent_expected_projection": {
+    "known_count": 8541,
+    "identities_canonical_sha256": "f2f5afc2bea8246ba260dbed8e3df1ff04b081b8e53f7013e07814e59964a2e5",
+    "scope": "Reviewer computed prior metadata identity union only; candidate main was not executed."
+  },
+  "required_preserved_flags": {
+    "technical_procedure_passed": false,
+    "original_QH4_FAIL_preserved": true,
+    "root60_requalified": false,
+    "fresh_current_absence_performed": false,
+    "fresh_complete_absence_required_before_runtime": true,
+    "ownership_or_worker_adoption": false,
+    "termination_authority_granted": false,
+    "actual_clock": null,
+    "actual_metrics": null,
+    "new_runtime_ready": false
+  },
+  "limitations": [
+    "No current absence observation by reviewer or candidate; future actual guarded metadata and main under-lock fresh checks remain required.",
+    "No prior failure/proof/nullable uncertainty field is retrospectively relabelled."
+  ],
+  "actual_candidate_imports": 0,
+  "actual_tests": 0,
+  "actual_models": 0,
+  "actual_API": 0,
+  "actual_PID_scans": 0,
+  "actual_array_data_prediction_truth_reads": 0,
+  "findings": []
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "qh5-outer-R10-FM-independent-source-review-v2",
+  "result": "NO_SCOPED_SOURCE_BLOCKER",
+  "reviewed_handoff": {
+    "path": "qwen-three-hour-outer-next-dev-r10/source-handoff-final.json",
+    "sha256": "58a17c177d45310521b1a414a0bfcb5d1e3e0171c83f65d7dc73b4e30eb780f9"
+  },
+  "previous_finding_review": {
+    "path": "qh5-outer-r10-fm-independent-source-review-r1.json",
+    "sha256": "57cb6e79a7d330e591f32939f0fc8ca6eff7ba63f9f79881a6e8e77526a6927d"
+  },
+  "checked_local_pins": 19,
+  "checked_external_pins": 1703,
+  "all_original_928e_files_handoff_and_external_refs_exact": true,
+  "resolved_findings": [
+    "QHO10META01"
+  ],
+  "selected_metadata": {
+    "binding_template": {
+      "path": "binding.template.corrected-r1.NOT_READY.json",
+      "sha256": "95b33c2cfaa4ca065df9827d334f7edce70249854b5a0b2f378f296b07228102"
+    },
+    "launch_terminal_contract": {
+      "path": "launch-terminal-contract.corrected-r1.json",
+      "sha256": "2fc46d95abb6fe758b59414d9354d6256e92b0346dfcca806ef02dff7a9dd6f5"
+    }
+  },
+  "metadata_inverse": {
+    "binding_template": "exact original after only qh5->qh4 and83->77 inverses",
+    "launch_terminal_contract": "exact original after only outerR10 final review description->outerR9 inverse"
+  },
+  "runtime_and_tests_unchanged_from_reviewed_928e": true,
+  "inherited_runtime_review": {
+    "whole_main_AST_inverse_R9": true,
+    "other_three_OUT_text_inverses_R9": true,
+    "all_function_class_AST_exact": true,
+    "generic_PS_outer_test_bytes_exact": true
+  },
+  "prepared_method_counts": [
+    2,
+    8,
+    4,
+    23,
+    4,
+    30,
+    2,
+    4,
+    6
+  ],
+  "prepared_contract_executions": 83,
+  "startup_slots": 9,
+  "startup_parent_maximum_seconds": 270,
+  "native_collector_proofs_separate_from83": true,
+  "preserved_R9_original26_local_plus1628_external": true,
+  "recursive_source_copy": false,
+  "findings": [],
+  "scope": "Narrow append-only metadata rebind plus inherited completed928e SOURCE review. Root must use the two explicit selected corrected metadata filenames. No runtime or metric readiness is issued.",
+  "actual_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API": 0,
+  "actual_data_prediction_truth_reads": 0,
+  "actual_PID_scans": 0,
+  "actual_experiment_clock": null
+}

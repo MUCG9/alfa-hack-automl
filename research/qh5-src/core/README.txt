@@ -1,0 +1,9 @@
+R10 is a SOURCE-only prospective repair. No test, model, API or runtime was executed by its author.
+
+The existing full180 provider allocation,270 admission margin,4800/task and10800 common clocks stay unchanged. The SDK receives the remaining provider window minus10 seconds for safe diagnostic persistence and exit. This is not a guarantee: late/nonzero/unclean/source/resource failures still stop.
+
+Only the existing trusted task_entry callback can add parent_return_receipt, after its actual clean-parent and request/result/source barriers. Child claims are overwritten. The policy may discard one known ordinary TimeoutError as a provider_timeout NULL/no-worker round and continue productive research. It does not retry that call, count a model candidate, or change the completed checkpoint. Missing usage stays NULL and cumulative completeness stays false. Finishing the research loop is distinct from strict independent quality qualification; every-call status-ok/complete-usage gates are unchanged.
+
+41 prepared methods in the same five test entrypoints:2/8/4/23/4.36 old method ASTs are exact. One old provider assertion is explicitly rebased180->170 to reflect the new inner SDK allocation; all R9 evidence remains immutable at its original pinned path. Four new synthetic methods cover reserve/deadline behavior, the actual broker callback gates and child-claim overwrite, failed-NULL/no-worker continuation with strict final gate rejection, and fatal unknown/unbound failures. Pure mocks grant no real process authority. Prepared does not mean PASS.
+
+All278 R9 files, its final handoff and inherited external references are pinned at original paths rather than recursively duplicated. Runtime changes only research_loop.py,task_entry.py,gateway_child.py; other four runtime files are byte-exact R9. Source text/whole-AST inverse and test method fingerprints are in R10-source-proof.json. No archive, READY, runtime clock, metric or promotion exists.

@@ -1,0 +1,20 @@
+{
+  "schema": "qwen-core-R10-auditor-compatibility-v1",
+  "strict_usage_reference": "qwen-three-hour-independent-audit-next-dev-r6/audit_final.py",
+  "unchanged_success_usage_keys": [
+    "status",
+    "attempts",
+    "usage",
+    "usage_complete",
+    "finish_reason",
+    "reasoning_effort_requested",
+    "response_model"
+  ],
+  "all_success_records": "same old shape and accounting",
+  "new_timeout_round": "provider_timeout has no worker callbacks and NULL objective; any prospective adapter may only account truthfully",
+  "strict_final_gate": "existing usage_summary rejects raw provider status error; no permissive final qualification branch",
+  "fixture": "new policy fixture invokes actual immutable R6 usage_summary and requires provider_failed",
+  "known_limitation": "10-second reserve is finite, not an exit guarantee; any late/unclean result still fatal",
+  "current_QH4_failure": "permanent FAIL; it was late/nonzero and is not eligible for prospective continuation",
+  "qualification": null
+}

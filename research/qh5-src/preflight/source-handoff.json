@@ -1,0 +1,21 @@
+{
+  "schema": "qh5-root-metadata-preflight-caller-source-v1",
+  "status": "FROZEN_SOURCE_ONLY_INDEPENDENT_PEER_ACCEPTED",
+  "files_sha256": {
+    "run_preflight.py": "3e75d5e9a2d47c6f5e8cec4df18c9da3e2ed608f42d08ae4dbba2866aa1d9ded"
+  },
+  "external_refs_sha256": {
+    "qh4-root-metadata-preflight-caller-next-dev-r2/run_preflight.py": "1a4c0b19e9ea08b95653f55c83d620842967dbd35cc69f7f64bb3935eef4e42c",
+    "qwen-three-hour-metadata-preflight-next-dev-r2/preflight.py": "a830f4b24f655795ad30b73298eb469abdabdc724ff05f1a691d6b1a334161a0",
+    "br-standard-release-qualification-next-dev/controller-r5/run_controller.py": "d5f41cad6de2168cd520e442223428285dd3714854079d9305dd1b34938abd7d",
+    "qh5-metadata-preflight-caller-audit-contract-source-review-r1.json": "34421508aba8201dc97f21c1ab42a9c333b7f0e66cf6ab521aaf1f4927fcc60e"
+  },
+  "expected_historical_predecessor_count": 8541,
+  "expected_identity_sha256": "f2f5afc2bea8246ba260dbed8e3df1ff04b081b8e53f7013e07814e59964a2e5",
+  "own_budget_seconds": 30,
+  "scope": "exact prior qualified caller with literal QH5/outer/hash/known substitutions",
+  "new_fixture_methods": 0,
+  "actual_executions": 0,
+  "private_READY": null,
+  "clock": null
+}

@@ -1,0 +1,119 @@
+--- R6/audit_final.py
++++ R7/audit_final.py
+@@ -353,11 +353,20 @@
+     attempted=0
+     for number,row in enumerate(rows,1):
+         need(type(row) is dict and type(row.get('round')) is int and row.get('round')==number
+-             and row.get('status') in {'invalid','duplicate','unattempted_budget','completed','failed'},'anytime_round_sequence_or_status_changed')
++             and row.get('status') in {'invalid','duplicate','unattempted_budget','completed','failed','provider_timeout'},'anytime_round_sequence_or_status_changed')
+         actual=[rounds[(number,i)] for i in (0,1) if (number,i) in rounds]
+         for ref,parent in actual:
+             used.add(key(ref));need(parent['cut']==task['cuts'][int(parent['phase'][-1])],'round_actual_cut_order_changed')
+-        if row['status'] in {'invalid','duplicate','unattempted_budget'}:
++        if row['status']=='provider_timeout':
++            # Structural failed-NULL accounting only; actual sealed clean broker
++            # proof is checked in verify_usage, whose strict final gate remains.
++            need(set(row)=={'round','signature','status','decision','scores','error_type','hypothesis',
++                 'checkpoint','worker_attempted','parent_return_receipt'} and not actual
++                 and all(row.get(k) is None for k in ('scores','signature','hypothesis','checkpoint'))
++                 and row.get('decision')=='discard' and row.get('error_type')=='TimeoutError'
++                 and row.get('worker_attempted') is False,'provider_timeout_is_NULL_not_worker_attempt')
++            key(row['parent_return_receipt'])
++        elif row['status'] in {'invalid','duplicate','unattempted_budget'}:
+             need(not actual and row.get('scores') is None and row.get('decision')=='discard'
+                  and row.get('checkpoint') is None,'unattempted_or_duplicate_is_not_actual_callback')
+         else:
+@@ -484,6 +493,17 @@
+         need(len(req['prompt'].encode('utf-8'))+len(actual_user.encode('utf-8'))<=65536,'actual_complete_message_byte_cap')
+         need(req['context']['actual_resources']==dict(learner_threads=2,worker_RSS_MiB=1536,whole_RSS_MiB=2048),
+              'provider_context_resource_entitlement_changed')
++        declared=report.get('records',[])
++        if type(declared) is list and index<=len(declared) and type(declared[index-1]) is dict and declared[index-1].get('status')=='provider_timeout':
++            declared=declared[index-1];call=res.get('call');saved=report.get('usage',[])
++            need(declared.get('parent_return_receipt')==dict(path=str(supervisor),sha256=sha(supervisor,check))
++                 and declared.get('error_type')=='TimeoutError' and declared.get('worker_attempted') is False
++                 and type(call) is dict and call.get('status')=='error' and call.get('exception_type')=='TimeoutError'
++                 and type(call.get('attempts')) is int and 1<=call['attempts']<=3 and res.get('content') is None
++                 and type(saved) is list and index<=len(saved) and type(saved[index-1]) is dict
++                 and set(saved[index-1])=={'status','attempts','usage','usage_complete','finish_reason','reasoning_effort_requested','response_model'}
++                 and saved[index-1]=={k:call.get(k) for k in saved[index-1]}
++                 and report.get('usage_complete') is False,'provider_timeout_actual_clean_return_binding_changed')
+         rows.append(res)
+     return usage_summary(rows,report)
+ 
+--- R6/test_audit_contracts.py
++++ R7/test_audit_contracts.py
+@@ -526,4 +526,73 @@
+                     summary.assert_not_called()
+ 
+ 
++class CleanProviderTimeoutAuditContracts(unittest.TestCase):
++    def accounting_fixture(self):
++        report,parents,task,strong,add=anytime_fixture()
++        report['records'][0]['round']=2
++        parents[-1]['phase']='round-2-0'
++        report['gateway_calls']=2
++        report['records'].insert(0,dict(round=1,signature=None,status='provider_timeout',decision='discard',
++            scores=None,error_type='TimeoutError',hypothesis=None,checkpoint=None,worker_attempted=False,
++            parent_return_receipt=dict(path=str((P/'synthetic-gateway-1/supervisor.json').resolve()),sha256='a'*64)))
++        return report,parents,task,strong
++
++    def test_provider_timeout_NULL_row_adds_no_worker_or_candidate_or_checkpoint(self):
++        report,parents,task,strong=self.accounting_fixture()
++        result=A.anytime_accounting(report,parents,task,lambda a,b:max(30,(a+b)//2),strong)
++        self.assertEqual(result['all_rounds'],2)
++        self.assertEqual(result['actual_candidate_recipe_attempts'],1)
++        self.assertEqual(result['actual_candidate_worker_callbacks'],1)
++        self.assertEqual(len(parents),5);self.assertEqual(result['selected_checkpoint'],1)
++        self.assertIsNone(result['learner_fit_count'])
++        for change in [dict(scores=[0.]),dict(worker_attempted=True),dict(signature='f'*64),
++                       dict(parent_return_receipt={'path':'forged','sha256':'invalid'})]:
++            bad=copy.deepcopy(report);bad['records'][0].update(change)
++            with self.subTest(change=change),self.assertRaises(A.AuditStop):
++                A.anytime_accounting(bad,parents,task,lambda a,b:max(30,(a+b)//2),strong)
++        bad=copy.deepcopy(parents);bad[-1]['phase']='round-1-0'
++        with self.assertRaisesRegex(A.AuditStop,'provider_timeout_is_NULL'):
++            A.anytime_accounting(report,bad,task,lambda a,b:max(30,(a+b)//2),strong)
++        bad=copy.deepcopy(report);bad['executed_Qwen_candidates']=2
++        with self.assertRaisesRegex(A.AuditStop,'actual_attempt_counter'):
++            A.anytime_accounting(bad,parents,task,lambda a,b:max(30,(a+b)//2),strong)
++
++    def test_sealed_clean_timeout_binding_still_reaches_unchanged_strict_usage_rejection(self):
++        with tempfile.TemporaryDirectory() as tmp:
++            root=Path(tmp).resolve();taskcfg,expected=GatewaySourceClosureContracts().fixture(root)
++            output=root/'output';folder=output/'gateway-1';folder.mkdir(parents=True)
++            row=dict(output=str(output))
++            def fixture(parent_change=None,call_change=None,forged=False):
++                supervisor=dict(status='ok',exit_code=0,cleanup_confirmed=True,error_history=[],solver_budget_seconds=None,
++                    cleanup_observation=dict(denial_count=0,unresolved=[]))
++                supervisor.update(parent_change or {})
++                sup=save(folder/'supervisor.json',supervisor)
++                request=save(folder/'request.json',dict(schema='qwen-three-hour-single-gateway-v1',call_number=1,
++                    source_files=dict(expected),canonical_root=taskcfg['canonical_root'],output=str(folder/'result.json'),
++                    clock=dict(taskcfg['clock'],provider_deadline_monotonic=280.),timeout=180,
++                    prompt='synthetic system',context=dict(actual_resources=dict(learner_threads=2,worker_RSS_MiB=1536,whole_RSS_MiB=2048))))
++                call=dict(status='error',exception_type='TimeoutError',attempts=1,usage=None,usage_complete=None)
++                call.update(call_change or {})
++                result=save(folder/'result.json',dict(schema='qwen-three-hour-single-gateway-result-v1',request_sha256=request['sha256'],
++                    call_number=1,content=None,call=call))
++                record=dict(round=1,signature=None,status='provider_timeout',decision='discard',scores=None,
++                    error_type='TimeoutError',hypothesis=None,checkpoint=None,worker_attempted=False,parent_return_receipt=dict(sup))
++                if forged:record['parent_return_receipt']['sha256']='f'*64
++                report=dict(gateway_calls=1,records=[record],http_attempts_reported=1,http_attempts_complete=True,usage_complete=False,
++                    usage=[{k:call.get(k)for k in ('status','attempts','usage','usage_complete','finish_reason','reasoning_effort_requested','response_model')}])
++                seal=dict(files_sha256={ref['path']:ref['sha256']for ref in (request,result,sup)})
++                return report,seal
++            report,seal=fixture()
++            with self.assertRaisesRegex(A.AuditStop,'provider_failed'):
++                A.verify_usage(row,report,seal,taskcfg,lambda:None)
++            self.assertFalse(report['usage_complete']);self.assertIsNone(report['usage'][0]['usage'])
++            for parent_change,call_change,forged in [({}, {}, True),({'status':'child_failed','exit_code':1},{},False),
++                    ({'cleanup_confirmed':False},{},False),({'error_history':['observation_denied']},{},False),
++                    ({},{'exception_type':'RuntimeError'},False),({},{'attempts':None},False)]:
++                report,seal=fixture(parent_change,call_change,forged)
++                with self.subTest(parent=parent_change,call=call_change,forged=forged),self.assertRaisesRegex(A.AuditStop,
++                        'provider_timeout_actual_clean_return_binding_changed|provider_parent_or_technical_environment_unqualified'):
++                    A.verify_usage(row,report,seal,taskcfg,lambda:None)
++
++
+ if __name__=='__main__':unittest.main()

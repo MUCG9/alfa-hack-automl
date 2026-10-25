@@ -1,0 +1,66 @@
+{
+  "schema": "qh5-outer-R10-FM-independent-source-review-v1",
+  "result": "SOURCE_METADATA_CORRECTION_REQUIRED",
+  "reviewed_handoff": {
+    "path": "qwen-three-hour-outer-next-dev-r10/source-handoff.json",
+    "sha256": "928e566492f42b5825b9689cc3aa26966b388419aa97090648611fe5f4e70501"
+  },
+  "checked_local_pins": 15,
+  "checked_external_pins": 1702,
+  "preserved_R9_local_pins": 26,
+  "preserved_R9_external_pins": 1628,
+  "whole_main_inverse_exact": true,
+  "other_three_OUT_text_inverses_exact": true,
+  "all_runtime_function_and_class_AST_exact": true,
+  "generic_PS_and_both_outer_tests_raw_exact": true,
+  "actual_prepared_method_counts": [
+    2,
+    8,
+    4,
+    23,
+    4,
+    30,
+    2,
+    4,
+    6
+  ],
+  "actual_prepared_total": 83,
+  "same9_slots_parent_maximum": 270,
+  "source_caps_and_guards_unchanged": true,
+  "findings": [
+    {
+      "id": "QHO10META01",
+      "kind": "prospective binding/protocol consistency",
+      "evidence": [
+        {
+          "path": "binding.template.NOT_READY.json",
+          "key": "expected_output_work_relative",
+          "actual": "qh4",
+          "required": "qh5"
+        },
+        {
+          "path": "binding.template.NOT_READY.json",
+          "key": "prepared_contract_executions",
+          "actual": 77,
+          "required": 83
+        },
+        {
+          "path": "launch-terminal-contract.json",
+          "key": "atomic_binding.roles.independent_source_review",
+          "actual": "exact accepted outerR9 review ABS path/SHA, root supplies after peer",
+          "required": "actual accepted OuterR10 review"
+        }
+      ],
+      "implication": "The selected template and role description contradict the actual R10 output/AST census and can misdirect prospective metadata preparation. This is not an observed runtime or numerical failure; source remains NOT_READY.",
+      "minimal_correction": "Preserve issued928e and all runtime/test bytes; append a frozen authoritative correction/selected template and final handoff under root scope before READY materialization."
+    }
+  ],
+  "other_scoped_blockers": [],
+  "actual_candidate_imports": 0,
+  "actual_tests": 0,
+  "actual_fits": 0,
+  "actual_API": 0,
+  "actual_data_prediction_truth_reads": 0,
+  "actual_PID_scans": 0,
+  "actual_experiment_clock": null
+}

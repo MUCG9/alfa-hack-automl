@@ -1,0 +1,96 @@
+{
+  "schema": "qh5-native-closure-bootstrap-source-contract-v1",
+  "source_only": true,
+  "self_sha256": "1ee44a54bad8f54e818da1e635498f0e22d5822380e425513582c5c2550d5960",
+  "invoke_in_existing_exec_PowerShell_only": true,
+  "never_spawn_new_pwsh_or_change_execution_policy": true,
+  "close_cli": [
+    "-Mode",
+    "Close",
+    "-Template",
+    "ABS_ROOT_HOSTED_TEMPLATE",
+    "-TemplateSha256",
+    "ACTUAL_TEMPLATE_SHA256",
+    "-SelfSha256",
+    "1ee44a54bad8f54e818da1e635498f0e22d5822380e425513582c5c2550d5960",
+    "-ActualMainExit",
+    "ACTUAL_INTEGER_EXIT",
+    "-ActualMainTool",
+    "ACTUAL_NONEMPTY_CHUNK"
+  ],
+  "optional_actual_session": [
+    "-ActualMainSession",
+    "ACTUAL_SESSION_ONLY_IF_SUPPLIED"
+  ],
+  "post_cli_new_exec_shell_after_whole_Close_exit0": [
+    "-Mode",
+    "Post",
+    "-SelfSha256",
+    "1ee44a54bad8f54e818da1e635498f0e22d5822380e425513582c5c2550d5960",
+    "-ActualWrapperExit",
+    "0",
+    "-ActualWrapperTool",
+    "ACTUAL_CLOSE_TERMINAL_CHUNK"
+  ],
+  "template": {
+    "schema": "qwen-three-hour-atomic-root-private-v1",
+    "readiness": "NOT_READY",
+    "missing_bindings": [
+      "actual_campaign_sha256"
+    ],
+    "output": "ABS_WORK/qh5",
+    "expected_output_work_relative": "qh5",
+    "campaign": {
+      "path": "ABS_WORK/qh5/campaign.json",
+      "sha256": null
+    },
+    "immutable_files": "Full exact non-repin map, <=4096. Include this native source/self SHA, current OuterR10 files, reviewed Python/PS/review/manifest roles; campaign path must be ABSENT until actualmainterminal.",
+    "child_script_sha256": "Exact original generic close_child.ps1 SHA",
+    "roles_exact_path_sha_objects": [
+      "driver",
+      "closer",
+      "post_tool",
+      "python",
+      "powershell",
+      "manifest",
+      "independent_source_review",
+      "qualification_source_review"
+    ],
+    "role_paths": {
+      "driver": "ABS_WORK/qwen-three-hour-outer-next-dev-r10/run_campaign.py",
+      "closer": "ABS_WORK/qwen-three-hour-outer-next-dev-r10/close_controller.py",
+      "post_tool": "ABS_WORK/qwen-three-hour-outer-next-dev-r10/confirm_post_tool.py",
+      "python": "ABS_WORK/venv/Scripts/python.exe",
+      "powershell": "Actual current launching PowerShell executable exact originalpin",
+      "manifest": "Exact actual mainmanifest ABS under WORK/private, not an invented fixed revision",
+      "reviews": "Exact reviewed ABS roles under WORK, equal originalmap pins"
+    },
+    "wrapper_source": "ABS_WORK/qwen-three-hour-outer-next-dev-r10/run_root.py exact originalpin"
+  },
+  "binding_output": "ABS_WORK/private/qh5-atomic-root-binding-r1.json",
+  "binding_publication": "Only after clean actualmain0 +typed originalclock/scalars: set ONLY readiness/missingbindings/campaignSHA/one absent campaign pin; exclusive FileMode.CreateNew, UTF8 no BOM, <=1MiB, actualrawfileSHA. No placeholder READY or repin.",
+  "negative_path": "Actual nonzero main+failed campaign invokes frozen close_controller ONCE; does not create atomicbinding. Negative childexit is preserved.",
+  "positive_path": "SamePS writes binding and invokes run_root only; wrapper childPS owns native closer. No separatecloser, no separatePython metadata reader.",
+  "post_path": "NEW actual execPS after whole Close tool exit0; validates and hashes existingbinding natively then exact confirm_post_tool CLI. SamePS Close->Post is forbidden by caller.",
+  "identity": "Metadata shell is exactly the shell captured by qualified closer/wrapper; post captures its own newPS. No invented metadata3, no source writer/binder process.",
+  "timing": "Only native finite wallprecheck; original wall+monotonic10800/final240/wrapper60/actualcloserbirth60 enforced by unchanged qualified Python helpers. No new clock/deadline.",
+  "metadata_bounds": {
+    "atomic_template_and_binding_bytes": 1048576,
+    "pins": 4096,
+    "campaign_metadata_bytes": 33554432,
+    "no_campaign_stdout_dump": true
+  },
+  "predecessor_future_scope_at_source_freeze": {
+    "complete_observed_baseline": 8541,
+    "additional_actual_preparers": "Root must include all actual new preparer/witness receipts in main predecessor through existing ABI; no ownership/worker adoption."
+  },
+  "actual_source_parse": {
+    "kind": "PowerShell Parser.ParseFile AST only, target not invoked",
+    "syntax_errors": 0,
+    "tool": "3ffe81"
+  },
+  "actual_bootstrap_executions": 0,
+  "actual_tests_models_API": 0,
+  "actual_clock": null,
+  "READY": null
+}

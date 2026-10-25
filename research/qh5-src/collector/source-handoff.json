@@ -1,0 +1,24 @@
+{
+  "schema": "qh5-collector-source-handoff-v1",
+  "status": "FROZEN_INDEPENDENT_SOURCE_PEER_AND_10_PURE_FIXTURES_PASSED",
+  "files_sha256": {
+    "collector.js": "085d7bbdbdeac8c0408ad3112de751617844fb2b5ebdd4a06f44512e5f04db7c",
+    "test_collector_contracts.js": "821e8a31e90d25906a999a3fc5d8f47fb72f5ecbc82d307617dd08fb3fd9238d",
+    "pure-fixture-actual-result.json": "df32be1b35a8c1e7b579cf50d6e5e706c9e9e56c498cb03f64df40fdf4f289e7"
+  },
+  "independent_review": {
+    "path": "work/qh5-collector-eo-independent-source-review-r1.json",
+    "sha256": "8382f726b518a078a2604934b33915f57eb01511eb45d643d76bf5e6ea6adf95"
+  },
+  "bootstrap_handoff": {
+    "path": "work/qh5-closure-bootstrap-next-dev/source-handoff.json",
+    "sha256": "6114f7d7563c94321e95d66f279bcb541808468d5024bde6756c025f4c8b50c7"
+  },
+  "actual_mock_contracts": 10,
+  "actual_OS_processes": 0,
+  "actual_API_calls": 0,
+  "actual_models": 0,
+  "private_binding": null,
+  "clock": null,
+  "READY": null
+}

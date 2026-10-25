@@ -1,0 +1,51 @@
+{
+  "schema": "qwen-core-clean-provider-timeout-R10-source-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "factor": "ordinary clean provider timeout is a failed NULL no-worker research round; final quality gate remains strict",
+  "original_task_seconds": 4800,
+  "original_common_seconds": 10800,
+  "outer_provider_seconds": 180,
+  "sdk_receipt_exit_reserve_seconds": 10,
+  "derived_admission_margin_seconds": 270,
+  "unchanged": [
+    "exact five gateway canonical source files",
+    "full parent immutable source barriers",
+    "task/common hard clocks",
+    "parent actual resource and cleanup predicates",
+    "candidate recipes/stopping/selection/checkpoints",
+    "strict every-call status-ok and complete-usage quality gate"
+  ],
+  "clean_timeout_required": [
+    "existing actual task_entry callback returned through OK/exit0/cleanuptrue/noerrors",
+    "actual request/result/source bound",
+    "content is NULL",
+    "status error",
+    "exception_type exactly TimeoutError",
+    "attempts exact int 1..3",
+    "parent-produced supervisor path+SHA"
+  ],
+  "timeout_record": {
+    "status": "provider_timeout",
+    "decision": "discard",
+    "signature": null,
+    "scores": null,
+    "checkpoint": null,
+    "worker_attempted": false,
+    "error_type": "TimeoutError",
+    "parent_return_receipt": "actual parent supervisor reference"
+  },
+  "counters": "gateway and known HTTP attempts counted; no worker or Qwen candidate counter increment; no retry of same call",
+  "usage": "original seven-key saved usage unchanged; missing tokens stay NULL; cumulative usage_complete false is sticky",
+  "fatal_unchanged": [
+    "late provider",
+    "nonzero provider",
+    "resource/observation/source/cleanup failure",
+    "unknown attempts",
+    "binding failure"
+  ],
+  "actual_execution": null,
+  "actual_clock": null,
+  "actual_metrics": null,
+  "promotion": false,
+  "submit": false
+}

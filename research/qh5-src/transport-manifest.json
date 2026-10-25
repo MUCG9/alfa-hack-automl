@@ -1,0 +1,379 @@
+{
+  "schema": "qh5-exact-source-transport-v1",
+  "status": "SOURCE_ACCEPTED_NOT_RUNTIME_READY",
+  "files": [
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/auditor-compatibility.json",
+      "target": "research/qh5-src/core/auditor-compatibility.json",
+      "sha256": "d99f8b721405d61e1056101e28b1c4d44f2924f0c159641363ee799377c1ce3b"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/gateway_child.py",
+      "target": "research/qh5-src/core/gateway_child.py",
+      "sha256": "34093dabfd289c5f17af93469e08736aed822c0eefd31b3f82c607954903ee6c"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/protocol.json",
+      "target": "research/qh5-src/core/protocol.json",
+      "sha256": "75a024f5ffd9a6d5cfb8a65a3849d2e05097df789b8bfc85cb0eccdfa96114d1"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/provider_environment.py",
+      "target": "research/qh5-src/core/provider_environment.py",
+      "sha256": "e96b92389f33a0612c9c1c4a18fc5a5cee45ef9edc9164185c3cbe19ca33605d"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/R10-clean-provider-timeout.patch",
+      "target": "research/qh5-src/core/R10-clean-provider-timeout.patch",
+      "sha256": "d8e227d0459519500234774779c82a12ed32af48ce6b9d834f26ca25d2108942"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/R10-source-proof.json",
+      "target": "research/qh5-src/core/R10-source-proof.json",
+      "sha256": "0db0ed46be6566865af1f57d74fb1ed176c23710783e13b29279029a8084f78b"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/r5_resources.py",
+      "target": "research/qh5-src/core/r5_resources.py",
+      "sha256": "fab3b49c0640738983f92d59f977584de9f9001cbace59e985e36a7802a69d15"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/r5_worker_runtime.py",
+      "target": "research/qh5-src/core/r5_worker_runtime.py",
+      "sha256": "f7813cb463ca3d8655443971ec382756d88eb93987edb26fcf1e445b14635b42"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/README.txt",
+      "target": "research/qh5-src/core/README.txt",
+      "sha256": "ce7cb59cd2449ee9dfbf41557d2ba554c15cdc1c7debaf1d7b903a598445b58b"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/research_loop.py",
+      "target": "research/qh5-src/core/research_loop.py",
+      "sha256": "6cdd820d519fa762b389852f0902d6b819fbf96121881f98a1bf418633d4a28f"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/task_entry.py",
+      "target": "research/qh5-src/core/task_entry.py",
+      "sha256": "e693d8f74abd368184cc34aea5a67e0e24ff1e285be4503b6e75697b09291e5c"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/test_parent_callback_ledger.py",
+      "target": "research/qh5-src/core/test_parent_callback_ledger.py",
+      "sha256": "f1aad4cdd793bf598403ea9338dbec17c6b14defdee72e9dcd6a0af1db7ed985"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/test_provider_environment.py",
+      "target": "research/qh5-src/core/test_provider_environment.py",
+      "sha256": "1d09c6c307438afe7a2ce8e846a9e7e5a8c7afd774536228c1b05970c2937847"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/test_r5_worker_consumer.py",
+      "target": "research/qh5-src/core/test_r5_worker_consumer.py",
+      "sha256": "1a48c0aa81c3c1c47aa2da719d60459e82418f02bde32d0b2c10e873e1e2b1b0"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/test_research_loop.py",
+      "target": "research/qh5-src/core/test_research_loop.py",
+      "sha256": "ea8f808c4dd5455735dbb8182fa9a58e06198d80747839f2a6847f11a4ec74a1"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/test_resource_origin.py",
+      "target": "research/qh5-src/core/test_resource_origin.py",
+      "sha256": "db58f1cf4d4c09c8befbbca0d6ebd47f79a4917ec688d5c1dfcfca06914f0042"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/verified_sampling.py",
+      "target": "research/qh5-src/core/verified_sampling.py",
+      "sha256": "d65ee39eb80c9fc4590cbbf474ee6c09e84cb65abe2d2c367ebcfa415a390cf0"
+    },
+    {
+      "source": "work/qwen-three-hour-autoresearch-next-dev-r10/source-handoff-final.json",
+      "target": "research/qh5-src/core/source-handoff-final.json",
+      "sha256": "2ef1d62f1ad923dc00382502c9ece525df56c1304353dfa3d50ff31fa163c61c"
+    },
+    {
+      "source": "work/qwen-three-hour-independent-audit-next-dev-r7/audit_final.py",
+      "target": "research/qh5-src/auditor/audit_final.py",
+      "sha256": "5dee0daddb5b66145826ddd82dd30ba320ca552580690d5d04ca7b94b41ced0d"
+    },
+    {
+      "source": "work/qwen-three-hour-independent-audit-next-dev-r7/binding.template.NOT_READY.json",
+      "target": "research/qh5-src/auditor/binding.template.NOT_READY.json",
+      "sha256": "f998537fd5440f4fc5f99b5c5362d2bf57d51099031f4a9d6424175b05dcff6d"
+    },
+    {
+      "source": "work/qwen-three-hour-independent-audit-next-dev-r7/prepare_source.py",
+      "target": "research/qh5-src/auditor/prepare_source.py",
+      "sha256": "2641ef1dbbc1c9cf8340a9c7f26339a905e144d096fd8ffcda4b812636874d5f"
+    },
+    {
+      "source": "work/qwen-three-hour-independent-audit-next-dev-r7/primitive-provenance.json",
+      "target": "research/qh5-src/auditor/primitive-provenance.json",
+      "sha256": "c00301db2b2c242c9aac450355072bd25ae5f143f4957923bb0a7e832bf87b75"
+    },
+    {
+      "source": "work/qwen-three-hour-independent-audit-next-dev-r7/protocol.json",
+      "target": "research/qh5-src/auditor/protocol.json",
+      "sha256": "e38c703c3247896fc10615628d5674cbbcecf5ab6c318662bcce22efae6f37e9"
+    },
+    {
+      "source": "work/qwen-three-hour-independent-audit-next-dev-r7/r4_primitives.py",
+      "target": "research/qh5-src/auditor/r4_primitives.py",
+      "sha256": "d89a8024539eedb6daae9777ae3bd6a4f826da54265df4828a73caf10e94b371"
+    },
+    {
+      "source": "work/qwen-three-hour-independent-audit-next-dev-r7/R6-external-preservation.json",
+      "target": "research/qh5-src/auditor/R6-external-preservation.json",
+      "sha256": "a16d79bdf705a9b005d22b530ec8a95bf055dd495528f7b617196e818f4604d1"
+    },
+    {
+      "source": "work/qwen-three-hour-independent-audit-next-dev-r7/R7-provider-timeout-accounting-only.patch",
+      "target": "research/qh5-src/auditor/R7-provider-timeout-accounting-only.patch",
+      "sha256": "2b083327e6ab7e9ccf7b7193520f89fed4a09771e769bd15b2e14a6861ab9d9b"
+    },
+    {
+      "source": "work/qwen-three-hour-independent-audit-next-dev-r7/README.txt",
+      "target": "research/qh5-src/auditor/README.txt",
+      "sha256": "c3294f0c8c97de01f1f9360b2ccbd956c2589606289f7906042ca46a385f8cc9"
+    },
+    {
+      "source": "work/qwen-three-hour-independent-audit-next-dev-r7/source-proof.json",
+      "target": "research/qh5-src/auditor/source-proof.json",
+      "sha256": "d6af52df5d2be6ad1b254b97598309b852cb3056647027532fa4e2140c232e6e"
+    },
+    {
+      "source": "work/qwen-three-hour-independent-audit-next-dev-r7/test_audit_contracts.py",
+      "target": "research/qh5-src/auditor/test_audit_contracts.py",
+      "sha256": "96ac083afb6c241c2eeabb7fb5827cdda2a1917bfaef6d57de0a7f6c55d87e95"
+    },
+    {
+      "source": "work/qwen-three-hour-independent-audit-next-dev-r7/test_csv_role_contracts.py",
+      "target": "research/qh5-src/auditor/test_csv_role_contracts.py",
+      "sha256": "d2905f8bcddaad53f0fb25c8efaf64aec8fa6c0822b64b17bf23c7ba4ecabe07"
+    },
+    {
+      "source": "work/qwen-three-hour-independent-audit-next-dev-r7/source-handoff.json",
+      "target": "research/qh5-src/auditor/source-handoff.json",
+      "sha256": "6541fa8b590c4701a262b1f63f29040e80886287a7852f492462de9198684ce4"
+    },
+    {
+      "source": "work/qh5-closure-bootstrap-next-dev/close_native.ps1",
+      "target": "research/qh5-src/bootstrap/close_native.ps1",
+      "sha256": "1ee44a54bad8f54e818da1e635498f0e22d5822380e425513582c5c2550d5960"
+    },
+    {
+      "source": "work/qh5-closure-bootstrap-next-dev/contract.json",
+      "target": "research/qh5-src/bootstrap/contract.json",
+      "sha256": "106ceba82a6bcdedae3bb86d74ced89db78737766e252b5638e8a9c03701439e"
+    },
+    {
+      "source": "work/qh5-closure-bootstrap-next-dev/README.txt",
+      "target": "research/qh5-src/bootstrap/README.txt",
+      "sha256": "53294e29b097b746678f813131bf0fea3c1318d9bc4eb098bc600c4164fff776"
+    },
+    {
+      "source": "work/qh5-closure-bootstrap-next-dev/source-proof.json",
+      "target": "research/qh5-src/bootstrap/source-proof.json",
+      "sha256": "57a362eeebabc8237cd858094bc4d49f875d7c367d808e81228a53d76f31f867"
+    },
+    {
+      "source": "work/qh5-closure-bootstrap-next-dev/source-handoff.json",
+      "target": "research/qh5-src/bootstrap/source-handoff.json",
+      "sha256": "6114f7d7563c94321e95d66f279bcb541808468d5024bde6756c025f4c8b50c7"
+    },
+    {
+      "source": "work/qh5-collector-next-dev/collector.js",
+      "target": "research/qh5-src/collector/collector.js",
+      "sha256": "085d7bbdbdeac8c0408ad3112de751617844fb2b5ebdd4a06f44512e5f04db7c"
+    },
+    {
+      "source": "work/qh5-collector-next-dev/test_collector_contracts.js",
+      "target": "research/qh5-src/collector/test_collector_contracts.js",
+      "sha256": "821e8a31e90d25906a999a3fc5d8f47fb72f5ecbc82d307617dd08fb3fd9238d"
+    },
+    {
+      "source": "work/qh5-collector-next-dev/pure-fixture-actual-result.json",
+      "target": "research/qh5-src/collector/pure-fixture-actual-result.json",
+      "sha256": "df32be1b35a8c1e7b579cf50d6e5e706c9e9e56c498cb03f64df40fdf4f289e7"
+    },
+    {
+      "source": "work/qh5-collector-next-dev/source-handoff.json",
+      "target": "research/qh5-src/collector/source-handoff.json",
+      "sha256": "a94a009c7d91d735dcc2fb41a063fea1df2b039ddc6277372c01b445da2bbbe4"
+    },
+    {
+      "source": "work/qh5-root-metadata-preflight-caller-next-dev/run_preflight.py",
+      "target": "research/qh5-src/preflight/run_preflight.py",
+      "sha256": "3e75d5e9a2d47c6f5e8cec4df18c9da3e2ed608f42d08ae4dbba2866aa1d9ded"
+    },
+    {
+      "source": "work/qh5-root-metadata-preflight-caller-next-dev/source-handoff.json",
+      "target": "research/qh5-src/preflight/source-handoff.json",
+      "sha256": "e31d42717167aa3deb850123640b5ac09e09861436b761d4df31487cb4da6c68"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/atomic-binding.template.NOT_READY.json",
+      "target": "research/qh5-src/outer/atomic-binding.template.NOT_READY.json",
+      "sha256": "3c740629c9314aa37a5a7aeafd6cea3fdff8522b3610aa03ca3a5ae6ef4154a6"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/binding.template.NOT_READY.json",
+      "target": "research/qh5-src/outer/binding.template.NOT_READY.json",
+      "sha256": "0011e1aec36aeb048cf493b6add6023d6b9e3038d27652bdf3f26f985f9f2e1b"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/close_child.ps1",
+      "target": "research/qh5-src/outer/close_child.ps1",
+      "sha256": "605594aa5e3f9395a339c28915541402305d60b0b27d7e21b3073c5b05d32778"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/close_controller.py",
+      "target": "research/qh5-src/outer/close_controller.py",
+      "sha256": "1b28d7da61e18d1869ac55dde9f841f8d599186c509f9374b14e56809fb1721a"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/confirm_post_tool.py",
+      "target": "research/qh5-src/outer/confirm_post_tool.py",
+      "sha256": "dc774e3ecc3cb158513199d80a9caa74936b144faefedb394ef7614f9bf362a5"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/freeze_source.py",
+      "target": "research/qh5-src/outer/freeze_source.py",
+      "sha256": "c89b4d63e77eb0757a54f147cc3b2719bc46abddff1dcfaf49ef975f22bb07c9"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/launch-terminal-contract.json",
+      "target": "research/qh5-src/outer/launch-terminal-contract.json",
+      "sha256": "99a01e9f44cc8f56cc637eec4a2e5c599a0147f6111f755153053f1471be057b"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/protocol.json",
+      "target": "research/qh5-src/outer/protocol.json",
+      "sha256": "3ec7dd3a75a627fc602a518f0afed6961599cd088342fa5b9b8c107bfbbe3fbd"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/README.txt",
+      "target": "research/qh5-src/outer/README.txt",
+      "sha256": "d6fd722943f4e71a7d01409c13f9977fda2ec0e67f3139531761d199eba18d9e"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/run_campaign.py",
+      "target": "research/qh5-src/outer/run_campaign.py",
+      "sha256": "d3c8b2a7cb37aaa5391df6934b41c160600947d129c9718eb79d71bde52ced1b"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/run_root.py",
+      "target": "research/qh5-src/outer/run_root.py",
+      "sha256": "a8aac5b469851c0f649221456e4ded92e5a1517692b83769743757f3f8d71bc4"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/source-proof.json",
+      "target": "research/qh5-src/outer/source-proof.json",
+      "sha256": "c85b62cef038c4461bbc1d3c5698c4ef5baebd633a79744602930dcbda8daa0d"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/strong-authority.template.NOT_READY.json",
+      "target": "research/qh5-src/outer/strong-authority.template.NOT_READY.json",
+      "sha256": "66ecfc0249b450910c68507eb6facf9779a9b85b4a4b70eac67fa4fa58a475b5"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/test_atomic_root.py",
+      "target": "research/qh5-src/outer/test_atomic_root.py",
+      "sha256": "6a855980a261dc625258f6e85ca029d30eddc676520b953f14b854a7535657e0"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/test_broker_contracts.py",
+      "target": "research/qh5-src/outer/test_broker_contracts.py",
+      "sha256": "621def08d83ae8277f15af130178b0bfddacaaa31cc3a0b9cb3b2adbf7e30038"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/source-handoff.json",
+      "target": "research/qh5-src/outer/source-handoff.json",
+      "sha256": "928e566492f42b5825b9689cc3aa26966b388419aa97090648611fe5f4e70501"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/binding.template.corrected-r1.NOT_READY.json",
+      "target": "research/qh5-src/outer/binding.template.corrected-r1.NOT_READY.json",
+      "sha256": "95b33c2cfaa4ca065df9827d334f7edce70249854b5a0b2f378f296b07228102"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/launch-terminal-contract.corrected-r1.json",
+      "target": "research/qh5-src/outer/launch-terminal-contract.corrected-r1.json",
+      "sha256": "2fc46d95abb6fe758b59414d9354d6256e92b0346dfcca806ef02dff7a9dd6f5"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/metadata-correction-r1.json",
+      "target": "research/qh5-src/outer/metadata-correction-r1.json",
+      "sha256": "b131cea330f2a0dccce649299a2a3439b7be2bc5d6b2ee22ff16b1322542ea02"
+    },
+    {
+      "source": "work/qwen-three-hour-outer-next-dev-r10/source-handoff-final.json",
+      "target": "research/qh5-src/outer/source-handoff-final.json",
+      "sha256": "58a17c177d45310521b1a414a0bfcb5d1e3e0171c83f65d7dc73b4e30eb780f9"
+    },
+    {
+      "source": "work/qh5-core-r10-audit-contract-source-review-r1.json",
+      "target": "research/qh5-src/reviews/qh5-core-r10-audit-contract-source-review-r1.json",
+      "sha256": "cd4e6a47c77a498daa5a9af27d4e18ec42fa86e7ff623011706df222ec6e5fe7"
+    },
+    {
+      "source": "work/qwen-three-hour-independent-audit-source-review-r7.json",
+      "target": "research/qh5-src/reviews/qwen-three-hour-independent-audit-source-review-r7.json",
+      "sha256": "6f5877bccdc310cf8bd2bc6153b6fac3ee71c78abb98075838ff233f98bd3c69"
+    },
+    {
+      "source": "work/qh5-outer-r10-fm-independent-source-review-r1.json",
+      "target": "research/qh5-src/reviews/qh5-outer-r10-fm-independent-source-review-r1.json",
+      "sha256": "57cb6e79a7d330e591f32939f0fc8ca6eff7ba63f9f79881a6e8e77526a6927d"
+    },
+    {
+      "source": "work/qh5-outer-r10-fm-independent-source-review-r2.json",
+      "target": "research/qh5-src/reviews/qh5-outer-r10-fm-independent-source-review-r2.json",
+      "sha256": "32f40e28e28f9068e93c8aab780c531edf28d5c4bbb4d7eed849f00300e61965"
+    },
+    {
+      "source": "work/qh5-native-closure-bootstrap-fm-independent-source-review-r1.json",
+      "target": "research/qh5-src/reviews/qh5-native-closure-bootstrap-fm-independent-source-review-r1.json",
+      "sha256": "efebd0d67e4394214279843da5e0ddc389acb641e25411962cc3465fdd5e8a85"
+    },
+    {
+      "source": "work/qh5-collector-eo-independent-source-review-r1.json",
+      "target": "research/qh5-src/reviews/qh5-collector-eo-independent-source-review-r1.json",
+      "sha256": "8382f726b518a078a2604934b33915f57eb01511eb45d643d76bf5e6ea6adf95"
+    },
+    {
+      "source": "work/qh5-predecessor-projection-audit-contract-source-review-r1.json",
+      "target": "research/qh5-src/reviews/qh5-predecessor-projection-audit-contract-source-review-r1.json",
+      "sha256": "575c3d9ebebccece1b0ab7098399d0b71c85aeabe71907a9dbfcfcdb8874ce25"
+    },
+    {
+      "source": "work/qh5-metadata-preflight-caller-audit-contract-source-review-r1.json",
+      "target": "research/qh5-src/reviews/qh5-metadata-preflight-caller-audit-contract-source-review-r1.json",
+      "sha256": "34421508aba8201dc97f21c1ab42a9c333b7f0e66cf6ab521aaf1f4927fcc60e"
+    },
+    {
+      "source": "work/qh5-clean-provider-timeout-root-source-decision-r1.json",
+      "target": "research/qh5-src/reviews/qh5-clean-provider-timeout-root-source-decision-r1.json",
+      "sha256": "e179f316b12d476cbd7860dfa573fef95c6ec21d24cac34834db3d4717163754"
+    },
+    {
+      "source": "work/qh5-root-predecessor-projection-next-dev/prepare_predecessor.py",
+      "target": "research/qh5-src/projection-original/prepare_predecessor.py",
+      "sha256": "025f71e2b62116a0b5d69b680cef22c1667bf48f36f82276f9fbb5b0032d3e04"
+    },
+    {
+      "source": "work/qh5-root-predecessor-projection-next-dev-r2/prepare_predecessor.py",
+      "target": "research/qh5-src/projection-r2/prepare_predecessor.py",
+      "sha256": "ff225be48e2d4cf4663974cd2f224219070c23a4f3cf5d05297db8bb6ffa7efd"
+    },
+    {
+      "source": "work/qh5-root-source-acceptance-r1.json",
+      "target": "research/qh5-src/root-source-acceptance.json",
+      "sha256": "a8d019202870107b9651bda947896e56177c84a1830d3f2934c9e6df359dc6ea"
+    }
+  ],
+  "excluded": [],
+  "private_ready_or_data_transported": false,
+  "prior_partial_manifest_superseded": true
+}

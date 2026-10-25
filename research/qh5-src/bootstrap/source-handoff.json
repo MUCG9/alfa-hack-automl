@@ -1,0 +1,22 @@
+{
+  "schema": "qh5-native-closure-bootstrap-source-handoff-v1",
+  "status": "FROZEN_SOURCE_ONLY_PENDING_PEER",
+  "files_sha256": {
+    "close_native.ps1": "1ee44a54bad8f54e818da1e635498f0e22d5822380e425513582c5c2550d5960",
+    "contract.json": "106ceba82a6bcdedae3bb86d74ced89db78737766e252b5638e8a9c03701439e",
+    "README.txt": "53294e29b097b746678f813131bf0fea3c1318d9bc4eb098bc600c4164fff776",
+    "source-proof.json": "57a362eeebabc8237cd858094bc4d49f875d7c367d808e81228a53d76f31f867"
+  },
+  "external_refs_sha256": {
+    "qwen-three-hour-outer-next-dev-r9/source-handoff-final.json": "0f11d7b9275638a73e6ce5222ffa2663704b75201c0a690047905d1259da2da5",
+    "qwen-three-hour-outer-next-dev-r9/close_controller.py": "1c5d8464ffb6c12cca2ad85d52dcf27e0cbc442996447029238bc04552081ee2",
+    "qwen-three-hour-outer-next-dev-r9/run_root.py": "03f931a4c0b423c0cb612123118f5d5462217badcf7ae9676e77d02040486096",
+    "qwen-three-hour-outer-next-dev-r9/confirm_post_tool.py": "0ec832f7c4f88b8d0336b0dd720c9a24baacd00cf5aff712b6675dc872eaef7b",
+    "qwen-three-hour-outer-next-dev-r9/close_child.ps1": "605594aa5e3f9395a339c28915541402305d60b0b27d7e21b3073c5b05d32778",
+    "qwen-three-hour-outer-next-dev-r9/launch-terminal-contract.json": "be7fe90fdcc88e4fc05081e1559ec5f606af9d1fe9aa7a05d9fe6aaf4b600814",
+    "qh4-outer-r9-fm-independent-source-review-r2.json": "9f9b3cf009d9addf5a57264ec73f9794659bf0a183130cfef7f1edcdf05d9f03"
+  },
+  "actual_runtime": null,
+  "READY": null,
+  "author_target_execution": 0
+}

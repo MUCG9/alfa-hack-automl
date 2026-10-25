@@ -1,0 +1,33 @@
+{
+  "schema": "qh5-collector-pure-fixture-execution-v1",
+  "source_sha256": "085d7bbdbdeac8c0408ad3112de751617844fb2b5ebdd4a06f44512e5f04db7c",
+  "fixture_sha256": "821e8a31e90d25906a999a3fc5d8f47fb72f5ecbc82d307617dd08fb3fd9238d",
+  "independent_peer_sha256": "8382f726b518a078a2604934b33915f57eb01511eb45d643d76bf5e6ea6adf95",
+  "execution_environment": "functions_V8_injected_tools_only",
+  "tool_exit_code": null,
+  "elapsed_ms": 6,
+  "result": {
+    "schema": "qh5-collector-pure-contract-results-v1",
+    "passed": 10,
+    "names": [
+      "positive_yielded_whole_shells_and_actual_chunks",
+      "warning_prefixed_stdout_not_parsed",
+      "invalid_main_chunk_stops_before_close",
+      "missing_wrapper_chunk_blocks_post",
+      "nonzero_wrapper_preserved_no_post",
+      "main_receipt_failure_is_fatal_before_close",
+      "final_receipt_failure_visible_and_stored",
+      "missing_running_handle_is_fatal",
+      "post_failure_preserved",
+      "direct_initial_terminal_without_session"
+    ],
+    "actual_models": 0,
+    "actual_API": 0,
+    "actual_OS_processes": 0,
+    "injected_tools_only": true
+  },
+  "error": null,
+  "real_OS_processes": 0,
+  "real_API_calls": 0,
+  "real_models": 0
+}

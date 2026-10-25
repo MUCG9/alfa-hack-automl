@@ -1,0 +1,22 @@
+{
+  "schema": "QH-auditor-R7-provider-timeout-ledger-source-protocol-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "original_task_seconds": 4800,
+  "original_common_seconds": 10800,
+  "admission_margin_seconds": 270,
+  "source_schema": "qwen-iterative-task-v2-anytime",
+  "new_ledger_row": "provider_timeout discardedNULL with no actual worker",
+  "source_proof": "Existing sealed clean parent/source/request/result checks plus exact parent_return_receipt and typed raw TimeoutError.",
+  "strict_final_usage_summary_unchanged": true,
+  "error_or_incomplete_usage_cannot_qualify_metrics": true,
+  "prepared_method_count": 32,
+  "entrypoint_counts": [
+    30,
+    2
+  ],
+  "actual_tests": 0,
+  "actual_imports": 0,
+  "actual_READY": null,
+  "actual_clock": null,
+  "actual_metrics": null
+}

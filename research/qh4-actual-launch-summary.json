@@ -1,0 +1,28 @@
+{
+  "schema": "qh4-actual-launch-summary-v1",
+  "status": "RUNNING_NOT_COMPLETED",
+  "actual_launch_tool": "4a5c08",
+  "actual_session": 92878,
+  "collector_cell_id": "2975",
+  "manifest_sha256": "c0d9b83d6627695b16921b3f54d5f0343bdd05ef54c475df661b8d24e610013d",
+  "source_publication": "599bbc41d5390613254c8fbc8a392e3bcad0aacd",
+  "startup_contracts_passed": 77,
+  "startup_suites": 9,
+  "observation_tool": "a73d78",
+  "common_seconds": 10800,
+  "task_windows_seconds": [
+    4800,
+    4800
+  ],
+  "start_unix": 1792891947.93135,
+  "start_monotonic": 150953.328,
+  "deadline_unix": 1792902747.93135,
+  "deadline_monotonic": 161753.328,
+  "current_phase": "REG",
+  "new_qualified_metrics": null,
+  "completed_three_hours": false,
+  "promotion": false,
+  "submit": false,
+  "prior_QH3_FAILED": true,
+  "clock_setup_order": "Original main clock precedes setup; exact8473 absence checks are charged before heavy/API admission."
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "hpo-r3-compatibility-plans-root-acceptance-v1",
+  "status": "REVIEWED_SOURCE_PLANS_ONLY_NO_IMPLEMENTATION_ADMISSION",
+  "created_utc": "2026-10-25T03:29:58.471772+00:00",
+  "references_sha256": {
+    "hpo-r3-compatibility-plan-root-source-decision-r1.json": "8d07b3635af21004e8cc4cb231636aa910d6ba2f171b9e4011060b4b1fd23b62",
+    "hpo-r3-native-flat-compatibility-plan-next-dev/source-handoff.json": "5f2b85cd9b7d69a2b2678bd8fa4b6e019be6229658ff30ef915f3815a998198e",
+    "hpo-r3-off-composition-plan-next-dev/source-handoff.json": "90bd986bff2dec3d613fa32e8e6a0d2048df2d1406eab0f6adf1100c099e99f2",
+    "hpo-r3-compatibility-plan-audit-next-dev/source-handoff.json": "e8744676b42fb381bbc9f5004fbce19b916244043c88a50e4670b534fb3812e5",
+    "hpo-r3-native-flat-noarchive-addendum-r1.json": "98ac1d7a770bc8bb15a7070bbae48acdbd6bb91648f39677460931af3778bca6"
+  },
+  "actual_peer_reference_check_tool": "18d793",
+  "accepted_scope": "Existing native/flat launch mapping, producer-OFF-before-legacy composition, and no-archive source clarification only.",
+  "prospective_LOSS_choice": "Direct original-raw-text producer OFF hook at existing source-to-AST assignment. Preserve every assertion AST and literal witness, name and purpose; honestly re-pin the one changed full-method AST if later implemented.",
+  "remaining_conditions": [
+    "Actual native package/binary/thread closure before and after supported fits is unknown. Missing evidence remains NOT_READY/NOT_QUALIFIED; version labels or copied native maps are insufficient.",
+    "Closed source-only versus rewritten-flat inverse witness policy remains an explicit root choice. No new exclusion, changed golden, unknown-source fallback or fake actual-flat PASS is granted.",
+    "R3 pending wrapper-parent qualification and actual exit/cleanup requirement remains. Compatibility source plans do not create a bank, runtime authority, hit, warmstart, speedup or quality evidence.",
+    "Any future runtime is after QH5 terminal and separate reviewed admission. No new clock or budget is created by these plans."
+  ],
+  "no_archive_boundary": {
+    "continuing_user_constraint": "No new ZIP creation/extraction/packaging/release qualification or archive consent.",
+    "existing_reusable_renderer": "tools/build_submission.py::build_files returns exact flat filename->bytes map; validates imports/collisions/syntax/requirements but publishes no directory or ZIP.",
+    "unadmitted_archive_routes": [
+      "build_submission.main",
+      "scripts/package_solution.py",
+      "existing UAR10 contracts.archive and mapped technical-entry ZIP extraction/verify_release route"
+    ],
+    "directory_materialization_and_validation_status": "PENDING_SEPARATE_NARROW_SCOPE_NOT_IMPLEMENTED",
+    "benchmark_source_precedent": "benchmark_hpo52-58 / benchmark_candidates31-45 directly write renderer bytes, but their whole mains also discover data/run fits and are not an admitted renderer-only caller.",
+    "N2_permission_inferred": false,
+    "existing_whole_ZIP_gate_reusable_unchanged": false
+  },
+  "static_projected_production_modules": 73,
+  "static_projected_flat_members": 79,
+  "actual_builds": 0,
+  "producer_contracts_prepared": 23,
+  "producer_contracts_run": 0,
+  "implementation_admitted": false,
+  "runtime_admitted": false,
+  "canonical_integration": false,
+  "QH5_runtime_changed": false,
+  "archive_consent": false,
+  "quality_gain": null,
+  "savings": null,
+  "actual_clock": null
+}

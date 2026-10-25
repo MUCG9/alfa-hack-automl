@@ -1,0 +1,94 @@
+{
+  "schema": "source-plan-transport-v1",
+  "scope": "Exact plans, peer review and aggregate metadata only; external source references retained by hash, not a standalone runtime closure.",
+  "files": [
+    {
+      "source": "outputs/hpo-r3-compatibility-plans-source-results.json",
+      "transport": "outputs/hpo-r3-compatibility-plans-source-results.json",
+      "sha256": "ed8b36de3aa01a3226a21bc9489cc13deb8dc6cbb4894ad8575641d32e9edb11",
+      "bytes": 2510
+    },
+    {
+      "source": "work/hpo-r3-compatibility-plan-audit-next-dev/review.json",
+      "transport": "work/hpo-r3-compatibility-plan-audit-next-dev/review.json",
+      "sha256": "ee0494e1860962aa25b22166f27416ada43593e36037814742b31ec873d26ec2",
+      "bytes": 7693
+    },
+    {
+      "source": "work/hpo-r3-compatibility-plan-audit-next-dev/source-handoff.json",
+      "transport": "work/hpo-r3-compatibility-plan-audit-next-dev/source-handoff.json",
+      "sha256": "e8744676b42fb381bbc9f5004fbce19b916244043c88a50e4670b534fb3812e5",
+      "bytes": 3243
+    },
+    {
+      "source": "work/hpo-r3-compatibility-plan-root-source-decision-r1.json",
+      "transport": "work/hpo-r3-compatibility-plan-root-source-decision-r1.json",
+      "sha256": "8d07b3635af21004e8cc4cb231636aa910d6ba2f171b9e4011060b4b1fd23b62",
+      "bytes": 3042
+    },
+    {
+      "source": "work/hpo-r3-compatibility-plans-root-acceptance-r1.json",
+      "transport": "work/hpo-r3-compatibility-plans-root-acceptance-r1.json",
+      "sha256": "4a643516212272a74cde882e8c2596e6eb75cf0d1611293228e45faf6eb65dbe",
+      "bytes": 3459
+    },
+    {
+      "source": "work/hpo-r3-native-flat-compatibility-plan-next-dev/README.md",
+      "transport": "work/hpo-r3-native-flat-compatibility-plan-next-dev/README.md",
+      "sha256": "be7a06709ef8acedcf0c27c27b04489c375ab29ed849a16d9e570d4b84759b06",
+      "bytes": 1694
+    },
+    {
+      "source": "work/hpo-r3-native-flat-compatibility-plan-next-dev/compatibility-plan.json",
+      "transport": "work/hpo-r3-native-flat-compatibility-plan-next-dev/compatibility-plan.json",
+      "sha256": "efaa9b812a49f6c7a1cd71608a55b5765a25b3236af568412f8fedbc1898093b",
+      "bytes": 11199
+    },
+    {
+      "source": "work/hpo-r3-native-flat-compatibility-plan-next-dev/module-inventory.json",
+      "transport": "work/hpo-r3-native-flat-compatibility-plan-next-dev/module-inventory.json",
+      "sha256": "3b0aa94890551feb0e14501937cbcbde42eca277d1132237560d0b82b44cdc0d",
+      "bytes": 51985
+    },
+    {
+      "source": "work/hpo-r3-native-flat-compatibility-plan-next-dev/source-handoff.json",
+      "transport": "work/hpo-r3-native-flat-compatibility-plan-next-dev/source-handoff.json",
+      "sha256": "5f2b85cd9b7d69a2b2678bd8fa4b6e019be6229658ff30ef915f3815a998198e",
+      "bytes": 17650
+    },
+    {
+      "source": "work/hpo-r3-native-flat-noarchive-addendum-r1.json",
+      "transport": "work/hpo-r3-native-flat-noarchive-addendum-r1.json",
+      "sha256": "98ac1d7a770bc8bb15a7070bbae48acdbd6bb91648f39677460931af3778bca6",
+      "bytes": 3890
+    },
+    {
+      "source": "work/hpo-r3-off-composition-plan-next-dev/README.md",
+      "transport": "work/hpo-r3-off-composition-plan-next-dev/README.md",
+      "sha256": "033b8348952c921c63bb180cf3d07b5b27cdefa99b5eef79d12a7e6046386a7c",
+      "bytes": 1377
+    },
+    {
+      "source": "work/hpo-r3-off-composition-plan-next-dev/plan.json",
+      "transport": "work/hpo-r3-off-composition-plan-next-dev/plan.json",
+      "sha256": "c413cdf83dd919323e9b8c5656acc609ec24f6002e7ce0252a206784edbbe958",
+      "bytes": 7977
+    },
+    {
+      "source": "work/hpo-r3-off-composition-plan-next-dev/source-handoff.json",
+      "transport": "work/hpo-r3-off-composition-plan-next-dev/source-handoff.json",
+      "sha256": "90bd986bff2dec3d613fa32e8e6a0d2048df2d1406eab0f6adf1100c099e99f2",
+      "bytes": 4259
+    },
+    {
+      "source": "work/hpo-r3-off-composition-plan-next-dev/source-map.json",
+      "transport": "work/hpo-r3-off-composition-plan-next-dev/source-map.json",
+      "sha256": "99ec4483576c5ab16e11207aede8f4007b79c7145e05d6c04763041c2f8b7caf",
+      "bytes": 19972
+    }
+  ],
+  "implementation_admitted": false,
+  "runtime_admitted": false,
+  "new_archive_operations": 0,
+  "QH5_runtime_changes": 0
+}

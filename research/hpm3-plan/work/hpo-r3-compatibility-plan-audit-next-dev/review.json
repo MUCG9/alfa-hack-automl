@@ -1,0 +1,127 @@
+{
+  "schema": "hpo-R3-two-compatibility-plans-independent-source-review-v1",
+  "reviewer": "audit_contract",
+  "status": "PLANS_REVIEWED_NO_SCOPED_PLAN_BLOCKER_NO_IMPLEMENTATION_ADMISSION",
+  "root_scope": {
+    "path": "work/hpo-r3-compatibility-plan-root-source-decision-r1.json",
+    "sha256": "8d07b3635af21004e8cc4cb231636aa910d6ba2f171b9e4011060b4b1fd23b62"
+  },
+  "native_flat_plan": {
+    "path": "work/hpo-r3-native-flat-compatibility-plan-next-dev/source-handoff.json",
+    "sha256": "5f2b85cd9b7d69a2b2678bd8fa4b6e019be6229658ff30ef915f3815a998198e"
+  },
+  "OFF_composition_plan": {
+    "path": "work/hpo-r3-off-composition-plan-next-dev/source-handoff.json",
+    "sha256": "90bd986bff2dec3d613fa32e8e6a0d2048df2d1406eab0f6adf1100c099e99f2"
+  },
+  "no_archive_addendum": {
+    "path": "work/hpo-r3-native-flat-noarchive-addendum-r1.json",
+    "sha256": "98ac1d7a770bc8bb15a7070bbae48acdbd6bb91648f39677460931af3778bca6"
+  },
+  "pin_checks": {
+    "native_flat_local": 3,
+    "native_flat_external": 124,
+    "OFF_local": 3,
+    "OFF_external": 26,
+    "no_archive_addendum_source_refs": 8,
+    "all_actual_raw_SHA_exact": true
+  },
+  "current_source_applicability": {
+    "accepted_R3_source_and_23_prepared_0run_unchanged": true,
+    "current_canonical_runtime_is_preproducer_base": true,
+    "current_noninit_modules": 72,
+    "proposed_noninit_modules": 73,
+    "new_module": "automl.infrastructure.hpo_bank",
+    "new_flat_name": "automl_infrastructure_hpo_bank.py",
+    "proposed_native_runtime_source_count": 94,
+    "native_count_derivation": "73 modules +14 current package inits +7 current root wrappers; exact isolated layout required.",
+    "proposed_flat_members": 79,
+    "proposed_flat_python_sources": 78,
+    "flat_count_derivation": "73 mapped production modules +4 generated aliases +solution.py +requirements.txt.",
+    "all_73_selected_production_modules_source_SHA_and_flat_names_independently_verified": true,
+    "production_unmapped_project_ImportFrom": [],
+    "production_relative_imports": [],
+    "production_plain_import_automl": [],
+    "current_compiler_runtime_and_flat_test_helper_AST_pins_verified": true,
+    "actual_flat_render_member_SHA_or_build": null
+  },
+  "minimal_necessary_work_if_later_authorized": [
+    {
+      "id": "native_layout",
+      "selection": "Complete isolated current tree with exact four R3 module overlay and unchanged package inits/root wrappers; overlay alone is not standalone. No production entrypoint/runtime helper rewrite is evidenced."
+    },
+    {
+      "id": "production_mapping",
+      "selection": "Reuse existing dynamic module discovery/Flatten. No mandatory bank-specific module_map or production compiler rule is needed by the exact inspected imports."
+    },
+    {
+      "id": "strict_authority",
+      "selection": "Reuse paired CLI, actual strict frame/MetricSpec/source/input/budget/checkpoint objects and parent job/result/source/cleanup authority already accepted in R3. Native and flat source/native maps are distinct actual observations; static/source-only manifests and synthetic jobs cannot certify them."
+    },
+    {
+      "id": "contract_layout",
+      "selection": "Explicit four-test-file registration and sibling/dependency inventory. Existing FlatTestImports maps namespace B import and mock module-name strings, but modular PACKET/src paths, bank-relative source locators and sibling helper deployment need a small exact reviewed adaptation. No modular fallback or implicit skip."
+    },
+    {
+      "id": "closed_OFF",
+      "selection": "Exact original R3 normalized text first -> frozen producer inverse -> accepted complete current-base AST -> unchanged selector/context inverse stages -> unchanged legacy HPO/LOSS visitors and literal witnesses. Unknown or flattened/import-rewritten text must still fail the original producer text guard."
+    },
+    {
+      "id": "future_qualification",
+      "selection": "Recompute counts/pins only after exact compatibility source is chosen. Reuse existing resource/original-clock/source/cleanup/current-predecessor policy and separately observed successful wrapper/parent exit. No duplicate unchanged gate or controller framework follows from this plan."
+    }
+  ],
+  "root_selected_LOSS_boundary": {
+    "authority": "Trusted parent selection following source check tool833cc2; plan selection only.",
+    "actual_source_fact": "Existing LOSS method assigns tree=LegacyOffProjection().visit(ast.parse(raw_source)); assertion calls are separate. visit_Module has no exact original text, so ast.unparse(tree) cannot satisfy the frozen R3 text prehash.",
+    "minimal_selected_choice": "Direct raw-text producer inverse hook at that existing source-to-AST assignment before unchanged LegacyOffProjection.",
+    "changed_full_method_AST_count_if_implemented": 1,
+    "unchanged_assertions_and_literal_witnesses_required": true,
+    "method_name_purpose_and_every_other_legacy_method_preserved": true,
+    "all_35_current_method_and_assertion_hashes_verified_as_plan_basis": true,
+    "current_HPO_methods": 18,
+    "current_LOSS_methods": 17,
+    "new_general_adapter_or_ast_monkeypatch_required": false,
+    "implementation_or_new_method_hash_claimed": false
+  },
+  "no_archive_boundary": {
+    "continuing_user_constraint": "No new ZIP creation/extraction/packaging/release qualification or archive consent.",
+    "existing_reusable_renderer": "tools/build_submission.py::build_files returns exact flat filename->bytes map; validates imports/collisions/syntax/requirements but publishes no directory or ZIP.",
+    "unadmitted_archive_routes": [
+      "build_submission.main",
+      "scripts/package_solution.py",
+      "existing UAR10 contracts.archive and mapped technical-entry ZIP extraction/verify_release route"
+    ],
+    "directory_materialization_and_validation_status": "PENDING_SEPARATE_NARROW_SCOPE_NOT_IMPLEMENTED",
+    "benchmark_source_precedent": "benchmark_hpo52-58 / benchmark_candidates31-45 directly write renderer bytes, but their whole mains also discover data/run fits and are not an admitted renderer-only caller.",
+    "N2_permission_inferred": false,
+    "existing_whole_ZIP_gate_reusable_unchanged": false
+  },
+  "remaining_honest_boundaries": [
+    "Actual native package/binary/thread closure before and after supported fits is unknown. Missing evidence remains NOT_READY/NOT_QUALIFIED; version labels or copied native maps are insufficient.",
+    "Closed source-only versus rewritten-flat inverse witness policy remains an explicit root choice. No new exclusion, changed golden, unknown-source fallback or fake actual-flat PASS is granted.",
+    "R3 pending wrapper-parent qualification and actual exit/cleanup requirement remains. Compatibility source plans do not create a bank, runtime authority, hit, warmstart, speedup or quality evidence.",
+    "Any future runtime is after QH5 terminal and separate reviewed admission. No new clock or budget is created by these plans."
+  ],
+  "blockers": [],
+  "implementation_admitted": false,
+  "runtime_admitted": false,
+  "canonical_integration": false,
+  "READY": null,
+  "actual_clock": null,
+  "new_source_contract_executions": 0,
+  "R3_prepared_contracts": 23,
+  "R3_actual_contract_executions": 0,
+  "savings": null,
+  "quality_gain": null,
+  "consumer_lookup_warmstart_add_trial": false,
+  "review_execution_limits": {
+    "stdlib_source_text_AST_JSON_SHA_only": true,
+    "inverse_transform_executed_in_plan_review": false,
+    "renderer_compile_build_calls": 0,
+    "candidate_imports_tests_fixtures_fits_API": 0,
+    "data_arrays_predictions_truth_PID_scans": 0,
+    "Git_STATE_canonical_READY_archive_operations": 0,
+    "QH5_runtime_reads_or_changes": 0
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "schema": "hpo-R3-OFF-legacy-composition-proposal-v1",
+  "status": "PLAN_ONLY_ROOT_IMPLEMENTATION_CHOICE_REQUIRED",
+  "root_scope": {
+    "path": "hpo-r3-compatibility-plan-root-source-decision-r1.json",
+    "sha256": "8d07b3635af21004e8cc4cb231636aa910d6ba2f171b9e4011060b4b1fd23b62"
+  },
+  "implemented_now": [
+    "R3 producer closed project(relative,source) with exact normalized input SHA checked before ast.parse/mutation; accepted source proof has whole current-base OFF inverses23/5/13.",
+    "Current canonical HPO helper normalizes selector then fitting-context before original fair-reserve projector; current LOSS visitor normalizes selector before original LOSS projector.",
+    "Current two legacy test modules contain35methods with existing unchanged literal independent witnesses.",
+    "HPM01 source acceptance is pending/nonqualifying receipt plus checked exact-owned index cleanup; no runtime/native/flat integration admission."
+  ],
+  "not_implemented": [
+    "No current canonical HPO/LOSS helper invokes the producer inverse.",
+    "No end-to-end P->context/selector->legacy witness chain has been executed in this plan.",
+    "No source helper overlay, native/flat import rewrite or revised test AST hashes are authorized by this plan."
+  ],
+  "required_order": {
+    "HPO_runner": [
+      "Bind exact R3 original source bytes and normalized-text SHA68c135c0... before any ast.parse/unparse/rewrite.",
+      "P: frozen producer project(src/automl/search/runner.py, original text); require full current-base ASTcdd7733acce5792c8357d568f3b8844fed6ac8edf81b30dec6824121de89abf8.",
+      "Existing _composed_runner_off: selector stage FIRST, then context stage, with exact consumed AST fingerprints/counts and no remaining markers; require original12091-base AST from source-map.",
+      "Existing original fair-reserve projected_ast Project; unchanged runner witness877b5cd74b661d921cb1a12bca0b0b554caf943ee1c2e9b80adcb5e467097f7c."
+    ],
+    "HPO_module": [
+      "Bind exact R3 HPO text837b28c5...; P(src/automl/search/hpo.py,text) yields reviewed currente11 base ASTb0ffed9fa268cd4b3196a48d86f907deda68172816bcca7325f371cfd0647875.",
+      "No context/selector stage applies to this module. Preserve original HPO fair-reserve projection and witnessb03466060e2eed6886b89b8c3706afbb51eac9364f855b955c3b90f47bddbe96."
+    ],
+    "LOSS_worker": [
+      "Bind exact R3 worker text2f629eb4...; P(src/automl/execution/worker.py,text) yields reviewede662 base ASTf706494763a34ec14d03a96c7df2f469c26bdb83dff935c1b3ab9a120525dedf.",
+      "Existing _composed_worker_off exact selector fingerprint/count inverse yields originalde757-base AST from source-map.",
+      "Existing LegacyOffProjection removes only original loss backend layer, then unchanged worker witnessea1ba7f6270ced919a4f04ef50b80725af86068722a38573ab3a61fb3b9b324e."
+    ],
+    "LOSS_other_five": "No producer stage applies. Preserve existing original LOSS projection and all five literal witnesses, semantic assertions and adapter/metric contracts byte/AST unchanged."
+  },
+  "pre_post_boundary_rules": [
+    "Original R3 text must reach P without source flattening/import alias rewriting, ast.unparse or context/selector stripping first. The hardcoded normalized SHA would and must reject such changed text.",
+    "P returns AST, not original source bytes: compare full ast.dump(include_attributes=False) hash to the accepted current-base AST, not reconstructed source-text SHA. Then pass only a private validated AST onward.",
+    "Never weaken exact-input hashes, consumed fingerprint/count guards, old assertions/witnesses or marker residue checks to make a composed source fit. No baseline replacement of numerical/model function bodies.",
+    "If supporting both exact current preproducer baseline and exact selected R3 candidate in a future helper, use an explicit closed two-state input binding per affected file; never infer support from marker absence or fall back on unknown/partial source. Root must select this behavior."
+  ],
+  "concrete_raw_text_interface_gap": {
+    "HPO": "projected_ast(text,is_runner) already owns original text; a future narrow first-stage hook can run P before its existing ast.parse/composed helper/old visitor while leaving its caller test method/assertions/witnesses unchanged.",
+    "LOSS": "The current test method calls LegacyOffProjection().visit(ast.parse((ROOT/path).read_text(...))); visit_Module receives only AST. P(ast.unparse(tree)) is not the exact original text and must fail its allowlist. Adding P inside visit_Module without a raw/source-binding design is not already compatible.",
+    "minimal_proposed_choice": "Explicit source-text P hook at this one existing LOSS source->AST callsite, before unchanged LegacyOffProjection visitor. Preserve every original assertion, method name and literal witness; re-pin/review the one changed method AST honestly rather than claim all35methodASTs unchanged.",
+    "if_all35_method_ASTs_must_remain_exact": "A separately reviewed exact-source/AST boundary adapter is required. Its actual raw-source binding and private-tree identity must be specified before authorization; no generic ast monkeypatch, unparse hash bypass, ad-hoc filesystem reload or broad name-only removal is approved here."
+  },
+  "unchanged_evidence_requirements": {
+    "legacy_methods": 35,
+    "HPO_methods": 18,
+    "LOSS_methods": 17,
+    "all_assertions_and_literal_witnesses": "Exact current source-map hashes are mandatory references. Proposed helper changes must not skip tests, substitute expected hashes, relax metrics/rows/cleanup or conflate policy/source proof with executed tests.",
+    "R3_producer_contracts": "23 prepared only, separate census and execution evidence; do not recredit method imports as executions or infer a whole gate count.",
+    "old_frozen_packets": "Preserve old negative findings/old source and all current frozen R2/R3/legacy proofs."
+  },
+  "minimal_future_checks_proposed_not_executed": [
+    "Hash every source, inverse and legacy helper/fixture input before any projection; rehash afterward; exact raw-vs-normalized byte convention recorded.",
+    "On exact R3 source, execute only reviewed P then compare whole current-base AST and removed fingerprints/counts23/5/13 to prior source proof.",
+    "Execute unchanged selector/context stages in specified order and compare full intermediate ASTs to12091/de757; no numerical replacement.",
+    "Execute old fair-reserve/LOSS visitors and retain exact2+6 literal witnesses and all35 original assertion ASTs, except any specifically authorized source-hook expression re-pin.",
+    "Negative source cases: partial/duplicate/changed producer scaffolds, changed numerical code, source/import rewrite, wrong relative module, swapped stages and wrong expected state must fail without mutating input or blessing a hash.",
+    "Retain existing unknown/duplicate/context/selector mutation refusal checks and no residual markers.",
+    "Source-vs-flat qualification must be explicit: modular exact SHA projector does not accept rewritten flat source; no new exclusions or fallback broadening from this plan. Coordinate FM native/flat map before source implementation.",
+    "Any future actual technical run requires separate source review, exact method/entrypoint count, existing resource/original-budget/current-clean-predecessor admission; no models/API or broad duplicate gate inferred here."
+  ],
+  "native_flat_dependency": "FM owns work/hpo-r3-native-flat-compatibility-plan-next-dev; rewritten-source and package/ROOT/fixture asset paths require a separate reviewed mapping. This plan does not change or reclassify existing flat-only/module-only annotations.",
+  "new_framework_factor_numerical_policy_change": false,
+  "implementation": false,
+  "executed_inverse": false,
+  "tests_fits_API_data_PID_Git_STATE_READY_canonical_archive": 0,
+  "runtime_admitted": false,
+  "actual_clock": null,
+  "quality_gain": null,
+  "savings": null
+}

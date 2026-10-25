@@ -1,0 +1,156 @@
+{
+  "schema": "hpo-r3-native-flat-compatibility-source-plan-v1",
+  "status": "PLAN_ONLY_NO_IMPLEMENTATION_OR_RUNTIME_AUTHORITY",
+  "basis": {
+    "producer": {
+      "path": "hpo-trial-memory-producer-next-dev-r3/source-handoff-final.json",
+      "sha256": "1d5e283ba19aabe47d5af9f014c95e043fc6ff93cbe14e26aeb91aa5f11a22e9"
+    },
+    "contracts": {
+      "path": "hpo-trial-memory-producer-contract-next-dev-r3/source-handoff.json",
+      "sha256": "da0922ea06d1c549705213bdad81fdc6d74719fb69262506f20faa4079bf3057"
+    },
+    "source_peer": {
+      "path": "hpo-trial-memory-producer-r3-audit-contract-source-review-r1.json",
+      "sha256": "e6f739e3a1af8d8e8cf4141343383050897c8b6da848d9807b7267ab016d105a"
+    },
+    "root_acceptance": {
+      "path": "hpo-trial-memory-producer-r3-root-source-acceptance-r1.json",
+      "sha256": "71f29fe57e8f42e051a3f74d10acb4cc2a586045f3ada1c2dbe42196d6ab3b90"
+    },
+    "root_plan_decision": {
+      "path": "hpo-r3-compatibility-plan-root-source-decision-r1.json",
+      "sha256": "8d07b3635af21004e8cc4cb231636aa910d6ba2f171b9e4011060b4b1fd23b62"
+    },
+    "OFF_composition_separate_plan": {
+      "path": "hpo-r3-off-composition-plan-next-dev/source-handoff.json",
+      "sha256": "90bd986bff2dec3d613fa32e8e6a0d2048df2d1406eab0f6adf1100c099e99f2"
+    }
+  },
+  "already_implemented": [
+    "Trusted bank-only paired CLI/strict-frame authority, original checkpoint/deadline flow, actual fit-node prepared/native/effective identities and strict postcleanup commit are in accepted R3. HPM01 exact own-index revocation and pending success-path handoff limits are already source-reviewed. No duplicate repair is needed.",
+    "Existing build_files dynamically maps every non-__init__ module. Static source census admits the sole new bank as automl_infrastructure_hpo_bank.py; no explicit module_map addition or production Flatten change is required by the inspected imports.",
+    "Existing runtime.project_root/source_files/worker_entrypoint already distinguish modular development from flat root. Keep these functions unchanged unless a future exact runtime check finds a new defect.",
+    "23 SOURCE contracts are prepared (3 worker/native mocks +13 API +4 OFF/ON/inverse +3 HPM01 tail matrix); none executed. Neither actual native deployment nor flat fixture compatibility has been qualified."
+  ],
+  "entrypoints_and_CLI": {
+    "native_chain": [
+      "<isolated_root>/solution.py",
+      "unchanged agent_runner.py inserts <isolated_root>/src",
+      "automl.search.runner.main/_main",
+      "_strict_task_flow ->solve_single ->_optimize_with_trial_bank ->existing optimize_recipe callback",
+      "runtime.worker_entrypoint -><isolated_root>/agent_worker.py ->automl.execution.worker.run"
+    ],
+    "flat_chain": [
+      "<flat_root>/solution.py imports automl_runner",
+      "same main/_main CLI and strict flow after reviewed compiler import mapping",
+      "runtime.worker_entrypoint -><flat_root>/automl_worker.py"
+    ],
+    "minimal_optin_argument_syntax": [
+      "<qualified_python> <isolated_or_flat_root>/solution.py <ABS_task_md>",
+      "--strict-runtime --strict-task-contract --four-stage",
+      "--hpo-trials <positive_current_control_count> --hpo-budget <unchanged_control_phase_seconds>",
+      "--hpo-trial-bank <ABS_actual_optin_manifest_JSON> --hpo-trial-bank-sha256 <exact_SHA>"
+    ],
+    "ordinary_OFF": "Both bank flags absent; no bank authority/identity IO/import. Existing other experimental flags/control settings remain unchanged. This is research opt-in, no positional standard archive claim.",
+    "future_interpreter_task_clock_output_refs": null,
+    "no_cli_execution_admitted": true
+  },
+  "authority_flow": [
+    "CLI syntax validates paired absolute path/SHA and existing strict flags before RunBudget entry, without manifest reads. _hpo_trial_bank_manifest reads bounded1MiB exact JSON under the same real strict checkpoint before declaration/discovery.",
+    "After IO03/MetricSpec/full input provenance, source_refs must equal actual source_files paths/fingerprints, input_refs all actual non-source paths: task+declared input roles+optional dictionary. Manifest itself is separately rehashed. Actual frame/MetricSpec/budget/check objects are retained, not reconstructed.",
+    "Native source_files includes all current src/automl .py including __init__ plus root .py wrappers; flat source_files includes all root .py. Thus source maps, worker path and hashes MUST be independently materialized for the actual layout. Native authority cannot be copied unchanged to flat.",
+    "native_refs is mandatory exact actual Python/package/native file closure observed before AND after each supported fit (sys.executable, loaded selected package modules, threadpool paths, LightGBM _LIB); versions/requirements/installed directory guesses are insufficient. No actual native witness/manifest has been supplied by SOURCE work.",
+    "Inner-study/job/result/split/source and real birth tuples are qualified only after unchanged strict cleanup. No mock file descriptor/process tuple becomes real authority; unsupported engine/wrapper/incomplete identity stays bank NOT_QUALIFIED and original HPO semantics stay unchanged.",
+    "Completed index and saved/returned additive receipt grant no future hit or persisted completed handoff. Future positive qualification must bind actual successful wrapper/parent exit+cleanup. Original guard gap10/deadline/resource rules are not relaxed."
+  ],
+  "minimal_proposed_edit_list_ONLY_IF_ROOT_LATER_AUTHORIZES": [
+    {
+      "id": "N1",
+      "target": "New isolated complete native staging only",
+      "proposal": "Compose unchanged current source modules/package inits/7 root wrappers/tools/module_map/requirements with exact4 accepted R3 overlay modules. The partial overlay lacks inits/solution and is not an importable standalone checkout. Use actual isolated root in every source/worker pin; no canonical overwrite.",
+      "production_logic_changes": false
+    },
+    {
+      "id": "N2",
+      "target": "Existing build_submission.py in that isolated staging",
+      "proposal": "Reuse exact builder/module_map discovery; add no bank-specific compiler rule. Future actual build derives flat hashes/79 expected members and rechecks requirements; no build/archive work in this plan.",
+      "production_logic_changes": false
+    },
+    {
+      "id": "T1",
+      "target": "Source contract discovery/dependency inventory",
+      "proposal": "Explicitly register the four prepared test files, exact acceptance-contract JSON/proof/inverse and source-evidence dependencies. Do not count their presence as executed. Keep sibling test_default_off_acceptance basename available to postfinish tests; do not load old canonical bank.",
+      "production_logic_changes": false
+    },
+    {
+      "id": "T2",
+      "target": "Exact flat test path/import compatibility overlay",
+      "proposal": "Reuse existing FlatTestImports for project imports/mock module-name strings: it can map `from automl.infrastructure import hpo_bank as B` via known child-module mapping. Port ONLY helper layout access to actual flat automl_runner.py/automl_worker.py/bank; producer WorkerIdentityContracts.PACKET modular paths and B.__file__-relative runner_helper are not flat-compatible today. Retain each original assertion/witness, exact test-method census and raw source proof; no modular fallback or raw canonical test sidecar substituted for actual flat execution.",
+      "production_logic_changes": false
+    },
+    {
+      "id": "T3",
+      "target": "Closed source inverse and existing legacy tests",
+      "proposal": "Follow separate EO90bd plan before old context/selector HPO/LOSS projections. The current R3 inverse rejects flat import-rewritten bytes by design. A future explicitly reviewed flat-source prehash/import inverse or separately identified source-only witness is still required; this plan grants no new method exclusion, fake flat PASS or bypass of the closed guard. Root must select exact compatibility policy before implementation.",
+      "production_logic_changes": false
+    },
+    {
+      "id": "B1",
+      "target": "Future trusted metadata only after deployment source is fixed",
+      "proposal": "Materialize distinct native/flat exact manifests under existing qualified original-budget parent: source/input/native refs all actual. Capture native binary/module witness in the real relevant runtime; do not infer it from this static map or stored prepared hashes. Missing witness remains typed NOT_READY.",
+      "production_logic_changes": false
+    },
+    {
+      "id": "G1",
+      "target": "Future existing technical gate source/config inventory only",
+      "proposal": "Current UAR10 source fixes66/704/78 and reviewed old source pins. It cannot admit R3 as-is. After exact compatibility source is selected, derive all new source/mapped/flat counts and pins from bytes/AST under the unchanged reviewed guard/cleanup/caps. No clock, READY, budget extension or new controller/framework is authorized here.",
+      "production_logic_changes": false
+    }
+  ],
+  "concrete_unresolved_checks": [
+    {
+      "id": "U1",
+      "status": "NOT_DEPLOYED",
+      "check": "Complete isolated native source/import root and actual worker entrypoint/source-map equality, including root agent_worker.py pin; overlay-only PYTHONPATH is insufficient."
+    },
+    {
+      "id": "U2",
+      "status": "NO_REAL_AUTHORITY",
+      "check": "Actual native_refs closure before/after supported single/two-view fits, immutable native bytes, thread settings/caps and original guard applicability. Static file/map/protocol values cannot qualify it."
+    },
+    {
+      "id": "U3",
+      "status": "FLAT_FIXTURE_GAP",
+      "check": "Actual flat B import, runner/worker source locator, synthetic sys.modules target names and sibling helper inventory need an exact reviewed adaptation with assertion/diagnostic preservation."
+    },
+    {
+      "id": "U4",
+      "status": "ROOT_CHOICE_PENDING",
+      "check": "Exact source-only versus flat closed-inverse witness policy; preserve existing old tests/assertions and no hidden exclusions. Original normalized-source SHA precheck cannot be weakened to accept unverified flat text."
+    },
+    {
+      "id": "U5",
+      "status": "UNPERFORMED",
+      "check": "Actual source and actual-flat applicable contracts (including HPM01 late receipt failure), no old modular bank imported by flat jobs, exact counts/no skips, source unchanged and full known cleanup under separately admitted original common clock."
+    },
+    {
+      "id": "U6",
+      "status": "UNPERFORMED",
+      "check": "DefaultOFF runtime parity and original numerical/HPO/resource behavior; source inverses are proof of exact delta only, not runtime PASS."
+    }
+  ],
+  "limits": {
+    "code_patches": false,
+    "implementation": false,
+    "build_render_archive": false,
+    "imports_tests_fixtures_fits_API_data_arrays_predictions_truth_PID": 0,
+    "QH5_runtime_reads_or_changes": 0,
+    "Git_canonical_STATE_READY": false,
+    "clock": null,
+    "runtime_authority": null,
+    "savings": null,
+    "quality_gain": null,
+    "consumer_lookup_warmstart_add_trial": false
+  }
+}

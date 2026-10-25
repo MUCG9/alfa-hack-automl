@@ -1,0 +1,34 @@
+{
+  "schema": "hpo-r3-compatibility-plan-root-source-decision-v1",
+  "status": "SOURCE_PLAN_ONLY_NO_IMPLEMENTATION_OR_RUNTIME",
+  "created_utc": "2026-10-25T03:15:54.403371+00:00",
+  "basis": {
+    "work/hpo-trial-memory-producer-next-dev-r3/source-handoff-final.json": "1d5e283ba19aabe47d5af9f014c95e043fc6ff93cbe14e26aeb91aa5f11a22e9",
+    "work/hpo-trial-memory-producer-contract-next-dev-r3/source-handoff.json": "da0922ea06d1c549705213bdad81fdc6d74719fb69262506f20faa4079bf3057",
+    "work/hpo-trial-memory-producer-r3-audit-contract-source-review-r1.json": "e6f739e3a1af8d8e8cf4141343383050897c8b6da848d9807b7267ab016d105a",
+    "work/hpo-trial-memory-producer-r3-root-source-acceptance-r1.json": "71f29fe57e8f42e051a3f74d10acb4cc2a586045f3ada1c2dbe42196d6ab3b90"
+  },
+  "objective": "Identify the smallest existing native/flat launch and closed OFF-inverse compatibility work still required for the already selected default-OFF current-epoch producer, before any future implementation or bounded runtime admission.",
+  "FM_scope": "New isolated native/flat compatibility map and proposed minimal edit list from actual current source. Bind exact paths, hashes, entrypoints, CLI argument/authority flow and flat import closure; distinguish source drift, missing wiring, and unperformed checks. No code patch or archive operation.",
+  "EO_scope": "New isolated source map for composing the exact R3 producer OFF inverse before existing legacy context/selector HPO/LOSS projections. Bind order, pre/post hashes, unchanged assertions and witnesses, and concrete unresolved gaps. No executed inverse/test or code patch.",
+  "AC_scope": "Independent read-only source review of the two frozen plans and root remaining conditions. Only identify necessary existing authority, budget, source, cleanup and default-OFF evidence; no new framework, gate relaxation or duplicate qualification.",
+  "author_directories": {
+    "FM": "work/hpo-r3-native-flat-compatibility-plan-next-dev",
+    "EO": "work/hpo-r3-off-composition-plan-next-dev",
+    "AC": "work/hpo-r3-compatibility-plan-audit-next-dev"
+  },
+  "allowed": "Stdlib source text/AST/hash and plan JSON/Markdown only in assigned new directories. Freeze each source-only handoff with exact finite refs; label proposed versus currently implemented facts.",
+  "forbidden": [
+    "Any candidate import, fixture, test, fit, API, data/array/prediction/truth read or PID scan",
+    "Canonical edits, integration, code patches, QH5 frozen source or input changes, private READY, Git or STATE writes by authors",
+    "Archive creation, extraction, qualification, upload or promotion",
+    "New authority/resource/controller framework, time reset, relaxed predicate, numerical or HPO-policy change",
+    "Consumer, lookup, warmstart, add_trial, reuse/hit/savings/ML-gain claims",
+    "LOSS implementation or unchanged negative trial repeat"
+  ],
+  "QH5_only_active_heavy": true,
+  "runtime_admitted": false,
+  "implementation_admitted": false,
+  "canonical_integration": false,
+  "actual_clock": null
+}

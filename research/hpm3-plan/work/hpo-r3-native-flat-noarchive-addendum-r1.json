@@ -1,0 +1,39 @@
+{
+  "schema": "hpo-r3-flat-directory-no-archive-source-addendum-v1",
+  "status": "FROZEN_PLAN_CLARIFICATION_ONLY_NO_IMPLEMENTATION",
+  "unchanged_parent_plan": {
+    "path": "hpo-r3-native-flat-compatibility-plan-next-dev/source-handoff.json",
+    "sha256": "5f2b85cd9b7d69a2b2678bd8fa4b6e019be6229658ff30ef915f3815a998198e"
+  },
+  "continuing_constraint": "No new ZIP creation, extraction, packaging, release qualification or archive consent is inferred. Parent plan files remain unchanged.",
+  "N2_clarification": {
+    "existing_renderer_boundary": "alfa-hack-automl/tools/build_submission.py:19-40 build_files() returns the complete dict of flat filenames to exact rendered bytes. It validates mapped imports/name uniqueness, Python syntax via compile, secret pattern and original requirements SHA. It performs no directory/ZIP publication or extraction.",
+    "archive_boundary_separate": "Only main():42-54 writes ZipFile/ZIP manifest. scripts/package_solution.py invokes main, so neither CLI is suitable for this no-archive future path.",
+    "directory_write_source_precedent": "tools/benchmark_hpo.py:52-58 creates an isolated sources directory and writes each build_files() item directly; tools/benchmark_candidates.py:31-45 has the same no-archive else route. These are source examples only; their whole mains subsequently discover data/run fits and are NOT an admitted renderer-only CLI.",
+    "existing_directory_only_CLI": null,
+    "prospective_smallest_boundary": "A future separately authorized bounded caller can call the exact existing build_files renderer against the fixed isolated source root and exclusively materialize returned files into a new isolated flat directory, with exact per-file/inventory hashes and unchanged source/requirements proof. No ZIP is needed. No such caller is implemented or admitted by this addendum.",
+    "status": "RENDERER_AVAILABLE_DIRECTORY_PUBLICATION_AND_VALIDATION_PENDING_UNADMITTED"
+  },
+  "validation_limit": "The inspected UAR10 contracts.archive():149+ and technical_entry.py:133-156 require candidate.zip, extract it and pass it to verify_release. They cannot be invoked unchanged for a directory-only gate. Future root scope must select minimal exact directory inventory/hash/source/assertion validation; do not execute old ZIP gate or assume existing complete flat qualification applies.",
+  "function_AST_sha256": {
+    "build_files": "a254a8c740f4c4e461901055d7ac8607a3ff2e3ae728cfe9cfc0dc163e7ede65",
+    "main": "b9bffbd5b33637a3aa9daf3b55593fed580d1c8c1aa6fa7ba2a50e8161e7915c"
+  },
+  "source_refs_sha256": {
+    "hpo-r3-native-flat-compatibility-plan-next-dev/source-handoff.json": "5f2b85cd9b7d69a2b2678bd8fa4b6e019be6229658ff30ef915f3815a998198e",
+    "hpo-r3-compatibility-plan-root-source-decision-r1.json": "8d07b3635af21004e8cc4cb231636aa910d6ba2f171b9e4011060b4b1fd23b62",
+    "alfa-hack-automl/tools/build_submission.py": "8bda307675a952b2e4dc9d53ea8d738be05f8ca15a0e85d79c566e42cf95a6b6",
+    "alfa-hack-automl/tools/module_map.json": "9395e14a650379a9ac14e5512d000607c4fd47ac20781182f6350bd901eedc0b",
+    "alfa-hack-automl/tools/benchmark_hpo.py": "e3db58b63d62255358e614ae6935bc5aeb7b059339fe93bb69dabec0ef4b8132",
+    "alfa-hack-automl/tools/benchmark_candidates.py": "389e84fc0f81731e6704d9286e92ea13ac24b17c2664549c5936adf045970a26",
+    "uar10-context-selector-gate-next-dev-r3/contracts.py": "a929205198e5a0649c26129f6c366bb4b6965550f1982925f85cb398e443306b",
+    "uar10-context-selector-gate-next-dev-r3/technical_entry.py": "8682cb78c3ebeec5ce8cb13e67365c3167e7fd9ba6cd95d7a5c9de9e1d381bb2"
+  },
+  "actual_renderer_calls_imports_compile_build_write_flat_test_fixture_fit_API_data_PID_Git_canonical_STATE_READY_archive_operations": 0,
+  "QH5_runtime_reads_or_changes": 0,
+  "implementation_admitted": false,
+  "runtime_admitted": false,
+  "archive_consent": false,
+  "clock": null,
+  "READY": null
+}

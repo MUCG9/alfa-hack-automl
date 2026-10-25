@@ -1,0 +1,41 @@
+{
+  "schema": "hpo-R3-compatibility-plan-independent-audit-source-handoff-v1",
+  "status": "PLANS_REVIEWED_NO_SCOPED_PLAN_BLOCKER_NO_IMPLEMENTATION_ADMISSION",
+  "files_sha256": {
+    "review.json": "ee0494e1860962aa25b22166f27416ada43593e36037814742b31ec873d26ec2"
+  },
+  "external_refs_sha256": {
+    "hpo-r3-compatibility-plan-root-source-decision-r1.json": "8d07b3635af21004e8cc4cb231636aa910d6ba2f171b9e4011060b4b1fd23b62",
+    "hpo-r3-native-flat-compatibility-plan-next-dev/source-handoff.json": "5f2b85cd9b7d69a2b2678bd8fa4b6e019be6229658ff30ef915f3815a998198e",
+    "hpo-r3-native-flat-compatibility-plan-next-dev/compatibility-plan.json": "efaa9b812a49f6c7a1cd71608a55b5765a25b3236af568412f8fedbc1898093b",
+    "hpo-r3-native-flat-compatibility-plan-next-dev/module-inventory.json": "3b0aa94890551feb0e14501937cbcbde42eca277d1132237560d0b82b44cdc0d",
+    "hpo-r3-off-composition-plan-next-dev/source-handoff.json": "90bd986bff2dec3d613fa32e8e6a0d2048df2d1406eab0f6adf1100c099e99f2",
+    "hpo-r3-off-composition-plan-next-dev/plan.json": "c413cdf83dd919323e9b8c5656acc609ec24f6002e7ce0252a206784edbbe958",
+    "hpo-r3-off-composition-plan-next-dev/source-map.json": "99ec4483576c5ab16e11207aede8f4007b79c7145e05d6c04763041c2f8b7caf",
+    "hpo-r3-native-flat-noarchive-addendum-r1.json": "98ac1d7a770bc8bb15a7070bbae48acdbd6bb91648f39677460931af3778bca6",
+    "hpo-trial-memory-producer-next-dev-r3/source-handoff-final.json": "1d5e283ba19aabe47d5af9f014c95e043fc6ff93cbe14e26aeb91aa5f11a22e9",
+    "hpo-trial-memory-producer-contract-next-dev-r3/source-handoff.json": "da0922ea06d1c549705213bdad81fdc6d74719fb69262506f20faa4079bf3057",
+    "hpo-trial-memory-producer-r3-audit-contract-source-review-r1.json": "e6f739e3a1af8d8e8cf4141343383050897c8b6da848d9807b7267ab016d105a",
+    "hpo-trial-memory-producer-r3-root-source-acceptance-r1.json": "71f29fe57e8f42e051a3f74d10acb4cc2a586045f3ada1c2dbe42196d6ab3b90",
+    "alfa-hack-automl/tools/build_submission.py": "8bda307675a952b2e4dc9d53ea8d738be05f8ca15a0e85d79c566e42cf95a6b6",
+    "alfa-hack-automl/tools/module_map.json": "9395e14a650379a9ac14e5512d000607c4fd47ac20781182f6350bd901eedc0b",
+    "alfa-hack-automl/src/automl/infrastructure/runtime.py": "c450ef040bd04e55c295c51ff1037147b938afb8e239617cb936bcfc2a9047d8",
+    "alfa-hack-automl/tests/test_uar_hpo_fair_reserve.py": "b51ce05a2533515647ec04f521828c6c23e223bf3d4dbbfc287191f05eaa7252",
+    "alfa-hack-automl/tests/test_uar_loss_backend.py": "2240cef09e932130cd3d5350b02e2f5260b90f5b54259168695aa0936cced787",
+    "uar10-context-selector-gate-next-dev-r3/contracts.py": "a929205198e5a0649c26129f6c366bb4b6965550f1982925f85cb398e443306b",
+    "uar10-context-selector-gate-next-dev-r3/technical_entry.py": "8682cb78c3ebeec5ce8cb13e67365c3167e7fd9ba6cd95d7a5c9de9e1d381bb2"
+  },
+  "reference_roots": {
+    "files_sha256": "this audit packet",
+    "external_refs_sha256": "workspace/work; relative keys"
+  },
+  "root_selected_LOSS_raw_text_assignment_hook": true,
+  "no_new_archive_permission": true,
+  "implementation_admitted": false,
+  "runtime_admitted": false,
+  "candidate_imports_tests_fits_API_data_PID_Git_STATE_canonical_QH5": 0,
+  "actual_clock": null,
+  "READY": null,
+  "savings": null,
+  "quality_gain": null
+}

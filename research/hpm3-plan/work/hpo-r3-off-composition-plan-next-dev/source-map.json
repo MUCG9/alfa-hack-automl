@@ -1,0 +1,343 @@
+{
+  "schema": "hpo-R3-OFF-composition-source-map-v1",
+  "status": "READ_ONLY_SOURCE_AND_DECLARATIONS_NO_TRANSFORM_EXECUTED",
+  "selected_authorities": {
+    "root_scope": {
+      "path": "hpo-r3-compatibility-plan-root-source-decision-r1.json",
+      "sha256": "8d07b3635af21004e8cc4cb231636aa910d6ba2f171b9e4011060b4b1fd23b62"
+    },
+    "producer": {
+      "path": "hpo-trial-memory-producer-next-dev-r3/source-handoff-final.json",
+      "sha256": "1d5e283ba19aabe47d5af9f014c95e043fc6ff93cbe14e26aeb91aa5f11a22e9"
+    },
+    "contracts": {
+      "path": "hpo-trial-memory-producer-contract-next-dev-r3/source-handoff.json",
+      "sha256": "da0922ea06d1c549705213bdad81fdc6d74719fb69262506f20faa4079bf3057"
+    },
+    "producer_peer": {
+      "path": "hpo-trial-memory-producer-r3-audit-contract-source-review-r1.json",
+      "sha256": "e6f739e3a1af8d8e8cf4141343383050897c8b6da848d9807b7267ab016d105a"
+    },
+    "root_acceptance": {
+      "path": "hpo-trial-memory-producer-r3-root-source-acceptance-r1.json",
+      "sha256": "71f29fe57e8f42e051a3f74d10acb4cc2a586045f3ada1c2dbe42196d6ab3b90"
+    },
+    "producer_inverse": {
+      "path": "hpo-trial-memory-producer-next-dev-r3/default_off_inverse.py",
+      "sha256": "40be8df5989db2a3f7beaa9c8dab8b20228ddcd857dd92ddf3b036d8b0342af2"
+    },
+    "producer_proof": {
+      "path": "hpo-trial-memory-producer-next-dev-r3/source-proof-final.json",
+      "sha256": "1e2e93787addb4a9c12c9c1a6ed6c857c9030e5b3a18b54b65f9921eb2a6df80"
+    },
+    "legacy_overlay": {
+      "path": "combined-legacy-test-compatibility-next-dev/source-handoff.json",
+      "sha256": "83dcc7a5e69b7896339e6b5a4ddcd30b122af32ae32698090dd3b1a4d5f2699b"
+    },
+    "legacy_proof": {
+      "path": "combined-legacy-test-compatibility-next-dev/source-proof.json",
+      "sha256": "f8855acb6e7302e0bcacb8d23ba7c986fdf295838f1282e3f13d0b11d85c4f36"
+    },
+    "legacy_normalizer_proof": {
+      "path": "combined-legacy-test-compatibility-next-dev/normalizer-source-proof.json",
+      "sha256": "573390771c2916450bd5688b842e2fdd0e25b6daec8f81da8a464a41ce49c40b"
+    },
+    "legacy_peer": {
+      "path": "combined-legacy-test-compatibility-independent-review-r1.json",
+      "sha256": "0c96d47bfa0117ff61b7f084cef9f1ec9f6e6d1ac174dea49c39049c786db85a"
+    }
+  },
+  "producer_inputs_and_prior_proof_boundaries": {
+    "src/automl/search/runner.py": {
+      "candidate": {
+        "path": "hpo-trial-memory-producer-next-dev-r3/src/automl/search/runner.py",
+        "sha256": "68c135c0f321714abf4ca24aebf6ba3ffb67394a622c24e9a313862a999ae115"
+      },
+      "candidate_normalized_text_sha256": "68c135c0f321714abf4ca24aebf6ba3ffb67394a622c24e9a313862a999ae115",
+      "already_accepted_P_output_current_base": {
+        "path": "alfa-hack-automl/src/automl/search/runner.py",
+        "sha256": "7f98647af4dc720f3895fb551edc25efb6f18ab53c4b87bd0d7f854c09a4af96"
+      },
+      "current_base_AST_sha256": "cdd7733acce5792c8357d568f3b8844fed6ac8edf81b30dec6824121de89abf8",
+      "prior_accepted_removed_node_count": 23,
+      "current_plan_execution": "NOT_EXECUTED; these output/count claims are pinned prior source-proof assertions only."
+    },
+    "src/automl/search/hpo.py": {
+      "candidate": {
+        "path": "hpo-trial-memory-producer-next-dev-r3/src/automl/search/hpo.py",
+        "sha256": "837b28c5a4da1f8ff2f547d58b66ff626156ce357d7bd1185b281b5335f90cfa"
+      },
+      "candidate_normalized_text_sha256": "837b28c5a4da1f8ff2f547d58b66ff626156ce357d7bd1185b281b5335f90cfa",
+      "already_accepted_P_output_current_base": {
+        "path": "alfa-hack-automl/src/automl/search/hpo.py",
+        "sha256": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51"
+      },
+      "current_base_AST_sha256": "b0ffed9fa268cd4b3196a48d86f907deda68172816bcca7325f371cfd0647875",
+      "prior_accepted_removed_node_count": 5,
+      "current_plan_execution": "NOT_EXECUTED; these output/count claims are pinned prior source-proof assertions only."
+    },
+    "src/automl/execution/worker.py": {
+      "candidate": {
+        "path": "hpo-trial-memory-producer-next-dev-r3/src/automl/execution/worker.py",
+        "sha256": "2f629eb465a80ed6d1ea5cdccdb3c53bcac249570291281e212480c0208281bc"
+      },
+      "candidate_normalized_text_sha256": "2f629eb465a80ed6d1ea5cdccdb3c53bcac249570291281e212480c0208281bc",
+      "already_accepted_P_output_current_base": {
+        "path": "alfa-hack-automl/src/automl/execution/worker.py",
+        "sha256": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac"
+      },
+      "current_base_AST_sha256": "f706494763a34ec14d03a96c7df2f469c26bdb83dff935c1b3ab9a120525dedf",
+      "prior_accepted_removed_node_count": 13,
+      "current_plan_execution": "NOT_EXECUTED; these output/count claims are pinned prior source-proof assertions only."
+    }
+  },
+  "legacy_sources_methods_assertions_and_literal_witnesses": {
+    "HPO": {
+      "file": {
+        "path": "alfa-hack-automl/tests/test_uar_hpo_fair_reserve.py",
+        "sha256": "b51ce05a2533515647ec04f521828c6c23e223bf3d4dbbfc287191f05eaa7252"
+      },
+      "method_count": 18,
+      "helpers": {
+        "_composed_runner_off": {
+          "line": 68,
+          "end_line": 136,
+          "AST_sha256": "d78501783f7907b69567a36fb0d02e13dfcedf896ffa689edec6c82b296a5771"
+        },
+        "projected_ast": {
+          "line": 139,
+          "end_line": 187,
+          "AST_sha256": "3c2a126bc58a32d42489933609360ad2d5cb8e9dcc6adfcbea68919898762433"
+        }
+      },
+      "methods_and_assertions": {
+        "FairReserveTests.test_numerical_REG300_and_missing_strict_reject_before_discovery_or_API": {
+          "method_AST_sha256": "e394a81e987c7da7edc2b3630cffc6d89ab41ed141e60d62441e7379c55eb5d1",
+          "assertion_count": 2,
+          "assertions_AST_sha256": "bb66a3adb5aa0c1ccaa07710aa3fac29a4b6364d933de502a38efa0f2f8a70a0"
+        },
+        "FairReserveTests.test_exact_anchor_feasibility_and_soft_equal_share_arithmetic": {
+          "method_AST_sha256": "c5fc974de71a1dd1798bf8769ff9751956d98960af1b50cffa55e51336b8c094",
+          "assertion_count": 12,
+          "assertions_AST_sha256": "f4ef5c6a86849812bc581ba5f2946b8999e196e81b5fbda2813d96dc00ae74ab"
+        },
+        "FairReserveTests.test_original_clock_invalid_rollback_and_deadline_remain_sticky": {
+          "method_AST_sha256": "db2842c47fe70a0e55dd575a87ee10a3a06a7036516279062a307391bb1b4f7b",
+          "assertion_count": 8,
+          "assertions_AST_sha256": "e206c8970da5eac8db10016daafbb49a6163859c254bdeebe1b5cdc3c12b136c"
+        },
+        "FairReserveTests.test_late_anchor_setup_stops_without_callback_or_fake_trial": {
+          "method_AST_sha256": "6431849e7aefcadc7a344820e16453ffbf253923077e8a556a8f700f3a670521",
+          "assertion_count": 4,
+          "assertions_AST_sha256": "1b4b598eb04a8cade57b386cd73131795d78d5faadaed42a8be6324e41ce9acf"
+        },
+        "FairReserveTests.test_share_recomputed_after_persist_does_not_launch_stale_proposal": {
+          "method_AST_sha256": "dd29eba28f186f428ce5cf63b33cad29a09d0b994f67dbccc15d2e5ea0352a01",
+          "assertion_count": 5,
+          "assertions_AST_sha256": "71fbf03fce7a8ef466aeef2d825bc2cf8f95ae6b7a88515372f3c6eb38aaadd1"
+        },
+        "FairReserveTests.test_eight_actual_callbacks_preserve_anchor_template_space_and_truthful_phases": {
+          "method_AST_sha256": "df5e265a5c72e6d9e3e78bc0b08d3ce08c1e6949244c567e2229291f15774396",
+          "assertion_count": 10,
+          "assertions_AST_sha256": "ab4100e22e126b84c175bb5e674ebb76a983ab4eaa98db416367167561407d99"
+        },
+        "FairReserveTests.test_ordinary_confirmed_timeout_is_null_consumes_slot_and_continues": {
+          "method_AST_sha256": "3a771f43d947402b6e2c9d04df893fd7ac02014fecd9520b6514957f088ecd6b",
+          "assertion_count": 5,
+          "assertions_AST_sha256": "f1640d0e5907ed53a7e8ed159587a179db093d29143df9d3a52bc981268ef48b"
+        },
+        "FairReserveTests.test_actual_cleanup_overrun_stops_later_slots_without_reset_or_retry": {
+          "method_AST_sha256": "479c7c35043918d566a1fd2c39beb6b8de10e07d12125cad210d3733e4289379",
+          "assertion_count": 5,
+          "assertions_AST_sha256": "55bc7690d1a4a62e9293ca889f1444e0b9ea7e9b9efe3f7e15b04cc28f5b909c"
+        },
+        "FairReserveTests.test_resource_kill_late_cleanup_stays_timeout_but_parent_origin_forces_STOP": {
+          "method_AST_sha256": "78dac323a1a93eec6ad130e4a51d01d57987220193e1b2d8ba7e735d73e6e694",
+          "assertion_count": 4,
+          "assertions_AST_sha256": "6a1ac6bb1dbe95c6f78a88779fb7c5c9970c18d60cd5c7b59dda8bafc63f98f4"
+        },
+        "FairReserveTests.test_ordinary_late_clean_result_has_complete_nonresource_origin": {
+          "method_AST_sha256": "d89c4d114e1b6b2927acf76709f71c0a424d0ecebb70eba53463a4959491d9a8",
+          "assertion_count": 3,
+          "assertions_AST_sha256": "16817e87b0349b854fac3c7232e5dc4faab7ade6ace2d2ed7c35cdcd44ede955"
+        },
+        "FairReserveTests.test_original_cleanup_exception_propagates_and_trusted_scope_restores": {
+          "method_AST_sha256": "f1c1ec7adcbe43e382c908245de3eb9893e29c5260e7b5f76af7143c469053d7",
+          "assertion_count": 16,
+          "assertions_AST_sha256": "075ecd3164a7690ddb1cb54241b394b205a623a0f587bae6d2a2809a246d1c60"
+        },
+        "FairReserveTests.test_missing_or_incomplete_parent_receipt_is_technical_STOP": {
+          "method_AST_sha256": "f2c4b7b15b077f1f23b1aa2917918890ec5b83d1338ef15ec239c2905bbe7940",
+          "assertion_count": 4,
+          "assertions_AST_sha256": "96bf511af5db8a132596c1e0a302755cb0c3ee697186d7d16f7d5dc55e884224"
+        },
+        "FairReserveTests.test_resource_or_unknown_technical_origin_STOPs_without_extra_draw": {
+          "method_AST_sha256": "b1ed407b979ec0a3fd11d39a808240d4896dc3b02cc1d3dba4ebfb26e3d049b0",
+          "assertion_count": 3,
+          "assertions_AST_sha256": "58697f75960283c95d533c73f818a44e6501da0e4fcac9754cf115062bb035b8"
+        },
+        "FairReserveTests.test_duplicate_proposal_is_not_callback_or_valid_or_padding": {
+          "method_AST_sha256": "f5c956f4d5a27a097baf944d4e1df24c321bf8c63afc20c47aa88c10518db190",
+          "assertion_count": 6,
+          "assertions_AST_sha256": "8a20456d940352aac06297721bfea53c1a57c20f66f6abbd8c57405a157b5b6e"
+        },
+        "FairReserveTests.test_final_save_crossing_original_deadline_cannot_return_ok": {
+          "method_AST_sha256": "047962a32fde7991b983e80e0713ccfc3cc6ed1b2fc192fc5858d40b7635c00f",
+          "assertion_count": 3,
+          "assertions_AST_sha256": "a34a76298a7ff84df92615d5421959531c17ad3b323b4c09ef5e913c0aa37802"
+        },
+        "FairReserveTests.test_trusted_flag_cannot_be_enabled_by_recipe_context_and_scope_is_local": {
+          "method_AST_sha256": "4d9607e3c857f2c54a1d04b2a4ed709970235c548d6b232be7890edb1f63dbf3",
+          "assertion_count": 3,
+          "assertions_AST_sha256": "6091292f1f27cdb92c6c8c2eb40a05392ab79a89e2a6506a02558ff2cbb8b9fb"
+        },
+        "FairReserveTests.test_OFF_strict_worker_late_classification_does_not_add_provenance": {
+          "method_AST_sha256": "07f4d97aebfd1f0696910d7127361e9d68a8f12f8fc33d8353447133e006a786",
+          "assertion_count": 2,
+          "assertions_AST_sha256": "a2294c3b9e91f3519830e52c8bb04af299720b45b5757980db5e6c3a43eaa869"
+        },
+        "FairReserveTests.test_default_OFF_whole_module_ASTs_match_independent_original_bases": {
+          "method_AST_sha256": "8eda1d7e132a84b0061e3ac2c50827d68867a14ebbc40edcdbefd15df5899a1f",
+          "assertion_count": 1,
+          "assertions_AST_sha256": "5599752dfc22166b088135d56710c4056d900e87ffbe67a6b006d4411f7a61c2"
+        }
+      },
+      "unchanged_literal_witnesses": {
+        "hpo.py": "b03466060e2eed6886b89b8c3706afbb51eac9364f855b955c3b90f47bddbe96",
+        "runner.py": "877b5cd74b661d921cb1a12bca0b0b554caf943ee1c2e9b80adcb5e467097f7c"
+      }
+    },
+    "LOSS": {
+      "file": {
+        "path": "alfa-hack-automl/tests/test_uar_loss_backend.py",
+        "sha256": "2240cef09e932130cd3d5350b02e2f5260b90f5b54259168695aa0936cced787"
+      },
+      "method_count": 17,
+      "helpers": {
+        "_composed_worker_off": {
+          "line": 37,
+          "end_line": 88,
+          "AST_sha256": "edd1114bcc6d5443cb7e234f53dca5159c9b49ece7144668fd499f21cf7f5395"
+        },
+        "LegacyOffProjection": {
+          "line": 91,
+          "end_line": 130,
+          "AST_sha256": "7ce26dc9887e28c0e6b19831771f278f6d3134b2d001a0db68d1049550b00ddd"
+        }
+      },
+      "methods_and_assertions": {
+        "LossContractTests.test_catalog_fixed_regression_only_and_returned_metadata_independent": {
+          "method_AST_sha256": "d6ffbb6a59cad51b257026515a95f21742ea01985210a270cb627ea0a4c03b79",
+          "assertion_count": 5,
+          "assertions_AST_sha256": "8dad42d3217aa0cc0d0933123e947c0b7b178dd29cfc71fe0f5691d9cced883f"
+        },
+        "LossContractTests.test_normalization_effective_parameters_and_signature_retain_typed_ID": {
+          "method_AST_sha256": "0c6b2e81386bf8eb28f109cb1d9baf8cbc66874d195092217f78e16ac6bcd793",
+          "assertion_count": 5,
+          "assertions_AST_sha256": "d2b08129c520a31564572bd3ab6b6ed59a5d0349421dc351c092de3d94d883ff"
+        },
+        "LossContractTests.test_unknown_incompatible_and_misplaced_profile_reject_before_filter": {
+          "method_AST_sha256": "8e7db8694a4b892b7de45eb82ddb0f411bcf8d4b95418117486383c7b6896736",
+          "assertion_count": 6,
+          "assertions_AST_sha256": "73fc0ce0bcb76774480c4dafd350221f1c2d68dcfbe1fb0ac20f9118a2f00fa2"
+        },
+        "LossContractTests.test_raw_alias_conflicts_and_inherited_profile_reject_without_mutation": {
+          "method_AST_sha256": "2ae80379552bc823cd99c6483c2ea84b97d3c35aff17c32809d04a242af790d9",
+          "assertion_count": 3,
+          "assertions_AST_sha256": "1dcab8c13a7d3abfbd72b02034e0c69e1ebe7bf1f70a25ee5e46c390560a106e"
+        },
+        "LossContractTests.test_process_contract_rejects_bad_profile_in_any_ensemble_child": {
+          "method_AST_sha256": "51424b02462aa6470727b051b0606a7f8639bc168c98572e829f388206ca08a5",
+          "assertion_count": 3,
+          "assertions_AST_sha256": "5a03c8a1a4832c2ee2d10949b0f2279d8b37f0ef86368e16c7886df68cf0b7d8"
+        },
+        "LossContractTests.test_ordinary_advertised_capabilities_equal_base_UAR": {
+          "method_AST_sha256": "0489d115249a9ac5967c2e80a8a40bad8e130013b1b4b3e0c1bbc79e3ab752d7",
+          "assertion_count": 2,
+          "assertions_AST_sha256": "b5673155b5630a56ba183360711ba2cbc41b071780492684a4fd46526faef3d4"
+        },
+        "LossContractTests.test_nonprimary_early_stopping_and_direct_classification_are_rejected": {
+          "method_AST_sha256": "21456a834192aa3e9fb053e66a517c8f716637c62d57086835b7c456cf09c999",
+          "assertion_count": 5,
+          "assertions_AST_sha256": "c651934557d627ba500974191321b6c85738b2ccd0e657d08e927945828ab325"
+        },
+        "LossContractTests.test_telemetry_requires_actual_fitted_booster_not_constructor_claim": {
+          "method_AST_sha256": "4c81c088c78c1b7ef98944788c12683cab3dcc320c49d989fb07159fa2aae496",
+          "assertion_count": 6,
+          "assertions_AST_sha256": "d14a7d714080e358c576926bb8d067ff01046697187dea53f80ae50c9be9d343"
+        },
+        "LossContractTests.test_worker_rejects_wrong_kind_before_IO_or_any_ensemble_child": {
+          "method_AST_sha256": "5a06b6ff68e623c20967c03e91dce30a02b42dc66fe5841121ee2f4aab06ee5f",
+          "assertion_count": 2,
+          "assertions_AST_sha256": "bb66a3adb5aa0c1ccaa07710aa3fac29a4b6364d933de502a38efa0f2f8a70a0"
+        },
+        "LossContractTests.test_default_OFF_all_six_modules_preserve_base_UAR_AST": {
+          "method_AST_sha256": "6af5fb24f29354cf13ff5f521ad53b90322c5ad31a616ea4d403b2feb355a941",
+          "assertion_count": 8,
+          "assertions_AST_sha256": "856e980ac5de8be08722e7a4d5a86fd334e1822638714e63aadb6f5455b04f87"
+        },
+        "LossContractTests.test_ensemble_inventory_retains_leaf_loss_receipts_and_iteration_tree": {
+          "method_AST_sha256": "348a20f2df3d917aab01bd3601474361c00a26ecf1cac4d14f26ac0e5699d69c",
+          "assertion_count": 6,
+          "assertions_AST_sha256": "d6bc7883104c632ba47582336d57d4b08e03d4e6bc3bb27c3357e53502ac0bc3"
+        },
+        "LossRealEstimatorTests.test_real_l2_booster_parameters_and_finite_outputs": {
+          "method_AST_sha256": "ea89c4040456d907865b51f25394d7ccea98bcb8514c0f6f89c1947f7908fa84",
+          "assertion_count": 0,
+          "assertions_AST_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "LossRealEstimatorTests.test_real_l1_booster_parameters_and_finite_outputs": {
+          "method_AST_sha256": "97c32299f198b44c4d718015315cf49590d8dae058bd2d84db46a5cd007a96ee",
+          "assertion_count": 0,
+          "assertions_AST_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "LossRealEstimatorTests.test_real_huber_booster_parameters_and_fixed_alpha": {
+          "method_AST_sha256": "9faf8fe45b8d28702beabe52b6cfc5b702b5b3f2c720b598f7554bef6ffb4a19",
+          "assertion_count": 1,
+          "assertions_AST_sha256": "80fcc8d23680dd4fdc2fc7d89afd232d5af8d601232d74bb76f6c78432829f3e"
+        },
+        "LossRealEstimatorTests.test_real_explicit_l2_matches_implicit_legacy_loss": {
+          "method_AST_sha256": "16c778b6604fd6b09c61746d1807754128d2c9b20b5e928ee8cf4e35b0648863",
+          "assertion_count": 1,
+          "assertions_AST_sha256": "cce62807ca83ae4b8ca8b3378cc8e48160bc429b667ac2e9c3e8717a13f0aff4"
+        },
+        "LossRealEstimatorTests.test_real_huber_stops_only_on_unchanged_original_scale_RMSE": {
+          "method_AST_sha256": "74fc1459034750ceec0a93017664f7fe6cd45620eed418ed01f5881dda82fcb9",
+          "assertion_count": 7,
+          "assertions_AST_sha256": "fd1f3740e2994adec18abc2da49c3dbd8a145b09063a104ab1ddedd9f4355f07"
+        },
+        "LossRealEstimatorTests.test_tiny_worker_nested_and_full_refit_record_actual_booster_scopes": {
+          "method_AST_sha256": "90bd1caf94184abd7f1f3e41afc9ab261b6b43089c7faf19fcf920d4995f004d",
+          "assertion_count": 10,
+          "assertions_AST_sha256": "5b02cc05ab5c46d836c9bab780236333995003eb26f3036c49ce32f60bc9326a"
+        }
+      },
+      "unchanged_literal_witnesses": {
+        "src/automl/contracts/messages.py": "0b50cd6f2586376e111df718e872b6dd0dfc7b98842ef68b3b25b8faf7269f42",
+        "src/automl/execution/api.py": "2f5a5a753da784e3c2ea30c4629e0427ca41743ba86b16b591c7ad1e02317fab",
+        "src/automl/execution/worker.py": "ea1ba7f6270ced919a4f04ef50b80725af86068722a38573ab3a61fb3b9b324e",
+        "src/automl/search/policy.py": "e38eeb0f02fd1f7cb135f2fde0ecdb7783fa5ce7f83813d662bb1750fc851ba7",
+        "src/automl/execution/model_adapters/lightgbm.py": "4eada9d5b315883c3351aae43c49f7b03052b01a2211ded5610679d34aed9041",
+        "src/automl/execution/model_adapters/registry.py": "eb22c05f60f80d7307d8507a8a42ebd607cd47656556044f6bd29af9cc3dd2d1"
+      }
+    }
+  },
+  "pre_composed_bases": {
+    "runner": {
+      "path": "fit-context-gateway-next-dev/source-evidence/base/runner.py",
+      "sha256": "12091e5a3eb30744fb135fbd47d7a70ceddcf6c48c57fa9074def27e9cd4a4df",
+      "AST_sha256": "d81ec4c7b431be77ed46af40057be10ff825bb3e6356e62149ef908e07a2a60c"
+    },
+    "worker": {
+      "path": "fitting-context-selector-root-integration-r1/before/src/automl/execution/worker.py",
+      "sha256": "de75742f1cdbe18bf1a1280d16637116cdf76f53a12cab53496df75f3fefb477",
+      "AST_sha256": "a707b346dad48f7046d8223a4b25c4dfc59e7da88413ccab044bd54fd0da0e2f"
+    }
+  },
+  "producer_project_AST_anchor": {
+    "line": 30,
+    "AST_sha256": "ace675d08f7c02b79e2dd5107907f9f0112aac6baa89896b197c58cd4f321766"
+  },
+  "source_currently_canonical_is_preproducer_base": true,
+  "executed_inverse_imports_tests_fixtures_fits_API_data_PID_Git_STATE_READY_canonical_archive": 0
+}

@@ -1,0 +1,1153 @@
+{
+  "schema": "hpo-r3-native-flat-static-source-inventory-v1",
+  "status": "SOURCE_MAPPING_PROJECTION_ONLY_NO_RENDER_BUILD_OR_ARCHIVE",
+  "current_noninit_modules": 72,
+  "proposed_noninit_modules": 73,
+  "new_module": "automl.infrastructure.hpo_bank",
+  "selected_modules": {
+    "automl.compat.core": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/compat/core.py",
+        "sha256": "084348f364f84a4d583de482670f1ffd3bb683dbe4320d08285ff807acd51c3f"
+      },
+      "proposed_flat_name": "agent_core.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/compat/core.py",
+        "sha256": "084348f364f84a4d583de482670f1ffd3bb683dbe4320d08285ff807acd51c3f"
+      }
+    },
+    "automl.compat.models": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/compat/models.py",
+        "sha256": "c21e30c60913a9b313434dc951afb67ffb425163121a33964556eedcdf5a5b70"
+      },
+      "proposed_flat_name": "model_utils.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/compat/models.py",
+        "sha256": "c21e30c60913a9b313434dc951afb67ffb425163121a33964556eedcdf5a5b70"
+      }
+    },
+    "automl.contracts.error_analysis": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/contracts/error_analysis.py",
+        "sha256": "5f8ede5d12ce2c10ef9cd3ae26f181187e9661c7cbe78d16c7ebb452c73396aa"
+      },
+      "proposed_flat_name": "automl_contracts_error_analysis.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/contracts/error_analysis.py",
+        "sha256": "5f8ede5d12ce2c10ef9cd3ae26f181187e9661c7cbe78d16c7ebb452c73396aa"
+      }
+    },
+    "automl.contracts.messages": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/contracts/messages.py",
+        "sha256": "2da59a8467632748d021d4169ddb3e3af4eac01a48a8dc2ab9207c4c7701652d"
+      },
+      "proposed_flat_name": "automl_contracts_messages.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/contracts/messages.py",
+        "sha256": "2da59a8467632748d021d4169ddb3e3af4eac01a48a8dc2ab9207c4c7701652d"
+      }
+    },
+    "automl.contracts.metrics": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/contracts/metrics.py",
+        "sha256": "08c351b44e800976c9366387cd8b41e6ffcef1693de6cdf5b713c2d513b4793f"
+      },
+      "proposed_flat_name": "automl_contracts_metrics.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/contracts/metrics.py",
+        "sha256": "08c351b44e800976c9366387cd8b41e6ffcef1693de6cdf5b713c2d513b4793f"
+      }
+    },
+    "automl.error_analysis.api": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/api.py",
+        "sha256": "8ae44121bb1658087eeea09bfd193b0d56e521d2439124a0e4966af5cae4261f"
+      },
+      "proposed_flat_name": "automl_error_analysis_api.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/api.py",
+        "sha256": "8ae44121bb1658087eeea09bfd193b0d56e521d2439124a0e4966af5cae4261f"
+      }
+    },
+    "automl.error_analysis.artifacts": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/artifacts.py",
+        "sha256": "414ae8979a03c41dae448d885ec58e32e410c1a6bf457e54d5bc38bb8c4e25d1"
+      },
+      "proposed_flat_name": "automl_error_analysis_artifacts.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/artifacts.py",
+        "sha256": "414ae8979a03c41dae448d885ec58e32e410c1a6bf457e54d5bc38bb8c4e25d1"
+      }
+    },
+    "automl.error_analysis.classification": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/classification.py",
+        "sha256": "ca0a4a70fab31d909e246fe20b98421658dcb01ad9e6fe24645267536a80da60"
+      },
+      "proposed_flat_name": "automl_error_analysis_classification.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/classification.py",
+        "sha256": "ca0a4a70fab31d909e246fe20b98421658dcb01ad9e6fe24645267536a80da60"
+      }
+    },
+    "automl.error_analysis.comparisons": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/comparisons.py",
+        "sha256": "904f15d578d7f8ef03024f3e2b346b7719849faddafee8a54bc22986639da16d"
+      },
+      "proposed_flat_name": "automl_error_analysis_comparisons.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/comparisons.py",
+        "sha256": "904f15d578d7f8ef03024f3e2b346b7719849faddafee8a54bc22986639da16d"
+      }
+    },
+    "automl.error_analysis.preparation": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/preparation.py",
+        "sha256": "967af2169fcb927f21753352b3b30cf5d1bff8889d872e80bc853d711c983656"
+      },
+      "proposed_flat_name": "automl_error_analysis_preparation.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/preparation.py",
+        "sha256": "967af2169fcb927f21753352b3b30cf5d1bff8889d872e80bc853d711c983656"
+      }
+    },
+    "automl.error_analysis.regression": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/regression.py",
+        "sha256": "4c00df2bf4173c6f81e877761935917f1ec5a04f5181f94de8ddad78f1d48a6d"
+      },
+      "proposed_flat_name": "automl_error_analysis_regression.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/regression.py",
+        "sha256": "4c00df2bf4173c6f81e877761935917f1ec5a04f5181f94de8ddad78f1d48a6d"
+      }
+    },
+    "automl.error_analysis.reporting": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/reporting.py",
+        "sha256": "8cdcf95bb43aec7029ea32dc54631272e292ce03cd015de587557ff789acb009"
+      },
+      "proposed_flat_name": "automl_error_analysis_reporting.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/reporting.py",
+        "sha256": "8cdcf95bb43aec7029ea32dc54631272e292ce03cd015de587557ff789acb009"
+      }
+    },
+    "automl.error_analysis.service": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/service.py",
+        "sha256": "448b5d5dfe14ceb9d5eaee40be423f05b1ef69775886eac7b2d9a68b7dcc4efb"
+      },
+      "proposed_flat_name": "automl_error_analysis_service.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/service.py",
+        "sha256": "448b5d5dfe14ceb9d5eaee40be423f05b1ef69775886eac7b2d9a68b7dcc4efb"
+      }
+    },
+    "automl.error_analysis.slices": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/slices.py",
+        "sha256": "02dec65611b6d8e833dea2890628bde0d0527400b3165697fcbc4db331a41bd9"
+      },
+      "proposed_flat_name": "automl_error_analysis_slices.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/slices.py",
+        "sha256": "02dec65611b6d8e833dea2890628bde0d0527400b3165697fcbc4db331a41bd9"
+      }
+    },
+    "automl.error_analysis.uncertainty": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/uncertainty.py",
+        "sha256": "a499bcedbebcaf0f67bbdc8031341d14fc2396b873500974b355db444e5e0e4d"
+      },
+      "proposed_flat_name": "automl_error_analysis_uncertainty.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/error_analysis/uncertainty.py",
+        "sha256": "a499bcedbebcaf0f67bbdc8031341d14fc2396b873500974b355db444e5e0e4d"
+      }
+    },
+    "automl.evaluation.api": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/evaluation/api.py",
+        "sha256": "fe4157f0e2fb377bccc552542ec870a6a1f1ea92d1fbaa4bdc2ff71b9d88126b"
+      },
+      "proposed_flat_name": "automl_evaluation_api.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/evaluation/api.py",
+        "sha256": "fe4157f0e2fb377bccc552542ec870a6a1f1ea92d1fbaa4bdc2ff71b9d88126b"
+      }
+    },
+    "automl.evaluation.callbacks": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/evaluation/callbacks.py",
+        "sha256": "5ecfc3e07ba909b77edd56e762bdfcbca10feab81411c58069ff7d7ce34a2320"
+      },
+      "proposed_flat_name": "automl_callbacks.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/evaluation/callbacks.py",
+        "sha256": "5ecfc3e07ba909b77edd56e762bdfcbca10feab81411c58069ff7d7ce34a2320"
+      }
+    },
+    "automl.evaluation.postprocessor": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/evaluation/postprocessor.py",
+        "sha256": "665236ad9c3b58fb04aea27e4ccaf7ce83b00446265fc46985cefcd09b932a6e"
+      },
+      "proposed_flat_name": "automl_evaluation_postprocessor.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/evaluation/postprocessor.py",
+        "sha256": "665236ad9c3b58fb04aea27e4ccaf7ce83b00446265fc46985cefcd09b932a6e"
+      }
+    },
+    "automl.evaluation.ranking": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/evaluation/ranking.py",
+        "sha256": "d7eb09b8e6418537ace9b118182b92d2255b7fc6d2712e2b1c46dce71ae63ef2"
+      },
+      "proposed_flat_name": "automl_evaluation_ranking.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/evaluation/ranking.py",
+        "sha256": "d7eb09b8e6418537ace9b118182b92d2255b7fc6d2712e2b1c46dce71ae63ef2"
+      }
+    },
+    "automl.evaluation.service": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/evaluation/service.py",
+        "sha256": "4aac3ca3cdd3714e3d61598020bb9597faa68a460f0dc4a356dc9591a9a27b9e"
+      },
+      "proposed_flat_name": "automl_evaluation.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/evaluation/service.py",
+        "sha256": "4aac3ca3cdd3714e3d61598020bb9597faa68a460f0dc4a356dc9591a9a27b9e"
+      }
+    },
+    "automl.execution.api": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/api.py",
+        "sha256": "74c752d6ac19e119a5b266f17193ee5a9a433bd02e120d3b636e2f342ee771c9"
+      },
+      "proposed_flat_name": "automl_execution_api.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/api.py",
+        "sha256": "74c752d6ac19e119a5b266f17193ee5a9a433bd02e120d3b636e2f342ee771c9"
+      }
+    },
+    "automl.execution.augmentation.masking": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/augmentation/masking.py",
+        "sha256": "144f8e0bd6b32505933d05fbd205ed8882d1ec61d9b573ca6e3122a815acaf30"
+      },
+      "proposed_flat_name": "automl_execution_augmentation_masking.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/augmentation/masking.py",
+        "sha256": "144f8e0bd6b32505933d05fbd205ed8882d1ec61d9b573ca6e3122a815acaf30"
+      }
+    },
+    "automl.execution.augmentation.noop": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/augmentation/noop.py",
+        "sha256": "93ed823167ab7c98cd0e677a7319e9405df74add2ba7d40e8d85b3f06d405d1c"
+      },
+      "proposed_flat_name": "automl_execution_augmentation_noop.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/augmentation/noop.py",
+        "sha256": "93ed823167ab7c98cd0e677a7319e9405df74add2ba7d40e8d85b3f06d405d1c"
+      }
+    },
+    "automl.execution.ensembles": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/ensembles.py",
+        "sha256": "ab9fc113b1d3deb3ab0c9c6cfc8124511cdebb98718a74b586a6b742e3ae179d"
+      },
+      "proposed_flat_name": "automl_ensembles.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/ensembles.py",
+        "sha256": "ab9fc113b1d3deb3ab0c9c6cfc8124511cdebb98718a74b586a6b742e3ae179d"
+      }
+    },
+    "automl.execution.feature_engineering.importance_cache": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/feature_engineering/importance_cache.py",
+        "sha256": "aed6d38534e8959f78587bb6e80025731923d2d5ed374a2853e5cb84c206c02a"
+      },
+      "proposed_flat_name": "automl_execution_feature_engineering_importance_cache.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/feature_engineering/importance_cache.py",
+        "sha256": "aed6d38534e8959f78587bb6e80025731923d2d5ed374a2853e5cb84c206c02a"
+      }
+    },
+    "automl.execution.feature_engineering.selection": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/feature_engineering/selection.py",
+        "sha256": "31f2e70e36ecc210ee4660d58b8598711b088e1b723eb6bbce3d4d4af6cc3dbd"
+      },
+      "proposed_flat_name": "automl_execution_feature_engineering_selection.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/feature_engineering/selection.py",
+        "sha256": "31f2e70e36ecc210ee4660d58b8598711b088e1b723eb6bbce3d4d4af6cc3dbd"
+      }
+    },
+    "automl.execution.feature_engineering.transforms": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/feature_engineering/transforms.py",
+        "sha256": "acb38fe5c773dccb0161bc285a3428e7f768f66a0d248b45b536a3ba7dc21ac7"
+      },
+      "proposed_flat_name": "automl_features.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/feature_engineering/transforms.py",
+        "sha256": "acb38fe5c773dccb0161bc285a3428e7f768f66a0d248b45b536a3ba7dc21ac7"
+      }
+    },
+    "automl.execution.feature_views": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/feature_views.py",
+        "sha256": "091f58656042cb51a920f10e6884c333a95690beae64031000f9cd7c72bb9b9a"
+      },
+      "proposed_flat_name": "automl_execution_feature_views.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/feature_views.py",
+        "sha256": "091f58656042cb51a920f10e6884c333a95690beae64031000f9cd7c72bb9b9a"
+      }
+    },
+    "automl.execution.model_adapters.catboost": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/model_adapters/catboost.py",
+        "sha256": "8dee9a2ec7b091d92096e4bb8afe0558ee02ba139c0d13db0b95417ff2de1c64"
+      },
+      "proposed_flat_name": "automl_model_catboost.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/model_adapters/catboost.py",
+        "sha256": "8dee9a2ec7b091d92096e4bb8afe0558ee02ba139c0d13db0b95417ff2de1c64"
+      }
+    },
+    "automl.execution.model_adapters.extra_trees": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/model_adapters/extra_trees.py",
+        "sha256": "0a6a1093cd6f329ad69cddc7f3965067f7b539835312d2c16029deec47b5692a"
+      },
+      "proposed_flat_name": "automl_model_extra_trees.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/model_adapters/extra_trees.py",
+        "sha256": "0a6a1093cd6f329ad69cddc7f3965067f7b539835312d2c16029deec47b5692a"
+      }
+    },
+    "automl.execution.model_adapters.lightgbm": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/model_adapters/lightgbm.py",
+        "sha256": "cc773c5329a06a99c5d9567cf8c978f4fb0b21818ef21cd9ac1ba46bcd949856"
+      },
+      "proposed_flat_name": "automl_model_lightgbm.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/model_adapters/lightgbm.py",
+        "sha256": "cc773c5329a06a99c5d9567cf8c978f4fb0b21818ef21cd9ac1ba46bcd949856"
+      }
+    },
+    "automl.execution.model_adapters.linear_text": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/model_adapters/linear_text.py",
+        "sha256": "2598bfa99f846eac2d2599b457fbd8ea70f292b4a49eaaf15bebfd3d2760e842"
+      },
+      "proposed_flat_name": "automl_model_linear_text.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/model_adapters/linear_text.py",
+        "sha256": "2598bfa99f846eac2d2599b457fbd8ea70f292b4a49eaaf15bebfd3d2760e842"
+      }
+    },
+    "automl.execution.model_adapters.registry": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/model_adapters/registry.py",
+        "sha256": "75b885e822186ab8c235e6638ee888ecaa918a50f7662dc8fc2892682d761045"
+      },
+      "proposed_flat_name": "automl_models.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/model_adapters/registry.py",
+        "sha256": "75b885e822186ab8c235e6638ee888ecaa918a50f7662dc8fc2892682d761045"
+      }
+    },
+    "automl.execution.model_adapters.specialists": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/model_adapters/specialists.py",
+        "sha256": "cb6065d1ee444c39de8dad670c7c5f1f18bf9a18bb989d34243346dba6eb9e16"
+      },
+      "proposed_flat_name": "automl_execution_model_adapters_specialists.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/model_adapters/specialists.py",
+        "sha256": "cb6065d1ee444c39de8dad670c7c5f1f18bf9a18bb989d34243346dba6eb9e16"
+      }
+    },
+    "automl.execution.model_adapters.xgboost": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/model_adapters/xgboost.py",
+        "sha256": "56ac6138453634d62657e1b45cfcb846fa43b110abb28af0f0f67b2984ecea6e"
+      },
+      "proposed_flat_name": "automl_model_xgboost.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/model_adapters/xgboost.py",
+        "sha256": "56ac6138453634d62657e1b45cfcb846fa43b110abb28af0f0f67b2984ecea6e"
+      }
+    },
+    "automl.execution.postprocessing.targets": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/postprocessing/targets.py",
+        "sha256": "7cdf29444a2035e18dd06b59c94490db191aaba6e3d662396d5bcb6c441e5d91"
+      },
+      "proposed_flat_name": "automl_execution_postprocessing_targets.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/postprocessing/targets.py",
+        "sha256": "7cdf29444a2035e18dd06b59c94490db191aaba6e3d662396d5bcb6c441e5d91"
+      }
+    },
+    "automl.execution.preprocessing.frames": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/preprocessing/frames.py",
+        "sha256": "859a7559e3d2b0111191f9d45b6d94408faea100bd370fb60ce51415b7e5f76d"
+      },
+      "proposed_flat_name": "automl_frames.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/preprocessing/frames.py",
+        "sha256": "859a7559e3d2b0111191f9d45b6d94408faea100bd370fb60ce51415b7e5f76d"
+      }
+    },
+    "automl.execution.preprocessing.history": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/preprocessing/history.py",
+        "sha256": "d96c85d1732be7f6a8ba24b5e2a3e386b70bcb38383f19dc8f3013f4c2a35d28"
+      },
+      "proposed_flat_name": "automl_execution_preprocessing_history.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/preprocessing/history.py",
+        "sha256": "d96c85d1732be7f6a8ba24b5e2a3e386b70bcb38383f19dc8f3013f4c2a35d28"
+      }
+    },
+    "automl.execution.preprocessing.target_encoding": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/preprocessing/target_encoding.py",
+        "sha256": "7a2614bf54dc1779f649e5446460f5b8d341b8e89803c40fa1301bac98e75702"
+      },
+      "proposed_flat_name": "automl_execution_preprocessing_target_encoding.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/preprocessing/target_encoding.py",
+        "sha256": "7a2614bf54dc1779f649e5446460f5b8d341b8e89803c40fa1301bac98e75702"
+      }
+    },
+    "automl.execution.sampling.policies": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/sampling/policies.py",
+        "sha256": "3dc5b004df4c46e21e62c358d0b746f0d9e255ab90f24cb4bf1f5096ff01f05c"
+      },
+      "proposed_flat_name": "automl_execution_sampling_policies.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/sampling/policies.py",
+        "sha256": "3dc5b004df4c46e21e62c358d0b746f0d9e255ab90f24cb4bf1f5096ff01f05c"
+      }
+    },
+    "automl.execution.weighting.classes": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/execution/weighting/classes.py",
+        "sha256": "421ba823788be5e3c4d6c529578c7fb7e5f64b5e95c4c35ca11c7ce75fd1ccd5"
+      },
+      "proposed_flat_name": "automl_weights.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/weighting/classes.py",
+        "sha256": "421ba823788be5e3c4d6c529578c7fb7e5f64b5e95c4c35ca11c7ce75fd1ccd5"
+      }
+    },
+    "automl.execution.worker": {
+      "selected_source": {
+        "path": "hpo-trial-memory-producer-next-dev-r3/src/automl/execution/worker.py",
+        "sha256": "2f629eb465a80ed6d1ea5cdccdb3c53bcac249570291281e212480c0208281bc"
+      },
+      "proposed_flat_name": "automl_worker.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "accepted R3 overlay",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/execution/worker.py",
+        "sha256": "e6625c7dfb707ca76aa04b77d80602800700d98f748c605cf8a06137cd2397ac"
+      }
+    },
+    "automl.infrastructure.atomic": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/atomic.py",
+        "sha256": "2c4cee1f1b2714d1c5b14d7e05400a597c961398788eb622478518a461c52388"
+      },
+      "proposed_flat_name": "automl_atomic.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/atomic.py",
+        "sha256": "2c4cee1f1b2714d1c5b14d7e05400a597c961398788eb622478518a461c52388"
+      }
+    },
+    "automl.infrastructure.hpo_bank": {
+      "selected_source": {
+        "path": "hpo-trial-memory-producer-next-dev-r3/src/automl/infrastructure/hpo_bank.py",
+        "sha256": "457a0c1c7cc5f499bea84e5b0545c3a1285e0b1785ee5f1ffbb789b22a398716"
+      },
+      "proposed_flat_name": "automl_infrastructure_hpo_bank.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "accepted R3 overlay"
+    },
+    "automl.infrastructure.llm_gateway": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/llm_gateway.py",
+        "sha256": "31e45ff7c44e26a1451089c535ba9090aea9d6d35f7ac810bc157c5bda7e2aba"
+      },
+      "proposed_flat_name": "automl_infrastructure_llm_gateway.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/llm_gateway.py",
+        "sha256": "31e45ff7c44e26a1451089c535ba9090aea9d6d35f7ac810bc157c5bda7e2aba"
+      }
+    },
+    "automl.infrastructure.observation_time": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/observation_time.py",
+        "sha256": "9d7332f70412334f91c6f0eaf92a587a6a31d479706de96171fd543f4b99d578"
+      },
+      "proposed_flat_name": "automl_infrastructure_observation_time.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/observation_time.py",
+        "sha256": "9d7332f70412334f91c6f0eaf92a587a6a31d479706de96171fd543f4b99d578"
+      }
+    },
+    "automl.infrastructure.processes": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/processes.py",
+        "sha256": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3"
+      },
+      "proposed_flat_name": "automl_infrastructure_processes.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/processes.py",
+        "sha256": "9f84f64199b63dc4cef095e026d23084e338f1e42a97d5b4bd083e10f687bdb3"
+      }
+    },
+    "automl.infrastructure.resources": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/resources.py",
+        "sha256": "d578cecdcb48a35d3f3009ad1c72944fbfb0856d6e9cc40bf9f4ddfba1d244dd"
+      },
+      "proposed_flat_name": "automl_infrastructure_resources.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/resources.py",
+        "sha256": "d578cecdcb48a35d3f3009ad1c72944fbfb0856d6e9cc40bf9f4ddfba1d244dd"
+      }
+    },
+    "automl.infrastructure.run_budget": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/run_budget.py",
+        "sha256": "f16fa52a4f051eac331d4411c3ae7e10c81c8f44efed7caefa872e0ad3774b49"
+      },
+      "proposed_flat_name": "automl_infrastructure_run_budget.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/run_budget.py",
+        "sha256": "f16fa52a4f051eac331d4411c3ae7e10c81c8f44efed7caefa872e0ad3774b49"
+      }
+    },
+    "automl.infrastructure.runtime": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/runtime.py",
+        "sha256": "c450ef040bd04e55c295c51ff1037147b938afb8e239617cb936bcfc2a9047d8"
+      },
+      "proposed_flat_name": "automl_runtime.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/runtime.py",
+        "sha256": "c450ef040bd04e55c295c51ff1037147b938afb8e239617cb936bcfc2a9047d8"
+      }
+    },
+    "automl.infrastructure.tables": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/tables.py",
+        "sha256": "881420fe37416731bedc4b14e1a9d7752936ac19bcf245676b8edbc8571ff2bf"
+      },
+      "proposed_flat_name": "automl_infrastructure_tables.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/infrastructure/tables.py",
+        "sha256": "881420fe37416731bedc4b14e1a9d7752936ac19bcf245676b8edbc8571ff2bf"
+      }
+    },
+    "automl.publishing.api": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/publishing/api.py",
+        "sha256": "d3de71b285323808c3e9bf6c49445d9e9fd4698d941b981dbb2f61f8cb8ebe21"
+      },
+      "proposed_flat_name": "automl_publishing_api.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/publishing/api.py",
+        "sha256": "d3de71b285323808c3e9bf6c49445d9e9fd4698d941b981dbb2f61f8cb8ebe21"
+      }
+    },
+    "automl.publishing.service": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/publishing/service.py",
+        "sha256": "67a961a1b0d104c76867230166c7f9b729e97a243584d60f63fb3f9e20b78f12"
+      },
+      "proposed_flat_name": "automl_publishing.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/publishing/service.py",
+        "sha256": "67a961a1b0d104c76867230166c7f9b729e97a243584d60f63fb3f9e20b78f12"
+      }
+    },
+    "automl.search.fit_context_gateway": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/search/fit_context_gateway.py",
+        "sha256": "89836938a2cc6f11c24a654f7a1b72d01301ebe5be8a7cc8bc343abde2f3724b"
+      },
+      "proposed_flat_name": "automl_fit_context_gateway.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/search/fit_context_gateway.py",
+        "sha256": "89836938a2cc6f11c24a654f7a1b72d01301ebe5be8a7cc8bc343abde2f3724b"
+      }
+    },
+    "automl.search.fitting_bounds": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/search/fitting_bounds.py",
+        "sha256": "1f6b27debfdf2609e03641beae8235ad1a034bd97450b61156bd991cc588a93c"
+      },
+      "proposed_flat_name": "automl_fitting_bounds.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/search/fitting_bounds.py",
+        "sha256": "1f6b27debfdf2609e03641beae8235ad1a034bd97450b61156bd991cc588a93c"
+      }
+    },
+    "automl.search.fitting_context": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/search/fitting_context.py",
+        "sha256": "48793ea77b607583c480965e31c9658ba6465cf2e05545239549bf2349e69314"
+      },
+      "proposed_flat_name": "automl_fitting_context.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/search/fitting_context.py",
+        "sha256": "48793ea77b607583c480965e31c9658ba6465cf2e05545239549bf2349e69314"
+      }
+    },
+    "automl.search.fitting_extractor": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/search/fitting_extractor.py",
+        "sha256": "1defeaa322c76285b0e75969ad8f148321e4c592f22437494d4219c7000f3a04"
+      },
+      "proposed_flat_name": "automl_fitting_extractor.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/search/fitting_extractor.py",
+        "sha256": "1defeaa322c76285b0e75969ad8f148321e4c592f22437494d4219c7000f3a04"
+      }
+    },
+    "automl.search.hpo": {
+      "selected_source": {
+        "path": "hpo-trial-memory-producer-next-dev-r3/src/automl/search/hpo.py",
+        "sha256": "837b28c5a4da1f8ff2f547d58b66ff626156ce357d7bd1185b281b5335f90cfa"
+      },
+      "proposed_flat_name": "automl_search_hpo.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "accepted R3 overlay",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/search/hpo.py",
+        "sha256": "e11ac8f7ca8b9c844b1524f4f3d43e95b91374ac214e75aacb873c3b4ed89d51"
+      }
+    },
+    "automl.search.model_routing": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/search/model_routing.py",
+        "sha256": "c33dc092f91257e7befad974b07327259db1a10548dceb795a34087d6b74443e"
+      },
+      "proposed_flat_name": "automl_search_model_routing.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/search/model_routing.py",
+        "sha256": "c33dc092f91257e7befad974b07327259db1a10548dceb795a34087d6b74443e"
+      }
+    },
+    "automl.search.multitarget": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/search/multitarget.py",
+        "sha256": "52d47cf7c4833511c1798c65710fed279496303dd3507376808ddb541303e591"
+      },
+      "proposed_flat_name": "automl_search_multitarget.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/search/multitarget.py",
+        "sha256": "52d47cf7c4833511c1798c65710fed279496303dd3507376808ddb541303e591"
+      }
+    },
+    "automl.search.policy": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/search/policy.py",
+        "sha256": "8faf616caff90f7cdea4de9c4b5033ad22bd4ed1ac0dad3f0ca1d721f0759549"
+      },
+      "proposed_flat_name": "automl_policy.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/search/policy.py",
+        "sha256": "8faf616caff90f7cdea4de9c4b5033ad22bd4ed1ac0dad3f0ca1d721f0759549"
+      }
+    },
+    "automl.search.runner": {
+      "selected_source": {
+        "path": "hpo-trial-memory-producer-next-dev-r3/src/automl/search/runner.py",
+        "sha256": "68c135c0f321714abf4ca24aebf6ba3ffb67394a622c24e9a313862a999ae115"
+      },
+      "proposed_flat_name": "automl_runner.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "accepted R3 overlay",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/search/runner.py",
+        "sha256": "7f98647af4dc720f3895fb551edc25efb6f18ab53c4b87bd0d7f854c09a4af96"
+      }
+    },
+    "automl.search.stages": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/search/stages.py",
+        "sha256": "a1d2adb4b548afe71ecc1d9b161c30f49125998eb4314bc6efd04c42e7962a31"
+      },
+      "proposed_flat_name": "automl_search_stages.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/search/stages.py",
+        "sha256": "a1d2adb4b548afe71ecc1d9b161c30f49125998eb4314bc6efd04c42e7962a31"
+      }
+    },
+    "automl.task_understanding.api": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/api.py",
+        "sha256": "4884dca96f7f14b7bf7183519915129f7fdfb84b19828b9186e271d419681bd1"
+      },
+      "proposed_flat_name": "automl_task_understanding_api.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/api.py",
+        "sha256": "4884dca96f7f14b7bf7183519915129f7fdfb84b19828b9186e271d419681bd1"
+      }
+    },
+    "automl.task_understanding.early_declaration": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/early_declaration.py",
+        "sha256": "41e337cf7022b1d54d514053d8ebef7cabc2dacb5b1f5dec33abaf48fca05db7"
+      },
+      "proposed_flat_name": "automl_task_understanding_early_declaration.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/early_declaration.py",
+        "sha256": "41e337cf7022b1d54d514053d8ebef7cabc2dacb5b1f5dec33abaf48fca05db7"
+      }
+    },
+    "automl.task_understanding.early_output": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/early_output.py",
+        "sha256": "9cfc6c185e446e309f14e4d02a1624a15df36bf21008d56bf12820e6ec471a73"
+      },
+      "proposed_flat_name": "automl_task_understanding_early_output.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/early_output.py",
+        "sha256": "9cfc6c185e446e309f14e4d02a1624a15df36bf21008d56bf12820e6ec471a73"
+      }
+    },
+    "automl.task_understanding.inputs": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/inputs.py",
+        "sha256": "43233505b29ddd407eb6edc22430dc0b14546fe3db8334e7979988470065b537"
+      },
+      "proposed_flat_name": "automl_task_understanding_inputs.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/inputs.py",
+        "sha256": "43233505b29ddd407eb6edc22430dc0b14546fe3db8334e7979988470065b537"
+      }
+    },
+    "automl.task_understanding.metric_contract": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/metric_contract.py",
+        "sha256": "033ee07f0014d8dceae8fe24e0dbbdfb2a19a04c385422b3c67e41c4ddcf30a8"
+      },
+      "proposed_flat_name": "automl_task_understanding_metric_contract.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/metric_contract.py",
+        "sha256": "033ee07f0014d8dceae8fe24e0dbbdfb2a19a04c385422b3c67e41c4ddcf30a8"
+      }
+    },
+    "automl.task_understanding.metrics": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/metrics.py",
+        "sha256": "c1b4e51032bfc43ca13d0d8674e9cf6c7edf166eaa1c9a2bcf9bdce87c4cbce4"
+      },
+      "proposed_flat_name": "automl_task_understanding_metrics.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/metrics.py",
+        "sha256": "c1b4e51032bfc43ca13d0d8674e9cf6c7edf166eaa1c9a2bcf9bdce87c4cbce4"
+      }
+    },
+    "automl.task_understanding.probabilities": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/probabilities.py",
+        "sha256": "8011491de6153a9e744de7b3ba534e130b4d1b10c6d86b8869341fb36a17e97e"
+      },
+      "proposed_flat_name": "automl_task_understanding_probabilities.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/probabilities.py",
+        "sha256": "8011491de6153a9e744de7b3ba534e130b4d1b10c6d86b8869341fb36a17e97e"
+      }
+    },
+    "automl.task_understanding.role_validation": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/role_validation.py",
+        "sha256": "cf7960ec8b0be23ab0e9a1989e494c21c3e7a30225926050fed98f3187fe8153"
+      },
+      "proposed_flat_name": "automl_task_understanding_role_validation.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/role_validation.py",
+        "sha256": "cf7960ec8b0be23ab0e9a1989e494c21c3e7a30225926050fed98f3187fe8153"
+      }
+    },
+    "automl.task_understanding.semantic_inputs": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/semantic_inputs.py",
+        "sha256": "2d1cb2a85f4d6347496dbd04e2ae27cae7d2dd735ca70e88e51458b42815a2c3"
+      },
+      "proposed_flat_name": "automl_task_understanding_semantic_inputs.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/semantic_inputs.py",
+        "sha256": "2d1cb2a85f4d6347496dbd04e2ae27cae7d2dd735ca70e88e51458b42815a2c3"
+      }
+    },
+    "automl.task_understanding.service": {
+      "selected_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/service.py",
+        "sha256": "4ff94c9e7a706d28f4e3ddbc8c9c1d49806fffe09dd3d30ab0041064e74e94ef"
+      },
+      "proposed_flat_name": "automl_task.py",
+      "flat_byte_sha256": null,
+      "flat_rendering_performed": false,
+      "origin": "unchanged current base",
+      "current_base_source": {
+        "path": "alfa-hack-automl/src/automl/task_understanding/service.py",
+        "sha256": "4ff94c9e7a706d28f4e3ddbc8c9c1d49806fffe09dd3d30ab0041064e74e94ef"
+      }
+    }
+  },
+  "native_unchanged_package_inits": {
+    "src/automl/__init__.py": {
+      "path": "alfa-hack-automl/src/automl/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "src/automl/compat/__init__.py": {
+      "path": "alfa-hack-automl/src/automl/compat/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "src/automl/error_analysis/__init__.py": {
+      "path": "alfa-hack-automl/src/automl/error_analysis/__init__.py",
+      "sha256": "0b543aa81576afff5525b3cd27671d679c07c1eb6ea0567117fe2c51506d1a1b"
+    },
+    "src/automl/evaluation/__init__.py": {
+      "path": "alfa-hack-automl/src/automl/evaluation/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "src/automl/execution/__init__.py": {
+      "path": "alfa-hack-automl/src/automl/execution/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "src/automl/execution/feature_engineering/__init__.py": {
+      "path": "alfa-hack-automl/src/automl/execution/feature_engineering/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "src/automl/execution/model_adapters/__init__.py": {
+      "path": "alfa-hack-automl/src/automl/execution/model_adapters/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "src/automl/execution/postprocessing/__init__.py": {
+      "path": "alfa-hack-automl/src/automl/execution/postprocessing/__init__.py",
+      "sha256": "30e82dcb6555845cb09ea2d0bc105c863bc045866039c2945e76fe23f82b9468"
+    },
+    "src/automl/execution/preprocessing/__init__.py": {
+      "path": "alfa-hack-automl/src/automl/execution/preprocessing/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "src/automl/execution/weighting/__init__.py": {
+      "path": "alfa-hack-automl/src/automl/execution/weighting/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "src/automl/infrastructure/__init__.py": {
+      "path": "alfa-hack-automl/src/automl/infrastructure/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "src/automl/publishing/__init__.py": {
+      "path": "alfa-hack-automl/src/automl/publishing/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "src/automl/search/__init__.py": {
+      "path": "alfa-hack-automl/src/automl/search/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "src/automl/task_understanding/__init__.py": {
+      "path": "alfa-hack-automl/src/automl/task_understanding/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "native_unchanged_root_wrappers": {
+    "agent_core.py": {
+      "path": "alfa-hack-automl/agent_core.py",
+      "sha256": "9c10a2bd66e4ecfe679da8cb92bc1eb6a4534b3228cc73bb711f1a9e7a9f03cf"
+    },
+    "agent_policy.py": {
+      "path": "alfa-hack-automl/agent_policy.py",
+      "sha256": "7930776d148c84970c48176727d19c233adff8b7b751791e427ad60963f26b0f"
+    },
+    "agent_runner.py": {
+      "path": "alfa-hack-automl/agent_runner.py",
+      "sha256": "a1a55b15a523a756ea19ee2efcfffab0341fd8bfad2783176e2b312e1ef63cff"
+    },
+    "agent_worker.py": {
+      "path": "alfa-hack-automl/agent_worker.py",
+      "sha256": "d4cde2ce88ed3ac44da5fe17010079690d5c2eff02305902b9b62046d7b529f3"
+    },
+    "ensemble_cache.py": {
+      "path": "alfa-hack-automl/ensemble_cache.py",
+      "sha256": "9a9d11b525fc937af07a6f9712aff303981c9711a359eb17d57e9324d126a8b5"
+    },
+    "model_utils.py": {
+      "path": "alfa-hack-automl/model_utils.py",
+      "sha256": "fe3af899867320d3cab9fdcf3caa9db80b5a57ef9f3db5d83215f55859e7faef"
+    },
+    "solution.py": {
+      "path": "alfa-hack-automl/solution.py",
+      "sha256": "1e124df5569b28935ccd8d553a53cb966d2e11f894c47a73652885804a396896"
+    }
+  },
+  "native_runtime_source_files_projection": 94,
+  "native_source_count_condition": "Exactly the listed73 modules+14 package inits+7 root wrappers; additional proof/tool root .py would change runtime source_files and must be bound explicitly.",
+  "proposed_flat_members": 79,
+  "proposed_flat_python_source_files": 78,
+  "flat_count_derivation": "73 mapped production modules +4 generated aliases +solution.py +requirements.txt. No archive/member SHA exists yet.",
+  "generated_aliases": {
+    "agent_runner.py": "automl_runner",
+    "agent_policy.py": "automl_policy",
+    "agent_worker.py": "automl_worker",
+    "ensemble_cache.py": "automl_ensembles"
+  },
+  "requirements": {
+    "path": "alfa-hack-automl/requirements.txt",
+    "sha256": "9173b0388532fbd2a709e4f4b3029e3b9ccab685fce43a85261ffa1ba95efbe6"
+  },
+  "production_unmapped_project_ImportFrom": [],
+  "production_relative_imports": [],
+  "existing_helper_AST_sha256": {
+    "alfa-hack-automl/tools/build_submission.py": {
+      "Flatten": "326afe573aab0e0dc86b8fdb131ddcdc122600b8cbd9dcf777e0556f36f17a2e",
+      "build_files": "a254a8c740f4c4e461901055d7ac8607a3ff2e3ae728cfe9cfc0dc163e7ede65",
+      "main": "b9bffbd5b33637a3aa9daf3b55593fed580d1c8c1aa6fa7ba2a50e8161e7915c"
+    },
+    "alfa-hack-automl/src/automl/infrastructure/runtime.py": {
+      "project_root": "d9b01e8300d77d5eace4a5b541125a7e83ba8ff05d66e4339fb204ba8fed9808",
+      "worker_entrypoint": "687819d8bde1a0ad0bd35f473a269973a1a0b5adc1ea1074dc1f0813333c6018",
+      "source_files": "8941f937ac6858cc0fcbdad8dc4dfcddcecd61e2ee0fe45987f775a7b2bc2f7a"
+    },
+    "uar10-context-selector-gate-next-dev-r3/contracts.py": {
+      "mapping": "331c5a5bd664e4c91c361a236b92bc25c3189acfa722b59f58450cef02288ac2",
+      "FlatTestImports": "0ca488f09fd9ffda85c1e33d813c500c911a6cb8387d1d9da8aae190789ac000",
+      "adapted_test": "b2ec90b09f2d48a3ff47bfc557643141b2cc8b018edfa07663c65331f897760b",
+      "adapted_fixture": "96f9c8d7123283338debf71c6651fbd7407034aaf351542cc643f5017460d36d"
+    }
+  },
+  "overlay_itself_has_package_inits": false,
+  "overlay_itself_has_solution_py": false,
+  "actual_rendering_imports_tests_archive_operations": 0
+}

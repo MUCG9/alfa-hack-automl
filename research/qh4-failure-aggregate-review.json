@@ -1,0 +1,57 @@
+{
+  "schema": "QH4-safe-failure-aggregate-independent-review-v1",
+  "status": "BOUND_AGGREGATE_VERIFIED_CURRENT_FAILURE_NOT_QUALIFIED",
+  "summary_sha256": "28115d1290ce8ad7c168b504d860ad9403239eba7cf8c204888f59620e2f583d",
+  "evidence_refs_sha256": {
+    "qh4/campaign.json": "8515132488dcc97bd8b4f188281b22c6d7a8b56dddf68036988e87c98dbc9836",
+    "qh4/r/report.json": "1cb47796825600df8c8ffb6c0d03f3540a7b926cbb7bc389d8fead6f0dfe1b44",
+    "qh4/terminal-root-closure.json": "0176814e986e7c0e5dcfaa310227441f62e2824e4e9a8274790a82d584d5e469",
+    "qh4/r/gateway-4/request.json": "075f0152e3ed36b6e9186c1d8a391b1ae874371d9a4f4ca66de29c913e13a064",
+    "qh4/r/gateway-4/result.json": "2c8c1586e4ec1594d9caaa977d5a5021e418fa0ff10e9192e73faf05cb8f7b77",
+    "private/qh4-actual-terminal-tools-r1.json": "b6d067236551178e4e387b0c7d351dbba33e02942a1ffc8126839c0691238160",
+    "private/qh4-negative-closure-actual-tools-r1.json": "762467ee5040feea651ba6fe9befdb50bbd06550db564c6071f8f9669e2aa79f"
+  },
+  "checks": {
+    "actual_main92878_tool11434a_exit1": true,
+    "elapsed672_25_matches": true,
+    "nine_strict_terminal_OK_logs_counts": [
+      2,
+      6,
+      4,
+      21,
+      4,
+      28,
+      2,
+      4,
+      6
+    ],
+    "startup77_no_skip": true,
+    "worker10_callbacks_not_recursive_fits": true,
+    "Qwen_candidate_attempts3": true,
+    "gateway_invocations4": true,
+    "accepted_task_ledger_attempts3_lower_bound": true,
+    "safe_fourth_error_TimeoutError_attempt1_wall178_484_bound": true,
+    "full180_allocated_not_late_admission": true,
+    "usage_incomplete_and_underlying_SDK_HTTP_cause_unknown": true,
+    "child_provider_postcheck_and_parent_failure_codes_match_safe_traceback": true,
+    "first_negative_closer5c82cc_exit1_root0176814e_flags_match": true,
+    "collector_warning_prefix_parse_failure_and_no_automatic_closer_confirmed": true,
+    "separate_unguarded4c4173_exit0_8527_absent_counts_match_but_not_independent_guarded_closure": true,
+    "guarded_current_negative_closure_pending_in_this_bound_summary": true,
+    "all_source_evidence_refs_raw_SHA_exact": true,
+    "qualified_metrics_NULL_no_promotion_official_score_upload": true
+  },
+  "preserved_unknowns": [
+    "Observed safe TimeoutError does not expose original caught SDK subtype, HTTP status, remote/model/organizer cause.",
+    "Incomplete usage is not0tokens; task report3 is lower bound, not whole verifiedHTTPusage.",
+    "Unguarded diagnostics4c4173/39b7dc are not retrospective current guarded closure, ownership, new metrics or oldFAIL qualification.",
+    "Current closure status is as-of the bound summary; later separately guarded receipts must remain distinct."
+  ],
+  "reviewer_actual_imports": 0,
+  "reviewer_actual_tests": 0,
+  "reviewer_actual_models": 0,
+  "reviewer_actual_API": 0,
+  "reviewer_actual_PID_scans": 0,
+  "reviewer_actual_array_prediction_truth_metric_values_read": 0,
+  "findings": []
+}

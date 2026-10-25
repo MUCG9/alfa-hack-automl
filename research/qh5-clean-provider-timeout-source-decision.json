@@ -1,0 +1,45 @@
+{
+  "schema": "qh5-clean-provider-timeout-continuation-root-source-decision-v1",
+  "status": "SOURCE_ONLY_NOT_READY",
+  "reason": "QH4 actual11434a exit1 after672.25s: gateway4 safe diagnostic reported TimeoutError; provider postcheck late and nonzero remains fatal. No current outcome salvage.",
+  "factor": "Continue through an ordinary timeout only when the future provider exits within its unchanged hard allocation with source-bound complete parent cleanup evidence.",
+  "scope": {
+    "outer_provider_seconds": 180,
+    "prospective_inner_sdk_receipt_exit_reserve_seconds": 10,
+    "task_and_common_budget_unchanged": true,
+    "same_reg_class_policy": true,
+    "ordinary_timeout_result": "explicit failed-NULL round; no worker candidate; retained in feedback and accounting",
+    "required_parent": "actual parent status ok, exit0, cleanup true, no errors; source/request/result bindings current",
+    "fatal_unchanged": [
+      "late provider",
+      "nonzero provider exit",
+      "resource violation",
+      "unknown observation",
+      "uncertain cleanup",
+      "unknown attempts",
+      "binding failure"
+    ],
+    "no_retry_same_call": true
+  },
+  "qualification": {
+    "strict_quality_and_complete_usage_predicates_unchanged": true,
+    "missing_usage_remains_null": true,
+    "incomplete_usage_never_zero": true,
+    "any_failed_provider_keeps_final_existing_status_ok_usage_gate_false": true,
+    "finishing_research_loops_is_distinct_from_final_metric_qualification": true,
+    "qualified_metrics_before_full_audit": null
+  },
+  "implementation": {
+    "new_isolated_source_version_only": true,
+    "frozen_QH4_immutable": true,
+    "default_archive_unchanged": true,
+    "no_API_models_or_runtime_before_peer_root_publish_ready": true
+  },
+  "required_tests": [
+    "inner SDK reserve stays inside original180 and both original task/common deadlines",
+    "clean typed timeout known attempts yields failed-NULL/no worker round and subsequent proposal",
+    "late/nonzero/resource/unknown/cleanup/binding failure remains sticky fatal",
+    "unknown tokens remain NULL and complete usage cannot recover to true",
+    "final strict status-ok/usage quality rejects failed provider history"
+  ]
+}

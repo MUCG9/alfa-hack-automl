@@ -1,0 +1,34 @@
+{
+  "schema": "QH4-bounded-failure-diagnosis-source-handoff-v1",
+  "status": "FROZEN_METADATA_ONLY_CURRENT_FAILURE_PRESERVED",
+  "files_sha256": {
+    "diagnosis.json": "865f6a628c36fc6ce7eb095522495dd37ae9a85b6ac93bd8ce36726c38fadbe7",
+    "prospective-recommendation.json": "8b8d114df454201eb1e4b02b0f88fc475d487ad326b7c2e4ad40a006d4332fee"
+  },
+  "external_refs_sha256": {
+    "qh4/campaign.json": "8515132488dcc97bd8b4f188281b22c6d7a8b56dddf68036988e87c98dbc9836",
+    "qh4/r/report.json": "1cb47796825600df8c8ffb6c0d03f3540a7b926cbb7bc389d8fead6f0dfe1b44",
+    "qh4/r/supervision.json": "4998daa28fba789d5fa3b5bc91e4e51afd63bc4859aa2af13bdbaea53e6ee7ff",
+    "qh4/supervisors/regression.json": "208bc3897eb6ba1520e03bd39676d33f659785e6f870db65591484b3fcfe9874",
+    "qh4/supervisors/regression.log": "7ccd03d50de28e2230c12ca9779bc23b4200ba70e86041c81ce5efa424dcd7be",
+    "qh4/r/gateway-4/request.json": "075f0152e3ed36b6e9186c1d8a391b1ae874371d9a4f4ca66de29c913e13a064",
+    "qh4/r/gateway-4/result.json": "2c8c1586e4ec1594d9caaa977d5a5021e418fa0ff10e9192e73faf05cb8f7b77",
+    "qh4/r/gateway-4/supervisor.json": "23528c1f78bd7eee36e298f9443d3eb2e6dcbb2cc6b1c837c16bd4cf3595874e",
+    "qh4/r/gateway-4/supervisor.log": "ec17fd7c5b580854db2b9250512c9a46edebe88a9ce7fdd87e8c06bf831eff6a",
+    "qwen-three-hour-autoresearch-next-dev-r9/source-handoff-final.json": "aeeecd09e4631d6b96b2e57ded614df22d84ea6bdf56b1406ba0e2e1b96b13a9",
+    "qwen-three-hour-autoresearch-next-dev-r9/task_entry.py": "cf5db89838ae83c4c2b8748355e086e1da23665da34dcbd68e120513116c1a58",
+    "qwen-three-hour-autoresearch-next-dev-r9/gateway_child.py": "4889f928bddc3f80e52a27cf426d89ce3a11f01289140e009e3878b01af72cd9",
+    "qwen-three-hour-autoresearch-next-dev-r9/research_loop.py": "1ec5af7721a2e434554707fc0667ad430f9ec0743b471e1d916341751b1f53c7",
+    "qwen-three-hour-independent-audit-next-dev-r6/audit_final.py": "59319a87d5727d483bd10e026edf8d7ddbe922264a17f7a978320df8fbe62cc0",
+    "qwen-three-hour-outer-next-dev-r9/run_campaign.py": "cf8057fe763ec9ca8f90972fd5e6e98f365453c4dc55f5a361f53a1ce5d0c95a",
+    "alfa-hack-automl/src/automl/infrastructure/llm_gateway.py": "31e45ff7c44e26a1451089c535ba9090aea9d6d35f7ac810bc157c5bda7e2aba",
+    "qh4/r/gateway-1/result.json": "f1f531530205e636d3b1be965d5ea71e59cb967aa10550df0176b079c405a188",
+    "qh4/r/gateway-2/result.json": "ac40b291c4aeaa52be35233a3b632e9eca61431c69f91ccbca556751ee737d68",
+    "qh4/r/gateway-3/result.json": "57ace4cc9d0ce85c15a08d1872e07c6b2ce26de260ea6ebe388cf19f31a340b0"
+  },
+  "external_refs_origin": "WORK-relative",
+  "no_frozen_candidate_or_state_changes": true,
+  "no_metric_or_promotion_claim": true,
+  "actual_imports_tests_models_API_PID_Git": 0,
+  "actual_clock": null
+}

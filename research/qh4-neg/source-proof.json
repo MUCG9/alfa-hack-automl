@@ -1,0 +1,62 @@
+{
+  "schema": "qh4-current-negative-source-proof-v1",
+  "status": "SOURCE_ONLY",
+  "base_handoff_sha256": "0d281815c5caf6fb5aad0e0a152ea67efd86a00952c5194aa736e94dc5f6985e",
+  "modified_boundaries": [
+    "QH4 exact source/artifact refs and actual schema/clock/failure literals",
+    "QH3 R2 clean-current predecessor and exact QH4 hosted projection/metadata scope",
+    "Actual ten parent receipts/four gateways and root resource UNKNOWN observations",
+    "Preserve limited diagnostic and its one actual Python plus exact metadata-confirmation3",
+    "Preserve primary and report secondary Power/lock/save failures"
+  ],
+  "guard_capture_owner_sampler_resource_deadline_lock_power_mechanics": "same qualified C5 APIs",
+  "source_pins": 3322,
+  "contracts_observed": 77,
+  "parent_receipts": 10,
+  "gateway_supervisors": 4,
+  "prelaunch_union": 8473,
+  "root_and_closer_union": 8527,
+  "unknown_resource_witnesses": 56,
+  "new_resource_only_tuples": [
+    [
+      23268,
+      1792892911.9605567
+    ],
+    [
+      26964,
+      1792891947.472482
+    ]
+  ],
+  "limited_diagnostic_and_confirmation4": true,
+  "current_known": 8533,
+  "post_known": 8536,
+  "future_with_post_preparers": 8539,
+  "exhaustive_embedded_checks": [
+    {
+      "path": "observe_current.py",
+      "references": 65,
+      "all_actual_raw_sha_equal": true
+    },
+    {
+      "path": "confirm_current.py",
+      "references": 65,
+      "all_actual_raw_sha_equal": true
+    }
+  ],
+  "actual_main": {
+    "session": 92878,
+    "exit_code": 1,
+    "tool": "11434a"
+  },
+  "actual_closer": {
+    "exit_code": 1,
+    "tool": "5c82cc"
+  },
+  "all_original_FAILs_preserved": true,
+  "current_negative_only": true,
+  "root60_requalified": false,
+  "no_deletion": true,
+  "no_role_or_ownership_adoption": true,
+  "own30_MIN_original10800": true,
+  "author_imports_tests_fits_API_data_arrays_PID_clock_Git_canonical": 0
+}

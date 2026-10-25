@@ -1,0 +1,91 @@
+{
+  "schema": "qwen-three-hour-campaign-failure-results-v1",
+  "unit": "QH4",
+  "status": "CLOSED_FAILED_CURRENT_GUARDED_CLOSURE_PENDING",
+  "actual_main": {
+    "session": 92878,
+    "tool": "11434a",
+    "exit_code": 1
+  },
+  "elapsed_common_seconds": 672.25,
+  "completed_three_hour_research": false,
+  "classification_attempted": false,
+  "startup_contracts_passed": 77,
+  "worker_callbacks": {
+    "attempted": 10,
+    "succeeded": 10,
+    "recursive_learner_fits": null
+  },
+  "executed_Qwen_candidates": 3,
+  "provider": {
+    "gateway_callbacks": 4,
+    "accepted_ledger_HTTP_attempts_lower_bound": 3,
+    "fourth_safe_outcome": "error",
+    "fourth_canonical_exception_type": "TimeoutError",
+    "fourth_reported_attempts": 1,
+    "fourth_reported_wall_seconds": 178.484,
+    "full_allocated_provider_seconds": 180,
+    "original_SDK_subtype_and_HTTP_status": null,
+    "whole_usage_complete": false
+  },
+  "failure": {
+    "child": "regression",
+    "gateway": 4,
+    "provider_child": "original_provider_task_common_deadline",
+    "parent": "provider_owned_supervision_or_cleanup_failed",
+    "cause_scope": "Saved canonical timeout outcome followed by late strict provider postcheck; no assertion about underlying SDK/server cause."
+  },
+  "collector": {
+    "cell": "2975",
+    "completed": true,
+    "error": "JSON parsing of warning-prefixed terminal metadata tool output",
+    "automatic_closer_attempted": false,
+    "original_receipt_preserved": true
+  },
+  "first_frozen_negative_closer": {
+    "tool": "5c82cc",
+    "exit_code": 1,
+    "technical_procedure_passed": false,
+    "source_unchanged": true,
+    "cleanup_confirmed": true,
+    "temporary_cleanup_confirmed": true,
+    "scope": "Current failure diagnostics inside original common; no positive qualification after expired driver final window"
+  },
+  "unguarded_post_exit_diagnostic": {
+    "tool": "4c4173",
+    "exit_code": 0,
+    "known_identity_count": 8527,
+    "absent_or_reused": 8527,
+    "live": 0,
+    "uncertain": 0,
+    "seconds_since_earliest_closer_chain_birth": 16.781351804733276,
+    "guarded_independent_closure": false
+  },
+  "qualified_metrics": null,
+  "promotion": false,
+  "official_score": null,
+  "upload": false,
+  "source_evidence": {
+    "diagnosis": {
+      "path": "work/qh4-failure-source-diagnosis-next-dev/source-handoff.json",
+      "sha256": "3043bc3d9e52c4acb42a55ef17b69f4a23a07a13da9c75317713b5d68e412047"
+    },
+    "prospective_continuation": {
+      "path": "work/qh4-failure-source-diagnosis-next-dev/source-handoff-continuation-r1.json",
+      "sha256": "a663c667418f427c66b1284cf0d444da1616eb76cdea1433ad803b39f5e2fff9"
+    },
+    "root_source_decision": {
+      "path": "work/qh5-clean-provider-timeout-root-source-decision-r1.json",
+      "sha256": "e179f316b12d476cbd7860dfa573fef95c6ec21d24cac34834db3d4717163754"
+    },
+    "campaign": {
+      "path": "work/qh4/campaign.json",
+      "sha256": "8515132488dcc97bd8b4f188281b22c6d7a8b56dddf68036988e87c98dbc9836"
+    },
+    "root": {
+      "path": "work/qh4/terminal-root-closure.json",
+      "sha256": "0176814e986e7c0e5dcfaa310227441f62e2824e4e9a8274790a82d584d5e469"
+    }
+  },
+  "next": "Guarded current-negative closure, then independently reviewed isolatedR10. No old launch or helper retry."
+}

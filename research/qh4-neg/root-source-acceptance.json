@@ -1,0 +1,19 @@
+{
+  "schema": "qh4-current-negative-root-source-acceptance-v1",
+  "status": "READY_CURRENT_NEGATIVE_ONLY",
+  "handoff_sha256": "6217aecdd242c75a33010b1e927aeda9fa7b78b80860fb6edbb9758716507c03",
+  "independent_peer_sha256": "fd2668df84077910a8d4b38d9f19b6aa45fa5f70d5f2beecee5a1df392a1bcc7",
+  "root_raw_refs_check_tool": "6beaa0",
+  "observer_sha256": "a88736ac62581eb5327ed0cace40202a8a626f37944af5bb6650ec45c93f1774",
+  "post_sha256": "a83f34051422ba092c6350802d48da85ec811459d13e316b615412862a7655c7",
+  "finite_known": 8533,
+  "own_seconds": 30,
+  "original_common_deadline_unix": 1792902747.93135,
+  "original_common_deadline_monotonic": 161753.328,
+  "one_observer_then_one_post_only_after_actual_exit0": true,
+  "technical_procedure_passed": false,
+  "new_metrics": null,
+  "root60_requalified": false,
+  "no_source_or_parent_clock_reset": true,
+  "source_publication_required_before_runtime": true
+}

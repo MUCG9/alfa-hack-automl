@@ -1,0 +1,42 @@
+{
+  "schema": "qh5-actual-launch-and-startup-v1",
+  "status": "RUNNING_NOT_QUALITY_QUALIFIED",
+  "observed_unix": 1792896004.3709724,
+  "actual_launch_tool": "5b7ed7",
+  "actual_main_session": 81631,
+  "collector_cell_id": "3121",
+  "collector_confirmed_running": true,
+  "actual_startup_contracts_passed": 83,
+  "actual_startup_suites": 9,
+  "separate_collector_pure_mock_contracts_passed": 10,
+  "clock": {
+    "start_unix": 1792895800.745163,
+    "start_monotonic": 154806.187,
+    "absolute_deadline_unix": 1792906600.745163,
+    "common_deadline_monotonic": 165606.187
+  },
+  "task_research_seconds_each": 4800,
+  "shared_reserve_seconds": 1200,
+  "preflight_actual_tool": "1ed8ed",
+  "preflight_elapsed_seconds": 3.75,
+  "complete_known_union": 8545,
+  "source_publication": "ac7d16d23163b541cf1646bb1427373642fc3307",
+  "manifest_sha256": "588f382749eed4156ae9f230559e895997fb7417a6803e7b131de743db8347c7",
+  "final_binding_peer_sha256": "c6aac92ae62dc2cd119201dca47fe8da9ac7a5474742d7e51378f2f488bcca92",
+  "current_phase": "REGRESSION_RESEARCH",
+  "worker_callbacks_attempted": 4,
+  "worker_callbacks_succeeded": 4,
+  "executed_Qwen_candidates": 0,
+  "actual_gateway_HTTP_responses_independently_confirmed": null,
+  "recursive_learner_fit_calls": null,
+  "new_qualified_metrics": null,
+  "completed_three_hour_research": false,
+  "promotion": false,
+  "submit": false,
+  "limits": [
+    "Startup PASS is not completed ML quality.",
+    "Final status-ok and complete provider usage predicates unchanged.",
+    "Source/input/budget frozen; old failed runs unchanged.",
+    "Only collector3121 may poll main81631 and close it."
+  ]
+}

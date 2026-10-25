@@ -1,0 +1,68 @@
+{
+  "schema": "QH4-current-negative-aggregate-independent-review-v1",
+  "status": "CURRENT_CLOSURE_VERIFIED_NEXT_ADMISSION_OBSERVED_SCOPE_CORRECTION_REQUIRED",
+  "summary_sha256": "dd11823777f2d3348fc6b421a70cf36de82acc782673ffdeaf2d16252f7b0927",
+  "refs_sha256": {
+    "private/qh4-current-negative-actual-tools-r1.json": "51076479e474856df34e808de9fdc56d91184a937dffdfe665fdd7670da8bd24",
+    "private/qh4-current-negative-postexit-root-tool.json": "ce7c99aa759866bab718d72a825d2be7fa165f0bfa28c0cb1bd97e49c3b00e45",
+    "qh4/current-negative-closure.json": "64df1f5f57c62bde768dc830b7c4ad1dc44a32ad5ecb26828d146ec5bd865ed4",
+    "qh4/current-negative-post-tool-confirmation.json": "e5a92018e825e99b6a844eba3cd66ed30468b8a4492d9f081ca7616b37ed3b27",
+    "qh4/campaign.json": "8515132488dcc97bd8b4f188281b22c6d7a8b56dddf68036988e87c98dbc9836",
+    "qh4/terminal-root-closure.json": "0176814e986e7c0e5dcfaa310227441f62e2824e4e9a8274790a82d584d5e469",
+    "qh4/r/report.json": "1cb47796825600df8c8ffb6c0d03f3540a7b926cbb7bc389d8fead6f0dfe1b44"
+  },
+  "verified": {
+    "actual_observer_e73c96_exit0": true,
+    "actual_post_d151b3_exit0": true,
+    "actual_postpreparer_fresh_62c651_exit0_known3_absent3_live0_uncertain0": true,
+    "negative_known8533_and_post8536_exact_inherited_plus_observer3": true,
+    "post8536_plus_own3_known_preparer_union8539": true,
+    "all_current_source_cleanup_temp_flags_True": true,
+    "source3322_current": true,
+    "all_technical_flags_False": true,
+    "originalFAIL_and_no_root60_requalification": true,
+    "report_original1cb477_unchanged": true,
+    "metrics_NULL_and_no_promotion": true,
+    "unguarded_diagnostics_remain_unqualified": true
+  },
+  "finding": {
+    "code": "QH5_PREDECESSOR_OBSERVED_RESOURCE_SCOPE_02",
+    "scope": "Prospective next admission only; does not retroactively alter qualified scope of current negative proofs.",
+    "summary8539_exact_known_preparer_union_but_NOT_complete_guard_observed_scope": true,
+    "observed_extra_count": 2,
+    "extra_exact_hashed_witnesses": [
+      {
+        "identity": {
+          "pid": 27372,
+          "create_time": 1792893591.7040107
+        },
+        "source": {
+          "path": "work/qh4/current-negative-closure.json",
+          "sha256": "64df1f5f57c62bde768dc830b7c4ad1dc44a32ad5ecb26828d146ec5bd865ed4"
+        },
+        "JSON_pointer": "/resource_observation/verified_resource_sample/sampled/3"
+      },
+      {
+        "identity": {
+          "pid": 23392,
+          "create_time": 1792893597.4398663
+        },
+        "source": {
+          "path": "work/qh4/current-negative-post-tool-confirmation.json",
+          "sha256": "e5a92018e825e99b6a844eba3cd66ed30468b8a4492d9f081ca7616b37ed3b27"
+        },
+        "JSON_pointer": "/resource_observation/verified_resource_sample/sampled/2"
+      }
+    ],
+    "roles": "UNKNOWN",
+    "ownership_or_worker_or_termination_authority": false,
+    "next_full_observed_identity_union": 8541,
+    "minimal_action": "Preserve dd118 and all original proofs; append exact source/hash/pointer identity supplement for these2 before future finite admission. Next guarded metadata preflight and under-lock check include full8541 plus actual newly observed preparers; no new PID scan or invented birth here."
+  },
+  "reviewer_actual_imports": 0,
+  "reviewer_actual_tests": 0,
+  "reviewer_actual_models": 0,
+  "reviewer_actual_API": 0,
+  "reviewer_actual_PID_scans": 0,
+  "reviewer_actual_metric_value_array_prediction_truth_reads": 0
+}

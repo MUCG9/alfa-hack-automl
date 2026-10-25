@@ -2,3 +2,6 @@ qh4-failure-results.json -text
 qh4-failure-aggregate-review.json -text
 qh4-failure-diagnosis-handoff.json -text
 qh5-clean-provider-timeout-source-decision.json -text
+qh4-failure-current-closure-addendum.json -text
+qh4-post-closure-observed-identity-supplement.json -text
+qh4-current-closure-aggregate-review.json -text

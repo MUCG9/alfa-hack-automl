@@ -1,0 +1,40 @@
+{
+  "schema": "qh4-failure-current-closure-addendum-v1",
+  "unit": "QH4",
+  "status": "CLOSED_FAILED_CURRENT_SOURCE_CLEANUP_CONFIRMED",
+  "original_failure_summary_sha256": "28115d1290ce8ad7c168b504d860ad9403239eba7cf8c204888f59620e2f583d",
+  "negative": {
+    "path": "work/qh4/current-negative-closure.json",
+    "sha256": "64df1f5f57c62bde768dc830b7c4ad1dc44a32ad5ecb26828d146ec5bd865ed4",
+    "actual_tool": "e73c96",
+    "actual_exit_code": 0,
+    "known_absent_or_reused": 8533
+  },
+  "post": {
+    "path": "work/qh4/current-negative-post-tool-confirmation.json",
+    "sha256": "e5a92018e825e99b6a844eba3cd66ed30468b8a4492d9f081ca7616b37ed3b27",
+    "actual_tool": "d151b3",
+    "actual_exit_code": 0,
+    "known_absent_or_reused": 8536
+  },
+  "actual_post_preparers": {
+    "fresh_tool": "62c651",
+    "exact_known": 3,
+    "absent_or_reused": 3,
+    "live": 0,
+    "uncertain": 0
+  },
+  "finite_next_union": 8539,
+  "actual_tools_sha256": "51076479e474856df34e808de9fdc56d91184a937dffdfe665fdd7670da8bd24",
+  "source_pins_checked": 3322,
+  "current_source_unchanged": true,
+  "current_known_cleanup_confirmed": true,
+  "current_temporary_absent": true,
+  "original_QH4_FAIL_preserved": true,
+  "root60_requalified": false,
+  "technical_procedure_passed": false,
+  "new_metrics": null,
+  "promotion": false,
+  "original_report_unchanged": true,
+  "no_helpers_repeated": true
+}

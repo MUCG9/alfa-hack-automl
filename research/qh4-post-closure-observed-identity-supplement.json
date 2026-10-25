@@ -1,0 +1,41 @@
+{
+  "schema": "qh4-post-closure-observed-identity-supplement-v1",
+  "observed_unix": 1792893855.8213322,
+  "prior_addendum_sha256": "dd11823777f2d3348fc6b421a70cf36de82acc782673ffdeaf2d16252f7b0927",
+  "prior_preparer_union": 8539,
+  "supplemental_guard_only_identities": [
+    {
+      "source": "work/qh4/current-negative-closure.json",
+      "source_sha256": "64df1f5f57c62bde768dc830b7c4ad1dc44a32ad5ecb26828d146ec5bd865ed4",
+      "json_pointer": "/resource_observation/verified_resource_sample/sampled/3",
+      "identity": {
+        "pid": 27372,
+        "create_time": 1792893591.7040107
+      },
+      "role": "UNKNOWN",
+      "read_only_absence_witness": true,
+      "original_absent_or_reused": true,
+      "uncertain": null
+    },
+    {
+      "source": "work/qh4/current-negative-post-tool-confirmation.json",
+      "source_sha256": "e5a92018e825e99b6a844eba3cd66ed30468b8a4492d9f081ca7616b37ed3b27",
+      "json_pointer": "/resource_observation/verified_resource_sample/sampled/2",
+      "identity": {
+        "pid": 23392,
+        "create_time": 1792893597.4398663
+      },
+      "role": "UNKNOWN",
+      "read_only_absence_witness": true,
+      "original_absent_or_reused": true,
+      "uncertain": null
+    }
+  ],
+  "complete_observed_next_union": 8541,
+  "owned_worker_role_granted": false,
+  "termination_authority_granted": false,
+  "technical_procedure_passed": false,
+  "root60_requalified": false,
+  "original_QH4_FAIL_preserved": true,
+  "future_fresh_complete_absence_required": true
+}

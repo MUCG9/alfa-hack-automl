@@ -1,0 +1,32 @@
+{
+  "schema": "qh5-terminal-metadata-transport-r1",
+  "status": "CLOSED_FAIL_FRESH_OBSERVATION_UNCERTAIN",
+  "files": {
+    "terminal-results-r1.json": "9071c8dd41d5bb1882dcf4c4d90e0fede82cf1055c75ea5958ec439fd85de998",
+    "terminal-negative-addendum-r1.json": "108f1b5eccf9dba31b332ff8ed1f5daf2d4bf9bea8dc8b08b0e588a10cd74c02"
+  },
+  "external_evidence_by_hash": {
+    "terminal_diagnosis_review": "42cbc53aaecf4fee33e35c867dd9f4f3f5a1cf3eb742cd12b499a323fcda69b1",
+    "CLASS_accounting_review": "9f90e038c744d918d2a205bf4643802fbd5273de7dbc871d3931c466bd3cf3a7",
+    "terminal_metadata_review": "8404ae442179d7a5e81dae1d126fb04d99b108618b4c7966b6faf7bd60a391d1",
+    "negative_result_review": "322b2d47f4b9fd4688dcdc8e06ffb3c97e0525dca600a62d17a4c6791f947736",
+    "observer_source_review": "fba5882167a75bfb252e1bd7fdf9270f33c9adb895af027df1c1e066a6dcf7f8"
+  },
+  "docs_LF_normalized_sha256": {
+    "IMPLEMENTATION_STATUS.md": "77acf801e3ceb1eb9f1d5e3f7ba8f8046cdf424411b598808a27f507ab398baa",
+    "docs/assumptions.md": "1e032831c3d906bfed645caa8938da631bc7082dc94aa6b9be275a71fa40d70f",
+    "docs/contract.md": "44f55d61a27b2000ff1b8a886b6de6489fb479e796fd6ea02cf6970fea2b2681",
+    "docs/next_steps.md": "c13b182cfcc2e0225b3b2c07e3df8c6855a6953be10809ff703c509a74d54030",
+    "docs/validation_protocol.md": "b22cb69fb237100316582bbaf606d4ab6970533c869c8d95785539b69b1d37a9",
+    "program.md": "96960ae935f6f6ef76139be767b36bf32cd2729f4a30158db6b0e6a6b9e5a0cc",
+    "research/README.md": "381a05ac4ef73d80d599867099dcf5eacfbe9cf7428315d79f01265c030fded7"
+  },
+  "runtime_source_commit": "ac7d16d23163b541cf1646bb1427373642fc3307",
+  "runtime_source_changed": false,
+  "private_receipts_included": false,
+  "data_predictions_truth_weights_included": false,
+  "standalone_runtime_closure": false,
+  "archive_created": false,
+  "new_qualified_metrics": null,
+  "new_heavy_admission": false
+}
